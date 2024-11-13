@@ -60,6 +60,7 @@ import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -153,7 +154,8 @@ public class VolumeControlService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
+        // return BluetoothProperties.isProfileVcpControllerEnabled().orElse(false);
+        return LeAudioProfileConfig.isVcpVolumeControllerEnabled();
     }
 
     @Override
