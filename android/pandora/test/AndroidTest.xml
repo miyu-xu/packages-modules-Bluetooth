@@ -38,6 +38,8 @@
     <target_preparer class="com.android.tradefed.targetprep.FeatureFlagTargetPreparer">
         <option name="flag-value"
             value="bluetooth/com.android.bluetooth.flags.avdt_handle_suspend_cfm_bad_state=true"/>
+        <option name="flag-value"
+            value="bluetooth/com.android.bluetooth.flags.avrcp_connect_a2dp_with_delay=true"/>
     </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.DeviceSetup">
          <option name="set-property" key="persist.log.tag.bluetooth" value="VERBOSE"/>
