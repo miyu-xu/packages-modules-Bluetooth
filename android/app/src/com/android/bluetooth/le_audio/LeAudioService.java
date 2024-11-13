@@ -514,11 +514,17 @@ public class LeAudioService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false);
+        if (!Flags.leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isBapUnicastClientEnabled();
     }
 
     public static boolean isBroadcastEnabled() {
-        return BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false);
+        if (!Flags.leaudioConfigProfileEnabling()) {
+            return BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false);
+        }
+        return LeAudioProfileConfig.isBapBroadcastSourceEnabled();
     }
 
     private boolean registerTmap() {
