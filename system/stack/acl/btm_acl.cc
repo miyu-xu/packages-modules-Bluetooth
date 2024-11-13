@@ -845,8 +845,25 @@ void btm_read_remote_version_complete(tHCI_STATUS status, uint16_t handle, uint8
  ******************************************************************************/
 void btm_process_remote_ext_features(tACL_CONN* p_acl_cb, uint8_t max_page_number) {
   log::assert_that(p_acl_cb != nullptr, "assert failed: p_acl_cb != nullptr");
+  tBTM_SEC_DEV_REC* p_dev_rec;
   if (!p_acl_cb->peer_lmp_feature_valid[max_page_number]) {
     log::warn("Checking remote features but remote feature read is incomplete");
+  }
+
+  p_dev_rec = btm_find_dev(p_acl_cb->remote_addr);
+
+  if (p_dev_rec == nullptr) {
+    log::warn("Unable to find p_dev_rec");
+    return;
+  }
+
+  if (p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) {
+    /* Name is know, unset it so that name is retrieved again
+    * from security procedure. This will ensure, that if remote device
+    * has updated its name since last connection, we will have
+    * update name of remote device. */
+    p_dev_rec->sec_rec.sec_flags &= ~BTM_SEC_NAME_KNOWN;
+    p_dev_rec->sec_bd_name[0] = '\0';
   }
 
   bool ssp_supported = HCI_SSP_HOST_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[1]);
