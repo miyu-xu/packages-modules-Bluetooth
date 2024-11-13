@@ -229,13 +229,6 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
             props |= 0x40;
         }
 
-        match val.discoverable {
-            LeDiscMode::GeneralDiscoverable => {
-                props |= 0x04;
-            }
-            _ => {}
-        }
-
         let interval = clamp(val.interval, INTERVAL_MIN, INTERVAL_MAX - INTERVAL_DELTA);
 
         bt_topshim::profiles::gatt::AdvertiseParameters {
@@ -248,6 +241,7 @@ impl From<AdvertisingSetParameters> for bt_topshim::profiles::gatt::AdvertisePar
             secondary_advertising_phy: val.secondary_phy.into(),
             scan_request_notification_enable: 0_u8, // false
             own_address_type: val.own_address_type as i8,
+            discoverable: val.discoverable == LeDiscMode::GeneralDiscoverable,
         }
     }
 }
