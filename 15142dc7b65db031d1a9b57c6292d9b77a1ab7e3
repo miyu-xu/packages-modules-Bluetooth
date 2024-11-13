@@ -16,6 +16,24 @@
       "message": "You can just use b/315241296 instead",
       "revId": "15142dc7b65db031d1a9b57c6292d9b77a1ab7e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5df0b9a_b535ab00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-11-13T14:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c7aa5cf_67c2b35b",
+      "revId": "15142dc7b65db031d1a9b57c6292d9b77a1ab7e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
