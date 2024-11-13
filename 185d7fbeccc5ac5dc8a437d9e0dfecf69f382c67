@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f098392d_a7adc8d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-13T01:24:32Z",
+      "side": 1,
+      "message": "lgtm, \nplease also help to do some sanity tests around those, considering it\u0027s behavior the resync helper flag we\u0027re releasing, don\u0027t want to get it rolled back :p",
+      "revId": "185d7fbeccc5ac5dc8a437d9e0dfecf69f382c67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
