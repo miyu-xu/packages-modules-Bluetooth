@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce2f3a77_21c5de48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-13T15:17:04Z",
+      "side": 1,
+      "message": "such flag is merged. It should be:\n```\nflags: add leaudio_monitor_unicast_source_when_managed_by_broadcast_delegator\n\nMonitor stream for primary devices which manages external sources.\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 63
+      },
+      "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
