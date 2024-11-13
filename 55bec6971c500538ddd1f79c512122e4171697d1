@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f7692a_82a6c545",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T19:46:01Z",
+      "side": 1,
+      "message": "What about:\n\n```suggestion\n    private static Boolean sUriImagesSupport \u003d SystemProperties.getBoolean(VFS_COVER_ART_ENABLED_PROPERTY, false;\n```\n\nand nothing in `areUriImagesSupported` ?\n\nAnd maybe add an @VisibleForTesting and directly set this variable from test, instead of having to change the systemproperty ? I think this would be easier to handle. But I let your preference drive it",
+      "range": {
+        "startLine": 35,
+        "startChar": 47,
+        "endLine": 35,
+        "endChar": 51
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e046d7_6bead7ae",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T19:46:01Z",
+      "side": 1,
+      "message": "Why null checking this ? shouldn\u0027t we set it back to null if there is no image ? \n\ncould this be done without a temporary variable ?\n```\n item.song.image.setImageHandle(mAvrcpCoverArtService.storeImage(item.song.image));\n```",
+      "range": {
+        "startLine": 488,
+        "startChar": 32,
+        "endLine": 488,
+        "endChar": 58
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "765c158e_7fb4a80d",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T19:46:01Z",
+      "side": 1,
+      "message": "I think this would be cleaner with a stream \u0026 filter. What do you think ?\n```\nresults.stream()\n    .fiter(item -\u003e item !\u003d null \u0026\u0026 item.song !\u003d null \u0026\u0026 item.song.image !\u003d null)\n    .map(item -\u003e item.song.image)\n    .forEach(image -\u003e image.setImageHandle(mAvrcpCoverArtService.storeImage(image));\n```",
+      "range": {
+        "startLine": 484,
+        "startChar": 23,
+        "endLine": 492,
+        "endChar": 25
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8e6d163_9b5ae479",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/MediaPlayerWrapperTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-13T19:46:01Z",
+      "side": 1,
+      "message": "no need to reset variable to null in teardown.\n\nEither they are mock and mockito will reset them\nOr they are field initialized in setup",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 26
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
