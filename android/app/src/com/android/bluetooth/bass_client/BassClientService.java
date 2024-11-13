@@ -906,10 +906,16 @@ public class BassClientService extends ProfileService {
     private void enqueueSourceGroupOp(BluetoothDevice sink, Integer msgId, Object obj) {
         log("enqueueSourceGroupOp device: " + sink + ", msgId: " + msgId);
 
-        if (!mPendingGroupOp.containsKey(sink)) {
-            mPendingGroupOp.put(sink, new ArrayList());
-        }
-        mPendingGroupOp.get(sink).add(new Pair<Integer, Object>(msgId, obj));
+        mPendingGroupOp.compute(
+                sink,
+                (key, opsToModify) -> {
+                    List<Pair<Integer, Object>> operations =
+                            (opsToModify == null)
+                                    ? new ArrayList<>()
+                                    : new ArrayList<>(opsToModify);
+                    operations.add(new Pair<>(msgId, obj));
+                    return operations;
+                });
     }
 
     private boolean isSuccess(int status) {
@@ -956,67 +962,76 @@ public class BassClientService extends ProfileService {
                         + ", reqMsg: "
                         + reqMsg);
 
-        List<Pair<Integer, Object>> operations = mPendingGroupOp.get(sink);
-        if (operations == null) {
-            return;
-        }
+        mPendingGroupOp.computeIfPresent(
+                sink,
+                (key, opsToModify) -> {
+                    List<Pair<Integer, Object>> operations = new ArrayList<>(opsToModify);
 
-        switch (reqMsg) {
-            case BassClientStateMachine.ADD_BCAST_SOURCE:
-                if (obj == null) {
-                    return;
-                }
-                // Identify the operation by operation type and broadcastId
-                if (isSuccess(reason)) {
-                    BluetoothLeBroadcastReceiveState sourceState =
-                            (BluetoothLeBroadcastReceiveState) obj;
-                    boolean removed =
+                    switch (reqMsg) {
+                        case BassClientStateMachine.ADD_BCAST_SOURCE:
+                            if (obj == null) {
+                                return operations;
+                            }
+                            // Identify the operation by operation type and broadcastId
+                            if (isSuccess(reason)) {
+                                BluetoothLeBroadcastReceiveState sourceState =
+                                        (BluetoothLeBroadcastReceiveState) obj;
+                                boolean removed =
+                                        operations.removeIf(
+                                                m ->
+                                                        (m.first.equals(
+                                                                        BassClientStateMachine
+                                                                                .ADD_BCAST_SOURCE))
+                                                                && (sourceState.getBroadcastId()
+                                                                        == ((BluetoothLeBroadcastMetadata)
+                                                                                        m.second)
+                                                                                .getBroadcastId()));
+                                if (removed) {
+                                    setSourceGroupManaged(sink, sourceState.getSourceId(), true);
+                                }
+                            } else {
+                                BluetoothLeBroadcastMetadata metadata =
+                                        (BluetoothLeBroadcastMetadata) obj;
+                                operations.removeIf(
+                                        m ->
+                                                (m.first.equals(
+                                                                BassClientStateMachine
+                                                                        .ADD_BCAST_SOURCE))
+                                                        && (metadata.getBroadcastId()
+                                                                == ((BluetoothLeBroadcastMetadata)
+                                                                                m.second)
+                                                                        .getBroadcastId()));
+
+                                if (!isAnyPendingAddSourceOperation()
+                                        && mIsAssistantActive
+                                        && mPausedBroadcastSinks.isEmpty()) {
+                                    LeAudioService leAudioService =
+                                            mServiceFactory.getLeAudioService();
+                                    mIsAssistantActive = false;
+                                    mUnicastSourceStreamStatus = Optional.empty();
+
+                                    if (leAudioService != null) {
+                                        leAudioService.activeBroadcastAssistantNotification(false);
+                                    }
+                                }
+                            }
+                            break;
+                        case BassClientStateMachine.REMOVE_BCAST_SOURCE:
+                            // Identify the operation by operation type and sourceId
+                            Integer sourceId = (Integer) obj;
                             operations.removeIf(
                                     m ->
-                                            (m.first.equals(
+                                            m.first.equals(
                                                             BassClientStateMachine
-                                                                    .ADD_BCAST_SOURCE))
-                                                    && (sourceState.getBroadcastId()
-                                                            == ((BluetoothLeBroadcastMetadata)
-                                                                            m.second)
-                                                                    .getBroadcastId()));
-                    if (removed) {
-                        setSourceGroupManaged(sink, sourceState.getSourceId(), true);
+                                                                    .REMOVE_BCAST_SOURCE)
+                                                    && (sourceId.equals((Integer) m.second)));
+                            setSourceGroupManaged(sink, sourceId, false);
+                            break;
+                        default:
+                            break;
                     }
-                } else {
-                    BluetoothLeBroadcastMetadata metadata = (BluetoothLeBroadcastMetadata) obj;
-                    operations.removeIf(
-                            m ->
-                                    (m.first.equals(BassClientStateMachine.ADD_BCAST_SOURCE))
-                                            && (metadata.getBroadcastId()
-                                                    == ((BluetoothLeBroadcastMetadata) m.second)
-                                                            .getBroadcastId()));
-
-                    if (!isAnyPendingAddSourceOperation()
-                            && mIsAssistantActive
-                            && mPausedBroadcastSinks.isEmpty()) {
-                        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
-                        mIsAssistantActive = false;
-                        mUnicastSourceStreamStatus = Optional.empty();
-
-                        if (leAudioService != null) {
-                            leAudioService.activeBroadcastAssistantNotification(false);
-                        }
-                    }
-                }
-                break;
-            case BassClientStateMachine.REMOVE_BCAST_SOURCE:
-                // Identify the operation by operation type and sourceId
-                Integer sourceId = (Integer) obj;
-                operations.removeIf(
-                        m ->
-                                m.first.equals(BassClientStateMachine.REMOVE_BCAST_SOURCE)
-                                        && (sourceId.equals((Integer) m.second)));
-                setSourceGroupManaged(sink, sourceId, false);
-                break;
-            default:
-                break;
-        }
+                    return operations;
+                });
     }
 
     private boolean isDevicePartOfActiveUnicastGroup(BluetoothDevice device) {
