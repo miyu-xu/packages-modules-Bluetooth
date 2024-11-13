@@ -22,6 +22,30 @@
       },
       "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "812b0de2_9b26ec91",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-13T18:21:36Z",
+      "side": 1,
+      "message": "Can you also share some context why we need a new flag here? what\u0027s this for?",
+      "parentUuid": "ce2f3a77_21c5de48",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 63
+      },
+      "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
