@@ -832,6 +832,23 @@ void btm_process_remote_ext_features(tACL_CONN* p_acl_cb, uint8_t max_page_numbe
                       HCI_LE_HOST_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[1]);
   btm_sec_set_peer_sec_caps(p_acl_cb->hci_handle, ssp_supported, secure_connections_supported,
                             role_switch_supported, br_edr_supported, le_supported);
+
+  p_dev_rec = btm_find_dev(p_acl_cb->remote_addr);
+
+  if (p_dev_rec == nullptr) {
+    log::warn("Unable to find p_dev_rec");
+    return;
+  }
+
+  if (p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) {
+    /* Name is know, unset it so that name is retrieved again
+    * from security procedure. This will ensure, that if remote device
+    * has updated its name since last connection, we will have
+    * update name of remote device. */
+    p_dev_rec->sec_rec.sec_flags &= ~BTM_SEC_NAME_KNOWN;
+    p_dev_rec->sec_bd_name[0] = '\0';
+  }
+
 }
 
 /*******************************************************************************
