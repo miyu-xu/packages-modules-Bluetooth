@@ -50,6 +50,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -108,7 +109,8 @@ public class CsipSetCoordinatorService extends ProfileService {
     }
 
     public static boolean isEnabled() {
-        return BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false);
+        // return BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false);
+        return LeAudioProfileConfig.isCsipSetCoordinatorEnabled();
     }
 
     @Override
