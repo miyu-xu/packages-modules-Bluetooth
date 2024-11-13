@@ -38,6 +38,7 @@ import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.hfpclient.HeadsetClientService;
 import com.android.bluetooth.hid.HidDeviceService;
 import com.android.bluetooth.hid.HidHostService;
+import com.android.bluetooth.le_audio.LeAudioProfileConfig;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.map.BluetoothMapService;
 import com.android.bluetooth.mapclient.MapClientService;
@@ -251,18 +252,33 @@ public class Config {
         }
     }
 
+    // "enable" represents a master switch that controls whether LE Audio is completely on or off,
+    // or whether any unicast profiles or any broadcast profiles are on or off, e.g., via Developer
+    // Options (c.f., LE_AUDIO_SWITCHER_DISABLED_PROPERTY and
+    // LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY in #init). "LeAudioProfileConfig" represents sysprops
+    // indicating vendor preferences on which LE Audio Use Case Profile Roles they want enabled.
+    // Hence, when "enable" switches to "ON", it must respect any of the sysprop "OFF states".
     static void setLeAudioProfileStatus(Boolean enable) {
-        setProfileEnabled(BluetoothProfile.CSIP_SET_COORDINATOR, enable);
-        setProfileEnabled(BluetoothProfile.HAP_CLIENT, enable);
-        setProfileEnabled(BluetoothProfile.LE_AUDIO, enable);
-        setProfileEnabled(BluetoothProfile.LE_CALL_CONTROL, enable);
-        setProfileEnabled(BluetoothProfile.MCP_SERVER, enable);
-        setProfileEnabled(BluetoothProfile.VOLUME_CONTROL, enable);
+        setProfileEnabled(BluetoothProfile.CSIP_SET_COORDINATOR,
+                enable && LeAudioProfileConfig.isCsipSetCoordinatorEnabled());
+        setProfileEnabled(BluetoothProfile.HAP_CLIENT,
+                enable && LeAudioProfileConfig.isHapHearingAidUnicastClientEnabled());
+        setProfileEnabled(BluetoothProfile.LE_AUDIO,
+                enable && LeAudioProfileConfig.isBapUnicastClientEnabled());
+        setProfileEnabled(BluetoothProfile.LE_CALL_CONTROL,
+                enable && LeAudioProfileConfig.isCcpCallControlServerEnabled());
+        setProfileEnabled(BluetoothProfile.MCP_SERVER,
+                enable && LeAudioProfileConfig.isMcpMediaControlServerEnabled());
+        setProfileEnabled(BluetoothProfile.VOLUME_CONTROL,
+                enable && LeAudioProfileConfig.isVcpVolumeControllerEnabled());
     }
 
+    // See #setLeAudioProfileStatus
     static void setLeAudioBroadcastProfileStatus(Boolean enable) {
-        setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, enable);
-        setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST, enable);
+        setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT,
+                enable && LeAudioProfileConfig.isBapBroadcastAssistantEnabled());
+        setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST,
+                enable && LeAudioProfileConfig.isBapBroadcastSourceEnabled());
     }
 
     static int[] getLeAudioUnicastProfiles() {
