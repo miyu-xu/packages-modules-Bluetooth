@@ -55,51 +55,43 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeoutException;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class CsipSetCoordinatorServiceTest {
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
+    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    private Context mTargetContext;
-    private BluetoothAdapter mAdapter;
-    private BluetoothDevice mTestDevice;
-    private BluetoothDevice mTestDevice2;
-    private BluetoothDevice mTestDevice3;
+    @Spy private ServiceFactory mServiceFactory = new ServiceFactory();
+    @Mock private AdapterService mAdapterService;
+    @Mock private LeAudioService mLeAudioService;
+    @Mock private DatabaseManager mDatabaseManager;
+    @Mock private CsipSetCoordinatorNativeInterface mCsipSetCoordinatorNativeInterface;
+    @Mock private IBluetoothCsipSetCoordinatorLockCallback mCsipSetCoordinatorLockCallback;
+
+    private final Context mTargetContext =
+            InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothDevice mTestDevice = TestUtils.getTestDevice(mAdapter, 0);
+    private final BluetoothDevice mTestDevice2 = TestUtils.getTestDevice(mAdapter, 1);
+    private final BluetoothDevice mTestDevice3 = TestUtils.getTestDevice(mAdapter, 2);
+
     private CsipSetCoordinatorService mService;
     private HashMap<BluetoothDevice, LinkedBlockingQueue<Intent>> mIntentQueue;
     private BroadcastReceiver mCsipSetCoordinatorIntentReceiver;
     private static final int TIMEOUT_MS = 1000;
 
-    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-
-    @Mock private AdapterService mAdapterService;
-    @Mock private LeAudioService mLeAudioService;
-    @Spy private ServiceFactory mServiceFactory = new ServiceFactory();
-    @Mock private DatabaseManager mDatabaseManager;
-    @Mock private CsipSetCoordinatorNativeInterface mCsipSetCoordinatorNativeInterface;
-    @Mock private IBluetoothCsipSetCoordinatorLockCallback mCsipSetCoordinatorLockCallback;
-
     @Before
     public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
-
-        mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         if (Looper.myLooper() == null) {
             Looper.prepare();
         }
         Assert.assertNotNull(Looper.myLooper());
 
-        TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
 
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
-
         CsipSetCoordinatorNativeInterface.setInstance(mCsipSetCoordinatorNativeInterface);
-        startService();
+        mService = new CsipSetCoordinatorService(mAdapterService);
+        mService.setAvailable(true);
         mService.mServiceFactory = mServiceFactory;
         when(mServiceFactory.getLeAudioService()).thenReturn(mLeAudioService);
 
@@ -115,13 +107,10 @@ public class CsipSetCoordinatorServiceTest {
         mCsipSetCoordinatorIntentReceiver = new CsipSetCoordinatorIntentReceiver();
         mTargetContext.registerReceiver(mCsipSetCoordinatorIntentReceiver, filter);
 
-        mTestDevice = TestUtils.getTestDevice(mAdapter, 0);
         when(mCsipSetCoordinatorNativeInterface.getDevice(getByteAddress(mTestDevice)))
                 .thenReturn(mTestDevice);
-        mTestDevice2 = TestUtils.getTestDevice(mAdapter, 1);
         when(mCsipSetCoordinatorNativeInterface.getDevice(getByteAddress(mTestDevice2)))
                 .thenReturn(mTestDevice2);
-        mTestDevice3 = TestUtils.getTestDevice(mAdapter, 2);
         when(mCsipSetCoordinatorNativeInterface.getDevice(getByteAddress(mTestDevice3)))
                 .thenReturn(mTestDevice3);
 
@@ -140,35 +129,11 @@ public class CsipSetCoordinatorServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
-
-        if (Looper.myLooper() == null) {
-            return;
-        }
-
-        if (mService == null) {
-            return;
-        }
-
-        stopService();
+        mService.stop();
+        Assert.assertNull(CsipSetCoordinatorService.getCsipSetCoordinatorService());
         CsipSetCoordinatorNativeInterface.setInstance(null);
         mTargetContext.unregisterReceiver(mCsipSetCoordinatorIntentReceiver);
-        TestUtils.clearAdapterService(mAdapterService);
         mIntentQueue.clear();
-    }
-
-    private void startService() throws TimeoutException {
-        mService = new CsipSetCoordinatorService(mTargetContext);
-        mService.start();
-        mService.setAvailable(true);
-    }
-
-    private void stopService() throws TimeoutException {
-        mService.stop();
-        mService = CsipSetCoordinatorService.getCsipSetCoordinatorService();
-        Assert.assertNull(mService);
     }
 
     /** Test getting CsipSetCoordinator Service */
