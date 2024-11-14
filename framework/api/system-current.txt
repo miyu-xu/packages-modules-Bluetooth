@@ -253,6 +253,7 @@ package android.bluetooth {
     method @IntRange(from=0xffffff9c, to=100) @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getBatteryLevel();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionHandle(int);
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public String getIdentityAddress();
+    method @FlaggedApi("com.android.bluetooth.flags.identity_address_type_api") @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothDevice.BluetoothAddress getIdentityAddressWithType();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getMessageAccessPermission();
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public byte[] getMetadata(int);
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public String getPackageNameOfBondingApplication();
@@ -362,6 +363,15 @@ package android.bluetooth {
     field public static final int UNBOND_REASON_REMOTE_DEVICE_DOWN = 4; // 0x4
     field public static final int UNBOND_REASON_REMOVED = 9; // 0x9
     field public static final int UNBOND_REASON_REPEATED_ATTEMPTS = 7; // 0x7
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.identity_address_type_api") public static final class BluetoothDevice.BluetoothAddress implements android.os.Parcelable {
+    ctor public BluetoothDevice.BluetoothAddress(@Nullable String, int);
+    method public int describeContents();
+    method @Nullable public String getAddress();
+    method public int getAddressType();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothDevice.BluetoothAddress> CREATOR;
   }
 
   public interface BluetoothDevicePicker {
