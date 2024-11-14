@@ -2395,6 +2395,26 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public Bundle getIdentityAddressWithType(String address) {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(
+                            service, TAG, "getIdentityAddressWithType")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service,
+                            Utils.getCallingAttributionSource(mService),
+                            "AdapterService getIdentityAddressWithType")) {
+                Bundle identityAddressWithType = new Bundle();
+                identityAddressWithType.putInt(
+                        BluetoothDevice.IDENTITY_ADDRESS_TYPE,
+                        BluetoothDevice.ADDRESS_TYPE_UNKNOWN);
+                return identityAddressWithType;
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.getIdentityAddressWithType(address);
+        }
+
+        @Override
         public String getName(AttributionSource source) {
             AdapterService service = getService();
             if (service == null
@@ -4900,6 +4920,39 @@ public class AdapterService extends Service {
                 return address;
             }
         }
+    }
+
+    /**
+     * Returns the identity address and identity address type.
+     *
+     * @return a Bundle containing identity address and identity address type
+     */
+    public Bundle getIdentityAddressWithType(String address) {
+        BluetoothDevice device =
+                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(Ascii.toUpperCase(address));
+        DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
+
+        String identityAddress = null;
+        int identityAddressType = BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
+
+        if (deviceProp != null) {
+            if (deviceProp.getIdentityAddress() != null) {
+                identityAddress = deviceProp.getIdentityAddress();
+            }
+            identityAddressType = deviceProp.getIdentityAddressType();
+        } else {
+            if (Flags.identityAddressNullIfNotKnown()) {
+                // Return null if identity address unknown
+                identityAddress = null;
+            } else {
+                identityAddress = address;
+            }
+        }
+
+        Bundle identityAddressWithType = new Bundle();
+        identityAddressWithType.putString(BluetoothDevice.IDENTITY_ADDRESS, identityAddress);
+        identityAddressWithType.putInt(BluetoothDevice.IDENTITY_ADDRESS_TYPE, identityAddressType);
+        return identityAddressWithType;
     }
 
     private static class CallerInfo {
