@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cf13da_6d79245e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 5236,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T20:32:17Z",
+      "side": 1,
+      "message": "I\u0027ve removed it as William suggested.",
+      "parentUuid": "162a76eb_39729011",
+      "range": {
+        "startLine": 5236,
+        "startChar": 11,
+        "endLine": 5236,
+        "endChar": 40
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81de0a5a_5f9bc1ba",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-11-14T18:57:54Z",
       "side": 1,
       "message": "I would simply delete this javadoc.\n\nYou have the doc at the API level, here it\u0027s internal implementation of the same thing",
+      "range": {
+        "startLine": 5235,
+        "startChar": 3,
+        "endLine": 5246,
+        "endChar": 7
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18030948_aefa9e85",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 5246,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T20:32:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "81de0a5a_5f9bc1ba",
       "range": {
         "startLine": 5235,
         "startChar": 3,
@@ -104,6 +152,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded47bef_f1537dfb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 5335,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T20:32:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0f1eb48b_97947020",
+      "range": {
+        "startLine": 5324,
+        "startChar": 4,
+        "endLine": 5335,
+        "endChar": 10
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12582cb7_3e324926",
@@ -117,6 +189,30 @@
       "writtenOn": "2024-11-14T15:46:01Z",
       "side": 1,
       "message": "Use either lowercase or uppercase but keep consistency across all documentation. Slight preference for lower case but I\u0027m fine with both.",
+      "range": {
+        "startLine": 1435,
+        "startChar": 12,
+        "endLine": 1435,
+        "endChar": 21
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc558821_00d0abae",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T20:32:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "12582cb7_3e324926",
       "range": {
         "startLine": 1435,
         "startChar": 12,
