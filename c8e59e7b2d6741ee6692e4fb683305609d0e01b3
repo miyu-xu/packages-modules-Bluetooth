@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8f6c46_8b47c6bd",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-14T22:01:03Z",
+      "side": 1,
+      "message": "if (!com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {\n   instance-\u003ele_audio_source_hal_client_-\u003eConfirmStreamingRequest();\n}",
+      "fixSuggestions": [
+        {
+          "fixId": "de6da71b_957e16c4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 1357,
+                "startChar": 0,
+                "endLine": 1357,
+                "endChar": 0
+              },
+              "replacement": "\n        if (!com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {\n          instance-\u003ele_audio_source_hal_client_-\u003eConfirmStreamingRequest();\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c8e59e7b2d6741ee6692e4fb683305609d0e01b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
