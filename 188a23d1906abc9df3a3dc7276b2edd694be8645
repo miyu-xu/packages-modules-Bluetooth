@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f08cd32_b260ab0d",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-11-14T02:00:11Z",
+      "side": 1,
+      "message": "AcceptLeConnectionFrom()/IgnoreLeConnectionFrom() also add the funciton name.\nCan we remove them together after this change gets merged?\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3308386/5/system/main/shim/acl.cc#1399",
+      "parentUuid": "a72dc965_a4f9c7be",
+      "range": {
+        "startLine": 1429,
+        "startChar": 14,
+        "endLine": 1429,
+        "endChar": 39
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da1598a6_9812fd39",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 5
