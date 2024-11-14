@@ -88,6 +88,7 @@ typedef union {
   tBTM_LE_KEY key;
   tSMP_LOC_OOB_DATA local_oob_data;
   RawAddress id_addr;
+  tBLE_ADDR_TYPE id_addr_type;
 } tBTM_LE_EVT_DATA;
 
 /* Simple Pairing Events. Called by the stack when Simple Pairing related
