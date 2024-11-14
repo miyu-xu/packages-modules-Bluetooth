@@ -16,6 +16,24 @@
       "message": "Can you implement a corresponding regression test for this?",
       "revId": "9f97e7bc51a4e744bc289342e349f212c57f2d78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d853809_c3e370df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-11-14T02:30:17Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t know how to implement test code to check label.\nThere is a simple way to test it manually, we can drag the volume bar to increase/decrease volume quickly for a while, it will call SetVolume() many times to test this scenario.",
+      "parentUuid": "865167f0_ec01c26c",
+      "revId": "9f97e7bc51a4e744bc289342e349f212c57f2d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
