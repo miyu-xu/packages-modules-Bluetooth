@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee08dec9_dc3354d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T08:39:23Z",
+      "side": 1,
+      "message": "Impossible to be the culprit as this is owner file change",
+      "revId": "8e0c2969f3f93793a6f3b0682fecb97a6e65a384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
