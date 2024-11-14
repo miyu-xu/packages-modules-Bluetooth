@@ -4649,6 +4649,10 @@ public final class BluetoothAdapter {
      *     connect to this server socket from another Android device using the L2cap
      *     protocol/service multiplexer(PSM) value or the RFCOMM service UUID as input.
      *
+     *     <p>Requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} permission only
+     *     when {@code settings.getDataPath()} is different from {@link
+     *     BluetoothSocketSettings#DATA_PATH_NO_OFFLOAD}.
+     *
      * @param settings Bluetooth socket settings {@link BluetoothSocketSettings}.
      * @return a {@link BluetoothServerSocket}
      * @throws IllegalArgumentException if BluetoothSocket#TYPE_RFCOMM socket is requested with no
@@ -4657,7 +4661,9 @@ public final class BluetoothAdapter {
      *     Connection-oriented Channel (CoC).
      */
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
     public @NonNull BluetoothServerSocket listenUsingSocketSettings(
             @NonNull BluetoothSocketSettings settings) throws IOException {
@@ -4668,24 +4674,60 @@ public final class BluetoothAdapter {
             if (settings.getRfcommUuid() == null) {
                 throw new IllegalArgumentException("RFCOMM server missing UUID");
             }
-            return createNewRfcommSocketAndRecord(
-                    settings.getRfcommServiceName(),
-                    settings.getRfcommUuid(),
-                    settings.isAuthenticationRequired(),
-                    settings.isEncryptionRequired());
+            if (!Flags.btOffloadSocketApi()) {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                new ParcelUuid(settings.getRfcommUuid()));
+            } else {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                -1,
+                                new ParcelUuid(settings.getRfcommUuid()),
+                                false,
+                                false,
+                                settings.getDataPath(),
+                                settings.getSocketName(),
+                                settings.getHubId(),
+                                settings.getEndpointId(),
+                                settings.getMaximumPacketSize());
+            }
+            socket.setServiceName(settings.getRfcommServiceName());
         } else if (type == BluetoothSocket.TYPE_LE) {
-            socket =
-                    new BluetoothServerSocket(
-                            settings.getSocketType(),
-                            settings.isAuthenticationRequired(),
-                            settings.isEncryptionRequired(),
-                            SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
-                            false,
-                            false);
+            if (!Flags.btOffloadSocketApi()) {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                                false,
+                                false);
+            } else {
+                socket =
+                        new BluetoothServerSocket(
+                                settings.getSocketType(),
+                                settings.isAuthenticationRequired(),
+                                settings.isEncryptionRequired(),
+                                SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
+                                null,
+                                false,
+                                false,
+                                settings.getDataPath(),
+                                settings.getSocketName(),
+                                settings.getHubId(),
+                                settings.getEndpointId(),
+                                settings.getMaximumPacketSize());
+            }
         } else {
             throw new IOException("Error: Invalid socket type: " + type);
         }
-        int errno = socket.mSocket.bindListen();
+        int errno = socket.mSocket.bindListenExt();
         if (errno != 0) {
             throw new IOException("Error: " + errno);
         }
