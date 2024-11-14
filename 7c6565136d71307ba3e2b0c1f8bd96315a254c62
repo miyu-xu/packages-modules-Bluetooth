@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26921aa_7bf7382d",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-14T17:25:06Z",
+      "side": 1,
+      "message": "that was merged.",
+      "parentUuid": "bf29e6bf_e3fdf21c",
+      "range": {
+        "startLine": 1307,
+        "startChar": 64,
+        "endLine": 1307,
+        "endChar": 80
+      },
+      "revId": "7c6565136d71307ba3e2b0c1f8bd96315a254c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85f9eed2_d03ae54c",
