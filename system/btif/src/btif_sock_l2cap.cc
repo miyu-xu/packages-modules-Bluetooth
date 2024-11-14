@@ -34,8 +34,10 @@
 #include "btif/include/btif_sock_util.h"
 #include "btif/include/btif_uid.h"
 #include "gd/os/rand.h"
+#include "hci/lpp_offload_interface.h"
 #include "include/hardware/bluetooth.h"
 #include "internal_include/bt_target.h"
+#include "main/shim/entry.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
@@ -868,12 +870,36 @@ static void btsock_l2cap_server_listen(l2cap_socket* sock) {
                          sock->rx_mtu, std::move(cfg), btsock_l2cap_cbk, sock->id);
 }
 
+/*
+ * Determine the local MTU for the L2CAP connection.
+ *
+ * The local MTU is selected as the minimum of:
+ *   - The socket hal's offload capabilities (socket_cap.leCocCapabilities.mtu)
+ *   - The application's requested maximum RX packet size (app_max_rx_packet_size)
+ *
+ * However, the MTU must be at least the minimum required by the L2CAP LE
+ * specification (L2CAP_SDU_LENGTH_LE_MIN).
+ */
+
+static bool btsock_l2cap_get_lpp_rx_mtu(uint16_t* rx_mtu, uint16_t app_max_rx_packet_size) {
+  hci::SocketCapabilities socket_cap;
+  bluetooth::shim::GetLppOffloadManager()->GetSocketCapabilities(&socket_cap);
+  if (!socket_cap.leCocCapabilities.numberOfSupportedSockets) {
+    return false;
+  }
+  uint16_t mtu = std::min(static_cast<uint16_t>(socket_cap.leCocCapabilities.mtu),
+                          L2CAP_SDU_LENGTH_LE_MAX);
+  mtu = std::min(mtu, app_max_rx_packet_size);
+  mtu = std::max(mtu, L2CAP_SDU_LENGTH_LE_MIN);
+  *rx_mtu = mtu;
+  return true;
+}
+
 static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAddress* addr,
                                                   int channel, int* sock_fd, int flags, char listen,
                                                   int app_uid, int data_path,
                                                   const char* socket_name, uint64_t hub_id,
-                                                  uint64_t endpoint_id,
-                                                  int /* max_rx_packet_size */) {
+                                                  uint64_t endpoint_id, int max_rx_packet_size) {
   if (!is_inited()) {
     return BT_STATUS_NOT_READY;
   }
@@ -911,7 +937,16 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   sock->channel = channel;
   sock->app_uid = app_uid;
   sock->is_le_coc = is_le_coc;
-  sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
+  if (data_path == SOCKET_DATA_PATH_HW_OFFLOAD) {
+    uint16_t lpp_rx_mtu;
+    if (btsock_l2cap_get_lpp_rx_mtu(&lpp_rx_mtu, static_cast<uint16_t>(max_rx_packet_size))) {
+      sock->rx_mtu = lpp_rx_mtu;
+    } else {
+      return BT_STATUS_UNSUPPORTED;
+    }
+  } else {
+    sock->rx_mtu = is_le_coc ? L2CAP_SDU_LENGTH_LE_MAX : L2CAP_SDU_LENGTH_MAX;
+  }
   sock->data_path = data_path;
   if (socket_name) {
     strncpy(sock->socket_name, socket_name, sizeof(sock->socket_name));
