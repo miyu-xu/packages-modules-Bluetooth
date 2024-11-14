@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee06c05c_a2e9a44b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T01:27:03Z",
+      "side": 1,
+      "message": "In build time, BLUETOOTH_PRIVILEGED was required for the APIs which can call BluetoothSocketManagerBinder::connectSocket() or BluetoothSocketManagerBinder::createSocketChannel() where I added the enforcement of BLUETOOTH_PRIVILEGED.\n\n```\nif (dataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n    mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);\n}\n```\n\nTo reduce updating many methods, I can create separate methods in BluetoothSocketManagerBinder that requires BLUETOOTH_PRIVILEGED. Then, only few methods using offload socket option can reach out to the new methods with the annotation of BLUETOOTH_PRIVILEGED. Does it make sense?\n\n```\nBluetoothSocketManagerBinder::connectSocketExt() \nBluetoothSocketManagerBinder::createSocketChannelExt()\n```",
+      "parentUuid": "fb03578f_d0e7d348",
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6314607_ef24d31a",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 24
