@@ -69,6 +69,24 @@
       "parentUuid": "2058a57e_24162f09",
       "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a813031a_8428cb6d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-14T02:24:38Z",
+      "side": 1,
+      "message": "From your latest CLs, I got a clear idea of this.\nSo you\u0027re trying to make primary device to the unicast context. \nIn unicast/private broadcast, primary device \u003d active, in broadcast, primary \u003d fallback(local).",
+      "parentUuid": "ac58098a_875735b8",
+      "revId": "9611704e89c1f47556b8546c5148ed458bf94eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
