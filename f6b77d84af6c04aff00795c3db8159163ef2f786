@@ -81,6 +81,30 @@
       },
       "revId": "f6b77d84af6c04aff00795c3db8159163ef2f786",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23fc3060_03bdcd18",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2836,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T12:58:23Z",
+      "side": 1,
+      "message": "That does not solve an issue with guessing how to properly removed it.\nRight now you have to look into updateStoredSinkMetadata and analze that call:\n`value, value, value` is for adding\n`value, value, mull` for removing one item\n`value, null, null` for removing whole device\nand at the end we have\n`value, null, value` to get NoSuchElementException!",
+      "parentUuid": "f5d85e05_f9c22348",
+      "range": {
+        "startLine": 2836,
+        "startChar": 17,
+        "endLine": 2836,
+        "endChar": 34
+      },
+      "revId": "f6b77d84af6c04aff00795c3db8159163ef2f786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
