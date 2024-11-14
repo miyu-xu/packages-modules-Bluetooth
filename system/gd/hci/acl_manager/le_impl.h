@@ -39,6 +39,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_address_manager.h"
 #include "macros.h"
+#include "metrics/bluetooth_event.h"
 #include "os/alarm.h"
 #include "os/handler.h"
 #include "os/system_properties.h"
@@ -576,6 +577,7 @@ public:
               callbacks->OnDisconnection(reason);
             },
             kRemoveConnectionAfterwards);
+    bluetooth::metrics::LogLeAclDisconnectionEvent(remote_address.GetAddress(), reason);
     if (le_acceptlist_callbacks_ != nullptr) {
       le_acceptlist_callbacks_->OnLeDisconnection(remote_address);
     }
