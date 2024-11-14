@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "323423df_8f4be877",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-14T18:42:28Z",
+      "side": 1,
+      "message": "see below comment",
+      "parentUuid": "08f8d6ff_46641ac8",
+      "range": {
+        "startLine": 562,
+        "startChar": 11,
+        "endLine": 571,
+        "endChar": 13
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a2c727b_3b3afccf",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
         "patchSetId": 21
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8c4447a1_bf38f6a0",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-14T18:42:28Z",
+      "side": 1,
+      "message": "`concurrent gets and puts safe.` Agreed that the actual map is thread safe.  The issue is that the state machine may be invalidated while a copy is held.\n\nIf the client state machine provides the equivalent of a reference, with reference counts, then no locks are required.  But if the state machine is deleted by another thread without references then this would break.\n\nI\u0027m don\u0027t understand all the nuances java\u0027s `ConcurrentHashMap\u003c\u003e`",
+      "parentUuid": "8a2c727b_3b3afccf",
+      "range": {
+        "startLine": 589,
+        "startChar": 8,
+        "endLine": 589,
+        "endChar": 51
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb3aaa5e_56c20523",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
         "patchSetId": 21
@@ -77,6 +125,30 @@
       "writtenOn": "2024-11-13T21:42:43Z",
       "side": 1,
       "message": "Out of curiosity, are there benefits to handling and dropping this explicitly versus just letting the default case handle it and drop it?",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 242,
+        "endChar": 26
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82e0db22_992d5949",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-14T18:42:28Z",
+      "side": 1,
+      "message": "I stuck this in here b/c I got a little fed up with all the `connect` messaged being set in a thundering herd as all the profiles race to start up.  So we would get `unexpected message` warning, when it\u0027s not really a warning but a WAI.\n\nThere are a few other warn\u0027s that are not really warn\u0027s that are similar that I did not address...using this as a \"trial balloon\" for feedback.",
+      "parentUuid": "eb3aaa5e_56c20523",
       "range": {
         "startLine": 237,
         "startChar": 16,
