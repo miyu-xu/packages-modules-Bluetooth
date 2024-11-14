@@ -559,7 +559,9 @@ package android.bluetooth {
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_UUID = "android.bluetooth.device.action.UUID";
     field public static final int ADDRESS_TYPE_ANONYMOUS = 255; // 0xff
     field public static final int ADDRESS_TYPE_PUBLIC = 0; // 0x0
+    field @FlaggedApi("com.android.bluetooth.flags.identity_address_type_api") public static final int ADDRESS_TYPE_PUBLIC_IDENTITY = 2; // 0x2
     field public static final int ADDRESS_TYPE_RANDOM = 1; // 0x1
+    field @FlaggedApi("com.android.bluetooth.flags.identity_address_type_api") public static final int ADDRESS_TYPE_RANDOM_IDENTITY = 3; // 0x3
     field public static final int ADDRESS_TYPE_UNKNOWN = 65535; // 0xffff
     field public static final int BOND_BONDED = 12; // 0xc
     field public static final int BOND_BONDING = 11; // 0xb
