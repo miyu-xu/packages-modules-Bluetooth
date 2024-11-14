@@ -5931,4 +5931,30 @@ public final class BluetoothAdapter {
             mServiceLock.readLock().unlock();
         }
     }
+
+    /**
+     * Return true if socket hardware offload is supported.
+     *
+     * @return true if low power processor supports socket offload
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    public boolean isSocketHwOffloadSupported() {
+        if (!getLeAccess()) {
+            return false;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.isSocketHwOffloadSupported(mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
 }
