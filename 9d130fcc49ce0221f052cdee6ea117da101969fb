@@ -94,6 +94,30 @@
       },
       "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7781a668_2bea0913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T10:54:48Z",
+      "side": 1,
+      "message": "Yeah :) sorry! And thank you for review, I\u0027ve leave a \"old\" commit message from previous flag...",
+      "parentUuid": "f2a2f2a7_15fc773f",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 63
+      },
+      "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
