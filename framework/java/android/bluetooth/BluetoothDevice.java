@@ -45,6 +45,7 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.IpcDataCache;
 import android.os.Parcel;
@@ -1512,6 +1513,24 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @SystemApi
     public static final int ACTIVE_AUDIO_DEVICE_POLICY_ALL_PROFILES_INACTIVE_UPON_CONNECTION = 2;
 
+    /**
+     * Bluetooth Device Identity Address key.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_IDENTITY_ADDRESS_TYPE_API)
+    @SystemApi
+    public static final String IDENTITY_ADDRESS = "identity_address";
+
+    /**
+     * Bluetooth Device Identity Address type key.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_IDENTITY_ADDRESS_TYPE_API)
+    @SystemApi
+    public static final String IDENTITY_ADDRESS_TYPE = "identity_address_type";
+
     private static final String NULL_MAC_ADDRESS = "00:00:00:00:00:00";
 
     private final String mAddress;
@@ -1720,6 +1739,47 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns the identity address and identity address type of this BluetoothDevice.
+     *
+     * <p>The Bundle can contain the following mappings:
+     *
+     * <ul>
+     *   <li>For key {@link #IDENTITY_ADDRESS}, the identity address (for example
+     *       "00:11:22:AA:BB:CC").
+     *   <li>For key {@link #IDENTITY_ADDRESS_TYPE}, the identity address type of this
+     *       BluetoothDevice, one of {@link #ADDRESS_TYPE_PUBLIC}, {@link #ADDRESS_TYPE_RANDOM}, or
+     *       {@link #ADDRESS_TYPE_UNKNOWN}.
+     * </ul>
+     *
+     * @return a Bundle containing identity address and identity address type. If Bluetooth is not
+     *     enabled or identity address type is not available, will return a Bundle containing {@link
+     *     #ADDRESS_TYPE_UNKNOWN} device for the identity address type.
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_IDENTITY_ADDRESS_TYPE_API)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    @NonNull
+    public Bundle getIdentityAddressWithType() {
+        if (DBG) log("getIdentityAddressWithType()");
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "BT not enabled. Cannot get identity address with type");
+        } else {
+            try {
+                return service.getIdentityAddressWithType(mAddress);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        Bundle identityAddressWithType = new Bundle();
+        identityAddressWithType.putInt(
+                BluetoothDevice.IDENTITY_ADDRESS_TYPE, BluetoothDevice.ADDRESS_TYPE_UNKNOWN);
+        return identityAddressWithType;
     }
 
     /**
