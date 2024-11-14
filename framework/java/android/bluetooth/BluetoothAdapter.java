@@ -5916,4 +5916,44 @@ public final class BluetoothAdapter {
             mServiceLock.readLock().unlock();
         }
     }
+
+    /**
+     * Returns whether LE CoC socket hardware offload is supported.
+     *
+     * <p>Bluetooth socket hardware offload provides channel information of an already connected
+     * BluetoothSocket to offload endpoints such as offload stacks and offload applications running
+     * on low power processor, allowing the offload stack to decode packets received on the channel
+     * and pass them to the appropriate offload app for processing or transmission without waking up
+     * the application processor.
+     *
+     * <p>To configure a socket for hardware offload, use {@link
+     * BluetoothSocketSettings#setDataPath(BluetoothSocketSettings.DATA_PATH_HW_OFFLOAD)}, {@link
+     * BluetoothSocketSettings#setHubId(long)} and {@link
+     * BluetoothSocketSettings#setEndpointId(long)}.
+     *
+     * <p>This API is part of the System API because offloaded sockets are intended to interact with
+     * system-specific offload endpoints.
+     *
+     * @return {@code true} if LE CoC socket hardware offload is supported, {@code false} otherwise.
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    public boolean isLeCocSocketOffloadSupported() {
+        if (!isEnabled()) {
+            return false;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.isLeCocSocketOffloadSupported(mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
 }
