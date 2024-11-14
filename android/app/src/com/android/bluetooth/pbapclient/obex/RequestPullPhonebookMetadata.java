@@ -19,6 +19,8 @@ package com.android.bluetooth.pbapclient;
 import com.android.bluetooth.ObexAppParameters;
 import com.android.obex.HeaderSet;
 
+import java.math.BigInteger;
+
 /**
  * This implements a PullPhonebook request, with the goal of only fetching metadata for the given
  * phonebook, but not the actual phonebook contents itself.
@@ -70,6 +72,22 @@ final class RequestPullPhonebookMetadata extends PbapClientRequest {
         ObexAppParameters oap = ObexAppParameters.fromHeaderSet(headerset);
         if (oap.exists(PbapApplicationParameters.OAP_PHONEBOOK_SIZE)) {
             size = oap.getShort(PbapApplicationParameters.OAP_PHONEBOOK_SIZE);
+        }
+
+        if (oap.exists(PbapApplicationParameters.OAP_PRIMARY_FOLDER_VERSION)) {
+            byte[] primaryFolderBytes =
+                    oap.getByteArray(PbapApplicationParameters.OAP_PRIMARY_FOLDER_VERSION);
+            primaryVersionCounter = new BigInteger(primaryFolderBytes).toString();
+        }
+        if (oap.exists(PbapApplicationParameters.OAP_SECONDARY_FOLDER_VERSION)) {
+            byte[] secondaryFolderBytes =
+                    oap.getByteArray(PbapApplicationParameters.OAP_SECONDARY_FOLDER_VERSION);
+            secondaryVersionCounter = new BigInteger(secondaryFolderBytes).toString();
+        }
+        if (oap.exists(PbapApplicationParameters.OAP_DATABASE_IDENTIFIER)) {
+            byte[] databaseIdentifierBytes =
+                    oap.getByteArray(PbapApplicationParameters.OAP_DATABASE_IDENTIFIER);
+            databaseIdentifier = new BigInteger(databaseIdentifierBytes).toString();
         }
 
         mResponse =
