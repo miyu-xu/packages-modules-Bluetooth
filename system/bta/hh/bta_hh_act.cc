@@ -498,7 +498,7 @@ void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   // Initiate HID host connection
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
-    bta_hh_le_open_conn(p_cb);
+    bta_hh_le_open_conn(p_cb, p_data->api_conn.direct);
   } else {
     bta_hh_bredr_conn(p_cb);
   }
@@ -519,9 +519,7 @@ void bta_hh_api_disc_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     log::debug("Host initiating close to le device:{}", p_cb->link_spec);
-
     bta_hh_le_api_disc_act(p_cb);
-
   } else {
     const uint8_t hid_handle = (p_data != nullptr)
                                        ? static_cast<uint8_t>(p_data->hdr.layer_specific)

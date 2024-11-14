@@ -82,6 +82,8 @@
 #define LOGITECH_KB_MX5500_VENDOR_ID 0x046D
 #define LOGITECH_KB_MX5500_PRODUCT_ID 0xB30B
 
+#define BTIF_TIMEOUT_HOGH_RECONNECT_BACKOFF_MS 2000
+
 using namespace bluetooth;
 
 static int btif_hh_keylockstates = 0;  // The current key state of each key
@@ -155,6 +157,7 @@ static tHID_KB_LIST hid_kb_numlock_on_list[] = {
 
 static void btif_hh_transport_select(tAclLinkSpec& link_spec);
 static void btif_hh_timer_timeout(void* data);
+static void btif_hh_hogh_reconnect_backoff_timeout(void* data);
 static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 
 /*******************************************************************************
@@ -467,6 +470,22 @@ static bthh_connection_state_t hh_get_state_on_disconnect(tAclLinkSpec& link_spe
   }
 }
 
+static bool hh_connection_allowed(const tAclLinkSpec& link_spec) {
+  /* Accept connection only if reconnection is allowed for the known device, or outgoing connection
+   * was requested */
+  btif_hh_added_device_t* added_dev = btif_hh_find_added_dev(link_spec);
+  if (added_dev != nullptr && added_dev->reconnect_allowed) {
+    return true;
+  } else if (std::find(btif_hh_cb.pending_connections.begin(), btif_hh_cb.pending_connections.end(),
+                       link_spec) != btif_hh_cb.pending_connections.end()) {
+    log::verbose("Device connection was pending for: {}, status: {}", link_spec,
+                 btif_hh_status_text(btif_hh_cb.status).c_str());
+    return true;
+  }
+
+  return false;
+}
+
 static void hh_connect_complete(tBTA_HH_CONN& conn, bthh_connection_state_t state) {
   if (state != BTHH_CONN_STATE_CONNECTED) {
     if (!com::android::bluetooth::flags::close_hid_only_if_connected() ||
@@ -546,6 +565,7 @@ static void hh_disable_handler(tBTA_HH_STATUS& status) {
     // Clear the control block
     for (i = 0; i < BTIF_HH_MAX_HID; i++) {
       alarm_free(btif_hh_cb.devices[i].vup_timer);
+      alarm_free(btif_hh_cb.devices[i].hogh_reconnect_backoff_timer);
     }
     btif_hh_cb = {};
     for (i = 0; i < BTIF_HH_MAX_HID; i++) {
@@ -556,7 +576,8 @@ static void hh_disable_handler(tBTA_HH_STATUS& status) {
   }
 }
 
-static void hh_open_handler(tBTA_HH_CONN& conn) {
+// TODO: Remove this function when hogp_reconnection flag is fully launched
+static void hh_open_handler_(tBTA_HH_CONN& conn) {
   log::debug("link spec = {}, status = {}, handle = {}", conn.link_spec, conn.status, conn.handle);
 
   if (com::android::bluetooth::flags::allow_switching_hid_and_hogp()) {
@@ -652,6 +673,53 @@ static void hh_open_handler(tBTA_HH_CONN& conn) {
   BTA_HhGetDscpInfo(conn.handle);
 }
 
+static void hh_open_handler(tBTA_HH_CONN& conn) {
+  if (!com::android::bluetooth::flags::hogp_reconnection()) {
+    hh_open_handler_(conn);
+    return;
+  }
+
+  if (!hh_connection_allowed(conn.link_spec)) {
+    log::warn("Reject Incoming HID Connection, device: {}", conn.link_spec);
+    log_counter_metrics_btif(
+            android::bluetooth::CodePathCounterKeyEnum::HIDH_COUNT_INCOMING_CONNECTION_REJECTED, 1);
+
+    BTA_HhClose(conn.handle);
+    return;
+  }
+
+  log::debug("link spec = {}, status = {}, handle = {}", conn.link_spec, conn.status, conn.handle);
+  btif_hh_cb.pending_connections.remove(conn.link_spec);
+
+  if (conn.status != BTA_HH_OK) {
+    btif_dm_hh_open_failed(&conn.link_spec.addrt.bda);
+    btif_hh_device_t* p_dev = btif_hh_find_dev_by_link_spec(conn.link_spec);
+    if (p_dev != nullptr) {
+      btif_hh_stop_vup_timer(p_dev->link_spec);
+      p_dev->dev_status = hh_get_state_on_disconnect(p_dev->link_spec);
+    }
+    hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
+    return;
+  }
+
+  /* Initialize device driver */
+  if (!bta_hh_co_open(conn.handle, conn.sub_class, conn.attr_mask, conn.app_id, conn.link_spec)) {
+    log::warn("Failed to find the uhid driver");
+    hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
+    return;
+  }
+
+  if (btif_hh_find_connected_dev_by_handle(conn.handle) == nullptr) {
+    log::error("Cannot find device with handle {}, device: {}", conn.handle, conn.link_spec);
+    hh_connect_complete(conn, BTHH_CONN_STATE_DISCONNECTED);
+    return;
+  }
+
+  hh_connect_complete(conn, BTHH_CONN_STATE_CONNECTED);
+  log::info("Getting dscp info for handle {}, device {}", conn.handle, conn.link_spec);
+  BTA_HhGetDscpInfo(conn.handle);
+}
+
 static void hh_close_handler(tBTA_HH_CBDATA& dev_status) {
   btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_handle(dev_status.handle);
   if (p_dev == nullptr) {
@@ -674,6 +742,18 @@ static void hh_close_handler(tBTA_HH_CBDATA& dev_status) {
        HID descriptor would be read again, so remove it from cache. */
     log::warn("Removing cached descriptor due to service change, device {}", p_dev->link_spec);
     btif_storage_remove_hid_info(p_dev->link_spec);
+  } else {
+    if (com::android::bluetooth::flags::hogp_reconnection() &&
+        p_dev->link_spec.transport == BT_TRANSPORT_LE && hh_connection_allowed(p_dev->link_spec)) {
+      // Reconnection is allowed, start the backoff timer to put the HOGP device back into
+      // acceptlist
+      if (p_dev->hogh_reconnect_backoff_timer == nullptr) {
+        p_dev->hogh_reconnect_backoff_timer = alarm_new("btif_hh.hogh_reconnect_backoff_timer");
+      }
+      alarm_set_on_mloop(p_dev->hogh_reconnect_backoff_timer,
+                         BTIF_TIMEOUT_HOGH_RECONNECT_BACKOFF_MS,
+                         btif_hh_hogh_reconnect_backoff_timeout, p_dev);
+    }
   }
 
   p_dev->dev_status = hh_get_state_on_disconnect(p_dev->link_spec);
@@ -1125,7 +1205,8 @@ bt_status_t btif_hh_connect(const tAclLinkSpec& link_spec) {
    If the remote is not in pagescan mode, we will do 2 retries to connect before
    giving up */
   btif_hh_cb.pending_connections.push_back(link_spec);
-  BTA_HhOpen(link_spec);
+  BTA_HhOpen(link_spec, true);
+  alarm_cancel(p_dev->hogh_reconnect_backoff_timer);
 
   do_in_jni_thread(base::Bind(
           [](tAclLinkSpec link_spec) { BTHH_STATE_UPDATE(link_spec, BTHH_CONN_STATE_CONNECTING); },
@@ -1147,6 +1228,11 @@ static void btif_hh_disconnect(const tAclLinkSpec& link_spec) {
   if (p_dev == nullptr) {
     log::warn("Unable to disconnect unknown HID device:{}", link_spec);
     return;
+  }
+
+  if (!hh_connection_allowed(p_dev->link_spec)) {
+    // Stop reconnection attempt in case it was pending
+    alarm_cancel(p_dev->hogh_reconnect_backoff_timer);
   }
   log::debug("Disconnect and close request for HID device:{}", link_spec);
   BTA_HhClose(p_dev->dev_handle);
@@ -1462,6 +1548,17 @@ static void btif_hh_timer_timeout(void* data) {
 
   /* switch context to btif task context */
   btif_transfer_context(btif_hh_upstreams_evt, (uint16_t)event, (char*)&p_data, param_len, NULL);
+}
+
+static void btif_hh_hogh_reconnect_backoff_timeout(void* data) {
+  btif_hh_device_t* p_dev = (btif_hh_device_t*)data;
+
+  if ((p_dev->dev_status == BTHH_CONN_STATE_DISCONNECTED ||
+       p_dev->dev_status == BTHH_CONN_STATE_ACCEPTING) &&
+      hh_connection_allowed(p_dev->link_spec)) {
+    log::verbose("Enable background connection to device: {}", p_dev->link_spec);
+    BTA_HhOpen(p_dev->link_spec, false);
+  }
 }
 
 /*******************************************************************************

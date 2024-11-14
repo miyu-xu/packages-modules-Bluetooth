@@ -263,7 +263,7 @@ static uint8_t bta_hh_le_get_le_dev_hdl(uint8_t cb_index) {
  * Parameters:
  *
  ******************************************************************************/
-void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb) {
+void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb, bool direct) {
   p_cb->hid_handle = bta_hh_le_get_le_dev_hdl(p_cb->index);
   if (p_cb->hid_handle == BTA_HH_IDX_INVALID) {
     tBTA_HH_STATUS status = BTA_HH_ERR_NO_RES;
@@ -272,6 +272,11 @@ void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb) {
   }
 
   bta_hh_cb.le_cb_index[BTA_HH_GET_LE_CB_IDX(p_cb->hid_handle)] = p_cb->index;  // Update index map
+  if (com::android::bluetooth::flags::hogp_reconnection() && !direct) {
+    log::verbose("Add {} to background connection list", p_cb->link_spec);
+    bta_hh_le_add_dev_bg_conn(p_cb);
+    return;
+  }
 
   BTA_GATTC_Open(bta_hh_cb.gatt_if, p_cb->link_spec.addrt.bda, BTM_BLE_DIRECT_CONNECTION, false);
 }
@@ -1142,6 +1147,7 @@ void bta_hh_gatt_open(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_buf) {
   if (p_data->status == GATT_SUCCESS) {
     p_cb->hid_handle = bta_hh_le_get_le_dev_hdl(p_cb->index);
     if (p_cb->hid_handle == BTA_HH_IDX_INVALID) {
+      log::error("HID handle not found for {}", p_cb->link_spec);
       p_cb->conn_id = p_data->conn_id;
       bta_hh_le_api_disc_act(p_cb);
       return;
