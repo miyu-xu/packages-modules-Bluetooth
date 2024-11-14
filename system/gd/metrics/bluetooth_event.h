@@ -39,6 +39,8 @@ void LogRemoteNameRequestCompletion(const RawAddress& raw_address, tHCI_STATUS h
 void LogAclDisconnectionEvent(const hci::Address& address, hci::ErrorCode reason,
                               bool is_locally_initiated);
 
+void LogLeAclDisconnectionEvent(const hci::Address& address, hci::ErrorCode reason);
+
 void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS status);
 
 void LogUserConfirmationRequestResponse(const hci::Address& address, bool positive);

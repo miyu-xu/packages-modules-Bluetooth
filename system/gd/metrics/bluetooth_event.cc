@@ -221,6 +221,11 @@ void LogAclDisconnectionEvent(const hci::Address& address, ErrorCode reason,
                                          MapErrorCodeToState(reason));
 }
 
+void LogLeAclDisconnectionEvent(const hci::Address& address, ErrorCode reason) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::LE_ACL_DISCONNECTION_INITIATOR,
+                                         MapErrorCodeToState(reason));
+}
+
 void LogAclAfterRemoteNameRequest(const RawAddress& raw_address, tBTM_STATUS status) {
   hci::Address address = bluetooth::ToGdAddress(raw_address);
 
