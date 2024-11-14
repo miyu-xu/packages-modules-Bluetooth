@@ -109,6 +109,7 @@ typedef struct {
   int internal_send_fd;  // for sending internal events from btif
   pthread_t hh_poll_thread_id;
   alarm_t* vup_timer;
+  alarm_t* hogh_reconnect_backoff_timer;
   bool local_vup;  // Indicated locally initiated VUP
   btif_hh_uhid_t uhid;  // Deprecated with the aflags hid_report_queuing.
                         // TODO: remove after launching the aflag.
