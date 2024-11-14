@@ -56,6 +56,9 @@ typedef struct {
   // The connection uuid. (L2CAP only)
   uint64_t conn_uuid_lsb;
   uint64_t conn_uuid_msb;
+
+  // Socket ID in connected state
+  uint64_t socket_id;
 } __attribute__((packed)) sock_connect_signal_t;
 
 typedef struct {
@@ -73,7 +76,8 @@ typedef struct {
    */
   bt_status_t (*listen)(btsock_type_t type, const char* service_name,
                         const bluetooth::Uuid* service_uuid, int channel, int* sock_fd, int flags,
-                        int callingUid);
+                        int callingUid, int data_path, const char* socket_name, uint64_t hub_id,
+                        uint64_t endpoint_id, int max_rx_packet_size);
 
   /**
    * Connect to a RFCOMM UUID channel of remote device, It returns the socket fd
@@ -83,7 +87,9 @@ typedef struct {
    * purposes.
    */
   bt_status_t (*connect)(const RawAddress* bd_addr, btsock_type_t type, const bluetooth::Uuid* uuid,
-                         int channel, int* sock_fd, int flags, int callingUid);
+                         int channel, int* sock_fd, int flags, int callingUid, int data_path,
+                         const char* socket_name, uint64_t hub_id, uint64_t endpoint_id,
+                         int max_rx_packet_size);
 
   /**
    * Set the LE Data Length value to this connected peer to the
