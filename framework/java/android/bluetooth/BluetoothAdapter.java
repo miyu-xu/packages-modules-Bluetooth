@@ -5951,4 +5951,37 @@ public final class BluetoothAdapter {
             mServiceLock.readLock().unlock();
         }
     }
+
+    /**
+     * Bluetooth socket hardware offload provides channel information of an already connected
+     * BluetoothSocket to offload endpoints such as offload stacks and offload applications running
+     * on low power processor, allowing the offload stack to decode packets received on the channel
+     * and pass them to the appropriate offload app for processing or transmission without waking up
+     * the application processor.
+     *
+     * <p>This API requires the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} because the
+     * offloaded socket is intended to pass a BluetoothSocket to system-specific offload endpoints.
+     *
+     * @return true if LE CoC socket hardware offload is supported
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    public boolean isLeCocSocketOffloadSupported() {
+        if (!isEnabled()) {
+            return false;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.isLeCocSocketOffloadSupported(mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
 }
