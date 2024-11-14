@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3375f1f2_99900c64",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-14T02:09:32Z",
+      "side": 1,
+      "message": "remove dot",
+      "range": {
+        "startLine": 225,
+        "startChar": 76,
+        "endLine": 225,
+        "endChar": 77
+      },
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037fca88_7b0484bc",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-14T02:09:32Z",
+      "side": 1,
+      "message": "missing space",
+      "range": {
+        "startLine": 225,
+        "startChar": 53,
+        "endLine": 225,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ca97d60b_d94c07f2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": "                    (\"gainSetting\u003d\" + gainSetting + \" is not in correct range.\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931a0acf_b5356a6b",
+        "filename": "pandora/interfaces/pandora_experimental/vcp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-14T02:09:32Z",
+      "side": 1,
+      "message": "Missing service discovery and service parameter in requests.",
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
