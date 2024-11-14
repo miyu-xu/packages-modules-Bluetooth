@@ -88,6 +88,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9290d1e7_521847b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T23:46:41Z",
+      "side": 1,
+      "message": "I heard someone preferred to see the single CL. I split into 6 CLs for each topic. Please review following changes.\n\n```\naosp/3349373 Read socket offload capabilities from bluetooth low power proccesor \naosp/3349374 Add bluetooth offload socket API\naosp/3349375 Send signal to indicate if app is accepting incoming connection on listen socket\naosp/3349376 Set the initial local credits to 0 for offload LE socket\naosp/3349377 Determine local mtu for offload LE socket\naosp/3349378 Notify offload socket channel connection info to socket hal\n```",
+      "parentUuid": "e91beccd_2af8d158",
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da4a792_a025f86f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T23:46:41Z",
+      "side": 1,
+      "message": "Thanks for the comments. It was fixed in the small CL - aosp/3349374",
+      "parentUuid": "b25ca2fd_25b5312b",
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6314607_ef24d31a",
@@ -101,6 +137,30 @@
       "writtenOn": "2024-11-14T00:28:06Z",
       "side": 1,
       "message": "If this method now required BLUETOOTH_PRIVILEGED, this will be an api contract breakage.\n\nWhat are the condition to require the new permission when calling this API ?\nWe should document in the javadoc to mention why this is required\n\nIf this will be never enforced, then we should not add that.",
+      "range": {
+        "startLine": 3108,
+        "startChar": 40,
+        "endLine": 3108,
+        "endChar": 60
+      },
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbcab248_87291f88",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 3108,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T23:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6314607_ef24d31a",
       "range": {
         "startLine": 3108,
         "startChar": 40,
@@ -134,6 +194,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c0b1ee_f96623d7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 6010,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T23:46:41Z",
+      "side": 1,
+      "message": "Agree. CONNECT seems not required to read capability. Removed.",
+      "parentUuid": "03fcddd0_c097c963",
+      "range": {
+        "startLine": 6010,
+        "startChar": 33,
+        "endLine": 6010,
+        "endChar": 50
+      },
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e2b6de4_9d2c43bb",
@@ -147,6 +231,30 @@
       "writtenOn": "2024-11-14T00:28:06Z",
       "side": 1,
       "message": "this need to be explained in the API description here too",
+      "range": {
+        "startLine": 535,
+        "startChar": 12,
+        "endLine": 535,
+        "endChar": 30
+      },
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2028b49_cc61d74c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T23:46:41Z",
+      "side": 1,
+      "message": "Added description.",
+      "parentUuid": "2e2b6de4_9d2c43bb",
       "range": {
         "startLine": 535,
         "startChar": 12,
@@ -224,6 +332,30 @@
           ]
         }
       ],
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc171ba_deeedb5c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-14T23:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef090f45_480f4cff",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 36
+      },
       "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
