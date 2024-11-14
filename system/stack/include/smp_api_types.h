@@ -210,6 +210,7 @@ typedef union {
   tSMP_OOB_DATA_TYPE req_oob_type;
   tSMP_LOC_OOB_DATA loc_oob_data;
   RawAddress id_addr;
+  tBLE_ADDR_TYPE id_addr_type;
 } tSMP_EVT_DATA;
 
 /* AES Encryption output */
