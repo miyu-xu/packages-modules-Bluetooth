@@ -35,6 +35,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
@@ -124,11 +125,21 @@ class PbapClientStateMachine extends StateMachine {
         private final String mName;
         private PbapPhonebookMetadata mMetadata;
         private int mNumDownloaded;
+        private boolean mUsingCached;
 
         Phonebook(String name) {
             mName = name;
             mMetadata = null;
             mNumDownloaded = 0;
+            mUsingCached = false;
+        }
+
+        public String getName() {
+            return mName;
+        }
+
+        public PbapPhonebookMetadata getMetadata() {
+            return mMetadata;
         }
 
         public void setMetadata(PbapPhonebookMetadata metadata) {
@@ -137,6 +148,14 @@ class PbapClientStateMachine extends StateMachine {
 
         public void onContactsDownloaded(int numDownloaded) {
             mNumDownloaded += numDownloaded;
+        }
+
+        public void setUsingCached(boolean usingCached) {
+            mUsingCached = usingCached;
+        }
+
+        public boolean getUsingCached() {
+            return mUsingCached;
         }
 
         public int getTotalNumberOfContacts() {
@@ -574,7 +593,23 @@ class PbapClientStateMachine extends StateMachine {
         @Override
         public void enter() {
 
-            info("Downloading: Start download process");
+            info("Downloading: Start download process, caching=" + useContactsCachingFeature());
+
+            // When caching, we should delete cached contacts for repositories we have that are no
+            // longer supported by the remote device.
+            if (useContactsCachingFeature()) {
+                List<String> cachedPhonebooks = mContactsStorage.getCachedPhonebooks(mAccount);
+                for (String pb : cachedPhonebooks) {
+                    if (!mPhonebooks.containsKey(pb)) {
+                        warn(
+                                "Downloading: Cached phonebook="
+                                        + pb
+                                        + " no longer supported by"
+                                        + "remote device. Clean up");
+                        deleteStoredContacts(pb);
+                    }
+                }
+            }
 
             // Initialize our list of phonebooks to download based on supported repositories
             initializePhonebooksToDownload();
@@ -592,6 +627,7 @@ class PbapClientStateMachine extends StateMachine {
         public boolean processMessage(Message message) {
             String currentPhonebook = getCurrentPhonebook();
             String phonebook = null;
+            PbapPhonebookMetadata metadata = null;
             debug("Downloading: process message, what=" + eventToString(message.what));
             switch (message.what) {
                 case MSG_DISCONNECT:
@@ -599,13 +635,29 @@ class PbapClientStateMachine extends StateMachine {
                     break;
 
                 case MSG_PHONEBOOK_METADATA_RECEIVED:
-                    PbapPhonebookMetadata metadata = (PbapPhonebookMetadata) message.obj;
+                    metadata = (PbapPhonebookMetadata) message.obj;
                     phonebook = metadata.getPhonebook();
                     if (currentPhonebook != null && currentPhonebook.equals(phonebook)) {
                         info("Downloading: received metadata=" + metadata);
 
                         // Process Metadata
                         mPhonebooks.get(phonebook).setMetadata(metadata);
+
+                        // When caching, if version we have is different than version they have, or
+                        // the version is invalid, then delete any cached contacts if we have them
+                        if (useContactsCachingFeature()) {
+                            if (shouldClearCachedContacts(metadata)) {
+                                deleteStoredContacts(phonebook);
+                            } else {
+                                info(
+                                        "Downloading: contacts up to date for phonebook="
+                                                + phonebook
+                                                + ", use cached version and skip the download");
+                                mPhonebooks.get(phonebook).setUsingCached(true);
+                                setNextPhonebookOrComplete();
+                                break;
+                            }
+                        }
 
                         // If phonebook has contacts, begin downloading them
                         if (metadata.getSize() > 0) {
@@ -660,6 +712,14 @@ class PbapClientStateMachine extends StateMachine {
 
                         if (totalContactDownloaded >= totalContactsExpected) {
                             info("Downloading: download complete, phonebook=" + phonebook);
+
+                            if (useContactsCachingFeature()) {
+                                metadata = mPhonebooks.get(phonebook).getMetadata();
+                                if (shouldStorePhonebookMetadata(metadata)) {
+                                    storePhonebookMetadata(phonebook, metadata);
+                                }
+                            }
+
                             setNextPhonebookOrComplete();
                         } else {
                             downloadPhonebook(
@@ -768,6 +828,146 @@ class PbapClientStateMachine extends StateMachine {
                             0));
         }
 
+        /**
+         * Determine if any locally cached contacts we have are now invalid based on the remote
+         * device's provided metadata.
+         *
+         * <p>This will compare the incoming database identifier and version counters with our
+         * cached values to see if we should clear any cached contacts in preparation for
+         * downloading new updated contacts.
+         *
+         * <p>By specification, PBAP v1.2.3, Section 5.1.4.9, the primary version counter changes
+         * _any time_ there is a change to _any property_ for _any_ contact in the database. It also
+         * changes each time there's an insert or removal. This section also states that the
+         * secondary version will update on a subset of properties (N, FN, TEL, EMAIL, MAILER, ADR)
+         * instead, or inserts and removals. For the purposes of this implementation, we will choose
+         * to uncache when the primary version counter is updated, as to not miss any changes. The
+         * secondary version should always change when the primary version changes, by definition.
+         *
+         * <p>PBAP v1.2.3, Section 5.1.4.10 also dictates that the database identifier will update
+         * each time the database is reset, the folder version counter rolls over, or a specific UID
+         * changes. For the purposes of this implementation, any updates to the database identifier
+         * will warrant an uncache and redownload.
+         *
+         * <p>The remote device's data/metadata will always be favored in the case there are any
+         * discrepancies between what we have and what they have.
+         *
+         * <p>Note that the remote can also send a "0" database identifier, indicating they
+         * recognize the request for an identifier, but don't actually support it. In this case, we
+         * want to uncache and redownload too.
+         *
+         * <p>We will not cache call history at this time.
+         *
+         * <p>Without caching enabled, we will always delete any previously stored contacts if there
+         * are any.
+         *
+         * @param metadata The newest metadata reported by the remote device
+         * @return True if our local contacts are stale and should be deleted, False otherwise.
+         */
+        private boolean shouldClearCachedContacts(PbapPhonebookMetadata metadata) {
+            String phonebook = metadata.getPhonebook();
+            String databaseIdentifier = metadata.getDatabaseIdentifier();
+            String primaryVersion = metadata.getPrimaryVersionCounter();
+            String secondaryVersion = metadata.getSecondaryVersionCounter();
+
+            if (!useContactsCachingFeature()) {
+                info("Downloading: Caching not enabled. Do not use cached contacts or metadata");
+                return true;
+            }
+
+            // No need to use cached call history. Always clean that up if it's there and redownload
+            if (!PbapPhonebook.FAVORITES_PATH.equals(phonebook)
+                    && !PbapPhonebook.LOCAL_PHONEBOOK_PATH.equals(phonebook)
+                    && !PbapPhonebook.SIM_PHONEBOOK_PATH.equals(phonebook)) {
+                info("Downloading: Clear cached data for phonebook=" + phonebook);
+                mContactsStorage.setCachedPhonebookMetadata(mAccount, phonebook, null);
+                return true;
+            }
+
+            // Get current cached data versions for this phonebook
+            PbapPhonebookMetadata cachedMetadata =
+                    mContactsStorage.getCachedPhonebookMetadata(mAccount, phonebook);
+            String cachedDatabaseIdentifier = null;
+            String cachedPrimaryVersion = null;
+            String cachedSecondaryVersion = null;
+            if (cachedMetadata != null) {
+                cachedDatabaseIdentifier = cachedMetadata.getDatabaseIdentifier();
+                cachedPrimaryVersion = cachedMetadata.getPrimaryVersionCounter();
+                cachedSecondaryVersion = cachedMetadata.getSecondaryVersionCounter();
+            }
+
+            // Database Identifiers indicate whether or not folder version counters or contact UIDs
+            // from a previous session can be reused. Changes in value imply any previous folder
+            // counters no longer apply and that we should delete any stored contacts we have. A
+            // Database identifier of "0" (default) means that, while the feature is supported,
+            // the server doesn't actually implement it and the resulting primary and
+            // secondary version counters are not valid. This means we always need to re-download.
+            if (databaseIdentifier == PbapPhonebookMetadata.INVALID_DATABASE_IDENTIFIER
+                    || databaseIdentifier.equals(
+                            PbapPhonebookMetadata.DEFAULT_DATABASE_IDENTIFIER)) {
+                info(
+                        "Downloading: Database identifier is 0 or missing for phonebook="
+                                + phonebook
+                                + ", clear any cached data");
+                return true;
+            }
+            if (cachedDatabaseIdentifier == null
+                    || !cachedDatabaseIdentifier.equals(databaseIdentifier)) {
+                info(
+                        "Downloading: Database Identifiers do not match (cached="
+                                + cachedDatabaseIdentifier
+                                + ", remote="
+                                + databaseIdentifier
+                                + "), clear any cached data");
+                return true;
+            }
+
+            // The Primary Version Counter will change on insertion or removal of entries and
+            // updates to _any_ vCard properties. Primary changing implies anyhthing at all has
+            // updated.
+            if (primaryVersion == PbapPhonebookMetadata.INVALID_VERSION_COUNTER) {
+                info(
+                        "Downloading: Primary version counter has changed for phonebook="
+                                + phonebook
+                                + ", clear any cached data");
+                return true;
+            }
+            if (cachedPrimaryVersion == null || !cachedPrimaryVersion.equals(primaryVersion)) {
+                info(
+                        "Downloading: Primary versions do not match (cached="
+                                + cachedPrimaryVersion
+                                + ", remote="
+                                + primaryVersion
+                                + "), clear any cached data");
+                return true;
+            }
+
+            // The Secondary Version Counter will change on insertion or removal of entries and
+            // updates to a subset of vCard properties, specifically N, FN, TEL, EMAIL, MAILER, ADR
+            // or x-bt-UCI properties. Secondary changing implies a normal, potentially more
+            // meaningful set of changes have occurred to the folder.
+            if (secondaryVersion == PbapPhonebookMetadata.INVALID_VERSION_COUNTER) {
+                info(
+                        "Downloading: Secondary version counter has changed for phonebook="
+                                + phonebook
+                                + ", clear any cached data");
+                return true;
+            }
+            if (cachedSecondaryVersion == null
+                    || !cachedSecondaryVersion.equals(secondaryVersion)) {
+                info(
+                        "Downloading: Secondary versions do not match (cached="
+                                + cachedSecondaryVersion
+                                + ", remote="
+                                + secondaryVersion
+                                + "), clear any cached data");
+                return true;
+            }
+
+            info("Downloading: Contact data up to date for phonebook=" + phonebook);
+            return false;
+        }
+
         /*
          * Download a specific phonebook, by path, using the given batching parameters
          *
@@ -869,7 +1069,11 @@ class PbapClientStateMachine extends StateMachine {
 
     private void cleanup() {
         info("cleanup: evaluate data to cleanup");
-        cleanupContactsDataAndAccounts();
+        if (useContactsCachingFeature()) {
+            cleanupUncachedDataAndAccounts();
+        } else {
+            cleanupContactsDataAndAccounts();
+        }
     }
 
     private void cleanupContactsDataAndAccounts() {
@@ -877,6 +1081,127 @@ class PbapClientStateMachine extends StateMachine {
         mContactsStorage.removeAllContacts(mAccount);
         mContactsStorage.removeCallHistory(mAccount);
         mContactsStorage.removeAccount(mAccount);
+    }
+
+    private void cleanupUncachedDataAndAccounts() {
+        info("cleanupUncachedDataAndAccounts: Check cached metadata");
+        List<String> cachedPhonebooks = mContactsStorage.getCachedPhonebooks(mAccount);
+
+        // If nothing was cached, delete everything!
+        if (cachedPhonebooks.size() == 0) {
+            info("cleanupUncachedDataAndAccounts: No cached contacts. Clear everything");
+            cleanupContactsDataAndAccounts();
+            return;
+        }
+
+        // Otherwise, compare what was downloaded and what was cached to see if we need to
+        // clear contacts
+        for (Phonebook pb : mPhonebooks.values()) {
+            String phonebook = pb.getName();
+
+            if (pb.getUsingCached()) {
+                debug(
+                        "cleanupUncachedDataAndAccounts: phonebook="
+                                + phonebook
+                                + " used cached version and wasn't downloaded."
+                                + " Nothing to clean up");
+                continue;
+            }
+
+            // Wasn't supported, wasn't downloaded, or had no meaningful contacts
+            if (pb.getTotalNumberOfContacts() == 0 || pb.getNumberOfContactsDownloaded() == 0) {
+                debug(
+                        "cleanupUncachedDataAndAccounts: phonebook="
+                                + phonebook
+                                + " wasn't downloaded. Clean up any contacts and metadata");
+                deleteStoredContacts(phonebook);
+                continue;
+            }
+
+            // Wasn't downloaded all the way
+            if (pb.getNumberOfContactsDownloaded() < pb.getTotalNumberOfContacts()) {
+                debug(
+                        "cleanupUncachedDataAndAccounts: phonebook="
+                                + phonebook
+                                + " wasn't downloaded all the way."
+                                + " Clean up any contacts and metadata");
+                mContactsStorage.setCachedPhonebookMetadata(mAccount, phonebook, null);
+                deleteStoredContacts(phonebook);
+                continue;
+            }
+
+            // Wasn't cached
+            if (!cachedPhonebooks.contains(phonebook)) {
+                debug(
+                        "cleanupUncachedDataAndAccounts: phonebook="
+                                + phonebook
+                                + " was downloaded, but wasn't cached."
+                                + " Clean up any contacts and metadata");
+                deleteStoredContacts(phonebook);
+                continue;
+            }
+
+            debug(
+                    "cleanupUncachedDataAndAccounts: phonebook="
+                            + phonebook
+                            + " was downloaded and cached");
+        }
+
+        // Always clear call history
+        info("cleanupUncachedDataAndAccounts: clear saved call history");
+        mContactsStorage.removeCallHistory(mAccount);
+
+        // If we have no metadata left over, then remove the account
+        cachedPhonebooks = mContactsStorage.getCachedPhonebooks(mAccount);
+        if (cachedPhonebooks.size() == 0) {
+            info("cleanupUncachedDataAndAccounts: All cached contacts cleaned up, remove account");
+            mContactsStorage.removeAccount(mAccount);
+        } else {
+            info("cleanupUncachedDataAndAccounts: Persisting phonebooks=" + cachedPhonebooks);
+        }
+    }
+
+    private boolean shouldStorePhonebookMetadata(PbapPhonebookMetadata metadata) {
+        if (!useContactsCachingFeature()) {
+            info("Caching not enabled. Do not store metadata=" + metadata);
+            return false;
+        }
+        debug("shouldStorePhonebookMetadata: metadata=" + metadata);
+
+        String databaseIdentifier = metadata.getDatabaseIdentifier();
+        String primaryVersion = metadata.getPrimaryVersionCounter();
+        String secondaryVersion = metadata.getSecondaryVersionCounter();
+
+        if (databaseIdentifier == PbapPhonebookMetadata.INVALID_DATABASE_IDENTIFIER
+                || databaseIdentifier == PbapPhonebookMetadata.DEFAULT_DATABASE_IDENTIFIER) {
+            info("Can't cache metadata=" + metadata + ", databaseIdentifier invalid");
+            return false;
+        }
+
+        if (primaryVersion == PbapPhonebookMetadata.INVALID_VERSION_COUNTER
+                || secondaryVersion == PbapPhonebookMetadata.INVALID_VERSION_COUNTER) {
+            info("Can't cache metadata=" + metadata + ", version counter(s) invalid");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void storePhonebookMetadata(String phonebook, PbapPhonebookMetadata metadata) {
+        if (!useContactsCachingFeature()) {
+            info("Caching not enabled. Do not store metadata for phonebook=" + phonebook);
+            return;
+        }
+
+        if (PbapPhonebook.FAVORITES_PATH.equals(phonebook)
+                || PbapPhonebook.LOCAL_PHONEBOOK_PATH.equals(phonebook)
+                || PbapPhonebook.SIM_PHONEBOOK_PATH.equals(phonebook)) {
+            info("Cache phonebook=" + phonebook);
+            mContactsStorage.setCachedPhonebookMetadata(mAccount, phonebook, metadata);
+            return;
+        }
+
+        info("Caching not supported for phonebook=" + phonebook);
     }
 
     /* Request to insert downloaded contacts into storage */
@@ -899,6 +1224,48 @@ class PbapClientStateMachine extends StateMachine {
             mContactsStorage.insertOutgoingCallHistory(mAccount, contacts.getList());
         } else {
             warn("Received unknown phonebook to store, phonebook=" + phonebook);
+        }
+    }
+
+    private void deleteStoredMetadata(String phonebook) {
+        if (!useContactsCachingFeature()) {
+            info("Caching not enabled. Do not delete metadata for phonebook=" + phonebook);
+            return;
+        }
+
+        if (PbapPhonebook.FAVORITES_PATH.equals(phonebook)
+                || PbapPhonebook.LOCAL_PHONEBOOK_PATH.equals(phonebook)
+                || PbapPhonebook.SIM_PHONEBOOK_PATH.equals(phonebook)) {
+            info("Delete any cached metadata for phonebook=" + phonebook);
+            mContactsStorage.setCachedPhonebookMetadata(mAccount, phonebook, null);
+            return;
+        }
+
+        warn("Caching not supported for phonebook=" + phonebook);
+    }
+
+    private void deleteStoredContacts(String phonebook) {
+        info("Delete stored contacts for phonebook=" + phonebook);
+        if (phonebook.equals(PbapPhonebook.FAVORITES_PATH)) {
+            deleteStoredMetadata(PbapPhonebook.FAVORITES_PATH);
+            mContactsStorage.removeFavorites(mAccount);
+        } else if (phonebook.equals(PbapPhonebook.LOCAL_PHONEBOOK_PATH)) {
+            deleteStoredMetadata(PbapPhonebook.LOCAL_PHONEBOOK_PATH);
+            mContactsStorage.removeLocalContacts(mAccount);
+        } else if (phonebook.equals(PbapPhonebook.SIM_PHONEBOOK_PATH)) {
+            deleteStoredMetadata(PbapPhonebook.SIM_PHONEBOOK_PATH);
+            mContactsStorage.removeSimContacts(mAccount);
+        } else if (phonebook.equals(PbapPhonebook.MCH_PATH)
+                || phonebook.equals(PbapPhonebook.SIM_MCH_PATH)) {
+            mContactsStorage.removeCallHistory(mAccount);
+        } else if (phonebook.equals(PbapPhonebook.ICH_PATH)
+                || phonebook.equals(PbapPhonebook.SIM_ICH_PATH)) {
+            mContactsStorage.removeCallHistory(mAccount);
+        } else if (phonebook.equals(PbapPhonebook.OCH_PATH)
+                || phonebook.equals(PbapPhonebook.SIM_OCH_PATH)) {
+            mContactsStorage.removeCallHistory(mAccount);
+        } else {
+            warn("Received unknown phonebook to delete, phonebook=" + phonebook);
         }
     }
 
@@ -973,6 +1340,10 @@ class PbapClientStateMachine extends StateMachine {
             debug("Received contacts, phonebook=" + phonebook + ", count=" + contacts.getCount());
             onPhonebookContactsReceived(contacts);
         }
+    }
+
+    private boolean useContactsCachingFeature() {
+        return Flags.pbapClientContactsCaching() && mContactsStorage.isCachingSupported();
     }
 
     private static String eventToString(int message) {
@@ -1065,6 +1436,7 @@ class PbapClientStateMachine extends StateMachine {
         ProfileService.println(sb, "    OBEX Client: " + mObexClient);
 
         ProfileService.println(sb, "    Download Batch Size: " + CONTACT_DOWNLOAD_BATCH_SIZE);
+        ProfileService.println(sb, "    Use Caching: " + useContactsCachingFeature());
 
         int totalContacts = 0;
         int totalContactDownloaded = 0;
