@@ -29,17 +29,28 @@ import android.os.RemoteException;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntry.PhoneData;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,6 +69,9 @@ import java.util.List;
  */
 class PbapClientContactsStorage {
     private static final String TAG = PbapClientContactsStorage.class.getSimpleName();
+
+    private static final String MIMETYPE_PBAP_PHONEBOOK =
+            "vnd.android.cursor.item/vnd.com.android.bluetooth.phonebook";
 
     private static final int CONTACTS_INSERT_BATCH_SIZE = 250;
 
@@ -151,10 +165,26 @@ class PbapClientContactsStorage {
      * and initializes our storage state based on this account list, using the following
      * rules/steps:
      *
-     * <p>1. CHECK ACCOUNTS: Previous accounts should not exist. Delete them and all associated data
+     * <ol>
+     *   <li>CHECK METADATA: If a metadata exists and,
+     *       <ol>
+     *         <li>It's older than a TTL of 7 DAYS -> delete the cached metadata, then any contacts
+     *         <li>Has an associated account -> Leave metadata and contacts
+     *         <li>Does not have an associated account -> delete the cached metadata, then any
+     *             contacts
+     *       </ol>
+     *   <li>CHECK ACCOUNTS: If an account exists and,
+     *       <ol>
+     *         <li>Has cached metadata associated with it -> leave account and contacts
+     *         <li>Does not have cached metadata associated with it -> delete any contacts, then
+     *             account
+     *       </ol>
+     * </ol>
      *
-     * <p>These rules help ensure that we clean up accounts that might persist after an ungraceful
-     * shutdown
+     * <p>These rules help ensure that we (1) clean up accounts that might persist after an
+     * ungraceful shutdown, and (2) clean up metadata that might exist after an ungrateful shutdown,
+     * so that we can be sure the accounts we're left with after initialization are only those that
+     * have valid cached metadata associated with them, and vice versa.
      *
      * @param accounts The list of accounts that exist following start up of the account manager
      */
@@ -165,9 +195,47 @@ class PbapClientContactsStorage {
             return;
         }
 
+        if (!Flags.pbapClientContactsCaching()) {
+            for (Account account : accounts) {
+                Log.w(TAG, "initialize(): Remove pre-existing account=" + account);
+                mAccountManager.removeAccount(account);
+            }
+            mStorageInitialized = true;
+            return;
+        }
+
+        // TODO: isCachingSupported() -> false -> delete everything
+
         for (Account account : accounts) {
-            Log.w(TAG, "initialize(): Remove pre-existing account=" + account);
+            if (getCachedPhonebooks(account).size() != 0) {
+                Log.i(TAG, "initialize(): Found metadata for account=" + account + ". Leave it.");
+                continue;
+            }
+
+            Log.w(TAG, "initialize(): Remove account=" + account + ", no metadata exists");
             mAccountManager.removeAccount(account);
+        }
+
+        for (File file : getCachedMetadataFiles()) {
+            String path = file.getName();
+
+            // TODO: Add file read/write to PbapPhonebookMetadata object so this is easy here
+            String[] tokens = path.split("-");
+            if (tokens.length != 3) {
+                continue;
+            }
+
+            String accountName = tokens[0].replace("_", ":");
+            Account account =
+                    getStorageAccountForDevice(
+                            AdapterService.getAdapterService()
+                                    .getDeviceFromByte(Utils.getBytesFromAddress(accountName)));
+
+            List<String> cachedPhonebooks = getCachedPhonebooks(account);
+            if (cachedPhonebooks.size() > 0 && !mAccountManager.getAccounts().contains(account)) {
+                Log.w(TAG, "initialize(): Metadata found without account. Delete metadata=" + path);
+                file.delete();
+            }
         }
 
         mStorageInitialized = true;
@@ -191,6 +259,318 @@ class PbapClientContactsStorage {
 
     public boolean removeAccount(Account account) {
         return mAccountManager.removeAccount(account);
+    }
+
+    // *********************************************************************************************
+    // * Metadata (Contacts Caching)
+    // *********************************************************************************************
+
+    /**
+     * Gets the file path that a metadata file should be stored at for a given account and phonebook
+     *
+     * <p>The path name is in the following format: /data/user/*account*-*phonebook*-metadata.xml
+     *
+     * @param account the device account this phonebook and metadata belong to
+     * @param phonebook the phonebook name, based on the PBAP phonebook name constants in the spec
+     * @return a String representing the filename/path for a metadata file for this account and
+     *     phonebook
+     */
+    private String getPathForAccountPhonebook(Account account, String phonebook) {
+        if (account == null || phonebook == null || account.name == null) {
+            return null;
+        }
+        // TODO: PBAP Client only directory?
+        return account.name.replace(":", "_")
+                + "-"
+                + phonebook.replace("/", "_").replace(".", "_")
+                + "-metadata.xml";
+    }
+
+    /**
+     * Determine if we have cached metadata for a given phonebook
+     *
+     * <p>This metadata is stored at a file in the files directory of Bluetooth, typically:
+     * /data/user/*account*-*phonebook*-metadata.xml
+     *
+     * <p>i.e.: /data/user/aa_bb_cc_dd_ee_ff-telecom_fav-metadata.xml
+     *
+     * @param account the device account this phonebook and metadata belong to
+     * @param phonebook the phonebook name, based on the PBAP phonebook name constants in the spec
+     * @return a PbapPhonebookMetadata object if we have cached contacts for the give phonebook,
+     *     null if we do not
+     */
+    public PbapPhonebookMetadata getCachedPhonebookMetadata(Account account, String phonebook) {
+        Log.i(
+                TAG,
+                "getCachedPhonebookMetadata(account=" + account + ", phonebook=" + phonebook + ")");
+        String fileName = getPathForAccountPhonebook(account, phonebook);
+        if (fileName == null) {
+            Log.w(
+                    TAG,
+                    "getCachedPhonebookMetadata(account="
+                            + account
+                            + ", phonebook="
+                            + phonebook
+                            + "):  Failed to resolve to path");
+            return null;
+        }
+
+        try (FileInputStream inputStream = mContext.openFileInput(fileName);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String databaseIdentifier = null;
+            String primaryVersionCounter = null;
+            String secondaryVersionCounter = null;
+            int size = -1;
+
+            String line = null;
+            String field = null;
+            String value = null;
+            while ((line = reader.readLine()) != null) {
+                Log.v(
+                        TAG,
+                        "getCachedPhonebookMetadata(account="
+                                + account
+                                + ", phonebook="
+                                + phonebook
+                                + "): Read line="
+                                + line);
+                if (line == null || line.isEmpty()) {
+                    continue;
+                }
+
+                String[] tokens = line.split("=");
+                if (tokens.length != 2) {
+                    continue;
+                }
+
+                field = tokens[0];
+                value = tokens[1];
+                Log.v(
+                        TAG,
+                        "getCachedPhonebookMetadata(account="
+                                + account
+                                + ", phonebook="
+                                + phonebook
+                                + "): Read "
+                                + field
+                                + "="
+                                + value);
+
+                if (field == null || value == null) {
+                    continue;
+                }
+
+                switch (field) {
+                    case "phonebook":
+                        if (!phonebook.equals(value)) {
+                            return null;
+                        }
+                        break;
+                    case "databaseIdentifier":
+                        databaseIdentifier = value;
+                        break;
+                    case "primaryVersionCounter":
+                        primaryVersionCounter = value;
+                        break;
+                    case "secondaryVersionCounter":
+                        secondaryVersionCounter = value;
+                        break;
+                    case "size":
+                        size = Integer.parseInt(value);
+                        break;
+                    default:
+                        Log.w(
+                                TAG,
+                                "getCachedPhonebookMetadata(account="
+                                        + account
+                                        + ", phonebook="
+                                        + phonebook
+                                        + "): Unrecognized field="
+                                        + field);
+                        break;
+                }
+            }
+
+            if (size <= 0
+                    || databaseIdentifier == null
+                    || primaryVersionCounter == null
+                    || secondaryVersionCounter == null) {
+                Log.w(
+                        TAG,
+                        "getCachedPhonebookMetadata(account="
+                                + account
+                                + ", phonebook="
+                                + phonebook
+                                + "): File malformed, fields missing or incorrect");
+                // TODO: Delete file too?
+                return null;
+            }
+
+            PbapPhonebookMetadata metadata =
+                    new PbapPhonebookMetadata(
+                            phonebook,
+                            size,
+                            databaseIdentifier,
+                            primaryVersionCounter,
+                            secondaryVersionCounter);
+            Log.i(
+                    TAG,
+                    "getCachedPhonebookMetadata(account="
+                            + account
+                            + ", phonebook="
+                            + phonebook
+                            + ") -> "
+                            + metadata);
+            return metadata;
+        } catch (NullPointerException | IOException e) {
+            Log.w(
+                    TAG,
+                    "getCachedPhonebookMetadata(account="
+                            + account
+                            + ", phonebook="
+                            + phonebook
+                            + "): No valid metadata");
+        }
+        return null;
+    }
+
+    /**
+     * Set the cached metadata for a given phonebook. This indicates we should persist this
+     * phonebook for this user across adapter lifecycles.
+     *
+     * @param account the device account this phonebook and metadata belong to
+     * @param phonebook the phonebook name, based on the PBAP phonebook name constants in the spec
+     * @param metadata The metadata to associate with the given phonebook
+     */
+    public boolean setCachedPhonebookMetadata(
+            Account account, String phonebook, PbapPhonebookMetadata metadata) {
+        Log.i(
+                TAG,
+                "setCachedPhonebookMetadata(account="
+                        + account
+                        + ", phonebook="
+                        + phonebook
+                        + ", metadata="
+                        + metadata
+                        + ")");
+        String fileName = getPathForAccountPhonebook(account, phonebook);
+        if (fileName == null) {
+            Log.w(
+                    TAG,
+                    "setCachedPhonebookMetadata(account="
+                            + account
+                            + ", phonebook="
+                            + phonebook
+                            + ", metadata="
+                            + metadata
+                            + "):  Failed to resolve to path");
+            return false;
+        }
+
+        if (metadata == null) {
+            Log.d(
+                    TAG,
+                    "setCachedPhonebookMetadata(account="
+                            + account
+                            + ", phonebook="
+                            + phonebook
+                            + ", metadata="
+                            + metadata
+                            + "): Delete file="
+                            + fileName);
+            return deleteCachedPhonebookMetadata(fileName);
+        }
+
+        Log.d(
+                TAG,
+                "setCachedPhonebookMetadata(account="
+                        + account
+                        + ", phonebook="
+                        + phonebook
+                        + ", metadata="
+                        + metadata
+                        + "): Write to file="
+                        + fileName);
+        try (FileOutputStream outputStream =
+                mContext.openFileOutput(fileName, Context.MODE_PRIVATE)) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("phonebook=").append(phonebook);
+            sb.append("\ndatabaseIdentifier=").append(metadata.getDatabaseIdentifier());
+            sb.append("\nprimaryVersionCounter=").append(metadata.getPrimaryVersionCounter());
+            sb.append("\nsecondaryVersionCounter=").append(metadata.getSecondaryVersionCounter());
+            sb.append("\nsize=").append(metadata.getSize());
+            byte[] byteBuff = sb.toString().getBytes();
+            outputStream.write(byteBuff, 0, byteBuff.length);
+        } catch (IOException e) {
+            Log.w(
+                    TAG,
+                    "setCachedPhonebookMetadata(account="
+                            + account
+                            + ", phonebook="
+                            + phonebook
+                            + ", metadata="
+                            + metadata
+                            + "): Failed to write metadata");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Delete a cached phonebook metadata file
+     *
+     * @param fileName the filename inside of our applications files directory to delete
+     */
+    private boolean deleteCachedPhonebookMetadata(String fileName) {
+        Log.d(TAG, "deleteCachedPhonebookMetadata(fileName=" + fileName + "): Delete file");
+        File file = new File(mContext.getFilesDir(), fileName);
+
+        if (!file.exists()) {
+            return true;
+        }
+
+        try {
+            file.delete();
+            Log.v(TAG, "deleteCachedPhonebookMetadata(fileName=" + fileName + "): Deleted file");
+            return true;
+        } catch (Exception e) {
+            Log.d(
+                    TAG,
+                    "deleteCachedPhonebookMetadata(fileName="
+                            + fileName
+                            + "): Falied to delete file",
+                    e);
+            return false;
+        }
+    }
+
+    /** Get the list of cached phonebooks for a given account */
+    public List<String> getCachedPhonebooks(Account account) {
+        List<String> cachedPhonebooks = new ArrayList<String>();
+        PbapPhonebookMetadata local =
+                getCachedPhonebookMetadata(account, PbapPhonebook.LOCAL_PHONEBOOK_PATH);
+        if (local != null) {
+            cachedPhonebooks.add(PbapPhonebook.LOCAL_PHONEBOOK_PATH);
+        }
+
+        PbapPhonebookMetadata fav =
+                getCachedPhonebookMetadata(account, PbapPhonebook.FAVORITES_PATH);
+        if (fav != null) {
+            cachedPhonebooks.add(PbapPhonebook.FAVORITES_PATH);
+        }
+
+        PbapPhonebookMetadata sim =
+                getCachedPhonebookMetadata(account, PbapPhonebook.SIM_PHONEBOOK_PATH);
+        if (sim != null) {
+            cachedPhonebooks.add(PbapPhonebook.SIM_PHONEBOOK_PATH);
+        }
+
+        Log.i(TAG, "getCachedPhonebooks(account=" + account + ") -> " + cachedPhonebooks);
+        return cachedPhonebooks;
+    }
+
+    public List<File> getCachedMetadataFiles() {
+        return Arrays.asList(mContext.getFilesDir().listFiles());
     }
 
     // *********************************************************************************************
@@ -264,7 +644,8 @@ class PbapClientContactsStorage {
 
                 // Append current vcard to list of insert operations.
                 int numberOfOperations = operations.size();
-                constructInsertOperationsForContact(contact, operations, contactsProvider);
+                constructInsertOperationsForContact(
+                        contact, phonebook, operations, contactsProvider);
 
                 if (operations.size() >= CONTACTS_INSERT_BATCH_SIZE) {
                     Log.i(
@@ -282,7 +663,8 @@ class PbapClientContactsStorage {
 
                     // Re-add the current contact operation(s) to the list
                     operations =
-                            constructInsertOperationsForContact(contact, null, contactsProvider);
+                            constructInsertOperationsForContact(
+                                    contact, phonebook, null, contactsProvider);
 
                     Log.i(
                             TAG,
@@ -307,9 +689,30 @@ class PbapClientContactsStorage {
     @SuppressWarnings("NonApiType") // For convenience, as applyBatch above takes an ArrayList above
     private ArrayList<ContentProviderOperation> constructInsertOperationsForContact(
             VCardEntry contact,
+            String phonebook,
             ArrayList<ContentProviderOperation> operations,
             ContentResolver contactsProvider) {
+        int numberOfOperations = operations == null ? 0 : operations.size();
         operations = contact.constructInsertOperations(contactsProvider, operations);
+
+        // Add Custom PBAP metadata to contact, if one was added
+        if (numberOfOperations != operations.size()) {
+            operations.add(
+                    ContentProviderOperation.newInsert(Data.CONTENT_URI)
+                            .withValueBackReference(
+                                    Data.RAW_CONTACT_ID, /* backRefIndex= */ numberOfOperations)
+                            .withValue(Data.MIMETYPE, MIMETYPE_PBAP_PHONEBOOK)
+                            .withValue(Data.DATA1, phonebook)
+                            .build());
+
+            operations.add(
+                    ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI)
+                            .withSelection(RawContacts._ID + "=?", new String[1])
+                            .withSelectionBackReference(0, numberOfOperations)
+                            .withValue(RawContacts.SYNC1, phonebook)
+                            .build());
+        }
+
         return operations;
     }
 
@@ -541,6 +944,50 @@ class PbapClientContactsStorage {
     }
 
     // *********************************************************************************************
+    // * Contact Visibility Control
+    // *********************************************************************************************
+
+    /**
+     * Determine if storage on this device is capable of supporting contacts caching across device
+     * connections.
+     *
+     * <p>Caching requires that Contacts provider is explicitly capable of making all contacts for a
+     * given account or account type inaccessible. This is not necessarily available on all devices,
+     * especially older ones.
+     *
+     * @return True if the underlying storage mechanism can support caching, False otherwise.
+     */
+    public boolean isCachingSupported() {
+        Log.d(TAG, "isCachingSupported()");
+        return false;
+    }
+
+    /**
+     * Request for Contacts Provider to hide or show all contacts from a specific account
+     *
+     * <p>Hidding contacts allows us to keep them safely on the device, inaccessible, until the
+     * device reconnects.
+     *
+     * @param account the device account you want to hide or show
+     * @param show True if you wish to make contacts visible, false otherwise
+     */
+    public void setContactsHidden(Account account, boolean show) {
+        Log.d(TAG, "setContactsHidden(account=" + account.name + ", show=" + show + ")");
+        // TBD
+    }
+
+    /**
+     * Request for Contacts Provider to hide all PBAP Client contacts
+     *
+     * <p>Hidding contacts allows us to keep them safely on the device, inaccessible, until the
+     * device reconnects.
+     */
+    public void setAllContactsHidden() {
+        Log.d(TAG, "setAllContactsHidden()");
+        // TBD
+    }
+
+    // *********************************************************************************************
     // * Callbacks
     // *********************************************************************************************
 
@@ -586,7 +1033,7 @@ class PbapClientContactsStorage {
      *
      * @return a formatted string with the number of contacts stored for a given account
      */
-    private String dumpContactsSummary(Account account) {
+    private String dumpContactsSummary(Account account, String phonebook) {
         StringBuilder sb = new StringBuilder();
         List<Long> rawContactIds = new ArrayList<>();
         try (Cursor cursor =
@@ -597,8 +1044,14 @@ class PbapClientContactsStorage {
                                 ContactsContract.RawContacts.ACCOUNT_TYPE
                                         + " = ? AND "
                                         + ContactsContract.RawContacts.ACCOUNT_NAME
+                                        + " = ? AND "
+                                        + ContactsContract.Data.MIMETYPE
+                                        + " = ? AND "
+                                        + ContactsContract.Data.DATA1
                                         + " = ?",
-                                new String[] {account.type, account.name},
+                                new String[] {
+                                    account.type, account.name, MIMETYPE_PBAP_PHONEBOOK, phonebook
+                                },
                                 null)) {
 
             if (cursor.moveToFirst()) {
@@ -610,7 +1063,9 @@ class PbapClientContactsStorage {
             }
         }
 
-        sb.append("            ").append(rawContactIds.size()).append(" contacts\n");
+        sb.append("            ").append(phonebook).append(" (").append(rawContactIds.size());
+        sb.append(" contacts)\n");
+
         return sb.toString();
     }
 
@@ -620,10 +1075,17 @@ class PbapClientContactsStorage {
         sb.append("    Storage Ready: ").append(mStorageInitialized).append("\n\n");
         sb.append("    ").append(mAccountManager.dump()).append("\n");
 
+        sb.append("    Cached Metadata:\n");
+        for (File file : getCachedMetadataFiles()) {
+            sb.append("        ").append(file.getAbsolutePath()).append("\n");
+        }
+
         sb.append("\n    Database:\n");
         for (Account account : mAccountManager.getAccounts()) {
             sb.append("        Account ").append(account.name).append(":\n");
-            sb.append(dumpContactsSummary(account));
+            sb.append(dumpContactsSummary(account, PbapPhonebook.FAVORITES_PATH));
+            sb.append(dumpContactsSummary(account, PbapPhonebook.LOCAL_PHONEBOOK_PATH));
+            sb.append(dumpContactsSummary(account, PbapPhonebook.SIM_PHONEBOOK_PATH));
         }
 
         return sb.toString();
