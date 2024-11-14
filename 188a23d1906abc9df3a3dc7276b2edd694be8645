@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cdc059e_8f97dfba",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:20:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4ba7a4f9_6d0fd70b",
+      "range": {
+        "startLine": 1055,
+        "startChar": 16,
+        "endLine": 1055,
+        "endChar": 44
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51e98227_6ddc92c9",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aef2e211_23d5e972",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:20:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "51e98227_6ddc92c9",
+      "range": {
+        "startLine": 1076,
+        "startChar": 16,
+        "endLine": 1076,
+        "endChar": 43
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb47e73e_9a149149",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-13T18:54:55Z",
       "side": 1,
       "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1097,
+        "startChar": 16,
+        "endLine": 1097,
+        "endChar": 48
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9dda4d6_84ffaf08",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:20:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb47e73e_9a149149",
       "range": {
         "startLine": 1097,
         "startChar": 16,
@@ -117,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b46ef092_c01b016b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:20:23Z",
+      "side": 1,
+      "message": "It\u0027s not ideal but sure that\u0027s possible.",
+      "parentUuid": "5f08cd32_b260ab0d",
+      "range": {
+        "startLine": 1429,
+        "startChar": 14,
+        "endLine": 1429,
+        "endChar": 39
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da1598a6_9812fd39",
@@ -140,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd23744_7a90b779",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:20:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "da1598a6_9812fd39",
+      "range": {
+        "startLine": 1436,
+        "startChar": 14,
+        "endLine": 1436,
+        "endChar": 38
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "285302c2_eaaebac9",
@@ -153,6 +273,30 @@
       "writtenOn": "2024-11-13T18:54:55Z",
       "side": 1,
       "message": "Not needed, the function name is already printed in the log",
+      "range": {
+        "startLine": 1443,
+        "startChar": 14,
+        "endLine": 1443,
+        "endChar": 42
+      },
+      "revId": "188a23d1906abc9df3a3dc7276b2edd694be8645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69e5e0b2_70cd5144",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:20:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "285302c2_eaaebac9",
       "range": {
         "startLine": 1443,
         "startChar": 14,
