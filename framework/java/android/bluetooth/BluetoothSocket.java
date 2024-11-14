@@ -190,6 +190,7 @@ public final class BluetoothSocket implements Closeable {
     private String mServiceName;
 
     private static final int SOCK_CONNECTION_SIGNAL_SIZE = 44;
+    private static final int SOCK_ACCEPT_SIGNAL_SIZE = 4;
 
     private ByteBuffer mL2capBuffer = null;
     private int mMaxTxPacketSize = 0; // The l2cap maximum packet size supported by the peer.
@@ -805,7 +806,15 @@ public final class BluetoothSocket implements Closeable {
         if (timeout > 0) {
             mSocket.setSoTimeout(timeout);
         }
-        String RemoteAddr = waitSocketSignal(mSocketIS);
+        sendSocketAcceptSignal(mSocketOS, true);
+        String RemoteAddr;
+        try {
+            RemoteAddr = waitSocketSignal(mSocketIS);
+        } catch (IOException e) {
+            sendSocketAcceptSignal(mSocketOS, false);
+            throw e;
+        }
+        sendSocketAcceptSignal(mSocketOS, false);
         if (timeout > 0) {
             mSocket.setSoTimeout(0);
         }
@@ -1157,6 +1166,16 @@ public final class BluetoothSocket implements Closeable {
                 addr[3],
                 addr[4],
                 addr[5]);
+    }
+
+    private void sendSocketAcceptSignal(OutputStream os, boolean isAccepting) throws IOException {
+        Log.d(TAG, "sendSocketAcceptSignal" + " isAccepting " + isAccepting);
+        byte[] sig = new byte[SOCK_ACCEPT_SIGNAL_SIZE];
+        ByteBuffer bb = ByteBuffer.wrap(sig);
+        bb.order(ByteOrder.nativeOrder());
+        bb.putShort((short) SOCK_ACCEPT_SIGNAL_SIZE);
+        bb.putShort((short) (isAccepting ? 1 : 0));
+        os.write(sig, 0, SOCK_ACCEPT_SIGNAL_SIZE);
     }
 
     private String waitSocketSignal(InputStream is) throws IOException {
