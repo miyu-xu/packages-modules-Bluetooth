@@ -464,6 +464,7 @@ filegroup {
     name: "TestMockStackMetrics",
     srcs: [
         "mock/mock_stack_metrics*.cc",
+        "mock/mock_stack_rfcomm_metrics.cc",
     ],
 }
 
