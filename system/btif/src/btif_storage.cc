@@ -861,7 +861,7 @@ static void remove_devices_with_sample_ltk() {
  *                  It also invokes invoke_address_consolidate_cb
  *                  to consolidate each Dual Mode device and
  *                  invoke_le_address_associate_cb to associate each LE-only
- *                  device between its RPA and identity address.
+ *                  device between its RPA, identity address, and identity address type.
  *
  ******************************************************************************/
 void btif_storage_load_le_devices(void) {
@@ -872,7 +872,7 @@ void btif_storage_load_le_devices(void) {
     bonded_addresses.insert(bonded_devices.devices[i]);
   }
 
-  std::vector<std::pair<RawAddress, RawAddress>> consolidated_devices;
+  std::vector<std::pair<RawAddress, std::pair<RawAddress, tBLE_ADDR_TYPE>>> consolidated_devices;
   for (uint16_t i = 0; i < bonded_devices.num_devices; i++) {
     // RawAddress* p_remote_addr;
     tBTA_LE_KEY_VALUE key = {};
@@ -886,7 +886,9 @@ void btif_storage_load_le_devices(void) {
         if (bonded_devices.devices[i].IsEmpty() || key.pid_key.identity_addr.IsEmpty()) {
           log::warn("Address is empty! Skip");
         } else {
-          consolidated_devices.emplace_back(bonded_devices.devices[i], key.pid_key.identity_addr);
+          consolidated_devices.emplace_back(
+                  bonded_devices.devices[i],
+                  std::make_pair(key.pid_key.identity_addr, key.pid_key.identity_addr_type));
         }
       }
     }
@@ -907,12 +909,14 @@ void btif_storage_load_le_devices(void) {
   }
 
   for (const auto& device : consolidated_devices) {
-    if (bonded_addresses.find(device.second) != bonded_addresses.end()) {
+    if (bonded_addresses.find(device.second.first) != bonded_addresses.end()) {
       // Invokes address consolidation for DuMo devices
-      GetInterfaceToProfiles()->events->invoke_address_consolidate_cb(device.first, device.second);
+      GetInterfaceToProfiles()->events->invoke_address_consolidate_cb(device.first,
+                                                                      device.second.first);
     } else {
       // Associates RPA & identity address for LE-only devices
-      GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(device.first, device.second);
+      GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(
+              device.first, device.second.first, device.second.second);
     }
   }
 }

@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothDevice.AddressType;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
@@ -322,6 +323,7 @@ public class RemoteDevices {
         private String mName;
         private byte[] mAddress;
         private String mIdentityAddress;
+        @AddressType private int mIdentityAddressType = BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
         private boolean mIsConsolidated = false;
         private int mBluetoothClass = BluetoothClass.Device.Major.UNCATEGORIZED;
         private int mBredrConnectionHandle = BluetoothDevice.ERROR;
@@ -378,6 +380,52 @@ public class RemoteDevices {
         void setIdentityAddress(String identityAddress) {
             synchronized (mObject) {
                 this.mIdentityAddress = identityAddress;
+            }
+        }
+
+        /**
+         * @return the mIdentityAddressType
+         */
+        @AddressType
+        int getIdentityAddressType() {
+            synchronized (mObject) {
+                return mIdentityAddressType;
+            }
+        }
+
+        /**
+         * @param identityAddressType the mIdentityAddressType to set
+         */
+        void setIdentityAddressType(int identityAddressType) {
+            synchronized (mObject) {
+                this.mIdentityAddressType = identityAddressType;
+            }
+        }
+
+        /**
+         * @param identityAddressTypeFromNative the mIdentityAddressType to set after mapping to
+         *     Java layer.
+         */
+        void setIdentityAddressTypeFromNative(int identityAddressTypeFromNative) {
+            /*
+             * from system/types/ble_address_with_type.h
+             *
+             * #define BLE_ADDR_PUBLIC 0x00
+             * #define BLE_ADDR_RANDOM 0x01
+             * #define BLE_ADDR_PUBLIC_ID 0x02
+             * #define BLE_ADDR_RANDOM_ID 0x03
+             * #define BLE_ADDR_ANONYMOUS 0xFF
+             */
+            int identityAddressType = BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
+            if (identityAddressTypeFromNative == 0 || identityAddressTypeFromNative == 2) {
+                identityAddressType = BluetoothDevice.ADDRESS_TYPE_PUBLIC;
+            } else if (identityAddressTypeFromNative == 1 || identityAddressTypeFromNative == 3) {
+                identityAddressType = BluetoothDevice.ADDRESS_TYPE_RANDOM;
+            } else if (identityAddressTypeFromNative == 0xFF) {
+                identityAddressType = BluetoothDevice.ADDRESS_TYPE_ANONYMOUS;
+            }
+            synchronized (mObject) {
+                this.mIdentityAddressType = identityAddressType;
             }
         }
 
@@ -1146,19 +1194,24 @@ public class RemoteDevices {
     }
 
     /**
-     * Callback to associate an LE-only device's RPA with its identity address
+     * Callback to associate an LE-only device's RPA with its identity address and identity address
+     * type
      *
      * @param mainAddress the device's RPA
      * @param secondaryAddress the device's identity address
+     * @param identityAddressTypeFromNative the device's identity address type from native
      */
-    void leAddressAssociateCallback(byte[] mainAddress, byte[] secondaryAddress) {
+    void leAddressAssociateCallback(
+            byte[] mainAddress, byte[] secondaryAddress, int identityAddressTypeFromNative) {
         BluetoothDevice device = getDevice(mainAddress);
         if (device == null) {
             errorLog(
                     "leAddressAssociateCallback: device is NULL, address="
                             + Utils.getRedactedAddressStringFromByte(mainAddress)
                             + ", secondaryAddress="
-                            + Utils.getRedactedAddressStringFromByte(secondaryAddress));
+                            + Utils.getRedactedAddressStringFromByte(secondaryAddress)
+                            + ", identityAddressTypeFromNative="
+                            + identityAddressTypeFromNative);
             return;
         }
         Log.d(
@@ -1166,10 +1219,13 @@ public class RemoteDevices {
                 "leAddressAssociateCallback device: "
                         + device
                         + ", secondaryAddress:"
-                        + Utils.getRedactedAddressStringFromByte(secondaryAddress));
+                        + Utils.getRedactedAddressStringFromByte(secondaryAddress)
+                        + ", identityAddressTypeFromNative="
+                        + identityAddressTypeFromNative);
 
         DeviceProperties deviceProperties = getDeviceProperties(device);
         deviceProperties.setIdentityAddress(Utils.getAddressStringFromByte(secondaryAddress));
+        deviceProperties.setIdentityAddressTypeFromNative(identityAddressTypeFromNative);
     }
 
     void aclStateChangeCallback(
