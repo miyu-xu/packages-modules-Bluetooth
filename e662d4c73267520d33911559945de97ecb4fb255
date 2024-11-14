@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a3658af_1fa8e546",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:49:06Z",
+      "side": 1,
+      "message": "I believe there is a Duration type in kotlin that can be used here",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 60
+      },
+      "revId": "e662d4c73267520d33911559945de97ecb4fb255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e765f59_cedfbea0",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 2
