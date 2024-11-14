@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ffb95ab_7f068105",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-11-14T01:00:25Z",
+      "side": 1,
+      "message": "You\u0027ll need \n```\nrule android.media.audio.Flags com.android.bluetooth.jarjar.audio.Flags\n```\n\nIn your jarjar-rules.txt for your app.",
+      "revId": "a44756abc8f8e05c7a8fc7be64b1ed3c7091c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
