@@ -5951,4 +5951,30 @@ public final class BluetoothAdapter {
             mServiceLock.readLock().unlock();
         }
     }
+
+    /**
+     * Return true if LE CoC socket hardware offload is supported.
+     *
+     * @return true if low power processor supports LE socket offload
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    public boolean isLeCocSocketOffloadSupported() {
+        if (!isEnabled()) {
+            return false;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.isLeCocSocketOffloadSupported(mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
 }
