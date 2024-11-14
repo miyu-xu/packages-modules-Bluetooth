@@ -543,6 +543,7 @@ public:
               callbacks->OnDisconnection(reason);
             },
             kRemoveConnectionAfterwards);
+    bluetooth::metrics::LogLeAclDisconnectionEvent(remote_address.GetAddress(), reason);
     if (le_acceptlist_callbacks_ != nullptr) {
       le_acceptlist_callbacks_->OnLeDisconnection(remote_address);
     }
