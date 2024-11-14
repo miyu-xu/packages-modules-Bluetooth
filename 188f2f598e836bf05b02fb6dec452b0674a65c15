@@ -70,6 +70,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b495b2fc_e9243d08",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4233,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T12:35:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a08c19c9_978d3163",
+      "range": {
+        "startLine": 4233,
+        "startChar": 84,
+        "endLine": 4233,
+        "endChar": 92
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "948a171c_d97abf55",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4233,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T12:35:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c4567f70_539fe534",
+      "range": {
+        "startLine": 4233,
+        "startChar": 32,
+        "endLine": 4233,
+        "endChar": 44
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97df1e25_e3dde015",
@@ -83,6 +131,30 @@
       "writtenOn": "2024-11-14T10:26:48Z",
       "side": 1,
       "message": "I do not get it. Please edit this or at least explain.",
+      "range": {
+        "startLine": 4233,
+        "startChar": 67,
+        "endLine": 4234,
+        "endChar": 37
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a8c8de1_06ad7bca",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4234,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T12:35:52Z",
+      "side": 1,
+      "message": "Sorry, I\u0027ve modified this comment and didn\u0027t check whole meaning before upload. Updated - Thanks for review!",
+      "parentUuid": "97df1e25_e3dde015",
       "range": {
         "startLine": 4233,
         "startChar": 67,
