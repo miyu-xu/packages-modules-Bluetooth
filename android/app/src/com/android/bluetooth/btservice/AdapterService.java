@@ -56,6 +56,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAdapter.ActiveDeviceProfile;
 import android.bluetooth.BluetoothAdapter.ActiveDeviceUse;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothDevice.AddressType;
 import android.bluetooth.BluetoothFrameworkInitializer;
 import android.bluetooth.BluetoothMap;
 import android.bluetooth.BluetoothProfile;
@@ -2392,6 +2393,21 @@ public class AdapterService extends Service {
             }
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.getIdentityAddress(address);
+        }
+
+        @Override
+        public @AddressType int getIdentityAddressType(String address) {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getIdentityAddressType")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service,
+                            Utils.getCallingAttributionSource(mService),
+                            "AdapterService getIdentityAddressType")) {
+                return BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.getIdentityAddressType(address);
         }
 
         @Override
@@ -4899,6 +4915,23 @@ public class AdapterService extends Service {
             } else {
                 return address;
             }
+        }
+    }
+
+    /**
+     * Returns the identity address type.
+     *
+     * @return Bluetooth identity address type
+     * @hide
+     */
+    public @AddressType int getIdentityAddressType(String address) {
+        BluetoothDevice device =
+                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(Ascii.toUpperCase(address));
+        DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
+        if (deviceProp != null) {
+            return deviceProp.getIdentityAddressType();
+        } else {
+            return BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
         }
     }
 
