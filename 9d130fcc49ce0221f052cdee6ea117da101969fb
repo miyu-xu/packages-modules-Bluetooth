@@ -46,6 +46,30 @@
       },
       "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84204384_fd748910",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T07:53:52Z",
+      "side": 1,
+      "message": "@belusiak@google.com mentioned by you flag `leaudio_monitor_unicast_source_when_managed_by_broadcast_delegator` is for this CL \"\nbass: Monitor LE Audio unicast source when managed\" and `leaudio_stop_updated_to_not_available_context_stream` is for \"\nle_audio: Suspend not allowed updated stream\"",
+      "parentUuid": "812b0de2_9b26ec91",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 63
+      },
+      "revId": "9d130fcc49ce0221f052cdee6ea117da101969fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
