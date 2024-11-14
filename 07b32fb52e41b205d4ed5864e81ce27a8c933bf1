@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2162956_c5926be0",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2482,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T04:36:27Z",
+      "side": 1,
+      "message": "Isn\u0027t `@hide` inherited here since the class is annotated `@hide`? @wescande@google.com",
+      "range": {
+        "startLine": 2482,
+        "startChar": 12,
+        "endLine": 2482,
+        "endChar": 16
+      },
+      "revId": "07b32fb52e41b205d4ed5864e81ce27a8c933bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b4f69b_e92b444b",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2738,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T04:36:27Z",
+      "side": 1,
+      "message": "Unnecessary description",
+      "range": {
+        "startLine": 2733,
+        "startChar": 8,
+        "endLine": 2738,
+        "endChar": 11
+      },
+      "revId": "07b32fb52e41b205d4ed5864e81ce27a8c933bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "782a09c5_b6e24f20",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2738,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T04:36:27Z",
+      "side": 1,
+      "message": "Missing `@Override` I believe",
+      "range": {
+        "startLine": 2738,
+        "startChar": 8,
+        "endLine": 2738,
+        "endChar": 11
+      },
+      "revId": "07b32fb52e41b205d4ed5864e81ce27a8c933bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
