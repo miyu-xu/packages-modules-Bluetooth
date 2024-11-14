@@ -16,6 +16,24 @@
       "message": "Hi there,\n\nI just uploaded https://r.android.com/3350767 which uprevs the Floss presubmit environment to better support C++20 features. Feel free to rebase onto that CL for testing presubmit together.\n\nAnd FYI in my local testing this CL would need the below changes to pass the Floss build.\n\n```\ndiff --git a/system/bta/le_audio/le_audio_types.h b/system/bta/le_audio/le_audio_types.h\nindex 8373498a41..a0c5f364c7 100644\n--- a/system/bta/le_audio/le_audio_types.h\n+++ b/system/bta/le_audio/le_audio_types.h\n@@ -28,6 +28,7 @@\n #include \u003cbit\u003e\n #include \u003cbitset\u003e\n #include \u003cmap\u003e\n+#include \u003cmemory\u003e\n #include \u003coptional\u003e\n #include \u003cstring\u003e\n #include \u003cvariant\u003e\ndiff --git a/system/log/include/bluetooth/log.h b/system/log/include/bluetooth/log.h\nindex 98702ecfec..34cb605204 100644\n--- a/system/log/include/bluetooth/log.h\n+++ b/system/log/include/bluetooth/log.h\n@@ -16,6 +16,7 @@\n \n #pragma once\n \n+#include \u003catomic\u003e\n #include \u003cformat\u003e\n #include \u003csstream\u003e\n #include \u003cstring_view\u003e\ndiff --git a/system/profile/avrcp/avrcp_sdp_service.cc b/system/profile/avrcp/avrcp_sdp_service.cc\nindex 2be240f13c..fc28a7d5b1 100644\n--- a/system/profile/avrcp/avrcp_sdp_service.cc\n+++ b/system/profile/avrcp/avrcp_sdp_service.cc\n@@ -16,6 +16,7 @@\n \n #include \"avrcp_sdp_service.h\"\n \n+#include \u003cmemory\u003e\n #include \u003cmutex\u003e\n \n #include \"stack/include/avrc_api.h\"\ndiff --git a/system/profile/avrcp/avrcp_sdp_service.h b/system/profile/avrcp/avrcp_sdp_service.h\nindex dace6b8875..6f4b9ef59e 100644\n--- a/system/profile/avrcp/avrcp_sdp_service.h\n+++ b/system/profile/avrcp/avrcp_sdp_service.h\n@@ -19,6 +19,7 @@\n #include \u003cbluetooth/log.h\u003e\n \n #include \u003ccstdint\u003e\n+#include \u003cmemory\u003e\n \n #include \"avrcp_sdp_records.h\"\n \n```",
       "revId": "c763b2acee0947f7880f4b499d947c970841a212",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1da0ae7_310b4813",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-14T17:27:04Z",
+      "side": 1,
+      "message": "Got it, thank you for the quick update 😊",
+      "parentUuid": "278d16cd_c6e23f71",
+      "revId": "c763b2acee0947f7880f4b499d947c970841a212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
