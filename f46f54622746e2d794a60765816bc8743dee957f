@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b5df70_0085edcf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-14T18:07:03Z",
+      "side": 1,
+      "message": "This looks like it would set this to true for all valid LeDiscMode values, instead of just GeneralDiscoverable.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/topshim/src/profiles/gatt.rs;l\u003d496;drc\u003d7613d0c38945dac318def1372ecf2dc725513d8d",
+      "range": {
+        "startLine": 244,
+        "startChar": 30,
+        "endLine": 244,
+        "endChar": 42
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
