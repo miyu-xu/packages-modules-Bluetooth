@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba43adcd_4492131d",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientBinder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-14T19:10:56Z",
+      "side": 1,
+      "message": "Does this need another check using `BLUETOOTH_CONNECT` ?\n\n```\nservice.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, null);\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "18d59467_3c3cde9e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientBinder.java",
+              "range": {
+                "startLine": 72,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "        service.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, null);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbe152af_96ad15ac",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-14T19:10:56Z",
+      "side": 1,
+      "message": "Looks like this was just moved ? Is there a preference where to stick public APIs ?\n\nalthough it looks like this should be moved underneath:\n\n```\n\n    // *********************************************************************************************\n    // * API methods\n    // **\n    \n```",
+      "fixSuggestions": [
+        {
+          "fixId": "2f8707f8_839e9a48",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+              "range": {
+                "startLine": 406,
+                "startChar": 0,
+                "endLine": 413,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
