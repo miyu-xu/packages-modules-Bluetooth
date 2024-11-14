@@ -1649,6 +1649,33 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     }
 
     /**
+     * Returns the identity address type of this BluetoothDevice, one of {@link
+     * #ADDRESS_TYPE_PUBLIC}, {@link #ADDRESS_TYPE_RANDOM}, {@link #ADDRESS_TYPE_ANONYMOUS}, or
+     * {@link #ADDRESS_TYPE_UNKNOWN}.
+     *
+     * @return Bluetooth identity address type
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_IDENTITY_ADDRESS_TYPE_API)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    public @AddressType int getIdentityAddressType() {
+        if (DBG) log("getIdentityAddressType()");
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "BT not enabled. Cannot get identity address type");
+        } else {
+            try {
+                return service.getIdentityAddressType(mAddress);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
+    }
+
+    /**
      * Get the friendly Bluetooth name of the remote device.
      *
      * <p>The local adapter will automatically retrieve remote names when performing a device scan,

@@ -979,6 +979,64 @@ public class AdapterServiceTest {
     }
 
     @Test
+    @EnableFlags(Flags.FLAG_IDENTITY_ADDRESS_TYPE_API)
+    public void testIdentityAddressTypeFromNative() {
+        RemoteDevices remoteDevices = mAdapterService.getRemoteDevices();
+        remoteDevices.addDeviceProperties(Utils.getBytesFromAddress((TEST_BT_ADDR_1)));
+
+        int identityAddressTypeFromNativePublic =
+                0x00; // Should map to BluetoothDevice.ADDRESS_TYPE_PUBLIC
+        int identityAddressTypeFromNativeRandom =
+                0x01; // Should map to BluetoothDevice.ADDRESS_TYPE_RANDOM
+        int identityAddressTypeFromNativePublicId =
+                0x02; // Should map to BluetoothDevice.ADDRESS_TYPE_PUBLIC
+        int identityAddressTypeFromNativeRandomId =
+                0x03; // Should map to BluetoothDevice.ADDRESS_TYPE_RANDOM
+        int identityAddressTypeFromNativeAnonymous =
+                0xFF; // Should map to BluetoothDevice.ADDRESS_TYPE_ANONYMOUS
+
+        remoteDevices.leAddressAssociateCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1),
+                Utils.getBytesFromAddress(TEST_BT_ADDR_2),
+                identityAddressTypeFromNativePublic);
+
+        int identityAddressType = mAdapterService.getIdentityAddressType(TEST_BT_ADDR_1);
+        assertThat(identityAddressType).isEqualTo(BluetoothDevice.ADDRESS_TYPE_PUBLIC);
+
+        remoteDevices.leAddressAssociateCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1),
+                Utils.getBytesFromAddress(TEST_BT_ADDR_2),
+                identityAddressTypeFromNativeRandom);
+
+        identityAddressType = mAdapterService.getIdentityAddressType(TEST_BT_ADDR_1);
+        assertThat(identityAddressType).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        remoteDevices.leAddressAssociateCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1),
+                Utils.getBytesFromAddress(TEST_BT_ADDR_2),
+                identityAddressTypeFromNativePublicId);
+
+        identityAddressType = mAdapterService.getIdentityAddressType(TEST_BT_ADDR_1);
+        assertThat(identityAddressType).isEqualTo(BluetoothDevice.ADDRESS_TYPE_PUBLIC);
+
+        remoteDevices.leAddressAssociateCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1),
+                Utils.getBytesFromAddress(TEST_BT_ADDR_2),
+                identityAddressTypeFromNativeRandomId);
+
+        identityAddressType = mAdapterService.getIdentityAddressType(TEST_BT_ADDR_1);
+        assertThat(identityAddressType).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        remoteDevices.leAddressAssociateCallback(
+                Utils.getBytesFromAddress(TEST_BT_ADDR_1),
+                Utils.getBytesFromAddress(TEST_BT_ADDR_2),
+                identityAddressTypeFromNativeAnonymous);
+
+        identityAddressType = mAdapterService.getIdentityAddressType(TEST_BT_ADDR_1);
+        assertThat(identityAddressType).isEqualTo(BluetoothDevice.ADDRESS_TYPE_ANONYMOUS);
+    }
+
+    @Test
     @EnableFlags(Flags.FLAG_IDENTITY_ADDRESS_NULL_IF_NOT_KNOWN)
     public void testIdentityAddressNullIfUnknown() {
         BluetoothDevice device = TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
