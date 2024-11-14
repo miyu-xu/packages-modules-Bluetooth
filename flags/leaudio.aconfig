@@ -427,3 +427,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_config_profile_enabling"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Change how LE Audio profiles are configured and enabled"
+    bug: "379178585"
+}
