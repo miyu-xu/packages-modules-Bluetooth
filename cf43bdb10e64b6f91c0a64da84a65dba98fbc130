@@ -16,6 +16,24 @@
       "message": "isAnyPendingAddSourceOperation get values from mPendingGroupOp:\n```\nList\u003cPair\u003cInteger, Object\u003e\u003e operations \u003d mPendingGroupOp.get(device);\n```\nSo in original version when remove was made directly on reference we checked here new modified values. Right now as we are still in lambda we will check old version as mPendingGroupOp will be modified after return from it.",
       "revId": "cf43bdb10e64b6f91c0a64da84a65dba98fbc130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18a84e59_d7776c4c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-14T19:51:39Z",
+      "side": 1,
+      "message": "Good catch!\nAddressed in the new version.\nThe solution could be just to move this action logic out of the lambda. And keep the lambda only for checking and updating the group operations.\nIn this CL, I intended to not introduce any functional change.",
+      "parentUuid": "bdc8efb6_437a3d0d",
+      "revId": "cf43bdb10e64b6f91c0a64da84a65dba98fbc130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
