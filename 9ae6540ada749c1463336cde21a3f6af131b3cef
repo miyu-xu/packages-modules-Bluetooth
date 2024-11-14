@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b27ccf6c_c5fa8178",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "variable should stay final",
+      "range": {
+        "startLine": 129,
+        "startChar": 30,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f4288ed_6b50dbfd",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 19
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "Hi William, I placed it here because ```message``` does not get passed on to ```processConnectionEvent```, so I don\u0027t believe I would be able to defer there, unless you recommend changing that function or have any other suggestion.",
       "parentUuid": "9f4288ed_6b50dbfd",
+      "range": {
+        "startLine": 1612,
+        "startChar": 0,
+        "endLine": 1612,
+        "endChar": 48
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8db622_5fc3fdcd",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1612,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "I think I would pass the message to processConnectionEvent then.",
+      "parentUuid": "46ae6461_7eb3b67e",
       "range": {
         "startLine": 1612,
         "startChar": 0,
@@ -97,6 +144,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c257552e_4394f284",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2026,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "This will print for every stack_event message, even when there is a valid connection event that triggered a transition to disconnected",
+      "parentUuid": "0c5c877b_a35ad108",
+      "range": {
+        "startLine": 2026,
+        "startChar": 0,
+        "endLine": 2026,
+        "endChar": 35
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a410fbd9_2dceafc7",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2037,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "FYI This check will be always true, because the message are sent like this:\n\n```\n        HeadsetClientStateMachine sm \u003d\n                getStateMachine(stackEvent.device, isConnectionEvent(stackEvent));\n        if (sm \u003d\u003d null) {\n            throw new IllegalStateException(\n                    \"State machine not found for stack event: \" + stackEvent);\n        }\n        sm.sendMessage(StackEvent.STACK_EVENT, stackEvent);\n```\n\nI know this is also done in other state. But that could be a nice follow-up cleanup",
+      "range": {
+        "startLine": 2037,
+        "startChar": 17,
+        "endLine": 2037,
+        "endChar": 56
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92a23c2c_54ab6f9f",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 19
@@ -132,6 +226,30 @@
       "side": 1,
       "message": "Hi William, I placed it here because message does not get passed on to processConnectionEvent, so I don\u0027t believe I would be able to defer there, unless you recommend changing that function or have any other suggestion. I have flagged it as well, since I had not done that.",
       "parentUuid": "92a23c2c_54ab6f9f",
+      "range": {
+        "startLine": 2117,
+        "startChar": 28,
+        "endLine": 2117,
+        "endChar": 40
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f06445cc_612131b1",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2117,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f3273859_ea7c95d9",
       "range": {
         "startLine": 2117,
         "startChar": 28,
@@ -327,6 +445,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3ab9a00_f39daa54",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "I don\u0027t understand why there is a device at all\nThe state machine is per device, I don\u0027t think we need to have another device.\n\nThis looks like the current state is a bit messy",
+      "parentUuid": "9ecb2118_f2eb54b9",
+      "range": {
+        "startLine": 1430,
+        "startChar": 8,
+        "endLine": 1433,
+        "endChar": 34
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63461627_0158a8af",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 19
@@ -398,6 +540,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d594595f_1b471495",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1468,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "I don\u0027t think it should, and it if is this seems suspicious",
+      "parentUuid": "4d72b963_393ebdb5",
+      "range": {
+        "startLine": 1465,
+        "startChar": 8,
+        "endLine": 1468,
+        "endChar": 34
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74d1069e_46879faf",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 19
@@ -433,6 +599,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "74d1069e_46879faf",
+      "range": {
+        "startLine": 1493,
+        "startChar": 3,
+        "endLine": 1494,
+        "endChar": 65
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f57a5a83_44c28194",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T22:30:17Z",
+      "side": 1,
+      "message": "Still present",
+      "parentUuid": "90745623_fd0ad28e",
       "range": {
         "startLine": 1493,
         "startChar": 3,
