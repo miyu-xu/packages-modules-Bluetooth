@@ -16,6 +16,24 @@
       "message": "You\u0027ll need \n```\nrule android.media.audio.Flags com.android.bluetooth.jarjar.audio.Flags\n```\n\nIn your jarjar-rules.txt for your app.",
       "revId": "a44756abc8f8e05c7a8fc7be64b1ed3c7091c55f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eeaa27a_5cb015a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T01:18:56Z",
+      "side": 1,
+      "message": "Good call.\n\n@aarthibc@google.com, can you do that in the next CL in the chain.\nthis CL is only linking and not using the flag, so no need to add it now (because this cl conflict and we would have to also add the jarjar rule in internal etc..)",
+      "parentUuid": "8ffb95ab_7f068105",
+      "revId": "a44756abc8f8e05c7a8fc7be64b1ed3c7091c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
