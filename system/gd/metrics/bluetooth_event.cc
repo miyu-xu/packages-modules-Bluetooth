@@ -260,5 +260,40 @@ void LogSDPComplete(const RawAddress& raw_address, tBTA_STATUS status) {
           status == tBTA_STATUS::BTA_SUCCESS ? State::SUCCESS : State::FAIL);
 }
 
+<<<<<<< PATCH SET (892791 BluetoothMetrics: Log LE ACL Completion Event)
+void LogLePairingFail(const RawAddress& bd_addr, android::bluetooth::DirectionEnum direction_enum,
+                      tSMP_STATUS failure_reason) {
+  hci::Address address = bluetooth::ToGdAddress(bd_addr);
+  bluetooth::os::LogMetricBluetoothEvent(
+          address,
+          direction_enum == android::bluetooth::DirectionEnum::DIRECTION_OUTGOING
+                  ? EventType::SMP_PAIRING_OUTGOING
+                  : EventType::SMP_PAIRING_INCOMING,
+          MapSmpStatusCodeToState(failure_reason));
+}
+
+void LogLeAclCompletionEvent(const hci::Address& address, hci::ErrorCode reason,
+                             bool is_locally_initiated) {
+  bluetooth::os::LogMetricBluetoothEvent(address,
+                                         is_locally_initiated
+                                                 ? EventType::LE_ACL_CONNECTION_INITIATOR
+                                                 : EventType::LE_ACL_CONNECTION_RESPONDER,
+                                         MapErrorCodeToState(reason));
+}
+
+||||||| BASE
+void LogLePairingFail(const RawAddress& bd_addr, android::bluetooth::DirectionEnum direction_enum,
+                      tSMP_STATUS failure_reason) {
+  hci::Address address = bluetooth::ToGdAddress(bd_addr);
+  bluetooth::os::LogMetricBluetoothEvent(
+          address,
+          direction_enum == android::bluetooth::DirectionEnum::DIRECTION_OUTGOING
+                  ? EventType::SMP_PAIRING_OUTGOING
+                  : EventType::SMP_PAIRING_INCOMING,
+          MapSmpStatusCodeToState(failure_reason));
+}
+
+=======
+>>>>>>> BASE      (e83fb8 Merge "flags: avdt_handle_suspend_cfm_bad_state" into main)
 }  // namespace metrics
 }  // namespace bluetooth
