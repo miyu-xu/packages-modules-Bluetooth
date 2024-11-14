@@ -89,6 +89,7 @@ typedef struct l2cap_socket {
   char socket_name[128];         // descriptive socket name
   uint64_t hub_id;               // ID of the hub to which the end point belongs
   uint64_t endpoint_id;          // ID of the hub end point
+  bool is_accepting;             // is app accepting on server socket?
 } l2cap_socket;
 
 static void btsock_l2cap_server_listen(l2cap_socket* sock);
@@ -351,6 +352,7 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
   sock->data_path = BTSOCK_DATA_PATH_NO_OFFLOAD;
   sock->hub_id = 0;
   sock->endpoint_id = 0;
+  sock->is_accepting = false;
 
   if (name) {
     strncpy(sock->name, name, sizeof(sock->name) - 1);
@@ -590,6 +592,8 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
   // But for some reason we still leak a FD - either the server socket
   // one or the accept socket one.
   btsock_l2cap_server_listen(sock);
+  // start monitoring the socketpair to get call back when app is accepting on server socket
+  btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_RD, sock->id);
 }
 
 static void on_cl_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket* sock) {
@@ -910,6 +914,8 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
   /* "role" is never initialized in rfcomm code */
   if (listen) {
     btsock_l2cap_server_listen(sock);
+    // start monitoring the socketpair to get call back when app is accepting on server socket
+    btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_RD, sock->id);
   } else {
     tBTA_JV_CONN_TYPE connection_type =
             sock->is_le_coc ? tBTA_JV_CONN_TYPE::L2CAP_LE : tBTA_JV_CONN_TYPE::L2CAP;
@@ -1008,44 +1014,64 @@ void btsock_l2cap_signaled(int fd, int flags, uint32_t user_id) {
     return;
   }
 
-  if ((flags & SOCK_THREAD_FD_RD) && !sock->server) {
-    // app sending data
-    if (sock->connected) {
-      int size = 0;
-      bool ioctl_success = ioctl(sock->our_fd, FIONREAD, &size) == 0;
-      if (!(flags & SOCK_THREAD_FD_EXCEPTION) || (ioctl_success && size)) {
-        /* FIONREAD return number of bytes that are immediately available for
-           reading, might be bigger than awaiting packet.
+  if (flags & SOCK_THREAD_FD_RD) {
+    if (!sock->server) {
+      // app sending data on connection socket
+      if (sock->connected) {
+        int size = 0;
+        bool ioctl_success = ioctl(sock->our_fd, FIONREAD, &size) == 0;
+        if (!(flags & SOCK_THREAD_FD_EXCEPTION) || (ioctl_success && size)) {
+          /* FIONREAD return number of bytes that are immediately available for
+            reading, might be bigger than awaiting packet.
 
-           BluetoothSocket.write(...) guarantees that any packet send to this
-           socket is broken into pieces no bigger than MTU bytes (as requested
-           by BT spec). */
-        size = std::min(size, (int)sock->tx_mtu);
+            BluetoothSocket.write(...) guarantees that any packet send to this
+            socket is broken into pieces no bigger than MTU bytes (as requested
+            by BT spec). */
+          size = std::min(size, (int)sock->tx_mtu);
 
-        BT_HDR* buffer = malloc_l2cap_buf(size);
-        /* The socket is created with SOCK_SEQPACKET, hence we read one message
-         * at the time. */
-        ssize_t count;
-        OSI_NO_INTR(count = recv(fd, get_l2cap_sdu_start_ptr(buffer), size,
-                                 MSG_NOSIGNAL | MSG_DONTWAIT | MSG_TRUNC));
-        if (count > sock->tx_mtu) {
-          /* This can't happen thanks to check in BluetoothSocket.java but leave
-           * this in case this socket is ever used anywhere else*/
-          log::error("recv more than MTU. Data will be lost: {}", count);
-          count = sock->tx_mtu;
+          BT_HDR* buffer = malloc_l2cap_buf(size);
+          /* The socket is created with SOCK_SEQPACKET, hence we read one message
+           * at the time. */
+          ssize_t count;
+          OSI_NO_INTR(count = recv(fd, get_l2cap_sdu_start_ptr(buffer), size,
+                                   MSG_NOSIGNAL | MSG_DONTWAIT | MSG_TRUNC));
+          if (count > sock->tx_mtu) {
+            /* This can't happen thanks to check in BluetoothSocket.java but leave
+             * this in case this socket is ever used anywhere else*/
+            log::error("recv more than MTU. Data will be lost: {}", count);
+            count = sock->tx_mtu;
+          }
+
+          /* When multiple packets smaller than MTU are flushed to the socket, the
+            size of the single packet read could be smaller than the ioctl
+            reported total size of awaiting packets. Hence, we adjust the buffer
+            length. */
+          buffer->len = count;
+
+          // will take care of freeing buffer
+          BTA_JvL2capWrite(sock->handle, PTR_TO_UINT(buffer), buffer, user_id);
         }
-
-        /* When multiple packets smaller than MTU are flushed to the socket, the
-           size of the single packet read could be smaller than the ioctl
-           reported total size of awaiting packets. Hence, we adjust the buffer
-           length. */
-        buffer->len = count;
-
-        // will take care of freeing buffer
-        BTA_JvL2capWrite(sock->handle, PTR_TO_UINT(buffer), buffer, user_id);
+      } else {
+        drop_it = true;
       }
     } else {
-      drop_it = true;
+      // app sending signal on listen socket
+      int size = 0;
+      bool ioctl_success = ioctl(sock->our_fd, FIONREAD, &size) == 0;
+      if (ioctl_success && size) {
+        sock_accept_signal_t accept_signal = {};
+        ssize_t count;
+        OSI_NO_INTR(count = recv(fd, reinterpret_cast<uint8_t*>(&accept_signal),
+                                 sizeof(accept_signal), MSG_NOSIGNAL | MSG_DONTWAIT | MSG_TRUNC));
+        if (count != sizeof(accept_signal) || count != accept_signal.size) {
+          log::error("Unexpected count {} sizeof(accept_signal) {} accept_signal.size {}", count,
+                     sizeof(accept_signal), accept_signal.size);
+          drop_it = true;
+        } else {
+          sock->is_accepting = accept_signal.is_accepting;
+          log::info("Server socket {} is_accepting {}", sock->id, sock->is_accepting);
+        }
+      }
     }
   }
   if (flags & SOCK_THREAD_FD_WR) {
