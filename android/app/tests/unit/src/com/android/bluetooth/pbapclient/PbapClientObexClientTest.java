@@ -80,6 +80,8 @@ public class PbapClientObexClientTest {
     // Normal supported features for our client
     private static final int SUPPORTED_FEATURES =
             PbapSdpRecord.FEATURE_DOWNLOADING
+                    | PbapSdpRecord.FEATURE_DATABASE_IDENTIFIER
+                    | PbapSdpRecord.FEATURE_FOLDER_VERSION_COUNTERS
                     | PbapSdpRecord.FEATURE_DEFAULT_IMAGE_FORMAT;
 
     // Default property filter for downloaded contacts
@@ -225,6 +227,11 @@ public class PbapClientObexClientTest {
         PbapPhonebookMetadata metadata = mMetadataCaptor.getValue();
         assertThat(metadata.getPhonebook()).isEqualTo(PbapPhonebook.LOCAL_PHONEBOOK_PATH);
         assertThat(metadata.getSize()).isEqualTo(2);
+
+        // For caching
+        assertThat(metadata.getDatabaseIdentifier()).isEqualTo("1");
+        assertThat(metadata.getPrimaryVersionCounter()).isEqualTo("1");
+        assertThat(metadata.getSecondaryVersionCounter()).isEqualTo("1");
     }
 
     // *********************************************************************************************
