@@ -60,6 +60,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81de0a5a_5f9bc1ba",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 5246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T18:57:54Z",
+      "side": 1,
+      "message": "I would simply delete this javadoc.\n\nYou have the doc at the API level, here it\u0027s internal implementation of the same thing",
+      "range": {
+        "startLine": 5235,
+        "startChar": 3,
+        "endLine": 5246,
+        "endChar": 7
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1eb48b_97947020",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 5335,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T18:57:54Z",
+      "side": 1,
+      "message": "Same here + this method doesn\u0027t need to be public as only accessed by the binder",
+      "range": {
+        "startLine": 5324,
+        "startChar": 4,
+        "endLine": 5335,
+        "endChar": 10
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12582cb7_3e324926",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
         "patchSetId": 19
