@@ -33,6 +33,52 @@
       "message": "@girardier@google.com Asking help for API review.",
       "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162a76eb_39729011",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 5236,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T15:46:01Z",
+      "side": 1,
+      "message": "Same here, use either lowercase or uppercase but keep consistency across the documentation",
+      "range": {
+        "startLine": 5236,
+        "startChar": 11,
+        "endLine": 5236,
+        "endChar": 40
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12582cb7_3e324926",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T15:46:01Z",
+      "side": 1,
+      "message": "Use either lowercase or uppercase but keep consistency across all documentation. Slight preference for lower case but I\u0027m fine with both.",
+      "range": {
+        "startLine": 1435,
+        "startChar": 12,
+        "endLine": 1435,
+        "endChar": 21
+      },
+      "revId": "f268ac57ef6427549edd911b45f185de61bb2d3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
