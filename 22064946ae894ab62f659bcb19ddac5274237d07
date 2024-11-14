@@ -336,6 +336,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f679d66_6fb97f70",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-14T02:16:26Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "e27015d8_36b8fbe6",
+      "revId": "22064946ae894ab62f659bcb19ddac5274237d07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca2ae14b_e9d0ff91",
