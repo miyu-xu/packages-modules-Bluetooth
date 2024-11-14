@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8883b584_db8c4e27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T12:35:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "91cc29f4_2fc97e5e",
+      "revId": "f6b77d84af6c04aff00795c3db8159163ef2f786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "771bd1c0_0ba2ee02",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-11-14T08:48:26Z",
       "side": 1,
       "message": "IMHO better will be to have separate methods for store and removing:\n```\nprivate void storeSinkMetadata(BluetoothDevice device, int broadcastId, BluetoothLeBroadcastMetadata metadata);\nprivate void removeSinkMetadata(BluetoothDevice device, int broadcastId);\nprivate void removeSinkMetadata(BluetoothDevice device);\n```\n\nThen will be no guessing what store with null or double null means.",
+      "range": {
+        "startLine": 2836,
+        "startChar": 17,
+        "endLine": 2836,
+        "endChar": 34
+      },
+      "revId": "f6b77d84af6c04aff00795c3db8159163ef2f786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5d85e05_f9c22348",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2836,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-14T12:35:08Z",
+      "side": 1,
+      "message": "I would suggest to update name to more describing: updateStoredSinkMetadata.",
+      "parentUuid": "771bd1c0_0ba2ee02",
       "range": {
         "startLine": 2836,
         "startChar": 17,
