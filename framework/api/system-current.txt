@@ -1037,8 +1037,25 @@ package android.bluetooth {
   }
 
   public final class BluetoothSocket implements java.io.Closeable {
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public long getConnectionId() throws java.io.IOException;
     method @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getL2capLocalChannelId() throws java.io.IOException;
     method @FlaggedApi("com.android.bluetooth.flags.bt_socket_api_l2cap_cid") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getL2capRemoteChannelId() throws java.io.IOException;
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public final class BluetoothSocketSettings {
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public int getDataPath();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public long getEndpointId();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public long getHubId();
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") public int getMaximumPacketSize();
+    field public static final int DATA_PATH_HW_OFFLOAD = 1; // 0x1
+    field public static final int DATA_PATH_NO_OFFLOAD = 0; // 0x0
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") public static final class BluetoothSocketSettings.Builder {
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setDataPath(int);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setEndpointId(long);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setHubId(long);
+    method @FlaggedApi("com.android.bluetooth.flags.bt_offload_socket_api") @NonNull public android.bluetooth.BluetoothSocketSettings.Builder setMaximumPacketSize(int);
   }
 
   public final class BluetoothStatusCodes {
