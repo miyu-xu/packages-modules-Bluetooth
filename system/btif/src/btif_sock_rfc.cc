@@ -28,6 +28,7 @@
 #include <mutex>
 
 #include "bta/include/bta_jv_api.h"
+#include "bta/include/bta_rfcomm_metrics.h"
 #include "bta/include/bta_rfcomm_scn.h"
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_sock.h"
@@ -1126,6 +1127,7 @@ static void handle_discovery_comp(tBTA_JV_STATUS status, int scn, uint32_t id) {
             "SDP service discovery completed for slot id: {} with the result "
             "status: {}, scn: {}",
             id, bta_jv_status_text(status), scn);
+    bta_collect_attempt_metrics_after_sdp(status, slot->addr, slot->app_uid, slot->security);
     cleanup_rfc_slot(slot);
     return;
   }
