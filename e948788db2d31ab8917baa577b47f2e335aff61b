@@ -16,6 +16,163 @@
       "message": "Added mock_btif_sock_l2cap.h and mock_btif_sock_l2cap.cc",
       "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb03578f_d0e7d348",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:28:06Z",
+      "side": 1,
+      "message": "A lot of method are updated to now require the BLUETOOTH_PRIVILEGED as conditional.\n\nI believe we should not do that. There may be one or two that actually can enforce BLUETOOTH_PRIVILEGED because of the offload requirement, but most of the already existing API will never enforce it.\n\nOne exemple of solving that is `BluetoothAdapter.disable()` that doesn\u0027t require PRIVILEGED despite calling a method that can depending on the parameter.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d1726;drc\u003d891fea7286c9e0ebe376e1554afcb288eed366eb\n\nThis may not be the best solution here, since the annotation was added in a lot of location, we may want to narrow down only to the method that could enforce the permission, and if it is too wide, try to update internal implementation to have something more focused",
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6314607_ef24d31a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 3108,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:28:06Z",
+      "side": 1,
+      "message": "If this method now required BLUETOOTH_PRIVILEGED, this will be an api contract breakage.\n\nWhat are the condition to require the new permission when calling this API ?\nWe should document in the javadoc to mention why this is required\n\nIf this will be never enforced, then we should not add that.",
+      "range": {
+        "startLine": 3108,
+        "startChar": 40,
+        "endLine": 3108,
+        "endChar": 60
+      },
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03fcddd0_c097c963",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 6010,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:28:06Z",
+      "side": 1,
+      "message": "I am not sure this should require CONNECT ? \nCONNECT is required when we are involving a remove device.\nHere we are simply asking about local devices capability ?\n\n(I may be wrong, please let me know what you think)",
+      "range": {
+        "startLine": 6010,
+        "startChar": 33,
+        "endLine": 6010,
+        "endChar": 50
+      },
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e2b6de4_9d2c43bb",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:28:06Z",
+      "side": 1,
+      "message": "this need to be explained in the API description here too",
+      "range": {
+        "startLine": 535,
+        "startChar": 12,
+        "endLine": 535,
+        "endChar": 30
+      },
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef090f45_480f4cff",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:28:06Z",
+      "side": 1,
+      "message": "we can skip repeating builder everywhere by chaining the .append",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "752d4642_b35eb5e4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 314,
+                "startChar": 0,
+                "endLine": 322,
+                "endChar": 0
+              },
+              "replacement": "        builder\n                .append(\"mSocketType\u003d\")\n                .append(mSocketType)\n                .append(\", mEncryptionRequired\u003d\")\n                .append(mEncryptionRequired)\n                .append(\", mAuthenticationRequired\u003d\")\n                .append(mAuthenticationRequired)\n                .append(\", mSocketName\u003d\")\n                .append(mSocketName);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 323,
+                "startChar": 0,
+                "endLine": 327,
+                "endChar": 0
+              },
+              "replacement": "            builder\n                    .append(\", mRfcommServiceName\u003d\")\n                    .append(mRfcommServiceName)\n                    .append(\", mRfcommUuid\u003d\")\n                    .append(mRfcommUuid);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 328,
+                "startChar": 0,
+                "endLine": 330,
+                "endChar": 0
+              },
+              "replacement": "            builder.append(\", mL2capPsm\u003d\").append(mL2capPsm);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 332,
+                "startChar": 0,
+                "endLine": 340,
+                "endChar": 0
+              },
+              "replacement": "            builder\n                    .append(\", mDataPath\u003d\")\n                    .append(mDataPath)\n                    .append(\", mHubId\u003d\")\n                    .append(mHubId)\n                    .append(\", mEndpointId\u003d\")\n                    .append(mEndpointId)\n                    .append(\", mMaximumPacketSize\u003d\")\n                    .append(mMaximumPacketSize);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
