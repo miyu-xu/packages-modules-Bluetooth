@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d93148d3_bbabcd71",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-14T20:04:37Z",
+      "side": 1,
+      "message": "Can you arrange them in ascending order so they are easier to cross reference?",
+      "revId": "e9341e7863ff071853660f4e496c3779d9990bac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
