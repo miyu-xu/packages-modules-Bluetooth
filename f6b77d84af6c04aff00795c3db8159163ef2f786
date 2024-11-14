@@ -16,6 +16,29 @@
       "message": "conflict needs to be resolved.",
       "revId": "f6b77d84af6c04aff00795c3db8159163ef2f786",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "771bd1c0_0ba2ee02",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2836,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T08:48:26Z",
+      "side": 1,
+      "message": "IMHO better will be to have separate methods for store and removing:\n```\nprivate void storeSinkMetadata(BluetoothDevice device, int broadcastId, BluetoothLeBroadcastMetadata metadata);\nprivate void removeSinkMetadata(BluetoothDevice device, int broadcastId);\nprivate void removeSinkMetadata(BluetoothDevice device);\n```\n\nThen will be no guessing what store with null or double null means.",
+      "range": {
+        "startLine": 2836,
+        "startChar": 17,
+        "endLine": 2836,
+        "endChar": 34
+      },
+      "revId": "f6b77d84af6c04aff00795c3db8159163ef2f786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
