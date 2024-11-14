@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa3ed71f_251caf16",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-14T11:28:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3658af_1fa8e546",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 60
+      },
+      "revId": "e662d4c73267520d33911559945de97ecb4fb255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e765f59_cedfbea0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-13T18:33:01Z",
       "side": 1,
       "message": "Do you need this additional flag ? \nThe test does not go further than one Suspend Request",
+      "range": {
+        "startLine": 558,
+        "startChar": 25,
+        "endLine": 558,
+        "endChar": 42
+      },
+      "revId": "e662d4c73267520d33911559945de97ecb4fb255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32a68e9d_a5504a2a",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-14T11:28:35Z",
+      "side": 1,
+      "message": "I forgot to remove it. Initially I had a test version with two suspends. Fixed, thanks!",
+      "parentUuid": "0e765f59_cedfbea0",
       "range": {
         "startLine": 558,
         "startChar": 25,
