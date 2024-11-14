@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc8efb6_437a3d0d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T07:23:06Z",
+      "side": 1,
+      "message": "isAnyPendingAddSourceOperation get values from mPendingGroupOp:\n```\nList\u003cPair\u003cInteger, Object\u003e\u003e operations \u003d mPendingGroupOp.get(device);\n```\nSo in original version when remove was made directly on reference we checked here new modified values. Right now as we are still in lambda we will check old version as mPendingGroupOp will be modified after return from it.",
+      "revId": "cf43bdb10e64b6f91c0a64da84a65dba98fbc130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
