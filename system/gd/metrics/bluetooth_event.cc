@@ -313,5 +313,14 @@ void LogLePairingFail(const RawAddress& bd_addr, android::bluetooth::DirectionEn
           MapSmpStatusCodeToState(failure_reason));
 }
 
+void LogLeAclCompletionEvent(const hci::Address& address, hci::ErrorCode reason,
+                             bool is_locally_initiated) {
+  bluetooth::os::LogMetricBluetoothEvent(address,
+                                         is_locally_initiated
+                                                 ? EventType::LE_ACL_CONNECTION_INITIATOR
+                                                 : EventType::LE_ACL_CONNECTION_RESPONDER,
+                                         MapErrorCodeToState(reason));
+}
+
 }  // namespace metrics
 }  // namespace bluetooth
