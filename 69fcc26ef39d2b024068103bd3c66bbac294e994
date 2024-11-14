@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00badaaa_8c77554a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T09:34:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fa5885d_1d461d6c",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 4
+      },
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70e1bbf8_2393d1ea",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "\u003e Originally any device cause assistant activation.\n\nActually there is nothing other than primary device monitoring (what is only for primary device https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d573b2d3074e4fa3110e3c4b5a4fe75624553c6ef;l\u003d1553) behind this code, so I think reasonable is to do monitoring for this device.",
       "parentUuid": "70e1bbf8_2393d1ea",
+      "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d88163ec_099d7362",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T09:34:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a087ff75_d29f3dca",
       "revId": "69fcc26ef39d2b024068103bd3c66bbac294e994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
