@@ -65,6 +65,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8921b325_cab2d9c0",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3375f1f2_99900c64",
+      "range": {
+        "startLine": 225,
+        "startChar": 76,
+        "endLine": 225,
+        "endChar": 77
+      },
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e20a88_b1bc300c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlInputDescriptor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "037fca88_7b0484bc",
+      "range": {
+        "startLine": 225,
+        "startChar": 53,
+        "endLine": 225,
+        "endChar": 55
+      },
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "931a0acf_b5356a6b",
@@ -78,6 +126,24 @@
       "writtenOn": "2024-11-14T02:09:32Z",
       "side": 1,
       "message": "Missing service discovery and service parameter in requests.",
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5369dece_da3edb2d",
+        "filename": "pandora/interfaces/pandora_experimental/vcp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T02:18:01Z",
+      "side": 1,
+      "message": "I don\u0027t understand what you is missing.",
+      "parentUuid": "931a0acf_b5356a6b",
       "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
