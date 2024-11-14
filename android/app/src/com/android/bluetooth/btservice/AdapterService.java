@@ -214,6 +214,7 @@ public class AdapterService extends Service {
     private static final int MIN_ADVT_INSTANCES_FOR_MA = 5;
     private static final int MIN_OFFLOADED_FILTERS = 10;
     private static final int MIN_OFFLOADED_SCAN_STORAGE_BYTES = 1024;
+    private static final int MIN_OFFLOADED_SOCKETS = 1;
 
     private static final Duration PENDING_SOCKET_HANDOFF_TIMEOUT = Duration.ofMinutes(1);
     private static final Duration GENERATE_LOCAL_OOB_DATA_TIMEOUT = Duration.ofSeconds(2);
@@ -4376,6 +4377,16 @@ public class AdapterService extends Service {
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             return service.mDatabaseManager.isMicrophonePreferredForCalls(device);
         }
+
+        @Override
+        public boolean isLeCocSocketOffloadSupported(AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return false;
+            }
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.isLeCocSocketOffloadSupported();
+        }
     }
 
     /**
@@ -7110,5 +7121,14 @@ public class AdapterService extends Service {
         } catch (Exception e) {
             Log.e(TAG, "Error happened while removing contents: ", e);
         }
+    }
+
+    public int getNumOfOffloadedLeCocSocketSupported() {
+        return mAdapterProperties.getNumOfOffloadedLeCocSocketSupported();
+    }
+
+    public boolean isLeCocSocketOffloadSupported() {
+        int val = getNumOfOffloadedLeCocSocketSupported();
+        return val >= MIN_OFFLOADED_SOCKETS;
     }
 }
