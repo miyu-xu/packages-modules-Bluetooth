@@ -34,6 +34,24 @@
       "parentUuid": "8ffb95ab_7f068105",
       "revId": "a44756abc8f8e05c7a8fc7be64b1ed3c7091c55f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c662b5_481ed375",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-11-14T03:44:57Z",
+      "side": 1,
+      "message": "Generally, I would recommend including the jarjar rule with the new lib, because they are related for correctness (if you revert the change higher in the list which includes impl, you def want to keep the jarjar rule)\n\nBut if its too onerous it is fine.",
+      "parentUuid": "1eeaa27a_5cb015a8",
+      "revId": "a44756abc8f8e05c7a8fc7be64b1ed3c7091c55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
