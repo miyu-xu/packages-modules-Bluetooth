@@ -68,6 +68,54 @@
       },
       "revId": "07b32fb52e41b205d4ed5864e81ce27a8c933bf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2f32ac8_066be10f",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2738,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-14T05:17:53Z",
+      "side": 1,
+      "message": "fixed, remove the unnecessary description and add @override",
+      "parentUuid": "782a09c5_b6e24f20",
+      "range": {
+        "startLine": 2738,
+        "startChar": 8,
+        "endLine": 2738,
+        "endChar": 11
+      },
+      "revId": "07b32fb52e41b205d4ed5864e81ce27a8c933bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bba6eb82_bc431021",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2738,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-14T05:17:53Z",
+      "side": 1,
+      "message": "fixed, remove the unnecessary description and add @override",
+      "parentUuid": "b7b4f69b_e92b444b",
+      "range": {
+        "startLine": 2733,
+        "startChar": 8,
+        "endLine": 2738,
+        "endChar": 11
+      },
+      "revId": "07b32fb52e41b205d4ed5864e81ce27a8c933bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
