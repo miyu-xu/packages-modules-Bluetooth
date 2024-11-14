@@ -2,14 +2,6 @@ package: "com.android.bluetooth.flags"
 container: "com.android.btservices"
 
 flag {
-    name: "aics_api"
-    is_exported: true
-    namespace: "bluetooth"
-    description: "Expose new API to control AICS data"
-    bug: "372328699"
-}
-
-flag {
     name: "enable_hap_by_default"
     namespace: "bluetooth"
     description: "On device that support HAP, enable it by default and disable ASHA"
