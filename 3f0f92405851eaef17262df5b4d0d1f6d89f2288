@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "849b4f1b_8aa03354",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:31:39Z",
+      "side": 1,
+      "message": "Overall LGTM, API +1. Will let @asapperstein@google.com validate and +2.",
+      "revId": "3f0f92405851eaef17262df5b4d0d1f6d89f2288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610aaa3e_2791a92b",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 2733,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:31:39Z",
+      "side": 1,
+      "message": "nit: Keep `@hide` for consistency.",
+      "range": {
+        "startLine": 2733,
+        "startChar": 8,
+        "endLine": 2733,
+        "endChar": 17
+      },
+      "revId": "3f0f92405851eaef17262df5b4d0d1f6d89f2288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
