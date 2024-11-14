@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e91beccd_2af8d158",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-14T00:29:38Z",
+      "side": 1,
+      "message": "This CL is very big, and does a lot of different things.\n\nCan we split it to only have small topics.\nKeeping the relation chain is nice to keep the global context, having \"atomic\" cl that does only one thing each will grandly help the review.",
+      "revId": "e948788db2d31ab8917baa577b47f2e335aff61b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6314607_ef24d31a",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 24
