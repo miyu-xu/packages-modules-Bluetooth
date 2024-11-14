@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2eac1f4_7527a8bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T11:53:15Z",
+      "side": 1,
+      "message": "Bug: 376251433\n\nhttps://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/submit-a-cl.md?cl\u003dhead#flagging",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4567f70_539fe534",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 8
@@ -65,6 +88,52 @@
         "startChar": 67,
         "endLine": 4234,
         "endChar": 37
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f824c3c7_e3d2ce4b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4239,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T11:53:15Z",
+      "side": 1,
+      "message": "It does not need a flag?",
+      "range": {
+        "startLine": 4236,
+        "startChar": 4,
+        "endLine": 4239,
+        "endChar": 54
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d810eb_efe10add",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4821,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T11:53:15Z",
+      "side": 1,
+      "message": "remaining only",
+      "range": {
+        "startLine": 4821,
+        "startChar": 50,
+        "endLine": 4821,
+        "endChar": 65
       },
       "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
