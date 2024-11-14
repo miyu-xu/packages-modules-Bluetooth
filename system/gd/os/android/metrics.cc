@@ -51,6 +51,15 @@ template <>
 struct formatter<android::bluetooth::EventType> : enum_formatter<android::bluetooth::EventType> {};
 template <>
 struct formatter<android::bluetooth::State> : enum_formatter<android::bluetooth::State> {};
+template <>
+struct formatter<android::bluetooth::rfcomm::PortResult>
+    : enum_formatter<android::bluetooth::rfcomm::PortResult> {};
+template <>
+struct formatter<android::bluetooth::rfcomm::RfcommPortState>
+    : enum_formatter<android::bluetooth::rfcomm::RfcommPortState> {};
+template <>
+struct formatter<android::bluetooth::rfcomm::SocketConnectionSecurity>
+    : enum_formatter<android::bluetooth::rfcomm::SocketConnectionSecurity> {};
 }  // namespace std
 
 namespace bluetooth {
@@ -473,6 +482,20 @@ void LogMetricBluetoothEvent(const Address& address, android::bluetooth::EventTy
   if (ret < 0) {
     log::warn("Failed BluetoothEvent Upload - Address {}, Event_type {}, State {}", address,
               event_type, state);
+  }
+}
+
+void LogMetricRfcommConnectionAtClose(
+        android::bluetooth::rfcomm::PortResult close_reason,
+        android::bluetooth::rfcomm::SocketConnectionSecurity security,
+        android::bluetooth::rfcomm::RfcommPortState second_previous_state,
+        android::bluetooth::rfcomm::RfcommPortState previous_state, int32_t open_duration_ms,
+        int32_t uid) {
+  int ret = stats_write(BLUETOOTH_RFCOMM_CONNECTION_REPORTED_AT_CLOSE, close_reason, security,
+                        second_previous_state, previous_state, open_duration_ms, uid);
+  if (ret < 0) {
+    log::warn("Failed to log RFCOMM Connection metric for uid {}, close reason {}", uid,
+              close_reason);
   }
 }
 

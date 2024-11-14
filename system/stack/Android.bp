@@ -302,6 +302,7 @@ cc_library_static {
         "rfcomm/port_rfc.cc",
         "rfcomm/port_utils.cc",
         "rfcomm/rfc_l2cap_if.cc",
+        "rfcomm/rfc_metrics.cc",
         "rfcomm/rfc_mx_fsm.cc",
         "rfcomm/rfc_port_fsm.cc",
         "rfcomm/rfc_port_if.cc",
