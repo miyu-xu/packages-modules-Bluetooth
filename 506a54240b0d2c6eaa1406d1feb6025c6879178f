@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5e0f906_9a74eec1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T10:48:21Z",
+      "side": 1,
+      "message": "Bug: \u003cflag tracking bug id\u003e\n\nhttps://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/submit-a-cl.md?cl\u003dhead#flagging",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 86
+      },
+      "revId": "506a54240b0d2c6eaa1406d1feb6025c6879178f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
