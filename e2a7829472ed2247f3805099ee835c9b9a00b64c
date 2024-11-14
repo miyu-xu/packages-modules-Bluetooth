@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a278839_5b2f91d6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3891,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-14T07:32:30Z",
+      "side": 1,
+      "message": "Great change with self explaining code!\nPlease remove redundant comment.",
+      "range": {
+        "startLine": 3891,
+        "startChar": 20,
+        "endLine": 3891,
+        "endChar": 39
+      },
+      "revId": "e2a7829472ed2247f3805099ee835c9b9a00b64c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
