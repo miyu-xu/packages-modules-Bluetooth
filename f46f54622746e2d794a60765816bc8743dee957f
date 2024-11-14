@@ -3,6 +3,236 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd2d9b5b_eccd897a",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "Why is it a system API? Same question for the following functions.",
+      "range": {
+        "startLine": 262,
+        "startChar": 5,
+        "endLine": 262,
+        "endChar": 14
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6071652e_76ba449e",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "Try to keep consistency in function documentation: either use `advertisement` or `advertising` but keep it consistent across all functions.",
+      "range": {
+        "startLine": 563,
+        "startChar": 27,
+        "endLine": 563,
+        "endChar": 40
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d636984_eb5e1b37",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "Why is this a system API? This should be justified in the documentation (see go/android-api-guidelines#annotations_2). Same question for the following functions.",
+      "range": {
+        "startLine": 569,
+        "startChar": 8,
+        "endLine": 569,
+        "endChar": 18
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81b23136_3404c074",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`address is`",
+      "range": {
+        "startLine": 592,
+        "startChar": 49,
+        "endLine": 592,
+        "endChar": 58
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32512e84_654f0d32",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`advertising` for consistency with other logs",
+      "range": {
+        "startLine": 646,
+        "startChar": 45,
+        "endLine": 646,
+        "endChar": 58
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ee5009_a9a82be3",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`advertising` for consistency with other logs",
+      "range": {
+        "startLine": 651,
+        "startChar": 45,
+        "endLine": 651,
+        "endChar": 58
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "434c3244_518a8e59",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`advertising` for consistency with other logs",
+      "range": {
+        "startLine": 656,
+        "startChar": 49,
+        "endLine": 656,
+        "endChar": 62
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0188d39_66f327cf",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`advertising` for consistency with other logs",
+      "range": {
+        "startLine": 661,
+        "startChar": 49,
+        "endLine": 661,
+        "endChar": 62
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e266a87_b0db49c5",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`advertising` in lower case for consistency",
+      "range": {
+        "startLine": 682,
+        "startChar": 40,
+        "endLine": 682,
+        "endChar": 51
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1385dba_2c7bf20f",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-14T18:51:52Z",
+      "side": 1,
+      "message": "`advertising` in lower case for consistency",
+      "range": {
+        "startLine": 688,
+        "startChar": 70,
+        "endLine": 688,
+        "endChar": 81
+      },
+      "revId": "f46f54622746e2d794a60765816bc8743dee957f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80b5df70_0085edcf",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
         "patchSetId": 15
