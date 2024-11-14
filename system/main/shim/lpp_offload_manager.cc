@@ -15,6 +15,7 @@
  */
 #include "lpp_offload_manager.h"
 
+#include "btif/include/btif_sock_l2cap.h"
 #include "hci/lpp_offload_interface.h"
 #include "main/shim/entry.h"
 class LppOffloadManagerInterfaceImpl : public LppOffloadManagerInterface,
@@ -47,9 +48,11 @@ public:
   }
 
   // bluetooth::hci::LppOffloadCallbacks
-  void SocketOpenedComplete(uint64_t /*socketId*/, bluetooth::hci::SocketStatus /*status*/) {}
+  void SocketOpenedComplete(uint64_t socketId, bluetooth::hci::SocketStatus status) {
+    on_btsocket_l2cap_opened_complete(socketId, (status == bluetooth::hci::SocketStatus::SUCCESS));
+  }
 
-  void SocketClose(uint64_t /*socketId*/) {}
+  void SocketClose(uint64_t socketId) { on_btsocket_l2cap_close(socketId); }
 };
 
 LppOffloadManagerInterfaceImpl* lpp_offload_instance = nullptr;
