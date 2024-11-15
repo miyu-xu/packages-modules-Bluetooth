@@ -16,6 +16,24 @@
       "message": "For correct logging, let\u0027s add `locally_initiated_` here.\nWhich is known when le_acl_connection is added and can be referenced \nin `on_le_disconnect` afterwards.",
       "revId": "e727e9560c6a7cb75c7dc91e1404aedad6f07d48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c15eb37c_bbdd8134",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-11-15T18:17:38Z",
+      "side": 1,
+      "message": "Can you please share on how should I refer it here?",
+      "parentUuid": "34b2fc86_00ad3605",
+      "revId": "e727e9560c6a7cb75c7dc91e1404aedad6f07d48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
