@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8280d34f_58846d01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-15T17:19:35Z",
+      "side": 1,
+      "message": "FYI, you can put `Flag: TEST_ONLY` as a justification when you are just modifying a test",
+      "revId": "444b1a9f1af6ef84bb654dacdecf7bc6770515a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
