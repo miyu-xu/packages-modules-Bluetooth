@@ -34,6 +34,24 @@
       "parentUuid": "fff792fb_18f8d1fe",
       "revId": "5676a836e7d8f7b9909935614a8eed67b8bab9b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e28b8e6_2e58b6d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T16:42:54Z",
+      "side": 1,
+      "message": "Applied this bug number b/331817295, let me know if you have something more specific :D",
+      "parentUuid": "15dbe1d6_a68e41c7",
+      "revId": "5676a836e7d8f7b9909935614a8eed67b8bab9b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
