@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38921781_aa112e69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-15T18:04:03Z",
+      "side": 1,
+      "message": "Creates Pbap account manager and plumbs accordingly",
+      "revId": "b730df8fd64af7167932911d147515dfd73f8b33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
