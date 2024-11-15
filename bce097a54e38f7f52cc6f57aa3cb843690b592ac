@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b1f7e3_17c7192c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 5774,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T22:35:56Z",
+      "side": 1,
+      "message": "```suggestion\n        if (accepted) {\n            return;\n        }\n        final long token \u003d Binder.clearCallingIdentity();\n        try {\n            MetricsLogger.getInstance()\n                    .logBluetoothEvent(\n                            device,\n                            BluetoothStatsLog\n                                   .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__USER_CONF_REQUEST,\n                            BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__FAIL,\n                            source.getUid());\n        } finally {\n            Binder.restoreCallingIdentity(token);\n        }\n```",
+      "range": {
+        "startLine": 5761,
+        "startChar": 5,
+        "endLine": 5774,
+        "endChar": 9
+      },
+      "revId": "bce097a54e38f7f52cc6f57aa3cb843690b592ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
