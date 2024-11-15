@@ -200,6 +200,30 @@
       ],
       "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9be6ada_5071467e",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-15T18:56:56Z",
+      "side": 1,
+      "message": "We added other flags for framework APIs outside the framework.aconfig, and it works fine, such as\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3085785\n\nThese error didn\u0027t happen in previous presubmit tests, it may cause by I merge the patch for flag and it not soak enough time. \n\nI would like to try persubmit again later\nThanks!",
+      "parentUuid": "60f2d029_75384258",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 56
+      },
+      "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
