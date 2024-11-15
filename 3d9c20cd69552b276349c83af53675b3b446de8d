@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "907e7711_72467709",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-11-15T03:05:44Z",
+      "side": 1,
+      "message": "```suggestion\n                    Log.d(TAG, \"HFP active device is null. Try to fallback to the active device.\");\n```",
+      "range": {
+        "startLine": 720,
+        "startChar": 74,
+        "endLine": 720,
+        "endChar": 78
+      },
+      "revId": "3d9c20cd69552b276349c83af53675b3b446de8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa22be9_166cfeb3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-11-15T03:05:44Z",
+      "side": 1,
+      "message": "also as above, just add the \"to\" before \"the active device\" so it\u0027s clearer",
+      "range": {
+        "startLine": 825,
+        "startChar": 67,
+        "endLine": 825,
+        "endChar": 80
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3638182c_86d34a81",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 720,
+                "startChar": 0,
+                "endLine": 721,
+                "endChar": 0
+              },
+              "replacement": "                    Log.d(TAG, \"HFP active device is null. Try to fallback to the active device.\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 825,
+                "startChar": 0,
+                "endLine": 826,
+                "endChar": 0
+              },
+              "replacement": "                Log.d(TAG, \"LE audio active device is null. Try to fallback to the active device.\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3d9c20cd69552b276349c83af53675b3b446de8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
