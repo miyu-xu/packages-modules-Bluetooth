@@ -3,6 +3,51 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa28adca_e791c1af",
+        "filename": "system/stack/include/avdt_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T02:23:42Z",
+      "side": 1,
+      "message": "```\nenum class tAVDT_ROLE : uint8_t {\n  ..\n};\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "80fb0d21_5ffcfb16",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/avdt_api.h",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "enum class tAVDT_ROLE : uint8_t {\n"
+            },
+            {
+              "path": "system/stack/include/avdt_api.h",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 125,
+                "endChar": 0
+              },
+              "replacement": "};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3965ba7b90332b6e2357a5fb36f64fe743eee28a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f5768c5_3de6c367",
         "filename": "system/stack/include/avdt_api.h",
         "patchSetId": 1
