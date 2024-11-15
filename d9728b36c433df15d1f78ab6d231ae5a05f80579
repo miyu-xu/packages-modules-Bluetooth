@@ -22,6 +22,30 @@
       },
       "revId": "d9728b36c433df15d1f78ab6d231ae5a05f80579",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5252f6d6_0d85a293",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:26:46Z",
+      "side": 1,
+      "message": "Agreed. Changed it to read-only",
+      "parentUuid": "cc1c118d_d480ceac",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "d9728b36c433df15d1f78ab6d231ae5a05f80579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
