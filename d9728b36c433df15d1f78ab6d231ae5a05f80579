@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc1c118d_d480ceac",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T02:24:18Z",
+      "side": 1,
+      "message": "Why is the property \"persist\".\nI expect this to be enable per build configuration.\n\nDo we have a developper option in the settings to change this value ? if not, I don\u0027t think we want to keep it persist",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "d9728b36c433df15d1f78ab6d231ae5a05f80579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
