@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "765aea54_9b476deb",
+        "filename": "system/stack/include/avdt_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-15T11:20:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa28adca_e791c1af",
+      "revId": "3965ba7b90332b6e2357a5fb36f64fe743eee28a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f5768c5_3de6c367",
@@ -93,6 +111,30 @@
           ]
         }
       ],
+      "revId": "3965ba7b90332b6e2357a5fb36f64fe743eee28a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cdeb66d_3e984fbe",
+        "filename": "system/stack/include/avdt_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-15T11:20:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f5768c5_3de6c367",
+      "range": {
+        "startLine": 132,
+        "startChar": 13,
+        "endLine": 132,
+        "endChar": 31
+      },
       "revId": "3965ba7b90332b6e2357a5fb36f64fe743eee28a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
