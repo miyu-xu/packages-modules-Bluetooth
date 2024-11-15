@@ -256,6 +256,9 @@ public:
         if (is_connecting_actively) {
           BTA_GATTC_CancelOpen(gatt_if_, address, true);
           callbacks_->OnConnectionState(ConnectionState::DISCONNECTED, address);
+        } else {
+          /* Removes all registrations for connection. */
+          BTA_GATTC_CancelOpen(gatt_if_, address, false);
         }
       }
       return;
@@ -295,11 +298,11 @@ public:
         if (is_connecting_actively) {
           BTA_GATTC_CancelOpen(gatt_if_, addr, true);
           callbacks_->OnConnectionState(ConnectionState::DISCONNECTED, addr);
+        } else {
+          /* Removes all registrations for connection. */
+          BTA_GATTC_CancelOpen(gatt_if_, addr, false);
         }
       }
-
-      /* Removes all registrations for connection. */
-      BTA_GATTC_CancelOpen(0, addr, false);
     }
   }
 
