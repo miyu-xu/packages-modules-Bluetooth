@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.gatt;
 
+import static android.content.pm.PackageManager.FEATURE_BLUETOOTH_LE_CHANNEL_SOUNDING;
+
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUtils;
@@ -29,6 +31,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
@@ -55,6 +58,7 @@ public class DistanceMeasurementManager {
             mRssiTrackers = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, CopyOnWriteArraySet<DistanceMeasurementTracker>>
             mCsTrackers = new ConcurrentHashMap<>();
+    private final boolean mHasChannelSoundingFeature;
 
     /** Constructor of {@link DistanceMeasurementManager}. */
     DistanceMeasurementManager(AdapterService adapterService) {
@@ -65,6 +69,15 @@ public class DistanceMeasurementManager {
         mHandlerThread.start();
         mDistanceMeasurementNativeInterface = DistanceMeasurementNativeInterface.getInstance();
         mDistanceMeasurementNativeInterface.init(this);
+        if (Flags.channelSounding25q2Apis()) {
+            mHasChannelSoundingFeature =
+                    adapterService
+                            .getApplicationContext()
+                            .getPackageManager()
+                            .hasSystemFeature(FEATURE_BLUETOOTH_LE_CHANNEL_SOUNDING);
+        } else {
+            mHasChannelSoundingFeature = true;
+        }
     }
 
     void cleanup() {
@@ -77,7 +90,7 @@ public class DistanceMeasurementManager {
                 new DistanceMeasurementMethod.Builder(
                                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI)
                         .build());
-        if (mAdapterService.isLeChannelSoundingSupported()) {
+        if (mHasChannelSoundingFeature && mAdapterService.isLeChannelSoundingSupported()) {
             methods.add(
                     new DistanceMeasurementMethod.Builder(
                                     DistanceMeasurementMethod
@@ -120,8 +133,16 @@ public class DistanceMeasurementManager {
                 startRssiTracker(tracker);
                 break;
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING:
-                if (!mAdapterService.isLeChannelSoundingSupported()
-                        || !mAdapterService.isConnected(params.getDevice())) {
+                if (!mHasChannelSoundingFeature
+                        || !mAdapterService.isLeChannelSoundingSupported()) {
+                    Log.e(TAG, "Channel Sounding is not supported.");
+                    invokeStartFail(
+                            callback,
+                            params.getDevice(),
+                            BluetoothStatusCodes.FEATURE_NOT_SUPPORTED);
+                    return;
+                }
+                if (!mAdapterService.isConnected(params.getDevice())) {
                     Log.e(TAG, "Device " + params.getDevice() + " is not connected");
                     invokeStartFail(
                             callback,
@@ -195,11 +216,17 @@ public class DistanceMeasurementManager {
     }
 
     int getChannelSoundingMaxSupportedSecurityLevel(BluetoothDevice remoteDevice) {
-        return ChannelSoundingParams.CS_SECURITY_LEVEL_ONE;
+        if (mHasChannelSoundingFeature && mAdapterService.isLeChannelSoundingSupported()) {
+            return ChannelSoundingParams.CS_SECURITY_LEVEL_ONE;
+        }
+        return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
     }
 
     int getLocalChannelSoundingMaxSupportedSecurityLevel() {
-        return ChannelSoundingParams.CS_SECURITY_LEVEL_ONE;
+        if (mHasChannelSoundingFeature && mAdapterService.isLeChannelSoundingSupported()) {
+            return ChannelSoundingParams.CS_SECURITY_LEVEL_ONE;
+        }
+        return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
     }
 
     private synchronized int stopRssiTracker(UUID uuid, String identityAddress, boolean timeout) {
