@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a5c51e_b75da636",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-15T18:05:30Z",
+      "side": 1,
+      "message": "```suggestion\n                            \"Legacy directed advertising must be connectable\");\n```",
+      "range": {
+        "startLine": 654,
+        "startChar": 57,
+        "endLine": 654,
+        "endChar": 62
+      },
+      "revId": "0452c7766c3425d8579f3141276b9c4733181587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

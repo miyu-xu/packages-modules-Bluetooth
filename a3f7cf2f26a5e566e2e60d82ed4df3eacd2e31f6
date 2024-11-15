@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f2d029_75384258",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-15T18:05:30Z",
+      "side": 1,
+      "message": "I think the flag is defined in the wrong place, in gap.aconfig where it probably needs to be in framework.aconfig to be usable like this.\n\n------------------------------------------\n\n\nPlease fix this ERROR reported by Build Warnings: could not resolve field FLAG_DIRECTED_ADVERTISING_API\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    could not resolve field FLAG_DIRECTED_ADVERTISING_API\n            @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)\n                        ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P84964547/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "36c753f2_07915e64",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 259,
+                "startChar": 0,
+                "endLine": 261,
+                "endChar": 0
+              },
+              "replacement": "     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 262,
+                "startChar": 0,
+                "endLine": 263,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 270,
+                "startChar": 0,
+                "endLine": 272,
+                "endChar": 0
+              },
+              "replacement": "     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 273,
+                "startChar": 0,
+                "endLine": 274,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 281,
+                "startChar": 0,
+                "endLine": 283,
+                "endChar": 0
+              },
+              "replacement": "     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 284,
+                "startChar": 0,
+                "endLine": 285,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 292,
+                "startChar": 0,
+                "endLine": 294,
+                "endChar": 0
+              },
+              "replacement": "     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 295,
+                "startChar": 0,
+                "endLine": 296,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 570,
+                "startChar": 0,
+                "endLine": 572,
+                "endChar": 0
+              },
+              "replacement": "         * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 573,
+                "startChar": 0,
+                "endLine": 574,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 584,
+                "startChar": 0,
+                "endLine": 586,
+                "endChar": 0
+              },
+              "replacement": "         * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 587,
+                "startChar": 0,
+                "endLine": 588,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 599,
+                "startChar": 0,
+                "endLine": 601,
+                "endChar": 0
+              },
+              "replacement": "         * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 602,
+                "startChar": 0,
+                "endLine": 603,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 619,
+                "startChar": 0,
+                "endLine": 621,
+                "endChar": 0
+              },
+              "replacement": "         * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+              "range": {
+                "startLine": 622,
+                "startChar": 0,
+                "endLine": 623,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
