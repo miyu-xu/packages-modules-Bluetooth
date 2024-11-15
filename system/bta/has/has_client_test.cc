@@ -769,7 +769,8 @@ protected:
       assert(0);
       EXPECT_CALL(gatt_interface, Close(conn_id));
     } else {
-      EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, _));
+      /* Expect connection to be removed both from background and active connection */
+      EXPECT_CALL(gatt_interface, CancelOpen(gatt_if, address, _)).Times(2);
     }
     HasClient::Get()->Disconnect(address);
   }
