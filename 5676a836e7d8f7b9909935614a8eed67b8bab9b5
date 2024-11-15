@@ -52,6 +52,24 @@
       "parentUuid": "15dbe1d6_a68e41c7",
       "revId": "5676a836e7d8f7b9909935614a8eed67b8bab9b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6cb77d8_6326e5ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-11-15T17:10:08Z",
+      "side": 1,
+      "message": "heh, no --- though i\u0027ve had the same kind of bug myself in the past. i only do that when i\u0027m absolutely forced to, though, and generally cite the https://en.wikipedia.org/wiki/Paperwork_Reduction_Act instead :-)",
+      "parentUuid": "6e28b8e6_2e58b6d1",
+      "revId": "5676a836e7d8f7b9909935614a8eed67b8bab9b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
