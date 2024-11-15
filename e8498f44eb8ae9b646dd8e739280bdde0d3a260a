@@ -145,6 +145,30 @@
       ],
       "revId": "e8498f44eb8ae9b646dd8e739280bdde0d3a260a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78219c38_47184763",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-15T07:57:13Z",
+      "side": 1,
+      "message": "Done. Using a `tuple` now. Thank you.",
+      "parentUuid": "cf99c0bf_9018e541",
+      "range": {
+        "startLine": 875,
+        "startChar": 19,
+        "endLine": 875,
+        "endChar": 23
+      },
+      "revId": "e8498f44eb8ae9b646dd8e739280bdde0d3a260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
