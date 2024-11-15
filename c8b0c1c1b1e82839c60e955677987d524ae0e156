@@ -16,6 +16,23 @@
       "message": "@rongxuan@google.com please help to +2 on the cl.",
       "revId": "c8b0c1c1b1e82839c60e955677987d524ae0e156",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3d14ad_52c98320",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-15T08:53:44Z",
+      "side": 1,
+      "message": "@aarthibc@google.com could you help to +2 on it? As for this is the follow up cl for aosp/3324694",
+      "revId": "c8b0c1c1b1e82839c60e955677987d524ae0e156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
