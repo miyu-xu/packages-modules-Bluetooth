@@ -1,0 +1,992 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565b8974_77dafe1a",
+        "filename": "system/gd/hal/BUILD.gn",
+        "patchSetId": 30
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "No need to provide build for Floss right now; \nI don\u0027t expect that they will use the feature ever.",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89434f58_7e5033db",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "`namespace bluetooth::hal`",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0340438b_5e847932",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "What does this function implement ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccfa271f_be068d72",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "You should clarify what the threading will be for the callback execution.\nIn this case I suspect it will be run from one of the binder threads.",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2808ffe2_98a92f3e",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "What is the ownership / lifetime of this callback structure ?\nEither pass a `std::unique_ptr` or specify that it must have static lifetime.",
+      "range": {
+        "startLine": 47,
+        "startChar": 48,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a247922_ccbfa947",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please have the definition of `SocketCapabilities`, `SocketHalCallbacks`, `SocketContext` in this header, they are tied to this interface and not the manager.",
+      "range": {
+        "startLine": 54,
+        "startChar": 26,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008a845a_2c837068",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "This might no longer be necessary, or the comment is inaccurate.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 18
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1487b4e_08baf3b1",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "`namespace bluetooth::hal {`",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 0
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09b93944_11c4f1a8",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "nit: remove explicit `in_` prefixes.",
+      "range": {
+        "startLine": 46,
+        "startChar": 18,
+        "endLine": 46,
+        "endChar": 21
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4363862a_e8aae295",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "nit: the pattern for logging parameters in the stack usually looks like : `a:{} b:{}`",
+      "range": {
+        "startLine": 48,
+        "startChar": 15,
+        "endLine": 48,
+        "endChar": 46
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20241eb0_d28610c4",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Do not cast but provide a conversion function. It will be optimized away if the values match, but it is more correct c++ wise.",
+      "range": {
+        "startLine": 50,
+        "startChar": 54,
+        "endLine": 50,
+        "endChar": 84
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a656982_8258efe4",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Should be an error log when the service is not declared; this is redundant with the success log below",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 93
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "04e68bd1_e9653f21",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7537686_c34812cb",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "You need to bind a death receiver for proper crash handling.\nLike we discussed a crash of the Socket HAL should trigger a crash of the HCI HAL, but that should be documented if you do not want to add the death receiver.",
+      "range": {
+        "startLine": 76,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 27
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c31a636_c70d7abf",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please add some info logging to mark the execution of this method.",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0360a27a_0fe14531",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Can be simplified as \n```\nreturn hci::SocketCapabilities {\n    .leCocCapabilities \u003d {\n    \t.numberOfSupportedSockets \u003d ..,\n    \t..\n    },\n};\n```",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c282c415_aebc843a",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "RegisterCallback can fail and should return an error.\nRegisterCallback being called twice is cited as an error condition in the Socket HAL declaration.",
+      "range": {
+        "startLine": 102,
+        "startChar": 2,
+        "endLine": 102,
+        "endChar": 6
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "050e59cc_50a753f0",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "There is no check here that the callback is not registered twice, but you overwrite the class member bluetooth_socket_hal_callback_",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf446c13_148a5714",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Can be simplified as\n```\nSocketContext hal_context \u003d {\n  .socketId \u003d ..,\n  ..\n};\n```",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 64
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bcbcee_c81668fd",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Missing `override` declarator",
+      "range": {
+        "startLine": 151,
+        "startChar": 7,
+        "endLine": 151,
+        "endChar": 13
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c2a52d4_6ea9098b",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please follow google style guide for parameter naming: `socket_id`",
+      "range": {
+        "startLine": 151,
+        "startChar": 23,
+        "endLine": 151,
+        "endChar": 31
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f769e753_cc10051f",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "nit: `socket_hal_instance_`",
+      "range": {
+        "startLine": 163,
+        "startChar": 36,
+        "endLine": 163,
+        "endChar": 57
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "168efae6_f2a504aa",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "The naming is inconsistent, in BluetoothSocketCallback you name this field `socket_hal_cb_`\n\nAdditionally, you probably do not need to keep this reference around, to be checked with the binder library.",
+      "range": {
+        "startLine": 164,
+        "startChar": 43,
+        "endLine": 164,
+        "endChar": 73
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c10148b2_154252c9",
+        "filename": "system/gd/hci/lpp_offload_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "General remark about lpp code; I think it would be better to move everything under a dedicated path `system/gd/lpp`. \n\nAdditional remark: you are building code up for more than just socket offload, but at the moment only socket offload is scheduled. What else do you expect will be added to the interface ?",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88db97f0_8b6ea8b5",
+        "filename": "system/gd/hci/lpp_offload_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Not required at this step, when all you are declaring is an alias of `SocketHalCallback`. Please use `SocketHalCallback` directly.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 2
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748c2a5d_9e91afbc",
+        "filename": "system/gd/hci/lpp_offload_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "nit: `RegisterCallback`",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc748880_ad283a54",
+        "filename": "system/gd/hci/lpp_offload_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "nit: `virtual void LppOffloadFeatures GetSupportedFeatures() \u003d 0`",
+      "range": {
+        "startLine": 81,
+        "startChar": 15,
+        "endLine": 81,
+        "endChar": 42
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3390e466_a8d21d72",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please inline this method in start(), it is never invoked independently.",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 11
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec2f93a0_29dcb8f8",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Just inline this method in the init() method, it is never called independently",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c0d0f13_b8ce95fa",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "`LppOffloadFeatures get_offload_features_supported() const {}`\nand no nullptr check",
+      "range": {
+        "startLine": 79,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 67
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a55a60a_88765576",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "`SocketCapabilities get_socket_capabilities() const {}`",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 64
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505f2032_fac44c34",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please log the socket id",
+      "range": {
+        "startLine": 97,
+        "startChar": 15,
+        "endLine": 97,
+        "endChar": 16
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "163b3658_df704a5b",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please log the socket id",
+      "range": {
+        "startLine": 105,
+        "startChar": 15,
+        "endLine": 105,
+        "endChar": 16
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1725fa2c_515c1d9b",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Add `override` specifiers to the virtual methods.",
+      "range": {
+        "startLine": 110,
+        "startChar": 7,
+        "endLine": 110,
+        "endChar": 27
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d317ea7_267f43c4",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Can you not request request the callbacks to not be null when starting the module ?\nIf this is because of a race with the socket HAL: the manager should probably be initialized first.",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf79a9fe_707f961a",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Is this field really required given how it is implemented right now ?\nWe can always come back and add it later if necessary.",
+      "range": {
+        "startLine": 133,
+        "startChar": 2,
+        "endLine": 133,
+        "endChar": 31
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d1ac03_9f51ba4d",
+        "filename": "system/gd/hci/lpp_offload_manager.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "`virtual` is redundant when `override` is used.",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 9
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc227d76_e1f89f3c",
+        "filename": "system/gd/hci/lpp_offload_socket_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "nit: `SUCCESS \u003d 0,` while not necessary, it provides clarification",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 9
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639b715b_22cbe254",
+        "filename": "system/gd/hci/lpp_offload_socket_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please follow google style guide here and in the rest of the file: `hub_id`",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c036cc_a01420f7",
+        "filename": "system/gd/hci/lpp_offload_socket_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "All of these members should be typed `uint16_t` to align with the specification.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 23
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c510e8a0_30ad1ebc",
+        "filename": "system/gd/hci/lpp_offload_socket_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "All of these declarations should be moved to the socket_hal.h header.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 0
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dffc396_f98eb7e2",
+        "filename": "system/gd/hci/lpp_offload_socket_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "We do not need one additional abstract interface here, everything can be declared directly in `LppOffloadInterface`. Removing this class will help simplifying the code.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 2
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40f0b3b_75725a98",
+        "filename": "system/include/hardware/lpp_offload_manager_interface.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "No need to expose this interface in the hardware headers.\nHardware headers existed as the shared library interface for libbluetooth.so when it was loaded as such, but that is no longer useful. GD modules in particular should not be exposed this way.",
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a4c6df_af1cb2d4",
+        "filename": "system/main/shim/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "The concrete implementation of the interface should not be in the shim.\nDoes it have to be separate from the implementation in `system/gd/hci/lpp_offload_manager.cc` ?",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd28f740_9673feed",
+        "filename": "system/main/shim/lpp_offload_manager.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:13:48Z",
+      "side": 1,
+      "message": "Please add `override` specifiers to each method.",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "04f67c824775b1efff20e062484ea616e524876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
