@@ -242,6 +242,9 @@ public:
           callbacks_->OnConnectionState(ConnectionState::DISCONNECTED, address);
         }
       }
+
+      /* Removes all registrations for connection. */
+      BTA_GATTC_CancelOpen(0, address, false);
       return;
     }
 
