@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "77114d82_658b460e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-11-15T04:11:13Z",
+      "side": 1,
+      "message": "I see. Then I think the rest of the task here is to deploy the container. Is there a doc for this?",
+      "parentUuid": "bf835ea8_db10fb8d",
+      "revId": "6a70439d074c1514ec25ef5d9fa8d88ed3f0848b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "38d79159_94081503",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
