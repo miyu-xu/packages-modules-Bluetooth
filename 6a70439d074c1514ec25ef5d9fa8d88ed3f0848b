@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c4c9cb3_c62e8d2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-11-15T03:48:28Z",
+      "side": 1,
+      "message": "Confirming -- does this also work without that CL?",
+      "revId": "6a70439d074c1514ec25ef5d9fa8d88ed3f0848b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38d79159_94081503",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-11-15T03:48:28Z",
+      "side": 1,
+      "message": "Conditional LGTM",
+      "revId": "6a70439d074c1514ec25ef5d9fa8d88ed3f0848b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
