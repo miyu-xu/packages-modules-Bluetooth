@@ -1,0 +1,126 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c9cb1da_832d5b51",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-11-15T04:39:40Z",
+      "side": 1,
+      "message": "nit) use switch.",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 426,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a8a0dc84_adb45e4f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 420,
+                "startChar": 0,
+                "endLine": 426,
+                "endChar": 0
+              },
+              "replacement": "            switch (identityAddressTypeFromNative) {\n                case 0:\n                case 2:\n                    identityAddressType \u003d BluetoothDevice.ADDRESS_TYPE_PUBLIC;\n                    break;\n                case 1:\n                case 3:\n                    identityAddressType \u003d BluetoothDevice.ADDRESS_TYPE_RANDOM;\n                    break;\n                case 0xFF:\n                    identityAddressType \u003d BluetoothDevice.ADDRESS_TYPE_ANONYMOUS;\n                    break;\n                default:\n                    identityAddressType \u003d BluetoothDevice.ADDRESS_TYPE_UNKNOWN;\n                    break;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8498f44eb8ae9b646dd8e739280bdde0d3a260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf99c0bf_9018e541",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-11-15T04:39:40Z",
+      "side": 1,
+      "message": "Can we use std::tuple\u003cRawAddress, RawAddress, tBLE_ADDR_TYPE\u003e ?",
+      "range": {
+        "startLine": 875,
+        "startChar": 19,
+        "endLine": 875,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f744e08b_d73383d8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": "  std::vector\u003cstd::tuple\u003cRawAddress, RawAddress, tBLE_ADDR_TYPE\u003e\u003e consolidated_devices;\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 891,
+                "startChar": 0,
+                "endLine": 892,
+                "endChar": 0
+              },
+              "replacement": "                  key.pid_key.identity_addr, key.pid_key.identity_addr_type);\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 912,
+                "startChar": 0,
+                "endLine": 913,
+                "endChar": 0
+              },
+              "replacement": "    if (bonded_addresses.find(std::get\u003c1\u003e(device)) !\u003d bonded_addresses.end()) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 914,
+                "startChar": 0,
+                "endLine": 916,
+                "endChar": 0
+              },
+              "replacement": "      GetInterfaceToProfiles()-\u003eevents-\u003einvoke_address_consolidate_cb(std::get\u003c0\u003e(device),\n                                                                      std::get\u003c1\u003e(device));\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 919,
+                "startChar": 0,
+                "endLine": 920,
+                "endChar": 0
+              },
+              "replacement": "              std::get\u003c0\u003e(device), std::get\u003c1\u003e(device), std::get\u003c2\u003e(device));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8498f44eb8ae9b646dd8e739280bdde0d3a260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
