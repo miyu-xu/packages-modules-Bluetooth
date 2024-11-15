@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb96aea_5b940f64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-15T18:21:12Z",
+      "side": 1,
+      "message": "Wraps framework SdpPseRecord with Pbap record class",
+      "revId": "233b441ec863ecb3fdf35bc7b506ae6884f3f993",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
