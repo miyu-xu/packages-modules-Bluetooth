@@ -1,0 +1,121 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfb5fa00_e8855834",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T04:42:06Z",
+      "side": 1,
+      "message": "Can the app have access to a `isSocketHwOffloadSupported` API ? and if so, can we throw a illegalStateException instead ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0d13f8_0c0894b7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T04:42:06Z",
+      "side": 1,
+      "message": "It was my understanding that bindListenExt was only intended to be used for offload.\n\nMeaning that this would enforce BLUETOOTH_PRIVILEGED all the time.\n\nIs there still case that this would not enforce it ?",
+      "range": {
+        "startLine": 717,
+        "startChar": 3,
+        "endLine": 719,
+        "endChar": 30
+      },
+      "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54e59c5_c18555ec",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T04:42:06Z",
+      "side": 1,
+      "message": "Should this be restricted to systemApi only ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 71,
+        "endChar": 53
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0f503207_c1bc0924",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 64,
+                "endChar": 0
+              },
+              "replacement": "     *\n     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "    @SystemApi\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 70,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "     *\n     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 71,
+                "endChar": 0
+              },
+              "replacement": "    @SystemApi\n"
+            }
+          ]
+        }
+      ],
+      "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
