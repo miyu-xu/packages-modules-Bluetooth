@@ -715,8 +715,7 @@ public class AdapterService extends Service {
          */
         if (!isAutomotiveDevice && getResources().getBoolean(R.bool.enable_phone_policy)) {
             Log.i(TAG, "Phone policy enabled");
-            mPhonePolicy = new PhonePolicy(this, new ServiceFactory());
-            mPhonePolicy.start();
+            mPhonePolicy = new PhonePolicy(this, mLooper, new ServiceFactory());
         } else {
             Log.i(TAG, "Phone policy disabled");
         }
@@ -6169,9 +6168,9 @@ public class AdapterService extends Service {
      * move all connection logic here.
      */
     public void handleProfileConnectionStateChange(
-            int profile, BluetoothDevice device, int fromState, int toState) {
+            BluetoothDevice device, int profile, int fromState, int toState) {
         if (mPhonePolicy != null) {
-            mPhonePolicy.profileConnectionStateChanged(profile, device, fromState, toState);
+            mPhonePolicy.profileConnectionStateChanged(device, profile, fromState, toState);
         }
     }
 
