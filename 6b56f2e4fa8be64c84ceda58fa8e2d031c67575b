@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a06f7eb_9974ca04",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-15T23:59:52Z",
+      "side": 1,
+      "message": "Address type can only be either public or random. `ble_address_with_type.h` describes `own_address_type` which is different from the address type.\n\nAnything other than a public address type is random address type.",
+      "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
