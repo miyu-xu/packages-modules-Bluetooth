@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "199187fd_805386b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T22:42:18Z",
+      "side": 1,
+      "message": "Should we have an harder failure ? like throw IllegalStateException ?\n\nI think it will help to have earlier signal in case of miss-usage",
+      "revId": "ff1160742e0b63c84d42fb42e1531ef2ffff281a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
