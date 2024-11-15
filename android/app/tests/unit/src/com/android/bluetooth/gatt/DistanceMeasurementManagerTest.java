@@ -19,6 +19,7 @@ package com.android.bluetooth.gatt;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.after;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.verify;
@@ -30,6 +31,8 @@ import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.DistanceMeasurementResult;
 import android.bluetooth.le.IDistanceMeasurementCallback;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.RemoteException;
 
 import androidx.test.filters.SmallTest;
@@ -57,6 +60,8 @@ public class DistanceMeasurementManagerTest {
 
     @Mock private DistanceMeasurementNativeInterface mDistanceMeasurementNativeInterface;
     @Mock private AdapterService mAdapterService;
+    @Mock private Context mContext;
+    @Mock private PackageManager mPackageManager;
     @Mock private IDistanceMeasurementCallback mCallback;
     private DistanceMeasurementManager mDistanceMeasurementManager;
     private UUID mUuid;
@@ -67,6 +72,9 @@ public class DistanceMeasurementManagerTest {
 
     @Before
     public void setUp() throws Exception {
+        doReturn(mContext).when(mAdapterService).getApplicationContext();
+        doReturn(mPackageManager).when(mContext).getPackageManager();
+        doReturn(true).when(mPackageManager).hasSystemFeature(any());
         doReturn(IDENTITY_ADDRESS).when(mAdapterService).getIdentityAddress(IDENTITY_ADDRESS);
         DistanceMeasurementNativeInterface.setInstance(mDistanceMeasurementNativeInterface);
         mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
