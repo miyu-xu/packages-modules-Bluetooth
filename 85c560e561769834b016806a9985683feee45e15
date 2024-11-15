@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "146238f4_dc54c073",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T22:53:44Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "85c560e561769834b016806a9985683feee45e15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
