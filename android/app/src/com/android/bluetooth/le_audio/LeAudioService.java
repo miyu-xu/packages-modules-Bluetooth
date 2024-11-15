@@ -24,8 +24,8 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static com.android.bluetooth.bass_client.BassConstants.INVALID_BROADCAST_ID;
 import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
-import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastApiManagePrimaryGroup;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
 import static com.android.bluetooth.flags.Flags.leaudioUseAudioModeListener;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -1846,7 +1846,7 @@ public class LeAudioService extends ProfileService {
         mAdapterService.notifyProfileConnectionStateChangeToGatt(
                 BluetoothProfile.LE_AUDIO, prevState, newState);
         mAdapterService.handleProfileConnectionStateChange(
-                BluetoothProfile.LE_AUDIO, device, prevState, newState);
+                device, BluetoothProfile.LE_AUDIO, prevState, newState);
         mAdapterService
                 .getActiveDeviceManager()
                 .profileConnectionStateChanged(
