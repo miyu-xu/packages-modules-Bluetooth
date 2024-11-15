@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4b3ea3_91fe78b0",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T00:58:46Z",
+      "side": 1,
+      "message": "`isSocketOffloadSupported` or `isSocketHardwareOffloadSupported`, but no abbreviations in API names. Everywhere else in the code we use \u0027socket offload\u0027 so I would go with the first option.",
+      "range": {
+        "startLine": 338,
+        "startChar": 12,
+        "endLine": 338,
+        "endChar": 38
+      },
+      "revId": "69b73186b3be6a216becb04408d43dea52d0e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "646506b5_f805aec4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T00:58:46Z",
+      "side": 1,
+      "message": "nit: This name might be too obscure, LPP is not used much in docs.\nHow about `BT_PROPERTY_LOCAL_SOCKET_OFFLOAD_FEATURES` ?\n\nI am also not sure why we need to store this information; it can be retrieved at BT bringup.",
+      "range": {
+        "startLine": 52,
+        "startChar": 21,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "69b73186b3be6a216becb04408d43dea52d0e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54a94b74_2d15cf25",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5945,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T00:58:46Z",
+      "side": 1,
+      "message": "This check is specific to L2CAP Coc, will you update it for RFCOMM later ?\n\nSame remark about the API in general: when RFCOMM socket offload is added, will it mean that L2CAP COC offload is supported, or RFCOMM socket offload, any or both ?\nThe use of this API as a guarding check is very limited in this instance.",
+      "range": {
+        "startLine": 5945,
+        "startChar": 13,
+        "endLine": 5945,
+        "endChar": 24
+      },
+      "revId": "69b73186b3be6a216becb04408d43dea52d0e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
