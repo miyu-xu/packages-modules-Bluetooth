@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b37708e0_a5a59b0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-15T02:05:43Z",
+      "side": 1,
+      "message": "@aarthibc@google.com Please help to review. This is related to the HFP active device part.",
+      "revId": "4561f2454b651f65ea991a53b59589cd927291b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e42d229_619f00fe",
