@@ -5848,7 +5848,7 @@ public class AdapterService extends Service {
     }
 
     @VisibleForTesting
-    void bleOnToOn() {
+    synchronized void bleOnToOn() {
         mAdapterStateMachine.sendMessage(AdapterState.USER_TURN_ON);
     }
 
