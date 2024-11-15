@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5768c5_3de6c367",
+        "filename": "system/stack/include/avdt_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T02:22:35Z",
+      "side": 1,
+      "message": "`fmt::format`",
+      "range": {
+        "startLine": 132,
+        "startChar": 13,
+        "endLine": 132,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fc31723b_d59d7078",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/avdt_api.h",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 34,
+                "endChar": 0
+              },
+              "replacement": "#include \"fmt/format.h\"\n"
+            },
+            {
+              "path": "system/stack/include/avdt_api.h",
+              "range": {
+                "startLine": 132,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "      return fmt::format(\"UNKNOWN[{}]\", role);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3965ba7b90332b6e2357a5fb36f64fe743eee28a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
