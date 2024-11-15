@@ -34,6 +34,24 @@
       "parentUuid": "ffc8185f_1eab8ea1",
       "revId": "1cd86fcb841c128a3c39fe6b90a43f43b35623e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20371119_e13cded1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-15T07:57:46Z",
+      "side": 1,
+      "message": "Added a unit test under `AdapterServiceTest`. PTAL. Thank you.",
+      "parentUuid": "b46144a0_1100a4e6",
+      "revId": "1cd86fcb841c128a3c39fe6b90a43f43b35623e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
