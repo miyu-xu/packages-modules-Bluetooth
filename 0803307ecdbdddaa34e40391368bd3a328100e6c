@@ -108,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eadb39e1_c4f41f0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3524514
+      },
+      "writtenOn": "2024-11-15T12:10:32Z",
+      "side": 1,
+      "message": "Hi @siyuanh@google.com, just a friendly ping again, any comment on what @hdmoon@google.com mentioned or are we good to proceed with the review for this change? Thanks.",
+      "parentUuid": "445fa755_defdd3b9",
+      "revId": "0803307ecdbdddaa34e40391368bd3a328100e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43d9dc7d_33efdb05",
         "filename": "system/stack/btm/btm_ble_addr.cc",
         "patchSetId": 5
