@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f42fe2_f9ac833c",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientBinder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-15T18:56:09Z",
+      "side": 1,
+      "message": "Resolved OOB",
+      "parentUuid": "ba43adcd_4492131d",
+      "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbe152af_96ad15ac",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dbc40ba_296f0c6d",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-15T18:56:09Z",
+      "side": 1,
+      "message": "Resolved OOB",
+      "parentUuid": "fbe152af_96ad15ac",
       "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
