@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a85dbab4_9b55b3de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-15T17:16:50Z",
+      "side": 1,
+      "message": "I am assuming that this is just removing unused code, but can you confirm?",
+      "revId": "f42a4ac5cea1213ab3839fca1a6826c183083688",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
