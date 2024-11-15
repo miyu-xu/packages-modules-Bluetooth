@@ -68,6 +68,52 @@
       },
       "revId": "c6cb7f09dd0eead7e86c8362630ecb34b67d4f5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62887f08_d9819727",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T19:02:13Z",
+      "side": 1,
+      "message": "We should be able to do the logic without the need to expose the internal handler.\n\nBy passing a testlooper.looper instead of a HandlerThread.looper, we could inspect the message without the need to have the handler accessed externally",
+      "range": {
+        "startLine": 89,
+        "startChar": 7,
+        "endLine": 90,
+        "endChar": 39
+      },
+      "revId": "c6cb7f09dd0eead7e86c8362630ecb34b67d4f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3eaf02_0d6e87a9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T19:02:13Z",
+      "side": 1,
+      "message": "never()",
+      "range": {
+        "startLine": 850,
+        "startChar": 32,
+        "endLine": 850,
+        "endChar": 40
+      },
+      "revId": "c6cb7f09dd0eead7e86c8362630ecb34b67d4f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
