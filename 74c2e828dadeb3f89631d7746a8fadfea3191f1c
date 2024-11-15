@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f42e09_dcf10a27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-15T17:41:03Z",
+      "side": 1,
+      "message": "Initialization of supported features moved to builder pattern",
+      "revId": "74c2e828dadeb3f89631d7746a8fadfea3191f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
