@@ -164,6 +164,24 @@
       "parentUuid": "5369dece_da3edb2d",
       "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a23fe0b_2d2ed2b0",
+        "filename": "pandora/interfaces/pandora_experimental/vcp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-15T21:37:43Z",
+      "side": 1,
+      "message": "Done.\nI was almost gonna do it now, but there isn\u0027t proper data to feed in the cookie as this is just an java instance. The Connection object is actually sending the BluetoothDevice address as byte, but the aics instance object doesn\u0027t expose such identifier.",
+      "parentUuid": "438345e5_ed2d5018",
+      "revId": "065de1696341be18f5b0701e9bb4a80f0642a6ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
