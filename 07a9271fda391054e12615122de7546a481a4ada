@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9708afa_e66aaafd",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-15T21:51:56Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: cannot find symbol\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    cannot find symbol\n        @FlaggedApi(Flags.FLAG_DIRECTED_ADVERTISING_API)\n                         ^\n      symbol:   variable FLAG_DIRECTED_ADVERTISING_API\n      location: class Flags\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P84978124/targets/cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 52
+      },
+      "revId": "07a9271fda391054e12615122de7546a481a4ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
