@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "128e26a4_fb227188",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:17:54Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Added `isLeCocSocketOffloadSupported` to specify the supported protocol.",
+      "parentUuid": "fc4b3ea3_91fe78b0",
+      "range": {
+        "startLine": 338,
+        "startChar": 12,
+        "endLine": 338,
+        "endChar": 38
+      },
+      "revId": "69b73186b3be6a216becb04408d43dea52d0e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "646506b5_f805aec4",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0439102_5bf00761",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:17:54Z",
+      "side": 1,
+      "message": "I would like to keep the current name because we may add more low power processor features out of socket area.",
+      "parentUuid": "646506b5_f805aec4",
+      "range": {
+        "startLine": 52,
+        "startChar": 21,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "69b73186b3be6a216becb04408d43dea52d0e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54a94b74_2d15cf25",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-15T00:58:46Z",
       "side": 1,
       "message": "This check is specific to L2CAP Coc, will you update it for RFCOMM later ?\n\nSame remark about the API in general: when RFCOMM socket offload is added, will it mean that L2CAP COC offload is supported, or RFCOMM socket offload, any or both ?\nThe use of this API as a guarding check is very limited in this instance.",
+      "range": {
+        "startLine": 5945,
+        "startChar": 13,
+        "endLine": 5945,
+        "endChar": 24
+      },
+      "revId": "69b73186b3be6a216becb04408d43dea52d0e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dc47382_5b4b5db6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5945,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:17:54Z",
+      "side": 1,
+      "message": "That\u0027s good catch. BluetoothSocket (both LE and RFCOMM) requires `BluetoothAdapter.STATE_ON`. Replaced it with `isEnabled()`.",
+      "parentUuid": "54a94b74_2d15cf25",
       "range": {
         "startLine": 5945,
         "startChar": 13,
