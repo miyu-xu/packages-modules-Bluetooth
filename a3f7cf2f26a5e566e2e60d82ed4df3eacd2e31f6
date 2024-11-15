@@ -224,6 +224,30 @@
       },
       "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f95b2a_a5b146a4",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-15T20:13:09Z",
+      "side": 1,
+      "message": "OK, I suggest rebasing and kicking off the presubmit after that.",
+      "parentUuid": "c9be6ada_5071467e",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 56
+      },
+      "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
