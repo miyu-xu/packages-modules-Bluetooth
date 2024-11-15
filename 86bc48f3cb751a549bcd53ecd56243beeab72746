@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab36bf9_54a969da",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-15T17:46:42Z",
+      "side": 1,
+      "message": "should this be address first, then the direction ?",
+      "range": {
+        "startLine": 320,
+        "startChar": 81,
+        "endLine": 320,
+        "endChar": 94
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "333c2b35_5df53505",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.cc",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 321,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"{}, No {} PAC found matching codec: {}. Stop the activation.\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "86bc48f3cb751a549bcd53ecd56243beeab72746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0fd934a_2db9ec38",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-15T17:46:42Z",
+      "side": 1,
+      "message": "Same as above, bad order od direction and address ?",
+      "range": {
+        "startLine": 346,
+        "startChar": 81,
+        "endLine": 346,
+        "endChar": 94
+      },
+      "revId": "86bc48f3cb751a549bcd53ecd56243beeab72746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
