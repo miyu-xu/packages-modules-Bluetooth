@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10f58e12_4aeb7b8b",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-15T21:54:26Z",
+      "side": 1,
+      "message": "This doesn\u0027t really explain why we don\u0027t want to expose it. Is it because we don\u0027t want to have too many advertising triggered by 3P apps?",
+      "range": {
+        "startLine": 259,
+        "startChar": 13,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "07a9271fda391054e12615122de7546a481a4ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9708afa_e66aaafd",
         "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
         "patchSetId": 18
