@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f4b5c9c_21b940bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-15T00:33:31Z",
+      "side": 1,
+      "message": "API +1 for me. Will let @asapperstein@google.com validate and +2.",
+      "revId": "a88a1bbf657cf7ce1757556fb1f9f337e343d098",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "345bf570_aadfa313",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 1476,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-15T00:33:31Z",
+      "side": 1,
+      "message": "nit: `unicast`",
+      "range": {
+        "startLine": 1476,
+        "startChar": 40,
+        "endLine": 1476,
+        "endChar": 41
+      },
+      "revId": "a88a1bbf657cf7ce1757556fb1f9f337e343d098",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
