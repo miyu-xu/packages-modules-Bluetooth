@@ -16,6 +16,24 @@
       "message": "Missing flag stanza:\n\n`Flag: EXEMPT, minor bug fix`",
       "revId": "7d831f20ea97865c29309257f7a11e5a2ed9d6d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15757dd6_348efcfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-15T16:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa48d2e2_ef99da74",
+      "revId": "7d831f20ea97865c29309257f7a11e5a2ed9d6d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
