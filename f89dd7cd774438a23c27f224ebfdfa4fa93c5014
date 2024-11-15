@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c67ea8_6031196c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:21:32Z",
+      "side": 1,
+      "message": "nit: no abbreviations `numberOfSupportedOffloadedLeCocSockets`",
+      "range": {
+        "startLine": 137,
+        "startChar": 16,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "f89dd7cd774438a23c27f224ebfdfa4fa93c5014",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a37a3bd4_d3b5ca4b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 7132,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:21:32Z",
+      "side": 1,
+      "message": "I don\u0027t think the constant is useful here, just `val \u003e 0` passes the correct intention.",
+      "range": {
+        "startLine": 7132,
+        "startChar": 22,
+        "endLine": 7132,
+        "endChar": 43
+      },
+      "revId": "f89dd7cd774438a23c27f224ebfdfa4fa93c5014",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86f96587_c87c0502",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T23:21:32Z",
+      "side": 1,
+      "message": "Please keep a consistent naming for this value",
+      "range": {
+        "startLine": 242,
+        "startChar": 10,
+        "endLine": 242,
+        "endChar": 45
+      },
+      "revId": "f89dd7cd774438a23c27f224ebfdfa4fa93c5014",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
