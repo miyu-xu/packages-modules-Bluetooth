@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fff792fb_18f8d1fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-15T16:08:39Z",
+      "side": 1,
+      "message": "Do you mind if I edit the CL for adding a Flag:, Test: stanza to make linters happy ?",
+      "revId": "5676a836e7d8f7b9909935614a8eed67b8bab9b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
