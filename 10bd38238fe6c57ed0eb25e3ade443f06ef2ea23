@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c1b06c4_95b22a2a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:19:51Z",
+      "side": 1,
+      "message": "Yes, app has access to `isLeCocSocketOffloadSupported` because this code is under BLUETOOTH_PRIVILEGED enforcement. Changed to check the specific protocol type and to throw `illegalStateException`",
+      "parentUuid": "bfb5fa00_e8855834",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa0d13f8_0c0894b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-15T04:42:06Z",
       "side": 1,
       "message": "It was my understanding that bindListenExt was only intended to be used for offload.\n\nMeaning that this would enforce BLUETOOTH_PRIVILEGED all the time.\n\nIs there still case that this would not enforce it ?",
+      "range": {
+        "startLine": 717,
+        "startChar": 3,
+        "endLine": 719,
+        "endChar": 30
+      },
+      "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6482e703_da21b990",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:19:51Z",
+      "side": 1,
+      "message": "The new socket API `listenUsingSocketSettings()` calls `bindListenExt()` for both offload and non-offload cases.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/3/framework/java/android/bluetooth/BluetoothAdapter.java",
+      "parentUuid": "fa0d13f8_0c0894b7",
       "range": {
         "startLine": 717,
         "startChar": 3,
@@ -114,6 +162,30 @@
           ]
         }
       ],
+      "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ee8dbee_2df80a79",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-15T21:19:51Z",
+      "side": 1,
+      "message": "If we restricted them to systemApi, can framework check the socket settings are for \u0027DATA_PATH_HW_OFFLOAD\u0027 or not when 3P app calls the new socket API `listenUsingSocketSettings()`? Currently, framework doesn\u0027t check if the socket is using `DATA_PATH_NO_OFFLOAD` or `DATA_PATH_HW_OFFLOAD`. So, it seems we can use it as systemApi. Restricted to SystemApi.",
+      "parentUuid": "b54e59c5_c18555ec",
+      "range": {
+        "startLine": 61,
+        "startChar": 3,
+        "endLine": 71,
+        "endChar": 53
+      },
       "revId": "10bd38238fe6c57ed0eb25e3ade443f06ef2ea23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
