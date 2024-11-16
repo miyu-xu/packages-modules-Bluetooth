@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38730d89_bf77a88d",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-16T00:16:57Z",
+      "side": 1,
+      "message": "\u0027connection_id` is shared with host app, offload app, host stack, and offload stack globally. The static counter can be used for more than identify a socket. \n\nWe had similar discussion in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3006200/comment/aad8cd95_c3d5ef89/",
+      "parentUuid": "947661e2_f7267816",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1120,
+        "endChar": 1
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9d51343_3e275a8c",
         "filename": "system/include/hardware/bt_sock.h",
         "patchSetId": 4
@@ -83,6 +107,30 @@
       "writtenOn": "2024-11-15T23:35:50Z",
       "side": 1,
       "message": "What is the `connection_id` here, is it the ACL connection handle ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 24
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2589db3_9464bb7c",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-16T00:16:57Z",
+      "side": 1,
+      "message": "That is connection id of the socket which is shared with host app, offload app, host stack, and offload stack globally. It is used as `socketId` in SocketContext.\n\nhttp://aosp/3303007/24/bluetooth/socket/aidl/android/hardware/bluetooth/socket/SocketContext.aidl",
+      "parentUuid": "b9d51343_3e275a8c",
       "range": {
         "startLine": 61,
         "startChar": 11,
