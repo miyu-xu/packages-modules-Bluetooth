@@ -16,6 +16,24 @@
       "message": "I am assuming that this is just removing unused code, but can you confirm?",
       "revId": "f42a4ac5cea1213ab3839fca1a6826c183083688",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe1c6fb_05c560bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-16T10:14:23Z",
+      "side": 1,
+      "message": "This removes the event mapping and invokes the ultimate event straight away.\nInvocation of BTA_AV_API_START_EVT will go through bta_av_api_to_ssm conversion function and end up being BTA_AV_AP_START_EVT.",
+      "parentUuid": "a85dbab4_9b55b3de",
+      "revId": "f42a4ac5cea1213ab3839fca1a6826c183083688",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
