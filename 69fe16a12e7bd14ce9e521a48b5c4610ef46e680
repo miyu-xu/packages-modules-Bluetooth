@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f34918ef_bc3cc939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-16T00:28:29Z",
+      "side": 1,
+      "message": "with 2+ data items `metadata` is a reasonable container for size/version, and anything else to be added in future.",
+      "revId": "69fe16a12e7bd14ce9e521a48b5c4610ef46e680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
