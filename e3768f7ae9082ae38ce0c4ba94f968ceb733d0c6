@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd88d6e6_bdeb5aac",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-16T00:02:23Z",
+      "side": 1,
+      "message": "Identity address type will always be used in conjunction with identity address. It would be better to provide an API which can get both at the same time.",
+      "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
