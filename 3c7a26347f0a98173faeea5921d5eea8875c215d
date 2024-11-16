@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7310f9c8_4264bb1e",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-16T00:27:30Z",
+      "side": 1,
+      "message": "nice",
+      "range": {
+        "startLine": 1628,
+        "startChar": 1,
+        "endLine": 1636,
+        "endChar": 0
+      },
+      "revId": "3c7a26347f0a98173faeea5921d5eea8875c215d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
