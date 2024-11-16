@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b992839b_d488c1b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-16T00:23:59Z",
+      "side": 1,
+      "message": "Clean up and populate obex fake and better map client method naming",
+      "revId": "e51864ee932a70e50aa0df86aef7aac8b1e0e459",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
