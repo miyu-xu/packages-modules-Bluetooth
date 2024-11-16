@@ -163,9 +163,8 @@ public:
   }
 
   void OnExtAudioInDescriptionChanged(const RawAddress& address, uint8_t ext_input_id,
-                                      std::string description, bool is_writable) {
-    log::info("address={}, ext_input_id={}, description={}, is_writable={}", address, ext_input_id,
-              description, is_writable);
+                                      std::string descr) {
+    log::info("address={}, ext_input_id={}, descr={}", address, ext_input_id, descr);
     log::info("Not implemented");
   }
 };

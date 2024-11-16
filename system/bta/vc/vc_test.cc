@@ -118,9 +118,7 @@ public:
                int8_t max),
               (override));
   MOCK_METHOD((void), OnExtAudioInDescriptionChanged,
-              (const RawAddress& address, uint8_t ext_input_id, std::string description,
-               bool is_writable),
-              (override));
+              (const RawAddress& address, uint8_t ext_input_id, std::string descr), (override));
 };
 
 class VolumeControlTest : public ::testing::Test {
@@ -1394,9 +1392,9 @@ TEST_F(VolumeControlCallbackTest, test_audio_input_status_changed_malformed) {
 }
 
 TEST_F(VolumeControlCallbackTest, test_audio_input_description_changed) {
-  std::string description = "SPDIF";
-  std::vector<uint8_t> value(description.begin(), description.end());
-  EXPECT_CALL(callbacks, OnExtAudioInDescriptionChanged(test_address, _, description, _));
+  std::string descr = "SPDIF";
+  std::vector<uint8_t> value(descr.begin(), descr.end());
+  EXPECT_CALL(callbacks, OnExtAudioInDescriptionChanged(test_address, _, descr));
   GetNotificationEvent(0x005e, value);
 }
 
@@ -1516,9 +1514,9 @@ TEST_F(VolumeControlValueGetTest, test_get_ext_audio_in_gain_props) {
 TEST_F(VolumeControlValueGetTest, test_get_ext_audio_in_description) {
   VolumeControl::Get()->GetExtAudioInDescription(test_address, 1);
   EXPECT_TRUE(cb);
-  std::string description = "AUX-IN";
-  std::vector<uint8_t> value(description.begin(), description.end());
-  EXPECT_CALL(callbacks, OnExtAudioInDescriptionChanged(test_address, 1, description, _));
+  std::string descr = "AUX-IN";
+  std::vector<uint8_t> value(descr.begin(), descr.end());
+  EXPECT_CALL(callbacks, OnExtAudioInDescriptionChanged(test_address, 1, descr));
   cb(conn_id, GATT_SUCCESS, handle, (uint16_t)value.size(), value.data(), cb_data);
 }
 
