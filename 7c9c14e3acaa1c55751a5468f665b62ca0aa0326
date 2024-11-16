@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b5f7682_645a6737",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-16T00:21:16Z",
+      "side": 1,
+      "message": "Properly abstract PbapClientRequest with the 2 children\n`operation` no longer a member and abort functionality removed",
+      "revId": "7c9c14e3acaa1c55751a5468f665b62ca0aa0326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9148f01e_8813ec58",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientRequest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-16T00:21:16Z",
+      "side": 1,
+      "message": "Is it expected that HeaderSet is created both in constructor and class initialization ?",
+      "fixSuggestions": [
+        {
+          "fixId": "043012d7_f96ac605",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientRequest.java",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "    protected HeaderSet mHeaderSet;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7c9c14e3acaa1c55751a5468f665b62ca0aa0326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb72fc36_2812c057",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/RequestPullPhonebookMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-16T00:21:16Z",
+      "side": 1,
+      "message": "Propose `PbapPhonebookRequest` or something similar (not starting with verb)",
+      "range": {
+        "startLine": 30,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "63bd43b3_1898735d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/obex/RequestPullPhonebookMetadata.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "final class PullPhonebookMetadataRequest extends PbapClientRequest {\n    private static final String TAG \u003d PullPhonebookMetadataRequest.class.getSimpleName();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/obex/RequestPullPhonebookMetadata.java",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 44,
+                "endChar": 0
+              },
+              "replacement": "    PullPhonebookMetadataRequest(String phonebook, PbapApplicationParameters params) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7c9c14e3acaa1c55751a5468f665b62ca0aa0326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
