@@ -51,13 +51,13 @@ enum class Status {
 class StreamCallbacks {
 public:
   virtual ~StreamCallbacks() {}
-  virtual BluetoothAudioStatus StartStream(bool /*low_latency*/) const {
-    return BluetoothAudioStatus::FAILURE;
+  virtual Status StartStream(bool /*low_latency*/) const {
+    return Status::FAILURE;
   }
-  virtual BluetoothAudioStatus SuspendStream() const { return BluetoothAudioStatus::FAILURE; }
-  virtual BluetoothAudioStatus StopStream() const { return SuspendStream(); }
-  virtual BluetoothAudioStatus SetLatencyMode(bool /*low_latency*/) const {
-    return BluetoothAudioStatus::FAILURE;
+  virtual Status SuspendStream() const { return Status::FAILURE; }
+  virtual Status StopStream() const { return SuspendStream(); }
+  virtual Status SetLatencyMode(bool /*low_latency*/) const {
+    return Status::FAILURE;
   }
 };
 
@@ -90,8 +90,8 @@ void set_audio_low_latency_mode_allowed(bool allowed);
 // StreamStarted, StreamSuspended
 void start_session();
 void end_session();
-void ack_stream_started(BluetoothAudioStatus status);
-void ack_stream_suspended(BluetoothAudioStatus status);
+void ack_stream_started(Status status);
+void ack_stream_suspended(Status status);
 
 // Read from the FMQ of BluetoothAudio HAL
 size_t read(uint8_t* p_buf, uint32_t len);
@@ -201,6 +201,6 @@ tA2DP_STATUS parse_a2dp_configuration(btav_a2dp_codec_index_t codec_index,
 
 namespace fmt {
 template <>
-struct formatter<::bluetooth::audio::a2dp::BluetoothAudioStatus>
-    : enum_formatter<::bluetooth::audio::a2dp::BluetoothAudioStatus> {};
+struct formatter<::bluetooth::audio::a2dp::Status>
+    : enum_formatter<::bluetooth::audio::a2dp::Status> {};
 }  // namespace fmt

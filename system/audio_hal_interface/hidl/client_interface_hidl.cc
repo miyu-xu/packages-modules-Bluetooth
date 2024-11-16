@@ -120,7 +120,7 @@ public:
     }
     log::verbose("result={}, delay={}, data={} byte(s), timestamp={}", retval,
                  remote_delay_report_ns, total_bytes_read, toString(transmittedOctetsTimeStamp));
-    _hidl_cb((retval ? BluetoothAudioStatus::SUCCESS : BluetoothAudioStatus::FAILURE),
+    _hidl_cb((retval ? Status::SUCCESS : Status::FAILURE),
              remote_delay_report_ns, total_bytes_read, transmittedOctetsTimeStamp);
     return Void();
   }
@@ -291,10 +291,10 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
   std::promise<void> openProvider_promise;
   auto openProvider_future = openProvider_promise.get_future();
   auto openProvider_cb = [&provider_ = this->provider_, &openProvider_promise](
-                                 BluetoothAudioStatus status,
+                                 Status status,
                                  const android::sp<IBluetoothAudioProvider>& provider) {
     log::info("openProvider_cb({})", toString(status));
-    if (status == BluetoothAudioStatus::SUCCESS) {
+    if (status == Status::SUCCESS) {
       provider_ = provider;
     }
     if (!provider_) {
@@ -352,10 +352,10 @@ void BluetoothAudioClientInterface::FetchAudioProvider_2_1() {
   std::promise<void> openProvider_promise;
   auto openProvider_future = openProvider_promise.get_future();
   auto openProvider_cb = [&provider_2_1_ = this->provider_2_1_, &openProvider_promise](
-                                 BluetoothAudioStatus status,
+                                 Status status,
                                  const android::sp<IBluetoothAudioProvider_2_1>& provider_2_1) {
     log::info("openProvider_cb({})", toString(status));
-    if (status == BluetoothAudioStatus::SUCCESS) {
+    if (status == Status::SUCCESS) {
       provider_2_1_ = provider_2_1;
     }
     if (!provider_2_1_) {
@@ -502,15 +502,15 @@ int BluetoothAudioClientInterface::StartSession() {
   android::sp<IBluetoothAudioPort> stack_if = new BluetoothAudioPortImpl(transport_, provider_);
 
   std::unique_ptr<DataMQ> tempDataMQ;
-  BluetoothAudioStatus session_status;
+  Status session_status;
 
   std::promise<void> hidl_startSession_promise;
   auto hidl_startSession_future = hidl_startSession_promise.get_future();
   auto hidl_cb = [&session_status, &tempDataMQ, &hidl_startSession_promise](
-                         BluetoothAudioStatus status, const DataMQ::Descriptor& dataMQ) {
+                         Status status, const DataMQ::Descriptor& dataMQ) {
     log::info("startSession_cb({})", toString(status));
     session_status = status;
-    if (status == BluetoothAudioStatus::SUCCESS && dataMQ.isHandleValid()) {
+    if (status == Status::SUCCESS && dataMQ.isHandleValid()) {
       tempDataMQ.reset(new DataMQ(dataMQ));
     }
     hidl_startSession_promise.set_value();
@@ -526,7 +526,7 @@ int BluetoothAudioClientInterface::StartSession() {
   if (tempDataMQ && tempDataMQ->isValid()) {
     mDataMQ = std::move(tempDataMQ);
   } else if (transport_->GetSessionType() == SessionType::A2DP_HARDWARE_OFFLOAD_DATAPATH &&
-             session_status == BluetoothAudioStatus::SUCCESS) {
+             session_status == Status::SUCCESS) {
     transport_->ResetPresentationPosition();
     session_started_ = true;
     return 0;
@@ -560,15 +560,15 @@ int BluetoothAudioClientInterface::StartSession_2_1() {
   android::sp<IBluetoothAudioPort> stack_if = new BluetoothAudioPortImpl(transport_, provider_2_1_);
 
   std::unique_ptr<DataMQ> tempDataMQ;
-  BluetoothAudioStatus session_status;
+  Status session_status;
 
   std::promise<void> hidl_startSession_promise;
   auto hidl_startSession_future = hidl_startSession_promise.get_future();
   auto hidl_cb = [&session_status, &tempDataMQ, &hidl_startSession_promise](
-                         BluetoothAudioStatus status, const DataMQ::Descriptor& dataMQ) {
+                         Status status, const DataMQ::Descriptor& dataMQ) {
     log::info("startSession_cb({})", toString(status));
     session_status = status;
-    if (status == BluetoothAudioStatus::SUCCESS && dataMQ.isHandleValid()) {
+    if (status == Status::SUCCESS && dataMQ.isHandleValid()) {
       tempDataMQ.reset(new DataMQ(dataMQ));
     }
     hidl_startSession_promise.set_value();
@@ -584,7 +584,7 @@ int BluetoothAudioClientInterface::StartSession_2_1() {
   if (tempDataMQ && tempDataMQ->isValid()) {
     mDataMQ = std::move(tempDataMQ);
   } else if (transport_->GetSessionType_2_1() == SessionType_2_1::A2DP_HARDWARE_OFFLOAD_DATAPATH &&
-             session_status == BluetoothAudioStatus::SUCCESS) {
+             session_status == Status::SUCCESS) {
     transport_->ResetPresentationPosition();
     session_started_ = true;
     return 0;
@@ -608,7 +608,7 @@ void BluetoothAudioClientInterface::StreamStarted(const BluetoothAudioCtrlAck& a
     log::info("{} ignored", ack);
     return;
   }
-  BluetoothAudioStatus status = BluetoothAudioCtrlAckToHalStatus(ack);
+  Status status = BluetoothAudioCtrlAckToHalStatus(ack);
 
   ::android::hardware::Return<void> hidl_retval;
   if (provider_2_1_ != nullptr) {
@@ -630,7 +630,7 @@ void BluetoothAudioClientInterface::StreamSuspended(const BluetoothAudioCtrlAck&
     log::info("{} ignored", ack);
     return;
   }
-  BluetoothAudioStatus status = BluetoothAudioCtrlAckToHalStatus(ack);
+  Status status = BluetoothAudioCtrlAckToHalStatus(ack);
 
   ::android::hardware::Return<void> hidl_retval;
   if (provider_2_1_ != nullptr) {
