@@ -32,7 +32,7 @@ namespace a2dp {
 
 /// Loosely copied after the definition from the Bluetooth Audio interface:
 /// audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
-enum class BluetoothAudioStatus {
+enum class Status {
   SUCCESS = 0,
   UNKNOWN,
   UNSUPPORTED_CODEC_CONFIGURATION,
@@ -48,9 +48,9 @@ enum class BluetoothAudioStatus {
 /// by the methods ack_stream_started, ack_stream_suspended.
 ///
 /// The callbacks are always invoked from one of the binder threads.
-class BluetoothAudioPort {
+class StreamCallbacks {
 public:
-  virtual ~BluetoothAudioPort() {}
+  virtual ~StreamCallbacks() {}
   virtual BluetoothAudioStatus StartStream(bool /*low_latency*/) const {
     return BluetoothAudioStatus::FAILURE;
   }
@@ -72,7 +72,8 @@ bool is_hal_enabled();
 bool is_hal_offloading();
 
 // Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* message_loop, BluetoothAudioPort const* audio_port,
+bool init(bluetooth::common::MessageLoopThread* message_loop,
+          StreamCallbacks const* strean_callbacks,
           bool offload_enabled);
 
 // Clean up BluetoothAudio HAL
