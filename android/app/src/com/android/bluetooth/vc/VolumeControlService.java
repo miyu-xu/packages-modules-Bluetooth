@@ -74,7 +74,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -108,8 +107,7 @@ public class VolumeControlService extends ProfileService {
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
             new HashMap<>();
-    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs =
-            new ConcurrentHashMap<>();
+    private final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs = new HashMap<>();
     private final Map<Integer, Integer> mGroupVolumeCache = new HashMap<>();
     private final Map<Integer, Boolean> mGroupMuteCache = new HashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceVolumeCache = new HashMap<>();
@@ -950,9 +948,7 @@ public class VolumeControlService extends ProfileService {
             return;
         }
 
-        mAudioInputs.put(
-                device,
-                new VolumeControlInputDescriptor(mNativeInterface, device, numberOfExternalInputs));
+        mAudioInputs.put(device, new VolumeControlInputDescriptor(numberOfExternalInputs));
     }
 
     void handleDeviceAvailable(
@@ -1058,9 +1054,9 @@ public class VolumeControlService extends ProfileService {
     void onExtAudioInStatusChanged(BluetoothDevice device, int id, int status) {
         String logInfo =
                 "onExtAudioInStatusChanged("
-                        + ("device=" + device)
-                        + (", id=" + id)
-                        + (", status=" + status)
+                        + ("device:" + device)
+                        + (", id" + id)
+                        + (", status" + status)
                         + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1081,9 +1077,9 @@ public class VolumeControlService extends ProfileService {
     void onExtAudioInTypeChanged(BluetoothDevice device, int id, int type) {
         String logInfo =
                 "onExtAudioInTypeChanged("
-                        + ("device=" + device)
-                        + (", id=" + id)
-                        + (", type=" + type)
+                        + ("device:" + device)
+                        + (", id" + id)
+                        + (", type" + type)
                         + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1104,9 +1100,9 @@ public class VolumeControlService extends ProfileService {
     void onExtAudioInDescriptionChanged(BluetoothDevice device, int id, String description) {
         String logInfo =
                 "onExtAudioInDescriptionChanged("
-                        + ("device=" + device)
-                        + (", id=" + id)
-                        + (", description=" + description)
+                        + ("device:" + device)
+                        + (", id" + id)
+                        + (", description" + description)
                         + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1127,11 +1123,9 @@ public class VolumeControlService extends ProfileService {
     void onExtAudioInGainPropsChanged(BluetoothDevice device, int id, int unit, int min, int max) {
         String logInfo =
                 "onExtAudioInGainPropsChanged("
-                        + ("device=" + device)
-                        + (", id=" + id)
-                        + (", unit=" + unit)
-                        + (", min=" + min)
-                        + (", max=" + max)
+                        + ("device:" + device)
+                        + (", id" + id)
+                        + (" unit: " + unit + " min" + min + " max:" + max)
                         + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1658,20 +1652,6 @@ public class VolumeControlService extends ProfileService {
         }
 
         @Override
-        public void unregisterCallback(
-                IBluetoothVolumeControlCallback callback, AttributionSource source) {
-            requireNonNull(callback);
-
-            VolumeControlService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            postAndWait(service.mHandler, () -> service.unregisterCallback(callback));
-        }
-
-        @Override
         public void notifyNewRegisteredCallback(
                 IBluetoothVolumeControlCallback callback, AttributionSource source) {
             requireNonNull(callback);
@@ -1683,6 +1663,20 @@ public class VolumeControlService extends ProfileService {
 
             service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
             postAndWait(service.mHandler, () -> service.notifyNewRegisteredCallback(callback));
+        }
+
+        @Override
+        public void unregisterCallback(
+                IBluetoothVolumeControlCallback callback, AttributionSource source) {
+            requireNonNull(callback);
+
+            VolumeControlService service = getService(source);
+            if (service == null) {
+                return;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            postAndWait(service.mHandler, () -> service.unregisterCallback(callback));
         }
     }
 
