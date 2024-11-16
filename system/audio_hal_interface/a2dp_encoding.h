@@ -30,6 +30,12 @@ namespace bluetooth {
 namespace audio {
 namespace a2dp {
 
+/// Selects the A2DP session type.
+enum class StreamDirection {
+  INPUT,  ///< Sink decoding.
+  OUTPUT, ///< Source enconding.
+};
+
 /// Loosely copied after the definition from the Bluetooth Audio interface:
 /// audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
 enum class Status {
@@ -59,6 +65,14 @@ public:
   virtual Status SetLatencyMode(bool /*low_latency*/) const {
     return Status::FAILURE;
   }
+
+  // Stream start confirmation. The host stack shall reject the start
+  // request if the HAL returns an error.
+  virtual void StreamStarted(Status /*status*/) const { }
+
+  // Stream suspend confirmation. The host stack shall reject the suspend
+  // request if the HAL returns an error.
+  virtual void StreamSuspended(Status /*status*/) const { }
 };
 
 bool update_codec_offloading_capabilities(
@@ -86,12 +100,21 @@ bool setup_codec(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
 // Set low latency buffer mode allowed or disallowed
 void set_audio_low_latency_mode_allowed(bool allowed);
 
-// Send command to the BluetoothAudio HAL: StartSession, EndSession,
-// StreamStarted, StreamSuspended
-void start_session();
+// Start an audio session with the BluetoothAudio HAL.
+// The audio configuration is fixed for the duration of the session.
+// Only one stream may be active at any time, and the stream direction
+// becomes implicit for all stream operations for the duration of the session.
+void start_session(StreamDirection direction);
 void end_session();
-void ack_stream_started(Status status);
-void ack_stream_suspended(Status status);
+
+// Send stream indications to the BluetoothAudio HAL.
+// Stream confirmations are sent back through StreamCallbacks::StreamStarted,
+// StreamCallbacks::StreamSuspended.
+void start_stream(Status status);
+void suspend_stream(Status status);
+
+void stream_started(Status status);
+void stream_suspended(Status status);
 
 // Read from the FMQ of BluetoothAudio HAL
 size_t read(uint8_t* p_buf, uint32_t len);
@@ -102,32 +125,28 @@ void set_remote_delay(uint16_t delay_report);
 // Check whether OPUS is supported
 bool is_opus_supported();
 
-// Definitions for A2DP hardware offload codec extensibility.
-namespace provider {
+/// Information about a codec supported through offload codec extensibility.
+/// The encoding / decoding capacity is implicit in the parameter of
+/// getSupportedCodecs().
+struct CodecInfo {
+  bluetooth::a2dp::CodecId id;
+  std::string name;
+  /// Media Codec Capabilities, including the Media Codec Type and
+  /// optional Vendor Codec Identifier.
+  uint8_t capabilities[AVDT_CODEC_SIZE];
+  btav_a2dp_codec_config_t parameters;
+};
 
-// Lookup the codec info in the list of supported offloaded sink codecs.
-std::optional<btav_a2dp_codec_index_t> sink_codec_index(const uint8_t* p_codec_info);
+/// Return the list of supported codecs for the selected stream direction.
+std::vector<CodecInfo> getSupportedCodecs(StreamDirection direction);
 
-// Lookup the codec info in the list of supported offloaded source codecs.
-std::optional<btav_a2dp_codec_index_t> source_codec_index(const uint8_t* p_codec_info);
-
-// Return the name of the codec which is assigned to the input index.
-// The codec index must be in the ranges
-// BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX or
-// BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
-// Returns nullopt if the codec_index is not assigned or codec extensibility
-// is not supported or enabled.
-std::optional<const char*> codec_index_str(btav_a2dp_codec_index_t codec_index);
-
-// Return true if the codec is supported for the session type
-// A2DP_HARDWARE_ENCODING_DATAPATH or A2DP_HARDWARE_DECODING_DATAPATH.
-bool supports_codec(btav_a2dp_codec_index_t codec_index);
-
-// Return the A2DP capabilities for the selected codec.
-// `codec_info` returns the OTA codec capabilities, `codec_config`
-// returns the supported capabilities in a generic format.
-bool codec_info(btav_a2dp_codec_index_t codec_index, bluetooth::a2dp::CodecId* codec_id,
-                uint8_t* codec_info, btav_a2dp_codec_config_t* codec_config);
+// Query the codec selection fromt the audio HAL.
+// The HAL is expected to pick the best audio configuration based on the
+// discovered remote SEPs.
+std::optional<a2dp_configuration> getA2dpConfiguration(
+        StreamDirection direction,
+        RawAddress peer_address, std::vector<a2dp_remote_capabilities> const& remote_seps,
+        btav_a2dp_codec_config_t const& user_preferences);
 
 struct a2dp_configuration {
   int remote_seid;
@@ -178,23 +197,16 @@ struct a2dp_remote_capabilities {
   }
 };
 
-// Query the codec selection fromt the audio HAL.
-// The HAL is expected to pick the best audio configuration based on the
-// discovered remote SEPs.
-std::optional<a2dp_configuration> get_a2dp_configuration(
-        RawAddress peer_address, std::vector<a2dp_remote_capabilities> const& remote_seps,
-        btav_a2dp_codec_config_t const& user_preferences);
-
 // Query the codec parameters from the audio HAL.
 // The HAL is expected to parse the codec configuration
 // received from the peer and decide whether accept
 // the it or not.
-tA2DP_STATUS parse_a2dp_configuration(btav_a2dp_codec_index_t codec_index,
-                                      const uint8_t* codec_info,
-                                      btav_a2dp_codec_config_t* codec_parameters,
-                                      std::vector<uint8_t>* vendor_specific_parameters);
+tA2DP_STATUS parseA2dpConfiguration(StreamDirection direction,
+                                    bluetooth::a2dp::CodecId codec_id,
+                                    const uint8_t* codec_info,
+                                    btav_a2dp_codec_config_t* codec_parameters,
+                                    std::vector<uint8_t>* vendor_specific_parameters);
 
-}  // namespace provider
 }  // namespace a2dp
 }  // namespace audio
 }  // namespace bluetooth
