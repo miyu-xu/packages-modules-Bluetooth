@@ -205,26 +205,16 @@ public class HearingAidServiceTest {
     public void okToConnect_whenNotBonded_returnFalse() {
         int badPolicyValue = 1024;
         int badBondState = 42;
-        for (int bondState : List.of(badBondState)) {
+        for (int bondState : List.of(BOND_NONE, BOND_BONDING, badBondState)) {
             doReturn(bondState).when(mAdapterService).getBondState(any());
             for (int policy :
                     List.of(
+                            CONNECTION_POLICY_UNKNOWN,
                             CONNECTION_POLICY_FORBIDDEN,
+                            CONNECTION_POLICY_ALLOWED,
                             badPolicyValue)) {
                 doReturn(policy).when(mDatabaseManager).getProfileConnectionPolicy(any(), anyInt());
                 assertThat(mService.okToConnect(mSingleDevice)).isEqualTo(false);
-            }
-        }
-    }
-
-    @Test
-    public void okToConnect_whenNotBonded_returnTrue() {
-        for (int bondState : List.of(BOND_NONE, BOND_BONDING)) {
-            doReturn(bondState).when(mAdapterService).getBondState(any());
-            for (int policy : List.of(CONNECTION_POLICY_UNKNOWN, CONNECTION_POLICY_ALLOWED)) {
-                doReturn(policy).when(mDatabaseManager).getProfileConnectionPolicy(any(), anyInt());
-                assertThat(mService.okToConnect(mSingleDevice))
-                        .isEqualTo(Flags.donotValidateBondStateFromProfiles());
             }
         }
     }
