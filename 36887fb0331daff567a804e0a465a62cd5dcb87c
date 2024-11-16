@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f68e6dd1_a11abe28",
+        "filename": "system/gd/hci/lpp_offload_manager.cc",
+        "patchSetId": 31
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-16T01:08:33Z",
+      "side": 1,
+      "message": "I don\u0027t think you want `ro` either.\nI would simply remove the prefix and leave it blank.\n\nThat way, the value is restored at boot (safe for end user), AND the value can be overid in dev build before restarting bluetooth if needed (until sepolicy enforcement)\n\nSee:\nhttps://source.android.com/docs/core/architecture/configuration/add-system-properties#caveats",
+      "range": {
+        "startLine": 50,
+        "startChar": 57,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "16eb5352_b711c1ae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/lpp_offload_manager.cc",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "    is_lpp_offload_enabled_ \u003d os::GetSystemPropertyBool(\"bluetooth.lpp_offload.enabled\", false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "36887fb0331daff567a804e0a465a62cd5dcb87c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
