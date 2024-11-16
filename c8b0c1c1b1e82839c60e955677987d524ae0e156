@@ -50,6 +50,24 @@
       "message": "Can you implement an automated test to verify this? (either unit test or Pandora test)",
       "revId": "c8b0c1c1b1e82839c60e955677987d524ae0e156",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54c25a59_758292c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-11-16T00:09:42Z",
+      "side": 1,
+      "message": "I already have a positive test. [Link](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java;l\u003d386?q\u003dheadsetRemoveActive_fallbackToLeAudio\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain)\n\nCould I add the negative test in other CL? I am OOO and need this cl to be merged EOD. Presubmit test takes a long time.",
+      "parentUuid": "3bcd09cf_0c83461c",
+      "revId": "c8b0c1c1b1e82839c60e955677987d524ae0e156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
