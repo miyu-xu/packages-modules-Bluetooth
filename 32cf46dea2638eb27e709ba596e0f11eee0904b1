@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f29e4cc6_951ed81e",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-16T02:48:00Z",
+      "side": 1,
+      "message": "\u003e static counter can be used for more than identify a socket.\n\nPlease explain, I am not familiar with the CL you have attached, nor was I part of the review then",
+      "parentUuid": "38730d89_bf77a88d",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1120,
+        "endChar": 1
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9d51343_3e275a8c",
         "filename": "system/include/hardware/bt_sock.h",
         "patchSetId": 4
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "That is connection id of the socket which is shared with host app, offload app, host stack, and offload stack globally. It is used as `socketId` in SocketContext.\n\nhttp://aosp/3303007/24/bluetooth/socket/aidl/android/hardware/bluetooth/socket/SocketContext.aidl",
       "parentUuid": "b9d51343_3e275a8c",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 24
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696017bc_3ff61838",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-16T02:48:00Z",
+      "side": 1,
+      "message": "You should rename it to `socket_id` then; connection_id to represent a channel connection is very ambiguous.",
+      "parentUuid": "a2589db3_9464bb7c",
       "range": {
         "startLine": 61,
         "startChar": 11,
