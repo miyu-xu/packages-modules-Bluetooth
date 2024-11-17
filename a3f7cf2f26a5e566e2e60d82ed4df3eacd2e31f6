@@ -248,6 +248,30 @@
       },
       "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e32a861e_a6f5c99a",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-17T15:57:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4f95b2a_a5b146a4",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 56
+      },
+      "revId": "a3f7cf2f26a5e566e2e60d82ed4df3eacd2e31f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
