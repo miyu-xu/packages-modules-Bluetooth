@@ -52,4 +52,9 @@ public final class ConfigTest {
 
         Config.setProfileEnabled(BluetoothProfile.CSIP_SET_COORDINATOR, enabled);
     }
+
+//     @Test
+//     public void setLeAudioProfileStatus_toFalse() {
+
+//     }
 }
