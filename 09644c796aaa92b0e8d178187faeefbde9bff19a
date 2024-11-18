@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1047cf6_f3b88254",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-18T21:05:02Z",
+      "side": 1,
+      "message": "I\u0027m sorry for the confusion. I want same behavior as ACTION_ACL_CONNECTED.\nI just copied what\u0027s there, we should be good.\nI don\u0027t want to wake up any inactive apps.",
+      "parentUuid": "914b86f8_9d9dbbac",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14
