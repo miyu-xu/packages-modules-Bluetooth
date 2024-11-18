@@ -39,7 +39,7 @@ from bumble.a2dp import (
 )
 from bumble.avdtp import (AVDTP_AUDIO_MEDIA_TYPE, AVDTP_OPEN_STATE, AVDTP_PSM, AVDTP_STREAMING_STATE, AVDTP_IDLE_STATE,
                           AVDTP_CLOSING_STATE, Listener, MediaCodecCapabilities, Protocol, AVDTP_BAD_STATE_ERROR,
-                          Suspend_Reject)
+                          Suspend_Reject, AVDTP_TSEP_SRC)
 from bumble.l2cap import (ChannelManager, ClassicChannel, ClassicChannelSpec, L2CAP_Configure_Request,
                           L2CAP_Connection_Response, L2CAP_SIGNALING_CID)
 from bumble.pairing import PairingDelegate
@@ -646,6 +646,68 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         await self.dut.a2dp.Suspend(source=dut_ref1_source)
 
         # Wait for AVDTP Close
+        await asyncio.wait_for(avdtp_future, timeout=10.0)
+
+    @avatar.asynchronous
+    async def test_avdt_open_after_timeout(self) -> None:
+        """Test AVDTP automatically opens stream after timeout if peer device only configures codec.
+
+        1. Pair and Connect RD1 -> DUT
+        2. Connect AVCTP RD1 -> DUT
+        3. Check AVDTP status on RD1
+        """
+
+        class TestAvdtProtocol(Protocol):
+
+            def on_open_command(self, command):
+                nonlocal avdtp_future
+                logger.info("<< AVDTP Open received >>")
+                avdtp_future.set_result(None)
+                return super().on_open_command(command)
+
+        # Connect and pair RD1.
+        ref1_dut, dut_ref1 = await asyncio.gather(
+            initiate_pairing(self.ref1, self.dut.address),
+            accept_pairing(self.dut, self.ref1.address),
+        )
+
+        # Create a listener to wait for AVDTP open
+        avdtp_future = asyncio.get_running_loop().create_future()
+
+        # Retrieve Bumble connection object from Pandora connection token
+        connection = pandora.get_raw_connection(device=self.ref1, connection=ref1_dut)
+        assert connection is not None
+
+        channel = await connection.create_l2cap_channel(spec=ClassicChannelSpec(psm=AVDTP_PSM))
+        client = TestAvdtProtocol(channel)
+        sink = client.add_sink(sbc_codec_capabilities())
+        endpoints = await client.discover_remote_endpoints()
+        logger.info(f"endpoints: {endpoints}")
+        assert len(endpoints) >= 1
+        remote_source = list(endpoints)[0]
+        assert remote_source.in_use == 0
+        assert remote_source.media_type == AVDTP_AUDIO_MEDIA_TYPE
+        assert remote_source.tsep == AVDTP_TSEP_SRC
+        logger.info(f"remote_source: {remote_source}")
+
+        configuration = MediaCodecCapabilities(
+            media_type=AVDTP_AUDIO_MEDIA_TYPE,
+            media_codec_type=A2DP_SBC_CODEC_TYPE,
+            media_codec_information=SbcMediaCodecInformation.from_lists(
+                sampling_frequencies=[44100],
+                channel_modes=[SBC_JOINT_STEREO_CHANNEL_MODE],
+                block_lengths=[16],
+                subbands=[8],
+                allocation_methods=[SBC_LOUDNESS_ALLOCATION_METHOD],
+                minimum_bitpool_value=2,
+                maximum_bitpool_value=53,
+            ),
+        )
+
+        response = await remote_source.set_configuration(sink.seid, [configuration])
+        logger.info(f"response: {response}")
+
+        # Wait for AVDTP Open from DUT
         await asyncio.wait_for(avdtp_future, timeout=10.0)
 
 
