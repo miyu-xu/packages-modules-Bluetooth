@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e589d9_7f89491e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-18T07:49:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ab36bf9_54a969da",
+      "range": {
+        "startLine": 320,
+        "startChar": 81,
+        "endLine": 320,
+        "endChar": 94
+      },
+      "revId": "86bc48f3cb751a549bcd53ecd56243beeab72746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0fd934a_2db9ec38",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-11-15T17:46:42Z",
       "side": 1,
       "message": "Same as above, bad order od direction and address ?",
+      "range": {
+        "startLine": 346,
+        "startChar": 81,
+        "endLine": 346,
+        "endChar": 94
+      },
+      "revId": "86bc48f3cb751a549bcd53ecd56243beeab72746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef7f5e36_f4d8dbc8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-18T07:49:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0fd934a_2db9ec38",
       "range": {
         "startLine": 346,
         "startChar": 81,
