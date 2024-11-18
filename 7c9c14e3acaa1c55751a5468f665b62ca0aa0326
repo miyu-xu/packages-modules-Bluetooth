@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33e9f988_803e0ce2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T23:50:51Z",
+      "side": 1,
+      "message": "Nailed it!\n\n- Abort was unused (and unreliable. The server doesn\u0027t need to support it or honor it).\n- The operation was always made in execute, so there was no need to make it a member, especially once abort was removed.",
+      "parentUuid": "7b5f7682_645a6737",
+      "revId": "7c9c14e3acaa1c55751a5468f665b62ca0aa0326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9148f01e_8813ec58",
@@ -118,6 +136,30 @@
           ]
         }
       ],
+      "revId": "7c9c14e3acaa1c55751a5468f665b62ca0aa0326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e46a5cf7_98cafcf0",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/RequestPullPhonebookMetadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T23:50:51Z",
+      "side": 1,
+      "message": "To some degree, I just followed the format in MAP Client and AVRCP Controller/BIP. But, I totally agree on the naming. I prefer a noun for an object instead of a verb.\n\nGiven how close this and the changes that updated the names are to submission, let me try to stack that on top afterwards. I can also work on the other profile objects too.\n\nMade b/379749708 to track, and assigned it to myself.",
+      "parentUuid": "bb72fc36_2812c057",
+      "range": {
+        "startLine": 30,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 40
+      },
       "revId": "7c9c14e3acaa1c55751a5468f665b62ca0aa0326",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
