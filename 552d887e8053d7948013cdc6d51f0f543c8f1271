@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b8886e3_e07f9ef6",
+        "filename": "system/stack/a2dp/a2dp_vendor_lhdcv5.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T22:30:42Z",
+      "side": 1,
+      "message": "2024",
+      "revId": "552d887e8053d7948013cdc6d51f0f543c8f1271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
