@@ -16,6 +16,24 @@
       "message": "I would very much prefer an early return if the race is detected.\nThese checks are hardly readable.\n\nIs there a chance of this race being triggered in other methods ?",
       "revId": "0926c0a75bf63e99d8281062b6ac73ed944d4369",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11178e3b_74b9354e",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-11-18T15:19:26Z",
+      "side": 1,
+      "message": "I haven\u0027t investigate whole code path yet. Up to now, this seems to be the only place where race could happen.\n\nSince we need to clean up resources even if p_reg is null, we can\u0027t early return here.",
+      "parentUuid": "e8747aee_91adda43",
+      "revId": "0926c0a75bf63e99d8281062b6ac73ed944d4369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
