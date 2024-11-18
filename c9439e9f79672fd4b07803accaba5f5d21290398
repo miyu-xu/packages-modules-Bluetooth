@@ -494,6 +494,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b54d43c_c44d5302",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "You are correct, this is not needed, I repeated it on purpose to have a clear vision on what is an API when reading within the code.\n\nIf this is fine with you, I would like to keep the annotation on the methods.\nIf not, I\u0027ll remove it",
+      "parentUuid": "f721e0da_d6b492ab",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 14
+      },
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9c8311c_7aa1191a",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29
@@ -505,6 +529,24 @@
       "writtenOn": "2024-11-18T20:47:05Z",
       "side": 1,
       "message": "perhaps I don\u0027t understand this enough but couldn\u0027t a device be both BLUETOOTH and MICROPHONE (to pick one example)?",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50aa223b_07774389",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "This reflects the source of audio for the audio input of the remote device.\n\nExample on a hearing aid device.  \nThe audio can come from multiples sources:\n* From the phone, when streaming music → AudioInputType.Bluetooth\n* From surrounding sound, to help against hearing loss → AudioInputType.Ambient\n* From telecoil, when receiving the sound from the TV at home → AudioInputType.Streaming\n* From Auracast, when receiving broadcast news in airport / gare → AudioInputType.Streaming\n\nEven if the device is techincally a  **BluetoothDevice** in all the situtation, its source of audio may have multiple origins.",
+      "parentUuid": "c9c8311c_7aa1191a",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -540,6 +582,24 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "805b0cf4_7d2f52fb",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "Unfortunately this is the entire definition done as per the bluetooth spec:\nSee screenshot of `6.12.2 Audio Input Type Definitions`:\nhttps://screenshot.googleplex.com/5f4QHr3HSuBHb8M\n\nI assume that the usage of this type can also be general, from surrounding sound in hearing aid, to noise cancellation in earbud, or for doing pass-through and bypassing noise cancellatio",
+      "parentUuid": "6fa9b753_d17f654b",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -595,6 +655,24 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55214669_cd4a104f",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "The Bluetooth specification is mentioning that the value of 0x02-0xFF are reserved for future use.  \nI don\u0027t see any other bluetooth component exposing their RFU into the framework so exposing a UNKNOWN alternative maybe something to do.\n\nI am not sure about how much this will be necessary, but better safe now than sorry later !",
+      "parentUuid": "e7143875_5f2ed857",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -670,6 +748,24 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e605120_ef06ccc5",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "\u003e Disabled represents that mute commands are disabled, for example via a local privacy switch or other means.\n\nThis is documented is the Bluetooth specification, `2.2.1.2. Mute field.`\n\nI edited a bit to mention the purpose without quoting the entire spec",
+      "parentUuid": "a50c053f_e16b9395",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -799,6 +895,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1cc9df3_43b3216a",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "\u003e When the value of the Gain_Mode field is either Automatic Only or Manual Only, the server does not support changes to the Gain_Mode field. When the value of the Gain_Mode field is either Automatic or Manual, the server supports switching between the Automatic and Manual values of the Gain_Mode field.\n\nAs stated by `2.2.1.3. Gain_Mode field`  \n\nI edited the different mode to indicate that.",
+      "parentUuid": "826c4cd4_9811dc62",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffa7a794_b71dc4b3",
@@ -830,6 +944,24 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2add23_d64a412c",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "\u003e How would someone create this object in a test?\n\nGood question to which I don\u0027t have the answer.  \nAre you suggesting I should provide an API constructor, even if that doesn\u0027t make sense to have one in a normal usage ? In this case, should this be a systemApi, or can I restrict this to \"testApi\" (I never did one of such) ?\n\nRight now, this object is only constructed as part of the return of `getAudioInputControlServices`, and the only test implemented are end-to-end test, where the real API are called to emulate valide user journey scenario.\nI have no test for API negative testing because of that yet.",
+      "parentUuid": "ffa7a794_b71dc4b3",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -871,6 +1003,30 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58ef6491_63a3cf60",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4385113_bf199f5f",
+      "range": {
+        "startLine": 287,
+        "startChar": 53,
+        "endLine": 287,
+        "endChar": 65
+      },
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -920,6 +1076,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be931b7_1d34d978",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "Your first assumption was correct, this is an unit and not the value of the gain:\n```\n[..] reflects the size of a single increment or decrement of the Gain Setting value in 0.1 decibel units.\n```\n\nResolving as this is describe in `3.2.1. Gain_Setting_Units field` and it\u0027s the Bluetooth spec name",
+      "parentUuid": "ab09dc0b_ef1ced0f",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb8b2ed2_9dd02b6a",
@@ -951,6 +1125,24 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d1d4fc1_fe6de4a8",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "It would be a user friendly name of what this AICS is about. It is helpful when multiple AICS with the same type are on a device.  \nFor example if the input is DIGITAL, they could set it to \"HDMI\" / \"USB\" / ...\n\nCloser to the usecase of this release of API the audio input type \"Streaming\" could refer to telecoil or auracast, two concurrent technology. Since there is no AudioInputType to differentiate them, it would be up to the Description to do it.\n\nBut the value of the description is a free field that can be anything, and device could exposes capabilities to rename it by the end user.",
+      "parentUuid": "fb8b2ed2_9dd02b6a",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -1002,6 +1194,30 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb8d3c3_0d33b445",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "Oh ! I didn\u0027t know this was common practice.\n\nDone !",
+      "parentUuid": "e69c4b0e_27faff2b",
+      "range": {
+        "startLine": 621,
+        "startChar": 32,
+        "endLine": 621,
+        "endChar": 40
+      },
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -1063,6 +1279,30 @@
           ]
         }
       ],
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f00efd4_178a6d78",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cae6551b_82906e20",
+      "range": {
+        "startLine": 677,
+        "startChar": 28,
+        "endLine": 677,
+        "endChar": 32
+      },
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
