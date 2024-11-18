@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a046a206_e46caf11",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T23:23:21Z",
+      "side": 1,
+      "message": "Not in the scope of this change, but I\u0027m just trying to make sure there\u0027s no gotchyas with how the below change is used. This is confusing the heck out of me!\n\nWe have three properties\n- LE_AUDIO_DYNAMIC_SWITCH_PROPERTY: Does the device allow dynamic switching?\n- LE_AUDIO_SWITCHER_DISABLED_PROPERTY: Should we disable LE Audio, but only if its unicast?\n- LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY: What mode we dynamically switching to, but only if its broadcast?\n\nIt seems like we have two sets of logic here that both try to do very similar things, and they seem glued together in a very brittle way.\n\nAs its written,\n- If broadcast is enabled, then go assume the developer option for \"dynamic switcher mode\" is usable, and use it to set unicast _and/or_ broadcast profiles\n- Else if any LE Audio profile is enabled, then if \"dynamic switch\" is true, then check \"dynamic enabled\" and see if we should set _all_ profiles to enabled or disabled.\n\nWhy do we need LE_AUDIO_SWITCHER_DISABLED_PROPERTY when LE_AUDIO_DYNAMIC_SWITCH_PROPERTY has a \"disabled\" state?\n\nWhy is it that when Broadcast is enabled, that other, seemingly redundant set of properties is ignored? Presumably broadcast is continuing to be made available on more and more devices, which implies the later code is dead?\n\nWhen using broadcast and the switcher mode property, is there a default state in case I don\u0027t know what the original value is (since I don\u0027t think its set in line with the profile sysprops?)\n\nShould this mechanism not be something more like,\n```\n// I might even just ignore this, since we already are for Broadcast\nfinal boolean isLeAudioDynamicSwitchSupported \u003d\n            SystemProperties.getBoolean(LE_AUDIO_DYNAMIC_SWITCH_PROPERTY, false);\n\n// i.e. if switching is supported and LE Audio *anything* is supported\n// on this device, then get the mode we want to be in and set that mode.\n// if broadcast is the mode set, but the underlying device doesn\u0027t support\n// it, then don\u0027t set it.\nif (LeAudioService.isEnabled() \u0026\u0026 isLeAudioDynamicSwitchSupported) {\n    // i.e. get what we would ideally like to switch to\n    final String leAudioSwitcherMode \u003d\n            SystemProperties.get(LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY, \"default\");\n    if (leAudioSwitcherMode.equals(\"disabled\")) {\n        setLeAudioProfileStatus(false);\n        setLeAudioBroadcastProfileStatus(false);\n    } else if (leAudioSwitcherMode.equals(\"unicast\")) {\n        setLeAudioProfileStatus(true);\n        setLeAudioBroadcastProfileStatus(false);\n    } else if (leAudioSwitcherMode.equals(\"broadcast\")) {\n        setLeAudioProfileStatus(false);\n        if (LeAudioService.isBroadcastEnabled()) {\n            setLeAudioBroadcastProfileStatus(true);\n        } else {\n            Log.w(TAG, \"Device doesn\u0027t support broadcast\");\n        }\n    } // else use default settings, don\u0027t update them at all.\n}\n```",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 35
+      },
+      "revId": "0421d07f83c28097f44001990afe7157028cb0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1250f5ee_d61b5394",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T23:23:21Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer javadoc style here",
+      "range": {
+        "startLine": 254,
+        "startChar": 4,
+        "endLine": 260,
+        "endChar": 47
+      },
+      "revId": "0421d07f83c28097f44001990afe7157028cb0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec08af67_05686706",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T23:23:21Z",
+      "side": 1,
+      "message": "This _may_ not actually work for the original intent.\n\nAFAIK, this was used on devices to turn LE Audio on when the sysprops were set to false, as the feature was \"disabled by default.\" This provided a way for developers and interested users to turn it on \"before it was ready\" and enabled by default.\n\nIf we don\u0027t enable something because the sysprop is false (or, in the new world, because all use-case sysprops that have a given framework profile as a dependency are false), then there will be no way to override that default setting on those devices.\n\nTo make it more tangible, say for example we have a Car on Android V, using an Android B prebuilt, and that car has LE Audio sysprops set to false because the feature is \"supported\" by the hardware but off by default. This option was supposed to let us/developers/OEM testers/etc. turn things on before they\u0027re on by default. With this, we can\u0027t.\n\nSince we\u0027re now breaking the \"everyone wants all roles\" assumption, the only way I can I think of to keep this functionality of \"set it to enabled when its disabled,\" while not enabling roles we don\u0027t want is to break things up per-role, or use an ENUM list on the switching mode, etc. Something that let\u0027s the educated user select the right things. It would also unfortunately let the unsuspecting user accidentally put the device in a bad state (until, for example, we start implementing LE call control). But, that could be a feature as we develop LE Call Control on cars",
+      "range": {
+        "startLine": 264,
+        "startChar": 20,
+        "endLine": 264,
+        "endChar": 67
+      },
+      "revId": "0421d07f83c28097f44001990afe7157028cb0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
