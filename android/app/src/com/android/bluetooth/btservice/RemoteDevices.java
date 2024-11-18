@@ -17,10 +17,7 @@
 package com.android.bluetooth.btservice;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
-
-import static com.android.modules.utils.build.SdkLevel.isAtLeastV;
 
 import android.annotation.RequiresPermission;
 import android.app.Activity;
@@ -1408,6 +1405,18 @@ public class RemoteDevices {
                             .addFlags(
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+            if (Flag.keyMissingPublic()) {
+                mAdapterService.sendOrderedBroadcast(
+                        intent,
+                        BLUETOOTH_CONNECT,
+                        Utils.getTempBroadcastOptions().toBundle(),
+                        null /* resultReceiver */,
+                        null /* scheduler */,
+                        Activity.RESULT_OK /* initialCode */,
+                        null /* initialData */,
+                        null /* initialExtras */);
+                return;
+            }
 
             if (isAtLeastV()
                     && Flags.keyMissingAsOrderedBroadcast()
