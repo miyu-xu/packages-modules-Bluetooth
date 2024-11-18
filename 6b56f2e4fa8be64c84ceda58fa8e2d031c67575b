@@ -34,6 +34,24 @@
       "parentUuid": "7a06f7eb_9974ca04",
       "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daacdad6_06c72a3a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-18T17:12:50Z",
+      "side": 1,
+      "message": "\"Address type\", \"own address type\" and \"peer address type\" are defined in the spec.\n\nAddress type can only be either public or random. There may be further classification in the random address type but\n1. they are not applicable here\n2. they can be deduced from the raw address itself",
+      "parentUuid": "3232ab65_7467e946",
+      "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
