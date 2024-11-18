@@ -1,0 +1,478 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7786b04a_8f2eb377",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "why did we skip 0x05?",
+      "range": {
+        "startLine": 105,
+        "startChar": 63,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c1b42784_beaa56f0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 119,
+                "endChar": 0
+              },
+              "replacement": "    @FlaggedApi(Flags.FLAG_SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3593e805_4750f988",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "similar question",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1464b3c6_746163e9",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "add the new new IDs to this.\n\nAlso, there\u0027s no _UNKNOWN ID. What will happen if an app that doesn\u0027t know about ENERGY_MONITOR or RF_STATS?",
+      "fixSuggestions": [
+        {
+          "fixId": "4c3214ec_f94827c5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "                QUALITY_REPORT_ID_ENERGY_MONITOR,\n                QUALITY_REPORT_ID_RF_STATS,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0e73ce2_95f29270",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "why is this hidden? I know it\u0027s not new, but it\u0027s one of the Parcelable methods, the rest of which are exposed...",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90c78fb_a1b83569",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2386,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "don\u0027t mention System APIs in this class description. This could easily be made public in the future (so it would be incorrect), and it doesn\u0027t really describe what the class itself is for, which is the important part to include.",
+      "range": {
+        "startLine": 2386,
+        "startChar": 18,
+        "endLine": 2386,
+        "endChar": 42
+      },
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b902b4_f4a9b7c6",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "How would someone create one of these objects for a test?",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c1851a_52c3d499",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2485,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "getAvgCurrentConsumptionMicroamps. go/android-api-guidelines#measurement",
+      "range": {
+        "startLine": 2485,
+        "startChar": 19,
+        "endLine": 2485,
+        "endChar": 39
+      },
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571ef02a_44fa9209",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2497,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "Please review the guidance on APIs that represent time. go/android-api-guidelines#time and update the APIs accordingly.",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef7ae96_5f195db7",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2520,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68004c61_c0034680",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2542,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62cca552_2eda2bd7",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#measurement",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3063a937_210b12aa",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2577,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f399aaa_c3b85fd6",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2600,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d305b4f6_5e452eeb",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2622,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#measurement",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "392f98ed_17a394a4",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2634,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae0572b_2a5a46d6",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2657,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c99de060_b1cf4bd7",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2730,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#measurement",
+      "range": {
+        "startLine": 2661,
+        "startChar": 0,
+        "endLine": 2730,
+        "endChar": 44
+      },
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb6eadd4_6eb64a52",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2733,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "why is this hidden?",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77fd0805_7a6daf78",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2870,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "how does one create this class for testing?",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f399443e_9688abe5",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2946,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "go/android-api-guidelines#time",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be62c70_2fb6bc34",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2957,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "getTxPowerInternalPaBeamformingCount",
+      "range": {
+        "startLine": 2957,
+        "startChar": 20,
+        "endLine": 2957,
+        "endChar": 35
+      },
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b187b82d_b58dc6f3",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "getTxPowerExternalPaBeamformingCount",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a9d734c_69df1b71",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2979,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "please update this and the rest of the methods to not use acronyms. Much more clear to spell the words out.",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b38641e6_0e72e1fd",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 3173,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:46:41Z",
+      "side": 1,
+      "message": "don\u0027t hide this",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
