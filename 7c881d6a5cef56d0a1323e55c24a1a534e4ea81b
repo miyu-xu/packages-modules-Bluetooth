@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3340bfcb_074990e6",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T19:33:02Z",
+      "side": 1,
+      "message": "What 0 is supposed to do here ?\n\nshould it be gatt_if_ ?",
+      "fixSuggestions": [
+        {
+          "fixId": "b5e75633_5377eab9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 247,
+                "startChar": 0,
+                "endLine": 248,
+                "endChar": 0
+              },
+              "replacement": "      BTA_GATTC_CancelOpen(gatt_if_, address, false);\n"
+            },
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 289,
+                "startChar": 0,
+                "endLine": 290,
+                "endChar": 0
+              },
+              "replacement": "      BTA_GATTC_CancelOpen(gatt_if_, addr, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7c881d6a5cef56d0a1323e55c24a1a534e4ea81b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
