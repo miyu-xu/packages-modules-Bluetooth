@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4943e1c6_f37b646d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2885,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-18T10:10:46Z",
+      "side": 1,
+      "message": "You can use putIfAbsent or even better computeIfAbsent:\n```\nMap\u003cInteger, BluetoothLeBroadcastMetadata\u003e entry \u003d\nmBroadcastMetadataMap.computeIfAbsent(device, k -\u003e new ConcurrentHashMap\u003c());\n```",
+      "range": {
+        "startLine": 2880,
+        "startChar": 0,
+        "endLine": 2885,
+        "endChar": 9
+      },
+      "revId": "d7ccf7ec7369801fcaa8b1562ae2a22fba728d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3bd41b_0ef72912",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2887,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-18T10:10:46Z",
+      "side": 1,
+      "message": "Hmm we can use there and in remove compute to make this operation atomic:\n```\nmBroadcastMetadataMap.compute(device, (key, existingMap) -\u003e {\n    if (existingMap \u003d\u003d null) {\n        existingMap \u003d new ConcurrentHashMap\u003c\u003e();\n    }\n    existingMap.put(broadcastId, metadata);\n    return existingMap;\n});\n```",
+      "range": {
+        "startLine": 2880,
+        "startChar": 0,
+        "endLine": 2887,
+        "endChar": 41
+      },
+      "revId": "d7ccf7ec7369801fcaa8b1562ae2a22fba728d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71aac6a4_b553d1fe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2905,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-18T10:10:46Z",
+      "side": 1,
+      "message": "remove device if entry isEmpty. We can use compute to make all atomic:\n```\nmBroadcastMetadataMap.compute(device, (key, existingMap) -\u003e {\n    if (existingMap !\u003d null) {\n        existingMap.remove(broadcastId);\n        if (existingMap.isEmpty()) {\n            return null;\n        }\n    } else {\n        Log.w(\n            TAG,\n            \"There is no metadata related to sink (device: \"\n                    + device\n                    + \", broadcastId: \"\n                    + broadcastId);\n    }\n    return existingMap;\n});\n```",
+      "revId": "d7ccf7ec7369801fcaa8b1562ae2a22fba728d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
