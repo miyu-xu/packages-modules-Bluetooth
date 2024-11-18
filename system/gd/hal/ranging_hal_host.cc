@@ -47,7 +47,8 @@ public:
 
   void UpdateChannelSoundingConfig(
           uint16_t /* connection_handle */,
-          const hci::LeCsConfigCompleteView& /* leCsConfigCompleteView */) override {}
+          const hci::LeCsConfigCompleteView& /* leCsConfigCompleteView */,
+          uint8_t /* local_supported_sw_time */, uint8_t /* remote_supported_sw_time */) override {}
 
   void UpdateProcedureEnableConfig(
           uint16_t /* connection_handle */,
