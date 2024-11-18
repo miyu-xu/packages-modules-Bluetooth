@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bede088_28f4d45b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T00:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8c67ea8_6031196c",
+      "range": {
+        "startLine": 137,
+        "startChar": 16,
+        "endLine": 137,
+        "endChar": 51
+      },
+      "revId": "f89dd7cd774438a23c27f224ebfdfa4fa93c5014",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a37a3bd4_d3b5ca4b",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eba65739_67fe2c9e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 7132,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T00:49:50Z",
+      "side": 1,
+      "message": "Agree. Done",
+      "parentUuid": "a37a3bd4_d3b5ca4b",
+      "range": {
+        "startLine": 7132,
+        "startChar": 22,
+        "endLine": 7132,
+        "endChar": 43
+      },
+      "revId": "f89dd7cd774438a23c27f224ebfdfa4fa93c5014",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86f96587_c87c0502",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-15T23:21:32Z",
       "side": 1,
       "message": "Please keep a consistent naming for this value",
+      "range": {
+        "startLine": 242,
+        "startChar": 10,
+        "endLine": 242,
+        "endChar": 45
+      },
+      "revId": "f89dd7cd774438a23c27f224ebfdfa4fa93c5014",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e7dc07_20816aa9",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T00:49:50Z",
+      "side": 1,
+      "message": "Thanks. That\u0027s right. Done.",
+      "parentUuid": "86f96587_c87c0502",
       "range": {
         "startLine": 242,
         "startChar": 10,
