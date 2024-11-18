@@ -16,6 +16,24 @@
       "message": "Identity address type will always be used in conjunction with identity address. It would be better to provide an API which can get both at the same time.",
       "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc145fd_25e72d8e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-18T02:42:56Z",
+      "side": 1,
+      "message": "I agree that would be better in the absence of a pre-existing API for identity address. With that already being in place my preference is for this to mirror getAddress and getAddressType APIs.\n\nBut I think the API reviewer should provide some input here as well.",
+      "parentUuid": "bd88d6e6_bdeb5aac",
+      "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
