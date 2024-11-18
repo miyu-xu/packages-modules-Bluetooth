@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97e10176_fb617d2b",
+        "filename": "system/btif/include/btif_sock_l2cap.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T05:42:19Z",
+      "side": 1,
+      "message": "created enum type `btsock_data_path_t`",
+      "parentUuid": "674afe79_50f0badd",
+      "range": {
+        "startLine": 32,
+        "startChar": 32,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "947661e2_f7267816",
