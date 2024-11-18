@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da58e20_ba6ca177",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-18T21:38:05Z",
+      "side": 1,
+      "message": "Should probably be set to `p_rcb-\u003ecoc_cfg.credits ` as well.",
+      "range": {
+        "startLine": 784,
+        "startChar": 13,
+        "endLine": 784,
+        "endChar": 32
+      },
+      "revId": "2d08f45fb1858c41234ae131a57c782f7ee77fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
