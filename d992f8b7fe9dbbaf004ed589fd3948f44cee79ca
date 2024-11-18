@@ -46,6 +46,30 @@
       },
       "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f47df3_ef1419d4",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T18:48:26Z",
+      "side": 1,
+      "message": "So, the reason for UNKNOWN as an option is for forward compatibility. go/android-api-guidelines#return-error\n\nApps that receive this, if they haven\u0027t updated to handle the new algorithm, will break in unexpected ways. In general, you won\u0027t use UNKNOWN.",
+      "parentUuid": "62fee391_40a212d5",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 533,
+        "endChar": 57
+      },
+      "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
