@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4331b74_d294a5bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-18T10:26:52Z",
+      "side": 1,
+      "message": "To long lines cause bad displaying on gerrit.\n```\nA potential timing issue exists where an audio resume request could be\ninitiated before the broadcast transitions from a \u0027pending\u0027 to \u0027created\u0027\nstate. To address this, the resume request should be cancelled at the\nstack level, allowing the pending broadcast to be created successfully.\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 45
+      },
+      "revId": "8ebd7bea5434a2a2035c358f96815a519fefc099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b0c90f_f7eb82b4",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-18T10:26:52Z",
+      "side": 1,
+      "message": "`There are no broadcasts ready to resume`\nor\n`No broadcasts are ready to resume`",
+      "range": {
+        "startLine": 1347,
+        "startChar": 21,
+        "endLine": 1347,
+        "endChar": 60
+      },
+      "revId": "8ebd7bea5434a2a2035c358f96815a519fefc099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
