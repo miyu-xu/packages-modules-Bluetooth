@@ -16,6 +16,24 @@
       "message": "We should have a test to have clear user journey action around active device change and to have the expected outcome.\n\nIt\u0027s the third fix in this file in 2 days that I review. None of the fix have test, and all seems to be logical changes.\n\nany active device error can lead to a no-sound",
       "revId": "efa64ae0c1f1a1504de43ae5332668acc03e7fd4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b87616ce_75988ab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-18T10:38:32Z",
+      "side": 1,
+      "message": "That\u0027s correct. I wasn\u0027t aware about recent changes to Active Device Manager. Adding test case and correcting already implemented.",
+      "parentUuid": "d2c1f63d_c6c88675",
+      "revId": "efa64ae0c1f1a1504de43ae5332668acc03e7fd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
