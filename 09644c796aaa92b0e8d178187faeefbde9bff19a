@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "914b86f8_9d9dbbac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T18:28:05Z",
+      "side": 1,
+      "message": "So, based on the flags `(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND)`, only registered receivers would get it before BOOT_COMPLETED but because INCLUDE_BACKGROUND is included, any manifest receiver will get it, even if the app is not active.\n\nIs that needed? I know typically manifest receivers have been a big source of system health issues so we try to avoid adding new ones.\n\nHave you talked with the System Health team about this? Likely, this either shouldn\u0027t be a broadcast if it needs to spin up a process or not manifest if it doesn\u0027t need to spin up a process.",
+      "parentUuid": "5256e106_3bdc7bbd",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14

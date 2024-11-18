@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "803ee790_1ac7edfe",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T18:28:05Z",
+      "side": 1,
+      "message": "I would recommend also including an _UNKNOWN value. This will be helpful if you ever add new algorithms so you can send UNKNOWN on apps not targeting the new OS version that contains the new alg.",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 533,
+        "endChar": 57
+      },
+      "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
