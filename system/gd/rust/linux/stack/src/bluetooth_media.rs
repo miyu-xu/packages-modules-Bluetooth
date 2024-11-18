@@ -472,7 +472,6 @@ pub struct BluetoothMedia {
     adapter: Arc<Mutex<Box<Bluetooth>>>,
     a2dp: A2dp,
     avrcp: Avrcp,
-    avrcp_address: Option<RawAddress>,
     avrcp_states: HashMap<RawAddress, BtavConnectionState>,
     a2dp_states: HashMap<RawAddress, BtavConnectionState>,
     a2dp_audio_state: HashMap<RawAddress, BtavAudioState>,
@@ -549,7 +548,6 @@ impl BluetoothMedia {
             adapter,
             a2dp,
             avrcp,
-            avrcp_address: None,
             avrcp_states: HashMap::new(),
             a2dp_states: HashMap::new(),
             a2dp_audio_state: HashMap::new(),
@@ -637,7 +635,13 @@ impl BluetoothMedia {
             return;
         }
 
-        self.connected_profiles.entry(addr).or_default().remove(&profile);
+        if let Some(profiles) = self.connected_profiles.get_mut(&addr) {
+            profiles.remove(&profile);
+            if profiles.is_empty() {
+                self.connected_profiles.remove(&addr);
+            }
+        }
+
         self.delay_volume_update.remove(&profile);
 
         if is_profile_critical && self.is_complete_profiles_required() {
@@ -1248,6 +1252,18 @@ impl BluetoothMedia {
                         info!("[{}]: a2dp connected.", DisplayAddress(&addr));
 
                         self.a2dp_states.insert(addr, state);
+
+                        if !self.connected_profiles.is_empty()
+                            && !self.connected_profiles.contains_key(&addr)
+                        {
+                            warn!(
+                                "Another media connection exists. Disconnect a2dp from {}",
+                                DisplayAddress(&addr)
+                            );
+                            self.a2dp.disconnect(addr);
+                            return;
+                        }
+
                         self.add_connected_profile(addr, Profile::A2dpSink);
                     }
                     BtavConnectionState::Disconnected => {
@@ -1327,12 +1343,16 @@ impl BluetoothMedia {
                 );
                 self.avrcp_states.insert(addr, BtavConnectionState::Connected);
 
-                if self.avrcp_address.is_some() {
-                    warn!("Another AVRCP connection exists. Disconnect {}", DisplayAddress(&addr));
+                if !self.connected_profiles.is_empty()
+                    && !self.connected_profiles.contains_key(&addr)
+                {
+                    warn!(
+                        "Another media connection exists. Disconnect avrcp from {}",
+                        DisplayAddress(&addr)
+                    );
                     self.avrcp.disconnect(addr);
                     return;
                 }
-                self.avrcp_address = Some(addr);
 
                 match self.uinput.create(self.adapter_get_remote_name(addr), addr.to_string()) {
                     Ok(()) => info!("uinput device created for: {}", DisplayAddress(&addr)),
@@ -1374,12 +1394,6 @@ impl BluetoothMedia {
                     BtavConnectionState::Disconnected as u32,
                 );
                 self.avrcp_states.remove(&addr);
-
-                if self.avrcp_address != Some(addr) {
-                    // Ignore disconnection to address we don't care
-                    return;
-                }
-                self.avrcp_address = None;
 
                 self.uinput.close(addr.to_string());
 
@@ -1484,6 +1498,18 @@ impl BluetoothMedia {
                         // The device may not support codec-negotiation,
                         // in which case we shall assume it supports CVSD at this point.
                         self.hfp_cap.entry(addr).or_insert(HfpCodecFormat::CVSD);
+
+                        if !self.connected_profiles.is_empty()
+                            && !self.connected_profiles.contains_key(&addr)
+                        {
+                            warn!(
+                                "Another media connection exists. Disconnect hfp from {}",
+                                DisplayAddress(&addr)
+                            );
+                            self.hfp.disconnect(addr);
+                            return;
+                        }
+
                         self.add_connected_profile(addr, Profile::Hfp);
 
                         // Connect SCO if phone operations are enabled and an active call exists.
@@ -2271,7 +2297,7 @@ impl BluetoothMedia {
         let mut states = self.device_states.lock().unwrap();
         let mut first_conn_ts = Instant::now();
 
-        let is_profile_cleared = self.connected_profiles.get(&addr).unwrap().is_empty();
+        let is_profile_cleared = self.connected_profiles.get(&addr).unwrap_or_default().is_empty();
 
         if let Some(task) = guard.get(&addr) {
             if let Some((handler, ts)) = task {
@@ -2326,7 +2352,7 @@ impl BluetoothMedia {
         }
 
         let available_profiles = self.adapter_get_classic_audio_profiles(addr);
-        let connected_profiles = self.connected_profiles.get(&addr).unwrap();
+        let connected_profiles = self.connected_profiles.get(&addr).unwrap_or_default();
         let missing_profiles =
             available_profiles.difference(connected_profiles).cloned().collect::<HashSet<_>>();
 
@@ -3282,11 +3308,11 @@ impl IBluetoothMedia for BluetoothMedia {
             available_profiles
         );
 
-        let connected_profiles = self.connected_profiles.entry(addr).or_default();
+        let connected_profiles = self.connected_profiles.get(&addr).cloned().unwrap_or_default();
 
         // Sort here so the order of connection is always consistent
         let missing_profiles =
-            available_profiles.difference(connected_profiles).sorted().collect::<Vec<_>>();
+            available_profiles.difference(&connected_profiles).sorted().collect::<Vec<_>>();
 
         // Connect the profiles one-by-one so it won't stuck at the lower layer.
         // Therefore, just connect to one profile for now.
@@ -3581,10 +3607,6 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn set_volume(&mut self, volume: u8) {
-        if self.avrcp_address.is_none() {
-            return;
-        }
-
         // Guard the range 0-127 by the try_from cast from u8 to i8.
         let vol = match i8::try_from(volume) {
             Ok(val) => val,
@@ -3594,7 +3616,13 @@ impl IBluetoothMedia for BluetoothMedia {
             }
         };
 
-        self.avrcp.set_volume(self.avrcp_address.unwrap(), vol);
+        // There is always no more than one active media connection, which
+        // implies only one address is connected with AVRCP.
+        for (addr, profiles) in &self.connected_profiles {
+            if profiles.contains(&Profile::AvrcpController) {
+                self.avrcp.set_volume(*addr, vol);
+            }
+        }
     }
 
     fn set_hfp_volume(&mut self, volume: u8, addr: RawAddress) {
