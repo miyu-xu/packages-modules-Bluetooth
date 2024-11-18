@@ -1020,6 +1020,9 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         BatteryService batteryService = mFactory.getBatteryService();
         HidHostService hidHostService = mFactory.getHidHostService();
         BassClientService bcService = mFactory.getBassClientService();
+        if (Flags.connectHapOnOtherProfileConnect()) {
+            HapClientService hapClientService = mFactory.getHapClientService();
+        }
 
         if (hsService != null) {
             if (!mHeadsetRetrySet.contains(device)
@@ -1118,6 +1121,19 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
                             == BluetoothProfile.STATE_DISCONNECTED)) {
                 debugLog("Retrying connection to BASS with device " + device);
                 bcService.connect(device);
+            }
+        }
+        if (Flags.connectHapOnOtherProfileConnect()) {
+            if (hapClientService != null) {
+                List<BluetoothDevice> connectedDevices = hapClientService.getConnectedDevices();
+                if (!connectedDevices.contains(device)
+                        && (hapClientService.getConnectionPolicy(device)
+                                == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                        && (hapClientService.getConnectionState(device)
+                                == BluetoothProfile.STATE_DISCONNECTED)) {
+                    debugLog("Retrying connection to HAS with device " + device);
+                    hapClientService.connect(device);
+                }
             }
         }
     }
