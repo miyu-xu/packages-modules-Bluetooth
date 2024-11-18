@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cde601e2_0653d667",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-18T22:39:08Z",
+      "side": 1,
+      "message": "1. Added comments; 2. Removed IntDef `Status`, so the Matrix values are now Boolean instead of type `Status`; 3. Removed the ability to disable a profile and to delete a row from the matrix (was orig commented out)",
+      "revId": "4e362ea9cce6367c9617bf9a13749ce56364a9ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
