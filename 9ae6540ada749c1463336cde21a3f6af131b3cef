@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dc881c8_82114b48",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-18T20:04:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b27ccf6c_c5fa8178",
+      "range": {
+        "startLine": 129,
+        "startChar": 30,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f4288ed_6b50dbfd",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I think I would pass the message to processConnectionEvent then.",
       "parentUuid": "46ae6461_7eb3b67e",
+      "range": {
+        "startLine": 1612,
+        "startChar": 0,
+        "endLine": 1612,
+        "endChar": 48
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f653edd_09d39e22",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1612,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-18T20:04:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c8db622_5fc3fdcd",
       "range": {
         "startLine": 1612,
         "startChar": 0,
@@ -166,6 +214,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c738305_68ccffb8",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2026,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-18T20:04:07Z",
+      "side": 1,
+      "message": "added a break",
+      "parentUuid": "c257552e_4394f284",
+      "range": {
+        "startLine": 2026,
+        "startChar": 0,
+        "endLine": 2026,
+        "endChar": 35
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a410fbd9_2dceafc7",
@@ -179,6 +251,30 @@
       "writtenOn": "2024-11-14T22:30:17Z",
       "side": 1,
       "message": "FYI This check will be always true, because the message are sent like this:\n\n```\n        HeadsetClientStateMachine sm \u003d\n                getStateMachine(stackEvent.device, isConnectionEvent(stackEvent));\n        if (sm \u003d\u003d null) {\n            throw new IllegalStateException(\n                    \"State machine not found for stack event: \" + stackEvent);\n        }\n        sm.sendMessage(StackEvent.STACK_EVENT, stackEvent);\n```\n\nI know this is also done in other state. But that could be a nice follow-up cleanup",
+      "range": {
+        "startLine": 2037,
+        "startChar": 17,
+        "endLine": 2037,
+        "endChar": 56
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e854fe9f_6f801071",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 2037,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-18T20:04:07Z",
+      "side": 1,
+      "message": "Noted",
+      "parentUuid": "a410fbd9_2dceafc7",
       "range": {
         "startLine": 2037,
         "startChar": 17,
@@ -467,6 +563,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e017a7ae_e2d97947",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-18T20:04:07Z",
+      "side": 1,
+      "message": "Hi William, as of now sendMessage for ```DISCONNECT``` does require an mTestDevice just because of the way the state machine is set up. See: \n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java;drc\u003da39ff179e772388f03193c939dd5ae03e6f947e2;l\u003d1407\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java;drc\u003d454ac2b3e6024e004f7665dc07b6c3d23d1fd4fb;l\u003d701\n\nI have added the device where needed so that the test is working, but I understand your point and the state machine requires further clean up.",
+      "parentUuid": "d3ab9a00_f39daa54",
+      "range": {
+        "startLine": 1430,
+        "startChar": 8,
+        "endLine": 1433,
+        "endChar": 34
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63461627_0158a8af",
@@ -623,6 +743,30 @@
       "side": 1,
       "message": "Still present",
       "parentUuid": "90745623_fd0ad28e",
+      "range": {
+        "startLine": 1493,
+        "startChar": 3,
+        "endLine": 1494,
+        "endChar": 65
+      },
+      "revId": "9ae6540ada749c1463336cde21a3f6af131b3cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ed499f2_434538b2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-11-18T20:04:07Z",
+      "side": 1,
+      "message": "Yes, sorry hadn\u0027t yet uploaded the latest version of the code when this reply was sent because there were other fixes to be made. Should be right now.",
+      "parentUuid": "f57a5a83_44c28194",
       "range": {
         "startLine": 1493,
         "startChar": 3,
