@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07e3bc28_27067521",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1450,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T22:02:16Z",
+      "side": 1,
+      "message": "If we defer a DISCONNECT message, it will just lead to a timeout per the current logic. Disconnecting also defers the DISCONNECT message. There will be no retry of this call.\n\nWhat\u0027s the intent here? To retry? To just wait it out and see if the remote device solves it for us? Immediately force clean up?\n\nFWIW, I think the current logic _does not_ retry at all. Just waiting for the timeout may be good enough for now. Many, many, other profiles don\u0027t check the return codes for their native disconnect calls.\n\nIn any case, the following is functionally the same:\n```\nmNativeInterface.disconnect(mCurrentDevice);\ntransitionTo(mDisconnecting);\n```",
+      "range": {
+        "startLine": 1449,
+        "startChar": 28,
+        "endLine": 1450,
+        "endChar": 48
+      },
+      "revId": "cb3c8e1c767115dd38a5e876a6ad243e4eabd76f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cd0e24a_7c6b0d9e",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 20
