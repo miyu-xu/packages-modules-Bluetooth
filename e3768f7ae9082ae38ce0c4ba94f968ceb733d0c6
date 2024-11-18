@@ -34,6 +34,24 @@
       "parentUuid": "bd88d6e6_bdeb5aac",
       "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17bea37c_d4f92a9a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-18T17:23:02Z",
+      "side": 1,
+      "message": "`getIdentityAddress()` API is incomplete which is what necessitated this feature work.\nWe have the opportunity to make a complete API so apps don\u0027t have to make two separate API calls and potentially get invalid value due to lack of atomicity.\nConsider a case where the identity address was not available when the first API is serviced but was available when the second API is serviced. Similarly, what if the device gets removed after the first API call, so the second API call returns invalid value.",
+      "parentUuid": "cdc145fd_25e72d8e",
+      "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
