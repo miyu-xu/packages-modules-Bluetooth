@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dd61ac7_a34dabd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-18T08:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2eac1f4_7527a8bf",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4567f70_539fe534",
@@ -212,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23efd68d_4ffec872",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4239,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-18T08:53:49Z",
+      "side": 1,
+      "message": "Let\u0027s keep it without flag. This is an extension of previous check not fully related to stopping stream when context is not available.",
+      "parentUuid": "f824c3c7_e3d2ce4b",
+      "range": {
+        "startLine": 4236,
+        "startChar": 4,
+        "endLine": 4239,
+        "endChar": 54
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56d810eb_efe10add",
@@ -225,6 +273,30 @@
       "writtenOn": "2024-11-14T11:53:15Z",
       "side": 1,
       "message": "remaining only",
+      "range": {
+        "startLine": 4821,
+        "startChar": 50,
+        "endLine": 4821,
+        "endChar": 65
+      },
+      "revId": "188f2f598e836bf05b02fb6dec452b0674a65c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e5c4b20_8585b876",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4821,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-18T08:53:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "56d810eb_efe10add",
       "range": {
         "startLine": 4821,
         "startChar": 50,
