@@ -70,6 +70,30 @@
       },
       "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db3ae75_6ac659bd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-18T19:56:02Z",
+      "side": 1,
+      "message": "It seems that section applies to methods, not the fields in intents.\n\nIrrespective, what value would we assign to `UNKNOWN`?\nIf we assign it `3` today, then what value should the new encryption algo should be assigned in future? Would we then have to change the value of the `UNKNOWN`? Wouldn\u0027t that be a break?\nIf we retain the value of `UNKNOWN` and assign new encryption algo a new number, say `4`, then this question would need to be answered for the next encryption algo as well.",
+      "parentUuid": "04f47df3_ef1419d4",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 533,
+        "endChar": 57
+      },
+      "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
