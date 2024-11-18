@@ -216,6 +216,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84f25e6e_7bd4abdc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-18T22:24:08Z",
+      "side": 1,
+      "message": "To reduce system health impact, let\u0027s have it as non-background intent.\nApps can receive ACL_CONNECTED, and then stay in foreground if interested.",
+      "parentUuid": "874cc500_95b6783e",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "895ef918_f2a51c5a",
