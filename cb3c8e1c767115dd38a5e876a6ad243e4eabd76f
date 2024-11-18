@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cd0e24a_7c6b0d9e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T21:30:11Z",
+      "side": 1,
+      "message": "Nit simplification:\n\n\n```suggestion\n        sendMessage(StackEvent.STACK_EVENT, event);\n```",
+      "range": {
+        "startLine": 1378,
+        "startChar": 8,
+        "endLine": 1379,
+        "endChar": 89
+      },
+      "revId": "cb3c8e1c767115dd38a5e876a6ad243e4eabd76f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
