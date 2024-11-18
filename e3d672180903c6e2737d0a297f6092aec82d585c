@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6deb64c2_d89e7833",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T20:20:24Z",
+      "side": 1,
+      "message": "Is there a set of valid groupIds? How would a caller of this API know what IDs to put here?\n\nWhat happens if a groupId isn\u0027t valid for some reason?",
+      "range": {
+        "startLine": 1452,
+        "startChar": 55,
+        "endLine": 1452,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "69db883b_2088db87",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+              "range": {
+                "startLine": 1445,
+                "startChar": 0,
+                "endLine": 1446,
+                "endChar": 0
+              },
+              "replacement": "     * @param groupId the ID of the fallback group. The group ID is a 32-bit unsigned integer.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
