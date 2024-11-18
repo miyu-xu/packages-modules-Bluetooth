@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f89bb2c_1eb5eeec",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:24:57Z",
+      "side": 1,
+      "message": "Stop is also non-necessary.\n\nThe first round of cleanup is to move the start in constructor. It generate a lot of optimisation and code to fix around it.\nThe stop should be easier to implement and I plan to do all the profiles at once.",
+      "parentUuid": "337a395e_eb4981e4",
+      "range": {
+        "startLine": 231,
+        "startChar": 16,
+        "endLine": 231,
+        "endChar": 20
+      },
+      "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cbd04f4_07791a55",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad9d3f21_a9f54474",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:24:57Z",
+      "side": 1,
+      "message": "You are right. This is completely un-necessary.\n\nstart and stop are both called from the same thread.\n\nmodifying the stop sequence wasn\u0027t the goal of this CL.",
+      "parentUuid": "5cbd04f4_07791a55",
+      "range": {
+        "startLine": 234,
+        "startChar": 23,
+        "endLine": 234,
+        "endChar": 52
+      },
+      "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d701728_dc20961a",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-11-18T21:13:07Z",
       "side": 1,
       "message": "Should this be in cleanup() instead ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 9
+      },
+      "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07ee6f39_a3886991",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:24:57Z",
+      "side": 1,
+      "message": "that doesn\u0027t change anything, both stop and cleanup are call syncrhonously  on the same thread, without letting another call in between\n```\n        } else if (state \u003d\u003d BluetoothAdapter.STATE_OFF) {\n            ProfileService profileService \u003d mStartedProfiles.remove(profileId);\n            if (profileService !\u003d null) {\n                profileService.setAvailable(false);\n                onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_OFF);\n                profileService.stop();\n                removeProfile(profileService);\n                profileService.cleanup();\n                if (profileService.getBinder() !\u003d null) {\n                    profileService.getBinder().cleanup();\n                }\n```\n\nThis will be solved once the cleanup and stop are merged together",
+      "parentUuid": "6d701728_dc20961a",
       "range": {
         "startLine": 237,
         "startChar": 0,
