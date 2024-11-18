@@ -2213,7 +2213,7 @@ public class HeadsetService extends ProfileService {
         mAdapterService.notifyProfileConnectionStateChangeToGatt(
                 BluetoothProfile.HEADSET, fromState, toState);
         mAdapterService.handleProfileConnectionStateChange(
-                BluetoothProfile.HEADSET, device, fromState, toState);
+                device, BluetoothProfile.HEADSET, fromState, toState);
         mAdapterService.updateProfileConnectionAdapterProperties(
                 device, BluetoothProfile.HEADSET, toState, fromState);
     }

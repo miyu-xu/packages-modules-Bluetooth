@@ -16,6 +16,10 @@
 
 package com.android.bluetooth.btservice;
 
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTING;
+
 import static com.android.bluetooth.TestUtils.getTestDevice;
 import static com.android.bluetooth.TestUtils.waitForLooperToFinishScheduledTask;
 
@@ -264,10 +268,10 @@ public class PhonePolicyTest {
                 connectedDevices.add(dev);
                 // Simulate CSIP connection
                 mPhonePolicy.profileConnectionStateChanged(
-                        BluetoothProfile.CSIP_SET_COORDINATOR,
                         dev,
-                        BluetoothProfile.STATE_DISCONNECTED,
-                        BluetoothProfile.STATE_CONNECTED);
+                        BluetoothProfile.CSIP_SET_COORDINATOR,
+                        STATE_DISCONNECTED,
+                        STATE_CONNECTED);
                 waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
             }
         }
@@ -566,10 +570,10 @@ public class PhonePolicyTest {
         // Inject first devices
         mPhonePolicy.onUuidsDiscovered(firstDevice, uuids);
         mPhonePolicy.profileConnectionStateChanged(
-                BluetoothProfile.CSIP_SET_COORDINATOR,
                 firstDevice,
-                BluetoothProfile.STATE_DISCONNECTED,
-                BluetoothProfile.STATE_CONNECTED);
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                STATE_DISCONNECTED,
+                STATE_CONNECTED);
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Verify connection policy is set properly
@@ -599,10 +603,10 @@ public class PhonePolicyTest {
         // Inject second set member connection
         mPhonePolicy.onUuidsDiscovered(secondDevice, uuids);
         mPhonePolicy.profileConnectionStateChanged(
-                BluetoothProfile.CSIP_SET_COORDINATOR,
                 secondDevice,
-                BluetoothProfile.STATE_DISCONNECTED,
-                BluetoothProfile.STATE_CONNECTED);
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                STATE_DISCONNECTED,
+                STATE_CONNECTED);
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Verify connection policy is set properly
@@ -685,10 +689,10 @@ public class PhonePolicyTest {
         // Inject first devices
         mPhonePolicy.onUuidsDiscovered(firstDevice, uuids);
         mPhonePolicy.profileConnectionStateChanged(
-                BluetoothProfile.CSIP_SET_COORDINATOR,
                 firstDevice,
-                BluetoothProfile.STATE_DISCONNECTED,
-                BluetoothProfile.STATE_CONNECTED);
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                STATE_DISCONNECTED,
+                STATE_CONNECTED);
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Verify connection policy is set properly
@@ -715,10 +719,10 @@ public class PhonePolicyTest {
         // Inject second set member connection
         mPhonePolicy.onUuidsDiscovered(secondDevice, uuids);
         mPhonePolicy.profileConnectionStateChanged(
-                BluetoothProfile.CSIP_SET_COORDINATOR,
                 secondDevice,
-                BluetoothProfile.STATE_DISCONNECTED,
-                BluetoothProfile.STATE_CONNECTED);
+                BluetoothProfile.CSIP_SET_COORDINATOR,
+                STATE_DISCONNECTED,
+                STATE_CONNECTED);
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Verify connection policy is set properly
@@ -821,10 +825,7 @@ public class PhonePolicyTest {
         when(mHeadsetService.getConnectionState(connectionOrder.get(1)))
                 .thenReturn(BluetoothProfile.STATE_DISCONNECTED);
         mPhonePolicy.profileConnectionStateChanged(
-                BluetoothProfile.A2DP,
-                connectionOrder.get(1),
-                BluetoothProfile.STATE_CONNECTED,
-                BluetoothProfile.STATE_DISCONNECTED);
+                connectionOrder.get(1), BluetoothProfile.A2DP, STATE_CONNECTED, STATE_DISCONNECTED);
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Verify that we do not call setConnection, nor setDisconnection on disconnect
@@ -836,10 +837,10 @@ public class PhonePolicyTest {
 
         // Disconnect a2dp for the device from previous STATE_DISCONNECTING
         mPhonePolicy.profileConnectionStateChanged(
-                BluetoothProfile.A2DP,
                 connectionOrder.get(1),
-                BluetoothProfile.STATE_DISCONNECTING,
-                BluetoothProfile.STATE_DISCONNECTED);
+                BluetoothProfile.A2DP,
+                STATE_DISCONNECTING,
+                STATE_DISCONNECTED);
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Verify that we do not call setConnection, but instead setDisconnection on disconnect
@@ -1617,6 +1618,6 @@ public class PhonePolicyTest {
             default:
                 break;
         }
-        mPhonePolicy.profileConnectionStateChanged(profileId, device, prevState, nextState);
+        mPhonePolicy.profileConnectionStateChanged(device, profileId, prevState, nextState);
     }
 }

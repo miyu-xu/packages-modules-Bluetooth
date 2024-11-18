@@ -16,6 +16,12 @@
 
 package com.android.bluetooth.btservice;
 
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTING;
+import static android.bluetooth.BluetoothProfile.getProfileName;
+
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 
 import android.bluetooth.BluetoothAdapter;
@@ -105,19 +111,15 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     }
 
     public void profileConnectionStateChanged(
-            int profile, BluetoothDevice device, int fromState, int toState) {
-        switch (profile) {
-            case BluetoothProfile.A2DP:
-            case BluetoothProfile.HEADSET:
-            case BluetoothProfile.LE_AUDIO:
-            case BluetoothProfile.CSIP_SET_COORDINATOR:
-            case BluetoothProfile.VOLUME_CONTROL:
-                mHandler.post(
-                        () -> processProfileStateChanged(device, profile, toState, fromState));
-                break;
-            default:
-                break;
+            BluetoothDevice device, int profile, int fromState, int toState) {
+        if (profile != BluetoothProfile.A2DP
+                && profile != BluetoothProfile.HEADSET
+                && profile != BluetoothProfile.LE_AUDIO
+                && profile != BluetoothProfile.CSIP_SET_COORDINATOR
+                && profile != BluetoothProfile.VOLUME_CONTROL) {
+            return;
         }
+        mHandler.post(() -> processProfileStateChanged(device, profile, fromState, toState));
     }
 
     /**
@@ -695,43 +697,26 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     }
 
     private void processProfileStateChanged(
-            BluetoothDevice device, int profileId, int nextState, int prevState) {
-        debugLog(
-                "processProfileStateChanged, device="
-                        + device
-                        + ", profile="
-                        + BluetoothProfile.getProfileName(profileId)
-                        + ", "
-                        + prevState
-                        + " -> "
-                        + nextState);
-        if (((profileId == BluetoothProfile.A2DP)
-                || (profileId == BluetoothProfile.HEADSET)
-                || (profileId == BluetoothProfile.LE_AUDIO)
-                || (profileId == BluetoothProfile.CSIP_SET_COORDINATOR)
-                || (profileId == BluetoothProfile.VOLUME_CONTROL)
-                || (profileId == BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT))) {
-            if (nextState == BluetoothProfile.STATE_CONNECTED) {
-                switch (profileId) {
-                    case BluetoothProfile.A2DP:
-                        mA2dpRetrySet.remove(device);
-                        break;
-                    case BluetoothProfile.HEADSET:
-                        mHeadsetRetrySet.remove(device);
-                        break;
-                    case BluetoothProfile.CSIP_SET_COORDINATOR:
+            BluetoothDevice device, int profile, int prevState, int nextState) {
+        Log.d(
+                TAG,
+                ("processProfileStateChanged(" + device + ", " + getProfileName(profile) + ": ")
+                        + getConnectionStateName(prevState)
+                        + "->"
+                        + getConnectionStateName(nextState));
+        if (nextState == STATE_CONNECTED) {
+            switch (profile) {
+                case BluetoothProfile.A2DP -> mA2dpRetrySet.remove(device);
+                case BluetoothProfile.HEADSET -> mHeadsetRetrySet.remove(device);
+                case BluetoothProfile.CSIP_SET_COORDINATOR ->
                         handleLeAudioOnlyDeviceAfterCsipConnect(device);
-                        break;
-                }
-                connectOtherProfile(device);
             }
-            if (nextState == BluetoothProfile.STATE_DISCONNECTED) {
-                if (prevState == BluetoothProfile.STATE_CONNECTING
-                        || prevState == BluetoothProfile.STATE_DISCONNECTING) {
-                    mDatabaseManager.setDisconnection(device, profileId);
-                }
-                handleAllProfilesDisconnected(device);
+            connectOtherProfile(device);
+        } else if (nextState == STATE_DISCONNECTED) {
+            if (prevState == STATE_CONNECTING || prevState == STATE_DISCONNECTING) {
+                mDatabaseManager.setDisconnection(device, profile);
             }
+            handleAllProfilesDisconnected(device);
         }
     }
 

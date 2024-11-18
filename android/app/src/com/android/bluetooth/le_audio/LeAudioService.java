@@ -1875,7 +1875,7 @@ public class LeAudioService extends ProfileService {
         mAdapterService.notifyProfileConnectionStateChangeToGatt(
                 BluetoothProfile.LE_AUDIO, prevState, newState);
         mAdapterService.handleProfileConnectionStateChange(
-                BluetoothProfile.LE_AUDIO, device, prevState, newState);
+                device, BluetoothProfile.LE_AUDIO, prevState, newState);
         mAdapterService
                 .getActiveDeviceManager()
                 .profileConnectionStateChanged(
