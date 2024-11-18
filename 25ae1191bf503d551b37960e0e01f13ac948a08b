@@ -34,6 +34,23 @@
       "parentUuid": "cdf0747d_4f0be01e",
       "revId": "25ae1191bf503d551b37960e0e01f13ac948a08b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe206d2_dbadc5ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-11-18T21:22:38Z",
+      "side": 1,
+      "message": "As I am no longer working on this area, Add Bhakthavatsala for owner review",
+      "revId": "25ae1191bf503d551b37960e0e01f13ac948a08b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
