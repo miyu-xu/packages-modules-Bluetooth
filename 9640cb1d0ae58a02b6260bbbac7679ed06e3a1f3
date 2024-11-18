@@ -16,6 +16,75 @@
       "message": "Thank you for doing this!",
       "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "337a395e_eb4981e4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-18T21:13:07Z",
+      "side": 1,
+      "message": "If you don\u0027t have start(), why have stop() ?\n\nShould logic from stop() all be moved to cleanup() or some sort of destructor ?",
+      "range": {
+        "startLine": 231,
+        "startChar": 16,
+        "endLine": 231,
+        "endChar": 20
+      },
+      "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cbd04f4_07791a55",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-18T21:13:07Z",
+      "side": 1,
+      "message": "Do you still care about this case ? Should this if be removed ?",
+      "range": {
+        "startLine": 234,
+        "startChar": 23,
+        "endLine": 234,
+        "endChar": 52
+      },
+      "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d701728_dc20961a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-18T21:13:07Z",
+      "side": 1,
+      "message": "Should this be in cleanup() instead ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 9
+      },
+      "revId": "9640cb1d0ae58a02b6260bbbac7679ed06e3a1f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
