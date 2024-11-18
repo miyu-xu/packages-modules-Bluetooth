@@ -136,6 +136,7 @@ public class LeAudioServiceTest {
 
     @Mock private AdapterService mAdapterService;
     @Mock private GattService mGattService;
+    @Mock private ScanController mScanController;
     @Mock private TransitionalScanHelper mTransitionalScanHelper;
     @Mock private ActiveDeviceManager mActiveDeviceManager;
     @Mock private AudioManager mAudioManager;
@@ -225,7 +226,9 @@ public class LeAudioServiceTest {
                 .when(mAdapterService)
                 .getBondedDevices();
         doReturn(mGattService).when(mAdapterService).getBluetoothGattService();
+        doReturn(mScanController).when(mAdapterService).getBluetoothScanController();
         doReturn(mTransitionalScanHelper).when(mGattService).getTransitionalScanHelper();
+        doReturn(mTransitionalScanHelper).when(mScanController).getTransitionalScanHelper();
 
         LeAudioBroadcasterNativeInterface.setInstance(mLeAudioBroadcasterNativeInterface);
         LeAudioNativeInterface.setInstance(mNativeInterface);
