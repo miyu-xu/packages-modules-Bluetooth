@@ -516,6 +516,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a994951_3ac58541",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-18T23:09:51Z",
+      "side": 1,
+      "message": "I changed my mind. you are right that\u0027s better.\nLet\u0027s remove it. The \"public\" modifier is enough.",
+      "parentUuid": "0b54d43c_c44d5302",
+      "range": {
+        "startLine": 63,
+        "startChar": 5,
+        "endLine": 64,
+        "endChar": 14
+      },
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9c8311c_7aa1191a",
