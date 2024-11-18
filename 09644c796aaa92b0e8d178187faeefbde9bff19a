@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "897d9b20_6d5ad948",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T21:28:25Z",
+      "side": 1,
+      "message": "Ok. And are you updating the place where we actually send the broadcast? Because that flag you changed in this CL just changes the documentation, not the behavior.\n\nBut I think we need to step back, this really should not be a broadcast at all. go/android-api-guidelines#framework-avoid-broadcast",
+      "parentUuid": "e1047cf6_f3b88254",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14
