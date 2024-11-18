@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39489ee2_fe4770e4",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-18T06:52:24Z",
+      "side": 1,
+      "message": "There are lots of flags used in `hh_open_handler_` but is not checked in `hh_open_handler`. Doesn\u0027t that imply enabling `hogp_reconnection` needs other flags to be configured in a certain way (enabled or disabled)? Is that really OK?",
+      "revId": "7fd7fa0dec829984f761a5b606d2efadb53cfee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab0c5938_12c5bd0f",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-18T06:52:24Z",
+      "side": 1,
+      "message": "Is the timer added to avoid HoG reconnects immediately? The below discussion assumes the answer is yes (otherwise, why we have the timer?)\n\nI wonder if we should add the background connection on ACL disconnection (e.g. BTA_DM_LINK_DOWN_EVT) instead.\nDoing it this way, I could think of several potential issues.\n(1) suppose the peer device has more than just HoG profile and we connect those profiles. Then when we disconnects only HoG but not the other profiles, this code will make HoG reconnects.\n(2) if the underlying ACL link takes longer than the backoff timer to disconnect for some reason, we will reconnect HoG and that potentially cancel the ACL disconnection.\n\nIn contrast to (2), if we do this in ACL disconnection, we can just immediately enable background reconnection without the timer.",
+      "revId": "7fd7fa0dec829984f761a5b606d2efadb53cfee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
