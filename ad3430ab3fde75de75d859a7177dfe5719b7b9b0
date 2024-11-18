@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33341c48_97be031d",
+        "filename": "service/src/com/android/server/bluetooth/BtPermissionUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-18T22:29:55Z",
+      "side": 1,
+      "message": "enforces",
+      "range": {
+        "startLine": 80,
+        "startChar": 71,
+        "endLine": 80,
+        "endChar": 78
+      },
+      "revId": "ad3430ab3fde75de75d859a7177dfe5719b7b9b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
