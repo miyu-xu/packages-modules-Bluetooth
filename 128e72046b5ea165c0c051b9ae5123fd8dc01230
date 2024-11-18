@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12bc6e70_5b62473d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T17:47:08Z",
+      "side": 1,
+      "message": "@poahlo@google.com You were the first recommended person to the OWNERS list for some of these xml resources!\n\nContext is we\u0027re doing some refactoring in PBAP Client (cars only) to help enable contacts caching. This was some general clean up though to rename our account type to \"pbap client\" and not \"pbap sink.\" I also noticed we had a translatable resource (which, its not supposed to be) for the account type, and then proceeded to provide \"translations\" that were all just the same string. I deleted them all and made the one important resource `translatable\u003dfalse`.",
+      "revId": "128e72046b5ea165c0c051b9ae5123fd8dc01230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
