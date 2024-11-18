@@ -118,6 +118,30 @@
       },
       "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "417ca2c4_a8cac8fd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-18T20:24:11Z",
+      "side": 1,
+      "message": "How would a value of 0 or -1 help maintain compatibility? If we are never going to use it, and apps are never going to receive it, why do we need it?\n\nMaybe I have misunderstood your original comment. \nDo you mean to say that we will send different broadcasts to different apps depending upon their target API version?\ngo/android-api-guidelines#constants-callbacks-compatibility appears to be a more relevant section. However that is for callbacks, not intents.",
+      "parentUuid": "aa565260_d96e63c3",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 533,
+        "endChar": 57
+      },
+      "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
