@@ -235,6 +235,30 @@
       },
       "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2a79c5b_1144a6f2",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T03:51:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "696017bc_3ff61838",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 24
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
