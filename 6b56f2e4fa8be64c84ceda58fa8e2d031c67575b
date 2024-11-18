@@ -16,6 +16,24 @@
       "message": "Address type can only be either public or random. `ble_address_with_type.h` describes `own_address_type` which is different from the address type.\n\nAnything other than a public address type is random address type.",
       "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3232ab65_7467e946",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-18T02:54:09Z",
+      "side": 1,
+      "message": "Unfortunately that the tBLE_ADDR_TYPE used in tSMB_CB for the identity address type has all of these address types mixed together.\n\nIt\u0027s hard to tell what possible values p_cb-\u003eid_addr_type in smp_act.cc can have. Are you sure it\u0027s just 0 and 1? The confusing part is the spec defines public, random, public ID, and random ID in a few places (mostly associated with advertising reports), and in those cases both public and public ID are options for public identity address (where the 2nd value of 2 corresponds to resolved RPA).",
+      "parentUuid": "7a06f7eb_9974ca04",
+      "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
