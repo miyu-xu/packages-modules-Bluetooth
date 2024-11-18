@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a077f08_3f06941b",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-18T17:49:51Z",
+      "side": 1,
+      "message": "nit: btsock_l2cap_get_offload_mtu",
+      "range": {
+        "startLine": 883,
+        "startChar": 29,
+        "endLine": 883,
+        "endChar": 35
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e34098f_46a05595",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-18T17:49:51Z",
+      "side": 1,
+      "message": "Now is not the place to validate the leCocCapabilities; I think you need to enforce that the capabilities returned by the HAL fall within the valid range SDU_MIN .. SDU_MAX",
+      "range": {
+        "startLine": 889,
+        "startChar": 2,
+        "endLine": 892,
+        "endChar": 47
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "833275ab_f90b24ca",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-18T17:49:51Z",
+      "side": 1,
+      "message": "\u0026sock-\u003erx_mtu",
+      "range": {
+        "startLine": 941,
+        "startChar": 36,
+        "endLine": 941,
+        "endChar": 47
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
