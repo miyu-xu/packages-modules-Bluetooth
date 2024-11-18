@@ -16,6 +16,24 @@
       "message": "Does it make sense to rename `RequestPullPhonebook` \u003d\u003e `PhonebookPullRequest` ?",
       "revId": "65de044f1aeafce43600001ac4de95e9df8d28ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5870cca_bdac9e65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-18T19:34:52Z",
+      "side": 1,
+      "message": "The old code also has a PhonebookPullRequest, which was a class to parse and store the results of the request. I don\u0027t think that class was nicely named, but I was trying to not mess with that stuff I could help it. But I agree, this object would be better named something like PhonebookPullRequest.\n\nThat said, the spec defines this as a \"PullPhonebook\" request. So maybe that works? Is that not too confusing or easy to mix up right now? FWIW as well, the other \"metadata\" request we have isn\u0027t actually its own request in the spec. Its just a special flavor of a \"PullPhonebook\" with parameters that indicate to the server to drop the contacts data from the response.\n\nIn any case, I\u0027m fine with any naming scheme honestly, as long as its clear and consistent.",
+      "parentUuid": "17e34de3_6d995d3e",
+      "revId": "65de044f1aeafce43600001ac4de95e9df8d28ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
