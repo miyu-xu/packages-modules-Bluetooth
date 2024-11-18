@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bbde95b_4ecbbb87",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T19:48:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a077f08_3f06941b",
+      "range": {
+        "startLine": 883,
+        "startChar": 29,
+        "endLine": 883,
+        "endChar": 35
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e34098f_46a05595",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e6aeb1_97f776b9",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T19:48:07Z",
+      "side": 1,
+      "message": "Enforced hal mtu size in valid range. app_max_rx_packet_size app requested was capped by L2CAP_SDU_LENGTH_LE_MIN.",
+      "parentUuid": "1e34098f_46a05595",
+      "range": {
+        "startLine": 889,
+        "startChar": 2,
+        "endLine": 892,
+        "endChar": 47
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "833275ab_f90b24ca",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-18T17:49:51Z",
       "side": 1,
       "message": "\u0026sock-\u003erx_mtu",
+      "range": {
+        "startLine": 941,
+        "startChar": 36,
+        "endLine": 941,
+        "endChar": 47
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1991b5c9_f7f8e934",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-18T19:48:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "833275ab_f90b24ca",
       "range": {
         "startLine": 941,
         "startChar": 36,
