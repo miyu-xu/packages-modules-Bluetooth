@@ -194,6 +194,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "874cc500_95b6783e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-18T21:43:33Z",
+      "side": 1,
+      "message": "We expect Bluetooth apps (including the Settings apps) to start relying on this intent instead of `ACTION_ACL_CONNECTED` intent to start communicating with the device.\nIt would be less work for the app developers if it is similar to `ACTION_ACL_CONNECTED`.",
+      "parentUuid": "897d9b20_6d5ad948",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "09644c796aaa92b0e8d178187faeefbde9bff19a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895ef918_f2a51c5a",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 14
