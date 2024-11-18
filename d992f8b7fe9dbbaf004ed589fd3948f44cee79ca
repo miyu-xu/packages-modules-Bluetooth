@@ -142,6 +142,30 @@
       },
       "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7693b921_d6818853",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-18T20:56:11Z",
+      "side": 1,
+      "message": "Yes, that guide is probably more relevant, my apologies.\n\nThis intent is a callback (albeit a bad way of implementing one that often causes system health issues). By registering for it, you will get updates any time something changes.\n\nI did just realize from your comment \"Do you mean to say that we will send different broadcasts to different apps depending upon their target API version?\" that I don\u0027t think that\u0027s actually possible, which is another reason why we really should use dedicated callbacks to better support compatibility.\n\nHere\u0027s the case I\u0027m worried about:\nI\u0027m app A and I start using this API. I write code that handles the 3 cases I\u0027m aware of (NONE, E0, AES).\nTime passes and a new encryption algorithm gets added to the standard, let\u0027s call it AES2. We update the callback (or intent) to send that when it\u0027s set.\nApp A hasn\u0027t updated to be aware of AES2. It gets the intent or callback and it has no idea what to do with AES2. It breaks b/c of that in some unspecified way.\n\nThe way we typically handle this case is by including an UNKNOWN or UNSPECIFIED placeholder in the API from the start. Then, when we fire the callback, we can check who we\u0027re calling, make sure they\u0027re targeting the new API. If they are, we\u0027ll send AES2. If they\u0027re not, we send UNKNOWN. Since it was there from the beginning, the app already wrote code to handle it gracefully.\n\nAnything that returns an enum-like list of items should have something like it to handle forward compatibility.",
+      "parentUuid": "417ca2c4_a8cac8fd",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 533,
+        "endChar": 57
+      },
+      "revId": "d992f8b7fe9dbbaf004ed589fd3948f44cee79ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
