@@ -1315,26 +1315,6 @@ public class BassClientService extends ProfileService {
         return sourceId;
     }
 
-    private boolean hasRoomForBroadcastSourceAddition(BluetoothDevice device) {
-        BassClientStateMachine stateMachine = null;
-        synchronized (mStateMachines) {
-            stateMachine = getOrCreateStateMachine(device);
-        }
-        if (stateMachine == null) {
-            log("stateMachine is null");
-            return false;
-        }
-        boolean isRoomAvailable = false;
-        for (BluetoothLeBroadcastReceiveState recvState : stateMachine.getAllSources()) {
-            if (isEmptyBluetoothDevice(recvState.getSourceDevice())) {
-                isRoomAvailable = true;
-                break;
-            }
-        }
-        log("isRoomAvailable: " + isRoomAvailable);
-        return isRoomAvailable;
-    }
-
     private Integer getSourceIdToRemove(BluetoothDevice device) {
         BassClientStateMachine stateMachine = null;
 
@@ -2993,7 +2973,7 @@ public class BassClientService extends ProfileService {
                     continue;
                 }
             }
-            if (!hasRoomForBroadcastSourceAddition(device)) {
+            if (!stateMachine.hasRoomForBroadcastSourceAddition()) {
                 log("addSource: device has no room");
                 Integer sourceIdToRemove = getSourceIdToRemove(device);
                 if (sourceIdToRemove != BassConstants.INVALID_SOURCE_ID) {
