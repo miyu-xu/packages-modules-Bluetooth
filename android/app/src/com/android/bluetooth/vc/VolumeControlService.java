@@ -1458,7 +1458,7 @@ public class VolumeControlService extends ProfileService {
             }
         }
         mAdapterService.handleProfileConnectionStateChange(
-                BluetoothProfile.VOLUME_CONTROL, device, fromState, toState);
+                device, BluetoothProfile.VOLUME_CONTROL, fromState, toState);
     }
 
     /** Binder object: must be a static class or memory leak may occur */

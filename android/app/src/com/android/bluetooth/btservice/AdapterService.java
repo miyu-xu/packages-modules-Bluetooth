@@ -6171,9 +6171,9 @@ public class AdapterService extends Service {
      * move all connection logic here.
      */
     public void handleProfileConnectionStateChange(
-            int profile, BluetoothDevice device, int fromState, int toState) {
+            BluetoothDevice device, int profile, int fromState, int toState) {
         if (mPhonePolicy != null) {
-            mPhonePolicy.profileConnectionStateChanged(profile, device, fromState, toState);
+            mPhonePolicy.profileConnectionStateChanged(device, profile, fromState, toState);
         }
     }
 
