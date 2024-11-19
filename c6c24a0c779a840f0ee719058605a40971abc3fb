@@ -22,6 +22,30 @@
       },
       "revId": "c6c24a0c779a840f0ee719058605a40971abc3fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41bdbb49_c658fd9b",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-19T19:44:35Z",
+      "side": 1,
+      "message": "ah! sorry. fixed it",
+      "parentUuid": "df885d5a_d0c4f353",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "c6c24a0c779a840f0ee719058605a40971abc3fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
