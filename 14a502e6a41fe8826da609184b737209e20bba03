@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d33c8c_a999a6c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-19T22:39:09Z",
+      "side": 1,
+      "message": "This looks great. It\u0027s directly in line with the new post-refactor world too.\n\nIdeally, we\u0027d have a few simple unit tests to show\n- Serivce: record received -\u003e record passed on\n- State Machine: status, record received -\u003e success carries on, busy retries, everything else fails\n\nBut, its worth noting that I do have brand new code and tests coming too that will obsolete this.",
+      "revId": "14a502e6a41fe8826da609184b737209e20bba03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
