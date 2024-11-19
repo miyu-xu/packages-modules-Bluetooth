@@ -136,6 +136,30 @@
       },
       "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82ab07e8_0c3685fd",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-19T22:22:08Z",
+      "side": 1,
+      "message": "According to offline discussion - updated. Thanks for suggestion.",
+      "parentUuid": "8136f3f9_06f0cea3",
+      "range": {
+        "startLine": 1452,
+        "startChar": 55,
+        "endLine": 1452,
+        "endChar": 62
+      },
+      "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
