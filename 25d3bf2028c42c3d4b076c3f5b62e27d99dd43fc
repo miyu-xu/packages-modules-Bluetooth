@@ -16,6 +16,24 @@
       "message": "I know this is still a WIP, but this feel very complicated",
       "revId": "25d3bf2028c42c3d4b076c3f5b62e27d99dd43fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e136071a_b029f143",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-19T23:13:19Z",
+      "side": 1,
+      "message": "I promise it\u0027s not as bad as it looks!\n\nThe idea is that LE Audio defines high level profiles like TMAP, HAP, PBP which take dependencies on several other lower level profiles building blocks.\n\nCurrently, our LE Audio configuration surface works at the level of the those dependencies to effectively compose the high level roles we want. We also act as if everyone is a phone and wants _all_ the high level profiles and roles that the phone wants. This has lead to a convoluted configuration interface that\u0027s both (1)  upside-down from how other profiles work (i.e. you don\u0027t say \"give me AVCTP and BIP\" to turn on AVRCP 1.6, you say \"give me AVRCP\" and we enable the dependencies), and (2) not actually that configurable (i.e. I can\u0027t easily take TMAP Unicast Media Sender without taking TMAP Call Gateway).\n\nNow, you set the TMAP, HAP and PBP roles you want, and those profiles set the dependencies they need. The Java classes can correctly configure and start, and initialize their JNI intefaces for use in the native static. This class orchestrates that all and makes sure it adheres to the dependency tables in the specifications.\n\nIt\u0027s way simpler, and you don\u0027t need to be an LE Audio expert to enable something. We also can longer term move some of the \"does my hardware support LE Audio\" logic to here as well, so its all co-located.\n\nThat said, I will admit the table abstract used in the SparseMatrix is un-intuitive in code as compared to on paper. The formality around the terminology (use-cse vs framework, etc.) might make this look worse than it actually is as well.\n\nIs there something in particular you\u0027re worried about?",
+      "parentUuid": "6ea68f47_686f8123",
+      "revId": "25d3bf2028c42c3d4b076c3f5b62e27d99dd43fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
