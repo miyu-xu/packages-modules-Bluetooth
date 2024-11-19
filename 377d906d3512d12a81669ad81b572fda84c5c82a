@@ -16,6 +16,24 @@
       "message": "Seems like iterating/streaming over the entry set is the actual prevention. But no matter.",
       "revId": "377d906d3512d12a81669ad81b572fda84c5c82a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c0353b4_9707a771",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T17:43:28Z",
+      "side": 1,
+      "message": "By doing a stream I prevent doing \n\n\n```\nfor device in map.key() {\n  if map.get(device) \u003d\u003d foo { ... crash because device is removed from map and get return null\n```\n\nthis could be fixed by a getOrDefault, or by using a stream that gave me a valid entry map.",
+      "parentUuid": "1cd90a51_b09a2274",
+      "revId": "377d906d3512d12a81669ad81b572fda84c5c82a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
