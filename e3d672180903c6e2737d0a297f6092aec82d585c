@@ -64,6 +64,30 @@
       },
       "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "370d0dca_e82d8ae7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:30:18Z",
+      "side": 1,
+      "message": "It would really be helpful to have an improved description at least in this method (or a link to an existing description if one already exists).\n\nVery supportive of adding a better description everywhere (please do so) but for this CL since we\u0027re adding this new API, I need the description to make sure I understand what the API does.",
+      "parentUuid": "4f0edb91_0f85e976",
+      "range": {
+        "startLine": 1452,
+        "startChar": 55,
+        "endLine": 1452,
+        "endChar": 62
+      },
+      "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
