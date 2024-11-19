@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa70e6e_e9a13cf6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-19T21:23:53Z",
+      "side": 1,
+      "message": "it seems doesn\u0027t make sense, if it is not bound, the session should be stopped. in normal case, the \u0027start_...\u0027 will never be called.",
+      "revId": "4bf9001016fb69e14758497a5820abef17f4ec91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
