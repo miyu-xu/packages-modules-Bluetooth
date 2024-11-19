@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a41ba91_5e2aef2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:44:36Z",
+      "side": 1,
+      "message": "Looking good. Just need the annotations for the time APIs and to sort out the testing story for those data classes. Consider making the constructors public or adding a builder to make testing easier.\n\nIf you\u0027re concerned that people generally shouldn\u0027t be creating them in real code, you can add a comment in the constructor that it\u0027s visible for testing.",
+      "revId": "2ded9fd130178adb34aeaa5622d5bd047151d647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "358dc544_877c07bb",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 2472,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:44:36Z",
+      "side": 1,
+      "message": "thanks, this looks great! One last remaining thing, please annotate the time methods with the appropriate annotations. See go/android-api-guidelines#time-annotations for guidance",
+      "revId": "2ded9fd130178adb34aeaa5622d5bd047151d647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

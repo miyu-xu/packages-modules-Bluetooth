@@ -68,6 +68,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8405a782_151b522c",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:44:36Z",
+      "side": 1,
+      "message": "Not API blocking, but might be worth adding a comment in this file that explains that.",
+      "parentUuid": "7f23292e_79d1ab0d",
+      "range": {
+        "startLine": 105,
+        "startChar": 63,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3593e805_4750f988",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
@@ -97,6 +121,24 @@
       "side": 1,
       "message": "Report id 0x05 is for Root inflammation event, this event will not passthrough to framework layer. (https://source.android.com/docs/core/connect/bluetooth/hci_requirements#subevent-code-\u003d-0x58-[quality_report_id-\u003d-0x05,-root-inflammation-event])",
       "parentUuid": "3593e805_4750f988",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "617ab1f1_d5d895df",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:44:36Z",
+      "side": 1,
+      "message": "What about 0x07?",
+      "parentUuid": "cc970bd1_12417431",
       "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -267,6 +309,24 @@
       "side": 1,
       "message": "Thank for reminder, I created the test case in the CTS test(aosp/3342867)",
       "parentUuid": "b9b902b4_f4a9b7c6",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc56d49f_0f154a3f",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:44:36Z",
+      "side": 1,
+      "message": "I\u0027m less concerned with CTS tests than with users of the APIs. How are they expected to create this class in a test?",
+      "parentUuid": "35506a3c_26882793",
       "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -746,6 +806,24 @@
       "side": 1,
       "message": "Thank for reminder, I created the test case in the CTS test(aosp/3342867)",
       "parentUuid": "77fd0805_7a6daf78",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bba36227_6fc77e2e",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2870,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:44:36Z",
+      "side": 1,
+      "message": "Same comment as above. If I\u0027m an app using these APIs, how do I create this class for the purposes of testing?",
+      "parentUuid": "f3c2e52a_1911a16e",
       "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
