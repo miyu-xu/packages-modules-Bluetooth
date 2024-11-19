@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fa42801_3426f88f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T20:49:18Z",
+      "side": 1,
+      "message": "What does this pattern do ?",
+      "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a49d772_c1d9ae8f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T20:49:18Z",
+      "side": 1,
+      "message": "Does this list need locking ?",
+      "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
