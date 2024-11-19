@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea33aa7a_ab38070e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T20:19:14Z",
+      "side": 1,
+      "message": "Given the urgency of this change to fix a security issue, I am approving this from an API perspective.\n\nHowever, longer term, the team really needs to start using callbacks instead of broadcasts. API Council may stop approving new broadcast APIs entirely in a future Android release.",
+      "revId": "55bdbd84544f31bac721e3a2d059273590350478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
