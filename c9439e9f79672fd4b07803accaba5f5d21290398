@@ -1082,6 +1082,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d242f589_7053445f",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T20:30:18Z",
+      "side": 1,
+      "message": "I don\u0027t think you can mock a class if the ctor is private.\n\nA Fake for this would work instead, since it does seem infeasible to expose this class as is.\n\nUnfortunately, we\u0027re a bit stuck. Because right now, these APIs are not testable. Quoting from go/android-api-guidelines: \"APIs should also be testable. You should be able to answer the question, \"How will an app developer test code that uses your API?\"",
+      "parentUuid": "e2653da2_3ae24d4d",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29

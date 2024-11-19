@@ -380,6 +380,24 @@
       "parentUuid": "ded4ee3c_9160ea61",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f03f911_3a01e44c",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T20:30:18Z",
+      "side": 1,
+      "message": "Yeah, the range part makes sense. I\u0027m concerned about a different scenario.\n\nLet\u0027s say the range is 0 to 100. But the gain setting unit is 5. So eligible values are 0, 5, 10, 15, etc. What if I set it to 23?",
+      "parentUuid": "847397d8_cea95df3",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
