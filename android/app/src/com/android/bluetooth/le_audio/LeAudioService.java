@@ -3709,10 +3709,7 @@ public class LeAudioService extends ProfileService {
                                 if (!leaudioUseAudioModeListener()) {
                                     mQueuedInCallValue = Optional.empty();
                                 }
-                                if (!leaudioBigDependsOnAudioState()) {
-                                    startBroadcast(
-                                            mBroadcastIdDeactivatedForUnicastTransition.get());
-                                }
+                                startBroadcast(mBroadcastIdDeactivatedForUnicastTransition.get());
                                 mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
                             }
 
@@ -3772,10 +3769,8 @@ public class LeAudioService extends ProfileService {
                     mBroadcastSessionStats.put(broadcastId, sessionStats);
                 }
 
-                if (!leaudioBigDependsOnAudioState()) {
-                    // Start sending the actual stream
-                    startBroadcast(broadcastId);
-                }
+                // Start sending the actual stream
+                startBroadcast(broadcastId);
             } else {
                 // TODO: Improve reason reporting or extend the native stack event with reason code
                 Log.e(
