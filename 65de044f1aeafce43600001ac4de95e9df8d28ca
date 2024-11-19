@@ -34,6 +34,47 @@
       "parentUuid": "17e34de3_6d995d3e",
       "revId": "65de044f1aeafce43600001ac4de95e9df8d28ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c64641_6a3fe616",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapPhonebook.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-19T02:27:13Z",
+      "side": 1,
+      "message": "Is this only used in tests? If so it should be marked as such.\n\nI\u0027m also concerned with the null account here, where before that should not have been nullable but it now is. This should be marked as @Nullable and its nullness checked before use (unfortunately we don\u0027t have nullness checker enabled), but better would be to not have it be nullable and pass in mock accounts from all tests.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0737589a_6b22aeba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapPhonebook.java",
+              "range": {
+                "startLine": 82,
+                "startChar": 0,
+                "endLine": 83,
+                "endChar": 0
+              },
+              "replacement": "    /**\n     * Constructor for testing purposes only.\n     *\n     * @param phonebook the phonebook path\n     */\n    public PbapPhonebook(String phonebook) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "65de044f1aeafce43600001ac4de95e9df8d28ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
