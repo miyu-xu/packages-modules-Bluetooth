@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c11a63_bab17a70",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "Is `listen_fd` too ambiguous ?",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 16
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c4a32ff_cdb936a2",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "specify : must not be null",
+      "range": {
+        "startLine": 593,
+        "startChar": 20,
+        "endLine": 600,
+        "endChar": 50
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1b51b6_5312538e",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "These helpers should be moved to a separate CL to separate cleanup from logic.",
+      "range": {
+        "startLine": 605,
+        "startChar": 5,
+        "endLine": 605,
+        "endChar": 25
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e28c51f_b28fd8da",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "This is a getter yet your are mutating the state; sounds like a bad idea.",
+      "range": {
+        "startLine": 623,
+        "startChar": 2,
+        "endLine": 623,
+        "endChar": 26
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cce7ea94_c35ce15e",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "`handle of the corresponding ACL connection.`",
+      "range": {
+        "startLine": 925,
+        "startChar": 35,
+        "endLine": 925,
+        "endChar": 51
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "356f9dc4_5e6b5c11",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "lcid",
+      "range": {
+        "startLine": 925,
+        "startChar": 71,
+        "endLine": 925,
+        "endChar": 81
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34bdba1c_5b7bb5b7",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T01:20:16Z",
+      "side": 1,
+      "message": "acl_handle",
+      "range": {
+        "startLine": 930,
+        "startChar": 22,
+        "endLine": 930,
+        "endChar": 70
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
