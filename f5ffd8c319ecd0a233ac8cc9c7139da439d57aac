@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05bca208_909fb7cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2024-11-19T03:37:40Z",
+      "side": 1,
+      "message": "Hi Etienne, Does it have such APIs or related changes to check whether remote is A2DP sync support?",
+      "parentUuid": "d00aa5be_79c4decd",
+      "revId": "f5ffd8c319ecd0a233ac8cc9c7139da439d57aac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0aa7d62d_9cd6924f",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 2
