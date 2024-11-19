@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562dceb7_c654889c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-19T18:26:59Z",
+      "side": 1,
+      "message": "fixed presubmit error: SparseArray\u003cBoolean\u003e --\u003e SparseBooleanArray",
+      "revId": "3338f553ed6c2643abed31d20c7f0b42ffe88ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
