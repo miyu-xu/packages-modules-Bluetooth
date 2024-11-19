@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd90a51_b09a2274",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-19T02:33:26Z",
+      "side": 1,
+      "message": "Seems like iterating/streaming over the entry set is the actual prevention. But no matter.",
+      "revId": "377d906d3512d12a81669ad81b572fda84c5c82a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
