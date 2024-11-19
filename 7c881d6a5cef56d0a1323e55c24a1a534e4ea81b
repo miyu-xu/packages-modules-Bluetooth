@@ -44,6 +44,24 @@
       ],
       "revId": "7c881d6a5cef56d0a1323e55c24a1a534e4ea81b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "365abb09_6378cb52",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-19T07:59:54Z",
+      "side": 1,
+      "message": "Probably, yes. I just copied what was already there, but yes, I\u0027m pretty sure `gatt_if_` is the correct thing here. I updated CL",
+      "parentUuid": "3340bfcb_074990e6",
+      "revId": "7c881d6a5cef56d0a1323e55c24a1a534e4ea81b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
