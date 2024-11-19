@@ -40,6 +40,30 @@
       ],
       "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0edb91_0f85e976",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-19T15:07:36Z",
+      "side": 1,
+      "message": "Hi Andrew, Thank you for review.\n\nActually there is no limitation for group ID all values are allowed, but I agree that it should be described in better way. I have an idea to do a follow up change for all methods here that have groupID parameter a link to description of group ID. Is it ok for you ?",
+      "parentUuid": "6deb64c2_d89e7833",
+      "range": {
+        "startLine": 1452,
+        "startChar": 55,
+        "endLine": 1452,
+        "endChar": 62
+      },
+      "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
