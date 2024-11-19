@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ * limitations under the License.test
  */
 
 #include "os/alarm.h"
@@ -86,9 +86,9 @@ void Alarm::on_fire() {
   lock.unlock();
 
   if (com::android::bluetooth::flags::non_wake_alarm_for_rpa_rotation() && bytes_read == -1) {
-    log::info("No data to read.");
+    log::debug("No data to read.");
     if (errno == EAGAIN || errno == EWOULDBLOCK) {
-      log::info("Alarm is already canceled or rescheduled.");
+      log::debug("Alarm is already canceled or rescheduled.");
       return;
     }
   }
