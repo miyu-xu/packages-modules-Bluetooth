@@ -41,6 +41,7 @@ import pandora.HostProto.OwnAddressType;
 import pandora.OOBGrpc;
 import pandora.RFCOMMGrpc;
 import pandora.SecurityGrpc;
+import pandora.SecurityStorageGrpc;
 import pandora.l2cap.L2CAPGrpc;
 
 import java.util.UUID;
@@ -208,6 +209,11 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora Security service */
     public SecurityGrpc.SecurityStub security() {
         return SecurityGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora Security storage service */
+    public SecurityStorageGrpc.SecurityStorageBlockingStub securityStorageBlockingStub() {
+        return SecurityStorageGrpc.newBlockingStub(mChannel);
     }
 
     /** Get Pandora OOB blocking service */
