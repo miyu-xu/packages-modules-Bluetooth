@@ -75,6 +75,30 @@
       ],
       "revId": "65de044f1aeafce43600001ac4de95e9df8d28ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbbfadaa_9d940588",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapPhonebook.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-19T18:13:24Z",
+      "side": 1,
+      "message": "In the new/refactored flagged state machine object later on down the chain, this is used to create an empty phonebook when a request for contents fails. That way, the results handling coming from a request is all homogeneous. Because the results are erroneous/empty, the account isn\u0027t used to create insert operations.\n\nHere, and aside from the above in the state machine in the new world, its used just in tests.\n\nFWIW, the account is only used when actually storing contacts in Contacts Provider. It\u0027s not data that\u0027s transferred over PBAP. A null account causes the VCard parsing framework to skip over the logic that adds values for account name and type. This, in turn, causes the VCard operations framework to skip adding column values for account type and name. It\u0027s always been nullable. The VCardConstructor that uses it here even has other constructors that set it to null, https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/opt/vcard/java/com/android/vcard/VCardEntryConstructor.java;l\u003d58-63. As well, we had bugs in the past where storage account creation would fail and we would use this code with a null account.\n\nIn the tests here, the account isn\u0027t actually important when validating PBAP VCard parsing. It wasn\u0027t checked in the old `PbapClientVcardListTest` either. Its existence is only really important come storage time, which ends up being owned/validated by `PbapClientContactsStorage.java`. That\u0027s why I used the constructor I did to ignore the account. A mock would have sufficed too I suppose.\n\nHappy to change to a mock either way! But, that\u0027s the context 😊",
+      "parentUuid": "77c64641_6a3fe616",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 17
+      },
+      "revId": "65de044f1aeafce43600001ac4de95e9df8d28ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
