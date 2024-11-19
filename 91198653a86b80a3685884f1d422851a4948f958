@@ -1,5 +1,88 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c631734_cc59592a",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-19T22:55:06Z",
+      "side": 1,
+      "message": "should be !\u003d",
+      "range": {
+        "startLine": 1293,
+        "startChar": 26,
+        "endLine": 1293,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c206bae4_786f3d5b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1293,
+                "startChar": 0,
+                "endLine": 1294,
+                "endChar": 0
+              },
+              "replacement": "  if (sock-\u003elisten_our_fd !\u003d -1) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91198653a86b80a3685884f1d422851a4948f958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1154e799_4d5ead4f",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-19T22:55:06Z",
+      "side": 1,
+      "message": "if (stack::l2cap::get_interface().L2CA_GetRemoteChannelId(p_ccb-\u003econnection_id,\n                                                              \u0026l2cap_remote_cid)) {\n      cb_data.l2cap_cids.local_cid \u003d p_ccb-\u003econnection_id;\n      cb_data.l2cap_cids.remote_cid \u003d l2cap_remote_cid;\n      cb_data_ptr \u003d \u0026cb_data;\n      p_ccb-\u003erem_connection_id \u003d l2cap_remote_cid;      \n    }",
+      "range": {
+        "startLine": 742,
+        "startChar": 0,
+        "endLine": 748,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "64928bd2_3761baca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gap/gap_conn.cc",
+              "range": {
+                "startLine": 742,
+                "startChar": 0,
+                "endLine": 744,
+                "endChar": 0
+              },
+              "replacement": "    if (stack::l2cap::get_interface().L2CA_GetRemoteChannelId(p_ccb-\u003econnection_id,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91198653a86b80a3685884f1d422851a4948f958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
