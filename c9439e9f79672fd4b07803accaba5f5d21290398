@@ -577,6 +577,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d53ec266_2a7016e4",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "Makes sense. Is there a good place to document this? Your comment does a really great job of explaining this nuance. It would be good to include it in the docs.",
+      "parentUuid": "50aa223b_07774389",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fa9b753_d17f654b",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29
@@ -624,6 +642,24 @@
       "side": 1,
       "message": "Unfortunately this is the entire definition done as per the bluetooth spec:\nSee screenshot of `6.12.2 Audio Input Type Definitions`:\nhttps://screenshot.googleplex.com/5f4QHr3HSuBHb8M\n\nI assume that the usage of this type can also be general, from surrounding sound in hearing aid, to noise cancellation in earbud, or for doing pass-through and bypassing noise cancellatio",
       "parentUuid": "6fa9b753_d17f654b",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "478ed85a_1582f745",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "805b0cf4_7d2f52fb",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -992,6 +1028,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e2c183e_c8e64e6d",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "Yes, while CTS tests are valuable, if I\u0027m an app developer and I need to use these APIs in a test, it becomes a lot harder to do so if I can\u0027t create a version of this object.\n\nOne way to do this is to just have a constructor (it would need to also be @SystemApi or public API if there\u0027s public APIs that use this) and document that it is only visible for testing.\n\n@TestApi is meant for exposing things specifically for CTS tests, not for external testing.\n\nAlternatively, you can have a method that will return a real object, if that makes more sense (for instance, if you can\u0027t expose every parameter of the ctor).",
+      "parentUuid": "fc2add23_d64a412c",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29
@@ -1167,6 +1221,24 @@
       "side": 1,
       "message": "It would be a user friendly name of what this AICS is about. It is helpful when multiple AICS with the same type are on a device.  \nFor example if the input is DIGITAL, they could set it to \"HDMI\" / \"USB\" / ...\n\nCloser to the usecase of this release of API the audio input type \"Streaming\" could refer to telecoil or auracast, two concurrent technology. Since there is no AudioInputType to differentiate them, it would be up to the Description to do it.\n\nBut the value of the description is a free field that can be anything, and device could exposes capabilities to rename it by the end user.",
       "parentUuid": "fb8b2ed2_9dd02b6a",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c68c102_3ac99e5a",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "If it\u0027s the name, should it be getName? Please ignore this comment if description is the spec term that\u0027s used.\n\nIn either case, it might be helpful to include some of your comment in the docs here as it makes it much more obvious what it\u0027s for.",
+      "parentUuid": "3d1d4fc1_fe6de4a8",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

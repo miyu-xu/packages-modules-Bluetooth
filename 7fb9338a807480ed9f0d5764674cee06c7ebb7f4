@@ -1,0 +1,223 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6be9ec_6dddb7a9",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "nit: switched",
+      "range": {
+        "startLine": 172,
+        "startChar": 31,
+        "endLine": 172,
+        "endChar": 37
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4d4ee7_fe0c1337",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "nit: adjustments",
+      "range": {
+        "startLine": 179,
+        "startChar": 15,
+        "endLine": 179,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a5a2ea46_63c29070",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 179,
+                "startChar": 0,
+                "endLine": 180,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eGain adjustments are automatic and calls to {@link #setGainSetting} are ignored.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3da8e622_4279278b",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "nit: switched",
+      "range": {
+        "startLine": 181,
+        "startChar": 31,
+        "endLine": 181,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2a4425e7_2b4230dd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eThe server cannot be switched to automatic gain.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 181,
+                "startChar": 0,
+                "endLine": 182,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eThe server cannot be switched to manual gain.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcf28ba4_0930d68f",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "nit: supports",
+      "range": {
+        "startLine": 191,
+        "startChar": 21,
+        "endLine": 191,
+        "endChar": 28
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e285aadc_7d3bafd2",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "adjustments",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cb094d99_2b8a929c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/AudioInputControl.java",
+              "range": {
+                "startLine": 198,
+                "startChar": 0,
+                "endLine": 199,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eGain adjustments are automatic and calls to {@link #setGainSetting} are ignored.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01e63e1b_21b5a975",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "supports",
+      "range": {
+        "startLine": 200,
+        "startChar": 21,
+        "endLine": 200,
+        "endChar": 28
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded4ee3c_9160ea61",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T16:57:05Z",
+      "side": 1,
+      "message": "What if you set it to something that\u0027s not valid based on the gainSettingUnit?",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
