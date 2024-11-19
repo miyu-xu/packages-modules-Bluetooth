@@ -112,6 +112,30 @@
       },
       "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8136f3f9_06f0cea3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1452,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-19T18:36:05Z",
+      "side": 1,
+      "message": "Definitely an improvement, but I guess, where do groupIds get defined? Might be helpful to {@link} to a relevant API",
+      "parentUuid": "37ad7169_11c6a69e",
+      "range": {
+        "startLine": 1452,
+        "startChar": 55,
+        "endLine": 1452,
+        "endChar": 62
+      },
+      "revId": "e3d672180903c6e2737d0a297f6092aec82d585c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
