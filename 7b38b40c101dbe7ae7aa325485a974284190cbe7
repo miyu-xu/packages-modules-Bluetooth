@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "844ce7d3_77cf6590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T22:33:29Z",
+      "side": 1,
+      "message": "Removes `BluetoothMethodProxy` for proper access to content resolver and test clean up/naming",
+      "revId": "7b38b40c101dbe7ae7aa325485a974284190cbe7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
