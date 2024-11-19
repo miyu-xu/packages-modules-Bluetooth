@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98175410_8cf448db",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-19T22:51:20Z",
+      "side": 1,
+      "message": "Ah, interesting. It looks like aosp/3260748 moved this from the state machine to the service and marked it as visible only for testing. Despite that, its _not_ only visible for testing, and the state machine is actually using it. I have no idea why the linter is just now complaining, and didn\u0027t complain on the previous change. These functions probably long term should be in a Utils class if they really are used everywhere and can be static. For another day though.\n\nSorry this impacted you.",
+      "range": {
+        "startLine": 220,
+        "startChar": 4,
+        "endLine": 220,
+        "endChar": 22
+      },
+      "revId": "365d013461acdf872a7332083939ad932d1f5c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
