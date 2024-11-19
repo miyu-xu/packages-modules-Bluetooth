@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c39a4f0_42b99874",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T16:53:57Z",
+      "side": 1,
+      "message": "Access to the map is threadsafe, and state machine reference counts should be gc\u0027ed appropriately, so I think the only exposure is in the start()/stop()/download() if they don\u0027t consistently run on same thread.",
+      "parentUuid": "323423df_8f4be877",
+      "range": {
+        "startLine": 562,
+        "startChar": 11,
+        "endLine": 571,
+        "endChar": 13
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a2c727b_3b3afccf",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "051594b8_97abe76f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T16:53:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8c4447a1_bf38f6a0",
+      "range": {
+        "startLine": 589,
+        "startChar": 8,
+        "endLine": 589,
+        "endChar": 51
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb3aaa5e_56c20523",
@@ -149,6 +197,30 @@
       "side": 1,
       "message": "I stuck this in here b/c I got a little fed up with all the `connect` messaged being set in a thundering herd as all the profiles race to start up.  So we would get `unexpected message` warning, when it\u0027s not really a warning but a WAI.\n\nThere are a few other warn\u0027s that are not really warn\u0027s that are similar that I did not address...using this as a \"trial balloon\" for feedback.",
       "parentUuid": "eb3aaa5e_56c20523",
+      "range": {
+        "startLine": 237,
+        "startChar": 16,
+        "endLine": 242,
+        "endChar": 26
+      },
+      "revId": "eef1007020b8d65af1f6a8640cd212fb21e83e0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "570119ce_65a7ebc6",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T16:53:57Z",
+      "side": 1,
+      "message": "We get called many times to download during the connecting state so I left this log message here so in a future CL we could try to rework the requestor to condition on the profile being connected before a download request occurs or something along those lines.",
+      "parentUuid": "82e0db22_992d5949",
       "range": {
         "startLine": 237,
         "startChar": 16,
