@@ -593,6 +593,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa878d66_4abf0a6e",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done.\n\nI added some details in getType\n\nBut this is the main purpose of what an AICS is, so I really expect user of the API to know about it.",
+      "parentUuid": "d53ec266_2a7016e4",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fa9b753_d17f654b",
@@ -1046,6 +1064,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2653da2_3ae24d4d",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "I can make the contructor public, but IBluetoothVolumeControl is not an API (and we don\u0027t want it to be an API since it\u0027s an internal binder).\nI don\u0027t know how to replace it. Or I could set it to null, but the API will not be able to call or do anything after that.\n\nCan\u0027t the test be written using a Mock like this:\n```\nAudioInputControl foo \u003d mock(AudioInputControl.class)\n```\n\nBecause even if I found a way to inject a binder in the constructor, none of these APIs would do anything in a test scenario, and only return the default value and then log `\"No audio inputs for \"…`. A mock will allow app to return the type they want, same for the value, etc.\n\nOr we can go very more futher and implement a fake object (a shadow one, to use robolectric term), that is fully usable, and customisable, that extend from AudioInputControl and offer way more control to emulate callback \u0026 co.\nBut this has never be done in Bluetooth and I think this would be a full feature on it\u0027s own. I would like not to block the release of this feature because of that.\n\nFYI some test are already implemented (see aosp/3346285 that sit above in the chain) and they make actual use of a real instance of the AICS, by emulating a real device being there.",
+      "parentUuid": "3e2c183e_c8e64e6d",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29
@@ -1239,6 +1275,24 @@
       "side": 1,
       "message": "If it\u0027s the name, should it be getName? Please ignore this comment if description is the spec term that\u0027s used.\n\nIn either case, it might be helpful to include some of your comment in the docs here as it makes it much more obvious what it\u0027s for.",
       "parentUuid": "3d1d4fc1_fe6de4a8",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27045f7a_f5b3a1ff",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done.\n\nIndeed description is the spec name.\nI quoted part of the spec in the documentation to be more informative.",
+      "parentUuid": "1c68c102_3ac99e5a",
       "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

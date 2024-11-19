@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83ad882_adc0d0ef",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e6be9ec_6dddb7a9",
+      "range": {
+        "startLine": 172,
+        "startChar": 31,
+        "endLine": 172,
+        "endChar": 37
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c4d4ee7_fe0c1337",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbde0fb5_f07be993",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c4d4ee7_fe0c1337",
+      "range": {
+        "startLine": 179,
+        "startChar": 15,
+        "endLine": 179,
+        "endChar": 25
+      },
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -116,6 +164,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53df7bae_79dcab0a",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3da8e622_4279278b",
+      "range": {
+        "startLine": 181,
+        "startChar": 31,
+        "endLine": 181,
+        "endChar": 37
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcf28ba4_0930d68f",
@@ -129,6 +201,30 @@
       "writtenOn": "2024-11-19T16:57:05Z",
       "side": 1,
       "message": "nit: supports",
+      "range": {
+        "startLine": 191,
+        "startChar": 21,
+        "endLine": 191,
+        "endChar": 28
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "025d0778_e296ba23",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcf28ba4_0930d68f",
       "range": {
         "startLine": 191,
         "startChar": 21,
@@ -180,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d32ec746_1105f154",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e285aadc_7d3bafd2",
+      "range": {
+        "startLine": 198,
+        "startChar": 15,
+        "endLine": 198,
+        "endChar": 25
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01e63e1b_21b5a975",
@@ -203,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48b94ac4_7c175c73",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01e63e1b_21b5a975",
+      "range": {
+        "startLine": 200,
+        "startChar": 21,
+        "endLine": 200,
+        "endChar": 28
+      },
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ded4ee3c_9160ea61",
@@ -216,6 +360,24 @@
       "writtenOn": "2024-11-19T16:57:05Z",
       "side": 1,
       "message": "What if you set it to something that\u0027s not valid based on the gainSettingUnit?",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "847397d8_cea95df3",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T20:15:59Z",
+      "side": 1,
+      "message": "It thow an IllegalArgumentException.\n\nI documented it in the javadoc:\n```\n@param gainSetting The desired gain setting value. Refer to {@link #getGainSettingMin()} and\n     *     {@link #getGainSettingMax()} for the allowed range.\n[...]\n* @throws IllegalArgumentException if the gain setting is not in range\n```\n\nShould I do something different ?",
+      "parentUuid": "ded4ee3c_9160ea61",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
