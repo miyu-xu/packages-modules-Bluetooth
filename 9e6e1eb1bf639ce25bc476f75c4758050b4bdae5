@@ -3,6 +3,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab506b04_f9b0121d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-19T09:22:41Z",
+      "side": 1,
+      "message": "why we are removing here `device !\u003d null` ?",
+      "fixSuggestions": [
+        {
+          "fixId": "a25d8d12_68b0567b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+              "range": {
+                "startLine": 805,
+                "startChar": 0,
+                "endLine": 806,
+                "endChar": 0
+              },
+              "replacement": "            if (!mLeAudioConnectedDevices.contains(device)\n                    \u0026\u0026 !mLeHearingAidConnectedDevices.contains(device)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9e6e1eb1bf639ce25bc476f75c4758050b4bdae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8ae721d_f492f64f",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 5
