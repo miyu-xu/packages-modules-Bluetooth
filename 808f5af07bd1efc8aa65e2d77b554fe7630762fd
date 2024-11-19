@@ -1,0 +1,333 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f70bc403_3d77d355",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T22:25:29Z",
+      "side": 1,
+      "message": "procedure (?)\n\n(just b/c process is overloaded with other definitions)",
+      "range": {
+        "startLine": 300,
+        "startChar": 47,
+        "endLine": 300,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fd96e559_b4e930f7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 300,
+                "startChar": 0,
+                "endLine": 301,
+                "endChar": 0
+              },
+              "replacement": "    /** Request to start the contacts download procedure */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0759c762_29fa3a0d",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T22:25:29Z",
+      "side": 1,
+      "message": "We may want to bail after a number of iterations as this will cause looping assuming the underlying state never changes.",
+      "fixSuggestions": [
+        {
+          "fixId": "bf069088_8146b8be",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "    @VisibleForTesting static final int SDP_RETRY_COUNT \u003d 3;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 196,
+                "startChar": 0,
+                "endLine": 196,
+                "endChar": 0
+              },
+              "replacement": "    private int mSdpRetryCount \u003d 0;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 425,
+                "startChar": 0,
+                "endLine": 426,
+                "endChar": 0
+              },
+              "replacement": "                        if (mSdpRetryCount \u003c SDP_RETRY_COUNT) {\n                            mSdpRetryCount++;\n                            mDevice.sdpSearch(BluetoothUuid.PBAP_PSE);\n                        } else {\n                            error(\"Connecting: SDP failed after \" + SDP_RETRY_COUNT + \" retries\");\n                            transitionTo(mDisconnecting);\n                        }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 449,
+                "startChar": 0,
+                "endLine": 450,
+                "endChar": 0
+              },
+              "replacement": "                        if (mSdpRetryCount \u003c SDP_RETRY_COUNT) {\n                            mSdpRetryCount++;\n                            mDevice.sdpSearch(BluetoothUuid.PBAP_PSE);\n                        } else {\n                            error(\n                                    \"Connecting: SDP failed after \"\n                                            + SDP_RETRY_COUNT\n                                            + \" retries\");\n                            transitionTo(mDisconnecting);\n                        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aab87f9_95dc8441",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T22:25:29Z",
+      "side": 1,
+      "message": "This is kind of linke two booleans,\n```\nis_storage_ready \u0026\u0026 is_account_ready\n```",
+      "range": {
+        "startLine": 501,
+        "startChar": 24,
+        "endLine": 501,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "85d1e6eb_fc47e6b6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 501,
+                "startChar": 0,
+                "endLine": 502,
+                "endChar": 0
+              },
+              "replacement": "        private boolean mIsStorageReady \u003d false;\n        private boolean mIsAccountReady \u003d false;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 512,
+                "startChar": 0,
+                "endLine": 513,
+                "endChar": 0
+              },
+              "replacement": "            mIsStorageReady \u003d false;\n            mIsAccountReady \u003d false;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 534,
+                "startChar": 0,
+                "endLine": 535,
+                "endChar": 0
+              },
+              "replacement": "                        if (!mIsAccountReady) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 536,
+                "startChar": 0,
+                "endLine": 537,
+                "endChar": 0
+              },
+              "replacement": "                            mIsAccountReady \u003d true;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 546,
+                "startChar": 0,
+                "endLine": 547,
+                "endChar": 0
+              },
+              "replacement": "                    if (!mIsAccountReady) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 548,
+                "startChar": 0,
+                "endLine": 549,
+                "endChar": 0
+              },
+              "replacement": "                        mIsAccountReady \u003d true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc796d1_81fce8c7",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T22:25:29Z",
+      "side": 1,
+      "message": "I wondered why `download` was in `Connected` when `Downloading` now has it\u0027s own state; and that\u0027s b/c:\n```\n    private void download() {\n        sendMessage(MSG_DOWNLOAD);\n    }\n```\nDoes it make sense to have a helper function for this or to just send the message directly ?\nPlus, does it make sense to set `mHasDownloaded` in the `MSG_DOWNLOAD` handler, even though multiple may be queued ?  Only the first message should be used to download, then after `mHasDownloaded` is set the messages should pop off as NOPs",
+      "range": {
+        "startLine": 535,
+        "startChar": 28,
+        "endLine": 535,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1a3e3065_dd66fe3d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 68,
+                "endChar": 0
+              },
+              "replacement": "    private static final int MSG_PHONEBOOK_METADATA_RECEIVED \u003d 9;\n    private static final int MSG_PHONEBOOK_CONTACTS_RECEIVED \u003d 10;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 301,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": "    private void downloadContacts() {\n        transitionTo(mDownloading);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 535,
+                "startChar": 0,
+                "endLine": 536,
+                "endChar": 0
+              },
+              "replacement": "                            downloadContacts();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 547,
+                "startChar": 0,
+                "endLine": 548,
+                "endChar": 0
+              },
+              "replacement": "                        downloadContacts();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 557,
+                "startChar": 0,
+                "endLine": 561,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+              "range": {
+                "startLine": 1002,
+                "startChar": 0,
+                "endLine": 1004,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e2bd48c_c1f71538",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-19T22:25:29Z",
+      "side": 1,
+      "message": "It\u0027s too bad SdpManager does not export these",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e82d6f93_ba7541ab",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "    // TODO(b/195989211): Use SdpManager constants when available\n"
+            }
+          ]
+        }
+      ],
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
