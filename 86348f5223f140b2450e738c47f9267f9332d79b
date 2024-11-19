@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6b712ea_59fe02ad",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T17:15:49Z",
+      "side": 1,
+      "message": "This is redundant as the imported type already has this name.",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "86348f5223f140b2450e738c47f9267f9332d79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b29b3d15_3b1805cc",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T17:15:49Z",
+      "side": 1,
+      "message": "Parameter added twice, maybe you meant something different",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 620,
+        "endChar": 69
+      },
+      "revId": "86348f5223f140b2450e738c47f9267f9332d79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1299ae3_b6d18e35",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-19T17:15:49Z",
+      "side": 1,
+      "message": "Parameter added twice, maybe you meant something different",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 682,
+        "endChar": 69
+      },
+      "revId": "86348f5223f140b2450e738c47f9267f9332d79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
