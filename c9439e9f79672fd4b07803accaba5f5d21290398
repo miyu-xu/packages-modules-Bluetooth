@@ -1100,6 +1100,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6024f405_fc6ab05c",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T22:35:43Z",
+      "side": 1,
+      "message": "aosp/3346285 is showing how this can be tested.\n\nI am attempting to do a fake on top of this change to see how this would look like. I am doing a separate CL to not \"bloat this one\"",
+      "parentUuid": "d242f589_7053445f",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29

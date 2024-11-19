@@ -398,6 +398,24 @@
       "parentUuid": "847397d8_cea95df3",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7a22ee5_b1f30c4d",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T22:35:43Z",
+      "side": 1,
+      "message": "This is not my understanding of the behavior describe by the spec.\n\nThe gainSettingUnit is the amount a single increment of the gainSetting in .1dB value.\n\nSo if the gainSetting is set to 40 and the gainSettingUint is at 5 and the actual volume is outputted at 20dB, setting the gainSetting to 41 will render the sound to 20.5dB (20 + .1 * 5)\n\nThe getGainSettingUnit is mentioning that, I added a line to reference the other method.\n\nLet me know what you think.",
+      "parentUuid": "0f03f911_3a01e44c",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
