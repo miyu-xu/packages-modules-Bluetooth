@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ae721d_f492f64f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-19T08:26:02Z",
+      "side": 1,
+      "message": "Which condition here is checking the behavior? I think I\u0027m missing something, could you elaborate?",
+      "revId": "9e6e1eb1bf639ce25bc476f75c4758050b4bdae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
