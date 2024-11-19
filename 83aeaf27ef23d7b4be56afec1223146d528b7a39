@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f7780a7_fb4aa6c4",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientBinder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T01:27:21Z",
+      "side": 1,
+      "message": "nit:\npublic is not needed ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba43adcd_4492131d",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientBinder.java",
         "patchSetId": 5
@@ -103,6 +126,117 @@
       "side": 1,
       "message": "Resolved OOB",
       "parentUuid": "fbe152af_96ad15ac",
+      "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c918ac71_68b2959b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-19T01:27:21Z",
+      "side": 1,
+      "message": "nit: prefer `never()` rather than `times(0)`",
+      "range": {
+        "startLine": 175,
+        "startChar": 29,
+        "endLine": 175,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c25180a1_e02d3152",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "import static org.mockito.Mockito.never;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 131,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).connect(any(BluetoothDevice.class));\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).disconnect(any(BluetoothDevice.class));\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 146,
+                "startChar": 0,
+                "endLine": 147,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).getConnectedDevices();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 157,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).getDevicesMatchingConnectionStates(any(int[].class));\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 164,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).getConnectionState(any(BluetoothDevice.class));\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 175,
+                "startChar": 0,
+                "endLine": 176,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).setConnectionPolicy(any(BluetoothDevice.class), anyInt());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientBinderTest.java",
+              "range": {
+                "startLine": 183,
+                "startChar": 0,
+                "endLine": 184,
+                "endChar": 0
+              },
+              "replacement": "        verify(mMockService, never()).getConnectionPolicy(any(BluetoothDevice.class));\n"
+            }
+          ]
+        }
+      ],
       "revId": "83aeaf27ef23d7b4be56afec1223146d528b7a39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
