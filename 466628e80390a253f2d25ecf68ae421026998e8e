@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9fef52_d619027d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4674,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c5191bd_1a941d0f",
+      "range": {
+        "startLine": 4672,
+        "startChar": 12,
+        "endLine": 4674,
+        "endChar": 57
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0190c879_43eb79f4",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4674,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "I tried to remove the indent but google-java-format keeps adding indent.",
+      "parentUuid": "5c674b10_ee0586d2",
+      "range": {
+        "startLine": 4668,
+        "startChar": 3,
+        "endLine": 4674,
+        "endChar": 57
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fccc17a_56a88de3",
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c93c417_5a52c1ba",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4748,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fccc17a_56a88de3",
+      "range": {
+        "startLine": 4748,
+        "startChar": 22,
+        "endLine": 4748,
+        "endChar": 33
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae84f97c_1ba3357f",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-20T05:30:57Z",
       "side": 1,
       "message": "`bindListenExt` naming is not very meaningful, it is hard for the reader to understand what is `Ext`. Consider renaming the interface / AIDL with a more descriptive name",
+      "range": {
+        "startLine": 4754,
+        "startChar": 35,
+        "endLine": 4754,
+        "endChar": 48
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bcc240e_c39e61ef",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4754,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "Right. Done wit postfix `WithOffload` instead of `Ext`",
+      "parentUuid": "ae84f97c_1ba3357f",
       "range": {
         "startLine": 4754,
         "startChar": 35,
@@ -134,6 +230,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c180aebe_eb8635da",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4755,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fbe4c0f_ef64acaa",
+      "range": {
+        "startLine": 4750,
+        "startChar": 8,
+        "endLine": 4755,
+        "endChar": 9
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0effcc2a_7b042784",
@@ -147,6 +267,30 @@
       "writtenOn": "2024-11-20T05:30:57Z",
       "side": 1,
       "message": "Shouldn\u0027t we log it in any case (i.e. even if `DATA_PATH_NO_OFFLOAD`)?",
+      "range": {
+        "startLine": 336,
+        "startChar": 12,
+        "endLine": 336,
+        "endChar": 42
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e56a961d_bdee6c01",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "Yes, there is no parameter used for `DATA_PATH_NO_OFFLOAD` here. Printing this parameter may confuse the user.",
+      "parentUuid": "0effcc2a_7b042784",
       "range": {
         "startLine": 336,
         "startChar": 12,

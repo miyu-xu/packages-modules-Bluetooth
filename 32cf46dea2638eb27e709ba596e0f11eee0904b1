@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b75dd559_c194e3cd",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T06:56:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e43dffcb_7ca15431",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1120,
+        "endChar": 1
+      },
+      "revId": "32cf46dea2638eb27e709ba596e0f11eee0904b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9d51343_3e275a8c",
