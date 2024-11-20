@@ -52,6 +52,24 @@
       "parentUuid": "cdc145fd_25e72d8e",
       "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a71ca345_00b2f44c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-20T00:30:40Z",
+      "side": 1,
+      "message": "I think having a separate `API` is good and even if used in conjunction, it still makes sense. Allow me to try to explain. The values for `identityAddress` and `identityAddressType` are similar to `name` or `type` in the sense that while they are APIs, they are similar to member variables as they are called from `RemoteDevices.java#class DeviceProperties`. They are cached and instantaneous in that sense.\n\n\u003e so apps don\u0027t have to make two separate API calls \n\nI think this is similar to `name` and `type` and other fields under `BluetoothDevice`. If a developer needs for example `name`, `identityAddress`, and `identityAddressType`, I don\u0027t think there should be a tuple API that returns all 3 but they\u0027d have to access them one by one as `device.getName()`, `device.getIdentityAddress()`, and `device.get IdentityAddressType()`.\n\n\u003e Consider a case where the identity address was not available when the first API is serviced but was available when the second API is serviced.\n\nIf my understanding is correct, since both values are being set at the same time in the method `leAddressAssociateCallback`, this really should not happen?",
+      "parentUuid": "17bea37c_d4f92a9a",
+      "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
