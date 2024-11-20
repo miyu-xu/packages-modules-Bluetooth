@@ -52,6 +52,24 @@
       "parentUuid": "3232ab65_7467e946",
       "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca6769e_63f131ff",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-20T00:44:56Z",
+      "side": 1,
+      "message": "Thank you for the explanation. I\u0027ll update this CL with the information that only public and random will come from the native layer.",
+      "parentUuid": "daacdad6_06c72a3a",
+      "revId": "6b56f2e4fa8be64c84ceda58fa8e2d031c67575b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
