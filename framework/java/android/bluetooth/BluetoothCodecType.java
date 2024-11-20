@@ -58,7 +58,7 @@ public final class BluetoothCodecType implements Parcelable {
     public static final long CODEC_ID_APTX_HD = 0x002400d7ff;
 
     /** LDAC codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_LDAC = 0x00aa012dff;
+    public static final long CODEC_ID_LDAC = 0x00aa_012d_ffL;
 
     /** Opus codec identifier. See {@link BluetoothCodecType#getCodecId}. */
     public static final long CODEC_ID_OPUS = 0x000100e0ff;
