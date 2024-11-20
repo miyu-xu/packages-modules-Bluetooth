@@ -393,6 +393,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "045809d2_fad4b238",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-20T17:27:48Z",
+      "side": 1,
+      "message": "Agreed that app developers are not going to create these in their regular code.\n\nBut we might still want to make the ctors public anyhow with the same message because let\u0027s imagine a developer writes some code to parse and process these objects. They\u0027ll want to write a test to validate it. If they can\u0027t create these objects, they can\u0027t easily write a test to validate the behavior.",
+      "parentUuid": "fed5a478_17cfed58",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46c1851a_52c3d499",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
