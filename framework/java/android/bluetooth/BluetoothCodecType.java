@@ -45,22 +45,26 @@ public final class BluetoothCodecType implements Parcelable {
     }
 
     /** SBC codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_SBC = 0x0000000000;
+    public static final long CODEC_ID_SBC = 0x0000_0000_00;
 
     /** AAC codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_AAC = 0x0000000002;
+    public static final long CODEC_ID_AAC = 0x0000_0000_02;
 
     /** AptX codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_APTX = 0x0001004fff;
+    public static final long CODEC_ID_APTX = 0x0001_004f_ff;
 
     /** Aptx HD codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_APTX_HD = 0x002400d7ff;
+    public static final long CODEC_ID_APTX_HD = 0x0024_00d7_ff;
 
     /** LDAC codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_LDAC = 0x00aa012dff;
+    public static final long CODEC_ID_LDAC = 0x00aa_012d_ff;
 
     /** Opus codec identifier. See {@link BluetoothCodecType#getCodecId}. */
-    public static final long CODEC_ID_OPUS = 0x000100e0ff;
+    public static final long CODEC_ID_OPUS = 0x0001_00e0_ff;
+
+    /** LHDC codec identifier. See {@link BluetoothCodecType#getCodecId}. */
+    @FlaggedApi(Flags.A2DP_LHDC_API)
+    public static final long CODEC_ID_LHDCV5 = 0x4c35_053a_ffL;
 
     /**
      * Create the bluetooth codec type from the static codec type index.
