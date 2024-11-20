@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2dfd15c_2e66b19d",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T08:25:48Z",
+      "side": 1,
+      "message": "In HAL client `socket_hal_android`, if the validation fails, do we have to unbind the HAL like call Stop()?",
+      "parentUuid": "cea81c02_f7b89b3e",
+      "range": {
+        "startLine": 889,
+        "startChar": 2,
+        "endLine": 892,
+        "endChar": 47
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "833275ab_f90b24ca",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 7
