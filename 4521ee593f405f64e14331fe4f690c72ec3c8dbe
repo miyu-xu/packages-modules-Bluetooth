@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2616dc_42b73de4",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-20T22:59:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7a68cb8b_53e73253",
+      "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a49d772_c1d9ae8f",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Oh good catch. I think that\u0027s a good idea.\n\nRight now, its possible for a client to remove a callback while we\u0027re running through them.\n\nLet me add some `synchronized (mCallbacks) { ... }` blocks where we use this",
       "parentUuid": "8a49d772_c1d9ae8f",
+      "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f988d29_d70b2557",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-20T22:59:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fa32835_da4437aa",
       "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
