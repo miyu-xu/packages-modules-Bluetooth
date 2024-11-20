@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1e14344_55bdc33a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-20T12:13:12Z",
+      "side": 1,
+      "message": "I don\u0027t have the +2 CR option",
+      "revId": "9d1c9b613b4b7d32bc6a10da51e93e1dff4b765a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
