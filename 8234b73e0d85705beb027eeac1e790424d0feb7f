@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5573b606_d24e3c0e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3714,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-20T11:32:05Z",
+      "side": 0,
+      "message": "Tests for startBroadcast should be reverted.",
+      "range": {
+        "startLine": 3713,
+        "startChar": 36,
+        "endLine": 3714,
+        "endChar": 95
+      },
+      "revId": "8234b73e0d85705beb027eeac1e790424d0feb7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

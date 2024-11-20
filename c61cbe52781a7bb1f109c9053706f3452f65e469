@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e4a5ba9_2a405e64",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-20T11:32:05Z",
+      "side": 1,
+      "message": "That will not be called after SuspendAudioBroadcast so ActiveState will be wrong.",
+      "range": {
+        "startLine": 1345,
+        "startChar": 8,
+        "endLine": 1345,
+        "endChar": 63
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be469ab6_37db52b7",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-20T11:32:05Z",
+      "side": 1,
+      "message": "That will not be called after SuspendAudioBroadcast so timer for StopAudioBroadcasts is not set (stop broadcast after 30 minutes). Maybe we should discussed, if we want to stop broadcast during handover at all.",
+      "range": {
+        "startLine": 1346,
+        "startChar": 0,
+        "endLine": 1346,
+        "endChar": 39
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "374a09de_57320900",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-20T11:32:05Z",
+      "side": 1,
+      "message": "Is there no risk of race between StartAudioBroadcast and OnAudioResume while going back to broadcast?",
+      "range": {
+        "startLine": 1356,
+        "startChar": 0,
+        "endLine": 1356,
+        "endChar": 58
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
