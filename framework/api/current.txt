@@ -510,6 +510,7 @@ package android.bluetooth {
     field public static final long CODEC_ID_LDAC = -1442763265L; // 0xffffffffaa012dffL
     field public static final long CODEC_ID_OPUS = 16834815L; // 0x100e0ffL
     field public static final long CODEC_ID_SBC = 0L; // 0x0L
+    field @FlaggedApi("com.android.bluetooth.flags.a2dp_lhdc_api") public static final long CODEC_ID_LHDCV5 = 327307049727; // 0x4c35053affL
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothCodecType> CREATOR;
   }
 
