@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57ad9c40_55901a96",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-20T13:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2f7692a_82a6c545",
+      "range": {
+        "startLine": 35,
+        "startChar": 47,
+        "endLine": 35,
+        "endChar": 51
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83e046d7_6bead7ae",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-13T19:46:01Z",
       "side": 1,
       "message": "Why null checking this ? shouldn\u0027t we set it back to null if there is no image ? \n\ncould this be done without a temporary variable ?\n```\n item.song.image.setImageHandle(mAvrcpCoverArtService.storeImage(item.song.image));\n```",
+      "range": {
+        "startLine": 488,
+        "startChar": 32,
+        "endLine": 488,
+        "endChar": 58
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9188c6b3_1434923b",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-20T13:51:03Z",
+      "side": 1,
+      "message": "This doesn\u0027t mean there is no image, this means we weren\u0027t able to store it properly. The handle is already null as it is not set before that so I guess we can shorten the code here, done.\n\n@salsavage@google.com, this also means modifying the previous implementation to be the same as here, is that okay? (Do you validate that we can set the handle to null if we weren\u0027t able to store the image?)",
+      "parentUuid": "83e046d7_6bead7ae",
       "range": {
         "startLine": 488,
         "startChar": 32,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d49e88e_425fc052",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-20T13:51:03Z",
+      "side": 1,
+      "message": "I really don\u0027t find streams/filters to be readable. I\u0027d prefer sticking to what we have now, thanks!",
+      "parentUuid": "765c158e_7fb4a80d",
+      "range": {
+        "startLine": 484,
+        "startChar": 23,
+        "endLine": 492,
+        "endChar": 25
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8e6d163_9b5ae479",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-13T19:46:01Z",
       "side": 1,
       "message": "no need to reset variable to null in teardown.\n\nEither they are mock and mockito will reset them\nOr they are field initialized in setup",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 26
+      },
+      "revId": "55bec6971c500538ddd1f79c512122e4171697d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6c4467b_b25f9604",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/MediaPlayerWrapperTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-20T13:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8e6d163_9b5ae479",
       "range": {
         "startLine": 167,
         "startChar": 0,
