@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a1708d8_fffa854e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 5960,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:05:23Z",
+      "side": 1,
+      "message": "Please provide more description of what is the LE CoC socket hardware offload feature itself. Also provide justification about why this method is made a `@SystemApi`",
+      "range": {
+        "startLine": 5955,
+        "startChar": 4,
+        "endLine": 5960,
+        "endChar": 7
+      },
+      "revId": "f1b67a645c4c18488c39d454c0ac27a48a5cdafb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
