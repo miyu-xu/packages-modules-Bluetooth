@@ -70,6 +70,30 @@
       },
       "revId": "b8aa0b8cca3469c1aa5f45a5e2463d09d0b4389f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b44f4aa1_0abbe435",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T08:08:52Z",
+      "side": 1,
+      "message": "Sorry, I figured out that you pointed out MTU and MPS. Moved it to aosp/3349377",
+      "parentUuid": "df29b104_74a1681b",
+      "range": {
+        "startLine": 780,
+        "startChar": 1,
+        "endLine": 781,
+        "endChar": 53
+      },
+      "revId": "b8aa0b8cca3469c1aa5f45a5e2463d09d0b4389f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

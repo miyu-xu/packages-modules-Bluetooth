@@ -22,6 +22,30 @@
       },
       "revId": "2d08f45fb1858c41234ae131a57c782f7ee77fb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69dab67a_900c39e1",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T08:08:52Z",
+      "side": 1,
+      "message": "Agree. As per document of `remote_credit_count`, it is same as local credits for LE CoC.",
+      "parentUuid": "7da58e20_ba6ca177",
+      "range": {
+        "startLine": 784,
+        "startChar": 13,
+        "endLine": 784,
+        "endChar": 32
+      },
+      "revId": "2d08f45fb1858c41234ae131a57c782f7ee77fb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
