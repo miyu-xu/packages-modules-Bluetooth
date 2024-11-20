@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e4301f_d411ebfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-11-20T20:04:15Z",
+      "side": 1,
+      "message": "jarjar config lgtm",
+      "revId": "b7abf5fb0474fb6042d4f5c7dea2652fe68b6546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
