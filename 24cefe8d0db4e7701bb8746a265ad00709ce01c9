@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8110a2_ae1d8d98",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T14:43:52Z",
+      "side": 1,
+      "message": "Thanks. Right.",
+      "parentUuid": "93cb739a_9d178118",
+      "range": {
+        "startLine": 822,
+        "startChar": 8,
+        "endLine": 828,
+        "endChar": 49
+      },
+      "revId": "24cefe8d0db4e7701bb8746a265ad00709ce01c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c71d1bf_a141966d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-20T08:58:02Z",
       "side": 1,
       "message": "Quick question:\nWhy does the stack need to know this ?\n\nWhat happen if the app crash without updating this ?",
+      "range": {
+        "startLine": 92,
+        "startChar": 7,
+        "endLine": 92,
+        "endChar": 19
+      },
+      "revId": "24cefe8d0db4e7701bb8746a265ad00709ce01c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd196c10_82943923",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T14:43:52Z",
+      "side": 1,
+      "message": "In current design, if a server socket app calls listen API but not accept API, the remove device still can make connection to the local device but the server socket app doesn\u0027t know it is connected until calling accept API. It means, there is no way to control to reject incoming connection while listening. The server app can stop listening but new listening will create a new PSM for LE COC so that the server app must deliver the new PSM to remote client device again whenever restarting listening.\n\nWith accept signal, server app can reject incoming connection while listening if the app is not actively accepting. Ideally, it is useful for both offload and non-offload sockets but we don\u0027t want to break existing server app\u0027s expectation.\n\nIt is critical for offload socket because we don\u0027t want to deliver the connected socket context to offload domain without app\u0027s request (accept). Offload socket is using `is_accepting` to decide acceptance or rejection for the incoming connection in aosp/3349378.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349378/8/system/btif/src/btif_sock_l2cap.cc",
+      "parentUuid": "7c71d1bf_a141966d",
       "range": {
         "startLine": 92,
         "startChar": 7,
