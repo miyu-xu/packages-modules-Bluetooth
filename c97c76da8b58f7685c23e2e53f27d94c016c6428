@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f6511b69_adc95a32",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T18:34:48Z",
+      "side": 1,
+      "message": "right. changed the name as `local_cid` and `remote_cid` in aosp/3367197",
+      "parentUuid": "74238f9a_f3b55bec",
+      "revId": "c97c76da8b58f7685c23e2e53f27d94c016c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "85a45ad9_b7879ff1",
         "filename": "system/stack/gap/gap_conn.cc",
         "patchSetId": 8

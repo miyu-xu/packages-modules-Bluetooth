@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00206091_dfd6e0fe",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T18:34:48Z",
+      "side": 1,
+      "message": "no conflict to use `listen_fd`. Used it.",
+      "parentUuid": "a8c11a63_bab17a70",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 16
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c4a32ff_cdb936a2",
