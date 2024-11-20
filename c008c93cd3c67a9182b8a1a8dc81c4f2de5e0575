@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaf2b9fa_a2675e59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "Thanks, couple comments",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fafc48d_21eaf4ef",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "inside this function we should also check if ase is active - if not print error and do nothing",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3767b3c2_bf60a272",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafb72e6_62f1151c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd9322f_9d4979af",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d111f81a_56b9f795",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883a70e7_e4d5aad6",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2004,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "Good catch. I believe we should not do any group operations if configured ASE is not active. I suggest to move it to line 1992",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c3014a_bd8323e2",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2099,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "we should not stop the stream if ASE is not active",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3832bb8_92f93b06",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "lets do this \"warn\" as we do not expect remote to do so.",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58a74bda_b303ad0c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:17:35Z",
+      "side": 1,
+      "message": "in other cases we should also check if ase is active and if not we should return and print error.",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
