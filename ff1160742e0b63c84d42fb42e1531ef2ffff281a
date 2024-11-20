@@ -16,6 +16,24 @@
       "message": "Should we have an harder failure ? like throw IllegalStateException ?\n\nI think it will help to have earlier signal in case of miss-usage",
       "revId": "ff1160742e0b63c84d42fb42e1531ef2ffff281a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ce42b7_82042ac6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-20T22:57:17Z",
+      "side": 1,
+      "message": "we use CTS to guarantee it. see - aosp/3369424",
+      "parentUuid": "199187fd_805386b4",
+      "revId": "ff1160742e0b63c84d42fb42e1531ef2ffff281a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
