@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1753002_ffd2faa1",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T07:40:20Z",
+      "side": 1,
+      "message": "I got your points. Done.",
+      "parentUuid": "3c10c620_f8f99b75",
+      "revId": "d119e64e0a0db9d93ba2c4bce173b558e2f209c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d24a3331_4b620280",
