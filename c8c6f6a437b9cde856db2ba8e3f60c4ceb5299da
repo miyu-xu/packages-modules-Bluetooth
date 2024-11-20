@@ -90,6 +90,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a6633d_066d089f",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-20T08:04:58Z",
+      "side": 1,
+      "message": "I see, I add the description of 0x05, please help to check",
+      "parentUuid": "8405a782_151b522c",
+      "range": {
+        "startLine": 105,
+        "startChar": 63,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3593e805_4750f988",
@@ -139,6 +163,24 @@
       "side": 1,
       "message": "What about 0x07?",
       "parentUuid": "cc970bd1_12417431",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c70e135f_35acd074",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-20T08:04:58Z",
+      "side": 1,
+      "message": "The value 0x07 is reserved for LE Audio Choppy events.  This version of the software does not include handling for these events. This functionality may be supported in a future release. I added the comment.",
+      "parentUuid": "617ab1f1_d5d895df",
       "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -327,6 +369,24 @@
       "side": 1,
       "message": "I\u0027m less concerned with CTS tests than with users of the APIs. How are they expected to create this class in a test?",
       "parentUuid": "35506a3c_26882793",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fed5a478_17cfed58",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-20T08:04:58Z",
+      "side": 1,
+      "message": "The BluetoothQualityReport, BqrEnergyMonitor and BqrRfStats classes are used internally to store Bluetooth Quality Report (BQR) events received from the Bluetooth controller. They provide APIs for applications to access these events.  Application developers do not need to directly create instances of these classes.\n  Therefore, CTS and internal testing are sufficient for validating the functionality of this class and its APIs.",
+      "parentUuid": "dc56d49f_0f154a3f",
       "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -824,6 +884,24 @@
       "side": 1,
       "message": "Same comment as above. If I\u0027m an app using these APIs, how do I create this class for the purposes of testing?",
       "parentUuid": "f3c2e52a_1911a16e",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "199c8ef7_15e7a891",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2870,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-20T08:04:58Z",
+      "side": 1,
+      "message": "The BluetoothQualityReport, BqrEnergyMonitor and BqrRfStats classes are used internally to store Bluetooth Quality Report (BQR) events received from the Bluetooth controller. They provide APIs for applications to access these events.  Application developers do not need to directly create instances of these classes.\n  Therefore, CTS and internal testing are sufficient for validating the functionality of this class and its APIs.",
+      "parentUuid": "bba36227_6fc77e2e",
       "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

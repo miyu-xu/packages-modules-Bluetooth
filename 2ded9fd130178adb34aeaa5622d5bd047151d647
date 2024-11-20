@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e51d0b_f33c2f4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-20T08:04:58Z",
+      "side": 1,
+      "message": "I see, thank you for your review suggestion and I already added the time annotations.\n\nAbout the test story, the BluetoothQualityReport, BqrEnergyMonitor and BqrRfStats classes are used internally to store Bluetooth Quality Report (BQR) events received from the Bluetooth controller. They provide APIs for applications to access these events. Application developers do not need to directly create instances of these classes.\n\nI added the comment in the constructor to avoid the user to create this class directly.",
+      "parentUuid": "5a41ba91_5e2aef2c",
+      "revId": "2ded9fd130178adb34aeaa5622d5bd047151d647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "358dc544_877c07bb",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-19T16:44:36Z",
       "side": 1,
       "message": "thanks, this looks great! One last remaining thing, please annotate the time methods with the appropriate annotations. See go/android-api-guidelines#time-annotations for guidance",
+      "revId": "2ded9fd130178adb34aeaa5622d5bd047151d647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1123d63_36050234",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 2472,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-20T08:04:58Z",
+      "side": 1,
+      "message": "Got it, I added the time annotation for time related APIs",
+      "parentUuid": "358dc544_877c07bb",
       "revId": "2ded9fd130178adb34aeaa5622d5bd047151d647",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
