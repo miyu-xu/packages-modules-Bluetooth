@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c87ccbc_4ee1d90c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:27:13Z",
+      "side": 1,
+      "message": "surprising it was missing till now :)",
+      "revId": "30bddb57cdcff92846583cab95cfaf0dfd348e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
