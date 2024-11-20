@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad303e62_70692347",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1117,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:22:15Z",
+      "side": 1,
+      "message": "funny, was sure I did it this way :)",
+      "parentUuid": "54c6e5b5_17530623",
+      "range": {
+        "startLine": 1117,
+        "startChar": 16,
+        "endLine": 1117,
+        "endChar": 97
+      },
+      "revId": "21c25358f76d3b869d383482cba8d8e70dec265e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4176ce40_f61eb134",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
         "patchSetId": 1
