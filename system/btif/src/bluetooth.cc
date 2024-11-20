@@ -341,6 +341,7 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
 
   void onLinkDown(const RawAddress& bd_addr, tBT_TRANSPORT transport) override {
     if (transport != BT_TRANSPORT_BR_EDR) {
+      btif_hh_le_disconnected(bd_addr);
       return;
     }
 
