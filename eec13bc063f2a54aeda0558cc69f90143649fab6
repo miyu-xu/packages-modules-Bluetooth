@@ -22,6 +22,30 @@
       },
       "revId": "eec13bc063f2a54aeda0558cc69f90143649fab6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9206e30c_4218fcae",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T14:40:34Z",
+      "side": 1,
+      "message": "That\u0027s good point. Guarded by flag.",
+      "parentUuid": "79f42dc7_89de2a6c",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 3
+      },
+      "revId": "eec13bc063f2a54aeda0558cc69f90143649fab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
