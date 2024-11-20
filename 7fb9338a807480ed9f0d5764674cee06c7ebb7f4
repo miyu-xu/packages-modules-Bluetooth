@@ -416,6 +416,24 @@
       "parentUuid": "0f03f911_3a01e44c",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c814f6b_d4383f5d",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-20T18:43:59Z",
+      "side": 1,
+      "message": "So, I think I understand, but I guess I\u0027m missing where 41 gets used in the calculation. I think, if I understand correctly, it should be something like (20 +(41-40)*.1*5)?",
+      "parentUuid": "a7a22ee5_b1f30c4d",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
