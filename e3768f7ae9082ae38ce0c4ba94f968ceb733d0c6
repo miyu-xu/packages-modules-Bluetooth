@@ -88,6 +88,24 @@
       "parentUuid": "a71ca345_00b2f44c",
       "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f8f3fb_681c4495",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-20T00:45:23Z",
+      "side": 1,
+      "message": "I see. Thank you for the explanation.\n\nI\u0027ll work on updating this CL to return a `android.util.Pair` instead then. Thank you.",
+      "parentUuid": "16964ff0_be09102d",
+      "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
