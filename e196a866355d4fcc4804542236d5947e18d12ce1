@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "081df4a4_63a621fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1480931
+      },
+      "writtenOn": "2024-11-20T19:41:35Z",
+      "side": 1,
+      "message": "Assigned numbers document now reflects these UUIDs correctly, OK to merge once all reviews are completed.\nhttps://www.bluetooth.com/specifications/assigned-numbers/",
+      "revId": "e196a866355d4fcc4804542236d5947e18d12ce1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
