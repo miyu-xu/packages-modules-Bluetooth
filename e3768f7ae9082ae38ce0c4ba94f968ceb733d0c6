@@ -70,6 +70,24 @@
       "parentUuid": "17bea37c_d4f92a9a",
       "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16964ff0_be09102d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-20T00:42:09Z",
+      "side": 1,
+      "message": "`BluetoothDevice` object lives in the app process. Device properties live in the Android Bluetooth process. These API calls have to jump the process boundary to read the properties. They are not instantaneous.\n\nAnd yes, there may be cases where apps may want to read the device name, identity address, etc at the same time. But there are also a lot of cases where apps would be just interested in one of them. (Name and other properties are public APIs anyway) However, identity address and identity address type are tightly linked together. Neither makes any sense without the other.\nI don\u0027t see any reason for apps to just be interested in just one of them at a time.",
+      "parentUuid": "a71ca345_00b2f44c",
+      "revId": "e3768f7ae9082ae38ce0c4ba94f968ceb733d0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
