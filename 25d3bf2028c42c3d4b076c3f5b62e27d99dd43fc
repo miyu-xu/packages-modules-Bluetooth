@@ -34,6 +34,24 @@
       "parentUuid": "6ea68f47_686f8123",
       "revId": "25d3bf2028c42c3d4b076c3f5b62e27d99dd43fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f760df40_896aeda9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T01:19:53Z",
+      "side": 1,
+      "message": "\u003e We also can longer term move some of the \"does my hardware support LE Audio\" logic to here as well, so its all co-located.\n\nThis would be very nice !\nI believe right now the logic is \"start the leaudio profiles no matter what, then check if supported and then update the config to disable them\". Ugly. \n\nI would at least move the sparseMatrix in it\u0027s own file, but to be honest, I would prefer using a more simpler abstraction.\n\nThere are relation that I don\u0027t understand like HAP_HEARING_AID, HAP_UNICAST_CLIENT, HAP_REMOTE_CONTROLLER as HAP mean Hearing Aid profile, and the HapClientService only relate to preset control. I don\u0027t think it has dependency on LeAudio profile. So i am not sure what am I reading here.\n\nThe value in `sEnabled` are only set to \u0027true\u0027. Should this be a Set instead ? (a \"SparseSet\", xD)\n\n\nThe dependency between the profiles are hard to visualize. For example, BAP_SCAN_DELEGATOR is in almost all LeAudio profile and there is a tons of repetition that make it verbose. Also we have to dig into each method to see what are the relation.\n\nThis could be written simpler, for example for enableTmapCallGateway:\n```\nset\u003cInteger\u003e EnabledProfiles; // instead of sparseMatrix\n\nset\u003cInteger\u003e tmapProfilesAlwaysEnabled\u003dSet.of(\n    BAP_UNICAST_CLIENT,\n    BAP_AUDIO_SOURCE,\n    BAP_AUDIO_SINK,\n    CCP_CALL_CONTROL_SERVER,\n    CSIP_SET_COORDINATOR,\n    VCP_VOLUME_CONTROLLER);\n    \nset\u003cpair\u003cInteger,Set\u003cInteger\u003e\u003e\u003e tmapProfilesConditionallyEnabled \u003d Set.of(\nPair(BAP_SCAN_DELEGATOR, Set.of(BAP_SCAN_DELEGATOR, BAP_BROADCAST_ASSISTANT)),\nPair(BAP_BROADCAST_ASSISTANT, Set.of(BAP_BROADCAST_ASSISTANT)),\n);\n\n// No need to look into the method as all the dependency was mentioned earlier\nvoid enableTmapCallGateway()\n  if (!BluetoothProperties.isProfileTmapCallGatewayEnabled().orElse(false)) {\n    return;\n  }\n  sEnabledProfiles.addAll(tmapProfilesAlwaysEnabled);\n  tmapProfilesConditionallyEnabled.stream()\n      .filter(pair-\u003e BluetoothProperties.TmapCallGatewayOptions().contains(pair.getFirst()))\n      .map(pair::getSecond)\n      .forEach(conditionallyEnabledProfiles -\u003e sEnabledProfiles.addAll(conditionallyEnabledProfiles);\n  })\n```\n\n\nOf course my suggestion is pseudo-code and because I don\u0027t understand all the issues faced here, I may be completely wrong. Also I am not familiar with all the LeAudio naming (when I see PBP, I think pbap :D)",
+      "parentUuid": "e136071a_b029f143",
+      "revId": "25d3bf2028c42c3d4b076c3f5b62e27d99dd43fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
