@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "862cb027_0c87f08e",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-20T22:57:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "420b3d85_9bc6cbb4",
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aa43cc1_c257e775",
@@ -119,6 +137,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bcc8cd4_8d584cbb",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-20T22:57:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "94d4db1b_fc083836",
+      "range": {
+        "startLine": 352,
+        "startChar": 12,
+        "endLine": 352,
+        "endChar": 24
+      },
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42da9bc6_6dc01e16",
@@ -156,6 +198,30 @@
       "side": 1,
       "message": "Yeaaah, and the OBEX platform isn\u0027t Bluetooth owned, its java owned. I\u0027m not sure the ability we have to update it.\n\nIts pretty common in the codebase here to extend the transport like this",
       "parentUuid": "42da9bc6_6dc01e16",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 0
+      },
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eda7432e_00d6a9b5",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexTransport.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-20T22:57:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9a03cb62_18397f3d",
       "range": {
         "startLine": 70,
         "startChar": 0,
