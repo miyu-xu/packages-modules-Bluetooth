@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121b0784_67a22956",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T22:47:19Z",
+      "side": 1,
+      "message": "```suggestion\n        val intentFilter \u003d IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST)\n```",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de60c6d_4e2311c8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T22:47:19Z",
+      "side": 1,
+      "message": "I am not sure about this test scenario.\n\nAre you expecting createSocket to initiate the bonding ? I would expect the bonding to be done else where and createSocket to throw an \"illegalStateException\" because it is not bonded.",
+      "range": {
+        "startLine": 399,
+        "startChar": 15,
+        "endLine": 399,
+        "endChar": 24
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fda1cb3_eee4b7d3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T22:47:19Z",
+      "side": 1,
+      "message": "You don\u0027t have a race here ? calling connect sometimes while not yet bonded ?\n\nShould we fait on the BOND_BONDED intent ?\n\nNoe: If we increase the length of this sub-method, we will probably wan to split it in a separate method.",
+      "range": {
+        "startLine": 500,
+        "startChar": 36,
+        "endLine": 504,
+        "endChar": 36
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe735e1_66835f82",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T22:47:19Z",
+      "side": 1,
+      "message": "We can probably call socket.connect once.\n\n```suggestion\n        // We need to reply to the pairing request in the case where the devices aren\u0027t bonded yet\n        if (isSecure \u0026\u0026 !mAdapter.bondedDevices.contains(device)) {\n            runBlocking(mScope.coroutineContext) {\n                withTimeout(CONNECT_TIMEOUT.toMillis()) {\n                    val pairingRequestJob \u003d launch {\n                        Log.i(TAG, \"Waiting for ACTION_PAIRING_REQUEST\")\n                        mFlow\n                            .filter { it.action \u003d\u003d BluetoothDevice.ACTION_PAIRING_REQUEST }\n                            .filter { it.getBluetoothDeviceExtra() \u003d\u003d device }\n                            .first()\n                        device.setPairingConfirmation(true)\n                    }\n                    pairingRequestJob.join()\n                }\n            }\n        }\n        socket.connect()\n\n```",
+      "range": {
+        "startLine": 492,
+        "startChar": 6,
+        "endLine": 510,
+        "endChar": 9
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
