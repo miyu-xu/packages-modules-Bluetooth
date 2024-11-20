@@ -93,6 +93,30 @@
       },
       "revId": "24cefe8d0db4e7701bb8746a265ad00709ce01c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c417f2_00f5d986",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T14:47:12Z",
+      "side": 1,
+      "message": "If the app crash without updating socket, the BTIF stack layer will get exception signal on the sockets the app owns so that the sockets will be closed anyway.",
+      "parentUuid": "cd196c10_82943923",
+      "range": {
+        "startLine": 92,
+        "startChar": 7,
+        "endLine": 92,
+        "endChar": 19
+      },
+      "revId": "24cefe8d0db4e7701bb8746a265ad00709ce01c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
