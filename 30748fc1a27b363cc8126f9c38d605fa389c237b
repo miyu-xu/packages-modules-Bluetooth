@@ -16,6 +16,24 @@
       "message": "Please do this change in a separate CL",
       "revId": "30748fc1a27b363cc8126f9c38d605fa389c237b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4e93b5_84dfe38a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T22:55:34Z",
+      "side": 1,
+      "message": "Done: aosp/3363226",
+      "parentUuid": "5b83e10f_deacb8bd",
+      "revId": "30748fc1a27b363cc8126f9c38d605fa389c237b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
