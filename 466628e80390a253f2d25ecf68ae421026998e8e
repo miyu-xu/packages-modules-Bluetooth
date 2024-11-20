@@ -1,0 +1,160 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5191bd_1a941d0f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4674,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:30:57Z",
+      "side": 1,
+      "message": "This is worth an additional paragraph (similar to `\u003cp\u003e This API supports`) to explain the two paths available (and one which requires a additional permission).",
+      "range": {
+        "startLine": 4672,
+        "startChar": 12,
+        "endLine": 4674,
+        "endChar": 57
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c674b10_ee0586d2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4674,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:30:57Z",
+      "side": 1,
+      "message": "Should likely not be indented.",
+      "range": {
+        "startLine": 4668,
+        "startChar": 3,
+        "endLine": 4674,
+        "endChar": 57
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fccc17a_56a88de3",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4748,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:30:57Z",
+      "side": 1,
+      "message": "I believe it should be an `IllegalArgumentException` (not sure why it was not caught before)",
+      "range": {
+        "startLine": 4748,
+        "startChar": 22,
+        "endLine": 4748,
+        "endChar": 33
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae84f97c_1ba3357f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4754,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:30:57Z",
+      "side": 1,
+      "message": "`bindListenExt` naming is not very meaningful, it is hard for the reader to understand what is `Ext`. Consider renaming the interface / AIDL with a more descriptive name",
+      "range": {
+        "startLine": 4754,
+        "startChar": 35,
+        "endLine": 4754,
+        "endChar": 48
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fbe4c0f_ef64acaa",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4755,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:30:57Z",
+      "side": 1,
+      "message": "Can be simplified by:\n\n```\nint errno \u003d (settings.getDataPath() \u003d\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD)\n        ? socket.mSocket.bindListen()\n        : socket.mSocket.bindListenExt();\n```",
+      "range": {
+        "startLine": 4750,
+        "startChar": 8,
+        "endLine": 4755,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "47a0e69f_6173721a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothAdapter.java",
+              "range": {
+                "startLine": 4751,
+                "startChar": 0,
+                "endLine": 4756,
+                "endChar": 0
+              },
+              "replacement": "        errno \u003d (settings.getDataPath() \u003d\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD)\n                ? socket.mSocket.bindListen()\n                : socket.mSocket.bindListenExt();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0effcc2a_7b042784",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T05:30:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we log it in any case (i.e. even if `DATA_PATH_NO_OFFLOAD`)?",
+      "range": {
+        "startLine": 336,
+        "startChar": 12,
+        "endLine": 336,
+        "endChar": 42
+      },
+      "revId": "466628e80390a253f2d25ecf68ae421026998e8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
