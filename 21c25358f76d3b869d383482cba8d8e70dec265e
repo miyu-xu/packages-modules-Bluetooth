@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d1e0a24_ac725cf9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1117,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad303e62_70692347",
+      "range": {
+        "startLine": 1117,
+        "startChar": 16,
+        "endLine": 1117,
+        "endChar": 97
+      },
+      "revId": "21c25358f76d3b869d383482cba8d8e70dec265e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4176ce40_f61eb134",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aeaf825_292edbbc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4176ce40_f61eb134",
+      "range": {
+        "startLine": 845,
+        "startChar": 60,
+        "endLine": 845,
+        "endChar": 65
+      },
+      "revId": "21c25358f76d3b869d383482cba8d8e70dec265e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d9fc924_8b74d8ef",
@@ -84,6 +132,30 @@
       "writtenOn": "2024-11-20T12:11:21Z",
       "side": 1,
       "message": "`anyBoolean()`",
+      "range": {
+        "startLine": 1227,
+        "startChar": 66,
+        "endLine": 1227,
+        "endChar": 71
+      },
+      "revId": "21c25358f76d3b869d383482cba8d8e70dec265e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c7dd5f_4d2224a9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-20T12:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d9fc924_8b74d8ef",
       "range": {
         "startLine": 1227,
         "startChar": 66,
