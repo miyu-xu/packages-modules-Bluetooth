@@ -1136,6 +1136,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6cd6802_7d0fbcf9",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T08:35:51Z",
+      "side": 1,
+      "message": "I am having second thought about the fake implementation.\n\nThe cl has a completely parallel implementation that (try to) replicate the comportement of AICS. Hoping that I am not doing anything wrong.\nThis fake offer api, meaning I need to write a test to verify the behavior of the fake. But I still can\u0027t check the real API as part of a regular Cts unit test.\n\nI feel like this is trying to address another issue.\n\nSince the class is mockable, I believe more and more that I should not do any fake.",
+      "parentUuid": "04ee3978_398f8033",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29
