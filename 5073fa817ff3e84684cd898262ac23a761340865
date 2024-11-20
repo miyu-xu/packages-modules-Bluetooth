@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "420b3d85_9bc6cbb4",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-20T20:55:31Z",
+      "side": 1,
+      "message": "I think I still need to iterate a bit on this part after all my fiddling with it.\n\nThe handler will synchronize the message handling and make sure DISCONNECT is the next processed thing after any pending message is finished. \n\nThe unchecked boolean is common. We get a false if the message couldn\u0027t be added, which is usually because there\u0027s no looper or the handler has exited:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:frameworks/base/core/java/android/os/Handler.java;l\u003d749-751;drc\u003da780201b38d21bd9b159f83815021b050355a273\n\nIn practice, with what we have so far here, we would _probably_ start processing a disconnect, then we might abort(), which would interrupt(), if there\u0027s a pending request only. That interrupt would keep the OBEX level disconnect from working, and would instead just bring down the transport.",
+      "parentUuid": "92cab139_60115a7f",
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8aa43cc1_c257e775",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
         "patchSetId": 11
@@ -79,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94d4db1b_fc083836",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-20T20:55:31Z",
+      "side": 1,
+      "message": "quit() moves to the quitting state right away without processing the remaining messages on the queue. quitSafely() will process whatever is left on the queue and _then_ quit",
+      "parentUuid": "8aa43cc1_c257e775",
+      "range": {
+        "startLine": 352,
+        "startChar": 12,
+        "endLine": 352,
+        "endChar": 24
+      },
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42da9bc6_6dc01e16",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexTransport.java",
         "patchSetId": 11
@@ -90,6 +132,30 @@
       "writtenOn": "2024-11-19T21:33:57Z",
       "side": 1,
       "message": "This is unfortunate that it\u0027s all part of the interface",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 0
+      },
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a03cb62_18397f3d",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexTransport.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-20T20:55:31Z",
+      "side": 1,
+      "message": "Yeaaah, and the OBEX platform isn\u0027t Bluetooth owned, its java owned. I\u0027m not sure the ability we have to update it.\n\nIts pretty common in the codebase here to extend the transport like this",
+      "parentUuid": "42da9bc6_6dc01e16",
       "range": {
         "startLine": 70,
         "startChar": 0,
