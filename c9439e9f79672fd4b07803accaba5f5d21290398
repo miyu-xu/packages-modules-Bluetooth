@@ -1172,6 +1172,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15b4bbf4_a1ae86f1",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T19:59:36Z",
+      "side": 1,
+      "message": "The test cannot be a `test_current` because it would prevent it to call API defined as `@SystemApi(client \u003d SystemApi.Client.MODULE_LIBRARIES)`.  \nWhich contradict the purpose of our CTS to test the module.\n\nI complained about that already:\nhttps://groups.google.com/a/google.com/g/mainline-module-authors/c/M3-OsNUMBcM/m/GcPXpY7lAwAJ?utm_medium\u003demail\u0026utm_source\u003dfooter\n\nBut apparently this is on purpose.\n\nI did a CL where I use test_current as sdk_version and I am commenting out all the build failure. aosp/3368678\nAnd then I ran `atest CtsBluetoothTestCases:android.bluetooth.cts.AudioInputControlTest`\nThe test is passing fine",
+      "parentUuid": "c9a24dff_d64b7479",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29

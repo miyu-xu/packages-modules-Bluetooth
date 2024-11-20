@@ -434,6 +434,24 @@
       "parentUuid": "a7a22ee5_b1f30c4d",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e827d03_c6c78de7",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T19:59:36Z",
+      "side": 1,
+      "message": "Yes, your calcul is correct `(20 + (41 - 40) * .1 * 5)`. Or it could be just `41 * 0.1 * 5` with the way I computed it. (but this is a shortcut that is implementation defined",
+      "parentUuid": "2c814f6b_d4383f5d",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
