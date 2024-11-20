@@ -1154,6 +1154,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9a24dff_d64b7479",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-20T17:19:52Z",
+      "side": 1,
+      "message": "So, if it\u0027s mockable, agreed that you don\u0027t need a fake.\n\nHowever, I think the reason it\u0027s mockable in the sample test you wrote is that these CTS tests aren\u0027t compiling against the system SDK. From the Android.bp, it looks like it\u0027s compiling against `platform_apis` (aka private APIs). https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:cts/tests/tests/bluetooth/Android.bp;l\u003d39\n\nThat\u0027s actually a bug in your build rule, since CTS is supposed to use `sdk_version: \"test_current\"` IIRC to ensure it\u0027s not building against any private APIs at all.",
+      "parentUuid": "a6cd6802_7d0fbcf9",
+      "revId": "c9439e9f79672fd4b07803accaba5f5d21290398",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4385113_bf199f5f",
         "filename": "framework/java/android/bluetooth/AudioInputControl.java",
         "patchSetId": 29
