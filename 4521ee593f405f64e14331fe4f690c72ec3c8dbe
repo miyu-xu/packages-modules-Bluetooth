@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a68cb8b_53e73253",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-20T20:33:06Z",
+      "side": 1,
+      "message": "Full transparency, I took this from the old code:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbapclient/obex/PhonebookPullRequest.java;l\u003d58-61\n\nThe pattern in the old code was, more or less, to interrupt the download thread when it was time to disconnect, via abort():\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientConnectionHandler.java;l\u003d323-328\n\nThis can happen after a graceful disconnect timeout:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java;l\u003d262\n\nOr, when the state machine is forcibly quit:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java;l\u003d373\n\nWhen the thread is interrupted, IO operations are interrupted and fail to work anymore. If we\u0027re mid-IO operation, we get an exception. If we\u0027re not, then we used the isInterrupted() check to see if we were about to fail. In reality, this isn\u0027t a fool proof check, and if timing isn\u0027t _just_ right, we\u0027ll likely to get an exception to handle anyways.\n\nAs for _why_ we do this, I think its because the only other tool we have as a client is to use an OBEX abort command, which the server can reject or not support. If we can\u0027t cancel a potentially long running operation, then we might be slow to disconnect. Interrupting and closing the transport is far more predictable.",
+      "parentUuid": "0fa42801_3426f88f",
+      "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a49d772_c1d9ae8f",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
         "patchSetId": 12
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-19T20:49:18Z",
       "side": 1,
       "message": "Does this list need locking ?",
+      "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa32835_da4437aa",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-20T20:33:06Z",
+      "side": 1,
+      "message": "Oh good catch. I think that\u0027s a good idea.\n\nRight now, its possible for a client to remove a callback while we\u0027re running through them.\n\nLet me add some `synchronized (mCallbacks) { ... }` blocks where we use this",
+      "parentUuid": "8a49d772_c1d9ae8f",
       "revId": "4521ee593f405f64e14331fe4f690c72ec3c8dbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
