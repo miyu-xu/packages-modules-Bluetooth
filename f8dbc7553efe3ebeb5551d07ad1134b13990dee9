@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74b5016_f107cf3e",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T09:19:09Z",
+      "side": 1,
+      "message": "Done in aosp/3367197",
+      "parentUuid": "9c4a32ff_cdb936a2",
+      "range": {
+        "startLine": 593,
+        "startChar": 20,
+        "endLine": 600,
+        "endChar": 50
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e1b51b6_5312538e",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43418fc5_f5065a60",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T09:19:09Z",
+      "side": 1,
+      "message": "Done in aosp/3367197",
+      "parentUuid": "5e1b51b6_5312538e",
+      "range": {
+        "startLine": 605,
+        "startChar": 5,
+        "endLine": 605,
+        "endChar": 25
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e28c51f_b28fd8da",
@@ -83,6 +131,30 @@
       "writtenOn": "2024-11-19T01:20:16Z",
       "side": 1,
       "message": "This is a getter yet your are mutating the state; sounds like a bad idea.",
+      "range": {
+        "startLine": 623,
+        "startChar": 2,
+        "endLine": 623,
+        "endChar": 26
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25bf78ce_55c97ecc",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T09:19:09Z",
+      "side": 1,
+      "message": "Done in aosp/3367197",
+      "parentUuid": "4e28c51f_b28fd8da",
       "range": {
         "startLine": 623,
         "startChar": 2,
@@ -139,6 +211,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa44d4c2_3437f5d4",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T09:19:09Z",
+      "side": 1,
+      "message": "Done in aosp/3367197",
+      "parentUuid": "cce7ea94_c35ce15e",
+      "range": {
+        "startLine": 925,
+        "startChar": 35,
+        "endLine": 925,
+        "endChar": 51
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dfb3669_ad412543",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T09:19:09Z",
+      "side": 1,
+      "message": "Done in aosp/3367197",
+      "parentUuid": "356f9dc4_5e6b5c11",
+      "range": {
+        "startLine": 925,
+        "startChar": 71,
+        "endLine": 925,
+        "endChar": 81
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34bdba1c_5b7bb5b7",
@@ -152,6 +272,30 @@
       "writtenOn": "2024-11-19T01:20:16Z",
       "side": 1,
       "message": "acl_handle",
+      "range": {
+        "startLine": 930,
+        "startChar": 22,
+        "endLine": 930,
+        "endChar": 70
+      },
+      "revId": "f8dbc7553efe3ebeb5551d07ad1134b13990dee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35653e59_014de7f6",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T09:19:09Z",
+      "side": 1,
+      "message": "Done in aosp/3367197",
+      "parentUuid": "34bdba1c_5b7bb5b7",
       "range": {
         "startLine": 930,
         "startChar": 22,
