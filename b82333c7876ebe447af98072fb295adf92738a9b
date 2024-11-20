@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c1b37f_e9b3a853",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-20T17:01:08Z",
+      "side": 1,
+      "message": "We should send the transport as well here. `btif_hh` can decide to ignore the BR/EDR transport. The name of the function should be changed accordingly.",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b586b506_a84d0813",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-20T17:01:08Z",
+      "side": 1,
+      "message": "Should we delegate it to the JNI thread?",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf702c27_b0c1f573",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-20T17:01:08Z",
+      "side": 1,
+      "message": "Nit: pointers have to be compared against `nullptr`",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a58cda13_03385bfb",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-20T17:01:08Z",
+      "side": 1,
+      "message": "What would happen if the ACL is disconnected directly? If this function is called before `bta_hh` had a chance to process the GATT disconnection, we may end up unnecessarily adding the HOGP device in the background connection again.\nIt would be a benign operation IMO, but do you see any problem with that?",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
