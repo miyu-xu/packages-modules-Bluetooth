@@ -470,6 +470,24 @@
       "parentUuid": "5e827d03_c6c78de7",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a9c0fd_20214df3",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T23:49:39Z",
+      "side": 1,
+      "message": "Done, I added a quote of the spec:\n```\n     * The gain setting is a signed value for which a single increment or decrement should result in\n     * a corresponding increase or decrease of the input amplitude by the value of the gain setting\n     * unit (see {@link #getGainSettingUnit()}). A gain setting value of 0 should result in no\n     * change to the input’s original amplitude.\n```\n\nFrom https://screenshot.googleplex.com/7Qhhf7JLAz2fAxb",
+      "parentUuid": "d24e101c_bd0197f5",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
