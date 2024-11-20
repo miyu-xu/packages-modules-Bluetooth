@@ -452,6 +452,24 @@
       "parentUuid": "2c814f6b_d4383f5d",
       "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d24e101c_bd0197f5",
+        "filename": "framework/java/android/bluetooth/AudioInputControl.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-20T21:34:24Z",
+      "side": 1,
+      "message": "Ok. Might be worth clarifying that in the docs, but it might be overkill. I\u0027ll leave it to your judgment. Feel free to resolve this comment.",
+      "parentUuid": "5e827d03_c6c78de7",
+      "revId": "7fb9338a807480ed9f0d5764674cee06c7ebb7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
