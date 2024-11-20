@@ -65,6 +65,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f0735e1_cec8c9a4",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-20T19:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85a9e3fe_4389efa5",
+      "range": {
+        "startLine": 258,
+        "startChar": 41,
+        "endLine": 258,
+        "endChar": 45
+      },
+      "revId": "07a9271fda391054e12615122de7546a481a4ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53b7f236_796f5a13",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-20T19:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57cc364c_70bd6da9",
+      "range": {
+        "startLine": 258,
+        "startChar": 15,
+        "endLine": 258,
+        "endChar": 22
+      },
+      "revId": "07a9271fda391054e12615122de7546a481a4ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10f58e12_4aeb7b8b",
@@ -102,6 +150,30 @@
       "side": 1,
       "message": "From our offline discussion, I believe the explanation should probably be something like \"This API is not publicly available as it is mainly intended for accessory devices running Android to broadcast their availability and which can thus leverage system APIs\".\n\nYou should also remove the part that \"It may be changed or removed without notice.\" as this is actually not doable (see go/android-api-guidelines#private-apis).",
       "parentUuid": "10f58e12_4aeb7b8b",
+      "range": {
+        "startLine": 259,
+        "startChar": 13,
+        "endLine": 260,
+        "endChar": 52
+      },
+      "revId": "07a9271fda391054e12615122de7546a481a4ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433bccd1_8b2f5e14",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-20T19:18:38Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "f5b908ed_e1e7d7b9",
       "range": {
         "startLine": 259,
         "startChar": 13,
@@ -196,6 +268,30 @@
           ]
         }
       ],
+      "revId": "07a9271fda391054e12615122de7546a481a4ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ac71bb_bf10ca93",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSetParameters.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-20T19:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c636c81_9f5db431",
+      "range": {
+        "startLine": 269,
+        "startChar": 15,
+        "endLine": 269,
+        "endChar": 22
+      },
       "revId": "07a9271fda391054e12615122de7546a481a4ada",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
