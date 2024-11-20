@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f42dc7_89de2a6c",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T08:42:44Z",
+      "side": 1,
+      "message": "Should we flag this ? this is the entry point for the whole controller feature check \u0026 report to java",
+      "range": {
+        "startLine": 272,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 3
+      },
+      "revId": "eec13bc063f2a54aeda0558cc69f90143649fab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
