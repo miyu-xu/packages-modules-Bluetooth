@@ -49,6 +49,16 @@ package android.bluetooth {
     method public default void onSetMuteFailed();
   }
 
+  public static final class AudioInputControl.FakeAudioInputControl extends android.bluetooth.AudioInputControl {
+    ctor public AudioInputControl.FakeAudioInputControl(int, int, @IntRange(from=0, to=255) int, @IntRange(from=0xffffff80, to=127) int, @IntRange(from=0xffffff80, to=127) int, boolean);
+    method public void remoteSetAudioInputStatus(int);
+    method public void remoteSetGainSetting(@IntRange(from=0xffffff80, to=127) int);
+    method public void remoteSetMute(int);
+    method public void setGainModeFailed();
+    method public void setGainSettingFailed();
+    method public void setMuteFailed();
+  }
+
   public final class BluetoothA2dp implements android.bluetooth.BluetoothProfile {
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void disableOptionalCodecs(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void enableOptionalCodecs(@NonNull android.bluetooth.BluetoothDevice);

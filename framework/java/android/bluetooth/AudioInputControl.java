@@ -19,6 +19,7 @@ package android.bluetooth;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.bluetooth.BluetoothUtils.callService;
+import static android.bluetooth.BluetoothUtils.executeFromBinder;
 import static android.bluetooth.BluetoothUtils.logRemoteException;
 
 import static java.util.Objects.requireNonNull;
@@ -30,6 +31,7 @@ import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
@@ -39,8 +41,11 @@ import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executor;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -243,6 +248,14 @@ public class AudioInputControl {
         mCallbackWrapper =
                 new CallbackWrapper<AudioInputCallback, IBluetoothVolumeControl>(
                         this::registerCallbackFn, this::unregisterCallbackFn);
+    }
+
+    private AudioInputControl() {
+        mDevice = null;
+        mInstanceId = 0;
+        mService = null;
+        mAttributionSource = null;
+        mCallbackWrapper = null;
     }
 
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
@@ -684,5 +697,268 @@ public class AudioInputControl {
                 mService,
                 s -> s.setAudioInputMute(mAttributionSource, mDevice, mInstanceId, mute),
                 false);
+    }
+
+    @SuppressLint("AndroidFrameworkRequiresPermission")
+    public static final class FakeAudioInputControl extends AudioInputControl {
+        private final Map<AudioInputCallback, Executor> mFakeCallbackExecutorMap = new HashMap<>();
+
+        private final @AudioInputType int mType;
+        private final @IntRange(from = 0, to = 0xFF) int mGainSettingUnit;
+        private final @IntRange(from = -128, to = 127) int mGainSettingMin;
+        private final @IntRange(from = -128, to = 127) int mGainSettingMax;
+        private final boolean mIsDescriptionWritable;
+
+        private @AudioInputStatus int mStatus = AUDIO_INPUT_STATUS_ACTIVE;
+        private @GainMode int mGainMode = GAIN_MODE_MANUAL;
+        private @Mute int mMute = MUTE_NOT_MUTED;
+        private int mGainSetting;
+        private String mDescription = "Fake AudioInputControl";
+
+        @RequiresNoPermission
+        public FakeAudioInputControl(
+                @AudioInputType int type,
+                @GainMode int gainMode,
+                @IntRange(from = 0, to = 0xFF) int gainSettingUnit,
+                @IntRange(from = -128, to = 127) int gainSettingMin,
+                @IntRange(from = -128, to = 127) int gainSettingMax,
+                boolean isDescriptionWritable) {
+            super();
+            if (type < AUDIO_INPUT_TYPE_UNSPECIFIED || type > AUDIO_INPUT_TYPE_AMBIENT) {
+                throw new IllegalArgumentException("Illegal type value: " + type);
+            }
+            if (gainSettingUnit < 0 || gainSettingUnit > 0xFF) {
+                throw new IllegalArgumentException("Illegal unit value: " + gainSettingUnit);
+            }
+            if (gainSettingMin < -128 || gainSettingMax > 0xFF || gainSettingMin > gainSettingMax) {
+                throw new IllegalArgumentException(
+                        "Illegal min/max value: " + gainSettingMin + "/" + gainSettingMax);
+            }
+            if (gainMode < GAIN_MODE_MANUAL_ONLY || gainMode > GAIN_MODE_AUTOMATIC) {
+                throw new IllegalArgumentException("Illegal gain mode value: " + gainMode);
+            }
+
+            mType = type;
+            mGainMode = gainMode;
+            mGainSettingUnit = gainSettingUnit;
+            mGainSettingMin = gainSettingMin;
+            mGainSettingMax = gainSettingMax;
+            mIsDescriptionWritable = isDescriptionWritable;
+            mGainSetting = (mGainSettingMin + mGainSettingMax) / 2;
+        }
+
+        private void forEach(Consumer<AudioInputCallback> consumer) {
+            mFakeCallbackExecutorMap.forEach(
+                    (cb, executor) -> executeFromBinder(executor, () -> consumer.accept(cb)));
+        }
+
+        /** see {@link AudioInputControl#registerCallback} */
+        @Override
+        @RequiresNoPermission
+        public void registerCallback(
+                @NonNull @CallbackExecutor Executor executor,
+                @NonNull AudioInputCallback callback) {
+            requireNonNull(callback);
+            requireNonNull(executor);
+            if (mFakeCallbackExecutorMap.containsKey(callback)) {
+                throw new IllegalArgumentException("Callback already registered");
+            }
+            mFakeCallbackExecutorMap.put(callback, executor);
+        }
+
+        /** see {@link AudioInputControl#unregisterCallback} */
+        @Override
+        @RequiresNoPermission
+        public void unregisterCallback(@NonNull AudioInputCallback callback) {
+            requireNonNull(callback);
+            if (!mFakeCallbackExecutorMap.containsKey(callback)) {
+                throw new IllegalArgumentException("Callback already unregistered");
+            }
+
+            mFakeCallbackExecutorMap.remove(callback);
+        }
+
+        /** see {@link AudioInputControl#getAudioInputType} */
+        @Override
+        @RequiresNoPermission
+        public @AudioInputType int getAudioInputType() {
+            return mType;
+        }
+
+        /** see {@link AudioInputControl#getGainSettingUnit} */
+        @Override
+        @RequiresNoPermission
+        public @IntRange(from = 0, to = 0xFF) int getGainSettingUnit() {
+            return mGainSettingUnit;
+        }
+
+        /** see {@link AudioInputControl#getGainSettingMin} */
+        @Override
+        @RequiresNoPermission
+        public @IntRange(from = -128, to = 127) int getGainSettingMin() {
+            return mGainSettingMin;
+        }
+
+        /** see {@link AudioInputControl#getGainSettingMax} */
+        @Override
+        @RequiresNoPermission
+        public @IntRange(from = -128, to = 127) int getGainSettingMax() {
+            return mGainSettingMax;
+        }
+
+        /** see {@link AudioInputControl#getDescription} */
+        @Override
+        @RequiresNoPermission
+        public @NonNull String getDescription() {
+            return mDescription;
+        }
+
+        /** see {@link AudioInputControl#setDescription} */
+        @Override
+        @RequiresNoPermission
+        public boolean setDescription(@NonNull String description) {
+            requireNonNull(description);
+            if (!mIsDescriptionWritable) {
+                throw new IllegalStateException("Description is not writable");
+            }
+            mDescription = description;
+            forEach(cb -> cb.onDescriptionChanged(mDescription));
+            return true;
+        }
+
+        /** see {@link AudioInputControl#isDescriptionWritable} */
+        @Override
+        @RequiresNoPermission
+        public boolean isDescriptionWritable() {
+            return mIsDescriptionWritable;
+        }
+
+        /** see {@link AudioInputControl#getAudioInputStatus} */
+        @Override
+        @RequiresNoPermission
+        public @AudioInputStatus int getAudioInputStatus() {
+            return mStatus;
+        }
+
+        /**
+         * Sets the remote Audio Input Status. See {@link #getAudioInputStatus}
+         *
+         * <p>This method emulate a remote initiated change.
+         *
+         * @param status The Audio Input type as defined in AICS 1.0 - 3.4.
+         * @throws IllegalArgumentException if the status is not a valid value
+         */
+        @RequiresNoPermission
+        public void remoteSetAudioInputStatus(@AudioInputStatus int status) {
+            if (status < AUDIO_INPUT_STATUS_INACTIVE || status > AUDIO_INPUT_STATUS_ACTIVE) {
+                throw new IllegalArgumentException("Illegal status value: " + status);
+            }
+            mStatus = status;
+            forEach(cb -> cb.onAudioInputStatusChanged(mStatus));
+        }
+
+        /** see {@link AudioInputControl#getGainSetting} */
+        @Override
+        @RequiresNoPermission
+        public @IntRange(from = -128, to = 127) int getGainSetting() {
+            return mGainSetting;
+        }
+
+        /** see {@link AudioInputControl#setGainSetting} */
+        @Override
+        @RequiresNoPermission
+        public boolean setGainSetting(@IntRange(from = -128, to = 127) int gainSetting) {
+            if (mGainMode == GAIN_MODE_AUTOMATIC || mGainMode == GAIN_MODE_AUTOMATIC_ONLY) {
+                throw new IllegalStateException("Disallowed due to gain mode being " + mGainMode);
+            }
+            remoteSetGainSetting(gainSetting);
+            return true;
+        }
+
+        /**
+         * See {@link AudioInputControl#setGainSetting}
+         *
+         * <p>This method emulate a remote initiated change.
+         */
+        @RequiresNoPermission
+        public void remoteSetGainSetting(@IntRange(from = -128, to = 127) int gainSetting) {
+            if (gainSetting < mGainSettingMin || gainSetting > mGainSettingMax) {
+                throw new IllegalArgumentException("Illegal gainSetting value: " + gainSetting);
+            }
+            mGainSetting = gainSetting;
+            forEach(cb -> cb.onGainSettingChanged(mGainSetting));
+        }
+
+        /** Emulate a call to {@link AudioInputCallback#onSetGainSettingFailed} */
+        @RequiresNoPermission
+        public void setGainSettingFailed() {
+            forEach(cb -> cb.onSetGainSettingFailed());
+        }
+
+        /** see {@link AudioInputControl#getGainMode} */
+        @Override
+        @RequiresNoPermission
+        public @GainMode int getGainMode() {
+            return mGainMode;
+        }
+
+        /** see {@link AudioInputControl#setGainMode} */
+        @Override
+        @RequiresNoPermission
+        public boolean setGainMode(@GainModeSettable int gainMode) {
+            if (gainMode != GAIN_MODE_MANUAL && gainMode != GAIN_MODE_AUTOMATIC) {
+                throw new IllegalArgumentException("Illegal GainMode value: " + gainMode);
+            }
+            if (mGainMode == GAIN_MODE_MANUAL_ONLY || mGainMode == GAIN_MODE_AUTOMATIC_ONLY) {
+                throw new IllegalStateException("Disallowed due to gain mode being " + mGainMode);
+            }
+            mGainMode = gainMode;
+            forEach(cb -> cb.onGainModeChanged(mGainMode));
+            return true;
+        }
+
+        /** Emulate a call to {@link AudioInputCallback#onSetGainModeFailed} */
+        @RequiresNoPermission
+        public void setGainModeFailed() {
+            forEach(cb -> cb.onSetGainModeFailed());
+        }
+
+        /** see {@link AudioInputControl#getMute} */
+        @Override
+        @RequiresNoPermission
+        public @Mute int getMute() {
+            return mMute;
+        }
+
+        /** see {@link AudioInputControl#setMute} */
+        @Override
+        @RequiresNoPermission
+        public boolean setMute(@MuteSettable int mute) {
+            if (mMute == MUTE_DISABLED) {
+                throw new IllegalStateException("Disallowed due to mute being disabled");
+            }
+            remoteSetMute(mute);
+            return true;
+        }
+
+        /** Emulate a call to {@link AudioInputCallback#onSetMuteFailed} */
+        @RequiresNoPermission
+        public void setMuteFailed() {
+            forEach(cb -> cb.onSetMuteFailed());
+        }
+
+        /**
+         * See {@link #setMute}.
+         *
+         * <p>This method emulate a remote initiated change.
+         */
+        @RequiresNoPermission
+        public void remoteSetMute(@Mute int mute) {
+            if (mute < MUTE_NOT_MUTED || mute > MUTE_DISABLED) {
+                throw new IllegalArgumentException("Illegal mute state value: " + mute);
+            }
+            mMute = mute;
+            forEach(cb -> cb.onMuteChanged(mMute));
+        }
     }
 }
