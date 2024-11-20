@@ -16,6 +16,24 @@
       "message": "What waiting to see if you would apply this suggestion :D \nfmt/format.h is included indirectly from bluetooth/log.h, I would rather not have direct includes.",
       "revId": "3b22d2f449bc570863050dcdf4334269e7509eeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11a85a4f_50004c2e",
+        "filename": "system/stack/include/avdt_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-20T10:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a41e933f_2745ad46",
+      "revId": "3b22d2f449bc570863050dcdf4334269e7509eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
