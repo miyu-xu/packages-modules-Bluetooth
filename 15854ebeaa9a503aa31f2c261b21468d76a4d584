@@ -1,0 +1,220 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ad24d27_76eefae5",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-20T23:48:48Z",
+      "side": 1,
+      "message": "Please mention `LE CS Subevent Result`, this is easier for navigating the specification.",
+      "range": {
+        "startLine": 28,
+        "startChar": 73,
+        "endLine": 28,
+        "endChar": 74
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "20a40e90_e31ba2a0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": " * See BLUETOOTH CORE SPECIFICATION Version 6.0 | Vol 4, Part E 7.7.65.44 (LE CS Subevent Result) for details.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e78a305_6d09b8c2",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-20T23:48:48Z",
+      "side": 1,
+      "message": "1. Please use a template parameter for the number of bits, you will benefit from static validation\n\n```\ntemplate \u003cint N\u003e\nstatic inline int16_t ConvertToSigned(uint16_t num) {\n  ..\n}\n```\n\n2. This helper should probably live somewhere else with adequate testing.",
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f43efce1_de0f7f6f",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-20T23:48:48Z",
+      "side": 1,
+      "message": "Use constructor initializer list",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ed0923_fc4c912a",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-20T23:48:48Z",
+      "side": 1,
+      "message": "Use constructor initializer list",
+      "range": {
+        "startLine": 89,
+        "startChar": 3,
+        "endLine": 93,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "490151ac_54166dc9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "  Mode1Data(const hci::LeCsMode1InitatorData\u0026 le_cs_mode1_data)\n      : packet_quality_(le_cs_mode1_data.packet_quality_),\n        packet_nadm_(le_cs_mode1_data.packet_nadm_),\n        packet_rssi_(le_cs_mode1_data.packet_rssi_),\n        rtt_toa_tod_data_(le_cs_mode1_data.toa_tod_initiator_),\n        packet_antenna_(le_cs_mode1_data.packet_antenna_) {}\n"
+            },
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "  Mode1Data(const hci::LeCsMode1InitatorDataWithPacketPct\u0026 le_cs_mode1_data)\n      : packet_quality_(le_cs_mode1_data.packet_quality_),\n        packet_nadm_(le_cs_mode1_data.packet_nadm_),\n        packet_rssi_(le_cs_mode1_data.packet_rssi_),\n        rtt_toa_tod_data_(le_cs_mode1_data.toa_tod_initiator_),\n        packet_antenna_(le_cs_mode1_data.packet_antenna_),\n        i_packet_pct1_(le_cs_mode1_data.packet_pct1_.i_sample_),\n        q_packet_pct1_(le_cs_mode1_data.packet_pct1_.q_sample_),\n        i_packet_pct2_(le_cs_mode1_data.packet_pct2_.i_sample_),\n        q_packet_pct2_(le_cs_mode1_data.packet_pct2_.q_sample_) {}\n"
+            },
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 115,
+                "endChar": 0
+              },
+              "replacement": "  Mode1Data(const hci::LeCsMode1ReflectorData\u0026 le_cs_mode1_data)\n      : packet_quality_(le_cs_mode1_data.packet_quality_),\n        packet_nadm_(le_cs_mode1_data.packet_nadm_),\n        packet_rssi_(le_cs_mode1_data.packet_rssi_),\n        rtt_toa_tod_data_(le_cs_mode1_data.tod_toa_reflector_),\n        packet_antenna_(le_cs_mode1_data.packet_antenna_) {}\n"
+            },
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "  Mode1Data(const hci::LeCsMode1ReflectorDataWithPacketPct\u0026 le_cs_mode1_data)\n      : packet_quality_(le_cs_mode1_data.packet_quality_),\n        packet_nadm_(le_cs_mode1_data.packet_nadm_),\n        packet_rssi_(le_cs_mode1_data.packet_rssi_),\n        rtt_toa_tod_data_(le_cs_mode1_data.tod_toa_reflector_),\n        packet_antenna_(le_cs_mode1_data.packet_antenna_),\n        i_packet_pct1_(le_cs_mode1_data.packet_pct1_.i_sample_),\n        q_packet_pct1_(le_cs_mode1_data.packet_pct1_.q_sample_),\n        i_packet_pct2_(le_cs_mode1_data.packet_pct2_.i_sample_),\n        q_packet_pct2_(le_cs_mode1_data.packet_pct2_.q_sample_) {}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a641c8d5_8924a5ae",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-20T23:48:48Z",
+      "side": 1,
+      "message": "Add default values",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "debd0fee_d88ff1ab",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 137,
+                "endChar": 0
+              },
+              "replacement": "  std::optional\u003cuint16_t\u003e i_packet_pct1_ \u003d std::nullopt;\n  std::optional\u003cuint16_t\u003e q_packet_pct1_ \u003d std::nullopt;\n  std::optional\u003cuint16_t\u003e i_packet_pct2_ \u003d std::nullopt;\n  std::optional\u003cuint16_t\u003e q_packet_pct2_ \u003d std::nullopt;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe632438_3b47f31f",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-20T23:48:48Z",
+      "side": 1,
+      "message": "Use constructor initializer list when possible.",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 67
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
