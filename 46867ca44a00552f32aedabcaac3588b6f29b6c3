@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7bc0136_285fc899",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-20T02:28:55Z",
+      "side": 1,
+      "message": "this part of the change is not in the flag.\n\nI would suggest not to do anything as we will delete the code once the flag is released",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 7
+      },
+      "revId": "46867ca44a00552f32aedabcaac3588b6f29b6c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
