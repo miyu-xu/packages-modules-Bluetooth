@@ -68,6 +68,30 @@
       },
       "revId": "0421d07f83c28097f44001990afe7157028cb0ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2986f62b_5a6526d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-20T21:37:20Z",
+      "side": 1,
+      "message": "I think I see what you mean; we\u0027d definitely want to work closely with the Pixel team to make sure we\u0027re adhering to their intent regarding Developer Options.\n\nFwiw, my takeaway from meeting with the Pixel team (if I understood correctly), is they are open to reworking the logic regarding what Developer Options should do, I think even suggesting what you\u0027ve proposed above, which is exposing control over individual roles; I\u0027d have to confirm with them to make sure.\n\nBut the immediate obstacle to that is there are no \"role-level\" profile services, so we can\u0027t have a one-to-one map. I.e., there are bapUnicastClient and CsipSetCoordinator profile services that can be started and stopped, but none for TmapUnicastMediaSender, so I don\u0027t see an easy way to just drop it into the current framework, namely, around `PROFILE_SERVICES_AND_FLAGS`",
+      "parentUuid": "ec08af67_05686706",
+      "range": {
+        "startLine": 264,
+        "startChar": 20,
+        "endLine": 264,
+        "endChar": 67
+      },
+      "revId": "0421d07f83c28097f44001990afe7157028cb0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
