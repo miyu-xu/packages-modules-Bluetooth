@@ -22,6 +22,30 @@
       },
       "revId": "859b16e37de732da8b38be4c8d920b42bc7efda1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36f9d5a2_8bd6964b",
+        "filename": "system/btif/include/btif_sock_l2cap.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-20T20:29:51Z",
+      "side": 1,
+      "message": "Added `btif_sock_hal` to register socket hal callback.",
+      "parentUuid": "205f7c20_ba175a8d",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "859b16e37de732da8b38be4c8d920b42bc7efda1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
