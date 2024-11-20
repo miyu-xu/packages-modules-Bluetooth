@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6721863c_43a5e4fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-20T16:15:59Z",
+      "side": 1,
+      "message": "FYI, you can just put `Flag: TEST_ONLY` in this case 😊",
+      "revId": "5a8e6dc686d2c06ef01e01783492e24bbd3b2ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
