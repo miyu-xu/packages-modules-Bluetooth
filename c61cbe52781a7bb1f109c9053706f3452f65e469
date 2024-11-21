@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "962afc7f_3f1b7e8d",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-21T09:57:35Z",
+      "side": 1,
+      "message": "Probably you have right. Names are very confusing here:\n```\nLeAudioService#pauseBroadcast \u003e broadcaster#SuspendAudioBroadcast \u003e ProcessMessage(BroadcastStateMachine::Message::SUSPEND) \u003e BroadcastStateMachine::State::CONFIGURED\n```\nIs this correct path? If so then you can resolve a comment. Thanks.",
+      "parentUuid": "9511e21e_5f09aa91",
+      "range": {
+        "startLine": 1345,
+        "startChar": 8,
+        "endLine": 1345,
+        "endChar": 63
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be469ab6_37db52b7",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 1
@@ -97,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3a1c3a8_ed6732ee",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-21T09:57:35Z",
+      "side": 1,
+      "message": "In short yes. Timers are more for music pause, which will pause broadcast and finally stop it at all. That was introduced for situation that user can forget (after pausing music) that broadcast was started.\n\nWe can skip them in situation of pause caused by handover as then user actively interact with his stuff.\n\nDo we agree?",
+      "parentUuid": "5e0b748c_771a7bf6",
+      "range": {
+        "startLine": 1346,
+        "startChar": 0,
+        "endLine": 1346,
+        "endChar": 39
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "374a09de_57320900",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 1
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "What race ?\n\nAFAIK when ble_broadcast device is connected, driver tries to start this device for some time, because there is no guarantee to fit in time with e.g. signalling in one request.",
       "parentUuid": "374a09de_57320900",
+      "range": {
+        "startLine": 1356,
+        "startChar": 0,
+        "endLine": 1356,
+        "endChar": 58
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd21f2ac_43730ef8",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-21T09:57:35Z",
+      "side": 1,
+      "message": "If so then it should be ok.\nI worried that i.e. we can get OnAudioResume (once) before we call StartAudioBroadcast which lead to not call:\n```\nProcessMessage(BroadcastStateMachine::Message::START\n```\nIf we are safe there you can resolve a comment. Thanks",
+      "parentUuid": "c6a54cc8_83ac9b53",
       "range": {
         "startLine": 1356,
         "startChar": 0,

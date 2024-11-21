@@ -46,6 +46,30 @@
       },
       "revId": "8234b73e0d85705beb027eeac1e790424d0feb7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b461b72b_ecccbb7e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3714,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-21T09:57:35Z",
+      "side": 0,
+      "message": "I wrote reverted as they was removed/flagged on aosp/3288842.\nI meant exactly what you done already: verify that startBroadcast was called.",
+      "parentUuid": "c06bd8e1_c650b75c",
+      "range": {
+        "startLine": 3713,
+        "startChar": 36,
+        "endLine": 3714,
+        "endChar": 95
+      },
+      "revId": "8234b73e0d85705beb027eeac1e790424d0feb7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
