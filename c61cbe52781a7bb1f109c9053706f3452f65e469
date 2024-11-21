@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "630654a2_4cb7c1f0",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-21T15:16:33Z",
+      "side": 1,
+      "message": "Yes, I agree about naming - and the path is correct.",
+      "parentUuid": "962afc7f_3f1b7e8d",
+      "range": {
+        "startLine": 1345,
+        "startChar": 8,
+        "endLine": 1345,
+        "endChar": 63
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be469ab6_37db52b7",
@@ -143,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b75531_790bf02b",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-21T15:16:33Z",
+      "side": 1,
+      "message": "Yes we agree - if broadcast is paused then proper way of handling this would be:\n- Destroy broadcast\n- Resume broadcast\n\nOtherwise it means that device is in Unicast mode and stack should keep broadcast \"paused\"",
+      "parentUuid": "f3a1c3a8_ed6732ee",
+      "range": {
+        "startLine": 1346,
+        "startChar": 0,
+        "endLine": 1346,
+        "endChar": 39
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "374a09de_57320900",
@@ -204,6 +252,30 @@
       "side": 1,
       "message": "If so then it should be ok.\nI worried that i.e. we can get OnAudioResume (once) before we call StartAudioBroadcast which lead to not call:\n```\nProcessMessage(BroadcastStateMachine::Message::START\n```\nIf we are safe there you can resolve a comment. Thanks",
       "parentUuid": "c6a54cc8_83ac9b53",
+      "range": {
+        "startLine": 1356,
+        "startChar": 0,
+        "endLine": 1356,
+        "endChar": 58
+      },
+      "revId": "c61cbe52781a7bb1f109c9053706f3452f65e469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "683e1619_2020a4c2",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-21T15:16:33Z",
+      "side": 1,
+      "message": "Actually this happens but AF calls this multiple time if request is canceled so the gap should be filled.",
+      "parentUuid": "bd21f2ac_43730ef8",
       "range": {
         "startLine": 1356,
         "startChar": 0,
