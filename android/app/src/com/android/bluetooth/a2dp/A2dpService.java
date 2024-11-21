@@ -24,6 +24,7 @@ import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 
 import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNullElseGet;
 
 import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
@@ -121,14 +122,20 @@ public class A2dpService extends ProfileService {
             new AudioManagerAudioDeviceCallback();
 
     public A2dpService(AdapterService adapterService) {
-        this(adapterService, A2dpNativeInterface.getInstance(), Looper.getMainLooper());
+        this(adapterService, null, Looper.getMainLooper());
     }
 
     @VisibleForTesting
     A2dpService(AdapterService adapterService, A2dpNativeInterface nativeInterface, Looper looper) {
         super(requireNonNull(adapterService));
         mAdapterService = adapterService;
-        mNativeInterface = requireNonNull(nativeInterface);
+        mNativeInterface =
+                requireNonNullElseGet(
+                        nativeInterface,
+                        () ->
+                                new A2dpNativeInterface(
+                                        adapterService,
+                                        new A2dpNativeCallback(adapterService, this)));
         mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
         mAudioManager = requireNonNull(getSystemService(AudioManager.class));
         mCompanionDeviceManager = requireNonNull(getSystemService(CompanionDeviceManager.class));
