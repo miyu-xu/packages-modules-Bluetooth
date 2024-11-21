@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d50bf0_15db83c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-21T06:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "799e43a4_d3fa11a2",
+      "revId": "98985197577937b63a278121e85f773032c2185b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ed64f8d_6d4501e0",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-11-20T19:14:42Z",
       "side": 1,
       "message": "```\nif (p_ccb \u003d\u003d nullptr || p_ccb-\u003etransport !\u003d BT_TRANSPORT_LE) {\n  return false;\n}\n```",
+      "range": {
+        "startLine": 611,
+        "startChar": 2,
+        "endLine": 615,
+        "endChar": 44
+      },
+      "revId": "98985197577937b63a278121e85f773032c2185b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e57dd42a_9f8fe390",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-21T06:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ed64f8d_6d4501e0",
       "range": {
         "startLine": 611,
         "startChar": 2,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eda2c7a_ae6794c3",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-21T06:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11a4270d_32b671c8",
+      "revId": "98985197577937b63a278121e85f773032c2185b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ead9764a_c19712ad",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-11-20T19:14:42Z",
       "side": 1,
       "message": "`\u0026p_ccb-\u003eacl_handle`",
+      "range": {
+        "startLine": 744,
+        "startChar": 75,
+        "endLine": 744,
+        "endChar": 85
+      },
+      "revId": "98985197577937b63a278121e85f773032c2185b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "493a70f7_3b7811c4",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-21T06:57:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ead9764a_c19712ad",
       "range": {
         "startLine": 744,
         "startChar": 75,
