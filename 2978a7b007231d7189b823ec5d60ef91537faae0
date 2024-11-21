@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76b0bcc5_74f0544c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-21T09:04:45Z",
+      "side": 1,
+      "message": "`repo upload` \"fix\" breaks the kotlin files. I\u0027ll fix them manually thanks :)",
+      "parentUuid": "5eadc37d_9831442a",
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cbbdc3c_6e0d7e56",
         "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
         "patchSetId": 11
@@ -31,6 +49,30 @@
       "writtenOn": "2024-11-20T20:16:48Z",
       "side": 1,
       "message": "skipped ? 😞",
+      "range": {
+        "startLine": 766,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 26
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba9ab1a_7cea5ae7",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-21T09:04:45Z",
+      "side": 1,
+      "message": "First, there are a lot of skipped tests that shouldn\u0027t be.\nThe test is passing locally for me so it\u0027ll be a pain to debug and is unrelated with the implementation. I prefer doing a change specifically to fix all tests that fail due to platforms rather than debugging one by one and block features in the meantime.",
+      "parentUuid": "5cbbdc3c_6e0d7e56",
       "range": {
         "startLine": 766,
         "startChar": 0,
