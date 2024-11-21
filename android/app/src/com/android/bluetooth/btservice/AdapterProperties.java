@@ -135,6 +135,7 @@ class AdapterProperties {
     private boolean mIsLeChannelSoundingSupported;
 
     private int mNumberOfSupportedOffloadedLeCocSockets;
+    private int mNumberOfSupportedOffloadedRfcommSockets;
 
     // Lock for all getters and setters.
     // If finer grained locking is needer, more locks
@@ -1035,18 +1036,28 @@ class AdapterProperties {
         return mNumberOfSupportedOffloadedLeCocSockets;
     }
 
+    /**
+     * @return the mNumberOfSupportedOffloadedRfcommSockets
+     */
+    int getNumberOfSupportedOffloadedRfcommSockets() {
+        return mNumberOfSupportedOffloadedRfcommSockets;
+    }
+
     private void updateLppOffloadFeatureSupport(byte[] val) {
-        if (val.length < 1) {
+        if (val.length < 2) {
             Log.e(TAG, "BT_PROPERTY_LPP_OFFLOAD_FEATURES: invalid value length");
             return;
         }
         mNumberOfSupportedOffloadedLeCocSockets = (0xFF & ((int) val[0]));
+        mNumberOfSupportedOffloadedRfcommSockets = (0xFF & ((int) val[1]));
 
         Log.d(
                 TAG,
                 "BT_PROPERTY_LPP_OFFLOAD_FEATURES: update from Offload HAL"
                         + " mNumberOfSupportedOffloadedLeCocSockets = "
-                        + mNumberOfSupportedOffloadedLeCocSockets);
+                        + mNumberOfSupportedOffloadedLeCocSockets
+                        + " mNumberOfSupportedOffloadedRfcommSockets = "
+                        + mNumberOfSupportedOffloadedRfcommSockets);
     }
 
     void onBluetoothReady() {

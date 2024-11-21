@@ -517,6 +517,9 @@ void btif_get_adapter_property(bt_property_type_t type) {
             bluetooth::shim::GetLppOffloadManager()->GetSocketCapabilities();
     lpp_offload_features.number_of_supported_offloaded_le_coc_sockets =
             socket_offload_capabilities.le_coc_capabilities.number_of_supported_sockets;
+    // TODO(b/342012881) Add RFCOMM socket offload implementation.
+    // Assign socket_offload_capabilities.rfcomm_capabilities.number_of_supported_sockets.
+    lpp_offload_features.number_of_supported_offloaded_rfcomm_sockets = 0;
     prop.len = sizeof(bt_lpp_offload_features_t);
     memcpy(prop.val, &lpp_offload_features, prop.len);
   } else {

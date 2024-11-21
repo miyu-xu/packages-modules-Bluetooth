@@ -27,12 +27,12 @@ using namespace bluetooth;
 
 class BtifSocketHalCallback : public hal::SocketHalCallback {
 public:
-  void SocketOpenedComplete(uint64_t socket_id, hal::SocketStatus status) override {
+  void SocketOpenedComplete(uint64_t socket_id, hal::SocketStatus status) const override {
     log::info("socket_id: {}, status: {}", socket_id, static_cast<int>(status));
     do_in_main_thread(base::BindOnce(on_btsocket_l2cap_opened_complete, socket_id, status));
   }
 
-  void SocketClose(uint64_t socket_id) override {
+  void SocketClose(uint64_t socket_id) const override {
     log::info("socket_id: {}", socket_id);
     do_in_main_thread(base::BindOnce(on_btsocket_l2cap_close, socket_id));
   }
