@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2c16054_909cacd8",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-21T07:36:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e62607d_870df6f0",
+      "range": {
+        "startLine": 204,
+        "startChar": 60,
+        "endLine": 204,
+        "endChar": 88
+      },
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca555106_7aca22b8",
@@ -121,6 +145,30 @@
       "side": 1,
       "message": "I think it\u0027s possible here the controller replies with command status fail - In this case there won\u0027t be a disconnection event, so probably we would need to revert the state to \"connected\" to sync with the controller.",
       "parentUuid": "ca555106_7aca22b8",
+      "range": {
+        "startLine": 212,
+        "startChar": 78,
+        "endLine": 212,
+        "endChar": 96
+      },
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a134ac4a_1c72c898",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-21T07:36:18Z",
+      "side": 1,
+      "message": "After the discussion I remove the status callback - but I still don\u0027t remove the connection immediately. I afraid by deleting the connection when we send HCI command, the controller still have chance to send some HCI event tied to the connection we just deleted and we would do something bad with that.\n\nSo, the connection is deleted like it\u0027s always been, when we receive disconnect event. This CL only prevents multiple HCI disconnect command.",
+      "parentUuid": "c6902ed2_e92031fb",
       "range": {
         "startLine": 212,
         "startChar": 78,
