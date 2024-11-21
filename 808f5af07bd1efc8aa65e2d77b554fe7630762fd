@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e1ca03_9be7bb84",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-21T00:08:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f70bc403_3d77d355",
+      "range": {
+        "startLine": 300,
+        "startChar": 47,
+        "endLine": 300,
+        "endChar": 54
+      },
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0759c762_29fa3a0d",
@@ -103,6 +127,24 @@
           ]
         }
       ],
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0f924e5_f118ba90",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-21T00:08:02Z",
+      "side": 1,
+      "message": "Right now we would bail after the connecting timeout expires, so at least its not indefinite.\n\nI agree though that, if the SDP platform can\u0027t rate limit and manage our requests properly, we may want to be careful with how much churn we\u0027re causing.\n\nWe\u0027ve been doing this type of thing in MAP Client to some success/without complaint for some time now though.\n\nI would suggest a bit of a deeper look in the future as to _why_ we\u0027re busy, and how the SDP platform handles requests.\n\nI have b/380112956 to revisit this, with a quick ideas that doesn\u0027t involve rewriting SDP",
+      "parentUuid": "0759c762_29fa3a0d",
       "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
