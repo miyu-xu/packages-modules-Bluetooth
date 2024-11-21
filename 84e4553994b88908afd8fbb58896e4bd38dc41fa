@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f17b9f_4425ef70",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1310,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-21T18:33:55Z",
+      "side": 1,
+      "message": "could you elaborate what is this timer for?",
+      "revId": "84e4553994b88908afd8fbb58896e4bd38dc41fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06480fa1_cce662b9",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-21T18:33:55Z",
+      "side": 1,
+      "message": "could you please elaborate why we have this `else` here? I was expecting that here we check if this is stopped and if so we could move to SUSPENDED and proceed further.",
+      "revId": "84e4553994b88908afd8fbb58896e4bd38dc41fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
