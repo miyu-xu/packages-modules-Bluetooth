@@ -429,6 +429,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3261a595_fcc8fcd1",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-21T22:20:09Z",
+      "side": 1,
+      "message": "I reviewed the CTS test and I\u0027m concerned with how difficult it is to create these objects. Even for testing only, you shouldn\u0027t have to write data to a byte array that\u0027s correctly formatted or write to a parcel to use a class\u0027s CREATOR to create it. That\u0027s relying upon implementation details that are subject to change (maybe less so for the byte array since it\u0027s a BT spec thing, but we can make it easier on our developers.",
+      "parentUuid": "6e7b0f4e_552c55c3",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46c1851a_52c3d499",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
