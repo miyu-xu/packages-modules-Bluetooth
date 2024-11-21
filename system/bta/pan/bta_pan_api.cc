@@ -106,18 +106,12 @@ void BTA_PanDisable(void) {
 void BTA_PanSetRole(tBTA_PAN_ROLE role, const tBTA_PAN_ROLE_INFO user_info,
                     const tBTA_PAN_ROLE_INFO nap_info) {
   post_on_bt_main([=]() {
-    tBTA_PAN_DATA data = {
-            .api_set_role =
-                    {
-                            .hdr =
-                                    {
-                                            .event = BTA_PAN_API_SET_ROLE_EVT,
-                                    },
-                            .user_name = {},
-                            .nap_name = {},
-                            .role = role,
-                    },
-    };
+    tBTA_PAN_DATA data = {.api_set_role = {
+                                  .hdr = {.event = BTA_PAN_API_SET_ROLE_EVT},
+                                  .user_name = {},
+                                  .nap_name = {},
+                                  .role = role,
+                          }};
     if (role & BTA_PAN_ROLE_PANU) {
       if (!user_info.p_srv_name.empty()) {
         strncpy(data.api_set_role.user_name, user_info.p_srv_name.data(), BTA_SERVICE_NAME_LEN);

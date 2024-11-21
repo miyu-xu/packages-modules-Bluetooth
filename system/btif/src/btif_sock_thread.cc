@@ -456,8 +456,7 @@ static void* sock_poll_thread(void* arg) {
     if (ret != 0) {
       int need_process_data_fd = true;
       int pfds_count = ts[h].poll_count;
-      if (pfds[0].revents)  // cmd fd always is the first one
-      {
+      if (pfds[0].revents) {  // cmd fd always is the first one
         asrt(pfds[0].fd == ts[h].cmd_fdr);
         if (!process_cmd_sock(h)) {
           log::info("h:{}, process_cmd_sock return false, exit...", h);

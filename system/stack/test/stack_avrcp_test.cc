@@ -162,25 +162,14 @@ TEST_F(StackAvrcpTest, test_avrcp_pdu_register_notification) {
           AVRC_PDU_REGISTER_NOTIFICATION,
           0,  // reserved
           htons(sizeof(data.payload)),
-          .payload =
-                  {
-                          .event_id = 0,
-                          .param = 0x1234,
-                  },
+          .payload = {.event_id = 0, .param = 0x1234},
   };
 
-  tAVRC_MSG msg = {
-          .vendor =
-                  {
-                          .hdr =
-                                  {
-                                          .ctype = AVRC_CMD_NOTIF,
-                                          .opcode = AVRC_OP_VENDOR,
-                                  },
-                          .p_vendor_data = (uint8_t*)&data,
-                          .vendor_len = sizeof(data),
-                  },
-  };
+  tAVRC_MSG msg = {.vendor = {
+                           .hdr = {.ctype = AVRC_CMD_NOTIF, .opcode = AVRC_OP_VENDOR},
+                           .p_vendor_data = (uint8_t*)&data,
+                           .vendor_len = sizeof(data),
+                   }};
   tAVRC_COMMAND result{};
 
   // Run through all possible event ids

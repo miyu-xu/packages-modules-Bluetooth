@@ -60,13 +60,10 @@ TEST_F(BtaAvTest, bta_av_rc_opened) {
                     ASSERT_EQ(kRawAddress, rc_open->peer_addr);
                   },
   };
-  tBTA_AV_DATA data = {
-          .rc_conn_chg =
-                  {
-                          .hdr = {},
-                          .peer_addr = kRawAddress,
-                          .handle = 0,
-                  },
-  };
+  tBTA_AV_DATA data = {.rc_conn_chg = {
+                               .hdr = {},
+                               .peer_addr = kRawAddress,
+                               .handle = 0,
+                       }};
   bta_av_rc_opened(&cb, &data);
 }

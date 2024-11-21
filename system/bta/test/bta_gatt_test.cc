@@ -114,17 +114,14 @@ protected:
           .p_cback = bta_gattc_event_complete_callback,
   };
 
-  tGATT_CL_COMPLETE gatt_cl_complete = {
-          .att_value =
-                  {
-                          .conn_id = 1,
-                          .handle = 2,
-                          .offset = 3,
-                          .len = 4,  // length of value below
-                          .auth_req = GATT_AUTH_REQ_NONE,
-                          .value = {10, 11, 12, 13},
-                  },
-  };
+  tGATT_CL_COMPLETE gatt_cl_complete = {.att_value = {
+                                                .conn_id = 1,
+                                                .handle = 2,
+                                                .offset = 3,
+                                                .len = 4,  // length of value below
+                                                .auth_req = GATT_AUTH_REQ_NONE,
+                                                .value = {10, 11, 12, 13},
+                                        }};
 
   tBTA_GATTC_SERV service_control_block = {
           .mtu = 456,
@@ -140,29 +137,20 @@ protected:
 };
 
 TEST_F(BtaGattTest, bta_gattc_op_cmpl_read) {
-  command_queue = {
-          .api_read =  // tBTA_GATTC_API_READ
-          {
-                  .hdr =
-                          {
-                                  .event = BTA_GATTC_API_READ_EVT,
-                          },
-                  .handle = 123,
-                  .read_cb = bta_gatt_read_complete_callback,
-                  .read_cb_data = static_cast<void*>(this),
-          },
-  };
+  command_queue = {.api_read = {
+                           .hdr = {.event = BTA_GATTC_API_READ_EVT},
+                           .handle = 123,
+                           .read_cb = bta_gatt_read_complete_callback,
+                           .read_cb_data = static_cast<void*>(this),
+                   }};
 
   client_channel_control_block.p_q_cmd = &command_queue;
 
-  tBTA_GATTC_DATA data = {
-          .op_cmpl =
-                  {
-                          .op_code = GATTC_OPTYPE_READ,
-                          .status = GATT_OUT_OF_RANGE,
-                          .p_cmpl = &gatt_cl_complete,
-                  },
-  };
+  tBTA_GATTC_DATA data = {.op_cmpl = {
+                                  .op_code = GATTC_OPTYPE_READ,
+                                  .status = GATT_OUT_OF_RANGE,
+                                  .p_cmpl = &gatt_cl_complete,
+                          }};
 
   bta_gattc_op_cmpl(&client_channel_control_block, &data);
   ASSERT_EQ(1, get_func_call_count("osi_free_and_reset"));
@@ -175,29 +163,20 @@ TEST_F(BtaGattTest, bta_gattc_op_cmpl_read) {
 }
 
 TEST_F(BtaGattTest, bta_gattc_op_cmpl_write) {
-  command_queue = {
-          .api_write =  // tBTA_GATTC_API_WRITE
-          {
-                  .hdr =
-                          {
-                                  .event = BTA_GATTC_API_WRITE_EVT,
-                          },
-                  .handle = 123,
-                  .write_cb = bta_gatt_write_complete_callback,
-                  .write_cb_data = static_cast<void*>(this),
-          },
-  };
+  command_queue = {.api_write = {
+                           .hdr = {.event = BTA_GATTC_API_WRITE_EVT},
+                           .handle = 123,
+                           .write_cb = bta_gatt_write_complete_callback,
+                           .write_cb_data = static_cast<void*>(this),
+                   }};
 
   client_channel_control_block.p_q_cmd = &command_queue;
 
-  tBTA_GATTC_DATA data = {
-          .op_cmpl =
-                  {
-                          .op_code = GATTC_OPTYPE_WRITE,
-                          .status = GATT_OUT_OF_RANGE,
-                          .p_cmpl = &gatt_cl_complete,
-                  },
-  };
+  tBTA_GATTC_DATA data = {.op_cmpl = {
+                                  .op_code = GATTC_OPTYPE_WRITE,
+                                  .status = GATT_OUT_OF_RANGE,
+                                  .p_cmpl = &gatt_cl_complete,
+                          }};
 
   bta_gattc_op_cmpl(&client_channel_control_block, &data);
   ASSERT_EQ(1, get_func_call_count("osi_free_and_reset"));
@@ -208,27 +187,18 @@ TEST_F(BtaGattTest, bta_gattc_op_cmpl_write) {
 }
 
 TEST_F(BtaGattTest, bta_gattc_op_cmpl_config) {
-  command_queue = {
-          .api_mtu =  // tBTA_GATTC_API_CFG_MTU
-          {
-                  .hdr =
-                          {
-                                  .event = BTA_GATTC_API_CFG_MTU_EVT,
-                          },
-                  .mtu_cb = bta_gatt_configure_mtu_complete_callback,
-                  .mtu_cb_data = static_cast<void*>(this),
-          },
-  };
+  command_queue = {.api_mtu = {
+                           .hdr = {.event = BTA_GATTC_API_CFG_MTU_EVT},
+                           .mtu_cb = bta_gatt_configure_mtu_complete_callback,
+                           .mtu_cb_data = static_cast<void*>(this),
+                   }};
 
   client_channel_control_block.p_q_cmd = &command_queue;
 
-  tBTA_GATTC_DATA data = {
-          .op_cmpl =
-                  {
-                          .op_code = GATTC_OPTYPE_CONFIG,
-                          .status = GATT_PRC_IN_PROGRESS,
-                  },
-  };
+  tBTA_GATTC_DATA data = {.op_cmpl = {
+                                  .op_code = GATTC_OPTYPE_CONFIG,
+                                  .status = GATT_PRC_IN_PROGRESS,
+                          }};
 
   bta_gattc_op_cmpl(&client_channel_control_block, &data);
   ASSERT_EQ(1, get_func_call_count("osi_free_and_reset"));
@@ -239,24 +209,15 @@ TEST_F(BtaGattTest, bta_gattc_op_cmpl_config) {
 }
 
 TEST_F(BtaGattTest, bta_gattc_op_cmpl_execute) {
-  command_queue = {
-          .api_exec =  // tBTA_GATTC_API_EXEC
-          {
-                  .hdr =
-                          {
-                                  .event = BTA_GATTC_API_EXEC_EVT,
-                          },
-          },
-  };
+  command_queue = {.api_exec = {
+                           .hdr = {.event = BTA_GATTC_API_EXEC_EVT},
+                   }};
 
   client_channel_control_block.p_q_cmd = &command_queue;
 
-  tBTA_GATTC_DATA data = {
-          .op_cmpl =
-                  {
-                          .op_code = GATTC_OPTYPE_EXE_WRITE,
-                  },
-  };
+  tBTA_GATTC_DATA data = {.op_cmpl = {
+                                  .op_code = GATTC_OPTYPE_EXE_WRITE,
+                          }};
 
   bta_gattc_op_cmpl(&client_channel_control_block, &data);
   ASSERT_EQ(BTA_GATTC_EXEC_EVT, param::bta_gattc_event_complete_callback.event);
@@ -264,18 +225,12 @@ TEST_F(BtaGattTest, bta_gattc_op_cmpl_execute) {
 }
 
 TEST_F(BtaGattTest, bta_gattc_op_cmpl_read_interrupted) {
-  command_queue = {
-          .api_read =  // tBTA_GATTC_API_READ
-          {
-                  .hdr =
-                          {
-                                  .event = BTA_GATTC_API_READ_EVT,
-                          },
-                  .handle = 123,
-                  .read_cb = bta_gatt_read_complete_callback,
-                  .read_cb_data = static_cast<void*>(this),
-          },
-  };
+  command_queue = {.api_read = {
+                           .hdr = {.event = BTA_GATTC_API_READ_EVT},
+                           .handle = 123,
+                           .read_cb = bta_gatt_read_complete_callback,
+                           .read_cb_data = static_cast<void*>(this),
+                   }};
 
   client_channel_control_block.p_q_cmd = &command_queue;
 
@@ -283,14 +238,11 @@ TEST_F(BtaGattTest, bta_gattc_op_cmpl_read_interrupted) {
   client_channel_control_block.auto_update = BTA_GATTC_DISC_WAITING;
   client_channel_control_block.p_srcb->srvc_hdl_chg = 1;
 
-  tBTA_GATTC_DATA data = {
-          .op_cmpl =
-                  {
-                          .op_code = GATTC_OPTYPE_READ,
-                          .status = GATT_OUT_OF_RANGE,
-                          .p_cmpl = &gatt_cl_complete,
-                  },
-  };
+  tBTA_GATTC_DATA data = {.op_cmpl = {
+                                  .op_code = GATTC_OPTYPE_READ,
+                                  .status = GATT_OUT_OF_RANGE,
+                                  .p_cmpl = &gatt_cl_complete,
+                          }};
 
   bta_gattc_op_cmpl(&client_channel_control_block, &data);
   ASSERT_EQ(GATT_ERROR, param::bta_gatt_read_complete_callback.status);

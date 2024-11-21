@@ -218,8 +218,7 @@ static void hidh_l2cif_connect_ind(const RawAddress& bd_addr, uint16_t l2cap_cid
       log::warn("HID-Host Rcvd INTR L2CAP conn ind, wrong state: {}", p_hcon->conn_state);
       bAccept = false;
     }
-  } else /* CTRL channel */
-  {
+  } else { /* CTRL channel */
 #if (HID_HOST_ACPT_NEW_CONN == TRUE)
     p_hcon->ctrl_cid = p_hcon->intr_cid = 0;
     p_hcon->conn_state = HID_CONN_STATE_UNUSED;

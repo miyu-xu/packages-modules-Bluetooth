@@ -63,12 +63,7 @@ protected:
               .data = (data == nullptr) ? kNoData : *data,
       });
     };
-    tBTA_PAN_DATA data = {
-            .api_enable =
-                    {
-                            .p_cback = BTA_PAN_CBACK,
-                    },
-    };
+    tBTA_PAN_DATA data = {.api_enable = {.p_cback = BTA_PAN_CBACK}};
     bta_sys_eir_closure = [this](uint16_t uuid16, bool adding) {
       uuids.push_back({
               .uuid16 = uuid16,

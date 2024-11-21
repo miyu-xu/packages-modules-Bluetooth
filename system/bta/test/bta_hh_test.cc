@@ -64,23 +64,14 @@ TEST_F(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT) {
           .w4_evt = BTA_HH_GET_RPT_EVT,
   };
 
-  tBTA_HH_DATA data = {
-          .hid_cback =
-                  {
-                          .hdr =
-                                  {
-                                          .event = 0,
-                                          .len = 0,
-                                          .offset = 0,
-                                          .layer_specific = 0,
-                                  },
-                          .link_spec.addrt.bda = RawAddress::kEmpty,
-                          .link_spec.addrt.type = BLE_ADDR_PUBLIC,
-                          .link_spec.transport = BT_TRANSPORT_AUTO,
-                          .data = 32,
-                          .p_data = static_cast<BT_HDR*>(osi_calloc(32 + sizeof(BT_HDR))),
-                  },
-  };
+  tBTA_HH_DATA data = {.hid_cback = {
+                               .hdr = {.event = 0, .len = 0, .offset = 0, .layer_specific = 0},
+                               .link_spec.addrt.bda = RawAddress::kEmpty,
+                               .link_spec.addrt.type = BLE_ADDR_PUBLIC,
+                               .link_spec.transport = BT_TRANSPORT_AUTO,
+                               .data = 32,
+                               .p_data = static_cast<BT_HDR*>(osi_calloc(32 + sizeof(BT_HDR))),
+                       }};
 
   data.hid_cback.p_data->len = static_cast<uint16_t>(data32.size());
   uint8_t* p_data = (uint8_t*)(data.hid_cback.p_data + 1);

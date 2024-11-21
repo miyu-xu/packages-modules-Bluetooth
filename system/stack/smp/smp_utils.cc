@@ -975,15 +975,12 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
   const RawAddress pairing_bda = p_cb->pairing_bda;
 
   tSMP_EVT_DATA evt_data = {
-          .cmplt =
-                  {
-                          .reason = p_cb->status,
-                          .sec_level =
-                                  (p_cb->status == SMP_SUCCESS) ? p_cb->sec_level : SMP_SEC_NONE,
-                          .is_pair_cancel = p_cb->is_pair_cancel,
-                          .smp_over_br = p_cb->smp_over_br,
-                  },
-  };
+          .cmplt = {
+                  .reason = p_cb->status,
+                  .sec_level = (p_cb->status == SMP_SUCCESS) ? p_cb->sec_level : SMP_SEC_NONE,
+                  .is_pair_cancel = p_cb->is_pair_cancel,
+                  .smp_over_br = p_cb->smp_over_br,
+          }};
 
   if (p_cb->status == SMP_SUCCESS) {
     log::debug(
@@ -1497,26 +1494,20 @@ bool smp_check_commitment(tSMP_CB* p_cb) {
  ******************************************************************************/
 void smp_save_secure_connections_long_term_key(tSMP_CB* p_cb) {
   log::verbose("Save LTK as local and peer key");
-  tBTM_LE_KEY_VALUE lle_key = {
-          .lenc_key =
-                  {
-                          .ltk = p_cb->ltk,
-                          .div = 0,
-                          .key_size = p_cb->loc_enc_size,
-                          .sec_level = p_cb->sec_level,
-                  },
-  };
+  tBTM_LE_KEY_VALUE lle_key = {.lenc_key = {
+                                       .ltk = p_cb->ltk,
+                                       .div = 0,
+                                       .key_size = p_cb->loc_enc_size,
+                                       .sec_level = p_cb->sec_level,
+                               }};
   btm_sec_save_le_key(p_cb->pairing_bda, BTM_LE_KEY_LENC, &lle_key, true);
 
-  tBTM_LE_KEY_VALUE ple_key = {
-          .penc_key =
-                  {
-                          .ltk = p_cb->ltk,
-                          .ediv = 0,
-                          .sec_level = p_cb->sec_level,
-                          .key_size = p_cb->loc_enc_size,
-                  },
-  };
+  tBTM_LE_KEY_VALUE ple_key = {.penc_key = {
+                                       .ltk = p_cb->ltk,
+                                       .ediv = 0,
+                                       .sec_level = p_cb->sec_level,
+                                       .key_size = p_cb->loc_enc_size,
+                               }};
   memset(ple_key.penc_key.rand, 0, BT_OCTET8_LEN);
   btm_sec_save_le_key(p_cb->pairing_bda, BTM_LE_KEY_PENC, &ple_key, true);
 }

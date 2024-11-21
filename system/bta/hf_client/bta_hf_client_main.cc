@@ -347,11 +347,9 @@ void bta_hf_client_collision_cback(tBTA_SYS_CONN_STATUS /* status */, tBTA_SYS_I
                                    uint8_t /* app_id */, const RawAddress& peer_addr) {
   tBTA_HF_CLIENT_CB* client_cb = bta_hf_client_find_cb_by_bda(peer_addr);
   if (client_cb != NULL && client_cb->state == BTA_HF_CLIENT_OPENING_ST) {
-    if (id == BTA_ID_SYS) /* ACL collision */
-    {
+    if (id == BTA_ID_SYS) { /* ACL collision */
       log::warn("HF Client found collision (ACL) ...");
-    } else if (id == BTA_ID_HS) /* RFCOMM collision */
-    {
+    } else if (id == BTA_ID_HS) { /* RFCOMM collision */
       log::warn("HF Client found collision (RFCOMM) ...");
     } else {
       log::warn("HF Client found collision (\?\?\?) ...");

@@ -158,12 +158,10 @@ ndk::ScopedAStatus BluetoothAudioPortImpl::updateSinkMetadata(const SinkMetadata
     log::info("metadata tags size: {}", num_of_tags);
 
     record_track_metadata_v7 desc_track = {
-            .base =
-                    {
-                            .source = static_cast<audio_source_t>(track.source),
-                            .gain = track.gain,
-                    },
-    };
+            .base = {
+                    .source = static_cast<audio_source_t>(track.source),
+                    .gain = track.gain,
+            }};
 
     if (num_of_tags != 0) {
       int copied_size = 0;

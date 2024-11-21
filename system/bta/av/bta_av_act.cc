@@ -929,7 +929,7 @@ static tBTA_AV_EVT bta_av_proc_meta_cmd(tAVRC_RESPONSE* p_rc_rsp, tBTA_AV_RC_MSG
             *p_ctype = AVRC_RSP_IMPL_STBL;
             p_rc_rsp->get_caps.count = p_bta_av_cfg->num_co_ids;
             memcpy(p_rc_rsp->get_caps.param.company_id, p_bta_av_cfg->p_meta_co_ids,
-                   (p_bta_av_cfg->num_co_ids << 2));
+                   p_bta_av_cfg->num_co_ids << 2);
           } else if (u8 == AVRC_CAP_EVENTS_SUPPORTED) {
             *p_ctype = AVRC_RSP_IMPL_STBL;
             if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
@@ -1671,12 +1671,9 @@ void bta_av_signalling_timer(tBTA_AV_DATA* p_data) {
         log::verbose("hndl 0x{:x}", p_scb->hndl);
         bta_sys_start_timer(p_scb->link_signalling_timer, BTA_AV_SIGNALLING_TIMEOUT_MS,
                             BTA_AV_SIGNALLING_TIMER_EVT, hndl);
-        tBTA_AV bta_av_data = {
-                .pend =
-                        {
-                                .bd_addr = p_lcb->addr,
-                        },
-        };
+        tBTA_AV bta_av_data = {.pend = {
+                                       .bd_addr = p_lcb->addr,
+                               }};
         log::verbose("BTA_AV_PENDING_EVT for {} index={} conn_mask=0x{:x} lidx={}", p_lcb->addr, xx,
                      p_lcb->conn_msk, p_lcb->lidx);
         (*p_cb->p_cback)(BTA_AV_PENDING_EVT, &bta_av_data);
@@ -2143,13 +2140,10 @@ static void bta_av_rc_disc_done_all(tBTA_AV_DATA* /* p_data */) {
              */
             log::error("no link resources available");
             p_scb->use_rc = false;
-            tBTA_AV bta_av_data = {
-                    .rc_open =
-                            {
-                                    .peer_addr = p_scb->PeerAddress(),
-                                    .status = BTA_AV_FAIL_RESOURCES,
-                            },
-            };
+            tBTA_AV bta_av_data = {.rc_open = {
+                                           .peer_addr = p_scb->PeerAddress(),
+                                           .status = BTA_AV_FAIL_RESOURCES,
+                                   }};
             (*p_cb->p_cback)(BTA_AV_RC_OPEN_EVT, &bta_av_data);
           }
         } else {
@@ -2158,15 +2152,12 @@ static void bta_av_rc_disc_done_all(tBTA_AV_DATA* /* p_data */) {
       } else if (p_scb->use_rc) {
         /* can not find AVRC on peer device. report failure */
         p_scb->use_rc = false;
-        tBTA_AV bta_av_data = {
-                .rc_open =
-                        {
-                                .peer_ct_features = peer_ct_features,
-                                .peer_tg_features = peer_tg_features,
-                                .peer_addr = p_scb->PeerAddress(),
-                                .status = BTA_AV_FAIL_SDP,
-                        },
-        };
+        tBTA_AV bta_av_data = {.rc_open = {
+                                       .peer_ct_features = peer_ct_features,
+                                       .peer_tg_features = peer_tg_features,
+                                       .peer_addr = p_scb->PeerAddress(),
+                                       .status = BTA_AV_FAIL_SDP,
+                               }};
         (*p_cb->p_cback)(BTA_AV_RC_OPEN_EVT, &bta_av_data);
       }
     }
@@ -2202,14 +2193,11 @@ static void bta_av_rc_disc_done_all(tBTA_AV_DATA* /* p_data */) {
     // Send PSM data
     log::verbose("Send PSM data. rc_psm = {:#x}", cover_art_psm);
     p_cb->rcb[rc_handle].cover_art_psm = cover_art_psm;
-    tBTA_AV bta_av_psm = {
-            .rc_cover_art_psm =
-                    {
-                            .rc_handle = rc_handle,
-                            .cover_art_psm = cover_art_psm,
-                            .peer_addr = peer_addr,
-                    },
-    };
+    tBTA_AV bta_av_psm = {.rc_cover_art_psm = {
+                                  .rc_handle = rc_handle,
+                                  .cover_art_psm = cover_art_psm,
+                                  .peer_addr = peer_addr,
+                          }};
     (*p_cb->p_cback)(BTA_AV_RC_PSM_EVT, &bta_av_psm);
   }
 }
@@ -2326,15 +2314,12 @@ void bta_av_rc_disc_done(tBTA_AV_DATA* p_data) {
              */
             log::error("no link resources available");
             p_scb->use_rc = false;
-            tBTA_AV bta_av_data = {
-                    .rc_open =
-                            {
-                                    .cover_art_psm = 0,
-                                    .peer_features = 0,
-                                    .peer_addr = p_scb->PeerAddress(),
-                                    .status = BTA_AV_FAIL_RESOURCES,
-                            },
-            };
+            tBTA_AV bta_av_data = {.rc_open = {
+                                           .cover_art_psm = 0,
+                                           .peer_features = 0,
+                                           .peer_addr = p_scb->PeerAddress(),
+                                           .status = BTA_AV_FAIL_RESOURCES,
+                                   }};
             (*p_cb->p_cback)(BTA_AV_RC_OPEN_EVT, &bta_av_data);
           }
         } else {
@@ -2343,16 +2328,13 @@ void bta_av_rc_disc_done(tBTA_AV_DATA* p_data) {
       } else if (p_scb->use_rc) {
         /* can not find AVRC on peer device. report failure */
         p_scb->use_rc = false;
-        tBTA_AV bta_av_data = {
-                .rc_open =
-                        {
-                                .rc_handle = BTA_AV_RC_HANDLE_NONE,
-                                .cover_art_psm = 0,
-                                .peer_features = 0,
-                                .peer_addr = p_scb->PeerAddress(),
-                                .status = BTA_AV_FAIL_SDP,
-                        },
-        };
+        tBTA_AV bta_av_data = {.rc_open = {
+                                       .rc_handle = BTA_AV_RC_HANDLE_NONE,
+                                       .cover_art_psm = 0,
+                                       .peer_features = 0,
+                                       .peer_addr = p_scb->PeerAddress(),
+                                       .status = BTA_AV_FAIL_SDP,
+                               }};
         (*p_cb->p_cback)(BTA_AV_RC_OPEN_EVT, &bta_av_data);
       }
       if (peer_features != 0) {
@@ -2518,14 +2500,11 @@ void bta_av_rc_browse_opened(tBTA_AV_DATA* p_data) {
 
   log::info("peer_addr: {} rc_handle:{}", p_msg->peer_addr, p_msg->handle);
 
-  tBTA_AV bta_av_data = {
-          .rc_browse_open =
-                  {
-                          .rc_handle = p_msg->handle,
-                          .peer_addr = p_msg->peer_addr,
-                          .status = BTA_AV_SUCCESS,
-                  },
-  };
+  tBTA_AV bta_av_data = {.rc_browse_open = {
+                                 .rc_handle = p_msg->handle,
+                                 .peer_addr = p_msg->peer_addr,
+                                 .status = BTA_AV_SUCCESS,
+                         }};
 
   (*p_cb->p_cback)(BTA_AV_RC_BROWSE_OPEN_EVT, &bta_av_data);
 }
@@ -2545,13 +2524,10 @@ void bta_av_rc_browse_closed(tBTA_AV_DATA* p_data) {
 
   log::info("peer_addr: {} rc_handle:{}", p_msg->peer_addr, p_msg->handle);
 
-  tBTA_AV bta_av_data = {
-          .rc_browse_close =
-                  {
-                          .rc_handle = p_msg->handle,
-                          .peer_addr = p_msg->peer_addr,
-                  },
-  };
+  tBTA_AV bta_av_data = {.rc_browse_close = {
+                                 .rc_handle = p_msg->handle,
+                                 .peer_addr = p_msg->peer_addr,
+                         }};
 
   (*p_cb->p_cback)(BTA_AV_RC_BROWSE_CLOSE_EVT, &bta_av_data);
 }

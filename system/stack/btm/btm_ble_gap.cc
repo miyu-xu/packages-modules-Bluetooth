@@ -747,8 +747,7 @@ bool BTM_BleConfigPrivacy(bool privacy_mode) {
 
   tGAP_BLE_ATTR_VALUE gap_ble_attr_value;
   gap_ble_attr_value.addr_resolution = 0;
-  if (!privacy_mode) /* if privacy disabled, always use public address */
-  {
+  if (!privacy_mode) { /* if privacy disabled, always use public address */
     btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_PUBLIC;
     /* This is a Floss only flag. Allow host use random address when privacy
      * mode is not enabled by setting the sysprop true */
@@ -758,8 +757,7 @@ bool BTM_BleConfigPrivacy(bool privacy_mode) {
       }
     }
     btm_cb.ble_ctr_cb.privacy_mode = BTM_PRIVACY_NONE;
-  } else /* privacy is turned on*/
-  {
+  } else { /* privacy is turned on*/
     /* always set host random address, used when privacy 1.1 or priavcy 1.2 is
      * disabled */
     btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_RANDOM;
@@ -1282,8 +1280,7 @@ void btm_ble_set_adv_flag(uint16_t connect_mode, uint16_t disc_mode) {
   } else if (disc_mode & BTM_BLE_GENERAL_DISCOVERABLE) {
     flag |= BTM_BLE_GEN_DISC_FLAG;
     flag &= ~BTM_BLE_LIMIT_DISC_FLAG;
-  } else /* remove all discoverable flags */
-  {
+  } else { /* remove all discoverable flags */
     flag &= ~(BTM_BLE_LIMIT_DISC_FLAG | BTM_BLE_GEN_DISC_FLAG);
   }
 
@@ -1748,8 +1745,7 @@ static void btm_ble_update_adv_flag(uint8_t flag) {
   if (p_adv_data->p_flags != NULL) {
     log::verbose("btm_ble_update_adv_flag old=0x{:x}", *p_adv_data->p_flags);
     *p_adv_data->p_flags = flag;
-  } else /* no FLAGS in ADV data*/
-  {
+  } else { /* no FLAGS in ADV data*/
     p = (p_adv_data->p_pad == NULL) ? p_adv_data->ad_data : p_adv_data->p_pad;
     /* need 3 bytes space to stuff in the flags, if not */
     /* erase all written data, just for flags */
@@ -2178,8 +2174,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
       return; /* assumption: one result per event */
     }
   }
-  /* If existing entry, use that, else get  a new one (possibly reusing the
-   * oldest) */
+  /* If existing entry, use that, else get  a new one (possibly reusing the oldest) */
   if (p_i == NULL) {
     p_i = btm_inq_db_new(bda, true);
     if (p_i != NULL) {
@@ -2188,9 +2183,8 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
     } else {
       return;
     }
-  } else if (p_i->inq_count !=
-             btm_cb.btm_inq_vars.inq_counter) /* first time seen in this inquiry */
-  {
+  } else if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
+    /* first time seen in this inquiry */
     p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
     btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
   }
@@ -2299,9 +2293,8 @@ void btm_ble_process_adv_pkt_cont_for_inquiry(uint16_t evt_type, tBLE_ADDR_TYPE 
       log::warn("Unable to allocate entry for inquiry result");
       return;
     }
-  } else if (p_i->inq_count !=
-             btm_cb.btm_inq_vars.inq_counter) /* first time seen in this inquiry */
-  {
+  } else if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
+    /* first time seen in this inquiry */
     p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
     btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
   }

@@ -563,8 +563,7 @@ static uint8_t avdt_msg_prs_cfg(AvdtpSepConfig* p_cfg, uint8_t* p, uint16_t len,
         /* Cannot accept unknown category. */
         err = AVDT_ERR_CATEGORY;
         break;
-      } else /* GETCAP or GET_ALLCAP */
-      {
+      } else { /* GETCAP or GET_ALLCAP */
         /* Skip unknown categories. */
         p += elem_len;
         log::verbose("skipping unknown service category={} len: {}", elem, elem_len);
@@ -1530,8 +1529,7 @@ void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
       msg.hdr.err_code = AVDT_ERR_NSC;
       msg.hdr.err_param = 0;
     }
-  } else /* not a general reject */
-  {
+  } else { /* not a general reject */
     /* get and verify signal */
     AVDT_MSG_PRS_SIG(p, sig);
     msg.hdr.sig_id = sig;
@@ -1579,8 +1577,7 @@ void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
     } else if (msg_type == AVDT_MSG_TYPE_RSP) {
       msg.hdr.err_code = err = (*avdt_msg_prs_rsp[sig - 1])(&msg, p, p_buf->len);
       evt = avdt_msg_rsp_2_evt[sig - 1];
-    } else /* msg_type == AVDT_MSG_TYPE_REJ */
-    {
+    } else { /* msg_type == AVDT_MSG_TYPE_REJ */
       err = avdt_msg_prs_rej(&msg, p, p_buf->len, sig);
       evt = avdt_msg_rej_2_evt[sig - 1];
     }

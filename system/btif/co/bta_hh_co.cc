@@ -1087,17 +1087,11 @@ void bta_hh_co_set_rpt_rsp([[maybe_unused]] uint8_t dev_handle, [[maybe_unused]]
     return;
   }
 
-  struct uhid_event ev = {
-          .type = UHID_SET_REPORT_REPLY,
-          .u =
-                  {
-                          .set_report_reply =
-                                  {
-                                          .id = *context,
-                                          .err = status,
-                                  },
-                  },
-  };
+  struct uhid_event ev = {.type = UHID_SET_REPORT_REPLY,
+                          .u = {.set_report_reply = {
+                                        .id = *context,
+                                        .err = status,
+                                }}};
   uhid_write(p_dev->uhid.fd, &ev, uhid_calc_msg_len(&ev, 0));
   osi_free(context);
 
@@ -1165,18 +1159,12 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status, const uint8_t* p_
     return;
   }
 
-  struct uhid_event ev = {
-          .type = UHID_GET_REPORT_REPLY,
-          .u =
-                  {
-                          .get_report_reply =
-                                  {
-                                          .id = *context,
-                                          .err = status,
-                                          .size = len,
-                                  },
-                  },
-  };
+  struct uhid_event ev = {.type = UHID_GET_REPORT_REPLY,
+                          .u = {.get_report_reply = {
+                                        .id = *context,
+                                        .err = status,
+                                        .size = len,
+                                }}};
   if (len > 0) {
     memcpy(ev.u.get_report_reply.data, p_rpt, len);
   }

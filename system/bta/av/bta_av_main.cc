@@ -1000,8 +1000,7 @@ static void bta_av_sco_chg_cback(tBTA_SYS_CONN_STATUS status, uint8_t num_sco_li
     for (i = 0; i < BTA_AV_NUM_STRS; i++) {
       p_scb = bta_av_cb.p_scb[i];
 
-      if (p_scb && p_scb->sco_suspend) /* scb is used and suspended for SCO */
-      {
+      if (p_scb && p_scb->sco_suspend) { /* scb is used and suspended for SCO */
         log::verbose("starting scb:{}", i);
         bta_av_ssm_execute(p_scb, BTA_AV_AP_START_EVT, NULL);
       }
@@ -1035,8 +1034,7 @@ bool bta_av_switch_if_needed(tBTA_AV_SCB* /*p_scb*/) {
     mask = BTA_AV_HNDL_TO_MSK(i);
     p_scbi = bta_av_cb.p_scb[i];
     if (p_scbi && (p_scb->hdi != i) &&   /* not the original channel */
-        ((bta_av_cb.conn_audio & mask))) /* connected audio */
-    {
+        ((bta_av_cb.conn_audio & mask))) { /* connected audio */
       get_btm_client_interface().link_policy.BTM_GetRole(p_scbi->PeerAddress(), &role);
       /* this channel is open - clear the role switch link policy for this link
        */

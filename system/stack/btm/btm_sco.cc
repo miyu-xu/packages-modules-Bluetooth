@@ -876,9 +876,7 @@ void btm_sco_chk_pend_rolechange(uint16_t hci_handle) {
   for (xx = 0; xx < BTM_MAX_SCO_LINKS; xx++, p++) {
     if ((p->state == SCO_ST_PEND_ROLECHANGE) &&
         ((acl_handle = get_btm_client_interface().peer.BTM_GetHCIConnHandle(
-                  p->esco.data.bd_addr, BT_TRANSPORT_BR_EDR)) == hci_handle))
-
-    {
+                  p->esco.data.bd_addr, BT_TRANSPORT_BR_EDR)) == hci_handle)) {
       log::verbose("btm_sco_chk_pend_rolechange -> (e)SCO Link for ACL handle 0x{:04x}",
                    acl_handle);
 
@@ -911,9 +909,7 @@ void btm_sco_disc_chk_pend_for_modechange(uint16_t hci_handle) {
   for (uint16_t xx = 0; xx < BTM_MAX_SCO_LINKS; xx++, p++) {
     if ((p->state == SCO_ST_PEND_MODECHANGE) &&
         (get_btm_client_interface().peer.BTM_GetHCIConnHandle(p->esco.data.bd_addr,
-                                                              BT_TRANSPORT_BR_EDR)) == hci_handle)
-
-    {
+                                                              BT_TRANSPORT_BR_EDR)) == hci_handle) {
       log::debug("Removing SCO Link handle 0x{:04x}", p->hci_handle);
       if (get_btm_client_interface().sco.BTM_RemoveSco(xx) != tBTM_STATUS::BTM_SUCCESS) {
         log::warn("Unable to remove SCO link:{}", xx);
@@ -1500,8 +1496,7 @@ static tBTM_STATUS BTM_ChangeEScoLinkParms(uint16_t sco_inx, tBTM_CHG_ESCO_PARAM
 
     GetInterface().ChangeConnectionPacketType(p_sco->hci_handle,
                                               BTM_ESCO_2_SCO(p_setup->packet_types));
-  } else /* eSCO is supported and the link type is eSCO */
-  {
+  } else { /* eSCO is supported and the link type is eSCO */
     uint16_t temp_packet_types = (p_parms->packet_types & BTM_SCO_SUPPORTED_PKTS_MASK &
                                   btm_cb.btm_sco_pkt_types_supported);
 

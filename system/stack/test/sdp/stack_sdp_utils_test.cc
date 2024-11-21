@@ -604,13 +604,7 @@ TEST_F(StackSdpUtilsTest, sdpu_compare_uuid_with_attr_u32) {
           .p_next_attr = nullptr,
           .attr_id = 0,
           .attr_len_type = bluetooth::Uuid::kNumBytes32,
-          .attr_value =
-                  {
-                          .v =
-                                  {
-                                          .u32 = 0x12345678,
-                                  },
-                  },
+          .attr_value = {.v = {.u32 = 0x12345678}},
   };
 
   bool is_valid{false};

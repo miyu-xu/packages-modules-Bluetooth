@@ -209,28 +209,16 @@ void power_telemetry::PowerTelemetryImpl::LogDataTransfer() {
 
   if ((l2c.rx.bytes_ != 0) || (l2c.tx.bytes_ != 0)) {
     ldc.l2c_data = {
-            .rx =
-                    {
-                            .bytes = l2c.rx.bytes_,
-                    },
-            .tx =
-                    {
-                            .bytes = l2c.tx.bytes_,
-                    },
+            .rx = {.bytes = l2c.rx.bytes_},
+            .tx = {.bytes = l2c.tx.bytes_},
     };
     l2c = {};
   }
 
   if ((rfc.rx.bytes_ != 0) || (rfc.tx.bytes_ != 0)) {
     ldc.rfc_data = {
-            .rx =
-                    {
-                            .bytes = rfc.rx.bytes_,
-                    },
-            .tx =
-                    {
-                            .bytes = rfc.tx.bytes_,
-                    },
+            .rx = {.bytes = rfc.rx.bytes_},
+            .tx = {.bytes = rfc.tx.bytes_},
     };
     rfc = {};
   }
@@ -267,14 +255,8 @@ void power_telemetry::PowerTelemetryImpl::LogDataTransfer() {
 
   if ((cmd.count_ != 0) || (event.count_ != 0)) {
     ldc.hci_cmd_evt_ds = {
-            .rx =
-                    {
-                            .pkt_count = event.count_,
-                    },
-            .tx =
-                    {
-                            .pkt_count = cmd.count_,
-                    },
+            .rx = {.pkt_count = event.count_},
+            .tx = {.pkt_count = cmd.count_},
     };
     cmd.count_ = event.count_ = 0;
   }

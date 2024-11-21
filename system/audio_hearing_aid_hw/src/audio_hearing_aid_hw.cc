@@ -1559,9 +1559,7 @@ static int adev_open_output_stream(struct audio_hw_device* dev,
                                    UNUSED_ATTR audio_output_flags_t flags,
                                    struct audio_config* config,
                                    struct audio_stream_out** stream_out,
-                                   UNUSED_ATTR const char* address)
-
-{
+                                   UNUSED_ATTR const char* address) {
   struct ha_audio_device* ha_dev = (struct ha_audio_device*)dev;
   struct ha_stream_out* out;
   int ret = 0;
@@ -1912,14 +1910,12 @@ static struct hw_module_methods_t hal_module_methods = {
 };
 
 __attribute__((visibility("default"))) struct audio_module HAL_MODULE_INFO_SYM = {
-        .common =
-                {
-                        .tag = HARDWARE_MODULE_TAG,
-                        .version_major = 1,
-                        .version_minor = 0,
-                        .id = AUDIO_HARDWARE_MODULE_ID,
-                        .name = "Hearing Aid Audio HW HAL",
-                        .author = "The Android Open Source Project",
-                        .methods = &hal_module_methods,
-                },
-};
+        .common = {
+                .tag = HARDWARE_MODULE_TAG,
+                .version_major = 1,
+                .version_minor = 0,
+                .id = AUDIO_HARDWARE_MODULE_ID,
+                .name = "Hearing Aid Audio HW HAL",
+                .author = "The Android Open Source Project",
+                .methods = &hal_module_methods,
+        }};
