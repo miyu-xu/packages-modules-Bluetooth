@@ -46,6 +46,30 @@
       },
       "revId": "18df91f47ffe37c05786277558553279b1907e45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86feaf7b_6550a0f9",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-21T11:53:23Z",
+      "side": 1,
+      "message": "This, or add a helper in LeAudioClient if you manage to come up with a better function name + explaination in the comment.",
+      "parentUuid": "8bc7fdd3_5d3fcce1",
+      "range": {
+        "startLine": 888,
+        "startChar": 10,
+        "endLine": 890,
+        "endChar": 80
+      },
+      "revId": "18df91f47ffe37c05786277558553279b1907e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
