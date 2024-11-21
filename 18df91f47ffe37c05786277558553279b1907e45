@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff4c2132_341e0553",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-11-21T11:28:29Z",
+      "side": 1,
+      "message": "It is unclear why we want this function to NOT report true for some of the states? Maybe the function name is not right?\n\nThe way it is now, it would be extremely simple to use it in a wrong context by accident, thinking it works as the name suggests. Yet here is a hidden logic that IMO makes sense in the context of the LeAudioClient but not in the context of LeAudioDevice class.",
+      "range": {
+        "startLine": 888,
+        "startChar": 10,
+        "endLine": 890,
+        "endChar": 80
+      },
+      "revId": "18df91f47ffe37c05786277558553279b1907e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
