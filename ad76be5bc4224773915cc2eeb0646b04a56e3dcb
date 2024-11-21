@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7533dbfa_6d4eed6f",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-21T08:40:42Z",
+      "side": 1,
+      "message": "Enforced mtu size in HAL client.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3286716/38/system/gd/hal/socket_hal_android.cc#151",
+      "parentUuid": "c2dfd15c_2e66b19d",
+      "range": {
+        "startLine": 889,
+        "startChar": 2,
+        "endLine": 892,
+        "endChar": 47
+      },
+      "revId": "ad76be5bc4224773915cc2eeb0646b04a56e3dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "833275ab_f90b24ca",
