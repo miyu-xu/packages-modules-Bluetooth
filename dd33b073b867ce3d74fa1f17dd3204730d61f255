@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cec963ef_672196d1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4925,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-21T08:25:19Z",
+      "side": 1,
+      "message": "Remove this, this isn\u0027t a framework class",
+      "range": {
+        "startLine": 4925,
+        "startChar": 7,
+        "endLine": 4925,
+        "endChar": 12
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64c955bd_f1657e0b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-21T08:25:19Z",
+      "side": 1,
+      "message": "Include the key to access each piece of information in the javadoc.",
+      "range": {
+        "startLine": 1745,
+        "startChar": 6,
+        "endLine": 1747,
+        "endChar": 70
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
