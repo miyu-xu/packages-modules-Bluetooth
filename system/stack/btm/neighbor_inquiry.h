@@ -161,8 +161,7 @@ typedef struct {
   bool scan_rsp;
 } tINQ_DB_ENT;
 
-typedef struct /* contains the parameters passed to the inquiry functions */
-{
+typedef struct {    /* contains the parameters passed to the inquiry functions */
   uint8_t mode;     /* general or limited */
   uint8_t duration; /* duration of the inquiry (1.28 sec increments) */
 } tBTM_INQ_PARMS;

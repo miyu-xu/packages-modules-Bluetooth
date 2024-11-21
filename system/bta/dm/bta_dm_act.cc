@@ -130,12 +130,14 @@ struct WaitForAllAclConnectionsToDrain {
 
   static const WaitForAllAclConnectionsToDrain* FromAlarmCallbackData(void* data);
   static bool IsFirstPass(const WaitForAllAclConnectionsToDrain*);
-} first_pass =
-        {
-                .time_to_wait_in_ms = static_cast<uint64_t>(BTA_DM_DISABLE_TIMER_MS),
-},
-  second_pass = {
-          .time_to_wait_in_ms = static_cast<uint64_t>(BTA_DM_DISABLE_TIMER_RETRIAL_MS),
+};
+
+WaitForAllAclConnectionsToDrain first_pass = {
+        .time_to_wait_in_ms = static_cast<uint64_t>(BTA_DM_DISABLE_TIMER_MS),
+};
+
+WaitForAllAclConnectionsToDrain second_pass = {
+        .time_to_wait_in_ms = static_cast<uint64_t>(BTA_DM_DISABLE_TIMER_RETRIAL_MS),
 };
 
 bool WaitForAllAclConnectionsToDrain::IsFirstPass(const WaitForAllAclConnectionsToDrain* pass) {
@@ -379,8 +381,7 @@ static void bta_dm_wait_for_acl_to_drain_cback(void* data) {
 
   if (BTM_GetNumAclLinks() && force_disconnect_all_acl_connections() &&
       WaitForAllAclConnectionsToDrain::IsFirstPass(pass)) {
-    /* DISABLE_EVT still need to be sent out to avoid java layer disable timeout
-     */
+    /* DISABLE_EVT still need to be sent out to avoid java layer disable timeout */
     log::debug("Set timer for second pass to wait for all ACL connections to close:{} ms",
                second_pass.TimeToWaitInMs());
     alarm_set_on_mloop(bta_dm_cb.disable_timer, second_pass.time_to_wait_in_ms,

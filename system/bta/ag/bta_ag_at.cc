@@ -126,9 +126,7 @@ static void bta_ag_process_at(tBTA_AG_AT_CB* p_cb, char* p_end) {
         /* skip past '=' */
         p_arg++;
       }
-    } else
-    /* else it is freeform argument */
-    {
+    } else { /* else it is freeform argument */
       arg_type = BTA_AG_AT_FREE;
     }
 

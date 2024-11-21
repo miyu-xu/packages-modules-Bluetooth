@@ -121,9 +121,8 @@ static Octet16 cmac_aes_k_calculate(const Octet16& key) {
   return output;
 }
 
-/** This function proceeed to prepare the last block of message Mn depending on
- * the size of the message.
- */
+/** This function proceed to prepare the last block of message Mn depending on
+ * the size of the message. */
 static void cmac_prepare_last_block(const Octet16& k1, const Octet16& k2) {
   //    uint8_t     x[16] = {0};
   bool flag;
@@ -133,8 +132,7 @@ static void cmac_prepare_last_block(const Octet16& k1, const Octet16& k2) {
 
   if (flag) { /* last block is complete block */
     xor_128((Octet16*)&cmac_cb.text[0], k1);
-  } else /* padding then xor with k2 */
-  {
+  } else { /* padding then xor with k2 */
     padding((Octet16*)&cmac_cb.text[0], (uint8_t)(cmac_cb.len % 16));
 
     xor_128((Octet16*)&cmac_cb.text[0], k2);

@@ -770,8 +770,7 @@ static void avrc_msg_cback(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_
       case AVRC_OP_VENDOR: {
         p_data = (uint8_t*)(p_pkt + 1) + p_pkt->offset;
         p_begin = p_data;
-        if (p_pkt->len < AVRC_VENDOR_HDR_SIZE) /* 6 = ctype, subunit*, opcode & CO_ID */
-        {
+        if (p_pkt->len < AVRC_VENDOR_HDR_SIZE) { /* 6 = ctype, subunit*, opcode & CO_ID */
           if (cr == AVCT_CMD) {
             reject = true;
           } else {
@@ -779,8 +778,7 @@ static void avrc_msg_cback(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_
           }
           break;
         }
-        p_data += AVRC_AVC_HDR_SIZE; /* skip the first 3 bytes: ctype, subunit*,
-                                        opcode */
+        p_data += AVRC_AVC_HDR_SIZE; /* skip the first 3 bytes: ctype, subunit*, opcode */
         AVRC_BE_STREAM_TO_CO_ID(p_msg->company_id, p_data);
         p_msg->p_vendor_data = p_data;
         p_msg->vendor_len = p_pkt->len - (p_data - p_begin);
@@ -832,8 +830,7 @@ static void avrc_msg_cback(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_
       } break;
 
       case AVRC_OP_PASS_THRU:
-        if (p_pkt->len < 5) /* 3 bytes: ctype, subunit*, opcode & op_id & len */
-        {
+        if (p_pkt->len < 5) { /* 3 bytes: ctype, subunit*, opcode & op_id & len */
           if (cr == AVCT_CMD) {
             reject = true;
           } else {
@@ -841,8 +838,7 @@ static void avrc_msg_cback(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_
           }
           break;
         }
-        p_data += AVRC_AVC_HDR_SIZE; /* skip the first 3 bytes: ctype, subunit*,
-                                        opcode */
+        p_data += AVRC_AVC_HDR_SIZE; /* skip the first 3 bytes: ctype, subunit*, opcode */
         msg.pass.op_id = (AVRC_PASS_OP_ID_MASK & *p_data);
         if (AVRC_PASS_STATE_MASK & *p_data) {
           msg.pass.state = true;
@@ -877,8 +873,7 @@ static void avrc_msg_cback(uint8_t handle, uint8_t label, uint8_t cr, BT_HDR* p_
         drop = true;
         break;
     }
-  } else /* drop the event */
-  {
+  } else { /* drop the event */
     if (opcode != AVRC_OP_BROWSE) {
       drop = true;
     }

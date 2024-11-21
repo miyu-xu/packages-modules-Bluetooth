@@ -152,8 +152,7 @@ void bta_hh_api_disable(void) {
   /* no live connection, signal DISC_CMPL_EVT directly */
   if (!bta_hh_cb.cnt_num) {
     bta_hh_disc_cmpl();
-  } else /* otherwise, disconnect all live connections */
-  {
+  } else { /* otherwise, disconnect all live connections */
     bta_hh_cb.w4_disable = true;
 
     for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
@@ -420,8 +419,7 @@ void bta_hh_sdp_cmpl(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
         HID_HostRemoveDev(p_cb->hid_handle);
         status = BTA_HH_ERR;
       }
-    } else /* incoming connection SDP finish */
-    {
+    } else { /* incoming connection SDP finish */
       bta_hh_sm_execute(p_cb, BTA_HH_OPEN_CMPL_EVT, NULL);
     }
   }
@@ -622,11 +620,9 @@ void bta_hh_open_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   /* SDP has been done */
   if (p_cb->app_id != 0) {
     bta_hh_sm_execute(p_cb, BTA_HH_OPEN_CMPL_EVT, p_data);
-  } else
-  /*  app_id == 0 indicates an incoming conenction request arrives without SDP
-   *  performed, do it first
-   */
-  {
+  } else {
+    /*  app_id == 0 indicates an incoming connection request arrives without SDP performed,
+     *  do it first */
     p_cb->incoming_conn = true;
     /* store the handle here in case sdp fails - need to disconnect */
     p_cb->incoming_hid_handle = dev_handle;
@@ -965,8 +961,7 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
           log::error("unexpected BT transport: {}", bt_transport_text(transport));
           break;
         }
-      } else /* device already been added */
-      {
+      } else { /* device already been added */
         dev_info.handle = p_cb->hid_handle;
         dev_info.status = BTA_HH_OK;
       }
@@ -1042,26 +1037,15 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
                 .offset = 0,
                 .layer_specific = 0,
         };
-        tBTA_HH cbdata = {
-                .hs_data =
-                        {
-                                .status = BTA_HH_ERR,
-                                .handle = p_cb->hid_handle,
-                                .rsp_data =
-                                        {
-                                                .p_rpt_data = &cbhdr,
-                                        },
-                        },
-        };
+        tBTA_HH cbdata = {.hs_data = {.status = BTA_HH_ERR,
+                                      .handle = p_cb->hid_handle,
+                                      .rsp_data = {.p_rpt_data = &cbhdr}}};
         (*bta_hh_cb.p_cback)(event, &cbdata);
       } else if (api_sndcmd_param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {
-        tBTA_HH cbdata = {
-                .dev_status =
-                        {
-                                .status = BTA_HH_ERR,
-                                .handle = p_cb->hid_handle,
-                        },
-        };
+        tBTA_HH cbdata = {.dev_status = {
+                                  .status = BTA_HH_ERR,
+                                  .handle = p_cb->hid_handle,
+                          }};
         (*bta_hh_cb.p_cback)(BTA_HH_VC_UNPLUG_EVT, &cbdata);
       } else {
         log::error(

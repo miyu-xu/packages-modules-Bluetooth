@@ -814,15 +814,15 @@ static BasicAudioAnnouncementData prepareAnnouncement(
   auto const& codec_id = codec_config.GetLeAudioCodecId();
   auto const subgroup_codec_spec = codec_config.GetCommonBisCodecSpecData();
 
+  BasicAudioAnnouncementCodecConfig announcement_codec_config = {
+          .codec_id = codec_id.coding_format,
+          .vendor_company_id = codec_id.vendor_company_id,
+          .vendor_codec_id = codec_id.vendor_codec_id,
+          .codec_specific_params = subgroup_codec_spec.Values(),
+  };
   // Note: This is a single subgroup announcement.
   announcement.subgroup_configs = {{
-          .codec_config =
-                  {
-                          .codec_id = codec_id.coding_format,
-                          .vendor_company_id = codec_id.vendor_company_id,
-                          .vendor_codec_id = codec_id.vendor_codec_id,
-                          .codec_specific_params = subgroup_codec_spec.Values(),
-                  },
+          .codec_config = announcement_codec_config,
           .metadata = std::move(metadata),
           .bis_configs = {},
   }};
@@ -902,13 +902,11 @@ TEST_F(BroadcasterTest, UpdateMetadataFromAudioTrackMetadata) {
   tracks_vec.reserve(multitrack_source_metadata.size());
   for (const auto& track : multitrack_source_metadata) {
     playback_track_metadata_v7 desc_track = {
-            .base =
-                    {
-                            .usage = static_cast<audio_usage_t>(track.usage),
-                            .content_type = static_cast<audio_content_type_t>(track.content_type),
-                            .gain = track.gain,
-                    },
-    };
+            .base = {
+                    .usage = static_cast<audio_usage_t>(track.usage),
+                    .content_type = static_cast<audio_content_type_t>(track.content_type),
+                    .gain = track.gain,
+            }};
     tracks_vec.push_back(desc_track);
   }
 
@@ -1069,15 +1067,13 @@ static const types::DataPathConfiguration vendor_data_path = {
         .dataPathId = bluetooth::hci::iso_manager::kIsoDataPathHci,
         .dataPathConfig = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B,
                            0x0C, 0x0D, 0x0E, 0x0F},
-        .isoDataPathConfig =
-                {
-                        .codecId = kLeAudioCodecIdVendor1,
-                        .isTransparent = true,
-                        .controllerDelayUs = 0x00000000,  // irrlevant for transparent mode
-                        .configuration = {0x1F, 0x2E, 0x3D, 0x4C, 0x5B, 0x6A, 0x79, 0x88, 0x97,
-                                          0xA6, 0xB5, 0xC4, 0xD3, 0xE2, 0xF1},
-                },
-};
+        .isoDataPathConfig = {
+                .codecId = kLeAudioCodecIdVendor1,
+                .isTransparent = true,
+                .controllerDelayUs = 0x00000000,  // irrlevant for transparent mode
+                .configuration = {0x1F, 0x2E, 0x3D, 0x4C, 0x5B, 0x6A, 0x79, 0x88, 0x97, 0xA6, 0xB5,
+                                  0xC4, 0xD3, 0xE2, 0xF1},
+        }};
 
 // Quality subgroup configurations
 static const broadcaster::BroadcastSubgroupCodecConfig vendor_stereo_16_2 =

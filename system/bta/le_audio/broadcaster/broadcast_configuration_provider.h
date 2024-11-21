@@ -149,14 +149,12 @@ static const BroadcastSubgroupCodecConfig lc3_stereo_48_4 = BroadcastSubgroupCod
 static const types::DataPathConfiguration lc3_data_path = {
         .dataPathId = bluetooth::hci::iso_manager::kIsoDataPathHci,
         .dataPathConfig = {},
-        .isoDataPathConfig =
-                {
-                        .codecId = kLeAudioCodecIdLc3,
-                        .isTransparent = true,
-                        .controllerDelayUs = 0x00000000,  // irrlevant for transparent mode
-                        .configuration = {},
-                },
-};
+        .isoDataPathConfig = {
+                .codecId = kLeAudioCodecIdLc3,
+                .isTransparent = true,
+                .controllerDelayUs = 0x00000000,  // irrelevant for transparent mode
+                .configuration = {},
+        }};
 
 static const BroadcastQosConfig qos_config_2_10 = BroadcastQosConfig(2, 10);
 static const BroadcastQosConfig qos_config_4_45 = BroadcastQosConfig(4, 45);

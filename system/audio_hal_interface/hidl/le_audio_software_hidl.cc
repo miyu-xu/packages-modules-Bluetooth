@@ -177,14 +177,12 @@ void LeAudioTransport::MetadataChanged(const source_metadata_t& source_metadata)
   std::vector<playback_track_metadata_v7> tracks_vec;
   tracks_vec.reserve(track_count);
   for (size_t i = 0; i < track_count; i++) {
-    tracks_vec.push_back({
-            .base =
-                    {
-                            .usage = source_metadata.tracks[i].usage,
-                            .content_type = source_metadata.tracks[i].content_type,
-                            .gain = source_metadata.tracks[i].gain,
-                    },
-    });
+    playback_track_metadata track_metadata = {
+            .usage = source_metadata.tracks[i].usage,
+            .content_type = source_metadata.tracks[i].content_type,
+            .gain = source_metadata.tracks[i].gain,
+    };
+    tracks_vec.push_back({.base = track_metadata});
   }
   const source_metadata_v7_t source_metadata_v7 = {.track_count = tracks_vec.size(),
                                                    .tracks = tracks_vec.data()};

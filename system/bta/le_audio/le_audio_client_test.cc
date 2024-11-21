@@ -1846,14 +1846,12 @@ protected:
     std::vector<playback_track_metadata_v7> tracks_vec;
     tracks_vec.reserve(tracks.size());
     for (const auto& track : tracks) {
-      playback_track_metadata_v7 desc_track = {
-              .base =
-                      {
-                              .usage = static_cast<audio_usage_t>(track.usage),
-                              .content_type = static_cast<audio_content_type_t>(track.content_type),
-                              .gain = track.gain,
-                      },
+      playback_track_metadata track_metadata = {
+              .usage = static_cast<audio_usage_t>(track.usage),
+              .content_type = static_cast<audio_content_type_t>(track.content_type),
+              .gain = track.gain,
       };
+      playback_track_metadata_v7 desc_track = {.base = track_metadata};
       if (test_tags_ptr_) {
         memcpy(desc_track.tags, test_tags_ptr_, strlen(test_tags_ptr_));
       }

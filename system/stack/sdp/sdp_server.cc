@@ -251,8 +251,7 @@ static void process_service_search(tCONN_CB* p_ccb, uint16_t trans_num, uint16_t
 
   if (rem_handles <= cur_handles) {
     cur_handles = rem_handles;
-  } else /* Continuation is set */
-  {
+  } else { /* Continuation is set */
     p_ccb->cont_offset += cur_handles;
     is_cont = true;
   }
@@ -462,8 +461,7 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num, uint16
         } else { /* If the partial attrib has been added in full by now */
           p_ccb->cont_info.attr_offset = 0; /* reset attr_offset */
         }
-      } else if (rem_len < attr_len) /* Not enough space for attr... so add partially */
-      {
+      } else if (rem_len < attr_len) { /* Not enough space for attr... so add partially */
         if (attr_len >= SDP_MAX_ATTR_LEN) {
           log::error("SDP attr too big: max_list_len={},attr_len={}", max_list_len, attr_len);
           sdpu_build_n_send_error(p_ccb, trans_num, tSDP_STATUS::SDP_NO_RESOURCES, NULL);
@@ -745,8 +743,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
           } else { /* If the partial attrib has been added in full by now */
             p_ccb->cont_info.attr_offset = 0; /* reset attr_offset */
           }
-        } else if (rem_len < attr_len) /* Not enough space for attr... so add partially */
-        {
+        } else if (rem_len < attr_len) { /* Not enough space for attr... so add partially */
           if (attr_len >= SDP_MAX_ATTR_LEN) {
             log::error("SDP attr too big: max_list_len={},attr_len={}", max_list_len, attr_len);
             sdpu_build_n_send_error(p_ccb, trans_num, tSDP_STATUS::SDP_NO_RESOURCES, NULL);

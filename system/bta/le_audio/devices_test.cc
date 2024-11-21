@@ -1230,14 +1230,7 @@ protected:
 
     auto swb_config_single = AudioSetConfiguration({
             .name = "One-OneChan-SnkAse-Lc3_32_2-One-OneChan-SrcAse-Lc3_32_2_SWB",
-            .confs = {.sink =
-                              {
-                                      AseConfiguration(swb),
-                              },
-                      .source =
-                              {
-                                      AseConfiguration(swb),
-                              }},
+            .confs = {.sink = {AseConfiguration(swb)}, .source = {AseConfiguration(swb)}},
     });
 
     ASSERT_FALSE(swb.params.IsEmpty());

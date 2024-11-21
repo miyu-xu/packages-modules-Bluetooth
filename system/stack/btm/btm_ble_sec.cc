@@ -501,8 +501,7 @@ void BTM_ReadDevInfo(const RawAddress& remote_bda, tBT_DEVICE_TYPE* p_dev_type,
       /* unknown device, assume BR/EDR */
       log::verbose("unknown device, BR/EDR assumed");
     }
-  } else /* there is a security device record existing */
-  {
+  } else { /* there is a security device record existing */
     /* new inquiry result, merge device type in security device record */
     if (p_inq_info) {
       p_dev_rec->device_type |= p_inq_info->results.device_type;
@@ -1090,8 +1089,7 @@ void btm_ble_link_sec_check(const RawAddress& bd_addr, tBTM_LE_AUTH_REQ auth_req
       } else {
         cur_sec_level = SMP_SEC_UNAUTHENTICATE;
       }
-    } else /* unencrypted link */
-    {
+    } else { /* unencrypted link */
       /* if bonded, get the key security level */
       if (p_dev_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PENC) {
         cur_sec_level = p_dev_rec->sec_rec.ble_keys.sec_level;

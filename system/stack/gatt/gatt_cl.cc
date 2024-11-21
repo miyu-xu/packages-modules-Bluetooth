@@ -108,8 +108,7 @@ void gatt_act_discovery(tGATT_CLCB* p_clcb) {
     cl_req.browse.uuid = bluetooth::Uuid::From16Bit(disc_type_to_uuid[p_clcb->op_subtype]);
   }
 
-  if (p_clcb->op_subtype == GATT_DISC_SRVC_BY_UUID) /* fill in the FindByTypeValue request info*/
-  {
+  if (p_clcb->op_subtype == GATT_DISC_SRVC_BY_UUID) { /* fill in the FindByTypeValue request info*/
     cl_req.find_type_value.uuid = bluetooth::Uuid::From16Bit(disc_type_to_uuid[p_clcb->op_subtype]);
     cl_req.find_type_value.s_handle = p_clcb->s_handle;
     cl_req.find_type_value.e_handle = p_clcb->e_handle;
@@ -322,8 +321,7 @@ static bool gatt_check_write_long_terminate(tGATT_TCB& tcb, tGATT_CLCB* p_clcb,
       p_clcb->status = GATT_ERROR;
       flag = GATT_PREP_WRITE_CANCEL;
       terminate = true;
-    } else /* response checking is good */
-    {
+    } else { /* response checking is good */
       p_clcb->status = GATT_SUCCESS;
       /* update write offset and check if end of attribute value */
       if ((p_attr->offset += p_rsp_value->len) >= p_attr->len) {
@@ -956,8 +954,7 @@ static void gatt_process_read_by_type_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, ui
         gatt_end_operation(p_clcb, GATT_SUCCESS, (void*)p);
       }
       return;
-    } else /* discover characteristic */
-    {
+    } else { /* discover characteristic */
       if (value_len < 3) {
         log::error("Illegal Response length, must be at least 3.");
         gatt_end_operation(p_clcb, GATT_INVALID_PDU, NULL);
@@ -983,9 +980,7 @@ static void gatt_process_read_by_type_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, ui
         continue; /* skip the result, and look for next one */
       }
 
-      if (p_clcb->operation == GATTC_OPTYPE_READ)
-      /* UUID match for read characteristic value */
-      {
+      if (p_clcb->operation == GATTC_OPTYPE_READ) { /* UUID match for read characteristic value */
         /* only read the first matching UUID characteristic value, and
           discard the rest results */
         p_clcb->s_handle = record_value.dclr_value.val_handle;
@@ -1011,8 +1006,7 @@ static void gatt_process_read_by_type_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, ui
   if (p_clcb->operation == GATTC_OPTYPE_DISCOVERY) {
     /* initiate another request */
     gatt_act_discovery(p_clcb);
-  } else /* read characteristic value */
-  {
+  } else { /* read characteristic value */
     gatt_act_read(p_clcb, 0);
   }
 }
@@ -1069,12 +1063,10 @@ static void gatt_process_read_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, uint8_t /*
                   "full pkt issue read blob for remaining bytes old offset={} len={} new offset={}",
                   offset, len, p_clcb->counter);
           gatt_act_read(p_clcb, p_clcb->counter);
-        } else /* end of request, send callback */
-        {
+        } else { /* end of request, send callback */
           gatt_end_operation(p_clcb, GATT_SUCCESS, (void*)p_clcb->p_attr_buf);
         }
-      } else /* exception, should not happen */
-      {
+      } else { /* exception, should not happen */
         log::error("attr offset = {} p_attr_buf = {}", offset, std::format_ptr(p_clcb->p_attr_buf));
         gatt_end_operation(p_clcb, GATT_NO_RESOURCES, (void*)p_clcb->p_attr_buf);
       }

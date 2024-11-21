@@ -150,8 +150,8 @@ static void bta_hh_le_hid_report_dbg(tBTA_HH_DEV_CB* p_cb) {
             "\t\t[{}-0x{:04x}] [Type:{}], [ReportID:{}] [srvc_inst_id:{}] "
             "[char_inst_id:{}] [Clt_cfg:{}]",
             rpt_name, p_rpt->uuid,
-            ((p_rpt->rpt_type < 4) ? bta_hh_le_rpt_name[p_rpt->rpt_type] : "UNKNOWN"),
-            p_rpt->rpt_id, p_rpt->srvc_inst_id, p_rpt->char_inst_id, p_rpt->client_cfg_value);
+            (p_rpt->rpt_type < 4) ? bta_hh_le_rpt_name[p_rpt->rpt_type] : "UNKNOWN", p_rpt->rpt_id,
+            p_rpt->srvc_inst_id, p_rpt->char_inst_id, p_rpt->client_cfg_value);
   }
 }
 
@@ -1213,19 +1213,15 @@ static void bta_hh_le_close(const tBTA_GATTC_CLOSE& gattc_data) {
   p_cb->security_pending = false;
 
   post_on_bt_main([=]() {
-    const tBTA_HH_DATA data = {
-            .le_close =
-                    {
-                            .hdr =
-                                    {
-                                            .event = BTA_HH_GATT_CLOSE_EVT,
-                                            .layer_specific =
-                                                    static_cast<uint16_t>(p_cb->hid_handle),
-                                    },
-                            .conn_id = gattc_data.conn_id,
-                            .reason = gattc_data.reason,
-                    },
+    const BT_HDR_RIGID hdr = {
+            .event = BTA_HH_GATT_CLOSE_EVT,
+            .layer_specific = static_cast<uint16_t>(p_cb->hid_handle),
     };
+    const tBTA_HH_DATA data = {.le_close = {
+                                       .hdr = hdr,
+                                       .conn_id = gattc_data.conn_id,
+                                       .reason = gattc_data.reason,
+                               }};
     bta_hh_sm_execute(p_cb, BTA_HH_GATT_CLOSE_EVT, &data);
   });
 }
@@ -1242,7 +1238,7 @@ static void bta_hh_le_close(const tBTA_GATTC_CLOSE& gattc_data) {
 static void bta_hh_le_gatt_disc_cmpl(tBTA_HH_DEV_CB* p_cb, tBTA_HH_STATUS status) {
   log::verbose("status:{}", status);
 
-  /* if open sucessful or protocol mode not desired, keep the connection open
+  /* if open successful or protocol mode not desired, keep the connection open
    * but inform app */
   if (status == BTA_HH_OK || status == BTA_HH_ERR_PROTO) {
     /* assign a special APP ID temp, since device type unknown */
@@ -1251,8 +1247,7 @@ static void bta_hh_le_gatt_disc_cmpl(tBTA_HH_DEV_CB* p_cb, tBTA_HH_STATUS status
     /* set report notification configuration */
     p_cb->clt_cfg_idx = 0;
     bta_hh_le_write_rpt_clt_cfg(p_cb);
-  } else /* error, close the GATT connection */
-  {
+  } else { /* error, close the GATT connection */
     /* close GATT connection if it's on */
     bta_hh_le_api_disc_act(p_cb);
   }
@@ -1736,15 +1731,12 @@ void bta_hh_le_open_fail(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   p_cb->disc_active = BTA_HH_LE_DISC_NONE;
   /* Failure in opening connection or GATT discovery failure */
-  tBTA_HH data = {
-          .conn =
-                  {
+  tBTA_HH data = {.conn = {
                           .link_spec = p_cb->link_spec,
                           .status = (le_close->reason != GATT_CONN_OK) ? BTA_HH_ERR : p_cb->status,
                           .handle = p_cb->hid_handle,
                           .scps_supported = p_cb->scps_supported,
-                  },
-  };
+                  }};
 
   /* Report OPEN fail event */
   (*bta_hh_cb.p_cback)(BTA_HH_OPEN_EVT, &data);
@@ -2259,18 +2251,15 @@ static void bta_hh_le_service_changed(tAclLinkSpec link_spec) {
 
   /* Pretend that the HOGP device disconnected so that higher layers don't
      try to communicate with it while the GATT database is rediscovered. */
-  const tBTA_HH_DATA data = {
-          .le_close =
-                  {
-                          .hdr =
-                                  {
-                                          .event = BTA_HH_GATT_CLOSE_EVT,
-                                          .layer_specific = static_cast<uint16_t>(p_cb->hid_handle),
-                                  },
-                          .conn_id = p_cb->conn_id,
-                          .reason = GATT_CONN_OK,
-                  },
+  const BT_HDR_RIGID hdr = {
+          .event = BTA_HH_GATT_CLOSE_EVT,
+          .layer_specific = static_cast<uint16_t>(p_cb->hid_handle),
   };
+  const tBTA_HH_DATA data = {.le_close = {
+                                     .hdr = hdr,
+                                     .conn_id = p_cb->conn_id,
+                                     .reason = GATT_CONN_OK,
+                             }};
   bta_hh_sm_execute(p_cb, BTA_HH_GATT_CLOSE_EVT, &data);
 }
 
@@ -2380,8 +2369,7 @@ static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_CACHE_ENT
   uint8_t i = 0;
   tBTA_HH_LE_RPT* p_rpt;
 
-  if (num_rpt != 0) /* no cache is found */
-  {
+  if (num_rpt != 0) { /* no cache is found */
     p_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
 
     /* set the descriptor info */

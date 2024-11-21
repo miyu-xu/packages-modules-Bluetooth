@@ -70,6 +70,7 @@ using bluetooth::hci::IsoManager;
 using bluetooth::hci::iso_manager::big_create_cmpl_evt;
 using bluetooth::hci::iso_manager::big_terminate_cmpl_evt;
 using bluetooth::hci::iso_manager::BigCallbacks;
+using bluetooth::le_audio::BasicAudioAnnouncementCodecConfig;
 using bluetooth::le_audio::BasicAudioAnnouncementData;
 using bluetooth::le_audio::BasicAudioAnnouncementSubgroup;
 using bluetooth::le_audio::BroadcastId;
@@ -222,18 +223,17 @@ public:
        *       for all the BISes. Configure common BIS codec params at the
        *       subgroup level.
        */
+      BasicAudioAnnouncementCodecConfig codec_config = {
+              .codec_id = codec_id.coding_format,
+              .vendor_company_id = codec_id.vendor_company_id,
+              .vendor_codec_id = codec_id.vendor_codec_id,
+              .codec_specific_params = opt_vendor_spec_data.has_value()
+                                               ? std::map<uint8_t, std::vector<uint8_t>>{}
+                                               : subgroup_codec_spec.Values(),
+              .vendor_codec_specific_params = std::move(opt_vendor_spec_data),
+      };
       BasicAudioAnnouncementSubgroup config = {
-              .codec_config =
-                      {
-                              .codec_id = codec_id.coding_format,
-                              .vendor_company_id = codec_id.vendor_company_id,
-                              .vendor_codec_id = codec_id.vendor_codec_id,
-                              .codec_specific_params =
-                                      opt_vendor_spec_data.has_value()
-                                              ? std::map<uint8_t, std::vector<uint8_t>>{}
-                                              : subgroup_codec_spec.Values(),
-                              .vendor_codec_specific_params = std::move(opt_vendor_spec_data),
-                      },
+              .codec_config = codec_config,
               .metadata = metadata.Values(),
               .bis_configs = {},
       };

@@ -196,17 +196,15 @@ PrepareReferenceLeAudioDataPathConfigurationLc3() {
                   .dataPathId = 0x01,  // kIsoDataPathPlatformDefault
                   // Empty vector
                   .dataPathConfiguration = {.configuration = {}},
-                  .isoDataPathConfiguration =
-                          {
-                                  .codecId = kAidlCodecLc3,
-                                  // Transparent - the controller does not encode/decode
-                                  .isTransparent = true,
-                                  // Irrelevant for the transparent ISO data path
-                                  .controllerDelayUs = 0,
-                                  // Empty for LC3 codec
-                                  .configuration = std::nullopt,
-                          },
-          };
+                  .isoDataPathConfiguration = {
+                          .codecId = kAidlCodecLc3,
+                          // Transparent - the controller does not encode/decode
+                          .isTransparent = true,
+                          // Irrelevant for the transparent ISO data path
+                          .controllerDelayUs = 0,
+                          // Empty for LC3 codec
+                          .configuration = std::nullopt,
+                  }};
 
   ::bluetooth::le_audio::types::DataPathConfiguration stack_config;
   stack_config.dataPathId = config.dataPathId;
@@ -505,38 +503,36 @@ PrepareReferenceBroadcastSubgroups() {
   auto [aidl_right_params, stack_right_params] =
           PrepareReferenceCodecSpecificConfigurationLc3(false, false, true);
 
+  ::aidl::android::hardware::bluetooth::audio::LeAudioBisConfiguration left_configuration = {
+          .codecId = kAidlCodecLc3,
+          .codecConfiguration = aidl_left_params,
+          .vendorCodecConfiguration = {},  // no vendor codec config
+                                           // The stack does not yet
+                                           // support metadata at BIS
+                                           // config level
+          .metadata = std::nullopt,
+  };
+  ::aidl::android::hardware::bluetooth::audio::LeAudioBisConfiguration right_configuration = {
+          .codecId = kAidlCodecLc3,
+          .codecConfiguration = aidl_right_params,
+          .vendorCodecConfiguration = {},  // no vendor codec config
+                                           // The stack does not yet
+                                           // support metadata at BIS
+                                           // config level
+          .metadata = std::nullopt,
+  };
   ::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider::
           LeAudioBroadcastSubgroupConfiguration aidl_subgroup{
                   .bisConfigurations =
                           {::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider::
                                    LeAudioSubgroupBisConfiguration{
                                            .numBis = 1,
-                                           .bisConfiguration =
-                                                   {
-                                                           .codecId = kAidlCodecLc3,
-                                                           .codecConfiguration = aidl_left_params,
-                                                           .vendorCodecConfiguration =
-                                                                   {},  // no vendor codec config
-                                                                        // The stack does not yet
-                                                                        // support metadata at BIS
-                                                                        // config level
-                                                           .metadata = std::nullopt,
-                                                   },
+                                           .bisConfiguration = left_configuration,
                                    },
                            ::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider::
                                    LeAudioSubgroupBisConfiguration{
                                            .numBis = 1,
-                                           .bisConfiguration =
-                                                   {
-                                                           .codecId = kAidlCodecLc3,
-                                                           .codecConfiguration = aidl_right_params,
-                                                           .vendorCodecConfiguration =
-                                                                   {},  // no vendor codec config
-                                                                        // The stack does not yet
-                                                                        // support metadata at BIS
-                                                                        // config level
-                                                           .metadata = std::nullopt,
-                                                   },
+                                           .bisConfiguration = right_configuration,
                                    }},
                   .vendorCodecConfiguration = std::nullopt,
           };

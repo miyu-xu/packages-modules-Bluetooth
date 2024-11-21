@@ -42,8 +42,7 @@ using namespace bluetooth;
 bool AVRC_IsValidAvcType(uint8_t pdu_id, uint8_t avc_type) {
   bool result = false;
 
-  if (avc_type < AVRC_RSP_NOT_IMPL) /* command msg */
-  {
+  if (avc_type < AVRC_RSP_NOT_IMPL) { /* command msg */
     switch (pdu_id) {
       case AVRC_PDU_GET_CAPABILITIES:          /* 0x10 */
       case AVRC_PDU_LIST_PLAYER_APP_ATTR:      /* 0x11 */
@@ -87,8 +86,7 @@ bool AVRC_IsValidAvcType(uint8_t pdu_id, uint8_t avc_type) {
         }
         break;
     }
-  } else /* response msg */
-  {
+  } else { /* response msg */
     if (avc_type >= AVRC_RSP_NOT_IMPL && avc_type <= AVRC_RSP_INTERIM) {
       result = true;
     }
