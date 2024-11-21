@@ -1045,14 +1045,7 @@ public:
     /* All CISes created. Send start ready for source ASE before we can go
      * to streaming state.
      */
-    struct ase* ase = leAudioDevice->GetFirstActiveAse();
-    log::assert_that(ase != nullptr,
-                     "shouldn't be called without an active ASE, device {}, "
-                     "group id: {}, cis handle 0x{:04x}",
-                     ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_), event->cig_id,
-                     event->cis_conn_hdl);
-
-    PrepareAndSendReceiverStartReady(leAudioDevice, ase);
+    PrepareAndSendReceiverStartReady(leAudioDevice);
   }
 
   static void WriteToControlPoint(LeAudioDevice* leAudioDevice, std::vector<uint8_t> value) {
@@ -2687,19 +2680,24 @@ private:
     }
   }
 
-  void PrepareAndSendReceiverStartReady(LeAudioDevice* leAudioDevice, struct ase* ase) {
+  void PrepareAndSendReceiverStartReady(LeAudioDevice* leAudioDevice) {
     std::vector<uint8_t> ids;
     std::vector<uint8_t> value;
     std::stringstream stream;
 
     stream << kLogAseStartReadyOp;
 
+    struct ase* ase = leAudioDevice->GetFirstActiveAseByDirection(
+            bluetooth::le_audio::types::kLeAudioDirectionSource);
+    if (ase == nullptr) {
+      log::warn("No active Source ASE, device {}", leAudioDevice->address_.ToString());
+      return;
+    }
+
     do {
-      if (ase->direction == bluetooth::le_audio::types::kLeAudioDirectionSource) {
-        stream << "ASE_ID " << +ase->id << ",";
-        ids.push_back(ase->id);
-      }
-    } while ((ase = leAudioDevice->GetNextActiveAse(ase)));
+      stream << "ASE_ID " << +ase->id << ",";
+      ids.push_back(ase->id);
+    } while ((ase = leAudioDevice->GetNextActiveAseWithSameDirection(ase)));
 
     if (ids.size() > 0) {
       bluetooth::le_audio::client_parser::ascs::PrepareAseCtpAudioReceiverStartReady(ids, value);
@@ -2754,10 +2752,7 @@ private:
           /* All CISes created. Send start ready for source ASE before we can go
            * to streaming state.
            */
-          struct ase* ase = leAudioDevice->GetFirstActiveAse();
-          log::assert_that(ase != nullptr, "shouldn't be called without an active ASE, device {}",
-                           leAudioDevice->address_.ToString());
-          PrepareAndSendReceiverStartReady(leAudioDevice, ase);
+          PrepareAndSendReceiverStartReady(leAudioDevice);
 
           return;
         }
