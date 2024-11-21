@@ -16,6 +16,24 @@
       "message": "avatar a2dp tests will probably exercise this code, you can use it as Test stanza",
       "revId": "23449f7b5462f93ff2aa22d6bd86c78dd20b9651",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c88db489_3e283907",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-21T11:50:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92174097_674eedf6",
+      "revId": "23449f7b5462f93ff2aa22d6bd86c78dd20b9651",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
