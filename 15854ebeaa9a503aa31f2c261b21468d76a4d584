@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e9d97fc_bdf92179",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-21T19:54:39Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "3ad24d27_76eefae5",
+      "range": {
+        "startLine": 28,
+        "startChar": 73,
+        "endLine": 28,
+        "endChar": 74
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e78a305_6d09b8c2",
@@ -61,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "017c558f_0b219124",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-21T19:54:39Z",
+      "side": 1,
+      "message": "let\u0027s leave it here for now.",
+      "parentUuid": "0e78a305_6d09b8c2",
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f43efce1_de0f7f6f",
         "filename": "system/gd/hal/ranging_hal.h",
         "patchSetId": 3
@@ -72,6 +114,30 @@
       "writtenOn": "2024-11-20T23:48:48Z",
       "side": 1,
       "message": "Use constructor initializer list",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b07fa06f_6ff75b39",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-21T19:54:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f43efce1_de0f7f6f",
       "range": {
         "startLine": 70,
         "startChar": 4,
@@ -153,6 +219,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07a5d947_5d2af872",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-21T19:54:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55ed0923_fc4c912a",
+      "range": {
+        "startLine": 89,
+        "startChar": 3,
+        "endLine": 93,
+        "endChar": 55
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a641c8d5_8924a5ae",
@@ -194,6 +284,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c5efd76_cf14ce8c",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-21T19:54:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a641c8d5_8924a5ae",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 41
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe632438_3b47f31f",
@@ -207,6 +321,30 @@
       "writtenOn": "2024-11-20T23:48:48Z",
       "side": 1,
       "message": "Use constructor initializer list when possible.",
+      "range": {
+        "startLine": 153,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 67
+      },
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e44858_0ec16980",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-11-21T19:54:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe632438_3b47f31f",
       "range": {
         "startLine": 153,
         "startChar": 4,
