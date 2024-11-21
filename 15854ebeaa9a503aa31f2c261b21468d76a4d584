@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaba4482_2df11520",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-21T22:39:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "017c558f_0b219124",
+      "revId": "15854ebeaa9a503aa31f2c261b21468d76a4d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f43efce1_de0f7f6f",
