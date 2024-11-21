@@ -1068,8 +1068,7 @@ static void l2c_csm_config(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
         /* Disconnect if channels are incompatible */
         log::debug("incompatible configurations disconnect");
         l2cu_disconnect_chnl(p_ccb);
-      } else /* Return error to peer so it can renegotiate if possible */
-      {
+      } else { /* Return error to peer so it can renegotiate if possible */
         log::debug("incompatible configurations trying reconfig");
         l2cu_send_peer_config_rsp(p_ccb, p_cfg);
       }

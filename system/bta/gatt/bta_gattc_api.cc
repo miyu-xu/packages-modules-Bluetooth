@@ -135,23 +135,17 @@ void BTA_GATTC_AppDeregister(tGATT_IF client_if) {
 void BTA_GATTC_Open(tGATT_IF client_if, const RawAddress& remote_bda, tBLE_ADDR_TYPE addr_type,
                     tBTM_BLE_CONN_TYPE connection_type, tBT_TRANSPORT transport, bool opportunistic,
                     uint8_t initiating_phys, uint16_t preferred_mtu) {
-  tBTA_GATTC_DATA data = {
-          .api_conn =
-                  {
-                          .hdr =
-                                  {
-                                          .event = BTA_GATTC_API_OPEN_EVT,
-                                  },
-                          .remote_bda = remote_bda,
-                          .client_if = client_if,
-                          .connection_type = connection_type,
-                          .transport = transport,
-                          .initiating_phys = initiating_phys,
-                          .opportunistic = opportunistic,
-                          .remote_addr_type = addr_type,
-                          .preferred_mtu = preferred_mtu,
-                  },
-  };
+  tBTA_GATTC_DATA data = {.api_conn = {
+                                  .hdr = {.event = BTA_GATTC_API_OPEN_EVT},
+                                  .remote_bda = remote_bda,
+                                  .client_if = client_if,
+                                  .connection_type = connection_type,
+                                  .transport = transport,
+                                  .initiating_phys = initiating_phys,
+                                  .opportunistic = opportunistic,
+                                  .remote_addr_type = addr_type,
+                                  .preferred_mtu = preferred_mtu,
+                          }};
 
   post_on_bt_main([data]() { bta_gattc_process_api_open(&data); });
 }

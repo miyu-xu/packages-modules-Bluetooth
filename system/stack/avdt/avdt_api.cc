@@ -408,9 +408,7 @@ uint16_t AVDT_DelayReport(uint8_t handle, uint8_t seid, uint16_t delay) {
   p_scb = avdt_scb_by_hdl(handle);
   if (p_scb == NULL) {
     result = AVDT_BAD_HANDLE;
-  } else
-  /* send event to scb */
-  {
+  } else { /* send event to scb */
     evt.apidelay.hdr.seid = seid;
     evt.apidelay.delay = delay;
     avdt_scb_event(p_scb, AVDT_SCB_API_DELAY_RPT_REQ_EVT, &evt);
@@ -670,9 +668,7 @@ uint16_t AVDT_CloseReq(uint8_t handle) {
   p_scb = avdt_scb_by_hdl(handle);
   if (p_scb == NULL) {
     result = AVDT_BAD_HANDLE;
-  } else
-  /* send event to scb */
-  {
+  } else { /* send event to scb */
     avdt_scb_event(p_scb, AVDT_SCB_API_CLOSE_REQ_EVT, NULL);
   }
 

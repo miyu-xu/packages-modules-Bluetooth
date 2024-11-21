@@ -894,8 +894,7 @@ tBTM_STATUS BTM_SecBondCancel(const RawAddress& bd_addr) {
       }
 
       return tBTM_STATUS::BTM_NOT_AUTHORIZED;
-    } else /*HCI link is not up */
-    {
+    } else { /*HCI link is not up */
       /* If the HCI link creation was started by Bonding process */
       if (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_DISC_WHEN_DONE) {
         btsnd_hcic_create_conn_cancel(bd_addr);
@@ -1382,10 +1381,8 @@ static bool btm_sec_is_upgrade_possible(tBTM_SEC_DEV_REC* p_dev_rec, bool is_ori
         /* has unauthenticated
         link key */
         && (p_dev_rec->sec_rec.rmt_io_caps < BTM_IO_CAP_MAX) /* a valid peer IO cap */
-        && (btm_sec_io_map[p_dev_rec->sec_rec.rmt_io_caps][btm_sec_cb.devcb.loc_io_caps]))
-    /* authenticated
-    link key is possible */
-    {
+        && (btm_sec_io_map[p_dev_rec->sec_rec.rmt_io_caps][btm_sec_cb.devcb.loc_io_caps])) {
+      /* authenticated link key is possible */
       /* upgrade is possible: check if the application wants the upgrade.
        * If the application is configured to use a global MITM flag,
        * it probably would not want to upgrade the link key based on the
@@ -1534,8 +1531,7 @@ tBTM_STATUS btm_sec_l2cap_access_req_by_requirement(const RawAddress& bd_addr,
       if (is_originator) {
         /* SM4 to SM4 -> always encrypt */
         security_required |= BTM_SEC_OUT_ENCRYPT;
-      } else /* acceptor */
-      {
+      } else { /* acceptor */
         /* SM4 to SM4: the acceptor needs to make sure the authentication is
          * already done */
         chk_acp_auth_done = true;
@@ -1760,8 +1756,7 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr, bool is_origina
     if (rc == tBTM_STATUS::BTM_CMD_STARTED) {
       btm_sec_queue_mx_request(bd_addr, BT_PSM_RFCOMM, is_originator, security_required, p_callback,
                                p_ref_data);
-    } else /* rc == tBTM_STATUS::BTM_SUCCESS */
-    {
+    } else { /* rc == tBTM_STATUS::BTM_SUCCESS */
       if (access_secure_service_from_temp_bond(p_dev_rec, is_originator, security_required)) {
         log::error(
                 "Trying to access a secure rfcomm service from a temp bonding, "
@@ -2654,8 +2649,7 @@ void btm_io_capabilities_rsp(const tBTM_SP_IO_RSP evt_data) {
   /* peer sets dedicated bonding bit and we did not initiate dedicated bonding
    */
   if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_INCOMING_SSP /* peer initiated bonding */
-      && (evt_data.auth_req & BTM_AUTH_DD_BOND))              /* and dedicated bonding bit is set */
-  {
+      && (evt_data.auth_req & BTM_AUTH_DD_BOND)) {            /* and dedicated bonding bit is set */
     btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_PEER_STARTED_DD;
   }
 

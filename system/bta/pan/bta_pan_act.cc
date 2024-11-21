@@ -334,13 +334,10 @@ void bta_pan_set_role(tBTA_PAN_DATA* p_data) {
           PAN_SetRole(p_data->api_set_role.role, std::string(p_data->api_set_role.user_name),
                       std::string(p_data->api_set_role.nap_name));
 
-  tBTA_PAN bta_pan = {
-          .set_role =
-                  {
-                          .status = (status == PAN_SUCCESS) ? BTA_PAN_SUCCESS : BTA_PAN_FAIL,
-                          .role = p_data->api_set_role.role,
-                  },
-  };
+  tBTA_PAN bta_pan = {.set_role = {
+                              .status = (status == PAN_SUCCESS) ? BTA_PAN_SUCCESS : BTA_PAN_FAIL,
+                              .role = p_data->api_set_role.role,
+                      }};
 
   if (status == PAN_SUCCESS) {
     if (p_data->api_set_role.role & PAN_ROLE_NAP_SERVER) {

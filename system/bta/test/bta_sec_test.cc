@@ -75,21 +75,17 @@ TEST_F(BtaSecTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithName) {
     cfm_req = p_data->cfm_req;
   });
 
-  tBTM_SP_EVT_DATA data = {
-          .cfm_req =
-                  {
-                          // tBTM_SP_CFM_REQ
-                          .bd_addr = kRawAddress,
-                          .dev_class = {},
-                          .bd_name = {},
-                          .num_val = kNumVal,
-                          .just_works = false,
-                          .loc_auth_req = BTM_AUTH_SP_YES,
-                          .rmt_auth_req = BTM_AUTH_SP_YES,
-                          .loc_io_caps = BTM_IO_CAP_NONE,
-                          .rmt_io_caps = BTM_IO_CAP_NONE,
-                  },
-  };
+  tBTM_SP_EVT_DATA data = {.cfm_req = {
+                                   .bd_addr = kRawAddress,
+                                   .dev_class = {},
+                                   .bd_name = {},
+                                   .num_val = kNumVal,
+                                   .just_works = false,
+                                   .loc_auth_req = BTM_AUTH_SP_YES,
+                                   .rmt_auth_req = BTM_AUTH_SP_YES,
+                                   .loc_io_caps = BTM_IO_CAP_NONE,
+                                   .rmt_io_caps = BTM_IO_CAP_NONE,
+                           }};
   data.cfm_req.dev_class = kDeviceClass;
   bd_name_from_char_pointer(data.cfm_req.bd_name, kRemoteName);
 
@@ -124,21 +120,17 @@ TEST_F(BtaSecTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithoutName_RNRSuccess) {
     cfm_req = p_data->cfm_req;
   });
 
-  tBTM_SP_EVT_DATA data = {
-          .cfm_req =
-                  {
-                          // tBTM_SP_CFM_REQ
-                          .bd_addr = kRawAddress,
-                          .dev_class = {},
-                          .bd_name = {0},  // No name available
-                          .num_val = kNumVal,
-                          .just_works = false,
-                          .loc_auth_req = BTM_AUTH_SP_YES,
-                          .rmt_auth_req = BTM_AUTH_SP_YES,
-                          .loc_io_caps = BTM_IO_CAP_NONE,
-                          .rmt_io_caps = BTM_IO_CAP_NONE,
-                  },
-  };
+  tBTM_SP_EVT_DATA data = {.cfm_req = {
+                                   .bd_addr = kRawAddress,
+                                   .dev_class = {},
+                                   .bd_name = {0},  // No name available
+                                   .num_val = kNumVal,
+                                   .just_works = false,
+                                   .loc_auth_req = BTM_AUTH_SP_YES,
+                                   .rmt_auth_req = BTM_AUTH_SP_YES,
+                                   .loc_io_caps = BTM_IO_CAP_NONE,
+                                   .rmt_io_caps = BTM_IO_CAP_NONE,
+                           }};
   data.cfm_req.dev_class = kDeviceClass;
 
   ASSERT_EQ(
@@ -161,21 +153,17 @@ TEST_F(BtaSecTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithoutName_RNRFail) {
     cfm_req = p_data->cfm_req;
   });
 
-  tBTM_SP_EVT_DATA data = {
-          .cfm_req =
-                  {
-                          // tBTM_SP_CFM_REQ
-                          .bd_addr = kRawAddress,
-                          .dev_class = {},
-                          .bd_name = {0},
-                          .num_val = kNumVal,
-                          .just_works = false,
-                          .loc_auth_req = BTM_AUTH_SP_YES,
-                          .rmt_auth_req = BTM_AUTH_SP_YES,
-                          .loc_io_caps = BTM_IO_CAP_NONE,
-                          .rmt_io_caps = BTM_IO_CAP_NONE,
-                  },
-  };
+  tBTM_SP_EVT_DATA data = {.cfm_req = {
+                                   .bd_addr = kRawAddress,
+                                   .dev_class = {},
+                                   .bd_name = {0},
+                                   .num_val = kNumVal,
+                                   .just_works = false,
+                                   .loc_auth_req = BTM_AUTH_SP_YES,
+                                   .rmt_auth_req = BTM_AUTH_SP_YES,
+                                   .loc_io_caps = BTM_IO_CAP_NONE,
+                                   .rmt_io_caps = BTM_IO_CAP_NONE,
+                           }};
   data.cfm_req.dev_class = kDeviceClass;
 
   ASSERT_EQ(
@@ -207,16 +195,12 @@ TEST_F(BtaSecTest, bta_dm_sp_cback__BTM_SP_KEY_NOTIF_EVT) {
     key_notif = p_data->key_notif;
   });
 
-  tBTM_SP_EVT_DATA data = {
-          .key_notif =
-                  {
-                          // tBTM_SP_KEY_NOTIF
-                          .bd_addr = kRawAddress,
-                          .dev_class = {},
-                          .bd_name = {},
-                          .passkey = kPassKey,
-                  },
-  };
+  tBTM_SP_EVT_DATA data = {.key_notif = {
+                                   .bd_addr = kRawAddress,
+                                   .dev_class = {},
+                                   .bd_name = {},
+                                   .passkey = kPassKey,
+                           }};
   data.key_notif.dev_class = kDeviceClass;
   bd_name_from_char_pointer(data.key_notif.bd_name, kRemoteName);
 

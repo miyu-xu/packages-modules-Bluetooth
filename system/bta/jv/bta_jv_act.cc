@@ -813,13 +813,10 @@ static void bta_jv_start_discovery_cback(uint32_t rfcomm_slot_id, const RawAddre
   }
 
   if (bta_jv_cb.p_dm_cback) {
-    tBTA_JV bta_jv = {
-            .disc_comp =
-                    {
-                            .status = tBTA_JV_STATUS::FAILURE,
-                            .scn = 0,
-                    },
-    };
+    tBTA_JV bta_jv = {.disc_comp = {
+                              .status = tBTA_JV_STATUS::FAILURE,
+                              .scn = 0,
+                      }};
     if (result == tSDP_STATUS::SDP_SUCCESS || result == tSDP_STATUS::SDP_DB_FULL) {
       log::info("Received service discovery callback success bd_addr:{} result:{}", bd_addr,
                 sdp_result_text(result));
@@ -830,13 +827,10 @@ static void bta_jv_start_discovery_cback(uint32_t rfcomm_slot_id, const RawAddre
       log::verbose("bta_jv_cb.uuid={} p_sdp_rec={}", bta_jv_cb.sdp_cb.uuid, fmt::ptr(p_sdp_rec));
       if (p_sdp_rec && get_legacy_stack_sdp_api()->record.SDP_FindProtocolListElemInRec(
                                p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
-        bta_jv = {
-                .disc_comp =
-                        {
-                                .status = tBTA_JV_STATUS::SUCCESS,
-                                .scn = (uint8_t)pe.params[0],
-                        },
-        };
+        bta_jv = {.disc_comp = {
+                          .status = tBTA_JV_STATUS::SUCCESS,
+                          .scn = (uint8_t)pe.params[0],
+                  }};
       }
     } else {
       log::warn("Received service discovery callback failed bd_addr:{} result:{}", bd_addr,
@@ -1051,8 +1045,7 @@ void bta_jv_l2cap_connect(tBTA_JV_CONN_TYPE type, tBTA_SEC sec_mask, uint16_t re
 
   if (sec_id) {
     /* PSM checking is not required for LE COC */
-    if ((type != tBTA_JV_CONN_TYPE::L2CAP) || (bta_jv_check_psm(remote_psm))) /* allowed */
-    {
+    if ((type != tBTA_JV_CONN_TYPE::L2CAP) || (bta_jv_check_psm(remote_psm))) { /* allowed */
       // Given a client socket type
       // return the associated transport
       const tBT_TRANSPORT transport = [](tBTA_JV_CONN_TYPE type) -> tBT_TRANSPORT {
@@ -1391,26 +1384,20 @@ static void bta_jv_port_mgmt_cl_cback(const tPORT_RESULT code, uint16_t port_han
   }
 
   if (code == PORT_SUCCESS) {
-    tBTA_JV evt_data = {
-            .rfc_open =
-                    {
-                            .status = tBTA_JV_STATUS::SUCCESS,
-                            .handle = p_cb->handle,
-                            .rem_bda = rem_bda,
-                    },
-    };
+    tBTA_JV evt_data = {.rfc_open = {
+                                .status = tBTA_JV_STATUS::SUCCESS,
+                                .handle = p_cb->handle,
+                                .rem_bda = rem_bda,
+                        }};
     p_pcb->state = BTA_JV_ST_CL_OPEN;
     p_cb->p_cback(BTA_JV_RFCOMM_OPEN_EVT, &evt_data, p_pcb->rfcomm_slot_id);
   } else {
-    tBTA_JV evt_data = {
-            .rfc_close =
-                    {
-                            .status = tBTA_JV_STATUS::FAILURE,
-                            .port_status = code,
-                            .handle = p_cb->handle,
-                            .async = (p_pcb->state == BTA_JV_ST_CL_CLOSING) ? false : true,
-                    },
-    };
+    tBTA_JV evt_data = {.rfc_close = {
+                                .status = tBTA_JV_STATUS::FAILURE,
+                                .port_status = code,
+                                .handle = p_cb->handle,
+                                .async = (p_pcb->state == BTA_JV_ST_CL_CLOSING) ? false : true,
+                        }};
     // p_pcb->state = BTA_JV_ST_NONE;
     // p_pcb->cong = false;
     p_cback = p_cb->p_cback;
@@ -1464,15 +1451,12 @@ void bta_jv_rfcomm_connect(tBTA_SEC sec_mask, uint8_t remote_scn, const RawAddre
   uint32_t event_mask = BTA_JV_RFC_EV_MASK;
   PortSettings port_settings;
 
-  tBTA_JV bta_jv = {
-          .rfc_cl_init =
-                  {
-                          .status = tBTA_JV_STATUS::SUCCESS,
-                          .handle = 0,
-                          .sec_id = 0,
-                          .use_co = false,
-                  },
-  };
+  tBTA_JV bta_jv = {.rfc_cl_init = {
+                            .status = tBTA_JV_STATUS::SUCCESS,
+                            .handle = 0,
+                            .sec_id = 0,
+                            .use_co = false,
+                    }};
 
   if (com::android::bluetooth::flags::rfcomm_always_use_mitm()) {
     // Update security service record for RFCOMM client so that

@@ -303,12 +303,10 @@ void bta_gattc_deregister(tBTA_GATTC_RCB* p_clreg) {
       p_clreg->dereg_pending = true;
 
       tBTA_GATTC_DATA gattc_data = {
-              .hdr =
-                      {
-                              .event = BTA_GATTC_API_CLOSE_EVT,
-                              .layer_specific = static_cast<uint16_t>(p_clcb->bta_conn_id),
-                      },
-      };
+              .hdr = {
+                      .event = BTA_GATTC_API_CLOSE_EVT,
+                      .layer_specific = static_cast<uint16_t>(p_clcb->bta_conn_id),
+              }};
       bta_gattc_close(p_clcb.get(), &gattc_data);
     }
     // deallocated clcbs will not be accessed. Let them be claened up.
@@ -506,12 +504,7 @@ static void bta_gattc_init_bk_conn(const tBTA_GATTC_API_OPEN* p_data, tBTA_GATTC
   }
 
   p_clcb->bta_conn_id = conn_id;
-  tBTA_GATTC_DATA gattc_data = {
-          .hdr =
-                  {
-                          .layer_specific = static_cast<uint16_t>(conn_id),
-                  },
-  };
+  tBTA_GATTC_DATA gattc_data = {.hdr = {.layer_specific = static_cast<uint16_t>(conn_id)}};
 
   /* open connection */
   bta_gattc_sm_execute(p_clcb, BTA_GATTC_INT_CONN_EVT,
@@ -680,16 +673,13 @@ void bta_gattc_close_fail(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data
 void bta_gattc_close(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
   tBTA_GATTC_CBACK* p_cback = p_clcb->p_rcb->p_cback;
   tBTA_GATTC_RCB* p_clreg = p_clcb->p_rcb;
-  tBTA_GATTC cb_data = {
-          .close =
-                  {
-                          .conn_id = p_clcb->bta_conn_id,
-                          .status = GATT_SUCCESS,
-                          .client_if = p_clcb->p_rcb->client_if,
-                          .remote_bda = p_clcb->bda,
-                          .reason = GATT_CONN_OK,
-                  },
-  };
+  tBTA_GATTC cb_data = {.close = {
+                                .conn_id = p_clcb->bta_conn_id,
+                                .status = GATT_SUCCESS,
+                                .client_if = p_clcb->p_rcb->client_if,
+                                .remote_bda = p_clcb->bda,
+                                .reason = GATT_CONN_OK,
+                        }};
 
   if (p_clcb->transport == BT_TRANSPORT_BR_EDR) {
     bta_sys_conn_close(BTA_ID_GATTC, BTA_ALL_APP_ID, p_clcb->bda);
@@ -896,9 +886,8 @@ void bta_gattc_start_discover(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* /*
 
   if (((p_clcb->p_q_cmd == NULL || p_clcb->auto_update == BTA_GATTC_REQ_WAITING) &&
        p_clcb->p_srcb->state == BTA_GATTC_SERV_IDLE) ||
-      p_clcb->p_srcb->state == BTA_GATTC_SERV_DISC)
-  /* no pending operation, start discovery right away */
-  {
+      p_clcb->p_srcb->state == BTA_GATTC_SERV_DISC) {
+    /* no pending operation, start discovery right away */
     p_clcb->auto_update = BTA_GATTC_NO_SCHEDULE;
 
     if (p_clcb->p_srcb == NULL) {

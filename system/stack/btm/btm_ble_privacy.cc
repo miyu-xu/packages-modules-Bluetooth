@@ -314,8 +314,7 @@ void btm_ble_add_resolving_list_entry_complete(uint8_t* p, uint16_t evt_len) {
     } else {
       btm_cb.ble_ctr_cb.resolving_list_avail_size--;
     }
-  } else if (status == HCI_ERR_MEMORY_FULL) /* BT_ERROR_CODE_MEMORY_CAPACITY_EXCEEDED  */
-  {
+  } else if (status == HCI_ERR_MEMORY_FULL) { /* BT_ERROR_CODE_MEMORY_CAPACITY_EXCEEDED  */
     btm_cb.ble_ctr_cb.resolving_list_avail_size = 0;
     log::verbose("Resolving list Full");
   }

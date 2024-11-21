@@ -161,8 +161,7 @@ static void ECC_NAF(uint8_t* naf, uint32_t* NumNAF, uint32_t* k) {
   uint32_t var;
 
   while ((var = multiprecision_most_signbits(k)) >= 1) {
-    if (k[0] & 0x01)  // k is odd
-    {
+    if (k[0] & 0x01) {       // k is odd
       sign = (k[0] & 0x03);  // 1 or 3
 
       // k = k-naf[i]
@@ -170,8 +169,7 @@ static void ECC_NAF(uint8_t* naf, uint32_t* NumNAF, uint32_t* k) {
         k[0] = k[0] & 0xFFFFFFFE;
       } else {
         k[0] = k[0] + 1;
-        if (k[0] == 0)  // overflow
-        {
+        if (k[0] == 0) {  // overflow
           j = 1;
           do {
             k[j]++;

@@ -477,13 +477,13 @@ void LeAudioClientIntf::source_metadata_changed(::rust::Vec<SourceMetadata> meta
   tracks.clear();
   tracks.reserve(metadata.size());
   for (auto m : metadata) {
+    playback_track_metadata track_metadata = {
+            .usage = static_cast<audio_usage_t>(m.usage),
+            .content_type = static_cast<audio_content_type_t>(m.content_type),
+            .gain = static_cast<float>(m.gain),
+    };
     struct playback_track_metadata_v7 track = {
-            .base =
-                    {
-                            .usage = static_cast<audio_usage_t>(m.usage),
-                            .content_type = static_cast<audio_content_type_t>(m.content_type),
-                            .gain = static_cast<float>(m.gain),
-                    },
+            .base = track_metadata,
             .channel_mask = AUDIO_CHANNEL_NONE,  // unused
             .tags = "",
     };

@@ -377,15 +377,12 @@ void smp_send_enc_info(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
   smp_send_cmd(SMP_OPCODE_CENTRAL_ID, p_cb);
 
   /* save the DIV and key size information when acting as peripheral device */
-  tBTM_LE_KEY_VALUE le_key = {
-          .lenc_key =
-                  {
-                          .ltk = p_cb->ltk,
-                          .div = p_cb->div,
-                          .key_size = p_cb->loc_enc_size,
-                          .sec_level = p_cb->sec_level,
-                  },
-  };
+  tBTM_LE_KEY_VALUE le_key = {.lenc_key = {
+                                      .ltk = p_cb->ltk,
+                                      .div = p_cb->div,
+                                      .key_size = p_cb->loc_enc_size,
+                                      .sec_level = p_cb->sec_level,
+                              }};
 
   if ((p_cb->peer_auth_req & SMP_AUTH_BOND) && (p_cb->loc_auth_req & SMP_AUTH_BOND)) {
     btm_sec_save_le_key(p_cb->pairing_bda, BTM_LE_KEY_LENC, &le_key, true);
@@ -417,15 +414,12 @@ void smp_send_csrk_info(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
   smp_update_key_mask(p_cb, SMP_SEC_KEY_TYPE_CSRK, false);
 
   if (smp_send_cmd(SMP_OPCODE_SIGN_INFO, p_cb)) {
-    tBTM_LE_KEY_VALUE key = {
-            .lcsrk_key =
-                    {
-                            .counter = 0, /* initialize the local counter */
-                            .div = p_cb->div,
-                            .sec_level = p_cb->sec_level,
-                            .csrk = p_cb->csrk,
-                    },
-    };
+    tBTM_LE_KEY_VALUE key = {.lcsrk_key = {
+                                     .counter = 0, /* initialize the local counter */
+                                     .div = p_cb->div,
+                                     .sec_level = p_cb->sec_level,
+                                     .csrk = p_cb->csrk,
+                             }};
     btm_sec_save_le_key(p_cb->pairing_bda, BTM_LE_KEY_LCSRK, &key, true);
   }
 
@@ -510,8 +504,7 @@ void smp_proc_sec_grant(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   log::verbose("addr:{}", p_cb->pairing_bda);
   if (res != SMP_SUCCESS) {
     smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, p_data);
-  } else /*otherwise, start pairing */
-  {
+  } else { /*otherwise, start pairing */
     /* send IO request callback */
     p_cb->cb_evt = SMP_IO_CAP_REQ_EVT;
   }
@@ -593,8 +586,7 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
       p_cb->local_r_key = p_cb->peer_r_key;
 
       p_cb->cb_evt = SMP_IO_CAP_REQ_EVT;
-    } else /* update local i/r key according to pairing request */
-    {
+    } else { /* update local i/r key according to pairing request */
       /* pairing started with this side (peripheral) sending Security Request */
       p_cb->local_i_key &= p_cb->peer_i_key;
       p_cb->local_r_key &= p_cb->peer_r_key;
@@ -618,8 +610,7 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         smp_send_pair_rsp(p_cb, NULL);
       }
     }
-  } else /* Central receives pairing response */
-  {
+  } else { /* Central receives pairing response */
     p_cb->selected_association_model = smp_select_association_model(p_cb);
 
     if (p_cb->sc_only_mode_locally_required &&
@@ -1086,12 +1077,9 @@ void smp_proc_srk_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   }
 
   /* save CSRK to security record */
-  tBTM_LE_KEY_VALUE le_key = {
-          .pcsrk_key =
-                  {
-                          .sec_level = p_cb->sec_level,
-                  },
-  };
+  tBTM_LE_KEY_VALUE le_key = {.pcsrk_key = {
+                                      .sec_level = p_cb->sec_level,
+                              }};
 
   /* get peer CSRK */
   maybe_non_aligned_memcpy(le_key.pcsrk_key.csrk.data(), p_data->p_data, OCTET16_LEN);
@@ -1477,8 +1465,7 @@ void smp_process_io_response(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
     /* pairing started by local (peripheral) Security Request */
     smp_set_state(SMP_STATE_SEC_REQ_PENDING);
     smp_send_cmd(SMP_OPCODE_SEC_REQ, p_cb);
-  } else /* plan to send pairing respond */
-  {
+  } else { /* plan to send pairing respond */
     /* pairing started by peer (central) Pairing Request */
     p_cb->selected_association_model = smp_select_association_model(p_cb);
 
@@ -1690,8 +1677,7 @@ void smp_process_local_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
         smp_send_commitment(p_cb, NULL);
         /* peripheral has to wait for peer nonce */
         smp_set_state(SMP_STATE_WAIT_NONCE);
-      } else /* i.e. central */
-      {
+      } else { /* i.e. central */
         if (p_cb->flags & SMP_PAIR_FLAG_HAVE_PEER_COMM) {
           /* peripheral commitment is already received, send local nonce, wait
            * for remote nonce*/
@@ -1710,8 +1696,7 @@ void smp_process_local_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
 
       if (p_cb->role == HCI_ROLE_CENTRAL) {
         smp_send_commitment(p_cb, NULL);
-      } else /* peripheral */
-      {
+      } else { /* peripheral */
         if (p_cb->flags & SMP_PAIR_FLAG_HAVE_PEER_COMM) {
           /* central commitment is already received */
           smp_send_commitment(p_cb, NULL);
@@ -1795,8 +1780,7 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* /* p_data */) {
           /* go directly to phase 2 */
           smp_sm_event(p_cb, SMP_SC_PHASE1_CMPLT_EVT, NULL);
         }
-      } else /* numeric comparison */
-      {
+      } else { /* numeric comparison */
         smp_set_state(SMP_STATE_WAIT_NONCE);
         smp_sm_event(p_cb, SMP_SC_CALC_NC_EVT, NULL);
       }

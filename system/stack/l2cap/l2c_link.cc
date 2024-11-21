@@ -161,10 +161,9 @@ void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle, const RawAddres
     /* Release the LCB */
     if (p_lcb->ccb_queue.p_first_ccb == NULL) {
       l2cu_release_lcb(p_lcb);
-    } else /* there are any CCBs remaining */
-    {
+    } else { /* there are any CCBs remaining */
       if (ci.hci_status == HCI_ERR_CONNECTION_EXISTS) {
-        /* we are in collision situation, wait for connecttion request from
+        /* we are in collision situation, wait for connection request from
          * controller */
         p_lcb->link_state = LST_CONNECTING;
       } else {
@@ -944,8 +943,7 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid, BT_HDR* p_buf
         (p_lcb->transport == BT_TRANSPORT_LE)) {
       l2cb.ble_check_round_robin = false;
     }
-  } else /* if this is not round-robin service */
-  {
+  } else { /* if this is not round-robin service */
     /* link_state or power mode not ready, can't send anything else */
     if ((p_lcb->link_state != LST_CONNECTED) || (l2c_link_check_power_mode(p_lcb))) {
       log::warn("Can't send, link state: {} not LST_CONNECTED or power mode BTM_PM_STS_PENDING",

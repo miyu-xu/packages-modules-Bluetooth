@@ -344,15 +344,13 @@ const bluetooth::hci::iso_manager::big_create_cmpl_evt IsoManagerTest::kDefaultB
 };
 
 const bluetooth::hci::iso_manager::iso_data_path_params IsoManagerTest::kDefaultIsoDataPathParams =
-        {
-                .data_path_dir = bluetooth::hci::iso_manager::kIsoDataPathDirectionOut,
-                .data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci,
-                .codec_id_format = 0x06,
-                .codec_id_company = 0,
-                .codec_id_vendor = 0,
-                .controller_delay = 0,
-                .codec_conf = {0x02, 0x01, 0x02},
-};
+        {.data_path_dir = bluetooth::hci::iso_manager::kIsoDataPathDirectionOut,
+         .data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci,
+         .codec_id_format = 0x06,
+         .codec_id_company = 0,
+         .codec_id_vendor = 0,
+         .controller_delay = 0,
+         .codec_conf = {0x02, 0x01, 0x02}};
 
 const bluetooth::hci::iso_manager::big_create_params IsoManagerTest::kDefaultBigParams = {
         .adv_handle = 0x00,
@@ -412,25 +410,21 @@ const bluetooth::hci::iso_manager::cig_create_params IsoManagerTest::kDefaultCig
         .cis_cfgs =
                 {
                         // CIS #1
-                        {
-                                .cis_id = 1,
-                                .max_sdu_size_mtos = 0x0022,
-                                .max_sdu_size_stom = 0x0022,
-                                .phy_mtos = 0x01,
-                                .phy_stom = 0x02,
-                                .rtn_mtos = 0x02,
-                                .rtn_stom = 0x01,
-                        },
+                        {.cis_id = 1,
+                         .max_sdu_size_mtos = 0x0022,
+                         .max_sdu_size_stom = 0x0022,
+                         .phy_mtos = 0x01,
+                         .phy_stom = 0x02,
+                         .rtn_mtos = 0x02,
+                         .rtn_stom = 0x01},
                         // CIS #2
-                        {
-                                .cis_id = 2,
-                                .max_sdu_size_mtos = 0x002A,
-                                .max_sdu_size_stom = 0x002B,
-                                .phy_mtos = 0x06,
-                                .phy_stom = 0x06,
-                                .rtn_mtos = 0x07,
-                                .rtn_stom = 0x07,
-                        },
+                        {.cis_id = 2,
+                         .max_sdu_size_mtos = 0x002A,
+                         .max_sdu_size_stom = 0x002B,
+                         .phy_mtos = 0x06,
+                         .phy_stom = 0x06,
+                         .rtn_mtos = 0x07,
+                         .rtn_stom = 0x07},
                 },
 };
 

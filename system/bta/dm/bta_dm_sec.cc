@@ -362,12 +362,7 @@ static void bta_dm_authentication_complete_cback(const RawAddress& bd_addr,
   if (reason != HCI_SUCCESS) {
     if (bta_dm_sec_cb.p_sec_cback) {
       // Build out the security event data structure
-      tBTA_DM_SEC sec_event = {
-              .auth_cmpl =
-                      {
-                              .bd_addr = bd_addr,
-                      },
-      };
+      tBTA_DM_SEC sec_event = {.auth_cmpl = {.bd_addr = bd_addr}};
       bd_name_copy(sec_event.auth_cmpl.bd_name, bd_name);
 
       // Report the BR link key based on the BR/EDR address and type

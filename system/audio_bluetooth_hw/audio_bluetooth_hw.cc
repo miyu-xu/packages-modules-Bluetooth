@@ -207,14 +207,12 @@ static struct hw_module_methods_t hal_module_methods = {
 };
 
 struct audio_module HAL_MODULE_INFO_SYM = {
-        .common =
-                {
-                        .tag = HARDWARE_MODULE_TAG,
-                        .module_api_version = AUDIO_MODULE_API_VERSION_0_1,
-                        .hal_api_version = HARDWARE_HAL_API_VERSION,
-                        .id = AUDIO_HARDWARE_MODULE_ID,
-                        .name = "Bluetooth Audio HW HAL",
-                        .author = "The Android Open Source Project",
-                        .methods = &hal_module_methods,
-                },
-};
+        .common = {
+                .tag = HARDWARE_MODULE_TAG,
+                .module_api_version = AUDIO_MODULE_API_VERSION_0_1,
+                .hal_api_version = HARDWARE_HAL_API_VERSION,
+                .id = AUDIO_HARDWARE_MODULE_ID,
+                .name = "Bluetooth Audio HW HAL",
+                .author = "The Android Open Source Project",
+                .methods = &hal_module_methods,
+        }};

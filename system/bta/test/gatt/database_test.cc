@@ -137,16 +137,13 @@ TEST(GattCacheTest, stored_attribute_to_binary_included_service_test) {
   /* make sure padding at end of union is cleared */
   memset(&attr, 0, sizeof(attr));
 
-  attr = {
-          .handle = 0x0001,
+  attr = {.handle = 0x0001,
           .type = INCLUDE,
-          .value = {.included_service =
-                            {
-                                    .handle = 0x0010,
-                                    .end_handle = 0x001f,
-                                    .uuid = Uuid::FromString("1801"),
-                            }},
-  };
+          .value = {.included_service = {
+                            .handle = 0x0010,
+                            .end_handle = 0x001f,
+                            .uuid = Uuid::FromString("1801"),
+                    }}};
 
   constexpr size_t len = sizeof(StoredAttribute);
   // clang-format off

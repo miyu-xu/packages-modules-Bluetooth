@@ -419,12 +419,8 @@ TEST_F(CodecManagerTestAdsp, testStreamConfigurationAdspDownMix) {
                           .codec_frames_blocks_per_sdu = 1,
                           .num_of_channels = 1,
                           .num_of_devices = 1,
-                          .stream_locations =
-                                  {
-                                          std::pair<uint16_t, uint32_t>{
-                                                  97 /*conn_handle*/,
-                                                  codec_spec_conf::kLeAudioLocationFrontLeft},
-                                  },
+                          .stream_locations = {std::pair<uint16_t, uint32_t>{
+                                  97 /*conn_handle*/, codec_spec_conf::kLeAudioLocationFrontLeft}},
                   },
           .source =
                   {
@@ -435,11 +431,8 @@ TEST_F(CodecManagerTestAdsp, testStreamConfigurationAdspDownMix) {
                           .codec_frames_blocks_per_sdu = 1,
                           .num_of_channels = 1,
                           .num_of_devices = 1,
-                          {
-                                  std::pair<uint16_t, uint32_t>{
-                                          97 /*conn_handle*/,
-                                          codec_spec_conf::kLeAudioLocationBackLeft},
-                          },
+                          .stream_locations = {std::pair<uint16_t, uint32_t>{
+                                  97 /*conn_handle*/, codec_spec_conf::kLeAudioLocationBackLeft}},
                   },
   };
 
@@ -547,12 +540,8 @@ TEST_F(CodecManagerTestAdsp, testStreamConfigurationMono) {
                           .codec_frames_blocks_per_sdu = 1,
                           .num_of_channels = 1,
                           .num_of_devices = 1,
-                          .stream_locations =
-                                  {
-                                          std::pair<uint16_t, uint32_t>{
-                                                  97 /*conn_handle*/,
-                                                  codec_spec_conf::kLeAudioLocationMonoAudio},
-                                  },
+                          .stream_locations = {std::pair<uint16_t, uint32_t>{
+                                  97 /*conn_handle*/, codec_spec_conf::kLeAudioLocationMonoAudio}},
                   },
           .source =
                   {
@@ -563,11 +552,8 @@ TEST_F(CodecManagerTestAdsp, testStreamConfigurationMono) {
                           .codec_frames_blocks_per_sdu = 1,
                           .num_of_channels = 1,
                           .num_of_devices = 1,
-                          {
-                                  std::pair<uint16_t, uint32_t>{
-                                          97 /*conn_handle*/,
-                                          codec_spec_conf::kLeAudioLocationMonoAudio},
-                          },
+                          .stream_locations = {std::pair<uint16_t, uint32_t>{
+                                  97 /*conn_handle*/, codec_spec_conf::kLeAudioLocationMonoAudio}},
                   },
   };
 

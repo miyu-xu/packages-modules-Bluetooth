@@ -485,8 +485,7 @@ void multiprecision_inv_mod(uint32_t* aminus, uint32_t* u) {
   A[0] = 1;
 
   while (!multiprecision_iszero(u)) {
-    while (!(u[0] & 0x01))  // u is even
-    {
+    while (!(u[0] & 0x01)) {  // u is even
       multiprecision_rshift(u, u);
       if (!(A[0] & 0x01)) {  // A is even
         multiprecision_rshift(A, A);
@@ -497,11 +496,9 @@ void multiprecision_inv_mod(uint32_t* aminus, uint32_t* u) {
       }
     }
 
-    while (!(v[0] & 0x01))  // v is even
-    {
+    while (!(v[0] & 0x01)) {  // v is even
       multiprecision_rshift(v, v);
-      if (!(C[0] & 0x01))  // C is even
-      {
+      if (!(C[0] & 0x01)) {  // C is even
         multiprecision_rshift(C, C);
       } else {
         C[KEY_LENGTH_DWORDS_P256] = multiprecision_add(C, C, modp);  // C =C+p

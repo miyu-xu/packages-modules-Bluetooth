@@ -2062,7 +2062,7 @@ static bt_status_t register_notification_rsp(btrc_event_id_t event_id,
     /* Send the response. */
     send_metamsg_rsp(&btif_rc_cb.rc_multi_cb[idx], -1,
                      btif_rc_cb.rc_multi_cb[idx].rc_notif[event_id - 1].label,
-                     ((type == BTRC_NOTIFICATION_TYPE_INTERIM) ? AVRC_CMD_NOTIF : AVRC_RSP_CHANGED),
+                     (type == BTRC_NOTIFICATION_TYPE_INTERIM) ? AVRC_CMD_NOTIF : AVRC_RSP_CHANGED,
                      &avrc_rsp);
   }
   return BT_STATUS_SUCCESS;
@@ -2333,15 +2333,13 @@ static bt_status_t set_browsed_player_rsp(const RawAddress& bd_addr, btrc_status
           break;
         }
       }
-    } else /* current path is root folder, no folders navigated yet */
-    {
+    } else { /* current path is root folder, no folders navigated yet */
       status = AVRC_BldResponse(p_dev->rc_handle, &avrc_rsp, &p_msg);
     }
 
     /* setting the error status */
     avrc_rsp.br_player.status = status;
-  } else /* error received from above layer */
-  {
+  } else { /* error received from above layer */
     log::warn("Error in parsing the received setbrowsed command. status: 0x{:02x}",
               avrc_rsp.br_player.status);
     status = avrc_rsp.br_player.status;
@@ -5099,13 +5097,10 @@ static void initialize_transaction(btif_rc_device_cb_t* p_dev, uint8_t lbl) {
     transaction_set->transaction[lbl] = {
             .in_use = false,
             .label = lbl,
-            .context =
-                    {
-                            .rc_addr = RawAddress::kEmpty,
-                            .label = MAX_LABEL,
-                            .opcode = AVRC_OP_INVALID,
-                            .command = {},
-                    },
+            .context = {.rc_addr = RawAddress::kEmpty,
+                        .label = MAX_LABEL,
+                        .opcode = AVRC_OP_INVALID,
+                        .command = {}},
             .timer = nullptr,
     };
   }
