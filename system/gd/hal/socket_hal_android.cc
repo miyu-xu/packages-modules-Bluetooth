@@ -35,6 +35,8 @@ namespace bluetooth::hal {
 const hal::SocketCapabilities kEmptySocketCapabilities = {};
 constexpr uint16_t kL2capSduLengthLeMin = 23;
 constexpr uint16_t kL2capSduLengthLeMax = 65535;
+constexpr uint16_t kRfcommFrameSizeMin = 23;
+constexpr uint16_t kRfcommFrameSizeMax = 32767;
 
 class SocketAidlCallback : public BnBluetoothSocketCallback {
   class : public hal::SocketHalCallback {
@@ -144,6 +146,9 @@ protected:
     log::info("le_coc_capabilities number_of_supported_sockets: {}, mtu: {}",
               socket_capabilities.leCocCapabilities.numberOfSupportedSockets,
               socket_capabilities.leCocCapabilities.mtu);
+    log::info("rfcomm_capabilities number_of_supported_sockets: {}, max_frame_size: {}",
+              socket_capabilities.rfcommCapabilities.numberOfSupportedSockets,
+              socket_capabilities.rfcommCapabilities.maxFrameSize);
     if (socket_capabilities.leCocCapabilities.numberOfSupportedSockets < 0) {
       log::error("Invalid leCocCapabilities.numberOfSupportedSockets");
       return kEmptySocketCapabilities;
@@ -155,11 +160,26 @@ protected:
         return kEmptySocketCapabilities;
       }
     }
+    if (socket_capabilities.rfcommCapabilities.numberOfSupportedSockets < 0) {
+      log::error("Invalid rfcommCapabilities.numberOfSupportedSockets");
+      return kEmptySocketCapabilities;
+    }
+    if (socket_capabilities.rfcommCapabilities.numberOfSupportedSockets) {
+      if (socket_capabilities.rfcommCapabilities.maxFrameSize < kRfcommFrameSizeMin ||
+          socket_capabilities.rfcommCapabilities.maxFrameSize > kRfcommFrameSizeMax) {
+        log::error("Invalid rfcommCapabilities.maxFrameSize");
+        return kEmptySocketCapabilities;
+      }
+    }
     return hal::SocketCapabilities{
             .le_coc_capabilities.number_of_supported_sockets =
                     socket_capabilities.leCocCapabilities.numberOfSupportedSockets,
             .le_coc_capabilities.mtu =
-                    static_cast<uint16_t>(socket_capabilities.leCocCapabilities.mtu)};
+                    static_cast<uint16_t>(socket_capabilities.leCocCapabilities.mtu),
+            .rfcomm_capabilities.number_of_supported_sockets =
+                    socket_capabilities.rfcommCapabilities.numberOfSupportedSockets,
+            .rfcomm_capabilities.max_frame_size =
+                    static_cast<uint16_t>(socket_capabilities.rfcommCapabilities.maxFrameSize)};
   }
 
   bool RegisterCallback(hal::SocketHalCallback* callback) override {

@@ -46,7 +46,8 @@ struct LppOffloadManager::impl {
     features_ = {};
     socket_capabilities_ = socket_hal_->GetSocketCapabilities();
     features_.is_socket_hw_offload_supported =
-            (socket_capabilities_.le_coc_capabilities.number_of_supported_sockets > 0);
+            (socket_capabilities_.le_coc_capabilities.number_of_supported_sockets > 0 ||
+             socket_capabilities_.rfcomm_capabilities.number_of_supported_sockets > 0);
   }
 
   void stop() {
