@@ -22,6 +22,30 @@
       },
       "revId": "51507541029e81918b484393e93cc29e9dd50a86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c94ef10a_0ea49378",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-21T09:35:06Z",
+      "side": 1,
+      "message": "Yes, I overcomplicated this, simple else should work 😊",
+      "parentUuid": "e74bbeb3_1ed4891f",
+      "range": {
+        "startLine": 697,
+        "startChar": 6,
+        "endLine": 697,
+        "endChar": 90
+      },
+      "revId": "51507541029e81918b484393e93cc29e9dd50a86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
