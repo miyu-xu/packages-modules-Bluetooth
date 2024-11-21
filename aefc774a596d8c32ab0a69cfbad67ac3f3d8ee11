@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "341e1d8c_8cc05ace",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-21T08:30:16Z",
+      "side": 1,
+      "message": "This is just passing up the address type from the native layer? I don\u0027t think this is the right thing to do.\n\nIf we get 0 from the native layer we should set the type here to BluetoothDevice.ADDRESS_TYPE_PUBLIC. If we get 1 we should set it to ADDRESS_TYPE_RANDOM. Otherwise leave it as ADDRESS_TYPE_UNKNOWN.",
+      "range": {
+        "startLine": 1208,
+        "startChar": 48,
+        "endLine": 1208,
+        "endChar": 67
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c5210208_10ab0c3f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1209,
+                "startChar": 0,
+                "endLine": 1209,
+                "endChar": 0
+              },
+              "replacement": "        if (identityAddressType \u003d\u003d BluetoothDevice.ADDRESS_TYPE_UNKNOWN) {\n            deviceProperties.setIdentityAddressType(BluetoothDevice.ADDRESS_TYPE_RANDOM);\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "aefc774a596d8c32ab0a69cfbad67ac3f3d8ee11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
