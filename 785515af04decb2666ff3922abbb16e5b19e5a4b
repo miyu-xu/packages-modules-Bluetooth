@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c348aa2_83054fa2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T00:37:02Z",
+      "side": 1,
+      "message": "Oh ! Ok !\nThanks",
+      "parentUuid": "fe249bec_169f2186",
+      "range": {
+        "startLine": 399,
+        "startChar": 15,
+        "endLine": 399,
+        "endChar": 24
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fda1cb3_eee4b7d3",
@@ -144,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61d54fbf_71f338c0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T00:37:02Z",
+      "side": 1,
+      "message": "I see.\n\nYou define the user action to accept the pairing but there is nothing to do yet\nYou call connect, this will at some point ask for pairing\nYou wait for all of that to happen.\n\nI somehow thought the order was accept pairing then connect.",
+      "parentUuid": "1e83806a_953b18b7",
+      "range": {
+        "startLine": 500,
+        "startChar": 36,
+        "endLine": 504,
+        "endChar": 36
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4fe735e1_66835f82",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 1
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "AI didn\u0027t get it right this time, but yes, we can call socket.connect once :)",
       "parentUuid": "4fe735e1_66835f82",
+      "range": {
+        "startLine": 492,
+        "startChar": 6,
+        "endLine": 510,
+        "endChar": 9
+      },
+      "revId": "785515af04decb2666ff3922abbb16e5b19e5a4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b1555d1_1bce089c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T00:37:02Z",
+      "side": 1,
+      "message": "It wasn\u0027t AI, I just misunderstood what the test was doing ^^\n\nYou can forget my comment",
+      "parentUuid": "8eac6f24_00b803e8",
       "range": {
         "startLine": 492,
         "startChar": 6,
