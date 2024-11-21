@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe4907f_03a0defe",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-21T07:38:38Z",
+      "side": 1,
+      "message": "This should be one big if, not two separate if statement.\nMaybe you can have:\n```\nbool rpa_timeout_v2_supported \u003d ....;\nif (current_if \u0026\u0026 !rpa_timeout_v2_support) {\n...\n}\n```",
+      "range": {
+        "startLine": 660,
+        "startChar": 6,
+        "endLine": 663,
+        "endChar": 97
+      },
+      "revId": "42c6b288a0d77f07867624396021d47649f96843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "390f8a2a_4623db48",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-21T07:38:38Z",
+      "side": 1,
+      "message": "just one comma",
+      "range": {
+        "startLine": 913,
+        "startChar": 36,
+        "endLine": 913,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a66a74a1_7071ea38",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/le_advertising_manager.cc",
+              "range": {
+                "startLine": 913,
+                "startChar": 0,
+                "endLine": 914,
+                "endChar": 0
+              },
+              "replacement": "       log::info(\"Support RPA offload, set own address type RESOLVABLE_OR_RANDOM_ADDRESS\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "42c6b288a0d77f07867624396021d47649f96843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
