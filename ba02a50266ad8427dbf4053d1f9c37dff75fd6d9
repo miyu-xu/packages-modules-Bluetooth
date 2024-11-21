@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9bda222_f8a8b243",
+        "filename": "system/stack/avdt/avdt_ad.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-21T11:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f3bbe7c_c56f7f8e",
+      "revId": "ba02a50266ad8427dbf4053d1f9c37dff75fd6d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59a98fc0_b1e29dcb",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fdd901d_f3a3ee07",
+        "filename": "system/stack/avdt/avdt_ad.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-21T11:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59a98fc0_b1e29dcb",
+      "range": {
+        "startLine": 524,
+        "startChar": 2,
+        "endLine": 524,
+        "endChar": 21
+      },
+      "revId": "ba02a50266ad8427dbf4053d1f9c37dff75fd6d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "567cdb0d_ceb3c256",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-11-21T01:51:28Z",
       "side": 1,
       "message": "Comment could be more detailed: `Role for the establishment of the AVDTP signaling channel`",
+      "revId": "ba02a50266ad8427dbf4053d1f9c37dff75fd6d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc6ec423_7c77a04d",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-21T11:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "567cdb0d_ceb3c256",
       "revId": "ba02a50266ad8427dbf4053d1f9c37dff75fd6d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
