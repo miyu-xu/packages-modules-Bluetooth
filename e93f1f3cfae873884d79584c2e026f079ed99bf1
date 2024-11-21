@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd3653c_79bf2c93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-21T00:12:52Z",
+      "side": 1,
+      "message": "@poahlo@google.com Lint baseline again! 😞\n\nI know it looks like \"new code\" buts just restructuring/copying of the old bad code on the lint baseline into a new class (CallLogPullRequest logic moved to PbapClientContactsStorage, CallLogPullRequest to be deleted post flag) for us to figure out the right way to do it (so it passes lint) later.",
+      "revId": "e93f1f3cfae873884d79584c2e026f079ed99bf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
