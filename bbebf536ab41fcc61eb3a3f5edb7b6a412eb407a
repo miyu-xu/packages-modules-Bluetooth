@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80703720_f0a6c012",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6173,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-21T09:06:58Z",
+      "side": 1,
+      "message": "actually function name `handleProfile..`  put the profile as the topic so having profile as a first argument make sense 😊",
+      "revId": "bbebf536ab41fcc61eb3a3f5edb7b6a412eb407a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
