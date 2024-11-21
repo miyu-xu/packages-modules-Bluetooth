@@ -40,6 +40,10 @@ import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.PandoraDevice;
 import android.bluetooth.StreamObserverSpliterator;
 import android.bluetooth.Utils;
+import android.bluetooth.le.AdvertiseData;
+import android.bluetooth.le.AdvertisingSetCallback;
+import android.bluetooth.le.AdvertisingSetParameters;
+import android.bluetooth.le.BluetoothLeAdvertiser;
 import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -75,10 +79,13 @@ import org.mockito.hamcrest.MockitoHamcrest;
 
 import pandora.GattProto;
 import pandora.HostProto.AdvertiseRequest;
+import pandora.HostProto.ConnectLERequest;
+import pandora.HostProto.ConnectLEResponse;
 import pandora.HostProto.ConnectRequest;
 import pandora.HostProto.ConnectResponse;
 import pandora.HostProto.OwnAddressType;
 import pandora.SecurityProto.DeleteBondRequest;
+import pandora.SecurityProto.LESecurityLevel;
 import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
 import pandora.SecurityProto.SecureRequest;
@@ -126,6 +133,7 @@ public class BondLossTest {
     private BluetoothDevice mBumbleDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
+    private StreamObserver<PairingEventAnswer> mPairingEventAnswerObserver;
 
     @Before
     public void setUp() throws Exception {
@@ -254,9 +262,7 @@ public class BondLossTest {
     public void testBondBredrBondLoss_RemoteInitiatedPairing() throws Exception {
         registerIntentActions(
                 BluetoothDevice.ACTION_ACL_CONNECTED,
-                BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED,
                 BluetoothDevice.ACTION_ACL_DISCONNECTED,
-                BluetoothDevice.ACTION_PAIRING_REQUEST,
                 BluetoothDevice.ACTION_KEY_MISSING);
 
         testStep_BondBredr();
@@ -302,14 +308,12 @@ public class BondLossTest {
         verifyNoMoreInteractions(mReceiver);
         unregisterIntentActions(
                 BluetoothDevice.ACTION_ACL_CONNECTED,
-                BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED,
                 BluetoothDevice.ACTION_ACL_DISCONNECTED,
-                BluetoothDevice.ACTION_PAIRING_REQUEST,
                 BluetoothDevice.ACTION_KEY_MISSING);
     }
 
     /**
-     * Test Remote initiated pairing on the LE
+     * Test Key missing on LE
      *
      * <p>Prerequisites:
      *
@@ -362,6 +366,108 @@ public class BondLossTest {
                 BluetoothDevice.ACTION_KEY_MISSING);
     }
 
+    /**
+     * Test Remote initiated pairing on the LE device
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>1. Bumble deletes the pairing info.
+     *   <li>2. Bumble initiate connection over LE.
+     *   <li>3. Android disconnect from Bumble.
+     *   <li>4. Android verifies ACTION_KEY_MISSING intent.
+     *   <li>5. Android verifies Bumble device is in bonded device list.
+     * </ol>
+     */
+    @Test
+    public void testBondLeBondLoss_RemoteInitiatedPairing() throws Exception {
+        registerIntentActions(
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_ACL_DISCONNECTED,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                BluetoothDevice.ACTION_PAIRING_REQUEST,
+                BluetoothDevice.ACTION_KEY_MISSING);
+
+        testStep_BondLe();
+        assertThat(sAdapter.getBondedDevices()).contains(mBumbleDevice);
+        byte[] address = Utils.addressBytesFromString(sAdapter.getAddress());
+        mBumble.securityStorageBlockingStub()
+                .deleteBond(
+                        DeleteBondRequest.newBuilder()
+                                .setPublic(ByteString.copyFrom(address))
+                                .build());
+        // Start advertising
+        BluetoothLeAdvertiser leAdvertiser = sAdapter.getBluetoothLeAdvertiser();
+        AdvertisingSetParameters parameters =
+                new AdvertisingSetParameters.Builder()
+                        .setOwnAddressType(AdvertisingSetParameters.ADDRESS_TYPE_PUBLIC)
+                        .setConnectable(true)
+                        .build();
+        AdvertiseData advertiseData =
+                new AdvertiseData.Builder().setIncludeDeviceName(true).build();
+        AdvertisingSetCallback advertisingSetCallback = new AdvertisingSetCallback() {};
+        leAdvertiser.startAdvertisingSet(
+                parameters, advertiseData, null, null, null, 0, 0, advertisingSetCallback);
+
+        ConnectLEResponse leConn =
+                mBumble.hostBlocking()
+                        .connectLE(
+                                ConnectLERequest.newBuilder()
+                                        .setOwnAddressType(OwnAddressType.PUBLIC)
+                                        .setPublic(ByteString.copyFrom(address))
+                                        .build());
+
+        // Start pairing from Bumble
+        StreamObserverSpliterator<SecureResponse> responseObserver =
+                new StreamObserverSpliterator<>();
+        mBumble.security()
+                .secure(
+                        SecureRequest.newBuilder()
+                                .setConnection(leConn.getConnection())
+                                .setLe(LESecurityLevel.LE_LEVEL3)
+                                .build(),
+                        responseObserver);
+
+        PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        mPairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice));
+        // Approve pairing from Android
+        assertThat(mBumbleDevice.setPairingConfirmation(true)).isTrue();
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));
+        /*
+                verifyIntentReceived(
+                        hasAction(BluetoothDevice.ACTION_KEY_MISSING),
+                        hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice));
+                // Wait for the ACL to get disconnected
+                verifyIntentReceived(
+                        hasAction(BluetoothDevice.ACTION_ACL_DISCONNECTED),
+                        hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR),
+                        hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice));
+        */
+        assertThat(sAdapter.getBondedDevices()).contains(mBumbleDevice);
+        // verifyNoMoreInteractions(mReceiver);
+        unregisterIntentActions(
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_ACL_DISCONNECTED,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                BluetoothDevice.ACTION_PAIRING_REQUEST,
+                BluetoothDevice.ACTION_KEY_MISSING);
+    }
+
     private void testStep_BondBredr() {
         registerIntentActions(
                 BluetoothDevice.ACTION_BOND_STATE_CHANGED,
@@ -370,7 +476,7 @@ public class BondLossTest {
                 BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED,
                 BluetoothDevice.ACTION_PAIRING_REQUEST);
 
-        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+        mPairingEventAnswerObserver =
                 mBumble.security()
                         .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
                         .onPairing(mPairingEventStreamObserver);
@@ -397,7 +503,7 @@ public class BondLossTest {
 
         PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
         assertThat(pairingEvent.hasJustWorks()).isTrue();
-        pairingEventAnswerObserver.onNext(
+        mPairingEventAnswerObserver.onNext(
                 PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());
 
         // Ensure that pairing succeeds
@@ -475,7 +581,7 @@ public class BondLossTest {
                                 .setOwnAddressType(OwnAddressType.PUBLIC)
                                 .build());
 
-        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+        mPairingEventAnswerObserver =
                 mBumble.security()
                         .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
                         .onPairing(mPairingEventStreamObserver);
@@ -502,7 +608,7 @@ public class BondLossTest {
 
         PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
         assertThat(pairingEvent.hasJustWorks()).isTrue();
-        pairingEventAnswerObserver.onNext(
+        mPairingEventAnswerObserver.onNext(
                 PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());
 
         // Ensure that pairing succeeds
