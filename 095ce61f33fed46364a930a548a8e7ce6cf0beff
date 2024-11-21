@@ -16,6 +16,24 @@
       "message": "The priority is in merging the API, the implementation should be left off to later.\nie. the code is not yet fully ready and that should be apparent in the API",
       "revId": "095ce61f33fed46364a930a548a8e7ce6cf0beff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83c90cbd_bbab91f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-21T22:54:59Z",
+      "side": 1,
+      "message": "RFCOMM protocol is still not allowed in Bluetooth Service layer. It will be unblocked when the implementation is ready.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/22/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java\n\n```\nif (type \u003d\u003d BluetoothSocket.TYPE_LE \u0026\u0026 mService.isLeCocSocketOffloadSupported()) {\n  Log.i(TAG, \"LE CoC socket offload is supported\");\n} else {\n  throw new IllegalStateException(\"Unsupported socket type for offload \" + type);\n}\n```",
+      "parentUuid": "0911e7e4_f3f960da",
+      "revId": "095ce61f33fed46364a930a548a8e7ce6cf0beff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
