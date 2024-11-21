@@ -351,6 +351,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "502ec38c_c895ada3",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-11-21T17:03:22Z",
+      "side": 1,
+      "message": "This can always be addressed in near future",
+      "parentUuid": "efc796d1_81fce8c7",
+      "range": {
+        "startLine": 535,
+        "startChar": 28,
+        "endLine": 535,
+        "endChar": 36
+      },
+      "revId": "808f5af07bd1efc8aa65e2d77b554fe7630762fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0e2bd48c_c1f71538",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
         "patchSetId": 12
