@@ -6034,4 +6034,52 @@ public final class BluetoothAdapter {
         }
         return false;
     }
+
+    /**
+     * Returns whether RFCOMM socket hardware offload is supported.
+     *
+     * <p>Bluetooth socket hardware offload allows the system to handle Bluetooth communication on a
+     * low-power processor, improving efficiency and reducing power consumption. This is achieved by
+     * providing channel information of an already connected {@link BluetoothSocket} to offload
+     * endpoints (e.g., offload stacks and applications). The offload stack can then decode received
+     * packets and pass them to the appropriate offload application without waking up the main
+     * application processor. This API allows offload endpoints to utilize Bluetooth sockets while
+     * the host stack retains control over the connection.
+     *
+     * <p>To configure a socket for hardware offload, use the following {@link
+     * BluetoothSocketSettings} methods:
+     *
+     * <ul>
+     *   <li>{@link BluetoothSocketSettings#setDataPath(int)} with {@link
+     *       BluetoothSocketSettings#DATA_PATH_HW_OFFLOAD}
+     *   <li>{@link BluetoothSocketSettings#setHubId(long)}
+     *   <li>{@link BluetoothSocketSettings#setEndpointId(long)}
+     * </ul>
+     *
+     * <p>Since sending and receiving socket data is application-specific, the offload endpoint is
+     * expected to implement predefined system protocols or scenarios. Therefore, this functionality
+     * is provided as a System API.
+     *
+     * @return {@code true} if RFCOMM socket hardware offload is supported, {@code false} otherwise.
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_BT_OFFLOAD_SOCKET_API)
+    @RequiresPermission(BLUETOOTH_PRIVILEGED)
+    public boolean isRfcommSocketOffloadSupported() {
+        if (!isEnabled()) {
+            return false;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.isRfcommSocketOffloadSupported(mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
+    }
 }
