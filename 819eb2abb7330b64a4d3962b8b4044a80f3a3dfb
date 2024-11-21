@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c9f5af_e020d83a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2639,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T01:15:51Z",
+      "side": 1,
+      "message": "This test failed when leaudioBroadcastExtractPeriodicScannerFromStateMachine is not enabled\n\nI was working on aosp/3368761 and was running test locally. I had to add an enableFlag rule in order to pass the test.\nI included the fix in the CL so this is more a FYI",
+      "range": {
+        "startLine": 2639,
+        "startChar": 16,
+        "endLine": 2639,
+        "endChar": 53
+      },
+      "revId": "819eb2abb7330b64a4d3962b8b4044a80f3a3dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
