@@ -22,6 +22,30 @@
       },
       "revId": "18df91f47ffe37c05786277558553279b1907e45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc7fdd3_5d3fcce1",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-21T11:36:27Z",
+      "side": 1,
+      "message": "I agree, maybe in that case move this logic to LeAudioClient, where it is used, and not add helper function at all?",
+      "parentUuid": "ff4c2132_341e0553",
+      "range": {
+        "startLine": 888,
+        "startChar": 10,
+        "endLine": 890,
+        "endChar": 80
+      },
+      "revId": "18df91f47ffe37c05786277558553279b1907e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
