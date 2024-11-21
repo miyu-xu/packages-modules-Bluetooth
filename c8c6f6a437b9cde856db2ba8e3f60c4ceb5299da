@@ -409,6 +409,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e7b0f4e_552c55c3",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-21T01:52:14Z",
+      "side": 1,
+      "message": "The BQR event interfaces are publicly documented in AOSP, and the CTS tests provide examples of object creation. Should we include this information in the comments?\n\nhttps://source.android.com/docs/core/connect/bluetooth/hci_requirements#bluetooth-quality-report-sub-event",
+      "parentUuid": "045809d2_fad4b238",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46c1851a_52c3d499",
