@@ -16,6 +16,24 @@
       "message": "@asapperstein@google.com, I noticed you API +2 then immediately removed it.\n\nI think this was not intended (gerrit does that if the change is open on 2 tabs sometimes).\nCan you re-vote ?\nThank you very much !",
       "revId": "a1c6829c2a099bdf9033f16cfe86db3aca792693",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec51f20b_ff1ad9b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T22:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "507fbfde_b1fbcef4",
+      "revId": "a1c6829c2a099bdf9033f16cfe86db3aca792693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
