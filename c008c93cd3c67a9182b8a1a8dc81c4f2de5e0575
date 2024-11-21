@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1cc9e1e_05bdb7d7",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fafc48d_21eaf4ef",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3767b3c2_bf60a272",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-11-20T12:17:35Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "053feaef_9dd759dc",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "[1] I agree notifications from \u0027active\u0027 ASE shall be handled only, but this seems to be out of scope of this change, as this would require additional unit tests.",
+      "parentUuid": "3767b3c2_bf60a272",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1970bb4e_d936e485",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "see my comment [1]",
+      "parentUuid": "cafb72e6_62f1151c",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cd9322f_9d4979af",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 9
@@ -82,6 +136,24 @@
       "writtenOn": "2024-11-20T12:17:35Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0e6ce2_e50d7e7f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "see my comment [1]",
+      "parentUuid": "3cd9322f_9d4979af",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +177,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6da9b76e_3ed8103c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "see my comment [1]",
+      "parentUuid": "d111f81a_56b9f795",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "883a70e7_e4d5aad6",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 9
@@ -116,6 +206,24 @@
       "writtenOn": "2024-11-20T12:17:35Z",
       "side": 1,
       "message": "Good catch. I believe we should not do any group operations if configured ASE is not active. I suggest to move it to line 1992",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe12d990_aa7336e9",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2004,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "883a70e7_e4d5aad6",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +245,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d11eb447_ce40a389",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2099,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c3014a_bd8323e2",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3832bb8_92f93b06",
@@ -154,6 +280,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e15795af_9ee9a08c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3832bb8_92f93b06",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58a74bda_b303ad0c",
@@ -167,6 +311,24 @@
       "writtenOn": "2024-11-20T12:17:35Z",
       "side": 1,
       "message": "in other cases we should also check if ase is active and if not we should return and print error.",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae4aa19c_db453212",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-21T15:03:35Z",
+      "side": 1,
+      "message": "see my comment [1]",
+      "parentUuid": "58a74bda_b303ad0c",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
