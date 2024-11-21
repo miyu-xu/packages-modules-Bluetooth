@@ -38,6 +38,93 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "637d5930_dc51f160",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T18:35:33Z",
+      "side": 1,
+      "message": "Break ? \nThe formater used (ktfmt) run by repo upload is the official kotlin formatter.\nI ran it and it added a couple commas at the end of the parameter and that\u0027s all.\n\nEven if you skip the kotlin format, you still have too long line in the code in java",
+      "parentUuid": "76b0bcc5_74f0544c",
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91056417_359348ce",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T18:35:33Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 106
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66537f9b_9d8fd556",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T18:35:33Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 104
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cc5a6f7_9a085d77",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T18:35:33Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 114
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5cbbdc3c_6e0d7e56",
         "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
         "patchSetId": 11
@@ -73,6 +160,30 @@
       "side": 1,
       "message": "First, there are a lot of skipped tests that shouldn\u0027t be.\nThe test is passing locally for me so it\u0027ll be a pain to debug and is unrelated with the implementation. I prefer doing a change specifically to fix all tests that fail due to platforms rather than debugging one by one and block features in the meantime.",
       "parentUuid": "5cbbdc3c_6e0d7e56",
+      "range": {
+        "startLine": 766,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 26
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28adbb3f_3b378782",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-21T18:35:33Z",
+      "side": 1,
+      "message": "I now there is a lot that are skipped. That sad to skip one more, but I understand you want to work on them all at once.",
+      "parentUuid": "3ba9ab1a_7cea5ae7",
       "range": {
         "startLine": 766,
         "startChar": 0,
