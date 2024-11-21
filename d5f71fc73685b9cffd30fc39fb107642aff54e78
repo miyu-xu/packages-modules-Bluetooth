@@ -177,6 +177,30 @@
       },
       "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "727fd988_2543196b",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-21T08:22:55Z",
+      "side": 1,
+      "message": "What wrong can happen when we discard event for connection that is disconnecting ?\n\nThe whole idea behind discarding the status was that you can remove the connection object, and won\u0027t try to disconnect it again without keeping additional state.",
+      "parentUuid": "a134ac4a_1c72c898",
+      "range": {
+        "startLine": 212,
+        "startChar": 78,
+        "endLine": 212,
+        "endChar": 96
+      },
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
