@@ -911,7 +911,7 @@ static void dump(int fd, const char** arguments) {
   DumpsysRecord(fd);
   L2CA_Dumpsys(fd);
   DumpsysBtm(fd);
-  bluetooth::shim::Dump(fd, arguments);
+  bluetooth::shim::Dump(fd);
   power_telemetry::GetInstance().Dumpsys(fd);
   log::debug("Finished bluetooth dumpsys");
 }
