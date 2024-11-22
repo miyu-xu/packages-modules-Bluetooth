@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6fd3bd3_7ec3b28a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-22T20:52:52Z",
+      "side": 1,
+      "message": "One of these two is wrong: commit message or CL itself.\n`Ensure resume callback sends confirmation when a broadcast is in\nstreaming state during resume.` was true even before that change.\n\nChange introduce not calling `ProcessMessage(BroadcastStateMachine::Message::START`\nif anyone already streaming.\n\nAnother thing is if really want that change or if we want it in such version. Right now, did not use multiple broadcasters, but code is ready for that. Before CL, it will always try to start all broadcasts no matter what. With that change, if only one of few broadcaster streaming, rest will be not resumed.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 30
+      },
+      "revId": "3d74e49f9104bfb3249a909850ba04aab18e43b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
