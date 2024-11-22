@@ -1466,6 +1466,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a48fbe0_c60cf485",
+        "filename": "system/gd/lpp/lpp_offload_manager.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-22T19:17:05Z",
+      "side": 1,
+      "message": "I thought we may want to disable it in initial development stage but as you mentioned it could be possible by removing the socket hal service. Removed.",
+      "parentUuid": "6a45ea23_62d21c1a",
+      "range": {
+        "startLine": 40,
+        "startChar": 57,
+        "endLine": 40,
+        "endChar": 86
+      },
+      "revId": "c79bff834f9db95578aa5b5ced5fdfb4684e3b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b8d0e7f_0ff2ef41",
