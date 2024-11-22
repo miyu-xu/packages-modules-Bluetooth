@@ -436,6 +436,30 @@
       },
       "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d188de69_461b0642",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2024-11-22T09:53:10Z",
+      "side": 1,
+      "message": "removed identity_to_pseudo_random api \u0026  \nadded new method in BleScannerInterfaceImpl::OnFetchPseudoAddressFromIdentityAddress \u0026  using btm_identity_addr_to_random_pseudo from new method to fetch address.",
+      "parentUuid": "df56a5f5_174b4696",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
