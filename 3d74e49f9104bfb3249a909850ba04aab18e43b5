@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "598e141e_b64c5d4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-22T23:17:39Z",
+      "side": 1,
+      "message": "instance-\u003ele_audio_source_hal_client_-\u003eConfirmStreamingRequest(); was always called before and after this change when `leaudio_big_depends_on_audio_state` is set. Isn\u0027t it?",
+      "parentUuid": "36375faa_c4126f2a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 30
+      },
+      "revId": "3d74e49f9104bfb3249a909850ba04aab18e43b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f7f7b60_b7d99075",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 1
