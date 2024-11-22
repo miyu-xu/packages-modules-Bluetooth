@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89effccc_ace4fbf9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-22T22:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd17c110_ed130630",
+      "revId": "4e720651d68a6451e94743af0fe3f8a891ecffc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "638f0181_d2bb5eef",
@@ -121,6 +139,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "06d42595_cbe51ecd",
+      "range": {
+        "startLine": 1409,
+        "startChar": 0,
+        "endLine": 1418,
+        "endChar": 9
+      },
+      "revId": "4e720651d68a6451e94743af0fe3f8a891ecffc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c97fa4_de648b0a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-22T22:09:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "638f0181_d2bb5eef",
       "range": {
         "startLine": 1409,
         "startChar": 0,
