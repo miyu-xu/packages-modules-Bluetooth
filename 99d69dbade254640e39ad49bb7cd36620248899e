@@ -33,6 +33,24 @@
       "message": "I\u0027m not sure why this is a SystemApi instead of public. If it\u0027s system API, it needs to be gated by a permission.",
       "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18389711_80cdab22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T00:10:44Z",
+      "side": 1,
+      "message": "If I understood correctly, this API would not be necessary for apps as \"it is mainly intended for accessory devices running Android to broadcast their availability and which can thus leverage system APIs\". The other reason is that there isn\u0027t currently any throttling mechanism for advertising and exposing new public APIs without such mechanism in place would risk creating more instabilities in the ecosystem.",
+      "parentUuid": "c9f62169_a57781ad",
+      "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
