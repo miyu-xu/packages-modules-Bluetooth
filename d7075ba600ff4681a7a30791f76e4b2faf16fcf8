@@ -22,6 +22,30 @@
       },
       "revId": "d7075ba600ff4681a7a30791f76e4b2faf16fcf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e847dd4_17e30fa8",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2706,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T21:53:24Z",
+      "side": 0,
+      "message": "For consistency of behavior. Our API should not throw because of a race condition:\n\n* case 1: Bluetooth is off, then getLeAccess return false and we return ERROR_BLUETOOTH_NOT_ENABLED\n* case 2: Bleutooth is on, then everything work\n* case 3: Bluetooth died while the call is performed, we catch the remoteException and return ERROR_BLUETOOTH_NOT_ENABLED\n* case 4: Bluetooth is turned off between getLeAccess and before the lock, then we throw an exception\n\n\nWtf ^^",
+      "parentUuid": "c964e0b1_cecb3c81",
+      "range": {
+        "startLine": 2705,
+        "startChar": 17,
+        "endLine": 2706,
+        "endChar": 78
+      },
+      "revId": "d7075ba600ff4681a7a30791f76e4b2faf16fcf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
