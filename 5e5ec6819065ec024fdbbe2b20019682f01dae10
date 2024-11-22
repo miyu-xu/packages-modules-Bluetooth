@@ -1,5 +1,103 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c501e850_8cb19936",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T00:35:33Z",
+      "side": 1,
+      "message": "This is not formatted",
+      "range": {
+        "startLine": 164,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 58
+      },
+      "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1006e14_c6c4576a",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T00:35:33Z",
+      "side": 1,
+      "message": "this is not formatted",
+      "range": {
+        "startLine": 230,
+        "startChar": 9,
+        "endLine": 232,
+        "endChar": 58
+      },
+      "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e709eb_fa4f2b6e",
+        "filename": "system/gd/hci/le_address_manager_test.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T00:35:33Z",
+      "side": 1,
+      "message": "This was not formatted by clang format.\n\nYou must use repo upload when uploading change in order to run the format hook",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b759c49c_1433ff8c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/le_address_manager_test.cc",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": "#include \"hci/controller.h\"\n"
+            },
+            {
+              "path": "system/gd/hci/le_address_manager_test.cc",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
