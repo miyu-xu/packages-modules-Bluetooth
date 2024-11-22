@@ -16,6 +16,23 @@
       "message": "Oh !\nThis is very bad from the state machine implementation 😞",
       "revId": "d77dd5ad9a33bc9d11d8f60ac888fe139662b82a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0cfd42b_ae4be85d",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T02:49:53Z",
+      "side": 1,
+      "message": "The code calling `isConnected` and `getConnectionState` is run within `        synchronized (mStateMachines) {`\n\nThis is a common pattern used in java profiles but it does not prevent a transition self-initiated by the state machine.\n\nI don\u0027t like this fix because it\u0027s a bandaid and doesn\u0027t address the underlying issue that we should handle the async threading properly.\n\nBut I understand that this will be a completely different scale of fix.\n\nNote that there are 6 other state machine in the stack with this pattern :/",
+      "revId": "d77dd5ad9a33bc9d11d8f60ac888fe139662b82a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
