@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308e12bf_7f262642",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-22T03:28:56Z",
+      "side": 1,
+      "message": "Prefer to have annotations before the method declaration. But really NonNull is the default so I don\u0027t think it\u0027s necessary anyway (even though I do see it used elsewhere here).",
+      "range": {
+        "startLine": 1766,
+        "startChar": 12,
+        "endLine": 1766,
+        "endChar": 19
+      },
+      "revId": "0e40329eb6f460a0c140bcae0041ff593e676997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
