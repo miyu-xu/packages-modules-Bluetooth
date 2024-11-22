@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac54b715_987972cf",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T13:18:41Z",
+      "side": 1,
+      "message": "can we use HCI_ERR_CANCELLED_BY_LOCAL_HOST instead?",
+      "fixSuggestions": [
+        {
+          "fixId": "e7abd655_06518bf7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/state_machine.cc",
+              "range": {
+                "startLine": 978,
+                "startChar": 0,
+                "endLine": 979,
+                "endChar": 0
+              },
+              "replacement": "      if (event-\u003estatus \u003d\u003d HCI_ERR_CANCELLED_BY_LOCAL_HOST) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/state_machine.cc",
+              "range": {
+                "startLine": 990,
+                "startChar": 0,
+                "endLine": 990,
+                "endChar": 0
+              },
+              "replacement": "\n      log::warn(\"{}: failed to create CIS 0x{:04x}, status: {} (0x{:02x})\", leAudioDevice-\u003eaddress_,\n                event-\u003ecis_conn_hdl, ErrorCodeText((ErrorCode)event-\u003estatus), event-\u003estatus);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "00ad98f7900d0d572e27212ffe85a1e52e9aa70a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
