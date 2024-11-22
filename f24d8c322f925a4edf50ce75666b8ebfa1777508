@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dbaeb32_8db96e71",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4927,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T06:50:52Z",
+      "side": 1,
+      "message": "Missing `@param`",
+      "range": {
+        "startLine": 4927,
+        "startChar": 5,
+        "endLine": 4927,
+        "endChar": 6
+      },
+      "revId": "f24d8c322f925a4edf50ce75666b8ebfa1777508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47007e94_5a2ceae2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T06:50:52Z",
+      "side": 1,
+      "message": "I\u0027m still unsure on whether returning a `Bundle` is the right idea. It is recommended to use a strongly-typed data class, but feels overkilled here. @asapperstein@google.com wdyt?",
+      "range": {
+        "startLine": 4930,
+        "startChar": 11,
+        "endLine": 4930,
+        "endChar": 17
+      },
+      "revId": "f24d8c322f925a4edf50ce75666b8ebfa1777508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed628961_ebaf9a82",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T06:50:52Z",
+      "side": 1,
+      "message": "Missing annotation `@NonNull`",
+      "range": {
+        "startLine": 4930,
+        "startChar": 4,
+        "endLine": 4930,
+        "endChar": 10
+      },
+      "revId": "f24d8c322f925a4edf50ce75666b8ebfa1777508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12888fab_8bffeb7e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T06:50:52Z",
+      "side": 1,
+      "message": "`@Nullable` or `@NonNull` (go/android-api-guidelines#annotations-nullability)",
+      "range": {
+        "startLine": 4930,
+        "startChar": 45,
+        "endLine": 4930,
+        "endChar": 60
+      },
+      "revId": "f24d8c322f925a4edf50ce75666b8ebfa1777508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf57b501_a053b0c5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4945,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T06:50:52Z",
+      "side": 1,
+      "message": "To remove, does not return here",
+      "range": {
+        "startLine": 4945,
+        "startChar": 16,
+        "endLine": 4945,
+        "endChar": 58
+      },
+      "revId": "f24d8c322f925a4edf50ce75666b8ebfa1777508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
