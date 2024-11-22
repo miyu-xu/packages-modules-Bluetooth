@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e1d5da_eb42211f",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/obex/PbapClientObexClient.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-22T16:32:34Z",
+      "side": 1,
+      "message": "I updated the pattern to have two functions:\n- disconnect(): Enqueues a disconnect request on the front of the handler and calls quitSafely(). Disconnect will be processed as soon as the current pending message is processed. The call to quitSafely() prevents future messages from being placed on the handler. When disconnect is processed, we remove all pending messages and quit.\n- close(): Forcibly disconnect, for use when we can\u0027t wait, or think the disconnect has timed out. Here we interrupt() the current process, immediately tear down the transport, and quit() the handler.\n\nThe new state machine will always try disconnect() when its told to shut down. If that takes too long, the timeout invokes close(). In a normal happy path, there will be no ongoing downloads and things will disconnect immediately. With a pending download, the next batch will be processed and then a disconnect will happen.\n\nThis seems to work well in my testing.",
+      "parentUuid": "862cb027_0c87f08e",
+      "revId": "5073fa817ff3e84684cd898262ac23a761340865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aa43cc1_c257e775",
