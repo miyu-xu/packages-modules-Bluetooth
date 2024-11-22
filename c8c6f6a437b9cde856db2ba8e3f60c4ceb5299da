@@ -463,6 +463,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "137d94de_f7f174e0",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-22T16:49:34Z",
+      "side": 1,
+      "message": "I agree with the opinion of William,  if we need to mock those class, we need to remove the final but those class should not be create by the application user.",
+      "parentUuid": "92e4d79e_5a851722",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46c1851a_52c3d499",
