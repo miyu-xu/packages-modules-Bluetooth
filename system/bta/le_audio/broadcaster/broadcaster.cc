@@ -1377,6 +1377,14 @@ private:
         }
 
         instance->cancelBroadcastTimers();
+
+        /* In case of double call of resume when broadcast are already in streaming states */
+        if (IsAnyoneStreaming()) {
+          log::debug("broadcast are already streaming");
+          instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
+          return;
+        }
+
         instance->UpdateAudioActiveStateInPublicAnnouncement();
 
         for (auto& broadcast_pair : instance->broadcasts_) {
