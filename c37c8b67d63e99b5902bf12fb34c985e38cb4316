@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a38af96_32f2da81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T00:37:08Z",
+      "side": 1,
+      "message": "Not the first time this happen, I am making aosp/3367713 to prevent that from ever happening again",
+      "revId": "c37c8b67d63e99b5902bf12fb34c985e38cb4316",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
