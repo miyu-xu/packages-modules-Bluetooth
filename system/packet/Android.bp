@@ -81,6 +81,8 @@ cc_test {
         "lib-bt-packets-base",
         "libbluetooth_log",
         "libchrome",
+        "libdoubleconversion",
+        "libevent",
         "libgmock",
     ],
     target: {

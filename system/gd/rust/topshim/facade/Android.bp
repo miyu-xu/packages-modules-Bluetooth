@@ -63,6 +63,7 @@ rust_defaults {
         "libbtif",
         "libbtif-core",
         "libchrome",
+        "libdoubleconversion",
         "libevent",
         "libflatbuffers-cpp",
         "libg722codec",
