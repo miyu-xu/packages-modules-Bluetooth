@@ -487,7 +487,7 @@ std::ostream& operator<<(std::ostream& os, const BroadcastConfiguration&) { retu
 namespace {
 
 bluetooth::common::MessageLoopThread message_loop_thread("test message loop");
-static base::MessageLoop* message_loop_;
+static btbase::AbstractMessageLoop* message_loop_;
 
 static void init_message_loop_thread() {
   message_loop_thread.StartUp();
