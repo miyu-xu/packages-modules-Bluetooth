@@ -69,6 +69,24 @@
       "parentUuid": "1529ca87_b374049e",
       "revId": "a74bf6631c911028750f267ce5a36150e6ef7b6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2abe8289_7b5c1268",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-22T22:36:35Z",
+      "side": 1,
+      "message": "LGTM. Please just update the javadoc to explain that BLUETOOTH_CONNECT is always required and pre-whatever-api-version this is shipping in, it also required BLUETOOTH_PRIVILEGED.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothA2dp.java;l\u003d775?q\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main%20requirespermission%20conditional%20bluetooth is a similar example.",
+      "parentUuid": "6a824643_45382b7e",
+      "revId": "a74bf6631c911028750f267ce5a36150e6ef7b6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
