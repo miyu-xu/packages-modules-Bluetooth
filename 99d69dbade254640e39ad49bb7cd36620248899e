@@ -69,6 +69,47 @@
       "parentUuid": "18389711_80cdab22",
       "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa28a251_30b774cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-22T02:38:56Z",
+      "side": 1,
+      "message": "Requesting permissions that we don\u0027t actually need will cause a build break.\n\npackages/modules/Bluetooth/framework/java/android/bluetooth/le/AdvertisingSetParameters.java:649: error: [AndroidFrameworkRequiresPermission] Method setPeerAddressType() annotated {allOf\u003d[android.permission.BLUE\nTOOTH_ADVERTISE, android.permission.BLUETOOTH_PRIVILEGED]} but too wide; only invokes methods requiring [none]\n        public @NonNull Builder setPeerAddressType(@AddressType int peerAddressType) {",
+      "parentUuid": "e517c58c_e08c49a2",
+      "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6566bb96_aa90f261",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 20
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-22T02:38:56Z",
+      "side": 1,
+      "message": "error[E0369]: binary operation `\u003d\u003d` cannot be applied to type `LeDiscMode`\n   --\u003e system/gd/rust/linux/stack/src/bluetooth_adv.rs:244:44\n    |\n244 |             discoverable: val.discoverable \u003d\u003d LeDiscMode::GeneralDiscoverable,\n    |                           ---------------- ^^ ------------------------------- LeDiscMode\n    |                           |\n    |",
+      "range": {
+        "startLine": 244,
+        "startChar": 12,
+        "endLine": 244,
+        "endChar": 78
+      },
+      "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
