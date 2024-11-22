@@ -16,6 +16,92 @@
       "message": "Adding William to confirm the fix",
       "revId": "7f2b7353d5f7b8ed47fab7acf36d53e8343be7de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf7b0397_ba82fc6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T03:46:18Z",
+      "side": 1,
+      "message": "My default answer on adding synchronized \u0026 lock is \"no we don\u0027t want that\", because it is usually more futur proof to fix the underlying threading issue.\n\nHere it seems like there are some few thing we could do, but at the same time the LOCK already exist and the implementation rely on this...\n\nI don\u0027t like this much but until we fixed the HeadsetStateMachine to be run on the main thread, this CL is the simplest solution",
+      "revId": "7f2b7353d5f7b8ed47fab7acf36d53e8343be7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c9991b4_035aa74e",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T03:46:18Z",
+      "side": 1,
+      "message": "This is calling the Bluetooth framework... but we are already in the bluetooth. We should not need to make a re-entry call to our own process.\n\nBut this is a bit too much of a stretch for this bug so I created http://b/380356012 to track this",
+      "range": {
+        "startLine": 168,
+        "startChar": 24,
+        "endLine": 169,
+        "endChar": 99
+      },
+      "revId": "7f2b7353d5f7b8ed47fab7acf36d53e8343be7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ed8a725_a6b8f6ee",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T03:46:18Z",
+      "side": 1,
+      "message": "This should not be a random executor, but it should be the same one as we are registering the callback to telecom",
+      "range": {
+        "startLine": 178,
+        "startChar": 44,
+        "endLine": 178,
+        "endChar": 53
+      },
+      "revId": "7f2b7353d5f7b8ed47fab7acf36d53e8343be7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f43b5f1_974dd638",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T03:46:18Z",
+      "side": 1,
+      "message": "We should pass an handler in parameter here, that way, calls coming from `onDetailsChanged` would be on the correct handler",
+      "range": {
+        "startLine": 636,
+        "startChar": 0,
+        "endLine": 636,
+        "endChar": 37
+      },
+      "revId": "7f2b7353d5f7b8ed47fab7acf36d53e8343be7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
