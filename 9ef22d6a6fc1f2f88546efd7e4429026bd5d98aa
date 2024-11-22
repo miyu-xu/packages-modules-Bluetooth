@@ -782,6 +782,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cbcd478_b8ecdd83",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-11-22T09:29:31Z",
+      "side": 1,
+      "message": "This implementation was not needed , hence removed it",
+      "parentUuid": "b33da2f1_5e9d665b",
+      "range": {
+        "startLine": 582,
+        "startChar": 1,
+        "endLine": 586,
+        "endChar": 55
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b13e070_f969a0ee",
