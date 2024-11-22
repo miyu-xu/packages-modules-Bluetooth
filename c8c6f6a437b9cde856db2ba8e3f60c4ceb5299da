@@ -447,6 +447,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92e4d79e_5a851722",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T00:51:24Z",
+      "side": 1,
+      "message": "Sorry for jumping in.\n\nHci requirement is a google made up requirement that is not part of the Bluetooth spec. It formalize how the controller should behave.\n\nI think the \"parcelable\" part of these object should not be expose at all, but wrapped as part of an implementation details. Nobody should ever have to create these object, but maybe we could remove the final to allow mocking of it ?\n\nBut all the other object here are already defined like this 😞",
+      "parentUuid": "3261a595_fcc8fcd1",
+      "revId": "c8c6f6a437b9cde856db2ba8e3f60c4ceb5299da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46c1851a_52c3d499",
         "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
         "patchSetId": 21
