@@ -7,6 +7,14 @@ aconfig_declarations {
     name: "bluetooth_aconfig_flags",
     package: "com.android.bluetooth.flags",
     container: "com.android.btservices",
+<<<<<<< HEAD   (8fc56a Remove leaudio_broadcast_feature_support flag)
+||||||| BASE
+    visibility: [
+        "//packages/modules/Bluetooth/framework",
+    ],
+=======
+    visibility: ["//packages/modules/Bluetooth/framework"],
+>>>>>>> CHANGE (453638 Don't leak internal flag to CTS)
     // LINT.IfChange
     srcs: [
         "a2dp.aconfig",
@@ -57,6 +65,7 @@ aconfig_declarations {
 java_aconfig_library {
     name: "bluetooth_flags_java_lib",
     aconfig_declarations: "bluetooth_aconfig_flags",
+<<<<<<< HEAD   (8fc56a Remove leaudio_broadcast_feature_support flag)
     visibility: [
         "//cts/tests/tests/bluetooth:__subpackages__",
         "//packages/modules/Bluetooth/android/app",
@@ -69,6 +78,20 @@ java_aconfig_library {
         "com.android.btservices",
     ],
     libs: ["framework-configinfrastructure"],
+||||||| BASE
+    visibility: [
+        "//cts/tests/tests/bluetooth:__subpackages__",
+        "//packages/modules/Bluetooth:__subpackages__",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    libs: ["framework-configinfrastructure.stubs.module_lib"],
+=======
+    visibility: ["//packages/modules/Bluetooth:__subpackages__"],
+    apex_available: ["com.android.btservices"],
+    libs: ["framework-configinfrastructure.stubs.module_lib"],
+>>>>>>> CHANGE (453638 Don't leak internal flag to CTS)
     sdk_version: "module_current",
     min_sdk_version: "Tiramisu",
 }
@@ -80,6 +103,7 @@ java_aconfig_library {
     min_sdk_version: "VanillaIceCream",
     mode: "exported",
     visibility: [
+        "//cts/tests/tests/bluetooth:__subpackages__",
         "//frameworks/base",
     ],
 }
@@ -88,11 +112,71 @@ cc_aconfig_library {
     name: "bluetooth_flags_c_lib",
     aconfig_declarations: "bluetooth_aconfig_flags",
     host_supported: true,
+<<<<<<< HEAD   (8fc56a Remove leaudio_broadcast_feature_support flag)
     visibility: [
         "//packages/modules/Bluetooth/system:__subpackages__",
     ],
     apex_available: [
         "com.android.btservices",
     ],
+||||||| BASE
+    visibility: [
+        "//packages/modules/Bluetooth:__subpackages__",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+=======
+    visibility: ["//packages/modules/Bluetooth:__subpackages__"],
+    apex_available: ["com.android.btservices"],
+>>>>>>> CHANGE (453638 Don't leak internal flag to CTS)
     min_sdk_version: "Tiramisu",
 }
+<<<<<<< HEAD   (8fc56a Remove leaudio_broadcast_feature_support flag)
+||||||| BASE
+
+cc_aconfig_library {
+    name: "bluetooth_flags_c_lib_for_test",
+    aconfig_declarations: "bluetooth_aconfig_flags",
+    mode: "test",
+    host_supported: true,
+    visibility: [
+        "//packages/modules/Bluetooth/system:__subpackages__",
+    ],
+    min_sdk_version: "Tiramisu",
+}
+
+rust_aconfig_library {
+    name: "libbluetooth_aconfig_flags_rust",
+    host_supported: true,
+    crate_name: "bluetooth_aconfig_flags_rust",
+    aconfig_declarations: "bluetooth_aconfig_flags",
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+    visibility: [
+        "//packages/modules/Bluetooth/system:__subpackages__",
+    ],
+}
+=======
+
+cc_aconfig_library {
+    name: "bluetooth_flags_c_lib_for_test",
+    aconfig_declarations: "bluetooth_aconfig_flags",
+    mode: "test",
+    host_supported: true,
+    visibility: ["//packages/modules/Bluetooth/system:__subpackages__"],
+    min_sdk_version: "Tiramisu",
+}
+
+rust_aconfig_library {
+    name: "libbluetooth_aconfig_flags_rust",
+    host_supported: true,
+    crate_name: "bluetooth_aconfig_flags_rust",
+    aconfig_declarations: "bluetooth_aconfig_flags",
+    apex_available: ["com.android.btservices"],
+    min_sdk_version: "Tiramisu",
+    visibility: ["//packages/modules/Bluetooth/system:__subpackages__"],
+}
+>>>>>>> CHANGE (453638 Don't leak internal flag to CTS)
