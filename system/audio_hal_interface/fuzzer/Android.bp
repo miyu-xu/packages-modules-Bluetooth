@@ -85,6 +85,7 @@ cc_defaults {
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
+        "libdoubleconversion",
         "libevent",
         "libexpresslog",
         "libflags_rust_cpp_bridge",
