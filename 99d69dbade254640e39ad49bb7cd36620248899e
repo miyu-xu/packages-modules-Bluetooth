@@ -51,6 +51,24 @@
       "parentUuid": "c9f62169_a57781ad",
       "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e517c58c_e08c49a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-22T00:19:20Z",
+      "side": 1,
+      "message": "The new APIs are added in AdvertisingSetParameters.java which use to build parameters for BLE advertising.\n\nTo start a BLE advertising, the app requires BLUETOOTH_ADVERTISE, BLUETOOTH_PRIVILEGED to use it with startAdvertisingSet()\n\nThanks!",
+      "parentUuid": "18389711_80cdab22",
+      "revId": "99d69dbade254640e39ad49bb7cd36620248899e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
