@@ -40,6 +40,30 @@
       ],
       "revId": "aefc774a596d8c32ab0a69cfbad67ac3f3d8ee11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa1fea7f_e97a903f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-22T03:17:25Z",
+      "side": 1,
+      "message": "I thought since `BLE_ADDR_PUBLIC` is `0x00`, `BLE_ADDR_RANDOM` is `0x01`, which maps numerically to  `ADDRESS_TYPE_PUBLIC \u003d 0` and `ADDRESS_TYPE_RANDOM \u003d 1` it wouldn\u0027t be necessary but I\u0027ve updated with a new setter to differentiate when a value comes from native. PTAL. Thank you.",
+      "parentUuid": "341e1d8c_8cc05ace",
+      "range": {
+        "startLine": 1208,
+        "startChar": 48,
+        "endLine": 1208,
+        "endChar": 67
+      },
+      "revId": "aefc774a596d8c32ab0a69cfbad67ac3f3d8ee11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
