@@ -1077,7 +1077,7 @@ static bool is_legal_tx_data_len(const uint16_t& tx_data_len) {
 }
 
 void l2cble_process_data_length_change_event(uint16_t handle, uint16_t tx_data_len,
-                                             uint16_t /* rx_data_len */) {
+                                             uint16_t rx_data_len) {
   tL2C_LCB* p_lcb = l2cu_find_lcb_by_handle(handle);
   if (p_lcb == nullptr) {
     log::warn("Received data length change event for unknown ACL handle:0x{:04x}", handle);
@@ -1106,6 +1106,7 @@ void l2cble_process_data_length_change_event(uint16_t handle, uint16_t tx_data_l
             p_lcb->remote_bd_addr, tx_data_len);
   }
   /* ignore rx_data len for now */
+  GetInterfaceToProfiles()->events->invoke_le_data_length_changed_cb(handle, tx_data_len, rx_data_len);
 }
 
 /*******************************************************************************

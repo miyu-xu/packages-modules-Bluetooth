@@ -137,6 +137,7 @@ public final class BluetoothSocket implements Closeable {
     private final BluetoothInputStream mInputStream;
     private final BluetoothOutputStream mOutputStream;
     private final ParcelUuid mUuid;
+    private final boolean mOffload;
 
     /** when true no SPP SDP record will be created */
     private boolean mExcludeSdp = false;
@@ -210,6 +211,30 @@ public final class BluetoothSocket implements Closeable {
      * @param device remote device that this socket can connect to
      * @param port remote port
      * @param uuid SDP uuid
+     * @param offload require the connection to be offloaded
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    /*package*/ BluetoothSocket(
+            int type,
+            boolean auth,
+            boolean encrypt,
+            BluetoothDevice device,
+            int port,
+            ParcelUuid uuid,
+            boolean offload)
+            throws IOException {
+        this(type, auth, encrypt, device, port, uuid, false, false, offload);
+    }
+
+    /**
+     * Construct a BluetoothSocket.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param device remote device that this socket can connect to
+     * @param port remote port
+     * @param uuid SDP uuid
      * @param mitm enforce person-in-the-middle protection.
      * @param min16DigitPin enforce a minimum length of 16 digits for a sec mode 2 connection
      * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
@@ -223,6 +248,34 @@ public final class BluetoothSocket implements Closeable {
             ParcelUuid uuid,
             boolean mitm,
             boolean min16DigitPin)
+            throws IOException {
+                this(type, auth, encrypt, device, port, uuid, mitm, min16DigitPin, false);
+    }
+
+    /**
+     * Construct a BluetoothSocket.
+     *
+     * @param type type of socket
+     * @param auth require the remote device to be authenticated
+     * @param encrypt require the connection to be encrypted
+     * @param device remote device that this socket can connect to
+     * @param port remote port
+     * @param uuid SDP uuid
+     * @param mitm enforce person-in-the-middle protection.
+     * @param min16DigitPin enforce a minimum length of 16 digits for a sec mode 2 connection
+     * @param offload require the connection to be offloaded
+     * @throws IOException On error, for example Bluetooth not available, or insufficient privileges
+     */
+    /*package*/ BluetoothSocket(
+            int type,
+            boolean auth,
+            boolean encrypt,
+            BluetoothDevice device,
+            int port,
+            ParcelUuid uuid,
+            boolean mitm,
+            boolean min16DigitPin,
+            boolean offload)
             throws IOException {
         if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
         mSocketCreationTimeNanos = System.nanoTime();
@@ -245,6 +298,7 @@ public final class BluetoothSocket implements Closeable {
         mEncrypt = encrypt;
         mDevice = device;
         mPort = port;
+        mOffload = offload;
 
         mSocketState = SocketState.INIT;
 
@@ -306,6 +360,7 @@ public final class BluetoothSocket implements Closeable {
         mMin16DigitPin = s.mMin16DigitPin;
         mSocketCreationTimeNanos = s.mSocketCreationTimeNanos;
         mSocketCreationLatencyNanos = s.mSocketCreationLatencyNanos;
+        mOffload = s.mOffload;
     }
 
     private BluetoothSocket acceptSocket(String remoteAddr) throws IOException {
@@ -453,7 +508,7 @@ public final class BluetoothSocket implements Closeable {
             if (socketManager == null) {
                 throw new BluetoothSocketException(BluetoothSocketException.SOCKET_MANAGER_FAILURE);
             }
-            mPfd = socketManager.connectSocket(mDevice, mType, mUuid, mPort, getSecurityFlags());
+            mPfd = socketManager.connectSocket(mDevice, mType, mUuid, mPort, getSecurityFlags(), mOffload);
             synchronized (this) {
                 Log.i(TAG, "connect(), SocketState: " + mSocketState + ", mPfd: " + mPfd);
                 if (mSocketState == SocketState.CLOSED) {
@@ -544,7 +599,7 @@ public final class BluetoothSocket implements Closeable {
             }
             mPfd =
                     socketManager.createSocketChannel(
-                            mType, mServiceName, mUuid, mPort, getSecurityFlags());
+                            mType, mServiceName, mUuid, mPort, getSecurityFlags(), mOffload);
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             return -1;

@@ -314,3 +314,20 @@ bool BTM_PM_DeviceInScanState(void);
  *
  ******************************************************************************/
 uint32_t BTM_PM_ReadBleScanDutyCycle(void);
+
+/*******************************************************************************
+ *
+ *  Function        BTM_PM_GetAclHandle
+ *
+ *  Description     Given a address, |remote_bda|, this function
+ *                  returns the bound ACL handle, |acl_handle|. If |acl_handle|
+ *                  is not known or is invalid, this function returns false and
+ *                  does not modify the value pointed at by |acl_handle|.
+ *
+ *  Parameters:     bd_addr: remote address
+ *                  acl_handle: Pointer to ACL handle must NOT be nullptr
+ *
+ *  Return value:   true if acl_handle lookup was successful
+ *
+ ******************************************************************************/
+bool BTM_PM_GetAclHandle(const RawAddress& remote_bda, uint16_t* acl_handle);

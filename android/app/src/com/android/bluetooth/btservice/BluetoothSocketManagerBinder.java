@@ -28,6 +28,10 @@ import android.util.Log;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.flags.Flags;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
     private static final String TAG = "BtSocketManagerBinder";
 
@@ -35,19 +39,37 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
 
     private static final int INVALID_CID = -1;
 
+    static final int SOCKET_CONNECTION_STATE_LISTENING = 1;
+    static final int SOCKET_CONNECTION_STATE_CONNECTING = 2;
+    static final int SOCKET_CONNECTION_STATE_CONNECTED = 3;
+    static final int SOCKET_CONNECTION_STATE_DISCONNECTING = 4;
+    static final int SOCKET_CONNECTION_STATE_DISCONNECTED = 5;
+    static final int SOCKET_ROLE_LISTEN = 1;
+    static final int SOCKET_ROLE_CONNECTION = 2;
+    static final int CLASSIC_POWER_MODE_ACTIVE = 0;
+    static final int CLASSIC_POWER_MODE_SNIFF = 2;
+
+    static int sClientRegistrationId = 0;
+    static int sServerRegistrationId = 0;
+
     private AdapterService mService;
+    private List<SocketProperties> mClientSocketProperties;
+    private List<SocketProperties> mServerSocketProperties;
 
     BluetoothSocketManagerBinder(AdapterService service) {
         mService = service;
+        mSocketProperties = new ArrayList<>();
     }
 
     void cleanUp() {
         mService = null;
+        sClientRegistrationId = 0;
+        sServerRegistrationId = 0;
     }
 
     @Override
     public ParcelFileDescriptor connectSocket(
-            BluetoothDevice device, int type, ParcelUuid uuid, int port, int flag) {
+            BluetoothDevice device, int type, ParcelUuid uuid, int port, int flag, boolean offload) {
 
         enforceActiveUser();
 
@@ -59,6 +81,12 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                 Flags.identityAddressNullIfUnknown()
                         ? Utils.getBrEdrAddress(device)
                         : mService.getIdentityAddress(device.getAddress());
+        int regId = --sClientRegistrationId;
+        int appUid = Binder.getCallingUid();
+
+        OffloadInfo offloadInfo = offload ? new OffloadInfo() : null;
+        mClientSocketProperties.add(new SocketProperties(
+            regId, SOCKET_ROLE_CONNECTION, SOCKET_CONNECTION_STATE_CONNECTING, offloadInfo));
 
         Log.i(
                 TAG,
@@ -70,6 +98,10 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", regId="
+                        + regId
+                        + ", offload="
+                        + offload
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -84,19 +116,25 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                appUid,
+                                regId,
+                                offload));
     }
 
     @Override
     public ParcelFileDescriptor createSocketChannel(
-            int type, String serviceName, ParcelUuid uuid, int port, int flag) {
+            int type, String serviceName, ParcelUuid uuid, int port, int flag, boolean offload) {
 
         enforceActiveUser();
 
         if (!Utils.checkConnectPermissionForPreflight(mService)) {
             return null;
         }
-
+        int regId = ++sServerRegistrationId;
+        int appUid = Binder.getCallingUid();
+        OffloadInfo offloadInfo = offload ? new OffloadInfo() : null;
+        mServerSocketProperties.add(new SocketProperties(
+            regId, SOCKET_ROLE_CONNECTION, SOCKET_CONNECTION_STATE_LISTENING, offloadInfo));
         Log.i(
                 TAG,
                 "createSocketChannel: type="
@@ -107,6 +145,10 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                         + uuid
                         + ", port="
                         + port
+                        + ", regId="
+                        + regId
+                        + ", offload="
+                        + offload
                         + ", from "
                         + Utils.getUidPidString());
 
@@ -118,7 +160,9 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                                 Utils.uuidToByteArray(uuid),
                                 port,
                                 flag,
-                                Binder.getCallingUid()));
+                                appUid,
+                                regId,
+                                offload));
     }
 
     @Override
@@ -159,6 +203,142 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
         }
         Utils.enforceBluetoothPrivilegedPermission(service);
         return service.getNative().getSocketL2capRemoteChannelId(connectionUuid);
+    }
+
+    void socketStateChangeCallback(int regId, UUID connUuid, int status, int role, int state,
+                                    int protocol, int channel, int txMtu, int localMps, int remoteMps,
+                                    int localCredit, int remoteCredit,
+                                    int localCid, int remoteCid, int aclHandle, boolean offload) {
+        Log.v(TAG,
+                "socketStateChangeCallback: regId="
+                    + regId
+                    + ", connUuid="
+                    + connUuid
+                    + ", status="
+                    + status
+                    + ", role="
+                    + role
+                    + ", state="
+                    + state
+                    + ", protocol="
+                    + protocol
+                    + ", channel="
+                    + channel
+                    + ", txMtu="
+                    + txMtu
+                    + ", localMps="
+                    + localMps
+                    + ", remoteMps="
+                    + remoteMps
+                    + ", localCredit="
+                    + localCredit
+                    + ", remoteCredit="
+                    + remoteCredit
+                    + ", localCid="
+                    + String.format("0x%04x", localCid)
+                    + ", remoteCid="
+                    + String.format("0x%04x", remoteCid)
+                    + ", aclHandle="
+                    + String.format("0x%04x", aclHandle)
+                    + ", offload="
+                    + offload
+        );
+
+        if (state == SOCKET_CONNECTION_STATE_CONNECTED && status != 0) {
+            Log.w(TAG, "Socket connection state was not successful: status " + status);
+            return;
+        }
+        switch (state) {
+            case SOCKET_CONNECTION_STATE_CONNECTED:
+                Log.d(TAG, "Callback socket connected: regId " + regId + " connUuid " + connUuid);
+                break;
+            case SOCKET_CONNECTION_STATE_DISCONNECTED:
+                Log.d(TAG, "Callback socket disconnected: regId " + regId + " connUuid " + connUuid);
+                break;
+            default:
+                Log.w(TAG, "Unknown socket connection state " + state);
+                break;
+        }
+    }
+
+    SocketProperties getSocketProperties(List<SocketProperties> socketProperties, int regId) {
+        for (SocketProperties prop : socketProperties) {
+            if (prop.mRegId == regId) {
+                return prop;
+            }
+        }
+        return null;
+    }
+
+    SocketProperties getSocketProperties(List<SocketProperties> socketProperties, int regId, UUID uuid) {
+        for (SocketProperties prop : socketProperties) {
+            if (prop.mRegId == regId && prop.mConnUuid == uuid) {
+                return prop;
+            }
+        }
+        return null;
+    }
+
+    void leDataLengthChangeCallback(int handle, int txDataLen, int rxDataLen) {
+        Log.d(TAG, "leDataLengthChangeCallback: handle="
+                    + String.format("0x%04x", handle)
+                    + ", txDataLen="
+                    + txDataLen
+                    + ", rxDataLen="
+                    + rxDataLen
+        );
+    }
+
+    void classicPmChangeCallback(int handle, int mode, int interval) {
+        Log.d(TAG, "classicPmChangeCallback: handle="
+                    + String.format("0x%04x", handle)
+                    + ", mode="
+                    + (mode == CLASSIC_POWER_MODE_ACTIVE ? "active" : "sniff" )
+                    + ", interval="
+                    + interval
+        );
+    }
+  
+    static class SocketProperties {
+        int mRegId;
+        UUID mConnUuid;
+        int mRole;
+        int mState;
+        int mProtocol;
+        int mChannel;
+        int mTxMtu;
+        int mLocalMps;
+        int mRemoteMps;
+        int mLocalCredit;
+        int mRemoteCredit;
+        int mLocalCid;
+        int mRemoteCid;
+        int mAclHandle;
+        OffloadInfo mOffloadInfo;
+
+        SocketProperties(int regId, int role, int state, OffloadInfo offloadInfo) {
+            mRegId = regId;
+            mRole = role;
+            mState = state;
+            mOffloadInfo = offloadInfo;
+        }
+    }
+
+    static class SocketAppInfo {
+        int mRegId;
+        int mAppUid;
+        boolean mOffload;
+
+        SocketAppInfo(int regId, int appUid, boolean offload) {
+            mRegId = regId;
+            mAppUid = appUid;
+            mOffload = offload;
+        }
+    }
+
+    static class OffloadInfo {
+        int mEndPointId;
+        int mHubId;
     }
 
     private void enforceActiveUser() {

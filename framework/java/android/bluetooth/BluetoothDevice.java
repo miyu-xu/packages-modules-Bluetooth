@@ -2968,7 +2968,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         }
 
         return new BluetoothSocket(
-                BluetoothSocket.TYPE_RFCOMM, true, true, this, -1, new ParcelUuid(uuid));
+                BluetoothSocket.TYPE_RFCOMM, true, true, this, -1, new ParcelUuid(uuid), false, false, true);
     }
 
     /**
@@ -3010,7 +3010,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             throw new IOException();
         }
         return new BluetoothSocket(
-                BluetoothSocket.TYPE_RFCOMM, false, false, this, -1, new ParcelUuid(uuid));
+                BluetoothSocket.TYPE_RFCOMM, false, false, this, -1, new ParcelUuid(uuid), false, false, true);
     }
 
     /**
@@ -3271,7 +3271,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             throw new IOException();
         }
         if (DBG) Log.d(TAG, "createL2capChannel: psm=" + psm);
-        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, true, true, this, psm, null);
+        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, true, true, this, psm, null, false, false, true);
     }
 
     /**
@@ -3307,7 +3307,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         if (DBG) {
             Log.d(TAG, "createInsecureL2capChannel: psm=" + psm);
         }
-        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, false, false, this, psm, null);
+        return new BluetoothSocket(BluetoothSocket.TYPE_L2CAP_LE, false, false, this, psm, null, false, false, true);
     }
 
     /**

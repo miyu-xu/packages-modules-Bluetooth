@@ -1084,6 +1084,10 @@ static void bta_dm_pm_btm_status(const RawAddress& bd_addr, tBTM_PM_STATUS statu
          * mode if needed */
         bta_dm_pm_stop_timer(bd_addr);
         bta_dm_pm_set_mode(bd_addr, BTA_DM_PM_NO_ACTION, BTA_DM_PM_RESTART);
+        uint16_t acl_handle;
+        if (BTM_PM_GetAclHandle(bd_addr, &acl_handle)) {
+          GetInterfaceToProfiles()->events->invoke_classic_pm_changed_cb(acl_handle, BTM_PM_MD_ACTIVE, interval);
+        }
       }
       break;
 
@@ -1118,6 +1122,10 @@ static void bta_dm_pm_btm_status(const RawAddress& bd_addr, tBTM_PM_STATUS statu
          * in sniff mode from host side.
          */
         bta_dm_pm_stop_timer(bd_addr);
+        uint16_t acl_handle;
+        if (BTM_PM_GetAclHandle(bd_addr, &acl_handle)) {
+          GetInterfaceToProfiles()->events->invoke_classic_pm_changed_cb(acl_handle, BTM_PM_MD_SNIFF, interval);
+        }
       } else {
         bool is_sniff_command_sent = p_dev->is_sniff_command_sent();
         p_dev->reset_sniff_flags();

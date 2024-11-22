@@ -915,6 +915,34 @@ uint32_t BTM_PM_ReadBleScanDutyCycle(void) {
   return (scan_window * 100) / scan_interval;
 }
 
+/*******************************************************************************
+ *
+ *  Function        BTM_PM_GetAclHandle
+ *
+ *  Description     Given a address, |bd_addr|, this function
+ *                  returns the bound ACL handle, |acl_handle|. If |acl_handle|
+ *                  is not known or is invalid, this function returns false and
+ *                  does not modify the value pointed at by |acl_handle|.
+ *
+ *  Parameters:     bd_addr: remote address
+ *                  acl_handle: Pointer to ACL handle must NOT be nullptr
+ *
+ *  Return value:   true if acl_handle lookup was successful
+ *
+ ******************************************************************************/
+bool BTM_PM_GetAclHandle(const RawAddress& remote_bda, uint16_t* acl_handle) {
+  log::assert_that(acl_handle != nullptr, "assert failed: acl_handle != nullptr");
+
+  // per ACL link
+  auto* p_cb = btm_pm_get_power_manager_from_address(remote_bda);
+  if (p_cb == nullptr) {
+    log::warn("Unable to find power manager for peer: {}", remote_bda);
+    return false;
+  }
+  *acl_handle = p_cb->handle_;
+  return true;
+}
+
 void btm_pm_on_mode_change(tHCI_STATUS status, uint16_t handle, tHCI_MODE current_mode,
                            uint16_t interval) {
   btm_sco_chk_pend_unpark(status, handle);

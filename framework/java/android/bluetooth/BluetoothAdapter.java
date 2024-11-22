@@ -3106,7 +3106,7 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public BluetoothServerSocket listenUsingRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
-        return createNewRfcommSocketAndRecord(name, uuid, true, true);
+        return createNewRfcommSocketAndRecord(name, uuid, true, true, true);
     }
 
     /**
@@ -3293,7 +3293,7 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public BluetoothServerSocket listenUsingInsecureRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
-        return createNewRfcommSocketAndRecord(name, uuid, false, false);
+        return createNewRfcommSocketAndRecord(name, uuid, false, false, true);
     }
 
     /**
@@ -3338,17 +3338,17 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public BluetoothServerSocket listenUsingEncryptedRfcommWithServiceRecord(String name, UUID uuid)
             throws IOException {
-        return createNewRfcommSocketAndRecord(name, uuid, false, true);
+        return createNewRfcommSocketAndRecord(name, uuid, false, true, false);
     }
 
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private BluetoothServerSocket createNewRfcommSocketAndRecord(
-            String name, UUID uuid, boolean auth, boolean encrypt) throws IOException {
+            String name, UUID uuid, boolean auth, boolean encrypt, boolean offload) throws IOException {
         BluetoothServerSocket socket;
         socket =
                 new BluetoothServerSocket(
-                        BluetoothSocket.TYPE_RFCOMM, auth, encrypt, new ParcelUuid(uuid));
+                        BluetoothSocket.TYPE_RFCOMM, auth, encrypt, new ParcelUuid(uuid), offload);
         socket.setServiceName(name);
         int errno = socket.mSocket.bindListen();
         if (errno != 0) {
@@ -4378,7 +4378,8 @@ public final class BluetoothAdapter {
                         true,
                         SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
                         false,
-                        false);
+                        false,
+                        true);
         int errno = socket.mSocket.bindListen();
         if (errno != 0) {
             throw new IOException("Error: " + errno);
@@ -4434,7 +4435,8 @@ public final class BluetoothAdapter {
                         false,
                         SOCKET_CHANNEL_AUTO_STATIC_NO_SDP,
                         false,
-                        false);
+                        false,
+                        true);
         int errno = socket.mSocket.bindListen();
         if (errno != 0) {
             throw new IOException("Error: " + errno);

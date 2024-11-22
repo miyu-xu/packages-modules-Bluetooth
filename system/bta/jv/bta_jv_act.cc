@@ -959,11 +959,20 @@ static void bta_jv_l2cap_client_cback(uint16_t gap_handle, uint16_t event, tGAP_
   switch (event) {
     case GAP_EVT_CONN_OPENED:
       evt_data.l2c_open.rem_bda = *GAP_ConnGetRemoteAddr(gap_handle);
-      evt_data.l2c_open.tx_mtu = GAP_ConnGetRemMtuSize(gap_handle);
-      if (data != nullptr) {
-        evt_data.l2c_open.local_cid = data->l2cap_cids.local_cid;
-        evt_data.l2c_open.remote_cid = data->l2cap_cids.remote_cid;
+      uint16_t remote_mtu, locap_mps, remote_mps, local_credit, remote_credit;
+      uint16_t local_cid, remote_cid, acl_handle;
+      if (GAP_GetChannelInfo(gap_handle, &locap_mps, &remote_mps, &remote_mtu, &local_credit, &remote_credit, &local_cid,
+                          &remote_cid, &acl_handle) != PORT_SUCCESS) {
+        log::warn("Unable to get GAP channel info handle:{}", gap_handle);
       }
+      evt_data.l2c_open.tx_mtu = remote_mtu;
+      evt_data.l2c_open.local_coc_mps = locap_mps;
+      evt_data.l2c_open.remote_coc_mps = remote_mps;
+      evt_data.l2c_open.local_coc_credit = local_credit;
+      evt_data.l2c_open.remote_coc_credit = remote_credit;
+      evt_data.l2c_open.local_cid = local_cid;
+      evt_data.l2c_open.remote_cid = remote_cid;
+      evt_data.l2c_open.acl_handle = acl_handle;
       p_cb->state = BTA_JV_ST_CL_OPEN;
       p_cb->p_cback(BTA_JV_L2CAP_OPEN_EVT, &evt_data, p_cb->l2cap_socket_id);
       break;
@@ -1366,7 +1375,11 @@ static void bta_jv_port_mgmt_cl_cback(const tPORT_RESULT code, uint16_t port_han
   if (PORT_CheckConnection(port_handle, &rem_bda, &lcid) != PORT_SUCCESS) {
     log::warn("Unable to check RFCOMM connection peer:{} handle:{}", rem_bda, port_handle);
   }
-
+  uint16_t remote_mtu, local_credit, remote_credit, local_cid, remote_cid, acl_handle;
+  if (PORT_GetChannelInfo(port_handle, &remote_mtu, &local_credit, &remote_credit, &local_cid,
+                          &remote_cid, &acl_handle) != PORT_SUCCESS) {
+    log::warn("Unable to get RFCOMM channel info peer:{} handle:{}", rem_bda, port_handle);
+  }
   if (code == PORT_SUCCESS) {
     tBTA_JV evt_data = {
             .rfc_open =
@@ -1374,6 +1387,12 @@ static void bta_jv_port_mgmt_cl_cback(const tPORT_RESULT code, uint16_t port_han
                             .status = tBTA_JV_STATUS::SUCCESS,
                             .handle = p_cb->handle,
                             .rem_bda = rem_bda,
+                            .tx_mtu = remote_mtu,
+                            .local_credit = local_credit,
+                            .remote_credit = remote_credit,
+                            .local_cid = local_cid,
+                            .remote_cid = remote_cid,
+                            .acl_handle = acl_handle,
                     },
     };
     p_pcb->state = BTA_JV_ST_CL_OPEN;
@@ -1583,6 +1602,17 @@ static void bta_jv_port_mgmt_sr_cback(const tPORT_RESULT code, uint16_t port_han
     evt_data.rfc_srv_open.handle = p_pcb->handle;
     evt_data.rfc_srv_open.status = tBTA_JV_STATUS::SUCCESS;
     evt_data.rfc_srv_open.rem_bda = rem_bda;
+    uint16_t remote_mtu, local_credit, remote_credit, local_cid, remote_cid, acl_handle;
+    if (PORT_GetChannelInfo(port_handle, &remote_mtu, &local_credit, &remote_credit, &local_cid,
+                            &remote_cid, &acl_handle) != PORT_SUCCESS) {
+      log::warn("Unable to get RFCOMM channel info peer:{} handle:{}", rem_bda, port_handle);
+    }
+    evt_data.rfc_srv_open.tx_mtu = remote_mtu;
+    evt_data.rfc_srv_open.local_credit = local_credit;
+    evt_data.rfc_srv_open.remote_credit = remote_credit;
+    evt_data.rfc_srv_open.local_cid = local_cid;
+    evt_data.rfc_srv_open.remote_cid = remote_cid;
+    evt_data.rfc_srv_open.acl_handle = acl_handle;
     tBTA_JV_PCB* p_pcb_new_listen = bta_jv_add_rfc_port(p_cb, p_pcb);
     if (p_pcb_new_listen) {
       evt_data.rfc_srv_open.new_listen_handle = p_pcb_new_listen->handle;

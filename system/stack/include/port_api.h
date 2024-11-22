@@ -471,4 +471,25 @@ void RFCOMM_Init(void);
  ******************************************************************************/
 [[nodiscard]] int PORT_GetSecurityMask(uint16_t handle, uint16_t* sec_mask);
 
+/*******************************************************************************
+ *
+ * Function         PORT_GetChannelInfo
+ *
+ * Description      This function is called to get RFCOMM channel information
+ *                  by the handle of the port
+ *
+ * Parameters:      handle        - Handle of the port returned in the Open
+ *                  remote_mtu    - OUT remote RFCOMM MTU
+ *                  local_credit  - OUT local RFCOMM creit
+ *                  remote_credit - OUT remote RFCOMM creit
+ *                  local_cid     - OUT local L2CAP CID
+ *                  remote_cid    - OUT remote L2CAP CID
+ *                  acl_handle    - OUT ACL handle
+ *
+ ******************************************************************************/
+[[nodiscard]] int PORT_GetChannelInfo(uint16_t handle, uint16_t* remote_mtu,
+                                      uint16_t* local_credit, uint16_t* remote_credit,
+                                      uint16_t* local_cid, uint16_t* remote_cid,
+                                      uint16_t* acl_handle);
+
 #endif /* PORT_API_H */

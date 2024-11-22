@@ -361,6 +361,9 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
           .invoke_energy_info_cb = invoke_energy_info_cb,
           .invoke_link_quality_report_cb = invoke_link_quality_report_cb,
           .invoke_key_missing_cb = invoke_key_missing_cb,
+          .invoke_socket_state_changed_cb = invoke_socket_state_changed_cb,
+          .invoke_le_data_length_changed_cb = invoke_le_data_length_changed_cb,
+          .invoke_classic_pm_changed_cb = invoke_classic_pm_changed_cb,
   };
   static bluetooth::core::HACK_ProfileInterface profileInterface{
           // HID
@@ -1520,6 +1523,21 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {
 void invoke_key_missing_cb(RawAddress bd_addr) {
   do_in_jni_thread(base::BindOnce(
           [](RawAddress bd_addr) { HAL_CBACK(bt_hal_cbacks, key_missing_cb, bd_addr); }, bd_addr));
+}
+
+void invoke_socket_state_changed_cb(int reg_id, const bluetooth::Uuid& conn_uuid, bt_status_t status, int role, int state, int protocol, int channel, int tx_mtu, int local_mps, int remote_mps, int local_credit, int remote_credit, int local_cid, int remote_cid, uint16_t acl_handle, bool offload) {
+  do_in_jni_thread(base::BindOnce(
+          [](int reg_id, const bluetooth::Uuid& conn_uuid, bt_status_t status, int role, int state, int protocol, int channel, int tx_mtu, int local_mps, int remote_mps, int local_credit, int remote_credit, int local_cid, int remote_cid, uint16_t acl_handle, bool offload) { HAL_CBACK(bt_hal_cbacks, socket_state_changed_cb, reg_id, conn_uuid, status, role, state, protocol, channel, tx_mtu, local_mps, remote_mps, local_credit, remote_credit, local_cid, remote_cid, acl_handle, offload); }, reg_id, conn_uuid, status, role, state, protocol, channel, tx_mtu, local_mps, remote_mps, local_credit, remote_credit, local_cid, remote_cid, acl_handle, offload));
+}
+
+void invoke_le_data_length_changed_cb(uint16_t handle, uint16_t tx_data_len, uint16_t rx_data_len) {
+  do_in_jni_thread(base::BindOnce(
+          [](uint16_t handle, uint16_t tx_data_len, uint16_t rx_data_len) { HAL_CBACK(bt_hal_cbacks, le_data_length_changed_cb, handle, tx_data_len, rx_data_len); }, handle, tx_data_len, rx_data_len));
+}
+
+void invoke_classic_pm_changed_cb(uint16_t handle, int mode, uint16_t interval) {
+  do_in_jni_thread(base::BindOnce(
+          [](uint16_t handle, int mode, uint16_t interval) { HAL_CBACK(bt_hal_cbacks, classic_pm_changed_cb, handle, mode, interval); }, handle, mode, interval));
 }
 
 namespace bluetooth::testing {

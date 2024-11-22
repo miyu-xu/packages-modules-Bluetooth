@@ -327,6 +327,7 @@ public class AdapterService extends Service {
     private BluetoothQualityReportNativeInterface mBluetoothQualityReportNativeInterface;
     private GattService mGattService;
     private ScanController mScanController;
+    private OffloadAdapter mOffloadAdapter;
 
     private volatile boolean mTestModeEnabled = false;
 
@@ -751,6 +752,8 @@ public class AdapterService extends Service {
 
         mBluetoothSocketManagerBinder = new BluetoothSocketManagerBinder(this);
 
+        mOffloadAdapter = new OffloadAdapter(this);
+
         if (!Flags.fastBindToApp()) {
             setAdapterService(this);
         }
@@ -1006,7 +1009,7 @@ public class AdapterService extends Service {
         Log.d(TAG, "bleOnProcessStart() - Make Bond State Machine");
         mBondStateMachine = BondStateMachine.make(this, mAdapterProperties, mRemoteDevices);
 
-        mNativeInterface.getCallbacks().init(mBondStateMachine, mRemoteDevices);
+        mNativeInterface.getCallbacks().init(mBondStateMachine, mRemoteDevices, mBluetoothSocketManagerBinder);
 
         mBatteryStatsManager.reportBleScanReset();
         BluetoothStatsLog.write_non_chained(
@@ -1050,6 +1053,14 @@ public class AdapterService extends Service {
         } else {
             Log.e(TAG, "Incorrect status " + status + " in stateChangeCallback");
         }
+    }
+
+    OffloadAdapter getOffloadAdapter() {
+        return mOffloadAdapter;
+    }
+
+    void onOffloadAdapterReset() {
+        Log.e(TAG, "Offload Adapter Reset");
     }
 
     void startProfileServices() {

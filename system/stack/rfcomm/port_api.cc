@@ -1150,3 +1150,40 @@ int PORT_GetSecurityMask(uint16_t handle, uint16_t* sec_mask) {
   *sec_mask = p_port->sec_mask;
   return PORT_SUCCESS;
 }
+
+int PORT_GetChannelInfo(uint16_t handle, uint16_t* remote_mtu,
+                                      uint16_t* local_credit, uint16_t* remote_credit,
+                                      uint16_t* local_cid, uint16_t* remote_cid,
+                                      uint16_t* acl_handle) {
+  log::verbose("PORT_GetChannelInfo() handle:{}", handle);
+
+  tPORT* p_port = get_port_from_handle(handle);
+  if (p_port == nullptr) {
+    log::error("Unable to get RFCOMM port control block bad handle:{}", handle);
+    return PORT_BAD_HANDLE;
+  }
+
+  if (!p_port->in_use || (p_port->state == PORT_CONNECTION_STATE_CLOSED)) {
+    return PORT_NOT_OPENED;
+  }
+
+  if (p_port->line_status) {
+    return PORT_LINE_ERR;
+  }
+
+  uint16_t rcid, ahandle;
+  if (!L2CA_GetRemoteChannelId(p_port->rfc.p_mcb->lcid, &rcid)) {
+    return PORT_PEER_FAILED;
+  }
+
+  if (!L2CA_GetAclHandle(p_port->rfc.p_mcb->lcid, &ahandle)) {
+    return PORT_PEER_FAILED;
+  }
+  *remote_mtu = p_port->peer_mtu;
+  *local_credit = p_port->credit_rx;
+  *remote_credit = p_port->credit_tx;
+  *local_cid = p_port->rfc.p_mcb->lcid;
+  *remote_cid = rcid;
+  *acl_handle = ahandle;
+  return PORT_SUCCESS;
+}

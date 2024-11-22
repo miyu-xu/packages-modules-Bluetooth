@@ -55,6 +55,12 @@ struct EventCallbacks {
                                         int retransmission_count, int packets_not_receive_count,
                                         int negative_acknowledgement_count);
   void (*invoke_key_missing_cb)(RawAddress bd_addr);
+  void (*invoke_socket_state_changed_cb)(int reg_id, const bluetooth::Uuid& conn_uuid, bt_status_t status, int role,
+                                         int state, int protocol, int channel, int tx_mtu, int local_mps,
+                                         int remote_mps, int local_credit, int remote_credit,
+                                         int local_cid, int remote_cid, uint16_t acl_handle, bool offload);
+  void (*invoke_le_data_length_changed_cb)(uint16_t handle, uint16_t tx_data_len, uint16_t rx_data_len);
+  void (*invoke_classic_pm_changed_cb)(uint16_t handle, int mode, uint16_t interval);
 
   EventCallbacks& operator=(const EventCallbacks&) = delete;
 };

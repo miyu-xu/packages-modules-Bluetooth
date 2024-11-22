@@ -255,12 +255,17 @@ typedef struct {
 
 /* data associated with BTA_JV_L2CAP_OPEN_EVT */
 typedef struct {
-  tBTA_JV_STATUS status; /* Whether the operation succeeded or failed. */
-  uint32_t handle;       /* The connection handle */
-  RawAddress rem_bda;    /* The peer address */
-  int32_t tx_mtu;        /* The transmit MTU */
-  uint16_t local_cid;    /* The local CID */
-  uint16_t remote_cid;   /* The remote CID */
+  tBTA_JV_STATUS status;      /* Whether the operation succeeded or failed. */
+  uint32_t handle;            /* The connection handle */
+  RawAddress rem_bda;         /* The peer address */
+  int32_t tx_mtu;             /* The transmit (remote) L2CAP MTU */
+  uint16_t local_coc_mps;     /* The local COC MPS */
+  uint16_t remote_coc_mps;    /* The remote COC MPS */
+  uint16_t local_coc_credit;  /* The local COC credit */
+  uint16_t remote_coc_credit; /* The remote COC credit */
+  uint16_t local_cid;         /* The local CID */
+  uint16_t remote_cid;        /* The remote CID */
+  uint16_t acl_handle;        /* The ACL handle */
 } tBTA_JV_L2CAP_OPEN;
 
 /* data associated with BTA_JV_L2CAP_OPEN_EVT for LE sockets */
@@ -326,9 +331,15 @@ typedef struct {
 
 /* data associated with BTA_JV_RFCOMM_OPEN_EVT */
 typedef struct {
-  tBTA_JV_STATUS status; /* Whether the operation succeeded or failed. */
-  uint32_t handle;       /* The connection handle */
-  RawAddress rem_bda;    /* The peer address */
+  tBTA_JV_STATUS status;  /* Whether the operation succeeded or failed. */
+  uint32_t handle;        /* The connection handle */
+  RawAddress rem_bda;     /* The peer address */
+  uint16_t tx_mtu;        /* The transmit (remote) RFCOMM MTU */
+  uint16_t local_credit;  /* The local RFCOMM credit */
+  uint16_t remote_credit; /* The local RFCOMM credit */
+  uint16_t local_cid;     /* The local CID */
+  uint16_t remote_cid;    /* The remote CID */
+  uint16_t acl_handle;    /* The ACL handle */
 } tBTA_JV_RFCOMM_OPEN;
 /* data associated with BTA_JV_RFCOMM_SRV_OPEN_EVT */
 typedef struct {
@@ -336,6 +347,12 @@ typedef struct {
   uint32_t handle;            /* The connection handle */
   uint32_t new_listen_handle; /* The new listen handle */
   RawAddress rem_bda;         /* The peer address */
+  uint16_t tx_mtu;            /* The transmit (remote) RFCOMM MTU */
+  uint16_t local_credit;      /* The local RFCOMM credit */
+  uint16_t remote_credit;     /* The local RFCOMM credit */
+  uint16_t local_cid;         /* The local CID */
+  uint16_t remote_cid;        /* The remote CID */
+  uint16_t acl_handle;        /* The ACL handle */
 } tBTA_JV_RFCOMM_SRV_OPEN;
 
 /* data associated with BTA_JV_RFCOMM_CLOSE_EVT */
