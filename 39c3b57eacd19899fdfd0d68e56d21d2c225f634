@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21aaf163_f84f6e7f",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-22T13:50:50Z",
+      "side": 1,
+      "message": "What is this logic meaning ?\nWhen you have a config that requires 2 devices, but just one is avaliable we would not configure it ?",
+      "range": {
+        "startLine": 1755,
+        "startChar": 0,
+        "endLine": 1757,
+        "endChar": 5
+      },
+      "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
