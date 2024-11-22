@@ -22,6 +22,30 @@
       },
       "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff01e7c9_7d3f6ecd",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-22T14:28:00Z",
+      "side": 1,
+      "message": "The `required_device_cnt` here is the return value of `NumOfAvailableForDirection(direction)` (line 1748).\nThis simply checks if there\u0027s any device available for a stream. If not, the `ConfigureAses` procedure cannot be performed (failed).\n\n\nI could move this check up, so that:\n```\n    auto const max_required_device_cnt \u003d NumOfAvailableForDirection(direction);\n    if (max_required_device_cnt \u003d\u003d 0) {\n        log::error(\"No device available for {}\", direction_str);\n    }\n```",
+      "parentUuid": "21aaf163_f84f6e7f",
+      "range": {
+        "startLine": 1755,
+        "startChar": 0,
+        "endLine": 1757,
+        "endChar": 5
+      },
+      "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
