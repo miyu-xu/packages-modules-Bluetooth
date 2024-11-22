@@ -22,6 +22,30 @@
       },
       "revId": "f547af684473170e1b1ddd5910bc49103d5fa50c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0b090b8_1e7f323b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T21:57:32Z",
+      "side": 0,
+      "message": "Maybe, but this should not be done in this CL imo as we would introduce a behavior change",
+      "parentUuid": "b72d0af6_86e55a86",
+      "range": {
+        "startLine": 713,
+        "startChar": 50,
+        "endLine": 713,
+        "endChar": 78
+      },
+      "revId": "f547af684473170e1b1ddd5910bc49103d5fa50c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
