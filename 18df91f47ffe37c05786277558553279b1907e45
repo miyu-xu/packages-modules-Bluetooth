@@ -70,6 +70,30 @@
       },
       "revId": "18df91f47ffe37c05786277558553279b1907e45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1635044_53ca8bf0",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-22T07:04:47Z",
+      "side": 1,
+      "message": "moved into timeout method without helper function, I think it\u0027s the most logical as this is pretty custom use case.",
+      "parentUuid": "86feaf7b_6550a0f9",
+      "range": {
+        "startLine": 888,
+        "startChar": 10,
+        "endLine": 890,
+        "endChar": 80
+      },
+      "revId": "18df91f47ffe37c05786277558553279b1907e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
