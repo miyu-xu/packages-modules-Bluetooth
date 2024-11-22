@@ -22,6 +22,30 @@
       },
       "revId": "8e600bc82004f37f2f47e3f3eb7a3c4b4b4bd4b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f4cac3_6eb9e346",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2761,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-22T23:58:47Z",
+      "side": 1,
+      "message": "You\u0027re correct, it shouldn\u0027t be just these 3 use case profiles; it should be *any* use case profile that uses BAP. I was waiting for everyone to align and finalize which use case profiles we want to support. I went ahead and updated the profiles here with the ones we currently have in BluetoothProperties.sysprop.\n\nI don\u0027t think we should keep using framework profile sysprops because the intent is to deprecate them.",
+      "parentUuid": "942b64e5_da3e3c0f",
+      "range": {
+        "startLine": 2757,
+        "startChar": 0,
+        "endLine": 2761,
+        "endChar": 25
+      },
+      "revId": "8e600bc82004f37f2f47e3f3eb7a3c4b4b4bd4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

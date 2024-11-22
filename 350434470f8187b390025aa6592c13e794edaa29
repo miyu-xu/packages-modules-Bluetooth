@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e577564d_35764b25",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-22T23:58:47Z",
+      "side": 1,
+      "message": "Neat!",
+      "parentUuid": "d40d5130_5107972b",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 448,
+        "endChar": 9
+      },
+      "revId": "350434470f8187b390025aa6592c13e794edaa29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00c71fdc_38273527",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-22T01:33:06Z",
       "side": 1,
       "message": "This will give an error message that we can\u0027t act on because it will only display \"expect false and got true\".\n\nCan we directly assert on an iterable ?\nsomething like this should do the whole thing (I didn\u0027t try to compile it)\n```\nList\u003cInteger\u003e enabledProfiles \u003d PROFILE_ISENABLED_MAP.entrySet().stream()\n     .filter(entry -\u003e entry.getValue().getAsBoolean())\n     .map(Map.Entry::getKey)\n     .collect(Collectors.toList());\n     \nassertThat(enabledProfiles).containsExactlyElementsIn(expectedProfilesEnabled);\n```",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 113,
+        "endChar": 9
+      },
+      "revId": "350434470f8187b390025aa6592c13e794edaa29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39d692e_ce2c12b5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioProfileConfigTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-22T23:58:47Z",
+      "side": 1,
+      "message": "Slick! Yeah, I had noticed that error messages weren\u0027t actionable, but your suggestion works; the error message now includes the delta between expected and resulted profiles.",
+      "parentUuid": "00c71fdc_38273527",
       "range": {
         "startLine": 105,
         "startChar": 7,
