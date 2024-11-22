@@ -34,6 +34,24 @@
       "parentUuid": "0911e7e4_f3f960da",
       "revId": "095ce61f33fed46364a930a548a8e7ce6cf0beff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf9d6d36_79c4f793",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-22T08:30:19Z",
+      "side": 1,
+      "message": "Number of RFCOMM socket has also been blocked from being reported.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3371037/4/system/btif/src/btif_core.cc#520\n\n    // TODO(b/342012881) Add RFCOMM socket offload implementation.\n    // Assign socket_offload_capabilities.rfcomm_capabilities.number_of_supported_sockets.\n    lpp_offload_features.number_of_supported_offloaded_rfcomm_sockets \u003d 0;",
+      "parentUuid": "83c90cbd_bbab91f3",
+      "revId": "095ce61f33fed46364a930a548a8e7ce6cf0beff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
