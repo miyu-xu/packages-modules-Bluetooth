@@ -20,7 +20,6 @@
  */
 
 #include "main/shim/dumpsys.h"
-#include "shim/dumpsys.h"
 #include "test/common/mock_functions.h"
 
 void bluetooth::shim::RegisterDumpsysFunction(const void* /* token */, DumpsysFunction /* func */) {
