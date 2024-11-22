@@ -22,6 +22,30 @@
       },
       "revId": "ebcafca247875e9bab981d288707dcf920d38a95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53262bf5_c68b5025",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-22T02:10:30Z",
+      "side": 1,
+      "message": "May be I edited it over git web UI.\nwill fix it when I update this file next time.",
+      "parentUuid": "ec74bfe1_2d06c4ff",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 30,
+        "endChar": 0
+      },
+      "revId": "ebcafca247875e9bab981d288707dcf920d38a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
