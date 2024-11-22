@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec74bfe1_2d06c4ff",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T00:32:44Z",
+      "side": 1,
+      "message": "This was not formatted by clang-format.\n\nWhy ?",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 30,
+        "endChar": 0
+      },
+      "revId": "ebcafca247875e9bab981d288707dcf920d38a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
