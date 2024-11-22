@@ -16,6 +16,41 @@
       "message": "API +1. Will let @asapperstein@google.com validate and +2",
       "revId": "a74bf6631c911028750f267ce5a36150e6ef7b6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1529ca87_b374049e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-22T22:11:50Z",
+      "side": 1,
+      "message": "you probably want to use the conditional parameter to explain that prior to whatever API version this is released in, this required BLUETOOTH_PRIVILEGED.\n\nMay be less relevant because it was system API.",
+      "fixSuggestions": [
+        {
+          "fixId": "29f74699_7b42fb2d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 303,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": "    @RequiresPermission(BLUETOOTH_CONNECT, conditional \u003d true)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a74bf6631c911028750f267ce5a36150e6ef7b6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
