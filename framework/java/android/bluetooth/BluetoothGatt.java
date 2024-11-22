@@ -35,6 +35,8 @@ import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -358,8 +360,9 @@ public final class BluetoothGatt implements BluetoothProfile {
                  *
                  * @hide
                  */
-                @SuppressLint("MissingPermission")
                 @Override
+                @RequiresBluetoothConnectPermission
+                @RequiresPermission(BLUETOOTH_CONNECT)
                 public void onClientConnectionState(
                         int status, int clientIf, boolean connected, String address) {
                     if (DBG) {
@@ -378,6 +381,10 @@ public final class BluetoothGatt implements BluetoothProfile {
                             connected
                                     ? BluetoothProfile.STATE_CONNECTED
                                     : BluetoothProfile.STATE_DISCONNECTED;
+
+                    if (Flags.unregisterGattClientDisconnected() && !connected && !mAutoConnect) {
+                        unregisterApp();
+                    }
 
                     runOrQueueCallback(
                             new Runnable() {
@@ -401,10 +408,6 @@ public final class BluetoothGatt implements BluetoothProfile {
 
                     synchronized (mDeviceBusyLock) {
                         mDeviceBusy = false;
-                    }
-
-                    if (!connected && !mAutoConnect) {
-                        unregisterApp();
                     }
                 }
 
@@ -1041,6 +1044,9 @@ public final class BluetoothGatt implements BluetoothProfile {
         if (DBG) Log.d(TAG, "close()");
 
         unregisterApp();
+        if (Flags.unregisterGattClientDisconnected()) {
+            mCallback = null;
+        }
         mConnState = CONN_STATE_CLOSED;
         mAuthRetryState = AUTH_RETRY_STATE_IDLE;
     }
@@ -1174,7 +1180,9 @@ public final class BluetoothGatt implements BluetoothProfile {
         if (DBG) Log.d(TAG, "unregisterApp() - mClientIf=" + mClientIf);
 
         try {
-            mCallback = null;
+            if (!Flags.unregisterGattClientDisconnected()) {
+                mCallback = null;
+            }
             mService.unregisterClient(mClientIf, mAttributionSource);
             mClientIf = 0;
         } catch (RemoteException e) {
@@ -1260,7 +1268,38 @@ public final class BluetoothGatt implements BluetoothProfile {
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean connect() {
         int clientIf = getClientIf();
-        if (mService == null || clientIf == 0) return false;
+        if (mService == null) return false;
+        if (clientIf == 0) {
+            if (!Flags.unregisterGattClientDisconnected()) {
+                return false;
+            }
+            synchronized (mStateLock) {
+                if (mConnState != CONN_STATE_IDLE) {
+                    return false;
+                }
+                mConnState = CONN_STATE_CONNECTING;
+            }
+
+            UUID uuid = UUID.randomUUID();
+            if (DBG) Log.d(TAG, "reconnect from connect(), UUID=" + uuid);
+
+            try {
+                mService.registerClient(
+                        new ParcelUuid(uuid),
+                        mBluetoothGattCallback,
+                        /* eatt_support= */ false,
+                        mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, "", e);
+                synchronized (mStateLock) {
+                    mConnState = CONN_STATE_IDLE;
+                }
+                Log.e(TAG, "Failed to register callback");
+                return false;
+            }
+
+            return true;
+        }
 
         try {
             if (DBG) {
