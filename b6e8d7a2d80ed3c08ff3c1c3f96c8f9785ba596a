@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4b9626_e3251dc2",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-22T17:24:05Z",
+      "side": 1,
+      "message": "Should be final",
+      "range": {
+        "startLine": 92,
+        "startChar": 45,
+        "endLine": 92,
+        "endChar": 55
+      },
+      "revId": "b6e8d7a2d80ed3c08ff3c1c3f96c8f9785ba596a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1ad8d8_1a21b81c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-22T17:24:05Z",
+      "side": 1,
+      "message": "This helper is never used and can be removed",
+      "range": {
+        "startLine": 1348,
+        "startChar": 0,
+        "endLine": 1351,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "45b38485_d0bb53b4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+              "range": {
+                "startLine": 1347,
+                "startChar": 0,
+                "endLine": 1351,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b6e8d7a2d80ed3c08ff3c1c3f96c8f9785ba596a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
