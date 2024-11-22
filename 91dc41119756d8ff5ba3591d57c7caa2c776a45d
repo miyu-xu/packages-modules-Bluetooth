@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c85313_c307bff0",
+        "filename": "system/gd/hal/socket_hal_host.cc",
+        "patchSetId": 44
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-22T17:06:12Z",
+      "side": 1,
+      "message": "Not needed anymore",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "91dc41119756d8ff5ba3591d57c7caa2c776a45d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3e22e31_9efde69a",
+        "filename": "system/gd/hal/socket_hal_host.cc",
+        "patchSetId": 44
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-22T17:06:12Z",
+      "side": 1,
+      "message": "return false",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 16
+      },
+      "revId": "91dc41119756d8ff5ba3591d57c7caa2c776a45d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
