@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5599eed_0f81b0e4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-22T03:24:43Z",
+      "side": 1,
+      "message": "Add a default with an error log of unknown type",
+      "range": {
+        "startLine": 422,
+        "startChar": 16,
+        "endLine": 422,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "946449bc_eb0c5c34",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 425,
+                "startChar": 0,
+                "endLine": 425,
+                "endChar": 0
+              },
+              "replacement": "                default:\n                    errorLog(\"Unknown identity address type: \" + identityAddressTypeFromNative);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4e0928cde7a0dcd8eaaaf82635e4a6db36d18797",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
