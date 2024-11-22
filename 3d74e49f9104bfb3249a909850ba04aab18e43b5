@@ -22,6 +22,47 @@
       },
       "revId": "3d74e49f9104bfb3249a909850ba04aab18e43b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36375faa_c4126f2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T23:07:26Z",
+      "side": 1,
+      "message": "We need unit test which will test it.  When flag `leaudio_big_depends_on_audio_state` is enabled a second Resume will stay without response to Audio HAL. which cause issues - this is regression after this flag was introduced.\n\nThis CL definitely requires unit test.\n\nBtw:\n\n```\nBefore CL, it will always try to start all broadcasts no matter what. With that change, if only one of few broadcaster streaming, rest will be not resumed.\n```\nHow is  `instance-\u003ecancelBroadcastTimers();` relates to all those broadcasts ?",
+      "parentUuid": "d6fd3bd3_7ec3b28a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 30
+      },
+      "revId": "3d74e49f9104bfb3249a909850ba04aab18e43b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f7f7b60_b7d99075",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T23:07:26Z",
+      "side": 1,
+      "message": "Maybe add log::debug() here",
+      "revId": "3d74e49f9104bfb3249a909850ba04aab18e43b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
