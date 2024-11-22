@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e15b41_831968e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-22T20:05:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd17c110_ed130630",
+      "revId": "4e720651d68a6451e94743af0fe3f8a891ecffc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "638f0181_d2bb5eef",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-11-22T19:50:26Z",
       "side": 1,
       "message": "if `key_missing_public` is not enabled, we should broadcast with CONNECT \u0026 PRIVILEGED:\n\n\n```suggestion\n            if (Flag.keyMissingPublic()) {\n                mAdapterService.sendOrderedBroadcast(\n                        intent,\n                        BLUETOOTH_CONNECT,\n                        Utils.getTempBroadcastOptions().toBundle(),\n                        null /* resultReceiver */,\n                        null /* scheduler */,\n                        Activity.RESULT_OK /* initialCode */,\n                        null /* initialData */,\n                        null /* initialExtras */);\n                return;\n            }\n            if (isAtLeastV()\n                    \u0026\u0026 Flags.keyMissingAsOrderedBroadcast()\n                    \u0026\u0026 android.os.Flags.orderedBroadcastMultiplePermissions()) {\n                mAdapterService.sendOrderedBroadcastMultiplePermissions(\n                        intent,\n                        new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},\n                        null /* receiverAppOp */,\n                        null /* resultReceiver */,\n                        null /* scheduler */,\n                        Activity.RESULT_OK /* initialCode */,\n                        null /* initialData */,\n                        null /* initialExtras */,\n                        Utils.getTempBroadcastOptions().toBundle());\n            } else {\n                mAdapterService.sendBroadcastMultiplePermissions(\n                        intent,\n                        new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},\n                        Utils.getTempBroadcastOptions());\n            }\n        }\n```",
+      "range": {
+        "startLine": 1409,
+        "startChar": 0,
+        "endLine": 1418,
+        "endChar": 9
+      },
+      "revId": "4e720651d68a6451e94743af0fe3f8a891ecffc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ddfb97_aec3368e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-22T20:05:35Z",
+      "side": 1,
+      "message": "Is there any harm in relaxing the permission, if we plan to have it relaxed in next release anyway ?\n\nI don\u0027t think sendBroadcastMultiplePermissions is visible in AOSP, so I would have to again have separate AOSP and internal patch.\n\nCurrently presubmits pass because I schedule them on both patches, so sendBroadcastMultiplePermissions is never really called or compiled.",
+      "parentUuid": "638f0181_d2bb5eef",
       "range": {
         "startLine": 1409,
         "startChar": 0,
