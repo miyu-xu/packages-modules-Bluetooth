@@ -36,25 +36,25 @@ void SetLogColorEnable(bool enable) { enable_log_color = enable; }
 
 static std::array<char, 5> verbosity_tag = {'D', 'I', 'W', 'E', 'F'};
 
-static std::array<fmt::text_style, 5> text_style = {
-        fmt::fg(fmt::color::dim_gray),
-        fmt::fg(fmt::color::floral_white),
-        fmt::emphasis::bold | fmt::fg(fmt::color::yellow),
-        fmt::emphasis::bold | fmt::fg(fmt::color::orange_red),
-        fmt::emphasis::bold | fmt::fg(fmt::color::red),
+static std::array<std::text_style, 5> text_style = {
+        std::fg(std::color::dim_gray),
+        std::fg(std::color::floral_white),
+        std::emphasis::bold | std::fg(std::color::yellow),
+        std::emphasis::bold | std::fg(std::color::orange_red),
+        std::emphasis::bold | std::fg(std::color::red),
 };
 
-static std::array<fmt::color, 16> text_color = {
-        fmt::color::cadet_blue,  fmt::color::aquamarine,    fmt::color::indian_red,
-        fmt::color::blue_violet, fmt::color::chartreuse,    fmt::color::medium_sea_green,
-        fmt::color::deep_pink,   fmt::color::medium_orchid, fmt::color::green_yellow,
-        fmt::color::dark_orange, fmt::color::golden_rod,    fmt::color::medium_slate_blue,
-        fmt::color::coral,       fmt::color::lemon_chiffon, fmt::color::wheat,
-        fmt::color::turquoise,
+static std::array<std::color, 16> text_color = {
+        std::color::cadet_blue,  std::color::aquamarine,    std::color::indian_red,
+        std::color::blue_violet, std::color::chartreuse,    std::color::medium_sea_green,
+        std::color::deep_pink,   std::color::medium_orchid, std::color::green_yellow,
+        std::color::dark_orange, std::color::golden_rod,    std::color::medium_slate_blue,
+        std::color::coral,       std::color::lemon_chiffon, std::color::wheat,
+        std::color::turquoise,
 };
 
 void VLog(Verbosity verb, char const* file, int line, std::optional<int> instance,
-          char const* format, fmt::format_args args) {
+          char const* format, std::format_args args) {
   // Generate the time label.
   auto now = std::chrono::system_clock::now();
   auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
@@ -71,26 +71,26 @@ void VLog(Verbosity verb, char const* file, int line, std::optional<int> instanc
   char file_str[40];  // file:line limited to 40 characters
   snprintf(file_str, sizeof(file_str), "%.35s:%d", file_name, line);
 
-  fmt::print("root-canal {} {} {:<35.35} ", verbosity_tag[verb], time_str, file_str);
+  std::print("root-canal {} {} {:<35.35} ", verbosity_tag[verb], time_str, file_str);
 
   if (instance.has_value() && enable_log_color) {
-    fmt::color instance_color = text_color[*instance % text_color.size()];
-    fmt::print(fmt::bg(instance_color) | fmt::fg(fmt::color::black), " {:>2} ", *instance);
-    fmt::print(" ");
+    std::color instance_color = text_color[*instance % text_color.size()];
+    std::print(std::bg(instance_color) | std::fg(std::color::black), " {:>2} ", *instance);
+    std::print(" ");
   } else if (instance.has_value()) {
-    fmt::print(" {:>2}  ", *instance);
+    std::print(" {:>2}  ", *instance);
   } else {
-    fmt::print("     ");
+    std::print("     ");
   }
 
   if (enable_log_color) {
-    fmt::text_style style = text_style[verb];
-    fmt::vprint(stdout, style, format, args);
+    std::text_style style = text_style[verb];
+    std::vprint(stdout, style, format, args);
   } else {
-    fmt::vprint(stdout, format, args);
+    std::vprint(stdout, format, args);
   }
 
-  fmt::print("\n");
+  std::print("\n");
 
   if (verb == Verbosity::kFatal) {
     std::abort();

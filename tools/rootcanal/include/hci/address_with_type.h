@@ -16,11 +16,10 @@
 
 #pragma once
 
-#include <fmt/core.h>
-
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
+#include <format>
 #include <functional>
 #include <ostream>
 #include <sstream>
@@ -138,7 +137,7 @@ struct hash<bluetooth::hci::AddressWithType> {
 }  // namespace std
 
 template <>
-struct fmt::formatter<bluetooth::hci::AddressWithType> {
+struct std::formatter<bluetooth::hci::AddressWithType> {
   // Presentation format: 'x' - lowercase, 'X' - uppercase.
   char presentation = 'x';
 
@@ -164,8 +163,8 @@ struct fmt::formatter<bluetooth::hci::AddressWithType> {
   // stored in this formatter.
   auto format(const bluetooth::hci::AddressWithType& a,
               format_context& ctx) const -> format_context::iterator {
-    auto out = presentation == 'x' ? fmt::format_to(ctx.out(), "{:x}", a.GetAddress())
-                                   : fmt::format_to(ctx.out(), "{:X}", a.GetAddress());
-    return fmt::format_to(out, "[{}]", AddressTypeText(a.GetAddressType()));
+    auto out = presentation == 'x' ? std::format_to(ctx.out(), "{:x}", a.GetAddress())
+                                   : std::format_to(ctx.out(), "{:X}", a.GetAddress());
+    return std::format_to(out, "[{}]", AddressTypeText(a.GetAddressType()));
   }
 };

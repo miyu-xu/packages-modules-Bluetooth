@@ -16,12 +16,12 @@
 
 #pragma once
 
-#include <fmt/core.h>
 #include <packet_runtime.h>
 
 #include <array>
 #include <cstdint>
 #include <cstring>
+#include <format>
 #include <functional>
 #include <initializer_list>
 #include <optional>
@@ -107,7 +107,7 @@ struct hash<bluetooth::hci::Address> {
 }  // namespace std
 
 template <>
-struct fmt::formatter<bluetooth::hci::Address> {
+struct std::formatter<bluetooth::hci::Address> {
   // Presentation format: 'x' - lowercase, 'X' - uppercase.
   char presentation = 'x';
 
@@ -134,10 +134,10 @@ struct fmt::formatter<bluetooth::hci::Address> {
   auto format(const bluetooth::hci::Address& a,
               format_context& ctx) const -> format_context::iterator {
     return presentation == 'x'
-                   ? fmt::format_to(ctx.out(), "{:02x}:{:02x}:{:02x}:{:02x}:{:02x}:{:02x}",
+                   ? std::format_to(ctx.out(), "{:02x}:{:02x}:{:02x}:{:02x}:{:02x}:{:02x}",
                                     a.address[5], a.address[4], a.address[3], a.address[2],
                                     a.address[1], a.address[0])
-                   : fmt::format_to(ctx.out(), "{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X}",
+                   : std::format_to(ctx.out(), "{:02X}:{:02X}:{:02X}:{:02X}:{:02X}:{:02X}",
                                     a.address[5], a.address[4], a.address[3], a.address[2],
                                     a.address[1], a.address[0]);
   }
