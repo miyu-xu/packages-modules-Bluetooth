@@ -1046,6 +1046,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88aa698f_f0ca6b22",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-22T08:01:39Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "24c1db93_c95d616b",
+      "range": {
+        "startLine": 188,
+        "startChar": 6,
+        "endLine": 190,
+        "endChar": 93
+      },
+      "revId": "c79bff834f9db95578aa5b5ced5fdfb4684e3b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06b4876b_4c8655a1",
