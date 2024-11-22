@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117fb601_da8461e3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1401,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-22T05:15:26Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we still check whether the disconnected device is the actual device in `connected_profiles`? Otherwise we just blindly set `absolute_volume` to false even though the disconnection event is for a different device.\nSame concern for the other profiles.",
+      "revId": "6813d8aca07ef3b81c8c903040f080fbfcd15bd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d12c813f_ac7754e1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 2300,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-22T05:15:26Z",
+      "side": 1,
+      "message": "wouldn\u0027t `is_profile_cleared` now just need to check whether the address exists in `connected_profiles`? \nAlso, the other changes to `unwrap_or_default` seems unnecessary because if profile is cleared we return early.",
+      "range": {
+        "startLine": 2300,
+        "startChar": 12,
+        "endLine": 2300,
+        "endChar": 30
+      },
+      "revId": "6813d8aca07ef3b81c8c903040f080fbfcd15bd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
