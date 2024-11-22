@@ -1350,6 +1350,11 @@ private:
           return;
         }
 
+        if (IsAnyoneStreaming()) {
+          instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
+          return;
+        }
+
         instance->cancelBroadcastTimers();
         instance->UpdateAudioActiveStateInPublicAnnouncement();
 
