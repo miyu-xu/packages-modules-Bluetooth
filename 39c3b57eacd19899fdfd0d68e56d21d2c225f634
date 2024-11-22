@@ -46,6 +46,30 @@
       },
       "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eedaaba_3f2b72e2",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2024-11-22T14:30:14Z",
+      "side": 1,
+      "message": "fixed missing return in proposal\n```\n    auto const max_required_device_cnt \u003d NumOfAvailableForDirection(direction);\n    if (max_required_device_cnt \u003d\u003d 0) {\n        log::error(\"No device available for {}\", direction_str);\n        return false;\n    }\n```",
+      "parentUuid": "ff01e7c9_7d3f6ecd",
+      "range": {
+        "startLine": 1755,
+        "startChar": 0,
+        "endLine": 1757,
+        "endChar": 5
+      },
+      "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
