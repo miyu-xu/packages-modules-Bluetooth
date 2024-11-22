@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0518d07d_435e3f13",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4925,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-22T03:17:33Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "cec963ef_672196d1",
+      "range": {
+        "startLine": 4925,
+        "startChar": 7,
+        "endLine": 4925,
+        "endChar": 12
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc87950b_7188a7c9",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-22T00:22:07Z",
       "side": 1,
       "message": "Q) Is there a chance that identity address is changed between this and L4934?\nI\u0027m asking this because we\u0027re using Bundle to make this an atomic operation.",
+      "range": {
+        "startLine": 4930,
+        "startChar": 33,
+        "endLine": 4930,
+        "endChar": 51
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "188455b6_6a978f97",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-22T03:17:33Z",
+      "side": 1,
+      "message": "Good point. In order to prevent this, I\u0027ve reimplemented the `getIdentityAddress` function inside reusing the same `deviceProp` object. It is a little redundant but I think it eliminates the race condition possibility you\u0027ve mentioned safely. PTAL. Thank you.",
+      "parentUuid": "dc87950b_7188a7c9",
       "range": {
         "startLine": 4930,
         "startChar": 33,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b41b4245_2b152be3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-22T03:17:33Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "64c955bd_f1657e0b",
+      "range": {
+        "startLine": 1745,
+        "startChar": 6,
+        "endLine": 1747,
+        "endChar": 70
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e01d4d3_412045c3",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72133ce5_9c387909",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1749,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-22T03:17:33Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "8e01d4d3_412045c3",
+      "range": {
+        "startLine": 1749,
+        "startChar": 7,
+        "endLine": 1749,
+        "endChar": 77
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e664261_9064c83f",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-11-22T00:22:07Z",
       "side": 1,
       "message": "Q) Is this right? Shouldn\u0027t we push ADDRESS_TYPE_UNKNOWN as address type?",
+      "range": {
+        "startLine": 1768,
+        "startChar": 22,
+        "endLine": 1768,
+        "endChar": 27
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88807bd5_e16d4ecc",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-22T03:17:33Z",
+      "side": 1,
+      "message": "Done. Now I\u0027m returning a Bundle with `BluetoothDevice.ADDRESS_TYPE_UNKNOWN`. Thank you.",
+      "parentUuid": "3e664261_9064c83f",
       "range": {
         "startLine": 1768,
         "startChar": 22,
