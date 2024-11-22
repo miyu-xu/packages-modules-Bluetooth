@@ -33,6 +33,24 @@
       "message": "So, I chatted with some other API Councilors and given how well defined the byte array spec is, folks felt it was ok to make folks build it as you have.\n\nAlternatively, if you don\u0027t have issues with the classes not being final, then I would recommend not making them final so they can be mocked.\n\nBut neither of these changes are blocking feedback.",
       "revId": "260295477aca5d196df2fd2dec604977568916a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eeb6440_4c0dec8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-11-22T22:35:50Z",
+      "side": 1,
+      "message": "Thank you for your review. I\u0027ll confirm with the code owner whether the class should no be final. If so, I\u0027ll make that change in a separate commit.",
+      "parentUuid": "03931955_4675ac9e",
+      "revId": "260295477aca5d196df2fd2dec604977568916a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
