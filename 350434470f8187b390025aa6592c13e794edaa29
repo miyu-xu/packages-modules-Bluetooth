@@ -16,6 +16,52 @@
       "message": "removed processing of optional sysprops, added logging",
       "revId": "350434470f8187b390025aa6592c13e794edaa29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d40d5130_5107972b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T01:33:06Z",
+      "side": 1,
+      "message": "```suggestion\n        return switch (profileId) {\n            case TMAP_CALL_GATEWAY -\u003e \"TMAP_CALL_GATEWAY\";\n            case TMAP_CALL_TERMINAL -\u003e \"TMAP_CALL_TERMINAL\";\n            case TMAP_UNICAST_MEDIA_SENDER -\u003e \"TMAP_UNICAST_MEDIA_SENDER\";\n            case TMAP_UNICAST_MEDIA_RECEIVER -\u003e \"TMAP_UNICAST_MEDIA_RECEIVER\";\n            case TMAP_BROADCAST_MEDIA_SENDER -\u003e \"TMAP_BROADCAST_MEDIA_SENDER\";\n            case TMAP_BROADCAST_MEDIA_RECEIVER -\u003e \"TMAP_BROADCAST_MEDIA_RECEIVER\";\n            case PBP_SOURCE -\u003e \"PBP_SOURCE\";\n            case PBP_SINK -\u003e \"PBP_SINK\";\n            case PBP_ASSISTANT -\u003e \"PBP_ASSISTANT\";\n            case HAP_HEARING_AID -\u003e \"HAP_HEARING_AID\";\n            case HAP_UNICAST_CLIENT -\u003e \"HAP_UNICAST_CLIENT\";\n            case HAP_REMOTE_CONTROLLER -\u003e \"HAP_REMOTE_CONTROLLER\";\n            case BAP_UNICAST_SERVER -\u003e \"BAP_UNICAST_SERVER\";\n            case BAP_UNICAST_CLIENT -\u003e \"BAP_UNICAST_CLIENT\";\n            case BAP_BROADCAST_SOURCE -\u003e \"BAP_BROADCAST_SOURCE\";\n            case BAP_BROADCAST_SINK -\u003e \"BAP_BROADCAST_SINK\";\n            case BAP_SCAN_DELEGATOR -\u003e \"BAP_SCAN_DELEGATOR\";\n            case BAP_BROADCAST_ASSISTANT -\u003e \"BAP_BROADCAST_ASSISTANT\";\n            case BAP_AUDIO_SOURCE -\u003e \"BAP_AUDIO_SOURCE\";\n            case BAP_AUDIO_SINK -\u003e \"BAP_AUDIO_SINK\";\n            case CSIP_SET_COORDINATOR -\u003e \"CSIP_SET_COORDINATOR\";\n            case CSIP_SET_MEMBER -\u003e \"CSIP_SET_MEMBER\";\n            case CCP_CALL_CONTROL_SERVER -\u003e \"CCP_CALL_CONTROL_SERVER\";\n            case CCP_CALL_CONTROL_CLIENT -\u003e \"CCP_CALL_CONTROL_CLIENT\";\n            case MCP_MEDIA_CONTROL_SERVER -\u003e \"MCP_MEDIA_CONTROL_SERVER\";\n            case MCP_MEDIA_CONTROL_CLIENT -\u003e \"MCP_MEDIA_CONTROL_CLIENT\";\n            case VCP_VOLUME_RENDERER -\u003e \"VCP_VOLUME_RENDERER\";\n            case VCP_VOLUME_CONTROLLER -\u003e \"VCP_VOLUME_CONTROLLER\";\n            case MICP_MICROPHONE_DEVICE -\u003e \"MICP_MICROPHONE_DEVICE\";\n            case MICP_MICROPHONE_CONTROLLER -\u003e \"MICP_MICROPHONE_CONTROLLER\";\n            default -\u003e \"UNKNOWN_PROFILE\";\n        };\n```",
+      "range": {
+        "startLine": 385,
+        "startChar": 8,
+        "endLine": 448,
+        "endChar": 9
+      },
+      "revId": "350434470f8187b390025aa6592c13e794edaa29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c71fdc_38273527",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioProfileConfigTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-22T01:33:06Z",
+      "side": 1,
+      "message": "This will give an error message that we can\u0027t act on because it will only display \"expect false and got true\".\n\nCan we directly assert on an iterable ?\nsomething like this should do the whole thing (I didn\u0027t try to compile it)\n```\nList\u003cInteger\u003e enabledProfiles \u003d PROFILE_ISENABLED_MAP.entrySet().stream()\n     .filter(entry -\u003e entry.getValue().getAsBoolean())\n     .map(Map.Entry::getKey)\n     .collect(Collectors.toList());\n     \nassertThat(enabledProfiles).containsExactlyElementsIn(expectedProfilesEnabled);\n```",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 113,
+        "endChar": 9
+      },
+      "revId": "350434470f8187b390025aa6592c13e794edaa29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
