@@ -81,6 +81,30 @@
       },
       "revId": "4e720651d68a6451e94743af0fe3f8a891ecffc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d42595_cbe51ecd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1418,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-22T21:00:22Z",
+      "side": 1,
+      "message": "+1 to William\u0027s comment. `sendBroadcastMultiplePermissions` is visible on AOSP so you should not have any issue 😊",
+      "parentUuid": "d6ddfb97_aec3368e",
+      "range": {
+        "startLine": 1409,
+        "startChar": 0,
+        "endLine": 1418,
+        "endChar": 9
+      },
+      "revId": "4e720651d68a6451e94743af0fe3f8a891ecffc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
