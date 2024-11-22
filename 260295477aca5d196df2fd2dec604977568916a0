@@ -16,6 +16,23 @@
       "message": "@asapperstein@google.com please check the comment, thanks",
       "revId": "260295477aca5d196df2fd2dec604977568916a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03931955_4675ac9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-22T20:56:57Z",
+      "side": 1,
+      "message": "So, I chatted with some other API Councilors and given how well defined the byte array spec is, folks felt it was ok to make folks build it as you have.\n\nAlternatively, if you don\u0027t have issues with the classes not being final, then I would recommend not making them final so they can be mocked.\n\nBut neither of these changes are blocking feedback.",
+      "revId": "260295477aca5d196df2fd2dec604977568916a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
