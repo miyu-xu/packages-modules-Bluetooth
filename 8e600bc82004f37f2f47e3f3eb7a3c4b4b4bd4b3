@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942b64e5_da3e3c0f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2761,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-11-22T09:36:43Z",
+      "side": 1,
+      "message": "Why we just check these three use case profile to set CoD bit 14 only? Any of LE audio use case profiles enabled should set it from BAP. Maybe keep to use framework profile should be simple.",
+      "range": {
+        "startLine": 2757,
+        "startChar": 0,
+        "endLine": 2761,
+        "endChar": 25
+      },
+      "revId": "8e600bc82004f37f2f47e3f3eb7a3c4b4b4bd4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
