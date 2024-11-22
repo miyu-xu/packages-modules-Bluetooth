@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2b34a7d_76b206b0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T08:28:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "053feaef_9dd759dc",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cafb72e6_62f1151c",
@@ -119,6 +137,24 @@
       "side": 1,
       "message": "see my comment [1]",
       "parentUuid": "cafb72e6_62f1151c",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80ba9e06_fd9f88d0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T08:28:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1970bb4e_d936e485",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -158,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc9f8912_9fe9f816",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T08:28:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cc0e6ce2_e50d7e7f",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d111f81a_56b9f795",
@@ -189,6 +243,24 @@
       "side": 1,
       "message": "see my comment [1]",
       "parentUuid": "d111f81a_56b9f795",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee85703c_cf2f73e0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T08:28:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6da9b76e_3ed8103c",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -329,6 +401,24 @@
       "side": 1,
       "message": "see my comment [1]",
       "parentUuid": "58a74bda_b303ad0c",
+      "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe375ee_954fcbb7",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-22T08:28:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ae4aa19c_db453212",
       "revId": "c008c93cd3c67a9182b8a1a8dc81c4f2de5e0575",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
