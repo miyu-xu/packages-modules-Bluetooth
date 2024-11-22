@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "150c1327_a652e5fc",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-11-22T09:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6b712ea_59fe02ad",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "86348f5223f140b2450e738c47f9267f9332d79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b29b3d15_3b1805cc",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1655e443_23697697",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-11-22T09:16:47Z",
+      "side": 1,
+      "message": "Thanks for catching that! I accidentally added this twice.",
+      "parentUuid": "b29b3d15_3b1805cc",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 620,
+        "endChar": 69
+      },
+      "revId": "86348f5223f140b2450e738c47f9267f9332d79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1299ae3_b6d18e35",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-19T17:15:49Z",
       "side": 1,
       "message": "Parameter added twice, maybe you meant something different",
+      "range": {
+        "startLine": 681,
+        "startChar": 0,
+        "endLine": 682,
+        "endChar": 69
+      },
+      "revId": "86348f5223f140b2450e738c47f9267f9332d79b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8421f9c_b4cc1fdc",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-11-22T09:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1299ae3_b6d18e35",
       "range": {
         "startLine": 681,
         "startChar": 0,
