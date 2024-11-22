@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc87950b_7188a7c9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-11-22T00:22:07Z",
+      "side": 1,
+      "message": "Q) Is there a chance that identity address is changed between this and L4934?\nI\u0027m asking this because we\u0027re using Bundle to make this an atomic operation.",
+      "range": {
+        "startLine": 4930,
+        "startChar": 33,
+        "endLine": 4930,
+        "endChar": 51
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64c955bd_f1657e0b",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 8
@@ -42,6 +65,52 @@
         "startChar": 6,
         "endLine": 1747,
         "endChar": 70
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e01d4d3_412045c3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1749,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-11-22T00:22:07Z",
+      "side": 1,
+      "message": "Add comments about error cases.",
+      "range": {
+        "startLine": 1749,
+        "startChar": 7,
+        "endLine": 1749,
+        "endChar": 77
+      },
+      "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e664261_9064c83f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-11-22T00:22:07Z",
+      "side": 1,
+      "message": "Q) Is this right? Shouldn\u0027t we push ADDRESS_TYPE_UNKNOWN as address type?",
+      "range": {
+        "startLine": 1768,
+        "startChar": 22,
+        "endLine": 1768,
+        "endChar": 27
       },
       "revId": "dd33b073b867ce3d74fa1f17dd3204730d61f255",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
