@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "119a3ef9_c5e300a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-22T04:37:25Z",
+      "side": 1,
+      "message": "TIL Java has this! I think this is a great mechanism for things like this.",
+      "range": {
+        "startLine": 317,
+        "startChar": 4,
+        "endLine": 317,
+        "endChar": 66
+      },
+      "revId": "11cd9cdb05933ef0ce980b5da14a4638d3c6542f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
