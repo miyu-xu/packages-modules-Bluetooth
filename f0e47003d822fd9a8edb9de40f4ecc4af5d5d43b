@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8e5a4aa_e8035671",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-23T01:48:53Z",
+      "side": 1,
+      "message": "Oh, definitely not alphabetical ordering. I think it was mostly trying to stick to the ordering of how the profileIds are defined.\n\nEven there, it was mostly grouped by their profiles (e.g., BAP, CSIP, CCP), which are further grouped by functional \"families\" (roughly), e.g., BAP and CSIP can be thought of as audio stream management and coordination; CCP and MCP are content controllers, VCP and MICP are sound capture and rendering.\n\nBut between copy+pasting, initially separating dependencies between mandatory and optional, and different ordering in different tables in the specs, you\u0027re right, there may not be consistency in ordering 😞",
+      "parentUuid": "609280eb_1820810d",
+      "range": {
+        "startLine": 91,
+        "startChar": 20,
+        "endLine": 91,
+        "endChar": 40
+      },
+      "revId": "f0e47003d822fd9a8edb9de40f4ecc4af5d5d43b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57ff7172_27c8b7eb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
         "patchSetId": 12
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-23T00:52:49Z",
       "side": 1,
       "message": "Can we concatenate into only two lines printed ?\n\nEither using stream or using a string builder\n```suggestion\n        StringBuilder sb \u003d new StringBuilder(\"Enabled use cases:\");\n        for (int profile : sEnabledUseCases) {\n            sb.append(\"  profile\u003d\").append(idToString(profile));\n        }\n        Log.i(TAG, sb.toString());\n        sb \u003d new StringBuilder(\"Enabled dependencies:\");\n        for (int profile : sEnabledDependencies) {\n            sb.append(\"  profile\u003d\").append(idToString(profile));\n        }\n        Log.i(TAG, sb.toString());\n```",
+      "range": {
+        "startLine": 164,
+        "startChar": 4,
+        "endLine": 171,
+        "endChar": 9
+      },
+      "revId": "f0e47003d822fd9a8edb9de40f4ecc4af5d5d43b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd6f8ab9_f29b7ac3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-23T01:48:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57ff7172_27c8b7eb",
       "range": {
         "startLine": 164,
         "startChar": 4,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-11-23T00:52:49Z",
       "side": 1,
       "message": "I would remove the log here as this is redundant with the log in the \"static\" initialization",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 53
+      },
+      "revId": "f0e47003d822fd9a8edb9de40f4ecc4af5d5d43b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00e7d455_3e5b43e1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioProfileConfig.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-11-23T01:48:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "318c89f6_e3754749",
       "range": {
         "startLine": 176,
         "startChar": 0,
