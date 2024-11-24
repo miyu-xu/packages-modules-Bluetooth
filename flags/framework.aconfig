@@ -66,3 +66,126 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+<<<<<<< HEAD   (8fc56a Remove leaudio_broadcast_feature_support flag)
+||||||| BASE
+
+flag {
+    name: "support_bluetooth_quality_report_v6"
+    namespace: "bluetooth"
+    description: "Enhanced Bluetooth Framework Support for Accessing Bluetooth Quality Report v6 Information"
+    bug: "364517559"
+}
+
+flag {
+    name: "get_profile_use_lock"
+    namespace: "bluetooth"
+    description: "Instead of bloating the main thread, use the binder thread with a synchronization lock"
+    bug: "370815283"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "support_remote_device_metadata"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Support setting/retrieving the remote device metadata for a BluetoothDevice"
+    bug: "374171574"
+}
+
+flag {
+    name: "fix_add_device_properties"
+    namespace: "bluetooth"
+    description: "Make sure single entry for mDevices. Race fix."
+    bug: "375158716"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "identity_address_type_api"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Add a new API to BluetoothDevice to retrieve Identity Address Type"
+    bug: "377171798"
+}
+
+flag {
+    name: "encryption_change_broadcast"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Broadcast when remote device encryption changes"
+    bug: "369753860"
+}
+
+flag {
+    name: "key_missing_public"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Make BluetoothDevice.ACTION_KEY_MISSING into public API"
+    bug: "379729762"
+}
+=======
+
+flag {
+    name: "support_bluetooth_quality_report_v6"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Enhanced Bluetooth Framework Support for Accessing Bluetooth Quality Report v6 Information"
+    bug: "364517559"
+}
+
+flag {
+    name: "get_profile_use_lock"
+    namespace: "bluetooth"
+    description: "Instead of bloating the main thread, use the binder thread with a synchronization lock"
+    bug: "370815283"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "support_remote_device_metadata"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Support setting/retrieving the remote device metadata for a BluetoothDevice"
+    bug: "374171574"
+}
+
+flag {
+    name: "fix_add_device_properties"
+    namespace: "bluetooth"
+    description: "Make sure single entry for mDevices. Race fix."
+    bug: "375158716"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "identity_address_type_api"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Add a new API to BluetoothDevice to retrieve Identity Address Type"
+    bug: "377171798"
+}
+
+flag {
+    name: "encryption_change_broadcast"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Broadcast when remote device encryption changes"
+    bug: "369753860"
+}
+
+flag {
+    name: "key_missing_public"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Make BluetoothDevice.ACTION_KEY_MISSING into public API"
+    bug: "379729762"
+}
+>>>>>>> CHANGE (53743c Export SUPPORT_BLUETOOTH_QUALITY_REPORT_V6)
