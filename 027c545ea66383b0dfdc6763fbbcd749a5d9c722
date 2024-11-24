@@ -22,6 +22,30 @@
       },
       "revId": "027c545ea66383b0dfdc6763fbbcd749a5d9c722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e476660b_37237066",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-11-24T07:50:16Z",
+      "side": 1,
+      "message": "Thanks for the suggestion! As I understand `delete[] tracks;` will free memory, but the pointer is being used in `cached_source_metadata_.tracks \u003d tracks;`. \n\nThis is managed elsewhere with `free(cached_source_metadata_.tracks);`, are you suggesting we change these places? I feel like this should belong to another change.",
+      "parentUuid": "bd84593d_cbede11b",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 98
+      },
+      "revId": "027c545ea66383b0dfdc6763fbbcd749a5d9c722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
