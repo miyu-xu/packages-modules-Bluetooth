@@ -34,6 +34,24 @@
       ],
       "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b733c1d_4a787538",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T23:13:20Z",
+      "side": 1,
+      "message": "input and output streams are essential setup in current bluetooth socket architecture. if host app sends data to output stream on the offload socket, native stack can close the socket because the data path is already switched. Does it make sense?",
+      "parentUuid": "4e005753_42fa2952",
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
