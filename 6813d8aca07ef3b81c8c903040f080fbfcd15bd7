@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e747664_ef3dfa1c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1401,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-11-25T09:23:02Z",
+      "side": 1,
+      "message": "Updated with checks guarding the beginning of dis/connects.",
+      "parentUuid": "117fb601_da8461e3",
+      "revId": "6813d8aca07ef3b81c8c903040f080fbfcd15bd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d12c813f_ac7754e1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 10
@@ -31,6 +49,30 @@
       "writtenOn": "2024-11-22T05:15:26Z",
       "side": 1,
       "message": "wouldn\u0027t `is_profile_cleared` now just need to check whether the address exists in `connected_profiles`? \nAlso, the other changes to `unwrap_or_default` seems unnecessary because if profile is cleared we return early.",
+      "range": {
+        "startLine": 2300,
+        "startChar": 12,
+        "endLine": 2300,
+        "endChar": 30
+      },
+      "revId": "6813d8aca07ef3b81c8c903040f080fbfcd15bd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aad93fd_bfa7d598",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 2300,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-11-25T09:23:02Z",
+      "side": 1,
+      "message": "Just wanted to make it more relaxed in the event that this constraint did not maintain well, but we can also make it strict to catch errors.",
+      "parentUuid": "d12c813f_ac7754e1",
       "range": {
         "startLine": 2300,
         "startChar": 12,
