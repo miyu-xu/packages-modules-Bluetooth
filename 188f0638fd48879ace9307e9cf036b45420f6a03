@@ -1,0 +1,323 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "717566e7_1af47ce2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "Log is not useful, just throw in case it is not supported\n(the later log will show if it is).",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 65
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d1e086e_a98604b3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "Same, log can be removed",
+      "range": {
+        "startLine": 234,
+        "startChar": 15,
+        "endLine": 234,
+        "endChar": 65
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c57acf38_43c8c57c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 4607,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "You could collapse two branch conditions into one with \n`|| !Flags.btOffloadSocketApi()`",
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f35c4cf_39c3ccb0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 4641,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "Same here, the branches for `btOffloadSocketApi() \u003d\u003d false` and `DATA_PATH_NO_OFFLOAD` are identical",
+      "range": {
+        "startLine": 4641,
+        "startChar": 20,
+        "endLine": 4641,
+        "endChar": 28
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6edda36e_40929fad",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 3343,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "Same here again",
+      "range": {
+        "startLine": 3343,
+        "startChar": 16,
+        "endLine": 3343,
+        "endChar": 24
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5351ab9f_23043ffb",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "Is this constant actually useful for the user ?\nIt not the actual value for the MTU / MPS that will be negotiated",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 52
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ada420b_b7bbc75a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "There is an implicit limitation that the socket name cannot be longer than 128 characters long, you might want to check this here, or at least show a warning.",
+      "range": {
+        "startLine": 564,
+        "startChar": 53,
+        "endLine": 564,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1353263d_3ffb929b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 565,
+                "startChar": 0,
+                "endLine": 565,
+                "endChar": 0
+              },
+              "replacement": "            if (socketName.length() \u003e 128) {\n                throw new IllegalArgumentException(\"socket name is too long\");\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889c663b_14a09e18",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "requireNonNull(socketName)",
+      "range": {
+        "startLine": 565,
+        "startChar": 26,
+        "endLine": 565,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8b080d98_f4590393",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 565,
+                "startChar": 0,
+                "endLine": 566,
+                "endChar": 0
+              },
+              "replacement": "            mSocketName \u003d requireNonNull(socketName);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f33f65_9c267c60",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "Do we actually need to enforce this ?\nThat maximumPacketSize parameter is non enforcing, it is just an upper bound for the final negotiated value.",
+      "range": {
+        "startLine": 665,
+        "startChar": 46,
+        "endLine": 665,
+        "endChar": 82
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4a140f_6a296352",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "The socket_name will not be nul-terminated if the input value is longer than 128 characters",
+      "range": {
+        "startLine": 563,
+        "startChar": 21,
+        "endLine": 563,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a5c770a1_a6dc1700",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 563,
+                "startChar": 0,
+                "endLine": 564,
+                "endChar": 0
+              },
+              "replacement": "  strncpy(accept_rs-\u003esocket_name, sock-\u003esocket_name, sizeof(accept_rs-\u003esocket_name) - 1);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a43f5c3b_f2a52850",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:19:32Z",
+      "side": 1,
+      "message": "socket_name will not be nul-terminated if the input value is longer than 128 characters",
+      "range": {
+        "startLine": 905,
+        "startChar": 4,
+        "endLine": 905,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1cdaa4ad_5fe75e3c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 905,
+                "startChar": 0,
+                "endLine": 906,
+                "endChar": 0
+              },
+              "replacement": "    strncpy(sock-\u003esocket_name, socket_name, sizeof(sock-\u003esocket_name) - 1);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
