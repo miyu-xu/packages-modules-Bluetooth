@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e740faf_d43c5e94",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3777,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-25T19:33:02Z",
+      "side": 1,
+      "message": "With big flag enabled, any reason why do we need to add this back here?",
+      "revId": "3d0dcd57636d385d41ff7013576029d936d75cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
