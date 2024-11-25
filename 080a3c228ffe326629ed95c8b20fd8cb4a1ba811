@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76bef134_98d6e9ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 52
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T03:57:04Z",
+      "side": 1,
+      "message": "Merge conflict while aosp/3349005 has been propagated to downstream branch.",
+      "revId": "080a3c228ffe326629ed95c8b20fd8cb4a1ba811",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
