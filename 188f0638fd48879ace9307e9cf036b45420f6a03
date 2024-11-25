@@ -177,6 +177,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaffad80_66cc820d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 4607,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:39:13Z",
+      "side": 1,
+      "message": "lint-baseline didn\u0027t like this optimization. Reverted it back.",
+      "parentUuid": "2b9f6418_fa379f93",
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f35c4cf_39c3ccb0",
@@ -224,6 +242,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d260fab_e458d3e3",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 4641,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:39:13Z",
+      "side": 1,
+      "message": "lint-baseline didn\u0027t like this optimization. Reverted it back.",
+      "parentUuid": "464eaf30_2428a481",
+      "range": {
+        "startLine": 4641,
+        "startChar": 20,
+        "endLine": 4641,
+        "endChar": 28
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6edda36e_40929fad",
@@ -261,6 +303,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "6edda36e_40929fad",
+      "range": {
+        "startLine": 3343,
+        "startChar": 16,
+        "endLine": 3343,
+        "endChar": 24
+      },
+      "revId": "188f0638fd48879ace9307e9cf036b45420f6a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5916e909_ad89498d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 3343,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:39:13Z",
+      "side": 1,
+      "message": "lint-baseline didn\u0027t like this optimization. Revert it back.",
+      "parentUuid": "9b3e9ba5_baefc926",
       "range": {
         "startLine": 3343,
         "startChar": 16,
