@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e005753_42fa2952",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 2024550
+      },
+      "writtenOn": "2024-11-25T22:12:37Z",
+      "side": 1,
+      "message": "Should the function return here, so input and output streams aren\u0027t setup for an offloaded socket (line 591/592)",
+      "fixSuggestions": [
+        {
+          "fixId": "53084207_e125dbf3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 574,
+                "startChar": 0,
+                "endLine": 574,
+                "endChar": 0
+              },
+              "replacement": "                    return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
