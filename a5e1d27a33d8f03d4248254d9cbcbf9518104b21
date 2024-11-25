@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "688cb348_fc48fc42",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27f9ee17_b95b9cbf",
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75a8f0fb_a3e93e44",
@@ -65,6 +83,30 @@
           ]
         }
       ],
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43578d96_e984d645",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:15:48Z",
+      "side": 1,
+      "message": "lint-baseline test didn\u0027t like this kind optimization in checking flags.\n```\nm out/soong/.intermediates/packages/modules/Bluetooth/framework/framework-bluetooth.impl/android_common_apex33/lint/lint-baseline.xml\n```",
+      "parentUuid": "75a8f0fb_a3e93e44",
+      "range": {
+        "startLine": 1186,
+        "startChar": 8,
+        "endLine": 1189,
+        "endChar": 13
+      },
       "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +162,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d41f918_aae01517",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f8e6b80_946c0475",
+      "range": {
+        "startLine": 1006,
+        "startChar": 3,
+        "endLine": 1006,
+        "endChar": 13
+      },
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa4c7dad_8eac6253",
@@ -167,6 +233,30 @@
           ]
         }
       ],
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10160a8_79d0eba7",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T20:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa4c7dad_8eac6253",
+      "range": {
+        "startLine": 1062,
+        "startChar": 5,
+        "endLine": 1062,
+        "endChar": 12
+      },
       "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
