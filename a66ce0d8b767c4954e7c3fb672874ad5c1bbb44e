@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a8c428c_ac57dd9b",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-25T18:37:54Z",
+      "side": 1,
+      "message": "Do you mean to return from here? The comment sounds like pre-existing behavior was to ignore the second request.",
+      "fixSuggestions": [
+        {
+          "fixId": "927301a8_d30cd4fc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/connection_manager/connection_manager.cc",
+              "range": {
+                "startLine": 494,
+                "startChar": 0,
+                "endLine": 494,
+                "endChar": 0
+              },
+              "replacement": "      return false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a66ce0d8b767c4954e7c3fb672874ad5c1bbb44e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d71b6ed_2c27b631",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-25T18:37:54Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: TODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nTODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.",
+      "range": {
+        "startLine": 512,
+        "startChar": 7,
+        "endLine": 512,
+        "endChar": 23
+      },
+      "revId": "a66ce0d8b767c4954e7c3fb672874ad5c1bbb44e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
