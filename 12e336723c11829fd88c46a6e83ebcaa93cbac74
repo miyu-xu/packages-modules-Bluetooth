@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a21b144_df21bd79",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-25T20:47:36Z",
+      "side": 1,
+      "message": "actually, we could simply check ase.is_active. This flag is cleared when device gets to IDLE or CODEC_CONFIGURED state.\n\nSo if there is any device with ActiveAses (I believe there is function to check that), it means that device should be disconnected.",
+      "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49923212_e192867f",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-25T20:47:36Z",
+      "side": 1,
+      "message": "I\u0027m missing implementation of this function..",
+      "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
