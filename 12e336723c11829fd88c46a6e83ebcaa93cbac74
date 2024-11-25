@@ -33,6 +33,24 @@
       "message": "I\u0027m missing implementation of this function..",
       "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f319e039_545f163f",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-25T20:48:10Z",
+      "side": 1,
+      "message": "Reading further, I believe this is leftover.",
+      "parentUuid": "49923212_e192867f",
+      "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
