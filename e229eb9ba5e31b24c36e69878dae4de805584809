@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfcc7bf1_3168c9d3",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachineOld.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-11-25T18:06:27Z",
+      "side": 1,
+      "message": "Since we\u0027re adding a delayed report, I wonder if we might want to remove these types of message if we happen to receive a complete or fail event later on.\n\nThis would require _someone else_ causing the PSE SDP record to be fetched from the remote device, which isn\u0027t impossible. With a 20ms delay too, its very unlikely.",
+      "range": {
+        "startLine": 362,
+        "startChar": 16,
+        "endLine": 362,
+        "endChar": 97
+      },
+      "revId": "e229eb9ba5e31b24c36e69878dae4de805584809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
