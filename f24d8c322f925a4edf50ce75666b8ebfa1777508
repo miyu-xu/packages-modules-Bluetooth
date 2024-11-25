@@ -189,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f8b6505_ebfbf383",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-25T05:46:21Z",
+      "side": 1,
+      "message": "Done. I\u0027ve created a new `BluetoothAddress` class nested under `BluetoothDevice`. PTAL. Thank you.",
+      "parentUuid": "a51a8e23_b57ffbb8",
+      "range": {
+        "startLine": 4930,
+        "startChar": 11,
+        "endLine": 4930,
+        "endChar": 17
+      },
+      "revId": "f24d8c322f925a4edf50ce75666b8ebfa1777508",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf57b501_a053b0c5",
