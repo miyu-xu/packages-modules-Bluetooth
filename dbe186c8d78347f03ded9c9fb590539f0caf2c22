@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529c3100_65b15796",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-25T04:14:46Z",
+      "side": 1,
+      "message": "Build is already fixed with aosp/3374549",
+      "revId": "dbe186c8d78347f03ded9c9fb590539f0caf2c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
