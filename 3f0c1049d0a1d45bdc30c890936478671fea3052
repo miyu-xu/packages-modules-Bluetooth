@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f576af2f_68baf094",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "signaling",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d646835a_43a76555",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "Bug ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 3
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aac6eae5_753f8c3f",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "Please update test steps here",
+      "range": {
+        "startLine": 655,
+        "startChar": 0,
+        "endLine": 657,
+        "endChar": 36
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b6e8ed0_72b63aa1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3032,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "failed to complete the AVDT configuration in time",
+      "range": {
+        "startLine": 3032,
+        "startChar": 39,
+        "endLine": 3032,
+        "endChar": 56
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feef226e_75290c7e",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3419,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "hdi ? to match the field name in p_scb",
+      "range": {
+        "startLine": 3419,
+        "startChar": 11,
+        "endLine": 3419,
+        "endChar": 14
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8148167b_2219dda2",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3420,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "you can inline this",
+      "range": {
+        "startLine": 3420,
+        "startChar": 0,
+        "endLine": 3420,
+        "endChar": 32
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10be5f29_4dac9659",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3428,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T23:20:34Z",
+      "side": 1,
+      "message": "Please comment/document what the timeout handler will be doing.",
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
