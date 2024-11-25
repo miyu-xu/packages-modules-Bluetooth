@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "754a2c48_56a70c06",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T23:07:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "169d6bf4_c62dd05c",
+      "range": {
+        "startLine": 1225,
+        "startChar": 18,
+        "endLine": 1225,
+        "endChar": 28
+      },
+      "revId": "7ca668577119a6cb2f19a30daf101aadae922829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc993df8_bf4b30af",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-25T17:47:49Z",
       "side": 1,
       "message": "What is this field used for ?",
+      "range": {
+        "startLine": 1354,
+        "startChar": 0,
+        "endLine": 1355,
+        "endChar": 30
+      },
+      "revId": "7ca668577119a6cb2f19a30daf101aadae922829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a3207d4_5d0d9eb4",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 32
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T23:07:28Z",
+      "side": 1,
+      "message": "This field was used to get l2cap channel ID in the initial offload design. This field will be removed when the new API is landed.",
+      "parentUuid": "bc993df8_bf4b30af",
       "range": {
         "startLine": 1354,
         "startChar": 0,
