@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2df0968f_06deb7a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-25T16:31:33Z",
+      "side": 1,
+      "message": "But we have not registered for this intent. Why are we receiving it?",
+      "revId": "dc20e1a725891b65b6f33cc88aff89d6adef4b9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
