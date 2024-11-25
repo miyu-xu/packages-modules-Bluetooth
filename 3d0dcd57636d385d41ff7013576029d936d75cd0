@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "458a8e68_c6e6c844",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-25T21:10:05Z",
+      "side": 1,
+      "message": "Considering this is our 25Q1 bugfix candidate, +2 to unblock this first as no critical pending comments. Please help to check with reviewer and get this merged if no further question. Thanks.",
+      "revId": "3d0dcd57636d385d41ff7013576029d936d75cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e740faf_d43c5e94",
