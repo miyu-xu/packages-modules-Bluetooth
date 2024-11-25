@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84401656_7d2840c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-11-25T08:21:49Z",
+      "side": 1,
+      "message": "The original patch is not the root cause of b/380477704",
+      "revId": "cda983bc5845eee76d27766689a11ec5e3badcfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
