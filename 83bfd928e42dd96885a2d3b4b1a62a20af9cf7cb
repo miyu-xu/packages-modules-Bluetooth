@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14ff641e_03df9cf1",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T21:38:13Z",
+      "side": 1,
+      "message": "We\u0027re still using it as default value in constructor.\n\n```\nprivate int mMaximumPacketSize \u003d PACKET_MAX_SIZE;\n```",
+      "parentUuid": "50d72eb6_52e3dd0e",
+      "range": {
+        "startLine": 88,
+        "startChar": 29,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7144eb20_44c2b324",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be1cc1c7_62f11420",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T21:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7144eb20_44c2b324",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 20
+      },
       "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -146,6 +194,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad931d71_bf55d75d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T21:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6323f32e_faba952b",
+      "range": {
+        "startLine": 91,
+        "startChar": 29,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83ad7635_e6ef2fb3",
@@ -183,6 +255,30 @@
           ]
         }
       ],
+      "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad73921_28c58002",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T21:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83ad7635_e6ef2fb3",
+      "range": {
+        "startLine": 397,
+        "startChar": 16,
+        "endLine": 397,
+        "endChar": 19
+      },
       "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -238,6 +334,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1264c05_020e8e35",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T21:38:13Z",
+      "side": 1,
+      "message": "good catch.",
+      "parentUuid": "93090a50_c323bb61",
+      "range": {
+        "startLine": 580,
+        "startChar": 37,
+        "endLine": 580,
+        "endChar": 47
+      },
+      "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2199f344_a3468d86",
@@ -251,6 +371,30 @@
       "writtenOn": "2024-11-25T21:15:24Z",
       "side": 1,
       "message": "Why all this logic ?\nIs it not sufficient to do the same as the other strncpy call point ?",
+      "range": {
+        "startLine": 906,
+        "startChar": 4,
+        "endLine": 909,
+        "endChar": 57
+      },
+      "revId": "83bfd928e42dd96885a2d3b4b1a62a20af9cf7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dbb908b_3df897e9",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-25T21:38:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2199f344_a3468d86",
       "range": {
         "startLine": 906,
         "startChar": 4,
