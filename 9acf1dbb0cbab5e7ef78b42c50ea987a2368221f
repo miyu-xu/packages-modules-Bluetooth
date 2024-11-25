@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4887275_65c49272",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 5920,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-25T23:03:31Z",
+      "side": 1,
+      "message": "Should start with a single sentence explaining the API. For instance `Returns whether LE CoC socket hardware offload is supported.`",
+      "range": {
+        "startLine": 5920,
+        "startChar": 4,
+        "endLine": 5920,
+        "endChar": 7
+      },
+      "revId": "9acf1dbb0cbab5e7ef78b42c50ea987a2368221f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d76d21_c90a3acb",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 5925,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-25T23:03:31Z",
+      "side": 1,
+      "message": "If offload is supported, would it be used by default for all Bluetooth sockets? If not, which component takes the decision to offload or not a socket?",
+      "range": {
+        "startLine": 5921,
+        "startChar": 0,
+        "endLine": 5925,
+        "endChar": 33
+      },
+      "revId": "9acf1dbb0cbab5e7ef78b42c50ea987a2368221f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
