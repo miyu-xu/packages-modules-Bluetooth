@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c917963_e21a480b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3782,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-25T06:56:20Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "8b8b5775_b1afc003",
+      "range": {
+        "startLine": 3782,
+        "startChar": 24,
+        "endLine": 3782,
+        "endChar": 67
+      },
+      "revId": "f30e4d958391aac1cd4150c6626033898e692562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6c1f4fa_2035c1d1",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "271a96b6_3a619686",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3797,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-25T06:56:20Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "c6c1f4fa_2035c1d1",
+      "revId": "f30e4d958391aac1cd4150c6626033898e692562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f83ad1e_923c9767",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-11-25T06:33:38Z",
       "side": 1,
       "message": "I prefer annotations before the method on the previous line",
+      "range": {
+        "startLine": 3801,
+        "startChar": 15,
+        "endLine": 3801,
+        "endChar": 27
+      },
+      "revId": "f30e4d958391aac1cd4150c6626033898e692562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69c34685_95e0bc34",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3801,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-25T06:56:20Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "8f83ad1e_923c9767",
       "range": {
         "startLine": 3801,
         "startChar": 15,
