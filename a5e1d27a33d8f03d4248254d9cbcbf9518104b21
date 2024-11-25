@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f9ee17_b95b9cbf",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:34:02Z",
+      "side": 1,
+      "message": "You need to document what this is doing, one shouldn\u0027t have to read the native code to know.",
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a8f0fb_a3e93e44",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:34:02Z",
+      "side": 1,
+      "message": "Early return with\n```\nif (!Flags.socketSettingsApi() || !Flags.btOffloadSocketApi() ||\n    mDataPath !\u003d BluetoothSocketSettings.DATA_PATH_HW_OFFLOAD) {\n    return;\n}\n```",
+      "range": {
+        "startLine": 1186,
+        "startChar": 8,
+        "endLine": 1189,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "445728e8_3dde5a9e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 1186,
+                "startChar": 0,
+                "endLine": 1197,
+                "endChar": 0
+              },
+              "replacement": "        if (!Flags.socketSettingsApi()\n                || !Flags.btOffloadSocketApi()\n                || mDataPath !\u003d BluetoothSocketSettings.DATA_PATH_HW_OFFLOAD) {\n            return;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 1198,
+                "startChar": 0,
+                "endLine": 1198,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"sendSocketAcceptSignal\" + \" isAccepting \" + isAccepting);\n        byte[] sig \u003d new byte[SOCK_ACCEPT_SIGNAL_SIZE];\n        ByteBuffer bb \u003d ByteBuffer.wrap(sig);\n        bb.order(ByteOrder.nativeOrder());\n        bb.putShort((short) SOCK_ACCEPT_SIGNAL_SIZE);\n        bb.putShort((short) (isAccepting ? 1 : 0));\n        os.write(sig, 0, SOCK_ACCEPT_SIGNAL_SIZE);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f8e6b80_946c0475",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:34:02Z",
+      "side": 1,
+      "message": "state_lock taken by caller",
+      "range": {
+        "startLine": 1006,
+        "startChar": 3,
+        "endLine": 1006,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6ce97f28_9fab2344",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1006,
+                "startChar": 0,
+                "endLine": 1007,
+                "endChar": 0
+              },
+              "replacement": "// state_lock taken by caller\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1048,
+                "startChar": 0,
+                "endLine": 1049,
+                "endChar": 0
+              },
+              "replacement": "// state_lock taken by caller\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4c7dad_8eac6253",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-25T17:34:02Z",
+      "side": 1,
+      "message": "you can move out of the else branch, the true branch is returning",
+      "range": {
+        "startLine": 1062,
+        "startChar": 5,
+        "endLine": 1062,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cd7057e4_ef029257",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1062,
+                "startChar": 0,
+                "endLine": 1065,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1066,
+                "startChar": 0,
+                "endLine": 1066,
+                "endChar": 0
+              },
+              "replacement": "    sock-\u003eis_accepting \u003d accept_signal.is_accepting;\n    log::info(\"Server socket {} is_accepting {}\", sock-\u003eid, sock-\u003eis_accepting);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a5e1d27a33d8f03d4248254d9cbcbf9518104b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
