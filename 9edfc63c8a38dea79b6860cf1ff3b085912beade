@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e020379c_17514194",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6034,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T07:48:23Z",
+      "side": 1,
+      "message": "updated the documents.",
+      "parentUuid": "564c39b6_701a7371",
+      "range": {
+        "startLine": 6034,
+        "startChar": 60,
+        "endLine": 6034,
+        "endChar": 66
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1367e3db_bd047fa1",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6034,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T07:48:23Z",
+      "side": 1,
+      "message": "updated the documents.",
+      "parentUuid": "d583e675_aa56ab03",
+      "range": {
+        "startLine": 6034,
+        "startChar": 26,
+        "endLine": 6034,
+        "endChar": 43
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75de7ce3_7a475b52",
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c538307_9151736c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6037,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T07:48:23Z",
+      "side": 1,
+      "message": "updated the documents.",
+      "parentUuid": "75de7ce3_7a475b52",
+      "range": {
+        "startLine": 6033,
+        "startChar": 7,
+        "endLine": 6037,
+        "endChar": 33
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6c4cac8_ab5ea2d3",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-26T06:29:29Z",
       "side": 1,
       "message": "Why is this a system API? Why aren\u0027t apps allowed to create offloaded RFCOMM sockets?",
+      "range": {
+        "startLine": 6050,
+        "startChar": 4,
+        "endLine": 6050,
+        "endChar": 14
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffb5e92b_fc0c4261",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6050,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T07:48:23Z",
+      "side": 1,
+      "message": "updated the documents.",
+      "parentUuid": "b6c4cac8_ab5ea2d3",
       "range": {
         "startLine": 6050,
         "startChar": 4,
