@@ -241,7 +241,9 @@ public class GattService extends ProfileService {
         }
         mAdvertiseManager.clear();
         mClientMap.clear();
-        mRestrictedHandles.clear();
+        if (Flags.gattCleanupRestrictedHandles()) {
+            mRestrictedHandles.clear();
+        }
         mServerMap.clear();
         mHandleMap.clear();
         mReliableQueue.clear();
@@ -1333,7 +1335,9 @@ public class GattService extends ProfileService {
         mClientMap.removeConnection(clientIf, connId);
         ContextMap<IBluetoothGattCallback>.App app = mClientMap.getById(clientIf);
 
-        mRestrictedHandles.remove(connId);
+        if (Flags.gattCleanupRestrictedHandles()) {
+            mRestrictedHandles.remove(connId);
+        }
 
         // Remove AtomicBoolean representing permit if no other connections rely on this remote
         // device.
