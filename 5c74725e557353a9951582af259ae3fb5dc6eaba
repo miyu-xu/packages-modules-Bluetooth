@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99a9f231_6653b681",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Updated the change not to touch existing constructor.",
+      "parentUuid": "bda99b18_d0a9dfb2",
+      "range": {
+        "startLine": 217,
+        "startChar": 35,
+        "endLine": 217,
+        "endChar": 56
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78d760f8_6eb8cf22",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-26T06:30:11Z",
       "side": 1,
       "message": "In which cases these permissions are not required and why?",
+      "range": {
+        "startLine": 229,
+        "startChar": 12,
+        "endLine": 229,
+        "endChar": 30
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a9d455_2331cf63",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Updated the change not to touch existing constructor.",
+      "parentUuid": "78d760f8_6eb8cf22",
       "range": {
         "startLine": 229,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb54eaf8_a3ee4e34",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Updated the change not to touch existing constructor.",
+      "parentUuid": "6d339dbe_3160e66f",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3042b335_b1c2e0a7",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-26T06:30:11Z",
       "side": 1,
       "message": "Missing nullability. Also prefer `@NonNullable` by using a default socket name. See go/android-api-guidelines#prefer-nonnull-arguments",
+      "range": {
+        "startLine": 302,
+        "startChar": 12,
+        "endLine": 302,
+        "endChar": 18
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "559c787e_2f782638",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Done. Updated BluetoothSocketSettings#getSocketName() as NonNull as well.",
+      "parentUuid": "3042b335_b1c2e0a7",
       "range": {
         "startLine": 302,
         "startChar": 12,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "167c48c1_1f95df2d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a2d7c7_3a0c73f1",
+      "range": {
+        "startLine": 330,
+        "startChar": 25,
+        "endLine": 330,
+        "endChar": 27
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12d03a28_35919263",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b41540f1_ead9da41",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Instead of merging two constructor, updated the change to keep separate constructors. Just extended offload parameters on the two constructors.",
+      "parentUuid": "12d03a28_35919263",
+      "range": {
+        "startLine": 339,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 9
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d5de43a_5468964a",
@@ -152,6 +296,30 @@
       "writtenOn": "2024-11-26T06:30:11Z",
       "side": 1,
       "message": "Why is that? Does it mean a non-privilege application can connect to a socket when data path is offloaded?",
+      "range": {
+        "startLine": 528,
+        "startChar": 2,
+        "endLine": 529,
+        "endChar": 96
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89892f28_3b10fd4d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "The document was intended that a non-privilege application can\u0027t connect when data path is offloaded(not @link BluetoothSocketSettings#DATA_PATH_NO_OFFLOAD}).",
+      "parentUuid": "6d5de43a_5468964a",
       "range": {
         "startLine": 528,
         "startChar": 2,
@@ -264,6 +432,30 @@
       "writtenOn": "2024-11-26T06:30:11Z",
       "side": 1,
       "message": "Can be simplified:\n\n```\nif (Flags.socketSettingsApi() \u0026\u0026 Flags.btOffloadSocketApi() \u0026\u0026 mDataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n    mPfd \u003d socketManager.connectSocketwithOffload(\n            mDevice,\n            mType,\n            mUuid,\n            mPort,\n            getSecurityFlags(),\n            mDataPath,\n            mSocketName,\n            mHubId,\n            mEndpointId,\n            mMaximumPacketSize);\n} else {\n    mPfd \u003d socketManager.connectSocket(\n            mDevice, mType, mUuid, mPort, getSecurityFlags());\n}\n```",
+      "range": {
+        "startLine": 556,
+        "startChar": 12,
+        "endLine": 579,
+        "endChar": 13
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb2016a_4858b167",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "lint-baseline didn\u0027t like this code optimization.",
+      "parentUuid": "ee815b0e_135028bf",
       "range": {
         "startLine": 556,
         "startChar": 12,

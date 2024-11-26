@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9ff2d4_4390e3b7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Instead of merging two constructor, updated the change to keep separate constructors. Just extended offload parameters on the two constructors.",
+      "parentUuid": "7159614c_3d64e910",
+      "range": {
+        "startLine": 274,
+        "startChar": 11,
+        "endLine": 274,
+        "endChar": 15
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c389eb6_f23bb22e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-26T06:30:11Z",
       "side": 1,
       "message": "Why is this a system API?",
+      "range": {
+        "startLine": 1150,
+        "startChar": 4,
+        "endLine": 1150,
+        "endChar": 14
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed48970_43d1efa6",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "I think we can expose this API as public but this API would not be useful for 3P apps because they can use BluetoothSocket instance for identifier instead of socket ID. That\u0027s the only reason.",
+      "parentUuid": "3c389eb6_f23bb22e",
       "range": {
         "startLine": 1150,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cf5dcae_5519adc8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "In current BluetoothSocket architecture, mSocketId is stored in Framework (BluetoothSocket) directly when socket is connected. Also, it doesn\u0027t require permission but it is hidden because it is not useful for 3P app.",
+      "parentUuid": "6df6d3e8_4f32e3f0",
+      "range": {
+        "startLine": 1152,
+        "startChar": 4,
+        "endLine": 1152,
+        "endChar": 25
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aada5da_cf74b66f",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-26T06:30:11Z",
       "side": 1,
       "message": "host can be confusing here as it is also the terminology used to designate the Bluetooth stack. Same comments apply to the whole documentation below",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 24
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8710376_c52b2802",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T22:58:47Z",
+      "side": 1,
+      "message": "removed `the host device`. Keep `main Bluetooth stack`",
+      "parentUuid": "8aada5da_cf74b66f",
       "range": {
         "startLine": 66,
         "startChar": 20,
