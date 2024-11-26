@@ -33,6 +33,24 @@
       "message": "With big flag enabled, any reason why do we need to add this back here?",
       "revId": "3d0dcd57636d385d41ff7013576029d936d75cd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f45a5821_45264bb7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3777,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-26T07:17:33Z",
+      "side": 1,
+      "message": "Hey!\n\nYou\u0027re right, enabling the possibility to resume the stream in the current flow does seem necessary. I\u0027m thinking we could explore moving away from the start/stop model and using create/destroy instead, but that would involve more work. Right now, we\u0027re running into issues with AF calling resume on Broadcast when Unicast is active.\n\nLet\u0027s discuss this further!",
+      "parentUuid": "7e740faf_d43c5e94",
+      "revId": "3d0dcd57636d385d41ff7013576029d936d75cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
