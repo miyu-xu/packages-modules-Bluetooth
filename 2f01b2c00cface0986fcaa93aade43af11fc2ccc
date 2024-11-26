@@ -3,6 +3,61 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc93ea8d_1a28b2dc",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-26T13:31:28Z",
+      "side": 1,
+      "message": "I believe we need this function to return bool and when eatt is not enabled it should return false.",
+      "fixSuggestions": [
+        {
+          "fixId": "412c3cfc_e7e8473d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 269,
+                "startChar": 0,
+                "endLine": 270,
+                "endChar": 0
+              },
+              "replacement": "bool BtaGattQueue::ReadMultiCharacteristic(tCONN_ID conn_id, tBTA_GATTC_MULTI\u0026 handles,\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 271,
+                "startChar": 0,
+                "endLine": 271,
+                "endChar": 0
+              },
+              "replacement": "  if (!gatt_profile_get_eatt_support_by_conn_id(conn_id)) {\n    return false;\n  }\n"
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_queue.cc",
+              "range": {
+                "startLine": 276,
+                "startChar": 0,
+                "endLine": 276,
+                "endChar": 0
+              },
+              "replacement": "  return true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2f01b2c00cface0986fcaa93aade43af11fc2ccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2332239_63e6332b",
         "filename": "system/bta/include/bta_gatt_queue.h",
         "patchSetId": 1
