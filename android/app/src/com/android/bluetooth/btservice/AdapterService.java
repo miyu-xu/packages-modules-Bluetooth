@@ -7087,14 +7087,6 @@ public class AdapterService extends Service {
                             if (ex != null) {
                                 Log.e(TAG, "Error happened while removing contents. ", ex);
                             }
-
-                            if (!dir.equals(directoryPath)) {
-                                try {
-                                    Files.delete(dir);
-                                } catch (Exception e) {
-                                    Log.e(TAG, "Error happened while removing directory: ", e);
-                                }
-                            }
                             return FileVisitResult.CONTINUE;
                         }
                     });
