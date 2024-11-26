@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "391e19a3_6042aaab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-26T00:34:27Z",
+      "side": 1,
+      "message": "Is it necessary to have this? per the spec, sinks should expose all RS states for server to use.",
+      "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94fb897c_25424d43",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-26T00:34:27Z",
+      "side": 1,
+      "message": "should this be cleared at clearCharsCache()?",
+      "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e79c2c66_b8a7ff32",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-11-26T00:34:27Z",
+      "side": 1,
+      "message": "leaudioBroadcastReceiveStateProcessingRefactor is for 25Q2, we can remove this flag leaudioBroadcastResyncHelper here since it will be released before that.",
+      "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
