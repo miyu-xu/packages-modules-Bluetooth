@@ -16,6 +16,24 @@
       "message": "But we have not registered for this intent. Why are we receiving it?",
       "revId": "dc20e1a725891b65b6f33cc88aff89d6adef4b9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c05e3697_e4f49d10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-11-26T06:22:44Z",
+      "side": 1,
+      "message": "Register just before we call testStep_BondLe(). https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3375629/3/framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java#744",
+      "parentUuid": "2df0968f_06deb7a2",
+      "revId": "dc20e1a725891b65b6f33cc88aff89d6adef4b9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
