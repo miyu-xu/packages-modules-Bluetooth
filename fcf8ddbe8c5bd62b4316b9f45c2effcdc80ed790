@@ -40,6 +40,30 @@
       ],
       "revId": "fcf8ddbe8c5bd62b4316b9f45c2effcdc80ed790",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3218f16b_8279a131",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T18:40:45Z",
+      "side": 1,
+      "message": "The pattern is confusing, but this is currently a thread created on purpose in the code (Gattservice / scanController)\n\nIt would require a change under flag to modify the threading model here.",
+      "parentUuid": "2fb2f731_3f49b0d1",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 9
+      },
+      "revId": "fcf8ddbe8c5bd62b4316b9f45c2effcdc80ed790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
