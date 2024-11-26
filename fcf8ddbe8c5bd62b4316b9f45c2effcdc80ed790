@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb2f731_3f49b0d1",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-26T18:25:16Z",
+      "side": 1,
+      "message": "The looper is passed as parameter to the ScanManager constructor; do we actually want to quit it now ? This will have an impact on other profiles using the same looper.",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "af5e3c6c_e80fd234",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 229,
+                "startChar": 0,
+                "endLine": 233,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "fcf8ddbe8c5bd62b4316b9f45c2effcdc80ed790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
