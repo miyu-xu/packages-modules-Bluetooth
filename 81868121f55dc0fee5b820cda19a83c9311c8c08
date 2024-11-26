@@ -22,6 +22,30 @@
       },
       "revId": "81868121f55dc0fee5b820cda19a83c9311c8c08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1e4f206_39e95d90",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T00:04:19Z",
+      "side": 1,
+      "message": "These parameters are propagated by following path which was not connected before:\n\n\n```\nbtif_sock_l2cap.cc -\u003e bta_jv_l2cap_connect or bta_jv_l2cap_start_server -\u003e GAP_ConnOpen -\u003e L2CA_RegisterLECoc\n```",
+      "parentUuid": "7f972c9e_18b9e987",
+      "range": {
+        "startLine": 780,
+        "startChar": 1,
+        "endLine": 781,
+        "endChar": 53
+      },
+      "revId": "81868121f55dc0fee5b820cda19a83c9311c8c08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
