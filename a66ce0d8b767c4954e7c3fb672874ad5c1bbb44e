@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b935888_90d62c90",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-26T20:43:41Z",
+      "side": 1,
+      "message": "Good catch! but return value should be true.",
+      "parentUuid": "4a8c428c_ac57dd9b",
+      "revId": "a66ce0d8b767c4954e7c3fb672874ad5c1bbb44e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d71b6ed_2c27b631",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-11-25T18:37:54Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: TODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nTODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.",
+      "range": {
+        "startLine": 512,
+        "startChar": 7,
+        "endLine": 512,
+        "endChar": 23
+      },
+      "revId": "a66ce0d8b767c4954e7c3fb672874ad5c1bbb44e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d07a29_92999e27",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-26T20:43:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d71b6ed_2c27b631",
       "range": {
         "startLine": 512,
         "startChar": 7,
