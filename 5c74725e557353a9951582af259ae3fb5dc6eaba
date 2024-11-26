@@ -70,6 +70,24 @@
       "parentUuid": "6b733c1d_4a787538",
       "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19ccc249_3f356334",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 2024550
+      },
+      "writtenOn": "2024-11-26T01:38:05Z",
+      "side": 1,
+      "message": "thanks for the explanation",
+      "parentUuid": "0903e644_f35cb0d1",
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
