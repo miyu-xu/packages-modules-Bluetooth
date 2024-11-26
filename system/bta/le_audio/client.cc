@@ -1260,11 +1260,13 @@ public:
        * before group activation (active group context would take care of
        * Sink HAL client cleanup).
        */
-      if (sink_monitor_mode_ && !enable && le_audio_sink_hal_client_ &&
-          active_group_id_ == bluetooth::groups::kGroupUnknown) {
-        local_metadata_context_types_.sink.clear();
-        le_audio_sink_hal_client_->Stop();
-        le_audio_sink_hal_client_.reset();
+      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+        if (sink_monitor_mode_ && !enable && le_audio_sink_hal_client_ &&
+            active_group_id_ == bluetooth::groups::kGroupUnknown) {
+          local_metadata_context_types_.sink.clear();
+          le_audio_sink_hal_client_->Stop();
+          le_audio_sink_hal_client_.reset();
+        }
       }
 
       log::debug("enable: {}", enable);
@@ -4494,12 +4496,14 @@ public:
                                             "r_state: " + ToString(audio_receiver_state_) +
                                                     ", s_state: " + ToString(audio_sender_state_));
 
-    if (sink_monitor_mode_ && active_group_id_ == bluetooth::groups::kGroupUnknown) {
-      if (sink_monitor_notified_status_ != UnicastMonitorModeStatus::STREAMING_REQUESTED) {
-        notifyAudioLocalSink(UnicastMonitorModeStatus::STREAMING_REQUESTED);
+    if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+      if (sink_monitor_mode_ && active_group_id_ == bluetooth::groups::kGroupUnknown) {
+        if (sink_monitor_notified_status_ != UnicastMonitorModeStatus::STREAMING_REQUESTED) {
+          notifyAudioLocalSink(UnicastMonitorModeStatus::STREAMING_REQUESTED);
+        }
+        CancelLocalAudioSinkStreamingRequest();
+        return;
       }
-      CancelLocalAudioSinkStreamingRequest();
-      return;
     }
 
     /* Stop the VBC close watchdog if needed */
@@ -5984,10 +5988,12 @@ private:
        * the session callbacks special action from this Module would be
        * required e.g. to Unicast handover.
        */
-      if (!sink_monitor_mode_) {
-        local_metadata_context_types_.sink.clear();
-        le_audio_sink_hal_client_->Stop();
-        le_audio_sink_hal_client_.reset();
+      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+        if (!sink_monitor_mode_) {
+          local_metadata_context_types_.sink.clear();
+          le_audio_sink_hal_client_->Stop();
+          le_audio_sink_hal_client_.reset();
+        }
       }
     }
     local_metadata_context_types_.source.clear();
