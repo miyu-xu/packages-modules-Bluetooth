@@ -40,6 +40,30 @@
       ],
       "revId": "d8da2850b8a547f4954234d75598d69653ed2e6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dd9d63b_17df7bc8",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T18:50:56Z",
+      "side": 1,
+      "message": "I\u0027ll do a follow-up to change this, along with Henri suggested change on mContext",
+      "parentUuid": "ace788f1_43fa1e15",
+      "range": {
+        "startLine": 1293,
+        "startChar": 37,
+        "endLine": 1293,
+        "endChar": 49
+      },
+      "revId": "d8da2850b8a547f4954234d75598d69653ed2e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
