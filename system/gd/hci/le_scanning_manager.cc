@@ -1574,6 +1574,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     paused_ = false;
     if (scan_on_resume_ == true) {
       scan_on_resume_ = false;
+      configure_scan();
       start_scan();
     }
     le_address_manager_->AckResume(this);
