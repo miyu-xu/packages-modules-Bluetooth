@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8da42c97_5dc4509f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T20:02:45Z",
+      "side": 1,
+      "message": "This looks like a workaround patch to try to address a race condition by increasing the requirement to log the config.\n\nWhy is the config null when this happen ? (I mean why is the config null prior to stopping the stack connection when doing a factory reset)",
+      "revId": "1a8d3cbb2ecdee1b9b948d3b6cc19b7336c6acf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
