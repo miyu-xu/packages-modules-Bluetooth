@@ -16,6 +16,24 @@
       "message": "Merge conflict to resolve.",
       "revId": "7541a742486928d6f9c2850dad0afcc8ea5dd70d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a59cad3_4f12225e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-26T07:07:50Z",
+      "side": 1,
+      "message": "This is not standard merge conflict.\nPresubmit was verified correctly on Friday, on Monday I notice standard merge conflict as on  leaudio.aconfig leaudio_add_opus_codec_type was added.\nI rebased it and after that I was going into this weird `Presubmit Auto-merge conflict Explainer`. I tried rebase it one again yesterday but did not help.\n\nToday a next try and it looks like problem still exist...",
+      "parentUuid": "a4cfd60c_ab80aeb4",
+      "revId": "7541a742486928d6f9c2850dad0afcc8ea5dd70d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
