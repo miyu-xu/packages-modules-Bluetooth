@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d75e0016_43f602ea",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1310,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-26T07:17:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d27cfd49_703604e0",
+      "revId": "84e4553994b88908afd8fbb58896e4bd38dc41fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06480fa1_cce662b9",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "with `com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()` enabled this function is not called at all. Without set `com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()` it should be handled. Now it would be called in both cases and both needs to be handled.",
       "parentUuid": "06480fa1_cce662b9",
+      "revId": "84e4553994b88908afd8fbb58896e4bd38dc41fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca6fee1_7bbbc36f",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-26T07:17:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b1655fa_7b961b9b",
       "revId": "84e4553994b88908afd8fbb58896e4bd38dc41fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
