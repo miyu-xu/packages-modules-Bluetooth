@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9288ee67_6d8e8681",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-26T18:08:49Z",
+      "side": 1,
+      "message": "(jint)",
+      "fixSuggestions": [
+        {
+          "fixId": "8cc810d7_f7493dbb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+              "range": {
+                "startLine": 436,
+                "startChar": 0,
+                "endLine": 437,
+                "endChar": 0
+              },
+              "replacement": "                               secondary_addr.get(), (jint)identity_address_type);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5a39a105bf6fdd28316df7be7491dc4a1a3248c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
