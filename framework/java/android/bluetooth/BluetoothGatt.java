@@ -22,11 +22,13 @@ import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static android.bluetooth.BluetoothUtils.logRemoteException;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.annotation.SystemApi;
 import android.bluetooth.BluetoothGattCharacteristic.WriteType;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -172,6 +174,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     public static final int SUBRATE_REQUEST_MODE_BALANCED = 0;
 
     /**
@@ -179,6 +183,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     public static final int SUBRATE_REQUEST_MODE_HIGH = 1;
 
     /**
@@ -186,6 +192,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     public static final int SUBRATE_REQUEST_MODE_LOW_POWER = 2;
 
     /** @hide */
@@ -2228,6 +2236,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @return true, if the request is send to the Bluetooth stack.
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
@@ -2252,6 +2262,59 @@ public final class BluetoothGatt implements BluetoothProfile {
             logRemoteException(TAG, e);
             return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
         }
+    }
+
+    /**
+     * Request a LE subrate request.
+     *
+     * <p>This function will send a LE subrate request to the remote device.
+     *
+     * @return true, if the request is send to the Bluetooth stack.
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    public boolean bleSubrateRequest(
+            int subrateMin,
+            int subrateMax,
+            int maxLatency,
+            int contNumber,
+            int supervisionTimeout) {
+        if (DBG) {
+            Log.d(
+                    TAG,
+                    "bleSubrateRequest() - subrateMin="
+                            + subrateMin
+                            + " subrateMax="
+                            + (subrateMax)
+                            + " maxLatency= "
+                            + maxLatency
+                            + "contNumber="
+                            + contNumber
+                            + " supervisionTimeout="
+                            + supervisionTimeout);
+        }
+        if (mService == null || mClientIf == 0) {
+            return false;
+        }
+
+        try {
+            mService.leSubrateRequest(
+                    mClientIf,
+                    mDevice.getAddress(),
+                    subrateMin,
+                    subrateMax,
+                    maxLatency,
+                    contNumber,
+                    supervisionTimeout,
+                    mAttributionSource);
+        } catch (RemoteException e) {
+            Log.e(TAG, "", e);
+            return false;
+        }
+        return true;
     }
 
     /**
