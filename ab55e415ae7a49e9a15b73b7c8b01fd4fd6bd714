@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8566111e_2bd682a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T20:28:00Z",
+      "side": 1,
+      "message": "Why are we creating an HfpClientConnection if the call is terminated ?\n\nShouldn\u0027t we check for the call status prior to create an object and eventually skip the creation altogether ?",
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493eacab_fdebb1cf",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T20:28:00Z",
+      "side": 1,
+      "message": "should we do the check here, before calling into the method ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 26
+      },
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "575e12e5_19ec6b80",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T20:28:00Z",
+      "side": 1,
+      "message": "Are we sure we want to call this ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
