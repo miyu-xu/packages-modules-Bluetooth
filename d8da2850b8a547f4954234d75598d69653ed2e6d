@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace788f1_43fa1e15",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-11-26T18:26:10Z",
+      "side": 1,
+      "message": "Nit: Up to you but I think it\u0027s cleaner to expose this via a static method rather than a public member",
+      "range": {
+        "startLine": 1293,
+        "startChar": 37,
+        "endLine": 1293,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1ab19443_d920d900",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/Utils.java",
+              "range": {
+                "startLine": 1293,
+                "startChar": 0,
+                "endLine": 1294,
+                "endChar": 0
+              },
+              "replacement": "    public static TimeProvider getSystemClock() {\n        return new SystemClockTimeProvider();\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d8da2850b8a547f4954234d75598d69653ed2e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
