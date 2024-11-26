@@ -36,6 +36,7 @@
 #include "gatt/database.h"
 #include "gattdefs.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/gatt_api.h"
 #include "types/bluetooth/uuid.h"
@@ -422,6 +423,7 @@ void VolumeControlDevice::EnqueueRemainingRequests(tGATT_IF /*gatt_if*/,
                                                    GATT_READ_MULTI_OP_CB chrc_multi_read_cb,
                                                    GATT_WRITE_OP_CB /*cccd_write_cb*/) {
   std::vector<uint16_t> handles_to_read;
+  bool is_eatt_supported = gatt_profile_get_eatt_support_by_conn_id(connection_id);
 
   for (auto const& input : audio_inputs.volume_audio_inputs) {
     handles_to_read.push_back(input.state_handle);
@@ -439,7 +441,7 @@ void VolumeControlDevice::EnqueueRemainingRequests(tGATT_IF /*gatt_if*/,
 
   log::debug("{}, number of handles={}", address, handles_to_read.size());
 
-  if (!com::android::bluetooth::flags::le_ase_read_multiple_variable()) {
+  if (!com::android::bluetooth::flags::le_ase_read_multiple_variable() || !is_eatt_supported) {
     for (auto const& handle : handles_to_read) {
       BtaGattQueue::ReadCharacteristic(connection_id, handle, chrc_read_cb, nullptr);
     }
