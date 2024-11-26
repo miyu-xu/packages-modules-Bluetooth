@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564c39b6_701a7371",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6034,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:29:29Z",
+      "side": 1,
+      "message": "Do you mean `offloaded Bluetooth stack`?",
+      "range": {
+        "startLine": 6034,
+        "startChar": 60,
+        "endLine": 6034,
+        "endChar": 66
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d583e675_aa56ab03",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6034,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:29:29Z",
+      "side": 1,
+      "message": "Are you offloading endpoints or rather offloading the processing of packets related to these endpoints?",
+      "range": {
+        "startLine": 6034,
+        "startChar": 26,
+        "endLine": 6034,
+        "endChar": 43
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75de7ce3_7a475b52",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6037,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:29:29Z",
+      "side": 1,
+      "message": "Can you clarify a bit this description? Right now, it feels pretty obscure for the reader. Suggesting to use Gemini for this",
+      "range": {
+        "startLine": 6033,
+        "startChar": 7,
+        "endLine": 6037,
+        "endChar": 33
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c4cac8_ab5ea2d3",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 6050,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:29:29Z",
+      "side": 1,
+      "message": "Why is this a system API? Why aren\u0027t apps allowed to create offloaded RFCOMM sockets?",
+      "range": {
+        "startLine": 6050,
+        "startChar": 4,
+        "endLine": 6050,
+        "endChar": 14
+      },
+      "revId": "9edfc63c8a38dea79b6860cf1ff3b085912beade",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
