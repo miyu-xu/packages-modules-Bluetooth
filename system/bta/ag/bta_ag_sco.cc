@@ -224,7 +224,7 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
   uint16_t handle = 0;
 
   log::debug("sco_idx: 0x{:x} sco.state:{}", sco_idx,
-             sco_state_text(static_cast<tSCO_STATE>(bta_ag_cb.sco.state)));
+             bta_ag_sco_state_text(static_cast<tBTA_AG_SCO>(bta_ag_cb.sco.state)));
   log::debug("scb[0] in_use:{} sco_idx: 0x{:x} ag state:{}", bta_ag_cb.scb[0].in_use,
              bta_ag_cb.scb[0].sco_idx, bta_ag_state_str(bta_ag_cb.scb[0].state));
   log::debug("scb[1] in_use:{} sco_idx:0x{:x} ag state:{}", bta_ag_cb.scb[1].in_use,
