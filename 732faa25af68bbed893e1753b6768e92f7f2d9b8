@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe83392f_ea11d6c7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-26T18:08:22Z",
+      "side": 1,
+      "message": "why do we need to call getApplicationContext ?\n\ndoens\u0027t this work:\n```\nadapterService.getPackageManager()\n``` ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1e5a26c3_e5ab9a88",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": "                    adapterService.getPackageManager().hasSystemFeature(\n                            FEATURE_BLUETOOTH_LE_CHANNEL_SOUNDING);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "732faa25af68bbed893e1753b6768e92f7f2d9b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
