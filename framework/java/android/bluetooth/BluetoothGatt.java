@@ -18,11 +18,13 @@ package android.bluetooth;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.annotation.SystemApi;
 import android.bluetooth.BluetoothGattCharacteristic.WriteType;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -34,6 +36,8 @@ import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -164,6 +168,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     public static final int SUBRATE_REQUEST_MODE_BALANCED = 0;
 
     /**
@@ -171,6 +177,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     public static final int SUBRATE_REQUEST_MODE_HIGH = 1;
 
     /**
@@ -178,6 +186,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     public static final int SUBRATE_REQUEST_MODE_LOW_POWER = 2;
 
     /** @hide */
@@ -2123,6 +2133,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @return true, if the request is send to the Bluetooth stack.
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean requestSubrateMode(@SubrateRequestMode int subrateMode) {
@@ -2156,6 +2168,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @return true, if the request is send to the Bluetooth stack.
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_SUBRATE_API)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean bleSubrateRequest(
