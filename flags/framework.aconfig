@@ -106,3 +106,11 @@ flag {
     description: "Make BluetoothDevice.ACTION_KEY_MISSING into public API"
     bug: "379729762"
 }
+
+flag {
+    name: "subrate_api"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Make enhanced connection update api as system API"
+    bug: "381041029"
+}
