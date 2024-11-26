@@ -646,6 +646,7 @@ cc_test {
     ],
     srcs: [
         ":TestCommonMockFunctions",
+        ":TestMockStackGatt",
         ":TestMockStackBtmInterface",
         "gatt/database.cc",
         "gatt/database_builder.cc",
@@ -979,6 +980,7 @@ cc_test {
         ":TestMockMainShimEntry",
         ":TestMockStackBtmInterface",
         ":TestMockStackBtmIso",
+        ":TestMockStackGatt",
         ":TestMockStackL2cap",
         ":TestStubOsi",
         "gatt/database.cc",
