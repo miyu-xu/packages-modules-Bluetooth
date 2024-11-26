@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49321464_5d1b15d5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-26T06:55:00Z",
+      "side": 1,
+      "message": "On start, we have all RSes as we read them, but if they are empty, there is no source ID inside too. I removed parsing such RS if we did not have previous source ID value to not create fake ones, as per spec, sink are responsible for that. There is no need to store empty RSes at the beginning. Such information cannot tell us what was removed (if it was) as we do not know source ID.\n\nPublic method BassClientService#getAllSources return only RSes with not empty BluetoothDevice so it will work correctly even with BassClientStateMachine changes. Only private hasRoomForBroadcastSourceAddition has to be updated.",
+      "parentUuid": "391e19a3_6042aaab",
+      "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "94fb897c_25424d43",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 7
@@ -31,6 +49,24 @@
       "writtenOn": "2024-11-26T00:34:27Z",
       "side": 1,
       "message": "should this be cleared at clearCharsCache()?",
+      "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3908db7_11565970",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-26T06:55:00Z",
+      "side": 1,
+      "message": "right, thanks!",
+      "parentUuid": "94fb897c_25424d43",
       "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2024-11-26T00:34:27Z",
       "side": 1,
       "message": "leaudioBroadcastReceiveStateProcessingRefactor is for 25Q2, we can remove this flag leaudioBroadcastResyncHelper here since it will be released before that.",
+      "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d833e8e1_3817f0a4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-26T06:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e79c2c66_b8a7ff32",
       "revId": "be1b0ebe6a16ff04009ab4288e8220da136ea0d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
