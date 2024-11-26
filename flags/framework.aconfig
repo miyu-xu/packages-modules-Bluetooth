@@ -119,3 +119,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "subrate_api"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Make enhanced connection update api as system API"
+    bug: "381041029"
+}
