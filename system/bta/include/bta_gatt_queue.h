@@ -80,8 +80,6 @@ private:
   static void gatt_read_multi_op_finished(tCONN_ID conn_id, tGATT_STATUS status,
                                           tBTA_GATTC_MULTI& handle, uint16_t len, uint8_t* value,
                                           void* data);
-  static void gatt_read_multi_op_simulate(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handle,
-                                          uint16_t len, uint8_t* value, void* data_read);
   // maps connection id to operations waiting for execution
   static std::unordered_map<tCONN_ID, std::list<gatt_operation>> gatt_op_queue;
   // contain connection ids that currently execute operations
