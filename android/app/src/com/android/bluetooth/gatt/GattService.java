@@ -183,6 +183,7 @@ public class GattService extends ProfileService {
     private final DistanceMeasurementManager mDistanceMeasurementManager;
     private final ActivityManager mActivityManager;
     private final PackageManager mPackageManager;
+    public final HandlerThread mScanThread;
 
     private Handler mTestModeHandler;
 
@@ -203,9 +204,11 @@ public class GattService extends ProfileService {
         mAdvertiseManager = new AdvertiseManager(this);
 
         if (!Flags.scanManagerRefactor()) {
-            HandlerThread thread = new HandlerThread("BluetoothScanManager");
-            thread.start();
-            mTransitionalScanHelper.start(thread.getLooper());
+            mScanThread = new HandlerThread("BluetoothScanManager");
+            mScanThread.start();
+            mTransitionalScanHelper.start(mScanThread.getLooper());
+        } else {
+            mScanThread = null;
         }
         mDistanceMeasurementManager =
                 GattObjectsFactory.getInstance().createDistanceMeasurementManager(mAdapterService);
@@ -256,6 +259,7 @@ public class GattService extends ProfileService {
         mDistanceMeasurementManager.cleanup();
         if (!Flags.scanManagerRefactor()) {
             mTransitionalScanHelper.cleanup();
+            mScanThread.getLooper().quitSafely();
         }
     }
 
