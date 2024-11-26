@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7159614c_3d64e910",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "I don\u0027t really like the idea of passing null as a way to determine whether this is a server or client socket. A better approach would be to:\n\n- Transform this constructor to have address as `@NonNull` parameter.\n- Keep the `BluetoothSocket(int type, boolean auth, boolean encrypt, int port, ParcelUuid uuid, boolean pitm, boolean min16DigitPin)` constructor and have it call this constructor with `BluetoothAdapter.getDefaultAdapter().getAddress()`\n- Modify the constructor taking `@NonNull device` to call `device.getAddress()` before.",
+      "range": {
+        "startLine": 274,
+        "startChar": 11,
+        "endLine": 274,
+        "endChar": 15
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c389eb6_f23bb22e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Why is this a system API?",
+      "range": {
+        "startLine": 1150,
+        "startChar": 4,
+        "endLine": 1150,
+        "endChar": 14
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6df6d3e8_4f32e3f0",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "If it is a system API, it must have permissions",
+      "range": {
+        "startLine": 1152,
+        "startChar": 4,
+        "endLine": 1152,
+        "endChar": 25
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aada5da_cf74b66f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "host can be confusing here as it is also the terminology used to designate the Bluetooth stack. Same comments apply to the whole documentation below",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 24
+      },
+      "revId": "7edded101b0051d54102a38769fb0cb09fee3c6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

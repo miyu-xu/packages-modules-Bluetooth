@@ -1,0 +1,206 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "257bc79d_aedf7b3b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "What is the Hub? Might be worth additional details here.",
+      "range": {
+        "startLine": 152,
+        "startChar": 69,
+        "endLine": 152,
+        "endChar": 72
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea931aba_6bb8b251",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Either use `hub` or `Hub` but keep it consistent over the entire file.",
+      "range": {
+        "startLine": 159,
+        "startChar": 7,
+        "endLine": 159,
+        "endChar": 10
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b750cc72_ae05d28e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "     * Hub that is associated with this socket.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adec80a6_fecd6ab9",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Why is this a system API? Same comment applies below",
+      "range": {
+        "startLine": 245,
+        "startChar": 4,
+        "endLine": 245,
+        "endChar": 14
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "595fcfe8_37390e63",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "If it is a system API, it must require permissions. Same comment applies below",
+      "range": {
+        "startLine": 247,
+        "startChar": 3,
+        "endLine": 247,
+        "endChar": 25
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66816d9b_4ef20c4c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Why is this a system API? What is the reason why apps cannot request an offloaded socket?",
+      "range": {
+        "startLine": 551,
+        "startChar": 8,
+        "endLine": 551,
+        "endChar": 18
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa15f49_c47bfbda",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Missing `@throws` annotation, same comment applies to other APIs",
+      "range": {
+        "startLine": 554,
+        "startChar": 8,
+        "endLine": 554,
+        "endChar": 29
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfa5437d_50e300d6",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "If it\u0027s a system API, it should require permissions. Same comment applies on other APIs",
+      "range": {
+        "startLine": 554,
+        "startChar": 8,
+        "endLine": 554,
+        "endChar": 29
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dbb86de_4a0bf7f4",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "nit: `Invalid`",
+      "range": {
+        "startLine": 557,
+        "startChar": 52,
+        "endLine": 557,
+        "endChar": 59
+      },
+      "revId": "0fa29480fc4d520f125c17246e98f709b0453a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

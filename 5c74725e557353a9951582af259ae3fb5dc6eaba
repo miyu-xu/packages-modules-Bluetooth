@@ -3,6 +3,167 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bda99b18_d0a9dfb2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "What does `for connection socket` mean? Suggest finding a better naming here. Why not serverSocket vs clientSocket? Or remoteSocket vs localSocket?",
+      "range": {
+        "startLine": 217,
+        "startChar": 35,
+        "endLine": 217,
+        "endChar": 56
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78d760f8_6eb8cf22",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "In which cases these permissions are not required and why?",
+      "range": {
+        "startLine": 229,
+        "startChar": 12,
+        "endLine": 229,
+        "endChar": 30
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d339dbe_3160e66f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "In which cases these permissions are not required and why?",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3042b335_b1c2e0a7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Missing nullability. Also prefer `@NonNullable` by using a default socket name. See go/android-api-guidelines#prefer-nonnull-arguments",
+      "range": {
+        "startLine": 302,
+        "startChar": 12,
+        "endLine": 302,
+        "endChar": 18
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a2d7c7_3a0c73f1",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Should be a const instead of a hard coded parameter.",
+      "range": {
+        "startLine": 330,
+        "startChar": 25,
+        "endLine": 330,
+        "endChar": 27
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d03a28_35919263",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "This modification should be split across two CLs:\n- One for merging the two constructors\n- One for adding the new parameters necessary for the offload path",
+      "range": {
+        "startLine": 339,
+        "startChar": 8,
+        "endLine": 345,
+        "endChar": 9
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5de43a_5468964a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Why is that? Does it mean a non-privilege application can connect to a socket when data path is offloaded?",
+      "range": {
+        "startLine": 528,
+        "startChar": 2,
+        "endLine": 529,
+        "endChar": 96
+      },
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e005753_42fa2952",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 36
@@ -86,6 +247,29 @@
       "side": 1,
       "message": "thanks for the explanation",
       "parentUuid": "0903e644_f35cb0d1",
+      "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee815b0e_135028bf",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 36
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T06:30:11Z",
+      "side": 1,
+      "message": "Can be simplified:\n\n```\nif (Flags.socketSettingsApi() \u0026\u0026 Flags.btOffloadSocketApi() \u0026\u0026 mDataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n    mPfd \u003d socketManager.connectSocketwithOffload(\n            mDevice,\n            mType,\n            mUuid,\n            mPort,\n            getSecurityFlags(),\n            mDataPath,\n            mSocketName,\n            mHubId,\n            mEndpointId,\n            mMaximumPacketSize);\n} else {\n    mPfd \u003d socketManager.connectSocket(\n            mDevice, mType, mUuid, mPort, getSecurityFlags());\n}\n```",
+      "range": {
+        "startLine": 556,
+        "startChar": 12,
+        "endLine": 579,
+        "endChar": 13
+      },
       "revId": "5c74725e557353a9951582af259ae3fb5dc6eaba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
