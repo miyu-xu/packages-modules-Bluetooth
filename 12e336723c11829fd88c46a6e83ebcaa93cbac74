@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "575da73b_d848bd8d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-26T05:31:46Z",
+      "side": 1,
+      "message": "Makes sense, but can\u0027t the timeout happen when transitioning to other state then IDLE? For example we haven\u0027t reached STREAMING for one device, then it should be still disconnected. In that case ASE is active for both devices, but only one should be disconnected, right? Or do we only want to patch this for closing the stream?",
+      "parentUuid": "0a21b144_df21bd79",
+      "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49923212_e192867f",
         "filename": "system/bta/le_audio/devices.h",
         "patchSetId": 8
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "Reading further, I believe this is leftover.",
       "parentUuid": "49923212_e192867f",
+      "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb9a4489_c0ee2f9d",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-26T05:31:46Z",
+      "side": 1,
+      "message": "Yes, leftover",
+      "parentUuid": "f319e039_545f163f",
       "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
