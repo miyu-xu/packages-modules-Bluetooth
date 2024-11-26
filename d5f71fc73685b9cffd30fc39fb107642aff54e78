@@ -201,6 +201,30 @@
       },
       "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7aa06d_57581ead",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-26T11:19:28Z",
+      "side": 1,
+      "message": "offline discussion: a potential problem of removing the connection object immediately is we might try to reconnect to a not-yet-disconnected device.\n\nI shall leave the code as is, but will investigate the test failures.",
+      "parentUuid": "727fd988_2543196b",
+      "range": {
+        "startLine": 212,
+        "startChar": 78,
+        "endLine": 212,
+        "endChar": 96
+      },
+      "revId": "d5f71fc73685b9cffd30fc39fb107642aff54e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
