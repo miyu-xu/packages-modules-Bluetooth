@@ -3196,7 +3196,9 @@
     },
     "MAP": {},
     "MCAP": {},
-    "OPP": {},
+    "OPP": {
+      "TSPX_delete_link_key": "TRUE"
+    },
     "PAN": {},
     "PBAP": {},
     "PROD": {},
