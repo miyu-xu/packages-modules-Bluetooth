@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a0cfca_c08c0a7c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1738,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-26T20:39:31Z",
+      "side": 1,
+      "message": "Why is it a system API?",
+      "range": {
+        "startLine": 1738,
+        "startChar": 3,
+        "endLine": 1738,
+        "endChar": 14
+      },
+      "revId": "3d56fd5f48365df58c2d18c91c09d5072a08183a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
