@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae2c2aa_e913b411",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 5927,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T07:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75f4d64a_2fd2bb65",
+      "range": {
+        "startLine": 5923,
+        "startChar": 5,
+        "endLine": 5927,
+        "endChar": 33
+      },
+      "revId": "e7bd8b215a2dfc4fb756483abcf1d48479a82427",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12bc6178_8dee386d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-26T06:30:08Z",
       "side": 1,
       "message": "This part still isn\u0027t clear to me. Why only system apps / components can create offloaded sockets?",
+      "range": {
+        "startLine": 5929,
+        "startChar": 2,
+        "endLine": 5936,
+        "endChar": 6
+      },
+      "revId": "e7bd8b215a2dfc4fb756483abcf1d48479a82427",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd7eacd_386892b5",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 5936,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-26T07:30:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12bc6178_8dee386d",
       "range": {
         "startLine": 5929,
         "startChar": 2,
