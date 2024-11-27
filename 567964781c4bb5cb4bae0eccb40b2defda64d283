@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a937e14c_996002c3",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 4638,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-27T01:14:22Z",
+      "side": 1,
+      "message": "You are actually modifying the previous implementation (under `socket_settings_api`). Should it be behind `bt_offload_socket_api` flag or was it voluntarily let under `socket_settings_api`? CC @bhaktha@google.com",
+      "range": {
+        "startLine": 4638,
+        "startChar": 12,
+        "endLine": 4638,
+        "endChar": 67
+      },
+      "revId": "567964781c4bb5cb4bae0eccb40b2defda64d283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "debe1d73_c2d04bb8",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-27T01:14:22Z",
+      "side": 1,
+      "message": "Prefer `-1`",
+      "revId": "567964781c4bb5cb4bae0eccb40b2defda64d283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ac1dff_46c391e7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-27T01:14:22Z",
+      "side": 1,
+      "message": "Prefer `-1`",
+      "range": {
+        "startLine": 107,
+        "startChar": 52,
+        "endLine": 107,
+        "endChar": 53
+      },
+      "revId": "567964781c4bb5cb4bae0eccb40b2defda64d283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
