@@ -301,6 +301,7 @@ cc_test {
         "libstatslog",
         "libutils",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     static_libs: [
         "android.hardware.common-V2-ndk",

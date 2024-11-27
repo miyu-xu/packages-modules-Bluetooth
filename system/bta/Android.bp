@@ -679,6 +679,7 @@ cc_test {
         "libchrome",
         "libgmock",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     sanitize: {
         cfi: false,
@@ -837,6 +838,7 @@ cc_test {
         "libgmock",
         "libosi",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     sanitize: {
         cfi: false,
@@ -1115,6 +1117,7 @@ cc_test {
         "libcrypto",
         "liblog",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
@@ -1189,6 +1192,7 @@ cc_test {
         "libhidlbase",
         "liblog",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
@@ -1270,6 +1274,7 @@ cc_test {
         "libchrome",
         "libgmock",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     sanitize: {
         cfi: true,
