@@ -39,6 +39,30 @@
       },
       "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e0536ba_029fc3e7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 4596,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-27T17:37:42Z",
+      "side": 1,
+      "message": "I agree there is a problem here. If `socket_settings_api` is rolled back, then `bt_offload_socket_api` will break",
+      "parentUuid": "8bc645f2_29ed7f1b",
+      "range": {
+        "startLine": 4596,
+        "startChar": 22,
+        "endLine": 4596,
+        "endChar": 46
+      },
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
