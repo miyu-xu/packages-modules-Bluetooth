@@ -128,6 +128,30 @@
       },
       "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e993a83c_10a7adaa",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 4596,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T19:49:55Z",
+      "side": 1,
+      "message": "The problem is, I don\u0027t think you can launch `bt_offload_socket_api` if `socket_settings_api` isn\u0027t also launched.\n\nFor example, `BluetoothSocketSettings` is guarded by `socket_settings_api` but there are methods guarded by `bt_offload_socket_api`.\n\nI don\u0027t think the infra supports this kind of dependency.",
+      "parentUuid": "68609ce2_549866f0",
+      "range": {
+        "startLine": 4596,
+        "startChar": 22,
+        "endLine": 4596,
+        "endChar": 46
+      },
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
