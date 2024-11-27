@@ -22,6 +22,30 @@
       },
       "revId": "31fa2a13d8f7345b0af6594e4a7d5b1c2bdb998b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c1ab87_24215351",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 6067,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T22:29:55Z",
+      "side": 1,
+      "message": "Makes sense, hopefully for the short term we will be only adding GATT offload, which won\u0027t add too much complexity here.",
+      "parentUuid": "a7d02fb7_39b713d2",
+      "range": {
+        "startLine": 6067,
+        "startChar": 19,
+        "endLine": 6067,
+        "endChar": 49
+      },
+      "revId": "31fa2a13d8f7345b0af6594e4a7d5b1c2bdb998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
