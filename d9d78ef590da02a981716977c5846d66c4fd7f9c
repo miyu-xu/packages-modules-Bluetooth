@@ -39,6 +39,30 @@
       },
       "revId": "d9d78ef590da02a981716977c5846d66c4fd7f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4546858f_970e3774",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 6049,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T01:04:35Z",
+      "side": 1,
+      "message": "Developer should know how to use BluetoothSocketSettings with \n`BluetoothAdapter.listenUsingSocketSettings()` and `BluetoothDevice.createUsingSocketSettings()` for different protocols. The descriptino is already a part of the document in the APIs. Here, we just add the description how to set offload options but did not explain the protocol type and other settings again.",
+      "parentUuid": "57e5de26_76fd4db9",
+      "range": {
+        "startLine": 6048,
+        "startChar": 0,
+        "endLine": 6049,
+        "endChar": 40
+      },
+      "revId": "d9d78ef590da02a981716977c5846d66c4fd7f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
