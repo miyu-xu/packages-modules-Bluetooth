@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7286e5f_d55d3cab",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-27T03:57:09Z",
+      "side": 1,
+      "message": "Is this a correct assumption? So a reconnection attempt (added_dev !\u003d null) is not a pending connection?\nIf so then probably it needs to be renamed to reflect that. But glancing over the code it seems it indeed means pending connection, so reconnection attempt should still count as pending connection.",
+      "range": {
+        "startLine": 1125,
+        "startChar": 6,
+        "endLine": 1125,
+        "endChar": 26
+      },
+      "revId": "bae1bff5b8e5df726a4dc39be232b21ba187c3d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
