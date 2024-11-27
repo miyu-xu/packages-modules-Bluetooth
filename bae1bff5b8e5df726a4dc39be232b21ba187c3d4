@@ -46,6 +46,30 @@
       },
       "revId": "bae1bff5b8e5df726a4dc39be232b21ba187c3d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efde9c92_41d6a1a5",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-11-27T04:38:36Z",
+      "side": 1,
+      "message": "After offline discussion, it\u0027s cleared that `pending_connections` is supposed to be `pending_new_connections`, i.e. connections to non-added devices.\n\nHimanshu, please rename `pending_connections` on this CL or on other followup CLs, thanks!",
+      "parentUuid": "af3602a4_e9f36642",
+      "range": {
+        "startLine": 1125,
+        "startChar": 6,
+        "endLine": 1125,
+        "endChar": 26
+      },
+      "revId": "bae1bff5b8e5df726a4dc39be232b21ba187c3d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
