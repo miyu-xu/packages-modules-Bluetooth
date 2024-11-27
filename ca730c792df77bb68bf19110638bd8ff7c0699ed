@@ -16,6 +16,24 @@
       "message": "API looks fine, but is there a new CTS test for it?",
       "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b61a898_4c6a43d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T18:07:02Z",
+      "side": 1,
+      "message": "Please find the CTS test at aosp/3342763.",
+      "parentUuid": "17cd2bda_1f490d80",
+      "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
