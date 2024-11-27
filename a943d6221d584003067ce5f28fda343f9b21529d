@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2232c87b_12597c49",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 4616,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T04:35:29Z",
+      "side": 1,
+      "message": "Yes, we\u0027re throwing exception if socket type is not TYPE_LE in BluetoothSocketManagerBinder. We will add stack change for RFCOMM after landing API soon.\n\n```\nif (type !\u003d BluetoothSocket.TYPE_LE || !mService.isLeCocSocketOffloadSupported()) {\n throw new IllegalStateException(\"Unsupported socket type for offload \" + type);\n}\n```\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/44/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java#119\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/44/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java#231",
+      "parentUuid": "61cb34a7_697789ab",
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59757daf_d449a9be",
@@ -170,6 +188,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1abf3d6f_b2a30c72",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T04:35:29Z",
+      "side": 1,
+      "message": "socket name is given from host application to offload app through native stack and HAL. Considering OOB communication between host app and offload app, the socket name is convenient to identifier the opened socket\u0027s purpose. Stack also assigns socket ID but it is not given from host app so that socket name sometime would be more convenient for offload app to figure out when it receives socket open event from offload framework.",
+      "parentUuid": "3c604254_83e80064",
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fa049c9_424e7124",
@@ -207,6 +243,30 @@
           ]
         }
       ],
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "555eecf8_0634244a",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T04:35:29Z",
+      "side": 1,
+      "message": "we\u0027re using fixed array in the l2cap_socket struct.\n```\n  char socket_name[128];         // descriptive socket name\n} l2cap_socket;\n```",
+      "parentUuid": "3fa049c9_424e7124",
+      "range": {
+        "startLine": 563,
+        "startChar": 21,
+        "endLine": 563,
+        "endChar": 32
+      },
       "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -254,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a9e9673_183a1e38",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 1117,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T04:35:29Z",
+      "side": 1,
+      "message": "yes, this function is to generate unique ID. \n\nIt is worth discussing whether there is a possibility that a Socket ID generated from a 64-bit random number can be duplicated among connected sockets, but considering the number of connected sockets that a device can have, the possibility is very low. Therefore, we did not perform a separate duplication check. We are also considering generating a 64-bit random number and assigning it without a duplication check when adding an RFCOMM offload socket. If duplicated socket ID is tried to open, offload stack or HAL will return error anyway.",
+      "parentUuid": "09c3f025_e4216564",
+      "range": {
+        "startLine": 1117,
+        "startChar": 16,
+        "endLine": 1117,
+        "endChar": 50
+      },
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8fe4269_f7732fa9",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 42
@@ -283,6 +367,24 @@
           ]
         }
       ],
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a4a78b1_644bec7d",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T04:35:29Z",
+      "side": 1,
+      "message": "do-while statement will assign the random value at line 1120 first. It would be safe in this code.",
+      "parentUuid": "d8fe4269_f7732fa9",
       "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
