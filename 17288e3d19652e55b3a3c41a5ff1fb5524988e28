@@ -104,6 +104,30 @@
       },
       "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68609ce2_549866f0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 4596,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T19:43:50Z",
+      "side": 1,
+      "message": "This is a new API where the currently merged implementation (merged a few weeks ago) ensures compatibility of creating normal listener using socket settings but without any of the offload related methods guarded by the flag `bt_offload_socket_api`, such as `getDataPath()` etc.\n\nSo if the `socket_settings_api` is released but not `bt_offload_socket_api`, it will just create a normal listener without using any of the offload related settings. It will throw errors if the caller tries to create offload settings though. If `socket_settings_api` is rolled back, then it won\u0027t call the methods guarded by `bt_offload_socket_api` since the flag check at the `listenUsingSocketSettings` will fail.\n\nPlease feel free to let me know if my understanding is correct here. Thanks.",
+      "parentUuid": "7e0536ba_029fc3e7",
+      "range": {
+        "startLine": 4596,
+        "startChar": 22,
+        "endLine": 4596,
+        "endChar": 46
+      },
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
