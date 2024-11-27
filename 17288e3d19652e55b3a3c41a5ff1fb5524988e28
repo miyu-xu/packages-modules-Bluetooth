@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "575512c1_07b2ff8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 45
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T22:16:35Z",
+      "side": 1,
+      "message": "Here are the CTS tests. aosp/3342763 and aosp/3369801. I will add the test arg to the commit message as well. Similar to my comment in aosp/3349373, we are working on the test plan and automation for the feature to be fully tested by Dec 30.",
+      "parentUuid": "2fcb5312_f758f884",
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68262768_34433d20",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 45
