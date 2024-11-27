@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2fcb5312_f758f884",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 45
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T19:30:40Z",
+      "side": 1,
+      "message": "please add CTS tests",
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68262768_34433d20",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 45
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "I agree there is a problem here. If `socket_settings_api` is rolled back, then `bt_offload_socket_api` will break",
       "parentUuid": "8bc645f2_29ed7f1b",
+      "range": {
+        "startLine": 4596,
+        "startChar": 22,
+        "endLine": 4596,
+        "endChar": 46
+      },
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff71d27_71491e65",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 4596,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T19:30:40Z",
+      "side": 1,
+      "message": "Yeah, I think you\u0027re going to have to put all of these changes behind the first flag `socket_settings_api` because there\u0027s no way to mark dependent flags in our infra right now.",
+      "parentUuid": "7e0536ba_029fc3e7",
       "range": {
         "startLine": 4596,
         "startChar": 22,
