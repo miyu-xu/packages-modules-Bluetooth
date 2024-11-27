@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7d02fb7_39b713d2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 6067,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T18:05:47Z",
+      "side": 1,
+      "message": "It would have been nice to keep one single API getOffloadCapabilities() which return possible capability information including LECOC, RFCOMM offload ..etc. that way It could have been to extend in future.\nWe may end up doing for each offload we are adding otherwise.",
+      "range": {
+        "startLine": 6067,
+        "startChar": 19,
+        "endLine": 6067,
+        "endChar": 49
+      },
+      "revId": "31fa2a13d8f7345b0af6594e4a7d5b1c2bdb998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
