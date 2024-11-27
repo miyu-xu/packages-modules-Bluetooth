@@ -75,6 +75,24 @@
       "parentUuid": "1b61a898_4c6a43d9",
       "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "534ab1f0_85a0655d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T21:51:51Z",
+      "side": 1,
+      "message": "We have been working with OEMs on validating the new socket API, here is a [demo document](https://docs.google.com/document/d/1TlpJuSFKhY961bMmf6ZZ3b07eS1sFvl6t4qZwxlGLbw/edit?usp\u003dsharing\u0026resourcekey\u003d0-zInJpUO8gpoXqEkCnS-14A) from one of the OEMs, where they have validated end to end functionality of the offload socket using WIP CLs for other dependencies and their implementations.\n\nIn addition, we are following the requirement of Bluetooth team to come up a test plan and automation to verify the expected behavior of the socket on real device, and get it fully tested by BT QA before Dec 30. This can also be used by OEMs for verifying their implementations. Please let me know if this addresses the concern, thanks.",
+      "parentUuid": "52da6707_d561369a",
+      "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
