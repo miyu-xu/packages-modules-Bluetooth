@@ -16,6 +16,29 @@
       "message": "API +1 for me. Will let @asapperstein@google.com review and validate 😊",
       "revId": "d9d78ef590da02a981716977c5846d66c4fd7f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e5de26_76fd4db9",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 6049,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-11-27T00:41:04Z",
+      "side": 1,
+      "message": "Maybe one quick comment though: how can you specify that you want to offload an RFCOMM socket vs a L2CAP CoC socket?",
+      "range": {
+        "startLine": 6048,
+        "startChar": 0,
+        "endLine": 6049,
+        "endChar": 40
+      },
+      "revId": "d9d78ef590da02a981716977c5846d66c4fd7f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
