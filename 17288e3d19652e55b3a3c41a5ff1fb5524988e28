@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68262768_34433d20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 45
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T17:01:04Z",
+      "side": 1,
+      "message": "So I\u0027m concerned that there appears to be two different flags controlling these APIs. It would be helpful to have a better understanding of the flagging situation since we might need to merge these together. Feel free to reach out and we can chat off-CL.",
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bc645f2_29ed7f1b",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 4596,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T17:01:04Z",
+      "side": 1,
+      "message": "Is this API already released or is it also new? What happens if it is released but not the other flag?\n\nOr vice versa?",
+      "range": {
+        "startLine": 4596,
+        "startChar": 22,
+        "endLine": 4596,
+        "endChar": 46
+      },
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
