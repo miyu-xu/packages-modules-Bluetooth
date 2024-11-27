@@ -46,6 +46,30 @@
       },
       "revId": "8e600bc82004f37f2f47e3f3eb7a3c4b4b4bd4b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d751697e_8c906633",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2761,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-11-27T10:11:19Z",
+      "side": 1,
+      "message": "LGTM, now.",
+      "parentUuid": "e4f4cac3_6eb9e346",
+      "range": {
+        "startLine": 2757,
+        "startChar": 0,
+        "endLine": 2761,
+        "endChar": 25
+      },
+      "revId": "8e600bc82004f37f2f47e3f3eb7a3c4b4b4bd4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
