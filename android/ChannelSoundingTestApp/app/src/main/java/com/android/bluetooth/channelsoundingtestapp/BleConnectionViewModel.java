@@ -215,6 +215,13 @@ public class BleConnectionViewModel extends AndroidViewModel {
         }
     }
 
+    public boolean isconnected() {
+        if(mGattState.getValue() == GattState.DISCONNECTED)
+            return false;
+        else
+            return true;
+    }
+
     private BluetoothGattCallback mGattCallback =
             new BluetoothGattCallback() {
                 @Override

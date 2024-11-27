@@ -160,6 +160,10 @@ public class InitiatorFragment extends Fragment {
         }
         mButtonCs.setOnClickListener(
                 v -> {
+		    if (!mBleConnectionViewModel.isconnected()) {
+                      printLog("Do Gatt Connect First");
+                      return;
+                    }
                     String methodName = mSpinnerDmMethod.getSelectedItem().toString();
                     String freq = mSpinnerFreq.getSelectedItem().toString();
                     int duration = Integer.parseInt(mSpinnerDuration.getSelectedItem().toString());
