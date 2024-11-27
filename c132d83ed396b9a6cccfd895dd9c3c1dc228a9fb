@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "700f1853_cca423e6",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 46
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T07:32:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42f19df3_b9574c62",
+      "revId": "c132d83ed396b9a6cccfd895dd9c3c1dc228a9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1419a69e_16b2f409",
@@ -77,6 +95,24 @@
           ]
         }
       ],
+      "revId": "c132d83ed396b9a6cccfd895dd9c3c1dc228a9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d64f3f_59db5a81",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 46
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T07:32:57Z",
+      "side": 1,
+      "message": "It could happen when JAVA put different size in the first byte. I wanted to check the error case if JAVA updated the size of signal but BTIF didn\u0027t.\n\n```\nbb.putShort((short) SOCK_ACCEPT_SIGNAL_SIZE);\n```",
+      "parentUuid": "1419a69e_16b2f409",
       "revId": "c132d83ed396b9a6cccfd895dd9c3c1dc228a9fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
