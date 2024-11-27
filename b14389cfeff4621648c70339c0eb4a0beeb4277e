@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bcf07af_582b8c2a",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 47
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T17:36:29Z",
+      "side": 1,
+      "message": "is that relevant here?",
+      "range": {
+        "startLine": 1008,
+        "startChar": 14,
+        "endLine": 1008,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "154c0fc5_447d1ecd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1008,
+                "startChar": 0,
+                "endLine": 1009,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b14389cfeff4621648c70339c0eb4a0beeb4277e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
