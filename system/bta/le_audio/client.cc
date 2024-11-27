@@ -1135,6 +1135,11 @@ public:
       log::error("Unknown group id: %d", group_id);
     }
 
+    if (group->IsLeXDevice()) {
+      log::warn("group id: {}, don't support codec switch for XPAN device.", group_id);
+      return;
+    }
+
     if (group->SetPreferredAudioSetConfiguration(input_codec_config, output_codec_config)) {
       log::info("group id: {}, setting preferred codec is successful.", group_id);
     } else {
