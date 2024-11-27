@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61cb34a7_697789ab",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 4616,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T03:37:45Z",
+      "side": 1,
+      "message": "Are we supporting RFCOMM offload sockets? I dont see any changes in stack for rfcomm offload. Should we rather throw an exception here if the request is for rfcomm offload ?\n\nplease correct me if I am wrong.",
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59757daf_d449a9be",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 42
@@ -44,6 +61,228 @@
         "endLine": 1067,
         "endChar": 29
       },
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c604254_83e80064",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T03:37:45Z",
+      "side": 1,
+      "message": "Do we really need this at the SDK? Offload layers can have names defined and map it with socket identifier right?",
+      "fixSuggestions": [
+        {
+          "fixId": "4329be09_ed2034e5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 142,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 256,
+                "startChar": 0,
+                "endLine": 278,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 366,
+                "startChar": 0,
+                "endLine": 368,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 388,
+                "startChar": 0,
+                "endLine": 389,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 399,
+                "startChar": 0,
+                "endLine": 400,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 415,
+                "startChar": 0,
+                "endLine": 416,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 579,
+                "startChar": 0,
+                "endLine": 613,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 739,
+                "startChar": 0,
+                "endLine": 740,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa049c9_424e7124",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T03:37:45Z",
+      "side": 1,
+      "message": "null check for socket_name ?",
+      "range": {
+        "startLine": 563,
+        "startChar": 21,
+        "endLine": 563,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e4fe3414_50af510f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 563,
+                "startChar": 0,
+                "endLine": 565,
+                "endChar": 0
+              },
+              "replacement": "  if (sock-\u003esocket_name) {\n    strncpy(accept_rs-\u003esocket_name, sock-\u003esocket_name, sizeof(accept_rs-\u003esocket_name) - 1);\n    accept_rs-\u003esocket_name[sizeof(accept_rs-\u003esocket_name) - 1] \u003d \u0027\\0\u0027;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c3f025_e4216564",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 1117,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T03:37:45Z",
+      "side": 1,
+      "message": "is this supposed to be an Unique Id?\nif Yes, How do we ensure we dont generate the same Id again and again?",
+      "range": {
+        "startLine": 1117,
+        "startChar": 16,
+        "endLine": 1117,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7186e3ac_87535730",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1115,
+                "startChar": 0,
+                "endLine": 1117,
+                "endChar": 0
+              },
+              "replacement": "// TODO(b/380189525): Replace the randomized socket ID with static counter when\n// we don\u0027t have security concerns about using static counter.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fe4269_f7732fa9",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T03:37:45Z",
+      "side": 1,
+      "message": "should we initialized to ZERO to be safe here?",
+      "fixSuggestions": [
+        {
+          "fixId": "51f43860_dfbd049a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1118,
+                "startChar": 0,
+                "endLine": 1119,
+                "endChar": 0
+              },
+              "replacement": "  uint64_t socket_id \u003d 0;\n"
+            }
+          ]
+        }
+      ],
       "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
