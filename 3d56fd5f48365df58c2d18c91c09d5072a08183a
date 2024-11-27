@@ -22,6 +22,30 @@
       },
       "revId": "3d56fd5f48365df58c2d18c91c09d5072a08183a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe1b9cc_9ac5943a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1738,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-11-27T13:46:22Z",
+      "side": 1,
+      "message": "Done. No longer a `SystemApi`. Thank you!",
+      "parentUuid": "f3a0cfca_c08c0a7c",
+      "range": {
+        "startLine": 1738,
+        "startChar": 3,
+        "endLine": 1738,
+        "endChar": 14
+      },
+      "revId": "3d56fd5f48365df58c2d18c91c09d5072a08183a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
