@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9317f4e6_2c730043",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 4638,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T03:07:40Z",
+      "side": 1,
+      "message": "Thanks for the comments. Actually, `socket.setServiceName(settings.getRfcommServiceName());` is out of `Flags.btOffloadSocketApi()`. So, it should be still under `socket_settings_api`. I tried to optimize the flag condition because it looks complicated but lint-baseline didn\u0027t like the code optimization. \n\n```\n            if (Flags.btOffloadSocketApi()) {\n                if (settings.getDataPath() \u003d\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n....\n                } else {\n....\n                }\n            } else {\n....\n            } // end of Flags.btOffloadSocketApi\n             \n            socket.setServiceName(settings.getRfcommServiceName());\n```",
+      "parentUuid": "a937e14c_996002c3",
+      "range": {
+        "startLine": 4638,
+        "startChar": 12,
+        "endLine": 4638,
+        "endChar": 67
+      },
+      "revId": "567964781c4bb5cb4bae0eccb40b2defda64d283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "debe1d73_c2d04bb8",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8900bd89_d4dadd54",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T03:07:40Z",
+      "side": 1,
+      "message": "Yes, I considered -1 but we were recommended by the Contexthub team to use 0 for invalid IDs because they are already using 0 as the purpose.",
+      "parentUuid": "debe1d73_c2d04bb8",
+      "revId": "567964781c4bb5cb4bae0eccb40b2defda64d283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68ac1dff_46c391e7",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-11-27T01:14:22Z",
       "side": 1,
       "message": "Prefer `-1`",
+      "range": {
+        "startLine": 107,
+        "startChar": 52,
+        "endLine": 107,
+        "endChar": 53
+      },
+      "revId": "567964781c4bb5cb4bae0eccb40b2defda64d283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "421f0993_3cdd2121",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T03:07:40Z",
+      "side": 1,
+      "message": "Yes, I considered -1 but we were recommended by the Contexthub team to use 0 for invalid IDs because they are already using 0 as the purpose.",
+      "parentUuid": "68ac1dff_46c391e7",
       "range": {
         "startLine": 107,
         "startChar": 52,

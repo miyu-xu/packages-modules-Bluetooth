@@ -22,6 +22,30 @@
       },
       "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eff431e_44d2dff2",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 42
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-27T03:07:40Z",
+      "side": 1,
+      "message": "`0` has been used default invalid value BTIF layer. In generating random socket ID, we\u0027re also avoiding to use `0`. \n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/41/system/btif/src/btif_sock_l2cap.cc#1121\n\nDefined constant instead of hardcoded value. Done.",
+      "parentUuid": "59757daf_d449a9be",
+      "range": {
+        "startLine": 1067,
+        "startChar": 28,
+        "endLine": 1067,
+        "endChar": 29
+      },
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
