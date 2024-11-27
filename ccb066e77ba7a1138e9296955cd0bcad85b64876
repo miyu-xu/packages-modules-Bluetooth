@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f9fba14_054388a9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T04:07:56Z",
+      "side": 1,
+      "message": "BT_PROPERTY_LPP_OFFLOAD_FEATURES - should this be BT_PROPERTY_LOCAL_LPP_OFFLOAD_FEATURES  ?",
+      "fixSuggestions": [
+        {
+          "fixId": "443a5c92_6bdd737b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "    static final int BT_PROPERTY_LOCAL_LPP_OFFLOAD_FEATURES \u003d 0x1B;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ccb066e77ba7a1138e9296955cd0bcad85b64876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a978b083_571f8b91",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T04:07:56Z",
+      "side": 1,
+      "message": "this does need to be initialized?",
+      "fixSuggestions": [
+        {
+          "fixId": "075a666d_d1132790",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "    private int mNumberOfSupportedOffloadedLeCocSockets \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ccb066e77ba7a1138e9296955cd0bcad85b64876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
