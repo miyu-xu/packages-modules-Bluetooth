@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da68a531_57a4fcf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-27T22:08:50Z",
+      "side": 1,
+      "message": "Where is the logic to actually re-send the HCI command to enable the CS procedure ?\nIs it implicit somewhere else ?",
+      "revId": "b79fa25b0212627af2141754c0120fd92d774fc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
