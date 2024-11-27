@@ -679,6 +679,7 @@ cc_test {
         "libchrome",
         "libgmock",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     sanitize: {
         cfi: false,
@@ -837,6 +838,7 @@ cc_test {
         "libgmock",
         "libosi",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     sanitize: {
         cfi: false,
