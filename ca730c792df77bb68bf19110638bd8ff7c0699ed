@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "502e066f_4da94067",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T19:39:10Z",
+      "side": 1,
+      "message": "please add an actual test arg",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17cd2bda_1f490d80",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 36
@@ -32,6 +55,24 @@
       "side": 1,
       "message": "Please find the CTS test at aosp/3342763.",
       "parentUuid": "17cd2bda_1f490d80",
+      "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52da6707_d561369a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-11-27T19:39:10Z",
+      "side": 1,
+      "message": "Thanks. Those tests don\u0027t really test the behavior though. They test that you can create a socket and that they fail in the expected ways when you pass in incorrect input, but they don\u0027t actually test that the socket works as expected.\n\nI\u0027ve hit a lot of pain historically with BT APIs that OEMs don\u0027t implement correctly b/c they were never actually tested to work.",
+      "parentUuid": "1b61a898_4c6a43d9",
       "revId": "ca730c792df77bb68bf19110638bd8ff7c0699ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
