@@ -87,6 +87,24 @@
       "parentUuid": "f319e039_545f163f",
       "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb484b44_977bafff",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-27T05:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb9a4489_c0ee2f9d",
+      "revId": "12e336723c11829fd88c46a6e83ebcaa93cbac74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
