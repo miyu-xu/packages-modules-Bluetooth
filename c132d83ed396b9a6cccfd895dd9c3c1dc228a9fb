@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42f19df3_b9574c62",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 46
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T06:32:27Z",
+      "side": 1,
+      "message": "btsock_l2cap_read_signaled_on_connected_socket**",
+      "fixSuggestions": [
+        {
+          "fixId": "a6c2152f_8b71f4ad",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1009,
+                "startChar": 0,
+                "endLine": 1010,
+                "endChar": 0
+              },
+              "replacement": "bool btsock_l2cap_read_signaled_on_connected_socket(int fd, int flags, uint32_t user_id,\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1084,
+                "startChar": 0,
+                "endLine": 1085,
+                "endChar": 0
+              },
+              "replacement": "      if (!btsock_l2cap_read_signaled_on_connected_socket(fd, flags, user_id, sock)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c132d83ed396b9a6cccfd895dd9c3c1dc228a9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1419a69e_16b2f409",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 46
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-11-27T06:32:27Z",
+      "side": 1,
+      "message": "just curious to know when only one of these condition would be false?",
+      "fixSuggestions": [
+        {
+          "fixId": "f726b175_a33083ef",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1060,
+                "startChar": 0,
+                "endLine": 1063,
+                "endChar": 0
+              },
+              "replacement": "    if (count !\u003d sizeof(accept_signal)) {\n      log::error(\"Unexpected count {}\", count);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c132d83ed396b9a6cccfd895dd9c3c1dc228a9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
