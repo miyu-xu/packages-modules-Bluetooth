@@ -1135,6 +1135,11 @@ public:
       log::error("Unknown group id: %d", group_id);
     }
 
+    if (group->IsLeXDevice()/*&& whether local XPAN enabled*/) {
+      log::warn("group id: {}, don't support LE codecs switch for XPAN enabled.", group_id);
+      return;
+    }
+
     if (group->SetPreferredAudioSetConfiguration(input_codec_config, output_codec_config)) {
       log::info("group id: {}, setting preferred codec is successful.", group_id);
     } else {
