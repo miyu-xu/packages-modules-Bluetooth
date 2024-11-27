@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ae2c02b_6a697e8e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T19:47:37Z",
+      "side": 1,
+      "message": "Yes this is for the local low power processor capabilities. Can we keep the current name for simplicity, as the LPP indicates it is the local hardware.",
+      "parentUuid": "1f9fba14_054388a9",
+      "revId": "ccb066e77ba7a1138e9296955cd0bcad85b64876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a978b083_571f8b91",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
         "patchSetId": 35
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "ccb066e77ba7a1138e9296955cd0bcad85b64876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd007fdb_e8c0c2ac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-27T19:47:37Z",
+      "side": 1,
+      "message": "I think we can leave it as is since it needs to get this number from the offload stack using `updateLppOffloadFeatureSupport`.",
+      "parentUuid": "a978b083_571f8b91",
       "revId": "ccb066e77ba7a1138e9296955cd0bcad85b64876",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
