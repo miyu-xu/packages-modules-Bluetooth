@@ -16,6 +16,24 @@
       "message": "Do you think we\u0027ll add more things to this in the future?\n\nIf so, we might want a Builder and make the ctor private. If we expect it to be pretty stable, then we can probably just live with the public ctor.",
       "revId": "5bba7ff6ad73f8d7c0564898095076637dc080c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab6e5b1_be5f1f73",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3781,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-27T17:35:08Z",
+      "side": 1,
+      "message": "A Bluetooth address has just two parts: address type and raw address.",
+      "parentUuid": "08d0ab32_43ff06ae",
+      "revId": "5bba7ff6ad73f8d7c0564898095076637dc080c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
