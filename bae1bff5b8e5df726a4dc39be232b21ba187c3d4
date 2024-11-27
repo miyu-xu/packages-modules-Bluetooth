@@ -22,6 +22,30 @@
       },
       "revId": "bae1bff5b8e5df726a4dc39be232b21ba187c3d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af3602a4_e9f36642",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-11-27T04:03:11Z",
+      "side": 1,
+      "message": "`pending_connections` holds all the initial connection attempts. After the devices are successfully connected and \"added\" they have their own control blocks and connection state.",
+      "parentUuid": "e7286e5f_d55d3cab",
+      "range": {
+        "startLine": 1125,
+        "startChar": 6,
+        "endLine": 1125,
+        "endChar": 26
+      },
+      "revId": "bae1bff5b8e5df726a4dc39be232b21ba187c3d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
