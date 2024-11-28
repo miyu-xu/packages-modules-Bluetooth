@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33db071b_03eebc9c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 35
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-28T04:33:07Z",
+      "side": 1,
+      "message": "The protocol and function to read the features of remote low power process are not considered in BT stack. If they are required, it will be read through OOB protocol at System APP level, so I want to use a simple name because Android Framework only manages Local Low Power Processor features.",
+      "parentUuid": "4ae2c02b_6a697e8e",
+      "revId": "ccb066e77ba7a1138e9296955cd0bcad85b64876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a978b083_571f8b91",
