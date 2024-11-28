@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "510c5141_1e1c76d4",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-28T15:44:18Z",
+      "side": 1,
+      "message": "this method can\u0027t be used",
+      "range": {
+        "startLine": 48,
+        "startChar": 38,
+        "endLine": 48,
+        "endChar": 88
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8d84de84_f366c64c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gatt_queue.h",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "   * If EATT is not enabled on remote, this method can\u0027t be used.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a15d089d1bf84660d4f346abc2d6f49ffb481c6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4001847d_56a7eb06",
+        "filename": "system/bta/test/common/bta_gatt_queue_mock.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-28T15:44:18Z",
+      "side": 1,
+      "message": "return void",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 4
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "142c17d7_3a7c5ad8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/test/common/bta_gatt_queue_mock.cc",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "void BtaGattQueue::ReadMultiCharacteristic(uint16_t conn_id, tBTA_GATTC_MULTI\u0026 p_read_multi,\n"
+            },
+            {
+              "path": "system/bta/test/common/bta_gatt_queue_mock.cc",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a15d089d1bf84660d4f346abc2d6f49ffb481c6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
