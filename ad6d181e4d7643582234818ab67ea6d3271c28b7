@@ -16,6 +16,23 @@
       "message": "lgtm, please etienne, help with the flag as I don\u0027t think Qualcomm contributor have all the access to do that",
       "revId": "ad6d181e4d7643582234818ab67ea6d3271c28b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36bb839_e18287dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2024-11-28T03:37:18Z",
+      "side": 1,
+      "message": "Hi guys, what can I do for merging this patch? thanks!",
+      "revId": "ad6d181e4d7643582234818ab67ea6d3271c28b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
