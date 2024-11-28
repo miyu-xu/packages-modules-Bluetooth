@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "641dd4d5_09a600d5",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-11-28T01:07:35Z",
+      "side": 1,
+      "message": "Please limit the check to STATE_DISCONNECTED / STATE_DISCONNECTING as insurance.",
+      "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a65c236b_7905e4c3",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
         "patchSetId": 1
