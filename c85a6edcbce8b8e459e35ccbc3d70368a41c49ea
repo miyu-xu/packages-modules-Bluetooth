@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f1333a3_28f0d6e7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-28T10:13:54Z",
+      "side": 1,
+      "message": ":). We can improve in the future. I appreciate the idea, it means you like the indicators :)",
+      "parentUuid": "03d315a1_66c88970",
+      "range": {
+        "startLine": 317,
+        "startChar": 18,
+        "endLine": 317,
+        "endChar": 21
+      },
+      "revId": "c85a6edcbce8b8e459e35ccbc3d70368a41c49ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c78bf424_c42d561c",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "c85a6edcbce8b8e459e35ccbc3d70368a41c49ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfc1878_02fcf8f8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-11-28T10:13:54Z",
+      "side": 1,
+      "message": "idea was to have weather indicators :) Only last one is not to make it more visible.",
+      "parentUuid": "c78bf424_c42d561c",
+      "range": {
+        "startLine": 321,
+        "startChar": 18,
+        "endLine": 321,
+        "endChar": 21
+      },
       "revId": "c85a6edcbce8b8e459e35ccbc3d70368a41c49ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
