@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a65c236b_7905e4c3",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-11-28T01:04:13Z",
+      "side": 1,
+      "message": "Should we put the whole synchronized block behind the flag ? \nEven without state machine we want to remove the stored volume if there is any.",
+      "range": {
+        "startLine": 1169,
+        "startChar": 8,
+        "endLine": 1182,
+        "endChar": 9
+      },
+      "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
