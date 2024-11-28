@@ -16,6 +16,24 @@
       "message": "This looks like a workaround patch to try to address a race condition by increasing the requirement to log the config.\n\nWhy is the config null when this happen ? (I mean why is the config null prior to stopping the stack connection when doing a factory reset)",
       "revId": "1a8d3cbb2ecdee1b9b948d3b6cc19b7336c6acf6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72375fd3_c7a26006",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-11-28T06:28:30Z",
+      "side": 1,
+      "message": "We agree with your point. As outlined in [376692458#comment7](https://b.corp.google.com/issues/376692458#comment7), we have explored two strategies to mitigate the identified race condition:\n\n- **Test code revision:** Revising the test code to eliminate the potential for race conditions. \n- **Code enhancement:** Introducing additional safeguards within the code, as detailed in this patch, to ensure robustness and prevent future failures.\n\nPlease note the config is set to null as every new testcase start with factory reset. \n\nHowever, in this specific instance, the previous HFP connection was incomplete,  leading to a HFP connection failure event and an attempt to update the fail count  to config storage which was cleared by factory reset",
+      "parentUuid": "8da42c97_5dc4509f",
+      "revId": "1a8d3cbb2ecdee1b9b948d3b6cc19b7336c6acf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
