@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51879c95_02aa3a8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f576af2f_68baf094",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d646835a_43a76555",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-25T23:20:34Z",
       "side": 1,
       "message": "Bug ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 3
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62782e70_601e03e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d646835a_43a76555",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe9da2e_587b7ff9",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aac6eae5_753f8c3f",
+      "range": {
+        "startLine": 655,
+        "startChar": 0,
+        "endLine": 657,
+        "endChar": 36
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b6e8ed0_72b63aa1",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-11-25T23:20:34Z",
       "side": 1,
       "message": "failed to complete the AVDT configuration in time",
+      "range": {
+        "startLine": 3032,
+        "startChar": 39,
+        "endLine": 3032,
+        "endChar": 56
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af602b8e_f0c866e0",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3032,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b6e8ed0_72b63aa1",
       "range": {
         "startLine": 3032,
         "startChar": 39,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b9ee30b_250110aa",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3419,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feef226e_75290c7e",
+      "range": {
+        "startLine": 3419,
+        "startChar": 11,
+        "endLine": 3419,
+        "endChar": 14
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8148167b_2219dda2",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2ebcaf_52fc1e29",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3420,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8148167b_2219dda2",
+      "range": {
+        "startLine": 3420,
+        "startChar": 0,
+        "endLine": 3420,
+        "endChar": 32
+      },
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10be5f29_4dac9659",
@@ -152,6 +296,24 @@
       "writtenOn": "2024-11-25T23:20:34Z",
       "side": 1,
       "message": "Please comment/document what the timeout handler will be doing.",
+      "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f89bae5f_93452b13",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3428,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-11-28T15:24:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10be5f29_4dac9659",
       "revId": "3f0c1049d0a1d45bdc30c890936478671fea3052",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
