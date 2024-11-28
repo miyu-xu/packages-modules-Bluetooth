@@ -89,6 +89,7 @@ public class VolumeControlService extends ProfileService {
     private final AdapterService mAdapterService;
     private final AudioManager mAudioManager;
     private final DatabaseManager mDatabaseManager;
+    private final Handler mHandler;
     private final HandlerThread mStateMachinesThread;
     private final Looper mStateMachinesLooper;
     private final VolumeControlNativeInterface mNativeInterface;
@@ -100,14 +101,13 @@ public class VolumeControlService extends ProfileService {
     private final Map<Integer, Boolean> mGroupMuteCache = new HashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceVolumeCache = new HashMap<>();
 
-    final Handler mHandler;
     final Map<BluetoothDevice, VolumeControlInputDescriptor> mAudioInputs =
             new ConcurrentHashMap<>();
 
     @VisibleForTesting ServiceFactory mFactory = new ServiceFactory();
 
     public VolumeControlService(AdapterService adapterService) {
-        this(adapterService, null, null);
+        this(adapterService, Flags.vcpOnMainLooper() ? Looper.getMainLooper() : null, null);
     }
 
     @VisibleForTesting
@@ -137,6 +137,20 @@ public class VolumeControlService extends ProfileService {
         }
         setVolumeControlService(this);
         mNativeInterface.init();
+    }
+
+    Handler getHandler() {
+        return mHandler;
+    }
+
+    void enforceMainLooperIsUsed() {
+        if (!Flags.vcpOnMainLooper()) {
+            return;
+        }
+        if (Utils.isInstrumentationTestMode()) {
+            return;
+        }
+        Utils.enforceMainLooperIsUsed();
     }
 
     public static boolean isEnabled() {
@@ -212,6 +226,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public boolean connect(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "connect(): " + device);
         if (device == null) {
             return false;
@@ -240,6 +255,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public boolean disconnect(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "disconnect(): " + device);
         if (device == null) {
             return false;
@@ -255,6 +271,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public List<BluetoothDevice> getConnectedDevices() {
+        enforceMainLooperIsUsed();
         synchronized (mStateMachines) {
             List<BluetoothDevice> devices = new ArrayList<>();
             for (VolumeControlStateMachine sm : mStateMachines.values()) {
@@ -275,6 +292,7 @@ public class VolumeControlService extends ProfileService {
      */
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     public boolean okToConnect(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         /* Make sure device is valid */
         if (device == null) {
             Log.e(TAG, "okToConnect: Invalid device");
@@ -303,6 +321,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
+        enforceMainLooperIsUsed();
         ArrayList<BluetoothDevice> devices = new ArrayList<>();
         if (states == null) {
             return devices;
@@ -340,6 +359,7 @@ public class VolumeControlService extends ProfileService {
      */
     @VisibleForTesting
     List<BluetoothDevice> getDevices() {
+        enforceMainLooperIsUsed();
         List<BluetoothDevice> devices = new ArrayList<>();
         synchronized (mStateMachines) {
             for (VolumeControlStateMachine sm : mStateMachines.values()) {
@@ -350,6 +370,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public int getConnectionState(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         synchronized (mStateMachines) {
             VolumeControlStateMachine sm = mStateMachines.get(device);
             if (sm == null) {
@@ -374,6 +395,7 @@ public class VolumeControlService extends ProfileService {
      * @return true on success, otherwise false
      */
     public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
         mDatabaseManager.setProfileConnectionPolicy(
                 device, BluetoothProfile.VOLUME_CONTROL, connectionPolicy);
@@ -386,10 +408,12 @@ public class VolumeControlService extends ProfileService {
     }
 
     public int getConnectionPolicy(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         return mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.VOLUME_CONTROL);
     }
 
     boolean isVolumeOffsetAvailable(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
         if (offsets == null) {
             Log.i(TAG, " There is no offset service for device: " + device);
@@ -400,6 +424,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     int getNumberOfVolumeOffsetInstances(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
         if (offsets == null) {
             Log.i(TAG, " There is no offset service for device: " + device);
@@ -413,6 +438,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void setVolumeOffset(BluetoothDevice device, int instanceId, int volumeOffset) {
+        enforceMainLooperIsUsed();
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
         if (offsets == null) {
             Log.e(TAG, " There is no offset service for device: " + device);
@@ -442,6 +468,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void setDeviceVolume(BluetoothDevice device, int volume, boolean isGroupOp) {
+        enforceMainLooperIsUsed();
         Log.d(
                 TAG,
                 "setDeviceVolume: " + device + ", volume: " + volume + ", isGroupOp: " + isGroupOp);
@@ -468,6 +495,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public void setGroupVolume(int groupId, int volume) {
+        enforceMainLooperIsUsed();
         if (volume < 0) {
             Log.w(TAG, "Tried to set invalid volume " + volume + ". Ignored.");
             return;
@@ -509,6 +537,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public int getGroupVolume(int groupId) {
+        enforceMainLooperIsUsed();
         return mGroupVolumeCache.getOrDefault(
                 groupId, IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME);
     }
@@ -520,6 +549,7 @@ public class VolumeControlService extends ProfileService {
      * @return the cached volume
      */
     public int getDeviceVolume(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         return mDeviceVolumeCache.getOrDefault(
                 device, IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME);
     }
@@ -531,6 +561,7 @@ public class VolumeControlService extends ProfileService {
      * @param active indicator if group is active or not
      */
     public void setGroupActive(int groupId, boolean active) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "setGroupActive: " + groupId + ", active: " + active);
         if (!active) {
             /* For now we don't need to handle group inactivation */
@@ -549,29 +580,35 @@ public class VolumeControlService extends ProfileService {
     /**
      * @param groupId the group identifier
      */
-    public Boolean getGroupMute(int groupId) {
+    public boolean getGroupMute(int groupId) {
+        enforceMainLooperIsUsed();
         return mGroupMuteCache.getOrDefault(groupId, false);
     }
 
     public void mute(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         mNativeInterface.mute(device);
     }
 
     public void muteGroup(int groupId) {
+        enforceMainLooperIsUsed();
         mGroupMuteCache.put(groupId, true);
         mNativeInterface.muteGroup(groupId);
     }
 
     public void unmute(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         mNativeInterface.unmute(device);
     }
 
     public void unmuteGroup(int groupId) {
+        enforceMainLooperIsUsed();
         mGroupMuteCache.put(groupId, false);
         mNativeInterface.unmuteGroup(groupId);
     }
 
     void notifyNewCallbackOfKnownVolumeInfo(IBluetoothVolumeControlCallback callback) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "notifyNewCallbackOfKnownVolumeInfo");
 
         // notify volume offset
@@ -614,6 +651,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void registerCallback(IBluetoothVolumeControlCallback callback) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "registerCallback: " + callback);
 
         synchronized (mCallbacks) {
@@ -625,6 +663,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void unregisterCallback(IBluetoothVolumeControlCallback callback) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "unregisterCallback: " + callback);
 
         synchronized (mCallbacks) {
@@ -633,11 +672,13 @@ public class VolumeControlService extends ProfileService {
     }
 
     void notifyNewRegisteredCallback(IBluetoothVolumeControlCallback callback) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "notifyNewRegisteredCallback: " + callback);
         notifyNewCallbackOfKnownVolumeInfo(callback);
     }
 
     public void handleGroupNodeAdded(int groupId, BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         // Ignore disconnected device, its volume will be set once it connects
         synchronized (mStateMachines) {
             VolumeControlStateMachine sm = mStateMachines.get(device);
@@ -679,6 +720,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void updateGroupCacheAndAudioSystem(int groupId, int volume, boolean mute, boolean showInUI) {
+        enforceMainLooperIsUsed();
         Log.d(
                 TAG,
                 " updateGroupCacheAndAudioSystem: groupId: "
@@ -737,6 +779,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     int getBleVolumeFromCurrentStream() {
+        enforceMainLooperIsUsed();
         int streamType = getBluetoothContextualVolumeStream();
         int streamVolume = mAudioManager.getStreamVolume(streamType);
         int streamMaxVolume = mAudioManager.getStreamMaxVolume(streamType);
@@ -752,6 +795,7 @@ public class VolumeControlService extends ProfileService {
             int flags,
             boolean mute,
             boolean isAutonomous) {
+        enforceMainLooperIsUsed();
         if (groupId == IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID) {
             LeAudioService leAudioService = mFactory.getLeAudioService();
             if (leAudioService == null) {
@@ -871,6 +915,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     public int getAudioDeviceGroupVolume(int groupId) {
+        enforceMainLooperIsUsed();
         int volume = getGroupVolume(groupId);
         if (getGroupMute(groupId)) {
             Log.w(
@@ -886,6 +931,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     int getAudioDeviceVolume(int streamType, int bleVolume) {
+        enforceMainLooperIsUsed();
         int deviceMaxVolume = mAudioManager.getStreamMaxVolume(streamType);
 
         // TODO: Investigate what happens in classic BT when BT volume is changed to zero.
@@ -895,6 +941,7 @@ public class VolumeControlService extends ProfileService {
 
     // Copied from AudioService.getBluetoothContextualVolumeStream() and modified it.
     int getBluetoothContextualVolumeStream() {
+        enforceMainLooperIsUsed();
         int mode = mAudioManager.getMode();
 
         Log.d(TAG, "Volume mode: " + mode + "0: normal, 1: ring, 2,3: call");
@@ -912,6 +959,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void handleExternalOutputs(BluetoothDevice device, int numberOfExternalOutputs) {
+        enforceMainLooperIsUsed();
         if (numberOfExternalOutputs == 0) {
             Log.i(TAG, "Volume offset not available");
             return;
@@ -935,6 +983,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void handleExternalInputs(BluetoothDevice device, int numberOfExternalInputs) {
+        enforceMainLooperIsUsed();
         if (numberOfExternalInputs == 0) {
             Log.i(TAG, "Volume offset not available");
             mAudioInputs.remove(device);
@@ -948,11 +997,13 @@ public class VolumeControlService extends ProfileService {
 
     void handleDeviceAvailable(
             BluetoothDevice device, int numberOfExternalOutputs, int numberOfExternaInputs) {
+        enforceMainLooperIsUsed();
         handleExternalOutputs(device, numberOfExternalOutputs);
         handleExternalInputs(device, numberOfExternaInputs);
     }
 
     void handleDeviceExtAudioOffsetChanged(BluetoothDevice device, int id, int value) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, " device: " + device + " offset_id: " + id + " value: " + value);
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
         if (offsets == null) {
@@ -975,6 +1026,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void handleDeviceExtAudioLocationChanged(BluetoothDevice device, int id, int location) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, " device: " + device + " offset_id: " + id + " location: " + location);
 
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
@@ -1001,6 +1053,7 @@ public class VolumeControlService extends ProfileService {
 
     void handleDeviceExtAudioDescriptionChanged(
             BluetoothDevice device, int id, String description) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, " device: " + device + " offset_id: " + id + " description: " + description);
 
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
@@ -1031,6 +1084,7 @@ public class VolumeControlService extends ProfileService {
             int gainSetting,
             @Mute int mute,
             @GainMode int gainMode) {
+        enforceMainLooperIsUsed();
         String logInfo =
                 "onExtAudioInStateChanged("
                         + ("device:" + device)
@@ -1051,6 +1105,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void onExtAudioInSetGainSettingFailed(BluetoothDevice device, int id) {
+        enforceMainLooperIsUsed();
         String logInfo = "onExtAudioInSetGainSettingFailed(" + device + ", " + id + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1064,6 +1119,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void onExtAudioInSetMuteFailed(BluetoothDevice device, int id) {
+        enforceMainLooperIsUsed();
         String logInfo = "onExtAudioInSetMuteFailed(" + device + ", " + id + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1077,6 +1133,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void onExtAudioInSetGainModeFailed(BluetoothDevice device, int id) {
+        enforceMainLooperIsUsed();
         String logInfo = "onExtAudioInSetGainModeFailed(" + device + ", " + id + ")";
 
         VolumeControlInputDescriptor input = mAudioInputs.get(device);
@@ -1090,6 +1147,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void onExtAudioInStatusChanged(BluetoothDevice device, int id, @AudioInputStatus int status) {
+        enforceMainLooperIsUsed();
         String logInfo =
                 "onExtAudioInStatusChanged("
                         + ("device=" + device)
@@ -1114,6 +1172,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void onExtAudioInTypeChanged(BluetoothDevice device, int id, @AudioInputType int type) {
+        enforceMainLooperIsUsed();
         String logInfo =
                 "onExtAudioInTypeChanged("
                         + ("device=" + device)
@@ -1133,6 +1192,7 @@ public class VolumeControlService extends ProfileService {
 
     void onExtAudioInDescriptionChanged(
             BluetoothDevice device, int id, String description, boolean isWritable) {
+        enforceMainLooperIsUsed();
         String logInfo =
                 "onExtAudioInDescriptionChanged("
                         + ("device=" + device)
@@ -1158,6 +1218,7 @@ public class VolumeControlService extends ProfileService {
 
     void onExtAudioInGainSettingPropertiesChanged(
             BluetoothDevice device, int id, int unit, int min, int max) {
+        enforceMainLooperIsUsed();
         String logInfo =
                 "onExtAudioInGainSettingPropertiesChanged("
                         + ("device=" + device)
@@ -1178,6 +1239,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void handleStackEvent(VolumeControlStackEvent stackEvent) {
+        enforceMainLooperIsUsed();
         if (!isAvailable()) {
             Log.e(TAG, "Event ignored, service not available: " + stackEvent);
             return;
@@ -1225,6 +1287,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void messageFromNative(VolumeControlStackEvent stackEvent) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "messageFromNative: " + stackEvent);
 
         // Group events should be handled here directly
@@ -1258,6 +1321,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     private VolumeControlStateMachine getOrCreateStateMachine(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         if (device == null) {
             Log.e(TAG, "getOrCreateStateMachine failed: device cannot be null");
             return null;
@@ -1294,6 +1358,7 @@ public class VolumeControlService extends ProfileService {
             RemoteCallbackList<IBluetoothVolumeControlCallback> callbacks,
             List<BluetoothDevice> devices,
             Optional<Integer> volume) {
+        enforceMainLooperIsUsed();
         if (callbacks == null) {
             Log.e(TAG, "callbacks is null");
             return;
@@ -1351,6 +1416,7 @@ public class VolumeControlService extends ProfileService {
      */
     @VisibleForTesting
     void bondStateChanged(BluetoothDevice device, int bondState) {
+        enforceMainLooperIsUsed();
         Log.d(TAG, "Bond state changed for device: " + device + " state: " + bondState);
         // Remove state machine if the bonding for a device is removed
         if (bondState != BOND_NONE) {
@@ -1372,6 +1438,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     private void removeStateMachine(BluetoothDevice device) {
+        enforceMainLooperIsUsed();
         synchronized (mStateMachines) {
             VolumeControlStateMachine sm = mStateMachines.get(device);
             if (sm == null) {
@@ -1392,6 +1459,7 @@ public class VolumeControlService extends ProfileService {
 
     @VisibleForTesting
     synchronized void connectionStateChanged(BluetoothDevice device, int fromState, int toState) {
+        enforceMainLooperIsUsed();
         if (!isAvailable()) {
             Log.w(TAG, "connectionStateChanged: service is not available");
             return;

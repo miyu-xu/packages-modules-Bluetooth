@@ -29,13 +29,19 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothProfile;
+import android.os.Handler;
+import android.os.test.TestLooper;
+import android.platform.test.flag.junit.FlagsParameterization;
+import android.platform.test.flag.junit.SetFlagsRule;
 
-import androidx.test.runner.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.Flags;
 
 import com.google.common.truth.Expect;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -46,22 +52,47 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-@RunWith(AndroidJUnit4.class)
+import platform.test.runner.parameterized.ParameterizedAndroidJunit4;
+import platform.test.runner.parameterized.Parameters;
+
+import java.util.List;
+
+@SmallTest
+@RunWith(ParameterizedAndroidJunit4.class)
 public class VolumeControlNativeCallbackTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
     @Rule public Expect expect = Expect.create();
+    @Rule public final SetFlagsRule mSetFlagsRule;
 
     @Mock private AdapterService mAdapterService;
     @Mock private VolumeControlService mService;
     @Captor private ArgumentCaptor<VolumeControlStackEvent> mEvent;
 
+    private TestLooper mLooper;
     private VolumeControlNativeCallback mNativeCallback;
+
+    @Parameters(name = "{0}")
+    public static List<FlagsParameterization> getParams() {
+        return FlagsParameterization.allCombinationsOf(Flags.FLAG_VCP_ON_MAIN_LOOPER);
+    }
+
+    public VolumeControlNativeCallbackTest(FlagsParameterization flags) {
+        mSetFlagsRule = new SetFlagsRule(flags);
+    }
 
     @Before
     public void setUp() throws Exception {
+        mLooper = new TestLooper();
+        mLooper.startAutoDispatch();
         doReturn(true).when(mService).isAvailable();
+        doReturn(new Handler(mLooper.getLooper())).when(mService).getHandler();
 
         mNativeCallback = new VolumeControlNativeCallback(mAdapterService, mService);
+    }
+
+    @After
+    public void tearDown() {
+        mLooper.stopAutoDispatchAndIgnoreExceptions();
     }
 
     @Test

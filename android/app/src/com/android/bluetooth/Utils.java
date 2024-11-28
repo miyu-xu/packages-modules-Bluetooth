@@ -56,6 +56,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
+import android.os.Looper;
 import android.os.ParcelUuid;
 import android.os.PowerExemptionManager;
 import android.os.Process;
@@ -1296,6 +1297,12 @@ public final class Utils {
         @Override
         public long elapsedRealtime() {
             return android.os.SystemClock.elapsedRealtime();
+        }
+    }
+
+    public static void enforceMainLooperIsUsed() {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            throw new IllegalThreadStateException("must be called on main thread");
         }
     }
 }
