@@ -56,6 +56,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4e142fd_b66c9f20",
+        "filename": "system/bta/gatt/bta_gattc_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-28T06:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc93ea8d_1a28b2dc",
+      "revId": "2f01b2c00cface0986fcaa93aade43af11fc2ccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2332239_63e6332b",
@@ -69,6 +87,30 @@
       "writtenOn": "2024-11-26T13:27:09Z",
       "side": 1,
       "message": "can we change this method behavior:\n\n```\nIf EATT is not enabled on remote, it would send multiple regular Characteristic \nReads, and return their values immediately when they are received in regular read \ncallback\n```\n\nYou would need to also pass GATT_READ_OP_CB as additional parameter.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 58
+      },
+      "revId": "2f01b2c00cface0986fcaa93aade43af11fc2ccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c7eb3a_4105db1e",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-28T06:24:48Z",
+      "side": 1,
+      "message": "As discussed offline",
+      "parentUuid": "c2332239_63e6332b",
       "range": {
         "startLine": 48,
         "startChar": 0,
