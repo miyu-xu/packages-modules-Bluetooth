@@ -336,6 +336,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb51a3b5_3f017aa1",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 42
+      },
+      "lineNbr": 1117,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-11-28T04:40:40Z",
+      "side": 1,
+      "message": "We will revisit this uniqueness of socket ID with better solution. This function already has TODO for that. BTW, I assume the random generator of openssl should have good distribution of the generated random numbers.",
+      "parentUuid": "1a9e9673_183a1e38",
+      "range": {
+        "startLine": 1117,
+        "startChar": 16,
+        "endLine": 1117,
+        "endChar": 50
+      },
+      "revId": "a943d6221d584003067ce5f28fda343f9b21529d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8fe4269_f7732fa9",
