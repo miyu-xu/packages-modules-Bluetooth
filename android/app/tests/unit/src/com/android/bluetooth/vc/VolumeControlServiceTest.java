@@ -634,7 +634,11 @@ public class VolumeControlServiceTest {
                 initialAutonomousFlag);
 
         inOrderAudio.verify(mAudioManager, never()).setStreamVolume(anyInt(), anyInt(), anyInt());
-        verify(mNativeInterface).setGroupVolume(eq(groupId), eq(volumeDevice));
+        if (Flags.leaudioVcsDeviceVolumeApiImprovements()) {
+            verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(volumeDevice));
+        } else {
+            verify(mNativeInterface).setGroupVolume(eq(groupId), eq(volumeDevice));
+        }
     }
 
     private void testConnectedDeviceWithResetFlag(
@@ -698,7 +702,11 @@ public class VolumeControlServiceTest {
                 initialAutonomousFlag);
 
         inOrderAudio.verify(mAudioManager, never()).setStreamVolume(anyInt(), anyInt(), anyInt());
-        inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(expectedAfVol));
+        if (Flags.leaudioVcsDeviceVolumeApiImprovements()) {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(expectedAfVol));
+        } else {
+            inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(expectedAfVol));
+        }
     }
 
     /** Test if phone will set volume which is read from the buds */
@@ -742,8 +750,12 @@ public class VolumeControlServiceTest {
         assertThat(mService.getDevices()).contains(mDeviceTwo);
         generateVolumeStateChanged(mDeviceTwo, LE_AUDIO_GROUP_ID_INVALID, volume_2, 0, false, true);
 
-        inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(groupVolume));
-        inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(groupVolume));
+        if (Flags.leaudioVcsDeviceVolumeApiImprovements()) {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(groupVolume));
+        } else {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(groupVolume));
+            inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(groupVolume));
+        }
     }
 
     /**
@@ -816,9 +828,14 @@ public class VolumeControlServiceTest {
         generateVolumeStateChanged(mDeviceTwo, LE_AUDIO_GROUP_ID_INVALID, volume_2, 0, false, true);
 
         // Check if new device was muted
-        inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(volume));
-        inOrderNative.verify(mNativeInterface).mute(eq(mDeviceTwo));
-        inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(volume));
+        if (Flags.leaudioVcsDeviceVolumeApiImprovements()) {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(volume));
+            inOrderNative.verify(mNativeInterface).mute(eq(mDeviceTwo));
+        } else {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(volume));
+            inOrderNative.verify(mNativeInterface).mute(eq(mDeviceTwo));
+            inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(volume));
+        }
     }
 
     /**
@@ -1062,8 +1079,12 @@ public class VolumeControlServiceTest {
         generateVolumeStateChanged(
                 mDeviceTwo, LE_AUDIO_GROUP_ID_INVALID, groupVolume, 0, false, true);
 
-        inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(groupVolume));
-        inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(groupVolume));
+        if (Flags.leaudioVcsDeviceVolumeApiImprovements()) {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(groupVolume));
+        } else {
+            inOrderNative.verify(mNativeInterface).setVolume(eq(mDeviceTwo), eq(groupVolume));
+            inOrderNative.verify(mNativeInterface).setGroupVolume(eq(groupId), eq(groupVolume));
+        }
 
         // Generate events for both devices
         generateDeviceOffsetChangedMessageFromNative(mDevice, 1, 100);
