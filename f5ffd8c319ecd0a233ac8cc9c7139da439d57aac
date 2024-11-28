@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b429cf9a_6f51165a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-11-28T08:27:56Z",
+      "side": 1,
+      "message": "Hi Wentong, sorry for the delay.\n\nSo, this is not yet done in our codebase, but should be done at some point. I\u0027d recommend either waiting for this patch to be merged, or I also can add your change directly along with it once I start working on it.",
+      "parentUuid": "05bca208_909fb7cc",
+      "revId": "f5ffd8c319ecd0a233ac8cc9c7139da439d57aac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0aa7d62d_9cd6924f",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 2
