@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9209e429_48f32e75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 45
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-28T03:46:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "575512c1_07b2ff8e",
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68262768_34433d20",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-11-27T17:01:04Z",
       "side": 1,
       "message": "So I\u0027m concerned that there appears to be two different flags controlling these APIs. It would be helpful to have a better understanding of the flagging situation since we might need to merge these together. Feel free to reach out and we can chat off-CL.",
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d79cd3_829f08cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 45
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-28T03:46:19Z",
+      "side": 1,
+      "message": "I have uploaded the flags to only use `socket_settings_api`.",
+      "parentUuid": "68262768_34433d20",
       "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -162,6 +198,30 @@
       "side": 1,
       "message": "The problem is, I don\u0027t think you can launch `bt_offload_socket_api` if `socket_settings_api` isn\u0027t also launched.\n\nFor example, `BluetoothSocketSettings` is guarded by `socket_settings_api` but there are methods guarded by `bt_offload_socket_api`.\n\nI don\u0027t think the infra supports this kind of dependency.",
       "parentUuid": "68609ce2_549866f0",
+      "range": {
+        "startLine": 4596,
+        "startChar": 22,
+        "endLine": 4596,
+        "endChar": 46
+      },
+      "revId": "17288e3d19652e55b3a3c41a5ff1fb5524988e28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d34b112_76426dd8",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 45
+      },
+      "lineNbr": 4596,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-11-28T03:46:19Z",
+      "side": 1,
+      "message": "Thanks for the heads up, I have updated the flags so that it uses `socket_settings_api` only.",
+      "parentUuid": "e993a83c_10a7adaa",
       "range": {
         "startLine": 4596,
         "startChar": 22,
