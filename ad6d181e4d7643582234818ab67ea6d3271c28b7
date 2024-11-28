@@ -33,6 +33,23 @@
       "message": "Hi guys, what can I do for merging this patch? thanks!",
       "revId": "ad6d181e4d7643582234818ab67ea6d3271c28b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51fe4978_ee0022fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3746067
+      },
+      "writtenOn": "2024-11-28T15:54:40Z",
+      "side": 1,
+      "message": "Bcc",
+      "revId": "ad6d181e4d7643582234818ab67ea6d3271c28b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
