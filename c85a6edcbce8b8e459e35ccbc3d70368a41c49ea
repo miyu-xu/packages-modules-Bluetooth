@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03d315a1_66c88970",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-28T09:01:05Z",
+      "side": 1,
+      "message": "🦅 ?",
+      "range": {
+        "startLine": 317,
+        "startChar": 18,
+        "endLine": 317,
+        "endChar": 21
+      },
+      "revId": "c85a6edcbce8b8e459e35ccbc3d70368a41c49ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c78bf424_c42d561c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-28T09:01:05Z",
+      "side": 1,
+      "message": "🐢 ?",
+      "range": {
+        "startLine": 321,
+        "startChar": 18,
+        "endLine": 321,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fe9b70cd_243fff17",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 321,
+                "startChar": 0,
+                "endLine": 322,
+                "endChar": 0
+              },
+              "replacement": "      stream \u003c\u003c \"[ 🐢 \";\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c85a6edcbce8b8e459e35ccbc3d70368a41c49ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
