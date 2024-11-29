@@ -160,6 +160,21 @@ bool bta_hh_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
       }
     }
 
+    if (com::android::bluetooth::flags::separate_service_storage()) {
+      remote_properties = {BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids), &remote_uuids};
+      // Find which services known to be available
+      if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) ==
+          BT_STATUS_SUCCESS) {
+        int count = remote_properties.len / sizeof(remote_uuids[0]);
+        for (int i = 0; i < count; i++) {
+          if (remote_uuids[i] == ANDROID_HEADTRACKER_SERVICE_UUID) {
+            p_dev_cb->hid_srvc.headtracker_support = BTA_HH_AVAILABLE;
+            break;
+          }
+        }
+      }
+    }
+
     log::verbose("Headtracker support: {}",
                  (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_AVAILABLE));
   }

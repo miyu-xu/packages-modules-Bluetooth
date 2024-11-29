@@ -179,13 +179,26 @@ static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     case BT_PROPERTY_TYPE_OF_DEVICE:
       btif_config_set_int(bdstr, BTIF_STORAGE_KEY_DEV_TYPE, *reinterpret_cast<int*>(prop->val));
       break;
-    case BT_PROPERTY_UUIDS: {
+    case BT_PROPERTY_UUIDS:
+    case BT_PROPERTY_UUIDS_LE:
+    case BT_PROPERTY_UUIDS_BREDR: {
       std::string val;
       size_t cnt = (prop->len) / sizeof(Uuid);
       for (size_t i = 0; i < cnt; i++) {
         val += (reinterpret_cast<Uuid*>(prop->val) + i)->ToString() + " ";
       }
-      btif_config_set_str(bdstr, BTIF_STORAGE_KEY_REMOTE_SERVICE, val);
+      std::string key;
+      if (prop->type == BT_PROPERTY_UUIDS) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE;
+      } else if (prop->type == BT_PROPERTY_UUIDS_LE) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE_LE;
+      } else if (prop->type == BT_PROPERTY_UUIDS_BREDR) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE_BREDR;
+      } else {
+        log::fatal("bad prop->type with UUIDs");
+      }
+
+      btif_config_set_str(bdstr, key, val);
       break;
     }
     case BT_PROPERTY_REMOTE_VERSION_INFO: {
@@ -300,10 +313,24 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
                                   reinterpret_cast<int*>(prop->val));
       }
       break;
-    case BT_PROPERTY_UUIDS: {
+    case BT_PROPERTY_UUIDS:
+    case BT_PROPERTY_UUIDS_LE:
+    case BT_PROPERTY_UUIDS_BREDR: {
       char value[1280];
       int size = sizeof(value);
-      if (btif_config_get_str(bdstr, BTIF_STORAGE_KEY_REMOTE_SERVICE, value, &size)) {
+
+      std::string key;
+      if (prop->type == BT_PROPERTY_UUIDS) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE;
+      } else if (prop->type == BT_PROPERTY_UUIDS_LE) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE_LE;
+      } else if (prop->type == BT_PROPERTY_UUIDS_BREDR) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE_BREDR;
+      } else {
+        log::fatal("bad prop->type with UUIDs");
+      }
+
+      if (btif_config_get_str(bdstr, key, value, &size)) {
         Uuid* p_uuid = reinterpret_cast<Uuid*>(prop->val);
         size_t num_uuids = btif_split_uuids_string(value, p_uuid, BT_MAX_NUM_UUIDS);
         prop->len = num_uuids * sizeof(Uuid);
@@ -938,13 +965,15 @@ bt_status_t btif_storage_load_bonded_devices(void) {
   uint32_t i = 0;
   bt_property_t adapter_props[6];
   uint32_t num_props = 0;
-  bt_property_t remote_properties[10];
+  bt_property_t remote_properties[12];
   RawAddress addr;
   bt_bdname_t name, alias, model_name;
   bt_scan_mode_t mode;
   uint32_t disc_timeout;
   Uuid local_uuids[BT_MAX_NUM_UUIDS];
   Uuid remote_uuids[BT_MAX_NUM_UUIDS];
+  Uuid remote_uuids_le[BT_MAX_NUM_UUIDS];
+  Uuid remote_uuids_bredr[BT_MAX_NUM_UUIDS];
   bt_status_t status;
 
   remove_devices_with_sample_ltk();
@@ -1029,6 +1058,16 @@ bt_status_t btif_storage_load_bonded_devices(void) {
       btif_storage_get_remote_prop(p_remote_addr, BT_PROPERTY_UUIDS, remote_uuids,
                                    sizeof(remote_uuids), &remote_properties[num_props]);
       num_props++;
+
+      if (com::android::bluetooth::flags::separate_service_storage()) {
+        btif_storage_get_remote_prop(p_remote_addr, BT_PROPERTY_UUIDS_LE, remote_uuids_le,
+                                     sizeof(remote_uuids_le), &remote_properties[num_props]);
+        num_props++;
+
+        btif_storage_get_remote_prop(p_remote_addr, BT_PROPERTY_UUIDS_BREDR, remote_uuids_bredr,
+                                     sizeof(remote_uuids_bredr), &remote_properties[num_props]);
+        num_props++;
+      }
 
       // Floss needs appearance for metrics purposes
       uint16_t appearance = 0;
