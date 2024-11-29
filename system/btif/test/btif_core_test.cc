@@ -320,6 +320,8 @@ TEST_F(BtifUtilsTest, dump_property_type) {
                          "BT_PROPERTY_ADAPTER_DISCOVERABLE_TIMEOUT"),
           std::make_pair(BT_PROPERTY_ADAPTER_BONDED_DEVICES, "BT_PROPERTY_ADAPTER_BONDED_DEVICES"),
           std::make_pair(BT_PROPERTY_REMOTE_FRIENDLY_NAME, "BT_PROPERTY_REMOTE_FRIENDLY_NAME"),
+          std::make_pair(BT_PROPERTY_UUIDS_LE, "BT_PROPERTY_UUIDS_LE"),
+          std::make_pair(BT_PROPERTY_UUIDS_BREDR, "BT_PROPERTY_UUIDS_BREDR"),
   };
   for (const auto& type : types) {
     EXPECT_TRUE(dump_property_type(type.first).starts_with(type.second));
