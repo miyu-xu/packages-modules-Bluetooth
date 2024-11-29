@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0be8bbe_f46d16e2",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-29T09:25:34Z",
+      "side": 1,
+      "message": "queue",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "9dd78ccd7f82f0c9ad01c566c62baa24862f0ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e414074_02b0dab6",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-29T09:25:34Z",
+      "side": 1,
+      "message": "* Remote must support this method when it supports EATT.\n   *\n   * Returns true when remote supports EATT and operation was successfully queued. \n   * Returns false when remote doesn\u0027t support EATT and operation was not scheduled.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 97
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0436b78a_d9185bb7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gatt_queue.h",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "   * Remote must support this method when it supports EATT.\n   *\n   * Returns true when remote supports EATT and operation was successfully\n   * queued.\n   * Returns false when remote doesn\u0027t support EATT\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9dd78ccd7f82f0c9ad01c566c62baa24862f0ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
