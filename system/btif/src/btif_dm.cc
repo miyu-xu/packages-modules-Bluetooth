@@ -1818,7 +1818,7 @@ static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid
           static_cast<int>(Uuid::kNumBytes128 * uuids.size()), (void*)property_value.data()});
 
   /* Also write this to the NVRAM */
-  bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop[0]);
+  bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop.back());
   ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
 
   if (!is_transport_le) {
