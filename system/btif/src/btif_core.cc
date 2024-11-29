@@ -372,6 +372,16 @@ static bt_status_t btif_in_get_remote_device_properties(RawAddress* bd_addr) {
   btif_storage_get_remote_device_property(bd_addr, &remote_properties[num_props]);
   num_props++;
 
+  BTIF_STORAGE_FILL_PROPERTY(&remote_properties[num_props], BT_PROPERTY_UUIDS_LE,
+                             sizeof(remote_uuids), remote_uuids);
+  btif_storage_get_remote_device_property(bd_addr, &remote_properties[num_props]);
+  num_props++;
+
+  BTIF_STORAGE_FILL_PROPERTY(&remote_properties[num_props], BT_PROPERTY_UUIDS_BREDR,
+                             sizeof(remote_uuids), remote_uuids);
+  btif_storage_get_remote_device_property(bd_addr, &remote_properties[num_props]);
+  num_props++;
+
   GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
           BT_STATUS_SUCCESS, *bd_addr, num_props, remote_properties);
 
