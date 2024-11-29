@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a9269a6_d98ab9dd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2882,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-11-29T09:08:49Z",
+      "side": 1,
+      "message": "Such version is not atomic as there are two operations, computeIfAbsent and put.\nUsing compute you can make it atomic:\n```\nmBroadcastMetadataMap.compute(device, (key, existingMap) -\u003e {\n    if (existingMap \u003d\u003d null) {\n        existingMap \u003d new ConcurrentHashMap\u003c\u003e();\n    }\n    existingMap.put(broadcastId, metadata);\n    return existingMap;\n});\n```",
+      "range": {
+        "startLine": 2880,
+        "startChar": 8,
+        "endLine": 2882,
+        "endChar": 44
+      },
+      "revId": "b9e6432437166122acff4a40b49fc69bba2d87f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
