@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3ecb1e_0fec31ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-11-29T15:33:55Z",
+      "side": 1,
+      "message": "I saw something similar in other services e.g. LeAudioService and looks like it can cause some problems.",
+      "revId": "1df5f0b8c4393122b36205ea2cb5a3273ed3bc67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
