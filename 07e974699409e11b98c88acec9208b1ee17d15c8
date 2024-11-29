@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5038e206_12c5ba55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-11-29T07:26:37Z",
+      "side": 1,
+      "message": "Currently there is no testing infra for these modified static functions.",
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
