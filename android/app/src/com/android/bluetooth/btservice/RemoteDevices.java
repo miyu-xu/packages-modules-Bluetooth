@@ -60,6 +60,7 @@ import com.android.modules.utils.build.SdkLevel;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -345,7 +346,8 @@ public class RemoteDevices {
         private String mModelName;
         @VisibleForTesting int mBondState;
         @VisibleForTesting int mDeviceType;
-        @VisibleForTesting ParcelUuid[] mUuids;
+        @VisibleForTesting ParcelUuid[] mUuidsLe;
+        @VisibleForTesting ParcelUuid[] mUuidsBrEdr;
         private BluetoothSinkAudioPolicy mAudioPolicy;
 
         DeviceProperties() {
@@ -510,16 +512,46 @@ public class RemoteDevices {
          */
         ParcelUuid[] getUuids() {
             synchronized (mObject) {
-                return mUuids;
+                ParcelUuid[] result =
+                        Arrays.copyOf(mUuidsBrEdr, mUuidsBrEdr.length + mUuidsLe.length);
+                System.arraycopy(mUuidsLe, 0, result, mUuidsBrEdr.length, mUuidsLe.length);
+                return result;
             }
         }
 
         /**
-         * @param uuids the mUuids to set
+         * @return the mUuidsLe
          */
-        void setUuids(ParcelUuid[] uuids) {
+        ParcelUuid[] getUuidsLe() {
             synchronized (mObject) {
-                this.mUuids = uuids;
+                return mUuidsLe;
+            }
+        }
+
+        /**
+         * @param uuids the mUuidsLe to set
+         */
+        void setUuidsLe(ParcelUuid[] uuids) {
+            synchronized (mObject) {
+                this.mUuidsLe = uuids;
+            }
+        }
+
+        /**
+         * @return the mUuidsBrEdr
+         */
+        ParcelUuid[] getUuidsBrEdr() {
+            synchronized (mObject) {
+                return mUuidsBrEdr;
+            }
+        }
+
+        /**
+         * @param uuids the mUuidsBrEdr to set
+         */
+        void setUuidsBrEdr(ParcelUuid[] uuids) {
+            synchronized (mObject) {
+                this.mUuidsBrEdr = uuids;
             }
         }
 
@@ -636,7 +668,8 @@ public class RemoteDevices {
                     cachedBluetoothDevice issued a connect using the local cached copy of uuids,
                     without waiting for the ACTION_UUID intent.
                     This was resulting in multiple calls to connect().*/
-                    mUuids = null;
+                    mUuidsLe = null;
+                    mUuidsBrEdr = null;
                     mAlias = null;
                 }
             }
@@ -1055,16 +1088,16 @@ public class RemoteDevices {
                                             + ", cod=0x"
                                             + Integer.toHexString(newBluetoothClass));
                             break;
-                        case AbstractionLayer.BT_PROPERTY_UUIDS:
-                            final ParcelUuid[] newUuids = Utils.byteArrayToUuid(val);
-                            if (areUuidsEqual(newUuids, deviceProperties.getUuids())) {
+                        case AbstractionLayer.BT_PROPERTY_UUIDS_LE:
+                            final ParcelUuid[] newUuidsLe = Utils.byteArrayToUuid(val);
+                            if (areUuidsEqual(newUuidsLe, deviceProperties.getUuidsLe())) {
                                 // SDP Skip adding UUIDs to property cache if equal
-                                debugLog("Skip uuids update for " + bdDevice.getAddress());
+                                debugLog("Skip LE uuids update for " + bdDevice.getAddress());
                                 MetricsLogger.getInstance()
                                         .cacheCount(BluetoothProtoEnums.SDP_UUIDS_EQUAL_SKIP, 1);
                                 break;
                             }
-                            deviceProperties.setUuids(newUuids);
+                            deviceProperties.setUuidsLe(newUuidsLe);
                             if (mAdapterService.getState() == BluetoothAdapter.STATE_ON) {
                                 // SDP Adding UUIDs to property cache and sending intent
                                 MetricsLogger.getInstance()
@@ -1084,6 +1117,39 @@ public class RemoteDevices {
                                 MetricsLogger.getInstance()
                                         .cacheCount(BluetoothProtoEnums.SDP_DROP_UUID, 1);
                             }
+                            break;
+                        case AbstractionLayer.BT_PROPERTY_UUIDS_BREDR:
+                            final ParcelUuid[] newUuidsBrEdr = Utils.byteArrayToUuid(val);
+                            if (areUuidsEqual(newUuidsBrEdr, deviceProperties.getUuidsBrEdr())) {
+                                // SDP Skip adding UUIDs to property cache if equal
+                                debugLog("Skip BREDR uuids update for " + bdDevice.getAddress());
+                                MetricsLogger.getInstance()
+                                        .cacheCount(BluetoothProtoEnums.SDP_UUIDS_EQUAL_SKIP, 1);
+                                break;
+                            }
+                            deviceProperties.setUuidsBrEdr(newUuidsBrEdr);
+                            if (mAdapterService.getState() == BluetoothAdapter.STATE_ON) {
+                                // SDP Adding UUIDs to property cache and sending intent
+                                MetricsLogger.getInstance()
+                                        .cacheCount(
+                                                BluetoothProtoEnums.SDP_ADD_UUID_WITH_INTENT, 1);
+                                mAdapterService.deviceUuidUpdated(bdDevice);
+                                sendUuidIntent(bdDevice, deviceProperties, true);
+                            } else if (mAdapterService.getState()
+                                    == BluetoothAdapter.STATE_BLE_ON) {
+                                // SDP Adding UUIDs to property cache but with no intent
+                                MetricsLogger.getInstance()
+                                        .cacheCount(
+                                                BluetoothProtoEnums.SDP_ADD_UUID_WITH_NO_INTENT, 1);
+                                mAdapterService.deviceUuidUpdated(bdDevice);
+                            } else {
+                                // SDP Silently dropping UUIDs and with no intent
+                                MetricsLogger.getInstance()
+                                        .cacheCount(BluetoothProtoEnums.SDP_DROP_UUID, 1);
+                            }
+                            break;
+                        case AbstractionLayer.BT_PROPERTY_UUIDS:
+                            warnLog("BT_PROPERTY_UUIDS split on LE and Classic!");
                             break;
                         case AbstractionLayer.BT_PROPERTY_TYPE_OF_DEVICE:
                             if (deviceProperties.isConsolidated()) {
