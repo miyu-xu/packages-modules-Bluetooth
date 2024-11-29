@@ -63,6 +63,30 @@
       ],
       "revId": "9dd78ccd7f82f0c9ad01c566c62baa24862f0ecc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b33555_3e89cb5d",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-29T09:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e414074_02b0dab6",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 97
+      },
+      "revId": "9dd78ccd7f82f0c9ad01c566c62baa24862f0ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
