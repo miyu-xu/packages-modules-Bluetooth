@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87219dba_0e6977a1",
+        "filename": "system/bta/test/common/bta_gatt_queue_mock.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-29T07:49:14Z",
+      "side": 1,
+      "message": "reverted this to `bool`, this has to be in line with return type of mocked method, and as per https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3377851/1..10/system/bta/gatt/bta_gattc_queue.cc#b269 we\u0027re changing it to bool to let the people down the line know it won\u0027t work on remote without EATT.\n\n@rlukasz@google.com @jpawlowski@google.com should I keep it as is right now, or revert all methods back to returning void?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 4
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0c99956d_e74adb89",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/test/common/bta_gatt_queue_mock.cc",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "void BtaGattQueue::ReadMultiCharacteristic(uint16_t conn_id, tBTA_GATTC_MULTI\u0026 p_read_multi,\n"
+            },
+            {
+              "path": "system/bta/test/common/bta_gatt_queue_mock.cc",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7814692a1cdddf046fd4fab27276eb3fa27fbd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
