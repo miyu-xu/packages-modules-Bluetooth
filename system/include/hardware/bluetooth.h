@@ -279,10 +279,10 @@ typedef enum {
    */
   BT_PROPERTY_BDADDR,
   /**
-   * Description - Bluetooth Service 128-bit UUIDs
+   * Description - Local Bluetooth Service 128-bit UUIDs. For remote device prefer transport
+   *               specific BT_PROPERTY_UUIDS_LE or BT_PROPERTY_UUIDS_BREDR
    * Access mode - Only GET.
-   * Data type   - Array of bluetooth::Uuid (Array size inferred from property
-   *               length).
+   * Data type   - Array of bluetooth::Uuid (Array size inferred from property length).
    */
   BT_PROPERTY_UUIDS,
   /**
@@ -425,6 +425,22 @@ typedef enum {
    * Data Type   - bt_lpp_offload_features_t.
    */
   BT_PROPERTY_LPP_OFFLOAD_FEATURES,
+
+  /**
+   * Description - Bluetooth Service 128-bit UUIDs on LE transport
+   * Access mode - Only GET.
+   * Data type   - Array of bluetooth::Uuid (Array size inferred from property
+   *               length).
+   */
+  BT_PROPERTY_UUIDS_LE,
+
+  /**
+   * Description - Bluetooth Service 128-bit UUIDs on BR_EDR transport
+   * Access mode - Only GET.
+   * Data type   - Array of bluetooth::Uuid (Array size inferred from property
+   *               length).
+   */
+  BT_PROPERTY_UUIDS_BREDR,
 
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;

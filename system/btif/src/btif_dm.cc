@@ -1534,9 +1534,10 @@ static bool btif_is_interesting_le_service(bluetooth::Uuid uuid) {
           uuid == ANDROID_HEADTRACKER_SERVICE_UUID);
 }
 
-static bt_status_t btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids) {
+static bt_status_t btif_get_existing_uuids(RawAddress* bd_addr, Uuid* existing_uuids,
+                                           bt_property_type_t property_type = BT_PROPERTY_UUIDS) {
   bt_property_t tmp_prop;
-  BTIF_STORAGE_FILL_PROPERTY(&tmp_prop, BT_PROPERTY_UUIDS, sizeof(*existing_uuids), existing_uuids);
+  BTIF_STORAGE_FILL_PROPERTY(&tmp_prop, property_type, sizeof(*existing_uuids), existing_uuids);
 
   return btif_storage_get_remote_device_property(bd_addr, &tmp_prop);
 }
@@ -1548,9 +1549,10 @@ static bool btif_is_gatt_service_discovery_post_pairing(const RawAddress bd_addr
          (pairing_cb.gatt_over_le == btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED);
 }
 
-static void btif_merge_existing_uuids(RawAddress& addr, std::set<Uuid>* uuids) {
+static void btif_merge_existing_uuids(RawAddress& addr, std::set<Uuid>* uuids,
+                                      bt_property_type_t property_type = BT_PROPERTY_UUIDS) {
   Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
-  bt_status_t lookup_result = btif_get_existing_uuids(&addr, existing_uuids);
+  bt_status_t lookup_result = btif_get_existing_uuids(&addr, existing_uuids, property_type);
 
   if (lookup_result == BT_STATUS_FAIL) {
     return;
@@ -1612,11 +1614,44 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
       uuids.insert(uuid);
     }
 
-    if (results_for_bonding_device) {
-      btif_merge_existing_uuids(pairing_cb.static_bdaddr, &uuids);
-      btif_merge_existing_uuids(pairing_cb.bd_addr, &uuids);
+    if (com::android::bluetooth::flags::separate_service_storage()) {
+      if (results_for_bonding_device) {
+        btif_merge_existing_uuids(pairing_cb.static_bdaddr, &uuids, BT_PROPERTY_UUIDS_BREDR);
+        btif_merge_existing_uuids(pairing_cb.bd_addr, &uuids, BT_PROPERTY_UUIDS_BREDR);
+      } else {
+        btif_merge_existing_uuids(bd_addr, &uuids, BT_PROPERTY_UUIDS_BREDR);
+      }
+
+      std::vector<bt_property_t> classic_prop;
+      std::vector<uint8_t> classic_property_value;
+
+      for (auto& uuid : uuids) {
+        auto uuid_128bit = uuid.To128BitBE();
+        classic_property_value.insert(classic_property_value.end(), uuid_128bit.begin(),
+                                      uuid_128bit.end());
+      }
+
+      classic_prop.push_back(bt_property_t{BT_PROPERTY_UUIDS_BREDR,
+                                           static_cast<int>(Uuid::kNumBytes128 * uuids.size()),
+                                           (void*)classic_property_value.data()});
+
+      /* Also write this to the NVRAM */
+      bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &classic_prop[0]);
+      ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote LE services failed", ret);
+
+      if (results_for_bonding_device) {
+        btif_merge_existing_uuids(pairing_cb.static_bdaddr, &uuids, BT_PROPERTY_UUIDS_LE);
+        btif_merge_existing_uuids(pairing_cb.bd_addr, &uuids, BT_PROPERTY_UUIDS_LE);
+      } else {
+        btif_merge_existing_uuids(bd_addr, &uuids, BT_PROPERTY_UUIDS_LE);
+      }
     } else {
-      btif_merge_existing_uuids(bd_addr, &uuids);
+      if (results_for_bonding_device) {
+        btif_merge_existing_uuids(pairing_cb.static_bdaddr, &uuids);
+        btif_merge_existing_uuids(pairing_cb.bd_addr, &uuids);
+      } else {
+        btif_merge_existing_uuids(bd_addr, &uuids);
+      }
     }
 
     for (auto& uuid : uuids) {
@@ -1689,9 +1724,11 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
                                     num_eir_uuids));
 
   if (!uuids_param.empty() || num_eir_uuids != 0) {
-    /* Also write this to the NVRAM */
-    const bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop);
-    ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
+    if (!com::android::bluetooth::flags::separate_service_storage()) {
+      /* Also write this to the NVRAM */
+      const bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop);
+      ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
+    }
 
     if (skip_reporting_wait_for_le) {
       log::info(
@@ -1713,9 +1750,6 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
 
 static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid>& services,
                                  bool is_transport_le) {
-  std::vector<bt_property_t> prop;
-  std::vector<uint8_t> property_value;
-  std::set<Uuid> uuids;
   RawAddress static_addr_copy = pairing_cb.static_bdaddr;
   bool lea_supported = is_le_audio_capable_during_service_discovery(bd_addr);
 
@@ -1751,6 +1785,7 @@ static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid
     BTM_LogHistory(kBtmLogTag, bd_addr, "Discovered GATT services using SDP transport");
   }
 
+  std::set<Uuid> uuids;
   for (Uuid uuid : services) {
     if (btif_is_interesting_le_service(uuid)) {
       if (btif_should_ignore_uuid(uuid)) {
@@ -1777,12 +1812,34 @@ static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid
       return;
     }
     log::info("Will return Classic SDP results, if done, to unblock bonding");
+  } else if (com::android::bluetooth::flags::separate_service_storage()) {
+    std::vector<bt_property_t> prop;
+    std::vector<uint8_t> property_value;
+
+    for (auto& uuid : uuids) {
+      auto uuid_128bit = uuid.To128BitBE();
+      property_value.insert(property_value.end(), uuid_128bit.begin(), uuid_128bit.end());
+    }
+
+    prop.push_back(bt_property_t{is_transport_le ? BT_PROPERTY_UUIDS_LE : BT_PROPERTY_UUIDS_BREDR,
+                                 static_cast<int>(Uuid::kNumBytes128 * uuids.size()),
+                                 (void*)property_value.data()});
+
+    /* Also write this to the NVRAM */
+    bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop[0]);
+    ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote LE services failed", ret);
   }
 
   Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
 
+  bt_property_type_t services_too_lookup = BT_PROPERTY_UUIDS;
+  if (com::android::bluetooth::flags::separate_service_storage()) {
+    services_too_lookup = is_transport_le ? BT_PROPERTY_UUIDS_BREDR : BT_PROPERTY_UUIDS_LE;
+  }
+
   // Look up UUIDs using pseudo address (either RPA or static address)
-  bt_status_t existing_lookup_result = btif_get_existing_uuids(&bd_addr, existing_uuids);
+  bt_status_t existing_lookup_result =
+          btif_get_existing_uuids(&bd_addr, existing_uuids, services_too_lookup);
 
   if (existing_lookup_result != BT_STATUS_FAIL) {
     log::info("Got some existing UUIDs by address {}", bd_addr);
@@ -1798,7 +1855,8 @@ static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid
 
   if (bd_addr != static_addr_copy) {
     // Look up UUID using static address, if different than sudo address
-    existing_lookup_result = btif_get_existing_uuids(&static_addr_copy, existing_uuids);
+    existing_lookup_result =
+            btif_get_existing_uuids(&static_addr_copy, existing_uuids, services_too_lookup);
     if (existing_lookup_result != BT_STATUS_FAIL) {
       log::info("Got some existing UUIDs by static address {}", static_addr_copy);
       for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
@@ -1811,18 +1869,22 @@ static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid
     }
   }
 
+  std::vector<uint8_t> property_value;
   for (auto& uuid : uuids) {
     auto uuid_128bit = uuid.To128BitBE();
     property_value.insert(property_value.end(), uuid_128bit.begin(), uuid_128bit.end());
   }
 
+  std::vector<bt_property_t> prop;
   prop.push_back(bt_property_t{BT_PROPERTY_UUIDS,
                                static_cast<int>(Uuid::kNumBytes128 * uuids.size()),
                                (void*)property_value.data()});
 
-  /* Also write this to the NVRAM */
-  bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop[0]);
-  ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
+  if (!com::android::bluetooth::flags::separate_service_storage()) {
+    /* Also write this to the NVRAM */
+    bt_status_t ret = btif_storage_set_remote_device_property(&bd_addr, &prop[0]);
+    ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
+  }
 
   if (!is_transport_le) {
     /* If services were returned as part of SDP discovery, we will immediately
