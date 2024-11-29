@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb55cbe8_cc764ee7",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-29T08:49:44Z",
+      "side": 1,
+      "message": "I added short description for true/false then",
+      "parentUuid": "324b9d82_eb097b1a",
+      "range": {
+        "startLine": 48,
+        "startChar": 39,
+        "endLine": 48,
+        "endChar": 62
+      },
+      "revId": "7814692a1cdddf046fd4fab27276eb3fa27fbd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87219dba_0e6977a1",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "7814692a1cdddf046fd4fab27276eb3fa27fbd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b07085f0_11d20e27",
+        "filename": "system/bta/test/common/bta_gatt_queue_mock.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-11-29T08:49:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87219dba_0e6977a1",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 4
+      },
       "revId": "7814692a1cdddf046fd4fab27276eb3fa27fbd24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
