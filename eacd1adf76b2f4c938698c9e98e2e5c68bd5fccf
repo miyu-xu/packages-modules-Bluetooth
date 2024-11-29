@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "924ea2f0_264b3c9d",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-11-29T12:12:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "365d1860_abe54158",
+      "range": {
+        "startLine": 95,
+        "startChar": 7,
+        "endLine": 95,
+        "endChar": 49
+      },
+      "revId": "eacd1adf76b2f4c938698c9e98e2e5c68bd5fccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d444e38a_66bb45ef",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-11-29T05:09:49Z",
       "side": 1,
       "message": "size_t?",
+      "range": {
+        "startLine": 215,
+        "startChar": 4,
+        "endLine": 215,
+        "endChar": 7
+      },
+      "revId": "eacd1adf76b2f4c938698c9e98e2e5c68bd5fccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbb7d360_b1f3dd0d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-11-29T12:12:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d444e38a_66bb45ef",
       "range": {
         "startLine": 215,
         "startChar": 4,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4309fba0_0fab58ec",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-11-29T12:12:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b486745b_3e0fa39b",
+      "range": {
+        "startLine": 884,
+        "startChar": 6,
+        "endLine": 884,
+        "endChar": 35
+      },
+      "revId": "eacd1adf76b2f4c938698c9e98e2e5c68bd5fccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f633621_36ee9a9b",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-11-29T05:09:49Z",
       "side": 1,
       "message": "How about doing this in a new function?",
+      "range": {
+        "startLine": 879,
+        "startChar": 0,
+        "endLine": 917,
+        "endChar": 5
+      },
+      "revId": "eacd1adf76b2f4c938698c9e98e2e5c68bd5fccf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcd6142c_33e93e39",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-11-29T12:12:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f633621_36ee9a9b",
       "range": {
         "startLine": 879,
         "startChar": 0,
