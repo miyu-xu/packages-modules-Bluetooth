@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "324b9d82_eb097b1a",
+        "filename": "system/bta/include/bta_gatt_queue.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-11-29T08:20:39Z",
+      "side": 1,
+      "message": "If this method returns void, it\u0027s enough to say \"this method can\u0027t be used\".\nIf you decide to return value, give short description when true/false is returned.\n\nTBH I don\u0027t have strong opinion about returning bool or void.\nUsers of this API check if EATT is supported anyway, so void seems ok.",
+      "range": {
+        "startLine": 48,
+        "startChar": 39,
+        "endLine": 48,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d4ed151a_af84eae3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_gatt_queue.h",
+              "range": {
+                "startLine": 49,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "   * Returns true if the operation was successfully queued.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7814692a1cdddf046fd4fab27276eb3fa27fbd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87219dba_0e6977a1",
         "filename": "system/bta/test/common/bta_gatt_queue_mock.cc",
         "patchSetId": 10
