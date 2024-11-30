@@ -209,6 +209,7 @@ typedef struct {
   uint8_t role;
   tBT_TRANSPORT transport;
   tGATT_DISCONN_REASON reason;
+  uint16_t conn_interval;
 } tBTA_GATTC_INT_CONN;
 
 typedef union {
@@ -256,6 +257,7 @@ typedef struct {
   uint16_t attr_index;     /* cache NV saving/loading attribute index */
 
   uint16_t mtu;
+  uint16_t conn_interval;
 
   bool disc_blocked_waiting_on_version;
   tCONN_ID blocked_conn_id;
@@ -411,7 +413,7 @@ void bta_gattc_restart_discover(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* 
 void bta_gattc_cancel_bk_conn(const tBTA_GATTC_API_CANCEL_OPEN* p_data);
 void bta_gattc_send_open_cback(tBTA_GATTC_RCB* p_clreg, tGATT_STATUS status,
                                const RawAddress& remote_bda, tCONN_ID conn_id,
-                               tBT_TRANSPORT transport, uint16_t mtu);
+                               tBT_TRANSPORT transport, uint16_t mtu, uint16_t conn_interval);
 void bta_gattc_process_api_refresh(const RawAddress& remote_bda);
 void bta_gattc_cfg_mtu(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data);
 void bta_gattc_listen(tBTA_GATTC_DATA* p_msg);

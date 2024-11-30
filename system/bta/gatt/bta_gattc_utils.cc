@@ -268,6 +268,7 @@ void bta_gattc_server_disconnected(tBTA_GATTC_SERV* p_srcb) {
     p_srcb->connected = false;
     p_srcb->state = BTA_GATTC_SERV_IDLE;
     p_srcb->mtu = 0;
+    p_srcb->conn_interval = 0;
 
     // clear reallocating
     p_srcb->gatt_database.Clear();
@@ -303,6 +304,7 @@ void bta_gattc_clcb_dealloc(tBTA_GATTC_CLCB* p_clcb) {
     p_srcb->connected = false;
     p_srcb->state = BTA_GATTC_SERV_IDLE;
     p_srcb->mtu = 0;
+    p_srcb->conn_interval = 0;
 
     // clear reallocating
     p_srcb->gatt_database.Clear();
@@ -747,7 +749,7 @@ bool bta_gattc_check_bg_conn(tGATT_IF client_if, const RawAddress& remote_bda, u
  ******************************************************************************/
 void bta_gattc_send_open_cback(tBTA_GATTC_RCB* p_clreg, tGATT_STATUS status,
                                const RawAddress& remote_bda, tCONN_ID conn_id,
-                               tBT_TRANSPORT transport, uint16_t mtu) {
+                               tBT_TRANSPORT transport, uint16_t mtu, uint16_t conn_interval) {
   tBTA_GATTC cb_data;
 
   if (p_clreg->p_cback) {
@@ -759,6 +761,7 @@ void bta_gattc_send_open_cback(tBTA_GATTC_RCB* p_clreg, tGATT_STATUS status,
     cb_data.open.mtu = mtu;
     cb_data.open.transport = transport;
     cb_data.open.remote_bda = remote_bda;
+    cb_data.open.conn_interval = conn_interval;
 
     (*p_clreg->p_cback)(BTA_GATTC_OPEN_EVT, &cb_data);
   }
@@ -1006,6 +1009,7 @@ void bta_gatt_client_dump(int fd) {
     entry_count++;
     stream << "  server_address: " << ADDRESS_TO_LOGGABLE_STR(p_known_server->server_bda)
            << "  mtu: " << p_known_server->mtu
+           << "  conn_interval: " << p_known_server->conn_interval
            << "  blocked_conn_id: " << loghex(p_known_server->blocked_conn_id)
            << "  num_clcb: " << +p_known_server->num_clcb
            << "  state: " << bta_server_state_text(p_known_server->state)

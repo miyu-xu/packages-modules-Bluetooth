@@ -352,7 +352,7 @@ void bta_gattc_process_api_open(const tBTA_GATTC_DATA* p_msg) {
     log::error("No resources to open a new connection.");
 
     bta_gattc_send_open_cback(p_clreg, GATT_NO_RESOURCES, p_msg->api_conn.remote_bda,
-                              GATT_INVALID_CONN_ID, p_msg->api_conn.transport, 0);
+                              GATT_INVALID_CONN_ID, p_msg->api_conn.transport, 0, 0);
   }
 }
 
@@ -418,7 +418,7 @@ void bta_gattc_open_error(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* /* p_d
   log::error("Connection already opened. wrong state");
 
   bta_gattc_send_open_cback(p_clcb->p_rcb, GATT_SUCCESS, p_clcb->bda, p_clcb->bta_conn_id,
-                            p_clcb->transport, 0);
+                            p_clcb->transport, 0, 0);
 }
 
 void bta_gattc_open_fail(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
@@ -428,12 +428,12 @@ void bta_gattc_open_fail(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data)
             "GATT_CONNECTION_TIMEOUT({})",
             p_clcb->bta_conn_id, GATT_CONNECTION_TIMEOUT);
     bta_gattc_send_open_cback(p_clcb->p_rcb, GATT_CONNECTION_TIMEOUT, p_clcb->bda,
-                              p_clcb->bta_conn_id, p_clcb->transport, 0);
+                              p_clcb->bta_conn_id, p_clcb->transport, 0, 0);
   } else {
     log::warn("Cannot establish Connection. conn_id=0x{:x}. Return GATT_ERROR({})",
               p_clcb->bta_conn_id, GATT_ERROR);
     bta_gattc_send_open_cback(p_clcb->p_rcb, GATT_ERROR, p_clcb->bda, p_clcb->bta_conn_id,
-                              p_clcb->transport, 0);
+                              p_clcb->transport, 0, 0);
   }
 
   /* open failure, remove clcb */
@@ -478,7 +478,7 @@ static void bta_gattc_init_bk_conn(const tBTA_GATTC_API_OPEN* p_data, tBTA_GATTC
   if (!bta_gattc_mark_bg_conn(p_data->client_if, p_data->remote_bda, true)) {
     log::warn("Unable to find space for accept list connection mask");
     bta_gattc_send_open_cback(p_clreg, GATT_NO_RESOURCES, p_data->remote_bda, GATT_INVALID_CONN_ID,
-                              BT_TRANSPORT_LE, 0);
+                              BT_TRANSPORT_LE, 0, 0);
     return;
   }
 
@@ -487,7 +487,7 @@ static void bta_gattc_init_bk_conn(const tBTA_GATTC_API_OPEN* p_data, tBTA_GATTC
                     p_data->transport, false, LE_PHY_1M, p_data->preferred_mtu)) {
     log::error("Unable to connect to remote bd_addr={}", p_data->remote_bda);
     bta_gattc_send_open_cback(p_clreg, GATT_ILLEGAL_PARAMETER, p_data->remote_bda,
-                              GATT_INVALID_CONN_ID, BT_TRANSPORT_LE, 0);
+                              GATT_INVALID_CONN_ID, BT_TRANSPORT_LE, 0, 0);
     return;
   }
 
@@ -579,6 +579,7 @@ void bta_gattc_conn(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
   }
 
   p_clcb->p_srcb->connected = true;
+  p_clcb->p_srcb->conn_interval = p_data->int_conn.conn_interval;
 
   if (p_clcb->p_srcb->mtu == 0) {
     p_clcb->p_srcb->mtu = GATT_DEF_BLE_MTU_SIZE;
@@ -654,7 +655,8 @@ void bta_gattc_conn(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
     }
 
     bta_gattc_send_open_cback(p_clcb->p_rcb, GATT_SUCCESS, p_clcb->bda, p_clcb->bta_conn_id,
-                              p_clcb->transport, p_clcb->p_srcb->mtu);
+                              p_clcb->transport, p_clcb->p_srcb->mtu,
+                              p_clcb->p_srcb->conn_interval);
   }
 }
 
@@ -1472,6 +1474,8 @@ static void bta_gattc_conn_cback(tGATT_IF gattc_if, const RawAddress& bdaddr, tC
   p_buf->int_conn.reason = reason;
   p_buf->int_conn.transport = transport;
   p_buf->int_conn.remote_bda = bdaddr;
+  p_buf->int_conn.conn_interval =
+          bluetooth::stack::l2cap::get_interface().L2CA_GetBleConnInterval(bdaddr);
 
   bta_sys_sendmsg(p_buf);
 }

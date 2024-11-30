@@ -79,6 +79,10 @@ public:
       return HCI_ROLE_CENTRAL;
     };
 
+    test::mock::stack_l2cap_ble::L2CA_GetBleConnInterval.body = [](const RawAddress&) {
+      return 24;
+    };
+
     test::mock::stack_l2cap_api::L2CA_SetIdleTimeoutByBdAddr.body = [](const RawAddress&, uint16_t,
                                                                        uint8_t) { return true; };
     test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl.body = [](uint16_t lcid, const RawAddress&) {
@@ -125,6 +129,8 @@ public:
     test::mock::stack_btm_dev::btm_find_dev = {};
 
     test::mock::stack_l2cap_ble::L2CA_GetBleConnRole = {};
+
+    test::mock::stack_l2cap_ble::L2CA_GetBleConnInterval = {};
 
     test::mock::stack_l2cap_api::L2CA_SetIdleTimeoutByBdAddr = {};
     test::mock::stack_l2cap_api::L2CA_RemoveFixedChnl = {};
