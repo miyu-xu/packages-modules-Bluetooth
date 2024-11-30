@@ -173,6 +173,7 @@ typedef struct {
   RawAddress remote_bda;
   tBT_TRANSPORT transport;
   uint16_t mtu;
+  uint16_t conn_interval;
 } tBTA_GATTC_OPEN;
 
 typedef struct {

@@ -247,9 +247,13 @@ public:
       log::debug("no ongoing measurement, skip");
       return;
     }
-    tracker->conn_interval_ = evt.interval;
-    log::info("conn interval is updated as {}", evt.interval);
-    callbacks_->OnConnIntervalUpdated(tracker->address_for_cs_, tracker->conn_interval_);
+    if (tracker->conn_interval_ != evt.interval) {
+      tracker->conn_interval_ = evt.interval;
+      log::info("conn interval is updated as {}", evt.interval);
+      callbacks_->OnConnIntervalUpdated(tracker->address_for_cs_, tracker->conn_interval_);
+    } else {
+      log::debug("conn interval was not updated");
+    }
   }
 
   void OnGattConnected(const tBTA_GATTC_OPEN& evt) {
@@ -275,6 +279,8 @@ public:
     }
     tracker->conn_id_ = evt.conn_id;
     tracker->is_connected_ = true;
+    tracker->conn_interval_ = evt.conn_interval;
+    log::debug("The initial conn interval {}", tracker->conn_interval_);
     log::info("Search service");
     BTA_GATTC_ServiceSearchRequest(tracker->conn_id_, kRangingService);
   }
