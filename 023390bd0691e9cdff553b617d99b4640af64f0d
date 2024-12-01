@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af896b90_9086e01a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3766757
+      },
+      "writtenOn": "2024-12-01T03:23:00Z",
+      "side": 1,
+      "message": "Thư mục này chứa các tập lệnh Python 3 để nhập và cập nhật dữ liệu từ\nnhiều nguồn khác nhau:\n\n1. cập nhật dữ liệu (cronjob)\n\n- countaccounts.py: Trích xuất từ ​​số liệu thống kê hàng tháng của LDAP về các tài khoản Unix được tạo\n  trong: site/json/foundation/accounts-evolution.json\n     + https://whimsy.apache.org/public/public_ldap_people.json\n  out: site/json/foundation/accounts-evolution.json (đã cập nhật)\n\n- parsecommitteeinfo.py: Phân tích cú pháp committee-info.json để phát hiện các ủy ban mới và đã ngừng hoạt động\n  và nhập dữ liệu PMC (RDF) từ các tệp dữ liệu PMC\n  trong: site/json/foundation/committees.json\n    + site/json/foundation/committees-retired.json\n    + https://whimsy.apache.org/public/committee-info.json (qua committee_info.py)\n    + data/committees.xml - danh sách nơi tìm thấy các tệp RDF mô tả PMC\n    + data/committees/*.rdf - mô tả PMC cục bộ tập tin RDF\n  out: site/json/foundation/committees.json (đã cập nhật)\n     + site/json/foundation/committees-retired.json (đã cập nhật)\n\n- parsecommitters.py: trích xuất thông tin chi tiết về người xác nhận và nhóm như sau:\n  trong: https://whimsy.apache.org/public/member_info.json\n    + https://whimsy.apache.org/public/public_ldap_people.json\n    + https://whimsy.apache.org/public/public_podling_status.json\n    + https://whimsy.apache.org/public/public_ldap_projects.json\n\n  out: site/json/foundation/people.json - những người cam kết có tham chiếu đến các nhóm\n     + site/json/foundation/people_name.json - chuyển đổi availableid thành Tên công khai\n     + site/json/foundation/groups.json - nhóm có người cam kết tương ứng\n  TODO lấy cái này từ LDAP, asf-authorization-template và Whimsy (committee-info.json) thay thế\n  \n- podlings.py: Đọc podlings.xml từ trang web ươm tạo và tạo JSON\n  với dữ liệu lịch sử cũng như thông tin về các dự án podling hiện tại.\n  trong: http://incubator.apache.org/podlings.xml\n  ra: site/json/foundation/podlings.json + site/json/foundation/podlings-history.json\n  Danh sách podlings hiện tại (podlings.json) và podlings đã kết thúc (podlings-history.json)\n\n- parsereleases.py\n  trong: http://www.apache.org/dist/\n  ra: json/foundation/releases.json\n     + json/foundation/tệp-phát-hành.json\n\n- parseprojects.py: Phân tích các tệp RDF(DOAP) của các dự án hiện có và chuyển chúng thành các đối tượng JSON.\n  trong: data/projects.xml + các tập tin DOAP của dự án\n  out: site/json/projects/*.json - Phiên bản JSON của các tệp DOAP\n     + site/json/foundation/projects.json - danh sách kết hợp của tất cả các dự án",
+      "revId": "023390bd0691e9cdff553b617d99b4640af64f0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
