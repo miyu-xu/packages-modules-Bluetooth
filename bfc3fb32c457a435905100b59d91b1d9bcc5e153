@@ -134,6 +134,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46c4276a_0b09941e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T21:13:58Z",
+      "side": 1,
+      "message": "Accessing the variable cannot be enforced being permission. We can mention it in the doc that using this will required the permission later on, but maybe it will be not possible to add the annotation directly in the code.",
+      "parentUuid": "2d578d30_8e14229d",
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f91bd218_1a9b6a51",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 49
