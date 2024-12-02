@@ -22,6 +22,30 @@
       },
       "revId": "e229eb9ba5e31b24c36e69878dae4de805584809",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a79ad1_e89d8774",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachineOld.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-12-02T19:40:54Z",
+      "side": 1,
+      "message": "Good point.  Worst case, we process twice which may affect the state machine.  Ideally the state machine could handle this as it would idempotent, but unsure.\n\nThe unfortunate thing is that how everybody gets these record types regardless of the initiator using the callback mechanism.  This method will only grow as more profiles use this technique.\n```\n    /** Notify MAP and Pbap when a new sdp search record is found. */\n    public void sendSdpSearchRecord(\n            BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {\n        if (mMapService !\u003d null \u0026\u0026 mMapService.isAvailable()) {\n            mMapService.receiveSdpSearchRecord(status, record, uuid);\n        }\n        if (mMapClientService !\u003d null \u0026\u0026 mMapClientService.isAvailable()) {\n            mMapClientService.receiveSdpSearchRecord(device, status, record, uuid);\n        }\n        if (mPbapClientService !\u003d null \u0026\u0026 mPbapClientService.isAvailable()) {\n            mPbapClientService.receiveSdpSearchRecord(device, status, record, uuid);\n        }\n    }\n```\nI can add a `removeMessages(PbapClientStateMachineOld.MSG_SDP_BUSY)` at the appropriate times of either success or failure.",
+      "parentUuid": "bfcc7bf1_3168c9d3",
+      "range": {
+        "startLine": 362,
+        "startChar": 16,
+        "endLine": 362,
+        "endChar": 97
+      },
+      "revId": "e229eb9ba5e31b24c36e69878dae4de805584809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
