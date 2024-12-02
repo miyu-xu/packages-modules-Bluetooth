@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "327c2cc4_0f6606b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T22:14:08Z",
+      "side": 1,
+      "message": "What we are doing here seems a bit of a bandaid then.\n\nIn HfpClientDeviceBlock.java\nThe code is:\n```java\n        if (connection \u003d\u003d null) {\n            buildConnection(call, null);  // crash in this\n            [..]\n        } else if (call.getState() \u003d\u003d HfpClientCall.CALL_STATE_TERMINATED) {\n            debug(\"Removing call \" + call);\n            mConnections.remove(call.getUUID());\n        }\n```\n\nShould we do instead ?\n```\ncallState \u003d call.getState();\nif (connection \u003d\u003d null \u0026\u0026 callState \u003d\u003d HfpClientCall.CALL_STATE_TERMINATED) {\n    Log.w(TAG, \"Discarding incoming call because it is already terminated\");\n    return;\n} else if (connection \u003d\u003d null) {\n            buildConnection(call, callState, null);  // Pass the callState to not have to handle async change while in the method.\n        } else if (callState \u003d\u003d HfpClientCall.CALL_STATE_TERMINATED) {\n[...]\n```\nAka, checking the state once and decide on weither or not construct the object, then pass the already fetched state to not have to deal with race condition.\n\nNew call state should be able to trigger a callback",
+      "parentUuid": "8378a303_195df28f",
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "493eacab_fdebb1cf",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
         "patchSetId": 5
