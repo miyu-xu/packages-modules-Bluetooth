@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0caac333_71a844af",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 5936,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-02T23:10:40Z",
+      "side": 1,
+      "message": "DATA_PATH_HARDWARE_OFFLOAD**",
+      "range": {
+        "startLine": 5936,
+        "startChar": 37,
+        "endLine": 5936,
+        "endChar": 57
+      },
+      "revId": "3dd028b1043118094acd0238d0146941ea756ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f6bf72_ddd49ca2",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 41
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-02T23:10:40Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please use language idioms to initialize or assign\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease use language idioms to initialize or assign",
+      "range": {
+        "startLine": 521,
+        "startChar": 4,
+        "endLine": 521,
+        "endChar": 11
+      },
+      "revId": "3dd028b1043118094acd0238d0146941ea756ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
