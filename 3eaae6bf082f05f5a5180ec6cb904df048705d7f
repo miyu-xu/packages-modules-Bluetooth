@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6dd842_bf6ea2b9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2535,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-02T21:03:30Z",
+      "side": 1,
+      "message": "should we apply the same change to the new set primary group API?\n\nso with this change, we will have null active device for both input and output while in unicast handover(calling or recording), current is input device not null?",
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e6838e0_a252bb11",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-02T21:03:30Z",
+      "side": 1,
+      "message": "once we removed the use case of recording, is the sink mode monitoring still being used for some cases? \nif not, are we planning to do some follow up clean-up on this kLeAudioDirectionSink?",
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
