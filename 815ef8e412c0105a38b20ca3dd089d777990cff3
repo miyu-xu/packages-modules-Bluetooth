@@ -1,0 +1,137 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52520524_07698882",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T20:21:11Z",
+      "side": 1,
+      "message": "should we assert the non-nullness instead ?\n\nThat would be an early raised error.\n\nAt opposed to printoing the error, returning, nad having a start timeout that would not be obvious to investigate",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 77
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac7461b_a5a26603",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpNativeInterface.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T20:21:11Z",
+      "side": 1,
+      "message": "annotated with @Native to prevent getting optimized and removed ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 52
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b6d6842_c118530c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T20:21:11Z",
+      "side": 1,
+      "message": "(because it was checked here previously)",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 37
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b9fb48_75e861f4",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T20:21:11Z",
+      "side": 1,
+      "message": "add a check if the service is still available",
+      "range": {
+        "startLine": 910,
+        "startChar": 0,
+        "endLine": 910,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5a496828_29fdd245",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+              "range": {
+                "startLine": 911,
+                "startChar": 0,
+                "endLine": 911,
+                "endChar": 0
+              },
+              "replacement": "        if (!isAvailable()) {\n            Log.w(TAG, \"messageFromNative: service is not available\");\n            return;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b762b566_f6186a8c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ProfileServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T20:21:11Z",
+      "side": 1,
+      "message": "Don\u0027t you need to add it here ?",
+      "range": {
+        "startLine": 155,
+        "startChar": 40,
+        "endLine": 157,
+        "endChar": 83
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
