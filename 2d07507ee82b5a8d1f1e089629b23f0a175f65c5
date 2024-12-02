@@ -16,6 +16,24 @@
       "message": "This is very similar to https://r.android.com/3378224 that I uploaded (but not yet merged) a few days ago.\n\nOnly difference is the other CL has a final variable (that I prefer) but it does a getLooper().quitSafely() and I prefer this version that doesn\u0027t call for getLooper.\n\nI will update the other CL to make this modification",
       "revId": "2d07507ee82b5a8d1f1e089629b23f0a175f65c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21f5fb83_e4a58b0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3026067
+      },
+      "writtenOn": "2024-12-02T06:19:46Z",
+      "side": 1,
+      "message": "Please call quitSafely() firstly then clean up native interfaces on https://r.android.com/3378224.\nI will abandon this change.",
+      "parentUuid": "8f0a26ca_f0d01396",
+      "revId": "2d07507ee82b5a8d1f1e089629b23f0a175f65c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
