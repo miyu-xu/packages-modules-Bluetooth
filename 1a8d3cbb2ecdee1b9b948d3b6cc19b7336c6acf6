@@ -34,6 +34,24 @@
       "parentUuid": "8da42c97_5dc4509f",
       "revId": "1a8d3cbb2ecdee1b9b948d3b6cc19b7336c6acf6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2d0ef0_d0a7a3ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T23:49:06Z",
+      "side": 1,
+      "message": "\u003e the config is set to null as every new testcase start with factory reset.\n\nMmmm...\n\nWe should really look into this factory reset. It should either be done while Bluetooth is Off, or we should make sure Bluetooth is toggle after reset",
+      "parentUuid": "72375fd3_c7a26006",
+      "revId": "1a8d3cbb2ecdee1b9b948d3b6cc19b7336c6acf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
