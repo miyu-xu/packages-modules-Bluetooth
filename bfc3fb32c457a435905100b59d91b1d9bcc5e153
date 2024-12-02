@@ -1,0 +1,504 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37838a07_88ad6a77",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "I\u0027m a little surprised this doesn\u0027t require a @FlaggedApi annotation. I\u0027m checking w/ others in API Council to see if we\u0027ve found a latent bug.",
+      "fixSuggestions": [
+        {
+          "fixId": "0890bd75_4780ceef",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 642,
+                "startChar": 0,
+                "endLine": 642,
+                "endChar": 0
+              },
+              "replacement": "    @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 836,
+                "startChar": 0,
+                "endLine": 836,
+                "endChar": 0
+              },
+              "replacement": "    @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f829d64_e1f8d0bc",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "FYI, you might want to update the documentation on BluetoothSocketException since it says it would only get called due to a failure during `connect()` which doesn\u0027t seem like it\u0027s true based on this case. https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocketException.java;l\u003d34?q\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main%20BluetoothSocketException",
+      "range": {
+        "startLine": 1263,
+        "startChar": 22,
+        "endLine": 1263,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fb638cdc_0c8033c9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 1254,
+                "startChar": 0,
+                "endLine": 1256,
+                "endChar": 0
+              },
+              "replacement": "     * @throws BluetoothSocketException If the socket is not connected.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d578d30_8e14229d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "I would mention that the permission is required in the docs. Maybe add @RequiresPermission to this?",
+      "fixSuggestions": [
+        {
+          "fixId": "4dc62dde_22ffab79",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.RequiresPermission;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 78,
+                "endChar": 0
+              },
+              "replacement": "    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91bd218_1a9b6a51",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "please spell out HARDWARE",
+      "range": {
+        "startLine": 78,
+        "startChar": 39,
+        "endLine": 78,
+        "endChar": 59
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "059ce4f9_d128ea66",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "Do these both need to be @SystemApi?",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "305d7924_7d618b42",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 83,
+                "startChar": 0,
+                "endLine": 83,
+                "endChar": 0
+              },
+              "replacement": "     *\n     * @hide\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 84,
+                "startChar": 0,
+                "endLine": 84,
+                "endChar": 0
+              },
+              "replacement": "    @SystemApi\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "    /**\n     * Maximum length (in bytes) of a socket name when using {@link #DATA_PATH_HW_OFFLOAD}.\n     *\n     * @hide\n     */\n    @SystemApi\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836650dc_cc0d3d64",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "You don\u0027t actually need this documentation. The annotation you\u0027ve added will automatically add all supported values.",
+      "range": {
+        "startLine": 230,
+        "startChar": 6,
+        "endLine": 236,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cbefb2df_8470a68e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 230,
+                "startChar": 0,
+                "endLine": 238,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5e91384_5a8ca396",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "this won\u0027t resolve b/c PACKET_MAX_SIZE is currently private. As mentioned above, it should probably be @SystemApi too",
+      "range": {
+        "startLine": 319,
+        "startChar": 30,
+        "endLine": 319,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6d41f085_25a4bf06",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 319,
+                "startChar": 0,
+                "endLine": 320,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eDefaults to {@code PACKET_MAX_SIZE}.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1144798e_e9e3c175",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need this b/c of the @SocketDataPath annotation.",
+      "range": {
+        "startLine": 538,
+        "startChar": 9,
+        "endLine": 546,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b1cc9e0b_337e7179",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 538,
+                "startChar": 0,
+                "endLine": 548,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "773b2741_c6a7686c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "How is DATA_PATH_HARDWARE_OFFLOAD guarded if not by a permission?",
+      "range": {
+        "startLine": 558,
+        "startChar": 9,
+        "endLine": 558,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "52b87c27_50bd629e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 545,
+                "startChar": 0,
+                "endLine": 546,
+                "endChar": 0
+              },
+              "replacement": "         *       permission, which will be checked when a socket connection or channel is created\n         *       using {@link BluetoothAdapter#listenUsingSocketSettings} or {@link\n         *       BluetoothDevice#createUsingSocketSettings}.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fa4c191_9e8bd5ea",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T16:37:34Z",
+      "side": 1,
+      "message": "Since this isn\u0027t guaranteed to be the actual maximumPacketSize, I think it should be called setRequestedMaximumPacketSize",
+      "range": {
+        "startLine": 658,
+        "startChar": 23,
+        "endLine": 658,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d9ad9546_75fd373a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "    private int mRequestedMaximumPacketSize;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 328,
+                "startChar": 0,
+                "endLine": 330,
+                "endChar": 0
+              },
+              "replacement": "    public int getRequestedMaximumPacketSize() {\n        return mRequestedMaximumPacketSize;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 361,
+                "startChar": 0,
+                "endLine": 363,
+                "endChar": 0
+              },
+              "replacement": "                    .append(\", mRequestedMaximumPacketSize\u003d\")\n                    .append(mRequestedMaximumPacketSize);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 379,
+                "startChar": 0,
+                "endLine": 380,
+                "endChar": 0
+              },
+              "replacement": "            int requestedMaximumPacketSize) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 390,
+                "startChar": 0,
+                "endLine": 391,
+                "endChar": 0
+              },
+              "replacement": "        mRequestedMaximumPacketSize \u003d requestedMaximumPacketSize;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 406,
+                "startChar": 0,
+                "endLine": 407,
+                "endChar": 0
+              },
+              "replacement": "        private int mRequestedMaximumPacketSize \u003d PACKET_MAX_SIZE;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 658,
+                "startChar": 0,
+                "endLine": 660,
+                "endChar": 0
+              },
+              "replacement": "        public Builder setRequestedMaximumPacketSize(int requestedMaximumPacketSize) {\n            mRequestedMaximumPacketSize \u003d requestedMaximumPacketSize;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 702,
+                "startChar": 0,
+                "endLine": 704,
+                "endChar": 0
+              },
+              "replacement": "                if (mRequestedMaximumPacketSize \u003c 0) {\n                    throw new IllegalArgumentException(\n                            \"invalid packet size \" + mRequestedMaximumPacketSize);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 722,
+                "startChar": 0,
+                "endLine": 723,
+                "endChar": 0
+              },
+              "replacement": "                    mRequestedMaximumPacketSize);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
