@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ed32fe_f0c469ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-12-02T18:32:50Z",
+      "side": 1,
+      "message": "(1) Removed enabling BAP Audio sink/source roles because the stack currently doesn\u0027t make use of them. (2) Added TMAP Unicast to TMAP Broadcast Media Sender.",
+      "revId": "5757462d6feb9ce936f1061c1c078b9d08c0ae7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
