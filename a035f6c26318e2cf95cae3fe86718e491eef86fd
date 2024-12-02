@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b9f878_bc0a5492",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-02T19:13:32Z",
+      "side": 1,
+      "message": "Should we default to  `setLeAudioActiveDevice(null, true);` in this case ?",
+      "revId": "a035f6c26318e2cf95cae3fe86718e491eef86fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
