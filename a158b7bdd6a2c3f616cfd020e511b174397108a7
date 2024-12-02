@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "19234957_2ae7821f",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T23:05:21Z",
+      "side": 0,
+      "message": "No, I don\u0027t think we want. This is not possible by design and we are removing it everywhere else.\n\nI want to remove all the static Service everywhere and only rely on the AdapterServiceInstance",
+      "parentUuid": "62f5978b_e106c3e7",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 9
+      },
+      "revId": "a158b7bdd6a2c3f616cfd020e511b174397108a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "59713bc1_19f6d12d",
         "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
         "patchSetId": 4

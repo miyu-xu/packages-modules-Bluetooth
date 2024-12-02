@@ -22,6 +22,30 @@
       },
       "revId": "1281b6619d233a9ef70abd9867661a49450c3f94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfe406a3_c331e17c",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T23:05:21Z",
+      "side": 1,
+      "message": "Done, I simply made it final by injecting the factory",
+      "parentUuid": "e6a4433c_5014ed76",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 77
+      },
+      "revId": "1281b6619d233a9ef70abd9867661a49450c3f94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
