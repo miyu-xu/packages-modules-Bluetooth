@@ -456,6 +456,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1dd777a_dfb13ed9",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T22:47:34Z",
+      "side": 1,
+      "message": "Now that you\u0027ve made it @SystemApi, you should just @link to it.",
+      "parentUuid": "a07f1a96_d041624a",
+      "range": {
+        "startLine": 319,
+        "startChar": 30,
+        "endLine": 319,
+        "endChar": 45
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1144798e_e9e3c175",
         "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
         "patchSetId": 49
@@ -574,6 +598,30 @@
       "side": 1,
       "message": "If data path is not `DATA_PATH_NO_OFFLOAD`, BLUETOOTH_PRIVILEGED permission is enforced in BluetoothSocketManagerBinder.java under server process.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/49/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java\n\n```\npublic ParcelFileDescriptor connectSocketwithOffload\n\u003d\u003d snip \u003d\u003d\n        if (dataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);\n            if (type !\u003d BluetoothSocket.TYPE_LE || !mService.isLeCocSocketOffloadSupported()) {\n                throw new IllegalStateException(\"Unsupported socket type for offload \" + type);\n            }\n        }\n```\n```\npublic ParcelFileDescriptor createSocketChannelWithOffload\n\u003d\u003d snip \u003d\u003d\n        if (dataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);\n            if (type !\u003d BluetoothSocket.TYPE_LE || !mService.isLeCocSocketOffloadSupported()) {\n                throw new IllegalStateException(\"Unsupported socket type for offload \" + type);\n            }\n        }\n```",
       "parentUuid": "773b2741_c6a7686c",
+      "range": {
+        "startLine": 558,
+        "startChar": 9,
+        "endLine": 558,
+        "endChar": 29
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd625ad9_0c81c3b7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T22:47:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9fa714b3_b5e94b7e",
       "range": {
         "startLine": 558,
         "startChar": 9,

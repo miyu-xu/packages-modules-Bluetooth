@@ -1,0 +1,115 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "433213c0_c2c8b166",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-02T22:47:34Z",
+      "side": 1,
+      "message": "Is there a different max size and length when in NO_OFFLOAD mode?\n\nI\u0027m wondering whether these names need to call out that it\u0027s just for HARDWARE_OFFLOAD?",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4c8db010_9700e2a9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    @SystemApi private static final int HARDWARE_OFFLOAD_PACKET_MAX_SIZE \u003d 65535;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "    @SystemApi private static final int HARDWARE_OFFLOAD_SOCKET_NAME_MAX_LENGTH \u003d 127;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 566,
+                "startChar": 0,
+                "endLine": 567,
+                "endChar": 0
+              },
+              "replacement": "         *     cannot exceed {@link #HARDWARE_OFFLOAD_SOCKET_NAME_MAX_LENGTH} bytes in length when\n         *     encoded in UTF-8.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 569,
+                "startChar": 0,
+                "endLine": 570,
+                "endChar": 0
+              },
+              "replacement": "         *     #HARDWARE_OFFLOAD_SOCKET_NAME_MAX_LENGTH} bytes when encoded in UTF-8.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 577,
+                "startChar": 0,
+                "endLine": 578,
+                "endChar": 0
+              },
+              "replacement": "            if (socketNameBytes.length \u003e HARDWARE_OFFLOAD_SOCKET_NAME_MAX_LENGTH) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 580,
+                "startChar": 0,
+                "endLine": 581,
+                "endChar": 0
+              },
+              "replacement": "                                + HARDWARE_OFFLOAD_SOCKET_NAME_MAX_LENGTH\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 646,
+                "startChar": 0,
+                "endLine": 646,
+                "endChar": 0
+              },
+              "replacement": "            if (maximumPacketSize \u003c 0) {\n                throw new IllegalArgumentException(\"invalid packet size \" + maximumPacketSize);\n            }\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+              "range": {
+                "startLine": 689,
+                "startChar": 0,
+                "endLine": 692,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9546731d2e3e882158cd7571d7bb163374d5c641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
