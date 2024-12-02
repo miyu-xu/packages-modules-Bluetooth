@@ -16,6 +16,24 @@
       "message": "Should we default to  `setLeAudioActiveDevice(null, true);` in this case ?",
       "revId": "a035f6c26318e2cf95cae3fe86718e491eef86fd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f6f6216_bbcdd7a0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-02T19:23:18Z",
+      "side": 1,
+      "message": "yes, I thought about this, if service is null, inside setLeAudioActiveDevice the logic will be skipped anyways. And was wondering if Krzysztof would prefer to have some kind of logging in this case. \n\nPer some offline review check with Krzysztof, he is okay with removing this. Then let\u0027s keep it simple, updated version will revert to original setLeAudioActiveDevice as default and check service inside.",
+      "parentUuid": "f6b9f878_bc0a5492",
+      "revId": "a035f6c26318e2cf95cae3fe86718e491eef86fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
