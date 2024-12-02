@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0a26ca_f0d01396",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T06:11:17Z",
+      "side": 1,
+      "message": "This is very similar to https://r.android.com/3378224 that I uploaded (but not yet merged) a few days ago.\n\nOnly difference is the other CL has a final variable (that I prefer) but it does a getLooper().quitSafely() and I prefer this version that doesn\u0027t call for getLooper.\n\nI will update the other CL to make this modification",
+      "revId": "2d07507ee82b5a8d1f1e089629b23f0a175f65c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
