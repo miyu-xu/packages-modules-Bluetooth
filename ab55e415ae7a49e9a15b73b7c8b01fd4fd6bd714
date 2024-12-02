@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8378a303_195df28f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-12-02T09:42:57Z",
+      "side": 1,
+      "message": "It is observed that call was initiated, that did not got the response and this caused termination the call. Until this time the constructed was invoked with set initialization so we need to add the check before finishInitializing()",
+      "parentUuid": "8566111e_2bd682a0",
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "493eacab_fdebb1cf",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1277bd67_83e92ddc",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-12-02T09:42:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "493eacab_fdebb1cf",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 26
+      },
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "575e12e5_19ec6b80",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-11-26T20:28:00Z",
       "side": 1,
       "message": "Are we sure we want to call this ?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "ab55e415ae7a49e9a15b73b7c8b01fd4fd6bd714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d39865e4_434d0f87",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-12-02T09:42:57Z",
+      "side": 1,
+      "message": "Not needed",
+      "parentUuid": "575e12e5_19ec6b80",
       "range": {
         "startLine": 87,
         "startChar": 0,
