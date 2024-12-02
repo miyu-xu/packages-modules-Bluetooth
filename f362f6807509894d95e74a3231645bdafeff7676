@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62dbc6a3_82516685",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-02T23:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88390cc7_8e2f07bd",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 64
+      },
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bc6619b_d10cd1f6",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb01fef_71fa668d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-02T23:44:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bc6619b_d10cd1f6",
+      "range": {
+        "startLine": 466,
+        "startChar": 4,
+        "endLine": 466,
+        "endChar": 28
+      },
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c969cc7_0bfaefc5",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-12-02T21:54:35Z",
       "side": 1,
       "message": "We\u0027re overriding the security twice, once in set up and again here. I\u0027m wondering if updating security takes long enough to want to avoid doing it twice.",
+      "range": {
+        "startLine": 518,
+        "startChar": 8,
+        "endLine": 518,
+        "endChar": 41
+      },
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aeb043e_b319cf37",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-02T23:44:30Z",
+      "side": 1,
+      "message": "in setup, It sets encryption and auth request as false.\nAnd this is been updated to have at least encryption on for the link. I will check and update later if we can improve this by any chance.",
+      "parentUuid": "9c969cc7_0bfaefc5",
       "range": {
         "startLine": 518,
         "startChar": 8,
