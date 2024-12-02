@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c8e70d4_f65ace06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-02T18:22:10Z",
+      "side": 1,
+      "message": "In order to follow the bluetooth release calendar, we need to prevent CL being merged 1 week before the cutoff date.\nThis allow for Bluetooth prebuilt to have matching source with the code on the release branch\n\nThis CL is removing all different owner except for the lead (to allow for some exemption if emergency CL are needed).\n\nThis CL will be reverted once the release branch is in cherry-pick mode only.",
+      "revId": "11956432268896cd88410ee4bf8f0a1523c3fb5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
