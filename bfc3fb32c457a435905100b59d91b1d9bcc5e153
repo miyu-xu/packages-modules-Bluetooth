@@ -87,6 +87,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e559de2_07f2a306",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "That\u0027s right. Updated the document in BluetoothSocketException to cover the error code which is not used during `connect()`.",
+      "parentUuid": "0f829d64_e1f8d0bc",
+      "range": {
+        "startLine": 1263,
+        "startChar": 22,
+        "endLine": 1263,
+        "endChar": 46
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d578d30_8e14229d",
@@ -150,6 +174,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97199ba_08eca61e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "Added documentation mentioning required permissions. I didn\u0027t add @RequiresPermission because in the case of a public function example, toString() can also reference that variable.",
+      "parentUuid": "2d578d30_8e14229d",
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f91bd218_1a9b6a51",
@@ -163,6 +205,30 @@
       "writtenOn": "2024-12-02T16:37:34Z",
       "side": 1,
       "message": "please spell out HARDWARE",
+      "range": {
+        "startLine": 78,
+        "startChar": 39,
+        "endLine": 78,
+        "endChar": 59
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c673d52a_08a564ba",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f91bd218_1a9b6a51",
       "range": {
         "startLine": 78,
         "startChar": 39,
@@ -234,6 +300,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4380ee3_968f3680",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "059ce4f9_d128ea66",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "836650dc_cc0d3d64",
@@ -271,6 +361,30 @@
           ]
         }
       ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb474a9_699bed3e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "836650dc_cc0d3d64",
+      "range": {
+        "startLine": 230,
+        "startChar": 6,
+        "endLine": 236,
+        "endChar": 12
+      },
       "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -316,6 +430,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a07f1a96_d041624a",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "Changed to a constant.",
+      "parentUuid": "c5e91384_5a8ca396",
+      "range": {
+        "startLine": 319,
+        "startChar": 30,
+        "endLine": 319,
+        "endChar": 45
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1144798e_e9e3c175",
@@ -357,6 +495,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "490d34a9_970ad453",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1144798e_e9e3c175",
+      "range": {
+        "startLine": 538,
+        "startChar": 9,
+        "endLine": 546,
+        "endChar": 16
+      },
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "773b2741_c6a7686c",
@@ -394,6 +556,30 @@
           ]
         }
       ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa714b3_b5e94b7e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "If data path is not `DATA_PATH_NO_OFFLOAD`, BLUETOOTH_PRIVILEGED permission is enforced in BluetoothSocketManagerBinder.java under server process.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/49/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java\n\n```\npublic ParcelFileDescriptor connectSocketwithOffload\n\u003d\u003d snip \u003d\u003d\n        if (dataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);\n            if (type !\u003d BluetoothSocket.TYPE_LE || !mService.isLeCocSocketOffloadSupported()) {\n                throw new IllegalStateException(\"Unsupported socket type for offload \" + type);\n            }\n        }\n```\n```\npublic ParcelFileDescriptor createSocketChannelWithOffload\n\u003d\u003d snip \u003d\u003d\n        if (dataPath !\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n            mService.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);\n            if (type !\u003d BluetoothSocket.TYPE_LE || !mService.isLeCocSocketOffloadSupported()) {\n                throw new IllegalStateException(\"Unsupported socket type for offload \" + type);\n            }\n        }\n```",
+      "parentUuid": "773b2741_c6a7686c",
+      "range": {
+        "startLine": 558,
+        "startChar": 9,
+        "endLine": 558,
+        "endChar": 29
+      },
       "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -515,6 +701,30 @@
           ]
         }
       ],
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95387ce0_4ffe755f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-02T21:50:50Z",
+      "side": 1,
+      "message": "That makes sense. Updated API names.",
+      "parentUuid": "1fa4c191_9e8bd5ea",
+      "range": {
+        "startLine": 658,
+        "startChar": 23,
+        "endLine": 658,
+        "endChar": 43
+      },
       "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
