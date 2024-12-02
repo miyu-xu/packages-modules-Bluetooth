@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88390cc7_8e2f07bd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-02T21:54:35Z",
+      "side": 1,
+      "message": "updateSecurityConfig() ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d2207cb0_ff7276fa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "        updateSecurityConfig()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc6619b_d10cd1f6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-02T21:54:35Z",
+      "side": 1,
+      "message": "nit: this is in an awkward place.  Maybe move it to after the tests?",
+      "range": {
+        "startLine": 466,
+        "startChar": 4,
+        "endLine": 466,
+        "endChar": 28
+      },
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c969cc7_0bfaefc5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-02T21:54:35Z",
+      "side": 1,
+      "message": "We\u0027re overriding the security twice, once in set up and again here. I\u0027m wondering if updating security takes long enough to want to avoid doing it twice.",
+      "range": {
+        "startLine": 518,
+        "startChar": 8,
+        "endLine": 518,
+        "endChar": 41
+      },
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
