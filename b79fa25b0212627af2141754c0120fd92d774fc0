@@ -16,6 +16,24 @@
       "message": "Where is the logic to actually re-send the HCI command to enable the CS procedure ?\nIs it implicit somewhere else ?",
       "revId": "b79fa25b0212627af2141754c0120fd92d774fc0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d3af750_c573e1ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-02T16:28:57Z",
+      "side": 1,
+      "message": "It will be sent regularly with the repeating alarm when the user starts CS.\n\nPlease see:\nLine 1042: If the setup phase has not been completed before, perform the setup and then enable the repeating alarm.\nLine 439: If the setup phase is complete, enable the repeating alarm directly.",
+      "parentUuid": "da68a531_57a4fcf4",
+      "revId": "b79fa25b0212627af2141754c0120fd92d774fc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
