@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95257e57_1d8d29e7",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-03T06:31:48Z",
+      "side": 1,
+      "message": "Q) Is this being used now?",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 49
+      },
+      "revId": "b281f7703c7529ea647134756db9c584047e6486",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8e433a9_59e49630",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-03T06:31:48Z",
+      "side": 1,
+      "message": "This could be a logical change if (conn_update_mask \u0026 L2C_BLE_NEW_CONN_PARAM) is non-zero.\n\nIs this intentional?",
+      "range": {
+        "startLine": 251,
+        "startChar": 10,
+        "endLine": 251,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "53129b20_9ac5e46b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble_conn_params.cc",
+              "range": {
+                "startLine": 251,
+                "startChar": 0,
+                "endLine": 252,
+                "endChar": 0
+              },
+              "replacement": "          if (p_lcb-\u003econn_update_mask \u0026 L2C_BLE_NEW_CONN_PARAM) {\n            return;\n          }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b281f7703c7529ea647134756db9c584047e6486",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
