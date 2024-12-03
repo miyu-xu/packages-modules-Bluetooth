@@ -87,6 +87,30 @@
       ],
       "revId": "b281f7703c7529ea647134756db9c584047e6486",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7919481_19556d05",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-03T07:08:41Z",
+      "side": 1,
+      "message": "Talked offline. The logic is same as before.",
+      "parentUuid": "f8e433a9_59e49630",
+      "range": {
+        "startLine": 251,
+        "startChar": 10,
+        "endLine": 251,
+        "endChar": 17
+      },
+      "revId": "b281f7703c7529ea647134756db9c584047e6486",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
