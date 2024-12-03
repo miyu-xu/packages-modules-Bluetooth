@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6076a8c_dadf12cd",
+        "filename": "framework/java/android/bluetooth/BluetoothSocketSettings.java",
+        "patchSetId": 51
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-03T00:19:53Z",
+      "side": 1,
+      "message": "These are only configurable for hardware offload data path. None of those are used for NO_OFFLOAD mode. Added HARDWARE_OFFLOAD in the prefix on them so that this is very explicit and includes the key context from the documentation.",
+      "parentUuid": "433213c0_c2c8b166",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "revId": "9546731d2e3e882158cd7571d7bb163374d5c641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4eacc3b2_a372c43a",
