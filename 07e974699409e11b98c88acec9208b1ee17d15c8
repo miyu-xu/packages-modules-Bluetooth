@@ -16,6 +16,161 @@
       "message": "Currently there is no testing infra for these modified static functions.",
       "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88fb6db8_5cded0c5",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ccdd36_b3fa8c86",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "as below - lets have it as separate patch.",
+      "fixSuggestions": [
+        {
+          "fixId": "898e8745_26d80d80",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 208,
+                "endChar": 0
+              },
+              "replacement": "    playback_track_metadata_v7* tracks \u003d\n            reinterpret_cast\u003cplayback_track_metadata_v7*\u003e(malloc(sizeof(*tracks) * track_count));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1ffafcc_acaf7bd2",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "seems to be unrelated to the patch. Can we have separate patch for this saying this is some kind of cleaning?",
+      "fixSuggestions": [
+        {
+          "fixId": "b2eff7ea_5088a17b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+              "range": {
+                "startLine": 293,
+                "startChar": 0,
+                "endLine": 294,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"new state: {}, return {}\", static_cast\u003cint\u003e(new_state), ret);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8389d2b8_cfb74586",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "can we print  audio_location_bitmask here?",
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2b8d1e_b966db4b",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "This part seems to be valid only when flag is disabled. Can we avoid helper function `is_valid_audio_location_bitmask` and add here check for the flag so it is easy read the code and later easy to remove the flag?\n\nOr maybe `is_valid_audio_location_bitmask` should be called only when flag is enabled. What do you think?",
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cabda953_1ecf8a49",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "we break here if flag is disabled . Is this intended?",
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "400ff5d9_f74fbf29",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-03T12:36:03Z",
+      "side": 1,
+      "message": "same here.",
+      "revId": "07e974699409e11b98c88acec9208b1ee17d15c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
