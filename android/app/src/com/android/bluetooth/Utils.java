@@ -42,7 +42,9 @@ import android.annotation.PermissionMethod;
 import android.annotation.PermissionName;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.app.ActivityThread;
 import android.app.BroadcastOptions;
+import android.app.Instrumentation;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.companion.AssociationInfo;
@@ -992,23 +994,18 @@ public final class Utils {
     private static boolean sIsInstrumentationTestModeCacheSet = false;
     private static boolean sInstrumentationTestModeCache = false;
 
-    /**
-     * Check if we are running in BluetoothInstrumentationTest context by trying to load
-     * com.android.bluetooth.FileSystemWriteTest. If we are not in Instrumentation test mode, this
-     * class should not be found. Thus, the assumption is that FileSystemWriteTest must exist. If
-     * FileSystemWriteTest is removed in the future, another test class in
-     * BluetoothInstrumentationTest should be used instead
-     *
-     * @return true if in BluetoothInstrumentationTest, false otherwise
-     */
+    private static boolean isInstrumenting() {
+        final ActivityThread activityThread = ActivityThread.currentActivityThread();
+        if (activityThread == null) {
+            return false;
+        }
+        final Instrumentation instrumentation = activityThread.getInstrumentation();
+        return instrumentation != null && instrumentation.isInstrumenting();
+    }
+
     public static boolean isInstrumentationTestMode() {
         if (!sIsInstrumentationTestModeCacheSet) {
-            try {
-                sInstrumentationTestModeCache =
-                        Class.forName("com.android.bluetooth.FileSystemWriteTest") != null;
-            } catch (ClassNotFoundException exception) {
-                sInstrumentationTestModeCache = false;
-            }
+            sInstrumentationTestModeCache = isInstrumenting();
             sIsInstrumentationTestModeCacheSet = true;
         }
         return sInstrumentationTestModeCache;
