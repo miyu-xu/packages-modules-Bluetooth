@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c620690e_daa0195c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-03T02:44:16Z",
+      "side": 1,
+      "message": "As we discussed offline, the additional change is not required.",
+      "parentUuid": "37838a07_88ad6a77",
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f829d64_e1f8d0bc",
