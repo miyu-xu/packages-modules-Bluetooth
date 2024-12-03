@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "196b6c11_d0fbd1be",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T21:58:56Z",
+      "side": 1,
+      "message": "how about this adding this and use LE_AUDIO_GROUP_ID_INVALID?\nimport static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d926ee47_d5559f57",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T21:58:56Z",
+      "side": 1,
+      "message": "Maybe not in this CL, but those 2 functions are for generic purpose, would it be good to move this to some where like LeAudioService, wdyt?",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9047ea6_293788a7",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T21:58:56Z",
+      "side": 1,
+      "message": "groupId !\u003d IBluetoothCsipSetCoordinator.CSIS_GROUP_ID_INVALID? even they\u0027re the same.\n\nimport static android.bluetooth.IBluetoothCsipSetCoordinator.CSIS_GROUP_ID_INVALID;\n```suggestion\n            if (groupId !\u003d CSIS_GROUP_ID_INVALID) {\n                return CSIS_GROUP_ID_INVALID;\n            }\n```",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45add45e_23991fab",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T21:58:56Z",
+      "side": 1,
+      "message": "nit: this check if fine, but shouldn\u0027t this have been guarded from framework API?",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
