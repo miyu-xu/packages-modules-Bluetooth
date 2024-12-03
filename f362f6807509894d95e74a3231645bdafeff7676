@@ -182,6 +182,30 @@
       },
       "revId": "f362f6807509894d95e74a3231645bdafeff7676",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e33f3c0f_bc3a7495",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-03T01:42:29Z",
+      "side": 1,
+      "message": "One thing we could do is make update security the first step of every test, rather than use it in setup.  This might be worth it depending on how much we anticipate needing something other than `updateSecurityConfig(false, false)`",
+      "parentUuid": "1aeb043e_b319cf37",
+      "range": {
+        "startLine": 518,
+        "startChar": 8,
+        "endLine": 518,
+        "endChar": 41
+      },
+      "revId": "f362f6807509894d95e74a3231645bdafeff7676",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
