@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce7cc73_f824a3a1",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 63
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-03T18:15:22Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: sleep and its variants should never be used in tests or in production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nsleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 114,
+        "startChar": 32,
+        "endLine": 114,
+        "endChar": 42
+      },
+      "revId": "ea59bfabf3eb65530c173f6ea19ff261c52501a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
