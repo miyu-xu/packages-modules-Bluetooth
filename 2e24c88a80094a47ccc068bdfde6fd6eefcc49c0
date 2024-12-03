@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "135e3858_0f94f4af",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4049,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T22:22:06Z",
+      "side": 1,
+      "message": "should we continue here?",
+      "revId": "2e24c88a80094a47ccc068bdfde6fd6eefcc49c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a867568_eacb3425",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4057,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T22:22:06Z",
+      "side": 1,
+      "message": "should this \u0027break\u0027 be removed?",
+      "revId": "2e24c88a80094a47ccc068bdfde6fd6eefcc49c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
