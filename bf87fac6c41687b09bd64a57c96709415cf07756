@@ -22,6 +22,30 @@
       },
       "revId": "bf87fac6c41687b09bd64a57c96709415cf07756",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d29af0a_b17f6d6f",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-12-03T18:02:33Z",
+      "side": 0,
+      "message": "The annotation is only used for tests: https://source.corp.google.com/piper///depot/google3/third_party/java_src/google_common/current/java/com/google/common/annotations/VisibleForTesting.java.  The recommendation is that the annotation is used only when necessary and since the tests are not affected by the removal of this, I think we can safely remove the annotation.",
+      "parentUuid": "edfb4564_d05457ba",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "bf87fac6c41687b09bd64a57c96709415cf07756",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
