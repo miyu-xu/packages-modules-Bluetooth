@@ -157,6 +157,30 @@
       },
       "revId": "9546731d2e3e882158cd7571d7bb163374d5c641",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a723edbb_cfb20df0",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 51
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-03T01:16:18Z",
+      "side": 1,
+      "message": "Today, `rx_mtu` is determined from BTIF and is therefore not part of `tBTA_JV_L2CAP_OPEN`, while `tx_mtu` is determined when the remote device is connected. So instead of adding the rx_mtu field to tBTA_JV_L2CAP_OPEN, \bI just used the rx_mtu determined from BTIF as is in the current structure.",
+      "parentUuid": "4eacc3b2_a372c43a",
+      "range": {
+        "startLine": 556,
+        "startChar": 37,
+        "endLine": 556,
+        "endChar": 41
+      },
+      "revId": "9546731d2e3e882158cd7571d7bb163374d5c641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
