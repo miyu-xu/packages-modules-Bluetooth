@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa5ff59_f5b94948",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3854,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-03T22:18:22Z",
+      "side": 1,
+      "message": "entry null check here?",
+      "revId": "cc8b91313063b508f73d52b9ea347296293f6e29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
