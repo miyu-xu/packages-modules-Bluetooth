@@ -82,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f048da8_49ff469b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-03T17:53:44Z",
+      "side": 1,
+      "message": "Thans for the suggestion. Added @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API) and updated current.txt properly.",
+      "parentUuid": "11550a17_740096ef",
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f829d64_e1f8d0bc",
