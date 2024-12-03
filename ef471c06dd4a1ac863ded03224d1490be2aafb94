@@ -22,6 +22,30 @@
       },
       "revId": "ef471c06dd4a1ac863ded03224d1490be2aafb94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8acc64a2_5c727ce9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 7091,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-03T08:21:16Z",
+      "side": 1,
+      "message": "The only difference is that when the exception happens, it is thrown when we don\u0027t override this method.\n\nAnyway I think I should re-upload this CL with removing only GATT hash files.",
+      "parentUuid": "995c8970_1dae8232",
+      "range": {
+        "startLine": 7084,
+        "startChar": 0,
+        "endLine": 7091,
+        "endChar": 25
+      },
+      "revId": "ef471c06dd4a1ac863ded03224d1490be2aafb94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
