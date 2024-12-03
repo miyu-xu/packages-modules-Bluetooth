@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f692c994_cc071ecf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-03T21:46:28Z",
+      "side": 1,
+      "message": "Flag: com.android.bluetooth.flags.initial_conn_params_p1",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b90298b_55795078",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 27
@@ -14,6 +31,68 @@
       "writtenOn": "2024-12-03T21:42:33Z",
       "side": 1,
       "message": "I recently added logic that ensures that \"ecosystem interval\" is set when LE Audio connection is in progress, and also specified connection parameters as a range, not fixed value, that gives controller some room to decide what exact value to use.\n\nIf A2DP or HFP streaming is in progress, the minimum value we allowed, even for HID connection was 11.25ms . This value was chosen experimentally, and was as in stack at least 8 years ago. If there is no good reason, we probably shouldn\u0027t abandon it.\n\nThere is also extra handling for HID devices, to ensure they work smoothly with LE Audio devices.\n\n\nBased on above, I don\u0027t think going all the way down to 7.5-10ms for initial connection is good, even if you do it just for 1st or 2nd connection. how about 10-20, or 20-30ms instead ? This should be a big improvement.",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd34cb8_7f38da1b",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-03T21:46:28Z",
+      "side": 1,
+      "message": "We always want to regress to relaxed connection parameters from the aggressive connection parameters. We don\u0027t need to state our policy via a variable name. The variable should just denote the state. Policy can be explained in the comments.\n\nSo a better name for this could be `agressive_params_`.\n\nOn the other note, it may have been better to have a single state variable for all connection parameter states.",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c7355b_3546bca9",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-03T21:46:28Z",
+      "side": 1,
+      "message": "We should have a single source of truth for these values",
+      "fixSuggestions": [
+        {
+          "fixId": "737b2e78_fabcda9d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "// TODO(b/254314964): Remove these constants and use the ones defined in system/stack/l2cap/l2c_ble_conn_params.cc\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -37,6 +116,206 @@
         "endLine": 977,
         "endChar": 19
       },
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e739d980_8b76afbc",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-03T21:46:28Z",
+      "side": 1,
+      "message": "Don\u0027t use a literal here.\n\nAlso, does this check the number of devices currently connected or the pending connection requests?",
+      "fixSuggestions": [
+        {
+          "fixId": "40ad66d4_8d7eeffd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "constexpr uint16_t kAggressiveConnectionThreshold \u003d 2;\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 977,
+                "startChar": 0,
+                "endLine": 978,
+                "endChar": 0
+              },
+              "replacement": "    if (connections.size() \u003c kAggressiveConnectionThreshold) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee8570e_e662fd4e",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-03T21:46:28Z",
+      "side": 1,
+      "message": "We should have separate properties for relaxed and aggressive initial connection parameters",
+      "fixSuggestions": [
+        {
+          "fixId": "dcd067ab_1ee945ce",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 80,
+                "endChar": 0
+              },
+              "replacement": "static const std::string kPropertyMinConnIntervalRelaxed \u003d \"bluetooth.core.le.min_connection_interval_relaxed\";\nstatic const std::string kPropertyMaxConnIntervalRelaxed \u003d \"bluetooth.core.le.max_connection_interval_relaxed\";\nstatic const std::string kPropertyMinConnIntervalAggressive \u003d \"bluetooth.core.le.min_connection_interval_aggressive\";\nstatic const std::string kPropertyMaxConnIntervalAggressive \u003d \"bluetooth.core.le.max_connection_interval_aggressive\";\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "enum class ConnectionMode { RELAXED \u003d 0, AGGRESSIVE \u003d 1, CUSTOM \u003d 100 };\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 322,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 883,
+                "startChar": 0,
+                "endLine": 884,
+                "endChar": 0
+              },
+              "replacement": "      connection_mode_ \u003d choose_connection_mode(connections.size(), conn_interval_min, conn_interval_max);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 886,
+                "startChar": 0,
+                "endLine": 888,
+                "endChar": 0
+              },
+              "replacement": "      conn_interval_min \u003d os::GetSystemPropertyUint32(kPropertyMinConnIntervalRelaxed, kConnIntervalRelaxedMin);\n      conn_interval_max \u003d os::GetSystemPropertyUint32(kPropertyMaxConnIntervalRelaxed, kConnIntervalRelaxedMax);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 974,
+                "startChar": 0,
+                "endLine": 975,
+                "endChar": 0
+              },
+              "replacement": "  ConnectionMode choose_connection_mode(size_t num_connections, uint16_t\u0026 conn_interval_min, uint16_t\u0026 conn_interval_max) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 977,
+                "startChar": 0,
+                "endLine": 978,
+                "endChar": 0
+              },
+              "replacement": "    if (num_connections \u003c 2) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 983,
+                "startChar": 0,
+                "endLine": 985,
+                "endChar": 0
+              },
+              "replacement": "        conn_interval_min \u003d os::GetSystemPropertyUint32(kPropertyMinConnIntervalAggressive, kConnIntervalAggressiveMin);\n        conn_interval_max \u003d os::GetSystemPropertyUint32(kPropertyMaxConnIntervalAggressive, kConnIntervalAggressiveMax);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 988,
+                "startChar": 0,
+                "endLine": 990,
+                "endChar": 0
+              },
+              "replacement": "        conn_interval_min \u003d os::GetSystemPropertyUint32(kPropertyMinConnIntervalRelaxed, conn_interval_min);\n        conn_interval_max \u003d os::GetSystemPropertyUint32(kPropertyMaxConnIntervalRelaxed, conn_interval_max);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 993,
+                "startChar": 0,
+                "endLine": 994,
+                "endChar": 0
+              },
+              "replacement": "    if (os::GetSystemProperty(kPropertyMinConnIntervalRelaxed).has_value()) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 995,
+                "startChar": 0,
+                "endLine": 996,
+                "endChar": 0
+              },
+              "replacement": "      conn_interval_min \u003d os::GetSystemPropertyUint32(kPropertyMinConnIntervalRelaxed, conn_interval_min);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 997,
+                "startChar": 0,
+                "endLine": 998,
+                "endChar": 0
+              },
+              "replacement": "    if (os::GetSystemProperty(kPropertyMaxConnIntervalRelaxed).has_value()) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 999,
+                "startChar": 0,
+                "endLine": 1000,
+                "endChar": 0
+              },
+              "replacement": "      conn_interval_max \u003d os::GetSystemPropertyUint32(kPropertyMaxConnIntervalRelaxed, conn_interval_max);\n"
+            }
+          ]
+        }
+      ],
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
