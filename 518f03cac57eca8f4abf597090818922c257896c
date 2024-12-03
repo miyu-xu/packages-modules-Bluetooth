@@ -44,6 +44,24 @@
       ],
       "revId": "518f03cac57eca8f4abf597090818922c257896c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b4ddcd3_9f1da550",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-03T03:25:11Z",
+      "side": 1,
+      "message": "Yes, it is required because we\u0027re using `BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD` but `connect()` is not under the flag.",
+      "parentUuid": "c79b1b45_03ec119c",
+      "revId": "518f03cac57eca8f4abf597090818922c257896c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
