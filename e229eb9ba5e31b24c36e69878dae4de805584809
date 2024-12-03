@@ -46,6 +46,30 @@
       },
       "revId": "e229eb9ba5e31b24c36e69878dae4de805584809",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "058b1e14_e8a3e823",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientStateMachineOld.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-12-03T19:32:54Z",
+      "side": 1,
+      "message": "I think what you have should work just fine!",
+      "parentUuid": "30a79ad1_e89d8774",
+      "range": {
+        "startLine": 362,
+        "startChar": 16,
+        "endLine": 362,
+        "endChar": 97
+      },
+      "revId": "e229eb9ba5e31b24c36e69878dae4de805584809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
