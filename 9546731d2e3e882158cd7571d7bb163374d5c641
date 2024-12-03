@@ -110,6 +110,29 @@
       ],
       "revId": "9546731d2e3e882158cd7571d7bb163374d5c641",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eacc3b2_a372c43a",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 51
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-03T00:11:33Z",
+      "side": 1,
+      "message": "is right most one supposed to be p_open-\u003erx_mtu ?",
+      "range": {
+        "startLine": 556,
+        "startChar": 37,
+        "endLine": 556,
+        "endChar": 41
+      },
+      "revId": "9546731d2e3e882158cd7571d7bb163374d5c641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
