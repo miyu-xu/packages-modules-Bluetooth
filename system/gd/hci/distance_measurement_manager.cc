@@ -674,10 +674,12 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   }
 
   void send_le_cs_security_enable(uint16_t connection_handle) {
-    if (cs_requester_trackers_.find(connection_handle) == cs_requester_trackers_.end()) {
-      log::warn("no cs tracker found for {}", connection_handle);
+    auto req_it = cs_requester_trackers_.find(connection_handle);
+    if (req_it != cs_requester_trackers_.end() &&
+        req_it->second.state == CsTrackerState::WAIT_FOR_CONFIG_COMPLETE) {
+      req_it->second.state = CsTrackerState::WAIT_FOR_SECURITY_ENABLED;
     }
-    cs_requester_trackers_[connection_handle].state = CsTrackerState::WAIT_FOR_SECURITY_ENABLED;
+
     hci_layer_->EnqueueCommand(
             LeCsSecurityEnableBuilder::Create(connection_handle),
             handler_->BindOnceOn(this, &impl::on_cs_setup_command_status_cb, connection_handle));
@@ -911,7 +913,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       return;
     }
     auto req_it = cs_requester_trackers_.find(connection_handle);
-    if (req_it != cs_requester_trackers_.end() && req_it->second.measurement_ongoing) {
+    if (req_it != cs_requester_trackers_.end() &&
+        req_it->second.state == CsTrackerState::WAIT_FOR_SECURITY_ENABLED) {
       send_le_cs_set_procedure_parameters(event_view.GetConnectionHandle(),
                                           req_it->second.used_config_id,
                                           req_it->second.remote_num_antennas_supported_);
@@ -965,6 +968,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       log::warn("Can't find cs tracker for connection_handle {}", connection_handle);
       return;
     }
+    if (!live_tracker->local_start) {
+      // reset the responder state, as no other event to set the state.
+      live_tracker->state = CsTrackerState::WAIT_FOR_CONFIG_COMPLETE;
+    }
 
     live_tracker->used_config_id = config_id;
     log::info("Get {}", event_view.ToString());
@@ -980,9 +987,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (live_tracker->local_hci_role == hci::Role::CENTRAL) {
       // send the cmd from the BLE central only.
       send_le_cs_security_enable(connection_handle);
-    }
-    // TODO: else set a timeout alarm to make sure the remote would trigger the cmd.
-    if (!live_tracker->local_start) {
+    } else {
+      // TODO: else set a timeout alarm to make sure the remote would trigger the cmd.
       live_tracker->state = CsTrackerState::WAIT_FOR_SECURITY_ENABLED;
     }
   }
