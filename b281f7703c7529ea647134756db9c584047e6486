@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a320c1_d6baf4ff",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-03T07:03:38Z",
+      "side": 1,
+      "message": "No, it is not used but added for future usages.",
+      "parentUuid": "95257e57_1d8d29e7",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 49
+      },
+      "revId": "b281f7703c7529ea647134756db9c584047e6486",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8e433a9_59e49630",
