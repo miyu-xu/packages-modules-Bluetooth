@@ -22,6 +22,30 @@
       },
       "revId": "ea59bfabf3eb65530c173f6ea19ff261c52501a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2ff4fd_cbcceeb1",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 63
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-03T19:38:43Z",
+      "side": 1,
+      "message": "Sleeping for one second after being notified that\nthe HAL died is a way to make sure we don\u0027t report deaths that are a\nresult of the system killing the HAL out from under the Bluetooth\nstack. It has been introduced in aosp/2740875. Because we don\u0027t know the HAL was killed by system, it is hard to use event driven method here.",
+      "parentUuid": "0ce7cc73_f824a3a1",
+      "range": {
+        "startLine": 114,
+        "startChar": 32,
+        "endLine": 114,
+        "endChar": 42
+      },
+      "revId": "ea59bfabf3eb65530c173f6ea19ff261c52501a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
