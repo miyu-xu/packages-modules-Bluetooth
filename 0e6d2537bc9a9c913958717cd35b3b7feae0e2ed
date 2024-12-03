@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf92f214_c141d913",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-12-03T00:58:12Z",
+      "side": 1,
+      "message": "separated TMAP Broadcast and Unicast Media Sender roles again",
+      "revId": "0e6d2537bc9a9c913958717cd35b3b7feae0e2ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
