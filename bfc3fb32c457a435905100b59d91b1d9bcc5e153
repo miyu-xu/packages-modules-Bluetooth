@@ -66,6 +66,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11550a17_740096ef",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 49
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-03T16:45:02Z",
+      "side": 1,
+      "message": "Apologies for the churn, but please do add @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API) here.\n\nWhat that will do is ensure that if the flag doesn\u0027t finalize, the @RequiresPermission annotation will revert back to the prior signature.",
+      "parentUuid": "c620690e_daa0195c",
+      "revId": "bfc3fb32c457a435905100b59d91b1d9bcc5e153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f829d64_e1f8d0bc",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 49
