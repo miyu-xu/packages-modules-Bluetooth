@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c79b1b45_03ec119c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 53
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-03T02:49:08Z",
+      "side": 1,
+      "message": "this check is redundant as we merged two flags now. Do we need this ?",
+      "fixSuggestions": [
+        {
+          "fixId": "37f95fd4_0f92fa82",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 664,
+                "startChar": 0,
+                "endLine": 684,
+                "endChar": 0
+              },
+              "replacement": "            if (mDataPath \u003d\u003d BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 687,
+                "startChar": 0,
+                "endLine": 687,
+                "endChar": 0
+              },
+              "replacement": "            } else {\n                mPfd \u003d\n                        socketManager.connectSocketwithOffload(\n                                mDevice,\n                                mType,\n                                mUuid,\n                                mPort,\n                                getSecurityFlags(),\n                                mDataPath,\n                                mSocketName,\n                                mHubId,\n                                mEndpointId,\n                                mMaximumPacketSize);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "518f03cac57eca8f4abf597090818922c257896c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
