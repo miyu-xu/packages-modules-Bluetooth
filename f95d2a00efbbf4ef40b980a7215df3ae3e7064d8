@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2d40a0_bfee50a3",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-12-03T18:58:08Z",
+      "side": 1,
+      "message": "this can be moved in the else if condition above.  Also, we should set it to nullptr like the rest of the code.",
+      "range": {
+        "startLine": 905,
+        "startChar": 12,
+        "endLine": 905,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "09ffc07e_ba102acb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 845,
+                "startChar": 0,
+                "endLine": 845,
+                "endChar": 0
+              },
+              "replacement": "            p_sco-\u003ep_curr_scb \u003d nullptr;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 902,
+                "startChar": 0,
+                "endLine": 906,
+                "endChar": 0
+              },
+              "replacement": "            p_sco-\u003ep_curr_scb \u003d nullptr;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
