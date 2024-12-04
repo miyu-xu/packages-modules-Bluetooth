@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53c90ead_a488f465",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 27
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-04T12:47:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f692c994_cc071ecf",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b90298b_55795078",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40278b69_43915adb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-04T12:47:48Z",
+      "side": 1,
+      "message": "Hi Jakub, thanks for the info.\n\nIn this CL, the 7.5ms is newly used only for initial connections, and parameters are relaxed after service discovery. \n\nAFAIK the current service discovery logic already using 7.5ms regardless of A2DP/HFP/LEA state. (Please correct me if this is incorrect.)\n\nCompared to service discovery, initial connection completion is much smaller job, so I thought it won\u0027t be much burden.",
+      "parentUuid": "2b90298b_55795078",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cd34cb8_7f38da1b",
         "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
         "patchSetId": 27
@@ -48,6 +84,24 @@
       "writtenOn": "2024-12-03T21:46:28Z",
       "side": 1,
       "message": "We always want to regress to relaxed connection parameters from the aggressive connection parameters. We don\u0027t need to state our policy via a variable name. The variable should just denote the state. Policy can be explained in the comments.\n\nSo a better name for this could be `agressive_params_`.\n\nOn the other note, it may have been better to have a single state variable for all connection parameter states.",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dabb8db_a284464b",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-04T12:47:48Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. After talking with you, I realized that we don\u0027t need this variable. This was created under assumption where we don\u0027t relax parameters even after service discovery (when using system property). \n\nHowever the existing behavior is not intended, so I can safely remove this variable and check the current connection interval itself.",
+      "parentUuid": "1cd34cb8_7f38da1b",
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -178,6 +232,24 @@
       "writtenOn": "2024-12-04T04:00:59Z",
       "side": 1,
       "message": "Can we make it a system property and use default value of 1?",
+      "parentUuid": "e739d980_8b76afbc",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2310b93c_329ec673",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-04T12:47:48Z",
+      "side": 1,
+      "message": "It also checks the pending connection requests.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3328187/27/system/gd/hci/acl_manager/le_impl.h#543",
       "parentUuid": "e739d980_8b76afbc",
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -334,6 +406,24 @@
           ]
         }
       ],
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd56ad3_b6722b8c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 993,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-04T12:47:48Z",
+      "side": 1,
+      "message": "Done.\n\nSince we cannot remove the existing system property before the flag is removed, only added them without removing existing ones.",
+      "parentUuid": "aee8570e_e662fd4e",
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
