@@ -16,6 +16,24 @@
       "message": "FYI I put the logic for disabling the profiles in it\u0027s on CL: aosp/3272416",
       "revId": "9f785efb0c3f277ce0b51ea79e151b86fe48db85",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88d427ab_021e3e55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-04T01:07:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cf8e1dae_5113968a",
+      "revId": "9f785efb0c3f277ce0b51ea79e151b86fe48db85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

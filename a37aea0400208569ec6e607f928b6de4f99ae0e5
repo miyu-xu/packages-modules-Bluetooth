@@ -16,6 +16,24 @@
       "message": "Incorrect log",
       "revId": "a37aea0400208569ec6e607f928b6de4f99ae0e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "340bb8d1_863b3d40",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-04T01:07:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "40a0d886_807c8550",
+      "revId": "a37aea0400208569ec6e607f928b6de4f99ae0e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
