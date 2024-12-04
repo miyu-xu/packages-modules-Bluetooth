@@ -30,6 +30,9 @@ import android.util.Log;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -49,6 +52,14 @@ import java.util.function.Predicate;
  */
 public class ContextMap<C> {
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "ContextMap";
+    private static final DateTimeFormatter sDateFormat =
+            DateTimeFormatter.ofPattern("MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
+
+    public static final int REASON_UNREGISTER_ALL = 1;
+    public static final int REASON_UNREGISTER_CLIENT = 2;
+    public static final int REASON_UNREGISTER_SERVER = 3;
+    public static final int REASON_BINDER_DIED = 4;
+    public static final int REASON_REGISTER_FAILED = 5;
 
     /** Connection class helps map connection IDs to device addresses. */
     public static class Connection {
@@ -142,11 +153,36 @@ public class ContextMap<C> {
         }
     }
 
+    private class AppRecord {
+        public final UUID uuid;
+        public final String appName;
+        @Nullable public final String attributionTag;
+        public final Instant registerTime;
+
+        public int clientIf;
+        public int reason;
+        @Nullable public Instant unregisterTime;
+
+        AppRecord(App app) {
+            uuid = app.uuid;
+            appName = app.name;
+            attributionTag = app.attributionTag;
+
+            registerTime = Instant.now();
+        }
+    }
+
     /** Our internal application list */
     private final Object mAppsLock = new Object();
 
     @GuardedBy("mAppsLock")
     private List<App> mApps = new ArrayList<>();
+
+    @GuardedBy("mAppsLock")
+    private final List<AppRecord> mOngoingRecords = new ArrayList<>();
+
+    @GuardedBy("mAppsLock")
+    private final List<AppRecord> mLastRecords = new ArrayList<>();
 
     /** Internal list of connected devices */
     private List<Connection> mConnections = new ArrayList<>();
@@ -164,12 +200,14 @@ public class ContextMap<C> {
         synchronized (mAppsLock) {
             App app = new App(uuid, callback, appUid, appName, attrSource);
             mApps.add(app);
+            recordRegisterApp(app);
+
             return app;
         }
     }
 
     /** Remove the context for a given UUID */
-    public void remove(UUID uuid) {
+    public void remove(UUID uuid, int reason) {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
@@ -177,6 +215,7 @@ public class ContextMap<C> {
                 if (entry.uuid.equals(uuid)) {
                     entry.unlinkToDeath();
                     i.remove();
+                    recordUnregisterApp(entry, reason);
                     break;
                 }
             }
@@ -184,7 +223,7 @@ public class ContextMap<C> {
     }
 
     /** Remove the context for a given application ID. */
-    public void remove(int id) {
+    public void remove(int id, int reason) {
         boolean find = false;
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -194,6 +233,7 @@ public class ContextMap<C> {
                     find = true;
                     entry.unlinkToDeath();
                     i.remove();
+                    recordUnregisterApp(entry, reason);
                     break;
                 }
             }
@@ -360,6 +400,7 @@ public class ContextMap<C> {
                 entry.unlinkToDeath();
             }
             mApps.clear();
+            mOngoingRecords.clear();
         }
 
         synchronized (mConnectionsLock) {
@@ -381,7 +422,57 @@ public class ContextMap<C> {
     /** Logs debug information. */
     protected void dump(StringBuilder sb) {
         synchronized (mAppsLock) {
-            sb.append("  Entries: ").append(mApps.size()).append("\n\n");
+            sb.append("  Entries: ").append(mApps.size()).append("\n");
+            sb.append("  Last apps: ").append("\n");
+            for (AppRecord record : mLastRecords) {
+                sb.append("       ")
+                        .append(sDateFormat.format(record.registerTime))
+                        .append(" ~ ")
+                        .append(sDateFormat.format(record.unregisterTime))
+                        .append(" app_if: ")
+                        .append(record.clientIf)
+                        .append(", appName: ")
+                        .append(record.appName);
+                if (record.attributionTag != null) {
+                    sb.append(", tag: ").append(record.attributionTag);
+                }
+                sb.append(", reason: ").append(stringFromReason(record.reason)).append("\n");
+            }
+            sb.append("\n");
         }
+    }
+
+    @GuardedBy("mAppsLock")
+    private void recordRegisterApp(App app) {
+        mOngoingRecords.add(new AppRecord(app));
+    }
+
+    @GuardedBy("mAppsLock")
+    private void recordUnregisterApp(App app, int reason) {
+        for (int i = 0; i < mOngoingRecords.size(); i++) {
+            if (mOngoingRecords.get(i).uuid == app.uuid) {
+                AppRecord record = mOngoingRecords.remove(i);
+                record.clientIf = app.id;
+                record.reason = reason;
+                record.unregisterTime = Instant.now();
+
+                if (mLastRecords.size() >= 5) {
+                    mLastRecords.removeFirst();
+                }
+                mLastRecords.add(record);
+                break;
+            }
+        }
+    }
+
+    private String stringFromReason(int reason) {
+        return switch (reason) {
+            case REASON_UNREGISTER_ALL -> "unregister all";
+            case REASON_UNREGISTER_CLIENT -> "unregister client";
+            case REASON_UNREGISTER_SERVER -> "unregister server";
+            case REASON_BINDER_DIED -> "binder died";
+            case REASON_REGISTER_FAILED -> "register failed";
+            default -> "unknown reason";
+        };
     }
 }
