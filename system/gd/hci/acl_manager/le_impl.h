@@ -27,6 +27,7 @@
 #include <vector>
 
 #include "common/bind.h"
+#include "common/metrics.h"
 #include "hci/acl_manager/assembler.h"
 #include "hci/acl_manager/le_acceptlist_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
@@ -38,6 +39,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_address_manager.h"
 #include "macros.h"
+#include "metrics/bluetooth_event.h"
 #include "os/alarm.h"
 #include "os/handler.h"
 #include "os/system_properties.h"
@@ -404,6 +406,10 @@ public:
       return;
     }
 
+    bluetooth::os::LogMetricBluetoothEvent(address,
+                                           android::bluetooth::EventType::GATT_CONNECT_NATIVE,
+                                           bluetooth::metrics::MapErrorCodeToState(status));
+
     const bool in_filter_accept_list = is_device_in_accept_list(remote_address);
 
     if (role == hci::Role::CENTRAL) {
@@ -560,6 +566,9 @@ public:
       arm_on_resume_ = true;
       add_device_to_accept_list(remote_address);
     }
+    bluetooth::os::LogMetricBluetoothEvent(remote_address.GetAddress(),
+                                           android::bluetooth::EventType::GATT_DISCONNECT_NATIVE,
+                                           bluetooth::metrics::MapErrorCodeToState(reason));
   }
 
   void on_le_connection_update_complete(LeMetaEventView view) {
@@ -697,6 +706,9 @@ public:
   }
 
   void add_device_to_accept_list(AddressWithType address_with_type) {
+    bluetooth::os::LogMetricBluetoothEvent(address_with_type.GetAddress(),
+                                           android::bluetooth::EventType::LE_DEVICE_IN_ACCEPT_LIST,
+                                           android::bluetooth::State::START);
     if (connections.alreadyConnected(address_with_type)) {
       log::info("Device already connected, return");
       return;
@@ -719,6 +731,9 @@ public:
   }
 
   void remove_device_from_accept_list(AddressWithType address_with_type) {
+    bluetooth::os::LogMetricBluetoothEvent(address_with_type.GetAddress(),
+                                           android::bluetooth::EventType::LE_DEVICE_IN_ACCEPT_LIST,
+                                           android::bluetooth::State::END);
     if (accept_list.find(address_with_type) == accept_list.end()) {
       log::warn("Device not in acceptlist and cannot be removed: {}", address_with_type);
       return;
