@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c68908_748d684f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:16:50Z",
+      "side": 1,
+      "message": "The support should be added to RootCanal to facilitate testing on cuttlefish.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 48
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64e0a4c1_afc25602",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:16:50Z",
+      "side": 1,
+      "message": "This feature is not yet released in a Core Specification document.\nI am afraid that enabling it when not stabilized (opcode number / parameter specification can change) will lead to regressions further down",
+      "range": {
+        "startLine": 1553,
+        "startChar": 30,
+        "endLine": 1553,
+        "endChar": 74
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43839171_2b6ef794",
+        "filename": "system/gd/hci/controller_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:16:50Z",
+      "side": 1,
+      "message": "nit: `IsRpaGenerationSupported`\n\n1. Offload has an ambiguous meaning in the bluetooth stack, as it is often attached to vendor features\n2. Generation should be explicitly mentioned, to parallel RpaResolution",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
