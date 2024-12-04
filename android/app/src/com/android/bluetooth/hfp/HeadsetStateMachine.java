@@ -2662,6 +2662,9 @@ class HeadsetStateMachine extends StateMachine {
                 continue;
             }
 
+            mAdapterService
+                    .getRemoteDevices()
+                    .handleHfIndicatorSupportChanged(device, indId, true);
             switch (indId) {
                 case HeadsetHalConstants.HF_INDICATOR_ENHANCED_DRIVER_SAFETY:
                     log("Send Broadcast intent for the Enhanced Driver Safety indicator.");
