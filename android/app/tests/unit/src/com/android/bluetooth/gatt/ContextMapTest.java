@@ -140,9 +140,9 @@ public class ContextMapTest {
     @Test
     public void removeMethods() {
         ContextMap<IBluetoothGattCallback> contextMap = getMapWithAppAndConnection();
-        contextMap.remove(APP_ID1);
+        contextMap.remove(APP_ID1, ContextMap.REASON_UNREGISTER_CLIENT);
         assertThat(contextMap.getAllAppsIds()).isNotEmpty();
-        contextMap.remove(APP_ID2);
+        contextMap.remove(APP_ID2, ContextMap.REASON_UNREGISTER_CLIENT);
         assertThat(contextMap.getAllAppsIds()).isEmpty();
 
         contextMap = getMapWithAppAndConnection();
