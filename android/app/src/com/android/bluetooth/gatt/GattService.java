@@ -384,7 +384,7 @@ public class GattService extends ProfileService {
             Log.d(
                     TAG,
                     "Binder is dead - unregistering client (" + mPackageName + " " + mAppIf + ")!");
-            unregisterClient(mAppIf, getAttributionSource());
+            unregisterClient(mAppIf, getAttributionSource(), ContextMap.REASON_BINDER_DIED);
         }
     }
 
@@ -443,7 +443,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.unregisterClient(clientIf, attributionSource);
+            service.unregisterClient(
+                    clientIf, attributionSource, ContextMap.REASON_UNREGISTER_CLIENT);
         }
 
         @Override
@@ -1938,7 +1939,7 @@ public class GattService extends ProfileService {
     public void unregAll(AttributionSource attributionSource) {
         for (Integer appId : mClientMap.getAllAppsIds()) {
             Log.d(TAG, "unreg:" + appId);
-            unregisterClient(appId, attributionSource);
+            unregisterClient(appId, attributionSource, ContextMap.REASON_UNREGISTER_ALL);
         }
     }
 
@@ -2149,14 +2150,14 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(BLUETOOTH_CONNECT)
-    void unregisterClient(int clientIf, AttributionSource attributionSource) {
+    void unregisterClient(int clientIf, AttributionSource attributionSource, int reason) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService unregisterClient")) {
             return;
         }
 
         Log.d(TAG, "unregisterClient() - clientIf=" + clientIf);
-        mClientMap.remove(clientIf);
+        mClientMap.remove(clientIf, reason);
         mNativeInterface.gattClientUnregisterApp(clientIf);
     }
 
@@ -3307,7 +3308,7 @@ public class GattService extends ProfileService {
 
         deleteServices(serverIf);
 
-        mServerMap.remove(serverIf);
+        mServerMap.remove(serverIf, ContextMap.REASON_UNREGISTER_SERVER);
         mNativeInterface.gattServerUnregisterApp(serverIf);
     }
 
