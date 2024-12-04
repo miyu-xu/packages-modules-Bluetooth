@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbfba2f_2894c8f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-04T01:05:04Z",
+      "side": 1,
+      "message": "I couldn\u0027t get the tests to replicate the stuck state - so I reduced the timeout from 7 seconds back to 3, just so we can show that the test fails without the flag.",
+      "revId": "b5570a03361919e176af677d8cb095727321fedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
