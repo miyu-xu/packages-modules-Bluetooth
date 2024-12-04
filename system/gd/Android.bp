@@ -420,6 +420,8 @@ cc_test {
         ":BluetoothOsTestSources",
         ":BluetoothPacketTestSources",
         ":BluetoothStorageUnitTestSources",
+        ":TestCommonMockFunctions",
+        ":TestMockStackMetrics",
         "module_unittest.cc",
         "stack_manager_unittest.cc",
     ],
