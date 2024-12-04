@@ -81,6 +81,30 @@
       },
       "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b5db8b5_e576b4aa",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-04T22:18:33Z",
+      "side": 1,
+      "message": "What about removing the stored volume ?\n\nin case of unbonding, this should also be run, even when the device is not connected.\n\n```\n mFactory.getAvrcpTargetService().removeStoredVolumeForDevice(device);\n```\n\nOr maybe this need to be done differently by having a listener of bond state change inside the avrcptargetservice ?",
+      "parentUuid": "67a98d82_f5d68915",
+      "range": {
+        "startLine": 1169,
+        "startChar": 8,
+        "endLine": 1182,
+        "endChar": 9
+      },
+      "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
