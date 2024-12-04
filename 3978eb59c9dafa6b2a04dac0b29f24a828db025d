@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c297b2_b4108b7b",
+        "filename": "framework/jarjar-rules.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-04T19:38:15Z",
+      "side": 1,
+      "message": "Should we use a single rule to wrap all usage ?\n\n```suggestion\nrule android.media.audio.** com.android.bluetooth.jarjar.@0\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 85
+      },
+      "revId": "3978eb59c9dafa6b2a04dac0b29f24a828db025d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
