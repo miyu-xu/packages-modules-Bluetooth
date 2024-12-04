@@ -46,6 +46,30 @@
       },
       "revId": "3978eb59c9dafa6b2a04dac0b29f24a828db025d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd740f7_f56ceb6d",
+        "filename": "framework/jarjar-rules.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-04T20:57:27Z",
+      "side": 1,
+      "message": "Mmmm I see your point.\n\nA quick search is showing that there is no such thing as a android.media.audio.foo but we cannot guarantee for the future.\nLet\u0027s keep the enumeration then.",
+      "parentUuid": "bc84ae11_d0d5a1e7",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 85
+      },
+      "revId": "3978eb59c9dafa6b2a04dac0b29f24a828db025d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
