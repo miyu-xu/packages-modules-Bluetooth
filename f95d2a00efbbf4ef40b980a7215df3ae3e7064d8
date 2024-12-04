@@ -74,6 +74,30 @@
       },
       "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13eaa2e3_06298c7b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2024-12-04T02:05:42Z",
+      "side": 1,
+      "message": "Hi Aarthi, correct something. We cannot move \"p_sco-\u003ep_curr_scb \u003d nullptr\" to above else if condition. It will cause \"p_sco-\u003ep_curr_scb \u003d nullptr;\" won\u0027t be executed once above \"if (!bta_ag_other_scb_open(p_scb))\" is satisfied. Thanks",
+      "parentUuid": "f697bb10_014f490c",
+      "range": {
+        "startLine": 905,
+        "startChar": 12,
+        "endLine": 905,
+        "endChar": 37
+      },
+      "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
