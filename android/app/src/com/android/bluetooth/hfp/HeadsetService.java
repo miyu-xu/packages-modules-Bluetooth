@@ -1518,6 +1518,7 @@ public class HeadsetService extends ProfileService {
                     return true;
                 }
                 broadcastActiveDevice(mActiveDevice);
+                updateInbandRinging(device, true);
                 int connectStatus = connectAudio(mActiveDevice);
                 if (connectStatus != BluetoothStatusCodes.SUCCESS) {
                     Log.e(
