@@ -718,6 +718,11 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
 
   void send_le_cs_set_procedure_parameters(uint16_t connection_handle, uint8_t config_id,
                                            uint8_t remote_num_antennas_supported) {
+    if (config_id > kMaxConfigId) {
+      log::error("invalid config id, something was wrong.");
+      handle_cs_setup_failure(connection_handle, REASON_INTERNAL_ERROR);
+      return;
+    }
     uint8_t tone_antenna_config_selection =
             cs_tone_antenna_config_mapping_table_[num_antennas_supported_ - 1]
                                                  [remote_num_antennas_supported - 1];
