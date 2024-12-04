@@ -346,6 +346,7 @@ public class RemoteDevices {
         @VisibleForTesting int mBondState;
         @VisibleForTesting int mDeviceType;
         @VisibleForTesting ParcelUuid[] mUuids;
+        @VisibleForTesting boolean mHfpBatteryIndicator = false;
         private BluetoothSinkAudioPolicy mAudioPolicy;
 
         DeviceProperties() {
@@ -686,6 +687,24 @@ public class RemoteDevices {
                     return mBatteryLevelFromBatteryService;
                 }
                 return mBatteryLevelFromHfp;
+            }
+        }
+
+        /**
+         * @param HfpBatteryIndicator is set to false or true
+         */
+        void setHfpBatteryIndSupport(boolean HfpBatteryIndicator) {
+            synchronized (mObject) {
+                this.mHfpBatteryIndicator = HfpBatteryIndicator;
+            }
+        }
+
+        /**
+         * @return mHfpBatteryIndicator
+         */
+        boolean isHfpBatteryIndSupported() {
+            synchronized (mObject) {
+                return mHfpBatteryIndicator;
             }
         }
 
@@ -1623,6 +1642,8 @@ public class RemoteDevices {
             return;
         }
         if (toState == BluetoothProfile.STATE_DISCONNECTED && !hasBatteryService(device)) {
+            DeviceProperties deviceProperties = getDeviceProperties(device);
+            deviceProperties.setHfpBatteryIndSupport(false);
             resetBatteryLevel(device, /* isBas= */ false);
         }
     }
@@ -1640,6 +1661,8 @@ public class RemoteDevices {
             return;
         }
         if (indicatorId == HeadsetHalConstants.HF_INDICATOR_BATTERY_LEVEL_STATUS) {
+            DeviceProperties deviceProperties = getDeviceProperties(device);
+            deviceProperties.setHfpBatteryIndSupport(true);
             updateBatteryLevel(device, indicatorValue, /* isBas= */ false);
         }
     }
@@ -1688,7 +1711,11 @@ public class RemoteDevices {
                 batteryPercent = getBatteryLevelFromAppleBatteryVsc(args);
                 break;
         }
-        if (batteryPercent != BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
+
+        DeviceProperties deviceProperties = getDeviceProperties(device);
+        if ((cmd == BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_IPHONEACCEV)
+                && (batteryPercent != BluetoothDevice.BATTERY_LEVEL_UNKNOWN)
+                && (false == deviceProperties.isHfpBatteryIndSupported())) {
             updateBatteryLevel(device, batteryPercent, /* isBas= */ false);
             infoLog(
                     "Updated device "
@@ -1822,6 +1849,8 @@ public class RemoteDevices {
             return;
         }
         if (toState == BluetoothProfile.STATE_DISCONNECTED && !hasBatteryService(device)) {
+            DeviceProperties deviceProperties = getDeviceProperties(device);
+            deviceProperties.setHfpBatteryIndSupport(false);
             resetBatteryLevel(device, /* isBas= */ false);
         }
     }
