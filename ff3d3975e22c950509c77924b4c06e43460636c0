@@ -105,6 +105,30 @@
       },
       "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abf0137a_954c90e4",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T22:25:51Z",
+      "side": 1,
+      "message": "`mFactory.getAvrcpTargetService().removeStoredVolumeForDevice(device)` is called in conjunction with A2DP state machine removal.\nIf it is possible for the stored volume to exist without a corresponding A2DP state machine, then that problem would have existed before this change as well. I will leave it to the respective area owners to fix it separately.",
+      "parentUuid": "6b5db8b5_e576b4aa",
+      "range": {
+        "startLine": 1169,
+        "startChar": 8,
+        "endLine": 1182,
+        "endChar": 9
+      },
+      "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
