@@ -20,7 +20,6 @@
 #include "hci/hci_interface.h"
 #include "hci/le_advertising_manager_mock.h"
 #include "hci/le_scanning_manager_mock.h"
-#include "lpp/lpp_offload_interface_mock.h"
 #include "main/shim/entry.h"
 #include "os/handler.h"
 #include "storage/storage_module.h"
@@ -41,10 +40,6 @@ MockDistanceMeasurementManager* mock_distance_measurement_manager_{nullptr};
 }  // namespace testing
 }  // namespace hci
 
-namespace lpp::testing {
-MockLppOffloadInterface* mock_lpp_offload_interface_{nullptr};
-}  // namespace lpp::testing
-
 class Dumpsys;
 
 namespace shim {
@@ -64,9 +59,6 @@ storage::StorageModule* GetStorage() { return nullptr; }
 metrics::CounterMetrics* GetCounterMetrics() { return nullptr; }
 hci::MsftExtensionManager* GetMsftExtensionManager() { return nullptr; }
 hci::RemoteNameRequestModule* GetRemoteNameRequest() { return nullptr; }
-lpp::LppOffloadInterface* GetLppOffloadManager() {
-  return lpp::testing::mock_lpp_offload_interface_;
-}
 
 }  // namespace shim
 }  // namespace bluetooth
