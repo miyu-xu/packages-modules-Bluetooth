@@ -56,6 +56,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4946765_2c0d8432",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T17:34:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "48a38929_429072c1",
+      "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6365de73_0160604c",
@@ -73,6 +91,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ad21068_0dfdef5c",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T17:34:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6365de73_0160604c",
+      "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fffcbaf6_854935d1",
@@ -86,6 +122,24 @@
       "writtenOn": "2024-12-04T16:29:09Z",
       "side": 1,
       "message": "Nit: The flag and the property are to be used in conjunction. We should refactor a function out of it and use that everywhere.",
+      "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22cc1e90_2acdb269",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T17:34:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fffcbaf6_854935d1",
       "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
