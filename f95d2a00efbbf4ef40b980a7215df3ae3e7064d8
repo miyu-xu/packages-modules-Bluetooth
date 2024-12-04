@@ -50,6 +50,30 @@
       ],
       "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f697bb10_014f490c",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2024-12-04T01:59:41Z",
+      "side": 1,
+      "message": "Thanks Aarthi! Modified NULL to nullptr, done. But in above else if condition is same with below if condition. It\u0027s redundant to add it again in else if condition, thanks 😊",
+      "parentUuid": "ff2d40a0_bfee50a3",
+      "range": {
+        "startLine": 905,
+        "startChar": 12,
+        "endLine": 905,
+        "endChar": 37
+      },
+      "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
