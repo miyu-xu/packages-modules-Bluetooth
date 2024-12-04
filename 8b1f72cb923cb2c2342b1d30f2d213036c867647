@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd69aeb0_8b49fd22",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-04T18:25:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5f173fc3_5d1fff02",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d926ee47_d5559f57",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Hmm it could be generic but IMHO LeAudioService is a not good place. CSIP and LeAudioService could exist separately. For now let\u0027s leave it for private usage inside VCS.",
       "parentUuid": "d926ee47_d5559f57",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d32ad07_fb11293d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-04T18:25:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a08b7207_a684f93f",
       "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "In next patches setDeviceVolume will be used directly in VCS and there will be nothing against use it directly somewhere else exactly as setGroupVolume in LeAudioService.",
       "parentUuid": "45add45e_23991fab",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "491249dd_230e05d4",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-04T18:25:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9c19f291_87eaabae",
       "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
