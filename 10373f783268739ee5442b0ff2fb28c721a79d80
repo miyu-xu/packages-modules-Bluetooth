@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c002fa_9831e151",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-04T17:23:42Z",
+      "side": 1,
+      "message": "The class could be package private right ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "10373f783268739ee5442b0ff2fb28c721a79d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
