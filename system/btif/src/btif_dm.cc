@@ -69,6 +69,7 @@
 #include "hci/le_rand_callback.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
+#include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "main/shim/le_advertising_manager.h"
@@ -1966,6 +1967,14 @@ void BTIF_dm_enable() {
   /* clear control blocks */
   pairing_cb = {};
   pairing_cb.bond_type = BOND_TYPE_PERSISTENT;
+
+  // Set all-zero set to resolving list for RPA offload to BT controller
+  // for un-direct (broadcast) advertising RPA
+  // https://docs.google.com/document/d/1CW-WStIfAR970rJFJBe5InSPjU2ZSyZvCUJkyldjn8A/edit?pli=1&tab=t.0#bookmark=id.2hdjqfecfa38
+  if (bluetooth::shim::GetController()->IsRpaGenerationSupported()) {
+    log::info("Support RPA offload, set all-zero set in resolving list");
+    btif_dm_set_all_zero_set_to_resolving_list(ble_local_key_cb.id_keys.irk);
+  }
 
   // Enable address consolidation.
   btif_storage_load_le_devices();
@@ -3933,6 +3942,14 @@ void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
       }
     }
   }
+}
+
+void btif_dm_set_all_zero_set_to_resolving_list(const Octet16& local_irk) {
+  tBLE_BD_ADDR all_zero_address_with_type = {0};
+  const Octet16 all_zero_peer_irk = {0};
+
+  bluetooth::shim::ACL_AddToAddressResolution(all_zero_address_with_type, all_zero_peer_irk,
+                                              local_irk);
 }
 
 namespace bluetooth {
