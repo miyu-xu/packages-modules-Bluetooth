@@ -17,7 +17,6 @@
 package com.android.bluetooth.pbapclient;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
@@ -102,9 +101,7 @@ public class PbapClientSocket {
     }
 
     /** Invokes the underlying BluetoothSocket#connect(), or does nothing if a socket is injected */
-    @RequiresPermission(
-            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
-            conditional = true)
+    @RequiresPermission(BLUETOOTH_CONNECT)
     public void connect() throws IOException {
         if (mSocket != null) {
             mSocket.connect();
