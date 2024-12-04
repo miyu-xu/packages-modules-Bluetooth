@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dda84a82_d3383b71",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-04T02:33:02Z",
+      "side": 1,
+      "message": "should this be ||?",
+      "range": {
+        "startLine": 410,
+        "startChar": 69,
+        "endLine": 410,
+        "endChar": 71
+      },
+      "revId": "5583de15006198cd68b8fafab2536dc1b2acb626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
