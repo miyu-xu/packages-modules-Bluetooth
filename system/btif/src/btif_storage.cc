@@ -52,6 +52,7 @@
 #include "btif/include/stack_manager_t.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
+#include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "osi/include/allocator.h"
@@ -865,6 +866,27 @@ static void remove_devices_with_sample_ltk() {
  *
  ******************************************************************************/
 void btif_storage_load_le_devices(void) {
+  if (bluetooth::shim::GetController()->IsRpaOffloadSupported()) {
+    // for RPA offload, we need to set all-zero set in resolving list for un-direct (broadcast)
+    // advertising
+    uint8_t key_mask = 0;
+    tBTA_BLE_LOCAL_ID_KEYS id_key;
+    Octet16 er;
+    tBLE_BD_ADDR all_zero_address_with_type;
+
+    memset(all_zero_address_with_type.bda.address, 0,
+           sizeof(all_zero_address_with_type.bda.address));
+    all_zero_address_with_type.type = 0;
+    Octet16 all_zero_peer_irk = {0};
+
+    // get local IRK
+    btif_dm_get_ble_local_keys(&key_mask, &er, &id_key);
+
+    // set all-zero-set to resolving list
+    bluetooth::shim::ACL_AddToAddressResolution(all_zero_address_with_type, all_zero_peer_irk,
+                                                id_key.irk);
+  }
+
   btif_bonded_devices_t bonded_devices;
   btif_in_fetch_bonded_devices(&bonded_devices, 1);
   std::unordered_set<RawAddress> bonded_addresses;
