@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c54350a1_016f33f7",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T22:32:55Z",
+      "side": 1,
+      "message": "SIG has published the draft.\nhttps://www.bluetooth.com/specifications/specs/randomized-rpa-updates-public-release/\n\ncc: @haishalom@google.com",
+      "parentUuid": "64e0a4c1_afc25602",
+      "range": {
+        "startLine": 1553,
+        "startChar": 30,
+        "endLine": 1553,
+        "endChar": 74
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43839171_2b6ef794",
         "filename": "system/gd/hci/controller_interface.h",
         "patchSetId": 2
