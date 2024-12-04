@@ -22,6 +22,30 @@
       },
       "revId": "3978eb59c9dafa6b2a04dac0b29f24a828db025d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc84ae11_d0d5a1e7",
+        "filename": "framework/jarjar-rules.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-12-04T20:23:33Z",
+      "side": 1,
+      "message": "Wouldn\u0027t that mean you can\u0027t call any audio framework APIs, since they are jarjar renamed in your jar, but then at runtime, only the original name exists (since they are on the BCP not statically linnked)?",
+      "parentUuid": "20c297b2_b4108b7b",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 85
+      },
+      "revId": "3978eb59c9dafa6b2a04dac0b29f24a828db025d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
