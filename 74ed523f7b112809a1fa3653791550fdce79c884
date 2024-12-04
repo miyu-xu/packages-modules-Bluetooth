@@ -1,0 +1,111 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2f147f_6f742a07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T21:41:07Z",
+      "side": 1,
+      "message": "I think this might be a better place for sending local IRK to the controller.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;drc\u003dc0dcfdf84e4bb5dca95808bfdb3f3b3aa23bc521;l\u003d1970\n\nThen you can read the local IRK directly from `ble_local_key_cb`.",
+      "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb6a5d4a_b85f4910",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T21:41:07Z",
+      "side": 1,
+      "message": "Refactor this into a separate function",
+      "fixSuggestions": [
+        {
+          "fixId": "2ba55e35_52fa629f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 856,
+                "startChar": 0,
+                "endLine": 869,
+                "endChar": 0
+              },
+              "replacement": "static void btif_storage_set_all_zero_set_to_resolving_list() {\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 889,
+                "startChar": 0,
+                "endLine": 889,
+                "endChar": 0
+              },
+              "replacement": "}\n\n/*******************************************************************************\n *\n * Function         btif_storage_load_le_devices\n *\n * Description      BTIF storage API - Loads all LE-only and Dual Mode devices\n *                  from NVRAM. This API invokes the adaper_properties_cb.\n *                  It also invokes invoke_address_consolidate_cb\n *                  to consolidate each Dual Mode device and\n *                  invoke_le_address_associate_cb to associate each LE-only\n *                  device between its RPA, identity address, and identity address type.\n *\n ******************************************************************************/\nvoid btif_storage_load_le_devices(void) {\n  btif_storage_set_all_zero_set_to_resolving_list();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78563dd6_6389c7bd",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T21:41:07Z",
+      "side": 1,
+      "message": "tBLE_BD_ADDR all_zero_address_with_type \u003d {};",
+      "fixSuggestions": [
+        {
+          "fixId": "beffdfe1_83b931d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": "    tBLE_BD_ADDR all_zero_address_with_type \u003d {};\n"
+            },
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 877,
+                "startChar": 0,
+                "endLine": 880,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
