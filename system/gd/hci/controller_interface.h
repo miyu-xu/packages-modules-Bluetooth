@@ -215,6 +215,8 @@ public:
   virtual VendorCapabilities GetVendorCapabilities() const = 0;
 
   virtual bool IsSupported(OpCode op_code) const = 0;
+
+  virtual bool IsRpaOffloadToControllerSupported(void) const = 0;
 };
 
 }  // namespace hci

@@ -114,6 +114,7 @@ void btif_dm_set_default_event_mask_except(uint64_t mask, uint64_t le_mask);
 void btif_dm_set_event_filter_inquiry_result_all_devices();
 void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
                               std::vector<uint8_t> value);
+void btif_dm_set_all_zero_set_to_resolving_list(const Octet16& local_irk);
 
 void btif_dm_hh_open_failed(RawAddress* bdaddr);
 
