@@ -464,6 +464,17 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (584207 Flag to use transparent codec for DSA hardware path)
+    name: "dsa_hw_transparent_codec"
+    namespace: "bluetooth"
+    description: "Use trasparent codec for DSA hardware path"
+    bug: "382263607"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+||||||| BASE
+=======
     name: "leaudio_broadcast_receive_state_processing_refactor"
     namespace: "bluetooth"
     description: "Fix parsing empty receive states and refactor its processing"
@@ -472,3 +483,4 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+>>>>>>> BASE      (6557ea Merge "Remove //vendor external visibility on libbluetooth_h)
