@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8d6dd3a_b7adf81a",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a0aff01a_f57cae58",
+      "range": {
+        "startLine": 870,
+        "startChar": 4,
+        "endLine": 871,
+        "endChar": 18
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c559f19_fb897696",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b854b95f_c8f1cab1",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6c559f19_fb897696",
+      "range": {
+        "startLine": 875,
+        "startChar": 17,
+        "endLine": 875,
+        "endChar": 43
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a01d861_388ac0cc",
@@ -83,6 +131,30 @@
       "writtenOn": "2024-12-04T22:21:41Z",
       "side": 1,
       "message": "This configuration should not be performed here in `btif_storage_xxx`; the proper place is likely in the controller initialization routine.",
+      "range": {
+        "startLine": 886,
+        "startChar": 21,
+        "endLine": 886,
+        "endChar": 47
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d58d3a1c_083d4306",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0a01d861_388ac0cc",
       "range": {
         "startLine": 886,
         "startChar": 21,
@@ -177,6 +249,30 @@
       "writtenOn": "2024-12-04T22:16:50Z",
       "side": 1,
       "message": "nit: `IsRpaGenerationSupported`\n\n1. Offload has an ambiguous meaning in the bluetooth stack, as it is often attached to vendor features\n2. Generation should be explicitly mentioned, to parallel RpaResolution",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6954e5_ddcd2587",
+        "filename": "system/gd/hci/controller_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "This controller function already implies offloading to the Bluetooth controller. If that\u0027s not clear enough, we could rename it to IsRpaOffloadToControllerSupported.",
+      "parentUuid": "43839171_2b6ef794",
       "range": {
         "startLine": 219,
         "startChar": 15,

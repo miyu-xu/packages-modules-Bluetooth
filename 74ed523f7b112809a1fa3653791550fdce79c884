@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa5ecb3_fbcbe85a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ee2f147f_6f742a07",
+      "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb6a5d4a_b85f4910",
@@ -63,6 +81,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0148bfd_23fa2e32",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb6a5d4a_b85f4910",
+      "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78563dd6_6389c7bd",
@@ -104,6 +140,24 @@
           ]
         }
       ],
+      "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e0e3b92_c086a83f",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-04T23:40:07Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nHenri comment to\nInitialize to zero with tBLE_BD_ADDR all_zero_address_with_type \u003d {0};\n\nI\u0027ll update all like that too.",
+      "parentUuid": "78563dd6_6389c7bd",
       "revId": "74ed523f7b112809a1fa3653791550fdce79c884",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
