@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "985bb434_3a96a9ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-04T18:13:35Z",
+      "side": 1,
+      "message": "fyi @rwt@google.com @belusiak@google.com I made a small update in ver.7 from the approved ver.3. Please let me know if any comment.\n\nthis is to simply the logic path to make sure no functional change in this refactor, also if mPendingGroupOp does\u0027t include sink we should skip the update assistant active part.",
+      "revId": "8e0b9b341bdd2f5ae95ce41cad3fa978e1a244ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
