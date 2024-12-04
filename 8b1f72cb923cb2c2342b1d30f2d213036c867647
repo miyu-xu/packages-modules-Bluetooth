@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f173fc3_5d1fff02",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-04T11:41:47Z",
+      "side": 1,
+      "message": "private static final int GROUP_ID_INVALID \u003d -1;\n\nas in VolumeControlNativeCallback#onVolumeStateChanged is used -1 and there is no relation to the LE_AUDIO_GROUP_ID_INVALID.\nIn native is used kGroupUnknown \u003d -1;\n\nGROUP_ID_INVALID will be only for private usage inside VCS. Shorten name not suggesting belonging to leAudio or csip.",
+      "parentUuid": "196b6c11_d0fbd1be",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d926ee47_d5559f57",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-03T21:58:56Z",
       "side": 1,
       "message": "Maybe not in this CL, but those 2 functions are for generic purpose, would it be good to move this to some where like LeAudioService, wdyt?",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08b7207_a684f93f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-04T11:41:47Z",
+      "side": 1,
+      "message": "Hmm it could be generic but IMHO LeAudioService is a not good place. CSIP and LeAudioService could exist separately. For now let\u0027s leave it for private usage inside VCS.",
+      "parentUuid": "d926ee47_d5559f57",
       "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc906dc_1908a1e5",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-04T11:41:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9047ea6_293788a7",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45add45e_23991fab",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-12-03T21:58:56Z",
       "side": 1,
       "message": "nit: this check if fine, but shouldn\u0027t this have been guarded from framework API?",
+      "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c19f291_87eaabae",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-04T11:41:47Z",
+      "side": 1,
+      "message": "In next patches setDeviceVolume will be used directly in VCS and there will be nothing against use it directly somewhere else exactly as setGroupVolume in LeAudioService.",
+      "parentUuid": "45add45e_23991fab",
       "revId": "8b1f72cb923cb2c2342b1d30f2d213036c867647",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
