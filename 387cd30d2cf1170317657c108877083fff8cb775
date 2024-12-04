@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59cb9760_44bb86e6",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-04T22:45:48Z",
+      "side": 1,
+      "message": "for getDeviceVolume, it makes sense to get from group volume if device volume is not available.\nbut for getGroupVolume, returning any device volume doesn\u0027t seem good to me. If group volume is not available, the caller can always call to get device volume based on its design as needed.\nwhat if the two devices are having different volumes?\n\nwill let other folks also chime in here.",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
