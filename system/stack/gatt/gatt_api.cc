@@ -31,8 +31,10 @@
 
 #include <string>
 
+#include "common/metrics.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
+#include "main/shim/helpers.h"
 #include "os/system_properties.h"
 #include "osi/include/allocator.h"
 #include "stack/arbiter/acl_arbiter.h"
@@ -1472,6 +1474,11 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, tBLE_ADDR_TYPE ad
     return true;
   }
 
+  bluetooth::os::LogMetricBluetoothEvent(ToGdAddress(bd_addr),
+                                         android::bluetooth::EventType::GATT_CONNECT_NATIVE,
+                                         is_direct ? android::bluetooth::State::DIRECT_CONNECT
+                                                   : android::bluetooth::State::INDIRECT_CONNECT);
+
   bool ret = false;
   if (is_direct) {
     log::debug("Starting direct connect gatt_if={} address={} transport={}", gatt_if, bd_addr,
@@ -1618,6 +1625,10 @@ tGATT_STATUS GATT_Disconnect(tCONN_ID conn_id) {
     log::warn("Cannot find TCB for connection {}", conn_id);
     return GATT_ILLEGAL_PARAMETER;
   }
+
+  bluetooth::os::LogMetricBluetoothEvent(ToGdAddress(p_tcb->peer_bda),
+                                         android::bluetooth::EventType::GATT_DISCONNECT_NATIVE,
+                                         android::bluetooth::State::START);
 
   tGATT_IF gatt_if = gatt_get_gatt_if(conn_id);
   gatt_update_app_use_link_flag(gatt_if, p_tcb, false, true);
