@@ -421,48 +421,63 @@ void VolumeControlDevice::EnqueueRemainingRequests(tGATT_IF /*gatt_if*/,
                                                    GATT_READ_OP_CB chrc_read_cb,
                                                    GATT_READ_MULTI_OP_CB chrc_multi_read_cb,
                                                    GATT_WRITE_OP_CB /*cccd_write_cb*/) {
-  std::vector<uint16_t> handles_to_read;
-
-  for (auto const& input : audio_inputs.volume_audio_inputs) {
-    handles_to_read.push_back(input.state_handle);
-    handles_to_read.push_back(input.gain_setting_handle);
-    handles_to_read.push_back(input.type_handle);
-    handles_to_read.push_back(input.status_handle);
-    handles_to_read.push_back(input.description_handle);
-  }
+  std::list<std::pair<uint16_t, size_t>> handles_to_read;
+  std::vector<uint16_t> handles_to_read_variable_length;
 
   for (auto const& offset : audio_offsets.volume_offsets) {
-    handles_to_read.push_back(offset.state_handle);
-    handles_to_read.push_back(offset.audio_location_handle);
-    handles_to_read.push_back(offset.audio_descr_handle);
+    bluetooth::log::error("Pushing 2 offsets");
+    handles_to_read.push_back(std::make_pair(offset.state_handle, 3));
+    handles_to_read.push_back(std::make_pair(offset.audio_location_handle, 4));
+    handles_to_read_variable_length.push_back(offset.audio_descr_handle);
+  }
+
+  for (auto const& input : audio_inputs.volume_audio_inputs) {
+    bluetooth::log::error("Pushing 4 offsets");
+    handles_to_read.push_back(std::make_pair(input.state_handle, 4));
+    handles_to_read.push_back(std::make_pair(input.gain_setting_handle, 3));
+    handles_to_read.push_back(std::make_pair(input.type_handle, 1));
+    handles_to_read.push_back(std::make_pair(input.status_handle, 1));
+    handles_to_read_variable_length.push_back(input.description_handle);
   }
 
   log::debug("{}, number of handles={}", address, handles_to_read.size());
 
   if (!com::android::bluetooth::flags::le_ase_read_multiple_variable()) {
-    for (auto const& handle : handles_to_read) {
+    for (auto const& [handle, _] : handles_to_read) {
+      BtaGattQueue::ReadCharacteristic(connection_id, handle, chrc_read_cb, nullptr);
+    }
+    for (auto const& handle : handles_to_read_variable_length) {
       BtaGattQueue::ReadCharacteristic(connection_id, handle, chrc_read_cb, nullptr);
     }
     return;
   }
 
-  size_t sent_cnt = 0;
+  const size_t payload_limit = this->mtu_ - 1;
 
-  while (sent_cnt < handles_to_read.size()) {
-    tBTA_GATTC_MULTI multi_read{};
-    size_t remain_cnt = (handles_to_read.size() - sent_cnt);
+  auto pair_it = handles_to_read.begin();
+  while (pair_it != handles_to_read.end()) {
+    tBTA_GATTC_MULTI multi_read{.num_attr = 0};
+    size_t size_limit = 0;
 
-    multi_read.num_attr =
-            remain_cnt > GATT_MAX_READ_MULTI_HANDLES ? GATT_MAX_READ_MULTI_HANDLES : remain_cnt;
+    // Send at once just enough attributes to stay below the MTU size limit for the response
+    while ((pair_it != handles_to_read.end()) && (size_limit + pair_it->second < payload_limit) &&
+           (multi_read.num_attr < GATT_MAX_READ_MULTI_HANDLES)) {
+      multi_read.handles[multi_read.num_attr] = pair_it->first;
+      size_limit += pair_it->second;
+      ++multi_read.num_attr;
+      ++pair_it;
+    }
 
-    auto handles_begin = handles_to_read.begin() + sent_cnt;
-    std::copy(handles_begin, handles_begin + multi_read.num_attr, multi_read.handles);
-
-    sent_cnt += multi_read.num_attr;
-    log::debug{"{}, calling multi with {} attributes, sent_cnt {} ", address, multi_read.num_attr,
-               sent_cnt};
-
+    log::debug{"{}, calling multi-read with {} attributes, {} left ", address, multi_read.num_attr,
+               std::distance(pair_it, handles_to_read.end())};
     BtaGattQueue::ReadMultiCharacteristic(connection_id, multi_read, chrc_multi_read_cb, nullptr);
+  }
+
+  /* Read the remaining variable-length attributes with a regular read to handle truncation
+   * automatically in GATT if MTU is to small.
+   */
+  for (auto const& handle : handles_to_read_variable_length) {
+    BtaGattQueue::ReadCharacteristic(connection_id, handle, chrc_read_cb, nullptr);
   }
 }
 
