@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2d22cf_0b27bd97",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T21:53:04Z",
+      "side": 1,
+      "message": "Even in the disconnecting state, the ACL disconnection and bond state change can come before the A2DP disconnect callback.\n\n`removeBond()` does not put the profiles in the disconnecting state. Profile disconnections are due to abrupt ACL disconnections.",
+      "parentUuid": "641dd4d5_09a600d5",
+      "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a65c236b_7905e4c3",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-11-28T01:04:13Z",
       "side": 1,
       "message": "Should we put the whole synchronized block behind the flag ? \nEven without state machine we want to remove the stored volume if there is any.",
+      "range": {
+        "startLine": 1169,
+        "startChar": 8,
+        "endLine": 1182,
+        "endChar": 9
+      },
+      "revId": "ff3d3975e22c950509c77924b4c06e43460636c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67a98d82_f5d68915",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T21:53:04Z",
+      "side": 1,
+      "message": "We don\u0027t need to do anything if there is no A2DP state machine for this device.",
+      "parentUuid": "a65c236b_7905e4c3",
       "range": {
         "startLine": 1169,
         "startChar": 8,
