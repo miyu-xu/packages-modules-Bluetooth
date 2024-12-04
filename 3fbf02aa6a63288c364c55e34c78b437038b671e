@@ -1,0 +1,93 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a38929_429072c1",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T16:29:09Z",
+      "side": 1,
+      "message": "\"offload\" can already imply that it is offloaded to the BT controller. IMO \"rpa_offload\" is descriptive enough.",
+      "fixSuggestions": [
+        {
+          "fixId": "4a5fc9d3_205d79ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 70,
+                "startChar": 0,
+                "endLine": 71,
+                "endChar": 0
+              },
+              "replacement": "constexpr bool kDefaultRpaOffload \u003d false;\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": "static const std::string kPropertyRpaOffload \u003d\n        \"persist.bluetooth.rpa_offload\";\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 864,
+                "startChar": 0,
+                "endLine": 866,
+                "endChar": 0
+              },
+              "replacement": "        os::GetSystemPropertyBool(kPropertyRpaOffload,\n                                  kDefaultRpaOffload) \u0026\u0026\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6365de73_0160604c",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T16:29:09Z",
+      "side": 1,
+      "message": "Can we try to define these identifiers just once.",
+      "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fffcbaf6_854935d1",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T16:29:09Z",
+      "side": 1,
+      "message": "Nit: The flag and the property are to be used in conjunction. We should refactor a function out of it and use that everywhere.",
+      "revId": "3fbf02aa6a63288c364c55e34c78b437038b671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
