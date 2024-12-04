@@ -142,6 +142,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8217ca5_1c7a3fd1",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:35:51Z",
+      "side": 1,
+      "message": "This document is a working draft of a potential Bluetooth specification. It is\nsubject to change and Bluetooth SIG is not required to finalize or adopt it.\nAlthough the Bluetooth SIG Board of Directors has decided to publicly release\nthis working draft, other draft specifications, including prior or subsequent\nversions of this document, are Bluetooth SIG Confidential Information, unless\nthey have been approved for public release by the Bluetooth SIG Board of\nDirectors. Bluetooth SIG Members must comply with the Bluetooth SIG\nConfidentiality Policy and not disclose any document that is Bluetooth SIG\nconfidential to anyone that is not a member of the Bluetooth SIG.",
+      "parentUuid": "c54350a1_016f33f7",
+      "range": {
+        "startLine": 1553,
+        "startChar": 30,
+        "endLine": 1553,
+        "endChar": 74
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43839171_2b6ef794",
         "filename": "system/gd/hci/controller_interface.h",
         "patchSetId": 2
