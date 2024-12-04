@@ -74,11 +74,6 @@ typedef struct {
 } __attribute__((packed)) sock_connect_signal_t;
 
 typedef struct {
-  uint16_t size;
-  uint16_t is_accepting;
-} __attribute__((packed)) sock_accept_signal_t;
-
-typedef struct {
   /** set to size of this struct*/
   size_t size;
 
