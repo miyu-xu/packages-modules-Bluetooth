@@ -3531,6 +3531,15 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
 
     if (status == HCI_SUCCESS) {
       p_dev_rec = btm_sec_alloc_dev(bda);
+
+      if (p_dev_rec == nullptr) {
+        log::warn(
+                "Unable to allocate device record for new connection peer:{}."
+                " The stack is already shut down.",
+                bda);
+        return;
+      }
+
       log::debug("Allocated new device record for new connection peer:{}", bda);
     } else {
       /* If the device matches with stored paring address
