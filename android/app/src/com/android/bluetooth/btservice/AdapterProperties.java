@@ -135,7 +135,7 @@ class AdapterProperties {
     private boolean mIsLeChannelSoundingSupported;
 
     private int mNumberOfSupportedOffloadedLeCocSockets;
-    private int mNumberOfSupportedOffloadedRfcommSockets = 0;
+    private int mNumberOfSupportedOffloadedRfcommSockets;
 
     // Lock for all getters and setters.
     // If finer grained locking is needer, more locks
@@ -1049,6 +1049,7 @@ class AdapterProperties {
             return;
         }
         // TODO(b/342012881) Read mNumberOfSupportedOffloadedRfcommSockets from host stack
+        mNumberOfSupportedOffloadedRfcommSockets = (0xFF & ((int) val[1]));
         mNumberOfSupportedOffloadedLeCocSockets = (0xFF & ((int) val[0]));
 
         Log.d(

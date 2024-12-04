@@ -43,8 +43,17 @@ struct LeCocCapabilities {
   uint16_t mtu;
 };
 
+struct RfcommCapabilities {
+  // Maximum number of RFCOMM sockets supported. If not supported, the value must be zero.
+  int number_of_supported_sockets;
+
+  // Maximum frame size in octets negotiated during DLCI establishment.
+  uint16_t maxFrameSize;
+};
+
 struct SocketCapabilities {
   LeCocCapabilities le_coc_capabilities;
+  RfcommCapabilities rfcomm_capabilities;
 };
 
 struct LeCocChannelInfo {
@@ -78,6 +87,35 @@ struct LeCocChannelInfo {
   uint16_t initial_tx_credits;
 };
 
+struct RfcommChannelInfo {
+  // L2cap local channel ID for RFCOMM.
+  int localCid;
+
+  // L2cap remote channel ID for RFCOMM.
+  int remoteCid;
+
+  // Local Maximum Transmission Unit Size in bytes that the local L2CAP layer can receive.
+  int localMtu;
+
+  // Remote Maximum Transmission Unit Size in bytes that the remote L2CAP layer can receive.
+  int remoteMtu;
+
+  // Protocol initial credits at Rx path.
+  int initialRxCredits;
+
+  // Protocol initial credits at Tx path.
+  int initialTxCredits;
+
+  // Data Link Connection Identifier (DLCI).
+  int dlci;
+
+  // Maximum frame size negotiated during DLCI establishment.
+  int maxFrameSize;
+
+  // Flag of whether the Android stack initiated the RFCOMM multiplexer control channel.
+  bool muxInitiator;
+};
+
 struct SocketContext {
   // Identifier assigned to the socket by the host stack when the socket is connected.
   uint64_t socket_id;
@@ -89,7 +127,7 @@ struct SocketContext {
   uint16_t acl_connection_handle;
 
   // Channel information of different protocol used for the socket.
-  std::variant<LeCocChannelInfo> channel_info;
+  std::variant<LeCocChannelInfo, RfcommChannelInfo> channel_info;
 
   // Endpoint information.
   EndpointInfo endpoint_info;
