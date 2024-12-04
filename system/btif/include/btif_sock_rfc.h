@@ -27,6 +27,9 @@
 #ifndef BTIF_SOCK_RFC_H
 #define BTIF_SOCK_RFC_H
 
+#include <hardware/bluetooth.h>
+#include <hardware/bt_sock.h>
+
 #include "btif_uid.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
@@ -36,9 +39,13 @@ bt_status_t btsock_rfc_control_req(uint8_t dlci, const RawAddress& bd_addr, uint
                                    uint8_t break_signal, uint8_t discard_buffers,
                                    uint8_t break_signal_seq, bool fc);
 bt_status_t btsock_rfc_listen(const char* name, const bluetooth::Uuid* uuid, int channel,
-                              int* sock_fd, int flags, int app_uid);
+                              int* sock_fd, int flags, int app_uid, btsock_data_path_t data_path,
+                              const char* socket_name, uint64_t hub_id, uint64_t endpoint_id,
+                              int max_rx_packet_size);
 bt_status_t btsock_rfc_connect(const RawAddress* bd_addr, const bluetooth::Uuid* uuid, int channel,
-                               int* sock_fd, int flags, int app_uid);
+                               int* sock_fd, int flags, int app_uid, btsock_data_path_t data_path,
+                               const char* socket_name, uint64_t hub_id, uint64_t endpoint_id,
+                               int max_rx_packet_size);
 void btsock_rfc_signaled(int fd, int flags, uint32_t user_id);
 bt_status_t btsock_rfc_disconnect(const RawAddress* bd_addr);
 
