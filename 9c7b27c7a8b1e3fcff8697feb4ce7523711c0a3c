@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd6ab813_5bd159fd",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-04T17:54:24Z",
+      "side": 1,
+      "message": "`persist` seems odd to me. This imply that the property can be set and once set it will be persisted on the device across reboot. AKA this become the same has supporting a new API and that should be accompanied by a developer option to toggle it\n\nInstead I would put: `bluetooth.core.le.rpa_offload`. (not persist and a added precision that this is for le only device)\n\nYou can still set this in mk files (in device config) in order to have a device with the rpa enabled, and this can still be modifiable on developer build by setting the property then restarting the bluetooth",
+      "range": {
+        "startLine": 50,
+        "startChar": 48,
+        "endLine": 50,
+        "endChar": 55
+      },
+      "revId": "9c7b27c7a8b1e3fcff8697feb4ce7523711c0a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
