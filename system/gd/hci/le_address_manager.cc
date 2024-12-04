@@ -25,6 +25,7 @@
 #include "hci/octets.h"
 #include "include/macros.h"
 #include "os/rand.h"
+#include "os/system_properties.h"
 
 // TODO(b/378143579) For peer address not in resolving list
 
@@ -35,6 +36,10 @@ namespace bluetooth {
 namespace hci {
 
 static constexpr uint8_t BLE_ADDR_MASK = 0xc0u;
+
+constexpr bool kDefaultRpaOffloadToBtController = false;
+static const std::string kPropertyRpaOffloadToBtController =
+        "persist.bluetooth.rpa_offload_to_bt_controller";
 
 enum class LeAddressManager::ClientState {
   WAITING_FOR_PAUSE,
@@ -158,12 +163,13 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
                   minimum_rotation_time_.count(), maximum_rotation_time_.count());
       }
       if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+          os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                    kDefaultRpaOffloadToBtController) &&
           controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
         auto min_seconds = std::chrono::duration_cast<std::chrono::seconds>(minimum_rotation_time_);
         auto max_seconds = std::chrono::duration_cast<std::chrono::seconds>(maximum_rotation_time_);
-        log::info(
-                "Support RPA offload, set min_seconds={}s, max_seconds={}s",
-                min_seconds.count(), max_seconds.count());
+        log::info("Support RPA offload, set min_seconds={}s, max_seconds={}s", min_seconds.count(),
+                  max_seconds.count());
         /* Default to 7 minutes minimum, 15 minutes maximum for random address refreshing;
          * device can override. */
         auto packet = hci::LeSetResolvablePrivateAddressTimeoutV2Builder::Create(
@@ -224,12 +230,13 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddressForTest(
       log::info("minimum_rotation_time_={}ms, maximum_rotation_time_={}ms",
                 minimum_rotation_time_.count(), maximum_rotation_time_.count());
       if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+          os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                    kDefaultRpaOffloadToBtController) &&
           controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
         auto min_seconds = std::chrono::duration_cast<std::chrono::seconds>(minimum_rotation_time_);
         auto max_seconds = std::chrono::duration_cast<std::chrono::seconds>(maximum_rotation_time_);
-        log::info(
-                "Support RPA offload, set min_seconds={}s, max_seconds={}s",
-                min_seconds.count(), max_seconds.count());
+        log::info("Support RPA offload, set min_seconds={}s, max_seconds={}s", min_seconds.count(),
+                  max_seconds.count());
         /* Default to 7 minutes minimum, 15 minutes maximum for random address refreshing;
          * device can override. */
         auto packet = hci::LeSetResolvablePrivateAddressTimeoutV2Builder::Create(
@@ -270,6 +277,8 @@ void LeAddressManager::register_client(LeAddressManagerCallback* callback) {
              address_policy_ == AddressPolicy::USE_NON_RESOLVABLE_ADDRESS) {
     if (registered_clients_.size() == 1) {
       if (!com::android::bluetooth::flags::rpa_offload_to_bt_controller() ||
+          !os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                     kDefaultRpaOffloadToBtController) ||
           !controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
         schedule_rotate_random_address();
         log::info("Scheduled address rotation for first client registered");

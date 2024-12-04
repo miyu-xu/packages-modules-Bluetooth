@@ -67,6 +67,7 @@ constexpr uint8_t PHY_LE_2M = 0x02;
 constexpr uint8_t PHY_LE_CODED = 0x04;
 constexpr bool kEnableBlePrivacy = true;
 constexpr bool kEnableBleOnlyInit1mPhy = false;
+constexpr bool kDefaultRpaOffloadToBtController = false;
 
 static const std::string kPropertyMinConnInterval = "bluetooth.core.le.min_connection_interval";
 static const std::string kPropertyMaxConnInterval = "bluetooth.core.le.max_connection_interval";
@@ -93,6 +94,8 @@ static const std::string kPropertyConnScanWindowSystemSuspend =
 static const std::string kPropertyEnableBlePrivacy = "bluetooth.core.gap.le.privacy.enabled";
 static const std::string kPropertyEnableBleOnlyInit1mPhy =
         "bluetooth.core.gap.le.conn.only_init_1m_phy.enabled";
+static const std::string kPropertyRpaOffloadToBtController =
+        "persist.bluetooth.rpa_offload_to_bt_controller";
 
 enum class ConnectabilityState {
   DISARMED = 0,
@@ -858,6 +861,8 @@ public:
     }
 
     if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+        os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                  kDefaultRpaOffloadToBtController) &&
         controller_->IsSupported(OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2) &&
         own_address_type != OwnAddressType::PUBLIC_DEVICE_ADDRESS) {
       log::info("Support RPA offload, set own address type RESOLVABLE_OR_RANDOM_ADDRESS");

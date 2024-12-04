@@ -57,8 +57,12 @@ constexpr uint8_t kScanResponseBit = 3;
 constexpr uint8_t kLegacyBit = 4;
 constexpr uint8_t kDataStatusBits = 5;
 
+constexpr bool kDefaultRpaOffloadToBtController = false;
+
 // system properties
 const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.radio.le_rx_path_loss_comp_db";
+static const std::string kPropertyRpaOffloadToBtController =
+        "persist.bluetooth.rpa_offload_to_bt_controller";
 
 const ModuleFactory LeScanningManager::Factory =
         ModuleFactory([]() { return new LeScanningManager(); });
@@ -467,6 +471,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
     if (le_address_manager_->GetAddressPolicy() != LeAddressManager::USE_PUBLIC_ADDRESS) {
       if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+          os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                    kDefaultRpaOffloadToBtController) &&
           controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2)) {
         log::info("Support RPA offload, set own address type RESOLVABLE_OR_RANDOM_ADDRESS");
         own_address_type_ = OwnAddressType::RESOLVABLE_OR_RANDOM_ADDRESS;

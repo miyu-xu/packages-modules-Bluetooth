@@ -50,8 +50,12 @@ constexpr int64_t kLeAdvertisingTxPowerMax = 20;
 constexpr int64_t kLeTxPathLossCompMin = -128;
 constexpr int64_t kLeTxPathLossCompMax = 127;
 
+constexpr bool kDefaultRpaOffloadToBtController = false;
+
 // system properties
 const std::string kLeTxPathLossCompProperty = "bluetooth.hardware.radio.le_tx_path_loss_comp_db";
+static const std::string kPropertyRpaOffloadToBtController =
+        "persist.bluetooth.rpa_offload_to_bt_controller";
 
 enum class AdvertisingApiType {
   LEGACY = 1,
@@ -660,6 +664,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       if (advertising_sets_[id].address_type != AdvertiserAddressType::PUBLIC &&
           !leaudio_requested_nrpa &&
           (!com::android::bluetooth::flags::rpa_offload_to_bt_controller() ||
+           !os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                      kDefaultRpaOffloadToBtController) ||
            !controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2))) {
         // start timer for random address
         log::info("Scheduling address rotation for advertiser_id={}", id);
@@ -907,6 +913,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
             advertising_sets_[advertiser_id].current_address.GetAddressType());
 
     if (com::android::bluetooth::flags::rpa_offload_to_bt_controller() &&
+        os::GetSystemPropertyBool(kPropertyRpaOffloadToBtController,
+                                  kDefaultRpaOffloadToBtController) &&
         controller_->IsSupported(hci::OpCode::LE_SET_RESOLVABLE_PRIVATE_ADDRESS_TIMEOUT_V2) &&
         own_address_type != OwnAddressType::PUBLIC_DEVICE_ADDRESS) {
       log::info("Support RPA offload, set own address type RESOLVABLE_OR_RANDOM_ADDRESS");
