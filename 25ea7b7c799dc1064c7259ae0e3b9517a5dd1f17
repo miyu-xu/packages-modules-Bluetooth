@@ -167,6 +167,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df76e37e_b06cd983",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T04:00:59Z",
+      "side": 1,
+      "message": "Can we make it a system property and use default value of 1?",
+      "parentUuid": "e739d980_8b76afbc",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aee8570e_e662fd4e",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 27
@@ -312,6 +330,86 @@
                 "endChar": 0
               },
               "replacement": "      conn_interval_max \u003d os::GetSystemPropertyUint32(kPropertyMaxConnIntervalRelaxed, conn_interval_max);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e026f372_a50aae27",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T04:00:59Z",
+      "side": 1,
+      "message": "This can be implied through the connection parameters itself which is more authoritative than the mode.",
+      "fixSuggestions": [
+        {
+          "fixId": "dd51a50a_2e33f4f6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 1600,
+                "startChar": 0,
+                "endLine": 1602,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 1658,
+                "startChar": 0,
+                "endLine": 1660,
+                "endChar": 0
+              },
+              "replacement": "                      local_rpa, peer_rpa, peer_addr_type, can_read_discoverable_characteristics);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbcdd3c5_9ff42a20",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-04T04:00:59Z",
+      "side": 1,
+      "message": "This can be deduced from connection parameters",
+      "fixSuggestions": [
+        {
+          "fixId": "04be5bdd_3fe01b7b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 183,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "  p_lcb-\u003erelax_conn_params_after_service_discovery \u003d relax_conn_params_after_service_discovery;\n"
             }
           ]
         }
