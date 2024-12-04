@@ -26,6 +26,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0aff01a_f57cae58",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:21:41Z",
+      "side": 1,
+      "message": "Please provide a link to the specification for this statement",
+      "range": {
+        "startLine": 870,
+        "startChar": 4,
+        "endLine": 871,
+        "endChar": 18
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c559f19_fb897696",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:21:41Z",
+      "side": 1,
+      "message": "Initialize to zero with `\u003d {0};`",
+      "range": {
+        "startLine": 875,
+        "startChar": 17,
+        "endLine": 875,
+        "endChar": 43
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a01d861_388ac0cc",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-04T22:21:41Z",
+      "side": 1,
+      "message": "This configuration should not be performed here in `btif_storage_xxx`; the proper place is likely in the controller initialization routine.",
+      "range": {
+        "startLine": 886,
+        "startChar": 21,
+        "endLine": 886,
+        "endChar": 47
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64e0a4c1_afc25602",
         "filename": "system/gd/hci/controller.cc",
         "patchSetId": 2
