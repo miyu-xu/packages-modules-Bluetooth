@@ -1,0 +1,355 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee208625_4ffa0ebf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-05T18:17:30Z",
+      "side": 1,
+      "message": "I had similar changes to read RFCOMM capabilities but removed it in the submit because we didn\u0027t have implementation to notify RFCOMM channel info.\n\nFor your current CL, it seems better to review the previous change which was removed in the submission.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3371037/12..33",
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6573f8fd_3745adf4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-05T18:17:30Z",
+      "side": 1,
+      "message": "it should be 2 with new rfcomm field.",
+      "range": {
+        "startLine": 1047,
+        "startChar": 25,
+        "endLine": 1047,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bd7ec8c4_db5534db",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1047,
+                "startChar": 0,
+                "endLine": 1048,
+                "endChar": 0
+              },
+              "replacement": "        if (val.length \u003c 2) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97039b7e_1bde114c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-05T18:17:30Z",
+      "side": 1,
+      "message": "please keep the order of index in val[].",
+      "range": {
+        "startLine": 1052,
+        "startChar": 0,
+        "endLine": 1052,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cf7a2cb9_36edeb22",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1052,
+                "startChar": 0,
+                "endLine": 1053,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1054,
+                "startChar": 0,
+                "endLine": 1054,
+                "endChar": 0
+              },
+              "replacement": "        mNumberOfSupportedOffloadedRfcommSockets \u003d (0xFF \u0026 ((int) val[1]));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e04918_c9c93476",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-05T18:17:30Z",
+      "side": 1,
+      "message": "Use \"snake_case\" instead of \"camelCase\" for member variables in struct.\n\ngo/cstyle#Variable_Names",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b99f8b40_41944726",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t max_frame_size;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "  int local_cid;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "  int remote_cid;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 98,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": "  int local_mtu;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 101,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "  int remote_mtu;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "  int initial_rx_credits;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "  int initial_tx_credits;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "  int max_frame_size;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 117,
+                "endChar": 0
+              },
+              "replacement": "  bool mux_initiator;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd4e5f3d_0ff5ee45",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-05T18:17:30Z",
+      "side": 1,
+      "message": "Use \"snake_case\" instead of \"camelCase\" for member variables in struct.\n\ngo/cstyle#Variable_Names",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "77b52598_8c93bcab",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t max_frame_size;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "  int local_cid;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "  int remote_cid;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 98,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": "  int local_mtu;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 101,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "  int remote_mtu;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "  int initial_rx_credits;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "  int initial_tx_credits;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "  int max_frame_size;\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal.h",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 117,
+                "endChar": 0
+              },
+              "replacement": "  bool mux_initiator;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
