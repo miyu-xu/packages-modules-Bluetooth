@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cda8c31f_2a87b367",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T03:07:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c501e850_8cb19936",
+      "range": {
+        "startLine": 164,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 58
+      },
+      "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1006e14_c6c4576a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-11-22T00:35:33Z",
       "side": 1,
       "message": "this is not formatted",
+      "range": {
+        "startLine": 230,
+        "startChar": 9,
+        "endLine": 232,
+        "endChar": 58
+      },
+      "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ee657b_fdc296b4",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T03:07:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e1006e14_c6c4576a",
       "range": {
         "startLine": 230,
         "startChar": 9,
@@ -94,6 +142,30 @@
           ]
         }
       ],
+      "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9b8ff4_96aa7d4e",
+        "filename": "system/gd/hci/le_address_manager_test.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T03:07:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16e709eb_fa4f2b6e",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 31
+      },
       "revId": "5e5ec6819065ec024fdbbe2b20019682f01dae10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
