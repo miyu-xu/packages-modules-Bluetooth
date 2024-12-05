@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc93d74c_118165fa",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-05T02:07:01Z",
+      "side": 1,
+      "message": "I am afraid this will just stay in place even after find the root-cause, masking other potential issues.\n\nIt is likely that the config_id is kInvalidConfigId in this case, I would just confirm this by adding an assert, rather than a soft failure.\n\n```\nlog::assert_that(config_id \u003c\u003d kMaxConfigId, \"invalid config id 0x{:x}\", config_id);\n```",
+      "range": {
+        "startLine": 721,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 5
+      },
+      "revId": "d267635aeb579a3953fe483e9c05f682991a1048",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
