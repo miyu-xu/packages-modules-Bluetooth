@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2cfbe55_72f75247",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-05T20:08:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e805d45_4b7a3beb",
+      "revId": "17d3715486e5e42f58420ded27a5728290925357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "569731f7_f5f926ec",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-05T19:50:16Z",
       "side": 1,
       "message": "nit: We can probably leave these lines as `self.battery_info.get(\u0026remote_address)?.pick_best()`?",
+      "revId": "17d3715486e5e42f58420ded27a5728290925357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b4e054_c756aa98",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-05T20:08:32Z",
+      "side": 1,
+      "message": "Unless you really feel otherwise, I strongly prefer to have this log for easier debugging later on.",
+      "parentUuid": "569731f7_f5f926ec",
       "revId": "17d3715486e5e42f58420ded27a5728290925357",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
