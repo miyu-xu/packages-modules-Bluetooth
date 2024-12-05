@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c1b9b83_74e7ee5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-05T10:02:28Z",
+      "side": 1,
+      "message": "to long line:\n```\nSimplifies handover triggering in LeAudioService by removing the use of\nleft-open sink sessions for monitoring during local broadcasting.\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 55
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3b4a8a7_eb9e968d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-05T10:02:28Z",
+      "side": 1,
+      "message": "I do not understand this if.\nWe will remove broadcast when there is no active device, but only if the broadcast was ready to activation. There is need to check isBroadcastReadyToBeReActivated at all?\n\nIn below if, we do not check it, but it is check inside handleSinkStreamStatusChange.",
+      "range": {
+        "startLine": 562,
+        "startChar": 12,
+        "endLine": 562,
+        "endChar": 14
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6284fea_07bffdc8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-05T10:02:28Z",
+      "side": 1,
+      "message": "`!previousRecordingMode` is enough as it is inside isRecording else.",
+      "range": {
+        "startLine": 563,
+        "startChar": 23,
+        "endLine": 563,
+        "endChar": 69
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d6dd842_bf6ea2b9",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
