@@ -16,6 +16,24 @@
       "message": "p/m/Bluetooth is currently in cleanup week so this CL will only be merged next week",
       "revId": "979f08e21c78b6715ef5d6ad65f38525a0c1bfbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f46e11c_1e112ffc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-12-05T04:57:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "02b3f7ca_1e5e32a0",
+      "revId": "979f08e21c78b6715ef5d6ad65f38525a0c1bfbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
