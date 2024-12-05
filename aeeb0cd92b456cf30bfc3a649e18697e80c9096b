@@ -238,6 +238,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d6a4c36_035f7822",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1480931
+      },
+      "writtenOn": "2024-12-05T07:36:48Z",
+      "side": 1,
+      "message": "While true, I don\u0027t expect any changes to happen. The assigned number was allocated and the CR work is done. I am the feature owner in the SIG and there are no expected changes. We are just waiting for a release vehicle to be available.\nThe purpose of the early publication is to enable open source implementations like AOSP to start development and testing in parallel and be ready to launch on day 1 when the CR is formally adopted.",
+      "parentUuid": "a8217ca5_1c7a3fd1",
+      "range": {
+        "startLine": 1553,
+        "startChar": 30,
+        "endLine": 1553,
+        "endChar": 74
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43839171_2b6ef794",
         "filename": "system/gd/hci/controller_interface.h",
         "patchSetId": 2
