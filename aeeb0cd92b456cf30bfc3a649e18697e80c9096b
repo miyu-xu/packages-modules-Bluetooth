@@ -353,6 +353,30 @@
       },
       "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39ac86f6_c4543365",
+        "filename": "system/gd/hci/controller_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T01:45:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a0b307f_3f4161f5",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
