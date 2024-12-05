@@ -473,6 +473,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c82b4e4a_e0312a19",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-05T00:59:32Z",
+      "side": 1,
+      "message": "Good suggestion. Done.",
+      "parentUuid": "e026f372_a50aae27",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbcdd3c5_9ff42a20",
@@ -504,6 +522,24 @@
           ]
         }
       ],
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4887efe_f9c116a4",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-05T00:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbcdd3c5_9ff42a20",
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
