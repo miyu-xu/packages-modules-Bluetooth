@@ -69,6 +69,24 @@
       "parentUuid": "569731f7_f5f926ec",
       "revId": "17d3715486e5e42f58420ded27a5728290925357",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebe83433_e7df56b7",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-05T22:38:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e9b4e054_c756aa98",
+      "revId": "17d3715486e5e42f58420ded27a5728290925357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
