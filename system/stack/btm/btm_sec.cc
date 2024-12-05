@@ -3292,9 +3292,10 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
   btm_sec_check_pending_enc_req(p_dev_rec, transport, encr_enable);
 
   if (!from_key_refresh) {
-    bta_dm_on_encryption_change(bt_encryption_change_evt{p_dev_rec->ble.pseudo_addr, status,
-                                                         (bool)encr_enable, key_size, transport,
-                                                         p_dev_rec->SupportsSecureConnections()});
+    bta_dm_on_encryption_change(bt_encryption_change_evt{
+            (transport == BT_TRANSPORT_LE) ? p_dev_rec->ble.pseudo_addr : p_dev_rec->bd_addr,
+            status, (bool)encr_enable, key_size, transport,
+            p_dev_rec->SupportsSecureConnections()});
   }
 
   if (transport == BT_TRANSPORT_LE) {
