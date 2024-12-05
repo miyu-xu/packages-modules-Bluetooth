@@ -1033,7 +1033,7 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr, tBT_TRANSPORT transport
                                                           : p_dev_rec->sec_rec.classic_link;
 
   /* Enqueue security request if security is active */
-  if (p_dev_rec->sec_rec.p_callback || (p_dev_rec->sec_rec.le_link != tSECURITY_STATE::IDLE &&
+  if (p_dev_rec->sec_rec.p_callback || (p_dev_rec->sec_rec.le_link != tSECURITY_STATE::IDLE ||
                                         p_dev_rec->sec_rec.classic_link != tSECURITY_STATE::IDLE)) {
     log::warn("Security Manager: BTM_SetEncryption busy, enqueue request");
     btm_sec_queue_encrypt_request(bd_addr, transport, p_callback, p_ref_data, sec_act);
