@@ -1,0 +1,19 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+rust_library {
+    name: "libbluetooth_offload_leaudio_hciproxy",
+    vendor_available: true,
+    crate_name: "bluetooth_offload_leaudio_hciproxy",
+    crate_root: "lib.rs",
+    edition: "2021",
+    rustlibs: [
+        "android.hardware.bluetooth.offload.leaudio-rust",
+        "libbinder_rs",
+        "libbluetooth_offload_hal",
+        "libbluetooth_offload_hci",
+        "liblog_rust",
+        "liblogger",
+    ],
+}
