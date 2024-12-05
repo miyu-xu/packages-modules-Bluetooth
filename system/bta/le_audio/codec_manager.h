@@ -62,6 +62,12 @@ struct broadcast_offload_config {
 
 class CodecManager {
 public:
+  enum Flags {
+    NONE = 0x00,
+    LOW_LATENCY,
+    ALLOW_ASYMMETRIC,
+  };
+
   struct UnicastConfigurationRequirements {
     ::bluetooth::le_audio::types::LeAudioContextType audio_context_type;
     std::optional<std::vector<types::acs_ac_record>> sink_pacs;
@@ -118,7 +124,7 @@ public:
           types::BidirectionalPair<uint16_t> delays_ms,
           std::function<void(const offload_config& config, uint8_t direction)> update_receiver);
   virtual std::unique_ptr<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
-  GetCodecConfig(const UnicastConfigurationRequirements& requirements,
+  GetCodecConfig(const UnicastConfigurationRequirements& requirements, CodecManager::Flags flags,
                  UnicastConfigurationProvider provider);
   virtual bool CheckCodecConfigIsBiDirSwb(
           const ::bluetooth::le_audio::set_configurations::AudioSetConfiguration& config) const;

@@ -330,7 +330,8 @@ size_t LeAudioClientInterface::Sink::Read(uint8_t* p_buf, uint32_t len) {
 std::optional<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
 LeAudioClientInterface::Sink::GetUnicastConfig(
         const ::bluetooth::le_audio::CodecManager::
-                UnicastConfigurationRequirements& /*requirements*/) const {
+                UnicastConfigurationRequirements& /*requirements*/,
+        ::bluetooth::le_audio::CodecManager::Flags /*flags*/) const {
   return std::nullopt;
 }
 

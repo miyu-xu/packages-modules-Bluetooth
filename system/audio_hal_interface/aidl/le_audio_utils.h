@@ -63,7 +63,8 @@ GetAidlLeAudioDeviceCapabilitiesFromStackFormat(
                                 DeviceDirectionRequirements>>& sink_reqs,
                 const std::optional<std::vector<
                         ::bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements::
-                                DeviceDirectionRequirements>>& source_reqs);
+                                DeviceDirectionRequirements>>& source_reqs,
+                ::bluetooth::le_audio::CodecManager::Flags flags);
 ::bluetooth::le_audio::types::LeAudioLtvMap GetStackLeAudioLtvMapFromAidlFormat(
         const std::vector<
                 ::aidl::android::hardware::bluetooth::audio::CodecSpecificConfigurationLtv>&

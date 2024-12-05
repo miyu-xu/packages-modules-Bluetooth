@@ -34,6 +34,7 @@
 
 #include "audio_hal_client/audio_hal_client.h"
 #include "bta/include/bta_gatt_api.h"
+#include "bta/le_audio/gmap_server.h"
 #include "bta_csis_api.h"
 #include "bta_groups.h"
 #include "btif/include/btif_profile_storage.h"
@@ -942,9 +943,22 @@ LeAudioDeviceGroup::GetAudioSetConfigurationRequirements(types::LeAudioContextTy
 bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx_type,
                                                           bool use_preference) const {
   auto requirements = GetAudioSetConfigurationRequirements(ctx_type);
+  // FIXME: Check if group devices have the relevant GMAP features
+  auto flags = CodecManager::Flags::NONE;
+  if ((ctx_type == ::bluetooth::le_audio::types::LeAudioContextType::GAME) &&
+      GmapClient::IsGmapClientEnabled() && GmapServer::IsGmapServerEnabled()) {
+    // Allow asymmetric configurations for the low latency GAME scenarios
+    flags = CodecManager::Flags(CodecManager::Flags::ALLOW_ASYMMETRIC |
+                                CodecManager::Flags::LOW_LATENCY);
+    log::debug(
+            "GMAP is enabled. Set asymmetric flag for the GAME audio context configuration "
+            "requests.");
+  }
+
   auto new_conf = CodecManager::GetInstance()->GetCodecConfig(
-          requirements, std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,
-                                  std::placeholders::_1, std::placeholders::_2, use_preference));
+          requirements, flags,
+          std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,
+                    std::placeholders::_1, std::placeholders::_2, use_preference));
   auto update_config = true;
 
   auto& cached_map = use_preference ? context_to_preferred_configuration_cache_map_

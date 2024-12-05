@@ -374,9 +374,9 @@ public:
 
   std::unique_ptr<AudioSetConfiguration> GetCodecConfig(
           const CodecManager::UnicastConfigurationRequirements& requirements,
-          CodecManager::UnicastConfigurationProvider provider) {
+          CodecManager::Flags flags, CodecManager::UnicastConfigurationProvider provider) {
     if (IsUsingCodecExtensibility()) {
-      auto hal_config = unicast_local_source_hal_client->GetUnicastConfig(requirements);
+      auto hal_config = unicast_local_source_hal_client->GetUnicastConfig(requirements, flags);
       if (hal_config) {
         return std::make_unique<AudioSetConfiguration>(*hal_config);
       }
@@ -1264,9 +1264,9 @@ bool CodecManager::UpdateActiveBroadcastAudioHalClient(
 
 std::unique_ptr<AudioSetConfiguration> CodecManager::GetCodecConfig(
         const CodecManager::UnicastConfigurationRequirements& requirements,
-        CodecManager::UnicastConfigurationProvider provider) {
+        CodecManager::Flags flags, CodecManager::UnicastConfigurationProvider provider) {
   if (pimpl_->IsRunning()) {
-    return pimpl_->codec_manager_impl_->GetCodecConfig(requirements, provider);
+    return pimpl_->codec_manager_impl_->GetCodecConfig(requirements, flags, provider);
   }
 
   return nullptr;

@@ -318,8 +318,8 @@ LeAudioClientInterface::Sink::GetBroadcastConfig(
 // Note: We need a bulk API as well to get multiple configurations for caching
 std::optional<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
 LeAudioClientInterface::Sink::GetUnicastConfig(
-        const ::bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements& requirements)
-        const {
+        const ::bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements& requirements,
+        ::bluetooth::le_audio::CodecManager::Flags flags) const {
   log::debug("Requirements: {}", requirements);
 
   auto aidl_sink_pacs = GetAidlLeAudioDeviceCapabilitiesFromStackFormat(requirements.sink_pacs);
@@ -329,7 +329,7 @@ LeAudioClientInterface::Sink::GetUnicastConfig(
   std::vector<IBluetoothAudioProvider::LeAudioConfigurationRequirement> reqs;
   reqs.push_back(GetAidlLeAudioUnicastConfigurationRequirementsFromStackFormat(
           requirements.audio_context_type, requirements.sink_requirements,
-          requirements.source_requirements));
+          requirements.source_requirements, flags));
 
   log::debug("Making an AIDL call");
   auto aidl_configs = get_aidl_client_interface(is_broadcaster_)

@@ -20,6 +20,7 @@
 
 #include <optional>
 
+#include "bta/le_audio/gmap_server.h"
 #include "hardware/bt_le_audio.h"
 
 namespace bluetooth {
@@ -607,6 +608,14 @@ GetStackConfigSettingFromAidl(
     }
   }
 
+  if (aidl_ase_config.flags.has_value()) {
+    if (aidl_ase_config.flags->bitmask &
+        ::aidl::android::hardware::bluetooth::audio::ConfigurationFlags::
+                ALLOW_ASYMMETRIC_CONFIGURATIONS) {
+      log::debug("GMAP is enabled. Recevied asymmetric flag for audio context configuration.");
+    }
+  }
+
   cig_config.name = GenerateNameForConfig(cig_config);
   return cig_config;
 }
@@ -664,7 +673,8 @@ GetStackUnicastConfigurationFromAidlFormat(
                                 DeviceDirectionRequirements>>& sink_reqs,
                 const std::optional<std::vector<
                         ::bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements::
-                                DeviceDirectionRequirements>>& source_reqs) {
+                                DeviceDirectionRequirements>>& source_reqs,
+                ::bluetooth::le_audio::CodecManager::Flags flags) {
   auto aidl_reqs = ::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider::
           LeAudioConfigurationRequirement();
 
@@ -720,7 +730,19 @@ GetStackUnicastConfigurationFromAidlFormat(
   aidl_reqs.audioContext.bitmask = (uint32_t)context_type;
 
   // TODO(b/341935895): Add the feature flags mechanism in the stack
-  // aidl_reqs.flags
+  if (flags != ::bluetooth::le_audio::CodecManager::Flags::NONE) {
+    aidl_reqs.flags =
+            std::make_optional<::aidl::android::hardware::bluetooth::audio::ConfigurationFlags>();
+    if (flags & ::bluetooth::le_audio::CodecManager::Flags::ALLOW_ASYMMETRIC) {
+      aidl_reqs.flags->bitmask |= ::aidl::android::hardware::bluetooth::audio::ConfigurationFlags::
+              ALLOW_ASYMMETRIC_CONFIGURATIONS;
+    }
+
+    if (flags & ::bluetooth::le_audio::CodecManager::Flags::LOW_LATENCY) {
+      aidl_reqs.flags->bitmask |=
+              ::aidl::android::hardware::bluetooth::audio::ConfigurationFlags::LOW_LATENCY;
+    }
+  }
 
   return aidl_reqs;
 }

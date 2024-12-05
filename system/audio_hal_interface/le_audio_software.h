@@ -129,7 +129,8 @@ public:
             const;
     std::optional<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
     GetUnicastConfig(const ::bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements&
-                             requirements) const;
+                             requirements,
+                     ::bluetooth::le_audio::CodecManager::Flags flags) const;
 
   private:
     bool is_broadcaster_ = false;
