@@ -16,6 +16,24 @@
       "message": "for getDeviceVolume, it makes sense to get from group volume if device volume is not available.\nbut for getGroupVolume, returning any device volume doesn\u0027t seem good to me. If group volume is not available, the caller can always call to get device volume based on its design as needed.\nwhat if the two devices are having different volumes?\n\nwill let other folks also chime in here.",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e38b433_3a317a7f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-05T07:13:14Z",
+      "side": 1,
+      "message": "Probably you have right.\n\nFor getDeviceVolume as you noticed it has sense from API pov but also from internal logic i.e. as we want to set device volume on reconnect if it is cached or get from group if not.\n\nNow look at getGroupVolume. From API pov maybe it is not the best idea, but internal it is good. I.e. if user use only setDeviceVolume and after that want to setGroupActive then it will work correctly. It will take volume from the first device in the group. What do you think? Should we then updateGroupCacheAndAudioSystem using first device volume? Of course, we can implement such logic only there, so getGroupVolume will not be changed.\n\nSame situation is with getGroupMute.",
+      "parentUuid": "59cb9760_44bb86e6",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
