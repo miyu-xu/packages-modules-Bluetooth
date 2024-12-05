@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "230fb2bc_65e94d8a",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-05T21:29:32Z",
+      "side": 0,
+      "message": "There are 2 other tests in this file that check on Clean, please update those as well.",
+      "range": {
+        "startLine": 1635,
+        "startChar": 36,
+        "endLine": 1635,
+        "endChar": 41
+      },
+      "revId": "2f4fbbec44dd1c3277ee36a8eb57eb8ec0b92726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
