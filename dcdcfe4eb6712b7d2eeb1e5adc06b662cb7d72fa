@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbc8c4ac_20a1ad2e",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-05T11:06:01Z",
+      "side": 1,
+      "message": "In the Multiread Response with value, each of tuple contains Len + Value. \n\nSo the `pair_it-\u003esecond` should probably contain also 1 octect for a len.\n\nAlso, lets put the comment above the\n`std::list\u003cstd::pair\u003cuint16_t, size_t\u003e\u003e handles_to_read;`\n\nwhich explains, what is that second.",
+      "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73ce5aaf_20194e86",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-05T11:06:01Z",
+      "side": 1,
+      "message": "nit: looks like handles with variable len response we read always separately, which is good.\n\nDid you consider to  remote `return` from line 452 and add `else` to 453 and after that do this single `for` instead of calling it twice (here and 449)?",
+      "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
