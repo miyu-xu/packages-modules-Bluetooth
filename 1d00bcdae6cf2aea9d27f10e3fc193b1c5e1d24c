@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a78fc763_3af05c9d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-05T07:05:39Z",
+      "side": 1,
+      "message": "In practice, this will be 0 or 1 connection per client.",
+      "parentUuid": "123b960b_d22b2852",
+      "revId": "1d00bcdae6cf2aea9d27f10e3fc193b1c5e1d24c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "044b7437_b744ee34",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 1
