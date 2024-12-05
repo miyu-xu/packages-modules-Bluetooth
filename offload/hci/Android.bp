@@ -1,0 +1,39 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+rust_proc_macro {
+    name: "libbluetooth_offload_hci_derive",
+    crate_name: "bluetooth_offload_hci_derive",
+    crate_root: "derive/lib.rs",
+    edition: "2021",
+    rustlibs: [
+        "libproc_macro2",
+        "libquote",
+        "libsyn",
+    ],
+}
+
+rust_defaults {
+    name: "bluetooth_offload_hci_defaults",
+    crate_root: "lib.rs",
+    crate_name: "bluetooth_offload_hci",
+    edition: "2021",
+    proc_macros: [
+        "libbluetooth_offload_hci_derive",
+    ],
+    visibility: [
+        "//packages/modules/Bluetooth/offload:__subpackages__",
+    ],
+}
+
+rust_library {
+    name: "libbluetooth_offload_hci",
+    defaults: ["bluetooth_offload_hci_defaults"],
+    vendor_available: true,
+}
+
+rust_test_host {
+    name: "libbluetooth_offload_hci_test",
+    defaults: ["bluetooth_offload_hci_defaults"],
+}

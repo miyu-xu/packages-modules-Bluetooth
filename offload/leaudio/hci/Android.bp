@@ -1,0 +1,32 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+rust_defaults {
+    name: "bluetooth_offload_leaudio_hci_defaults",
+    crate_root: "lib.rs",
+    crate_name: "bluetooth_offload_leaudio_hci",
+    edition: "2021",
+    rustlibs: [
+        "android.hardware.bluetooth.offload.leaudio-rust",
+        "libbinder_rs",
+        "libbluetooth_offload_hci",
+        "liblog_rust",
+        "liblogger",
+    ],
+}
+
+rust_library {
+    name: "libbluetooth_offload_leaudio_hci",
+    defaults: ["bluetooth_offload_leaudio_hci_defaults"],
+    vendor_available: true,
+    visibility: [
+        "//hardware/interfaces/bluetooth:__subpackages__",
+        "//packages/modules/Bluetooth/offload:__subpackages__",
+    ],
+}
+
+rust_test {
+    name: "libbluetooth_offload_leaudio_hci_test",
+    defaults: ["bluetooth_offload_leaudio_hci_defaults"],
+}
