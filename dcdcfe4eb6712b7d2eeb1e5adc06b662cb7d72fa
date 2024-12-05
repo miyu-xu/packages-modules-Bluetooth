@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4bcb8a3_46da1940",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-05T11:23:37Z",
+      "side": 1,
+      "message": "Good catch. Thanks.",
+      "parentUuid": "dbc8c4ac_20a1ad2e",
+      "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73ce5aaf_20194e86",
         "filename": "system/bta/vc/device.cc",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-05T11:06:01Z",
       "side": 1,
       "message": "nit: looks like handles with variable len response we read always separately, which is good.\n\nDid you consider to  remote `return` from line 452 and add `else` to 453 and after that do this single `for` instead of calling it twice (here and 449)?",
+      "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab024d2d_a3598d2f",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-05T11:23:37Z",
+      "side": 1,
+      "message": "Yes I did. Initially I was against it, but now, after I reimplemented and simplified the `tBTA_GATTC_MULTI` struct feeding loop I\u0027m thinking this might look good as well. Lets try that.",
+      "parentUuid": "73ce5aaf_20194e86",
       "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
