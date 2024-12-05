@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e0dc21_f9751bd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-05T23:31:23Z",
+      "side": 1,
+      "message": "Updated the read RFCOMM capabilities part accordingly.",
+      "revId": "c1ab3fe8151b00d635722832c2b06d6a5b53a971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

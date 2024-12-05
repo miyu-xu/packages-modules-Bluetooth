@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7e7d436_e348ae6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-05T23:31:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ee208625_4ffa0ebf",
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6573f8fd_3745adf4",
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fdfd621_6709655e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-05T23:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6573f8fd_3745adf4",
+      "range": {
+        "startLine": 1047,
+        "startChar": 25,
+        "endLine": 1047,
+        "endChar": 26
+      },
       "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -106,6 +148,30 @@
           ]
         }
       ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f26c94cc_15b004f1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-05T23:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97039b7e_1bde114c",
+      "range": {
+        "startLine": 1052,
+        "startChar": 0,
+        "endLine": 1052,
+        "endChar": 75
+      },
       "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -231,6 +297,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e931dbe_cdcd69c1",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-05T23:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00e04918_c9c93476",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 23
+      },
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd4e5f3d_0ff5ee45",
@@ -348,6 +438,30 @@
           ]
         }
       ],
+      "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6252bd81_0fe1152d",
+        "filename": "system/gd/hal/socket_hal.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-05T23:31:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd4e5f3d_0ff5ee45",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 20
+      },
       "revId": "db08b87e3cb4a65e8aef2a47ac84dfe1e1e2024d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
