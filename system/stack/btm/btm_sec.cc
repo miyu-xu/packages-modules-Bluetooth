@@ -1033,7 +1033,7 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr, tBT_TRANSPORT transport
                                                           : p_dev_rec->sec_rec.classic_link;
 
   /* Enqueue security request if security is active */
-  if (p_dev_rec->sec_rec.p_callback || (p_dev_rec->sec_rec.le_link != tSECURITY_STATE::IDLE &&
+  if (p_dev_rec->sec_rec.p_callback || (p_dev_rec->sec_rec.le_link != tSECURITY_STATE::IDLE ||
                                         p_dev_rec->sec_rec.classic_link != tSECURITY_STATE::IDLE)) {
     log::warn("Security Manager: BTM_SetEncryption busy, enqueue request");
     btm_sec_queue_encrypt_request(bd_addr, transport, p_callback, p_ref_data, sec_act);
@@ -4963,8 +4963,10 @@ static void btm_sec_check_pending_enc_req(tBTM_SEC_DEV_REC* p_dev_rec, tBT_TRANS
   for (const list_node_t* node = list_begin(list); node != list_end(list);) {
     tBTM_SEC_QUEUE_ENTRY* p_e = (tBTM_SEC_QUEUE_ENTRY*)list_node(node);
     node = list_next(node);
-
+    log::debug("btm_sec_check_pending_enc_req : sec_act=0x{:x}", p_e->sec_act);
     if (p_e->bd_addr == p_dev_rec->bd_addr && p_e->psm == 0 && p_e->transport == transport) {
+#if 0
+    if (!com::android::bluetooth::flags::handle_le_enc_queueing()) {
       if (encr_enable == 0 || transport == BT_TRANSPORT_BR_EDR ||
           p_e->sec_act == BTM_BLE_SEC_ENCRYPT || p_e->sec_act == BTM_BLE_SEC_ENCRYPT_NO_MITM ||
           (p_e->sec_act == BTM_BLE_SEC_ENCRYPT_MITM &&
@@ -4975,172 +4977,187 @@ static void btm_sec_check_pending_enc_req(tBTM_SEC_DEV_REC* p_dev_rec, tBT_TRANS
         fixed_queue_try_remove_from_queue(btm_sec_cb.sec_pending_q, (void*)p_e);
         osi_free(p_e);
       }
+    } else {
+#endif
+      /*pending LE encryption requests can have sec_act as BTM_BLE_SEC_NONE*/
+      if (encr_enable == 0 || p_e->sec_act == BTM_BLE_SEC_NONE ||
+          p_e->sec_act == BTM_BLE_SEC_ENCRYPT || p_e->sec_act == BTM_BLE_SEC_ENCRYPT_NO_MITM ||
+          (p_e->sec_act == BTM_BLE_SEC_ENCRYPT_MITM &&
+           p_dev_rec->sec_rec.sec_flags & BTM_SEC_LE_AUTHENTICATED)) {
+        if (p_e->p_callback) {
+          (*p_e->p_callback)(p_dev_rec->bd_addr, transport, p_e->p_ref_data, res);
+        }
+        fixed_queue_try_remove_from_queue(btm_sec_cb.sec_pending_q, (void*)p_e);
+        osi_free(p_e);
+      }
+#if 0
     }
-  }
-}
-
-/*******************************************************************************
- *
- * Function         btm_sec_set_serv_level4_flags
- *
- * Description      This function is called to set security mode 4 level 4
- *                  flags.
- *
- * Returns          service security requirements updated to include secure
- *                  connections only mode.
- *
- ******************************************************************************/
-static uint16_t btm_sec_set_serv_level4_flags(uint16_t cur_security, bool is_originator) {
-  uint16_t sec_level4_flags = is_originator ? BTM_SEC_OUT_LEVEL4_FLAGS : BTM_SEC_IN_LEVEL4_FLAGS;
-
-  return cur_security | sec_level4_flags;
-}
-
-/*******************************************************************************
- *
- * Function         btm_sec_clear_ble_keys
- *
- * Description      This function is called to clear out the BLE keys.
- *                  Typically when devices are removed in BTM_SecDeleteDevice,
- *                  or when a new BT Link key is generated.
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_sec_clear_ble_keys(tBTM_SEC_DEV_REC* p_dev_rec) {
-  log::verbose("Clearing BLE Keys");
-  memset(&p_dev_rec->sec_rec.ble_keys, 0, sizeof(tBTM_SEC_BLE_KEYS));
-
-  btm_ble_resolving_list_remove_dev(p_dev_rec);
-}
-
-/*******************************************************************************
- *
- * Function         btm_sec_is_a_bonded_dev
- *
- * Description       Is the specified device is a bonded device
- *                   (either on BR/EDR or LE)
- *
- * Returns          true - dev is bonded
- *
- ******************************************************************************/
-bool btm_sec_is_a_bonded_dev(const RawAddress& bda) { return btm_sec_cb.IsDeviceBonded(bda); }
-
-/*******************************************************************************
- *
- * Function         btm_sec_use_smp_br_chnl
- *
- * Description      The function checks if SMP BR connection can be used with
- *                  the peer.
- *                  Is called when authentication for dedicated bonding is
- *                  successfully completed.
- *
- * Returns          true - if SMP BR connection can be used (the link key is
- *                         generated from P-256 and the peer supports Security
- *                         Manager over BR).
- *
- ******************************************************************************/
-static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec) {
-  uint32_t ext_feat;
-  uint8_t chnl_mask[L2CAP_FIXED_CHNL_ARRAY_SIZE];
-
-  log::verbose("link_key_type = 0x{:x}", p_dev_rec->sec_rec.link_key_type);
-
-  if ((p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
-      (p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
-    return false;
-  }
-
-  if (!stack::l2cap::get_interface().L2CA_GetPeerFeatures(p_dev_rec->bd_addr, &ext_feat,
-                                                          chnl_mask)) {
-    return false;
-  }
-
-  if (!(chnl_mask[0] & L2CAP_FIXED_CHNL_SMP_BR_BIT)) {
-    return false;
-  }
-
-  return true;
-}
-
-/*******************************************************************************
- *
- * Function         btm_sec_set_peer_sec_caps
- *
- * Description      This function is called to set sm4 and rmt_sec_caps fields
- *                  based on the available peer device features.
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_sec_set_peer_sec_caps(uint16_t hci_handle, bool ssp_supported, bool sc_supported,
-                               bool hci_role_switch_supported, bool br_edr_supported,
-                               bool le_supported) {
-  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev_by_handle(hci_handle);
-  if (p_dev_rec == nullptr) {
-    return;
-  }
-
-  // Drop the connection here if the remote attempts to downgrade from Secure
-  // Connections mode.
-  if (btm_sec_is_device_sc_downgrade(hci_handle, sc_supported)) {
-    acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
-    btm_sec_send_hci_disconnect(p_dev_rec, HCI_ERR_AUTH_FAILURE, hci_handle,
-                                "attempted to downgrade from Secure Connections mode");
-    return;
-  }
-
-  p_dev_rec->remote_feature_received = true;
-  p_dev_rec->remote_supports_hci_role_switch = hci_role_switch_supported;
-
-  uint8_t req_pend = (p_dev_rec->sm4 & BTM_SM4_REQ_PEND);
-
-  if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) || p_dev_rec->is_originator) {
-    tBTM_STATUS btm_status = btm_sec_execute_procedure(p_dev_rec);
-    if (btm_status != tBTM_STATUS::BTM_CMD_STARTED) {
-      log::warn("Security procedure not started! status:{}", btm_status_text(btm_status));
-      btm_sec_dev_rec_cback_event(p_dev_rec, btm_status, false);
+#endif
     }
   }
 
-  /* Store the Peer Security Capabilities (in SM4 and rmt_sec_caps) */
-  if ((btm_sec_cb.security_mode == BTM_SEC_MODE_SP ||
-       btm_sec_cb.security_mode == BTM_SEC_MODE_SC) &&
-      ssp_supported) {
-    p_dev_rec->sm4 = BTM_SM4_TRUE;
-    p_dev_rec->remote_supports_secure_connections = sc_supported;
-  } else {
-    p_dev_rec->sm4 = BTM_SM4_KNOWN;
-    p_dev_rec->remote_supports_secure_connections = false;
+  /*******************************************************************************
+   *
+   * Function         btm_sec_set_serv_level4_flags
+   *
+   * Description      This function is called to set security mode 4 level 4
+   *                  flags.
+   *
+   * Returns          service security requirements updated to include secure
+   *                  connections only mode.
+   *
+   ******************************************************************************/
+  static uint16_t btm_sec_set_serv_level4_flags(uint16_t cur_security, bool is_originator) {
+    uint16_t sec_level4_flags = is_originator ? BTM_SEC_OUT_LEVEL4_FLAGS : BTM_SEC_IN_LEVEL4_FLAGS;
+
+    return cur_security | sec_level4_flags;
   }
 
-  if (p_dev_rec->remote_features_needed) {
-    log::debug("Now device in SC Only mode, waiting for peer remote features!");
-    btm_io_capabilities_req(p_dev_rec->bd_addr);
-    p_dev_rec->remote_features_needed = false;
+  /*******************************************************************************
+   *
+   * Function         btm_sec_clear_ble_keys
+   *
+   * Description      This function is called to clear out the BLE keys.
+   *                  Typically when devices are removed in BTM_SecDeleteDevice,
+   *                  or when a new BT Link key is generated.
+   *
+   * Returns          void
+   *
+   ******************************************************************************/
+  void btm_sec_clear_ble_keys(tBTM_SEC_DEV_REC * p_dev_rec) {
+    log::verbose("Clearing BLE Keys");
+    memset(&p_dev_rec->sec_rec.ble_keys, 0, sizeof(tBTM_SEC_BLE_KEYS));
+
+    btm_ble_resolving_list_remove_dev(p_dev_rec);
   }
 
-  if (req_pend) {
-    /* Request for remaining Security Features (if any) */
-    l2cu_resubmit_pending_sec_req(&p_dev_rec->bd_addr);
+  /*******************************************************************************
+   *
+   * Function         btm_sec_is_a_bonded_dev
+   *
+   * Description       Is the specified device is a bonded device
+   *                   (either on BR/EDR or LE)
+   *
+   * Returns          true - dev is bonded
+   *
+   ******************************************************************************/
+  bool btm_sec_is_a_bonded_dev(const RawAddress& bda) { return btm_sec_cb.IsDeviceBonded(bda); }
+
+  /*******************************************************************************
+   *
+   * Function         btm_sec_use_smp_br_chnl
+   *
+   * Description      The function checks if SMP BR connection can be used with
+   *                  the peer.
+   *                  Is called when authentication for dedicated bonding is
+   *                  successfully completed.
+   *
+   * Returns          true - if SMP BR connection can be used (the link key is
+   *                         generated from P-256 and the peer supports Security
+   *                         Manager over BR).
+   *
+   ******************************************************************************/
+  static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC * p_dev_rec) {
+    uint32_t ext_feat;
+    uint8_t chnl_mask[L2CAP_FIXED_CHNL_ARRAY_SIZE];
+
+    log::verbose("link_key_type = 0x{:x}", p_dev_rec->sec_rec.link_key_type);
+
+    if ((p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
+        (p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256)) {
+      return false;
+    }
+
+    if (!stack::l2cap::get_interface().L2CA_GetPeerFeatures(p_dev_rec->bd_addr, &ext_feat,
+                                                            chnl_mask)) {
+      return false;
+    }
+
+    if (!(chnl_mask[0] & L2CAP_FIXED_CHNL_SMP_BR_BIT)) {
+      return false;
+    }
+
+    return true;
   }
 
-  p_dev_rec->remote_supports_bredr = br_edr_supported;
-  p_dev_rec->remote_supports_ble = le_supported;
-}
+  /*******************************************************************************
+   *
+   * Function         btm_sec_set_peer_sec_caps
+   *
+   * Description      This function is called to set sm4 and rmt_sec_caps fields
+   *                  based on the available peer device features.
+   *
+   * Returns          void
+   *
+   ******************************************************************************/
+  void btm_sec_set_peer_sec_caps(uint16_t hci_handle, bool ssp_supported, bool sc_supported,
+                                 bool hci_role_switch_supported, bool br_edr_supported,
+                                 bool le_supported) {
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev_by_handle(hci_handle);
+    if (p_dev_rec == nullptr) {
+      return;
+    }
 
-// Return DEV_CLASS (uint8_t[3]) of bda. If record doesn't exist, create one.
-DEV_CLASS btm_get_dev_class(const RawAddress& bda) {
-  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(bda);
-  return p_dev_rec->dev_class;
-}
+    // Drop the connection here if the remote attempts to downgrade from Secure
+    // Connections mode.
+    if (btm_sec_is_device_sc_downgrade(hci_handle, sc_supported)) {
+      acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
+      btm_sec_send_hci_disconnect(p_dev_rec, HCI_ERR_AUTH_FAILURE, hci_handle,
+                                  "attempted to downgrade from Secure Connections mode");
+      return;
+    }
 
-void BTM_update_version_info(const RawAddress& bd_addr,
-                             const remote_version_info& remote_version_info) {
-  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
-  if (p_dev_rec == NULL) {
-    return;
+    p_dev_rec->remote_feature_received = true;
+    p_dev_rec->remote_supports_hci_role_switch = hci_role_switch_supported;
+
+    uint8_t req_pend = (p_dev_rec->sm4 & BTM_SM4_REQ_PEND);
+
+    if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) || p_dev_rec->is_originator) {
+      tBTM_STATUS btm_status = btm_sec_execute_procedure(p_dev_rec);
+      if (btm_status != tBTM_STATUS::BTM_CMD_STARTED) {
+        log::warn("Security procedure not started! status:{}", btm_status_text(btm_status));
+        btm_sec_dev_rec_cback_event(p_dev_rec, btm_status, false);
+      }
+    }
+
+    /* Store the Peer Security Capabilities (in SM4 and rmt_sec_caps) */
+    if ((btm_sec_cb.security_mode == BTM_SEC_MODE_SP ||
+         btm_sec_cb.security_mode == BTM_SEC_MODE_SC) &&
+        ssp_supported) {
+      p_dev_rec->sm4 = BTM_SM4_TRUE;
+      p_dev_rec->remote_supports_secure_connections = sc_supported;
+    } else {
+      p_dev_rec->sm4 = BTM_SM4_KNOWN;
+      p_dev_rec->remote_supports_secure_connections = false;
+    }
+
+    if (p_dev_rec->remote_features_needed) {
+      log::debug("Now device in SC Only mode, waiting for peer remote features!");
+      btm_io_capabilities_req(p_dev_rec->bd_addr);
+      p_dev_rec->remote_features_needed = false;
+    }
+
+    if (req_pend) {
+      /* Request for remaining Security Features (if any) */
+      l2cu_resubmit_pending_sec_req(&p_dev_rec->bd_addr);
+    }
+
+    p_dev_rec->remote_supports_bredr = br_edr_supported;
+    p_dev_rec->remote_supports_ble = le_supported;
   }
 
-  p_dev_rec->remote_version_info = remote_version_info;
-}
+  // Return DEV_CLASS (uint8_t[3]) of bda. If record doesn't exist, create one.
+  DEV_CLASS btm_get_dev_class(const RawAddress& bda) {
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(bda);
+    return p_dev_rec->dev_class;
+  }
+
+  void BTM_update_version_info(const RawAddress& bd_addr,
+                               const remote_version_info& remote_version_info) {
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+    if (p_dev_rec == NULL) {
+      return;
+    }
+
+    p_dev_rec->remote_version_info = remote_version_info;
+  }
