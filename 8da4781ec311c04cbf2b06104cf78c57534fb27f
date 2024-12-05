@@ -1,0 +1,111 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1673bf6a_27d36f7c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-05T00:13:51Z",
+      "side": 1,
+      "message": "That is not a public or stable link;\nproviding the section in which this is specified is fine as well.",
+      "range": {
+        "startLine": 1973,
+        "startChar": 5,
+        "endLine": 1973,
+        "endChar": 128
+      },
+      "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9beb9f_6dfb4406",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1976,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-05T00:13:51Z",
+      "side": 1,
+      "message": "This value has not been loaded yet.",
+      "range": {
+        "startLine": 1976,
+        "startChar": 47,
+        "endLine": 1976,
+        "endChar": 75
+      },
+      "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e014104_3332a0b7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3947,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-05T00:13:51Z",
+      "side": 1,
+      "message": "only used once, please inline in place",
+      "range": {
+        "startLine": 3947,
+        "startChar": 5,
+        "endLine": 3947,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "06b52eb5_a64a7dfa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1975,
+                "startChar": 0,
+                "endLine": 1975,
+                "endChar": 0
+              },
+              "replacement": "    tBLE_BD_ADDR all_zero_address_with_type \u003d {0};\n    const Octet16 all_zero_peer_irk \u003d {0};\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1976,
+                "startChar": 0,
+                "endLine": 1977,
+                "endChar": 0
+              },
+              "replacement": "    bluetooth::shim::ACL_AddToAddressResolution(all_zero_address_with_type, all_zero_peer_irk,\n                                                ble_local_key_cb.id_keys.irk);\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3946,
+                "startChar": 0,
+                "endLine": 3954,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

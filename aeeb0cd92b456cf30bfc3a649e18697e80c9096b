@@ -329,6 +329,30 @@
       },
       "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a0b307f_3f4161f5",
+        "filename": "system/gd/hci/controller_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-05T00:13:51Z",
+      "side": 1,
+      "message": "I meant removing offload, not adding toController.\nThis name is completed uncorrelated with the controller feature it is actually returning.\n\nYou might as well name it:\n`IsLeSetResolvablePrivateAddressTimeoutV2Supported` since that is the information it is returning.",
+      "parentUuid": "f1665a59_2f03758a",
+      "range": {
+        "startLine": 219,
+        "startChar": 15,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "aeeb0cd92b456cf30bfc3a649e18697e80c9096b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
