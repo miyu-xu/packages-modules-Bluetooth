@@ -1,0 +1,19 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+aidl_interface {
+    name: "android.hardware.bluetooth.offload.leaudio",
+    vendor_available: true,
+    unstable: true,
+    srcs: ["android/hardware/bluetooth/offload/leaudio/*.aidl"],
+    backend: {
+        rust: {
+            enabled: true,
+        },
+    },
+    visibility: [
+        "//packages/modules/Bluetooth/offload/leaudio:__subpackages__",
+        "//system/tools/aidl/build",
+    ],
+}
