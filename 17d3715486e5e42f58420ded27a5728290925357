@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e805d45_4b7a3beb",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-05T19:50:16Z",
+      "side": 1,
+      "message": "nit: \n```\nif let Some(info) \u003d self.battery_info.get(\u0026remote_address) {\n    return info.pick_best();\n}\n```",
+      "revId": "17d3715486e5e42f58420ded27a5728290925357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "569731f7_f5f926ec",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-05T19:50:16Z",
+      "side": 1,
+      "message": "nit: We can probably leave these lines as `self.battery_info.get(\u0026remote_address)?.pick_best()`?",
+      "revId": "17d3715486e5e42f58420ded27a5728290925357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
