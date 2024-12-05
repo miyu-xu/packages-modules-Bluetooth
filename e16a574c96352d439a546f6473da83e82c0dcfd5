@@ -16,6 +16,24 @@
       "message": "Same but fixed.",
       "revId": "e16a574c96352d439a546f6473da83e82c0dcfd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1d18df6_a8af2885",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T22:43:58Z",
+      "side": 1,
+      "message": "What is the diff with initial version ?",
+      "parentUuid": "1677f476_939fa96f",
+      "revId": "e16a574c96352d439a546f6473da83e82c0dcfd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
