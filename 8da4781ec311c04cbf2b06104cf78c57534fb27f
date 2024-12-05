@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdcbce09_fa65d886",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T01:43:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1673bf6a_27d36f7c",
+      "range": {
+        "startLine": 1973,
+        "startChar": 5,
+        "endLine": 1973,
+        "endChar": 128
+      },
+      "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa9beb9f_6dfb4406",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-05T00:13:51Z",
       "side": 1,
       "message": "This value has not been loaded yet.",
+      "range": {
+        "startLine": 1976,
+        "startChar": 47,
+        "endLine": 1976,
+        "endChar": 75
+      },
+      "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "078da14b_5611d021",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1976,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T01:43:26Z",
+      "side": 1,
+      "message": "It is loaded in btif_dm_load_ble_local_keys called by btif_init_ok in event_start_up_stack",
+      "parentUuid": "fa9beb9f_6dfb4406",
       "range": {
         "startLine": 1976,
         "startChar": 47,
@@ -104,6 +152,30 @@
           ]
         }
       ],
+      "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb1bd97_178513ed",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3947,
+      "author": {
+        "id": 2066051
+      },
+      "writtenOn": "2024-12-05T01:43:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e014104_3332a0b7",
+      "range": {
+        "startLine": 3947,
+        "startChar": 5,
+        "endLine": 3947,
+        "endChar": 47
+      },
       "revId": "8da4781ec311c04cbf2b06104cf78c57534fb27f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
