@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8f18bd5_e69fe552",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-05T07:26:01Z",
+      "side": 1,
+      "message": "Acknowledged - as Kyunglyul said there shouldn\u0027t normally be multiple connections per client.",
+      "parentUuid": "a78fc763_3af05c9d",
+      "revId": "1d00bcdae6cf2aea9d27f10e3fc193b1c5e1d24c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "044b7437_b744ee34",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-12-05T05:35:24Z",
       "side": 1,
       "message": "Could we submit the proto logging changes first and then the p/m/Bt changes?  Seems like that might help with the floss build failures since they\u0027re not applying the proto changes at this time",
+      "revId": "1d00bcdae6cf2aea9d27f10e3fc193b1c5e1d24c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bb70ae1_e1e41035",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2177,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-05T07:26:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "044b7437_b744ee34",
       "revId": "1d00bcdae6cf2aea9d27f10e3fc193b1c5e1d24c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
