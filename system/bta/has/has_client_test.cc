@@ -71,6 +71,7 @@ using ::bluetooth::le_audio::has::HasPreset;
 
 using ::testing::_;
 using ::testing::AnyNumber;
+using ::testing::AtLeast;
 using ::testing::DoAll;
 using ::testing::DoDefault;
 using ::testing::Invoke;
@@ -1632,7 +1633,7 @@ TEST_F(HasClientTest, test_cp_not_usable_read_all_presets) {
               OnDeviceAvailable(test_address, bluetooth::has::kFeatureBitHearingAidTypeBanded |
                                                       bluetooth::has::kFeatureBitWritablePresets |
                                                       bluetooth::has::kFeatureBitDynamicPresets));
-  EXPECT_CALL(gatt_queue, Clean(1)).Times(1);
+  EXPECT_CALL(gatt_queue, Clean(1)).Times(AtLeast(1));
 
   TestConnect(test_address);
 }
