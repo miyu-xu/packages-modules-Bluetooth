@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a617684_1cdf61f0",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-05T11:47:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4bcb8a3_46da1940",
+      "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73ce5aaf_20194e86",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes I did. Initially I was against it, but now, after I reimplemented and simplified the `tBTA_GATTC_MULTI` struct feeding loop I\u0027m thinking this might look good as well. Lets try that.",
       "parentUuid": "73ce5aaf_20194e86",
+      "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b31a9e14_a3f6706f",
+        "filename": "system/bta/vc/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-05T11:47:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab024d2d_a3598d2f",
       "revId": "dcdcfe4eb6712b7d2eeb1e5adc06b662cb7d72fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
