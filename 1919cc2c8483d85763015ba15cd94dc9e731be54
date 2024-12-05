@@ -1,0 +1,312 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d60154fe_098ed17a",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "Put `requireNonNull(adapterService)` here too (in the first usage of adapterService), so futur reader of the code would not think we need to add a null check here",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "93008c0b_8f250048",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "                requireNonNull(adapterService),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e4ec44_5fdf8e18",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "can we get this once ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 17,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "434d995b_7cf7f50c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "        AudioManager audioManager \u003d adapterService.getSystemService(AudioManager.class);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "                audioManager,\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "                        audioManager,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39157697_4fc70d36",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Import specific classes instead of wildcard imports\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nImport specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a50e066_4a857554",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "This should not be needed since you are using a testlooper",
+      "range": {
+        "startLine": 80,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2fa696_ee342ba6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "Prefer using `doReturn().when()` rather than `when` (it works better in some corner cases)",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d948573b_87bfbb62",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "import static org.mockito.Mockito.anyInt;\nimport static org.mockito.Mockito.anyObject;\nimport static org.mockito.Mockito.anyString;\nimport static org.mockito.Mockito.doReturn;\nimport static org.mockito.Mockito.verify;\nimport static org.mockito.Mockito.when;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 89,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(mMockAudioManager).when(mMockAdapterService).getSystemService(Context.AUDIO_SERVICE);\n        doReturn(Context.AUDIO_SERVICE).when(mMockAdapterService).getSystemServiceName(AudioManager.class);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(mMediaSessionManager).when(mMockAdapterService).getSystemService(Context.MEDIA_SESSION_SERVICE);\n        doReturn(Context.MEDIA_SESSION_SERVICE).when(mMockAdapterService).getSystemServiceName(MediaSessionManager.class);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(mLooper.getNewExecutor()).when(mMockAdapterService).getMainExecutor();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+              "range": {
+                "startLine": 101,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(mMockAdapterService).when(mMockAdapterService).getApplicationContext();\n        doReturn(mMockUserManager).when(mMockAdapterService).getSystemService(Context.USER_SERVICE);\n        doReturn(Context.USER_SERVICE).when(mMockAdapterService).getSystemServiceName(UserManager.class);\n        doReturn(mMockResources).when(mMockAdapterService).getResources();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 111,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(mMockSharedPreferencesEditor).when(mMockSharedPreferences).edit();\n        doReturn(mMockSharedPreferences).when(mMockAdapterService).getSharedPreferences(anyString(), anyInt());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b931bd_953c68f9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "There is a method in testutils that help mocking system service (see AdapterServiceTest)",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a782b389_615893ae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "Can we keep the same order of parameter ?",
+      "range": {
+        "startLine": 159,
+        "startChar": 9,
+        "endLine": 164,
+        "endChar": 42
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b399a52f_d509772c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-05T21:40:10Z",
+      "side": 1,
+      "message": "should we add an assertThat is not null on the callback ?",
+      "range": {
+        "startLine": 174,
+        "startChar": 64,
+        "endLine": 174,
+        "endChar": 89
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
