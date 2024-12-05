@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d85900_a1f1a6ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928656
+      },
+      "writtenOn": "2024-12-05T22:32:13Z",
+      "side": 1,
+      "message": "I don\u0027t think Android BT needs to notify the offload stack about socket closures. It is the responsibility of the offload stack to monitor this.",
+      "revId": "c49f297023ad465d10439477edcc82d68d89bc47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
