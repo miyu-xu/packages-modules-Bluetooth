@@ -46,6 +46,30 @@
       },
       "revId": "bef760ccf3b3698388fe1196377dff1440079c0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6093d40d_7c4a3e9c",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-06T22:15:33Z",
+      "side": 1,
+      "message": "If that makes querying the information easier, then sure",
+      "parentUuid": "ed2ecbc7_e8ae5c96",
+      "range": {
+        "startLine": 212,
+        "startChar": 11,
+        "endLine": 212,
+        "endChar": 24
+      },
+      "revId": "bef760ccf3b3698388fe1196377dff1440079c0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
