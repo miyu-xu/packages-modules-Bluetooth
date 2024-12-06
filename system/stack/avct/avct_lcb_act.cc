@@ -192,6 +192,18 @@ void avct_lcb_chnl_open(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* /* p_data */) {
   uint16_t result = AVCT_RESULT_FAIL;
 
   p_lcb->ch_state = AVCT_CH_CONN;
+<<<<<<< PATCH SET (82a396 Remove flags for encrypted AVDTP & AVCTP channel)
+  p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
+          AVCT_PSM, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
+||||||| BASE
+  if (com::android::bluetooth::flags::use_encrypt_req_for_av()) {
+    p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
+            AVCT_PSM, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
+  } else {
+    p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
+            AVCT_PSM, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE);
+  }
+=======
   if (com::android::bluetooth::flags::use_encrypt_req_for_av()) {
     p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
             BT_PSM_AVCTP, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
@@ -199,6 +211,7 @@ void avct_lcb_chnl_open(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* /* p_data */) {
     p_lcb->ch_lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
             BT_PSM_AVCTP, p_lcb->peer_addr, BTA_SEC_AUTHENTICATE);
   }
+>>>>>>> BASE      (e9b7d1 Set all-zero of peer address, peer address type, and peer IR)
   if (p_lcb->ch_lcid == 0) {
     /* if connect req failed, send ourselves close event */
     tAVCT_LCB_EVT avct_lcb_evt;

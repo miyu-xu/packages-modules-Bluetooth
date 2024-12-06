@@ -530,6 +530,14 @@ void avdt_ad_open_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb, tAVDT_ROLE
     p_tbl->state = AVDT_AD_ST_CONN;
 
     /* call l2cap connect req */
+<<<<<<< PATCH SET (82a396 Remove flags for encrypted AVDTP & AVCTP channel)
+    lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
+            AVDT_PSM, p_ccb->peer_addr, BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT);
+    if (lcid != 0) {
+      /* if connect req ok, store tcid in lcid table  */
+      avdtp_cb.ad.lcid_tbl[lcid] = avdt_ad_tc_tbl_to_idx(p_tbl);
+      log::verbose("avdtp_cb.ad.lcid_tbl[{}] = {}", lcid, avdt_ad_tc_tbl_to_idx(p_tbl));
+||||||| BASE
     if (com::android::bluetooth::flags::use_encrypt_req_for_av()) {
       lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
               AVDT_PSM, p_ccb->peer_addr, BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT);
@@ -537,6 +545,19 @@ void avdt_ad_open_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb, tAVDT_ROLE
       lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(AVDT_PSM, p_ccb->peer_addr,
                                                                        BTM_SEC_OUT_AUTHENTICATE);
     }
+    if (lcid != 0) {
+      /* if connect req ok, store tcid in lcid table  */
+      avdtp_cb.ad.lcid_tbl[lcid] = avdt_ad_tc_tbl_to_idx(p_tbl);
+      log::verbose("avdtp_cb.ad.lcid_tbl[{}] = {}", lcid, avdt_ad_tc_tbl_to_idx(p_tbl));
+=======
+    if (com::android::bluetooth::flags::use_encrypt_req_for_av()) {
+      lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(
+              AVDT_PSM, p_ccb->peer_addr, BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT);
+    } else {
+      lcid = stack::l2cap::get_interface().L2CA_ConnectReqWithSecurity(AVDT_PSM, p_ccb->peer_addr,
+                                                                       BTM_SEC_OUT_AUTHENTICATE);
+    }
+>>>>>>> BASE      (e9b7d1 Set all-zero of peer address, peer address type, and peer IR)
 
     if (lcid == 0) {
       /* if connect req failed, call avdt_ad_tc_close_ind() */
