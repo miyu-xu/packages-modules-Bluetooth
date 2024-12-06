@@ -104,6 +104,24 @@
       "message": "The gatt-fuzzer pre-submit failures seem to be caused by missing mock functions. To fix this, you have two options:\n\nRecommended (especially if time-constrained): Follow the approach in aosp/3348166 and add the logging methods to system/stack and system/main/shim. This avoids adding new mock methods and might be quicker.\n\nAlternative: Add the necessary mock methods for LogMetricBluetoothEvent in packages/modules/Bluetooth/system/test/mock/.  However, it\u0027s unclear how much effort this would require\n\nIf we\u0027re short on time, I suggest going with option 1 as per aosp/3348166.",
       "revId": "1d00bcdae6cf2aea9d27f10e3fc193b1c5e1d24c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c123cd_f9e2142f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-06T06:42:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b5e2070_c4d8d461",
+      "revId": "1d00bcdae6cf2aea9d27f10e3fc193b1c5e1d24c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
