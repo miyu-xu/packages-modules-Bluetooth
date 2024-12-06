@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "855b623b_caa7648b",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-06T22:08:10Z",
+      "side": 1,
+      "message": "This is not relevant as part of the GATT api.\nIf the client wants access to the interval, it should rely on the L2C APIs directly, using either the bd_addr or ACL connection handle",
+      "range": {
+        "startLine": 212,
+        "startChar": 11,
+        "endLine": 212,
+        "endChar": 24
+      },
+      "revId": "bef760ccf3b3698388fe1196377dff1440079c0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
