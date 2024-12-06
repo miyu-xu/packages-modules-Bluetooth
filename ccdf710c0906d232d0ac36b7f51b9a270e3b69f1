@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4803420f_efb21ea7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-06T21:40:16Z",
+      "side": 1,
+      "message": "not fully reviewed.",
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffff521b_32c307dd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-06T21:40:16Z",
+      "side": 1,
+      "message": "maybe  this could be helper function handleNewUuids(boolean isLeUuid) ?",
+      "range": {
+        "startLine": 1151,
+        "startChar": 28,
+        "endLine": 1177,
+        "endChar": 29
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be8781b_2f30c6ca",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-06T21:40:16Z",
+      "side": 1,
+      "message": "so we keep sending old prop as well?",
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8672d276_f9ab2d2f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1640,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-06T21:40:16Z",
+      "side": 1,
+      "message": "nit; classic",
+      "range": {
+        "startLine": 1640,
+        "startChar": 42,
+        "endLine": 1640,
+        "endChar": 69
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
