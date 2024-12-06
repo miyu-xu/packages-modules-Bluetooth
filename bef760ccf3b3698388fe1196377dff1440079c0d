@@ -22,6 +22,30 @@
       },
       "revId": "bef760ccf3b3698388fe1196377dff1440079c0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed2ecbc7_e8ae5c96",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-06T22:14:22Z",
+      "side": 1,
+      "message": "so I can keep the changes for l2cap, right?",
+      "parentUuid": "855b623b_caa7648b",
+      "range": {
+        "startLine": 212,
+        "startChar": 11,
+        "endLine": 212,
+        "endChar": 24
+      },
+      "revId": "bef760ccf3b3698388fe1196377dff1440079c0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
