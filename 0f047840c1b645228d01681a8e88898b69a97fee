@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3653580_e5fc5914",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3296,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-06T19:36:59Z",
+      "side": 1,
+      "message": "It should just be `p_dev_rec-\u003ebd_addr` as RemoveDevices.java can map it to the pseudo address.",
+      "fixSuggestions": [
+        {
+          "fixId": "79a34190_b0277bd0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 3296,
+                "startChar": 0,
+                "endLine": 3297,
+                "endChar": 0
+              },
+              "replacement": "            p_dev_rec-\u003ebd_addr,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0f047840c1b645228d01681a8e88898b69a97fee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
