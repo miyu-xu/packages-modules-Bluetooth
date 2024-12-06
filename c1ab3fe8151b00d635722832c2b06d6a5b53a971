@@ -16,6 +16,23 @@
       "message": "Updated the read RFCOMM capabilities part accordingly.",
       "revId": "c1ab3fe8151b00d635722832c2b06d6a5b53a971",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4395eea2_c19d5a4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-06T21:29:33Z",
+      "side": 1,
+      "message": "We need to allow TYPE_RFCOMM for `connectSocketwithOffload()` and `createSocketChannel()` in BluetoothSocketManagerBinder.java.",
+      "revId": "c1ab3fe8151b00d635722832c2b06d6a5b53a971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
