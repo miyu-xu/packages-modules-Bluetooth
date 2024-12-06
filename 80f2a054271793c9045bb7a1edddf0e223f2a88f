@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb1b2fd_1208e71c",
+        "filename": "system/stack/include/smp_status.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-06T20:54:08Z",
+      "side": 1,
+      "message": "Lets not combine the existing implementation error code with the spec error code. We should create a different identifier (say `SMP_IMPL_BUSY`) for pre-existing `SMP_BUSY` error code and update all its existing references.\n`SMP_BUSY` is the appropriate name for the spec error code, so we reclaim that identifier for spec error code.",
+      "revId": "80f2a054271793c9045bb7a1edddf0e223f2a88f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
