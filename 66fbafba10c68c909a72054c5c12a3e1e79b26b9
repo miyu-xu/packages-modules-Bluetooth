@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb5b65d6_4d52b8a6",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-06T04:31:14Z",
+      "side": 1,
+      "message": "This is not formatted correctly. It generate both clang-format and cpplint error.\n\nYou must use `repo upload` when uploading the change to gerrit",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 50
+      },
+      "revId": "66fbafba10c68c909a72054c5c12a3e1e79b26b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
