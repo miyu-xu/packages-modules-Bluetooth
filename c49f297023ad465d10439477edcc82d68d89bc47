@@ -52,6 +52,24 @@
       "parentUuid": "7a55c9d9_abbc47b8",
       "revId": "c49f297023ad465d10439477edcc82d68d89bc47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d26ca75_c79c9bd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-06T18:28:18Z",
+      "side": 1,
+      "message": "Yes, closed can be used as a response of IBtSocketCallback::close",
+      "parentUuid": "6a66eb6f_b269fb96",
+      "revId": "c49f297023ad465d10439477edcc82d68d89bc47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
