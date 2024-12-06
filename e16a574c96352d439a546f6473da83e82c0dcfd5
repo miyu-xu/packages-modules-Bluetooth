@@ -34,6 +34,24 @@
       "parentUuid": "1677f476_939fa96f",
       "revId": "e16a574c96352d439a546f6473da83e82c0dcfd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a2a381_e5b4f0bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-12-06T09:02:56Z",
+      "side": 1,
+      "message": "MediaPlayerList.java:\n```\nmBrowsingPlayerId \u003d playerId;\n```\nThis is set *after* the condition that checks if these are equal. (line 399)\n\ndevice.cc:\nI removed the useless condition in `SetBrowsedPlayerResponse` that prevented the path from being updated when it should have been.\n\nThe path is set to the one returned by Java layer, which if the player is the same will be the current full path, not only the root (see MediaPlayerList line 386) so we don\u0027t care if it\u0027s overridden.\n\nThe condition was an issue as the browser can be set before we hit the response, resulting in the root path never being set, so failing to retrieve player files.",
+      "parentUuid": "c1d18df6_a8af2885",
+      "revId": "e16a574c96352d439a546f6473da83e82c0dcfd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
