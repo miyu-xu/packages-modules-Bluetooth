@@ -1,5 +1,47 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c0e438_908d1fe6",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1643005
+      },
+      "writtenOn": "2024-12-06T09:46:14Z",
+      "side": 1,
+      "message": "drive by comment from API pod review: I don\u0027t think this `#` should be here - since you\u0027re trying to link to a type here, not a member.",
+      "range": {
+        "startLine": 1731,
+        "startChar": 17,
+        "endLine": 1731,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bf6e8f16_67fe58ae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 1731,
+                "startChar": 0,
+                "endLine": 1732,
+                "endChar": 0
+              },
+              "replacement": "     * @return a {@link BluetoothAddress} containing identity address and identity address type. If\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
