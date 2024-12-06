@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9546e6b_d8b92fa6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-06T08:54:16Z",
+      "side": 1,
+      "message": "Although there are some unresolved comments/TODOs, could you review this CL except those ones?",
+      "revId": "4fbe25b33eb533dfe2ee37191c0e324d14d875d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
