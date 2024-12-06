@@ -4603,6 +4603,13 @@ public final class BluetoothAdapter {
             if (settings.getRfcommUuid() == null) {
                 throw new IllegalArgumentException("RFCOMM server missing UUID");
             }
+            if (!Flags.socketSettingsApi()) { // Added with aosp/3349374
+                return createNewRfcommSocketAndRecord(
+                        settings.getRfcommServiceName(),
+                        settings.getRfcommUuid(),
+                        settings.isAuthenticationRequired(),
+                        settings.isEncryptionRequired());
+            }
             if (settings.getDataPath() == BluetoothSocketSettings.DATA_PATH_NO_OFFLOAD) {
                 socket =
                         new BluetoothServerSocket(
