@@ -40,6 +40,30 @@
       ],
       "revId": "5affb43fcf1cd981d29d3923d6b1d31d535e80b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a58c06_b1bb9ee2",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-06T06:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c07ba3fc_cce508c3",
+      "range": {
+        "startLine": 1261,
+        "startChar": 36,
+        "endLine": 1261,
+        "endChar": 41
+      },
+      "revId": "5affb43fcf1cd981d29d3923d6b1d31d535e80b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
