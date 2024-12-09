@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6839c4c1_c374dbde",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-09T18:36:25Z",
+      "side": 1,
+      "message": "All this metric are for legacy uuids. We may want to create another set for le and for brdedr ?",
+      "range": {
+        "startLine": 1155,
+        "startChar": 72,
+        "endLine": 1155,
+        "endChar": 92
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffff521b_32c307dd",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 10
@@ -60,6 +83,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bdf7f7b_901268b1",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-09T18:36:25Z",
+      "side": 1,
+      "message": "This should be flag no ?",
+      "range": {
+        "startLine": 378,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 14
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "651438f3_0a5ae832",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-09T18:36:25Z",
+      "side": 1,
+      "message": "Why classic_prop is a vector ?\n\ncan\u0027t it be an instantiated struct directly ?\n```\nbt_property_t classic_prop \u003d {BT_PROPERTY_UUIDS_BREDR,\n                                 static_cast\u003cint\u003e(Uuid::kNumBytes128 * uuids.size()),\n                                 (void*)classic_property_value.data()};\n```\n\nand then:\n\n```\n      bt_status_t ret \u003d btif_storage_set_remote_device_property(\u0026bd_addr, \u0026classic_prop);\n```",
+      "range": {
+        "startLine": 1634,
+        "startChar": 6,
+        "endLine": 1636,
+        "endChar": 82
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8672d276_f9ab2d2f",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 10
@@ -76,6 +145,52 @@
         "startChar": 42,
         "endLine": 1640,
         "endChar": 69
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0244811_919b3b18",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-09T18:36:25Z",
+      "side": 1,
+      "message": "same thing, prop doesn\u0027t need to be a vector",
+      "range": {
+        "startLine": 1816,
+        "startChar": 31,
+        "endLine": 1816,
+        "endChar": 35
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a05afd5_cde5a9fb",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-09T18:36:25Z",
+      "side": 1,
+      "message": "should be flag ?",
+      "range": {
+        "startLine": 1062,
+        "startChar": 1,
+        "endLine": 1068,
+        "endChar": 18
       },
       "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
