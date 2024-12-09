@@ -1239,6 +1239,11 @@ static l2cap_socket* btsock_l2cap_find_by_socket_id_l(uint64_t socket_id) {
   return nullptr;
 }
 
+bool is_l2cap_socket_found(uint64_t socket_id) {
+  std::unique_lock<std::mutex> lock(state_lock);
+  return btsock_l2cap_find_by_socket_id_l(socket_id);
+}
+
 void on_btsocket_l2cap_opened_complete(uint64_t socket_id, bool success) {
   l2cap_socket* sock;
 
