@@ -1,0 +1,239 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecbfaea_86da6ea1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-09T14:55:49Z",
+      "side": 1,
+      "message": "comment needs to be modified",
+      "range": {
+        "startLine": 1649,
+        "startChar": 3,
+        "endLine": 1649,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4c18c6a6_9a04af0b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1649,
+                "startChar": 0,
+                "endLine": 1650,
+                "endChar": 0
+              },
+              "replacement": "    /** Handle indicator support changed events from Hands-free. */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2718e2_a6870bbf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-09T14:55:49Z",
+      "side": 1,
+      "message": "rename support_flag to supportFlag",
+      "range": {
+        "startLine": 1651,
+        "startChar": 62,
+        "endLine": 1651,
+        "endChar": 73
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "eb40a5a9_aa7110c6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1651,
+                "startChar": 0,
+                "endLine": 1653,
+                "endChar": 0
+              },
+              "replacement": "            BluetoothDevice device, int indicatorId, boolean supportFlag) {\n        mMainHandler.post(() -\u003e onHfIndicatorSupportChanged(device, indicatorId, supportFlag));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1657,
+                "startChar": 0,
+                "endLine": 1658,
+                "endChar": 0
+              },
+              "replacement": "            BluetoothDevice device, int indicatorId, boolean supportFlag) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1664,
+                "startChar": 0,
+                "endLine": 1665,
+                "endChar": 0
+              },
+              "replacement": "            deviceProperties.setHfpBatteryIndSupport(supportFlag);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd256bf_3a435e0c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1732,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-09T14:55:49Z",
+      "side": 1,
+      "message": "As we accuracy problem only with IPHONEACCEV command , supported flag check needed only for  IPHONEACCEV",
+      "range": {
+        "startLine": 1732,
+        "startChar": 2,
+        "endLine": 1732,
+        "endChar": 76
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c587601c_12b4dc76",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1731,
+                "startChar": 0,
+                "endLine": 1740,
+                "endChar": 0
+              },
+              "replacement": "        if (batteryPercent !\u003d BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {\n            if (cmd.equals(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_IPHONEACCEV)\n                    \u0026\u0026 deviceProperties.isHfpBatteryIndSupported()) {\n                infoLog(\n                        \"Updated device \"\n                                + device\n                                + \" battery level to \"\n                                + String.valueOf(batteryPercent)\n                                + \"%\");\n            } else {\n                updateBatteryLevel(device, batteryPercent, /* isBas\u003d */ false);\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84de24e4_b627efc8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2668,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-09T14:55:49Z",
+      "side": 1,
+      "message": "This statement has no effect",
+      "range": {
+        "startLine": 2665,
+        "startChar": 0,
+        "endLine": 2668,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6e20e44a_2d2caef3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2665,
+                "startChar": 0,
+                "endLine": 2668,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca3a4f90_fd3e91ad",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-09T14:55:49Z",
+      "side": 1,
+      "message": "Since this handling is specific to battery level status , change function name to handleHfIndicatorBatteryLevelSupportChanged and param indId not needed",
+      "range": {
+        "startLine": 2675,
+        "startChar": 18,
+        "endLine": 2678,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "130010ac_64458b65",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2667,
+                "startChar": 0,
+                "endLine": 2668,
+                "endChar": 0
+              },
+              "replacement": "                    .handleHfIndicatorBatteryLevelSupportChanged(device, false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2677,
+                "startChar": 0,
+                "endLine": 2678,
+                "endChar": 0
+              },
+              "replacement": "                            .handleHfIndicatorBatteryLevelSupportChanged(device, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
