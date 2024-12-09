@@ -1,0 +1,524 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0278fedd_3c58021d",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "remote",
+      "range": {
+        "startLine": 337,
+        "startChar": 34,
+        "endLine": 337,
+        "endChar": 39
+      },
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6693d40_526052ae",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "local L2CAP",
+      "range": {
+        "startLine": 338,
+        "startChar": 34,
+        "endLine": 338,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "55598f7d_05252abb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_jv_api.h",
+              "range": {
+                "startLine": 338,
+                "startChar": 0,
+                "endLine": 339,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t local_cid;      /* The local L2CAP CID */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3509d7cc_17e0f168",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "remote L2CAP",
+      "range": {
+        "startLine": 339,
+        "startChar": 34,
+        "endLine": 339,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8e5c65c5_c471004d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_jv_api.h",
+              "range": {
+                "startLine": 339,
+                "startChar": 0,
+                "endLine": 340,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t remote_cid;     /* The remote L2CAP CID */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43134df2_5963e585",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "remote",
+      "range": {
+        "startLine": 354,
+        "startChar": 37,
+        "endLine": 354,
+        "endChar": 42
+      },
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c760c641_6195cb77",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "local L2CAP",
+      "range": {
+        "startLine": 355,
+        "startChar": 37,
+        "endLine": 355,
+        "endChar": 42
+      },
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c8deaf_35652aa1",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "remote L2CAP",
+      "range": {
+        "startLine": 356,
+        "startChar": 37,
+        "endLine": 356,
+        "endChar": 43
+      },
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1346a09_7f003090",
+        "filename": "system/btif/src/btif_sock_hal.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "we don\u0027t need to put function name because log() will add it.",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f19b891a_6e478282",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_hal.cc",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Unable to find socket with socket_id:{}\", socket_id);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_hal.cc",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Unable to find socket with socket_id:{}\", socket_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2994e2_535a0a75",
+        "filename": "system/btif/src/btif_sock_hal.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "we don\u0027t need to put function name because log() will add it.",
+      "range": {
+        "startLine": 51,
+        "startChar": 18,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7360aaca_a481d735",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "`btsock_l2cap_find_by_socket_id_l(socket_id) !\u003d nullptr`",
+      "range": {
+        "startLine": 1244,
+        "startChar": 9,
+        "endLine": 1244,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f3b3086a_cbdd9a1c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1244,
+                "startChar": 0,
+                "endLine": 1245,
+                "endChar": 0
+              },
+              "replacement": "  return btsock_l2cap_find_by_socket_id_l(socket_id) !\u003d nullptr;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d4d5f6_1fe6812e",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "can we branch out `on_srv_rfc_connect_offload` after checking the flag and data_path?",
+      "fixSuggestions": [
+        {
+          "fixId": "11d0a9f3_6e840eb9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 613,
+                "startChar": 0,
+                "endLine": 614,
+                "endChar": 0
+              },
+              "replacement": "static uint32_t on_srv_rfc_connect_offload(tBTA_JV_RFCOMM_SRV_OPEN* p_open, uint32_t id) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 638,
+                "startChar": 0,
+                "endLine": 659,
+                "endChar": 0
+              },
+              "replacement": "  bluetooth::hal::SocketContext socket_context \u003d {\n          .socket_id \u003d accept_rs-\u003esocket_id,\n          .name \u003d accept_rs-\u003esocket_name,\n          .acl_connection_handle \u003d p_open-\u003eacl_handle,\n          .channel_info \u003d bluetooth::hal::RfcommChannelInfo(\n                  p_open-\u003elocal_cid, p_open-\u003eremote_cid, p_open-\u003erx_mtu, p_open-\u003etx_mtu,\n                  p_open-\u003elocal_credit, p_open-\u003eremote_credit, p_open-\u003edlci,\n                  p_open-\u003emax_frame_size, p_open-\u003emux_initiator),\n          .endpoint_info.hub_id \u003d accept_rs-\u003ehub_id,\n          .endpoint_info.endpoint_id \u003d accept_rs-\u003eendpoint_id,\n  };\n  if (!srv_rs-\u003eis_accepting) {\n    log::warn(\"Server socket is not accepting. Disconnect the incoming connection.\");\n    cleanup_rfc_slot(accept_rs);\n  } else if (!bluetooth::shim::GetLppOffloadManager()-\u003eSocketOpened(socket_context)) {\n    log::warn(\"RFCOMM socket opened failed. Disconnect the incoming connection.\");\n    cleanup_rfc_slot(accept_rs);\n  } else {\n    log::info(\"RFCOMM socket opened successful. Will send connect signal in async callback.\");\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 664,
+                "startChar": 0,
+                "endLine": 667,
+                "endChar": 0
+              },
+              "replacement": "  return srv_rs-\u003eid;\n}\n\nstatic uint32_t on_srv_rfc_connect(tBTA_JV_RFCOMM_SRV_OPEN* p_open, uint32_t id) {\n  log::verbose(\"id:{}\", id);\n  std::unique_lock\u003cstd::recursive_mutex\u003e lock(slot_lock);\n  rfc_slot_t* accept_rs;\n  rfc_slot_t* srv_rs \u003d find_rfc_slot_by_id(id);\n  if (!srv_rs) {\n    log::error(\"RFCOMM slot with id {} not found.\", id);\n    return 0;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 668,
+                "startChar": 0,
+                "endLine": 668,
+                "endChar": 0
+              },
+              "replacement": "\n  accept_rs \u003d create_srv_accept_rfc_slot(srv_rs, \u0026p_open-\u003erem_bda, p_open-\u003ehandle,\n                                         p_open-\u003enew_listen_handle);\n  if (!accept_rs) {\n    return 0;\n  }\n\n  log::info(\n          \"connected to RFCOMM socket connections for device: {}, scn: {}, \"\n          \"app_uid: {}, id: {}\",\n          accept_rs-\u003eaddr, accept_rs-\u003escn, accept_rs-\u003eapp_uid, id);\n  btif_sock_connection_logger(accept_rs-\u003eaddr, accept_rs-\u003eid, BTSOCK_RFCOMM,\n                              SOCKET_CONNECTION_STATE_DISCONNECTED,\n                              accept_rs-\u003ef.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,\n                              accept_rs-\u003eapp_uid, accept_rs-\u003escn, 0, 0, accept_rs-\u003eservice_name);\n\n  send_app_connect_signal(srv_rs-\u003efd, \u0026accept_rs-\u003eaddr, srv_rs-\u003escn, 0, accept_rs-\u003eapp_fd,\n                          accept_rs-\u003esocket_id);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 675,
+                "startChar": 0,
+                "endLine": 675,
+                "endChar": 0
+              },
+              "replacement": "\nstatic void on_cli_rfc_connect_offload(tBTA_JV_RFCOMM_OPEN* p_open, uint32_t id) {\n  log::verbose(\"id:{}\", id);\n  std::unique_lock\u003cstd::recursive_mutex\u003e lock(slot_lock);\n  rfc_slot_t* slot \u003d find_rfc_slot_by_id(id);\n  if (!slot) {\n    log::error(\"RFCOMM slot with id {} not found.\", id);\n    return;\n  }\n\n  if (p_open-\u003estatus !\u003d tBTA_JV_STATUS::SUCCESS) {\n    log::warn(\"CONNECT unsuccessful, status {}. Cleaning up slot with id {}\",\n              bta_jv_status_text(p_open-\u003estatus), slot-\u003eid);\n    cleanup_rfc_slot(slot);\n    return;\n  }\n\n  slot-\u003erfc_port_handle \u003d BTA_JvRfcommGetPortHdl(p_open-\u003ehandle);\n  slot-\u003eaddr \u003d p_open-\u003erem_bda;\n  slot-\u003esocket_id \u003d btif_rfc_sock_generate_socket_id();\n\n  log::info(\n          \"connected to RFCOMM socket connections for device: {}, scn: {}, \"\n          \"app_uid: {}, id: {}\",\n          slot-\u003eaddr, slot-\u003escn, slot-\u003eapp_uid, id);\n  btif_sock_connection_logger(\n          slot-\u003eaddr, slot-\u003eid, BTSOCK_RFCOMM, SOCKET_CONNECTION_STATE_CONNECTED,\n          slot-\u003ef.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, slot-\u003eapp_uid, slot-\u003escn, 0,\n          0, slot-\u003eservice_uuid.ToString().c_str());\n\n  bluetooth::hal::SocketContext socket_context \u003d {\n          .socket_id \u003d slot-\u003esocket_id,\n          .name \u003d slot-\u003esocket_name,\n          .acl_connection_handle \u003d p_open-\u003eacl_handle,\n          .channel_info \u003d bluetooth::hal::RfcommChannelInfo(\n                  p_open-\u003elocal_cid, p_open-\u003eremote_cid, p_open-\u003erx_mtu, p_open-\u003etx_mtu,\n                  p_open-\u003elocal_credit, p_open-\u003eremote_credit, p_open-\u003edlci,\n                  p_open-\u003emax_frame_size, p_open-\u003emux_initiator),\n          .endpoint_info.hub_id \u003d slot-\u003ehub_id,\n          .endpoint_info.endpoint_id \u003d slot-\u003eendpoint_id,\n  };\n  if (!bluetooth::shim::GetLppOffloadManager()-\u003eSocketOpened(socket_context)) {\n    log::warn(\"RFCOMM socket opened failed. Disconnect the incoming connection.\");\n    cleanup_rfc_slot(slot);\n  } else {\n    log::info(\n            \"RFCOMM socket opened successful. Will send connect signal in \"\n            \"on_btsocket_rfc_opened_complete() asynchronously.\");\n  }\n}\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 705,
+                "startChar": 0,
+                "endLine": 725,
+                "endChar": 0
+              },
+              "replacement": "  if (send_app_connect_signal(slot-\u003efd, \u0026slot-\u003eaddr, slot-\u003escn, 0, -1, slot-\u003esocket_id)) {\n    slot-\u003ef.connected \u003d true;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 726,
+                "startChar": 0,
+                "endLine": 731,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"unable to send connect completion signal to caller.\");\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 764,
+                "startChar": 0,
+                "endLine": 779,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 780,
+                "startChar": 0,
+                "endLine": 788,
+                "endChar": 0
+              },
+              "replacement": "  if (slot-\u003edata_path \u003d\u003d BTSOCK_DATA_PATH_NO_OFFLOAD) {\n    // If the socket was accepted from listen socket, use listen_fd.\n    if (slot-\u003elisten_fd !\u003d -1) {\n      send_app_connect_signal(slot-\u003elisten_fd, \u0026slot-\u003eaddr, slot-\u003escn, 0, slot-\u003eapp_fd,\n                              slot-\u003esocket_id);\n      // The fd is closed after sent to app in send_app_connect_signal()\n      slot-\u003eapp_fd \u003d -1;\n    } else {\n      if (!send_app_scn(slot)) {\n        log::error(\"Unable to send rfcomm socket to application socket_id:{}\", slot-\u003eid);\n        return;\n      }\n      if (!send_app_connect_signal(slot-\u003efd, \u0026slot-\u003eaddr, slot-\u003escn, 0, -1, slot-\u003esocket_id)) {\n        log::error(\"Unable to connect l2cap socket to application socket_id:{}\", slot-\u003eid);\n        return;\n      }\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 789,
+                "startChar": 0,
+                "endLine": 791,
+                "endChar": 0
+              },
+              "replacement": "      log::info(\n              \"Connected to RFCOMM connection for device: {}, channel: {}, app_uid: {}, id: {}, \"\n              \"socket_id: {}\",\n              slot-\u003eaddr, slot-\u003escn, slot-\u003eapp_uid, slot-\u003eid, slot-\u003esocket_id);\n      btif_sock_connection_logger(slot-\u003eaddr, slot-\u003eid, BTSOCK_RFCOMM,\n                                  SOCKET_CONNECTION_STATE_CONNECTED,\n                                  slot-\u003ef.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,\n                                  slot-\u003eapp_uid, slot-\u003escn, 0, 0, slot-\u003eservice_name);\n\n      log::info(\"Connected rfcomm socket socket_id:{}\", slot-\u003eid);\n      slot-\u003ef.connected \u003d true;\n    }\n  } else {\n    log::info(\"RFCOMM socket opened successful. Will send connect signal in async callback.\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34b9ca0b_b667255d",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "can we branch out `on_cli_rfc_connect_offload` after checking the flag and data_path?",
+      "fixSuggestions": [
+        {
+          "fixId": "867f728c_877b497d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 675,
+                "startChar": 0,
+                "endLine": 675,
+                "endChar": 0
+              },
+              "replacement": "\nstatic void on_srv_rfc_connect_offload(tBTA_JV_RFCOMM_SRV_OPEN* p_open, uint32_t id) {\n  log::verbose(\"id:{}\", id);\n  std::unique_lock\u003cstd::recursive_mutex\u003e lock(slot_lock);\n  rfc_slot_t* accept_rs;\n  rfc_slot_t* srv_rs \u003d find_rfc_slot_by_id(id);\n  if (!srv_rs) {\n    log::error(\"RFCOMM slot with id {} not found.\", id);\n    return;\n  }\n\n  accept_rs \u003d create_srv_accept_rfc_slot(srv_rs, \u0026p_open-\u003erem_bda, p_open-\u003ehandle,\n                                         p_open-\u003enew_listen_handle);\n  if (!accept_rs) {\n    return;\n  }\n\n  log::info(\n          \"connected to RFCOMM socket connections for device: {}, scn: {}, \"\n          \"app_uid: {}, id: {}\",\n          accept_rs-\u003eaddr, accept_rs-\u003escn, accept_rs-\u003eapp_uid, id);\n  btif_sock_connection_logger(accept_rs-\u003eaddr, accept_rs-\u003eid, BTSOCK_RFCOMM,\n                              SOCKET_CONNECTION_STATE_DISCONNECTED,\n                              accept_rs-\u003ef.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,\n                              accept_rs-\u003eapp_uid, accept_rs-\u003escn, 0, 0, accept_rs-\u003eservice_name);\n\n  bluetooth::hal::SocketContext socket_context \u003d {\n          .socket_id \u003d accept_rs-\u003esocket_id,\n          .name \u003d accept_rs-\u003esocket_name,\n          .acl_connection_handle \u003d p_open-\u003eacl_handle,\n          .channel_info \u003d bluetooth::hal::RfcommChannelInfo(\n                  p_open-\u003elocal_cid, p_open-\u003eremote_cid, p_open-\u003erx_mtu, p_open-\u003etx_mtu,\n                  p_open-\u003elocal_credit, p_open-\u003eremote_credit, p_open-\u003edlci,\n                  p_open-\u003emax_frame_size, p_open-\u003emux_initiator),\n          .endpoint_info.hub_id \u003d accept_rs-\u003ehub_id,\n          .endpoint_info.endpoint_id \u003d accept_rs-\u003eendpoint_id,\n  };\n  if (!srv_rs-\u003eis_accepting) {\n    log::warn(\"Server socket is not accepting. Disconnect the incoming connection.\");\n    cleanup_rfc_slot(accept_rs);\n  } else if (!bluetooth::shim::GetLppOffloadManager()-\u003eSocketOpened(socket_context)) {\n    log::warn(\"RFCOMM socket opened failed. Disconnect the incoming connection.\");\n    cleanup_rfc_slot(accept_rs);\n  } else {\n    log::info(\"RFCOMM socket opened successful. Will send connect signal in async callback.\");\n  }\n\n  // Start monitoring the socket.\n  btsock_thread_add_fd(pth, srv_rs-\u003efd, BTSOCK_RFCOMM, SOCK_THREAD_FD_EXCEPTION, srv_rs-\u003eid);\n  btsock_thread_add_fd(pth, accept_rs-\u003efd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD, accept_rs-\u003eid);\n  if (srv_rs-\u003edata_path \u003d\u003d BTSOCK_DATA_PATH_NO_OFFLOAD) {\n    send_app_connect_signal(srv_rs-\u003efd, \u0026accept_rs-\u003eaddr, srv_rs-\u003escn, 0, accept_rs-\u003eapp_fd,\n                            accept_rs-\u003esocket_id);\n  }\n  accept_rs-\u003eapp_fd \u003d INVALID_FD;  // Ownership of the application fd has been transferred.\n  // start monitoring the socketpair to get call back when app is accepting on server socket\n  if (com::android::bluetooth::flags::socket_settings_api()) {\n    btsock_thread_add_fd(pth, srv_rs-\u003efd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD, srv_rs-\u003eid);\n  }\n}\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 705,
+                "startChar": 0,
+                "endLine": 720,
+                "endChar": 0
+              },
+              "replacement": "  if (slot-\u003edata_path \u003d\u003d BTSOCK_DATA_PATH_NO_OFFLOAD) {\n    if (send_app_connect_signal(slot-\u003efd, \u0026slot-\u003eaddr, slot-\u003escn, 0, -1, slot-\u003esocket_id)) {\n      slot-\u003ef.connected \u003d true;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 721,
+                "startChar": 0,
+                "endLine": 724,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"unable to send connect completion signal to caller.\");\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 725,
+                "startChar": 0,
+                "endLine": 725,
+                "endChar": 0
+              },
+              "replacement": "  } else {\n    on_cli_rfc_connect_offload(p_open, id);\n  }\n}\n\nstatic void on_cli_rfc_connect_offload(tBTA_JV_RFCOMM_OPEN* p_open, uint32_t id) {\n  log::verbose(\"id:{}\", id);\n  std::unique_lock\u003cstd::recursive_mutex\u003e lock(slot_lock);\n  rfc_slot_t* slot \u003d find_rfc_slot_by_id(id);\n  if (!slot) {\n    log::error(\"RFCOMM slot with id {} not found.\", id);\n    return;\n  }\n\n  if (p_open-\u003estatus !\u003d tBTA_JV_STATUS::SUCCESS) {\n    log::warn(\"CONNECT unsuccessful, status {}. Cleaning up slot with id {}\",\n              bta_jv_status_text(p_open-\u003estatus), slot-\u003eid);\n    cleanup_rfc_slot(slot);\n    return;\n  }\n\n  slot-\u003erfc_port_handle \u003d BTA_JvRfcommGetPortHdl(p_open-\u003ehandle);\n  slot-\u003eaddr \u003d p_open-\u003erem_bda;\n  slot-\u003esocket_id \u003d btif_rfc_sock_generate_socket_id();\n\n  log::info(\n          \"connected to RFCOMM socket connections for device: {}, scn: {}, \"\n          \"app_uid: {}, id: {}\",\n          slot-\u003eaddr, slot-\u003escn, slot-\u003eapp_uid, id);\n  btif_sock_connection_logger(\n          slot-\u003eaddr, slot-\u003eid, BTSOCK_RFCOMM, SOCKET_CONNECTION_STATE_CONNECTED,\n          slot-\u003ef.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, slot-\u003eapp_uid, slot-\u003escn, 0,\n          0, slot-\u003eservice_uuid.ToString().c_str());\n\n  bluetooth::hal::SocketContext socket_context \u003d {\n          .socket_id \u003d slot-\u003esocket_id,\n          .name \u003d slot-\u003esocket_name,\n          .acl_connection_handle \u003d p_open-\u003eacl_handle,\n          .channel_info \u003d bluetooth::hal::RfcommChannelInfo(\n                  p_open-\u003elocal_cid, p_open-\u003eremote_cid, p_open-\u003erx_mtu, p_open-\u003etx_mtu,\n                  p_open-\u003elocal_credit, p_open-\u003eremote_credit, p_open-\u003edlci,\n                  p_open-\u003emax_frame_size, p_open-\u003emux_initiator),\n          .endpoint_info.hub_id \u003d slot-\u003ehub_id,\n          .endpoint_info.endpoint_id \u003d slot-\u003eendpoint_id,\n  };\n  if (!bluetooth::shim::GetLppOffloadManager()-\u003eSocketOpened(socket_context)) {\n    log::warn(\"RFCOMM socket opened failed. Disconnect the incoming connection.\");\n    cleanup_rfc_slot(slot);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f09b1add_fd94f30d",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:43:14Z",
+      "side": 1,
+      "message": "`find_rfc_slot_by_socket_id(socket_id) !\u003d nullptr`",
+      "range": {
+        "startLine": 747,
+        "startChar": 9,
+        "endLine": 747,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "242207b6_68bfa022",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 747,
+                "startChar": 0,
+                "endLine": 748,
+                "endChar": 0
+              },
+              "replacement": "  return find_rfc_slot_by_socket_id(socket_id) !\u003d nullptr;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3b2bf5033b5004680de91a61aa12366681beeb10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
