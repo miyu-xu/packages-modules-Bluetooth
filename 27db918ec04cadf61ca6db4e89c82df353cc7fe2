@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2fa8597_c8880c2e",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T17:01:32Z",
+      "side": 1,
+      "message": "Can we use a flagged function like btsock_l2cap_signaled_flagged() added by \naosp/3349375 and aosp/3395004?",
+      "range": {
+        "startLine": 994,
+        "startChar": 5,
+        "endLine": 994,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c5ed9863_0df7956c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 994,
+                "startChar": 0,
+                "endLine": 995,
+                "endChar": 0
+              },
+              "replacement": "void btsock_rfc_signaled_flagged(int fd, int flags, uint32_t id) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "27db918ec04cadf61ca6db4e89c82df353cc7fe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
