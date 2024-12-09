@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21d86b3d_11f88f8b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-09T19:51:38Z",
+      "side": 1,
+      "message": "ok. Thanks.\nWill change as suggested.",
+      "parentUuid": "7ecbfaea_86da6ea1",
+      "range": {
+        "startLine": 1649,
+        "startChar": 3,
+        "endLine": 1649,
+        "endChar": 52
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e2718e2_a6870bbf",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 6
@@ -105,6 +129,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "101a9650_03b8b987",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-09T19:51:38Z",
+      "side": 1,
+      "message": "ok. Thanks.\nWill rename as suggested.",
+      "parentUuid": "0e2718e2_a6870bbf",
+      "range": {
+        "startLine": 1651,
+        "startChar": 62,
+        "endLine": 1651,
+        "endChar": 73
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0dd256bf_3a435e0c",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 6
@@ -146,6 +194,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d4d92ab_047acd95",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1732,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-09T19:51:38Z",
+      "side": 1,
+      "message": "The intention is, when isHfpBatterSupported flag is false, then allow to update the battery level either for IPHONEACCEV or vENDOR_SPECIFIC_HEADSET_EVENT_XEVENT, otherwise update via. HFP Battery Indicator.\n\nSo, I believe the check is required not just for IPHONEACCEV",
+      "parentUuid": "0dd256bf_3a435e0c",
+      "range": {
+        "startLine": 1732,
+        "startChar": 2,
+        "endLine": 1732,
+        "endChar": 76
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84de24e4_b627efc8",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 6
@@ -181,6 +253,30 @@
           ]
         }
       ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422c276a_f6070b4a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2668,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-09T19:51:38Z",
+      "side": 1,
+      "message": "ok Thanks.\nWill remove this function call.",
+      "parentUuid": "84de24e4_b627efc8",
+      "range": {
+        "startLine": 2665,
+        "startChar": 0,
+        "endLine": 2668,
+        "endChar": 0
+      },
       "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -232,6 +328,30 @@
           ]
         }
       ],
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89bafbf_5701dfd7",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-09T19:51:38Z",
+      "side": 1,
+      "message": "The function name is generic \u0026 can be applied to any Hf indicator.\nTo the function, indId and status is passed. So, same function can be used for ENHANCED_DRIVER_SAFETY or any Vendor Specific Indicator.",
+      "parentUuid": "ca3a4f90_fd3e91ad",
+      "range": {
+        "startLine": 2675,
+        "startChar": 18,
+        "endLine": 2678,
+        "endChar": 0
+      },
       "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
