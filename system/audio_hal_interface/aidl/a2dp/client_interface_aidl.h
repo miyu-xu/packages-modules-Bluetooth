@@ -163,6 +163,8 @@ private:
   IBluetoothTransportInstance* transport_;
   std::vector<AudioCapabilities> capabilities_;
   std::vector<LatencyMode> latency_modes_;
+  //Declare and initialize a Handler for the main thread
+  final Handler mMainHandler = new Handler(Looper.getMainLooper());
 
   static constexpr int kDefaultDataReadTimeoutMs = 10;
   static constexpr int kDefaultDataReadPollIntervalMs = 1;
