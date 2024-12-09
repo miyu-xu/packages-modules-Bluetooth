@@ -28,6 +28,7 @@
 #include "a2dp_sbc.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <string.h>
 
 #include <cstdint>
@@ -67,6 +68,19 @@ typedef struct {
 static const tA2DP_SBC_CIE a2dp_sbc_source_caps = {
         (A2DP_SBC_IE_SAMP_FREQ_44),                         /* samp_freq */
         (A2DP_SBC_IE_CH_MD_MONO | A2DP_SBC_IE_CH_MD_JOINT), /* ch_mode */
+        (A2DP_SBC_IE_BLOCKS_16 | A2DP_SBC_IE_BLOCKS_12 | A2DP_SBC_IE_BLOCKS_8 |
+         A2DP_SBC_IE_BLOCKS_4),            /* block_len */
+        A2DP_SBC_IE_SUBBAND_8,             /* num_subbands */
+        A2DP_SBC_IE_ALLOC_MD_L,            /* alloc_method */
+        A2DP_SBC_IE_MIN_BITPOOL,           /* min_bitpool */
+        A2DP_SBC_MAX_BITPOOL,              /* max_bitpool */
+        BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16 /* bits_per_sample */
+};
+
+/* SBC Source codec capabilities that default supports 48K */
+static const tA2DP_SBC_CIE a2dp_sbc_source_caps_48k = {
+        (A2DP_SBC_IE_SAMP_FREQ_48 | A2DP_SBC_IE_SAMP_FREQ_44), /* samp_freq */
+        (A2DP_SBC_IE_CH_MD_MONO | A2DP_SBC_IE_CH_MD_JOINT),    /* ch_mode */
         (A2DP_SBC_IE_BLOCKS_16 | A2DP_SBC_IE_BLOCKS_12 | A2DP_SBC_IE_BLOCKS_8 |
          A2DP_SBC_IE_BLOCKS_4),            /* block_len */
         A2DP_SBC_IE_SUBBAND_8,             /* num_subbands */
@@ -121,6 +135,13 @@ static const tA2DP_DECODER_INTERFACE a2dp_decoder_interface_sbc = {
         nullptr,  // decoder_suspend
         nullptr,  // decoder_configure
 };
+
+static const tA2DP_SBC_CIE& get_a2dp_sbc_source_caps() {
+  if (com::android::bluetooth::flags::a2dp_sbc_default_enable_48k()) {
+    return a2dp_sbc_source_caps_48k;
+  }
+  return a2dp_sbc_source_caps;
+}
 
 static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilitySbc(const tA2DP_SBC_CIE* p_cap,
                                                        const uint8_t* p_codec_info,
@@ -778,7 +799,7 @@ const char* A2DP_CodecIndexStrSbc(void) { return "SBC"; }
 const char* A2DP_CodecIndexStrSbcSink(void) { return "SBC SINK"; }
 
 bool A2DP_InitCodecConfigSbc(AvdtpSepConfig* p_cfg) {
-  return A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, &a2dp_sbc_source_caps, p_cfg->codec_info);
+  return A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, &get_a2dp_sbc_source_caps(), p_cfg->codec_info);
 }
 
 bool A2DP_InitCodecConfigSbcSink(AvdtpSepConfig* p_cfg) {
@@ -788,24 +809,26 @@ bool A2DP_InitCodecConfigSbcSink(AvdtpSepConfig* p_cfg) {
 A2dpCodecConfigSbcSource::A2dpCodecConfigSbcSource(btav_a2dp_codec_priority_t codec_priority)
     : A2dpCodecConfigSbcBase(BTAV_A2DP_CODEC_INDEX_SOURCE_SBC, A2DP_CodecIndexStrSbc(),
                              codec_priority, true) {
+  const tA2DP_SBC_CIE& caps = get_a2dp_sbc_source_caps();
+
   // Compute the local capability
-  if (a2dp_sbc_source_caps.samp_freq & A2DP_SBC_IE_SAMP_FREQ_44) {
+  if (caps.samp_freq & A2DP_SBC_IE_SAMP_FREQ_44) {
     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_44100;
   }
-  if (a2dp_sbc_source_caps.samp_freq & A2DP_SBC_IE_SAMP_FREQ_48) {
+  if (caps.samp_freq & A2DP_SBC_IE_SAMP_FREQ_48) {
     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_48000;
   }
-  codec_local_capability_.bits_per_sample = a2dp_sbc_source_caps.bits_per_sample;
-  if (a2dp_sbc_source_caps.ch_mode & A2DP_SBC_IE_CH_MD_MONO) {
+  codec_local_capability_.bits_per_sample = caps.bits_per_sample;
+  if (caps.ch_mode & A2DP_SBC_IE_CH_MD_MONO) {
     codec_local_capability_.channel_mode |= BTAV_A2DP_CODEC_CHANNEL_MODE_MONO;
   }
-  if (a2dp_sbc_source_caps.ch_mode & A2DP_SBC_IE_CH_MD_JOINT) {
+  if (caps.ch_mode & A2DP_SBC_IE_CH_MD_JOINT) {
     codec_local_capability_.channel_mode |= BTAV_A2DP_CODEC_CHANNEL_MODE_STEREO;
   }
-  if (a2dp_sbc_source_caps.ch_mode & A2DP_SBC_IE_CH_MD_STEREO) {
+  if (caps.ch_mode & A2DP_SBC_IE_CH_MD_STEREO) {
     codec_local_capability_.channel_mode |= BTAV_A2DP_CODEC_CHANNEL_MODE_STEREO;
   }
-  if (a2dp_sbc_source_caps.ch_mode & A2DP_SBC_IE_CH_MD_DUAL) {
+  if (caps.ch_mode & A2DP_SBC_IE_CH_MD_DUAL) {
     codec_local_capability_.channel_mode |= BTAV_A2DP_CODEC_CHANNEL_MODE_STEREO;
   }
 }
@@ -986,7 +1009,8 @@ tA2DP_STATUS A2dpCodecConfigSbcBase::setCodecConfig(const uint8_t* p_peer_codec_
   uint8_t block_len;
   uint8_t num_subbands;
   uint8_t alloc_method;
-  const tA2DP_SBC_CIE* p_a2dp_sbc_caps = (is_source_) ? &a2dp_sbc_source_caps : &a2dp_sbc_sink_caps;
+  const tA2DP_SBC_CIE* p_a2dp_sbc_caps =
+          (is_source_) ? &get_a2dp_sbc_source_caps() : &a2dp_sbc_sink_caps;
 
   // Save the internal state
   btav_a2dp_codec_config_t saved_codec_config = codec_config_;
@@ -1367,7 +1391,8 @@ bool A2dpCodecConfigSbcBase::setPeerCodecCapabilities(const uint8_t* p_peer_code
   tA2DP_SBC_CIE peer_info_cie;
   uint8_t samp_freq;
   uint8_t ch_mode;
-  const tA2DP_SBC_CIE* p_a2dp_sbc_caps = (is_source_) ? &a2dp_sbc_source_caps : &a2dp_sbc_sink_caps;
+  const tA2DP_SBC_CIE* p_a2dp_sbc_caps =
+          (is_source_) ? &get_a2dp_sbc_source_caps() : &a2dp_sbc_sink_caps;
 
   // Save the internal state
   btav_a2dp_codec_config_t saved_codec_selectable_capability = codec_selectable_capability_;
