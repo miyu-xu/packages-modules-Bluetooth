@@ -1433,14 +1433,30 @@ static void bta_jv_port_mgmt_cl_cback(const tPORT_RESULT code, uint16_t port_han
   }
 
   if (code == PORT_SUCCESS) {
-    tBTA_JV evt_data = {
-            .rfc_open =
-                    {
-                            .status = tBTA_JV_STATUS::SUCCESS,
-                            .handle = p_cb->handle,
-                            .rem_bda = rem_bda,
-                    },
-    };
+    tBTA_JV evt_data;
+    evt_data.rfc_open.status = tBTA_JV_STATUS::SUCCESS;
+    evt_data.rfc_open.handle = p_cb->handle;
+    evt_data.rfc_open.rem_bda = rem_bda;
+    if (com::android::bluetooth::flags::socket_settings_api()) {
+      uint16_t local_mtu, remote_mtu, local_credit, remote_credit, local_cid, remote_cid, dlci;
+      uint16_t max_frame_size, acl_handle;
+      bool mux_initiator;
+      if (PORT_GetChannelInfo(port_handle, &local_mtu, &remote_mtu, &local_credit, &remote_credit,
+                              &local_cid, &remote_cid, &dlci, &max_frame_size, &acl_handle,
+                              &mux_initiator) != PORT_SUCCESS) {
+        log::warn("Unable to get RFCOMM channel info peer:{} handle:{}", rem_bda, port_handle);
+      }
+      evt_data.rfc_open.rx_mtu = local_mtu;
+      evt_data.rfc_open.tx_mtu = remote_mtu;
+      evt_data.rfc_open.local_credit = local_credit;
+      evt_data.rfc_open.remote_credit = remote_credit;
+      evt_data.rfc_open.local_cid = local_cid;
+      evt_data.rfc_open.remote_cid = remote_cid;
+      evt_data.rfc_open.dlci = dlci;
+      evt_data.rfc_open.max_frame_size = max_frame_size;
+      evt_data.rfc_open.acl_handle = acl_handle;
+      evt_data.rfc_open.mux_initiator = mux_initiator;
+    }
     p_pcb->state = BTA_JV_ST_CL_OPEN;
     p_cb->p_cback(BTA_JV_RFCOMM_OPEN_EVT, &evt_data, p_pcb->rfcomm_slot_id);
   } else {
@@ -1648,6 +1664,26 @@ static void bta_jv_port_mgmt_sr_cback(const tPORT_RESULT code, uint16_t port_han
     evt_data.rfc_srv_open.handle = p_pcb->handle;
     evt_data.rfc_srv_open.status = tBTA_JV_STATUS::SUCCESS;
     evt_data.rfc_srv_open.rem_bda = rem_bda;
+    if (com::android::bluetooth::flags::socket_settings_api()) {
+      uint16_t local_mtu, remote_mtu, local_credit, remote_credit, local_cid, remote_cid, dlci;
+      uint16_t max_frame_size, acl_handle;
+      bool mux_initiator;
+      if (PORT_GetChannelInfo(port_handle, &local_mtu, &remote_mtu, &local_credit, &remote_credit,
+                              &local_cid, &remote_cid, &dlci, &max_frame_size, &acl_handle,
+                              &mux_initiator) != PORT_SUCCESS) {
+        log::warn("Unable to get RFCOMM channel info peer:{} handle:{}", rem_bda, port_handle);
+      }
+      evt_data.rfc_open.rx_mtu = local_mtu;
+      evt_data.rfc_open.tx_mtu = remote_mtu;
+      evt_data.rfc_open.local_credit = local_credit;
+      evt_data.rfc_open.remote_credit = remote_credit;
+      evt_data.rfc_open.local_cid = local_cid;
+      evt_data.rfc_open.remote_cid = remote_cid;
+      evt_data.rfc_open.dlci = dlci;
+      evt_data.rfc_open.max_frame_size = max_frame_size;
+      evt_data.rfc_open.acl_handle = acl_handle;
+      evt_data.rfc_open.mux_initiator = mux_initiator;
+    }
     tBTA_JV_PCB* p_pcb_new_listen = bta_jv_add_rfc_port(p_cb, p_pcb);
     if (p_pcb_new_listen) {
       evt_data.rfc_srv_open.new_listen_handle = p_pcb_new_listen->handle;
