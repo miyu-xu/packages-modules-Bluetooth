@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29dd9ba_065a7f67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1536847
+      },
+      "writtenOn": "2024-12-09T11:12:25Z",
+      "side": 1,
+      "message": "what is the reason for reverting the previous chagens?\n(Reason for revert: Caused b/204956632)",
+      "revId": "6fd32e46416a0be28c63944bdf1979e2288b6cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
