@@ -1,0 +1,121 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e37e2bff_c11b4033",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:01:16Z",
+      "side": 1,
+      "message": "Pointer to L2CAP local mtu must NOT be nullptr",
+      "range": {
+        "startLine": 947,
+        "startChar": 34,
+        "endLine": 947,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5fb8eabe_0ca87a7e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/l2cap_interface.h",
+              "range": {
+                "startLine": 947,
+                "startChar": 0,
+                "endLine": 948,
+                "endChar": 0
+              },
+              "replacement": "   **                  local_mtu: Pointer to L2CAP local mtu must NOT be nullptr\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d04161a_03a38c0a",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:01:16Z",
+      "side": 1,
+      "message": "Add `All OUT parameters must NOT be nullptr.`",
+      "fixSuggestions": [
+        {
+          "fixId": "47e62c97_db638fcd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/port_api.h",
+              "range": {
+                "startLine": 491,
+                "startChar": 0,
+                "endLine": 492,
+                "endChar": 0
+              },
+              "replacement": " *                  by the handle of the port. All OUT parameters must NOT be nullptr.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f15591b1_f97bfa8d",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T18:01:16Z",
+      "side": 1,
+      "message": "Pointer to L2CAP local mtu must NOT be nullptr",
+      "range": {
+        "startLine": 808,
+        "startChar": 32,
+        "endLine": 808,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7803e034_47d15859",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 808,
+                "startChar": 0,
+                "endLine": 809,
+                "endChar": 0
+              },
+              "replacement": " **                  local_mtu: Pointer to L2CAP local mtu must NOT be nullptr\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
