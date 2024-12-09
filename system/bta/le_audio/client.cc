@@ -5364,6 +5364,14 @@ public:
       }
     }
 
+    auto addr = group->GetFirstDevice()->GetBdAddress();
+    log::debug("RawAddress address: {}", addr);
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(addr);
+    if (leAudioDevice) {
+        send_vs_cmd(addr, static_cast<uint16_t>(new_config_context),
+            group->GetFirstDevice()->snk_pacs_);
+    }
+
     /* Note that the remote device metadata was so far unfiltered when it comes
      * to group context availability, or multiple contexts support flag, so that
      * we could choose the correct configuration for the use case. Now we can
