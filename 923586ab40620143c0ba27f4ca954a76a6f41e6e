@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c397f7_7ad93416",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T17:43:42Z",
+      "side": 1,
+      "message": "can we print `accept_rs-\u003esocket_id`?",
+      "range": {
+        "startLine": 618,
+        "startChar": 2,
+        "endLine": 618,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "178a2c46_fb2a67f3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 620,
+                "startChar": 0,
+                "endLine": 622,
+                "endChar": 0
+              },
+              "replacement": "          \"app_uid: {}, id: {}, socket_id: {}\",\n          accept_rs-\u003eaddr, accept_rs-\u003escn, accept_rs-\u003eapp_uid, id, accept_rs-\u003esocket_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "923586ab40620143c0ba27f4ca954a76a6f41e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292771dd_c48f5dca",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-09T17:43:42Z",
+      "side": 1,
+      "message": "can we print `slot-\u003esocket_id`?",
+      "range": {
+        "startLine": 656,
+        "startChar": 0,
+        "endLine": 656,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1cae086d_2b7256a3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 658,
+                "startChar": 0,
+                "endLine": 660,
+                "endChar": 0
+              },
+              "replacement": "          \"app_uid: {}, id: {}, socket_id: {}\",\n          slot-\u003eaddr, slot-\u003escn, slot-\u003eapp_uid, id, slot-\u003esocket_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "923586ab40620143c0ba27f4ca954a76a6f41e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
