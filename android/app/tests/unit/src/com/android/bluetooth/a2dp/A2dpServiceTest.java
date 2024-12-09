@@ -110,7 +110,6 @@ public class A2dpServiceTest {
     @Parameters(name = "{0}")
     public static List<FlagsParameterization> getParams() {
         return FlagsParameterization.allCombinationsOf(
-                Flags.FLAG_A2DP_SERVICE_LOOPER,
                 Flags.FLAG_A2DP_BROADCAST_CONNECTION_STATE_WHEN_TURNED_OFF);
     }
 
@@ -333,7 +332,6 @@ public class A2dpServiceTest {
 
     /** Test that an outgoing connection times out */
     @Test
-    @EnableFlags(Flags.FLAG_A2DP_SERVICE_LOOPER)
     public void testOutgoingConnectTimeout() {
         // Update the device priority so okToConnect() returns true
         when(mDatabaseManager.getProfileConnectionPolicy(sTestDevice, BluetoothProfile.A2DP))
@@ -654,7 +652,6 @@ public class A2dpServiceTest {
      * if the device is unbond.
      */
     @Test
-    @EnableFlags(Flags.FLAG_A2DP_SERVICE_LOOPER)
     public void testDeleteStateMachineDisconnectEvents() {
         // Update the device priority so okToConnect() returns true
         when(mDatabaseManager.getProfileConnectionPolicy(sTestDevice, BluetoothProfile.A2DP))
