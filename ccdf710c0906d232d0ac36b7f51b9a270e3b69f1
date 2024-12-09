@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "958a7469_a8708dc8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "LE and Classic UUIDs are send separately from stack, but are merged together here.\nMeaning of UUID update broadcast stays same, so IMHO no need for new metric.",
+      "parentUuid": "6839c4c1_c374dbde",
+      "range": {
+        "startLine": 1155,
+        "startChar": 72,
+        "endLine": 1155,
+        "endChar": 92
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffff521b_32c307dd",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 10
@@ -54,6 +78,30 @@
       "writtenOn": "2024-12-06T21:40:16Z",
       "side": 1,
       "message": "maybe  this could be helper function handleNewUuids(boolean isLeUuid) ?",
+      "range": {
+        "startLine": 1151,
+        "startChar": 28,
+        "endLine": 1177,
+        "endChar": 29
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e59182a_3721c653",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "squashed it into fallthrough case.",
+      "parentUuid": "ffff521b_32c307dd",
       "range": {
         "startLine": 1151,
         "startChar": 28,
@@ -81,6 +129,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05220e25_2f03c907",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "Yes, but not here. This code is just for checking if UUID is in the list.",
+      "parentUuid": "9be8781b_2f30c6ca",
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bdf7f7b_901268b1",
@@ -94,6 +160,30 @@
       "writtenOn": "2024-12-09T18:36:25Z",
       "side": 1,
       "message": "This should be flag no ?",
+      "range": {
+        "startLine": 378,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 14
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b3a70ca_9984a299",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bdf7f7b_901268b1",
       "range": {
         "startLine": 378,
         "startChar": 0,
@@ -127,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fafaf940_7ee857ce",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "651438f3_0a5ae832",
+      "range": {
+        "startLine": 1634,
+        "startChar": 6,
+        "endLine": 1636,
+        "endChar": 82
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8672d276_f9ab2d2f",
@@ -140,6 +254,30 @@
       "writtenOn": "2024-12-06T21:40:16Z",
       "side": 1,
       "message": "nit; classic",
+      "range": {
+        "startLine": 1640,
+        "startChar": 42,
+        "endLine": 1640,
+        "endChar": 69
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "347b6494_6da0b3c0",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1640,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8672d276_f9ab2d2f",
       "range": {
         "startLine": 1640,
         "startChar": 42,
@@ -173,6 +311,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e20cc7_e66038fb",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0244811_919b3b18",
+      "range": {
+        "startLine": 1816,
+        "startChar": 31,
+        "endLine": 1816,
+        "endChar": 35
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a05afd5_cde5a9fb",
@@ -186,6 +348,30 @@
       "writtenOn": "2024-12-09T18:36:25Z",
       "side": 1,
       "message": "should be flag ?",
+      "range": {
+        "startLine": 1062,
+        "startChar": 1,
+        "endLine": 1068,
+        "endChar": 18
+      },
+      "revId": "ccdf710c0906d232d0ac36b7f51b9a270e3b69f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391d7b2e_586f7821",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-09T20:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a05afd5_cde5a9fb",
       "range": {
         "startLine": 1062,
         "startChar": 1,
