@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24d5306b_ed0e1a1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-12-09T22:14:28Z",
+      "side": 1,
+      "message": "The related flag is already in Trunkfood Full. How do you guarantee that this will not introduce regressions? Can you build any tests for it?",
+      "revId": "8d26ee09edf31f17e4e27355c1ed8b1f74a12f76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
