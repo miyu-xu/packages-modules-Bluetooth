@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b8e49c_0a8ecbec",
+        "filename": "android/pandora/test/a2dp/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T19:19:47Z",
+      "side": 1,
+      "message": "empty file",
+      "revId": "a09f146dc1187246c7dbf7a5bc94ddbceb0ad387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03415750_803a6e7f",
+        "filename": "android/pandora/test/a2dp/packets/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T19:19:47Z",
+      "side": 1,
+      "message": "empty file",
+      "revId": "a09f146dc1187246c7dbf7a5bc94ddbceb0ad387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
