@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e2c5273_0fcc2533",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-10T17:51:34Z",
+      "side": 1,
+      "message": "or I think we can implement this part in a static function.",
+      "parentUuid": "a40d6d6d_42a7ba31",
+      "range": {
+        "startLine": 949,
+        "startChar": 0,
+        "endLine": 959,
+        "endChar": 7
+      },
+      "revId": "3e06cdb3c2b21f7a4c0597b3be3532b2f4533d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7226a23d_30a72598",
         "filename": "system/btif/src/btif_sock_rfc.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-10T02:54:25Z",
       "side": 1,
       "message": "It seems better to branch out within on_srv_rfc_connect(), isn\u0027t it? Otherwise, we have to find the port again.",
+      "range": {
+        "startLine": 966,
+        "startChar": 0,
+        "endLine": 976,
+        "endChar": 7
+      },
+      "revId": "3e06cdb3c2b21f7a4c0597b3be3532b2f4533d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ae4836_1115d219",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-10T17:51:34Z",
+      "side": 1,
+      "message": "or I think we can implement this part in a static function.",
+      "parentUuid": "7226a23d_30a72598",
       "range": {
         "startLine": 966,
         "startChar": 0,
