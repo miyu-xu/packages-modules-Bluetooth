@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8bf27b1_f639e95f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T22:21:42Z",
+      "side": 1,
+      "message": "Sure, I have moved `on_cli_rfc_connect_offload` inside `on_cli_rfc_connect()`.",
+      "parentUuid": "1e2c5273_0fcc2533",
+      "range": {
+        "startLine": 949,
+        "startChar": 0,
+        "endLine": 959,
+        "endChar": 7
+      },
+      "revId": "3e06cdb3c2b21f7a4c0597b3be3532b2f4533d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7226a23d_30a72598",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "or I think we can implement this part in a static function.",
       "parentUuid": "7226a23d_30a72598",
+      "range": {
+        "startLine": 966,
+        "startChar": 0,
+        "endLine": 976,
+        "endChar": 7
+      },
+      "revId": "3e06cdb3c2b21f7a4c0597b3be3532b2f4533d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "080b9b93_fe3f87af",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T22:21:42Z",
+      "side": 1,
+      "message": "Sure, I have moved `on_srv_rfc_connect_offload` inside `on_srv_rfc_connect()`.",
+      "parentUuid": "72ae4836_1115d219",
       "range": {
         "startLine": 966,
         "startChar": 0,
