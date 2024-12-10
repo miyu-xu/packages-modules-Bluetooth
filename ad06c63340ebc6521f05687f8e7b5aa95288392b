@@ -16,6 +16,29 @@
       "message": "lgtm, please help to run some sanity tests with our available remotes.",
       "revId": "ad06c63340ebc6521f05687f8e7b5aa95288392b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "089906b9_70259105",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-12-10T22:35:59Z",
+      "side": 1,
+      "message": "Why is this not flagged if the change is related to `leaudio_broadcast_receive_state_processing_refactor`?",
+      "range": {
+        "startLine": 1328,
+        "startChar": 8,
+        "endLine": 1338,
+        "endChar": 9
+      },
+      "revId": "ad06c63340ebc6521f05687f8e7b5aa95288392b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
