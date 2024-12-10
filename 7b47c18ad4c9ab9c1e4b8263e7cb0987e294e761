@@ -1,0 +1,180 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa87062a_25d3b508",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T19:40:48Z",
+      "side": 1,
+      "message": "`OnMtuChanged`, Server / Client is already implied from the name of the class.",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4d557638_0b89cd85",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_ras_api.h",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 42,
+                "endChar": 0
+              },
+              "replacement": "  virtual void OnMtuChanged(const RawAddress\u0026 address, uint16_t mtu) \u003d 0;\n"
+            },
+            {
+              "path": "system/bta/include/bta_ras_api.h",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "  virtual void OnMtuChanged(const RawAddress\u0026 address, uint16_t mtu) \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7b47c18ad4c9ab9c1e4b8263e7cb0987e294e761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498ccbb8_e881eff5",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T19:40:48Z",
+      "side": 1,
+      "message": "`req_data`\n\nYou should pass req_data to OnGattMtuChanged by reference, similarly to the change in ras_client.cc.",
+      "range": {
+        "startLine": 258,
+        "startChar": 30,
+        "endLine": 258,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b8cc463c_4296aa04",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_server.cc",
+              "range": {
+                "startLine": 215,
+                "startChar": 0,
+                "endLine": 216,
+                "endChar": 0
+              },
+              "replacement": "        OnGattMtuChanged(p_data-\u003ereq_data);\n"
+            },
+            {
+              "path": "system/bta/ras/ras_server.cc",
+              "range": {
+                "startLine": 257,
+                "startChar": 0,
+                "endLine": 260,
+                "endChar": 0
+              },
+              "replacement": "  void OnGattMtuChanged(const tBTA_GATTS_REQ_DATA\u0026 req_data) {\n    auto remote_bda \u003d req_data.remote_bda;\n    log::info(\"mtu is changed as {}\", req_data.p_data-\u003emtu);\n"
+            },
+            {
+              "path": "system/bta/ras/ras_server.cc",
+              "range": {
+                "startLine": 262,
+                "startChar": 0,
+                "endLine": 263,
+                "endChar": 0
+              },
+              "replacement": "      it-\u003esecond.mtu \u003d req_data.p_data-\u003emtu;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7b47c18ad4c9ab9c1e4b8263e7cb0987e294e761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a304b04_f41973d6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T19:40:48Z",
+      "side": 1,
+      "message": "RAS ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 73,
+        "endLine": 76,
+        "endChar": 76
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7c9dbc99_33e01d21",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "static constexpr uint16_t kDefaultRasMtu \u003d 247;      // Section 3.1.2 of RAS 1.0\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7b47c18ad4c9ab9c1e4b8263e7cb0987e294e761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "945c6078_d5a7bcb6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T19:40:48Z",
+      "side": 1,
+      "message": "Can you not attach the MTU to the tracker information instead ?",
+      "range": {
+        "startLine": 538,
+        "startChar": 13,
+        "endLine": 538,
+        "endChar": 35
+      },
+      "revId": "7b47c18ad4c9ab9c1e4b8263e7cb0987e294e761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
