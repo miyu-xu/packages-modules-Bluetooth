@@ -56,6 +56,8 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
@@ -1011,6 +1013,8 @@ public class ScanManager {
         private final boolean mIsMsftSupported;
         // Whether or not MSFT-based scanning is currently enabled in the controller
         private boolean scanEnabledMsft = false;
+        // Map of merged MSFT patterns
+        private MsftAdvMonitorMergedPatternMap mMsftAdvMonitorMergedPatternMap;
 
         ScanNative(TransitionalScanHelper scanHelper) {
             mNativeInterface = ScanObjectsFactory.getInstance().getScanNativeInterface();
@@ -1050,6 +1054,9 @@ public class ScanManager {
                     Flags.leScanMsftSupport()
                             && SystemProperties.getBoolean(MSFT_HCI_EXT_ENABLED, false)
                             && mNativeInterface.gattClientIsMsftSupported();
+            if (mIsMsftSupported) {
+                mMsftAdvMonitorMergedPatternMap = new MsftAdvMonitorMergedPatternMap();
+            }
         }
 
         private void callbackDone(int scannerId, int status) {
@@ -1981,8 +1988,28 @@ public class ScanManager {
 
             Deque<Integer> clientFilterIndices = new ArrayDeque<>();
             for (ScanFilter filter : client.filters) {
-                int filterIndex = mFilterIndexStack.pop();
                 MsftAdvMonitor monitor = new MsftAdvMonitor(filter);
+
+                if (monitor.getPatterns().length == 0 && monitor.getAddress().bd_addr == null) {
+                    Log.d(
+                            TAG,
+                            "No MSFT pattern or address was translated from client filter: "
+                                    + filter);
+                    continue;
+                }
+
+                // Some chipsets don't support multiple monitors with the same pattern. Skip
+                // creating a new monitor if the pattern has alreaady been registered
+                if (monitor.getPatterns().length != 0
+                        && mMsftAdvMonitorMergedPatternMap.containsPattern(monitor.getPatterns())
+                                != -1) {
+                    int index = mMsftAdvMonitorMergedPatternMap.add(-1, monitor.getPatterns());
+                    clientFilterIndices.add(index);
+                    continue;
+                }
+
+                int filterIndex = mFilterIndexStack.pop();
+                mMsftAdvMonitorMergedPatternMap.add(filterIndex, monitor.getPatterns());
 
                 resetCountDownLatch();
                 mNativeInterface.gattClientMsftAdvMonitorAdd(
@@ -2002,11 +2029,13 @@ public class ScanManager {
         private void removeFiltersMsft(ScanClient client) {
             Deque<Integer> clientFilterIndices = mClientFilterIndexMap.remove(client.scannerId);
             if (clientFilterIndices != null) {
-                mFilterIndexStack.addAll(clientFilterIndices);
                 for (int filterIndex : clientFilterIndices) {
-                    resetCountDownLatch();
-                    mNativeInterface.gattClientMsftAdvMonitorRemove(filterIndex);
-                    waitForCallback();
+                    if (mMsftAdvMonitorMergedPatternMap.remove(filterIndex)) {
+                        resetCountDownLatch();
+                        mNativeInterface.gattClientMsftAdvMonitorRemove(filterIndex);
+                        waitForCallback();
+                        mFilterIndexStack.add(filterIndex);
+                    }
                 }
             }
 
@@ -2221,5 +2250,88 @@ public class ScanManager {
             int profile, int fromState, int toState) {
         mHandler.post(
                 () -> mHandler.handleProfileConnectionStateChanged(profile, fromState, toState));
+    }
+
+    /* Helper class to keep track of MSFT patterns, their filter index, and number of
+     * monitors registered with that pattern. Some chipsets don't support multiple
+     * monitors with the same pattern. To solve that and to generally ease their
+     * task, we merge monitors with the same pattern, so those monitors will only
+     * be sent once.
+     */
+    class MsftAdvMonitorMergedPatternMap {
+        static class MsftAdvMonitorMergedPattern {
+            private MsftAdvMonitor.Pattern[] mPatterns;
+            private int mFilterIndex;
+            private int mCount;
+
+            MsftAdvMonitorMergedPattern(
+                    MsftAdvMonitor.Pattern[] pattern, int filterIndex, int count) {
+                mPatterns = pattern;
+                mFilterIndex = filterIndex;
+                mCount = count;
+            }
+        }
+
+        ArrayList<MsftAdvMonitorMergedPattern> mMergedPatterns = new ArrayList<>();
+
+        /* Two patterns are considered equal if they have the exact same pattern
+         * in the same order. Therefore A+B and B+A are considered different, as
+         * well as A and A+A. This shouldn't causes issues but could be optimized.
+         * Returns index position of pattern or -1 if not found.
+         */
+        int containsPattern(MsftAdvMonitor.Pattern[] pattern) {
+            for (int i = 0; i < mMergedPatterns.size(); i++) {
+                MsftAdvMonitor.Pattern[] matchPattern = mMergedPatterns.get(i).mPatterns;
+                if (matchPattern.length != pattern.length) {
+                    return -1;
+                }
+                for (int j = 0; j < matchPattern.length; j++) {
+                    MsftAdvMonitor.Pattern a = matchPattern[j];
+                    MsftAdvMonitor.Pattern b = pattern[j];
+                    if (a.ad_type == b.ad_type
+                            && a.start_byte == b.start_byte
+                            && Arrays.equals(a.pattern, b.pattern)) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+
+        // If pattern doesn't exist, creates new entry with given index.
+        // If pattern exists, increases count and returns filter index.
+        int add(int filterIndex, MsftAdvMonitor.Pattern[] pattern) {
+            int index = (containsPattern(pattern));
+            if (index == -1) {
+                mMergedPatterns.add(new MsftAdvMonitorMergedPattern(pattern, filterIndex, 1));
+                return filterIndex;
+            }
+
+            mMergedPatterns.get(index).mCount++;
+            return mMergedPatterns.get(index).mFilterIndex;
+        }
+
+        // If pattern exists, decreases count. If count is 0, removes entry.
+        // Returns true if there are no more instances of the given filter index
+        boolean remove(int filterIndex) {
+            int index;
+            for (index = 0; index < mMergedPatterns.size(); index++) {
+                if (mMergedPatterns.get(index).mFilterIndex == filterIndex) {
+                    break;
+                }
+            }
+
+            if (index == mMergedPatterns.size()) {
+                return true;
+            }
+
+            mMergedPatterns.get(index).mCount--;
+            if (mMergedPatterns.get(index).mCount == 0) {
+                mMergedPatterns.remove(index);
+                return true;
+            }
+
+            return false;
+        }
     }
 }
