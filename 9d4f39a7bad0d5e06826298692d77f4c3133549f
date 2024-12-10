@@ -46,6 +46,30 @@
       },
       "revId": "9d4f39a7bad0d5e06826298692d77f4c3133549f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "140ee5b1_9413a2bb",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-10T21:58:46Z",
+      "side": 1,
+      "message": "yep, this is only internal fixes for deviceVolume methods and does not change any API behavior.\n\nI will put this in vcp.aconfig instead of leaudio, I was not aware of this file, thanks.",
+      "parentUuid": "d17e4e2c_3aa0f23c",
+      "range": {
+        "startLine": 467,
+        "startChar": 11,
+        "endLine": 467,
+        "endChar": 53
+      },
+      "revId": "9d4f39a7bad0d5e06826298692d77f4c3133549f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
