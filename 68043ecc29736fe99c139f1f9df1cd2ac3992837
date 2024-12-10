@@ -85,6 +85,41 @@
       "parentUuid": "19422aef_d459ed0e",
       "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a67fea0_5cc095a3",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T00:15:28Z",
+      "side": 1,
+      "message": "I think we should just return from here. We don\u0027t support any other operations besides read, do we?",
+      "fixSuggestions": [
+        {
+          "fixId": "d52f5f4f_38b7aa36",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/ais/ais_ble.cc",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 94,
+                "endChar": 0
+              },
+              "replacement": "    return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
