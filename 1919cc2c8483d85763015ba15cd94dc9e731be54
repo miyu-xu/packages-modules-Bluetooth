@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "340c413f_de10036b",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d60154fe_098ed17a",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 30
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45e4ec44_5fdf8e18",
@@ -105,6 +129,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02384bcb_fac086a4",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Not really. Call to `this()` must be the first thing called in the constructor otherwise the code will not compile. Because of that I\u0027m not able to create a temporary variable for the audio manager and pass it to both of these constructors.",
+      "parentUuid": "45e4ec44_5fdf8e18",
+      "range": {
+        "startLine": 105,
+        "startChar": 17,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39157697_4fc70d36",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
         "patchSetId": 1
@@ -116,6 +164,30 @@
       "writtenOn": "2024-12-05T21:40:10Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Import specific classes instead of wildcard imports\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nImport specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6dca291_6588fe89",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39157697_4fc70d36",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -139,6 +211,30 @@
       "writtenOn": "2024-12-05T21:40:10Z",
       "side": 1,
       "message": "This should not be needed since you are using a testlooper",
+      "range": {
+        "startLine": 80,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 9
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55634355_e76c2d22",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a50e066_4a857554",
       "range": {
         "startLine": 80,
         "startChar": 2,
@@ -240,6 +336,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa122cb3_a792ab6f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e2fa696_ee342ba6",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0b931bd_953c68f9",
@@ -253,6 +373,30 @@
       "writtenOn": "2024-12-05T21:40:10Z",
       "side": 1,
       "message": "There is a method in testutils that help mocking system service (see AdapterServiceTest)",
+      "range": {
+        "startLine": 94,
+        "startChar": 6,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3936fd3d_2957a9f4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Indeed there is. Thanks.",
+      "parentUuid": "c0b931bd_953c68f9",
       "range": {
         "startLine": 94,
         "startChar": 6,
@@ -286,6 +430,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c78ed14_d732d0f5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a782b389_615893ae",
+      "range": {
+        "startLine": 159,
+        "startChar": 9,
+        "endLine": 164,
+        "endChar": 42
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b399a52f_d509772c",
@@ -299,6 +467,30 @@
       "writtenOn": "2024-12-05T21:40:10Z",
       "side": 1,
       "message": "should we add an assertThat is not null on the callback ?",
+      "range": {
+        "startLine": 174,
+        "startChar": 64,
+        "endLine": 174,
+        "endChar": 89
+      },
+      "revId": "1919cc2c8483d85763015ba15cd94dc9e731be54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a39d523_f973aefa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpTargetServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-12-10T00:43:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b399a52f_d509772c",
       "range": {
         "startLine": 174,
         "startChar": 64,
