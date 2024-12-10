@@ -1,0 +1,189 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a441bb_69da4258",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "Should we add a to-do here to remove it when the flag is shipped?",
+      "fixSuggestions": [
+        {
+          "fixId": "ac58c8bf_bf559354",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 348,
+                "startChar": 0,
+                "endLine": 348,
+                "endChar": 0
+              },
+              "replacement": "        // TODO: remove mUuids when separateServiceStorage flag is shipped\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae33ada9_deffee5f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "This is dead code without BREDR case.",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37cbb3aa_c621379d",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "Should we add a to-do here to remove it when the flag is shipped?",
+      "fixSuggestions": [
+        {
+          "fixId": "e90111f8_18bf9b20",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 348,
+                "startChar": 0,
+                "endLine": 348,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/279533580): Remove this when the flag is shipped.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "092702d6_11ceb257",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "Nit: This can be refactored into a function which gets called with different key values.",
+      "range": {
+        "startLine": 185,
+        "startChar": 5,
+        "endLine": 201,
+        "endChar": 43
+      },
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b86fb9_248ccfa8",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "Nit: This can be refactored into a separate function which gets called with different key values.",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 7
+      },
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99f10c62_cb90e188",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "Should we add a to-do here to remove it when the flag is shipped?",
+      "fixSuggestions": [
+        {
+          "fixId": "74c62b99_d0a2f201",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 974,
+                "startChar": 0,
+                "endLine": 974,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/369381361) Remove this when separate_service_storage is shipped\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fe9bc67_b01595de",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 1,
+      "message": "I was wondering if we should just map it to the existing `BT_PROPERTY_UUIDS`. So based on the flag this might mean combined UUIDs or just the BR/EDR UUIDs.\nThat would also mean that we would have to take care of duplicate entries when UUID list is combined.\nThe benefit is that then we don\u0027t have to revisit it again to completely move away from the older approach.",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

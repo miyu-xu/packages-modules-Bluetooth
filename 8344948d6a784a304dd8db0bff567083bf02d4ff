@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ce7bd0_21e83a66",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:51:42Z",
+      "side": 0,
+      "message": "Shouldn\u0027t this be retained?",
+      "revId": "8344948d6a784a304dd8db0bff567083bf02d4ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
