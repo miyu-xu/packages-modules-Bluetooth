@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b5762cb_fddd20dc",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-12-10T20:13:28Z",
+      "side": 1,
+      "message": "`operations` shouldn\u0027t be null here, since we create it on line 426.\n\nFWIW, I know this function looks a bit odd. It matches the behavior of the framework `constructInsertOperations` function, which will create a new list of operations if one doesn\u0027t exist, else will edit in place the list you provide. This lets us easily drop the old batch and put a new one on top below by passing null to the function.\n\nI wrote this code to match the `constructInsertOperationsForContacts` function above, and its usage too (which also, FWIW, I know looks sparse, but it gets used way more with my caching change!). And _that_ code was just taken from how it _used_ to work in the old objects. I didn\u0027t really want to mess with years old code for contacts storage yet (though that\u0027s on the mental backlog).",
+      "parentUuid": "d7c0085f_81c08868",
+      "range": {
+        "startLine": 439,
+        "startChar": 16,
+        "endLine": 439,
+        "endChar": 88
+      },
+      "revId": "90b792d363c26ac0d07207e2d41f8ed9a7677bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dbcf8de_ea387eaf",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-10T17:09:59Z",
       "side": 1,
       "message": "Would there be any efficiency gains from saving a copy of the above `operations.subList`, instead of calling `constructInsertOperationsForCallLog` again on the same call log entry?",
+      "range": {
+        "startLine": 456,
+        "startChar": 33,
+        "endLine": 456,
+        "endChar": 68
+      },
+      "revId": "90b792d363c26ac0d07207e2d41f8ed9a7677bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ea546c3_41d9cc80",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-12-10T20:13:28Z",
+      "side": 1,
+      "message": "I don\u0027t think so? Saving the above list would copy ~250 contacts (depends on the constant set). As it stands now, we just shave off how many ever operations are added in the `constructInsertOperationsForCallLog` call, and then re-add them afterwards.\n\nIn our case, right now, I _think_ that\u0027s just one operation per call log. This function-based plumbing leaves us with flexibility to have more operations though, which caching can leverage if needed (we do with real contacts, as opposed to call logs).",
+      "parentUuid": "9dbcf8de_ea387eaf",
       "range": {
         "startLine": 456,
         "startChar": 33,
