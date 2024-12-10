@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23539468_0a12c153",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T00:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e37e2bff_c11b4033",
+      "range": {
+        "startLine": 947,
+        "startChar": 34,
+        "endLine": 947,
+        "endChar": 49
+      },
+      "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d04161a_03a38c0a",
@@ -73,6 +97,24 @@
           ]
         }
       ],
+      "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3a511e3_13e1f911",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T00:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d04161a_03a38c0a",
       "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -114,6 +156,30 @@
           ]
         }
       ],
+      "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6286dcc_b721df32",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T00:11:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f15591b1_f97bfa8d",
+      "range": {
+        "startLine": 808,
+        "startChar": 32,
+        "endLine": 808,
+        "endChar": 47
+      },
       "revId": "9f10b2c1e7d73b69fc612fc18182154d7a027451",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
