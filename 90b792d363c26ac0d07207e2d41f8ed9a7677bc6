@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c0085f_81c08868",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-12-10T17:09:59Z",
+      "side": 1,
+      "message": "Should it be\n```\noperations \u003d constructInsertOperationsForCallLog(account, type, callLog, operations);\n```\n(in case of `operations \u003d\u003d null`)?",
+      "range": {
+        "startLine": 439,
+        "startChar": 16,
+        "endLine": 439,
+        "endChar": 88
+      },
+      "revId": "90b792d363c26ac0d07207e2d41f8ed9a7677bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dbcf8de_ea387eaf",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-12-10T17:09:59Z",
+      "side": 1,
+      "message": "Would there be any efficiency gains from saving a copy of the above `operations.subList`, instead of calling `constructInsertOperationsForCallLog` again on the same call log entry?",
+      "range": {
+        "startLine": 456,
+        "startChar": 33,
+        "endLine": 456,
+        "endChar": 68
+      },
+      "revId": "90b792d363c26ac0d07207e2d41f8ed9a7677bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
