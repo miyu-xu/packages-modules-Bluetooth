@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a287bc23_d7465ad5",
+        "filename": "framework/jarjar-rules.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T23:19:18Z",
+      "side": 1,
+      "message": "```suggestion\nrule android.os.Flags com.android.bluetooth.jarjar.@0\nrule android.os.CustomFeatureFlags com.android.bluetooth.jarjar.@0\nrule android.os.FeatureFlagsImpl com.android.bluetooth.jarjar.@0\nrule android.os.FakeFeatureFlagsImpl com.android.bluetooth.jarjar.@0\nrule android.os.FeatureFlags com.android.bluetooth.jarjar.@0\n\nrule android.media.audio.Flags com.android.bluetooth.jarjar.@0\nrule android.media.audio.CustomFeatureFlags com.android.bluetooth.jarjar.@0\nrule android.media.audio.FeatureFlagsImpl com.android.bluetooth.jarjar.@0\nrule android.media.audio.FakeFeatureFlagsImpl com.android.bluetooth.jarjar.@0\nrule android.media.audio.FeatureFlags com.android.bluetooth.jarjar.@0\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 81
+      },
+      "revId": "687baefb44f79b3bab49324e811afc242d916ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
