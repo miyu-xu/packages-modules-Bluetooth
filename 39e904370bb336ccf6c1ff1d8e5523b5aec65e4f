@@ -1,0 +1,144 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb7dafa_ee7a4f16",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-10T21:05:05Z",
+      "side": 1,
+      "message": "Can we please flag this change?",
+      "fixSuggestions": [
+        {
+          "fixId": "ed85d302_ae8d2027",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 792,
+                "startChar": 0,
+                "endLine": 793,
+                "endChar": 0
+              },
+              "replacement": "          /* remove listening connection if it is the current SCO */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "39e904370bb336ccf6c1ff1d8e5523b5aec65e4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197634ed_371fd180",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-10T21:05:05Z",
+      "side": 1,
+      "message": "BTA_AG_SCO_SHUTTING_ST is not needed here?\n\nIs there any event arrives after SCO_SHUTDOWN_E? Or is it the last event?\nwondering when is BTA_AG_SCO_SHUTTING_ST makes sense.",
+      "fixSuggestions": [
+        {
+          "fixId": "ba7aad8c_793fec3d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 959,
+                "startChar": 0,
+                "endLine": 960,
+                "endChar": 0
+              },
+              "replacement": "            p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 996,
+                "startChar": 0,
+                "endLine": 997,
+                "endChar": 0
+              },
+              "replacement": "          p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1053,
+                "startChar": 0,
+                "endLine": 1054,
+                "endChar": 0
+              },
+              "replacement": "            p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1095,
+                "startChar": 0,
+                "endLine": 1096,
+                "endChar": 0
+              },
+              "replacement": "            p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1121,
+                "startChar": 0,
+                "endLine": 1122,
+                "endChar": 0
+              },
+              "replacement": "          p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1163,
+                "startChar": 0,
+                "endLine": 1164,
+                "endChar": 0
+              },
+              "replacement": "          p_sco-\u003estate \u003d BTA_AG_SCO_SHUTDOWN_ST;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1189,
+                "startChar": 0,
+                "endLine": 1247,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "39e904370bb336ccf6c1ff1d8e5523b5aec65e4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
