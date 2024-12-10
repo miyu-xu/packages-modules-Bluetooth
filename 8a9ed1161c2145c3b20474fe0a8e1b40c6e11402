@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c52a08_69517f15",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-10T22:47:51Z",
+      "side": 1,
+      "message": "`Unexpected count: {} sizeof(accept_signal): {} accept_signal.size: {}`",
+      "range": {
+        "startLine": 1019,
+        "startChar": 18,
+        "endLine": 1019,
+        "endChar": 84
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "16ca09ab_8f00133f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 1019,
+                "startChar": 0,
+                "endLine": 1020,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Unexpected count: {} sizeof(accept_signal): {} accept_signal.size: {}\", count,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8a9ed1161c2145c3b20474fe0a8e1b40c6e11402",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e422a244_d082e7c2",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-10T22:47:51Z",
+      "side": 1,
+      "message": "`Server socket: {} is_accepting: {}`\n\nSorry, please also fix in btif_sock_l2cap.cc",
+      "range": {
+        "startLine": 1024,
+        "startChar": 15,
+        "endLine": 1024,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a32a0447_8a820305",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 1024,
+                "startChar": 0,
+                "endLine": 1025,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"Server socket: {} is_accepting: {}\", slot-\u003eid, slot-\u003eis_accepting);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8a9ed1161c2145c3b20474fe0a8e1b40c6e11402",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
