@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29a49c36_a010ff21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2360c8aa_b2e5f082",
+      "range": {
+        "startLine": 48,
+        "startChar": 31,
+        "endLine": 48,
+        "endChar": 50
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e64d6413_e2639107",
@@ -90,6 +114,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ec2f6a6_6bba9aee",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:53:49Z",
+      "side": 1,
+      "message": "I have been thinking about this. Because the desktop device state only overwrites five states, which we have covered on previous branches. If other services also inject new states, maybe we should just ignore at the default branch and print an error message. Unless the new state needs Bluetooth to respond.",
+      "parentUuid": "9999fc48_b8cf6043",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd6ea177_63bcd3fc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e64d6413_e2639107",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7afe7d6_6aa98041",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
         "patchSetId": 15
@@ -123,6 +195,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73e339a_7253d2bc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:53:49Z",
+      "side": 1,
+      "message": "Right. This actually refers to the initialization of this class. The value is initialized when registering the callback. Updated.",
+      "parentUuid": "c7afe7d6_6aa98041",
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3056ed65_de64b627",
@@ -136,6 +226,30 @@
       "writtenOn": "2024-12-10T18:36:16Z",
       "side": 1,
       "message": "I believe that `mHandler::post` is a valid executor. That would remove the need for the HandlerExecutor",
+      "range": {
+        "startLine": 141,
+        "startChar": 45,
+        "endLine": 141,
+        "endChar": 54
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7deb3f3_41929c3a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3056ed65_de64b627",
       "range": {
         "startLine": 141,
         "startChar": 45,
