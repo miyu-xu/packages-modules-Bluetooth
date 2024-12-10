@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c29369_5c5f3cab",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1649,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-10T04:41:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21d86b3d_11f88f8b",
+      "range": {
+        "startLine": 1649,
+        "startChar": 3,
+        "endLine": 1649,
+        "endChar": 52
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e2718e2_a6870bbf",
@@ -141,6 +165,30 @@
       "side": 1,
       "message": "ok. Thanks.\nWill rename as suggested.",
       "parentUuid": "0e2718e2_a6870bbf",
+      "range": {
+        "startLine": 1651,
+        "startChar": 62,
+        "endLine": 1651,
+        "endChar": 73
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9033356a_dac038be",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-10T04:41:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "101a9650_03b8b987",
       "range": {
         "startLine": 1651,
         "startChar": 62,
@@ -271,6 +319,30 @@
       "side": 1,
       "message": "ok Thanks.\nWill remove this function call.",
       "parentUuid": "84de24e4_b627efc8",
+      "range": {
+        "startLine": 2665,
+        "startChar": 0,
+        "endLine": 2668,
+        "endChar": 0
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385903bc_25b31c85",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2668,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-10T04:41:06Z",
+      "side": 1,
+      "message": "Slightly modified the flow.\nThe intentions was, in multiple connect/disconnect attemps, the flags needs to be updated correctly. \nNow resetting the flag in resetBatteryLevel.",
+      "parentUuid": "422c276a_f6070b4a",
       "range": {
         "startLine": 2665,
         "startChar": 0,

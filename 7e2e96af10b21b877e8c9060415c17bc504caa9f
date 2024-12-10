@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b6e2ebc_30403322",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-10T04:41:06Z",
+      "side": 1,
+      "message": "Done related changes in Patchset #7",
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
