@@ -22,6 +22,30 @@
       },
       "revId": "687baefb44f79b3bab49324e811afc242d916ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e05e41ff_518c8303",
+        "filename": "framework/jarjar-rules.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2024-12-10T23:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a287bc23_d7465ad5",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 81
+      },
+      "revId": "687baefb44f79b3bab49324e811afc242d916ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
