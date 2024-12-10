@@ -1,0 +1,149 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2360c8aa_b2e5f082",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T18:36:16Z",
+      "side": 1,
+      "message": "make variable final",
+      "range": {
+        "startLine": 48,
+        "startChar": 31,
+        "endLine": 48,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5f85e528_8d677dde",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "    private final DeviceStateManager mDeviceStateManager;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64d6413_e2639107",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T18:36:16Z",
+      "side": 1,
+      "message": "Can we use the new java switch syntax with bracket ?\n```suggestion\n                        case \"CLOSED\" -\u003e {\n                            switch (mCurrentState) {\n                                case \"DISPLAY_OFF\" -\u003e Log.d(TAG, \"No action for state \" + nextState);\n                                default -\u003e handleSuspend(false);\n                            }\n                        }\n                        case \"DISPLAY_OFF\" -\u003e {\n                            switch (mCurrentState) {\n                                case \"TABLET\" -\u003e handleSuspend(false);\n                                case \"DOCKED\", \"LAPTOP\" -\u003e handleSuspend(true);\n                                default -\u003e Log.d(TAG, \"No action for state \" + nextState);\n                            }\n                         }\n                        case \"LAPTOP\", \"DOCKED\", \"TABLET\" -\u003e {\n                            switch (mCurrentState) {\n                                case \"CLOSED\", \"DISPLAY_OFF\" -\u003e handleResume();\n                                default -\u003e Log.d(TAG, \"No action for state \" + nextState);\n                            }\n                        }\n                        default -\u003e {\n                            Log.e(TAG, \"Unknown state transition to \" + nextState);\n                            return;\n                        }\n```",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9999fc48_b8cf6043",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T18:36:16Z",
+      "side": 1,
+      "message": "I didnt\u0027 touch that in my other comment, but do we want to assign mCurrentState to nextState in this case ? (or else we could never recovered ?)",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7afe7d6_6aa98041",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T18:36:16Z",
+      "side": 1,
+      "message": "What is boot time ? You mean Bluetooth start time ?\n\nBecause the code in android/app is not trigger by the boot directly.",
+      "fixSuggestions": [
+        {
+          "fixId": "9701ef63_fd60a080",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "    // Value should be initialized at Bluetooth start time\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3056ed65_de64b627",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T18:36:16Z",
+      "side": 1,
+      "message": "I believe that `mHandler::post` is a valid executor. That would remove the need for the HandlerExecutor",
+      "range": {
+        "startLine": 141,
+        "startChar": 45,
+        "endLine": 141,
+        "endChar": 54
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
