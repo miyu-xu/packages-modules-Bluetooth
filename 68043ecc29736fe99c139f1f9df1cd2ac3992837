@@ -143,6 +143,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26264605_7a69fbcf",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T07:55:14Z",
+      "side": 1,
+      "message": "Yes, makes sense. That means we would need to exhaustively list all possible combination that needs the reply. I think we should have that in the util function but we apparently don\u0027t.\nTherefore, for the time being I rather make the CL small, just add a MTU check here for the case we absolutely sure won\u0027t harm anything - after all we just want to unclutter a wrong warning.\n\nI haven\u0027t check this, but I think that the GATTS_SendRsp is responsible to check that a pending response is required, so it\u0027s OK to call it excessively for the other cases.\nAdditionally, receiving a write request is a wrong behavior from the client anyway, since we disable the write bit for this characteristic.",
+      "parentUuid": "a60ee36d_40e8d93a",
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a67fea0_5cc095a3",
         "filename": "system/stack/ais/ais_ble.cc",
         "patchSetId": 1
@@ -172,6 +190,24 @@
           ]
         }
       ],
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de9202e2_89dcb381",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T07:55:14Z",
+      "side": 1,
+      "message": "I\u0027m not too sure. If the client for some reason sends a write request that needs a response, but we return here and doesn\u0027t respond failure, would that makes GATT stuck?",
+      "parentUuid": "8a67fea0_5cc095a3",
       "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
