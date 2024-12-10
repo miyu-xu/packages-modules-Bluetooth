@@ -22,6 +22,8 @@
 
 #include "common/time_util.h"
 #include "os/metrics.h"
+#include "stack/btm/security_device_record.h"
+#include "stack/include/btm_sec_api_types.h"
 #include "stack/include/port_api.h"
 #include "stack/rfcomm/port_int.h"
 #include "stack/rfcomm/rfc_event.h"
@@ -30,10 +32,25 @@
 
 using namespace bluetooth;
 
+static android::bluetooth::rfcomm::SocketConnectionSecurity toSecurity(uint16_t sec_mask);
 static android::bluetooth::rfcomm::PortResult toPortResult(tPORT_RESULT result);
 static android::bluetooth::rfcomm::RfcommPortState toPortState(tRFC_PORT_STATE state);
 
-void port_collect_attempt_metrics(RfcommPortSm sm_cb, uint32_t uid) {
+void port_collect_attempt_metrics(tPORT* p_port) {
+  android::bluetooth::rfcomm::SocketConnectionSecurity security;
+  if (((p_port->sec_mask & BTM_SEC_IN_FLAGS) == (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)) ||
+      ((p_port->sec_mask & BTM_SEC_OUT_FLAGS) ==
+       (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT))) {
+    security = android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_SECURE;
+  } else if (((p_port->sec_mask & BTM_SEC_IN_FLAGS) ==
+              (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)) ||
+             ((p_port->sec_mask & BTM_SEC_OUT_FLAGS) ==
+              (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT))) {
+    security = android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_INSECURE;
+  } else {
+    security = android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_UNKNOWN;
+  }
+  RfcommPortSm sm_cb = p_port->rfc.sm_cb;
   log::assert_that(sm_cb.state == RFC_STATE_CLOSED, "Assert failed: Port not closed");
   uint64_t close_timestamp = bluetooth::common::time_gettimeofday_us();
   bool success = (sm_cb.second_state_prior == RFC_STATE_OPENED &&
@@ -43,10 +60,21 @@ void port_collect_attempt_metrics(RfcommPortSm sm_cb, uint32_t uid) {
     open_duration = 0;
   }
   bluetooth::os::LogMetricRfcommConnectionAtClose(
-          toPortResult(sm_cb.close_reason),
-          android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_UNKNOWN,
+          toPortResult(sm_cb.close_reason), toSecurity(p_port->sec_mask),
           toPortState(sm_cb.second_state_prior), toPortState(sm_cb.state_prior),
-          static_cast<int32_t>(open_duration), static_cast<int32_t>(uid));
+          static_cast<int32_t>(open_duration), static_cast<int32_t>(p_port->app_uid));
+}
+
+static android::bluetooth::rfcomm::SocketConnectionSecurity toSecurity(uint16_t sec_mask) {
+  if (((sec_mask & BTM_SEC_IN_FLAGS) == (BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_ENCRYPT)) ||
+      ((sec_mask & BTM_SEC_OUT_FLAGS) == (BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_ENCRYPT))) {
+    return android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_SECURE;
+  } else if (((sec_mask & BTM_SEC_IN_FLAGS) == (BTM_SEC_NONE)) ||
+             ((sec_mask & BTM_SEC_OUT_FLAGS) == (BTM_SEC_NONE))) {
+    return android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_INSECURE;
+  }
+
+  return android::bluetooth::rfcomm::SocketConnectionSecurity::SOCKET_SECURITY_UNKNOWN;
 }
 
 static android::bluetooth::rfcomm::PortResult toPortResult(tPORT_RESULT result) {
