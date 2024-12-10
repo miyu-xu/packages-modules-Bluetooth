@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7578a41a_a6937485",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T00:06:36Z",
+      "side": 1,
+      "message": "This is already the pattern for initNative implementations; changing errors to fatal should done for all profiles.",
+      "parentUuid": "52520524_07698882",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 77
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ac7461b_a5a26603",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "423d723a_c9d8e3b4",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpNativeInterface.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T00:06:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0ac7461b_a5a26603",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 52
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b6d6842_c118530c",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-12-02T20:21:11Z",
       "side": 1,
       "message": "(because it was checked here previously)",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 37
+      },
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dce66e9_0196fbbd",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T00:06:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2b6d6842_c118530c",
       "range": {
         "startLine": 228,
         "startChar": 0,
@@ -107,6 +179,30 @@
           ]
         }
       ],
+      "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09fae165_96c2fe99",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T00:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29b9fb48_75e861f4",
+      "range": {
+        "startLine": 910,
+        "startChar": 0,
+        "endLine": 910,
+        "endChar": 42
+      },
       "revId": "815ef8e412c0105a38b20ca3dd089d777990cff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
