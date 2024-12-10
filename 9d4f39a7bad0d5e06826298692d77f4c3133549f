@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bd57b20_c57b07f8",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T21:49:35Z",
+      "side": 1,
+      "message": "If the flag is targeting API, it need to be exported and this require feature \u0026 stuff.\n\nLooking at the next CL in the chain, I believe that this is not an api change but some modification on the internal implementation instead",
+      "range": {
+        "startLine": 467,
+        "startChar": 11,
+        "endLine": 467,
+        "endChar": 53
+      },
+      "revId": "9d4f39a7bad0d5e06826298692d77f4c3133549f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
