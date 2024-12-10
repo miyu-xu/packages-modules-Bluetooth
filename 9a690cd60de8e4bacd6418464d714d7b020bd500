@@ -34,6 +34,24 @@
       "parentUuid": "267ddc21_cd4e9ee0",
       "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf61899b_a1e1403d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-12-10T19:24:49Z",
+      "side": 1,
+      "message": "I tried running the presubmit for the entire CL chain and it failed",
+      "parentUuid": "d1ceb783_65842072",
+      "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
