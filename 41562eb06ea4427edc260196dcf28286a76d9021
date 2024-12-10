@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "529c0cd4_8061f4e8",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T22:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a8e4c84_48039b5e",
+      "range": {
+        "startLine": 1004,
+        "startChar": 0,
+        "endLine": 1004,
+        "endChar": 53
+      },
+      "revId": "41562eb06ea4427edc260196dcf28286a76d9021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "074c7b90_ebaf7c51",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-10T02:39:29Z",
       "side": 1,
       "message": "Can we branch out `bool btsock_rfc_read_signaled_on_listen_socket()`?",
+      "range": {
+        "startLine": 1016,
+        "startChar": 4,
+        "endLine": 1016,
+        "endChar": 59
+      },
+      "revId": "41562eb06ea4427edc260196dcf28286a76d9021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe008145_ff0164f9",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1016,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T22:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "074c7b90_ebaf7c51",
       "range": {
         "startLine": 1016,
         "startChar": 4,
@@ -84,6 +132,30 @@
           ]
         }
       ],
+      "revId": "41562eb06ea4427edc260196dcf28286a76d9021",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "071db15a_3fed203f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-10T22:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a516725_95756ba1",
+      "range": {
+        "startLine": 1023,
+        "startChar": 0,
+        "endLine": 1028,
+        "endChar": 82
+      },
       "revId": "41562eb06ea4427edc260196dcf28286a76d9021",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
