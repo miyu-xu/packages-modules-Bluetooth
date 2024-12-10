@@ -14,6 +14,8 @@
 
 import asyncio
 import avatar
+import avdtp_packets
+import bumble
 import dataclasses
 import itertools
 import logging
@@ -21,12 +23,10 @@ import numpy as np
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, pandora
 from avatar.pandora_server import AndroidPandoraServer
-import bumble
-from bumble.avctp import AVCTP_PSM
 from bumble.a2dp import (
     A2DP_MPEG_2_4_AAC_CODEC_TYPE,
-    MPEG_2_AAC_LC_OBJECT_TYPE,
     A2DP_SBC_CODEC_TYPE,
+    MPEG_2_AAC_LC_OBJECT_TYPE,
     SBC_DUAL_CHANNEL_MODE,
     SBC_JOINT_STEREO_CHANNEL_MODE,
     SBC_LOUDNESS_ALLOCATION_METHOD,
@@ -37,11 +37,28 @@ from bumble.a2dp import (
     SbcMediaCodecInformation,
     make_audio_sink_service_sdp_records,
 )
-from bumble.avdtp import (AVDTP_AUDIO_MEDIA_TYPE, AVDTP_OPEN_STATE, AVDTP_PSM, AVDTP_STREAMING_STATE, AVDTP_IDLE_STATE,
-                          AVDTP_CLOSING_STATE, Listener, MediaCodecCapabilities, Protocol, AVDTP_BAD_STATE_ERROR,
-                          Suspend_Reject)
-from bumble.l2cap import (ChannelManager, ClassicChannel, ClassicChannelSpec, L2CAP_Configure_Request,
-                          L2CAP_Connection_Response, L2CAP_SIGNALING_CID)
+from bumble.avctp import AVCTP_PSM
+from bumble.avdtp import (
+    AVDTP_AUDIO_MEDIA_TYPE,
+    AVDTP_BAD_STATE_ERROR,
+    AVDTP_CLOSING_STATE,
+    AVDTP_IDLE_STATE,
+    AVDTP_OPEN_STATE,
+    AVDTP_PSM,
+    AVDTP_STREAMING_STATE,
+    Listener,
+    MediaCodecCapabilities,
+    Protocol,
+    Suspend_Reject,
+)
+from bumble.l2cap import (
+    L2CAP_SIGNALING_CID,
+    ChannelManager,
+    ClassicChannel,
+    ClassicChannelSpec,
+    L2CAP_Configure_Request,
+    L2CAP_Connection_Response,
+)
 from bumble.pairing import PairingDelegate
 from mobly import base_test, test_runner
 from mobly.asserts import assert_equal  # type: ignore
@@ -49,7 +66,7 @@ from mobly.asserts import assert_in  # type: ignore
 from mobly.asserts import assert_is_not_none  # type: ignore
 from mobly.asserts import fail  # type: ignore
 from pandora.a2dp_grpc_aio import A2DP
-from pandora.a2dp_pb2 import PlaybackAudioRequest, Source, Configuration, STEREO
+from pandora.a2dp_pb2 import STEREO, Configuration, PlaybackAudioRequest, Source
 from pandora.host_pb2 import Connection
 from pandora.security_pb2 import LEVEL2
 from typing import Optional, Tuple
@@ -283,8 +300,9 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         # Enable AVRCP connect A2DP delayed feature
         for server in self.devices._servers:
             if isinstance(server, AndroidPandoraServer):
-                server.device.adb.shell(['device_config override bluetooth', AVRCP_CONNECT_A2DP_WITH_DELAY,
-                                         'true'])  # type: ignore
+                server.device.adb.shell(
+                    ['device_config override bluetooth', AVRCP_CONNECT_A2DP_WITH_DELAY, 'true']
+                )  # type: ignore
                 break
 
         # Connect and pair RD1.
@@ -337,7 +355,6 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         pending_configuration_request = L2capConfigurationRequest()
 
         class TestChannelManager(ChannelManager):
-
             def __init__(
                 self,
                 device: BumblePandoraDevice,
@@ -353,17 +370,19 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
 
             def on_l2cap_connection_request(self, connection: Connection, cid: int, request) -> None:
                 global pending_configuration_request
-                if (request.psm == AVDTP_PSM and pending_configuration_request is not None):
+                if request.psm == AVDTP_PSM and pending_configuration_request is not None:
                     logger.info("<< 4. RD1 rejects AVDTP connection request from DUT >>")
                     self.send_control_frame(
-                        connection, cid,
+                        connection,
+                        cid,
                         L2CAP_Connection_Response(
                             identifier=request.identifier,
                             destination_cid=0,
                             source_cid=request.source_cid,
                             result=L2CAP_Connection_Response.CONNECTION_REFUSED_NO_RESOURCES_AVAILABLE,
                             status=0x0000,
-                        ))
+                        ),
+                    )
                     logger.info("<< 5. RD1 proceeds with first AVDTP channel configuration >>")
                     chan_connection = pending_configuration_request.connection
                     chan_cid = pending_configuration_request.cid
@@ -374,17 +393,18 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
                 super().on_l2cap_connection_request(connection, cid, request)
 
         class TestClassicChannel(ClassicChannel):
-
             def on_connection_response(self, response):
                 assert self.state == self.State.WAIT_CONNECT_RSP
-                assert response.result == L2CAP_Connection_Response.CONNECTION_SUCCESSFUL, f"Connection response: {response}"
+                assert (
+                    response.result == L2CAP_Connection_Response.CONNECTION_SUCCESSFUL
+                ), f"Connection response: {response}"
                 self.destination_cid = response.destination_cid
                 self._change_state(self.State.WAIT_CONFIG)
                 logger.info("<< 2. RD1 connected DUT, configuration postponed >>")
 
             def on_configure_request(self, request) -> None:
                 global pending_configuration_request
-                if (pending_configuration_request is not None):
+                if pending_configuration_request is not None:
                     logger.info("<< 3. Block RD1 until DUT tries AVDTP channel connection >>")
                     pending_configuration_request.connection = self.connection
                     pending_configuration_request.cid = self.source_cid
@@ -557,7 +577,6 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         """
 
         class TestAvdtProtocol(Protocol):
-
             def on_suspend_command(self, command):
                 logger.info("<< Simulate suspend reject >>")
                 for seid in command.acp_seids:
@@ -567,7 +586,6 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
                         return Suspend_Reject(seid, AVDTP_BAD_STATE_ERROR)
 
         class TestA2dpListener(Listener):
-
             @classmethod
             def for_device(cls, device: bumble.device.Device, version: Tuple[int, int] = (1, 3)) -> Listener:
                 listener = TestA2dpListener(registrar=None, version=version)
@@ -601,7 +619,8 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         for server in self.devices._servers:
             if isinstance(server, AndroidPandoraServer):
                 server.device.adb.shell(
-                    ['device_config override bluetooth', AVDTP_HANDLE_SUSPEND_CFM_BAD_STATE, 'true'])  # type: ignore
+                    ['device_config override bluetooth', AVDTP_HANDLE_SUSPEND_CFM_BAD_STATE, 'true']
+                )  # type: ignore
                 break
 
         self.ref1.device.l2cap_channel_manager.servers.pop(AVDTP_PSM)
