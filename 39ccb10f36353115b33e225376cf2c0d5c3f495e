@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e3acee3_43fcfe7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:54:06Z",
+      "side": 1,
+      "message": "If I understand correctly, the callback is running on the handler that is passed to DeviceStateManager when registering the callback? I will merge these two CLs to handle the threading together.",
+      "parentUuid": "0fa1bfe0_a4a15791",
+      "revId": "39ccb10f36353115b33e225376cf2c0d5c3f495e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3af06f2_f286af31",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1c2b666_dc524c56",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:54:06Z",
+      "side": 1,
+      "message": "Actually we will remove the DisplayListener in the next CL. Maybe I should merge these two into one CL. We will handle this on the DeviceState callback.",
+      "parentUuid": "b3af06f2_f286af31",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "39ccb10f36353115b33e225376cf2c0d5c3f495e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5db3232f_e6e82041",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-12-10T18:59:10Z",
       "side": 1,
       "message": "go/todo-style recommend to have a bug number to keep track of the todo in the code but I disagree with the comment anyway.\n\nThis CL assume that this code is not running on the correct handler, if we determine the bt wake here, aren\u0027t we risking a race condition ?",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 51
+      },
+      "revId": "39ccb10f36353115b33e225376cf2c0d5c3f495e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e991a05_4b414b20",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T23:54:06Z",
+      "side": 1,
+      "message": "The TODO is handled in the next CL. I will remove it.",
+      "parentUuid": "5db3232f_e6e82041",
       "range": {
         "startLine": 97,
         "startChar": 0,
