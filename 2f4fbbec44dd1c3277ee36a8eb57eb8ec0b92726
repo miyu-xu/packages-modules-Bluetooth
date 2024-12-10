@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c01bdbc1_e85664b7",
+        "filename": "framework/jarjar-rules.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T23:05:32Z",
+      "side": 0,
+      "message": "I thought we were gonna keep all the jarjar for  android.media.audio.Foo\n\nAnd then adding the android.os.Foo",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "2f4fbbec44dd1c3277ee36a8eb57eb8ec0b92726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
