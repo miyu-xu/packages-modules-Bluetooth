@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "76173541_9ee98869",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T00:08:32Z",
+      "side": 1,
+      "message": "Should we put the AIS flag here or just ask for an exempt? This is a small amendment to the previous code under `android_os_identifier` flag. @rwt@google.com",
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9294997d_9cafc377",
