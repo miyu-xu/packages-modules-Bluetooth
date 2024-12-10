@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8fc217e_de9295ce",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1790,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-10T23:08:45Z",
+      "side": 1,
+      "message": "nit: inline in one statement",
+      "range": {
+        "startLine": 1789,
+        "startChar": 2,
+        "endLine": 1790,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f25f0421_81c8d039",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1789,
+                "startChar": 0,
+                "endLine": 1791,
+                "endChar": 0
+              },
+              "replacement": "  *local_mtu \u003d p_ccb-\u003elocal_conn_cfg.mtu;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6aea48cf56d3f798f2fb82456a817d5dde0ae3ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
