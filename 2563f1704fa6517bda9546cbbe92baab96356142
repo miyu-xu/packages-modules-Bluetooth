@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e724a524_0609ce70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T05:25:54Z",
+      "side": 1,
+      "message": "Put the title of the patch (not the title of the bug) here, typically describing what this patch is doing.\ne.g. Delay SDP connections for HID remotes during pairing\n\nThen add one paragraph describing why SDP needs to be delayed. Your \"root cause\" below is good enough.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8a8c88d_ad3dd7a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T05:25:54Z",
+      "side": 1,
+      "message": "nit: BREDR",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e14c91_5977aa17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T05:25:54Z",
+      "side": 1,
+      "message": "Add `Test: m -j` here to satisfy presubmit lint.",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "871ebc12_fdcb59ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T05:25:54Z",
+      "side": 1,
+      "message": "I am not convinced this change is the expected behavior of SDP and HID interaction.\nDoes this happen only to a specific HID device? If so, probably it is faulty, and we should only apply a quirk to this specific device only, e.g. using the interop_database.\n\nReading the root cause, I think such a device should have the HIDSDPDisable attribute set. Could you check whether this is the case? If not, could you check whether the issue can be fixed if we just assume the device sets the HIDSDPDisable bit?\nHere\u0027s the code for reference:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/dm/bta_dm_disc.cc;l\u003d391;drc\u003dc4611d04b29b74a2d9316a0ae195fe496a4e6d01\n\nAlso, could you attach some system log and hci snoop log on the bug as a reference?",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f331594b_7e0cef4e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-10T05:25:54Z",
+      "side": 1,
+      "message": "Is this needed? why we decrease the number?",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
