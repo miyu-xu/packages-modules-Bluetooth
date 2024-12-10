@@ -16,6 +16,24 @@
       "message": "Seems like BumbleBluetoothTests are still failing with this change",
       "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1ceb783_65842072",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T18:57:59Z",
+      "side": 1,
+      "message": "These stacked cls are inter-dependent. That\u0027s why individual presubmits fails but the combined presubmits passes.",
+      "parentUuid": "267ddc21_cd4e9ee0",
+      "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
