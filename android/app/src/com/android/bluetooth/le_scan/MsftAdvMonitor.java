@@ -24,12 +24,12 @@ import java.util.UUID;
 
 /** Helper class used to manage MSFT Advertisement Monitors. */
 class MsftAdvMonitor {
-    /* Only pattern filtering is supported currently */
+    /* Only pattern and address filtering are supported currently */
     // private static final int MSFT_CONDITION_TYPE_ALL = 0x00;
     private static final int MSFT_CONDITION_TYPE_PATTERNS = 0x01;
     // private static final int MSFT_CONDITION_TYPE_UUID = 0x02;
     // private static final int MSFT_CONDITION_TYPE_IRK = 0x03;
-    // private static final int MSFT_CONDITION_TYPE_ADDRESS = 0x04;
+    private static final int MSFT_CONDITION_TYPE_ADDRESS = 0x04;
 
     // Hardcoded values taken from CrOS defaults
     private static final byte RSSI_THRESHOLD_HIGH = (byte) 0xBF; // 191
@@ -70,6 +70,13 @@ class MsftAdvMonitor {
         mMonitor.rssi_sampling_period = RSSI_SAMPLING_PERIOD;
         mMonitor.condition_type = MSFT_CONDITION_TYPE_PATTERNS;
 
+        if (filter.getDeviceAddress() != null) {
+            mMonitor.condition_type = MSFT_CONDITION_TYPE_ADDRESS;
+            mAddress.addr_type = (byte) filter.getAddressType();
+            mAddress.bd_addr = filter.getDeviceAddress();
+            return;
+        }
+
         if (filter.getServiceDataUuid() != null && dataMaskIsEmpty(filter.getServiceDataMask())) {
             Pattern pattern = new Pattern();
             pattern.ad_type = (byte) 0x16; // Bluetooth Core Spec Part A, Section 1
@@ -92,11 +99,6 @@ class MsftAdvMonitor {
             pattern.start_byte = FILTER_PATTERN_START_POSITION;
             pattern.pattern = filter.getAdvertisingData();
             mPatterns.add(pattern);
-        }
-
-        if (filter.getDeviceAddress() != null) {
-            mAddress.addr_type = (byte) filter.getAddressType();
-            mAddress.bd_addr = filter.getDeviceAddress();
         }
     }
 
