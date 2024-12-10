@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81873eca_d4f07fed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-10T12:05:57Z",
+      "side": 1,
+      "message": "Talked online. Will test it locally in complex situations (e.g. using HFP \u0026 Wifi + ACL connection) and check 7.5ms-10ms is an acceptable value or not.\n\nAfter merging CL, continuous tests may be done in the way by the test team.\n\nAlso, as mentioned the values can be adjusted via system properties per device\u0027s config (aosp/3394059, under review).",
+      "parentUuid": "40278b69_43915adb",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cd34cb8_7f38da1b",
         "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
         "patchSetId": 27
