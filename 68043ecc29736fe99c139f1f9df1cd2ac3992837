@@ -159,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5384f96e_05245caf",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-10T22:20:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "26264605_7a69fbcf",
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a67fea0_5cc095a3",
