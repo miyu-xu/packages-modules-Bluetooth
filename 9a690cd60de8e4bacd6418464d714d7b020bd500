@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "267ddc21_cd4e9ee0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-12-10T17:58:13Z",
+      "side": 1,
+      "message": "Seems like BumbleBluetoothTests are still failing with this change",
+      "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
