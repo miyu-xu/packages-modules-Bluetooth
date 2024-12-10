@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "91408859_fa1cce76",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T00:16:34Z",
+      "side": 1,
+      "message": "I would lean towards asking for exemption",
+      "parentUuid": "76173541_9ee98869",
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9294997d_9cafc377",
