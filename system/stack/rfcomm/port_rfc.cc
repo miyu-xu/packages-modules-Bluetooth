@@ -1046,7 +1046,7 @@ void port_rfc_closed(tPORT* p_port, uint8_t res) {
 
   rfc_set_state(RFC_STATE_CLOSED, p_port);
   p_port->rfc.sm_cb.close_reason = static_cast<tPORT_RESULT>(res);
-  port_collect_attempt_metrics(p_port->rfc.sm_cb, p_port->app_uid);
+  port_collect_attempt_metrics(p_port);
   log::info(
           "RFCOMM connection closed, index={}, state={}, reason={}[{}], "
           "UUID=0x{:x}, bd_addr={}, is_server={}",

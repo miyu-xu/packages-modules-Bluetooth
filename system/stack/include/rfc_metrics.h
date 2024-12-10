@@ -18,4 +18,4 @@
 
 #include "stack/rfcomm/port_int.h"
 
-void port_collect_attempt_metrics(RfcommPortSm sm_cb, uint32_t uid);
+void port_collect_attempt_metrics(tPORT* p_port);
