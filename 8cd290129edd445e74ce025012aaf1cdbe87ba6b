@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a1a5f6_0dfeb77e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T22:04:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aa644fee_e58e51c2",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 9
+      },
+      "revId": "8cd290129edd445e74ce025012aaf1cdbe87ba6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8c39b1a_8feb516d",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I am still not sure of what should be best",
       "parentUuid": "b8c39b1a_8feb516d",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 31
+      },
+      "revId": "8cd290129edd445e74ce025012aaf1cdbe87ba6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c04940e5_2cb7c061",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-10T22:04:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d911bfad_bc052629",
       "range": {
         "startLine": 229,
         "startChar": 8,
