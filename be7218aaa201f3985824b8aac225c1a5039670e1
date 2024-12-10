@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634d80ff_4742e540",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/EncryptionChangeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T00:33:30Z",
+      "side": 1,
+      "message": "2024",
+      "fixSuggestions": [
+        {
+          "fixId": "73c8b36d_4c77803b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/EncryptionChangeTest.java",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright (C) 2024 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "be7218aaa201f3985824b8aac225c1a5039670e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d243ea_521c571c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/EncryptionChangeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-10T00:33:30Z",
+      "side": 1,
+      "message": "Key size should not be zero",
+      "fixSuggestions": [
+        {
+          "fixId": "12022e5f_f4e2a0bb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/EncryptionChangeTest.java",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 241,
+                "endChar": 0
+              },
+              "replacement": "                hasExtra(BluetoothDevice.EXTRA_KEY_SIZE, 16),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "be7218aaa201f3985824b8aac225c1a5039670e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
