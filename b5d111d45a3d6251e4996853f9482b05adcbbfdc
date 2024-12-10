@@ -1,0 +1,105 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e676316_9f5aab0f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-10T23:33:13Z",
+      "side": 1,
+      "message": "`socket_id: {}` with space. Please fix below as well.",
+      "range": {
+        "startLine": 812,
+        "startChar": 50,
+        "endLine": 812,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5cdf617c_54fca58d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 812,
+                "startChar": 0,
+                "endLine": 813,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Unable to find rfcomm socket with socket_id: {}\", socket_id);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 816,
+                "startChar": 0,
+                "endLine": 817,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"RFCOMM opened complete failed with socket_id: {}\", socket_id);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 828,
+                "startChar": 0,
+                "endLine": 829,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Unable to send rfcomm socket to application socket_id: {}\", slot-\u003eid);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 832,
+                "startChar": 0,
+                "endLine": 833,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"Unable to connect l2cap socket to application socket_id: {}\", slot-\u003eid);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 845,
+                "startChar": 0,
+                "endLine": 846,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"Connected rfcomm socket socket_id: {}\", slot-\u003eid);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 856,
+                "startChar": 0,
+                "endLine": 857,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Unable to find rfcomm socket with socket_id: {}\", socket_id);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 859,
+                "startChar": 0,
+                "endLine": 860,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"RFCOMM close request for socket_id: {}\", socket_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b5d111d45a3d6251e4996853f9482b05adcbbfdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
