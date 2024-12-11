@@ -186,6 +186,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6450839_9d7b8b2c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T00:42:24Z",
+      "side": 1,
+      "message": "FYI this is an example of a bug created due to a wtf log:  \nhttps://buganizer.corp.google.com/issues/333417369",
+      "parentUuid": "256681d1_2bd8fc57",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7afe7d6_6aa98041",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
         "patchSetId": 15
