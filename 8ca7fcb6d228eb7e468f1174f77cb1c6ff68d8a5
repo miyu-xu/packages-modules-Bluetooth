@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f83dcaf1_6c28ea01",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:23:08Z",
+      "side": 1,
+      "message": "In practice, there doesn\u0027t seem to be a lot of extra bloat--it\u0027s around as many as the D-Bus API logs.",
+      "parentUuid": "9c9396d6_aa5d22c0",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f83de6af_8594c16d",
         "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
         "patchSetId": 8
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-11T22:55:19Z",
       "side": 1,
       "message": "Can you help me understand why we need to do this?",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea26221_9c50bddb",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:23:08Z",
+      "side": 1,
+      "message": "We cannot print without the Debug/Display trait implemented, and Rust prevents implementing the Debug trait for types, so this wrapper struct allows implementing said trait on the bound type.",
+      "parentUuid": "f83de6af_8594c16d",
       "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b296b28_ececf124",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1547,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:23:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b305505e_f6e89a6d",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5af7b66_a20cf9cc",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59ddee11_378e9aa0",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1737,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:23:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5af7b66_a20cf9cc",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8571fe20_b17263b4",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-12-11T22:55:19Z",
       "side": 1,
       "message": "Can you update this with a little more detail about the TODO",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33a893a_720961a1",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1856,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:23:08Z",
+      "side": 1,
+      "message": "My mistake, turns out it\u0027s not needed here.",
+      "parentUuid": "8571fe20_b17263b4",
       "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
