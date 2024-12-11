@@ -16,6 +16,24 @@
       "message": "Michal, could you please take a look at the test failure?",
       "revId": "d1d80bd46415f76fc95785cc30e9d2149f018bd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34850764_7bd217ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-11T18:22:49Z",
+      "side": 1,
+      "message": "I can see that it pass right now:\nhttps://android-build.corp.google.com/test_investigate/?invocationId\u003dI44900010344446899\u0026testResultId\u003dTR59529546669299963\u0026legacy\n\nSo probably that was a similar problem like there:\nb/383404850\n\nUnfortunately, is sometimes that there is need to rerun presubmit few times (or give it some time) to pass.",
+      "parentUuid": "0071859c_61c29676",
+      "revId": "d1d80bd46415f76fc95785cc30e9d2149f018bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
