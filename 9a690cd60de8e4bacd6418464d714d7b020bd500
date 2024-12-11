@@ -52,6 +52,24 @@
       "parentUuid": "d1ceb783_65842072",
       "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cf50a3b_9db2f8ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-11T09:35:14Z",
+      "side": 1,
+      "message": "now it is passing. Looks like setup issue . failure is not caused by CL chain",
+      "parentUuid": "cf61899b_a1e1403d",
+      "revId": "9a690cd60de8e4bacd6418464d714d7b020bd500",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
