@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eaf4979_d686c446",
+        "filename": "system/gd/rust/linux/stack/btif_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-11T22:57:56Z",
+      "side": 1,
+      "message": "Same comment about how the logging actually looks on a real device, not just btclient",
+      "revId": "39ef502e1314f3ff93b0d1307d398013785b2122",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
