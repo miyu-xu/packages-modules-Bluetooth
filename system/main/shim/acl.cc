@@ -37,7 +37,6 @@
 #include <vector>
 
 #include "common/bind.h"
-#include "common/interfaces/ILoggable.h"
 #include "common/strings.h"
 #include "common/sync_map_count.h"
 #include "hci/acl_manager.h"
@@ -77,7 +76,7 @@ extern tBTM_CB btm_cb;
 using namespace bluetooth;
 using ::bluetooth::os::WakelockManager;
 
-class ConnectAddressWithType : public bluetooth::common::IRedactableLoggable {
+class ConnectAddressWithType {
 public:
   explicit ConnectAddressWithType(hci::AddressWithType address_with_type)
       : address_(address_with_type.GetAddress()),
@@ -90,8 +89,8 @@ public:
     return ss.str();
   }
 
-  std::string ToStringForLogging() const override { return ToString(); }
-  std::string ToRedactedStringForLogging() const override {
+  std::string ToStringForLogging() const { return ToString(); }
+  std::string ToRedactedStringForLogging() const {
     std::stringstream ss;
     ss << address_.ToRedactedStringForLogging() << "[" << FilterAcceptListAddressTypeText(type_)
        << "]";
