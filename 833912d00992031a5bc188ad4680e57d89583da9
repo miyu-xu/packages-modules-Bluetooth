@@ -70,6 +70,24 @@
       "parentUuid": "f67674e3_bf1ebe88",
       "revId": "833912d00992031a5bc188ad4680e57d89583da9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "215a5a13_868d9526",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-11T16:29:07Z",
+      "side": 1,
+      "message": "Using a flag will not help remediate the underlying risk, since the rollback possibility is limited to the droidfood population. Bugs triggered by this are unlikely to be found on such a small user base.",
+      "parentUuid": "6ee28795_6e1c7fa3",
+      "revId": "833912d00992031a5bc188ad4680e57d89583da9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
