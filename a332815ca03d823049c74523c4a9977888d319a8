@@ -1,0 +1,259 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "152b2aeb_cebcd8df",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T00:00:50Z",
+      "side": 1,
+      "message": "It looks like this could be a local variable in the contructor",
+      "range": {
+        "startLine": 95,
+        "startChar": 26,
+        "endLine": 95,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b0a0a3cb_f0186163",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "        Handler handler \u003d new Handler(requireNonNull(looper));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "        mDeviceStateManager.registerCallback(handler::post, mDeviceStateCallback);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a332815ca03d823049c74523c4a9977888d319a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b81cb5a_c13e3b9f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T00:00:50Z",
+      "side": 1,
+      "message": "It cannot be null right ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1609d434_4a38c014",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "        mDeviceStateManager.unregisterCallback(mDeviceStateCallback);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a332815ca03d823049c74523c4a9977888d319a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94250bb4_1f468053",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T00:00:50Z",
+      "side": 1,
+      "message": "not needed, as the function has the same name (you may have add an error at some point, as `public` method always complain for doc, but this is no longer public",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a8a953d0_22ba5830",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a332815ca03d823049c74523c4a9977888d319a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f471c4c0_9259bbb8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T00:00:50Z",
+      "side": 1,
+      "message": "nit: `allowWakeByHid` ?",
+      "range": {
+        "startLine": 121,
+        "startChar": 31,
+        "endLine": 121,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5e103f27_cc7ce8cd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "    /** Prepare for suspend according to allowWakeByHid value. */\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 121,
+                "startChar": 0,
+                "endLine": 122,
+                "endChar": 0
+              },
+              "replacement": "    void handleSuspend(boolean allowWakeByHid) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": "        if (allowWakeByHid) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a332815ca03d823049c74523c4a9977888d319a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96875061_aab025ea",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T00:00:50Z",
+      "side": 1,
+      "message": "not needed, as the function has the same name",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "92e5ae8a_46e696aa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a332815ca03d823049c74523c4a9977888d319a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
