@@ -16,6 +16,24 @@
       "message": "A general question, maybe not related to this. what if the remote device doesn\u0027t support CS (no RAS server) ? or something wrong during searching ? are they handled correctly?",
       "revId": "10ffd1ec3a1e78d08e5cac7ffb9f2e23095df4b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43c7765c_d2db572c",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-11T09:12:23Z",
+      "side": 1,
+      "message": "Currently we will stop the connect procedure and print error log.\nBut Yes, I think we should inform the ranging module, prevent from stuck in \"Waiting for RAS connect\". I filed a bug for it 383464486",
+      "parentUuid": "d8134440_7d70c60d",
+      "revId": "10ffd1ec3a1e78d08e5cac7ffb9f2e23095df4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
