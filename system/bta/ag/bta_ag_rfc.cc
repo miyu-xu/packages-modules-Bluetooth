@@ -251,10 +251,11 @@ void bta_ag_start_servers(tBTA_AG_SCB* p_scb, tBTA_SERVICE_MASK services) {
                                                            sizeof(bta_ag_mgmt_cback_tbl[0])),
               "callback index out of bound, services=0x{:x}, bd_addr={}", services,
               ADDRESS_TO_LOGGABLE_STR(p_scb->peer_addr));
+      tRFC_CFG_INFO cfg = {};
       int status = RFCOMM_CreateConnectionWithSecurity(
               bta_ag_uuid[i], bta_ag_cb.profile[i].scn, true, BTA_AG_MTU, RawAddress::kAny,
               &(p_scb->serv_handle[i]), bta_ag_mgmt_cback_tbl[management_callback_index],
-              BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
+              BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT, &cfg);
       if (status == PORT_SUCCESS) {
         bta_ag_setup_port(p_scb, p_scb->serv_handle[i]);
       } else {
@@ -328,10 +329,11 @@ bool bta_ag_is_server_closed(tBTA_AG_SCB* p_scb) {
  ******************************************************************************/
 void bta_ag_rfc_do_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
   int management_callback_index = bta_ag_scb_to_idx(p_scb) - 1;
+  tRFC_CFG_INFO cfg = {};
   int status = RFCOMM_CreateConnectionWithSecurity(
           bta_ag_uuid[p_scb->conn_service], p_scb->peer_scn, false, BTA_AG_MTU, p_scb->peer_addr,
           &(p_scb->conn_handle), bta_ag_mgmt_cback_tbl[management_callback_index],
-          BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT);
+          BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT, &cfg);
   log::verbose("p_scb=0x{}, conn_handle={}, mgmt_cback_index={}, status={}", std::format_ptr(p_scb),
                p_scb->conn_handle, management_callback_index, status);
   if (status == PORT_SUCCESS) {

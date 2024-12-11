@@ -28,6 +28,7 @@
 
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -97,6 +98,8 @@ const char kBtmLogTag[] = "RFCOMM";
  *                                 connection up/down events.
  *                  sec_mask     - bitmask of BTM_SEC_* values indicating the
  *                                 minimum security requirements for this
+ *                  p_cfg        - pointer to the optional configurations for the
+ *                                 connection must NOT be nullptr
  *connection Notes:
  *
  * Server can call this function with the same scn parameter multiple times if
@@ -110,7 +113,8 @@ const char kBtmLogTag[] = "RFCOMM";
  ******************************************************************************/
 int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn, bool is_server, uint16_t mtu,
                                         const RawAddress& bd_addr, uint16_t* p_handle,
-                                        tPORT_MGMT_CALLBACK* p_mgmt_callback, uint16_t sec_mask) {
+                                        tPORT_MGMT_CALLBACK* p_mgmt_callback, uint16_t sec_mask,
+                                        tRFC_CFG_INFO* p_cfg) {
   *p_handle = 0;
 
   if ((scn == 0) || (scn > RFCOMM_MAX_SCN)) {
@@ -128,6 +132,14 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn, bool is_serv
     dlci = static_cast<uint8_t>((scn << 1) + 1);
   } else {
     dlci = (scn << 1);
+  }
+
+  // Set the optional configuration for future use when the server or client negotiates the
+  // parameters with the peer device.
+  if (com::android::bluetooth::flags::socket_settings_api()) {
+    if (p_mcb != nullptr && p_cfg != nullptr) {
+      p_mcb->rfc_cfg_info = *p_cfg;
+    }
   }
 
   // On the client side, do not allow the same (dlci, bd_addr) to be opened
@@ -230,7 +242,7 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn, bool is_serv
           base::StringPrintf("handle:%hu scn:%hhu dlci:%hhu mtu:%hu", *p_handle, scn, dlci, mtu));
 
   // Open will be continued after security checks are passed
-  return port_open_continue(p_port);
+  return port_open_continue(p_port, p_cfg);
 }
 
 /*******************************************************************************

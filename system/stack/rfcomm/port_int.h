@@ -101,6 +101,8 @@ typedef struct {
                                               connection was completed*/
   tL2CAP_CFG_INFO pending_cfg_info = {};   /* store configure info for incoming
                                          connection while connecting */
+  tRFC_CFG_INFO rfc_cfg_info = {};         /* store optional rfc configure info for incoming
+                                             connection while connecting */
 } tRFC_MCB;
 
 /*
@@ -232,7 +234,7 @@ void port_flow_control_peer(tPORT* p_port, bool enable, uint16_t count);
 /*
  * Functions provided by the port_rfc.cc
  */
-int port_open_continue(tPORT* p_port);
+int port_open_continue(tPORT* p_port, tRFC_CFG_INFO* p_cfg);
 void port_start_port_open(tPORT* p_port);
 void port_start_par_neg(tPORT* p_port);
 void port_start_control(tPORT* p_port);

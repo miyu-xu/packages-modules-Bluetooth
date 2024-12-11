@@ -27,6 +27,7 @@
 
 #include <base/functional/callback.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 
 #include <cstdint>
@@ -64,7 +65,7 @@ void port_get_credits(tPORT* p_port, uint8_t k);
  * Returns          PORT_SUCCESS or PORT_[ERROR]
  *
  ******************************************************************************/
-int port_open_continue(tPORT* p_port) {
+int port_open_continue(tPORT* p_port, tRFC_CFG_INFO* p_cfg) {
   log::verbose("port_open_continue, p_port:{}", std::format_ptr(p_port));
 
   /* Check if multiplexer channel has already been established */
@@ -78,6 +79,12 @@ int port_open_continue(tPORT* p_port) {
   p_port->rfc.p_mcb = p_mcb;
 
   p_mcb->port_handles[p_port->dlci] = p_port->handle;
+
+  if (com::android::bluetooth::flags::socket_settings_api()) {
+    if (p_cfg != nullptr) {
+      p_mcb->rfc_cfg_info = *p_cfg;
+    }
+  }
 
   /* Connection is up and we know local and remote features, select MTU */
   port_select_mtu(p_port);
@@ -344,7 +351,13 @@ void PORT_ParNegInd(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu, uint8_t cl, uin
 
     /* Set convergence layer and number of credits (k) */
     our_cl = RFCOMM_PN_CONV_LAYER_CBFC_R;
-    our_k = (p_port->credit_rx_max < RFCOMM_K_MAX) ? p_port->credit_rx_max : RFCOMM_K_MAX;
+    if (com::android::bluetooth::flags::socket_settings_api()) {
+      our_k = (p_mcb->rfc_cfg_info.init_credit_present) ? p_mcb->rfc_cfg_info.init_credit
+              : (p_port->credit_rx_max < RFCOMM_K_MAX)  ? p_port->credit_rx_max
+                                                        : RFCOMM_K_MAX;
+    } else {
+      our_k = (p_port->credit_rx_max < RFCOMM_K_MAX) ? p_port->credit_rx_max : RFCOMM_K_MAX;
+    }
     p_port->credit_rx = our_k;
   } else {
     /* must not be using credit based flow control; use TS 7.10 */
