@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60bd078d_859fc579",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-11T22:22:30Z",
+      "side": 1,
+      "message": "If we change the name to `config`, does it the warning of `Check Contents`?",
+      "range": {
+        "startLine": 1536,
+        "startChar": 16,
+        "endLine": 1536,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c5d37e1d_f75dcab0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1536,
+                "startChar": 0,
+                "endLine": 1538,
+                "endChar": 0
+              },
+              "replacement": "  tRFC_CFG_INFO config;\n  memset(\u0026config, 0, sizeof(tRFC_CFG_INFO));\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1539,
+                "startChar": 0,
+                "endLine": 1540,
+                "endChar": 0
+              },
+              "replacement": "    config \u003d *cfg_param;\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1553,
+                "startChar": 0,
+                "endLine": 1554,
+                "endChar": 0
+              },
+              "replacement": "              \u0026handle, bta_jv_port_mgmt_cl_cback, sec_mask, \u0026config) !\u003d PORT_SUCCESS) {\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1880,
+                "startChar": 0,
+                "endLine": 1882,
+                "endChar": 0
+              },
+              "replacement": "  tRFC_CFG_INFO config;\n  memset(\u0026config, 0, sizeof(tRFC_CFG_INFO));\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1883,
+                "startChar": 0,
+                "endLine": 1884,
+                "endChar": 0
+              },
+              "replacement": "    config \u003d *cfg_param;\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1889,
+                "startChar": 0,
+                "endLine": 1890,
+                "endChar": 0
+              },
+              "replacement": "                                            sec_mask, \u0026config) !\u003d PORT_SUCCESS) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce825494_b12ac063",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1824,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-11T22:22:30Z",
+      "side": 1,
+      "message": "nullptr",
+      "range": {
+        "startLine": 1824,
+        "startChar": 46,
+        "endLine": 1824,
+        "endChar": 50
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5c1e33_514db643",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-11T22:22:30Z",
+      "side": 1,
+      "message": "If we change the name to config, does it the warning of Check Contents?",
+      "range": {
+        "startLine": 1880,
+        "startChar": 16,
+        "endLine": 1880,
+        "endChar": 19
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff71869_68e20883",
+        "filename": "system/stack/rfcomm/rfc_port_if.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-11T22:22:30Z",
+      "side": 1,
+      "message": "It looks this path is for RFCOMM Client. For RFCOMM Server, we may need to update following code as well.\n\n```\nvoid PORT_ParNegInd(...) {\n\u003d\u003d snip \u003d\u003d\n    our_k \u003d (p_port-\u003ecredit_rx_max \u003c RFCOMM_K_MAX) ? p_port-\u003ecredit_rx_max : RFCOMM_K_MAX;\n    p_port-\u003ecredit_rx \u003d our_k;\n```",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 88
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9ce74ea5_c48cd4db",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_port_if.cc",
+              "range": {
+                "startLine": 153,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "    k \u003d (p_port-\u003ecredit_rx_max \u003c RFCOMM_K_MAX) ? p_port-\u003ecredit_rx_max : RFCOMM_K_MAX;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
