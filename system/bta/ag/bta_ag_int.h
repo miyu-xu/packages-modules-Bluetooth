@@ -319,7 +319,8 @@ struct tBTA_AG_SCB {
             "sco_codec=%d, peer_codec=%d, msbc_settings=%d, lc3_settings=%d, "
             "device=%s",
             codec_updated, codec_fallback, nrec_enabled, sco_codec, peer_codecs,
-            codec_msbc_settings, codec_lc3_settings, ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
+            codec_msbc_settings, codec_lc3_settings,
+            peer_addr.ToRedactedStringForLogging().c_str());
   }
 };
 
