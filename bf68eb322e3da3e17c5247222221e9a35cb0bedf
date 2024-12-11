@@ -208,6 +208,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "427fb7d8_1c517074",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-11T01:00:18Z",
+      "side": 1,
+      "message": "Looks good! I will use wtf log here.",
+      "parentUuid": "f6450839_9d7b8b2c",
+      "range": {
+        "startLine": 99,
+        "startChar": 23,
+        "endLine": 101,
+        "endChar": 35
+      },
+      "revId": "bf68eb322e3da3e17c5247222221e9a35cb0bedf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7afe7d6_6aa98041",
