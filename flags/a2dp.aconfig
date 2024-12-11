@@ -185,3 +185,13 @@ flag {
     is_exported: true
     bug: "380118954"
 }
+
+flag {
+    name: "a2dp_sbc_default_enable_48k"
+    namespace: "bluetooth"
+    description: "Default to enable 48k sampling frequency in source SBC"
+    bug: "383467935"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
