@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57314d89_f80f33ab",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T04:37:25Z",
+      "side": 1,
+      "message": "should we use std format instead, that would help remove a lot of `ToRedactedStringForLogging().c_str()`",
+      "range": {
+        "startLine": 317,
+        "startChar": 11,
+        "endLine": 317,
+        "endChar": 30
+      },
+      "revId": "b18009d685060697d03d05e0261c13ebfd024ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
