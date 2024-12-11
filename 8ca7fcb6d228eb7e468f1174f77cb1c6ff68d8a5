@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e33e89d_8feb218a",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:24:45Z",
+      "side": 1,
+      "message": "To clarify, this is based on logs after pairing a BLE mouse. Let me know if this is not sufficient.",
+      "parentUuid": "f83dcaf1_6c28ea01",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f83de6af_8594c16d",
         "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
         "patchSetId": 8
