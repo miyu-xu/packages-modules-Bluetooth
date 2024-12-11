@@ -3992,7 +3992,7 @@ static void btif_debug_av_peer_dump(int fd, const BtifAvPeer& peer) {
       break;
   }
 
-  dprintf(fd, "  Peer: %s\n", ADDRESS_TO_LOGGABLE_CSTR(peer.PeerAddress()));
+  dprintf(fd, "  Peer: %s\n", peer.PeerAddress().ToRedactedStringForLogging().c_str());
   dprintf(fd, "    Connected: %s\n", peer.IsConnected() ? "true" : "false");
   dprintf(fd, "    Streaming: %s\n", peer.IsStreaming() ? "true" : "false");
   dprintf(fd, "    SEP: %d(%s)\n", peer.PeerSep(), (peer.IsSource()) ? "Source" : "Sink");
@@ -4018,7 +4018,8 @@ static void btif_debug_av_source_dump(int fd) {
   if (!enabled) {
     return;
   }
-  dprintf(fd, "  Active peer: %s\n", ADDRESS_TO_LOGGABLE_CSTR(btif_av_source.ActivePeer()));
+  dprintf(fd, "  Active peer: %s\n",
+          btif_av_source.ActivePeer().ToRedactedStringForLogging().c_str());
   dprintf(fd, "  Peers:\n");
   btif_av_source.DumpPeersInfo(fd);
 }
@@ -4030,7 +4031,8 @@ static void btif_debug_av_sink_dump(int fd) {
   if (!enabled) {
     return;
   }
-  dprintf(fd, "  Active peer: %s\n", ADDRESS_TO_LOGGABLE_CSTR(btif_av_sink.ActivePeer()));
+  dprintf(fd, "  Active peer: %s\n",
+          btif_av_sink.ActivePeer().ToRedactedStringForLogging().c_str());
   dprintf(fd, "  Peers:\n");
   btif_av_sink.DumpPeersInfo(fd);
 }

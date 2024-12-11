@@ -1212,7 +1212,8 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           // consolidate callback
           BTM_LogHistory(
                   kBtmLogTagCallback, bd_addr, "Consolidate",
-                  base::StringPrintf(" <=> %s", ADDRESS_TO_LOGGABLE_CSTR(pairing_cb.bd_addr)));
+                  base::StringPrintf(" <=> %s",
+                                     pairing_cb.bd_addr.ToRedactedStringForLogging().c_str()));
           GetInterfaceToProfiles()->events->invoke_address_consolidate_cb(pairing_cb.bd_addr,
                                                                           bd_addr);
         } else {
@@ -3849,8 +3850,8 @@ void btif_debug_bond_event_dump(int fd) {
         break;
     }
 
-    dprintf(fd, "  %s  %s  %s  %s\n", eventtime, ADDRESS_TO_LOGGABLE_CSTR(event->bd_addr),
-            func_name, bond_state);
+    dprintf(fd, "  %s  %s  %s  %s\n", eventtime,
+            event->bd_addr.ToRedactedStringForLogging().c_str(), func_name, bond_state);
   }
 }
 
