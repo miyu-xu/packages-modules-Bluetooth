@@ -22,6 +22,30 @@
       },
       "revId": "ae531c659881215146daa064ddba16cbeed71cda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67a849c9_b9b9fc83",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-11T02:25:08Z",
+      "side": 1,
+      "message": "The string won\u0027t be API. But the power has a plan to expose the property as public APIs from frameworks/base/core/java/android/hardware/devicestate/DeviceState.java. After that, we can match the property instead of the names. But for now, I will add these as local constant.",
+      "parentUuid": "cfe044c5_6d6477c0",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "ae531c659881215146daa064ddba16cbeed71cda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
