@@ -39,6 +39,30 @@
       },
       "revId": "ad06c63340ebc6521f05687f8e7b5aa95288392b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bf710c4_8a65692b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-11T00:16:13Z",
+      "side": 1,
+      "message": "in previous version of BassClientStateMachine\n```\nsources.size() \u003c stateMachine.getMaximumSourceCapacity()\n```\nis always false as any receiveState (even with 0 length) are parsed and artificial source ID is added.\n\nSo this code will behave in the same way as previously even if there is no flag there.",
+      "parentUuid": "089906b9_70259105",
+      "range": {
+        "startLine": 1328,
+        "startChar": 8,
+        "endLine": 1338,
+        "endChar": 9
+      },
+      "revId": "ad06c63340ebc6521f05687f8e7b5aa95288392b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
