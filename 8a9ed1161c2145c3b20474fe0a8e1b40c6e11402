@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52b4433_f2c89dfe",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T01:25:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67c52a08_69517f15",
+      "range": {
+        "startLine": 1019,
+        "startChar": 18,
+        "endLine": 1019,
+        "endChar": 84
+      },
+      "revId": "8a9ed1161c2145c3b20474fe0a8e1b40c6e11402",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e422a244_d082e7c2",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "8a9ed1161c2145c3b20474fe0a8e1b40c6e11402",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd088c5d_ead31edd",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T01:25:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e422a244_d082e7c2",
+      "range": {
+        "startLine": 1024,
+        "startChar": 15,
+        "endLine": 1024,
+        "endChar": 47
+      },
       "revId": "8a9ed1161c2145c3b20474fe0a8e1b40c6e11402",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
