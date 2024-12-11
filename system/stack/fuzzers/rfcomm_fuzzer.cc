@@ -82,6 +82,7 @@ void port_event_cback(uint32_t code, uint16_t port_handle) {
 
 class FakeBtStack {
   NiceMock<bluetooth::testing::stack::l2cap::Mock> mock_l2cap_interface;
+
 public:
   NiceMock<bluetooth::rfcomm::MockRfcommCallback> mock_rfcomm_callback;
 
@@ -129,8 +130,10 @@ static int ServerInit(FuzzedDataProvider* fdp, uint16_t* server_handle) {
   auto scn = fdp->ConsumeIntegral<uint8_t>();
   auto uuid = fdp->ConsumeIntegral<uint16_t>();
 
+  tRFC_CFG_INFO cfg = {};
+
   int status = RFCOMM_CreateConnectionWithSecurity(uuid, scn, true, mtu, kDummyAddr, server_handle,
-                                                   port_mgmt_cback, 0);
+                                                   port_mgmt_cback, 0, cfg);
   if (status != PORT_SUCCESS) {
     return status;
   }
@@ -174,8 +177,10 @@ static int ClientInit(FuzzedDataProvider* fdp, uint16_t* client_handle) {
   auto scn = fdp->ConsumeIntegral<uint8_t>();
   auto uuid = fdp->ConsumeIntegral<uint16_t>();
 
+  tRFC_CFG_INFO cfg = {};
+
   int status = RFCOMM_CreateConnectionWithSecurity(uuid, scn, false, mtu, kDummyAddr, client_handle,
-                                                   port_mgmt_cback, 0);
+                                                   port_mgmt_cback, 0, cfg);
   if (status != PORT_SUCCESS) {
     return status;
   }
