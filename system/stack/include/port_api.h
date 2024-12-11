@@ -28,6 +28,7 @@
 
 #include "include/macros.h"
 #include "internal_include/bt_target.h"
+#include "stack/rfcomm/port_int.h"
 #include "types/raw_address.h"
 
 /*****************************************************************************
@@ -225,7 +226,7 @@ typedef void(tPORT_MGMT_CALLBACK)(const tPORT_RESULT code, uint16_t port_handle)
                                                       uint16_t mtu, const RawAddress& bd_addr,
                                                       uint16_t* p_handle,
                                                       tPORT_MGMT_CALLBACK* p_mgmt_callback,
-                                                      uint16_t sec_mask);
+                                                      uint16_t sec_mask, tRFC_CFG_INFO* p_cfg);
 
 /*******************************************************************************
  *

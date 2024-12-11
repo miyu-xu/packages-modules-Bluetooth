@@ -149,7 +149,14 @@ void RFCOMM_ParameterNegotiationRequest(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t 
   /* Set convergence layer and number of credits (k) */
   if (flow == PORT_FC_CREDIT) {
     cl = RFCOMM_PN_CONV_LAYER_CBFC_I;
-    k = (p_port->credit_rx_max < RFCOMM_K_MAX) ? p_port->credit_rx_max : RFCOMM_K_MAX;
+
+    if (com::android::bluetooth::flags::socket_settings_api()) {
+      k = (p_mcb->rfc_cfg_info.init_credit_present) ? p_mcb->rfc_cfg_info.init_credit
+          : (p_port->credit_rx_max < RFCOMM_K_MAX)  ? p_port->credit_rx_max
+                                                    : RFCOMM_K_MAX;
+    } else {
+      k = (p_port->credit_rx_max < RFCOMM_K_MAX) ? p_port->credit_rx_max : RFCOMM_K_MAX;
+    }
     p_port->credit_rx = k;
   } else {
     cl = RFCOMM_PN_CONV_LAYER_TYPE_1;
