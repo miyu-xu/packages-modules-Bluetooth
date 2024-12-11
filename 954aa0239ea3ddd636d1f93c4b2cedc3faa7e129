@@ -158,6 +158,30 @@
       },
       "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a96f6cc_9a960ccb",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-11T19:42:31Z",
+      "side": 1,
+      "message": "I think that either one of the values may be false, but they probably shouldn\u0027t be equal ... I haven\u0027t checked the spec values though.",
+      "parentUuid": "3e6b007a_fc86b9b1",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
