@@ -22,16 +22,26 @@ import android.os.HandlerThread
 import android.os.UserManager
 import com.android.server.SystemService
 import com.android.server.SystemService.TargetUser
+import com.android.bluetooth.flags.Flags;
+
+private fun useNewStatMachine() :Boolean {
+    return true || Flags.bluetoothManagerServiceStateMachine();
+}
 
 class BluetoothService(context: Context) : SystemService(context) {
     private val mHandlerThread: HandlerThread
-    private val mBluetoothManagerService: BluetoothManagerService
+    private lateinit var mBluetoothManagerService: BluetoothManagerService
+    private lateinit var mBluetoothManagerServiceNew: BluetoothManagerServiceNew
     private var mInitialized = false
 
     init {
         mHandlerThread = HandlerThread("BluetoothManagerService")
         mHandlerThread.start()
-        mBluetoothManagerService = BluetoothManagerService(context, mHandlerThread.getLooper())
+        if (useNewStatMachine()) {
+            mBluetoothManagerServiceNew = BluetoothManagerServiceNew(context, mHandlerThread.getLooper())
+        } else {
+            mBluetoothManagerService = BluetoothManagerService(context, mHandlerThread.getLooper())
+        }
     }
 
     private fun initialize(user: TargetUser) {
@@ -45,10 +55,17 @@ class BluetoothService(context: Context) : SystemService(context) {
 
     override fun onBootPhase(phase: Int) {
         if (phase == SystemService.PHASE_SYSTEM_SERVICES_READY) {
+            if (useNewStatMachine()) {
+            publishBinderService(
+                BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE,
+                mBluetoothManagerServiceNew.getBinder()
+            )
+            } else {
             publishBinderService(
                 BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE,
                 mBluetoothManagerService.getBinder()
             )
+        }
         }
     }
 
@@ -61,11 +78,19 @@ class BluetoothService(context: Context) : SystemService(context) {
                             .getIdentifier("config_bootToHeadlessSystemUser", "bool", "android")
                     )
         ) {
+            if (useNewStatMachine()) {
+                mBluetoothManagerServiceNew.onUserStarting(user.userHandle)
+                return
+            }
             initialize(user)
         }
     }
 
     override fun onUserSwitching(_from: TargetUser?, to: TargetUser) {
+        if (useNewStatMachine()) {
+            mBluetoothManagerServiceNew.onSwitchUser(to.userHandle)
+            return
+        }
         if (!mInitialized) {
             initialize(to)
         } else {
@@ -74,6 +99,10 @@ class BluetoothService(context: Context) : SystemService(context) {
     }
 
     override fun onUserUnlocking(user: TargetUser) {
-        mBluetoothManagerService.handleOnUnlockUser(user.userHandle)
+        if (useNewStatMachine()) {
+            mBluetoothManagerServiceNew.onUserUnlocking(user.userHandle)
+        } else {
+            mBluetoothManagerService.handleOnUnlockUser(user.userHandle)
+        }
     }
 }

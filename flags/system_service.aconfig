@@ -2,6 +2,16 @@ package: "com.android.bluetooth.flags"
 container: "com.android.btservices"
 
 flag {
+    name: "bluetooth_manager_service_state_machine"
+    namespace: "bluetooth"
+    description: "Rewrite of the manager service to use state machine"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+    bug: "341783936"
+}
+
+flag {
     name: "enforce_resolve_system_service_behavior"
     namespace: "bluetooth"
     description: "Loudly crash when it is not possible to find a service to start bluetooth"

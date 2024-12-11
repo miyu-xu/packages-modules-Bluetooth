@@ -60,6 +60,15 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     private final BtPermissionUtils mPermissionUtils;
     private final Looper unusedmLooper;
 
+    BluetoothServiceBinder(Context ctx, Looper looper){
+        mBluetoothManagerService = null;
+        mUserManager = null;
+        unusedmLooper = looper;
+        mContext = ctx;
+        mAppOpsManager = requireNonNull(ctx.getSystemService(AppOpsManager.class));
+        mPermissionManager = requireNonNull(ctx.getSystemService(PermissionManager.class));
+        mPermissionUtils = new BtPermissionUtils(ctx);
+    }
     BluetoothServiceBinder(
             BluetoothManagerService bms, Looper looper, Context ctx, UserManager userManager) {
         mBluetoothManagerService = bms;

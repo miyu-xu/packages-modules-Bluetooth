@@ -52,6 +52,7 @@ java_library {
         "src/AdapterBinder.kt",
         "src/AdapterState.kt",
         "src/AutoOnFeature.kt",
+        "src/BluetoothManagerServiceNew.kt",
         "src/BleScanSettingListener.kt",
         "src/BluetoothService.kt",
         "src/Log.kt",
