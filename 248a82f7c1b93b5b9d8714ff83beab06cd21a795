@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56cacdcd_2e60547a",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-12-11T03:51:18Z",
+      "side": 1,
+      "message": "Could you remind me again what is the purpose of storing the previous and second-to-previous states? Will these states be used for any high-level decision-making for the metric? If so, would it make sense to make the decision here itself?",
+      "revId": "248a82f7c1b93b5b9d8714ff83beab06cd21a795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e017bbdc_6915d0b7",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-12-11T03:51:18Z",
+      "side": 1,
+      "message": "Also could you please paste the output of stastd_testdrive on the bug for future reference?",
+      "revId": "248a82f7c1b93b5b9d8714ff83beab06cd21a795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
