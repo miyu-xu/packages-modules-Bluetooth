@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fed85d1a_3c5f325a",
+        "filename": "system/test/mock/mock_stack_rfcomm_port_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-11T23:20:56Z",
+      "side": 1,
+      "message": "I am seeing this function in following file as well.\n\npackages/modules/Bluetooth/system/stack/fuzzers/rfcomm_fuzzer.cc",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 39
+      },
+      "revId": "79bc80462e3ea1ada9a653315dc9267feb1d3d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
