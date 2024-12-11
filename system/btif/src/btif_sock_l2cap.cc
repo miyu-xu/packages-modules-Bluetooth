@@ -339,10 +339,10 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
   }
 
 #if TARGET_FLOSS
-  //Changed socket type to SOCK_STREAM to address a platform issue on FLOSS.
-  //This is a workaround and not the recommended approach.
-  //SOCK_SEQPACKET is preferred for L2CAP LE CoC channels because it preserves L2CAP
-  //packet boundaries, ensuring message integrity.
+  // Changed socket type to SOCK_STREAM to address a platform issue on FLOSS.
+  // This is a workaround and not the recommended approach.
+  // SOCK_SEQPACKET is preferred for L2CAP LE CoC channels because it preserves L2CAP
+  // packet boundaries, ensuring message integrity.
   sock_type = SOCK_STREAM;
 #endif
   if (socketpair(AF_LOCAL, sock_type, 0, fds)) {
