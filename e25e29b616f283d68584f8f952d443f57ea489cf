@@ -92,6 +92,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dcbfc38_91eabfd8",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T23:06:42Z",
+      "side": 1,
+      "message": "I used the default initializer instead and it should fix the warning.",
+      "parentUuid": "60bd078d_859fc579",
+      "range": {
+        "startLine": 1536,
+        "startChar": 16,
+        "endLine": 1536,
+        "endChar": 19
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce825494_b12ac063",
@@ -115,6 +139,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fbc5652_d158ecc7",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1824,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T23:06:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce825494_b12ac063",
+      "range": {
+        "startLine": 1824,
+        "startChar": 46,
+        "endLine": 1824,
+        "endChar": 50
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e5c1e33_514db643",
@@ -128,6 +176,30 @@
       "writtenOn": "2024-12-11T22:22:30Z",
       "side": 1,
       "message": "If we change the name to config, does it the warning of Check Contents?",
+      "range": {
+        "startLine": 1880,
+        "startChar": 16,
+        "endLine": 1880,
+        "endChar": 19
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f87f6c_22ea169f",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T23:06:42Z",
+      "side": 1,
+      "message": "I used the default initializer instead and it should fix the warning.",
+      "parentUuid": "5e5c1e33_514db643",
       "range": {
         "startLine": 1880,
         "startChar": 16,
