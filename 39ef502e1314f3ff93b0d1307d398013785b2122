@@ -16,6 +16,24 @@
       "message": "Same comment about how the logging actually looks on a real device, not just btclient",
       "revId": "39ef502e1314f3ff93b0d1307d398013785b2122",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d70fd29_2319036d",
+        "filename": "system/gd/rust/linux/stack/btif_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-11T23:23:25Z",
+      "side": 1,
+      "message": "The raw number of logs is not much higher, but some logs can be large--ex. the callback to retrieve the entire contents of a GATT DB can be several lines long.",
+      "parentUuid": "3eaf4979_d686c446",
+      "revId": "39ef502e1314f3ff93b0d1307d398013785b2122",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
