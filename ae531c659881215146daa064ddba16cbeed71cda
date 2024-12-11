@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe044c5_6d6477c0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterSuspend.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T02:00:39Z",
+      "side": 1,
+      "message": "Do we have API we can use instad of raw string ?\n\nif not, should we defined local constant instead ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "ae531c659881215146daa064ddba16cbeed71cda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
