@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8dc614_301287a5",
+        "filename": "system/btif/include/btif_sock_rfc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T01:24:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f123622_901370a2",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2424d4e_e1555be6",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2316126e_eae1d08f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T01:24:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2424d4e_e1555be6",
+      "range": {
+        "startLine": 496,
+        "startChar": 32,
+        "endLine": 496,
+        "endChar": 34
+      },
+      "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9438b11a_ba6784d7",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-12-10T22:14:16Z",
       "side": 1,
       "message": "Isn\u0027t the minimal frame size actually a bit shorter compared to kLeCocMtuMin ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6b007a_fc86b9b1",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T01:24:28Z",
+      "side": 1,
+      "message": "I think we are constrained by the RFCOMM spec here so can\u0027t go below 23 bytes according to this [table 5.1](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/RFCOMM_v1.1/RFCOMM_v1.1/out/en/index-en.html#UUID-2ba3724c-f013-72b8-1b6c-bc7a8686416b_N1717529873665). \n\nMy understanding is that `kRfcommFrameSizeMin` is just used to make sure the socket capabilities for RFCOMM are within the specs, but it is unlikely that the negotiated max frame size will not comply with the L2CAP mtu. I will double check it when I work on the CL for determining the RFCOMM max frame size in btif.",
+      "parentUuid": "9438b11a_ba6784d7",
       "range": {
         "startLine": 37,
         "startChar": 19,
