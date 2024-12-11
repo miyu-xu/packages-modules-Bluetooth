@@ -279,6 +279,8 @@ protected:
   }
 
   void TearDown() override {
+    com::android::bluetooth::flags::provider_->reset_flags();
+
     sync_client_handler();
     if (fake_registry_.IsStarted<LeScanningManager>()) {
       fake_registry_.SynchronizeModuleHandler(&LeScanningManager::Factory,
@@ -333,6 +335,8 @@ protected:
 class LeScanningManagerExtendedTest : public LeScanningManagerTest {
 protected:
   void SetUp() override {
+    com::android::bluetooth::flags::provider_->configure_scan_on_resume(true);
+
     LeScanningManagerTest::SetUp();
     test_controller_->AddSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS);
     test_controller_->AddSupported(OpCode::LE_SET_EXTENDED_SCAN_ENABLE);
@@ -828,6 +832,38 @@ TEST_F(LeScanningManagerExtendedTest, on_pause_on_resume_test) {
 
   // Ensure scan is resumed (enabled)
   test_le_address_manager->client_->OnResume();
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_ENABLE, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(
+          LeSetExtendedScanEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+}
+
+TEST_F(LeScanningManagerExtendedTest, on_pause_set_parameter_on_resume_test) {
+  TestLeAddressManager* test_le_address_manager =
+          (TestLeAddressManager*)test_acl_manager_->GetLeAddressManager();
+
+  // Enable scan
+  le_scanning_manager->Scan(true);
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(
+          LeSetExtendedScanParametersCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_ENABLE, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(
+          LeSetExtendedScanEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+  sync_client_handler();
+
+  // Pause scan
+  test_le_address_manager->client_->OnPause();
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_ENABLE, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(
+          LeSetExtendedScanEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+
+  le_scanning_manager->SetScanParameters(uint8_t{1}, LeScanType::ACTIVE, 0x0004, 4800, uint8_t{1});
+
+  // Ensure scan is resumed (enabled)
+  test_le_address_manager->client_->OnResume();
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(
+          LeSetExtendedScanParametersCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
   ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_ENABLE, test_hci_layer_->GetCommand().GetOpCode());
   test_hci_layer_->IncomingEvent(
           LeSetExtendedScanEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));

@@ -450,6 +450,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void configure_scan() {
+    need_configure_scan_ = false;
+
     std::vector<PhyScanParameters> parameter_vector;
     for (int i = 0; i < 7; i++) {
       if ((phy_ & 1 << i) != 0) {
@@ -655,6 +657,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     if (com::android::bluetooth::flags::phy_to_native()) {
       phy_ = scan_phy;
     }
+    need_configure_scan_ = true;
     scanning_callbacks_->OnSetScannerParameterComplete(scanner_id, ScanningCallback::SUCCESS);
   }
 
@@ -1579,6 +1582,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     paused_ = false;
     if (scan_on_resume_ == true) {
       scan_on_resume_ = false;
+      if (com::android::bluetooth::flags::configure_scan_on_resume() && need_configure_scan_) {
+        configure_scan();
+      }
       start_scan();
     }
     le_address_manager_->AckResume(this);
@@ -1602,6 +1608,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   bool is_scanning_ = false;
   bool scan_on_resume_ = false;
   bool paused_ = false;
+  bool need_configure_scan_ = true;
   LeScanningReassembler scanning_reassembler_;
   bool is_filter_supported_ = false;
   bool is_ad_type_filter_supported_ = false;
