@@ -484,7 +484,7 @@ struct tTCB_STATE_HISTORY {
   tGATT_CH_STATE state;
   std::string holders_info;
   std::string ToString() const {
-    return base::StringPrintf("%s, %s, state: %s, %s", ADDRESS_TO_LOGGABLE_CSTR(address),
+    return base::StringPrintf("%s, %s, state: %s, %s", address.ToRedactedStringForLogging().c_str(),
                               bt_transport_text(transport).c_str(),
                               gatt_channel_state_text(state).c_str(), holders_info.c_str());
   }

@@ -306,7 +306,7 @@ public:
       direct_connection_events_.reset();
     } else {
       log::assert_that(per_connection_events_.count(peer) > 0, "No connection request for {}",
-                       ADDRESS_TO_LOGGABLE_CSTR(peer));
+                       peer);
     }
     acl_connections_.erase(handle);
     acl_connections_.emplace(
