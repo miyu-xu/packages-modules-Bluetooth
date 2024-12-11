@@ -70,6 +70,30 @@
       },
       "revId": "66fbafba10c68c909a72054c5c12a3e1e79b26b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5869c9fa_3b864b4f",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-11T23:59:40Z",
+      "side": 1,
+      "message": "Thanks Pomai",
+      "parentUuid": "f46c37e1_12e555b7",
+      "range": {
+        "startLine": 324,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 50
+      },
+      "revId": "66fbafba10c68c909a72054c5c12a3e1e79b26b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
