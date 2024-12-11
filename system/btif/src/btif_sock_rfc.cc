@@ -430,8 +430,10 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr, const Uuid* service_uu
   }
 
   if (!service_uuid || service_uuid->IsEmpty()) {
-    tBTA_JV_STATUS ret =
-            BTA_JvRfcommConnect(slot->security, slot->scn, slot->addr, rfcomm_cback, slot->id);
+    // Setup optional configurations
+    std::unique_ptr<tRFC_CFG_INFO> cfg = std::make_unique<tRFC_CFG_INFO>();
+    tBTA_JV_STATUS ret = BTA_JvRfcommConnect(slot->security, slot->scn, slot->addr, rfcomm_cback,
+                                             slot->id, std::move(cfg));
     if (ret != tBTA_JV_STATUS::SUCCESS) {
       log::error("unable to initiate RFCOMM connection. status:{}, scn:{}, bd_addr:{}",
                  bta_jv_status_text(ret), slot->scn, slot->addr);
@@ -1014,8 +1016,20 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
         log::debug(
                 "Since UUID is not valid; not setting SDP-record and just starting "
                 "the RFCOMM server");
+        // Setup optional configurations
+        std::unique_ptr<tRFC_CFG_INFO> cfg = std::make_unique<tRFC_CFG_INFO>();
+        // For hardware offload data path, host stack sets the initial credits to 0. The offload
+        // stack should send initial credits to peer device through RFCOMM signaling command when
+        // the data path is switched successfully.
+        if (com::android::bluetooth::flags::socket_settings_api()) {  // Added with aosp/3349376
+          if (rs->data_path == BTSOCK_DATA_PATH_HARDWARE_OFFLOAD) {
+            cfg->init_credit_present = true;
+            cfg->init_credit = 0;
+          }
+        }
         // now start the rfcomm server after sdp & channel # assigned
-        BTA_JvRfcommStartServer(rs->security, rs->scn, MAX_RFC_SESSION, rfcomm_cback, rs->id);
+        BTA_JvRfcommStartServer(rs->security, rs->scn, MAX_RFC_SESSION, rfcomm_cback, rs->id,
+                                std::move(cfg));
       }
       break;
     }
@@ -1041,8 +1055,20 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
         break;
       }
 
+      // Setup optional configurations
+      std::unique_ptr<tRFC_CFG_INFO> cfg = std::make_unique<tRFC_CFG_INFO>();
+      // For hardware offload data path, host stack sets the initial credits to 0. The offload
+      // stack should send initial credits to peer device through RFCOMM signaling command when
+      // the data path is switched successfully.
+      if (com::android::bluetooth::flags::socket_settings_api()) {  // Added with aosp/3349376
+        if (slot->data_path == BTSOCK_DATA_PATH_HARDWARE_OFFLOAD) {
+          cfg->init_credit_present = true;
+          cfg->init_credit = 0;
+        }
+      }
       // Start the rfcomm server after sdp & channel # assigned.
-      BTA_JvRfcommStartServer(slot->security, slot->scn, MAX_RFC_SESSION, rfcomm_cback, slot->id);
+      BTA_JvRfcommStartServer(slot->security, slot->scn, MAX_RFC_SESSION, rfcomm_cback, slot->id,
+                              std::move(cfg));
       break;
     }
 
@@ -1086,8 +1112,20 @@ static void handle_discovery_comp(tBTA_JV_STATUS status, int scn, uint32_t id) {
     return;
   }
 
-  if (BTA_JvRfcommConnect(slot->security, scn, slot->addr, rfcomm_cback, slot->id) !=
-      tBTA_JV_STATUS::SUCCESS) {
+  // Setup optional configurations
+  std::unique_ptr<tRFC_CFG_INFO> cfg = std::make_unique<tRFC_CFG_INFO>();
+  // For hardware offload data path, host stack sets the initial credits to 0. The offload
+  // stack should send initial credits to peer device through RFCOMM signaling command when
+  // the data path is switched successfully.
+  if (com::android::bluetooth::flags::socket_settings_api()) {  // Added with aosp/3349376
+    if (slot->data_path == BTSOCK_DATA_PATH_HARDWARE_OFFLOAD) {
+      cfg->init_credit_present = true;
+      cfg->init_credit = 0;
+    }
+  }
+
+  if (BTA_JvRfcommConnect(slot->security, scn, slot->addr, rfcomm_cback, slot->id,
+                          std::move(cfg)) != tBTA_JV_STATUS::SUCCESS) {
     log::warn(
             "BTA_JvRfcommConnect() returned BTA_JV_FAILURE for RFCOMM slot with "
             "id: {}",

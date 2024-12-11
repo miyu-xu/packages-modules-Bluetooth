@@ -179,6 +179,15 @@ inline std::string port_result_text(const tPORT_RESULT& result) {
   RETURN_UNKNOWN_TYPE_STRING(tPORT_RESULT, result);
 }
 
+/* Define a structure to hold the configuration parameters. Since the
+ * parameters are optional, for each parameter there is a boolean to
+ * use to signify its presence or absence.
+ */
+typedef struct {
+  bool init_credit_present;
+  uint16_t init_credit;
+} tRFC_CFG_INFO;
+
 namespace std {
 template <>
 struct formatter<tPORT_RESULT> : enum_formatter<tPORT_RESULT> {};
@@ -225,7 +234,7 @@ typedef void(tPORT_MGMT_CALLBACK)(const tPORT_RESULT code, uint16_t port_handle)
                                                       uint16_t mtu, const RawAddress& bd_addr,
                                                       uint16_t* p_handle,
                                                       tPORT_MGMT_CALLBACK* p_mgmt_callback,
-                                                      uint16_t sec_mask);
+                                                      uint16_t sec_mask, tRFC_CFG_INFO* p_cfg);
 
 /*******************************************************************************
  *
