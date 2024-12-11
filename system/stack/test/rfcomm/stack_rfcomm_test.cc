@@ -135,8 +135,9 @@ public:
                        tPORT_MGMT_CALLBACK* management_callback, tPORT_CALLBACK* event_callback,
                        uint16_t* server_handle) {
     log::verbose("Step 1");
+    tRFC_CFG_INFO cfg = {};
     ASSERT_EQ(RFCOMM_CreateConnectionWithSecurity(uuid, scn, true, mtu, RawAddress::kAny,
-                                                  server_handle, management_callback, 0),
+                                                  server_handle, management_callback, 0, &cfg),
               PORT_SUCCESS);
     ASSERT_EQ(PORT_SetEventMaskAndCallback(*server_handle, PORT_EV_RXCHAR, event_callback),
               PORT_SUCCESS);
@@ -261,8 +262,9 @@ public:
       EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(uih_pn_channel_3)))
               .WillOnce(Return(tL2CAP_DW_RESULT::SUCCESS));
     }
+    tRFC_CFG_INFO cfg = {};
     ASSERT_EQ(RFCOMM_CreateConnectionWithSecurity(uuid, scn, false, mtu, peer_bd_addr,
-                                                  client_handle, management_callback, 0),
+                                                  client_handle, management_callback, 0, &cfg),
               PORT_SUCCESS);
     ASSERT_EQ(PORT_SetEventMaskAndCallback(*client_handle, PORT_EV_RXCHAR, event_callback),
               PORT_SUCCESS);
@@ -642,9 +644,10 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   uint16_t server_handle = 0;
   log::verbose("Step 1");
   // Prepare a server port
+  tRFC_CFG_INFO test_cfg = {};
   int status = RFCOMM_CreateConnectionWithSecurity(test_uuid, test_server_scn, true, test_mtu,
                                                    RawAddress::kAny, &server_handle,
-                                                   port_mgmt_cback_0, 0);
+                                                   port_mgmt_cback_0, 0, &test_cfg);
   ASSERT_EQ(status, PORT_SUCCESS);
   status = PORT_SetEventMaskAndCallback(server_handle, PORT_EV_RXCHAR, port_event_cback_0);
   ASSERT_EQ(status, PORT_SUCCESS);
@@ -655,9 +658,9 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   EXPECT_CALL(l2cap_interface_, ConnectRequest(BT_PSM_RFCOMM, test_address))
           .Times(1)
           .WillOnce(Return(old_lcid));
-  status =
-          RFCOMM_CreateConnectionWithSecurity(test_uuid, test_peer_scn, false, test_mtu,
-                                              test_address, &client_handle_1, port_mgmt_cback_1, 0);
+  status = RFCOMM_CreateConnectionWithSecurity(test_uuid, test_peer_scn, false, test_mtu,
+                                               test_address, &client_handle_1, port_mgmt_cback_1, 0,
+                                               &test_cfg);
   ASSERT_EQ(status, PORT_SUCCESS);
   status = PORT_SetEventMaskAndCallback(client_handle_1, PORT_EV_RXCHAR, port_event_cback_1);
   ASSERT_EQ(status, PORT_SUCCESS);

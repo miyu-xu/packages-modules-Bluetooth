@@ -64,7 +64,7 @@ void port_get_credits(tPORT* p_port, uint8_t k);
  * Returns          PORT_SUCCESS or PORT_[ERROR]
  *
  ******************************************************************************/
-int port_open_continue(tPORT* p_port) {
+int port_open_continue(tPORT* p_port, tRFC_CFG_INFO* p_cfg) {
   log::verbose("port_open_continue, p_port:{}", std::format_ptr(p_port));
 
   /* Check if multiplexer channel has already been established */
@@ -78,6 +78,10 @@ int port_open_continue(tPORT* p_port) {
   p_port->rfc.p_mcb = p_mcb;
 
   p_mcb->port_handles[p_port->dlci] = p_port->handle;
+
+  if (p_cfg != nullptr) {
+    p_mcb->rfc_cfg_info = *p_cfg;
+  }
 
   /* Connection is up and we know local and remote features, select MTU */
   port_select_mtu(p_port);
