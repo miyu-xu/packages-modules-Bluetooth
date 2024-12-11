@@ -16,6 +16,24 @@
       "message": "Still seems to fail in presubmit :/",
       "revId": "7648663d91b91fe2d64ace62d9ebfdbcf015c278",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a21d659_4ca6c6ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-11T09:35:45Z",
+      "side": 1,
+      "message": "now it is passing. Looks like setup issue . failure is not caused by CL chain",
+      "parentUuid": "3bd72988_e1f2b05a",
+      "revId": "7648663d91b91fe2d64ace62d9ebfdbcf015c278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
