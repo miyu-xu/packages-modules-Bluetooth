@@ -69,6 +69,24 @@
       "message": "Do we have a copy/paste bug here?  Specifically, it looks like we should be using `cs_responder_trackers_.end()` here instead of `cs_requester_trackers_end()`.",
       "revId": "8d26ee09edf31f17e4e27355c1ed8b1f74a12f76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f718bab9_9266002a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-11T17:24:46Z",
+      "side": 1,
+      "message": "Greg, great catch. thanks",
+      "parentUuid": "c8543421_0b7bfd33",
+      "revId": "8d26ee09edf31f17e4e27355c1ed8b1f74a12f76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
