@@ -69,6 +69,29 @@
       "parentUuid": "03415750_803a6e7f",
       "revId": "a09f146dc1187246c7dbf7a5bc94ddbceb0ad387",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f15f094c_66093fe9",
+        "filename": "android/pandora/test/a2dp/packets/avdtp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T18:26:42Z",
+      "side": 1,
+      "message": "Why aren\u0027t we using a codegen rule to create the file at build time then ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 76
+      },
+      "revId": "a09f146dc1187246c7dbf7a5bc94ddbceb0ad387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
