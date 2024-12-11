@@ -46,6 +46,30 @@
       },
       "revId": "b18009d685060697d03d05e0261c13ebfd024ad4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a00392_fb536fed",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-11T17:59:57Z",
+      "side": 1,
+      "message": "I think you should first do the format and then remove IRdactable",
+      "parentUuid": "eaf8658e_deb93952",
+      "range": {
+        "startLine": 317,
+        "startChar": 11,
+        "endLine": 317,
+        "endChar": 30
+      },
+      "revId": "b18009d685060697d03d05e0261c13ebfd024ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
