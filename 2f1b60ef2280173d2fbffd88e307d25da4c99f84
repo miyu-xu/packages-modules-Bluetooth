@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53fb762_f49126ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-11T23:09:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3770c1a_0a9bc1a0",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 5
+      },
+      "revId": "2f1b60ef2280173d2fbffd88e307d25da4c99f84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "564f5bf2_962e4363",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7318f9_510ff013",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-11T23:09:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "564f5bf2_962e4363",
+      "revId": "2f1b60ef2280173d2fbffd88e307d25da4c99f84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f0eba2c_5ee6ef47",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-12-03T23:22:17Z",
       "side": 1,
       "message": "Another solution would be to clear CONNECT messages when entering the DISCONNECTING state. Would that work ?",
+      "revId": "2f1b60ef2280173d2fbffd88e307d25da4c99f84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff0e1ede_75fc9921",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-11T23:09:12Z",
+      "side": 1,
+      "message": "In this particular case we enter disconnected state straight away, it is better to do it the current way",
+      "parentUuid": "4f0eba2c_5ee6ef47",
       "revId": "2f1b60ef2280173d2fbffd88e307d25da4c99f84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
