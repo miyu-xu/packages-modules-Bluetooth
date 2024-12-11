@@ -100,6 +100,30 @@
       ],
       "revId": "b5d111d45a3d6251e4996853f9482b05adcbbfdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391ec67a_af7d024f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-11T01:25:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e676316_9f5aab0f",
+      "range": {
+        "startLine": 812,
+        "startChar": 50,
+        "endLine": 812,
+        "endChar": 62
+      },
+      "revId": "b5d111d45a3d6251e4996853f9482b05adcbbfdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
