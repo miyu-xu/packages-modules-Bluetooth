@@ -1,0 +1,313 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21dbeb6a_f2a59c91",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "Please keep the previous syntax here:\n\n```\n    tBTA_JV evt_data \u003d {\n            .rfc_open \u003d\n                    {\n                            .status \u003d tBTA_JV_STATUS::SUCCESS,\n                            .handle \u003d p_cb-\u003ehandle,\n                            .rem_bda \u003d rem_bda,\n                    },\n    };\n```",
+      "range": {
+        "startLine": 1436,
+        "startChar": 0,
+        "endLine": 1439,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4a003c18_f80f6147",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1436,
+                "startChar": 0,
+                "endLine": 1440,
+                "endChar": 0
+              },
+              "replacement": "    tBTA_JV evt_data \u003d {\n            .rfc_open \u003d\n                    {\n                            .status \u003d tBTA_JV_STATUS::SUCCESS,\n                            .handle \u003d p_cb-\u003ehandle,\n                            .rem_bda \u003d rem_bda,\n                    },\n    };\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4766ad55_0c490d7f",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1446,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "Please call PORT_GetChannelInfo with the addresses into the evt_data fields.",
+      "range": {
+        "startLine": 1444,
+        "startChar": 9,
+        "endLine": 1446,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d65a383b_32f1d7fb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1441,
+                "startChar": 0,
+                "endLine": 1447,
+                "endChar": 0
+              },
+              "replacement": "      if (PORT_GetChannelInfo(port_handle, \u0026evt_data.rfc_open.rx_mtu, \u0026evt_data.rfc_open.tx_mtu,\n                              \u0026evt_data.rfc_open.local_credit, \u0026evt_data.rfc_open.remote_credit,\n                              \u0026evt_data.rfc_open.local_cid, \u0026evt_data.rfc_open.remote_cid,\n                              \u0026evt_data.rfc_open.dlci, \u0026evt_data.rfc_open.max_frame_size,\n                              \u0026evt_data.rfc_open.acl_handle,\n                              \u0026evt_data.rfc_open.mux_initiator) !\u003d PORT_SUCCESS) {\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1449,
+                "startChar": 0,
+                "endLine": 1459,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1668,
+                "startChar": 0,
+                "endLine": 1674,
+                "endChar": 0
+              },
+              "replacement": "      if (PORT_GetChannelInfo(port_handle, \u0026evt_data.rfc_open.rx_mtu, \u0026evt_data.rfc_open.tx_mtu,\n                              \u0026evt_data.rfc_open.local_credit, \u0026evt_data.rfc_open.remote_credit,\n                              \u0026evt_data.rfc_open.local_cid, \u0026evt_data.rfc_open.remote_cid,\n                              \u0026evt_data.rfc_open.dlci, \u0026evt_data.rfc_open.max_frame_size,\n                              \u0026evt_data.rfc_open.acl_handle,\n                              \u0026evt_data.rfc_open.mux_initiator) !\u003d PORT_SUCCESS) {\n"
+            },
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1676,
+                "startChar": 0,
+                "endLine": 1686,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c925f9_cd822e01",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1685,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 1676,
+        "startChar": 6,
+        "endLine": 1685,
+        "endChar": 54
+      },
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8e6994_4e6a2bc2",
+        "filename": "system/btif/include/btif_sock_l2cap.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "nit: `btsock_l2cap_is_valid_id` ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "06422b52_a32cae66",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/include/btif_sock_l2cap.h",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 44,
+                "endChar": 0
+              },
+              "replacement": "bool btsock_l2cap_is_valid_id(uint64_t socket_id);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08922e8_067acc8a",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "Move this check before the call to on_cli_rfc_connect_offload, and you can remove the duplicate check in on_cli_rfc_connect_offload",
+      "range": {
+        "startLine": 761,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b4b28e0c_807a09f3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 754,
+                "startChar": 0,
+                "endLine": 760,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 767,
+                "startChar": 0,
+                "endLine": 767,
+                "endChar": 0
+              },
+              "replacement": "\n  if (com::android::bluetooth::flags::socket_settings_api() \u0026\u0026\n      slot-\u003edata_path \u003d\u003d BTSOCK_DATA_PATH_HARDWARE_OFFLOAD) {\n    on_cli_rfc_connect_offload(p_open, id, slot);\n    return;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8beafe_249c051c",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "Not necessary for software data path ?",
+      "range": {
+        "startLine": 770,
+        "startChar": 0,
+        "endLine": 772,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d2a0916b_23510d2e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 770,
+                "startChar": 0,
+                "endLine": 773,
+                "endChar": 0
+              },
+              "replacement": "  slot-\u003esocket_id \u003d btif_rfc_sock_generate_socket_id();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa1b0135_833a3411",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T18:31:50Z",
+      "side": 1,
+      "message": "The connection is already logged in on_cli_rfc_connect_offload.",
+      "range": {
+        "startLine": 840,
+        "startChar": 4,
+        "endLine": 843,
+        "endChar": 84
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "df0acd96_e3e898e1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 835,
+                "startChar": 0,
+                "endLine": 844,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6276f87205749a883e66603b3292eeda03e685e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
