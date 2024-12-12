@@ -67,6 +67,23 @@
       "message": "Waiting on some manual tests to verify as well.",
       "revId": "b182e3dd6daaa2c2f5076e18128e07c6b8c3c6a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "880d1737_0bdc627d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-12T01:58:19Z",
+      "side": 1,
+      "message": "Looking at the stack trace that end up in the crash report, this is most likely that the crash is due to Ras trying to register to gatt but there is no gatt.\n\nso the crash is actually helping in the wrong behavior detection.\n\nHere my question \n\nWill the code still crash when this happens or is this change gonna change the behavior and silently fails ?\n\n(seems like it will still crash as it should, but I prefer to ask to be sure we are align)",
+      "revId": "b182e3dd6daaa2c2f5076e18128e07c6b8c3c6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
