@@ -1510,6 +1510,10 @@ class BassClientStateMachine extends StateMachine {
                     && getConnectionState() != BluetoothProfile.STATE_DISCONNECTED) {
                 isStateChanged = true;
                 log("Disconnected from Bass GATT server.");
+                if (mBluetoothGatt != null) {
+                    mBluetoothGatt.close();
+                    mBluetoothGatt = null;
+                }
             }
             if (isStateChanged) {
                 Message m = obtainMessage(CONNECTION_STATE_CHANGED);
