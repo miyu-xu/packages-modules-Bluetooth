@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea26b6a1_7767d6bb",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T21:22:32Z",
+      "side": 1,
+      "message": "credit**",
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a8ddac0_4dd9db28",
         "filename": "system/stack/l2cap/l2c_api.cc",
         "patchSetId": 3
@@ -34,6 +51,61 @@
                 "endChar": 0
               },
               "replacement": "  *local_mtu \u003d p_ccb-\u003ep_rcb-\u003emy_mtu;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00678ab1_248135a4",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T21:22:32Z",
+      "side": 1,
+      "message": "you may need some error logs in these cases to debug?",
+      "fixSuggestions": [
+        {
+          "fixId": "49a0fd10_889117aa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1220,
+                "startChar": 0,
+                "endLine": 1220,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"L2CA_GetRemoteChannelId failed\");\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1224,
+                "startChar": 0,
+                "endLine": 1224,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"L2CA_GetAclHandle failed\");\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1228,
+                "startChar": 0,
+                "endLine": 1228,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"L2CA_GetLocalMtu failed\");\n"
             }
           ]
         }
