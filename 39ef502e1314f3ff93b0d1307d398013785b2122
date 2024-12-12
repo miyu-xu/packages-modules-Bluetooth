@@ -34,6 +34,24 @@
       "parentUuid": "3eaf4979_d686c446",
       "revId": "39ef502e1314f3ff93b0d1307d398013785b2122",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c43e5e84_f061e697",
+        "filename": "system/gd/rust/linux/stack/btif_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-12T16:01:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3d70fd29_2319036d",
+      "revId": "39ef502e1314f3ff93b0d1307d398013785b2122",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
