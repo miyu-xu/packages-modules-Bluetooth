@@ -1,0 +1,508 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "521c0105_67ca1af2",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "Remove all ADDRESS_TO_LOGGABLE_CSTR in std::format calls",
+      "range": {
+        "startLine": 330,
+        "startChar": 53,
+        "endLine": 330,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2b0ce47f_f02de399",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_int.h",
+              "range": {
+                "startLine": 330,
+                "startChar": 0,
+                "endLine": 331,
+                "endChar": 0
+              },
+              "replacement": "            codec_msbc_settings, codec_lc3_settings, peer_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0c4483f_31547601",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 185,
+        "startChar": 56,
+        "endLine": 185,
+        "endChar": 86
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "969bf42c_f7527a92",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_int.h",
+              "range": {
+                "startLine": 185,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "                       bta_sys_conn_status_text(state), new_request);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "195f7c25_294b4470",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "merge with the other format string",
+      "range": {
+        "startLine": 845,
+        "startChar": 14,
+        "endLine": 845,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "41d1d5fc_f695de4d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_act.cc",
+              "range": {
+                "startLine": 845,
+                "startChar": 0,
+                "endLine": 848,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/hh/bta_hh_act.cc",
+              "range": {
+                "startLine": 849,
+                "startChar": 0,
+                "endLine": 850,
+                "endChar": 0
+              },
+              "replacement": "                 std::format(\"{} reason {} {} {}\",\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_act.cc",
+              "range": {
+                "startLine": 851,
+                "startChar": 0,
+                "endLine": 852,
+                "endChar": 0
+              },
+              "replacement": "                             hid_status_text(hid_status),\n                             (l2cap_conn_fail) ? \"l2cap_conn_fail\" : \"\",\n                             (l2cap_req_fail) ? \"l2cap_req_fail\" : \"\",\n                             (l2cap_cfg_fail) ? \"l2cap_cfg_fail\" : \"\"));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "869d3195_710921e6",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1421,
+        "startChar": 8,
+        "endLine": 1421,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f020886c_e0c32b1c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 1421,
+                "startChar": 0,
+                "endLine": 1422,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd47aa7_bcf0ab70",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 318,
+        "startChar": 48,
+        "endLine": 318,
+        "endChar": 88
+      },
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d2a73c2_01f0f2eb",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove cast",
+      "range": {
+        "startLine": 170,
+        "startChar": 24,
+        "endLine": 170,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c2cfbd27_e65283eb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/le_scanning_manager.cc",
+              "range": {
+                "startLine": 170,
+                "startChar": 0,
+                "endLine": 171,
+                "endChar": 0
+              },
+              "replacement": "                        btm_cb.neighbor.le_scan.results));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36c15cbc_7e0121e8",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove cast",
+      "range": {
+        "startLine": 600,
+        "startChar": 24,
+        "endLine": 600,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "26424c59_182c1a67",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 600,
+                "startChar": 0,
+                "endLine": 601,
+                "endChar": 0
+              },
+              "replacement": "                        btm_cb.neighbor.le_observe.results));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "611c3764_fde3e5b4",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2429,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove cast",
+      "range": {
+        "startLine": 2429,
+        "startChar": 22,
+        "endLine": 2429,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c2894e68_3f743d7e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 2429,
+                "startChar": 0,
+                "endLine": 2430,
+                "endChar": 0
+              },
+              "replacement": "                      btm_cb.neighbor.le_legacy_scan.results));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6aea4f_d2251f76",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2451,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove cast",
+      "range": {
+        "startLine": 2451,
+        "startChar": 22,
+        "endLine": 2451,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "93d323fc_239e1e51",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 2451,
+                "startChar": 0,
+                "endLine": 2452,
+                "endChar": 0
+              },
+              "replacement": "                      btm_cb.neighbor.le_inquiry.results));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f682d2b_2d9b03b6",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove cast",
+      "range": {
+        "startLine": 568,
+        "startChar": 22,
+        "endLine": 568,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "317eb810_947adf72",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_inq.cc",
+              "range": {
+                "startLine": 568,
+                "startChar": 0,
+                "endLine": 569,
+                "endChar": 0
+              },
+              "replacement": "                      btm_cb.neighbor.classic_inquiry.results,\n"
+            },
+            {
+              "path": "system/stack/btm/btm_inq.cc",
+              "range": {
+                "startLine": 1698,
+                "startChar": 0,
+                "endLine": 1699,
+                "endChar": 0
+              },
+              "replacement": "                          btm_cb.neighbor.classic_inquiry.results, inq_active,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7940a486_4916b65c",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "remove cast",
+      "range": {
+        "startLine": 192,
+        "startChar": 31,
+        "endLine": 192,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "633594e3_04a737b7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 193,
+                "endChar": 0
+              },
+              "replacement": "                               cig_params.cis_cfgs.size()));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b90b607_b8193875",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T22:28:48Z",
+      "side": 1,
+      "message": "missing space",
+      "range": {
+        "startLine": 330,
+        "startChar": 23,
+        "endLine": 330,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f109de40_36011612",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/security_device_record.h",
+              "range": {
+                "startLine": 330,
+                "startChar": 0,
+                "endLine": 331,
+                "endChar": 0
+              },
+              "replacement": "            \"name:\\\"{}\\\" sec_prop:{}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46bfb71f38840dbddeb8a18070bc4a23b51bcfe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
