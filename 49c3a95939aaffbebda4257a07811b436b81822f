@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a8ddac0_4dd9db28",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1789,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-12T00:06:59Z",
+      "side": 1,
+      "message": "On RFCOMM connection, its value is zero. We need to find other field.",
+      "range": {
+        "startLine": 1789,
+        "startChar": 22,
+        "endLine": 1789,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0b0a29e1_ad96d25d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1789,
+                "startChar": 0,
+                "endLine": 1790,
+                "endChar": 0
+              },
+              "replacement": "  *local_mtu \u003d p_ccb-\u003ep_rcb-\u003emy_mtu;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
