@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c074d9f_3b147b30",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T23:07:02Z",
+      "side": 1,
+      "message": "Do we need some way to indicate error here? rather than returning ZERO?",
+      "fixSuggestions": [
+        {
+          "fixId": "35100e0c_76d6fc13",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "uint16_t L2CA_GetBleConnIntervalMs(const RawAddress\u0026 bd_addr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f49082c2184f45be12147a028e650b638dd603fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
