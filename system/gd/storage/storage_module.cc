@@ -176,11 +176,19 @@ void StorageModule::Start() {
           [this] { this->CallOn(this, &StorageModule::SaveDelayed); });
 
   // Cleanup temporary pairings if we have left guest mode
+<<<<<<< HEAD   (0ec93e Merge cherrypicks of ['googleplex-android-review.googlesourc)
   if (!is_restricted_mode_) {
     config->RemoveSectionWithProperty("Restricted");
+||||||| BASE
+  if (!com::android::bluetooth::flags::guest_mode_bond() && !is_restricted_mode_) {
+    config->RemoveSectionWithProperty("Restricted");
+=======
+  if (!com::android::bluetooth::flags::guest_mode_bond() && !is_restricted_mode_) {
+    pimpl_->cache_.RemoveSectionWithProperty("Restricted");
+>>>>>>> CHANGE (39c4fa Don't use config object after std::move)
   }
 
-  config->FixDeviceTypeInconsistencies();
+  pimpl_->cache_.FixDeviceTypeInconsistencies();
   if (bluetooth::os::ParameterProvider::GetBtKeystoreInterface() != nullptr) {
     bluetooth::os::ParameterProvider::GetBtKeystoreInterface()
             ->ConvertEncryptOrDecryptKeyIfNeeded();
