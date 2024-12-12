@@ -16,6 +16,24 @@
       "message": "Nice catch...tricky bug...thanks C++ ! ;o",
       "revId": "4d0c1521145586c80945c349d556016ee4825215",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b1fbc4f_49f95abc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-12-12T17:27:04Z",
+      "side": 1,
+      "message": "Yeah this was a fun one! I\u0027m not the biggest c++ expert anymore, so this took some time to figure out. Things have changed with c++ since college!",
+      "parentUuid": "283f8051_57381408",
+      "revId": "4d0c1521145586c80945c349d556016ee4825215",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
