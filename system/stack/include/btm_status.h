@@ -16,7 +16,6 @@
 
 #pragma once
 
-#include <base/strings/stringprintf.h>
 
 #include <cstdint>
 
@@ -94,7 +93,7 @@ inline std::string btm_status_text(const tBTM_STATUS& status) {
     CASE_RETURN_TEXT(tBTM_STATUS::BTM_NOT_ENCRYPTED);
     CASE_RETURN_TEXT(tBTM_STATUS::BTM_INSUFFICIENT_ENCRYPT_KEY_SIZE);
     default:
-      return base::StringPrintf("UNKNOWN[%hhu]", status);
+      return std::format("UNKNOWN[{}]", status);
   }
 }
 

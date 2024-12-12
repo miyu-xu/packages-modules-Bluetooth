@@ -595,9 +595,7 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration, tBTM_INQ_RESULTS_CB* p_
     const uint64_t duration_timestamp =
             timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_observe.start_time_ms;
     BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Le observe stopped",
-                   base::StringPrintf("duration_s:%6.3f results:%-3lu",
-                                      (double)duration_timestamp / 1000.0,
-                                      (unsigned long)btm_cb.neighbor.le_observe.results));
+                   std::format("duration_s:{:6.3f} results:{:<3}", (double)duration_timestamp / 1000.0, (unsigned long)btm_cb.neighbor.le_observe.results));
     status = tBTM_STATUS::BTM_CMD_STARTED;
     btm_ble_stop_observe();
   } else {
@@ -2425,8 +2423,7 @@ static void btm_ble_stop_scan(void) {
           timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_legacy_scan.start_time_ms;
   BTM_LogHistory(
           kBtmLogTag, RawAddress::kEmpty, "Le legacy scan stopped",
-          base::StringPrintf("duration_s:%6.3f results:%-3lu", (double)duration_timestamp / 1000.0,
-                             (unsigned long)btm_cb.neighbor.le_legacy_scan.results));
+          std::format("duration_s:{:6.3f} results:{:<3}", (double)duration_timestamp / 1000.0, (unsigned long)btm_cb.neighbor.le_legacy_scan.results));
   btm_send_hci_scan_enable(BTM_BLE_SCAN_DISABLE, BTM_BLE_DUPLICATE_ENABLE);
 
   btm_update_scanner_filter_policy(SP_ADV_ALL);
@@ -2447,8 +2444,7 @@ void btm_ble_stop_inquiry(void) {
           timestamper_in_milliseconds.GetTimestamp() - btm_cb.neighbor.le_inquiry.start_time_ms;
   BTM_LogHistory(
           kBtmLogTag, RawAddress::kEmpty, "Le inquiry stopped",
-          base::StringPrintf("duration_s:%6.3f results:%-3lu", (double)duration_timestamp / 1000.0,
-                             (unsigned long)btm_cb.neighbor.le_inquiry.results));
+          std::format("duration_s:{:6.3f} results:{:<3}", (double)duration_timestamp / 1000.0, (unsigned long)btm_cb.neighbor.le_inquiry.results));
   btm_cb.ble_ctr_cb.reset_ble_inquiry();
 
   /* Cleanup anything remaining on index 0 */

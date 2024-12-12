@@ -162,7 +162,7 @@ typedef struct {
   tBTA_AG_RES result;
   tBTA_AG_RES_DATA data;
   std::string ToString() const {
-    return base::StringPrintf("result:%s", bta_ag_result_text(result).c_str());
+    return std::format("result:{}", bta_ag_result_text(result));
   }
 } tBTA_AG_API_RESULT;
 
@@ -314,12 +314,7 @@ struct tBTA_AG_SCB {
                                                                HF indicators */
 
   std::string ToString() const {
-    return base::StringPrintf(
-            "codec_updated=%d, codec_fallback=%d, nrec=%d"
-            "sco_codec=%d, peer_codec=%d, msbc_settings=%d, lc3_settings=%d, "
-            "device=%s",
-            codec_updated, codec_fallback, nrec_enabled, sco_codec, peer_codecs,
-            codec_msbc_settings, codec_lc3_settings, ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
+    return std::format("codec_updated={}, codec_fallback={}, nrec={}sco_codec={}, peer_codec={}, msbc_settings={}, lc3_settings={}, device={}", codec_updated, codec_fallback, nrec_enabled, sco_codec, peer_codecs, codec_msbc_settings, codec_lc3_settings, ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
   }
 };
 

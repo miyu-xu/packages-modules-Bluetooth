@@ -28,7 +28,6 @@
 
 #include <android_bluetooth_sysprop.h>
 #include <base/functional/bind.h>
-#include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
@@ -1155,7 +1154,7 @@ void BTM_ConfirmReqReply(tBTM_STATUS res, const RawAddress& bd_addr) {
   }
 
   BTM_LogHistory(kBtmLogTag, bd_addr, "Confirm reply",
-                 base::StringPrintf("status:%s", btm_status_text(res).c_str()));
+                 std::format("status:{}", btm_status_text(res)));
 
   btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_AUTH_COMPLETE);
 
@@ -2162,8 +2161,7 @@ tBTM_SEC_DEV_REC* btm_rnr_add_name_to_security_record(const RawAddress* p_bd_add
 
   BTM_LogHistory(
           kBtmLogTag, (p_bd_addr) ? *p_bd_addr : RawAddress::kEmpty, "RNR complete",
-          base::StringPrintf("hci_status:%s name:%s", hci_error_code_text(hci_status).c_str(),
-                             PRIVATE_NAME(reinterpret_cast<char const*>(p_bd_name))));
+          std::format("hci_status:{} name:{}", hci_error_code_text(hci_status), PRIVATE_NAME(reinterpret_cast<char const*>(p_bd_name))));
 
   if (p_dev_rec == nullptr) {
     // We need to send the callbacks to complete the RNR cycle despite failure
@@ -3283,9 +3281,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
           kBtmLogTag,
           (transport == BT_TRANSPORT_LE) ? p_dev_rec->ble.pseudo_addr : p_dev_rec->bd_addr,
           (status == HCI_SUCCESS) ? "Encryption success" : "Encryption failed",
-          base::StringPrintf("status:%s transport:%s is_encrypted:%c",
-                             hci_status_code_text(status).c_str(),
-                             bt_transport_text(transport).c_str(), is_encrypted ? 'T' : 'F'));
+          std::format("status:{} transport:{} is_encrypted:{:c}", hci_status_code_text(status), bt_transport_text(transport), is_encrypted ? 'T' : 'F'));
 
   log::debug("after update p_dev_rec->sec_rec.sec_flags=0x{:x}", p_dev_rec->sec_rec.sec_flags);
 
@@ -3731,9 +3727,7 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
     }
     log::info("Connection complete during pairing process peer:{}", bda);
     BTM_LogHistory(kBtmLogTag, bda, "Dedicated bonding",
-                   base::StringPrintf("Initiated:%c pairing_flag:0x%02x",
-                                      (is_pair_flags_we_started_dd) ? 'T' : 'F',
-                                      p_dev_rec->sec_rec.sec_flags));
+                   std::format("Initiated:{:c} pairing_flag:0x{:02x}", (is_pair_flags_we_started_dd) ? 'T' : 'F', p_dev_rec->sec_rec.sec_flags));
   }
 
   p_dev_rec->hci_handle = handle;
@@ -4744,8 +4738,7 @@ void tBTM_SEC_CB::change_pairing_state(tBTM_PAIRING_STATE new_state) {
 
   if (pairing_state != new_state) {
     BTM_LogHistory(kBtmLogTag, btm_sec_cb.pairing_bda, "Pairing state changed",
-                   base::StringPrintf("%s => %s", tBTM_SEC_CB::btm_pair_state_descr(pairing_state),
-                                      tBTM_SEC_CB::btm_pair_state_descr(new_state)));
+                   std::format("{} => {}", tBTM_SEC_CB::btm_pair_state_descr(pairing_state), tBTM_SEC_CB::btm_pair_state_descr(new_state)));
   }
   pairing_state = new_state;
 

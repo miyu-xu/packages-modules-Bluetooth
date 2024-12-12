@@ -194,8 +194,7 @@ bool BTM_SecDeleteDevice(const RawAddress& bd_addr) {
   log::info("{} complete", bd_addr);
   BTM_LogHistory(
           kBtmLogTag, bd_addr, "Device removed",
-          base::StringPrintf("device_type:%s bond_type:%s", DeviceTypeText(device_type).c_str(),
-                             bond_type_text(bond_type).c_str()));
+          std::format("device_type:{} bond_type:{}", DeviceTypeText(device_type), bond_type_text(bond_type)));
 
   return true;
 }
