@@ -16,6 +16,24 @@
       "message": "Add Flag stanza:\n\n```\nFlag: com.android.bluetooth.flags.avdt_handle_signaling_on_peer_failure\n```",
       "revId": "0868d88e1000d2988f09dd2b1c2b01d1c916b72b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b289501d_eac54a03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-12T17:37:46Z",
+      "side": 1,
+      "message": "added stanza on bug commit message",
+      "parentUuid": "f3ed9e18_6d2a5eb4",
+      "revId": "0868d88e1000d2988f09dd2b1c2b01d1c916b72b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
