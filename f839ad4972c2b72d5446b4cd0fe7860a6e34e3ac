@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "554373ce_fd14fe77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2024-12-12T23:10:42Z",
+      "side": 1,
+      "message": "GA+1 and Dr. No +1 to sidestep bureaucracy.",
+      "revId": "f839ad4972c2b72d5446b4cd0fe7860a6e34e3ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
