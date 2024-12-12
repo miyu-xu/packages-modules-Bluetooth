@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c353d800_d8827586",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-12T00:26:27Z",
+      "side": 1,
+      "message": "what does dupa mean ?",
+      "range": {
+        "startLine": 338,
+        "startChar": 16,
+        "endLine": 338,
+        "endChar": 20
+      },
+      "revId": "f101d58961b12b41a834c09fe0708e8171dccef8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
