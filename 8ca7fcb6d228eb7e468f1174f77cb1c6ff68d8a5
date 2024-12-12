@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0f375a5_397b0d41",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-12T16:15:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2e33e89d_8feb218a",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f83de6af_8594c16d",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "We cannot print without the Debug/Display trait implemented, and Rust prevents implementing the Debug trait for types, so this wrapper struct allows implementing said trait on the bound type.",
       "parentUuid": "f83de6af_8594c16d",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d93d74a_7d0ab342",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-12T16:15:00Z",
+      "side": 1,
+      "message": "Hm feels strange to do this just to print a debug log in one place. Feels like we could potentially miss something if there were new members added. In fact, btgatt_response_t also has a handle, which we seem to be dropping here. Instead of using your macro how about we just add the debug log in place?",
+      "parentUuid": "bea26221_9c50bddb",
       "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
