@@ -125,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2ca7259_bb74be96",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-12-12T20:04:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d93d74a_7d0ab342",
+      "revId": "8ca7fcb6d228eb7e468f1174f77cb1c6ff68d8a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b305505e_f6e89a6d",
