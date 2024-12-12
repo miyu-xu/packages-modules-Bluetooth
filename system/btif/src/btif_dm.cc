@@ -1325,8 +1325,19 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
       /* inquiry result */
       bt_bdname_t bdname;
       uint8_t remote_name_len = 0;
-      uint8_t num_uuids = 0, max_num_uuid = 32;
-      uint8_t uuid_list[32 * Uuid::kNumBytes16];
+      uint8_t num_uuids_16bits = 0, max_num_uuid_16bits = 32;
+      uint8_t uuid_list_16bits[32 * Uuid::kNumBytes16];
+
+      bool flag_report_le_advertise_data_service_uuids = true;
+      uint8_t num_uuids_128bits = 0, max_num_uuid_128bits = 32;
+      uint8_t uuid_list_128bits[32 * Uuid::kNumBytes128];
+
+      // TODO: Should we only report this for BLE-only device or all types of devices?
+      bool report_le_advertising_uuids = flag_report_le_advertise_data_service_uuids &&
+          (p_search_data->inq_res.device_type == BT_DEVICE_TYPE_BLE);
+
+      log::info("report_le_advertising_uuids={}", report_le_advertising_uuids);
+      log::info(" ---- flag={}, type={}", flag_report_le_advertise_data_service_uuids, p_search_data->inq_res.device_type);
 
       if (p_search_data->inq_res.inq_result_type != BT_DEVICE_TYPE_BLE) {
         p_search_data->inq_res.remt_name_not_required =
@@ -1344,9 +1355,17 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
       /* Check EIR for services */
       if (p_search_data->inq_res.p_eir) {
         if (!get_btm_client_interface().eir.BTM_GetEirUuidList(
-                    p_search_data->inq_res.p_eir, p_search_data->inq_res.eir_len, Uuid::kNumBytes16,
-                    &num_uuids, uuid_list, max_num_uuid)) {
-          log::debug("Unable to find service uuids in EIR peer:{}", bdaddr);
+            p_search_data->inq_res.p_eir, p_search_data->inq_res.eir_len, Uuid::kNumBytes16,
+            &num_uuids_16bits, uuid_list_16bits, max_num_uuid_16bits)) {
+          log::debug("Unable to find 16-bit service uuids in EIR peer:{}", bdaddr);
+        }
+
+        if (report_le_advertising_uuids) {
+          if (!get_btm_client_interface().eir.BTM_GetEirUuidList(
+              p_search_data->inq_res.p_eir, p_search_data->inq_res.eir_len, Uuid::kNumBytes128,
+              &num_uuids_128bits, uuid_list_128bits, max_num_uuid_128bits)) {
+            log::debug("Unable to find 128-bit service uuids in AD peer:{}", bdaddr);
+          }
         }
       }
 
@@ -1448,30 +1467,49 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
         // Scope needs to persist until `invoke_device_found_cb` below.
         std::vector<uint8_t> property_value;
         /* Cache EIR queried services */
-        if (num_uuids > 0) {
-          uint16_t* p_uuid16 = (uint16_t*)uuid_list;
-          auto uuid_iter = eir_uuids_cache.find(bdaddr);
+        std::set<Uuid> found_16bit_uuids = std::set<Uuid>{};
+        std::set<Uuid> found_128bit_uuids = std::set<Uuid>{};
+
+        if (num_uuids_16bits > 0) {
+          uint16_t* p_uuid16 = (uint16_t*)uuid_list_16bits;
+          log::info("EIR 16-bit UUIDs for {}:", bdaddr);
+          for (int i = 0; i < num_uuids_16bits; ++i) {
+            Uuid uuid = Uuid::From16Bit(p_uuid16[i]);
+            log::info("{}", uuid.ToString());
+            found_16bit_uuids.insert(uuid);
+          }
+        }
+
+        if (num_uuids_128bits > 0) {
+          uint8_t* p_uuid128 = (uint8_t*)uuid_list_128bits;
+          log::info("BLE Advertising data 128-bit UUIDs for {}:", bdaddr);
+          for (int i = 0; i < num_uuids_128bits; ++i) {
+            Uuid uuid = Uuid::From128BitBE(p_uuid128 + 16 * i);
+            log::info("{}", uuid.ToString());
+            found_128bit_uuids.insert(uuid);
+          }
+        }
+
+        auto uuid_iter = eir_uuids_cache.find(bdaddr);
+        if (num_uuids_16bits > 0 || num_uuids_128bits > 0) {
           if (uuid_iter == eir_uuids_cache.end()) {
             auto triple = eir_uuids_cache.try_emplace(bdaddr, std::set<Uuid>{});
             uuid_iter = std::get<0>(triple);
           }
-          log::info("EIR UUIDs for {}:", bdaddr);
-          for (int i = 0; i < num_uuids; ++i) {
-            Uuid uuid = Uuid::From16Bit(p_uuid16[i]);
-            log::info("{}", uuid.ToString());
-            uuid_iter->second.insert(uuid);
-          }
 
-          if (report_eir_uuids) {
+          uuid_iter->second.insert(found_16bit_uuids.begin(), found_16bit_uuids.end());
+          uuid_iter->second.insert(found_128bit_uuids.begin(), found_128bit_uuids.end());
+
+          if (report_eir_uuids || report_le_advertising_uuids) {
             for (auto uuid : uuid_iter->second) {
               auto uuid_128bit = uuid.To128BitBE();
               property_value.insert(property_value.end(), uuid_128bit.begin(), uuid_128bit.end());
             }
 
             bt_properties.push_back(
-                    bt_property_t{BT_PROPERTY_UUIDS,
-                                  static_cast<int>(uuid_iter->second.size() * Uuid::kNumBytes128),
-                                  (void*)property_value.data()});
+                bt_property_t{BT_PROPERTY_UUIDS,
+                              static_cast<int>(uuid_iter->second.size() * Uuid::kNumBytes128),
+                              (void*)property_value.data()});
           }
         }
 
