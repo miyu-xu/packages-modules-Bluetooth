@@ -232,10 +232,18 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (6f0765 Flag to retain identity address on BT restart)
+    name: "identity_retention_on_restart"
+    namespace: "bluetooth"
+    description: "Retain identity address on BT restart"
+    bug: "383879096"
+||||||| BASE
+=======
     name: "handle_le_enc_queueing"
     namespace: "bluetooth"
     description: "Handle LE Encryption queuing to handle multiple encryption requests from different profiles"
     bug: "383889628"
+>>>>>>> BASE      (880b20 Merge "Fix incorrect previous active device" into main)
     metadata {
         purpose: PURPOSE_BUGFIX
     }
