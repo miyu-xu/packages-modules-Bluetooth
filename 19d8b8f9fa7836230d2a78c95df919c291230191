@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d11a7aa6_6bf58520",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-12T18:17:18Z",
+      "side": 1,
+      "message": "do we know how `mtu` field has been used today?",
+      "range": {
+        "startLine": 506,
+        "startChar": 45,
+        "endLine": 506,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3104c12d_08d68935",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 89,
+                "endChar": 0
+              },
+              "replacement": "  int max_rx_packet_size;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 285,
+                "startChar": 0,
+                "endLine": 285,
+                "endChar": 0
+              },
+              "replacement": "  accept_rs-\u003emax_rx_packet_size \u003d srv_rs-\u003emax_rx_packet_size;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 422,
+                "startChar": 0,
+                "endLine": 422,
+                "endChar": 0
+              },
+              "replacement": "      slot-\u003emax_rx_packet_size \u003d max_rx_packet_size;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 506,
+                "startChar": 0,
+                "endLine": 506,
+                "endChar": 0
+              },
+              "replacement": "      slot-\u003emax_rx_packet_size \u003d max_rx_packet_size;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 675,
+                "startChar": 0,
+                "endLine": 676,
+                "endChar": 0
+              },
+              "replacement": "                  p_open-\u003elocal_cid, p_open-\u003eremote_cid, accept_rs-\u003emax_rx_packet_size, p_open-\u003etx_mtu,\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 769,
+                "startChar": 0,
+                "endLine": 770,
+                "endChar": 0
+              },
+              "replacement": "                  p_open-\u003elocal_cid, p_open-\u003eremote_cid, slot-\u003emax_rx_packet_size, p_open-\u003etx_mtu,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "19d8b8f9fa7836230d2a78c95df919c291230191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
