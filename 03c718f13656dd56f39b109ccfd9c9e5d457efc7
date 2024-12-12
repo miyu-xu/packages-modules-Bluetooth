@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabe0aa4_dd9cc898",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-12T21:46:43Z",
+      "side": 1,
+      "message": "I think you need to wait for the unsafe rust reviewer as well",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
