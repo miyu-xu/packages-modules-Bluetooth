@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fad80230_7f571028",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T19:43:40Z",
+      "side": 1,
+      "message": "null check?",
+      "fixSuggestions": [
+        {
+          "fixId": "8131c947_db7e238f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1047,
+                "startChar": 0,
+                "endLine": 1048,
+                "endChar": 0
+              },
+              "replacement": "        if (val \u003d\u003d null || val.length \u003c 2) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd7c81b_cfcdc3e3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T19:43:40Z",
+      "side": 1,
+      "message": "Please fix this INFO reported by Code Duplication Detection: Code duplication detected.\n\nAnalyzer Description: Identifies and flags duplicate code within your CLs.\nOwner: peeps-genai-team@google.com\n\nCode duplication detected.\nThis code block appears to duplicate lines 215 to 238 in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3393066/8/android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java.\nPlease review for potential refactoring.\n----------------\nYou are getting this finding as part of early testing of code duplication detection check.\n\nWas this useful? Please provide feedback at go/pdeio-code-duplication-bug",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 0
+      },
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770dfc54_da78f9ff",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T19:43:40Z",
+      "side": 1,
+      "message": "can this overflow if sock_name length is more than 128 ?",
+      "fixSuggestions": [
+        {
+          "fixId": "c8e7122a_11e46a84",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 287,
+                "startChar": 0,
+                "endLine": 289,
+                "endChar": 0
+              },
+              "replacement": "    if (srv_rs-\u003esocket_name) {\n      strncpy(accept_rs-\u003esocket_name, srv_rs-\u003esocket_name, sizeof(accept_rs-\u003esocket_name) - 1);\n      accept_rs-\u003esocket_name[sizeof(accept_rs-\u003esocket_name) - 1] \u003d \u0027\\0\u0027;\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "451551c3_8a8eb54d",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T19:43:40Z",
+      "side": 1,
+      "message": "same concern as above?",
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
