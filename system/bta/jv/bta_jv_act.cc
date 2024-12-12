@@ -1547,9 +1547,16 @@ void bta_jv_rfcomm_connect(tBTA_SEC sec_mask, uint8_t remote_scn, const RawAddre
             0);
   }
 
-  if (RFCOMM_CreateConnectionWithSecurity(
-              UUID_SERVCLASS_SERIAL_PORT, remote_scn, false, BTA_JV_DEF_RFC_MTU, peer_bd_addr,
-              &handle, bta_jv_port_mgmt_cl_cback, sec_mask, &cfg) != PORT_SUCCESS) {
+  uint16_t mtu = BTA_JV_DEF_RFC_MTU;
+  if (com::android::bluetooth::flags::socket_settings_api()) {
+    if (cfg_param && cfg_param->rx_mtu_present) {
+      mtu = cfg_param->rx_mtu;
+    }
+  }
+
+  if (RFCOMM_CreateConnectionWithSecurity(UUID_SERVCLASS_SERIAL_PORT, remote_scn, false, mtu,
+                                          peer_bd_addr, &handle, bta_jv_port_mgmt_cl_cback,
+                                          sec_mask, &cfg) != PORT_SUCCESS) {
     log::error("RFCOMM_CreateConnection failed");
     bta_jv.rfc_cl_init.status = tBTA_JV_STATUS::FAILURE;
   } else {
@@ -1882,10 +1889,17 @@ void bta_jv_rfcomm_start_server(tBTA_SEC sec_mask, uint8_t local_scn, uint8_t ma
     cfg = *cfg_param;
   }
 
+  uint16_t mtu = BTA_JV_DEF_RFC_MTU;
+  if (com::android::bluetooth::flags::socket_settings_api()) {
+    if (cfg_param && cfg_param->rx_mtu_present) {
+      mtu = cfg_param->rx_mtu;
+    }
+  }
+
   do {
-    if (RFCOMM_CreateConnectionWithSecurity(0, local_scn, true, BTA_JV_DEF_RFC_MTU,
-                                            RawAddress::kAny, &handle, bta_jv_port_mgmt_sr_cback,
-                                            sec_mask, &cfg) != PORT_SUCCESS) {
+    if (RFCOMM_CreateConnectionWithSecurity(0, local_scn, true, mtu, RawAddress::kAny, &handle,
+                                            bta_jv_port_mgmt_sr_cback, sec_mask,
+                                            &cfg) != PORT_SUCCESS) {
       log::error("RFCOMM_CreateConnection failed");
       break;
     }
