@@ -61,6 +61,97 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "423eeea2_810ab263",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-12T22:05:08Z",
+      "side": 1,
+      "message": "nit: wouldn\u0027t it make more sense to spell these out?  remote_cid, acl_handle, and local_mtu?  When I first read this I needed to look further for more context on what these meant",
+      "range": {
+        "startLine": 1218,
+        "startChar": 11,
+        "endLine": 1218,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c9c3540b_fc04f90d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1218,
+                "startChar": 0,
+                "endLine": 1220,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t remote_cid, acl_handle, local_mtu;\n  if (!stack::l2cap::get_interface().L2CA_GetRemoteChannelId(p_port-\u003erfc.p_mcb-\u003elcid, \u0026remote_cid)) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1223,
+                "startChar": 0,
+                "endLine": 1224,
+                "endChar": 0
+              },
+              "replacement": "  if (!stack::l2cap::get_interface().L2CA_GetAclHandle(p_port-\u003erfc.p_mcb-\u003elcid, \u0026acl_handle)) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1227,
+                "startChar": 0,
+                "endLine": 1228,
+                "endChar": 0
+              },
+              "replacement": "  if (!stack::l2cap::get_interface().L2CA_GetLocalMtu(p_port-\u003erfc.p_mcb-\u003elcid, \u0026local_mtu)) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1230,
+                "startChar": 0,
+                "endLine": 1231,
+                "endChar": 0
+              },
+              "replacement": "  *local_mtu \u003d local_mtu;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1235,
+                "startChar": 0,
+                "endLine": 1236,
+                "endChar": 0
+              },
+              "replacement": "  *remote_cid \u003d remote_cid;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1238,
+                "startChar": 0,
+                "endLine": 1239,
+                "endChar": 0
+              },
+              "replacement": "  *acl_handle \u003d acl_handle;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00678ab1_248135a4",
         "filename": "system/stack/rfcomm/port_api.cc",
         "patchSetId": 3
