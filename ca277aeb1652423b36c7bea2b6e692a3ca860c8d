@@ -22,6 +22,30 @@
       },
       "revId": "ca277aeb1652423b36c7bea2b6e692a3ca860c8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db2e5c27_2aec52a9",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-12T17:48:33Z",
+      "side": 0,
+      "message": "Not really, getCall will be called if I remove the first if, so the behavior may be different.\n\nI prefer to keep the no-op change",
+      "parentUuid": "394e02e5_00a3bcbc",
+      "range": {
+        "startLine": 646,
+        "startChar": 20,
+        "endLine": 646,
+        "endChar": 67
+      },
+      "revId": "ca277aeb1652423b36c7bea2b6e692a3ca860c8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
