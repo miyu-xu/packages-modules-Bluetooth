@@ -29,6 +29,7 @@
 #include <algorithm>
 #include <bitset>
 #include <chrono>
+#include <filesystem>
 #include <sstream>
 
 #include "common/circular_buffer.h"
@@ -322,7 +323,28 @@ std::string get_btsnoop_log_path(std::string log_dir, bool filtered) {
 
 std::string get_last_log_path(std::string log_file_path) { return log_file_path.append(".last"); }
 
+static bool recreate_log_directory(std::string last_log_file_path) {
+  std::filesystem::path last_path(last_log_file_path);
+  std::filesystem::path dir_path(last_path.parent_path());
+  if (dir_path.filename().compare("logs") != 0) {
+    log::error("Wrong btsnoop file path: {}", dir_path.string());
+    return false;
+  }
+
+  if (std::filesystem::exists(dir_path)) {
+    log::debug("Directory {} already exists", dir_path.string());
+    return true;
+  }
+
+  log::debug("Creating directory: {}", dir_path.string());
+  return std::filesystem::create_directory(dir_path);
+}
+
 void delete_btsnoop_files(const std::string& log_path) {
+  if (com::android::bluetooth::flags::snoop_logger_recreate_logs_directory() &&
+      !recreate_log_directory(log_path)) {
+    log::error("Could not recreate log directory");
+  }
   log::info("Deleting logs if they exist");
   if (os::FileExists(log_path)) {
     if (!os::RemoveFile(log_path)) {
@@ -530,6 +552,11 @@ void SnoopLogger::OpenNextSnoopLogFile() {
   CloseCurrentSnoopLogFile();
 
   auto last_file_path = get_last_log_path(snoop_log_path_);
+
+  if (com::android::bluetooth::flags::snoop_logger_recreate_logs_directory() &&
+      !recreate_log_directory(last_file_path)) {
+    log::error("Could not recreate log directory");
+  }
 
   if (os::FileExists(snoop_log_path_)) {
     if (!os::RenameFile(snoop_log_path_, last_file_path)) {

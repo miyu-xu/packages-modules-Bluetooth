@@ -17,6 +17,7 @@
 #include "hal/snoop_logger.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <netinet/in.h>
@@ -161,6 +162,7 @@ protected:
   }
 
   void TearDown() override {
+    com::android::bluetooth::flags::provider_->reset_flags();
     DeleteSnoopLogFiles();
     fake_timerfd_reset();
     test_registry->StopAll();
@@ -389,7 +391,10 @@ TEST_F(SnoopLoggerModuleTest, delete_old_snooz_log_files) {
   handler->Post(bluetooth::common::BindOnce(fake_timerfd_advance, 15));
   sync_handler(handler);
   handler->Post(bluetooth::common::BindOnce(
-          [](std::filesystem::path path) { ASSERT_FALSE(std::filesystem::exists(path)); },
+          [](std::filesystem::path path) {
+            log::info("path: {}", path.string());
+            ASSERT_FALSE(std::filesystem::exists(path));
+          },
           temp_snooz_log_));
   sync_handler(handler);
 
@@ -1498,4 +1503,36 @@ TEST_F(SnoopLoggerModuleTest, custom_socket_profiles_filtered_hfp_hf_test) {
   test_registry->StopAll();
   close(socket_fd);
 }
+
+TEST_F(SnoopLoggerModuleTest, recreate_log_directory_when_disabled_test) {
+  com::android::bluetooth::flags::provider_->snoop_logger_recreate_logs_directory(true);
+  // Actual test
+  const testing::TestInfo* const test_info = testing::UnitTest::GetInstance()->current_test_info();
+  const std::filesystem::path temp_dir_ = std::filesystem::temp_directory_path();
+  const std::filesystem::path temp_log_dir_ = temp_dir_ / "logs";
+  const std::filesystem::path temp_log_btsnoop_file_ =
+          temp_log_dir_ / (std::string(test_info->name()) + "_btsnoop_hci.log");
+  const std::filesystem::path temp_log_btsnooz_file_ =
+          temp_log_dir_ / (std::string(test_info->name()) + "_btsnooz_hci.log");
+
+  if (std::filesystem::exists(temp_log_dir_)) {
+    std::filesystem::remove_all(temp_log_dir_);
+  }
+
+  ASSERT_FALSE(std::filesystem::exists(temp_log_dir_));
+
+  auto* snoop_logger = new TestSnoopLoggerModule(
+          temp_log_btsnoop_file_.string(), temp_log_btsnooz_file_.string(), 10,
+          SnoopLogger::kBtSnoopLogModeDisabled, false, false);
+  test_registry->InjectTestModule(&SnoopLogger::Factory, snoop_logger);
+
+  ASSERT_TRUE(std::filesystem::exists(temp_log_dir_));
+
+  test_registry->StopAll();
+
+  // Verify states after test
+  ASSERT_FALSE(std::filesystem::exists(temp_log_btsnoop_file_));
+  ASSERT_FALSE(std::filesystem::exists(temp_log_btsnooz_file_));
+}
+
 }  // namespace testing
