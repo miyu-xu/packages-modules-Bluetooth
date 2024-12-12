@@ -249,6 +249,30 @@
       ],
       "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c4945c9_16ed0273",
+        "filename": "system/stack/rfcomm/rfc_port_if.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-12T05:16:37Z",
+      "side": 1,
+      "message": "I have updated `PORT_ParNegInd` to use `p_mcb` for updating the initial rx credit. My understanding is that when `RFCOMM_CreateConnectionWithSecurity` is called, if I update `p_mcb` there for later use, then `PORT_ParNegInd` can pick it up when needed.",
+      "parentUuid": "7ff71869_68e20883",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 88
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
