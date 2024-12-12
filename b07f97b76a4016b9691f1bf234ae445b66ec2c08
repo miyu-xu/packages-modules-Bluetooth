@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "668db094_0882019d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-12-12T13:14:05Z",
+      "side": 1,
+      "message": "I updated bug number (original one was closed as duplicate of current",
+      "revId": "b07f97b76a4016b9691f1bf234ae445b66ec2c08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d81cefdd_93d52bdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2024-12-12T13:14:05Z",
+      "side": 1,
+      "message": "I updated bug number (original one was closed as duplicate of current)",
+      "revId": "b07f97b76a4016b9691f1bf234ae445b66ec2c08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
