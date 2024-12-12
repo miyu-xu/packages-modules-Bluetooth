@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1b7422a_78b90400",
+        "filename": "system/stack/rfcomm/rfc_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T03:22:14Z",
+      "side": 1,
+      "message": "may need debug log here?",
+      "fixSuggestions": [
+        {
+          "fixId": "0c9fb729_aecaf927",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_utils.cc",
+              "range": {
+                "startLine": 451,
+                "startChar": 0,
+                "endLine": 451,
+                "endChar": 0
+              },
+              "replacement": "    log::verbose(\"rfc_set_state: state:{} is the same as current state\", state);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "864e200aebd6ef856eae7c24fa4134e9a650cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf9a2c2_9ecec5cf",
+        "filename": "system/stack/rfcomm/rfc_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-12T03:22:14Z",
+      "side": 1,
+      "message": "should we tracked the CLOSED state timestamp too?",
+      "fixSuggestions": [
+        {
+          "fixId": "149df672_1380ef71",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_utils.cc",
+              "range": {
+                "startLine": 460,
+                "startChar": 0,
+                "endLine": 460,
+                "endChar": 0
+              },
+              "replacement": "  } else if (state \u003d\u003d RFC_STATE_CLOSED) {\n    p_port-\u003erfc.sm_cb.close_timestamp \u003d bluetooth::common::time_gettimeofday_us();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "864e200aebd6ef856eae7c24fa4134e9a650cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
