@@ -34,6 +34,24 @@
       ],
       "revId": "f49082c2184f45be12147a028e650b638dd603fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba92560d_992e7bda",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-12T23:29:54Z",
+      "side": 1,
+      "message": "0 means unavailable I think, according to spec, it couldn\u0027t be 0.",
+      "parentUuid": "5c074d9f_3b147b30",
+      "revId": "f49082c2184f45be12147a028e650b638dd603fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
