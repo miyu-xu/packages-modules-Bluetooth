@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68ea7ce7_4a04fe43",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1789,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-12T23:13:06Z",
+      "side": 1,
+      "message": "I verified that `*local_mtu \u003d p_ccb-\u003ep_rcb-\u003emy_mtu` works fine on RFCOMM server and client.",
+      "parentUuid": "6a8ddac0_4dd9db28",
+      "range": {
+        "startLine": 1789,
+        "startChar": 22,
+        "endLine": 1789,
+        "endChar": 40
+      },
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "423eeea2_810ab263",
         "filename": "system/stack/rfcomm/port_api.cc",
         "patchSetId": 3
@@ -197,6 +221,47 @@
                 "endChar": 0
               },
               "replacement": "    log::error(\"L2CA_GetLocalMtu failed\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd4c823_2c421993",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-12T23:13:06Z",
+      "side": 1,
+      "message": "`p_port-\u003erfc.p_mcb-\u003epeer_l2cap_mtu + RFCOMM_MIN_OFFSET + 1` was required to compensate the offset applied in `rfc_mx_conf_ind()`.\n\n```\nstatic void rfc_mx_conf_ind(tRFC_MCB* p_mcb, tL2CAP_CFG_INFO* p_cfg) {\n  /* Save peer L2CAP MTU if present */\n  /* RFCOMM adds 3-4 bytes in the beginning and 1 bytes FCS */\n  if (p_cfg-\u003emtu_present) {\n    p_mcb-\u003epeer_l2cap_mtu \u003d p_cfg-\u003emtu - RFCOMM_MIN_OFFSET - 1;\n  } else {\n    p_mcb-\u003epeer_l2cap_mtu \u003d L2CAP_DEFAULT_MTU - RFCOMM_MIN_OFFSET - 1;\n  }\n}\n```",
+      "range": {
+        "startLine": 1231,
+        "startChar": 16,
+        "endLine": 1231,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "64dd6c2b_01d6ddd1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 1231,
+                "startChar": 0,
+                "endLine": 1232,
+                "endChar": 0
+              },
+              "replacement": "  *remote_mtu \u003d p_port-\u003erfc.p_mcb-\u003epeer_l2cap_mtu + RFCOMM_MIN_OFFSET + 1;\n"
             }
           ]
         }
