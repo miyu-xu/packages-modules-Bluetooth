@@ -109,6 +109,29 @@
       "message": "same concern as above?",
       "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b5f443c_c295e2fa",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-12T22:17:13Z",
+      "side": 1,
+      "message": "Isn\u0027t there a slight chance of us generating an id that\u0027s already in use?  Would we run into problems if that happens?",
+      "range": {
+        "startLine": 677,
+        "startChar": 4,
+        "endLine": 677,
+        "endChar": 13
+      },
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
