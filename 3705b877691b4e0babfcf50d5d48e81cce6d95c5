@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aafbe11_172d9ec0",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "It would be helpful to document here what safety requirements these function pointers have on their parameters. E.g. does `callbacks` need to be valid only for the duration of the function call, or will it be stored and used later?",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db142a6_a14f5a41",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "This does indeed allow the interface to be executed from any thread, but how do you know that that is safe to do?",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53b21439_db1f8369",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "It looks like these first three lines don\u0027t have anything unsafe in them, so please move them out of the unsafe block. This makes it clearer to people reading the code what unsafe operations the unsafe block is actually needed for.",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed9fa45_d7e0fed7",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "Why are you converting the `Arc` into a raw pointer and then back again? For that matter, why do you clone it first just to drop it shortly after? If you just want a raw pointer then you could call `Arc::as_ptr(\u0026self.wrapper)`, but note that this will only be valid as long as the `Ffi` is live.",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da894ff5_6b0eab24",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "What are the right things?\n\nThis safety comment should explain how you are satisfying the safety requirements of `send_command`, whatever they may be. Presumably it has some requirements around the validity of the handle and data pointer passed to it?\n\nDitto for the other similar functions below.",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94561545_78bba548",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "Again, here and in the functions below, move the safe code out of the unsafe block for clarity.",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1e59c7_8dbdb1ca",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "This should be an unsafe function, and document its requirements for `handle`.",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b126442_aa4e589e",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-12T15:55:28Z",
+      "side": 1,
+      "message": "If this is a requirement of the caller then this function `event_received` needs to be unsafe, and document that requirement. Presumably there\u0027s also a requirement on `handle`.\n\nThe same applies to the other functions below.",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
