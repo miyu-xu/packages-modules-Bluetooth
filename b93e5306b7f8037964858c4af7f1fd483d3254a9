@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96ccee7d_b6337378",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-13T18:46:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb996746_5d025eff",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "b93e5306b7f8037964858c4af7f1fd483d3254a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83de07e4_cd03bac0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-12T23:07:10Z",
       "side": 1,
       "message": "Rename this one as responder ?\nOr maybe just \n```\ntest_avdt_signaling_channel_connection_collision_case1\ntest_avdt_signaling_channel_connection_collision_case2\n```",
+      "range": {
+        "startLine": 332,
+        "startChar": 14,
+        "endLine": 332,
+        "endChar": 62
+      },
+      "revId": "b93e5306b7f8037964858c4af7f1fd483d3254a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e9378d_9b32bef6",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-13T18:46:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83de07e4_cd03bac0",
       "range": {
         "startLine": 332,
         "startChar": 14,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c3fe838_87cb104f",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-13T18:46:48Z",
+      "side": 1,
+      "message": "yes it is ;D",
+      "parentUuid": "0b728fc2_acbb147e",
+      "range": {
+        "startLine": 739,
+        "startChar": 78,
+        "endLine": 739,
+        "endChar": 86
+      },
+      "revId": "b93e5306b7f8037964858c4af7f1fd483d3254a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce4d7f19_c160ac7b",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-12-12T23:07:10Z",
       "side": 1,
       "message": "We should add an helper to simplify this setup\ne.g. it would be nice to have a python annotation:\n\n```\n@avatar.asynchronous\n@enable(A2DP_SM_IGNORE_CONNECT_EVENTS_IN_CONNECTING_STATE)\nasync def test_xxx(self):\n    pass\n```",
+      "range": {
+        "startLine": 752,
+        "startChar": 8,
+        "endLine": 757,
+        "endChar": 21
+      },
+      "revId": "b93e5306b7f8037964858c4af7f1fd483d3254a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0177ff75_67e0358f",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-13T18:46:48Z",
+      "side": 1,
+      "message": "done in other CL",
+      "parentUuid": "ce4d7f19_c160ac7b",
       "range": {
         "startLine": 752,
         "startChar": 8,
@@ -140,6 +236,30 @@
           ]
         }
       ],
+      "revId": "b93e5306b7f8037964858c4af7f1fd483d3254a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b14013_2d843525",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-13T18:46:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a0d0385_b3079f5e",
+      "range": {
+        "startLine": 867,
+        "startChar": 15,
+        "endLine": 867,
+        "endChar": 34
+      },
       "revId": "b93e5306b7f8037964858c4af7f1fd483d3254a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
