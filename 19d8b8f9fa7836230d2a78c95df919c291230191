@@ -90,6 +90,30 @@
       ],
       "revId": "19d8b8f9fa7836230d2a78c95df919c291230191",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f557c9_4dc5c614",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-13T05:35:45Z",
+      "side": 1,
+      "message": "It has been used for rfcomm max frame size today.",
+      "parentUuid": "d11a7aa6_6bf58520",
+      "range": {
+        "startLine": 506,
+        "startChar": 45,
+        "endLine": 506,
+        "endChar": 48
+      },
+      "revId": "19d8b8f9fa7836230d2a78c95df919c291230191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
