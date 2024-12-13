@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "331bf716_53b1efcd",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T19:51:00Z",
+      "side": 1,
+      "message": "Comment is marked as done but there is still the issue",
+      "parentUuid": "590e3eb5_a4440ea6",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "ed072983a5d5bb471a6fb6541040b507fe5cf640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f23f4b13_ba598c07",
