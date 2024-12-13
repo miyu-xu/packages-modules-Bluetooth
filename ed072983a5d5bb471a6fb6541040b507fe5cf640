@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "590e3eb5_a4440ea6",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-12-13T15:16:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f8634ad_f34678c0",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "ed072983a5d5bb471a6fb6541040b507fe5cf640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f23f4b13_ba598c07",
@@ -131,6 +155,30 @@
       "writtenOn": "2024-12-12T17:54:36Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Bpfmt: This file is not formatted.\n\nAnalyzer Description: Formats Android.bp files.\nOwner: soong-team@google.com\n\nThis file is not formatted.\n\nRun `prebuilts/build-tools/linux-x86/bin/bpfmt -w {filename}` to format the file, or apply the suggested fix. You may also want to add `bpfmt \u003d true` to `PREUPLOAD.cfg`",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "ed072983a5d5bb471a6fb6541040b507fe5cf640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f91505fa_e0cf29a8",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-12-13T15:16:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f23f4b13_ba598c07",
       "range": {
         "startLine": 0,
         "startChar": 0,
