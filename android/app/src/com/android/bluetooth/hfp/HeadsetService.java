@@ -2649,7 +2649,7 @@ public class HeadsetService extends ProfileService {
                     new BluetoothClass(
                             mAdapterService.getRemoteDevices().getBluetoothClass(device));
             if ((deviceClass != null
-                            && deviceClass.getMajorDeviceClass()
+                            && deviceClass.getDeviceClass()
                                     == BluetoothClass.Device.WEARABLE_WRIST_WATCH)
                     || (deviceType != null
                             && BluetoothDevice.DEVICE_TYPE_WATCH.equals(new String(deviceType)))) {
