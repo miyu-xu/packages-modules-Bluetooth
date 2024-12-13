@@ -16,6 +16,24 @@
       "message": "Wasn\u0027t this fixed by not deleting the directory at all ?",
       "revId": "a918a0ab6cb8aed0c42ddd087768d19503ecf14e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94bbf1e4_1c0bec6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-13T00:59:40Z",
+      "side": 1,
+      "message": "The directory is still being deleted as in: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;drc\u003ddff8f67c3454040d38c8b06218825b9a692d4984;l\u003d7145\nFurthermore it\u0027s should be more resistant to that kind of issues as we don\u0027t rely on \u0027the directory being there anytime\u0027",
+      "parentUuid": "d607f1c7_51467d97",
+      "revId": "a918a0ab6cb8aed0c42ddd087768d19503ecf14e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
