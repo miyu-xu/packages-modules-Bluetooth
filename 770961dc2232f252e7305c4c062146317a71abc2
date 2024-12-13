@@ -1,0 +1,480 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627739cc_b4581524",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "final ?",
+      "range": {
+        "startLine": 1017,
+        "startChar": 47,
+        "endLine": 1017,
+        "endChar": 78
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee813978_41f0af8c",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2012,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "This looks complicated.\n\nthe `.add` will perform a `.containsPattern` but here we already do a `.containsPattern` and select the branch we are gonna use depending on what we want to achieve.\n\nIn the end, whatever the condition we are still doing a `.add`.\n\n\nCould we have something like this:\n```\nint filterIndex \u003d mFilterIndexStack.pop();\nint index \u003d mMsftAdvMonitorMergedPatternMap.add(filterIndex, monitor.getPatterns());\nclientFilterIndices.add(index);\nif (filterIndex !\u003d index) {\n    resetCountDownLatch();\n    mNativeInterface.gattClientMsftAdvMonitorAdd(\n                        monitor.getMonitor(),\n                        monitor.getPatterns(),\n                        monitor.getAddress(),\n                        index);\n    waitForCallback();\n}\n```",
+      "range": {
+        "startLine": 2000,
+        "startChar": 0,
+        "endLine": 2012,
+        "endChar": 88
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "efea1f07_398671d7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2003,
+                "startChar": 0,
+                "endLine": 2007,
+                "endChar": 0
+              },
+              "replacement": "                int index \u003d mMsftAdvMonitorMergedPatternMap.add(monitor.getPatterns());\n                if (index !\u003d -1) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2012,
+                "startChar": 0,
+                "endLine": 2013,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2277,
+                "startChar": 0,
+                "endLine": 2283,
+                "endChar": 0
+              },
+              "replacement": "        // Two patterns are considered equal if they have the exact same pattern\n        // in the same order. Therefore A+B and B+A are considered different, as\n        // well as A and A+A. This shouldn\u0027t causes issues but could be optimized.\n        // If pattern doesn\u0027t exist, creates new entry with given index.\n        // If pattern exists, increases count and returns filter index.\n        int add(MsftAdvMonitor.Pattern[] pattern) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2294,
+                "startChar": 0,
+                "endLine": 2295,
+                "endChar": 0
+              },
+              "replacement": "                        mMergedPatterns.get(i).mCount++;\n                        return mMergedPatterns.get(i).mFilterIndex;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2298,
+                "startChar": 0,
+                "endLine": 2309,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2310,
+                "startChar": 0,
+                "endLine": 2312,
+                "endChar": 0
+              },
+              "replacement": "            mMergedPatterns.add(new MsftAdvMonitorMergedPattern(pattern, -1, 1));\n            return -1;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c200e3c_9d5a2b8d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2261,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "This is call a Map, but the internal type is a list. Should we use a map inside ?",
+      "range": {
+        "startLine": 2261,
+        "startChar": 10,
+        "endLine": 2261,
+        "endChar": 40
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4d3246_53ea70f5",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2261,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "Should this go in it\u0027s own file ? I don\u0027t like that much having the ScanManager holding more and more code.\n\nIf we manage to simplify the class so it\u0027s a couple line, it should be fine to leave it here, but if it is that big, a new file should be better I think",
+      "range": {
+        "startLine": 2261,
+        "startChar": 10,
+        "endLine": 2261,
+        "endChar": 40
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e761c7_cd3455d7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "final ?",
+      "range": {
+        "startLine": 2263,
+        "startChar": 0,
+        "endLine": 2263,
+        "endChar": 54
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faab67ce_d9ef7f1a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2264,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "final ?",
+      "range": {
+        "startLine": 2264,
+        "startChar": 24,
+        "endLine": 2264,
+        "endChar": 36
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce363640_a48774e7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "use List\u003c\u003e",
+      "range": {
+        "startLine": 2275,
+        "startChar": 8,
+        "endLine": 2275,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "724e28bd_bf9527f9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 66,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": "import java.util.List;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2275,
+                "startChar": 0,
+                "endLine": 2276,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cMsftAdvMonitorMergedPattern\u003e mMergedPatterns \u003d new ArrayList\u003c\u003e();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b128e6a3_00aa8443",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2282,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "the name `containsPattern` let think that it should return a boolean",
+      "range": {
+        "startLine": 2282,
+        "startChar": 12,
+        "endLine": 2282,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "03e0ea1e_4573c646",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2004,
+                "startChar": 0,
+                "endLine": 2005,
+                "endChar": 0
+              },
+              "replacement": "                        \u0026\u0026 mMsftAdvMonitorMergedPatternMap.getPatternIndex(monitor.getPatterns())\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2282,
+                "startChar": 0,
+                "endLine": 2283,
+                "endChar": 0
+              },
+              "replacement": "        int getPatternIndex(MsftAdvMonitor.Pattern[] pattern) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2304,
+                "startChar": 0,
+                "endLine": 2305,
+                "endChar": 0
+              },
+              "replacement": "            int index \u003d (getPatternIndex(pattern));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f92549a_5a1d1299",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2286,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be `continue` here ?",
+      "range": {
+        "startLine": 2286,
+        "startChar": 0,
+        "endLine": 2286,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2c83f88d_9f8bdb62",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2286,
+                "startChar": 0,
+                "endLine": 2287,
+                "endChar": 0
+              },
+              "replacement": "                    continue;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23728477_28566b56",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2294,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "Since this is iterating over an array, it seems that there can be more than one item in the matchPattern.\n\nThis is returning as soon as there is a valid match instead of checking for the whole array.\n\nIs this intended ?",
+      "range": {
+        "startLine": 2294,
+        "startChar": 0,
+        "endLine": 2294,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "988ce427_a86acdeb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2288,
+                "startChar": 0,
+                "endLine": 2288,
+                "endChar": 0
+              },
+              "replacement": "                boolean match \u003d true;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2291,
+                "startChar": 0,
+                "endLine": 2295,
+                "endChar": 0
+              },
+              "replacement": "                    if (a.ad_type !\u003d b.ad_type || a.start_byte !\u003d b.start_byte\n                            || !Arrays.equals(a.pattern, b.pattern)) {\n                        match \u003d false;\n                        break;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2297,
+                "startChar": 0,
+                "endLine": 2297,
+                "endChar": 0
+              },
+              "replacement": "                if (match) {\n                    return i;\n                }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2298,
+                "startChar": 0,
+                "endLine": 2299,
+                "endChar": 0
+              },
+              "replacement": "            return -1; // Not found\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecbaefa3_29b3b81d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "this returning an \"index\" is a bit confusing as I thought it was the filterIndex at some point.\n\nShould we have instead a getPattern that can return null, and edit the retturn pattern or add a new one as needed",
+      "range": {
+        "startLine": 2304,
+        "startChar": 25,
+        "endLine": 2304,
+        "endChar": 40
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d7201c1_6559a9ef",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2333,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:29:47Z",
+      "side": 1,
+      "message": "I believe this would be cleaner using stream\n```suggestion\nmMergedPatterns.stream()\n    .filter(pattern -\u003e pattern.mFilterIndex !\u003d filterIndex)\n    .forEach(pattern -\u003e pattern.mCount--);\nreturn mMergedPatterns.removeIf(pattern -\u003e pattern.mCount \u003d\u003d 0);\n```",
+      "range": {
+        "startLine": 2317,
+        "startChar": 2,
+        "endLine": 2333,
+        "endChar": 0
+      },
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
