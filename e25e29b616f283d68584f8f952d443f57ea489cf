@@ -273,6 +273,30 @@
       },
       "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d434760_a0d50701",
+        "filename": "system/stack/rfcomm/rfc_port_if.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:12:51Z",
+      "side": 1,
+      "message": "As we discussed offline, we will save `rfc_cfg_info` in `p_port` instead of `p_mcb`.",
+      "parentUuid": "6c4945c9_16ed0273",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 88
+      },
+      "revId": "e25e29b616f283d68584f8f952d443f57ea489cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

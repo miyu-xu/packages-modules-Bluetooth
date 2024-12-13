@@ -50,6 +50,30 @@
       ],
       "revId": "0e38908563cf05b587e680d7af9bb6fdffdcafb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "790d2727_4c50e0d0",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:12:51Z",
+      "side": 1,
+      "message": "Thanks for the heads up, I have replaced the pointer with the value.",
+      "parentUuid": "ee322bf1_57cb94a4",
+      "range": {
+        "startLine": 241,
+        "startChar": 73,
+        "endLine": 241,
+        "endChar": 93
+      },
+      "revId": "0e38908563cf05b587e680d7af9bb6fdffdcafb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
