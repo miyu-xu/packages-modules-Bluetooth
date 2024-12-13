@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "125c9393_3afb5566",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T01:43:03Z",
+      "side": 1,
+      "message": "Missing flag stanza since this is behind the scan manager refactor flag",
+      "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95cf7af9_172eb06d",
         "filename": "system/btif/src/stack_manager.cc",
         "patchSetId": 1
