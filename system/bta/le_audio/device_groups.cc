@@ -56,6 +56,7 @@
 #include "os/logging/log_adapter.h"
 #include "stack/include/btm_client_interface.h"
 #include "types/bt_transport.h"
+#include "osi/include/properties.h"
 
 // TODO(b/369381361) Enfore -Wmissing-prototypes
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
@@ -549,9 +550,16 @@ uint8_t LeAudioDeviceGroup::GetSCA(void) const {
 }
 
 uint8_t LeAudioDeviceGroup::GetPacking(void) const {
+  uint8_t packing_type = bluetooth::hci::kIsoCigPackingInterleaved;
+
+  if (osi_property_get_bool("persist.vendor.btstack.sequential_packing_enable", false)) {
+    packing_type = bluetooth::hci::kIsoCigPackingSequential;
+    LOG_WARN("Switching to sequential packing type ");
+  }
+
   if (!stream_conf.conf) {
     log::error("No stream configuration has been set.");
-    return bluetooth::hci::kIsoCigPackingSequential;
+    return packing_type;
   }
   return stream_conf.conf->packing;
 }

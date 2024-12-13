@@ -1254,7 +1254,7 @@ std::ostream& operator<<(std::ostream& os, const AseConfiguration& config);
 struct AudioSetConfiguration {
   std::string name = "";
   /* ISO data packing within the CIG */
-  uint8_t packing = bluetooth::hci::kIsoCigPackingSequential;
+  uint8_t packing = bluetooth::hci::kIsoCigPackingInterleaved;
   types::BidirectionalPair<std::vector<struct AseConfiguration>> confs;
 
   bool operator!=(const AudioSetConfiguration& other) { return !(*this == other); }
