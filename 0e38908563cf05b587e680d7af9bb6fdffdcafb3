@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee322bf1_57cb94a4",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T00:29:32Z",
+      "side": 1,
+      "message": "You should pass the configuration by value everywhere to simplify the code (no null check required). The structure size is actually smaller than a pointer\u0027s, it is no issue.",
+      "range": {
+        "startLine": 241,
+        "startChar": 73,
+        "endLine": 241,
+        "endChar": 93
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "adef4e01_70786453",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/port_api.h",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": " *                                 connection\n"
+            },
+            {
+              "path": "system/stack/include/port_api.h",
+              "range": {
+                "startLine": 241,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": "                                                      uint16_t sec_mask, tRFC_CFG_INFO p_cfg);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0e38908563cf05b587e680d7af9bb6fdffdcafb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
