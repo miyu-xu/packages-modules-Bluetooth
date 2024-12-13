@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb15bd33_ed3666aa",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-12-13T20:00:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6b5762cb_fddd20dc",
+      "range": {
+        "startLine": 439,
+        "startChar": 16,
+        "endLine": 439,
+        "endChar": 88
+      },
+      "revId": "90b792d363c26ac0d07207e2d41f8ed9a7677bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dbcf8de_ea387eaf",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I don\u0027t think so? Saving the above list would copy ~250 contacts (depends on the constant set). As it stands now, we just shave off how many ever operations are added in the `constructInsertOperationsForCallLog` call, and then re-add them afterwards.\n\nIn our case, right now, I _think_ that\u0027s just one operation per call log. This function-based plumbing leaves us with flexibility to have more operations though, which caching can leverage if needed (we do with real contacts, as opposed to call logs).",
       "parentUuid": "9dbcf8de_ea387eaf",
+      "range": {
+        "startLine": 456,
+        "startChar": 33,
+        "endLine": 456,
+        "endChar": 68
+      },
+      "revId": "90b792d363c26ac0d07207e2d41f8ed9a7677bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2765efa4_f43923ca",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientContactsStorage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-12-13T20:00:54Z",
+      "side": 1,
+      "message": "Oh, I had meant the amount over the limit: save a copy before clearing it. I think it\u0027s a nit, and we can get it in one of your subsequent patches, since this is ready to go otherwise.",
+      "parentUuid": "5ea546c3_41d9cc80",
       "range": {
         "startLine": 456,
         "startChar": 33,
