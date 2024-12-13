@@ -22,6 +22,30 @@
       },
       "revId": "b222beab8f13420a27256725d79dc33ef0e38ffc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36866415_41e1bc77",
+        "filename": "flags/pairing.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-13T01:31:49Z",
+      "side": 1,
+      "message": "I can update the bug to 25Q2 for now. But this seem to be 25q1 regression, I thought there may be exceptions. Let me updated it as 25Q2 for now",
+      "parentUuid": "ac6252a5_102d85b3",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 19
+      },
+      "revId": "b222beab8f13420a27256725d79dc33ef0e38ffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
