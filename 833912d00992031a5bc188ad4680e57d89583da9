@@ -124,6 +124,24 @@
       "parentUuid": "42ef9c9f_2a3cef34",
       "revId": "833912d00992031a5bc188ad4680e57d89583da9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c025fd_b9361680",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-12-13T02:21:45Z",
+      "side": 1,
+      "message": "Got it. Rollback to TARGET_FLOSS version.",
+      "parentUuid": "27adfbf5_89211dc5",
+      "revId": "833912d00992031a5bc188ad4680e57d89583da9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
