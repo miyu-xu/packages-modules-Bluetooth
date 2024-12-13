@@ -240,6 +240,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75486299_b88cc7b7",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-13T17:47:13Z",
+      "side": 1,
+      "message": "I see what you\u0027re saying.  Sure we can keep it how it is.",
+      "parentUuid": "df3ab812_28a57337",
+      "range": {
+        "startLine": 1218,
+        "startChar": 11,
+        "endLine": 1218,
+        "endChar": 30
+      },
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00678ab1_248135a4",
