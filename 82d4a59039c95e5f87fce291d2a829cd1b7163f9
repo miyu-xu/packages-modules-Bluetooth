@@ -210,6 +210,30 @@
       },
       "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f0e4f6_faf9c5a3",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-13T17:58:55Z",
+      "side": 1,
+      "message": "Thanks for showing me that discussion. Works for me, especially since it looks like we log the socket_id shortly after generating it.",
+      "parentUuid": "bb6f3761_f684231c",
+      "range": {
+        "startLine": 677,
+        "startChar": 4,
+        "endLine": 677,
+        "endChar": 13
+      },
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
