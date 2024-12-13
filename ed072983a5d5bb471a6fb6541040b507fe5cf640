@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53eed303_4d884ed7",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-12-13T15:13:42Z",
+      "side": 1,
+      "message": "I was just following the convention, this new lib is meant to replace for server_configurable_flags which are already used. If all these tests just use aconfig flags instead of legacy flags, then server_configurable_flags dep can later be removed.",
+      "parentUuid": "9871a0ee_10ba4e03",
+      "range": {
+        "startLine": 303,
+        "startChar": 9,
+        "endLine": 303,
+        "endChar": 39
+      },
+      "revId": "ed072983a5d5bb471a6fb6541040b507fe5cf640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fea49df4_c38fafa0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-12T17:54:36Z",
       "side": 1,
       "message": "Why this one is statically linked....",
+      "range": {
+        "startLine": 671,
+        "startChar": 9,
+        "endLine": 671,
+        "endChar": 39
+      },
+      "revId": "ed072983a5d5bb471a6fb6541040b507fe5cf640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ba27488_cacb0764",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-12-13T15:13:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fea49df4_c38fafa0",
       "range": {
         "startLine": 671,
         "startChar": 9,
