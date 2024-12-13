@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "138a91f5_cf305fd2",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1662,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-13T16:55:51Z",
+      "side": 1,
+      "message": "It should be `rfc_srv_open` for RFCOMM server. Other parameters are same.",
+      "range": {
+        "startLine": 1662,
+        "startChar": 53,
+        "endLine": 1662,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bca4ff27_1874df05",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 1662,
+                "startChar": 0,
+                "endLine": 1668,
+                "endChar": 0
+              },
+              "replacement": "      if (PORT_GetChannelInfo(port_handle, \u0026evt_data.rfc_srv_open.rx_mtu, \u0026evt_data.rfc_srv_open.tx_mtu,\n                              \u0026evt_data.rfc_srv_open.local_credit, \u0026evt_data.rfc_srv_open.remote_credit,\n                              \u0026evt_data.rfc_srv_open.local_cid, \u0026evt_data.rfc_srv_open.remote_cid,\n                              \u0026evt_data.rfc_srv_open.dlci, \u0026evt_data.rfc_srv_open.max_frame_size,\n                              \u0026evt_data.rfc_srv_open.acl_handle,\n                              \u0026evt_data.rfc_srv_open.mux_initiator) !\u003d PORT_SUCCESS) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "63838dddb4d87d187e155a0a61aab018dc872883",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
