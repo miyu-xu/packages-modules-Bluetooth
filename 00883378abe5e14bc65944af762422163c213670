@@ -22,6 +22,30 @@
       },
       "revId": "00883378abe5e14bc65944af762422163c213670",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4342c760_b66f3125",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4982,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-13T06:33:08Z",
+      "side": 1,
+      "message": "It is mainly for the flagging purpose. I had planned to remove those #if 0 once flag is ready. Now that is not relavant I will remove in final patchset",
+      "parentUuid": "02967f1b_be49a7ac",
+      "range": {
+        "startLine": 4982,
+        "startChar": 0,
+        "endLine": 4982,
+        "endChar": 5
+      },
+      "revId": "00883378abe5e14bc65944af762422163c213670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
