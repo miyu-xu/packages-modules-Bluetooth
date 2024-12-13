@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49eb82f9_d99ae565",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fad80230_7f571028",
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd7c81b_cfcdc3e3",
@@ -94,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f4bf69_3ce94612",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:46Z",
+      "side": 1,
+      "message": "We check the lenght of the socket name in the socket settings [api](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocketSettings.java;drc\u003d77fbb39b60c7bcafc758f6e5851ca57d23404583;l\u003d578), so it should be no more than 128.",
+      "parentUuid": "770dfc54_da78f9ff",
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "451551c3_8a8eb54d",
@@ -111,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2372bb_46414140",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:46Z",
+      "side": 1,
+      "message": "Same as above, the socket settings api checks the lengh there.",
+      "parentUuid": "451551c3_8a8eb54d",
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b5f443c_c295e2fa",
@@ -124,6 +178,30 @@
       "writtenOn": "2024-12-12T22:17:13Z",
       "side": 1,
       "message": "Isn\u0027t there a slight chance of us generating an id that\u0027s already in use?  Would we run into problems if that happens?",
+      "range": {
+        "startLine": 677,
+        "startChar": 4,
+        "endLine": 677,
+        "endChar": 13
+      },
+      "revId": "82d4a59039c95e5f87fce291d2a829cd1b7163f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb6f3761_f684231c",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:46Z",
+      "side": 1,
+      "message": "Correct, there is a slight change of the collision. Please see the similar discussion [here](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/comment/09c3f025_e4216564/) for the previous L2CAP implementaion. We have added a TODO here, can we first merge it as is and optimize later? Thanks.",
+      "parentUuid": "8b5f443c_c295e2fa",
       "range": {
         "startLine": 677,
         "startChar": 4,
