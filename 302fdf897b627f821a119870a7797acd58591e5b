@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b61f8a69_f8ceb467",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-13T23:32:15Z",
+      "side": 1,
+      "message": "We should just check the `state`.",
+      "fixSuggestions": [
+        {
+          "fixId": "03d10d36_4e4f5ccc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 1038,
+                "startChar": 0,
+                "endLine": 1040,
+                "endChar": 0
+              },
+              "replacement": "        (state !\u003d tSECURITY_STATE::IDLE)) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 1047,
+                "startChar": 0,
+                "endLine": 1049,
+                "endChar": 0
+              },
+              "replacement": "        (state !\u003d tSECURITY_STATE::IDLE)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "302fdf897b627f821a119870a7797acd58591e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
