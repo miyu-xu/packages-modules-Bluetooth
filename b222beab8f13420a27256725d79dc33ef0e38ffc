@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac6252a5_102d85b3",
+        "filename": "flags/pairing.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T01:13:49Z",
+      "side": 1,
+      "message": "FYI: Bug indicate 25Q1 as a target but this is not possible as the bug fix cut off date is in the past",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 19
+      },
+      "revId": "b222beab8f13420a27256725d79dc33ef0e38ffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
