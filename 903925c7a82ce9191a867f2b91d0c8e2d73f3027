@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e13b0e_7ed8e92f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T01:55:40Z",
+      "side": 1,
+      "message": "This seems to be already fixed, the change is only doing cosmetic fixes, which I am fine with",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "903925c7a82ce9191a867f2b91d0c8e2d73f3027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
