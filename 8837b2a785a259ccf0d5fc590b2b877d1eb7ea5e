@@ -3,6 +3,67 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2235f926_b0f7d1b1",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T01:47:17Z",
+      "side": 1,
+      "message": "I would just call it `create_log_directories` (following the naming from create_directories), remove the parameter, and hardcode the log path with a constexpr.",
+      "range": {
+        "startLine": 326,
+        "startChar": 12,
+        "endLine": 326,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3f8e621a_5b3ec277",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 326,
+                "startChar": 0,
+                "endLine": 329,
+                "endChar": 0
+              },
+              "replacement": "static bool create_log_directories() {\n  std::filesystem::path dir_path(\"/data/misc/bluetooth/logs\");\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 345,
+                "startChar": 0,
+                "endLine": 346,
+                "endChar": 0
+              },
+              "replacement": "      !create_log_directories()) {\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 557,
+                "startChar": 0,
+                "endLine": 558,
+                "endChar": 0
+              },
+              "replacement": "      !create_log_directories()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c399489e_26ebb161",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 1
@@ -20,6 +81,47 @@
         "endLine": 332,
         "endChar": 3
       },
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac6455f_6648cb39",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T01:47:17Z",
+      "side": 1,
+      "message": "We probably want to use `create_directories` here; it will create all missing directories in the path.",
+      "range": {
+        "startLine": 340,
+        "startChar": 26,
+        "endLine": 340,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "abfe64c1_bf2a96a1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 340,
+                "startChar": 0,
+                "endLine": 341,
+                "endChar": 0
+              },
+              "replacement": "  return std::filesystem::create_directories(dir_path);\n"
+            }
+          ]
+        }
+      ],
       "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
