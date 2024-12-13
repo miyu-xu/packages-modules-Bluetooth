@@ -34,6 +34,108 @@
       "parentUuid": "eabe0aa4_dd9cc898",
       "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "264e4741_1455c0bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-13T09:33:14Z",
+      "side": 1,
+      "message": "Most of my comments below are about code you haven\u0027t actually touched in this change, so you can fix it in a separate change if you prefer, but please do ensure that all unsafe blocks and impl have proper safety comments explaining how they guarantee the safety requirements of the unsafe operations. See http://go/android-rust-style#unsafe.",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19b0e0d8_5a65c74e",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1502,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-13T09:33:14Z",
+      "side": 1,
+      "message": "It\u0027s unclear to me why this unsafe block is needed at all, but if it is then it should have a safety comment.",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37397f9f_8aaa7f19",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1858,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-13T09:33:14Z",
+      "side": 1,
+      "message": "These unsafe blocks should have safety comments explaining how you guarantee the safety prerequisites of the unsafe operations within them. You can fix that in a separate change if you want, seeing as you aren\u0027t actually touching these lines in this change.",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27844a7_70cf88ff",
+        "filename": "system/gd/rust/topshim/src/profiles/hf_client.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-13T09:33:14Z",
+      "side": 1,
+      "message": "What\u0027s going on here, what is `_0` and why are you dereferencing it and ignoring the result? This should also have a safety comment, again it can be in a separate change.",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c0832ed_3cac11c2",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-13T09:33:14Z",
+      "side": 1,
+      "message": "This unsafe block should have a safety comment.",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46068b8b_c1942488",
+        "filename": "system/gd/rust/topshim/src/profiles/sdp.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-12-13T09:33:14Z",
+      "side": 1,
+      "message": "This unsafe impl needs a safety comment explaining how you know that `RawSdpWrapper` is safe to send between threads.",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
