@@ -40,6 +40,121 @@
       ],
       "revId": "63838dddb4d87d187e155a0a61aab018dc872883",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f13c29d_9e2cb730",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-13T18:23:56Z",
+      "side": 1,
+      "message": "is_valid_id -\u003e in_use or something similar?\n\"valid\" in other places makes sure that things are in the range of possibility, i.e. `L2C_IS_VALID_PSM` checks if the psm is odd.\nHere, we\u0027re checking if we can find a socket based on the id.",
+      "range": {
+        "startLine": 1330,
+        "startChar": 18,
+        "endLine": 1330,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e6da81ff_0dfd5cd5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_l2cap.cc",
+              "range": {
+                "startLine": 1330,
+                "startChar": 0,
+                "endLine": 1331,
+                "endChar": 0
+              },
+              "replacement": "bool btsock_l2cap_is_in_use(uint64_t socket_id) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "63838dddb4d87d187e155a0a61aab018dc872883",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338893ae_ce574031",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-13T18:23:56Z",
+      "side": 1,
+      "message": "connected?",
+      "range": {
+        "startLine": 627,
+        "startChar": 30,
+        "endLine": 627,
+        "endChar": 66
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "87974b87_2f602487",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 627,
+                "startChar": 0,
+                "endLine": 628,
+                "endChar": 0
+              },
+              "replacement": "                              SOCKET_CONNECTION_STATE_CONNECTED,\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 687,
+                "startChar": 0,
+                "endLine": 688,
+                "endChar": 0
+              },
+              "replacement": "                              SOCKET_CONNECTION_STATE_CONNECTED,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "63838dddb4d87d187e155a0a61aab018dc872883",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e3960d_30d9f68b",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-13T18:23:56Z",
+      "side": 1,
+      "message": "same comment as before",
+      "range": {
+        "startLine": 792,
+        "startChar": 5,
+        "endLine": 792,
+        "endChar": 27
+      },
+      "revId": "63838dddb4d87d187e155a0a61aab018dc872883",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
