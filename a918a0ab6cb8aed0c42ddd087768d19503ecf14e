@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d607f1c7_51467d97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:36:54Z",
+      "side": 1,
+      "message": "Wasn\u0027t this fixed by not deleting the directory at all ?",
+      "revId": "a918a0ab6cb8aed0c42ddd087768d19503ecf14e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
