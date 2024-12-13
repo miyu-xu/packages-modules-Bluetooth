@@ -1,0 +1,762 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1cd8581_78bc4e48",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "nit: signaling_channel",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 27
+      },
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fc508a9_34a7641a",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "nit: transport_channel (though rtp_channel is fine as well).",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f802cee8_941dfd12",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "nit: avdtp_server ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 16
+      },
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4bbd45f_a2298841",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "Use asyncio.Queue instead, the event can be removed.\n(I know I know I was the one to use collections.dequeue in controller.py)",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 46
+      },
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f4b93d_5928062a",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "unnecessary in python",
+      "range": {
+        "startLine": 75,
+        "startChar": 39,
+        "endLine": 75,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0d61b387_130512a8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "        if self.signaling_l2cap_channel:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 86,
+                "endChar": 0
+              },
+              "replacement": "        if not self.signaling_l2cap_channel:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": "        if self.rtp_l2cap_channel:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "        if not self.rtp_l2cap_channel:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "        if self.l2cap_server:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 110,
+                "endChar": 0
+              },
+              "replacement": "        if not l2cap_server:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "        if not self.signaling_l2cap_channel:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "        elif not self.rtp_l2cap_channel:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a3f7201_a247f35a",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "raise exceptions rather than returning a boolean, it will be more explicit.",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 24
+      },
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1d0f021_52483fe2",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "disconnect returns None; the return statement is not necessary",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "262caffa_569fb42d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 89,
+                "endChar": 0
+              },
+              "replacement": "        await self.signaling_l2cap_channel.disconnect()\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "        await self.rtp_l2cap_channel.disconnect()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b31a188_82c9b9ef",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "nit: single _",
+      "range": {
+        "startLine": 114,
+        "startChar": 48,
+        "endLine": 114,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "21f1dc47_e57af94f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 114,
+                "startChar": 0,
+                "endLine": 115,
+                "endChar": 0
+              },
+              "replacement": "        self.l2cap_server.on(\u0027connection\u0027, self._on_l2cap_connection)\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 118,
+                "endChar": 0
+              },
+              "replacement": "    def _on_l2cap_connection(self, channel: l2cap.ClassicChannel) -\u003e None:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40535acb_b42d0ee0",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "nit: _ prefix",
+      "range": {
+        "startLine": 122,
+        "startChar": 16,
+        "endLine": 122,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "97d4caa6_e42c2b5e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "            def _on_channel_open():\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 128,
+                "startChar": 0,
+                "endLine": 129,
+                "endChar": 0
+              },
+              "replacement": "            def _on_channel_close():\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 135,
+                "endChar": 0
+              },
+              "replacement": "            self.signaling_l2cap_channel.on(\u0027open\u0027, _on_channel_open)\n            self.signaling_l2cap_channel.on(\u0027close\u0027, _on_channel_close)\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "            def _on_channel_open():\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 142,
+                "startChar": 0,
+                "endLine": 143,
+                "endChar": 0
+              },
+              "replacement": "            def _on_channel_close():\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "            self.rtp_l2cap_channel.on(\u0027open\u0027, _on_channel_open)\n            self.rtp_l2cap_channel.on(\u0027close\u0027, _on_channel_close)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b8627ea_d2afcdce",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "nit: _ prefix",
+      "range": {
+        "startLine": 154,
+        "startChar": 8,
+        "endLine": 154,
+        "endChar": 10
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f2ac1dc3_9f7703f9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "        self.signaling_l2cap_channel.sink \u003d self._on_pdu\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "                self.signaling_l2cap_channel.sink \u003d self._on_pdu\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": "                self.rtp_l2cap_channel.sink \u003d self._on_avdtp_packet\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 150,
+                "startChar": 0,
+                "endLine": 151,
+                "endChar": 0
+              },
+              "replacement": "    def _on_pdu(self, pdu: bytes):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 154,
+                "startChar": 0,
+                "endLine": 155,
+                "endChar": 0
+              },
+              "replacement": "    def _on_avdtp_packet(self, packet):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aef1bc2_8075b0bd",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "The RTP header will not be present for all codecs, I would be wary of using MediaPacket",
+      "range": {
+        "startLine": 155,
+        "startChar": 8,
+        "endLine": 155,
+        "endChar": 57
+      },
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7df80190_69fee2dd",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "_receive_signal",
+      "range": {
+        "startLine": 159,
+        "startChar": 14,
+        "endLine": 159,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "276ad472_107b814e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "    async def _receive_signal(self) -\u003e bytes:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 166,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "        packet \u003d await asyncio.wait_for(self._receive_signal(), timeout\u003dtimeout)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6821701f_b12a9729",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "expect_signal",
+      "range": {
+        "startLine": 165,
+        "startChar": 14,
+        "endLine": 165,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4e10704f_909db1ec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "    async def expect_signal(self, expected_sig: Union[SignalingPacket, type], timeout: float \u003d 3) -\u003e SignalingPacket:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74b09831_97a0a621",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "send_signal",
+      "range": {
+        "startLine": 186,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f6bbf65d_16b71aba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": "    def send_signal(self, packet: SignalingPacket) -\u003e None:\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 190,
+                "startChar": 0,
+                "endLine": 191,
+                "endChar": 0
+              },
+              "replacement": "        self.send_signal(command)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91df44e3_161e5a30",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "This is the default return type already",
+      "range": {
+        "startLine": 186,
+        "startChar": 51,
+        "endLine": 186,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "156402e7_d31b21eb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": "    def send_message(self, packet: SignalingPacket):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 193,
+                "endChar": 0
+              },
+              "replacement": "    def send_media(self, packet: avdtp.MediaPacket):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daa2c96b_6a352ce8",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-13T18:41:49Z",
+      "side": 1,
+      "message": "Redundant method should be removed",
+      "range": {
+        "startLine": 189,
+        "startChar": 4,
+        "endLine": 190,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0e002ca2_d5267cfa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 189,
+                "startChar": 0,
+                "endLine": 192,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5685d699ee53a2f488c967271f4ec7b1020f4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
