@@ -105,6 +105,30 @@
       },
       "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6562fd_4b18ec12",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T01:50:30Z",
+      "side": 1,
+      "message": "Closing as I also +1 the comment.",
+      "parentUuid": "5629426f_b40b9dbb",
+      "range": {
+        "startLine": 398,
+        "startChar": 38,
+        "endLine": 398,
+        "endChar": 63
+      },
+      "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
