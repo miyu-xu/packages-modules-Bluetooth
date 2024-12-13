@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02967f1b_be49a7ac",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4982,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-13T03:51:10Z",
+      "side": 1,
+      "message": "why do we need the \"#if 0\" section? should we just delete the code? the diff should be able to show the old code",
+      "range": {
+        "startLine": 4982,
+        "startChar": 0,
+        "endLine": 4982,
+        "endChar": 5
+      },
+      "revId": "00883378abe5e14bc65944af762422163c213670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
