@@ -475,6 +475,108 @@
       },
       "revId": "770961dc2232f252e7305c4c062146317a71abc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a600f02_7e83dc15",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1923,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:32:16Z",
+      "side": 1,
+      "message": "Use `List.of(...)` to simplify the list creation",
+      "range": {
+        "startLine": 1921,
+        "startChar": 46,
+        "endLine": 1923,
+        "endChar": 95
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "94297f8e_7a1d4a98",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+              "range": {
+                "startLine": 1921,
+                "startChar": 0,
+                "endLine": 1924,
+                "endChar": 0
+              },
+              "replacement": "            List\u003cScanFilter\u003e scanFilterList \u003d\n                    List.of(new ScanFilter.Builder().setServiceData(serviceUuid, serviceData).build());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb7fa53c_f650ed2d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1950,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-13T00:32:16Z",
+      "side": 1,
+      "message": "this is the default and could simply be removed",
+      "range": {
+        "startLine": 1950,
+        "startChar": 42,
+        "endLine": 1950,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2da2048b_c1618c8a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+              "range": {
+                "startLine": 1950,
+                "startChar": 0,
+                "endLine": 1951,
+                "endChar": 0
+              },
+              "replacement": "            verify(mScanNativeInterface)\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+              "range": {
+                "startLine": 1956,
+                "startChar": 0,
+                "endLine": 1957,
+                "endChar": 0
+              },
+              "replacement": "            verify(mScanNativeInterface).gattClientMsftAdvMonitorEnable(eq(true));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "770961dc2232f252e7305c4c062146317a71abc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
