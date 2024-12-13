@@ -1000,7 +1000,8 @@ class BluetoothManagerService {
             Log.e(TAG, "continueFromBleOnState: Impossible transition from " + mState);
             return;
         }
-        if (!mEnableExternal && !isBleAppPresent()) {
+        if (!mEnableExternal && !isBleAppPresent() &&
+            !isBluetoothPersistedStateOn()) {
             // TODO(b/262605980): this code is unlikely to be trigger and will never be once
             // enableBle & disableBle are executed on the handler
             Log.i(TAG, "continueFromBleOnState: Disabled while enabling BLE, disable BLE now");
@@ -1008,7 +1009,7 @@ class BluetoothManagerService {
             bleOnToOff();
             return;
         }
-        if (isBluetoothPersistedStateOnBluetooth() || !isBleAppPresent()) {
+        if (isBluetoothPersistedStateOn() || !isBleAppPresent()) {
             Log.i(TAG, "continueFromBleOnState: Starting br edr");
             // This triggers transition to STATE_ON
             bleOnToOn();
