@@ -22,7 +22,7 @@ import numpy as np
 
 from a2dp.packets.avdtp import *
 from a2dp.signaling_channel import Any, SignalingChannel
-from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, pandora
+from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices, pandora, enableFlag
 from avatar.pandora_server import AndroidPandoraServer
 from bumble.a2dp import (
     A2DP_MPEG_2_4_AAC_CODEC_TYPE,
@@ -678,6 +678,7 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         assert configurationResponse.configuration.id.HasField('mpeg_aac')
 
     @avatar.asynchronous
+    @enableFlag(AVDTP_HANDLE_SUSPEND_CFM_BAD_STATE)
     async def test_avdt_handle_suspend_cfm_bad_state_error(self) -> None:
         """Test AVDTP handling of suspend confirmation BAD_STATE error.
 
@@ -728,13 +729,6 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
                     channel.on('open', on_channel_open)
                     channel.on('close', on_channel_close)
 
-        # Enable BAD_STATE handling
-        for server in self.devices._servers:
-            if isinstance(server, AndroidPandoraServer):
-                server.device.adb.shell(
-                    ['device_config override bluetooth', AVDTP_HANDLE_SUSPEND_CFM_BAD_STATE, 'true'])  # type: ignore
-                break
-
         self.ref1.device.l2cap_channel_manager.servers.pop(AVDTP_PSM)
         self.ref1.a2dp = TestA2dpListener.for_device(self.ref1.device)
         self.ref1.a2dp_sink = None
@@ -780,6 +774,7 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         await asyncio.wait_for(avdtp_future, timeout=10.0)
 
     @avatar.asynchronous
+    @enableFlag(AVDTP_HANDLE_SIGNALING_ON_PEER_FAILURE)
     async def test_avdt_open_after_timeout(self) -> None:
         """Test AVDTP automatically opens stream after timeout if peer device only configures codec.
 
@@ -795,14 +790,6 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
                 logger.info("<< AVDTP Open received >>")
                 avdtp_future.set_result(None)
                 return super().on_open_command(command)
-
-        # Enable BAD_STATE handling
-        for server in self.devices._servers:
-            if isinstance(server, AndroidPandoraServer):
-                server.device.adb.shell(
-                    ['device_config override bluetooth', AVDTP_HANDLE_SIGNALING_ON_PEER_FAILURE,
-                     'true'])  # type: ignore
-                break
 
         # Connect and pair RD1.
         ref1_dut, dut_ref1 = await asyncio.gather(
@@ -862,14 +849,6 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         5. DUT closed initiated connection and allowed for the incoming to proceed. RD1 opens AVDT connection
         6. DUT A2DP source configured and connected
         """
-
-        # Enable A2DP SM neglect CONNECT events when in Connecting state
-        for server in self.devices._servers:
-            if isinstance(server, AndroidPandoraServer):
-                server.device.adb.shell(
-                    ['device_config override bluetooth', A2DP_SM_IGNORE_CONNECT_EVENTS_IN_CONNECTING_STATE,
-                     'true'])  # type: ignore
-                break
 
         wait_for_l2cap_open = asyncio.get_running_loop().create_future()
 
