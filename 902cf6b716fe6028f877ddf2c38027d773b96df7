@@ -63,6 +63,30 @@
       },
       "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5629426f_b40b9dbb",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-13T01:46:00Z",
+      "side": 1,
+      "message": "+1 to Omer\u0027s comment, the flag is checked at the higher layer here.",
+      "parentUuid": "cfd85c8e_167d5fef",
+      "range": {
+        "startLine": 398,
+        "startChar": 38,
+        "endLine": 398,
+        "endChar": 63
+      },
+      "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
