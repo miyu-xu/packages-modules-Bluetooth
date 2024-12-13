@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "115c9f26_1b6ff150",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-13T19:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6003da1d_f3a2bfeb",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "00883378abe5e14bc65944af762422163c213670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02967f1b_be49a7ac",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "It is mainly for the flagging purpose. I had planned to remove those #if 0 once flag is ready. Now that is not relavant I will remove in final patchset",
       "parentUuid": "02967f1b_be49a7ac",
+      "range": {
+        "startLine": 4982,
+        "startChar": 0,
+        "endLine": 4982,
+        "endChar": 5
+      },
+      "revId": "00883378abe5e14bc65944af762422163c213670",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b0851d7_a449ebb3",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4982,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-13T19:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4342c760_b66f3125",
       "range": {
         "startLine": 4982,
         "startChar": 0,
