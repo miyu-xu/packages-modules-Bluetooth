@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffba6dc9_56245ae8",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea26b6a1_7767d6bb",
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a8ddac0_4dd9db28",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "I verified that `*local_mtu \u003d p_ccb-\u003ep_rcb-\u003emy_mtu` works fine on RFCOMM server and client.",
       "parentUuid": "6a8ddac0_4dd9db28",
+      "range": {
+        "startLine": 1789,
+        "startChar": 22,
+        "endLine": 1789,
+        "endChar": 40
+      },
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d669bdf6_fbc0aa7b",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1789,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:05Z",
+      "side": 1,
+      "message": "Thanks for the verificaiton. Done.",
+      "parentUuid": "68ea7ce7_4a04fe43",
       "range": {
         "startLine": 1789,
         "startChar": 22,
@@ -176,6 +218,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df3ab812_28a57337",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:05Z",
+      "side": 1,
+      "message": "Thanks for the heads up, can we keep the current way so that it is easier to distinguish them with the arguments of `PORT_GetChannelInfo`, since they will have same name if we use the full name.",
+      "parentUuid": "423eeea2_810ab263",
+      "range": {
+        "startLine": 1218,
+        "startChar": 11,
+        "endLine": 1218,
+        "endChar": 30
+      },
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00678ab1_248135a4",
         "filename": "system/stack/rfcomm/port_api.cc",
         "patchSetId": 3
@@ -229,6 +295,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47adf2e0_fc97082f",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00678ab1_248135a4",
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecd4c823_2c421993",
@@ -266,6 +350,30 @@
           ]
         }
       ],
+      "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e5b0ea_ab44d865",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-13T05:10:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecd4c823_2c421993",
+      "range": {
+        "startLine": 1231,
+        "startChar": 16,
+        "endLine": 1231,
+        "endChar": 49
+      },
       "revId": "49c3a95939aaffbebda4257a07811b436b81822f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
