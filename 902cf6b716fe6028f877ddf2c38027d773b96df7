@@ -22,6 +22,30 @@
       },
       "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfd85c8e_167d5fef",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-12-13T01:38:59Z",
+      "side": 1,
+      "message": "Yes. The function `event_start_up_rust_module` is only called from a flagged location.\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_gatt.cpp?q\u003dbtIf%5C-%5C%3Estart_rust_module%5C(%5C);\u0026ss\u003dh%2Fandroid%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2FBluetooth%2F",
+      "parentUuid": "95cf7af9_172eb06d",
+      "range": {
+        "startLine": 398,
+        "startChar": 38,
+        "endLine": 398,
+        "endChar": 63
+      },
+      "revId": "902cf6b716fe6028f877ddf2c38027d773b96df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
