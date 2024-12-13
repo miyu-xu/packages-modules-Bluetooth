@@ -319,6 +319,12 @@ private:
     }
 
     types::BidirectionalPair<std::vector<AseConfiguration>> subconfigs;
+    uint8_t packing_type = bluetooth::hci::kIsoCigPackingInterleaved;
+    if (osi_property_get_bool("persist.vendor.btstack.sequential_packing_enable", false)) {
+      packing_type = bluetooth::hci::kIsoCigPackingSequential;
+      log::warn("Switching to sequential packing type ");
+    }
+
     if (codec_cfg != nullptr && codec_cfg->subconfigurations()) {
       /* Load subconfigurations */
       for (auto subconfig : *codec_cfg->subconfigurations()) {
@@ -335,7 +341,7 @@ private:
 
     return {
             .name = flat_cfg->name()->c_str(),
-            .packing = bluetooth::hci::kIsoCigPackingSequential,
+            .packing = packing_type,
             .confs = std::move(subconfigs),
     };
   }
