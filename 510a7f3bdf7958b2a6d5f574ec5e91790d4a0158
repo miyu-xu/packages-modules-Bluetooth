@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "450ad4a8_9091ee73",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-13T00:20:20Z",
+      "side": 1,
+      "message": "Q) Why `Log.e(TAG, \"Exception happened\", e);` is not used?",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 86
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7de51d9f_31dfee4d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"Exception happened\", e);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"Exception happened\", e);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "510a7f3bdf7958b2a6d5f574ec5e91790d4a0158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
