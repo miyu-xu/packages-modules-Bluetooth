@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e916b8f_e425f066",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-14T03:01:32Z",
+      "side": 1,
+      "message": "adjusted based on offline discussion",
+      "parentUuid": "56cacdcd_2e60547a",
+      "revId": "248a82f7c1b93b5b9d8714ff83beab06cd21a795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e017bbdc_6915d0b7",
