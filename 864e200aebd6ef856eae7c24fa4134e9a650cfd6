@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f4245e_3d993e60",
+        "filename": "system/stack/rfcomm/rfc_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-14T03:00:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1b7422a_78b90400",
+      "revId": "864e200aebd6ef856eae7c24fa4134e9a650cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bf9a2c2_9ecec5cf",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "864e200aebd6ef856eae7c24fa4134e9a650cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36c5eb0a_c1bf54d0",
+        "filename": "system/stack/rfcomm/rfc_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-14T03:00:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bf9a2c2_9ecec5cf",
       "revId": "864e200aebd6ef856eae7c24fa4134e9a650cfd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
