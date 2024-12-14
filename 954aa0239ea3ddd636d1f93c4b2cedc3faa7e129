@@ -206,6 +206,30 @@
       },
       "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0350686a_b271d609",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-14T01:24:02Z",
+      "side": 1,
+      "message": "Right. The minimum L2CAP MTU are different between Classic and LE. Current defitions, `kLeCocMtuMin`, `kLeCocMtuMax`, `kRfcommFrameSizeMin`, and `kRfcommFrameSizeMax` are correct as per Core and RFCOMM specification.\n\nOverall Minimun L2CAP MTU in Core Spec.\n```\nAll L2CAP implementations shall support a minimum MTU of 48 octets over the ACL-U logical link and 23 octets\nover the LE-U logical link\n```\n\nRFCOMM Maximum Frame Size in RFCOMM Spec.\n```\nMaximum Frame Size (N1) Default: 127 (negotiable range 23 – 32767)\n```\n\nLE COC MTU in Core Spec.\n```\nThe MTU field specifies the maximum SDU size (in octets) that the L2CAP layer\nentity sending the L2CAP_LE_CREDIT_BASED_CONNECTION_REQ packet can\nreceive on this channel. L2CAP implementations shall support a minimum MTU size\nof 23 octets.\n```",
+      "parentUuid": "9394e6e1_6fc25bef",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
