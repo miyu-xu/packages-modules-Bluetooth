@@ -34,6 +34,24 @@
       "parentUuid": "25a4f506_c3bb2be4",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9878ec8_79d799c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059936
+      },
+      "writtenOn": "2024-12-14T07:06:23Z",
+      "side": 1,
+      "message": "I think it needs to be a public API since the Companion device applications would presumably want to call this.",
+      "parentUuid": "44bbdac6_d138a210",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
