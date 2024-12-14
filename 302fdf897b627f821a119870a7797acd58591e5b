@@ -44,6 +44,24 @@
       ],
       "revId": "302fdf897b627f821a119870a7797acd58591e5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd097e56_51ab6193",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-14T00:54:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b61f8a69_f8ceb467",
+      "revId": "302fdf897b627f821a119870a7797acd58591e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
