@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc6074db_349c38e0",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-14T07:35:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "712b88aa_94733a46",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53b21439_db1f8369",
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "Ah yep, I see, `CCallbacks::unwrap_client` is converting it back to an `Arc`. The `CCallbacks` effectively owns the `Arc`, so you shouldn\u0027t be calling `from_raw` here as that will cause it to be dropped before the `CCallbacks` is. You should instead have `Drop` implementation on `CCallbacks` that converts `handle` back to an `Arc` and drops it.",
       "parentUuid": "ac58f9a7_40545850",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58649d79_f1643997",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-14T07:35:32Z",
+      "side": 1,
+      "message": "I am not sure to understand how `from_raw()` can dereference/drop the pointer before `intf.initialize()` function and effective drop of `CCallbacks`?\nI tried to implement `Drop` function, but to properly drop the `handle` I need to specify the generic parameter T:\n```\nfn drop(\u0026mut self) {                                                                            \n    unsafe { let _: Arc\u003cRwLock\u003cOption\u003cT\u003e\u003e\u003e \u003d Arc::from_raw(self.handle.cast()); }               \n}\n```\nThen I need to have the generic parameter, so `CCallbacks` becomes `CCallbacks\u003cT\u003e`, that changes `CInterface.initialize()` that should be generic now too, as It\u0027s not allowed to have generic function pointer. I need to have this generic parameter to `CInterface` too, and definitely I don\u0027t want it as a specification of the interface.\nI don\u0027t know how to manage that.",
+      "parentUuid": "181b7065_ca70f8d6",
       "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -300,6 +336,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87831e3d_1f89469d",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-14T07:35:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3dd9fbd9_63977db2",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b126442_aa4e589e",
@@ -349,6 +403,24 @@
       "side": 1,
       "message": "You haven\u0027t made them unsafe or added safety documentation. This should look something like:\n\n```rust\n/// # Safety\n///\n/// `handle` must be a valid pointer previously passed to the corresponding `initialize` callback, and not yet destroyed (this is in fact an `Arc\u003cRwLock\u003cOption\u003cT\u003e\u003e\u003e`).\n/// `data` must be a valid pointer to at least `len` bytes of memory, which remains valid and is not mutated for the duration of this call.\nunsafe extern \"C\" fn event_received\u003cT: Callbacks\u003e(handle: *mut c_void, data: *const u8, len: usize) {\n```\n\nSee http://go/android-rust-style#unsafe for more about what safety documentation should include.",
       "parentUuid": "6f4ea0ca_aac23886",
+      "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba07aaa_c27479e2",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-14T07:35:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a6c06ec7_27e8182f",
       "revId": "3705b877691b4e0babfcf50d5d48e81cce6d95c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

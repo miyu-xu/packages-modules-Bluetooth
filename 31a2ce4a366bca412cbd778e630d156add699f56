@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dcffa38_831c0591",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-14T07:35:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16ce90c1_122044a7",
+      "revId": "31a2ce4a366bca412cbd778e630d156add699f56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fc54720_6c3b5247",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-13T18:34:56Z",
       "side": 1,
       "message": "There\u0027s not much point converting `handle` to an `Arc` only to convert it back to a raw pointer a few lines later. You could instead just dereference the raw pointer for the read call on the next line, or convert it to a reference if you want. Then you can get rid of the `Arc::into_raw` a few lines later. You can also make the unsafe block smaller, something like:\n\n```rust\nif let Some(client) \u003d \u0026*unsafe { (*handle.cast()) }.read().unwrap() {\n...\n```",
+      "revId": "31a2ce4a366bca412cbd778e630d156add699f56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51babbb6_237c7dd2",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-14T07:35:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4fc54720_6c3b5247",
       "revId": "31a2ce4a366bca412cbd778e630d156add699f56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
