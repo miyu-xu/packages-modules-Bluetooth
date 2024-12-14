@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2cb3c04_69ba65e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-14T04:23:04Z",
+      "side": 1,
+      "message": "I think having {} should set the `init_credit_present` as false here so we don\u0027t have to explicitly set it.",
+      "parentUuid": "f68ad81b_6e2b0d75",
+      "revId": "9368ae108b575bbf33d06d4f65c8ac71eb88d01d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53c798d4_8b18359e",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-12-13T20:04:39Z",
       "side": 1,
       "message": "nit: You can also inline the cfg if you want\n```\nRFCOMM_CreateConnectionWithSecurity(.., tRFC_CFG_INFO{});\n```",
+      "range": {
+        "startLine": 258,
+        "startChar": 54,
+        "endLine": 258,
+        "endChar": 57
+      },
+      "revId": "9368ae108b575bbf33d06d4f65c8ac71eb88d01d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ac4e39_eb4ad06d",
+        "filename": "system/bta/ag/bta_ag_rfc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-14T04:23:04Z",
+      "side": 1,
+      "message": "Thanks, I changed it to liline initilization for this and other places.",
+      "parentUuid": "53c798d4_8b18359e",
       "range": {
         "startLine": 258,
         "startChar": 54,
@@ -98,6 +140,30 @@
           ]
         }
       ],
+      "revId": "9368ae108b575bbf33d06d4f65c8ac71eb88d01d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d39c194_48b567e5",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-14T04:23:04Z",
+      "side": 1,
+      "message": "Sure, I have changed it to `RfcommCfgInfo` following `PortSettings`.",
+      "parentUuid": "1f463fac_61db8f69",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 7
+      },
       "revId": "9368ae108b575bbf33d06d4f65c8ac71eb88d01d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
