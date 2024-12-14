@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -34,6 +35,8 @@ import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -159,25 +162,16 @@ public final class BluetoothGatt implements BluetoothProfile {
      */
     public static final int CONNECTION_PRIORITY_DCK = 3;
 
-    /**
-     * Connection subrate request - Balanced.
-     *
-     * @hide
-     */
+    /** Connection subrate request - Balanced. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_REQUEST_MODE_BALANCED = 0;
 
-    /**
-     * Connection subrate request - High.
-     *
-     * @hide
-     */
+    /** Connection subrate request - High. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_REQUEST_MODE_HIGH = 1;
 
-    /**
-     * Connection Subrate Request - Low Power.
-     *
-     * @hide
-     */
+    /** Connection Subrate Request - Low Power. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_REQUEST_MODE_LOW_POWER = 2;
 
     /** @hide */
@@ -2120,9 +2114,9 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @param subrateMode Request a specific subrate mode.
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
-     * @return true, if the request is send to the Bluetooth stack.
-     * @hide
+     * @return true, if the request is sent to the Bluetooth stack.
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean requestSubrateMode(@SubrateRequestMode int subrateMode) {
