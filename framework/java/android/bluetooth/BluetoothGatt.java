@@ -161,26 +161,20 @@ public final class BluetoothGatt implements BluetoothProfile {
 
     /**
      * Connection subrate request - Balanced.
-     *
-     * @hide
      */
     public static final int SUBRATE_REQUEST_MODE_BALANCED = 0;
 
     /**
      * Connection subrate request - High.
-     *
-     * @hide
      */
     public static final int SUBRATE_REQUEST_MODE_HIGH = 1;
 
     /**
      * Connection Subrate Request - Low Power.
-     *
-     * @hide
      */
     public static final int SUBRATE_REQUEST_MODE_LOW_POWER = 2;
 
-    /** @hide */
+    @hide
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(
             prefix = {"SUBRATE_REQUEST_MODE"},
@@ -2121,7 +2115,6 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @param subrateMode Request a specific subrate mode.
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
      * @return true, if the request is send to the Bluetooth stack.
-     * @hide
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
