@@ -182,6 +182,30 @@
       },
       "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9394e6e1_6fc25bef",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-14T00:20:32Z",
+      "side": 1,
+      "message": "@jaydenk@google.com IIUC for the RFCOMM socket it is not using `kLeCocMtuMin` to determin the lower limit of the L2CAP MTU, and looks like for the current L2CAP MTU lower limit it is using [L2CAP_MIN_MTU](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/l2cap/l2c_api.cc;drc\u003d9bb9a8a16bd3db579880e1340786eb5104deb9d8;l\u003d165) which is 48. If this is the case then the value 23 here for RFCOMM seems to be safe.",
+      "parentUuid": "4a96f6cc_9a960ccb",
+      "range": {
+        "startLine": 37,
+        "startChar": 19,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "954aa0239ea3ddd636d1f93c4b2cedc3faa7e129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
