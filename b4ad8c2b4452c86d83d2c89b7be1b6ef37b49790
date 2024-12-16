@@ -1,0 +1,202 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e190bf_61ef5aef",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-16T17:59:44Z",
+      "side": 1,
+      "message": "nit: function comment should use /// and have no empty lines",
+      "fixSuggestions": [
+        {
+          "fixId": "1c115389_40693143",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 332,
+                "startChar": 0,
+                "endLine": 343,
+                "endChar": 0
+              },
+              "replacement": "/// Determine the local MTU for the offloaded RFCOMM connection.\n///\n/// The local MTU is selected as the minimum of:\n///   - The socket hal\u0027s offload capabilities (socket_cap.rfcommCapabilities.max_frame_size)\n///   - The application\u0027s requested maximum RX packet size (app_max_rx_packet_size)\n///\n/// However, the MTU must be at least the minimum required by the RFCOMM\n/// specification (RFCOMM_MIN_MTU).\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b4ad8c2b4452c86d83d2c89b7be1b6ef37b49790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f199693_d7fad5db",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-16T17:59:44Z",
+      "side": 1,
+      "message": "nit: order parameters by input, output",
+      "range": {
+        "startLine": 343,
+        "startChar": 39,
+        "endLine": 343,
+        "endChar": 78
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c59f71e0_18be686a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 343,
+                "startChar": 0,
+                "endLine": 344,
+                "endChar": 0
+              },
+              "replacement": "static bool btsock_rfc_get_offload_mtu(int app_max_rx_packet_size, int* rx_mtu) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 422,
+                "startChar": 0,
+                "endLine": 423,
+                "endChar": 0
+              },
+              "replacement": "      if (!btsock_rfc_get_offload_mtu(max_rx_packet_size, \u0026slot-\u003emtu)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 504,
+                "startChar": 0,
+                "endLine": 505,
+                "endChar": 0
+              },
+              "replacement": "      if (!btsock_rfc_get_offload_mtu(max_rx_packet_size, \u0026slot-\u003emtu)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b4ad8c2b4452c86d83d2c89b7be1b6ef37b49790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eb5ecaa_99058b8b",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-16T17:59:44Z",
+      "side": 1,
+      "message": "To keep the pattern:\n```\nmtu \u003d std::max(mtu, RFCOMM_MIN_MTU);\n```",
+      "range": {
+        "startLine": 352,
+        "startChar": 2,
+        "endLine": 354,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2acdc49e_b54f099e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 352,
+                "startChar": 0,
+                "endLine": 355,
+                "endChar": 0
+              },
+              "replacement": "  mtu \u003d std::max(mtu, RFCOMM_MIN_MTU);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b4ad8c2b4452c86d83d2c89b7be1b6ef37b49790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74dcdf7d_1b8bd6cc",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-16T17:59:44Z",
+      "side": 1,
+      "message": "Just rs-\u003emtu",
+      "range": {
+        "startLine": 1046,
+        "startChar": 25,
+        "endLine": 1046,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9c8a660c_710b7fa3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 1046,
+                "startChar": 0,
+                "endLine": 1047,
+                "endChar": 0
+              },
+              "replacement": "            cfg.rx_mtu \u003d rs-\u003emtu;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 1086,
+                "startChar": 0,
+                "endLine": 1087,
+                "endChar": 0
+              },
+              "replacement": "          cfg.rx_mtu \u003d slot-\u003emtu;\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 1145,
+                "startChar": 0,
+                "endLine": 1146,
+                "endChar": 0
+              },
+              "replacement": "      cfg.rx_mtu \u003d slot-\u003emtu;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b4ad8c2b4452c86d83d2c89b7be1b6ef37b49790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
