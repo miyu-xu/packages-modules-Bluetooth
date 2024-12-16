@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f152ef_bd15f4d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-16T19:29:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d841c191_911764ff",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 57
+      },
+      "revId": "fa0825c3b59d00566aac35192470d05bf45f9d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36991d2f_1dc3e995",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-13T21:59:02Z",
       "side": 1,
       "message": "FYI, javadoc are starting with `/**` on the first line (and if you update, the formatter should change a bit the format here).\n\nI notice that this class has a `/*` comment as well as `getMergedPattern`, but  `add` and `remove` has a `//` comment instead. Can we unify ?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 4
+      },
+      "revId": "fa0825c3b59d00566aac35192470d05bf45f9d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32b0e33c_71f1a9a6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitorMergedPatternList.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-16T19:29:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36991d2f_1dc3e995",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4538fa21_4dc1932d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitorMergedPatternList.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-16T19:29:03Z",
+      "side": 1,
+      "message": "That\u0027s right. It\u0027s the list of active filters we have sent to the controller already.\n\nI actually got this name since that\u0027s what is done/named on BlueZ.",
+      "parentUuid": "399b138e_ab4f3c28",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "fa0825c3b59d00566aac35192470d05bf45f9d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fd2b14b_e0f2468b",
         "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitorMergedPatternList.java",
         "patchSetId": 5
@@ -83,6 +155,30 @@
       "writtenOn": "2024-12-13T21:59:02Z",
       "side": 1,
       "message": "I believe we could use stream \u0026 filter to simplify this double loop\n\nThat may require implementing the `equals` method in `MsftAdvMonitor.Pattern` but that would be way more readable:\n\n```suggestion\n        mMergedPatterns.stream()\n          .filter(mergedPattern -\u003e Arrays.equals(mergedPattern, pattern))\n          .findFirst()\n          .orElse(null)\n```\n\nthere is also Array.deepEquals but I don\u0027t think it is necessary.",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 69,
+        "endChar": 9
+      },
+      "revId": "fa0825c3b59d00566aac35192470d05bf45f9d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f955a18_cf29a2e3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitorMergedPatternList.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-16T19:29:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd2b14b_e0f2468b",
       "range": {
         "startLine": 50,
         "startChar": 7,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eddc74d0_6afa2479",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/MsftAdvMonitorMergedPatternList.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-16T19:29:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80bd6f1c_8894ccc7",
+      "range": {
+        "startLine": 75,
+        "startChar": 3,
+        "endLine": 84,
+        "endChar": 5
+      },
+      "revId": "fa0825c3b59d00566aac35192470d05bf45f9d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed91c414_856c39f2",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-12-13T21:59:02Z",
       "side": 1,
       "message": "nit List",
+      "range": {
+        "startLine": 1014,
+        "startChar": 11,
+        "endLine": 1014,
+        "endChar": 14
+      },
+      "revId": "fa0825c3b59d00566aac35192470d05bf45f9d31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3520420d_8f85943b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-16T19:29:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed91c414_856c39f2",
       "range": {
         "startLine": 1014,
         "startChar": 11,
