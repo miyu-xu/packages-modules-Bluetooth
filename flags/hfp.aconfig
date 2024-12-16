@@ -128,3 +128,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "hfp_reset_control_block_ontimeout"
+    namespace: "bluetooth"
+    description: "Reset the control block on timeout of connection attempt"
+    bug: "384446210"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
