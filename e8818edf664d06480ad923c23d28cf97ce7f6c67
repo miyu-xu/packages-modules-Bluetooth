@@ -46,6 +46,30 @@
       },
       "revId": "e8818edf664d06480ad923c23d28cf97ce7f6c67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0841ce09_41669bf8",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-12-16T09:35:03Z",
+      "side": 0,
+      "message": "My bad, got confused, probably too tired when doing the review 😄",
+      "parentUuid": "5e8d9133_06de7284",
+      "range": {
+        "startLine": 769,
+        "startChar": 6,
+        "endLine": 769,
+        "endChar": 71
+      },
+      "revId": "e8818edf664d06480ad923c23d28cf97ce7f6c67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
