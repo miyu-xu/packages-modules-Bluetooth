@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t this be retained?",
       "revId": "8344948d6a784a304dd8db0bff567083bf02d4ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d6b32ca_22c47ba6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 0,
+      "message": "Good catch!",
+      "parentUuid": "b9ce7bd0_21e83a66",
+      "revId": "8344948d6a784a304dd8db0bff567083bf02d4ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

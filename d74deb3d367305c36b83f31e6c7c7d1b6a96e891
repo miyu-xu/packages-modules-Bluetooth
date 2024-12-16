@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66756bf6_1d995120",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "No, it stays.\n\nIf you have already bonded device, that have stored UUIDS for both transports, we have no way of separating them, and will receive them merged.\n\nAlso if you discover dual mode device, we would receive UUIDs merged together. They will be stored separately, and passed separately after stack restart, but first time they arrive together.",
+      "parentUuid": "22a441bb_69da4258",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae33ada9_deffee5f",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 13
@@ -49,6 +67,24 @@
       "writtenOn": "2024-12-10T18:51:42Z",
       "side": 1,
       "message": "This is dead code without BREDR case.",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bdc842d_dc7c6cc7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae33ada9_deffee5f",
       "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -90,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46384da1_93374e32",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "No, it have to stay for probably next 8 years. Any existing bonded device that have a merged record must stay working through system updates until user switches to new device.",
+      "parentUuid": "37cbb3aa_c621379d",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "092702d6_11ceb257",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 13
@@ -113,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5ebfc78_d140d66c",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "I don\u0027t think the style guide forbids this form of fallthrough with if/else.\nI think it\u0027s easier to read when you don\u0027t have to break the context to go into a function.",
+      "parentUuid": "092702d6_11ceb257",
+      "range": {
+        "startLine": 185,
+        "startChar": 5,
+        "endLine": 201,
+        "endChar": 43
+      },
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24b86fb9_248ccfa8",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 13
@@ -124,6 +202,30 @@
       "writtenOn": "2024-12-10T18:51:42Z",
       "side": 1,
       "message": "Nit: This can be refactored into a separate function which gets called with different key values.",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 7
+      },
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6ac3f15_7d19c57a",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "I don\u0027t think the style guide forbids this form of fallthrough with if/else.\nI think it\u0027s easier to read when you don\u0027t have to break the context to go into a function.",
+      "parentUuid": "24b86fb9_248ccfa8",
       "range": {
         "startLine": 319,
         "startChar": 0,
@@ -169,6 +271,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1030ebc5_cc499504",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "See above.",
+      "parentUuid": "99f10c62_cb90e188",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fe9bc67_b01595de",
@@ -182,6 +302,24 @@
       "writtenOn": "2024-12-10T18:51:42Z",
       "side": 1,
       "message": "I was wondering if we should just map it to the existing `BT_PROPERTY_UUIDS`. So based on the flag this might mean combined UUIDs or just the BR/EDR UUIDs.\nThat would also mean that we would have to take care of duplicate entries when UUID list is combined.\nThe benefit is that then we don\u0027t have to revisit it again to completely move away from the older approach.",
+      "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a4d8dfb_175f9a54",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-16T17:18:28Z",
+      "side": 1,
+      "message": "As mentioned above, we can\u0027t just \"move away\" for next 8 years.",
+      "parentUuid": "0fe9bc67_b01595de",
       "revId": "d74deb3d367305c36b83f31e6c7c7d1b6a96e891",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
