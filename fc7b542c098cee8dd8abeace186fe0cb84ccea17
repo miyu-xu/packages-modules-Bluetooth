@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8856fd9c_94c9eb0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-16T19:02:18Z",
+      "side": 1,
+      "message": "Please add missing stanza:\n\n```\nBug:\nTest:\nFlag: \n```",
+      "revId": "fc7b542c098cee8dd8abeace186fe0cb84ccea17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fafd05d_95548b11",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-16T19:02:18Z",
+      "side": 1,
+      "message": "This is directly calling `transport_-\u003eStopRequest()`, you should be able to remove the helper for `stop_request`",
+      "range": {
+        "startLine": 538,
+        "startChar": 6,
+        "endLine": 538,
+        "endChar": 58
+      },
+      "revId": "fc7b542c098cee8dd8abeace186fe0cb84ccea17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
