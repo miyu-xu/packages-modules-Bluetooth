@@ -52,6 +52,24 @@
       "parentUuid": "44bbdac6_d138a210",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1d28d1_fec2ce18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-16T18:18:23Z",
+      "side": 1,
+      "message": "Does that mean the API should be piped threw the companion device manager ?\n\nTo prevent any wrong usage of it ? @okamil@google.com ?",
+      "parentUuid": "d9878ec8_79d799c1",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
