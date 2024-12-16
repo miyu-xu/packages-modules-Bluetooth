@@ -54,6 +54,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "98816da8_a9bf537c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-12-16T04:39:14Z",
+      "side": 1,
+      "message": "Ok,\nA separate ticket b/384016256 is created to track the test case implementation for this fix.",
+      "parentUuid": "f16e3c14_66d55f99",
+      "revId": "7f2b7353d5f7b8ed47fab7acf36d53e8343be7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1c9991b4_035aa74e",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 2
