@@ -3483,6 +3483,8 @@ public class BluetoothMapContent {
                         BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT,
                         BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
                         4);
+                // skip this id
+                continue;
             }
         }
 
