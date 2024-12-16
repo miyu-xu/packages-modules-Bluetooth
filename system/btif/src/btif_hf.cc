@@ -92,6 +92,12 @@ namespace bluetooth::headset {
   { BTIF_HSAG_SERVICE_NAME, BTIF_HFAG_SERVICE_NAME }
 #endif
 
+/* connect timeout */
+#ifndef BTIF_HF_CONNECT_TIMEOUT_MS
+#define BTIF_HF_CONNECT_TIMEOUT_MS \
+  (30 * 1000) /* 30 seconds. same as sConnectTimeoutMs in HeadsetStateMachine.java */
+#endif
+
 static uint32_t get_hf_features();
 /* HF features supported at runtime */
 static uint32_t btif_hf_features = get_hf_features();
@@ -128,6 +134,7 @@ struct btif_hf_cb_t {
   int num_held;
   bool is_during_voice_recognition;
   bthf_call_state_t call_setup_state;
+  alarm_t* control_block_reset_timer;
 };
 
 static btif_hf_cb_t btif_hf_cb[BTA_AG_MAX_NUM_CLIENTS];
@@ -294,6 +301,10 @@ static void reset_control_block(btif_hf_cb_t* hf_cb) {
   hf_cb->connected_bda = RawAddress::kEmpty;
   hf_cb->peer_feat = 0;
   clear_phone_state_multihf(hf_cb);
+  if (com::android::bluetooth::flags::hfp_reset_control_block_ontimeout()) {
+    /* stop timer */
+    alarm_cancel(hf_cb->control_block_reset_timer);
+  }
 }
 
 /**
@@ -423,6 +434,10 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
 
         btif_hf_cb[idx].state = BTHF_CONNECTION_STATE_CONNECTED;
         btif_hf_cb[idx].peer_feat = 0;
+        if (com::android::bluetooth::flags::hfp_reset_control_block_ontimeout()) {
+          /* stop timer */
+          alarm_cancel(btif_hf_cb[idx].control_block_reset_timer);
+        }
         clear_phone_state_multihf(&btif_hf_cb[idx]);
         bluetooth::common::BluetoothMetricsLogger::GetInstance()->LogHeadsetProfileRfcConnection(
                 p_data->open.service_id);
@@ -760,6 +775,24 @@ static void bte_hf_evt(tBTA_AG_EVT event, tBTA_AG* p_data) {
 
 /*******************************************************************************
  *
+ * Function         btif_hf_control_block_reset_timer_cback
+ *
+ * Description
+ *
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void btif_hf_control_block_reset_timer_cback(void* data) {
+  log::warn("Connection timeout");
+  btif_hf_cb_t* hf_cb = (btif_hf_cb_t*)data;
+  if (hf_cb != nullptr) {
+    reset_control_block(hf_cb);
+  }
+}
+
+/*******************************************************************************
+ *
  * Function         connect
  *
  * Description     connect to headset
@@ -797,6 +830,12 @@ static bt_status_t connect_int(RawAddress* bd_addr, uint16_t /*uuid*/) {
   hf_cb->is_initiator = true;
   hf_cb->peer_feat = 0;
   BTA_AgOpen(hf_cb->handle, hf_cb->connected_bda);
+
+  if (com::android::bluetooth::flags::hfp_reset_control_block_ontimeout()) {
+    /* Start timer to handle timeout */
+    alarm_set_on_mloop(hf_cb->control_block_reset_timer, BTIF_HF_CONNECT_TIMEOUT_MS,
+                       btif_hf_control_block_reset_timer_cback, hf_cb);
+  }
 
   DEVICE_IOT_CONFIG_ADDR_SET_INT(hf_cb->connected_bda, IOT_CONF_KEY_HFP_ROLE,
                                  IOT_CONF_VAL_HFP_ROLE_CLIENT);
@@ -915,6 +954,9 @@ bt_status_t HeadsetInterface::Init(Callbacks* callbacks, int max_hf_clients,
   bt_hf_callbacks = callbacks;
   for (btif_hf_cb_t& hf_cb : btif_hf_cb) {
     reset_control_block(&hf_cb);
+    if (com::android::bluetooth::flags::hfp_reset_control_block_ontimeout()) {
+      hf_cb.control_block_reset_timer = alarm_new("btif_hf.control_block_reset_timer");
+    }
   }
 
   // Invoke the enable service API to the core to set the appropriate service_id
@@ -1521,6 +1563,12 @@ void HeadsetInterface::Cleanup() {
   log::verbose("");
 
   btif_queue_cleanup(UUID_SERVCLASS_AG_HANDSFREE);
+  if (com::android::bluetooth::flags::hfp_reset_control_block_ontimeout()) {
+    for (btif_hf_cb_t& hf_cb : btif_hf_cb) {
+      /* stop and free timer */
+      alarm_free(hf_cb.control_block_reset_timer);
+    }
+  }
 
   tBTA_SERVICE_MASK mask = btif_get_enabled_services_mask();
   if (get_BTIF_HF_SERVICES() & BTA_HFP_SERVICE_MASK) {
