@@ -50,6 +50,30 @@
       ],
       "revId": "510a7f3bdf7958b2a6d5f574ec5e91790d4a0158",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb00da0_b139a3b0",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-16T08:33:38Z",
+      "side": 1,
+      "message": "I wanted to log stacktrace since to track the caller of this method.",
+      "parentUuid": "450ad4a8_9091ee73",
+      "range": {
+        "startLine": 107,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 86
+      },
+      "revId": "510a7f3bdf7958b2a6d5f574ec5e91790d4a0158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
