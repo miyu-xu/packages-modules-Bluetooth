@@ -21,19 +21,16 @@ import static android.bluetooth.BluetoothAdapter.SCAN_MODE_NONE;
 
 import static java.util.Objects.requireNonNull;
 
-import android.annotation.NonNull;
-import android.hardware.devicestate.DeviceState;
-import android.hardware.devicestate.DeviceStateManager;
-import android.os.Build;
+import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
-import androidx.annotation.RequiresApi;
+import android.view.Display;
 
 import com.android.internal.annotations.VisibleForTesting;
 
-@RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
+import java.util.Arrays;
+
 public class AdapterSuspend {
     private static final String TAG = "BtAdapterSuspend";
 
@@ -42,78 +39,42 @@ public class AdapterSuspend {
     private static final long MASK_DISCONNECT_CMPLT = 1 << 4;
     private static final long MASK_MODE_CHANGE = 1 << 19;
 
-    private static final String DEVICE_STATE_LAPTOP = "LAPTOP";
-    private static final String DEVICE_STATE_TABLET = "TABLET";
-    private static final String DEVICE_STATE_DOCKED = "DOCKED";
-    private static final String DEVICE_STATE_CLOSED = "CLOSED";
-    private static final String DEVICE_STATE_DISPLAY_OFF = "DISPLAY_OFF";
-
-    private final DeviceStateManager mDeviceStateManager;
-
-    public final DeviceStateManager.DeviceStateCallback mDeviceStateCallback =
-            new DeviceStateManager.DeviceStateCallback() {
-                @Override
-                public void onDeviceStateChanged(@NonNull DeviceState state) {
-                    String nextState = state.getName();
-                    Log.d(TAG, "Handle state transition: " + mCurrentState + " => " + nextState);
-                    if (mCurrentState.equals("None")) {
-                        mCurrentState = nextState;
-                        Log.i(TAG, "Initialize device state to " + nextState);
-                        return;
-                    }
-
-                    switch (nextState) {
-                        case DEVICE_STATE_CLOSED -> {
-                            switch (mCurrentState) {
-                                case DEVICE_STATE_DISPLAY_OFF ->
-                                        Log.d(TAG, "No action for state " + nextState);
-                                default -> handleSuspend(false);
-                            }
-                        }
-                        case DEVICE_STATE_DISPLAY_OFF -> {
-                            switch (mCurrentState) {
-                                case DEVICE_STATE_TABLET -> handleSuspend(false);
-                                case DEVICE_STATE_DOCKED, DEVICE_STATE_LAPTOP ->
-                                        handleSuspend(true);
-                                default -> Log.d(TAG, "No action for state " + nextState);
-                            }
-                        }
-                        case DEVICE_STATE_LAPTOP, DEVICE_STATE_DOCKED, DEVICE_STATE_TABLET -> {
-                            switch (mCurrentState) {
-                                case DEVICE_STATE_CLOSED, DEVICE_STATE_DISPLAY_OFF ->
-                                        handleResume();
-                                default -> Log.d(TAG, "No action for state " + nextState);
-                            }
-                        }
-                        default -> {
-                            Log.wtf(TAG, "Unknown state transition to " + nextState);
-                            return;
-                        }
-                    }
-                    mCurrentState = nextState;
-                }
-            };
-
     private boolean mSuspended = false;
 
-    // Value should be initialized when registering the mDeviceStateCallback.
-    private String mCurrentState = "None";
-
     private final AdapterNativeInterface mAdapterNativeInterface;
+    private final Looper mLooper;
+    private final DisplayManager mDisplayManager;
+    private final DisplayManager.DisplayListener mDisplayListener =
+            new DisplayManager.DisplayListener() {
+                @Override
+                public void onDisplayAdded(int displayId) {}
+
+                @Override
+                public void onDisplayRemoved(int displayId) {}
+
+                @Override
+                public void onDisplayChanged(int displayId) {
+                    if (isScreenOn()) {
+                        handleResume();
+                    } else {
+                        handleSuspend();
+                    }
+                }
+            };
 
     public AdapterSuspend(
             AdapterNativeInterface adapterNativeInterface,
             Looper looper,
-            DeviceStateManager deviceStateManager) {
+            DisplayManager displayManager) {
         mAdapterNativeInterface = requireNonNull(adapterNativeInterface);
-        Handler handler = new Handler(requireNonNull(looper));
+        mLooper = requireNonNull(looper);
+        mDisplayManager = requireNonNull(displayManager);
 
-        mDeviceStateManager = requireNonNull(deviceStateManager);
-        mDeviceStateManager.registerCallback(handler::post, mDeviceStateCallback);
+        mDisplayManager.registerDisplayListener(mDisplayListener, new Handler(mLooper));
     }
 
     void cleanup() {
-        mDeviceStateManager.unregisterCallback(mDeviceStateCallback);
+        mDisplayManager.unregisterDisplayListener(mDisplayListener);
     }
 
     @VisibleForTesting
@@ -121,8 +82,13 @@ public class AdapterSuspend {
         return mSuspended;
     }
 
+    private boolean isScreenOn() {
+        return Arrays.stream(mDisplayManager.getDisplays())
+                .anyMatch(display -> display.getState() == Display.STATE_ON);
+    }
+
     @VisibleForTesting
-    void handleSuspend(boolean allowWakeByHid) {
+    void handleSuspend() {
         if (mSuspended) {
             return;
         }
@@ -140,11 +106,7 @@ public class AdapterSuspend {
         mAdapterNativeInterface.clearEventFilter();
         mAdapterNativeInterface.clearFilterAcceptList();
         mAdapterNativeInterface.disconnectAllAcls();
-
-        if (allowWakeByHid) {
-            mAdapterNativeInterface.allowWakeByHid();
-            Log.i(TAG, "configure wake by hid");
-        }
+        mAdapterNativeInterface.allowWakeByHid();
         Log.i(TAG, "ready to suspend");
     }
 
