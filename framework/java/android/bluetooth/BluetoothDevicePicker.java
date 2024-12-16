@@ -64,6 +64,14 @@ public interface BluetoothDevicePicker {
     String EXTRA_LAUNCH_CLASS = "android.bluetooth.devicepicker.extra.DEVICE_PICKER_LAUNCH_CLASS";
 
     /**
+     * Extra for the original send intent that triggered the opp launcher activity.
+     *
+     * @hide
+     */
+    @SuppressLint("ActionValue")
+    String EXTRA_ORIGINAL_SEND_INTENT = "android.bluetooth.devicepicker.extra.ORIGINAL_SEND_INTENT";
+
+    /**
      * Broadcast when one BT device is selected from BT device picker screen. Selected {@link
      * BluetoothDevice} is returned in extra data named {@link BluetoothDevice#EXTRA_DEVICE}.
      */

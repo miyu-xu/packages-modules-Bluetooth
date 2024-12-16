@@ -286,6 +286,7 @@ public class BluetoothOppLauncherActivity extends Activity {
             in1.putExtra(BluetoothDevicePicker.EXTRA_LAUNCH_PACKAGE, getPackageName());
             in1.putExtra(
                     BluetoothDevicePicker.EXTRA_LAUNCH_CLASS, BluetoothOppReceiver.class.getName());
+            in1.putExtra(BluetoothDevicePicker.EXTRA_ORIGINAL_SEND_INTENT, getIntent());
             Log.v(TAG, "Launching " + BluetoothDevicePicker.ACTION_LAUNCH);
             startActivity(in1);
         }
