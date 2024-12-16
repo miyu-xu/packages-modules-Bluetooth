@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee612a49_2770a2b3",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-16T11:19:38Z",
+      "side": 1,
+      "message": "Can we make a space here?",
+      "range": {
+        "startLine": 107,
+        "startChar": 42,
+        "endLine": 107,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d1ca50cc_2b0bc97f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"Exception happened: \" + e + \"\\n\" + Log.getStackTraceString(new Throwable()));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"Exception happened: \" + e + \"\\n\" + Log.getStackTraceString(new Throwable()));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "22bc7476107eed68b5e69bd5db558e177b086029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
