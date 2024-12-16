@@ -1141,6 +1141,8 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         if (!mLeHearingAidConnectedDevices.isEmpty()) {
             connectedHearingAidDevices.addAll(mLeHearingAidConnectedDevices);
         }
+        final LeAudioService leAudioService = mFactory.getLeAudioService();
+
         if (!connectedHearingAidDevices.isEmpty()) {
             BluetoothDevice device =
                     mDbManager.getMostRecentlyConnectedDevicesInList(connectedHearingAidDevices);
@@ -1165,6 +1167,12 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                     setLeAudioActiveDevice(null, hasFallbackDevice);
                 } else {
                     Log.d(TAG, "Found a LE hearing aid fallback device: " + device);
+                    if (!leAudioService.isGroupAvailableForStream(
+                            leAudioService.getGroupId(device))) {
+                        Log.i(TAG, "LE Audio device is not available for streaming now." + device);
+                        return false;
+                    }
+
                     if (areSameGroupMembers(recentlyRemovedDevice, device)) {
                         Log.d(
                                 TAG,
@@ -1241,6 +1249,11 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                 setHearingAidActiveDevice(null, true);
             } else {
                 Log.d(TAG, "Found a LE audio fallback device: " + device);
+                if (!leAudioService.isGroupAvailableForStream(leAudioService.getGroupId(device))) {
+                    Log.i(TAG, "LE Audio device is not available for streaming now." + device);
+                    return false;
+                }
+
                 if (areSameGroupMembers(recentlyRemovedDevice, device)) {
                     Log.d(
                             TAG,
