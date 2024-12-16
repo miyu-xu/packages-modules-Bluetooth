@@ -52,6 +52,24 @@
       "parentUuid": "5c074d9f_3b147b30",
       "revId": "f49082c2184f45be12147a028e650b638dd603fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07651e5b_98fd3af8",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-16T14:40:00Z",
+      "side": 1,
+      "message": "see the HCI_LE_Connection_Complete, and I added a error log here.",
+      "parentUuid": "ba92560d_992e7bda",
+      "revId": "f49082c2184f45be12147a028e650b638dd603fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
