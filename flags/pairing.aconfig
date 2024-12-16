@@ -232,6 +232,27 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (3dd926 Remove identity_retention_on_restart flag)
+    name: "handle_le_enc_queueing"
+    namespace: "bluetooth"
+    description: "Handle LE Encryption queuing to handle multiple encryption requests from different profiles"
+    bug: "383889628"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+||||||| BASE
+    name: "handle_le_enc_queueing"
+    namespace: "bluetooth"
+    description: "Handle LE Encryption queuing to handle multiple encryption requests from different profiles"
+    bug: "383889628"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
     name: "identity_retention_on_restart"
     namespace: "bluetooth"
     description: "Retain identity address on BT restart"
@@ -240,3 +261,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+=======
+    name: "identity_retention_on_restart"
+    namespace: "bluetooth"
+    description: "Retain identity address on BT restart"
+    bug: "383879096"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+>>>>>>> BASE      (0a7e54 Merge "Configure scan on resume" into main)
