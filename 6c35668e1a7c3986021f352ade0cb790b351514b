@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22a4c5db_2ee003be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-16T10:53:19Z",
+      "side": 1,
+      "message": "With this change, pts-bot:OPP/SR/GOEP/BC/BV-01-I fails. I\u0027ll figure out and update the bug soon.",
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
