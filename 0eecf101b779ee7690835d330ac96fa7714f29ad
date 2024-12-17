@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21f09900_5c0c89d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-17T22:05:34Z",
+      "side": 1,
+      "message": "TODO: check if sm_cb is being properly cleaned up",
+      "revId": "0eecf101b779ee7690835d330ac96fa7714f29ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c118ded_fca0941a",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-17T22:05:34Z",
+      "side": 1,
+      "message": "This should also include something to set it to 0 if the port never opened",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 84
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e15a2446_08b1f8bd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "  uint64_t open_duration_ms \u003d 0;\n  if (sm_cb.open_timestamp !\u003d 0) {\n    open_duration_ms \u003d (sm_cb.close_timestamp - sm_cb.open_timestamp) / 1000;  // to milliseconds\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0eecf101b779ee7690835d330ac96fa7714f29ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
