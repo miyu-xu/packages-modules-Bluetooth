@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c2df17_eab3fedf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4049,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-17T09:51:13Z",
+      "side": 1,
+      "message": "Thank you Rongxuan for review! Yes... this looks like leftover of some previous idea.",
+      "parentUuid": "135e3858_0f94f4af",
+      "revId": "2e24c88a80094a47ccc068bdfde6fd6eefcc49c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a867568_eacb3425",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-03T22:22:06Z",
       "side": 1,
       "message": "should this \u0027break\u0027 be removed?",
+      "revId": "2e24c88a80094a47ccc068bdfde6fd6eefcc49c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e96dacbf_f26305c4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4057,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-17T09:51:13Z",
+      "side": 1,
+      "message": "Yes! Thank you! This does not make sense for more than one device connected",
+      "parentUuid": "7a867568_eacb3425",
       "revId": "2e24c88a80094a47ccc068bdfde6fd6eefcc49c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
