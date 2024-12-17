@@ -16,6 +16,24 @@
       "message": "hold it until the firmware patch ready",
       "revId": "d3f25d5efd131b4856f5506f5d083e851624f886",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a331bb_fdff8818",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-17T05:51:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14035912_06218679",
+      "revId": "d3f25d5efd131b4856f5506f5d083e851624f886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
