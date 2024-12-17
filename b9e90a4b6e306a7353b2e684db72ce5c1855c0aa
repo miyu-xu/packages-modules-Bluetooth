@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9710ae97_f7a3d986",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2124,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-17T02:19:05Z",
+      "side": 1,
+      "message": "at this stage, maybe @hide and @SystemApi is more prudent",
+      "range": {
+        "startLine": 2123,
+        "startChar": 0,
+        "endLine": 2124,
+        "endChar": 7
+      },
+      "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403b6491_903e4f8b",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2128,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-17T02:19:05Z",
+      "side": 1,
+      "message": "`BluetoothGattCallback#onSubrateChange()` also needs to be unhidden",
+      "range": {
+        "startLine": 2128,
+        "startChar": 19,
+        "endLine": 2128,
+        "endChar": 37
+      },
+      "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
