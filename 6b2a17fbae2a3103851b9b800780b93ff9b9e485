@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00daddb_22bc6a34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-17T19:55:31Z",
+      "side": 1,
+      "message": "Please update TransitionalScanHelperTest to resolve build failures",
+      "revId": "6b2a17fbae2a3103851b9b800780b93ff9b9e485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
