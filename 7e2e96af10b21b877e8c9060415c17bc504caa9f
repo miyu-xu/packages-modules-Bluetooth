@@ -16,6 +16,189 @@
       "message": "Done related changes in Patchset #7",
       "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e00d44_7e045b7c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1959955
+      },
+      "writtenOn": "2024-12-17T06:26:19Z",
+      "side": 1,
+      "message": "Let us rename this function as setHfpBatteryIndicator()",
+      "range": {
+        "startLine": 696,
+        "startChar": 13,
+        "endLine": 696,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1318dfd3_eb1a01f8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 696,
+                "startChar": 0,
+                "endLine": 697,
+                "endChar": 0
+              },
+              "replacement": "        void setHfpBatteryIndicator(boolean HfpBatteryIndicator) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 924,
+                "startChar": 0,
+                "endLine": 925,
+                "endChar": 0
+              },
+              "replacement": "        deviceProperties.setHfpBatteryIndicator(false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1665,
+                "startChar": 0,
+                "endLine": 1666,
+                "endChar": 0
+              },
+              "replacement": "            deviceProperties.setHfpBatteryIndicator(supportFlag);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ba7fd4_855845a0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1959955
+      },
+      "writtenOn": "2024-12-17T06:26:19Z",
+      "side": 1,
+      "message": "Let us rename this to getHfpBatteryIndictor()",
+      "range": {
+        "startLine": 705,
+        "startChar": 16,
+        "endLine": 705,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ce5bc85b_e68d577f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 705,
+                "startChar": 0,
+                "endLine": 706,
+                "endChar": 0
+              },
+              "replacement": "        boolean getHfpBatteryIndictor() {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1733,
+                "startChar": 0,
+                "endLine": 1734,
+                "endChar": 0
+              },
+              "replacement": "                \u0026\u0026 (false \u003d\u003d deviceProperties.getHfpBatteryIndictor())) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7163dcc_fa3f8a53",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1959955
+      },
+      "writtenOn": "2024-12-17T06:26:19Z",
+      "side": 1,
+      "message": "Let us rename to onHfBatteryIndicator()",
+      "range": {
+        "startLine": 1657,
+        "startChar": 9,
+        "endLine": 1657,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4af864ea_e5ec3528",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1651,
+                "startChar": 0,
+                "endLine": 1652,
+                "endChar": 0
+              },
+              "replacement": "    public void handleHfBatteryIndicator(\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1653,
+                "startChar": 0,
+                "endLine": 1654,
+                "endChar": 0
+              },
+              "replacement": "        mMainHandler.post(() -\u003e onHfBatteryIndicator(device, indicatorId, supportFlag));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1657,
+                "startChar": 0,
+                "endLine": 1658,
+                "endChar": 0
+              },
+              "replacement": "    void onHfBatteryIndicator(\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1660,
+                "startChar": 0,
+                "endLine": 1661,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"onHfBatteryIndicator() remote device is null\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

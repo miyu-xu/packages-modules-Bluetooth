@@ -266,6 +266,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d22d0f56_0fa89865",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1732,
+      "author": {
+        "id": 1959955
+      },
+      "writtenOn": "2024-12-17T06:26:19Z",
+      "side": 1,
+      "message": "Let us keep it simple only for IPHONEACCEV. As IPHONEACCEV we are keeping only for backward compatibility, else we could have simply removed this IPHONEACCEV.\n\nIssue reported is only with IPHONEACCEV. Let us bypass only the place where this vendor command updates the battery level, if we are using HFP1.7 or greater version.\n\nFor implementation where we use HFP1.7 method, we need to take care of keeping it generic.",
+      "parentUuid": "3d4d92ab_047acd95",
+      "range": {
+        "startLine": 1732,
+        "startChar": 2,
+        "endLine": 1732,
+        "endChar": 76
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84de24e4_b627efc8",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 6
@@ -418,6 +442,30 @@
       "side": 1,
       "message": "The function name is generic \u0026 can be applied to any Hf indicator.\nTo the function, indId and status is passed. So, same function can be used for ENHANCED_DRIVER_SAFETY or any Vendor Specific Indicator.",
       "parentUuid": "ca3a4f90_fd3e91ad",
+      "range": {
+        "startLine": 2675,
+        "startChar": 18,
+        "endLine": 2678,
+        "endChar": 0
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88bf0d05_d2cd50fe",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 1959955
+      },
+      "writtenOn": "2024-12-17T06:26:19Z",
+      "side": 1,
+      "message": "Let us use the name handleHfBatterytIndicator. As the function is not handling any other indicator other than the battery indicator.\n\nMove this function call inside \ncase HeadsetHalConstants.HF_INDICATOR_BATTERY_LEVEL_STATUS:\n\nas this need to be executed only for battery indicator. Also will keep the function as simple get \u0026 set instead of having logic inside it.",
+      "parentUuid": "b89bafbf_5701dfd7",
       "range": {
         "startLine": 2675,
         "startChar": 18,
