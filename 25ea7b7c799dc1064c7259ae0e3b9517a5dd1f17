@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96a9f002_f51133af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-17T13:37:41Z",
+      "side": 1,
+      "message": "I\u0027ve tested above situation and I couldn\u0027t notice audio problems (I guess it might be due to that the time for connection establishment is too short.)",
+      "parentUuid": "81873eca_d4f07fed",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cd34cb8_7f38da1b",
@@ -165,6 +183,24 @@
           ]
         }
       ],
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "406c908d_401d9568",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-17T13:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48c7355b_3546bca9",
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -269,6 +305,30 @@
       "side": 1,
       "message": "It also checks the pending connection requests.\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3328187/27/system/gd/hci/acl_manager/le_impl.h#543",
       "parentUuid": "e739d980_8b76afbc",
+      "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0625a6bf_7b6593e3",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-17T13:37:41Z",
+      "side": 1,
+      "message": "Added the logic for counting the number of classic ACL connections too.",
+      "parentUuid": "91e7638d_f6cb074e",
+      "range": {
+        "startLine": 977,
+        "startChar": 8,
+        "endLine": 977,
+        "endChar": 19
+      },
       "revId": "25ea7b7c799dc1064c7259ae0e3b9517a5dd1f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
