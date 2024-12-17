@@ -142,6 +142,24 @@
       "parentUuid": "44eb2265_b9487b12",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7980781_feaec1b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-17T19:57:33Z",
+      "side": 1,
+      "message": "After discussion we can do CDM+SystemApi now, refer to BluetoothDevice#setAlias for what it should look like on the framework API side",
+      "parentUuid": "babc63c2_6f884b87",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
