@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e077a91_fed8b6b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-17T12:04:46Z",
+      "side": 1,
+      "message": "So in this point we see that found LE Audio HearingAid is not ready for stream and we should not use it, but maybe there is other device e.g. A2DP device which could be used for streaming ?",
+      "revId": "d6f0e1f6c94a2b89a6e296f08ed8f179bad731c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
