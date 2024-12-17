@@ -124,6 +124,24 @@
       "parentUuid": "9aa45210_9db5977f",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "babc63c2_6f884b87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-12-17T17:51:58Z",
+      "side": 1,
+      "message": "So ideally, this should be a public API but guarded by CDM so it can only be called by the companion app related to this LE connection. I agree with Jack that this cannot be just a public API right now, as it could indeed allow apps to interfere with existing LE connections.\n\nAs we\u0027re already past deadlines for 25Q2, I would recommend having this as a SystemApi first and work on a follow up in CDM later for 25Q4.",
+      "parentUuid": "44eb2265_b9487b12",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
