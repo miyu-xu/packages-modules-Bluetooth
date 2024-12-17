@@ -38,7 +38,6 @@ import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.getBytesFromAddress;
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
-import static com.android.modules.utils.build.SdkLevel.isAtLeastV;
 
 import static java.util.Objects.requireNonNull;
 
@@ -90,7 +89,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.hardware.devicestate.DeviceStateManager;
+import android.hardware.display.DisplayManager;
 import android.os.AsyncTask;
 import android.os.BatteryStatsManager;
 import android.os.Binder;
@@ -734,10 +733,10 @@ public class AdapterService extends Service {
 
         mBluetoothSocketManagerBinder = new BluetoothSocketManagerBinder(this);
 
-        if (Flags.adapterSuspendMgmt() && isAtLeastV()) {
+        if (Flags.adapterSuspendMgmt()) {
             mAdapterSuspend =
                     new AdapterSuspend(
-                            mNativeInterface, mLooper, getSystemService(DeviceStateManager.class));
+                            mNativeInterface, mLooper, getSystemService(DisplayManager.class));
         }
 
         invalidateBluetoothCaches();
@@ -1483,9 +1482,7 @@ public class AdapterService extends Service {
         }
 
         if (mAdapterSuspend != null) {
-            if (Flags.adapterSuspendMgmt() && isAtLeastV()) {
-                mAdapterSuspend.cleanup();
-            }
+            mAdapterSuspend.cleanup();
             mAdapterSuspend = null;
         }
 

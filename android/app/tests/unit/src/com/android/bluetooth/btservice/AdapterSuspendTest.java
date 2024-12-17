@@ -25,7 +25,7 @@ import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.verify;
 
 import android.content.Context;
-import android.hardware.devicestate.DeviceStateManager;
+import android.hardware.display.DisplayManager;
 import android.os.test.TestLooper;
 
 import androidx.test.InstrumentationRegistry;
@@ -44,7 +44,7 @@ import org.mockito.junit.MockitoRule;
 @RunWith(AndroidJUnit4.class)
 public class AdapterSuspendTest {
     private TestLooper mTestLooper;
-    private DeviceStateManager mDeviceStateManager;
+    private DisplayManager mDisplayManager;
     private AdapterSuspend mAdapterSuspend;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -54,15 +54,15 @@ public class AdapterSuspendTest {
     public void setUp() throws Exception {
         Context context = InstrumentationRegistry.getTargetContext();
         mTestLooper = new TestLooper();
-        mDeviceStateManager = context.getSystemService(DeviceStateManager.class);
+        mDisplayManager = context.getSystemService(DisplayManager.class);
 
         mAdapterSuspend =
                 new AdapterSuspend(
-                        mAdapterNativeInterface, mTestLooper.getLooper(), mDeviceStateManager);
+                        mAdapterNativeInterface, mTestLooper.getLooper(), mDisplayManager);
     }
 
     private void triggerSuspend() throws Exception {
-        mAdapterSuspend.handleSuspend(true);
+        mAdapterSuspend.handleSuspend();
     }
 
     private void triggerResume() throws Exception {
