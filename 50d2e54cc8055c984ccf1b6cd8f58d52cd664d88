@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e88bcd93_7443f02c",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-17T19:32:54Z",
+      "side": 1,
+      "message": "This bug number is not a valid bug number for tracking bluetooth flags.\n\nPlease create a bug with https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586 and replace the number here with the new bug number",
+      "range": {
+        "startLine": 18,
+        "startChar": 10,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbb14da2_1b4f07be",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-17T19:32:54Z",
+      "side": 1,
+      "message": "Please upload that in its own CL that only upload the flag",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4444b59_97569ea7",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-17T19:32:54Z",
+      "side": 1,
+      "message": "AI on me -\u003e this should reference the BLUETOOTH_PRIVILEGED as conditional",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 641,
+        "endChar": 175
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
