@@ -3227,6 +3227,9 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
 
   if (transport == BT_TRANSPORT_LE) {
     key_size = p_dev_rec->sec_rec.ble_keys.key_size;
+    if (key_size == 0 && status == 0 && encr_enable == 1) {
+      key_size = SMP_GetPendingPairingKeySize();
+    }
   }
 
   log::debug(
