@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9345c1f_903b1159",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-17T21:35:15Z",
+      "side": 1,
+      "message": "This should also be a system property",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55383b3_a2d17855",
+        "filename": "system/stack/include/le_conn_params.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-17T21:35:15Z",
+      "side": 1,
+      "message": "We are reading these properties from different places at different time. Assumption is that these properties would not change while BT is ON. It might be problematic if these values change.\nWe can read these properties once and store in some variable to avoid potential inconsistentcy problems. We must also make sure that the \"relaxed\" parameters are not aggressive than the \"agressive\" parameters.",
+      "fixSuggestions": [
+        {
+          "fixId": "0883f197_b7ea4a85",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/le_conn_params.h",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "constexpr uint16_t kAggressiveConnectionThreshold \u003d 1;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e8772ca_d69d28b6",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-17T21:35:15Z",
+      "side": 1,
+      "message": "We should be updating connection interval for service discovery only initial connection parameters were not aggressive.\nIn other words, service discovery connection parameters must be same as initial aggressive connection parameters.",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
