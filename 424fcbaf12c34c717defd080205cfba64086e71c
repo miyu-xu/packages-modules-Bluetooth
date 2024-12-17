@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8accbc8d_2a70d614",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-17T17:22:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3e752cd0_4fd19d39",
+      "range": {
+        "startLine": 180,
+        "startChar": 30,
+        "endLine": 180,
+        "endChar": 32
+      },
+      "revId": "424fcbaf12c34c717defd080205cfba64086e71c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b19334f_0c0c51e6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-17T10:50:19Z",
       "side": 1,
       "message": "Typo (here and above): \"lifetime\"",
+      "range": {
+        "startLine": 272,
+        "startChar": 28,
+        "endLine": 272,
+        "endChar": 36
+      },
+      "revId": "424fcbaf12c34c717defd080205cfba64086e71c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838571a3_84da62c3",
+        "filename": "offload/hal/ffi.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-12-17T17:22:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0b19334f_0c0c51e6",
       "range": {
         "startLine": 272,
         "startChar": 28,
