@@ -15,7 +15,7 @@
  */
 
 /*
- * Defines the native inteface that is used by HID Device service to
+ * Defines the native interface that is used by HID Device service to
  * send or receive messages from the native stack. This file is registered
  * for the native methods in the corresponding JNI C++ file.
  */

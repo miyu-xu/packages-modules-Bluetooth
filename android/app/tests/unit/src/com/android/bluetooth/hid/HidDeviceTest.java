@@ -22,6 +22,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHidDevice;
 import android.bluetooth.BluetoothHidDeviceAppSdpSettings;
+import android.app.ActivityManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothHidDeviceCallback;
 import android.content.BroadcastReceiver;
@@ -104,7 +105,7 @@ public class HidDeviceTest {
         }
         Assert.assertNotNull(Looper.myLooper());
 
-        TestUtils.setAdapterService(mAdapterService);
+        TestUtils.mockGetSystemService(mAdapterService, Context.ACTIVITY_SERVICE, ActivityManager.class);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         setHidDeviceNativeInterfaceInstance(mHidDeviceNativeInterface);
         // This line must be called to make sure relevant objects are initialized properly
@@ -112,7 +113,7 @@ public class HidDeviceTest {
         // Get a device for testing
         mTestDevice = mAdapter.getRemoteDevice("10:11:12:13:14:15");
 
-        mHidDeviceService = new HidDeviceService(mTargetContext);
+        mHidDeviceService = new HidDeviceService(mAdapterService);
         mHidDeviceService.start();
         mHidDeviceService.setAvailable(true);
 
@@ -140,7 +141,6 @@ public class HidDeviceTest {
         filter.addAction(BluetoothHidDevice.ACTION_CONNECTION_STATE_CHANGED);
         mConnectionStateChangedReceiver = new ConnectionStateChangedReceiver();
         mTargetContext.registerReceiver(mConnectionStateChangedReceiver, filter);
-        reset(mHidDeviceNativeInterface, mAdapterService);
     }
 
     @After
@@ -152,7 +152,6 @@ public class HidDeviceTest {
         mConnectionStateChangedQueue.clear();
         mCallbackQueue.clear();
         setHidDeviceNativeInterfaceInstance(null);
-        TestUtils.clearAdapterService(mAdapterService);
     }
 
     private class ConnectionStateChangedReceiver extends BroadcastReceiver {
