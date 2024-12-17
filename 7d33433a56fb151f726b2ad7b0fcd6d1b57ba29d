@@ -88,6 +88,24 @@
       "parentUuid": "cb1d28d1_fec2ce18",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa45210_9db5977f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059936
+      },
+      "writtenOn": "2024-12-17T00:16:19Z",
+      "side": 1,
+      "message": "I could see wanting a new, higher-privilege permission related to device management, but it would be quite odd to place the API direclty in CDM.\n\nThat said, I don\u0027t see how this is different from any of the other existing APIs that applications could already call.  It would make more sense to separately introduce a new permission and then apply that to all existing APIs which fall into this category.",
+      "parentUuid": "f6f971ec_a51a169d",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
