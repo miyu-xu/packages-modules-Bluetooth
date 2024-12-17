@@ -34,6 +34,24 @@
       "parentUuid": "520b3a80_f15c4258",
       "revId": "d6c95dbb3fe81c33cd4f6296915669821b1e0439",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48bbe8f0_dfd9a6e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-17T07:05:12Z",
+      "side": 1,
+      "message": "The new FW was update, but we need more chagne of PDL to meet core 6.0\nPatch 3404886 work on it and merged.\nI think we can abandon this patch.\nThanks!",
+      "parentUuid": "3a15ed39_d818fdf2",
+      "revId": "d6c95dbb3fe81c33cd4f6296915669821b1e0439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
