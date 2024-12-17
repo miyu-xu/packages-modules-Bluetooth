@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948c918e_b3e71ce1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-17T09:25:45Z",
+      "side": 1,
+      "message": "too long lines , look at gerrit",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "641322256599815f45be6946d7a3c6bd5c6c3952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5667d207_e405e8b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-17T09:25:45Z",
+      "side": 1,
+      "message": "Is this bug related to this CL? It looks like such behaviour not occur here:\n\nhttps://android-bug-tool.corp.google.com/bug_tool?issue\u003d381200144\u0026attachments\u003d61138400\u0026section\u003dBUG%2CPersistent+Logcat\u0026hnmr\u003dtrue\u0026sl\u003d120287\u0026cl\u003d310240\u0026ss\u003dCjUKL0xlQXVkaW9TdGF0ZU1hY2hpbmU6IENvbm5lY3RpbmcgcHJvY2VzcyBtZXNzYWdlEAMgAQpRCktMZUF1ZGlvU3RhdGVNYWNoaW5lOiBDb25uZWN0aW5nIHByb2Nlc3MgbWVzc2FnZShYWDpYWDpYWDpYWDpFOTpGMyk6IENPTk5FQ1QQAyAB\n\nhttps://android-bug-tool.corp.google.com/bug_tool?issue\u003d381200144\u0026attachments\u003d61346596\u0026section\u003dBUG%2CPersistent+Logcat\u0026hnmr\u003dtrue\u0026sl\u003d574594\u0026cl\u003d784408\u0026ss\u003dCjUKL0xlQXVkaW9TdGF0ZU1hY2hpbmU6IENvbm5lY3RpbmcgcHJvY2VzcyBtZXNzYWdlEAMgAQpRCktMZUF1ZGlvU3RhdGVNYWNoaW5lOiBDb25uZWN0aW5nIHByb2Nlc3MgbWVzc2FnZShYWDpYWDpYWDpYWDpFOTpGMyk6IENPTk5FQ1QQAyAB",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "641322256599815f45be6946d7a3c6bd5c6c3952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
