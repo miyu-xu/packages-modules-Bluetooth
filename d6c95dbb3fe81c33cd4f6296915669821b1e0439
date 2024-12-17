@@ -52,6 +52,23 @@
       "parentUuid": "3a15ed39_d818fdf2",
       "revId": "d6c95dbb3fe81c33cd4f6296915669821b1e0439",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1daf3f24_7b293f03",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5284,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-17T17:02:56Z",
+      "side": 1,
+      "message": "This one change is missing from aosp/3404886",
+      "revId": "d6c95dbb3fe81c33cd4f6296915669821b1e0439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
