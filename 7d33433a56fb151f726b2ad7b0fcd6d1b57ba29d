@@ -70,6 +70,24 @@
       "parentUuid": "d9878ec8_79d799c1",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6f971ec_a51a169d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-17T00:10:08Z",
+      "side": 1,
+      "message": "companion device manager can be a better approach\n\nbut the main worry is different Apps will be calling this API at unexpected times. \n\nsince the LE ACL connection is a shared resource, allowing all apps to modify a LE connection can lead to bad user experience.",
+      "parentUuid": "cb1d28d1_fec2ce18",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
