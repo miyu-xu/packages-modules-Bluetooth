@@ -37,6 +37,9 @@ import java.util.Objects;
  * The {@link AdvertisingSetParameters} provide a way to adjust advertising preferences for each
  * Bluetooth LE advertising set. Use {@link AdvertisingSetParameters.Builder} to create an instance
  * of this class.
+ *
+ * <p>This class is used by {@link BluetoothLeAdvertiser#startAdvertising}, which requires the
+ * {@link android.Manifest.permission#BLUETOOTH_ADVERTISE} permission.
  */
 public final class AdvertisingSetParameters implements Parcelable {
 
