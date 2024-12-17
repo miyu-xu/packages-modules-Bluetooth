@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4131a5_26089007",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-17T23:19:42Z",
+      "side": 1,
+      "message": "nit: use in-line comments with the variable name `/* is_privileged_client */ false` same as below",
+      "range": {
+        "startLine": 1587,
+        "startChar": 76,
+        "endLine": 1587,
+        "endChar": 81
+      },
+      "revId": "87140a1c3752508e41f9bf8f4f474707fb83b674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ae1bae3_5ac9335b",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-17T23:19:42Z",
+      "side": 1,
+      "message": "nit: please spell the variable full like `is_privileged_client`",
+      "range": {
+        "startLine": 586,
+        "startChar": 38,
+        "endLine": 586,
+        "endChar": 49
+      },
+      "revId": "87140a1c3752508e41f9bf8f4f474707fb83b674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
