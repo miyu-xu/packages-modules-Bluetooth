@@ -106,6 +106,24 @@
       "parentUuid": "f6f971ec_a51a169d",
       "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44eb2265_b9487b12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-17T00:18:27Z",
+      "side": 1,
+      "message": "We already regret having previous APIs that allow such low layer modifications and they ended up leading to sub-optimal behaviors. For example, we used to allow all apps to modify ATT MTU and it led to significant race conditions. \n\nWe had to do an App compat change in 2023 to finally address this and we hoped that we never opened that `configureMtu()` API up. \n\nSee: https://developer.android.com/about/versions/14/behavior-changes-all#mtu-set-to-517",
+      "parentUuid": "9aa45210_9db5977f",
+      "revId": "7d33433a56fb151f726b2ad7b0fcd6d1b57ba29d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
