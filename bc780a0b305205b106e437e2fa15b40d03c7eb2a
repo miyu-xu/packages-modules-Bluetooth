@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d6f017_b87e8417",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3230,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-17T18:45:08Z",
+      "side": 1,
+      "message": "We should check the status against HCI_SUCCESS.\n\nNit: encr_enable should be checked against HCI_ENCRYPT_MODE_ON",
+      "fixSuggestions": [
+        {
+          "fixId": "a44923ce_62a6f892",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 3230,
+                "startChar": 0,
+                "endLine": 3231,
+                "endChar": 0
+              },
+              "replacement": "    if (key_size \u003d\u003d 0 \u0026\u0026 status \u003d\u003d HCI_SUCCESS \u0026\u0026 encr_enable \u003d\u003d HCI_ENCRYPT_MODE_ON) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bc780a0b305205b106e437e2fa15b40d03c7eb2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
