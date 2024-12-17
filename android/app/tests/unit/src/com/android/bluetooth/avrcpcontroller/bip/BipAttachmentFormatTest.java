@@ -435,7 +435,7 @@ public class BipAttachmentFormatTest {
                 new BipAttachmentFormat("text/plain", null, "thisisatextfile.txt", -1, null, null);
         String notAttachment = "notAttachment";
 
-        Assert.assertFalse(attachment.equals(notAttachment));
+        assertThat(attachment).isNotEqualTo(notAttachment);
     }
 
     @Test
