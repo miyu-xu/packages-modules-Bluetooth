@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a918ec_e07ffaa3",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-17T17:35:42Z",
+      "side": 1,
+      "message": "You already implement a timeout when calling expect_media, which you ignore the error for. It might be better to remove it and let the exception be raised when calling receive_audio",
+      "range": {
+        "startLine": 373,
+        "startChar": 32,
+        "endLine": 373,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "27d29fb0_4df37461",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 373,
+                "startChar": 0,
+                "endLine": 374,
+                "endChar": 0
+              },
+              "replacement": "        async def receive_audio():\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 375,
+                "startChar": 0,
+                "endLine": 382,
+                "endChar": 0
+              },
+              "replacement": "                packet \u003d await channel.expect_media()\n                received_rtp_packets.append(packet)\n                channel.transport_queue.task_done()\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 389,
+                "startChar": 0,
+                "endLine": 390,
+                "endChar": 0
+              },
+              "replacement": "        await asyncio.gather(receive_audio(), acceptor_avdt_suspend(channel))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "abf941191455fb133cd14fa1cd00ef6ced357b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d3b1f98_b7fc1150",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-17T17:35:42Z",
+      "side": 1,
+      "message": "expect_media already implements a timeout",
+      "range": {
+        "startLine": 376,
+        "startChar": 29,
+        "endLine": 376,
+        "endChar": 84
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a1c7b257_1bc44260",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 376,
+                "startChar": 0,
+                "endLine": 377,
+                "endChar": 0
+              },
+              "replacement": "                    packet \u003d await channel.expect_media(timeout)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "abf941191455fb133cd14fa1cd00ef6ced357b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "697a70f8_5ea04be8",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-17T17:35:42Z",
+      "side": 1,
+      "message": "That might not work, the phone restarts the stream if I remember correctly",
+      "range": {
+        "startLine": 383,
+        "startChar": 8,
+        "endLine": 387,
+        "endChar": 89
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a49af154_494029ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 360,
+                "startChar": 0,
+                "endLine": 361,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 383,
+                "startChar": 0,
+                "endLine": 390,
+                "endChar": 0
+              },
+              "replacement": "        await asyncio.wait_for(receive_audio(), 5.0)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "abf941191455fb133cd14fa1cd00ef6ced357b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
