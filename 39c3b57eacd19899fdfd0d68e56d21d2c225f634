@@ -70,6 +70,30 @@
       },
       "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76aafc03_20550496",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-17T10:51:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7eedaaba_3f2b72e2",
+      "range": {
+        "startLine": 1755,
+        "startChar": 0,
+        "endLine": 1757,
+        "endChar": 5
+      },
+      "revId": "39c3b57eacd19899fdfd0d68e56d21d2c225f634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
