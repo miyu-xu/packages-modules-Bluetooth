@@ -231,6 +231,18 @@ flag {
     }
 }
 
+<<<<<<< PATCH SET (afe743 Remove "identity_retention_on_restart" flag)
+||||||| BASE
+flag {
+    name: "identity_retention_on_restart"
+    namespace: "bluetooth"
+    description: "Retain identity address on BT restart"
+    bug: "383879096"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+=======
 flag {
     name: "identity_retention_on_restart"
     namespace: "bluetooth"
@@ -250,3 +262,4 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+>>>>>>> BASE      (d50cf9 Merge changes Ibcf00552,If46c5fe1 into main)
