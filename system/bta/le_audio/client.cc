@@ -5367,17 +5367,15 @@ public:
       new_config_context = configuration_context_type_;
     }
 
-    /* Do not configure the Voiceback channel if it is already configured.
+    /* Do not configure the Voiceback channel if it is already configured for GAME.
      * WARNING: This eliminates additional reconfigurations but can
      * lead to unsatisfying audio quality when that direction was
      * already configured with a lower quality.
      */
     if (remote_direction == bluetooth::le_audio::types::kLeAudioDirectionSource) {
-      const auto has_audio_source_configured =
-              IsDirectionAvailableForCurrentConfiguration(
-                      group, bluetooth::le_audio::types::kLeAudioDirectionSource) &&
-              (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-      if (has_audio_source_configured) {
+      auto game_uplink_activated = (configuration_context_type_ == LeAudioContextType::GAME) &&
+                                   (new_config_context == LeAudioContextType::LIVE);
+      if (game_uplink_activated) {
         log::info(
                 "Audio source is already available in the current configuration "
                 "context in {}. Not switching to {} right now.",
