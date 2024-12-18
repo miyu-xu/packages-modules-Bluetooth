@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3490759c_1e43fc94",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-18T15:54:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "948c918e_b3e71ce1",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "641322256599815f45be6946d7a3c6bd5c6c3952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5667d207_e405e8b5",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "ohh on the second bugreport is CONNECT in Connecting which with this CL will be ignored.",
       "parentUuid": "5667d207_e405e8b5",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "641322256599815f45be6946d7a3c6bd5c6c3952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "675f5ca6_bccffe78",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-18T15:54:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1e5d453_3fb3d7f2",
       "range": {
         "startLine": 18,
         "startChar": 0,
