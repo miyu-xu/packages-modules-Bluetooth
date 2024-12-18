@@ -52,6 +52,47 @@
       "parentUuid": "efc39d08_57ddcd50",
       "revId": "49251606c4bb2eaea294530bdef4fac52e8a1a25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31602e1_f20b7eed",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2121,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-18T18:34:09Z",
+      "side": 1,
+      "message": "Should we update the wording to mention potential functionality? \n\"this request may be accepted, rejected or accepeted and reverts\\ed at a later time\"\n\nOr should this be applied on the callback",
+      "range": {
+        "startLine": 2121,
+        "startChar": 9,
+        "endLine": 2121,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b553224c_f16382d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGatt.java",
+              "range": {
+                "startLine": 2121,
+                "startChar": 0,
+                "endLine": 2122,
+                "endChar": 0
+              },
+              "replacement": "     * \u003cp\u003eThis function will send a LE subrate request to the remote device. The request may be\n     * accepted, rejected or accepted and reverted at a later time.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "49251606c4bb2eaea294530bdef4fac52e8a1a25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
