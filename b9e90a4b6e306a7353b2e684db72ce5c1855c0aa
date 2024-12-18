@@ -117,6 +117,30 @@
       },
       "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8cfa370_a5804112",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T18:08:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d3d243a8_3bc8b8f8",
+      "range": {
+        "startLine": 2128,
+        "startChar": 19,
+        "endLine": 2128,
+        "endChar": 37
+      },
+      "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
