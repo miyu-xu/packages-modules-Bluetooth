@@ -282,6 +282,30 @@
       ],
       "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "039bcc7a_f9611e80",
+        "filename": "system/stack/connection_manager/connection_manager.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-18T06:15:17Z",
+      "side": 1,
+      "message": "Unresolving for visibility",
+      "parentUuid": "461fb988_89fe7308",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 66
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
