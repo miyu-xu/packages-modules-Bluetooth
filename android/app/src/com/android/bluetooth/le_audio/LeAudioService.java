@@ -2667,7 +2667,8 @@ public class LeAudioService extends ProfileService {
                         + " action: "
                         + action
                         + ", not implemented");
-        if (action == LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE) {
+        if (action == LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE
+                || action == LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_CONSIDER_DISABLING) {
             MetricsLogger.getInstance()
                     .count(
                             mAdapterService.isLeAudioAllowed(device)
@@ -2676,29 +2677,24 @@ public class LeAudioService extends ProfileService {
                                     : BluetoothProtoEnums
                                             .LE_AUDIO_NONALLOWLIST_DEVICE_HEALTH_STATUS_BAD,
                             1);
+            disconnect(device);
         }
     }
 
     private void handleGroupHealthAction(int groupId, int action) {
-        Log.d(
-                TAG,
-                "handleGroupHealthAction: groupId: "
-                        + groupId
-                        + " action: "
-                        + action
-                        + ", not implemented");
+        Log.d(TAG, "handleGroupHealthAction: groupId: " + groupId + " action: " + action);
         BluetoothDevice device = getLeadDeviceForTheGroup(groupId);
+        LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
         switch (action) {
+                /* Receipt of CONSIDER and CONSIDER_DISABLING means that device has frequent
+                 * problems with establishing LE Audio stream. This may lead to sever problems,
+                 * as ASE state machine will timeout, disconnect faulty device(s) and reconnect
+                 * them in recovery mode, possibly making stack fall into connect - fail - reconnect
+                 * loop, unable to recover or fallback. In that case, disconnect LE Audio devices
+                 * from faulty group, which will lead to fallback to BR/EDR or using another
+                 * fallback device, LE Audio or classic.
+                 */
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE:
-                MetricsLogger.getInstance()
-                        .count(
-                                mAdapterService.isLeAudioAllowed(device)
-                                        ? BluetoothProtoEnums
-                                                .LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_BAD
-                                        : BluetoothProtoEnums
-                                                .LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_BAD,
-                                1);
-                break;
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_CONSIDER_DISABLING:
                 MetricsLogger.getInstance()
                         .count(
@@ -2708,9 +2704,17 @@ public class LeAudioService extends ProfileService {
                                         : BluetoothProtoEnums
                                                 .LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_TRENDING_BAD,
                                 1);
+                Log.i(
+                        TAG,
+                        "Disconnecting LE Audio devices from group"
+                                + groupId
+                                + "due to high failure rate");
+                List<BluetoothDevice> connectedDevices = getConnectedPeerDevices(groupId);
+                for (BluetoothDevice dev : connectedDevices) {
+                    disconnect(dev);
+                }
                 break;
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_INACTIVATE_GROUP:
-                LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
                 if (groupDescriptor != null
                         && groupDescriptor.isActive()
                         && !isGroupReceivingBroadcast(groupId)) {

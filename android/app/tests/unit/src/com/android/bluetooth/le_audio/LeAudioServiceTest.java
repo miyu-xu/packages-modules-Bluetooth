@@ -1987,7 +1987,8 @@ public class LeAudioServiceTest {
     @Test
     public void testHealthBasedGroupAction() {
         doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
-        connectTestDevice(mSingleDevice, testGroupId);
+        connectTestDevice(mLeftDevice, testGroupId);
+        connectTestDevice(mRightDevice, testGroupId);
 
         LeAudioStackEvent healthBasedGroupAction =
                 new LeAudioStackEvent(
@@ -1996,6 +1997,106 @@ public class LeAudioServiceTest {
         healthBasedGroupAction.valueInt2 = LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE;
         mService.messageFromNative(healthBasedGroupAction);
         assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+    }
+
+    @Test
+    public void testHealthBasedGroupAction_recommendDisable() {
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mLeftDevice, testGroupId);
+        connectTestDevice(mRightDevice, testGroupId);
+
+        LeAudioStackEvent healthBasedGroupAction =
+                new LeAudioStackEvent(
+                        LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION);
+        healthBasedGroupAction.valueInt1 = testGroupId;
+        healthBasedGroupAction.valueInt2 = LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE;
+        mService.messageFromNative(healthBasedGroupAction);
+        assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+
+        verifyConnectionStateIntent(
+                TIMEOUT_MS,
+                mLeftDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
+        verifyConnectionStateIntent(
+                TIMEOUT_MS,
+                mRightDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
+    }
+
+    @Test
+    public void testHealthBasedGroupAction_recommendConsiderDisabling() {
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mLeftDevice, testGroupId);
+        connectTestDevice(mRightDevice, testGroupId);
+
+        LeAudioStackEvent healthBasedGroupAction =
+                new LeAudioStackEvent(
+                        LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION);
+        healthBasedGroupAction.valueInt1 = testGroupId;
+        healthBasedGroupAction.valueInt2 =
+                LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_CONSIDER_DISABLING;
+        mService.messageFromNative(healthBasedGroupAction);
+        assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+
+        verifyConnectionStateIntent(
+                TIMEOUT_MS,
+                mLeftDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
+        verifyConnectionStateIntent(
+                TIMEOUT_MS,
+                mRightDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
+    }
+
+    /**
+     * Test native interface health base action message handling. It does not much, just chects
+     * stack even and that service not crash
+     */
+    @Test
+    public void testHealthBaseDeviceAction_recommendDisable() {
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        LeAudioStackEvent healthBaseDevAction =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION);
+        healthBaseDevAction.device = mSingleDevice;
+        healthBaseDevAction.valueInt1 = LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE;
+        mService.messageFromNative(healthBaseDevAction);
+        assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+
+        verifyConnectionStateIntent(
+                TIMEOUT_MS,
+                mSingleDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
+    }
+
+    /**
+     * Test native interface health base action message handling. It does not much, just chects
+     * stack even and that service not crash
+     */
+    @Test
+    public void testHealthBaseDeviceAction_recommendConsiderDisabling() {
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        LeAudioStackEvent healthBaseDevAction =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION);
+        healthBaseDevAction.device = mSingleDevice;
+        healthBaseDevAction.valueInt1 =
+                LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_CONSIDER_DISABLING;
+        mService.messageFromNative(healthBaseDevAction);
+        assertThat(mService.mLeAudioNativeIsInitialized).isTrue();
+
+        verifyConnectionStateIntent(
+                TIMEOUT_MS,
+                mSingleDevice,
+                BluetoothProfile.STATE_DISCONNECTED,
+                BluetoothProfile.STATE_CONNECTED);
     }
 
     private void sendEventAndVerifyIntentForGroupStatusChanged(int groupId, int groupStatus) {
