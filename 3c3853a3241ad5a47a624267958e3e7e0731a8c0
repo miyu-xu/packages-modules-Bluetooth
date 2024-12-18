@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f31634a_ae5cd223",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T17:59:16Z",
+      "side": 1,
+      "message": "nit: some controllers only has a filter accept list of 16 and this can be reached. Good that this logic is kept in this CL.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 17
+      },
+      "revId": "3c3853a3241ad5a47a624267958e3e7e0731a8c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dac3b6fe_9752fb37",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T17:59:16Z",
+      "side": 1,
+      "message": "return num_entries \u003e\u003d accept_list_size;",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "3c3853a3241ad5a47a624267958e3e7e0731a8c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
