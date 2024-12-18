@@ -684,7 +684,6 @@ static uint32_t on_srv_rfc_connect_offload(tBTA_JV_RFCOMM_SRV_OPEN* p_open, uint
   // Start monitoring the socket.
   btsock_thread_add_fd(pth, srv_rs->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_EXCEPTION, srv_rs->id);
   btsock_thread_add_fd(pth, accept_rs->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD, accept_rs->id);
-  accept_rs->app_fd = INVALID_FD;  // Ownership of the application fd has been transferred.
   // start monitoring the socketpair to get call back when app is accepting on server socket
   btsock_thread_add_fd(pth, srv_rs->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD, srv_rs->id);
   return srv_rs->id;
