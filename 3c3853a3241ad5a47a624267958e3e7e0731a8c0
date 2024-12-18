@@ -45,6 +45,30 @@
       },
       "revId": "3c3853a3241ad5a47a624267958e3e7e0731a8c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3b3f3b2_3ccc2d45",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T18:15:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dac3b6fe_9752fb37",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "3c3853a3241ad5a47a624267958e3e7e0731a8c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
