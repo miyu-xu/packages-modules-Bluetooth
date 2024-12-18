@@ -709,6 +709,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                             + device
                             + ", mHfpActiveDevice="
                             + mHfpActiveDevice);
+            BluetoothDevice removedDevice = mHfpActiveDevice;
             if (!Objects.equals(mHfpActiveDevice, device)) {
                 if (device != null) {
                     setHearingAidActiveDevice(null, true);
@@ -719,7 +720,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                 if ((!Utils.isDualModeAudioEnabled() && device == null)) {
                     Log.d(TAG, "HFP active device is null. Try to fallback to the active device.");
                     synchronized (mLock) {
-                        setFallbackDeviceActiveLocked(null);
+                        setFallbackDeviceActiveLocked(removedDevice);
                     }
                 }
             }
@@ -818,6 +819,8 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                 setHearingAidActiveDevice(null, true);
             }
 
+            BluetoothDevice removedDevice = mLeHearingAidActiveDevice;
+
             if (mLeHearingAidConnectedDevices.contains(device)) {
                 mLeHearingAidActiveDevice = device;
             }
@@ -831,7 +834,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
             if (device == null && !Utils.isDualModeAudioEnabled() && !isBroadcastingAudio()) {
                 Log.d(TAG, "LE audio active device is null. Try to fallback to the active device.");
                 synchronized (mLock) {
-                    setFallbackDeviceActiveLocked(device);
+                    setFallbackDeviceActiveLocked(removedDevice);
                 }
             }
 
