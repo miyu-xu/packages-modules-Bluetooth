@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fcd819e_72df7cbc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:14:19Z",
+      "side": 1,
+      "message": "doesNotContainKey",
+      "range": {
+        "startLine": 479,
+        "startChar": 28,
+        "endLine": 479,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9e2188b7_57b5fd24",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+              "range": {
+                "startLine": 479,
+                "startChar": 0,
+                "endLine": 480,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(metadata.doesNotContainKey(MediaMetadataCompat.METADATA_KEY_BT_FOLDER_TYPE)).isTrue();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc57989cb46bdb67e999b4d001982adfe5ad132b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
