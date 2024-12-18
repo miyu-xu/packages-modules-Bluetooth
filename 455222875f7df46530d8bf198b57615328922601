@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37a1c16b_57edd097",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T21:48:31Z",
+      "side": 1,
+      "message": "Add comment: Verify that at least one audio frame is received on the transport channel.",
+      "range": {
+        "startLine": 370,
+        "startChar": 8,
+        "endLine": 370,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dcb02da7_cf3a6b10",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 370,
+                "startChar": 0,
+                "endLine": 370,
+                "endChar": 0
+              },
+              "replacement": "        # Verify that at least one audio frame is received on the transport channel.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "455222875f7df46530d8bf198b57615328922601",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
