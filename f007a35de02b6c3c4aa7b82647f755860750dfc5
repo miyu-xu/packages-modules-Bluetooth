@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1dea064_ca82e5f1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/MediaPlayerListTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T01:19:51Z",
+      "side": 1,
+      "message": "Acknowledged aosp/3419225",
+      "parentUuid": "23388856_e547fc46",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "revId": "f007a35de02b6c3c4aa7b82647f755860750dfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44c82689_e7f2f215",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0a8bc27_e00fc97a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T01:19:51Z",
+      "side": 1,
+      "message": "Acknowledged aosp/3419225",
+      "parentUuid": "44c82689_e7f2f215",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 58
+      },
+      "revId": "f007a35de02b6c3c4aa7b82647f755860750dfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0270703_aa8a3e7e",
@@ -78,6 +126,30 @@
       "writtenOn": "2024-12-18T01:05:13Z",
       "side": 1,
       "message": "not useful",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "f007a35de02b6c3c4aa7b82647f755860750dfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e511a393_94e623fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T01:19:51Z",
+      "side": 1,
+      "message": "Acknowledged aosp/3419225",
+      "parentUuid": "e0270703_aa8a3e7e",
       "range": {
         "startLine": 266,
         "startChar": 8,
