@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad761ba3_adc3ba57",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-18T06:59:56Z",
+      "side": 1,
+      "message": "Use parameterized test and have a boolean argument isRandom. This avoids duplicating most of the logic here.",
+      "range": {
+        "startLine": 555,
+        "startChar": 16,
+        "endLine": 555,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "58b836a4_fb88d140",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 62,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "import com.google.common.collect.ImmutableList;\n\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 72,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "import org.junit.runners.Parameterized;\nimport org.junit.runners.Parameterized.Parameter;\nimport org.junit.runners.Parameterized.Parameters;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 98,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": "@RunWith(Parameterized.class)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "\n    @Parameter(0)\n    public boolean mIsRandomAddress;\n\n    @Parameters(name \u003d \"mIsRandomAddress \u003d {0}\")\n    public static ImmutableList\u003cObject[]\u003e data() {\n        return ImmutableList.of(new Object[] {false}, new Object[] {true});\n    }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 175,
+                "endChar": 0
+              },
+              "replacement": "        if (mIsRandomAddress) {\n            mRemoteLeDevice \u003d\n                    sAdapter.getRemoteLeDevice(\n                            Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);\n        } else {\n            mRemoteLeDevice \u003d\n                    sAdapter.getRemoteLeDevice(\n                            Utils.BUMBLE_PUBLIC_ADDRESS, BluetoothDevice.ADDRESS_TYPE_PUBLIC);\n        }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 534,
+                "startChar": 0,
+                "endLine": 535,
+                "endChar": 0
+              },
+              "replacement": "     * Test if bonded LE device\u0027s identity address and type can be read\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 555,
+                "startChar": 0,
+                "endLine": 592,
+                "endChar": 0
+              },
+              "replacement": "    public void testBondLe_identityAddressWithType() {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 597,
+                "startChar": 0,
+                "endLine": 598,
+                "endChar": 0
+              },
+              "replacement": "        testStep_BondLe(\n                mRemoteLeDevice,\n                mIsRandomAddress ? OwnAddressType.RANDOM : OwnAddressType.PUBLIC);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 601,
+                "startChar": 0,
+                "endLine": 603,
+                "endChar": 0
+              },
+              "replacement": "        if (mIsRandomAddress) {\n            assertThat(identityAddress.getAddress()).isEqualTo(Utils.BUMBLE_RANDOM_ADDRESS);\n            assertThat(identityAddress.getAddressType())\n                    .isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);\n        } else {\n            assertThat(identityAddress.getAddress()).isEqualTo(Utils.BUMBLE_PUBLIC_ADDRESS);\n            assertThat(identityAddress.getAddressType())\n                    .isEqualTo(BluetoothDevice.ADDRESS_TYPE_PUBLIC);\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d628bf88c201e9d975d8f86f35e47ce7b8869a71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
