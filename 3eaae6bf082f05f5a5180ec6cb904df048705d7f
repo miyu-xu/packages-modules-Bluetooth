@@ -137,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57a76bb2_8c9b4a56",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2535,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-18T15:17:36Z",
+      "side": 1,
+      "message": "actually this should be handled https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3377853/6/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java#5288 am I missing here something ?",
+      "parentUuid": "8d6dd842_bf6ea2b9",
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e6838e0_a252bb11",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
