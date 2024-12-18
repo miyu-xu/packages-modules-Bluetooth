@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e30dd1ba_d045b0f0",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-18T02:05:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e88bcd93_7443f02c",
+      "range": {
+        "startLine": 18,
+        "startChar": 10,
+        "endLine": 18,
+        "endChar": 19
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbb14da2_1b4f07be",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-17T19:32:54Z",
       "side": 1,
       "message": "Please upload that in its own CL that only upload the flag",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "070f2099_5d114759",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-18T02:05:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbb14da2_1b4f07be",
       "range": {
         "startLine": 14,
         "startChar": 2,
