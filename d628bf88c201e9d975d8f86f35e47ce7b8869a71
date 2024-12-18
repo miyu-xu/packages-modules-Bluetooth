@@ -130,6 +130,30 @@
       ],
       "revId": "d628bf88c201e9d975d8f86f35e47ce7b8869a71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "403165c0_e31b735a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-12-18T07:35:36Z",
+      "side": 1,
+      "message": "Done. Thank you!",
+      "parentUuid": "ad761ba3_adc3ba57",
+      "range": {
+        "startLine": 555,
+        "startChar": 16,
+        "endLine": 555,
+        "endChar": 56
+      },
+      "revId": "d628bf88c201e9d975d8f86f35e47ce7b8869a71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
