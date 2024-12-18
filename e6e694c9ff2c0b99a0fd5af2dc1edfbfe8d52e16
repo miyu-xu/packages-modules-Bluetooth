@@ -50,6 +50,30 @@
       ],
       "revId": "e6e694c9ff2c0b99a0fd5af2dc1edfbfe8d52e16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38b34bcd_2f764a80",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-12-18T19:36:33Z",
+      "side": 1,
+      "message": "We need the boolean. It\u0027s just the initial value, but we overwrite the value when the remote device didn\u0027t support it. Once we got the reject, we will use symmetric phy setting for that device until un-paired.\n\nIt\u0027s not only use for the flag. I just use the flag to determine the initial value.",
+      "parentUuid": "5320eb17_adcec10b",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 51
+      },
+      "revId": "e6e694c9ff2c0b99a0fd5af2dc1edfbfe8d52e16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
