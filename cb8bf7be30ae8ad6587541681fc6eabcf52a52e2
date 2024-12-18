@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eda80a2_6aee2974",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-18T00:53:30Z",
+      "side": 1,
+      "message": "Asked author to check aosp/3297922 instead. No response, removing myself.",
+      "revId": "cb8bf7be30ae8ad6587541681fc6eabcf52a52e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
