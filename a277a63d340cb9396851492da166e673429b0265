@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7647307_6a5a31e2",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-12-18T02:37:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ce1748c_88ae693c",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 1
+      },
+      "revId": "a277a63d340cb9396851492da166e673429b0265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0d7584a_72b97eeb",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-17T15:40:00Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 1
+      },
+      "revId": "a277a63d340cb9396851492da166e673429b0265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdc37baf_86e8b38e",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorFragment.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-12-18T02:37:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0d7584a_72b97eeb",
       "range": {
         "startLine": 179,
         "startChar": 0,
@@ -83,6 +131,54 @@
       "writtenOn": "2024-12-17T15:40:00Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 1
+      },
+      "revId": "a277a63d340cb9396851492da166e673429b0265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb9fcc4_98e41d45",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorViewModel.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-12-18T02:37:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "596fa8a1_c92f0cc8",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 1
+      },
+      "revId": "a277a63d340cb9396851492da166e673429b0265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78b2f650_cd72538a",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorViewModel.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-12-18T02:37:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad3db985_d360bd0f",
       "range": {
         "startLine": 112,
         "startChar": 0,
