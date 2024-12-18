@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd258e2_244341f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-18T15:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c1b9b83_74e7ee5a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 55
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3b4a8a7_eb9e968d",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "This is the same what it\u0027s done for AudioMode change. According to PRD broadcast must be present in context of active device/primary device.\n\nThis is example flow:\n1) Recording start \u003d handover to unicast\n2) Active unicast device disapears e.g. disconnection\n3) Recording stop - code will follow this path\n3.1) isBroadcastReadyToBeReActivated - yes\n3.2) mCurrentRecordingMode !\u003d previousRecordingMode - yes, since previousely it was in recording mode and now it\u0027s changing to non recording\n3.3) getActiveGroupId() \u003d\u003d LE_AUDIO_GROUP_ID_INVALID) - yes, since unicast device is no longer connected.",
       "parentUuid": "a3b4a8a7_eb9e968d",
+      "range": {
+        "startLine": 562,
+        "startChar": 12,
+        "endLine": 562,
+        "endChar": 14
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaca788b_34793e01",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-18T15:27:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e044b455_ad5a4b06",
       "range": {
         "startLine": 562,
         "startChar": 12,
