@@ -40,6 +40,30 @@
       ],
       "revId": "dc57989cb46bdb67e999b4d001982adfe5ad132b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02297220_f0330538",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:22:25Z",
+      "side": 1,
+      "message": "Impossible, metadata is a MediaMetadataCompat and not a known truth subject :/",
+      "parentUuid": "7fcd819e_72df7cbc",
+      "range": {
+        "startLine": 479,
+        "startChar": 28,
+        "endLine": 479,
+        "endChar": 39
+      },
+      "revId": "dc57989cb46bdb67e999b4d001982adfe5ad132b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
