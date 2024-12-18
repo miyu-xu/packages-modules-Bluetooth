@@ -1,0 +1,109 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068ddf53_bd6e9773",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T00:25:07Z",
+      "side": 1,
+      "message": "nit: else unnecessary",
+      "range": {
+        "startLine": 529,
+        "startChar": 5,
+        "endLine": 532,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fd92d4be_8a30b9fa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal_android.cc",
+              "range": {
+                "startLine": 529,
+                "startChar": 0,
+                "endLine": 530,
+                "endChar": 0
+              },
+              "replacement": "    }\n    if (it-\u003esecond-\u003eGetSession() \u003d\u003d nullptr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2ab7209ffbe3a791b72e3ae81e6ad35accfd0e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c348ee_ee12cb31",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T00:25:07Z",
+      "side": 1,
+      "message": "unused local variable",
+      "range": {
+        "startLine": 534,
+        "startChar": 9,
+        "endLine": 534,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "805a7aef_db01e8f7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal_android.cc",
+              "range": {
+                "startLine": 534,
+                "startChar": 0,
+                "endLine": 535,
+                "endChar": 0
+              },
+              "replacement": "    it-\u003esecond-\u003eGetSession()-\u003eisAbortedProcedureRequired(\u0026isRequired);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2ab7209ffbe3a791b72e3ae81e6ad35accfd0e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64cd536_8e957198",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1984,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T00:25:07Z",
+      "side": 1,
+      "message": "cast unnecessary",
+      "range": {
+        "startLine": 1984,
+        "startChar": 17,
+        "endLine": 1984,
+        "endChar": 26
+      },
+      "revId": "2ab7209ffbe3a791b72e3ae81e6ad35accfd0e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
