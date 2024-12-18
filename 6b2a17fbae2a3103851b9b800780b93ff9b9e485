@@ -16,6 +16,24 @@
       "message": "Please update TransitionalScanHelperTest to resolve build failures",
       "revId": "6b2a17fbae2a3103851b9b800780b93ff9b9e485",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "effad6d8_e6ee1937",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-18T18:00:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d00daddb_22bc6a34",
+      "revId": "6b2a17fbae2a3103851b9b800780b93ff9b9e485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
