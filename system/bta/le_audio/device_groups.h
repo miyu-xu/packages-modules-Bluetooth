@@ -142,8 +142,7 @@ public:
     is_output_preference_le_audio = true;
     is_duplex_preference_le_audio = true;
 #endif
-    asymmetric_phy_for_unidirectional_cis_supported =
-            com::android::bluetooth::flags::asymmetric_phy_for_unidirectional_cis();
+    asymmetric_phy_for_unidirectional_cis_supported = true;
   }
   ~LeAudioDeviceGroup(void);
 
