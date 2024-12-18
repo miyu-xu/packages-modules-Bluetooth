@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23388856_e547fc46",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/MediaPlayerListTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T01:05:13Z",
+      "side": 1,
+      "message": "Is it really useful ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b2ead48f_d61c993e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/audio_util/MediaPlayerListTest.java",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "f007a35de02b6c3c4aa7b82647f755860750dfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44c82689_e7f2f215",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T01:05:13Z",
+      "side": 1,
+      "message": "not useful",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 58
+      },
+      "revId": "f007a35de02b6c3c4aa7b82647f755860750dfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0270703_aa8a3e7e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T01:05:13Z",
+      "side": 1,
+      "message": "not useful",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 58
+      },
+      "revId": "f007a35de02b6c3c4aa7b82647f755860750dfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
