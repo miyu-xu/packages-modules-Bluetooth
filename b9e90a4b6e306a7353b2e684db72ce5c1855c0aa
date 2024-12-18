@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6648fb4d_ce79230e",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T06:53:47Z",
+      "side": 1,
+      "message": "Closing as we had the other discussion thread to end up on CDM + public",
+      "parentUuid": "9710ae97_f7a3d986",
+      "range": {
+        "startLine": 2123,
+        "startChar": 0,
+        "endLine": 2124,
+        "endChar": 7
+      },
+      "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "403b6491_903e4f8b",

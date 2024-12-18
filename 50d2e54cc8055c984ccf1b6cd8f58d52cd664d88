@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74bef012_06d7a547",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T06:53:47Z",
+      "side": 1,
+      "message": "Done with aosp/3418922",
+      "parentUuid": "a4444b59_97569ea7",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 641,
+        "endChar": 175
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20eb41a9_e7aaf6c9",
@@ -131,6 +155,30 @@
       "writtenOn": "2024-12-17T19:41:42Z",
       "side": 1,
       "message": "please change this to an int with an enum value so that we can add more return code in the future",
+      "range": {
+        "startLine": 2122,
+        "startChar": 11,
+        "endLine": 2122,
+        "endChar": 18
+      },
+      "revId": "50d2e54cc8055c984ccf1b6cd8f58d52cd664d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d2ca1d_32331821",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T06:53:47Z",
+      "side": 1,
+      "message": "Done with aosp/3418922",
+      "parentUuid": "20eb41a9_e7aaf6c9",
       "range": {
         "startLine": 2122,
         "startChar": 11,
