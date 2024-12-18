@@ -5257,9 +5257,20 @@ public:
           // Do not take the obsolete metadata
           remote_metadata.get(remote_other_direction).clear();
         } else {
-          remote_metadata.get(remote_other_direction).unset_all(all_bidirectional_contexts);
-          remote_metadata.get(remote_other_direction)
-                  .unset_all(single_direction_only_context_types);
+          // Avoid reconfiguring for voiceback channel when already streaming for GAME
+          auto game_uplink_activated =
+                  (audio_sender_state_ == AudioState::STARTED) &&
+                  remote_metadata.sink.test(LeAudioContextType::GAME) &&
+                  remote_metadata.source.test_any(LeAudioContextType::LIVE |
+                                                  LeAudioContextType::CONVERSATIONAL);
+          if (game_uplink_activated) {
+            remote_metadata.source.clear();
+            remote_metadata.source.set(LeAudioContextType::GAME);
+          } else {
+            remote_metadata.get(remote_other_direction).unset_all(all_bidirectional_contexts);
+            remote_metadata.get(remote_other_direction)
+                    .unset_all(single_direction_only_context_types);
+          }
         }
 
         remote_metadata.get(remote_other_direction)
@@ -5367,7 +5378,7 @@ public:
       new_config_context = configuration_context_type_;
     }
 
-    /* Do not configure the Voiceback channel if it is already configured.
+    /* Do not configure the Voiceback channel if it is already configured for GAME.
      * WARNING: This eliminates additional reconfigurations but can
      * lead to unsatisfying audio quality when that direction was
      * already configured with a lower quality.
@@ -5377,6 +5388,9 @@ public:
               IsDirectionAvailableForCurrentConfiguration(
                       group, bluetooth::le_audio::types::kLeAudioDirectionSource) &&
               (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+      auto game_uplink_activated = (configuration_context_type_ == LeAudioContextType::GAME) &&
+                                   (new_config_context == LeAudioContextType::LIVE) &&
+                                   has_audio_source_configured;
       if (has_audio_source_configured) {
         log::info(
                 "Audio source is already available in the current configuration "
