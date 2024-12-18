@@ -1086,21 +1086,15 @@ class MceStateMachine extends StateMachine {
             if (message == null) {
                 return;
             }
-
-            MessageMetadata metadata = mMessages.get(request.getHandle());
-            if (metadata == null) {
-                Log.e(TAG, "No request record of received message, handle=" + request.getHandle());
-                return;
-            }
-
             mDatabase.storeMessage(
-                    message, request.getHandle(), metadata.getTimestamp(), metadata.getSeen());
-
+                    message,
+                    request.getHandle(),
+                    mMessages.get(request.getHandle()).getTimestamp(),
+                    mMessages.get(request.getHandle()).getSeen());
             if (!INBOX_PATH.equalsIgnoreCase(message.getFolder())) {
                 Log.d(TAG, "Ignoring message received in " + message.getFolder() + ".");
                 return;
             }
-
             switch (message.getType()) {
                 case SMS_CDMA:
                 case SMS_GSM:
@@ -1110,6 +1104,7 @@ class MceStateMachine extends StateMachine {
                     Log.d(TAG, "Recipients" + message.getRecipients().toString());
 
                     // Grab the message metadata and update the cached read status from the bMessage
+                    MessageMetadata metadata = mMessages.get(request.getHandle());
                     metadata.setRead(request.getMessage().getStatus() == Bmessage.Status.READ);
 
                     Intent intent = new Intent();
