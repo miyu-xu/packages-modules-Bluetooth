@@ -40,6 +40,30 @@
       ],
       "revId": "455222875f7df46530d8bf198b57615328922601",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3954a717_8c7038e2",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-18T22:07:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37a1c16b_57edd097",
+      "range": {
+        "startLine": 370,
+        "startChar": 8,
+        "endLine": 370,
+        "endChar": 59
+      },
+      "revId": "455222875f7df46530d8bf198b57615328922601",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
