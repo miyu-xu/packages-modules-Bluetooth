@@ -64,6 +64,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baf870ec_70f3bd36",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-18T13:12:29Z",
+      "side": 1,
+      "message": "I intentionally wanted to do it - to wait for around 5 seconds for all the audio packets and to wait for max 1 second for a single packet - to somehow acknowledge when it\u0027s finished. When nothing comes for 1 second it triggers timeout which is handled, as it\u0027s expected. Might not be the perfect solution, but didn\u0027t know how else to wait for all the packets to come - the number of packets is irregular for some reason.",
+      "parentUuid": "08a918ec_e07ffaa3",
+      "range": {
+        "startLine": 373,
+        "startChar": 32,
+        "endLine": 373,
+        "endChar": 52
+      },
+      "revId": "abf941191455fb133cd14fa1cd00ef6ced357b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d3b1f98_b7fc1150",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 6
@@ -150,6 +174,30 @@
           ]
         }
       ],
+      "revId": "abf941191455fb133cd14fa1cd00ef6ced357b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2711655f_a2cb695c",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-12-18T13:12:29Z",
+      "side": 1,
+      "message": "actually what I saw happening is when the stream is finished it sends suspend on it\u0027s own, without specific call from the test",
+      "parentUuid": "697a70f8_5ea04be8",
+      "range": {
+        "startLine": 383,
+        "startChar": 8,
+        "endLine": 387,
+        "endChar": 89
+      },
       "revId": "abf941191455fb133cd14fa1cd00ef6ced357b9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
