@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26b24694_a78f89e0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T07:14:57Z",
+      "side": 1,
+      "message": "FYI this is the default. You can omit it when writing test\nSame in other tests",
+      "range": {
+        "startLine": 910,
+        "startChar": 35,
+        "endLine": 910,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "228eb51c_4050fe98",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+              "range": {
+                "startLine": 910,
+                "startChar": 0,
+                "endLine": 911,
+                "endChar": 0
+              },
+              "replacement": "        verify(mHearingAidService).setActiveDevice(mHearingAidDevice);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "070e8740af6d4669ba89966f2e2d12ed5309e0af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
