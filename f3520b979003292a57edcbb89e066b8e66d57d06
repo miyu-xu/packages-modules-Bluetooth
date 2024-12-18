@@ -16,6 +16,24 @@
       "message": "API +1 (removal of a 24Q3 API flag). @asapperstein@google.com for +2",
       "revId": "f3520b979003292a57edcbb89e066b8e66d57d06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72369f93_fb69c7b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-18T15:52:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a6a7d50c_6911427f",
+      "revId": "f3520b979003292a57edcbb89e066b8e66d57d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
