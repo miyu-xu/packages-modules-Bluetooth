@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc7d3921_d95a54c5",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-18T21:44:40Z",
+      "side": 0,
+      "message": "Removed `send_app_scn` here since it is already called in [btsock_rfc_connect](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_sock_rfc.cc;drc\u003d304911f3d38be34933232756d82fa7ecca83d378;l\u003d469).",
+      "range": {
+        "startLine": 850,
+        "startChar": 0,
+        "endLine": 853,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "729158df_491392a7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 850,
+                "startChar": 0,
+                "endLine": 851,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "90cef83f24cb13f3a0e4d47bc79d1544e0ac1593",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
