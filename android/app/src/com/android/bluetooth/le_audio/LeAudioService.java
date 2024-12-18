@@ -2680,14 +2680,9 @@ public class LeAudioService extends ProfileService {
     }
 
     private void handleGroupHealthAction(int groupId, int action) {
-        Log.d(
-                TAG,
-                "handleGroupHealthAction: groupId: "
-                        + groupId
-                        + " action: "
-                        + action
-                        + ", not implemented");
+        Log.d(TAG, "handleGroupHealthAction: groupId: " + groupId + " action: " + action);
         BluetoothDevice device = getLeadDeviceForTheGroup(groupId);
+        LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
         switch (action) {
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_DISABLE:
                 MetricsLogger.getInstance()
@@ -2696,8 +2691,26 @@ public class LeAudioService extends ProfileService {
                                         ? BluetoothProtoEnums
                                                 .LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_BAD
                                         : BluetoothProtoEnums
-                                                .LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_BAD,
+                                                .LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_BAD,
                                 1);
+                switch (mAdapterService.getRemoteType(device)) {
+                    case BluetoothDevice.DEVICE_TYPE_CLASSIC:
+                        break;
+                    case BluetoothDevice.DEVICE_TYPE_LE:
+                        Log.i(
+                                TAG,
+                                "Disconnecting LE Audio devices from group"
+                                        + groupId
+                                        + "due to high failure rate");
+                        List<BluetoothDevice> connectedDevices = getConnectedPeerDevices(groupId);
+                        for (BluetoothDevice dev : connectedDevices) {
+                            disconnect(dev);
+                        }
+                        break;
+                    case BluetoothDevice.DEVICE_TYPE_DUAL:
+                        // TODO: Try fallback to classic
+                        break;
+                }
                 break;
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_CONSIDER_DISABLING:
                 MetricsLogger.getInstance()
@@ -2708,9 +2721,7 @@ public class LeAudioService extends ProfileService {
                                         : BluetoothProtoEnums
                                                 .LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_TRENDING_BAD,
                                 1);
-                break;
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_INACTIVATE_GROUP:
-                LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
                 if (groupDescriptor != null
                         && groupDescriptor.isActive()
                         && !isGroupReceivingBroadcast(groupId)) {
