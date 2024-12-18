@@ -1,0 +1,287 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b4396c7_a20be4d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "the only logical difference of this CL is when the device is already in the allowlist we call `ACL_AcceptLeConnectionFrom` again. Could you explain why you want to make this logical change in this code move only CL?\n\notherwise, please address those nit comments if possible",
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d8ab9b_aeed6d34",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: move documentation to header",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 459,
+        "endChar": 40
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0da7e21_07f34095",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: this variable name can be renamed for easier understanding, like `background_connection_devices`",
+      "range": {
+        "startLine": 477,
+        "startChar": 12,
+        "endLine": 477,
+        "endChar": 22
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab1287b_4ed213c7",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: !empty()",
+      "range": {
+        "startLine": 488,
+        "startChar": 31,
+        "endLine": 488,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "68d7af23_b9c48bd3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/connection_manager/connection_manager.cc",
+              "range": {
+                "startLine": 488,
+                "startChar": 0,
+                "endLine": 489,
+                "endChar": 0
+              },
+              "replacement": "    if (!info.doing_direct_conn.empty()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce23f95_1f2cc0d9",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: add `/* is_direct */ true` so that we know what true means",
+      "range": {
+        "startLine": 503,
+        "startChar": 72,
+        "endLine": 503,
+        "endChar": 76
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad5ea65e_4ac4f12b",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: add `/* is_direct */ true` so that we know what true means",
+      "range": {
+        "startLine": 512,
+        "startChar": 67,
+        "endLine": 512,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "36ff937a_4c1b9918",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/connection_manager/connection_manager.cc",
+              "range": {
+                "startLine": 512,
+                "startChar": 0,
+                "endLine": 513,
+                "endChar": 0
+              },
+              "replacement": "    bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type, /* is_direct */ true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4f50316_6e3c941a",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "should this logic be commented out before someone is able to use this? \n\nWhat would `ACL_AcceptLeConnectionFrom` do if the device is already added to allowlist? does that mean the device is doing a background connection?",
+      "range": {
+        "startLine": 512,
+        "startChar": 21,
+        "endLine": 512,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a01f309f_f25efc84",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/connection_manager/connection_manager.cc",
+              "range": {
+                "startLine": 512,
+                "startChar": 0,
+                "endLine": 513,
+                "endChar": 0
+              },
+              "replacement": "    // bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a406db7a_289bbead",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: same as above add /* is_direct */",
+      "range": {
+        "startLine": 554,
+        "startChar": 55,
+        "endLine": 554,
+        "endChar": 60
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "461fb988_89fe7308",
+        "filename": "system/stack/connection_manager/connection_manager.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-18T04:02:01Z",
+      "side": 1,
+      "message": "nit: could we add documentation to these methods since it will become the top level API for conneciton manager",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 66
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e54f4d47_43514b9f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/connection_manager/connection_manager.h",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "/* Add a direct connection request.\n *\n * @param app_id The app_id of the requester.\n * @param address The address of the remote device.\n * @param addr_type The type of the address.\n *\n * @return true if the request is accepted, false otherwise.\n */\n"
+            },
+            {
+              "path": "system/stack/connection_manager/connection_manager.h",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "\n/* Remove a direct connection request.\n *\n * @param app_id The app_id of the requester.\n * @param address The address of the remote device.\n * @param connection_timeout If true, the request is removed due to timeout.\n *\n * @return true if the request is removed, false otherwise.\n */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
