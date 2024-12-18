@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "befbf8ac_f44093bf",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-18T00:47:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "068ddf53_bd6e9773",
+      "range": {
+        "startLine": 529,
+        "startChar": 5,
+        "endLine": 532,
+        "endChar": 5
+      },
+      "revId": "2ab7209ffbe3a791b72e3ae81e6ad35accfd0e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09c348ee_ee12cb31",
@@ -83,6 +107,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "482aafc7_4c818fc6",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-18T00:47:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09c348ee_ee12cb31",
+      "range": {
+        "startLine": 534,
+        "startChar": 9,
+        "endLine": 534,
+        "endChar": 17
+      },
+      "revId": "2ab7209ffbe3a791b72e3ae81e6ad35accfd0e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c64cd536_8e957198",
@@ -96,6 +144,30 @@
       "writtenOn": "2024-12-18T00:25:07Z",
       "side": 1,
       "message": "cast unnecessary",
+      "range": {
+        "startLine": 1984,
+        "startChar": 17,
+        "endLine": 1984,
+        "endChar": 26
+      },
+      "revId": "2ab7209ffbe3a791b72e3ae81e6ad35accfd0e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "258298d4_d6e444f2",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1984,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-18T00:47:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c64cd536_8e957198",
       "range": {
         "startLine": 1984,
         "startChar": 17,
