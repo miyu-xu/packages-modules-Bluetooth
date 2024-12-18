@@ -1041,7 +1041,12 @@ static void l2c_link_send_to_lower_ble(tL2C_LCB* p_lcb, BT_HDR* p_buf) {
   }
   p_lcb->sent_not_acked++;
   p_buf->layer_specific = 0;
-  l2cb.controller_le_xmit_window--;
+  uint16_t max_le_acl_len =
+          bluetooth::shim::GetController()->GetLeBufferSize().le_data_packet_length_;
+  uint16_t num_of_frags = (p_buf->len / max_le_acl_len) + ((p_buf->len % max_le_acl_len) ? 1 : 0);
+  l2cb.controller_le_xmit_window = -num_of_frags;
+  log::debug("num_of_frags = {}, p_buf->len = {}, max_le_acl_len = {}", num_of_frags, p_buf->len,
+             max_le_acl_len);
 
   acl_send_data_packet_ble(p_lcb->remote_bd_addr, p_buf);
   log::debug("TotalWin={},Hndl=0x{:x},Quota={},Unack={},RRQuota={},RRUnack={}",
