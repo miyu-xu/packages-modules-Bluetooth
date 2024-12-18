@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e044b455_ad5a4b06",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-18T15:02:41Z",
+      "side": 1,
+      "message": "This is the same what it\u0027s done for AudioMode change. According to PRD broadcast must be present in context of active device/primary device.\n\nThis is example flow:\n1) Recording start \u003d handover to unicast\n2) Active unicast device disapears e.g. disconnection\n3) Recording stop - code will follow this path\n3.1) isBroadcastReadyToBeReActivated - yes\n3.2) mCurrentRecordingMode !\u003d previousRecordingMode - yes, since previousely it was in recording mode and now it\u0027s changing to non recording\n3.3) getActiveGroupId() \u003d\u003d LE_AUDIO_GROUP_ID_INVALID) - yes, since unicast device is no longer connected.",
+      "parentUuid": "a3b4a8a7_eb9e968d",
+      "range": {
+        "startLine": 562,
+        "startChar": 12,
+        "endLine": 562,
+        "endChar": 14
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6284fea_07bffdc8",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "writtenOn": "2024-12-05T10:02:28Z",
       "side": 1,
       "message": "`!previousRecordingMode` is enough as it is inside isRecording else.",
+      "range": {
+        "startLine": 563,
+        "startChar": 23,
+        "endLine": 563,
+        "endChar": 69
+      },
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb10594_88ea2953",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-18T15:02:41Z",
+      "side": 1,
+      "message": "Acknowledged - but rather just previousRecordingMode",
+      "parentUuid": "b6284fea_07bffdc8",
       "range": {
         "startLine": 563,
         "startChar": 23,
@@ -100,6 +148,24 @@
       "writtenOn": "2024-12-02T21:03:30Z",
       "side": 1,
       "message": "once we removed the use case of recording, is the sink mode monitoring still being used for some cases? \nif not, are we planning to do some follow up clean-up on this kLeAudioDirectionSink?",
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b37206_9fe6b9ce",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-18T15:02:41Z",
+      "side": 1,
+      "message": "yes, it\u0027ll be used for external broadcast audio framework resume listening.",
+      "parentUuid": "7e6838e0_a252bb11",
       "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
