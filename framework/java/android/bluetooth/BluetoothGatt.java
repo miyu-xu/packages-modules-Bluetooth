@@ -17,7 +17,9 @@
 package android.bluetooth;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -34,6 +36,8 @@ import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -159,25 +163,16 @@ public final class BluetoothGatt implements BluetoothProfile {
      */
     public static final int CONNECTION_PRIORITY_DCK = 3;
 
-    /**
-     * Connection subrate request - Balanced.
-     *
-     * @hide
-     */
+    /** Connection subrate request - Balanced. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_REQUEST_MODE_BALANCED = 0;
 
-    /**
-     * Connection subrate request - High.
-     *
-     * @hide
-     */
+    /** Connection subrate request - High. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_REQUEST_MODE_HIGH = 1;
 
-    /**
-     * Connection Subrate Request - Low Power.
-     *
-     * @hide
-     */
+    /** Connection Subrate Request - Low Power. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_REQUEST_MODE_LOW_POWER = 2;
 
     /** @hide */
@@ -2113,19 +2108,40 @@ public final class BluetoothGatt implements BluetoothProfile {
         return true;
     }
 
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+            value = {
+                BluetoothStatusCodes.SUCCESS,
+                BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND,
+                BluetoothStatusCodes.ERROR_UNKNOWN
+            })
+    public @interface RequestSubrateModeReturnValues {}
+
     /**
      * Request LE subrate mode.
      *
-     * <p>This function will send a LE subrate request to the remote device.
+     * <p>This function will send a LE subrate request to the remote device. This request may be may
+     * be accepted, rejected, or accepted and later reverted.
+     *
+     * <p>This method requires the calling app to have the {@link
+     * android.Manifest.permission#BLUETOOTH_CONNECT} permission. Additionally, an app must either
+     * have the {@link android.Manifest.permission#BLUETOOTH_PRIVILEGED} or be associated with the
+     * Companion Device manager (see {@link android.companion.CompanionDeviceManager#associate(
+     * AssociationRequest, android.companion.CompanionDeviceManager.Callback, Handler)})
      *
      * @param subrateMode Request a specific subrate mode.
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
-     * @return true, if the request is send to the Bluetooth stack.
-     * @hide
+     * @return if the request was successfully sent to the Bluetooth stack.
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
-    public boolean requestSubrateMode(@SubrateRequestMode int subrateMode) {
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
+    public @RequestSubrateModeReturnValues int requestSubrateMode(
+            @SubrateRequestMode int subrateMode) {
+
         if (subrateMode < SUBRATE_REQUEST_MODE_BALANCED
                 || subrateMode > SUBRATE_REQUEST_MODE_LOW_POWER) {
             throw new IllegalArgumentException("Subrate Mode not within valid range");
@@ -2135,7 +2151,7 @@ public final class BluetoothGatt implements BluetoothProfile {
             Log.d(TAG, "requestsubrateMode() - subrateMode: " + subrateMode);
         }
         if (mService == null || mClientIf == 0) {
-            return false;
+            return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
         }
 
         try {
@@ -2143,9 +2159,9 @@ public final class BluetoothGatt implements BluetoothProfile {
                     mClientIf, mDevice.getAddress(), subrateMode, mAttributionSource);
         } catch (RemoteException e) {
             Log.e(TAG, "", e);
-            return false;
+            return BluetoothStatusCodes.ERROR_UNKNOWN;
         }
-        return true;
+        return BluetoothStatusCodes.SUCCESS;
     }
 
     /**

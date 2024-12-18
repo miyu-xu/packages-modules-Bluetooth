@@ -2855,12 +2855,20 @@ public class GattService extends ProfileService {
                 maxConnectionEventLen);
     }
 
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(
+            allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+            conditional = true)
     void subrateModeRequest(
             int clientIf, String address, int subrateMode, AttributionSource attributionSource) {
+
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService subrateModeRequest")) {
             return;
+        }
+
+        if (this.checkCallingOrSelfPermission(BLUETOOTH_PRIVILEGED)
+                != PackageManager.PERMISSION_GRANTED) {
+            throw new SecurityException("BLUETOOTH_PRIVILEGED permission required");
         }
 
         int subrateMin;
