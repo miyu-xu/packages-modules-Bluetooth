@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe2dfd8_7e457396",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "Doesn\u0027t works on SparseArray 😞",
+      "parentUuid": "ff39f8d0_702d7519",
+      "range": {
+        "startLine": 809,
+        "startChar": 7,
+        "endLine": 809,
+        "endChar": 89
+      },
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb75f4bc_becb896c",
@@ -129,6 +153,30 @@
           ]
         }
       ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaa25b3f_3010ce2c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "This will be replaces by an EqualsTester assertion.\n\nit currently generates an errorprone warning  that I will clean",
+      "parentUuid": "fb75f4bc_becb896c",
+      "range": {
+        "startLine": 624,
+        "startChar": 8,
+        "endLine": 624,
+        "endChar": 41
+      },
       "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -204,6 +252,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e80ec185_ca3b4f53",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "Nice, will do in follow-up as this is a big change",
+      "parentUuid": "4b9b9c18_14da8a8f",
+      "range": {
+        "startLine": 211,
+        "startChar": 24,
+        "endLine": 211,
+        "endChar": 36
+      },
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a889bf16_052852bd",
@@ -255,6 +327,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e584068c_ca9de34b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "Nice, will do in follow-up as this is a big change",
+      "parentUuid": "a889bf16_052852bd",
+      "range": {
+        "startLine": 225,
+        "startChar": 24,
+        "endLine": 225,
+        "endChar": 39
+      },
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67ad099e_124e7529",
@@ -292,6 +388,30 @@
           ]
         }
       ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec828780_c024e82c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "Acknowledged will do in follow up",
+      "parentUuid": "67ad099e_124e7529",
+      "range": {
+        "startLine": 238,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 75
+      },
       "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -367,6 +487,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ccdb3fc_3b5da02d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "Acknowledged will do in follow up",
+      "parentUuid": "c0982536_5b5bd9dd",
+      "range": {
+        "startLine": 2173,
+        "startChar": 8,
+        "endLine": 2173,
+        "endChar": 69
+      },
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "246f1c0f_198d2b21",
@@ -424,6 +568,30 @@
           ]
         }
       ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8d8df5e_aa7a3b60",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T02:28:41Z",
+      "side": 1,
+      "message": "Will apply feedback in follow-up",
+      "parentUuid": "246f1c0f_198d2b21",
+      "range": {
+        "startLine": 254,
+        "startChar": 20,
+        "endLine": 257,
+        "endChar": 31
+      },
       "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
