@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "770e514b_dd10d667",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "create_le_connection was calling ``ACL_AcceptLeConnectionFrom`` again.\ndirect_connect_add was not.\n\nNow both of them will, as this is correct thing to do.",
+      "parentUuid": "4b4396c7_a20be4d7",
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "71d8ab9b_aeed6d34",
         "filename": "system/stack/connection_manager/connection_manager.cc",
         "patchSetId": 12
@@ -54,6 +72,30 @@
       "writtenOn": "2024-12-18T04:02:01Z",
       "side": 1,
       "message": "nit: this variable name can be renamed for easier understanding, like `background_connection_devices`",
+      "range": {
+        "startLine": 477,
+        "startChar": 12,
+        "endLine": 477,
+        "endChar": 22
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca2cdedb_fe818777",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Sure, but not in this patch please.",
+      "parentUuid": "b0da7e21_07f34095",
       "range": {
         "startLine": 477,
         "startChar": 12,
@@ -105,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "511ea626_ef4d2005",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ab1287b_4ed213c7",
+      "range": {
+        "startLine": 488,
+        "startChar": 31,
+        "endLine": 488,
+        "endChar": 37
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ce23f95_1f2cc0d9",
@@ -118,6 +184,30 @@
       "writtenOn": "2024-12-18T04:02:01Z",
       "side": 1,
       "message": "nit: add `/* is_direct */ true` so that we know what true means",
+      "range": {
+        "startLine": 503,
+        "startChar": 72,
+        "endLine": 503,
+        "endChar": 76
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb8ff5b4_695613ef",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ce23f95_1f2cc0d9",
       "range": {
         "startLine": 503,
         "startChar": 72,
@@ -210,6 +300,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3803420f_55eef163",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad5ea65e_4ac4f12b",
+      "range": {
+        "startLine": 512,
+        "startChar": 67,
+        "endLine": 512,
+        "endChar": 71
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf4663f2_920bf2a0",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Yes, this is for case when device is already in accept list. In this case we should just bump params, but there is no API for that, so we add it again.\nLower layers will check the accept list and not add same entry again, the parameters will be increased. I modified the comment to make that clearer.",
+      "parentUuid": "b4f50316_6e3c941a",
+      "range": {
+        "startLine": 512,
+        "startChar": 21,
+        "endLine": 512,
+        "endChar": 47
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a406db7a_289bbead",
@@ -223,6 +361,30 @@
       "writtenOn": "2024-12-18T04:02:01Z",
       "side": 1,
       "message": "nit: same as above add /* is_direct */",
+      "range": {
+        "startLine": 554,
+        "startChar": 55,
+        "endLine": 554,
+        "endChar": 60
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f268f3b6_745ed5ba",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a406db7a_289bbead",
       "range": {
         "startLine": 554,
         "startChar": 55,
@@ -298,6 +460,30 @@
       "side": 1,
       "message": "Unresolving for visibility",
       "parentUuid": "461fb988_89fe7308",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 66
+      },
+      "revId": "638c638d55830c00a63d6c304f2236f9ea4df467",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e8048b7_7369e482",
+        "filename": "system/stack/connection_manager/connection_manager.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-18T13:23:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "039bcc7a_f9611e80",
       "range": {
         "startLine": 53,
         "startChar": 0,
