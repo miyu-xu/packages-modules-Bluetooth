@@ -1,0 +1,131 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5cccc3e_c4d8b01b",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-18T22:28:17Z",
+      "side": 1,
+      "message": "replace tabs with spaces",
+      "fixSuggestions": [
+        {
+          "fixId": "57c31b76_bc0975b1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "                             tCONN_ID conn_id,\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 848,
+                "startChar": 0,
+                "endLine": 849,
+                "endChar": 0
+              },
+              "replacement": "                             tCONN_ID conn_id,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297206bb_30c1982d",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-18T22:28:17Z",
+      "side": 1,
+      "message": "replace tabs with spaces",
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f88270e_a41bb44a",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-18T22:28:17Z",
+      "side": 1,
+      "message": "Is this always an identity address?",
+      "fixSuggestions": [
+        {
+          "fixId": "e1893b38_7cea9c1c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "static bool read_sr_sirk_req(tCONN_ID conn_id,\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 847,
+                "startChar": 0,
+                "endLine": 849,
+                "endChar": 0
+              },
+              "replacement": "static bool read_sr_sirk_req(tCONN_ID conn_id,\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 860,
+                "startChar": 0,
+                "endLine": 861,
+                "endChar": 0
+              },
+              "replacement": "  if (interop_match_addr(INTEROP_DISABLE_SIRK_READ_BY_TYPE, \u0026gatt_cb.tcb[gatt_get_tcb_idx(conn_id)].peer_bda)){\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 981,
+                "startChar": 0,
+                "endLine": 982,
+                "endChar": 0
+              },
+              "replacement": "  return read_sr_sirk_req(conn_id, std::move(cb));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
