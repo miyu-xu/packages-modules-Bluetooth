@@ -122,7 +122,7 @@ private:
 
 class ModuleRegistry {
   friend Module;
-  friend class StackManager;
+  friend class Stack;
 
 public:
   template <class T>
