@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f31b3508_55a64590",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-18T06:57:15Z",
+      "side": 1,
+      "message": "Is it possible to submit the rest of the changes without the API changes in this file? Would that be an issue with the linter due to additional permission checks underneath?",
+      "revId": "49251606c4bb2eaea294530bdef4fac52e8a1a25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
