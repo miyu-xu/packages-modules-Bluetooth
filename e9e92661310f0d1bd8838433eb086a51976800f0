@@ -22,6 +22,30 @@
       },
       "revId": "e9e92661310f0d1bd8838433eb086a51976800f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afae07d1_543b732c",
+        "filename": "system/gd/docs/testing/gtest.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T07:10:11Z",
+      "side": 0,
+      "message": "I understand the feedback but I still think this should be removed.\nI don\u0027t think anyone would open the bluetooth documentation to learn about gtest as this is a framework beyond bluetooth. \nSame thing with atest. The android documentation is made for that.\nThere are a few link in this doc that are dead.\n\nFor me this is not maintained (only 1 CL since it\u0027s creation and that was henri when he updated os/log.h)",
+      "parentUuid": "e83c4729_b580a33d",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "e9e92661310f0d1bd8838433eb086a51976800f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
