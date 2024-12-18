@@ -203,6 +203,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f339f45_368c0b8f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2535,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-18T17:38:23Z",
+      "side": 1,
+      "message": "I meant with leaudioUseAudioRecordingListener enabled, we don\u0027t need the updateActiveDevices to keep the input device as fallback.\nThen should we remove the same logic from setBroadcastToUnicastFallbackGroup. Put another comment to clarify.",
+      "parentUuid": "57a76bb2_8c9b4a56",
+      "revId": "3eaae6bf082f05f5a5180ec6cb904df048705d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e6838e0_a252bb11",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
