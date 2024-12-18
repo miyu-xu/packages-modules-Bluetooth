@@ -129,7 +129,8 @@ public:
         preferred_config_({.sink = nullptr, .source = nullptr}),
         target_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
         current_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
-        in_transition_(false) {
+        in_transition_(false),
+        asymmetric_phy_for_unidirectional_cis_supported(true) {
 #ifdef __ANDROID__
     // 22 maps to BluetoothProfile#LE_AUDIO
     is_output_preference_le_audio =
@@ -142,8 +143,6 @@ public:
     is_output_preference_le_audio = true;
     is_duplex_preference_le_audio = true;
 #endif
-    asymmetric_phy_for_unidirectional_cis_supported =
-            com::android::bluetooth::flags::asymmetric_phy_for_unidirectional_cis();
   }
   ~LeAudioDeviceGroup(void);
 
