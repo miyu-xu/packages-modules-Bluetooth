@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f9458d_49a7af51",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-18T18:59:41Z",
+      "side": 1,
+      "message": "is this a temparary workaround?",
+      "fixSuggestions": [
+        {
+          "fixId": "15a5db63_fb18494f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 1238,
+                "startChar": 0,
+                "endLine": 1238,
+                "endChar": 0
+              },
+              "replacement": "    // This is a temporary workaround to allow the remote device to send subevent results before the\n    // local device has enabled the procedure.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5b7fad0e5e546ecceedbeb13a7bd5c12d9da9355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
