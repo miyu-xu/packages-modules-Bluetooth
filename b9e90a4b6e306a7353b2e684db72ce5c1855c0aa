@@ -45,6 +45,30 @@
       },
       "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b351cb_0e893878",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2128,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-18T00:45:27Z",
+      "side": 1,
+      "message": "Since normal the Connection Parameter update callback is hidden, why unhide the subrating one?",
+      "parentUuid": "403b6491_903e4f8b",
+      "range": {
+        "startLine": 2128,
+        "startChar": 19,
+        "endLine": 2128,
+        "endChar": 37
+      },
+      "revId": "b9e90a4b6e306a7353b2e684db72ce5c1855c0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
