@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "838f5399_c92c0c42",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-18T17:30:08Z",
+      "side": 1,
+      "message": "We\u0027re not expecting to receive data from application on the offload socket. L2CAP offload server socket doesn\u0027t have this.",
+      "range": {
+        "startLine": 686,
+        "startChar": 2,
+        "endLine": 686,
+        "endChar": 92
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8fcf8479_0ef94928",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 686,
+                "startChar": 0,
+                "endLine": 687,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "c5718eb368ec0f1f75e00a8041a27eba2a14a6d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
