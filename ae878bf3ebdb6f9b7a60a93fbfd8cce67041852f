@@ -1,0 +1,431 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff39f8d0_702d7519",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "`assertThat().contains()` (some other occurences in file)",
+      "range": {
+        "startLine": 809,
+        "startChar": 7,
+        "endLine": 809,
+        "endChar": 89
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bb4a6a44_bb9e28c3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+              "range": {
+                "startLine": 809,
+                "startChar": 0,
+                "endLine": 810,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(players).containsKey(mAvrcpStateMachine.getAddressedPlayerId());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+              "range": {
+                "startLine": 812,
+                "startChar": 0,
+                "endLine": 813,
+                "endChar": 0
+              },
+              "replacement": "            assertThat(players).containsKey(player.getId());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+              "range": {
+                "startLine": 861,
+                "startChar": 0,
+                "endLine": 862,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(players).containsKey(mAvrcpStateMachine.getAddressedPlayerId());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+              "range": {
+                "startLine": 864,
+                "startChar": 0,
+                "endLine": 865,
+                "endChar": 0
+              },
+              "replacement": "            assertThat(players).containsKey(player.getId());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+              "range": {
+                "startLine": 919,
+                "startChar": 0,
+                "endLine": 920,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(players).containsKey(mAvrcpStateMachine.getAddressedPlayerId());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb75f4bc_becb896c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "Might be clearer to keep the syntax `assertThat(item.equals(item)).isTrue()` given that `Item.equals` is the function under test (same comment for other occurences).",
+      "range": {
+        "startLine": 624,
+        "startChar": 8,
+        "endLine": 624,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c07cb345_89cde03b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+              "range": {
+                "startLine": 624,
+                "startChar": 0,
+                "endLine": 625,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(item.equals(item)).isTrue();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpItemTest.java",
+              "range": {
+                "startLine": 645,
+                "startChar": 0,
+                "endLine": 646,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(item.equals(itemEqual)).isTrue();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b9b9c18_14da8a8f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "Given the implementation for `doCompareMap`, I would use the pattern:\n\n```\nassertThat(mBluetoothKeystoreService.getNameDecryptKey()).containsExactlyEntriesIn(mNameDecryptKeyResult);\n```\n\nand remove the helper",
+      "range": {
+        "startLine": 211,
+        "startChar": 24,
+        "endLine": 211,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "65866339_336a0c0c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+              "range": {
+                "startLine": 210,
+                "startChar": 0,
+                "endLine": 215,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mBluetoothKeystoreService.getNameDecryptKey())\n                .containsExactlyEntriesIn(mNameDecryptKeyResult);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+              "range": {
+                "startLine": 224,
+                "startChar": 0,
+                "endLine": 229,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mBluetoothKeystoreService.getNameEncryptKey())\n                .containsExactlyEntriesIn(mNameDecryptKeyResult);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+              "range": {
+                "startLine": 243,
+                "startChar": 0,
+                "endLine": 248,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mBluetoothKeystoreService.getNameDecryptKey())\n                .containsExactlyEntriesIn(mNameDecryptKeyResult);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+              "range": {
+                "startLine": 285,
+                "startChar": 0,
+                "endLine": 290,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mBluetoothKeystoreService.getNameDecryptKey())\n                .containsExactlyEntriesIn(mNameDecryptKeyResult);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a889bf16_052852bd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "Same here, get rid of doCompareKeySet",
+      "range": {
+        "startLine": 225,
+        "startChar": 24,
+        "endLine": 225,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3909d3f2_7e966f4c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/bluetoothKeystore/BluetoothKeystoreServiceTest.java",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 228,
+                "endChar": 0
+              },
+              "replacement": "                        mNameDecryptKeyResult.keySet().equals(\n                                mBluetoothKeystoreService.getNameEncryptKey().keySet()))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ad099e_124e7529",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "`assertThat().contains()`",
+      "range": {
+        "startLine": 238,
+        "startChar": 8,
+        "endLine": 239,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b8af85a7_835dfb14",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+              "range": {
+                "startLine": 238,
+                "startChar": 0,
+                "endLine": 240,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mProvider.mContents).contains(TEST_NUMBER_ONE);\n        assertThat(mProvider.mContents).contains(TEST_NUMBER_TWO);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0982536_5b5bd9dd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2173,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "`assertThat().containsKey()`",
+      "range": {
+        "startLine": 2173,
+        "startChar": 8,
+        "endLine": 2173,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d7f4759c_0e746f6b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+              "range": {
+                "startLine": 2173,
+                "startChar": 0,
+                "endLine": 2174,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mmsMsgList).containsKey(TEST_HANDLE_ONE);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+              "range": {
+                "startLine": 2210,
+                "startChar": 0,
+                "endLine": 2211,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mmsMsgList).containsKey(TEST_HANDLE_ONE);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+              "range": {
+                "startLine": 2231,
+                "startChar": 0,
+                "endLine": 2232,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mmsMsgList).doesNotContainKey(TEST_HANDLE_ONE);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+              "range": {
+                "startLine": 2257,
+                "startChar": 0,
+                "endLine": 2258,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mmsMsgList).containsKey(TEST_HANDLE_ONE);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "246f1c0f_198d2b21",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-18T02:16:38Z",
+      "side": 1,
+      "message": "Hem, I would prefer `assertThat().isEqualTo(new byte[]{})`, it is more consistent with the GATT API. Same with other replacements",
+      "range": {
+        "startLine": 254,
+        "startChar": 20,
+        "endLine": 257,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ba2453bc_aeb32619",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+              "range": {
+                "startLine": 253,
+                "startChar": 0,
+                "endLine": 258,
+                "endChar": 0
+              },
+              "replacement": "            assertThat(characteristic.getValue()).isEqualTo(new byte[] {\n                    indexReasonPair.first.byteValue(), indexReasonPair.second.byteValue()\n            });\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+              "range": {
+                "startLine": 574,
+                "startChar": 0,
+                "endLine": 578,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(characteristic.getValue()).isEqualTo(new byte[] {\n                requestedOpcode, callIndex, result\n        });\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+              "range": {
+                "startLine": 587,
+                "startChar": 0,
+                "endLine": 591,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(characteristic.getValue()).isEqualTo(new byte[] {\n                requestedOpcode, callIndex, result\n        });\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ae878bf3ebdb6f9b7a60a93fbfd8cce67041852f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
