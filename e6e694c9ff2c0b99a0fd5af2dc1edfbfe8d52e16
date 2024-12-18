@@ -74,6 +74,30 @@
       },
       "revId": "e6e694c9ff2c0b99a0fd5af2dc1edfbfe8d52e16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c6c195_8e535367",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-18T19:56:19Z",
+      "side": 1,
+      "message": "ack, can this be moved next to the other class constructor then ?",
+      "parentUuid": "38b34bcd_2f764a80",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 51
+      },
+      "revId": "e6e694c9ff2c0b99a0fd5af2dc1edfbfe8d52e16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
