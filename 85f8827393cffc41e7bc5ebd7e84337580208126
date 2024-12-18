@@ -1,0 +1,105 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f40459c_66dd2784",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-18T07:42:11Z",
+      "side": 1,
+      "message": "Nit: what do you think about making this less verbose by passing these to a helper?\n\nprivate void doTestIdentityAddressWithType(BluetoothDevice device, OwnAddressType addressType) { ... }\n\nYou should be able to use device.getAddress() for the expected address in the random case as well. And then a single ternary operator for expected address type - addressType \u003d\u003d OwnAddressType.RANDOM ? BluetoothDevice.ADDRESS_TYPE_RANDOM : BluetoothDevice.ADDRESS_TYPE_PUBLIC",
+      "range": {
+        "startLine": 558,
+        "startChar": 8,
+        "endLine": 567,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e3ad3ebe_8db6a248",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 558,
+                "startChar": 0,
+                "endLine": 562,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 563,
+                "startChar": 0,
+                "endLine": 567,
+                "endChar": 0
+              },
+              "replacement": "            testStep_BondLe_identityAddressWithType(\n                    mRemoteLeDevice,\n                    OwnAddressType.RANDOM,\n                    Utils.BUMBLE_RANDOM_ADDRESS,\n                    BluetoothDevice.ADDRESS_TYPE_RANDOM);\n        } else {\n            testStep_BondLe_identityAddressWithType(\n                    mBumbleDevice,\n                    OwnAddressType.PUBLIC,\n                    mBumbleDevice.getAddress(),\n                    BluetoothDevice.ADDRESS_TYPE_PUBLIC);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 568,
+                "startChar": 0,
+                "endLine": 568,
+                "endChar": 0
+              },
+              "replacement": "    }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 569,
+                "startChar": 0,
+                "endLine": 573,
+                "endChar": 0
+              },
+              "replacement": "    private void testStep_BondLe_identityAddressWithType(\n            BluetoothDevice device,\n            OwnAddressType ownAddressType,\n            String expectedAddress,\n            int expectedAddressType) {\n        registerIntentActions(\n                BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                BluetoothDevice.ACTION_ACL_CONNECTED,\n                BluetoothDevice.ACTION_PAIRING_REQUEST);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 574,
+                "startChar": 0,
+                "endLine": 576,
+                "endChar": 0
+              },
+              "replacement": "        mBumble.gattBlocking()\n                .registerService(\n                        GattProto.RegisterServiceRequest.newBuilder()\n                                .setService(\n                                        GattProto.GattServiceParams.newBuilder()\n                                                .setUuid(BATTERY_UUID.toString())\n                                                .build())\n                                .build());\n        mBumble.gattBlocking()\n                .registerService(\n                        GattProto.RegisterServiceRequest.newBuilder()\n                                .setService(\n                                        GattProto.GattServiceParams.newBuilder()\n                                                .setUuid(HOGP_UUID.toString())\n                                                .build())\n                                .build());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 577,
+                "startChar": 0,
+                "endLine": 578,
+                "endChar": 0
+              },
+              "replacement": "        mBumble.hostBlocking()\n                .advertise(\n                        AdvertiseRequest.newBuilder()\n                                .setLegacy(true)\n                                .setConnectable(true)\n                                .setOwnAddressType(ownAddressType)\n                                .build());\n\n        StreamObserver\u003cPairingEventAnswer\u003e pairingEventAnswerObserver \u003d\n                mBumble.security()\n                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)\n                        .onPairing(mPairingEventStreamObserver);\n\n        assertThat(device.createBond(BluetoothDevice.TRANSPORT_LE)).isTrue();\n\n        verifyIntentReceivedUnordered(\n                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),\n                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));\n        verifyIntentReceived(\n                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),\n                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE));\n        verifyIntentReceivedUnordered(\n                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),\n                hasExtra(\n                        BluetoothDevice.EXTRA_PAIRING_VARIANT,\n                        BluetoothDevice.PAIRING_VARIANT_CONSENT));\n\n        // Approve pairing from Android\n        assertThat(device.setPairingConfirmation(true)).isTrue();\n\n        PairingEvent pairingEvent \u003d mPairingEventStreamObserver.iterator().next();\n        assertThat(pairingEvent.hasJustWorks()).isTrue();\n        pairingEventAnswerObserver.onNext(\n                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());\n\n        // Ensure that pairing succeeds\n        verifyIntentReceived(\n                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),\n                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));\n\n        BluetoothAddress identityAddress \u003d device.getIdentityAddressWithType();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 580,
+                "startChar": 0,
+                "endLine": 580,
+                "endChar": 0
+              },
+              "replacement": "\n        unregisterIntentActions(\n                BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                BluetoothDevice.ACTION_ACL_CONNECTED,\n                BluetoothDevice.ACTION_PAIRING_REQUEST);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "85f8827393cffc41e7bc5ebd7e84337580208126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
