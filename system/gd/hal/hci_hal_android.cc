@@ -80,42 +80,54 @@ public:
   void hciEventReceived(const std::vector<uint8_t>& packet) override {
     common::StopWatch stop_watch(GetTimerText(__func__, packet));
     link_clocker_->OnHciEvent(packet);
+    log::error("[evt] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::INCOMING,
                              SnoopLogger::PacketType::EVT);
+    log::error("[evt] call stack");
     {
       std::lock_guard<std::mutex> lock(mutex_);
       callback_->hciEventReceived(packet);
     }
+    log::error("[evt] processed");
   }
 
   void aclDataReceived(const std::vector<uint8_t>& packet) override {
     common::StopWatch stop_watch(GetTimerText(__func__, packet));
+    log::error("[acl] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::INCOMING,
                              SnoopLogger::PacketType::ACL);
+    log::error("[acl] call stack");
     {
       std::lock_guard<std::mutex> lock(mutex_);
       callback_->aclDataReceived(packet);
     }
+    log::error("[acl] processed");
   }
 
   void scoDataReceived(const std::vector<uint8_t>& packet) override {
     common::StopWatch stop_watch(GetTimerText(__func__, packet));
+    log::error("[sco] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::INCOMING,
                              SnoopLogger::PacketType::SCO);
+    log::error("[sco] call stack");
     {
       std::lock_guard<std::mutex> lock(mutex_);
       callback_->scoDataReceived(packet);
     }
+    log::error("[sco] processed");
   }
 
   void isoDataReceived(const std::vector<uint8_t>& packet) override {
     common::StopWatch stop_watch(GetTimerText(__func__, packet));
+    log::error("[iso] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::INCOMING,
                              SnoopLogger::PacketType::ISO);
+    log::error("[iso] call stack");
     {
       std::lock_guard<std::mutex> lock(mutex_);
       callback_->isoDataReceived(packet);
     }
+    log::error("[iso] processed");
   }
 
 private:
@@ -135,27 +147,39 @@ public:
   void unregisterIncomingPacketCallback() override { callbacks_->ResetCallback(); }
 
   void sendHciCommand(HciPacket packet) override {
+    log::error("[cmd] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
                              SnoopLogger::PacketType::CMD);
+    log::error("[cmd] call hal");
     backend_->sendHciCommand(packet);
+    log::error("[cmd] processed");
   }
 
   void sendAclData(HciPacket packet) override {
+    log::error("[acl] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
                              SnoopLogger::PacketType::ACL);
+    log::error("[acl] call hal");
     backend_->sendAclData(packet);
+    log::error("[acl] processed");
   }
 
   void sendScoData(HciPacket packet) override {
+    log::error("[sco] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
                              SnoopLogger::PacketType::SCO);
+    log::error("[sco] call hal");
     backend_->sendScoData(packet);
+    log::error("[sco] processed");
   }
 
   void sendIsoData(HciPacket packet) override {
+    log::error("[iso] snoop-logger");
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
                              SnoopLogger::PacketType::ISO);
+    log::error("[iso] call hal");
     backend_->sendIsoData(packet);
+    log::error("[iso] processed");
   }
 
   uint16_t getMsftOpcode() override {
