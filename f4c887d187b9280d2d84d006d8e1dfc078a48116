@@ -87,6 +87,30 @@
       },
       "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "936c88f2_c4ca44cb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3781,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-19T04:51:46Z",
+      "side": 1,
+      "message": "Parcel has no guarantee of stability though, and it\u0027s explicitly stated in the documentation that parcelables should not be written to disk or sent over a network. They are intended for IPC only, and the structure can change.",
+      "parentUuid": "417b4a21_cadc595b",
+      "range": {
+        "startLine": 3781,
+        "startChar": 47,
+        "endLine": 3781,
+        "endChar": 68
+      },
+      "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
