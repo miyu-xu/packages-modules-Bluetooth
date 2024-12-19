@@ -64,6 +64,29 @@
       },
       "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "417b4a21_cadc595b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3781,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-19T03:48:49Z",
+      "side": 1,
+      "message": "This is exposing the internal parcelable implementation as API (along with writeToParcel, describeContents and the CREATOR).\n\nWe should / must keep this internal as there is no guarantee of stability for this",
+      "range": {
+        "startLine": 3781,
+        "startChar": 47,
+        "endLine": 3781,
+        "endChar": 68
+      },
+      "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
