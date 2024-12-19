@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd809199_01155a84",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-19T06:41:14Z",
+      "side": 1,
+      "message": "This method isn\u0027t synchronized or anything else, why not just use clientIf \u003d mClientIf here?",
+      "range": {
+        "startLine": 501,
+        "startChar": 35,
+        "endLine": 501,
+        "endChar": 46
+      },
+      "revId": "0ffcdda7fd91b3e2ebb04fc87377920a554abe6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
