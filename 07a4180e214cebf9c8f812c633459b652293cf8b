@@ -1,0 +1,122 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1108af_16740a27",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-19T01:01:34Z",
+      "side": 1,
+      "message": "Can we use enum here instead for proper type safety?",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "94641970_3874f41f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "    public enum UnregisterReason {\n        UNREGISTER_ALL,\n        UNREGISTER_CLIENT,\n        UNREGISTER_SERVER,\n        BINDER_DIED,\n        REGISTER_FAILED\n    }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "        public UnregisterReason reason;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 210,
+                "startChar": 0,
+                "endLine": 211,
+                "endChar": 0
+              },
+              "replacement": "    public void remove(UUID uuid, UnregisterReason reason) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 226,
+                "startChar": 0,
+                "endLine": 227,
+                "endChar": 0
+              },
+              "replacement": "    public void remove(int id, UnregisterReason reason) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 439,
+                "startChar": 0,
+                "endLine": 440,
+                "endChar": 0
+              },
+              "replacement": "                sb.append(\", reason: \").append(record.reason).append(\"\\n\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 451,
+                "startChar": 0,
+                "endLine": 452,
+                "endChar": 0
+              },
+              "replacement": "    private void recordUnregisterApp(App app, UnregisterReason reason) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+              "range": {
+                "startLine": 467,
+                "startChar": 0,
+                "endLine": 478,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "07a4180e214cebf9c8f812c633459b652293cf8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87434243_30ccbd95",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-19T01:01:34Z",
+      "side": 1,
+      "message": "Let\u0027s use a constant for this.",
+      "revId": "07a4180e214cebf9c8f812c633459b652293cf8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
