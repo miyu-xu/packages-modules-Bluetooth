@@ -34,6 +34,24 @@
       ],
       "revId": "5b7fad0e5e546ecceedbeb13a7bd5c12d9da9355",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63be9043_baa6679e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-19T01:12:33Z",
+      "side": 1,
+      "message": "Yes, I filed a proper bug to track proper fix. But It will take some time to implemnet. \nThis issue blocking the test. I would like to merge this fisrt.",
+      "parentUuid": "64f9458d_49a7af51",
+      "revId": "5b7fad0e5e546ecceedbeb13a7bd5c12d9da9355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
