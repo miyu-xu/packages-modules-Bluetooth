@@ -16,10 +16,7 @@
 //! The Binder HAL interface is replicated as C Interface in `ffi` module
 
 mod ffi;
-mod proxy;
 mod service;
 
 pub use ffi::{CCallbacks, CInterface};
 pub use service::HciHalProxy;
-
-pub use proxy::Module;

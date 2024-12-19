@@ -12,20 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::{arbiter::Arbiter, hci::IsoData};
-pub(crate) use aidl::android::hardware::bluetooth::offload::leaudio::StreamConfiguration::StreamConfiguration;
+use android_hardware_bluetooth_offload_leaudio::{aidl, binder};
+
+use crate::arbiter::Arbiter;
 use aidl::android::hardware::bluetooth::offload::leaudio::{
     IHciProxy::{BnHciProxy, BpHciProxy, IHciProxy},
     IHciProxyCallbacks::IHciProxyCallbacks,
 };
-use android_hardware_bluetooth_offload_leaudio::{aidl, binder};
 use binder::{
     BinderFeatures, DeathRecipient, ExceptionCode, Interface, Result as BinderResult, Strong,
 };
-use std::{
-    collections::HashMap,
-    sync::{Arc, Mutex, Weak},
-};
+use bluetooth_offload_hci::IsoData;
+use std::collections::HashMap;
+use std::sync::{Arc, Mutex, Weak};
+
+pub(crate) use aidl::android::hardware::bluetooth::offload::leaudio::StreamConfiguration::StreamConfiguration;
 
 pub(crate) struct Service {
     state: Arc<Mutex<State>>,

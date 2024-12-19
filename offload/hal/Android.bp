@@ -11,6 +11,8 @@ rust_library {
     rustlibs: [
         "android.hardware.bluetooth-V1-rust",
         "libbinder_rs",
+        "libbluetooth_offload_hci",
+        "libbluetooth_offload_leaudio_hci",
         "liblog_rust",
         "liblogger",
     ],

@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::{
-    ffi::{CInterface, CStatus, Callbacks, DataCallbacks, Ffi},
-    proxy::{Module, Proxy},
-};
+use crate::ffi::{CInterface, CStatus, Callbacks, DataCallbacks, Ffi};
 use android_hardware_bluetooth::aidl::android::hardware::bluetooth::{
     IBluetoothHci::IBluetoothHci, IBluetoothHciCallbacks::IBluetoothHciCallbacks, Status::Status,
 };
 use binder::{DeathRecipient, ExceptionCode, Interface, Result as BinderResult, Strong};
+use bluetooth_offload_hci::Module;
+use bluetooth_offload_leaudio_hci::LeAudioModule;
 use std::sync::{Arc, RwLock};
 
 /// Service Implementation of AIDL interface `hardware/interface/bluetoot/aidl`,
@@ -31,26 +30,19 @@ pub struct HciHalProxy {
 
 struct FfiCallbacks {
     callbacks: Strong<dyn IBluetoothHciCallbacks>,
-    proxy: Arc<Proxy<FfiCallbacks, ProxyCallbacks>>,
+    proxy: Arc<dyn Module>,
     state: Arc<RwLock<State>>,
 }
 
-struct ProxyCallbacks {
+struct SinkModule<T: Callbacks> {
+    ffi: Arc<Ffi<T>>,
     callbacks: Strong<dyn IBluetoothHciCallbacks>,
 }
 
-#[derive(Default)]
 enum State {
-    #[default]
     Closed,
-    Opening {
-        ffi: Arc<Ffi<FfiCallbacks>>,
-        proxy: Arc<Proxy<FfiCallbacks, ProxyCallbacks>>,
-    },
-    Opened {
-        proxy: Arc<Proxy<FfiCallbacks, ProxyCallbacks>>,
-        _death_recipient: DeathRecipient,
-    },
+    Opening { ffi: Arc<Ffi<FfiCallbacks>>, proxy: Arc<dyn Module> },
+    Opened { proxy: Arc<dyn Module>, _death_recipient: DeathRecipient },
 }
 
 impl Interface for HciHalProxy {}
@@ -58,7 +50,7 @@ impl Interface for HciHalProxy {}
 impl HciHalProxy {
     /// Create the HAL Proxy interface binded to the Bluetooth HCI HAL interface.
     pub fn new(cintf: CInterface) -> Self {
-        Self { ffi: Arc::new(Ffi::new(cintf)), state: Default::default() }
+        Self { ffi: Arc::new(Ffi::new(cintf)), state: Arc::new(RwLock::new(State::Closed)) }
     }
 }
 
@@ -72,8 +64,8 @@ impl IBluetoothHci for HciHalProxy {
                 return Ok(());
             }
 
-            let proxy =
-                Arc::new(Proxy::new(self.ffi.clone(), ProxyCallbacks::new(callbacks.clone())));
+            let proxy = Arc::new(SinkModule::new(self.ffi.clone(), callbacks.clone()));
+            let proxy = Arc::new(LeAudioModule::new(proxy));
             let callbacks = FfiCallbacks::new(callbacks.clone(), proxy.clone(), self.state.clone());
 
             *state = State::Opening { ffi: self.ffi.clone(), proxy: proxy.clone() };
@@ -127,10 +119,56 @@ impl IBluetoothHci for HciHalProxy {
     }
 }
 
+impl<T: Callbacks> SinkModule<T> {
+    pub(crate) fn new(ffi: Arc<Ffi<T>>, callbacks: Strong<dyn IBluetoothHciCallbacks>) -> Self {
+        Self { ffi, callbacks }
+    }
+}
+
+impl<T: Callbacks> Module for SinkModule<T> {
+    fn next(&self) -> &dyn Module {
+        unreachable!()
+    }
+
+    fn out_cmd(&self, data: &[u8]) {
+        self.ffi.send_command(data);
+    }
+    fn out_acl(&self, data: &[u8]) {
+        self.ffi.send_acl(data);
+    }
+    fn out_iso(&self, data: &[u8]) {
+        self.ffi.send_iso(data);
+    }
+    fn out_sco(&self, data: &[u8]) {
+        self.ffi.send_sco(data);
+    }
+
+    fn in_evt(&self, data: &[u8]) {
+        if let Err(e) = self.callbacks.hciEventReceived(data) {
+            log::error!("Cannot send event to client: {:?}", e);
+        }
+    }
+    fn in_acl(&self, data: &[u8]) {
+        if let Err(e) = self.callbacks.aclDataReceived(data) {
+            log::error!("Cannot send ACL to client: {:?}", e);
+        }
+    }
+    fn in_sco(&self, data: &[u8]) {
+        if let Err(e) = self.callbacks.scoDataReceived(data) {
+            log::error!("Cannot send SCO to client: {:?}", e);
+        }
+    }
+    fn in_iso(&self, data: &[u8]) {
+        if let Err(e) = self.callbacks.isoDataReceived(data) {
+            log::error!("Cannot send ISO to client: {:?}", e);
+        }
+    }
+}
+
 impl FfiCallbacks {
     fn new(
         callbacks: Strong<dyn IBluetoothHciCallbacks>,
-        proxy: Arc<Proxy<FfiCallbacks, ProxyCallbacks>>,
+        proxy: Arc<dyn Module>,
         state: Arc<RwLock<State>>,
     ) -> Self {
         Self { callbacks, proxy, state }
@@ -184,38 +222,6 @@ impl DataCallbacks for FfiCallbacks {
 
     fn iso_received(&self, data: &[u8]) {
         self.proxy.in_iso(data);
-    }
-}
-
-impl ProxyCallbacks {
-    fn new(callbacks: Strong<dyn IBluetoothHciCallbacks>) -> Self {
-        Self { callbacks }
-    }
-}
-
-impl DataCallbacks for ProxyCallbacks {
-    fn event_received(&self, data: &[u8]) {
-        if let Err(e) = self.callbacks.hciEventReceived(data) {
-            log::error!("Cannot send event to client: {:?}", e);
-        }
-    }
-
-    fn acl_received(&self, data: &[u8]) {
-        if let Err(e) = self.callbacks.aclDataReceived(data) {
-            log::error!("Cannot send ACL to client: {:?}", e);
-        }
-    }
-
-    fn sco_received(&self, data: &[u8]) {
-        if let Err(e) = self.callbacks.scoDataReceived(data) {
-            log::error!("Cannot send SCO to client: {:?}", e);
-        }
-    }
-
-    fn iso_received(&self, data: &[u8]) {
-        if let Err(e) = self.callbacks.isoDataReceived(data) {
-            log::error!("Cannot send ISO to client: {:?}", e);
-        }
     }
 }
 

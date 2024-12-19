@@ -12,7 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//! Reading / writing helpers of Bluetooth HCI Commands, Events and Data encapsulations.
+//! HCI Proxy module implementation, along with
+//! reading / writing helpers of Bluetooth HCI Commands, Events and Data encapsulations.
+
+/// Interface of a an HCI proxy module
+pub trait Module: Send + Sync {
+    /// Returns the next chained proxy module
+    fn next(&self) -> &dyn Module;
+
+    /// HCI Command from Host to Controller
+    fn out_cmd(&self, data: &[u8]) {
+        self.next().out_cmd(data);
+    }
+    /// ACL Data from Host to Controller
+    fn out_acl(&self, data: &[u8]) {
+        self.next().out_acl(data);
+    }
+    /// SCO Data from Host to Controller
+    fn out_sco(&self, data: &[u8]) {
+        self.next().out_sco(data);
+    }
+    /// ISO Data from Host to Controller
+    fn out_iso(&self, data: &[u8]) {
+        self.next().out_iso(data);
+    }
+
+    /// HCI Command from Controller to Host
+    fn in_evt(&self, data: &[u8]) {
+        self.next().in_evt(data);
+    }
+    /// ACL Data from Controller to Host
+    fn in_acl(&self, data: &[u8]) {
+        self.next().in_acl(data);
+    }
+    /// SCO Data from Controller to Host
+    fn in_sco(&self, data: &[u8]) {
+        self.next().in_sco(data);
+    }
+    /// ISO Data from Controller to Host
+    fn in_iso(&self, data: &[u8]) {
+        self.next().in_iso(data);
+    }
+}
 
 use bluetooth_offload_hci_derive as derive;
 

@@ -31,11 +31,11 @@
 //!           | | HCI                     | HCI
 //!           v | Event                   V ISO Packets
 
-use bluetooth_offload_hal as hal;
-use bluetooth_offload_hci as hci;
-
 mod arbiter;
 mod proxy;
 mod service;
+
+#[cfg(test)]
+mod tests;
 
 pub use proxy::LeAudioModule;

@@ -12,16 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::{
-    arbiter::Arbiter,
-    hal::Module,
-    hci::{self, Command, Event, IsoData, ReturnParameters, ToBytes},
-    service::{Service, StreamConfiguration},
+use crate::arbiter::Arbiter;
+use crate::service::{Service, StreamConfiguration};
+use bluetooth_offload_hci::{
+    self as hci, Command, Event, IsoData, Module, ReturnParameters, ToBytes,
 };
-use std::{
-    collections::HashMap,
-    sync::{Arc, Mutex},
-};
+use std::collections::HashMap;
+use std::sync::{Arc, Mutex};
 
 const DATA_PATH_ID_SOFTWARE: u8 = 0x19; // TODO
 
@@ -298,8 +295,8 @@ impl Module for LeAudioModule {
                 return;
             }
 
-            Event::Malformed(code, sub_code) => {
-                log::error!("Malformed event with code: ({:?}, {:?})", code, sub_code);
+            Event::Malformed(code) => {
+                log::error!("Malformed event with code: {:?}", code);
             }
 
             _ => (),

@@ -12,12 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use crate::{hal::Module, hci::IsoData};
-use std::{
-    collections::{HashMap, VecDeque},
-    sync::{Arc, Condvar, Mutex, MutexGuard},
-    thread::{self, JoinHandle},
-};
+use bluetooth_offload_hci::{IsoData, Module};
+use std::collections::{HashMap, VecDeque};
+use std::sync::{Arc, Condvar, Mutex, MutexGuard};
+use std::thread::{self, JoinHandle};
 
 pub struct Arbiter {
     state_cvar: Arc<(Mutex<State>, Condvar)>,

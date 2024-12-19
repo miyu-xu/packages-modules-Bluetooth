@@ -34,61 +34,54 @@ pub enum Event {
     LeCreateBigComplete(LeCreateBigComplete),
     /// 7.7.65.28  LE Terminate BIG Complete
     LeTerminateBigComplete(LeTerminateBigComplete),
+
     /// Unhandled Event
-    Other(u8, Option<u8>),
+    Other(Code),
     /// Malformed Event
-    Malformed(Option<u8>, Option<u8>),
+    Malformed(Option<Code>),
 }
 
 impl Event {
-    const LE_EVENT_CODE: u8 = 0x3e;
-
     /// Read an HCI Event packet
     pub fn from_bytes(data: &[u8]) -> Self {
         let Some((code, mut r)) = Self::parse_packet(data) else {
-            return Self::Malformed(None, None);
+            return Self::Malformed(None);
         };
-
-        Self::parse_event(code, &mut r).unwrap_or(Event::Malformed(Some(code), None))
+        Self::parse_event(code, &mut r).unwrap_or(Event::Malformed(Some(code)))
     }
 
-    fn parse_packet(data: &[u8]) -> Option<(u8, Reader)> {
+    fn parse_packet(data: &[u8]) -> Option<(Code, Reader)> {
         let mut r = Reader::new(data);
         let code = r.read_u8()?;
         let len = r.read_u8()? as usize;
+        let (code, len) = match code {
+            Code::LE_META => (Code::from_le(r.read_u8()?), len - 1),
+            _ => (Code::from(code), len),
+        };
         Some((code, Reader::new(r.get(len)?)))
     }
 
-    fn parse_event(code: u8, r: &mut Reader) -> Option<Event> {
+    fn parse_event(code: Code, r: &mut Reader) -> Option<Event> {
+        dbg!(code);
+        dbg!(LeCisEstablished::CODE);
         Some(match code {
             CommandComplete::CODE => Self::CommandComplete(r.read()?),
             CommandStatus::CODE => Self::CommandStatus(r.read()?),
             DisconnectionComplete::CODE => Self::DisconnectionComplete(r.read()?),
             NumberOfCompletedPackets::CODE => Self::NumberOfCompletedPackets(r.read()?),
-            Self::LE_EVENT_CODE => {
-                let sub_code = r.read_u8()?;
-                Self::parse_le_event(sub_code, r)
-                    .unwrap_or(Event::Malformed(Some(code), Some(sub_code)))
-            }
-            code => Self::Other(code, None),
+            LeCisEstablished::CODE => Self::LeCisEstablished(r.read()?),
+            LeCreateBigComplete::CODE => Self::LeCreateBigComplete(r.read()?),
+            LeTerminateBigComplete::CODE => Self::LeTerminateBigComplete(r.read()?),
+            code => Self::Other(code),
         })
     }
 
-    fn parse_le_event(sub_code: u8, r: &mut Reader) -> Option<Event> {
-        Some(match Some(sub_code) {
-            LeCisEstablished::SUB_CODE => Self::LeCisEstablished(r.read()?),
-            LeCreateBigComplete::SUB_CODE => Self::LeCreateBigComplete(r.read()?),
-            LeTerminateBigComplete::SUB_CODE => Self::LeTerminateBigComplete(r.read()?),
-            sub_code => Self::Other(Self::LE_EVENT_CODE, sub_code),
-        })
-    }
-
-    fn to_bytes<T: Code + Write>(event: &T) -> Vec<u8> {
+    fn to_bytes<T: CodeDef + Write>(event: &T) -> Vec<u8> {
         let mut vec = Vec::with_capacity(2 + 255);
-        vec.extend([T::CODE, 0u8]);
+        vec.extend([T::CODE.code(), 0u8]);
         let mut w = Writer::new(&mut vec);
-        if let Some(sub_code) = T::SUB_CODE {
-            w.write_u8(sub_code);
+        if let Some(subcode) = T::CODE.subcode() {
+            w.write_u8(subcode)
         }
         w.write(event);
         vec[1] = (vec.len() - 2).try_into().unwrap();
@@ -96,20 +89,47 @@ impl Event {
     }
 }
 
-/// Define event codes
-pub trait Code {
+/// Code of HCI Event, as defined in Part E - 5.4.4
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct Code(u16);
+
+impl Code {
+    const LE_META: u8 = 0x3e;
+
+    const fn from(code: u8) -> Self {
+        assert!(!matches!(code, Self::LE_META));
+        Self((code as u16) << 8)
+    }
+
+    const fn from_le(subcode: u8) -> Self {
+        Self(((Self::LE_META as u16) << 8) | (subcode as u16))
+    }
+
+    const fn code(&self) -> u8 {
+        (self.0 >> 8) as u8
+    }
+
+    const fn subcode(&self) -> Option<u8> {
+        if matches!(self.code(), Self::LE_META) {
+            Some((self.0 & 0xff) as u8)
+        } else {
+            None
+        }
+    }
+}
+
+/// Define event Code
+pub trait CodeDef {
     /// Code of the event
-    const CODE: u8;
-    /// Sub-Code when `CODE` is `Event::LE_EVENT_CODE`
-    const SUB_CODE: Option<u8> = None;
+    const CODE: Code;
 }
 
 /// Build event from definition
-pub trait ToBytes: Code + Write {
+pub trait ToBytes: CodeDef + Write {
     /// Output the HCI Event packet
     fn to_bytes(&self) -> Vec<u8>
     where
-        Self: Sized + Code + Write,
+        Self: Sized + CodeDef + Write,
     {
         Event::to_bytes(self)
     }
@@ -126,130 +146,189 @@ use crate::derive::{Read, Write};
 use crate::command::{OpCode, ReturnParameters};
 
 
-/// 7.7.5 Disconnection Complete
+// 7.7.5 Disconnection Complete
 
-impl Code for DisconnectionComplete {
-    const CODE: u8 = 0x05;
+impl CodeDef for DisconnectionComplete {
+    const CODE: Code = Code::from(0x05);
 }
 
 #[derive(Debug, Read)]
 pub struct DisconnectionComplete {
-    #[N(1)] pub status: u8,
-    #[N(2)] pub connection_handle: u16,
-    #[N(1)] pub reason: u8,
+    pub status: u8,
+    pub connection_handle: u16,
+    pub reason: u8,
+}
+
+#[test]
+fn disconnection_complete() {
+    let dump = [0x05, 0x04, 0x00, 0x60, 0x00, 0x16];
+    let Event::DisconnectionComplete(e) = Event::from_bytes(&dump) else { panic!() };
+    assert_eq!(e.status, 0);
+    assert_eq!(e.connection_handle, 0x60);
+    assert_eq!(e.reason, 0x16);
 }
 
 
-/// 7.7.14 Command Complete
+// 7.7.14 Command Complete
 
-impl Code for CommandComplete {
-    const CODE: u8 = 0x0e;
+impl CodeDef for CommandComplete {
+    const CODE: Code = Code::from(0x0e);
 }
 
 #[derive(Debug, Read)]
 pub struct CommandComplete {
-    #[N(1)] pub num_hci_command_packets: u8,
+    pub num_hci_command_packets: u8,
     pub return_parameters: ReturnParameters,
 }
 
+#[test]
+fn command_complete() {
+    let dump = [0x0e, 0x04, 0x01, 0x03, 0x0c, 0x00];
+    let Event::CommandComplete(e) = Event::from_bytes(&dump) else { panic!() };
+    assert_eq!(e.num_hci_command_packets, 1);
+}
 
-/// 7.7.15 Command Status
 
-impl Code for CommandStatus {
-    const CODE: u8 = 0x0f;
+// 7.7.15 Command Status
+
+impl CodeDef for CommandStatus {
+    const CODE: Code = Code::from(0x0f);
 }
 
 #[derive(Debug, Read)]
 pub struct CommandStatus {
-    #[N(1)] pub status: u8,
-    #[N(1)] pub num_hci_command_packets: u8,
-    #[N(2)] pub opcode: OpCode,
+    pub status: u8,
+    pub num_hci_command_packets: u8,
+    pub opcode: OpCode,
+}
+
+#[test]
+fn command_status() {
+    let dump = [0x0f, 0x04, 0x00, 0x01, 0x01, 0x04];
+    let Event::CommandStatus(e) = Event::from_bytes(&dump) else { panic!() };
+    assert_eq!(e.status, 0);
+    assert_eq!(e.num_hci_command_packets, 1);
+    assert_eq!(e.opcode, OpCode::from(0x01, 0x001));
 }
 
 
-/// 7.7.19 Number Of Completed Packets
+// 7.7.19 Number Of Completed Packets
 
-impl Code for NumberOfCompletedPackets {
-    const CODE: u8 = 0x13;
+impl CodeDef for NumberOfCompletedPackets {
+    const CODE: Code = Code::from(0x13);
 }
 
 #[derive(Debug, Default, Read, Write)]
 pub struct NumberOfCompletedPackets {
-    #[N(1)] pub handles: Vec<NumberOfCompletedPacketsHandle>,
+    pub handles: Vec<NumberOfCompletedPacketsHandle>,
 }
 
 #[derive(Debug, Copy, Clone, Read, Write)]
 pub struct NumberOfCompletedPacketsHandle {
-    #[N(2)] pub connection_handle: u16,
-    #[N(2)] pub num_completed_packets: u16,
+    pub connection_handle: u16,
+    pub num_completed_packets: u16,
 }
 
 impl ToBytes for NumberOfCompletedPackets {}
 
+#[test]
+fn number_of_completed_packets() {
+    let dump = [0x13, 0x09, 0x02, 0x40, 0x00, 0x01, 0x00, 0x41, 0x00, 0x01, 0x00];
+    let Event::NumberOfCompletedPackets(e) = Event::from_bytes(&dump) else { panic!() };
+    assert_eq!(e.handles.len(), 2);
+    assert_eq!(e.handles[0].connection_handle, 0x40);
+    assert_eq!(e.handles[0].num_completed_packets, 1);
+    assert_eq!(e.handles[1].connection_handle, 0x41);
+    assert_eq!(e.handles[1].num_completed_packets, 1);
+    assert_eq!(e.to_bytes(), &dump[..]);
+}
 
-/// 7.7.65.25 LE CIS Established
 
-impl Code for LeCisEstablished {
-    const CODE: u8 = Event::LE_EVENT_CODE;
-    const SUB_CODE: Option<u8> = Some(0x19);
+// 7.7.65.25 LE CIS Established
+
+impl CodeDef for LeCisEstablished {
+    const CODE: Code = Code::from_le(0x19);
 }
 
 #[derive(Debug, Read)]
 pub struct LeCisEstablished {
-    #[N(1)] pub status: u8,
-    #[N(2)] pub connection_handle: u16,
+    pub status: u8,
+    pub connection_handle: u16,
     #[N(3)] pub cig_sync_delay: u32,
     #[N(3)] pub cis_sync_delay: u32,
     #[N(3)] pub transport_latency_c_to_p: u32,
     #[N(3)] pub transport_latency_p_to_c: u32,
-    #[N(1)] pub phy_c_to_p: u8,
-    #[N(1)] pub phy_p_to_c: u8,
-    #[N(1)] pub nse: u8,
-    #[N(1)] pub bn_c_to_p: u8,
-    #[N(1)] pub bn_p_to_c: u8,
-    #[N(1)] pub ft_c_to_p: u8,
-    #[N(1)] pub ft_p_to_c: u8,
-    #[N(2)] pub max_pdu_c_to_p: u16,
-    #[N(2)] pub max_pdu_p_to_c: u16,
-    #[N(2)] pub iso_interval: u16,
+    pub phy_c_to_p: u8,
+    pub phy_p_to_c: u8,
+    pub nse: u8,
+    pub bn_c_to_p: u8,
+    pub bn_p_to_c: u8,
+    pub ft_c_to_p: u8,
+    pub ft_p_to_c: u8,
+    pub max_pdu_c_to_p: u16,
+    pub max_pdu_p_to_c: u16,
+    pub iso_interval: u16,
+}
+
+#[test]
+fn le_cis_established() {
+    let dump = [
+        0x3e, 0x1d, 0x19, 0x00, 0x60, 0x00, 0x40, 0x2c, 0x00, 0x40, 0x2c, 0x00, 0xd0, 0x8b, 0x01, 0x60,
+        0x7a, 0x00, 0x02, 0x02, 0x06, 0x02, 0x00, 0x05, 0x01, 0x78, 0x00, 0x00, 0x00, 0x10, 0x00
+    ];
+    let Event::LeCisEstablished(e) = Event::from_bytes(&dump) else { panic!() };
+    assert_eq!(e.status, 0);
+    assert_eq!(e.connection_handle, 0x60);
+    assert_eq!(e.cig_sync_delay, 11_328);
+    assert_eq!(e.cis_sync_delay, 11_328);
+    assert_eq!(e.transport_latency_c_to_p, 101_328);
+    assert_eq!(e.transport_latency_p_to_c, 31_328);
+    assert_eq!(e.phy_c_to_p, 0x02);
+    assert_eq!(e.phy_p_to_c, 0x02);
+    assert_eq!(e.nse, 6);
+    assert_eq!(e.bn_c_to_p, 2);
+    assert_eq!(e.bn_p_to_c, 0);
+    assert_eq!(e.ft_c_to_p, 5);
+    assert_eq!(e.ft_p_to_c, 1);
+    assert_eq!(e.max_pdu_c_to_p, 120);
+    assert_eq!(e.max_pdu_p_to_c, 0);
+    assert_eq!(e.iso_interval, 16);
 }
 
 
-/// 7.7.65.27 LE Create BIG Complete
+// 7.7.65.27 LE Create BIG Complete
 
-impl Code for LeCreateBigComplete {
-    const CODE: u8 = Event::LE_EVENT_CODE;
-    const SUB_CODE: Option<u8> = Some(0x1B);
+impl CodeDef for LeCreateBigComplete {
+    const CODE: Code = Code::from_le(0x1b);
 }
 
 #[derive(Debug, Read)]
 pub struct LeCreateBigComplete {
-    #[N(1)] pub status: u8,
-    #[N(1)] pub big_handle: u8,
+    pub status: u8,
+    pub big_handle: u8,
     #[N(3)] pub big_sync_delay: u32,
     #[N(3)] pub transport_latency_big: u32,
-    #[N(1)] pub phy: u8,
-    #[N(1)] pub nse: u8,
-    #[N(1)] pub bn: u8,
-    #[N(1)] pub pto: u8,
-    #[N(1)] pub irc: u8,
-    #[N(2)] pub max_pdu: u16,
-    #[N(2)] pub iso_interval: u16,
-    #[N(1)] pub bis_handles: Vec<u16>,
+    pub phy: u8,
+    pub nse: u8,
+    pub bn: u8,
+    pub pto: u8,
+    pub irc: u8,
+    pub max_pdu: u16,
+    pub iso_interval: u16,
+    pub bis_handles: Vec<u16>,
 }
 
 
-/// 7.7.65.28 LE Terminate BIG Complete
+// 7.7.65.28 LE Terminate BIG Complete
 
-impl Code for LeTerminateBigComplete {
-    const CODE: u8 = Event::LE_EVENT_CODE;
-    const SUB_CODE: Option<u8> = Some(0x1C);
+impl CodeDef for LeTerminateBigComplete {
+    const CODE: Code = Code::from_le(0x1c);
 }
 
 #[derive(Debug, Read)]
 pub struct LeTerminateBigComplete {
-    #[N(1)] pub big_handle: u8,
-    #[N(1)] pub reason: u8,
+    pub big_handle: u8,
+    pub reason: u8,
 }
 
 }

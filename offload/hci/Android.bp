@@ -14,14 +14,26 @@ rust_proc_macro {
     ],
 }
 
-rust_library {
-    name: "libbluetooth_offload_hci",
-    vendor_available: true,
-    crate_name: "bluetooth_offload_hci",
+rust_defaults {
+    name: "bluetooth_offload_hci_defaults",
     crate_root: "lib.rs",
+    crate_name: "bluetooth_offload_hci",
     edition: "2021",
     proc_macros: [
         "libbluetooth_offload_hci_derive",
     ],
-    visibility: ["//packages/modules/Bluetooth/offload:__subpackages__"],
+    visibility: [
+        "//packages/modules/Bluetooth/offload:__subpackages__",
+    ],
+}
+
+rust_library {
+    name: "libbluetooth_offload_hci",
+    defaults: ["bluetooth_offload_hci_defaults"],
+    vendor_available: true,
+}
+
+rust_test_host {
+    name: "libbluetooth_offload_hci_test",
+    defaults: ["bluetooth_offload_hci_defaults"],
 }
