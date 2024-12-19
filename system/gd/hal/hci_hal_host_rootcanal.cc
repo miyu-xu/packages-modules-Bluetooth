@@ -164,7 +164,6 @@ public:
 
 protected:
   void ListDependencies(ModuleList* list) const {
-    list->add<metrics::CounterMetrics>();
     list->add<SnoopLogger>();
   }
 

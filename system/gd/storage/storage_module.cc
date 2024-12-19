@@ -145,7 +145,6 @@ void StorageModule::Clear() {
 }
 
 void StorageModule::ListDependencies(ModuleList* list) const {
-  list->add<metrics::CounterMetrics>();
 }
 
 void StorageModule::Start() {
