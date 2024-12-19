@@ -242,10 +242,18 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (493768 Flag for using appropriate authentication requirements when )
+    name: "peripheral_auth_req"
+    namespace: "bluetooth"
+    description: "Use appropriate authentication requirements for SMP security request in peripheral role"
+    bug: "385202199"
+||||||| BASE
+=======
     name: "bonded_device_smp_failure_handling"
     namespace: "bluetooth"
     description: "Don't remove bond on SMP failure for bonded devices in peripheral role"
     bug: "385181815"
+>>>>>>> BASE      (d50cf9 Merge changes Ibcf00552,If46c5fe1 into main)
     metadata {
         purpose: PURPOSE_BUGFIX
     }
