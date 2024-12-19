@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66a10908_7f203835",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-19T12:39:25Z",
+      "side": 1,
+      "message": "Created le_conn_params.h/cc, and set the default aggressive interval as 10/20.\n\nThose who want may be able to set via system properties.",
+      "parentUuid": "c879643a_40f3a7f1",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b55383b3_a2d17855",
