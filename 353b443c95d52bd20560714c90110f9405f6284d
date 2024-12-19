@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1d8796_c1323c9f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-19T12:31:21Z",
+      "side": 1,
+      "message": "this block seems to be called in different places - maybe you could extract it to some helper function ?",
+      "revId": "353b443c95d52bd20560714c90110f9405f6284d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

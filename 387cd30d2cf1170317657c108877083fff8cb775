@@ -52,6 +52,24 @@
       "parentUuid": "3e38b433_3a317a7f",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b885e563_ad0a703f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-19T12:31:21Z",
+      "side": 1,
+      "message": "the bottom line is that when we consider coordinated set, we should always keep in sync absolute volume for both and not separatelly.\n\nI think this is time  to fix this API and basically use it as a group API anyways, just an entry point is device address.\n\nI don\u0027t believe there was an intetion to control absolute volume separatelly for each set member, for that we have setVolumeOffset API",
+      "parentUuid": "cece6695_05932cb0",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
