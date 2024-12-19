@@ -81,8 +81,11 @@ import pandora.GattProto;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.ConnectabilityMode;
+import pandora.HostProto.DataTypes;
+import pandora.HostProto.DiscoverabilityMode;
 import pandora.HostProto.OwnAddressType;
 import pandora.HostProto.SetConnectabilityModeRequest;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
 import pandora.SecurityProto.LESecurityLevel;
 import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
@@ -100,9 +103,11 @@ import java.util.concurrent.TimeUnit;
 @RunWith(TestParameterInjector.class)
 public class PairingTest {
     private static final String TAG = "PairingTest";
+    private static final String BUMBLE_DEVICE_NAME = "Bumble";
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int TEST_DELAY_MS = 1000;
-
+    private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
+    private CompletableFuture<BluetoothDevice> mDeviceFound;
     private static final ParcelUuid BATTERY_UUID =
             ParcelUuid.fromString("0000180F-0000-1000-8000-00805F9B34FB");
 
@@ -158,6 +163,23 @@ public class PairingTest {
                                 int bondState =
                                         intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, -1);
                                 Log.d(TAG, "onReceive(): bondState=" + bondState);
+                            } else if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
+                                BluetoothDevice device =
+                                        intent.getParcelableExtra(
+                                                BluetoothDevice.EXTRA_DEVICE,
+                                                BluetoothDevice.class);
+                                String deviceName =
+                                        String.valueOf(
+                                                intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                                Log.i(
+                                        TAG,
+                                        "Discovered device: "
+                                                + device
+                                                + " with name: "
+                                                + deviceName);
+                                if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
+                                    mDeviceFound.complete(device);
+                                }
                             }
                             return null;
                         })
@@ -744,6 +766,48 @@ public class PairingTest {
     }
 
     /**
+     * Verify identity retention on BT restart
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Reference devices must use RPA in pairing mode
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Put the ref device in pairing mode (connectable advertising)
+     *   <li>Discover the ref device on the DUT and pair with it
+     *   <li>Verify address mapping of ref device
+     *   <li>Restart BT on DUT
+     *   <li>Verify address mapping of ref device
+     * </ol>
+     *
+     * <p>Expectation: Identity address should retain on BT restart
+     */
+    @Test
+    public void testIdentityAddressRetentionOnRestart() {
+        registerIntentActions(BluetoothDevice.ACTION_FOUND);
+        startAdvertise();
+        // Start Discovery
+        mDeviceFound = new CompletableFuture<>();
+        assertThat(sAdapter.startDiscovery()).isTrue();
+        BluetoothDevice remoteLeDevice =
+                mDeviceFound
+                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+        verifyIntentReceived(hasAction(BluetoothDevice.ACTION_FOUND));
+        testStep_BondLe(remoteLeDevice, OwnAddressType.RANDOM);
+        assertThat(remoteLeDevice.getIdentityAddress()).isNotNull();
+
+        String savedAddr = remoteLeDevice.getIdentityAddress();
+        testStep_restartBt();
+        assertThat(remoteLeDevice.getIdentityAddress()).isEqualTo(savedAddr);
+        unregisterIntentActions(BluetoothDevice.ACTION_FOUND);
+    }
+
+    /**
      * Test removeDevice API when connected over BR/EDR
      *
      * <p>Prerequisites:
@@ -949,6 +1013,28 @@ public class PairingTest {
                 BluetoothDevice.ACTION_ACL_DISCONNECTED,
                 BluetoothDevice.ACTION_BOND_STATE_CHANGED,
                 BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
+    }
+
+    private void startAdvertise() {
+        // Make Bumble non-discoverable over BR/EDR
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.NOT_DISCOVERABLE)
+                                .build());
+        // Make Bumble connectable using RPA
+        DataTypes.Builder dataTypeBuilder = DataTypes.newBuilder();
+        dataTypeBuilder.setCompleteLocalName(BUMBLE_DEVICE_NAME);
+        dataTypeBuilder.setLeDiscoverabilityModeValue(
+                DiscoverabilityMode.DISCOVERABLE_GENERAL_VALUE);
+        mBumble.hostBlocking()
+                .advertise(
+                        AdvertiseRequest.newBuilder()
+                                .setLegacy(true)
+                                .setConnectable(true)
+                                .setOwnAddressType(OwnAddressType.RANDOM)
+                                .setData(dataTypeBuilder.build())
+                                .build());
     }
 
     private void testStep_BondBredr() {
