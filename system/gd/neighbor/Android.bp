@@ -14,3 +14,10 @@ filegroup {
         "scan.cc",
     ],
 }
+
+filegroup {
+    name: "BluetoothFacade_neighbor",
+    srcs: [
+        "facade/facade.cc",
+    ],
+}
