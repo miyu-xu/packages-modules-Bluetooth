@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c879643a_40f3a7f1",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-19T12:35:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9345c1f_903b1159",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b55383b3_a2d17855",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "624cf697_88fa2840",
+        "filename": "system/stack/include/le_conn_params.h",
+        "patchSetId": 30
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-19T12:35:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b55383b3_a2d17855",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e8772ca_d69d28b6",
@@ -66,6 +102,24 @@
       "writtenOn": "2024-12-17T21:35:15Z",
       "side": 1,
       "message": "We should be updating connection interval for service discovery only initial connection parameters were not aggressive.\nIn other words, service discovery connection parameters must be same as initial aggressive connection parameters.",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f265c293_bbc06356",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-19T12:35:33Z",
+      "side": 1,
+      "message": "Most of the aggressive cases, there will be no connection update.\nAdded the comment about why it is here.\n\nThis check had to be here since we cannot check Hearing Aid activity in gd/, because it creates a dependency on stack/ code.",
+      "parentUuid": "8e8772ca_d69d28b6",
       "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
