@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0822bfa6_9343bf16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-19T11:08:26Z",
+      "side": 1,
+      "message": "I would",
+      "revId": "2096ab0b11cd0475d8994fcc438a8c45c739efb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "714a0eeb_82afda19",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2670,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-19T11:08:26Z",
+      "side": 1,
+      "message": "we should not mix those two.\n\nI believe that on ACTION DISABLE, which seems to me 3 times failure on creating CISes, we shall check if this is Dual Mode device or Hearing Aid with ASHA and try to switch to the other Mode.\n\nIn case it is LeAudio only mode, it is OK to Disconnect.",
+      "revId": "2096ab0b11cd0475d8994fcc438a8c45c739efb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
