@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8080bb8_80c52e60",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-12-19T20:58:25Z",
+      "side": 1,
+      "message": "Please move it inside of `if (slot-\u003efd !\u003d INVALID_FD)`",
+      "range": {
+        "startLine": 550,
+        "startChar": 0,
+        "endLine": 555,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "30a8178a_740c9c9f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 548,
+                "startChar": 0,
+                "endLine": 549,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 550,
+                "startChar": 0,
+                "endLine": 554,
+                "endChar": 0
+              },
+              "replacement": "    if (com::android::bluetooth::flags::socket_settings_api()) {\n      if (slot-\u003edata_path \u003d\u003d BTSOCK_DATA_PATH_HARDWARE_OFFLOAD \u0026\u0026 !slot-\u003ef.server \u0026\u0026\n          slot-\u003esocket_id !\u003d 0) {\n        bluetooth::shim::GetLppOffloadManager()-\u003eSocketClosed(slot-\u003esocket_id);\n      }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46e04759652013b6abe0044329c2704a41be3875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
