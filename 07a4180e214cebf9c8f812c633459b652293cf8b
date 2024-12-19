@@ -102,6 +102,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc494f2_2f434d2a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-19T07:47:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a1108af_16740a27",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "07a4180e214cebf9c8f812c633459b652293cf8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87434243_30ccbd95",
@@ -115,6 +139,24 @@
       "writtenOn": "2024-12-19T01:01:34Z",
       "side": 1,
       "message": "Let\u0027s use a constant for this.",
+      "revId": "07a4180e214cebf9c8f812c633459b652293cf8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "175857ec_8ecf1f5f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-19T07:47:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87434243_30ccbd95",
       "revId": "07a4180e214cebf9c8f812c633459b652293cf8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
