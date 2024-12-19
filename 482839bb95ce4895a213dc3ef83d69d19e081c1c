@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4746f2e2_2744fec6",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-19T03:08:21Z",
+      "side": 1,
+      "message": "nit: remove?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 23
+      },
+      "revId": "482839bb95ce4895a213dc3ef83d69d19e081c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
