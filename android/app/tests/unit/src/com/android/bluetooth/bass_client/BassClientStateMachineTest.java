@@ -231,8 +231,8 @@ public class BassClientStateMachineTest {
     /** Test that default state is disconnected */
     @Test
     public void testDefaultDisconnectedState() {
-        Assert.assertEquals(
-                BluetoothProfile.STATE_DISCONNECTED, mBassClientStateMachine.getConnectionState());
+        assertThat(mBassClientStateMachine.getConnectionState())
+                .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
     }
 
     /**
@@ -301,9 +301,8 @@ public class BassClientStateMachineTest {
                         intentArgument1.capture(),
                         any(String[].class),
                         any(BroadcastOptions.class));
-        Assert.assertEquals(
-                BluetoothProfile.STATE_CONNECTING,
-                intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
+        assertThat(intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1))
+                .isEqualTo(BluetoothProfile.STATE_CONNECTING);
 
         Assert.assertThat(
                 mBassClientStateMachine.getCurrentState(),
@@ -342,9 +341,8 @@ public class BassClientStateMachineTest {
                         intentArgument1.capture(),
                         any(String[].class),
                         any(BroadcastOptions.class));
-        Assert.assertEquals(
-                BluetoothProfile.STATE_CONNECTING,
-                intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
+        assertThat(intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1))
+                .isEqualTo(BluetoothProfile.STATE_CONNECTING);
 
         Assert.assertThat(
                 mBassClientStateMachine.getCurrentState(),
@@ -357,9 +355,8 @@ public class BassClientStateMachineTest {
                         intentArgument2.capture(),
                         any(String[].class),
                         any(BroadcastOptions.class));
-        Assert.assertEquals(
-                BluetoothProfile.STATE_DISCONNECTED,
-                intentArgument2.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
+        assertThat(intentArgument2.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1))
+                .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
 
         Assert.assertThat(
                 mBassClientStateMachine.getCurrentState(),
@@ -815,7 +812,7 @@ public class BassClientStateMachineTest {
                 ArgumentCaptor.forClass(BluetoothLeBroadcastReceiveState.class);
         verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
 
         mBassClientStateMachine.mPendingOperation = 0;
         mBassClientStateMachine.mPendingSourceId = 0;
@@ -827,7 +824,7 @@ public class BassClientStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
 
         mBassClientStateMachine.mPendingMetadata = createBroadcastMetadata();
         sourceId = 1;
@@ -884,7 +881,7 @@ public class BassClientStateMachineTest {
         verify(callbacks).notifySourceAdded(any(), any(), anyInt());
         verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // set some values for covering more lines of processPASyncState()
         mBassClientStateMachine.mPendingMetadata = null;
@@ -918,7 +915,7 @@ public class BassClientStateMachineTest {
 
         verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
         assertThat(mBassClientStateMachine.mMsgWhats).contains(REMOVE_BCAST_SOURCE);
 
         mBassClientStateMachine.mIsPendingRemove = null;
@@ -942,7 +939,7 @@ public class BassClientStateMachineTest {
                         any(), anyInt(), eq(BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
         verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
     }
 
     @Test
@@ -975,7 +972,7 @@ public class BassClientStateMachineTest {
         ArgumentCaptor<BluetoothLeBroadcastReceiveState> receiveStateCaptor =
                 ArgumentCaptor.forClass(BluetoothLeBroadcastReceiveState.class);
         verify(callbacks).notifyReceiveStateChanged(any(), anyInt(), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
     }
 
     @Test
@@ -1107,7 +1104,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Read first time second (last) characteristic
         int sourceId2 = 2;
@@ -1124,7 +1121,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId2), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
     }
 
     /** This also tests BassClientStateMachine#processBroadcastReceiverState. */
@@ -1222,7 +1219,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Empty value to indicates removing source from device by remote
         when(characteristic.getValue()).thenReturn(new byte[] {});
@@ -1237,7 +1234,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
 
         // Sync value again
         mBassClientStateMachine.mPendingOperation = ADD_BCAST_SOURCE;
@@ -1252,7 +1249,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Empty value to indicates removing source from device by local app
         mBassClientStateMachine.mPendingOperation = REMOVE_BCAST_SOURCE;
@@ -1268,7 +1265,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
 
         // Sync value again
         mBassClientStateMachine.mPendingOperation = ADD_BCAST_SOURCE;
@@ -1283,7 +1280,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Empty value to indicates removing source from device by stack (source switch)
         BluetoothLeBroadcastMetadata metadata = createBroadcastMetadata();
@@ -1300,7 +1297,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mEmptyTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mEmptyTestDevice);
         assertThat(mBassClientStateMachine.mMsgWhats).contains(ADD_BCAST_SOURCE);
         assertThat(mBassClientStateMachine.mMsgObj).isEqualTo(metadata);
 
@@ -1317,7 +1314,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Update value - PA SyncInfo Request
         value[BassConstants.BCAST_RCVR_STATE_PA_SYNC_IDX] =
@@ -1345,7 +1342,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Update value - PA SyncInfo Request, local broadcast
         mBassClientStateMachine.mPendingMetadata = createBroadcastMetadata();
@@ -1367,7 +1364,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Update value - Broadcast Code
         value[BassConstants.BCAST_RCVR_STATE_PA_SYNC_IDX] =
@@ -1387,7 +1384,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
 
         // Update value - Pending Remove
         value[BassConstants.BCAST_RCVR_STATE_PA_SYNC_IDX] =
@@ -1404,7 +1401,7 @@ public class BassClientStateMachineTest {
         inOrderCallbacks
                 .verify(callbacks)
                 .notifyReceiveStateChanged(any(), eq(sourceId), receiveStateCaptor.capture());
-        Assert.assertEquals(receiveStateCaptor.getValue().getSourceDevice(), mSourceTestDevice);
+        assertThat(receiveStateCaptor.getValue().getSourceDevice()).isEqualTo(mSourceTestDevice);
     }
 
     @Test
@@ -1856,7 +1853,7 @@ public class BassClientStateMachineTest {
                 BassClientStateMachine.ConnectedProcessing.class);
         verify(scanControlPoint).setValue(any(byte[].class));
         verify(btGatt).writeCharacteristic(any());
-        assertThat(mBassClientStateMachine.mPendingSourceToSwitch).isEqualTo(null);
+        assertThat(mBassClientStateMachine.mPendingSourceToSwitch).isNull();
     }
 
     @Test
@@ -2654,7 +2651,7 @@ public class BassClientStateMachineTest {
         verify(mMethodProxy, timeout(TIMEOUT_MS))
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
-        Assert.assertEquals(mBassClientStateMachine.mPendingSourceToAdd, metadata);
+        assertThat(mBassClientStateMachine.mPendingSourceToAdd).isEqualTo(metadata);
         verify(mBassClientService, never()).sendBroadcast(any(Intent.class), anyString(), any());
     }
 
@@ -2781,7 +2778,7 @@ public class BassClientStateMachineTest {
                 ArgumentCaptor.forClass(BluetoothLeBroadcastMetadata.class);
         verify(callbacks).notifySourceFound(metaData.capture());
 
-        Assert.assertEquals(testRssi, metaData.getValue().getRssi());
+        assertThat(metaData.getValue().getRssi()).isEqualTo(testRssi);
     }
 
     @Test
