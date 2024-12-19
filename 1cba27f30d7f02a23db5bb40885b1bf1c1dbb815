@@ -40,6 +40,30 @@
       ],
       "revId": "1cba27f30d7f02a23db5bb40885b1bf1c1dbb815",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a63d5622_bb3ff933",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-12-19T22:19:56Z",
+      "side": 1,
+      "message": "It does not reset the `socket_id` to 0. I have added it here to reset the `socket_id`.",
+      "parentUuid": "e366412d_373001e4",
+      "range": {
+        "startLine": 552,
+        "startChar": 49,
+        "endLine": 552,
+        "endChar": 62
+      },
+      "revId": "1cba27f30d7f02a23db5bb40885b1bf1c1dbb815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
