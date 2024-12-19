@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "944f6e8d_955af55a",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-19T18:09:47Z",
+      "side": 1,
+      "message": "you are adding an old flag. wrong merge conflict resolution ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "e9654999bd0a5ac15d9f03c6bbb284d0751431f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
