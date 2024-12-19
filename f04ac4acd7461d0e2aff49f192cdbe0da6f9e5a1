@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0c56a8b_9c538c43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-19T21:35:08Z",
+      "side": 1,
+      "message": "Since this is based on the latest test results from Qualcomm I\u0027d suggest adding a line saying something about those tests.  \n\n```\nTest: m com.android.btservices \u0026\u0026 QC tests\n```",
+      "revId": "f04ac4acd7461d0e2aff49f192cdbe0da6f9e5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
