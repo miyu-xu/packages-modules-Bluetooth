@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d601d76_5d3c70c0",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-19T09:50:18Z",
+      "side": 1,
+      "message": "can we log somewhere the accept list size? In case btsnoop is not enabled and this would be a case then would be good to get this info in logcat. Maybe debug log in `accept_list_is_full` when limit is reached.",
+      "fixSuggestions": [
+        {
+          "fixId": "37f24282_974f9810",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/connection_manager/connection_manager.cc",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "  log::debug(\"accept list size: {}\", accept_list_size);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7d8e347966c4de5746e7d75b355dd4f583799105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
