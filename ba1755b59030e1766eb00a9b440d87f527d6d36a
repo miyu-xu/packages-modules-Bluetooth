@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccbe2179_391de458",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-19T10:05:55Z",
+      "side": 0,
+      "message": "I recall that when direct call is done without allocated memory for p_tcb, we had to call `gatt_update_app_use_link_flag` here. Are you sure this is not needed anymore? Did you make any test for this?",
+      "revId": "ba1755b59030e1766eb00a9b440d87f527d6d36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
