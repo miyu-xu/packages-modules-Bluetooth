@@ -146,6 +146,30 @@
       },
       "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9071293e_b61ba12d",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2024-12-19T05:12:38Z",
+      "side": 1,
+      "message": "Hi Aarthi, do you mean test file? I have no idea about how to write test. Could you please help test it? thanks a lot!",
+      "parentUuid": "769749b4_18d74ab8",
+      "range": {
+        "startLine": 905,
+        "startChar": 12,
+        "endLine": 905,
+        "endChar": 37
+      },
+      "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
