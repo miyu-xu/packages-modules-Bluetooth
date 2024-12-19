@@ -111,6 +111,30 @@
       },
       "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b6aea6_302e330a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3781,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-19T08:38:15Z",
+      "side": 1,
+      "message": "I am not sure your answer is pro/con my comment ^^\n\nParcel has no guarantee, which is why I am raising the concern that this new API is not good. The Parcelable aspect of the BluetoothAddress should not be part of the API.\n\nIf we want to do IPC, we could have a internal class (and this one could be parcelable) and a private constructor on BluetoothAddress that can use that.\n\nI was trying this pattern for aics https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3299962/33/framework/java/android/bluetooth/AudioInputControl.java (patchest is important), but I gave up on this pattern since it wasn\u0027t worth it in my case.",
+      "parentUuid": "936c88f2_c4ca44cb",
+      "range": {
+        "startLine": 3781,
+        "startChar": 47,
+        "endLine": 3781,
+        "endChar": 68
+      },
+      "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
