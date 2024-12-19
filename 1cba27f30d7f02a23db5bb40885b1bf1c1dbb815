@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e366412d_373001e4",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-19T21:45:46Z",
+      "side": 1,
+      "message": "does SocketClosed() reset `slot-\u003esocket_id` to 0?  If not we might want to do that at the end of cleanup_rfc_slot",
+      "range": {
+        "startLine": 552,
+        "startChar": 49,
+        "endLine": 552,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "05ddd1a1_058889ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 581,
+                "startChar": 0,
+                "endLine": 581,
+                "endChar": 0
+              },
+              "replacement": "  slot-\u003esocket_id \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1cba27f30d7f02a23db5bb40885b1bf1c1dbb815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
