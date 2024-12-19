@@ -86,7 +86,6 @@ import com.android.bluetooth.le_audio.LeAudioService;
 import com.google.common.truth.Expect;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -396,10 +395,8 @@ public class BassClientServiceTest {
         when(mDatabaseManager.getProfileConnectionPolicy(
                         mCurrentDevice, BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
-        Assert.assertEquals(
-                "Initial device policy",
-                BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
-                mBassClientService.getConnectionPolicy(mCurrentDevice));
+        assertThat(mBassClientService.getConnectionPolicy(mCurrentDevice))
+                .isEqualTo(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
     }
 
     /**
@@ -614,7 +611,7 @@ public class BassClientServiceTest {
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
         expect.that(mBassClientService.getActiveSyncedSources()).isEmpty();
-        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isNull();
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
     }
@@ -648,7 +645,7 @@ public class BassClientServiceTest {
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
         expect.that(mBassClientService.getActiveSyncedSources()).isEmpty();
-        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isNull();
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
     }
@@ -984,7 +981,7 @@ public class BassClientServiceTest {
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
 
-        // Error in syncEstablished causes soureLost, sourceAddFailed notification
+        // Error in syncEstablished causes sourceLost, sourceAddFailed notification
         // and removing cache because scanning is active
         onSyncEstablishedFailed(device1, handle1);
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
@@ -1039,7 +1036,7 @@ public class BassClientServiceTest {
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
 
-        // Error in syncEstablished causes soureLost, sourceAddFailed notification
+        // Error in syncEstablished causes sourceLost, sourceAddFailed notification
         // and not removing cache because scanning is inactice
         onSyncEstablishedFailed(device1, handle1);
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
@@ -1156,7 +1153,7 @@ public class BassClientServiceTest {
         mBassClientService.addSource(mCurrentDevice1, meta, false);
         handleHandoverSupport();
 
-        // Error in syncEstablished causes soureLost, sourceAddFailed notification for both sinks
+        // Error in syncEstablished causes sourceLost, sourceAddFailed notification for both sinks
         onSyncEstablishedFailed(mSourceDevice, TEST_SYNC_HANDLE);
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
         InOrder inOrderCallback = inOrder(mCallback);
@@ -2037,7 +2034,7 @@ public class BassClientServiceTest {
             assertThat(msg.get().arg1).isEqualTo(TEST_SOURCE_ID);
             assertThat(msg.get().arg2).isEqualTo(BassConstants.PA_SYNC_DO_NOT_SYNC);
             // Verify metadata is null
-            assertThat(msg.get().obj).isEqualTo(null);
+            assertThat(msg.get().obj).isNull();
         }
 
         for (BassClientStateMachine sm : mStateMachines.values()) {
@@ -2066,7 +2063,7 @@ public class BassClientServiceTest {
                     null);
             doReturn(null).when(sm).getCurrentBroadcastMetadata(eq(TEST_SOURCE_ID));
             assertThat(mBassClientService.getSourceMetadata(sm.getDevice(), TEST_SOURCE_ID))
-                    .isEqualTo(null);
+                    .isNull();
 
             doReturn(meta).when(sm).getCurrentBroadcastMetadata(eq(TEST_SOURCE_ID));
             doReturn(true).when(sm).isSyncedToTheSource(eq(TEST_SOURCE_ID));
@@ -2527,8 +2524,8 @@ public class BassClientServiceTest {
             prepareConnectedDeviceGroup();
             assertThat(mStateMachines.size()).isEqualTo(2);
 
-            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isEqualTo(null);
-            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isEqualTo(null);
+            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNull();
+            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNull();
 
             // Verify add active synced source
             mBassClientService.addActiveSyncedSource(mCurrentDevice, testSyncHandle);
@@ -2536,10 +2533,8 @@ public class BassClientServiceTest {
             // Verify duplicated source won't be added
             mBassClientService.addActiveSyncedSource(mCurrentDevice, testSyncHandle);
             mBassClientService.addActiveSyncedSource(mCurrentDevice1, testSyncHandle);
-            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice))
-                    .isNotEqualTo(null);
-            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1))
-                    .isNotEqualTo(null);
+            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNotNull();
+            assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNotNull();
             assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice).size())
                     .isEqualTo(1);
             assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1).size())
@@ -2548,8 +2543,8 @@ public class BassClientServiceTest {
             // Verify remove active synced source
             mBassClientService.removeActiveSyncedSource(mCurrentDevice, testSyncHandle);
             mBassClientService.removeActiveSyncedSource(mCurrentDevice1, testSyncHandle);
-            expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isEqualTo(null);
-            expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isEqualTo(null);
+            expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNull();
+            expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNull();
         }
     }
 
@@ -2826,7 +2821,7 @@ public class BassClientServiceTest {
                     0x56,
                     0x18,
                     0x07,
-                    0x04, // WRONG PUBLIC_BROADCAST data (metada size)
+                    0x04, // WRONG PUBLIC_BROADCAST data (metadata size)
                     0x06,
                     0x07,
                     0x08,
@@ -2906,11 +2901,11 @@ public class BassClientServiceTest {
 
         // Two SyncRequest queued but not synced yet
         assertThat(mBassClientService.getActiveSyncedSources()).isEmpty();
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2))
@@ -2931,10 +2926,10 @@ public class BassClientServiceTest {
         assertThat(mBassClientService.getActiveSyncedSources().size()).isEqualTo(1);
         assertThat(mBassClientService.getActiveSyncedSources()).containsExactly(handle1);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(device1);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1)).isEqualTo(broadcastId1);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
@@ -2953,9 +2948,9 @@ public class BassClientServiceTest {
                 .inOrder();
         assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(device1);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1)).isEqualTo(broadcastId1);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2)).isEqualTo(broadcastId2);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle3))
@@ -2978,8 +2973,8 @@ public class BassClientServiceTest {
                 .inOrder();
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(null);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isNull();
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1)).isEqualTo(broadcastId1);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2)).isEqualTo(broadcastId2);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle3)).isEqualTo(broadcastId3);
@@ -3003,7 +2998,7 @@ public class BassClientServiceTest {
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1)).isEqualTo(broadcastId1);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2)).isEqualTo(broadcastId2);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle3)).isEqualTo(broadcastId3);
@@ -3024,11 +3019,11 @@ public class BassClientServiceTest {
         assertThat(mBassClientService.getActiveSyncedSources())
                 .containsExactly(handle2, handle3, handle4)
                 .inOrder();
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isNull();
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2)).isEqualTo(broadcastId2);
@@ -3043,7 +3038,7 @@ public class BassClientServiceTest {
         expect.that(mBassClientService.getActiveSyncedSources())
                 .containsExactly(handle2, handle3, handle4, handle5)
                 .inOrder();
-        expect.that(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(handle1)).isNull();
         expect.that(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
@@ -3112,7 +3107,7 @@ public class BassClientServiceTest {
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1)).isEqualTo(broadcastId1);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2)).isEqualTo(broadcastId2);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle3)).isEqualTo(broadcastId3);
@@ -3139,10 +3134,10 @@ public class BassClientServiceTest {
                 .containsExactly(handle1, handle3, handle4)
                 .inOrder();
         expect.that(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(device1);
-        expect.that(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(handle2)).isNull();
         expect.that(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
-        expect.that(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(handle1))
                 .isEqualTo(broadcastId1);
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(handle2))
@@ -3207,7 +3202,7 @@ public class BassClientServiceTest {
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle1)).isEqualTo(broadcastId1);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle2)).isEqualTo(broadcastId2);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(handle3)).isEqualTo(broadcastId3);
@@ -3272,11 +3267,11 @@ public class BassClientServiceTest {
         expect.that(mBassClientService.getActiveSyncedSources())
                 .containsExactly(handle2, handle3, handle4)
                 .inOrder();
-        expect.that(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(handle1)).isNull();
         expect.that(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
-        expect.that(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(handle5)).isNull();
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(handle1))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(handle2))
@@ -3347,7 +3342,7 @@ public class BassClientServiceTest {
         assertThat(mBassClientService.getActiveSyncedSources())
                 .containsExactly(handle2, handle3, handle4, handle5)
                 .inOrder();
-        assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(handle1)).isNull();
         assertThat(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(device2);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         assertThat(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
@@ -3403,7 +3398,7 @@ public class BassClientServiceTest {
                 .containsExactly(handle3, handle4, handle5, handle1)
                 .inOrder();
         expect.that(mBassClientService.getDeviceForSyncHandle(handle1)).isEqualTo(device1);
-        expect.that(mBassClientService.getDeviceForSyncHandle(handle2)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(handle2)).isNull();
         expect.that(mBassClientService.getDeviceForSyncHandle(handle3)).isEqualTo(device3);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle4)).isEqualTo(device4);
         expect.that(mBassClientService.getDeviceForSyncHandle(handle5)).isEqualTo(device5);
@@ -3635,7 +3630,7 @@ public class BassClientServiceTest {
         prepareConnectedDeviceGroup();
         startSearchingForSources();
 
-        // Added and executed immidiatelly as no other in queue
+        // Added and executed immediately as no other in queue
         mCallbackCaptor
                 .getValue()
                 .onScanResult(ScanSettings.CALLBACK_TYPE_ALL_MATCHES, scanResult1);
@@ -3833,7 +3828,7 @@ public class BassClientServiceTest {
 
         // Test using onSyncEstablishedFailed
 
-        // Added and executed immidiatelly as no other in queue, high rssi
+        // Added and executed immediately as no other in queue, high rssi
         mCallbackCaptor
                 .getValue()
                 .onScanResult(ScanSettings.CALLBACK_TYPE_ALL_MATCHES, scanResult1);
@@ -3916,7 +3911,7 @@ public class BassClientServiceTest {
 
         // Test using onSyncLost
 
-        // Added and executed immidiatelly as no other in queue, high rssi
+        // Added and executed immediately as no other in queue, high rssi
         mCallbackCaptor
                 .getValue()
                 .onScanResult(ScanSettings.CALLBACK_TYPE_ALL_MATCHES, scanResult1);
@@ -3993,8 +3988,8 @@ public class BassClientServiceTest {
         // Verify add active synced source
         mBassClientService.addActiveSyncedSource(mCurrentDevice, testSyncHandle);
         mBassClientService.addActiveSyncedSource(mCurrentDevice1, testSyncHandle);
-        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNotEqualTo(null);
-        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNotEqualTo(null);
+        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNotNull();
+        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNotNull();
         assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice).size()).isEqualTo(1);
         assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1).size()).isEqualTo(1);
 
@@ -4006,8 +4001,8 @@ public class BassClientServiceTest {
         mBassClientService.addActiveSyncedSource(mCurrentDevice, testSyncHandle3);
         mBassClientService.addActiveSyncedSource(mCurrentDevice1, testSyncHandle3);
 
-        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNotEqualTo(null);
-        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNotEqualTo(null);
+        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNotNull();
+        assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNotNull();
         assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice).size()).isEqualTo(4);
         assertThat(mBassClientService.getActiveSyncedSources(mCurrentDevice1).size()).isEqualTo(4);
 
@@ -4031,8 +4026,8 @@ public class BassClientServiceTest {
         // Verify remove all active synced source
         mBassClientService.removeActiveSyncedSource(mCurrentDevice, null);
         mBassClientService.removeActiveSyncedSource(mCurrentDevice1, null);
-        expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isEqualTo(null);
-        expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isEqualTo(null);
+        expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice)).isNull();
+        expect.that(mBassClientService.getActiveSyncedSources(mCurrentDevice1)).isNull();
     }
 
     @Test
@@ -4071,7 +4066,7 @@ public class BassClientServiceTest {
         assertThat(
                         mBassClientService.getPeriodicAdvertisementResult(
                                 mSourceDevice, testBroadcastIdInvalid))
-                .isEqualTo(null);
+                .isNull();
         PeriodicAdvertisementResult paResult =
                 mBassClientService.getPeriodicAdvertisementResult(mSourceDevice, testBroadcastId);
         assertThat(paResult.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
@@ -4127,7 +4122,7 @@ public class BassClientServiceTest {
         assertThat(
                         mBassClientService.getPeriodicAdvertisementResult(
                                 mSourceDevice, testBroadcastId2))
-                .isEqualTo(null);
+                .isNull();
         PeriodicAdvertisementResult paResult =
                 mBassClientService.getPeriodicAdvertisementResult(mSourceDevice, testBroadcastId1);
         assertThat(paResult.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
@@ -4163,7 +4158,7 @@ public class BassClientServiceTest {
         expect.that(
                         mBassClientService.getPeriodicAdvertisementResult(
                                 mSourceDevice, testBroadcastId1))
-                .isEqualTo(null);
+                .isNull();
         paResult =
                 mBassClientService.getPeriodicAdvertisementResult(mSourceDevice, testBroadcastId2);
         expect.that(paResult.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
@@ -4804,7 +4799,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         byte[] scanRecord =
                 new byte[] {
@@ -4860,7 +4855,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -4869,10 +4864,10 @@ public class BassClientServiceTest {
 
         // Canceled, not updated base
         expect.that(mBassClientService.getActiveSyncedSources()).isEmpty();
-        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isNull();
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
-        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -4895,7 +4890,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         byte[] scanRecord =
                 new byte[] {
@@ -4960,7 +4955,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -4969,10 +4964,10 @@ public class BassClientServiceTest {
 
         // Canceled, not updated base
         expect.that(mBassClientService.getActiveSyncedSources()).isEmpty();
-        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isEqualTo(null);
+        expect.that(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isNull();
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
-        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -4995,7 +4990,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         onPeriodicAdvertisingReport();
 
@@ -5006,7 +5001,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
+        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -5029,7 +5024,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         byte[] scanRecordNoBaseData =
                 new byte[] {
@@ -5136,7 +5131,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -5150,7 +5145,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
+        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotNull();
         mInOrderMethodProxy
                 .verify(mMethodProxy, never())
                 .periodicAdvertisingManagerUnregisterSync(any(), any());
@@ -5169,7 +5164,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         onPeriodicAdvertisingReport();
 
@@ -5180,7 +5175,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotNull();
 
         if (!Flags.leaudioBigDependsOnAudioState()) {
             onBigInfoAdvertisingReport();
@@ -5196,7 +5191,7 @@ public class BassClientServiceTest {
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }
-        Assert.assertEquals(TEST_RSSI, metaData.getValue().getRssi());
+        assertThat(metaData.getValue().getRssi()).isEqualTo(TEST_RSSI);
 
         // Any of them should not notified second time
         onPeriodicAdvertisingReport();
@@ -5284,7 +5279,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         // No public announcement so it will not notify
         onPeriodicAdvertisingReport();
@@ -5296,7 +5291,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotNull();
 
         // Not notified
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
@@ -5332,7 +5327,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         // Big report before periodic so before base update
         onBigInfoAdvertisingReport();
@@ -5355,7 +5350,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotNull();
 
         if (!Flags.leaudioBigDependsOnAudioState()) {
             // onBigInfoAdvertisingReport causes notification
@@ -5387,7 +5382,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNull();
 
         byte[] scanRecordNoBaseData =
                 new byte[] {
@@ -5453,7 +5448,7 @@ public class BassClientServiceTest {
                 .isEqualTo(mSourceDevice);
         expect.that(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(TEST_BROADCAST_ID);
-        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotEqualTo(null);
+        expect.that(mBassClientService.getBase(TEST_SYNC_HANDLE)).isNotNull();
 
         // Notified
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
@@ -5562,7 +5557,7 @@ public class BassClientServiceTest {
 
         // Cleaned all
         assertThat(mBassClientService.getActiveSyncedSources()).isEmpty();
-        assertThat(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
 
@@ -5607,7 +5602,7 @@ public class BassClientServiceTest {
 
         // Cleaned all
         assertThat(mBassClientService.getActiveSyncedSources()).isEmpty();
-        assertThat(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isEqualTo(null);
+        assertThat(mBassClientService.getDeviceForSyncHandle(TEST_SYNC_HANDLE)).isNull();
         assertThat(mBassClientService.getBroadcastIdForSyncHandle(TEST_SYNC_HANDLE))
                 .isEqualTo(BassConstants.INVALID_BROADCAST_ID);
 
@@ -6956,7 +6951,7 @@ public class BassClientServiceTest {
         mBassClientService.syncRequestForPast(
                 mCurrentDevice1, TEST_BROADCAST_ID, TEST_SOURCE_ID + 1);
 
-        // Sync will send INITIATE_PA_SYNC_TRANSFER and remove pending soure to add
+        // Sync will send INITIATE_PA_SYNC_TRANSFER and remove pending source to add
         onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
         verifyInitiatePaSyncTransferAndNoOthers();
     }

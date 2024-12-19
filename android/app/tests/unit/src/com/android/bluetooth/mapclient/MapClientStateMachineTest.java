@@ -284,7 +284,7 @@ public class MapClientStateMachineTest {
     @Test
     public void testDefaultConnectingState() {
         Log.i(TAG, "in testDefaultConnectingState");
-        Assert.assertEquals(BluetoothProfile.STATE_CONNECTING, mMceStateMachine.getState());
+        assertThat(mMceStateMachine.getState()).isEqualTo(BluetoothProfile.STATE_CONNECTING);
     }
 
     /**
@@ -889,10 +889,9 @@ public class MapClientStateMachineTest {
 
         MceStateMachine.MessageMetadata messageMetadata =
                 mMceStateMachine.mMessages.get(mTestMessageSmsHandle);
-        Assert.assertEquals(messageMetadata.getHandle(), mTestMessageSmsHandle);
-        Assert.assertEquals(
-                new ObexTime(Instant.ofEpochMilli(messageMetadata.getTimestamp())).toString(),
-                dateTime);
+        assertThat(messageMetadata.getHandle()).isEqualTo(mTestMessageSmsHandle);
+        assertThat(new ObexTime(Instant.ofEpochMilli(messageMetadata.getTimestamp())).toString())
+                .isEqualTo(dateTime);
     }
 
     /**

@@ -207,7 +207,8 @@ public final class BluetoothKeystoreServiceTest {
         // Wait for encryption to complete
         mBluetoothKeystoreService.stopThread();
 
-        assertThat(mBluetoothKeystoreService.getNameDecryptKey().keySet()).containsExactlyElementsIn(mNameDecryptKeyResult.keySet());
+        assertThat(mBluetoothKeystoreService.getNameDecryptKey().keySet())
+                .containsExactlyElementsIn(mNameDecryptKeyResult.keySet());
     }
 
     @Test
