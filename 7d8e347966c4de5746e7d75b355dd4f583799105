@@ -34,6 +34,24 @@
       ],
       "revId": "7d8e347966c4de5746e7d75b355dd4f583799105",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b5aabe1_9b85e121",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-19T15:48:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d601d76_5d3c70c0",
+      "revId": "7d8e347966c4de5746e7d75b355dd4f583799105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
