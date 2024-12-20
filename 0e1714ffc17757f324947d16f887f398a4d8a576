@@ -22,6 +22,121 @@
       },
       "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c5beef_b317c4e5",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T20:02:02Z",
+      "side": 1,
+      "message": "What is the unit / data type of that ? can we have an intrange ?",
+      "range": {
+        "startLine": 275,
+        "startChar": 12,
+        "endLine": 275,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05a526a_33df01d0",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T20:02:02Z",
+      "side": 1,
+      "message": "add `@IntRange(from \u003d 0, to \u003d 499)` annotation",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93cfde0a_ad28cf53",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T20:02:02Z",
+      "side": 1,
+      "message": "Do we want to expose the contNum to client app ? @okamil@google.com",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 24
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459e07b5_820496cf",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T20:02:02Z",
+      "side": 1,
+      "message": "Same, `@IntRange(from \u003d 10, to \u003d 3200)`",
+      "range": {
+        "startLine": 278,
+        "startChar": 12,
+        "endLine": 278,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f0ddda_7a7d2cbb",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T20:02:02Z",
+      "side": 1,
+      "message": "should this be an intdef with the possible return values ?",
+      "range": {
+        "startLine": 279,
+        "startChar": 12,
+        "endLine": 279,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
