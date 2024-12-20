@@ -22,6 +22,30 @@
       },
       "revId": "0ffcdda7fd91b3e2ebb04fc87377920a554abe6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbcbd27e_6e6d5f38",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-20T07:35:25Z",
+      "side": 1,
+      "message": "I intended to do some synchronization in getClientIf() but we can use mClientIf directly.",
+      "parentUuid": "bd809199_01155a84",
+      "range": {
+        "startLine": 501,
+        "startChar": 35,
+        "endLine": 501,
+        "endChar": 46
+      },
+      "revId": "0ffcdda7fd91b3e2ebb04fc87377920a554abe6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
