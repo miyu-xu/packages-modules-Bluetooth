@@ -176,6 +176,24 @@
       "parentUuid": "402e00de_57c67bb8",
       "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "999ebd1e_f77c78e5",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-20T23:15:09Z",
+      "side": 1,
+      "message": "Thanks for the thoughts! Let\u0027s keep this as-is.",
+      "parentUuid": "c5a7b69f_98438bb8",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
