@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d255e7f4_0c4d4f84",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:03:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8cf757e3_581d6493",
+      "range": {
+        "startLine": 2138,
+        "startChar": 11,
+        "endLine": 2138,
+        "endChar": 14
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54c5beef_b317c4e5",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-12-20T20:02:02Z",
       "side": 1,
       "message": "What is the unit / data type of that ? can we have an intrange ?",
+      "range": {
+        "startLine": 275,
+        "startChar": 12,
+        "endLine": 275,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a00b0fd9_f17f046d",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:03:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "54c5beef_b317c4e5",
       "range": {
         "startLine": 275,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb35209e_d72c757d",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:03:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f05a526a_33df01d0",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 276,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93cfde0a_ad28cf53",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-12-20T20:02:02Z",
       "side": 1,
       "message": "Do we want to expose the contNum to client app ? @okamil@google.com",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 24
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7fb2ca3_e4f18c4b",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:03:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "93cfde0a_ad28cf53",
       "range": {
         "startLine": 277,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06ba7675_ef82713b",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:03:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "459e07b5_820496cf",
+      "range": {
+        "startLine": 278,
+        "startChar": 12,
+        "endLine": 278,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69f0ddda_7a7d2cbb",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-12-20T20:02:02Z",
       "side": 1,
       "message": "should this be an intdef with the possible return values ?",
+      "range": {
+        "startLine": 279,
+        "startChar": 12,
+        "endLine": 279,
+        "endChar": 15
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f02985_f01fd6d1",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:03:12Z",
+      "side": 1,
+      "message": "Per \"BLUETOOTH CORE SPECIFICATION Version 5.3 |Vol 4, Part E - 7.7.65.35 LE Subrate Change\"  using IntRange 0-255",
+      "parentUuid": "69f0ddda_7a7d2cbb",
       "range": {
         "startLine": 279,
         "startChar": 12,
