@@ -144,9 +144,7 @@ void StorageModule::Clear() {
   pimpl_->cache_.Clear();
 }
 
-void StorageModule::ListDependencies(ModuleList* list) const {
-  list->add<metrics::CounterMetrics>();
-}
+void StorageModule::ListDependencies(ModuleList* list) const {}
 
 void StorageModule::Start() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
