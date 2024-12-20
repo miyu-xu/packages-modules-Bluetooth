@@ -16,7 +16,11 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
+import android.annotation.IntRange;
 import android.annotation.NonNull;
+
+import com.android.bluetooth.flags.Flags;
 
 /** This abstract class is used to implement {@link BluetoothGatt} callbacks. */
 public abstract class BluetoothGattCallback {
@@ -257,21 +261,20 @@ public abstract class BluetoothGattCallback {
      * Callback indicating LE connection's subrate parameters have changed.
      *
      * @param gatt GATT client involved
-     * @param subrateFactor for the LE connection.
-     * @param latency Worker latency for the connection in number of connection events. Valid range
-     *     is from 0 to 499
-     * @param contNum Valid range is from 0 to 499.
-     * @param timeout Supervision timeout for this connection, in 10ms unit. Valid range is from 10
-     *     (0.1s) to 3200 (32s)
-     * @param status {@link BluetoothGatt#GATT_SUCCESS} if LE connection subrating has been changed
-     *     successfully.
-     * @hide
+     * @param subrateFactor for this LE connection.
+     * @param latency Worker latency for this LE connection in number of connection events.
+     * @param contNum Continuation Number for this LE connection.
+     * @param timeout Supervision timeout for this LE connection, in 10ms unit.
+     * @param status If LE connection subrating has been changed successfully 0 = SUCCESS, 1-0xFF
+     *     indicated the subrating request failed. Per BLUETOOTH CORE SPECIFICATION Version 5.3 |
+     *     Vol 4, Part E - 7.7.65.35 LE Subrate Change
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public void onSubrateChange(
-            BluetoothGatt gatt,
-            int subrateFactor,
-            int latency,
-            int contNum,
-            int timeout,
-            int status) {}
+            @NonNull BluetoothGatt gatt,
+            @IntRange(from = 1, to = 500) int subrateFactor,
+            @IntRange(from = 0, to = 499) int latency,
+            @IntRange(from = 0, to = 499) int contNum,
+            @IntRange(from = 10, to = 3200) int timeout,
+            @IntRange(from = 0, to = 255) int status) {}
 }
