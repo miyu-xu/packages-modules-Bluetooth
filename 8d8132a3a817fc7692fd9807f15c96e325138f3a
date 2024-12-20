@@ -40,6 +40,30 @@
       ],
       "revId": "8d8132a3a817fc7692fd9807f15c96e325138f3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "935f7e51_028765ff",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-12-20T02:52:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "116e51f8_ce476a43",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 60
+      },
+      "revId": "8d8132a3a817fc7692fd9807f15c96e325138f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
