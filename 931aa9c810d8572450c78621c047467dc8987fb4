@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64a0654b_fcf7a839",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-20T01:04:02Z",
+      "side": 1,
+      "message": "Though the fuzzer build is failing, May I ask your reviews without that? Thank you 😊",
+      "revId": "931aa9c810d8572450c78621c047467dc8987fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
