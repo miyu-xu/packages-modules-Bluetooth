@@ -16,6 +16,81 @@
       "message": "Though the fuzzer build is failing, May I ask your reviews without that? Thank you 😊",
       "revId": "931aa9c810d8572450c78621c047467dc8987fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9863c485_54a411f7",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 36
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-20T01:17:19Z",
+      "side": 1,
+      "message": "Nit: Out argument should be sent as pointer instead of reference.",
+      "fixSuggestions": [
+        {
+          "fixId": "438ec3bc_3c2c46e9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 884,
+                "startChar": 0,
+                "endLine": 886,
+                "endChar": 0
+              },
+              "replacement": "      choose_connection_mode(num_classic_acl_connections + num_acl_connections, \u0026conn_interval_min,\n                             \u0026conn_interval_max);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 974,
+                "startChar": 0,
+                "endLine": 976,
+                "endChar": 0
+              },
+              "replacement": "  void choose_connection_mode(size_t num_acl_connections, uint16_t* conn_interval_min,\n                              uint16_t* conn_interval_max) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 988,
+                "startChar": 0,
+                "endLine": 990,
+                "endChar": 0
+              },
+              "replacement": "        *conn_interval_min \u003d LeConnectionParameters::GetMinConnIntervalAggressive();\n        *conn_interval_max \u003d LeConnectionParameters::GetMaxConnIntervalAggressive();\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 993,
+                "startChar": 0,
+                "endLine": 995,
+                "endChar": 0
+              },
+              "replacement": "        *conn_interval_min \u003d LeConnectionParameters::GetMinConnIntervalRelaxed();\n        *conn_interval_max \u003d LeConnectionParameters::GetMaxConnIntervalRelaxed();\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 998,
+                "startChar": 0,
+                "endLine": 999,
+                "endChar": 0
+              },
+              "replacement": "    log::debug(\"conn_interval_min\u003d{}, conn_interval_max\u003d{}\", *conn_interval_min, *conn_interval_max);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "931aa9c810d8572450c78621c047467dc8987fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
