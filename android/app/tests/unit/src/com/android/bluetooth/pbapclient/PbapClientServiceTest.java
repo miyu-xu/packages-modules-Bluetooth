@@ -776,7 +776,23 @@ public class PbapClientServiceTest {
 
     // setConnectionPolicy (allowed -> connect) -> connect/true
 
+    // old
+
     @Test
+    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
+    public void testSetConnectionPolicy_onOld_toAllowed_connectIssued() {
+        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
+        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
+        assertThat(
+                        mService.setConnectionPolicy(
+                                mRemoteDevice, BluetoothProfile.CONNECTION_POLICY_ALLOWED))
+                .isTrue();
+    }
+
+    // new
+
+    @Test
+    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testSetConnectionPolicy_toAllowed_connectIssued() {
         assertThat(
                         mService.setConnectionPolicy(
