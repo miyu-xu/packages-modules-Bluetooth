@@ -224,13 +224,6 @@ class PbapClientContactsStorage {
      *
      * <p>This function also associates the phonebook metadata with the contact for easy
      * per-phonebook cleanup operations.
-     *
-     * <p>Contacts are inserted in smaller batches so they can be loaded in chunks as opposed to
-     * shown all at once in the UI. This also prevents us from hitting the binder transaction limit.
-     *
-     * @param account The account to insert contacts against
-     * @param phonebook The phonebook these contacts belong to
-     * @param contacts The list of contacts to insert
      */
     private boolean insertContacts(Account account, String phonebook, List<VCardEntry> contacts) {
         if (!mStorageInitialized) {
@@ -381,15 +374,11 @@ class PbapClientContactsStorage {
     /**
      * Insert call history entries of a given type
      *
-     * <p>These call logs are inserted in smaller batches so they can be loaded in chunks as opposed
-     * to shown all at once in the UI. This also prevents us from hitting the binder transaction
-     * limit
-     *
      * @param account The account to insert call logs against
-     * @param type The type of call provided
-     * @param history The list of calls to add
-     * @return True if successful, False otherwise
+     * @param type The type of call history provided
+     * @param history The call history to insert
      */
+    @SuppressWarnings("JavaUtilDate") // TODO: b/365629730 -- prefer Instant or LocalDate
     private boolean insertCallHistory(Account account, int type, List<VCardEntry> history) {
         if (!mStorageInitialized) {
             Log.w(TAG, "insertCallHistory: Failed, storage not ready");
@@ -416,112 +405,59 @@ class PbapClientContactsStorage {
         try {
             Log.i(
                     TAG,
-                    "insertCallHistory: inserting call history, account="
-                            + account
-                            + ", type="
+                    "insertCallHistory: Inserting call history, type="
                             + type
                             + ", count="
                             + history.size());
 
-            ContentResolver contactsProvider = mContext.getContentResolver();
-            ArrayList<ContentProviderOperation> operations = new ArrayList<>();
+            ArrayList<ContentProviderOperation> ops = new ArrayList<>();
+            for (VCardEntry vcard : history) {
+                ContentValues values = new ContentValues();
+                values.put(CallLog.Calls.TYPE, type);
+                values.put(Calls.PHONE_ACCOUNT_ID, account.name);
 
-            // Group insert operations together to minimize inter process communication and improve
-            // processing time.
-            for (VCardEntry callLog : history) {
-                if (Thread.currentThread().isInterrupted()) {
-                    Log.e(TAG, "insertCallHistory: Interrupted during insert");
-                    break;
+                List<PhoneData> phones = vcard.getPhoneList();
+                if (phones == null
+                        || phones.get(0).getNumber().equals(";")
+                        || phones.get(0).getNumber().length() == 0) {
+                    values.put(CallLog.Calls.NUMBER, "");
+                } else {
+                    String phoneNumber = phones.get(0).getNumber();
+                    values.put(CallLog.Calls.NUMBER, phoneNumber);
                 }
 
-                // Append current call to list of insert operations.
-                int numberOfOperations = operations.size();
-                constructInsertOperationsForCallLog(account, type, callLog, operations);
-
-                if (operations.size() >= CONTACTS_INSERT_BATCH_SIZE) {
-                    Log.i(
-                            TAG,
-                            "insertCallHistory: batch full, operations.size()="
-                                    + operations.size()
-                                    + ", batch_size="
-                                    + CONTACTS_INSERT_BATCH_SIZE);
-
-                    // If we have exceeded the limit of the insert operations, remove the latest
-                    // call and submit.
-                    operations.subList(numberOfOperations, operations.size()).clear();
-
-                    contactsProvider.applyBatch(CallLog.AUTHORITY, operations);
-
-                    // Re-add the current call log operation(s) to the list
-                    operations = constructInsertOperationsForCallLog(account, type, callLog, null);
-
-                    Log.i(
-                            TAG,
-                            "insertCallHistory: batch complete, operations.size()="
-                                    + operations.size());
-                }
-            }
-
-            // Apply any unsubmitted calls
-            if (operations.size() > 0) {
-                contactsProvider.applyBatch(CallLog.AUTHORITY, operations);
-                operations.clear();
-            }
-            Log.i(TAG, "insertCallHistory: insert complete, count=" + history.size());
-        } catch (OperationApplicationException | RemoteException | NumberFormatException e) {
-            Log.e(TAG, "insertCallHistory: Exception occurred while processing call log pull: ", e);
-            return false;
-        }
-        return true;
-    }
-
-    // TODO: b/365629730 -- JavaUtilDate: prefer Instant or LocalDate
-    // NonApiType: For convenience, as the applyBatch API actually takes an ArrayList above
-    @SuppressWarnings({"JavaUtilDate", "NonApiType"})
-    private ArrayList<ContentProviderOperation> constructInsertOperationsForCallLog(
-            Account account,
-            int type,
-            VCardEntry call,
-            ArrayList<ContentProviderOperation> operations) {
-        if (operations == null) {
-            operations = new ArrayList<ContentProviderOperation>();
-        }
-
-        ContentValues values = new ContentValues();
-        values.put(Calls.PHONE_ACCOUNT_ID, account.name);
-        values.put(CallLog.Calls.TYPE, type);
-
-        List<PhoneData> phones = call.getPhoneList();
-        if (phones == null
-                || phones.get(0).getNumber().equals(";")
-                || phones.get(0).getNumber().length() == 0) {
-            values.put(CallLog.Calls.NUMBER, "");
-        } else {
-            String phoneNumber = phones.get(0).getNumber();
-            values.put(CallLog.Calls.NUMBER, phoneNumber);
-        }
-
-        List<Pair<String, String>> irmc = call.getUnknownXData();
-        SimpleDateFormat parser = new SimpleDateFormat(TIMESTAMP_FORMAT);
-        if (irmc != null) {
-            for (Pair<String, String> pair : irmc) {
-                if (pair.first.startsWith(CALL_LOG_TIMESTAMP_PROPERTY)) {
-                    try {
-                        values.put(CallLog.Calls.DATE, parser.parse(pair.second).getTime());
-                    } catch (ParseException e) {
-                        Log.d(TAG, "Failed to parse date, value=" + pair.second);
+                List<Pair<String, String>> irmc = vcard.getUnknownXData();
+                SimpleDateFormat parser = new SimpleDateFormat(TIMESTAMP_FORMAT);
+                if (irmc != null) {
+                    for (Pair<String, String> pair : irmc) {
+                        if (pair.first.startsWith(CALL_LOG_TIMESTAMP_PROPERTY)) {
+                            try {
+                                values.put(CallLog.Calls.DATE, parser.parse(pair.second).getTime());
+                            } catch (ParseException e) {
+                                Log.d(TAG, "Failed to parse date, value=" + pair.second);
+                            }
+                        }
                     }
                 }
+
+                ops.add(
+                        ContentProviderOperation.newInsert(CallLog.Calls.CONTENT_URI)
+                                .withValues(values)
+                                .withYieldAllowed(true)
+                                .build());
+            }
+
+            mContext.getContentResolver().applyBatch(CallLog.AUTHORITY, ops);
+            Log.d(TAG, "Inserted call logs, type=" + type);
+        } catch (RemoteException | OperationApplicationException e) {
+            Log.w(TAG, "Failed to insert call log, type=" + type, e);
+            return false;
+        } finally {
+            synchronized (this) {
+                this.notify();
             }
         }
-
-        operations.add(
-                ContentProviderOperation.newInsert(CallLog.Calls.CONTENT_URI)
-                        .withValues(values)
-                        .withYieldAllowed(true)
-                        .build());
-
-        return operations;
+        return true;
     }
 
     /**
