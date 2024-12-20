@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0790645f_7295dc2b",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-20T12:00:55Z",
+      "side": 1,
+      "message": "low latency ?",
+      "range": {
+        "startLine": 645,
+        "startChar": 18,
+        "endLine": 645,
+        "endChar": 43
+      },
+      "revId": "9357de83cf388a0f3a214320f4d842190a4fb278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
