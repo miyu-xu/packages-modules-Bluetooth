@@ -88,6 +88,24 @@
       "parentUuid": "b885e563_ad0a703f",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bf896b9_23f76943",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-20T17:19:09Z",
+      "side": 1,
+      "message": "No, setDeviceVolume() is a released API, we should not change it\u0027s intent and fake it to be the same as setVolume() to set group volume only. \nWe need to continue to support this as it is.\n\nBtw, we have well discussed this among the team when introducing this API, why are we having different thoughts now after we released this API?",
+      "parentUuid": "fcf84302_e5c26ea9",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
