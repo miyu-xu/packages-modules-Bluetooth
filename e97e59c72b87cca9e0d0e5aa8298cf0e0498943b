@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26d6749_ff55e7f0",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-20T11:19:47Z",
+      "side": 0,
+      "message": "what\u0027s wrong with those consts ? Why are they removed ?",
+      "range": {
+        "startLine": 40,
+        "startChar": 60,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "e97e59c72b87cca9e0d0e5aa8298cf0e0498943b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
