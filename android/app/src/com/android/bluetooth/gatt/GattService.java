@@ -195,6 +195,7 @@ public class GattService extends ProfileService {
         mActivityManager = requireNonNull(getSystemService(ActivityManager.class));
         mPackageManager = requireNonNull(mAdapterService.getPackageManager());
         mCompanionDeviceManager = requireNonNull(getSystemService(CompanionDeviceManager.class));
+        Log.d(TAG, " Test change GattService");
 
         mTransitionalScanHelper =
                 new TransitionalScanHelper(adapterService, this::isTestModeEnabled);
