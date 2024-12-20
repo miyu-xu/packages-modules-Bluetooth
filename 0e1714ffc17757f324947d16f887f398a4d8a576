@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58afd854_72da1221",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T23:16:02Z",
+      "side": 1,
+      "message": "The question here was, should we keep the contNum internal to the stack ?\nI don\u0027t see the point of putting it in the callback.\n\nFor AICS, I remove all notion of continuation number.",
+      "parentUuid": "d7fb2ca3_e4f18c4b",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 24
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "459e07b5_820496cf",
         "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
         "patchSetId": 1

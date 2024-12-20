@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c250acd_4e09ef21",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T23:16:02Z",
+      "side": 1,
+      "message": "we can remove now",
+      "range": {
+        "startLine": 265,
+        "startChar": 89,
+        "endLine": 266,
+        "endChar": 27
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16cf772_af61c4a2",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T23:16:02Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 267,
+        "startChar": 22,
+        "endLine": 267,
+        "endChar": 51
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65629deb_9a4e0af7",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T23:16:02Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 268,
+        "startChar": 77,
+        "endLine": 269,
+        "endChar": 31
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "493dbf2a_393b2c2f",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T23:16:02Z",
+      "side": 1,
+      "message": "This one is nice to keep 👍",
+      "range": {
+        "startLine": 270,
+        "startChar": 65,
+        "endLine": 272,
+        "endChar": 54
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
