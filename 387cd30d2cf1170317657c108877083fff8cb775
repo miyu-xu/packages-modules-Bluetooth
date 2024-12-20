@@ -70,6 +70,24 @@
       "parentUuid": "cece6695_05932cb0",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf84302_e5c26ea9",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-20T10:31:44Z",
+      "side": 1,
+      "message": "@rongxuan@google.com what is you opinion? Should we limit this API only to use as setVolume for whole group using the address of one device? For now we can log some warning when someone will call it with isGroupOp\u003dfalse. Only thing which I don\u0027t like is a method name setDeviceVolume for only group usage...\n\nIf we decide to cut if it off then I will remove whole part of device volume/mute caching, but I prefer to do this in another CL in case that someone in the future want to use/implement this method for device purpose again.",
+      "parentUuid": "b885e563_ad0a703f",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
