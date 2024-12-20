@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1157274b_53fe35e5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5266,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-20T09:12:22Z",
+      "side": 1,
+      "message": "what if remote does not support GAME on the source direction?",
+      "revId": "80afdfb6e40bb80bbf865d0c6f00ec856a236355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
