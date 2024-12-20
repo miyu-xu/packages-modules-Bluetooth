@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cad6556_7d3d624d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2024-12-20T18:41:43Z",
+      "side": 1,
+      "message": "No API approval needed but thanks for the doc updates!",
+      "revId": "d9f4c1553c3eb6c10f8d46df91ea398fda9faffe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
