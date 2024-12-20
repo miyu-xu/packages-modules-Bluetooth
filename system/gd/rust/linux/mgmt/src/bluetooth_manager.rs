@@ -4,6 +4,9 @@ use std::collections::HashMap;
 use std::process::Command;
 use std::sync::{Arc, Mutex};
 
+use std::thread;
+use tokio::time::Duration;
+
 use configparser::ini::Ini;
 use glob::glob;
 
@@ -20,6 +23,8 @@ use crate::{config_util, migrate};
 
 const BLUEZ_INIT_TARGET: &str = "bluetoothd";
 const INVALID_VER: u16 = 0xffff;
+
+const RESTART_DELAY_INTERVAL_MS: u64 = 1000;
 
 /// Implementation of IBluetoothManager.
 pub struct BluetoothManager {
@@ -297,6 +302,7 @@ impl IBluetoothExperimental for BluetoothManager {
         }
 
         if need_restart {
+            thread::sleep(Duration::from_millis(RESTART_DELAY_INTERVAL_MS));
             self.restart_adapters();
         }
 
