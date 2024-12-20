@@ -140,6 +140,24 @@
       "parentUuid": "8e8772ca_d69d28b6",
       "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "402e00de_57c67bb8",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-12-20T12:14:00Z",
+      "side": 1,
+      "message": "About this comment, do we want to use the 7.5ms interval for service discovery (as before), or we want to keep the initial aggressive parameters for it (set by system property, default by 10-20ms)? \n\nCurrent patch set is made for latter, but this may result slower service discovery than before. \n\n@okamil@google.com @jpawlowski@google.com What do you think?",
+      "parentUuid": "f265c293_bbc06356",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
