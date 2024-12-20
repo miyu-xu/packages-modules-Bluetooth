@@ -16,6 +16,24 @@
       "message": "I recall that when direct call is done without allocated memory for p_tcb, we had to call `gatt_update_app_use_link_flag` here. Are you sure this is not needed anymore? Did you make any test for this?",
       "revId": "ba1755b59030e1766eb00a9b440d87f527d6d36a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b808fc1_5d4619d6",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-12-20T13:09:36Z",
+      "side": 0,
+      "message": "It\u0027s now handled by if above, that check if \"apps\" contain the app.\nPlease see how the get_apps_connecting_to was modified - now it returns apps doing either direct or background connect:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3317336/13/system/stack/connection_manager/connection_manager.cc#130",
+      "parentUuid": "ccbe2179_391de458",
+      "revId": "ba1755b59030e1766eb00a9b440d87f527d6d36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
