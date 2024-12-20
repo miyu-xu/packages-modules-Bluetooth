@@ -158,6 +158,24 @@
       "parentUuid": "f265c293_bbc06356",
       "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5a7b69f_98438bb8",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-20T22:09:54Z",
+      "side": 1,
+      "message": "Lets say we decide to switch parameters for service discovery.\n1. Initial parameters are aggressive. We can probably speed up service discovery even further by making the parameters even more aggressive. But I am not sure that we are going to see any significant improvement considering that the parameter update comes with its own time penaly.\n2. Initial parameters are relaxed. Relaxed parameters would have been choosen because of the bandwidth constraints. Switching to aggressive connection parameters would bring us back to the same problem that we were trying to avoid by using relaxed parameters.",
+      "parentUuid": "402e00de_57c67bb8",
+      "revId": "7671e30bd7d5df176464d887002bb0d540c42ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
