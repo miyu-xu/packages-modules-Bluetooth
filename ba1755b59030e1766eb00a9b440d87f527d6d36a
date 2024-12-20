@@ -34,6 +34,24 @@
       "parentUuid": "ccbe2179_391de458",
       "revId": "ba1755b59030e1766eb00a9b440d87f527d6d36a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aaccf65_344172e3",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-20T14:21:11Z",
+      "side": 0,
+      "message": "You are right, now it should work.",
+      "parentUuid": "4b808fc1_5d4619d6",
+      "revId": "ba1755b59030e1766eb00a9b440d87f527d6d36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
