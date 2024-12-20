@@ -16,7 +16,10 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
+
+import com.android.bluetooth.flags.Flags;
 
 /** This abstract class is used to implement {@link BluetoothGatt} callbacks. */
 public abstract class BluetoothGattCallback {
@@ -265,10 +268,10 @@ public abstract class BluetoothGattCallback {
      *     (0.1s) to 3200 (32s)
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if LE connection subrating has been changed
      *     successfully.
-     * @hide
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public void onSubrateChange(
-            BluetoothGatt gatt,
+            @NonNull BluetoothGatt gatt,
             int subrateFactor,
             int latency,
             int contNum,
