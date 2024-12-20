@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf757e3_581d6493",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T19:57:40Z",
+      "side": 1,
+      "message": "We should define an IntDef that contains the possible return values.\n\n```\n    /**\n     * Subrate request return values.\n     *\n     * @hide\n     */\n    @Retention(RetentionPolicy.SOURCE)\n    @IntDef(\n            prefix \u003d {\"SUBRATE_REQUEST_MODE\"},\n            value \u003d {\n                BluetoothStatusCodes.SUCCESS,\n                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED,\n                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED,\n                BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION,\n                BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED,\n                BluetoothStatusCodes.ERROR_BLUETOOTH_UNKNOWN_ERROR,\n            })\n    public @interface SubrateRequestReturnValues {}\n```\n\nI am not sure about the exact list we want yet",
+      "range": {
+        "startLine": 2138,
+        "startChar": 11,
+        "endLine": 2138,
+        "endChar": 14
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
