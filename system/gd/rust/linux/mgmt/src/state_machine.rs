@@ -205,6 +205,16 @@ impl StateMachineProxy {
         });
     }
 
+    pub fn restart_bluetooth_with_delay(&self, hci: VirtualHciIndex, delay_ms: u32) {
+        let tx = self.tx.clone();
+        tokio::spawn(async move {
+            tokio::time::sleep(Duration::from_millis(delay_ms.into())).await;
+            let _ = tx
+                .send(Message::AdapterStateChange(AdapterStateActions::RestartBluetooth(hci)))
+                .await;
+        });
+    }
+
     /// Read state for an hci device.
     pub fn get_state<T, F>(&self, hci: VirtualHciIndex, call: F) -> Option<T>
     where

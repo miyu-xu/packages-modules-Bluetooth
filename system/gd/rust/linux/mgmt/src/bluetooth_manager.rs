@@ -4,6 +4,9 @@ use std::collections::HashMap;
 use std::process::Command;
 use std::sync::{Arc, Mutex};
 
+use std::thread;
+use tokio::time::Duration;
+
 use configparser::ini::Ini;
 use glob::glob;
 
@@ -20,6 +23,8 @@ use crate::{config_util, migrate};
 
 const BLUEZ_INIT_TARGET: &str = "bluetoothd";
 const INVALID_VER: u16 = 0xffff;
+
+const RESTART_DELAY_INTERVAL_MS: u32 = 1000;
 
 /// Implementation of IBluetoothManager.
 pub struct BluetoothManager {
@@ -85,6 +90,16 @@ impl BluetoothManager {
             .iter()
             .filter(|a| a.state == ProcessState::TurningOn || a.state == ProcessState::On)
             .for_each(|a| self.proxy.restart_bluetooth(a.virt_hci));
+    }
+
+    /// Restarts all TurningOn/On adapters to make sure the configuration is reloaded.
+    /// Add a delay before restarting to avoid race.
+    pub(crate) fn restart_adapters_with_delay(&mut self, delay_ms: u32) {
+        self.proxy
+            .get_adapters()
+            .iter()
+            .filter(|a| a.state == ProcessState::TurningOn || a.state == ProcessState::On)
+            .for_each(|a| self.proxy.restart_bluetooth_with_delay(a.virt_hci, delay_ms));
     }
 }
 
@@ -297,7 +312,9 @@ impl IBluetoothExperimental for BluetoothManager {
         }
 
         if need_restart {
+            thread::sleep(Duration::from_millis(1000));
             self.restart_adapters();
+            // self.restart_adapters_with_delay(RESTART_DELAY_INTERVAL_MS);
         }
 
         true
