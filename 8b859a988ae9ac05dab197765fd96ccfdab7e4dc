@@ -290,6 +290,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c949ca7_45d43e7a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1732,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-20T04:46:23Z",
+      "side": 1,
+      "message": "If we stick to only IPHONEACCEV, this may result in additional IOP issues.\n\nI believe, the logic should be: \nif HfpBatteryIndicator is enabled, then allow the battery level update ONLY through HfpBatteryIndicator otherwise allow the battery level update via. vendor commands.\n\nOne related Clarification:\nDuring our discussion, you are mentioning like for Plantronics Vendor Command the resolution is 1%. How are we confirming this?",
+      "parentUuid": "d22d0f56_0fa89865",
+      "range": {
+        "startLine": 1732,
+        "startChar": 2,
+        "endLine": 1732,
+        "endChar": 76
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84de24e4_b627efc8",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 6
@@ -466,6 +490,30 @@
       "side": 1,
       "message": "Let us use the name handleHfBatterytIndicator. As the function is not handling any other indicator other than the battery indicator.\n\nMove this function call inside \ncase HeadsetHalConstants.HF_INDICATOR_BATTERY_LEVEL_STATUS:\n\nas this need to be executed only for battery indicator. Also will keep the function as simple get \u0026 set instead of having logic inside it.",
       "parentUuid": "b89bafbf_5701dfd7",
+      "range": {
+        "startLine": 2675,
+        "startChar": 18,
+        "endLine": 2678,
+        "endChar": 0
+      },
+      "revId": "8b859a988ae9ac05dab197765fd96ccfdab7e4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9e0f36_a7949b76",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2678,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-20T04:46:23Z",
+      "side": 1,
+      "message": "Already exisiting functions like for example \u0027handleHfIndicatorValueChanged()\nare generic and not specific to a given indicator.\n\nSo, in similar lines, will change the name to handleHfIndicatorStatus() and as suggested, will move the function call inside\ncase HeadsetHalConstants.HF_INDICATOR_BATTERY_LEVEL_STATUS: switch.",
+      "parentUuid": "88bf0d05_d2cd50fe",
       "range": {
         "startLine": 2675,
         "startChar": 18,

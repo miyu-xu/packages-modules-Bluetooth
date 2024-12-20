@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6bd304_cd946e08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-20T04:46:23Z",
+      "side": 1,
+      "message": "Have replied with responses. Please take a look.",
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3e00d44_7e045b7c",
@@ -81,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93c586f2_b9bf6e1e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-20T04:46:23Z",
+      "side": 1,
+      "message": "Will change to setHfpBatteryIndicatorStatus()",
+      "parentUuid": "e3e00d44_7e045b7c",
+      "range": {
+        "startLine": 696,
+        "startChar": 13,
+        "endLine": 696,
+        "endChar": 36
+      },
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8ba7fd4_855845a0",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 7
@@ -126,6 +167,30 @@
           ]
         }
       ],
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4a9db6_19314a75",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-20T04:46:23Z",
+      "side": 1,
+      "message": "Will change to isHfpBatterIndicatorEnabled().",
+      "parentUuid": "b8ba7fd4_855845a0",
+      "range": {
+        "startLine": 705,
+        "startChar": 16,
+        "endLine": 705,
+        "endChar": 40
+      },
       "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -197,6 +262,30 @@
           ]
         }
       ],
+      "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493fc8db_f56736e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 3460969
+      },
+      "writtenOn": "2024-12-20T04:46:23Z",
+      "side": 1,
+      "message": "Will change to handleHfIndicatorStatus().",
+      "parentUuid": "f7163dcc_fa3f8a53",
+      "range": {
+        "startLine": 1657,
+        "startChar": 9,
+        "endLine": 1657,
+        "endChar": 36
+      },
       "revId": "7e2e96af10b21b877e8c9060415c17bc504caa9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
