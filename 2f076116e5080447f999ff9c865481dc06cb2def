@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a3c5bff_29b3ed47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-12-20T18:35:24Z",
+      "side": 1,
+      "message": "Mobly proposes this pattern in one of their doc comments,\nit would help selecting passing tests from the LeHostTest class\n```\n  from mobly import base_suite\n  from mobly import suite_runner\n\n  from my.path import MyFooTest\n  from my.path import MyBarTest\n\n\n  class MySuite(base_suite.BaseSuite):\n\n    def setup_suite(self, config):\n      # Add a class with default config.\n      self.add_test_class(MyFooTest)\n      # Add a class with test selection.\n      self.add_test_class(MyBarTest,\n                          tests\u003d[\u0027test_a\u0027, \u0027test_b\u0027])\n      # Add the same class again with a custom config and suffix.\n      my_config \u003d some_config_logic(config)\n      self.add_test_class(MyBarTest,\n                          config\u003dmy_config,\n                          name_suffix\u003d\u0027WithCustomConfig\u0027)\n\n\n  if __name__ \u003d\u003d \u0027__main__\u0027:\n    suite_runner.run_suite_class()\n```",
+      "revId": "2f076116e5080447f999ff9c865481dc06cb2def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
