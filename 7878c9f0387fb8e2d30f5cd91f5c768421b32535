@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ae4ff6_e21d61c9",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:21:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0c250acd_4e09ef21",
+      "range": {
+        "startLine": 265,
+        "startChar": 89,
+        "endLine": 266,
+        "endChar": 27
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c16cf772_af61c4a2",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9089446_07f80a14",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:21:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c16cf772_af61c4a2",
+      "range": {
+        "startLine": 267,
+        "startChar": 22,
+        "endLine": 267,
+        "endChar": 51
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65629deb_9a4e0af7",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-12-20T23:16:02Z",
       "side": 1,
       "message": "idem",
+      "range": {
+        "startLine": 268,
+        "startChar": 77,
+        "endLine": 269,
+        "endChar": 31
+      },
+      "revId": "7878c9f0387fb8e2d30f5cd91f5c768421b32535",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0beb0102_3876fe5a",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:21:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "65629deb_9a4e0af7",
       "range": {
         "startLine": 268,
         "startChar": 77,

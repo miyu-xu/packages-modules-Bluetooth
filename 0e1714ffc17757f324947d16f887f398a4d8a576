@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "593826f3_05a8a46e",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2024-12-20T23:21:39Z",
+      "side": 1,
+      "message": "Will update this and the callback references in the Service once a decision is made.",
+      "parentUuid": "58afd854_72da1221",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 24
+      },
+      "revId": "0e1714ffc17757f324947d16f887f398a4d8a576",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "459e07b5_820496cf",
         "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
         "patchSetId": 1
