@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22074ff3_3a0d84b2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-20T05:45:44Z",
+      "side": 1,
+      "message": "Please fix these after the change to enum so that this compiles. Thanks!",
+      "range": {
+        "startLine": 143,
+        "startChar": 46,
+        "endLine": 143,
+        "endChar": 70
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "37c81d9b_abb3beea",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "        contextMap.remove(APP_ID1, ContextMap.RemoveReason.UNREGISTER_CLIENT);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+              "range": {
+                "startLine": 145,
+                "startChar": 0,
+                "endLine": 146,
+                "endChar": 0
+              },
+              "replacement": "        contextMap.remove(APP_ID2, ContextMap.RemoveReason.UNREGISTER_CLIENT);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+              "range": {
+                "startLine": 149,
+                "startChar": 0,
+                "endLine": 150,
+                "endChar": 0
+              },
+              "replacement": "        contextMap.remove(RANDOM_UUID1, ContextMap.RemoveReason.REGISTER_FAILED);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/ContextMapTest.java",
+              "range": {
+                "startLine": 151,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": "        contextMap.remove(RANDOM_UUID2, ContextMap.RemoveReason.REGISTER_FAILED);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c72047976b755ff1c49d4590abd8f4fa92e10016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
