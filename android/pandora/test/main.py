@@ -26,11 +26,12 @@ import gatt_test
 import hap_test
 import hfpclient_test
 from pairing import _test_class_list as _pairing_test_class_list
+from override_test import LeHostTestOverrideTest
 import sdp_test
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
-    avatar.cases.le_host_test.LeHostTest,
+    LeHostTestOverrideTest,
     avatar.cases.security_test.SecurityTest,
     avatar.cases.le_security_test.LeSecurityTest,
     a2dp_test.A2dpTest,
