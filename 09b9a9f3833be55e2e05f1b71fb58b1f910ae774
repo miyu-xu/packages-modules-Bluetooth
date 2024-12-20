@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c339ce_1ed1fa45",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-20T16:58:56Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Bpfmt: This file is not formatted.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "09b9a9f3833be55e2e05f1b71fb58b1f910ae774",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
