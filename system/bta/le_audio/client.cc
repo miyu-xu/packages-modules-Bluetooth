@@ -4294,7 +4294,15 @@ public:
         return false;
       }
 
-      if (leAudioHealthStatus_) {
+      bool report_context_type_not_available = true;
+      if (local_direction == bluetooth::le_audio::types::kLeAudioDirectionSource) {
+        auto ctx = ChooseConfigurationContextType(local_metadata_context_types_.source);
+        report_context_type_not_available = (ctx != LeAudioContextType::SOUNDEFFECTS);
+        log::debug("Skipped context for group_id {} is {}", group->group_id_, ToString(ctx));
+      }
+
+      /* Do not report SOUNDEFFECT to HealthStatus module to avoid making device inactive */
+      if (leAudioHealthStatus_ && report_context_type_not_available) {
         leAudioHealthStatus_->AddStatisticForGroup(
                 group, LeAudioHealthGroupStatType::STREAM_CONTEXT_NOT_AVAILABLE);
       }
