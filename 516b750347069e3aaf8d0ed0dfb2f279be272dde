@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc759a73_c15f2453",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-12-21T01:27:11Z",
+      "side": 1,
+      "message": "Could we replace it with some more tuned up meanings for Android as there might be local system errors as well instead of HCI error. \n\nThe status code here serves two functions:\n- the reason why this change happened\n- the reason why your request failed\n\nFor example, similar to BluetoothLeBroadcastAssistant, we can have\n\n```\nBluetoothStatusCodes.ERROR_UNKNOWN,\n// Below are pretty much the same for this API\nBluetoothStatusCodes.REASON_LOCAL_APP_REQUEST,\nBluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST,\nBluetoothStatusCodes.REASON_REMOTE_REQUEST,\nBluetoothStatusCodes.REASON_SYSTEM_POLICY,\n// Can cover all HCI error code\nBluetoothStatusCodes.ERROR_HARDWARE_GENERIC,\n// Useful here as well\nBluetoothStatusCodes.ERROR_BAD_PARAMETERS,\n// Useful here as well\nBluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR,\n// Useful here as well\nBluetoothStatusCodes.ERROR_REMOTE_NOT_ENOUGH_RESOURCES,\n// Handles repeated attempts, may not be needed\nBluetoothStatusCodes.ERROR_ALREADY_IN_TARGET_STATE,\n// Useful here as well\nBluetoothStatusCodes.ERROR_REMOTE_OPERATION_REJECTED,\n// Very useful here as many remote device doesn\u0027t support this\nBluetoothStatusCodes.ERROR_REMOTE_OPERATION_NOT_SUPPORTED\n// Very useful as well\nBluetoothStatusCodes ERROR_DEVICE_NOT_CONNECTED\n```",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 54
+      },
+      "revId": "516b750347069e3aaf8d0ed0dfb2f279be272dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
