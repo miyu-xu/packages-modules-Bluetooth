@@ -59,6 +59,7 @@ import android.bluetooth.BluetoothAdapter.ActiveDeviceUse;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothDevice.BluetoothAddress;
 import android.bluetooth.BluetoothFrameworkInitializer;
+import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothMap;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
@@ -116,6 +117,7 @@ import android.sysprop.BluetoothProperties;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Pair;
 import android.util.SparseArray;
 
 import com.android.bluetooth.BluetoothMetricsProto;
@@ -289,6 +291,9 @@ public class AdapterService extends Service {
     private long mIdleTimeTotalMs;
     private long mEnergyUsedTotalVoltAmpSecMicro;
     private HashSet<String> mLeAudioAllowDevices = new HashSet<>();
+
+    @VisibleForTesting
+    final List<Pair<Integer, BluetoothDevice>> mLeGattClientsForAudioDevices = new ArrayList<>();
 
     private BluetoothAdapter mAdapter;
     @VisibleForTesting AdapterProperties mAdapterProperties;
@@ -5153,6 +5158,160 @@ public class AdapterService extends Service {
         return getConnectionState(device) != BluetoothDevice.CONNECTION_STATE_DISCONNECTED;
     }
 
+    /**
+     * When this is called, AdapterService is aware of user doing GATT connection over LE. Adapter
+     * service will use this information to manage internal GATT services. For now, it is used only
+     * for LeAudio use case and if there is no LE connection for the device, LeAudioService will not
+     * be connectioned to AudioFramework automatically.
+     *
+     * @param clientIf asda
+     * @param device asdasd
+     */
+    public void notifyDirectLeGattClientConnect(int clientIf, BluetoothDevice device) {
+        if (!Flags.allowGattConnectFromTheAppsWithoutMakingLeaudioDeviceActive()
+                || mLeAudioService == null) {
+            return;
+        }
+
+        int groupId = mLeAudioService.getGroupId(device);
+        if (groupId == BluetoothLeAudio.GROUP_ID_INVALID) {
+            /* If this is non LeAudio device, there is nothing to do here. */
+            return;
+        }
+
+        Log.i(
+                TAG,
+                "notifyDirectLeGattClientConnect: clientIf: "
+                        + clientIf
+                        + ", "
+                        + device
+                        + ", groupId: "
+                        + groupId);
+
+        synchronized (mLeGattClientsForAudioDevices) {
+            Pair newPair = new Pair<>(clientIf, device);
+            if (mLeGattClientsForAudioDevices.contains(newPair)) {
+                return;
+            }
+
+            for (Pair<Integer, BluetoothDevice> pair : mLeGattClientsForAudioDevices) {
+                if (pair.second.equals(device)
+                        || groupId == mLeAudioService.getGroupId(pair.second)) {
+                    Log.i(TAG, "notifyDirectLeGattClientConnect: adding new client");
+                    mLeGattClientsForAudioDevices.add(newPair);
+                    return;
+                }
+            }
+
+            if (mLeAudioService.setAutoActiveModeState(mLeAudioService.getGroupId(device), false)) {
+                Log.i(
+                        TAG,
+                        "notifyDirectLeGattClientConnect: adding new client and notifying"
+                                + " leAudioService");
+                mLeGattClientsForAudioDevices.add(newPair);
+            }
+        }
+    }
+
+    private boolean clearAutoActiveMode(int clientIf, BluetoothDevice device, int groupId) {
+        synchronized (mLeGattClientsForAudioDevices) {
+            Log.d(
+                    TAG,
+                    "notifyGattClientConnectFailed: removing clientIf:"
+                            + clientIf
+                            + ", "
+                            + device
+                            + ", groupId: "
+                            + groupId);
+
+            mLeGattClientsForAudioDevices.remove(new Pair<>(clientIf, device));
+
+            if (mLeGattClientsForAudioDevices.size() > 0) {
+                for (Pair<Integer, BluetoothDevice> pair : mLeGattClientsForAudioDevices) {
+                    if (pair.second.equals(device)
+                            || groupId == mLeAudioService.getGroupId(pair.second)) {
+                        Log.d(
+                                TAG,
+                                "clearAutoActiveMode:"
+                                        + device
+                                        + " or groupId: "
+                                        + groupId
+                                        + " is still in use by clientif: "
+                                        + pair.first);
+                        return false;
+                    }
+                }
+            }
+
+            /* Back auto active mode to default. */
+            mLeAudioService.setAutoActiveModeState(groupId, true);
+            return true;
+        }
+    }
+
+    /**
+     * Notify AdapterService about failed GATT connection attempt.
+     *
+     * @param clientIf ClientIf which was doing GATT connection attempt
+     * @param device Remote device to which connection attpemt failed
+     */
+    public void notifyGattClientConnectFailed(int clientIf, BluetoothDevice device) {
+        if (mLeAudioService == null || mLeGattClientsForAudioDevices.isEmpty()) {
+            return;
+        }
+
+        int groupId = mLeAudioService.getGroupId(device);
+        if (groupId == BluetoothLeAudio.GROUP_ID_INVALID) {
+            /* If this is non LeAudio device, there is nothing to do here. */
+            return;
+        }
+
+        clearAutoActiveMode(clientIf, device, groupId);
+    }
+
+    /**
+     * Notify AdapterService about GATT connection being disconnecting or disconnected.
+     *
+     * @param clientIf ClientIf which is disconnecting or is already disconnected
+     * @param device Remote device which is disconnecting or is disconnected
+     */
+    public void notifyGattClientDisconnect(int clientIf, BluetoothDevice device) {
+        if (mLeAudioService == null || mLeGattClientsForAudioDevices.isEmpty()) {
+            return;
+        }
+
+        int groupId = mLeAudioService.getGroupId(device);
+        if (groupId == BluetoothLeAudio.GROUP_ID_INVALID) {
+            /* If this is non LeAudio device, there is nothing to do here. */
+            return;
+        }
+
+        /* Remember if auto active mode is still disabled.
+         * This is needed to decide if after GATT disconnection the AdapterService
+         * shall disconnect all the profiles and ACL.
+         */
+        boolean isAutoActiveModeIsDisabled = !mLeAudioService.getAutoActiveModeState(groupId);
+
+        if (!clearAutoActiveMode(clientIf, device, groupId)) {
+            return;
+        }
+
+        /* If auto active mode was disabled for the given group and is still connected
+         * make sure to disconnected all the devices from the group
+         */
+        if (isAutoActiveModeIsDisabled
+                && (getConnectionState(device) != BluetoothProfile.STATE_DISCONNECTED)) {
+            for (BluetoothDevice dev : mLeAudioService.getGroupDevices(groupId)) {
+                /* Need to disconnect all the devices from the group as those might be connected
+                 * as well especially those which migh keep the connection
+                 */
+                if (getConnectionState(dev) != BluetoothProfile.STATE_DISCONNECTED) {
+                    disconnectAllEnabledProfiles(dev);
+                }
+            }
+        }
+    }
+
     public int getConnectionState(BluetoothDevice device) {
         final String address = device.getAddress();
         if (Flags.apiGetConnectionStateUsingIdentityAddress()) {
@@ -6576,6 +6735,11 @@ public class AdapterService extends Service {
             writer.println("  " + BluetoothProfile.getProfileName(profileId));
         }
         writer.println();
+
+        writer.println("LE Gatt clients:");
+        for (Pair<Integer, BluetoothDevice> pair : mLeGattClientsForAudioDevices) {
+            writer.println("   clientIf:" + pair.first + " " + pair.second);
+        }
 
         mAdapterStateMachine.dump(fd, writer, args);
 
