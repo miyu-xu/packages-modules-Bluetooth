@@ -22,8 +22,15 @@
 #include "hci/le_scanning_manager_mock.h"
 #include "lpp/lpp_offload_interface_mock.h"
 #include "main/shim/entry.h"
+#include "main/shim/shim.h"
 #include "os/handler.h"
 #include "storage/storage_module.h"
+
+namespace test {
+namespace mock {
+bool bluetooth_shim_is_gd_stack_started_up = false;
+}  // namespace mock
+}  // namespace test
 
 namespace bluetooth {
 namespace hci {
@@ -65,6 +72,7 @@ hci::RemoteNameRequestModule* GetRemoteNameRequest() { return nullptr; }
 lpp::LppOffloadInterface* GetLppOffloadManager() {
   return lpp::testing::mock_lpp_offload_interface_;
 }
+bool is_gd_stack_started_up() { return test::mock::bluetooth_shim_is_gd_stack_started_up; }
 
 }  // namespace shim
 }  // namespace bluetooth
