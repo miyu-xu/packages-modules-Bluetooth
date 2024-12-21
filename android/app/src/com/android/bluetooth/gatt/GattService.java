@@ -854,7 +854,9 @@ public class GattService extends ProfileService {
                         + ", connId="
                         + connId
                         + ", address="
-                        + BluetoothUtils.toAnonymizedAddress(address));
+                        + BluetoothUtils.toAnonymizedAddress(address)
+                        + ", status="
+                        + status);
         int connectionState = BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED;
         if (status == 0) {
             mClientMap.addConnection(clientIf, connId, address);
@@ -868,7 +870,10 @@ public class GattService extends ProfileService {
                 mPermits.putIfAbsent(address, -1);
             }
             connectionState = BluetoothProtoEnums.CONNECTION_STATE_CONNECTED;
+        } else {
+            mAdapterService.notifyGattClientConnectFailed(clientIf, getDevice(address));
         }
+
         ContextMap<IBluetoothGattCallback>.App app = mClientMap.getById(clientIf);
         if (app != null) {
             app.callback.onClientConnectionState(
@@ -897,6 +902,7 @@ public class GattService extends ProfileService {
                         + BluetoothUtils.toAnonymizedAddress(address));
 
         mClientMap.removeConnection(clientIf, connId);
+        mAdapterService.notifyGattClientDisconnect(clientIf, getDevice(address));
         ContextMap<IBluetoothGattCallback>.App app = mClientMap.getById(clientIf);
 
         mRestrictedHandles.remove(connId);
@@ -1615,6 +1621,10 @@ public class GattService extends ProfileService {
             }
         }
 
+        if (transport != BluetoothDevice.TRANSPORT_BREDR && isDirect && !opportunistic) {
+            mAdapterService.notifyDirectLeGattClientConnect(clientIf, getDevice(address));
+        }
+
         mNativeInterface.gattClientConnect(
                 clientIf,
                 address,
@@ -1653,6 +1663,9 @@ public class GattService extends ProfileService {
                                 .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__GATT_DISCONNECT_JAVA,
                         BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__START,
                         attributionSource.getUid());
+
+        mAdapterService.notifyGattClientDisconnect(clientIf, getDevice(address));
+
         mNativeInterface.gattClientDisconnect(clientIf, address, connId != null ? connId : 0);
     }
 
