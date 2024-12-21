@@ -79,5 +79,7 @@ hci::MsftExtensionManager* GetMsftExtensionManager() {
   return Stack::GetInstance()->GetInstance<hci::MsftExtensionManager>();
 }
 
+bool is_gd_stack_started_up() { return Stack::GetInstance()->IsRunning(); }
+
 }  // namespace shim
 }  // namespace bluetooth
