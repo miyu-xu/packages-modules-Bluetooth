@@ -915,6 +915,11 @@ typedef struct {
   int (*disconnect_all_acls)();
 
   /**
+   * Call to disconnect LE ACL connection to device
+   */
+  int (*disconnect_le_acl)(const RawAddress& bd_addr);
+
+  /**
    * Call to retrieve a generated random
    */
   int (*le_rand)();

@@ -3896,6 +3896,16 @@ void btif_dm_clear_filter_accept_list() { BTA_DmClearFilterAcceptList(); }
 
 void btif_dm_disconnect_all_acls() { BTA_DmDisconnectAllAcls(); }
 
+void btif_dm_disconnect_le_acl(const RawAddress& bd_addr) {
+  uint16_t acl_handle =
+          get_btm_client_interface().peer.BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
+
+  log::debug("{}, acl_handle: {:#x}", bd_addr, acl_handle);
+  if (acl_handle != HCI_INVALID_HANDLE) {
+    acl_disconnect_from_handle(acl_handle, HCI_ERR_PEER_USER, "bt_btif_dm disconnect");
+  }
+}
+
 void btif_dm_le_rand(bluetooth::hci::LeRandCallback callback) { BTA_DmLeRand(std::move(callback)); }
 
 void btif_dm_set_event_filter_connection_setup_all_devices() {

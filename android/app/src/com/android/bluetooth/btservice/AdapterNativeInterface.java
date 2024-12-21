@@ -316,6 +316,10 @@ public class AdapterNativeInterface {
         return disconnectAllAclsNative();
     }
 
+    boolean disconnectLeAcl(BluetoothDevice device) {
+        return disconnectLeAclNative(Utils.getBytesFromAddress(device.getAddress()));
+    }
+
     boolean allowWakeByHid() {
         return allowWakeByHidNative();
     }
@@ -462,6 +466,8 @@ public class AdapterNativeInterface {
     private native boolean clearFilterAcceptListNative();
 
     private native boolean disconnectAllAclsNative();
+
+    private native boolean disconnectLeAclNative(byte[] address);
 
     private native boolean allowWakeByHidNative();
 
