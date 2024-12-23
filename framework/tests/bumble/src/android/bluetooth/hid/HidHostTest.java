@@ -323,12 +323,12 @@ public class HidHostTest {
                                     mDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN))
                     .isTrue();
         }
-        if (Flags.allowSwitchingHidAndHogp() && Flags.saveInitialHidConnectionPolicy()) {
+        if (Flags.saveInitialHidConnectionPolicy()) {
             verifyConnectionState(mDevice, equalTo(TRANSPORT_BREDR), equalTo(STATE_CONNECTING));
             verifyConnectionState(mDevice, equalTo(TRANSPORT_BREDR), equalTo(STATE_CONNECTED));
             assertThat(mHidService.getPreferredTransport(mDevice)).isEqualTo(TRANSPORT_BREDR);
         } else {
-            // Without allowSwitchingHidAndHogp, transport will be AUTO
+            // Without saveInitialHidConnectionPolicy, transport will be AUTO
             verifyConnectionState(mDevice, equalTo(TRANSPORT_AUTO), equalTo(STATE_CONNECTING));
             verifyConnectionState(mDevice, equalTo(TRANSPORT_AUTO), equalTo(STATE_CONNECTED));
         }
@@ -381,10 +381,7 @@ public class HidHostTest {
      */
     @SuppressLint("MissingPermission")
     @Test
-    @RequiresFlagsEnabled({
-        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
-        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
-    })
+    @RequiresFlagsEnabled({Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY})
     public void hidReconnectionWhenConnectionPolicyChangeTest() throws Exception {
 
         assertThat(mHidService.getConnectionPolicy(mDevice))
@@ -440,10 +437,7 @@ public class HidHostTest {
      */
     @SuppressLint("MissingPermission")
     @Test
-    @RequiresFlagsEnabled({
-        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
-        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
-    })
+    @RequiresFlagsEnabled({Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY})
     public void hidReconnectionAfterBTrestartWithConnectionPolicyAllowedTest() throws Exception {
 
         assertThat(mHidService.getConnectionPolicy(mDevice))
@@ -468,10 +462,7 @@ public class HidHostTest {
      */
     @SuppressLint("MissingPermission")
     @Test
-    @RequiresFlagsEnabled({
-        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
-        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
-    })
+    @RequiresFlagsEnabled({Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY})
     public void hidReconnectionAfterBTrestartWithConnectionPolicyiDisallowedTest()
             throws Exception {
 
@@ -499,10 +490,7 @@ public class HidHostTest {
      */
     @SuppressLint("MissingPermission")
     @Test
-    @RequiresFlagsEnabled({
-        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
-        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
-    })
+    @RequiresFlagsEnabled({Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY})
     public void hidReconnectionAfterDeviceRemovedTest() throws Exception {
 
         assertThat(mHidService.getConnectionPolicy(mDevice))
@@ -743,7 +731,7 @@ public class HidHostTest {
     private void verifyConnectionState(
             BluetoothDevice device, Matcher<Integer> transport, Matcher<Integer> state) {
 
-        if (Flags.allowSwitchingHidAndHogp() && Flags.saveInitialHidConnectionPolicy()) {
+        if (Flags.saveInitialHidConnectionPolicy()) {
             verifyIntentReceived(
                     hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
                     hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
@@ -761,7 +749,7 @@ public class HidHostTest {
     private void verifyIncomingProfileConnectionState() {
         // for incoming connection, connection state transit
         // from STATE_ACCEPTING -->STATE_CONNECTED
-        if (Flags.allowSwitchingHidAndHogp() && Flags.saveInitialHidConnectionPolicy()) {
+        if (Flags.saveInitialHidConnectionPolicy()) {
             verifyIntentReceived(
                     hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
                     hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
@@ -777,7 +765,7 @@ public class HidHostTest {
     }
 
     private void verifyProfileDisconnectionState() {
-        if (Flags.allowSwitchingHidAndHogp() && Flags.saveInitialHidConnectionPolicy()) {
+        if (Flags.saveInitialHidConnectionPolicy()) {
             verifyIntentReceived(
                     hasAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED),
                     hasExtra(BluetoothDevice.EXTRA_DEVICE, mDevice),
