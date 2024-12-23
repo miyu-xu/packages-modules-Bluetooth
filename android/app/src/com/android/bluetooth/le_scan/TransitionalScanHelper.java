@@ -361,7 +361,7 @@ public class TransitionalScanHelper {
                         + originalAddress);
 
         String identityAddress = mAdapterService.getIdentityAddress(address);
-        if (!address.equals(identityAddress)) {
+        if (identityAddress != null && !address.equals(identityAddress)) {
             Log.v(
                     TAG,
                     "found identityAddress of "
