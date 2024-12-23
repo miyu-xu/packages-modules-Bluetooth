@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06703250_c34c70be",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:55:44Z",
+      "side": 1,
+      "message": "Nit: Pointer should not be treated as a boolean",
+      "fixSuggestions": [
+        {
+          "fixId": "172926cd_3ba707f3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "    if (p_dev_rec \u003d\u003d nullptr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48926ed5_404ed374",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:55:44Z",
+      "side": 1,
+      "message": "Nit: Pointer should not be treated as a boolean",
+      "fixSuggestions": [
+        {
+          "fixId": "b07421fa_dfe0163f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_dev.cc",
+              "range": {
+                "startLine": 280,
+                "startChar": 0,
+                "endLine": 281,
+                "endChar": 0
+              },
+              "replacement": "  if (p_dev_rec \u003d\u003d nullptr) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1e0320_6e4c7e46",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:55:44Z",
+      "side": 1,
+      "message": "Nit: Use `nullptr`",
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "653ab217_b698c92e",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:55:44Z",
+      "side": 1,
+      "message": "This will just shift crash to somewhere else. All callers of `btm_sec_alloc_dev()` should be checking for nullptr.",
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
