@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9991a3bd_45bde7bc",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 3368974
+      },
+      "writtenOn": "2024-12-23T02:20:40Z",
+      "side": 1,
+      "message": "Looks the “controller_le_xmit_window” should be “-\u003d num_of_frags“ not “\u003d -num_of_frags”",
+      "range": {
+        "startLine": 1049,
+        "startChar": 33,
+        "endLine": 1049,
+        "endChar": 35
+      },
+      "revId": "3a4f174f04d73f4027f0998df4a88bb390d0a230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
