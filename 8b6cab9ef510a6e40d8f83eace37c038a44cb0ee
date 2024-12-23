@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a7e8e5_6837a0f8",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-23T19:27:51Z",
+      "side": 1,
+      "message": "will this be in AUTHENTICATING state or in encrypting state?",
+      "range": {
+        "startLine": 1419,
+        "startChar": 55,
+        "endLine": 1419,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bcf9de4b_44d3e8a1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1070,
+                "startChar": 0,
+                "endLine": 1071,
+                "endChar": 0
+              },
+              "replacement": "      p_dev_rec-\u003esec_rec.le_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING ||\n      p_dev_rec-\u003esec_rec.le_link \u003d\u003d tSECURITY_STATE::ENCRYPTING) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1419,
+                "startChar": 0,
+                "endLine": 1420,
+                "endChar": 0
+              },
+              "replacement": "        (p_dev_rec-\u003esec_rec.le_link \u003d\u003d tSECURITY_STATE::AUTHENTICATING ||\n         p_dev_rec-\u003esec_rec.le_link \u003d\u003d tSECURITY_STATE::ENCRYPTING)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b6cab9ef510a6e40d8f83eace37c038a44cb0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b89bea9_cd64e810",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-23T19:27:51Z",
+      "side": 1,
+      "message": "was this missed completely before?",
+      "range": {
+        "startLine": 1431,
+        "startChar": 21,
+        "endLine": 1431,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "114c0ed7_3acd18c9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1431,
+                "startChar": 0,
+                "endLine": 1432,
+                "endChar": 0
+              },
+              "replacement": "      if (p_dev_rec-\u003esec_rec.supports_secure_connections) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b6cab9ef510a6e40d8f83eace37c038a44cb0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
