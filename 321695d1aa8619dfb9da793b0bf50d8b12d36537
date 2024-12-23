@@ -70,6 +70,30 @@
       ],
       "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670792cb_2738fb9f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-23T20:00:06Z",
+      "side": 1,
+      "message": "On 2nd thought the beahvior when getIdentityAddress did not return null would not be any different - originalAddress would stay as a fake address since the conditional would not not be met",
+      "parentUuid": "0342bcce_6a16f1c0",
+      "range": {
+        "startLine": 371,
+        "startChar": 12,
+        "endLine": 371,
+        "endChar": 27
+      },
+      "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
