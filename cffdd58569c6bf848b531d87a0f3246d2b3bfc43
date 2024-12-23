@@ -1,0 +1,109 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b376a5a4_f2c3439d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:31:18Z",
+      "side": 1,
+      "message": "Why do we have to remove this? If we are going to remove it, we should not be registering for it either.\n\nI wonder if it would be better to look for this event only if the transport was not already connected. We can use BluetoothDevice.getConnectionHandle() to get the connection status beforehand.",
+      "fixSuggestions": [
+        {
+          "fixId": "daf51832_87b7cca7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 632,
+                "startChar": 0,
+                "endLine": 636,
+                "endChar": 0
+              },
+              "replacement": "        verifyIntentReceived(\n                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),\n                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6a0faa_736d53ad",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:31:18Z",
+      "side": 1,
+      "message": "Please add a description above this.",
+      "fixSuggestions": [
+        {
+          "fixId": "235e5858_3c5b2be3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 663,
+                "startChar": 0,
+                "endLine": 663,
+                "endChar": 0
+              },
+              "replacement": "    /**\n     * Test Pair timeout\n     *\n     * \u003cp\u003ePrerequisites:\n     *\n     * \u003col\u003e\n     *   \u003cli\u003eBumble and Android are not bonded\n     * \u003c/ol\u003e\n     *\n     * \u003cp\u003eSteps:\n     *\n     * \u003col\u003e\n     *   \u003cli\u003eKeep remote in advertising mode.\n     *   \u003cli\u003eScan and pair remote from scan list.\n     *   \u003cli\u003eDo not accept pairing popup and let it timeout.\n     * \u003c/ol\u003e\n     *\n     * \u003cp\u003eExpectation: Pairing fails\n     */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab34acb2_4e7e6826",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-23T18:31:18Z",
+      "side": 1,
+      "message": "pairing timeout may actually happen a little after 30 seconds. It would be better to use something like 35 seconds here.",
+      "fixSuggestions": [
+        {
+          "fixId": "7950562e_ec084490",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 717,
+                "startChar": 0,
+                "endLine": 718,
+                "endChar": 0
+              },
+              "replacement": "        future.completeOnTimeout(null, 35000, TimeUnit.MILLISECONDS).join();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
