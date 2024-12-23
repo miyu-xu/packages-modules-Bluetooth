@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214fc45b_06bb1bf1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 4998,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-23T11:45:40Z",
+      "side": 1,
+      "message": "in this moment, we just know metadata for a single direction. We shall not make any decisions here as this is done without the context on the other direction and can break bi-directional use cases.",
+      "revId": "6b4cc68dd190c771ec9c66b682a255dd3e0e6384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe9a6f1_f4082a79",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 5165,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-12-23T11:45:40Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "6b4cc68dd190c771ec9c66b682a255dd3e0e6384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
