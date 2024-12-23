@@ -14,6 +14,7 @@ pub mod bluetooth_logging;
 pub mod bluetooth_media;
 pub mod bluetooth_qa;
 pub mod callbacks;
+pub mod config_util;
 pub mod dis;
 pub mod socket_manager;
 pub mod suspend;
