@@ -49,6 +49,7 @@ use crate::bluetooth_gatt::{
 };
 use crate::bluetooth_media::{BluetoothMedia, MediaActions, LEA_UNKNOWN_GROUP_ID};
 use crate::callbacks::Callbacks;
+use crate::config_util;
 use crate::socket_manager::SocketActions;
 use crate::uuid::{Profile, UuidHelper};
 use crate::{make_message_dispatcher, APIMessage, BluetoothAPI, Message, RPCProxy, SuspendMode};
@@ -1700,6 +1701,14 @@ impl BtifBluetoothCallbacks for Bluetooth {
                 tokio::spawn(async move {
                     let _ = api_txl.send(APIMessage::IsReady(BluetoothAPI::Adapter)).await;
                 });
+                // Log LL privacy states
+                let llp_state =
+                    u32::from(matches!(config_util::read_floss_ll_privacy_enabled(), Ok(true)));
+                let rpa_state = u32::from(matches!(
+                    config_util::read_floss_address_privacy_enabled(),
+                    Ok(true)
+                ));
+                metrics::ll_privacy_state_changed(llp_state, rpa_state);
             }
         }
     }
