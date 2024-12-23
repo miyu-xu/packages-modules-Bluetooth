@@ -53,6 +53,7 @@ group("gd_default_deps") {
 static_library("libbluetooth_gd") {
   sources = [
     "module.cc",
+    "stack_manager.cc",
   ]
 
   include_dirs = [ "." ]
