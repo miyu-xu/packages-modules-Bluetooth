@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0342bcce_6a16f1c0",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-23T19:51:17Z",
+      "side": 1,
+      "message": "I\u0027m going to verify this by running some tests, but my reading of the code is that originalAddress is an empty address before this. So the difference in behavior here is that originalAddress ends up empty instead of null if we don\u0027t know the identity address, and there\u0027s no effect with this change.\n\nBut to restore the old behavior when mAdapterService.getIdentityAddress used to return the given address when the identity address is not known, we\u0027d have to do something different:\n\noriginalAddress \u003d identityAddress !\u003d null ? identityAddress : address",
+      "range": {
+        "startLine": 371,
+        "startChar": 12,
+        "endLine": 371,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7b8f85c5_fab280ce",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 362,
+                "startChar": 0,
+                "endLine": 373,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 439,
+                "startChar": 0,
+                "endLine": 440,
+                "endChar": 0
+              },
+              "replacement": "            boolean matchResult \u003d matchesFilters(client, result);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 558,
+                "startChar": 0,
+                "endLine": 564,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+              "range": {
+                "startLine": 573,
+                "startChar": 0,
+                "endLine": 577,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
