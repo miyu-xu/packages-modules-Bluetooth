@@ -94,6 +94,30 @@
       },
       "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271986c2_7e1ae36a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-23T21:31:38Z",
+      "side": 1,
+      "message": "Confirmed on my release phone that the originalAddress is always 00:00:00:00:00:00",
+      "parentUuid": "670792cb_2738fb9f",
+      "range": {
+        "startLine": 371,
+        "startChar": 12,
+        "endLine": 371,
+        "endChar": 27
+      },
+      "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
