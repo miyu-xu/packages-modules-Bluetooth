@@ -659,7 +659,6 @@ cc_test {
     static_libs: [
         "aics",
         "bluetooth_flags_c_lib_for_test",
-        "libaconfig_storage_read_api_cc",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -811,7 +810,6 @@ cc_test {
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
-        "libaconfig_storage_read_api_cc",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -1098,7 +1096,6 @@ cc_test {
         "le_audio/mock_codec_manager.cc",
     ],
     shared_libs: [
-        "libaconfig_storage_read_api_cc",
         "libbase",
         "libcrypto",
         "liblog",
@@ -1168,7 +1165,6 @@ cc_test {
         "le_audio/mock_codec_manager.cc",
     ],
     shared_libs: [
-        "libaconfig_storage_read_api_cc",
         "libbase",
         "libbinder_ndk",
         "libcrypto",
@@ -1250,7 +1246,6 @@ cc_test {
     ],
     static_libs: [
         "bluetooth_flags_c_lib_for_test",
-        "libaconfig_storage_read_api_cc",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
