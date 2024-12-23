@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1605e284_39b4a1d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-23T23:59:31Z",
+      "side": 1,
+      "message": "LGTM, but let\u0027s wait for prebuilt validation before merging this CL",
+      "revId": "43eb6f0e05232e014b48cf49e5a93859ca5940c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
