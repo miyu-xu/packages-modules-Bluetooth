@@ -76,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c965c5a7_b3cc557a",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-23T20:04:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad30434f_8899c518",
+      "range": {
+        "startLine": 1419,
+        "startChar": 55,
+        "endLine": 1419,
+        "endChar": 69
+      },
+      "revId": "8b6cab9ef510a6e40d8f83eace37c038a44cb0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b89bea9_cd64e810",
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "The issue is that requirements used in SMP security request for encryption are wrong. This included both SC and MITM bits.",
       "parentUuid": "7b89bea9_cd64e810",
+      "range": {
+        "startLine": 1431,
+        "startChar": 21,
+        "endLine": 1431,
+        "endChar": 46
+      },
+      "revId": "8b6cab9ef510a6e40d8f83eace37c038a44cb0ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65de6f46_4bf3399c",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2024-12-23T20:04:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34dd39d4_246749f7",
       "range": {
         "startLine": 1431,
         "startChar": 21,
