@@ -1,6 +1,77 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db544ca_c936cfe5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4137,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2024-12-24T03:37:58Z",
+      "side": 1,
+      "message": "Thanks Grzegorz for the fix!\n\nJust curious: if the headset gets disconnected during broadcast, it was never active since the phone is broadcasting, so will it fall into this condition?",
+      "range": {
+        "startLine": 4137,
+        "startChar": 20,
+        "endLine": 4137,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fb9ee0f5_17f63beb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2766,
+                "startChar": 0,
+                "endLine": 2767,
+                "endChar": 0
+              },
+              "replacement": "    private boolean isBroadcastAllowedToBeActivatedInCurrentAudioMode() {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2782,
+                "startChar": 0,
+                "endLine": 2783,
+                "endChar": 0
+              },
+              "replacement": "                \u0026\u0026 isBroadcastAllowedToBeActivatedInCurrentAudioMode();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3601,
+                "startChar": 0,
+                "endLine": 3602,
+                "endChar": 0
+              },
+              "replacement": "                        if (isBroadcastAllowedToBeActivatedInCurrentAudioMode()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 4137,
+                "startChar": 0,
+                "endLine": 4138,
+                "endChar": 0
+              },
+              "replacement": "                if (descriptor.isActive() || isBroadcastActive()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "76d9103dcb156d3e0c02dba8975c5171f579bc29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9f7ae195_86dee81b",
