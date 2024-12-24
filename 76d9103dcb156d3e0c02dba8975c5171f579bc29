@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f7ae195_86dee81b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-24T02:08:44Z",
+      "side": 1,
+      "message": "Ideally we should try to avoid using DisableFlags(), better approach is to update the test to be flag agnostic or replace with new test cases with flag enabled.\nNot blocking this CL, but maybe something good to follow-up.",
+      "revId": "76d9103dcb156d3e0c02dba8975c5171f579bc29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
