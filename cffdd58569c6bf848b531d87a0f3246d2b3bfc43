@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8927a4c_91466089",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-24T10:03:47Z",
+      "side": 1,
+      "message": "This was unintended code comment . reverted back",
+      "parentUuid": "b376a5a4_f2c3439d",
+      "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d6a0faa_736d53ad",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c595adf0_67c36ebe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-24T10:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d6a0faa_736d53ad",
+      "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab34acb2_4e7e6826",
@@ -102,6 +138,24 @@
           ]
         }
       ],
+      "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e214f8f2_917fe84f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-12-24T10:03:47Z",
+      "side": 1,
+      "message": "Time out value increased to 31seconds . we wanted repair on existing ACL connection. Increasing value more than 33seconds leads to ACL disconnection",
+      "parentUuid": "ab34acb2_4e7e6826",
       "revId": "cffdd58569c6bf848b531d87a0f3246d2b3bfc43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
