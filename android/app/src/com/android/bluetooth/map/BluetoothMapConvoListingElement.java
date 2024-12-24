@@ -323,6 +323,7 @@ public class BluetoothMapConvoListingElement
             } else {
                 Log.w(TAG, "Unknown XML tag: " + name);
                 Utils.skipCurrentTag(parser);
+                continue;
             }
         }
         // As we have extracted all attributes, we should expect an end-tag
