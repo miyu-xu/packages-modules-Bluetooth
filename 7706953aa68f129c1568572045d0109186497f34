@@ -100,6 +100,30 @@
       ],
       "revId": "7706953aa68f129c1568572045d0109186497f34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9becb20f_edea1ef4",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-12-24T08:46:29Z",
+      "side": 1,
+      "message": "I\u0027m not sure as well. I\u0027m following the guidance from b/385014636.",
+      "parentUuid": "9b41902b_aca5fbad",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "7706953aa68f129c1568572045d0109186497f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
