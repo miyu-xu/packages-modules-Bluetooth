@@ -1,0 +1,105 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b41902b_aca5fbad",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-24T07:06:40Z",
+      "side": 1,
+      "message": "This is a package private method. Why do we test this method?",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "709ad894_008ce47b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "import android.bluetooth.BluetoothDevice.Address;\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 33,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": "    public void testAddress_empty() {\n        Address address \u003d new Address(null, Address.TYPE_UNKNOWN);\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 40,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(address.getAddress()).isNull();\n        assertThat(address.getType()).isEqualTo(Address.TYPE_UNKNOWN);\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "    public void testAddress_addressWithTypePublic() {\n        doTestAddressWithType(\"00:11:22:AA:BB:CC\", Address.TYPE_PUBLIC);\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "    public void testAddress_addressWithTypeRandom() {\n        doTestAddressWithType(\"51:F7:A8:75:AC:5E\", Address.TYPE_RANDOM);\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "    private void doTestAddressWithType(String address, @Address.Type int addressType) {\n        Address addressObject \u003d new Address(address, addressType);\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(addressObject.getAddress()).isEqualTo(address);\n        assertThat(addressObject.getType())\n                .isEqualTo(addressType \u003d\u003d Address.TYPE_RANDOM ? Address.TYPE_RANDOM : Address.TYPE_PUBLIC);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7706953aa68f129c1568572045d0109186497f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
