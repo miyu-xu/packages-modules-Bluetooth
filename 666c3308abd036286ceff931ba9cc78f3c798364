@@ -40,6 +40,30 @@
       ],
       "revId": "666c3308abd036286ceff931ba9cc78f3c798364",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d924a81f_c535cdb8",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSet.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-12-24T06:01:49Z",
+      "side": 1,
+      "message": "Yes, it should be isDirected().\nThanks for finding this!",
+      "parentUuid": "bfda33e4_5cd1f43c",
+      "range": {
+        "startLine": 141,
+        "startChar": 75,
+        "endLine": 141,
+        "endChar": 83
+      },
+      "revId": "666c3308abd036286ceff931ba9cc78f3c798364",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
