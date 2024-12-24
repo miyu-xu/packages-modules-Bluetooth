@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfda33e4_5cd1f43c",
+        "filename": "framework/java/android/bluetooth/le/AdvertisingSet.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-12-24T05:48:06Z",
+      "side": 1,
+      "message": "isLegacy or isDirected?",
+      "range": {
+        "startLine": 141,
+        "startChar": 75,
+        "endLine": 141,
+        "endChar": 83
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4f57f328_a5796873",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/AdvertisingSet.java",
+              "range": {
+                "startLine": 141,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "     * AdvertisingSetParameters.ADDRESS_TYPE_DEFAULT} or {@code parameters.isDirected()} is true.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "666c3308abd036286ceff931ba9cc78f3c798364",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
