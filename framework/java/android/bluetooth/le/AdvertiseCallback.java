@@ -59,4 +59,12 @@ public abstract class AdvertiseCallback {
      *     failures.
      */
     public void onStartFailure(int errorCode) {}
+
+    /**
+     * Callback triggered in response to {@link BluetoothLeAdvertiser#stopAdvertising} indicating
+     * the advertising settings is stopped.
+     *
+     * @param settingsStopped The stopped advertising settings.
+     */
+    public void onStopSuccess(AdvertiseSettings settingsStopped) {}
 }

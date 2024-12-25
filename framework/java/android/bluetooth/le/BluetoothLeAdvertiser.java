@@ -224,6 +224,11 @@ public final class BluetoothLeAdvertiser {
                 postStartSuccess(callback, settings);
             }
 
+            @Override
+            public void onAdvertisingSetStopped(AdvertisingSet advertisingSet) {
+                postStopSuccess(callback, settings);
+            }
+
             /* Legacy advertiser is disabled on timeout */
             @Override
             public void onAdvertisingEnabled(
@@ -929,5 +934,18 @@ public final class BluetoothLeAdvertiser {
                         callback.onStartSuccess(settings);
                     }
                 });
+    }
+
+    @SuppressLint("AndroidFrameworkBluetoothPermission")
+    private void postStopSuccess(
+        final AdvertiseCallback callback, final AdvertiseSettings settings) {
+        mHandler.post(
+            new Runnable() {
+
+                @Override
+                public void run() {
+                    callback.onStopSuccess(settings);
+                }
+            });
     }
 }
