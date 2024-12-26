@@ -124,6 +124,30 @@
       },
       "revId": "7706953aa68f129c1568572045d0109186497f34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4d13d83_3f92c2ee",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-12-26T01:04:56Z",
+      "side": 1,
+      "message": "Oh the `BluetoothAddress` constructor is public under https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothDevice.java;l\u003d3798?q\u003dBluetoothAddress",
+      "parentUuid": "9becb20f_edea1ef4",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "7706953aa68f129c1568572045d0109186497f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
