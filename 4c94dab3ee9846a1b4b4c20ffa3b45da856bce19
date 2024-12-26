@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d5d750_927b1ffa",
+        "filename": "flags/hid.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-26T18:08:08Z",
+      "side": 0,
+      "message": "Because this is an exported flag, we want to keep it\u0027s definition in the code, to allow other application to still call it.\nSince this is only guarding system API, we may be able to remove it for 26Q2.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "4c94dab3ee9846a1b4b4c20ffa3b45da856bce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
