@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a8f88fb_748ea2db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-26T22:47:16Z",
+      "side": 1,
+      "message": "That works, and that address the issue, but I find it suspicious that we are using a string Address and not a BluetoothDevice instance",
+      "revId": "1e2a0fe59db354e7fe54abeaee72f8de973e49b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
