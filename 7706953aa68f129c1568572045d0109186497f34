@@ -148,6 +148,47 @@
       },
       "revId": "7706953aa68f129c1568572045d0109186497f34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a894310e_bbe26acb",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-26T08:23:16Z",
+      "side": 1,
+      "message": "Oops. I was confused between BluetoothDevice and BluetoothAddress. Ack\u0027ed.",
+      "parentUuid": "a4d13d83_3f92c2ee",
+      "range": {
+        "startLine": 35,
+        "startChar": 20,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "7706953aa68f129c1568572045d0109186497f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b476c67c_30f24932",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothDeviceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-12-26T08:23:16Z",
+      "side": 1,
+      "message": "Let\u0027s add a test writing to a paracle and reading from it to ensure its Parcelable implementation.",
+      "revId": "7706953aa68f129c1568572045d0109186497f34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
