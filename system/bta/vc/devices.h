@@ -48,7 +48,6 @@ public:
   uint8_t flags;
 
   tCONN_ID connection_id;
-  uint16_t mtu_ = GATT_DEF_BLE_MTU_SIZE;
 
   /* Volume Control Service */
   uint16_t volume_state_handle;
