@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1603a4_c8978de5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-26T22:36:30Z",
+      "side": 1,
+      "message": "The previous changes should not break anything since they are behind the flag. Per some offline discussion, we don\u0027t have a better solution ready at this moment. Reverting without clear reason and plan can also lead to breakage and confusion.  Also we need some solution for this issue in-place first.\n\nLet\u0027s hold this change, and get more clarity of the concerns and new proposed solution. Also we should try to see if possible to make a forward fix on top of those, instead of reverting this stacked changes.",
+      "revId": "aa59abb590888822bf2593094f34adff3f22c5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
