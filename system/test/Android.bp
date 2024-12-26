@@ -628,7 +628,7 @@ cc_defaults {
     target: {
         android: {
             test_config_template: ":BluetoothTestConfigTemplate",
-            test_suites: ["mts-bluetooth"],
+            test_suites: ["mts-bt"],
         },
     },
     compile_multilib: "both",
