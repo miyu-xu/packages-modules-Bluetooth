@@ -51,6 +51,24 @@
       "message": "Also could you please paste the output of stastd_testdrive on the bug for future reference?",
       "revId": "248a82f7c1b93b5b9d8714ff83beab06cd21a795",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd0b9752_d28c6016",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-26T19:29:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e017bbdc_6915d0b7",
+      "revId": "248a82f7c1b93b5b9d8714ff83beab06cd21a795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

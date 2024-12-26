@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b30b779f_7541e64a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-26T19:29:01Z",
+      "side": 1,
+      "message": "Done in aosp/3312136",
+      "parentUuid": "21f09900_5c0c89d0",
+      "revId": "0eecf101b779ee7690835d330ac96fa7714f29ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c118ded_fca0941a",
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "0eecf101b779ee7690835d330ac96fa7714f29ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcfb35d8_fdc5c27f",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-12-26T19:29:01Z",
+      "side": 1,
+      "message": "Both values will be 0 if we never open, (made a change in an earlier cl)",
+      "parentUuid": "9c118ded_fca0941a",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 84
+      },
       "revId": "0eecf101b779ee7690835d330ac96fa7714f29ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
