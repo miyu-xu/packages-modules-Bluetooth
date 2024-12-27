@@ -232,10 +232,8 @@ public final class DistanceMeasurementManager {
      *
      * <p>See: https://bluetooth.com/specifications/specs/core60-html/
      *
-     * @return the set of supported security levels, empty when encounters an internal error.
-     * @throws UnsupportedOperationException if the {@link
-     *     android.content.pm.PackageManager#FEATURE_BLUETOOTH_LE_CHANNEL_SOUNDING} is not
-     *     supported.
+     * @return the set of supported security levels, empty when Channel Sounding is not supported or
+     *     encounters an internal error.
      * @hide
      */
     @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS)
