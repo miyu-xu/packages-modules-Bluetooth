@@ -1,0 +1,599 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0397999f_d013efeb",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-12-27T05:37:30Z",
+      "side": 1,
+      "message": "You could use namespace for android::bluetooth::rfcomm throughout the file - as that will be much cleaner?",
+      "fixSuggestions": [
+        {
+          "fixId": "ac13b7c7_5f19ef93",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "namespace android {\nnamespace bluetooth {\nnamespace rfcomm {\n\nstatic SocketConnectionSecurity toSecurity(uint16_t sec_mask);\nstatic PortResult toPortResult(tPORT_RESULT result);\nstatic RfcommPortState toPortState(tRFC_PORT_STATE state);\nstatic RfcommPortEvent toPortEvent(tRFC_PORT_EVENT event);\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": "  os::LogMetricRfcommConnectionAtClose(\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "static SocketConnectionSecurity toSecurity(uint16_t sec_mask) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": "    return SocketConnectionSecurity::SOCKET_SECURITY_SECURE;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 59,
+                "endChar": 0
+              },
+              "replacement": "    return SocketConnectionSecurity::SOCKET_SECURITY_INSECURE;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "  return SocketConnectionSecurity::SOCKET_SECURITY_UNKNOWN;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "static PortResult toPortResult(tPORT_RESULT result) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 67,
+                "startChar": 0,
+                "endLine": 68,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_SUCCESS;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_UNKNOWN_ERROR;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_ALREADY_OPENED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_CMD_PENDING;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_APP_NOT_REGISTERED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 78,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_NO_MEM;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 79,
+                "startChar": 0,
+                "endLine": 80,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_NO_RESOURCES;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_BAD_BD_ADDR;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 83,
+                "startChar": 0,
+                "endLine": 84,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_BAD_HANDLE;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 86,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_NOT_OPENED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_LINE_ERR;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_START_FAILED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_PAR_NEG_FAILED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 93,
+                "startChar": 0,
+                "endLine": 94,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_PORT_NEG_FAILED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_SEC_FAILED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_PEER_CONNECTION_FAILED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_PEER_FAILED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 101,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_PEER_TIMEOUT;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_CLOSED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_TX_FULL;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_LOCAL_CLOSED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 110,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_LOCAL_TIMEOUT;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_TX_QUEUE_DISABLED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_PAGE_TIMEOUT;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 115,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_INVALID_SCN;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 118,
+                "endChar": 0
+              },
+              "replacement": "      return PortResult::PORT_RESULT_ERR_MAX;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "  return PortResult::PORT_RESULT_UNDEFINED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "static RfcommPortState toPortState(tRFC_PORT_STATE state) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortState::PORT_STATE_SABME_WAIT_UA;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 127,
+                "startChar": 0,
+                "endLine": 128,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortState::PORT_STATE_ORIG_WAIT_SEC_CHECK;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 129,
+                "startChar": 0,
+                "endLine": 130,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortState::PORT_STATE_TERM_WAIT_SEC_CHECK;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 131,
+                "startChar": 0,
+                "endLine": 132,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortState::PORT_STATE_OPENED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 134,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortState::PORT_STATE_DISC_WAIT_UA;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortState::PORT_STATE_CLOSED;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "  return RfcommPortState::PORT_STATE_UNKNOWN;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": "static RfcommPortEvent toPortEvent(tRFC_PORT_EVENT event) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_SABME;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 145,
+                "startChar": 0,
+                "endLine": 146,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_UA;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_DM;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 149,
+                "startChar": 0,
+                "endLine": 150,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_DISC;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 151,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_UIH;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 153,
+                "startChar": 0,
+                "endLine": 154,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_TIMEOUT;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 155,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_OPEN;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_ESTABLISH_RSP;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_CLOSE;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 161,
+                "startChar": 0,
+                "endLine": 162,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_CLEAR;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_DATA;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 166,
+                "endChar": 0
+              },
+              "replacement": "      return RfcommPortEvent::PORT_EVENT_SEC_COMPLETE;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 167,
+                "startChar": 0,
+                "endLine": 168,
+                "endChar": 0
+              },
+              "replacement": "  return RfcommPortEvent::PORT_EVENT_UNKNOWN;\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_metrics.cc",
+              "range": {
+                "startLine": 169,
+                "startChar": 0,
+                "endLine": 169,
+                "endChar": 0
+              },
+              "replacement": "\n}  // namespace rfcomm\n}  // namespace bluetooth\n}  // namespace android\n"
+            }
+          ]
+        }
+      ],
+      "revId": "87bb1f335c25a037ba779cba284fb6b963a27078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
