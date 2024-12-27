@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e749cbb9_365f85ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-12-27T19:38:33Z",
+      "side": 1,
+      "message": "Unsafe is fine, but please look at tracing::instrument and make sure you really want `log_args`",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c25d396_0e6af96b",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-12-27T19:38:33Z",
+      "side": 1,
+      "message": "This isn\u0027t an `unsafe` comnent, but have you considered `tracing::instrument` instead? It provides a much more fully featured version of what you\u0027re doing with `log_args`, including the ability to selectively skip unformattable or large areguments, more efficient formatting (e.g. this formats even if the receiver for the formatting won\u0027t end up printing it), and ability to request that returns get printed.",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
