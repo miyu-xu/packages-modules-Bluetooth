@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ae43712_02b92524",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-27T06:25:47Z",
+      "side": 1,
+      "message": "It depends. (1) If two user profiles has the same LL privacy flag value, it will only log once. But if the value is different, the `SetLLPrivacy` dbus call will change the sysprop file, then restart the adapter. Otherwise the new setting is not applied. So the change is logged. (2) Each time chrome is restarted, the value will be reset according to the feature flag value. I am not sure if the second question is answered.",
+      "parentUuid": "e81085e3_8dfdaf5a",
+      "range": {
+        "startLine": 1711,
+        "startChar": 25,
+        "endLine": 1711,
+        "endChar": 49
+      },
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ca5efd3_70c367a8",
         "filename": "system/gd/rust/linux/stack/src/config_util.rs",
         "patchSetId": 2
