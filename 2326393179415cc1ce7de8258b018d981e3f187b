@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfd6d330_c09a13cb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-27T07:52:04Z",
+      "side": 1,
+      "message": "Got it. If this isn\u0027t yet documented in comment, could you add it?\nI didn\u0027t get this impression just by reading the code.",
+      "parentUuid": "1ae43712_02b92524",
+      "range": {
+        "startLine": 1711,
+        "startChar": 25,
+        "endLine": 1711,
+        "endChar": 49
+      },
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ca5efd3_70c367a8",
         "filename": "system/gd/rust/linux/stack/src/config_util.rs",
         "patchSetId": 2
