@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08bcaacc_69aa0541",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-12-27T02:31:20Z",
+      "side": 1,
+      "message": "I wonder how this solves the issue?\n\nThe flow we observerd before was\n1. chrome set ll privacy\n2. btadapterd is stopping\n3. chrome failed to register callbacks\n4. btadapterd stopped\n5. btadapterd restarted\n\nShouldn\u0027t we add a delay in Chrome to re-register callbacks?",
+      "revId": "bc08431b2915b5e5bf9208ae39dff9e8602289dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
