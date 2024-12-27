@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "96487fae_4737813b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4137,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-27T11:26:40Z",
+      "side": 1,
+      "message": "Hi Yiyi!\n\nThank you for review!\n\nYeah, you\u0027ve find the place where the device is from active group, but there is a second path, when it\u0027s not. Please check https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3430342/1/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java#4157 this should cover device which is not an active one.\n\n@yiyishen@google.com Do you check if we miss here any scenario while testing ?\nI just checked following scenario:\n1) Connect earbud groups A \u0026 B (first A become active then B)\n2) Start broadcast (no active group, fallback still A)\n3) Disconnect A - B become fallback\n4) Disconnect B - no fallback group set (broadcast still active)\n\nAnd it worked.\nRegards,\nGrzegorz",
+      "parentUuid": "9db544ca_c936cfe5",
+      "range": {
+        "startLine": 4137,
+        "startChar": 20,
+        "endLine": 4137,
+        "endChar": 39
+      },
+      "revId": "76d9103dcb156d3e0c02dba8975c5171f579bc29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9f7ae195_86dee81b",
