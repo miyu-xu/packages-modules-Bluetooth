@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e81085e3_8dfdaf5a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-27T06:10:45Z",
+      "side": 1,
+      "message": "Maybe just say `ll_privacy_state`? It doesn\u0027t look we log the change.\n\nAlso, in the other CL you mentioned that the metric likely would be logged both times when the user isn\u0027t logged in and when it\u0027s logged in. Is it still the case?\n(1) Do we set adapter power off then on if user logs in?\n(2) Do we unset the llp_state and rpa_state before the user logs in?",
+      "range": {
+        "startLine": 1711,
+        "startChar": 25,
+        "endLine": 1711,
+        "endChar": 49
+      },
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ca5efd3_70c367a8",
+        "filename": "system/gd/rust/linux/stack/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-12-27T06:10:45Z",
+      "side": 1,
+      "message": "There should be a less hacky way to do this, right?\nIs it possible to query sysprops through some utility function?",
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
