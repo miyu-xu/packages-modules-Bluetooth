@@ -1,0 +1,35 @@
+From dd102299d9b21a243aa903682656b3228f527d77 Mon Sep 17 00:00:00 2001
+From: Bhakthavatsala Raghavendra <bhaktha@google.com>
+Date: Thu, 19 Dec 2024 23:43:53 +0000
+Subject: [PATCH] Upgrade security if It is on temp bonding & authentication is
+ requirement
+
+Bug: 380091558
+Test: mmm packages/modules/Bluetooth
+Flag: Exempt, minor change
+Change-Id: I11eaf922a915e0dd86d2cb973f2762196a5f02e2
+---
+ system/stack/btm/btm_sec.cc | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/system/stack/btm/btm_sec.cc b/system/stack/btm/btm_sec.cc
+index 10f39bd125..adf584f12a 100644
+--- a/system/stack/btm/btm_sec.cc
++++ b/system/stack/btm/btm_sec.cc
+@@ -1391,6 +1391,13 @@ static bool btm_sec_is_upgrade_possible(tBTM_SEC_DEV_REC* p_dev_rec, bool is_ori
+        * security level database */
+       is_possible = true;
+     }
++
++    /*if authentication is requirement & currently on temp bonding
++     * trigger pairing */
++    if ((p_dev_rec->sec_rec.security_required & BTM_SEC_IN_AUTHENTICATE) &&
++        p_dev_rec->sec_rec.is_bond_type_temporary()) {
++      is_possible = true;
++    }
+   }
+   log::verbose("is_possible: {} sec_flags: 0x{:x}", is_possible, p_dev_rec->sec_rec.sec_flags);
+   return is_possible;
+-- 
+2.47.1.613.gc27f4b7a9f-goog
+
