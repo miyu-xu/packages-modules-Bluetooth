@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7b918c7_a24c5e21",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 4998,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-27T11:47:39Z",
+      "side": 1,
+      "message": "To followup discussion on this problem could you explain here, what is missing here ? Is that causing some problems (other that race in RINGTONE-\u003eCONVERSATIONAL) ? btw. this whole change is behind a flag.\n\nCan some change be a follow up change on this already merged CL ?\n\n@rongxuan@google.com @rlukasz@google.com @tyszkowski@google.com",
+      "parentUuid": "214fc45b_06bb1bf1",
+      "revId": "6b4cc68dd190c771ec9c66b682a255dd3e0e6384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4fe9a6f1_f4082a79",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 15
