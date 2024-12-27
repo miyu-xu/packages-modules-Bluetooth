@@ -31,7 +31,6 @@ import android.bluetooth.BluetoothActivityEnergyInfo;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothDevice.BluetoothAddress;
 import android.bluetooth.BluetoothQualityReport;
 import android.bluetooth.IncomingRfcommSocketInfo;
 import android.bluetooth.OobData;
@@ -40,8 +39,6 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.os.ParcelFileDescriptor;
 import android.os.ResultReceiver;
-
-parcelable BluetoothDevice.BluetoothAddress;
 
 /**
  * System private API for talking with the Bluetooth service.
@@ -66,8 +63,6 @@ interface IBluetooth
     boolean setName(in String name, in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     String getIdentityAddress(in String address);
-    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
-    BluetoothDevice.BluetoothAddress getIdentityAddressWithType(in String address);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     String getName(in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)")
