@@ -63,6 +63,24 @@
       "message": "There should be a less hacky way to do this, right?\nIs it possible to query sysprops through some utility function?",
       "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e899c6b8_9738b884",
+        "filename": "system/gd/rust/linux/stack/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-27T06:28:36Z",
+      "side": 1,
+      "message": "Good question. If we still call this at the adapter state changed callback, I think the value should be available in some way.",
+      "parentUuid": "2ca5efd3_70c367a8",
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
