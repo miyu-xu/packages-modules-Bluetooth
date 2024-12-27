@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ec230b1_11f0f704",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-27T14:06:00Z",
+      "side": 1,
+      "message": "Oh yeah! looks like auto rebase issue... Thank You for review!",
+      "parentUuid": "81c888a3_a067e6a1",
+      "revId": "3d8d1e815554324550afc2ee7309679d85d15d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "182722ab_24e59587",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-12-18T17:38:23Z",
       "side": 1,
       "message": "Should we do this here?\n\n```suggestion\n            /* Update exposed monitoring input device while being in Broadcast mode */\n        if (!leaudioUseAudioRecordingListener()) {\n            if (isBroadcastActive()\n                    \u0026\u0026 getActiveGroupId() \u003d\u003d LE_AUDIO_GROUP_ID_INVALID\n                    \u0026\u0026 mUnicastGroupIdDeactivatedForBroadcastTransition\n                            !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n                /* In case of removing fallback unicast group, monitoring input\n                 * device should be removed from active devices.\n                 */\n                int newDirection \u003d AUDIO_DIRECTION_NONE;\n                int oldDirection \u003d oldFallbackGroupDescriptor !\u003d null\n                        ? oldFallbackGroupDescriptor.mDirection : AUDIO_DIRECTION_NONE;\n                boolean notifyAndUpdateInactiveOutDeviceOnly \u003d false;\n                boolean hasFallbackDeviceWhenGettingInactive \u003d oldFallbackGroupDescriptor !\u003d null\n                        ? oldFallbackGroupDescriptor.mHasFallbackDeviceWhenGettingInactive\n                        : false;\n                if (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n                    newDirection \u003d AUDIO_DIRECTION_INPUT_BIT;\n                    notifyAndUpdateInactiveOutDeviceOnly \u003d true;\n                }\n                updateActiveDevices(\n                        groupId,\n                        oldDirection,\n                        newDirection,\n                        false, // isActive\n                        hasFallbackDeviceWhenGettingInactive,\n                        notifyAndUpdateInactiveOutDeviceOnly);\n            }\n        }\n```",
+      "range": {
+        "startLine": 5269,
+        "startChar": 0,
+        "endLine": 5295,
+        "endChar": 13
+      },
+      "revId": "3d8d1e815554324550afc2ee7309679d85d15d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a22dcd78_0a9346ee",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 5295,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-12-27T14:06:00Z",
+      "side": 1,
+      "message": "Yes, that is right! Thank you for bringing this up!",
+      "parentUuid": "182722ab_24e59587",
       "range": {
         "startLine": 5269,
         "startChar": 0,
