@@ -62,6 +62,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.ContentObserver;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
@@ -78,6 +79,7 @@ import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 import android.sysprop.BluetoothProperties;
 import android.util.proto.ProtoOutputStream;
 
@@ -587,7 +589,11 @@ class BluetoothManagerService {
         mHandler = new BluetoothHandler(mLooper);
 
         // Observe BLE scan only mode settings change.
-        BleScanSettingListener.initialize(mLooper, mContentResolver, this::onBleScanDisabled);
+        if (Flags.respectBleScanSetting()) {
+            BleScanSettingListener.initialize(mLooper, mContentResolver, this::onBleScanDisabled);
+        } else {
+            registerForBleScanModeChange();
+        }
 
         // Disable ASHA if BLE is not supported, overriding any system property
         if (!isBleSupported(mContext)) {
@@ -855,10 +861,20 @@ class BluetoothManagerService {
         if (AirplaneModeListener.isOn() && !mEnable) {
             return false;
         }
-        if (SatelliteModeListener.isOn()) {
+        if (Flags.respectBleScanSetting()) {
+            if (SatelliteModeListener.isOn()) {
+                return false;
+            }
+            return BleScanSettingListener.isScanAllowed();
+        }
+        try {
+            return Settings.Global.getInt(
+                            mContentResolver, BleScanSettingListener.BLE_SCAN_ALWAYS_AVAILABLE)
+                    != 0;
+        } catch (SettingNotFoundException e) {
+            // The settings is considered as false by default.
             return false;
         }
-        return BleScanSettingListener.isScanAllowed();
     }
 
     boolean isHearingAidProfileSupported() {
@@ -874,6 +890,32 @@ class BluetoothManagerService {
             return false;
         }
         return mAdapter.isMediaProfileConnected(mContext.getAttributionSource());
+    }
+
+    // Monitor change of BLE scan only mode settings.
+    private void registerForBleScanModeChange() {
+        ContentObserver contentObserver =
+                new ContentObserver(new Handler(mLooper)) {
+                    @Override
+                    public void onChange(boolean selfChange) {
+                        if (isBleScanAvailable()) {
+                            // Nothing to do
+                            return;
+                        }
+                        // BLE scan is not available.
+                        disableBleScanMode();
+                        clearBleApps();
+                        if (mState.oneOf(STATE_BLE_ON)) {
+                            ActiveLogs.add(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, false);
+                            bleOnToOff();
+                        }
+                    }
+                };
+
+        mContentResolver.registerContentObserver(
+                Settings.Global.getUriFor(BleScanSettingListener.BLE_SCAN_ALWAYS_AVAILABLE),
+                false,
+                contentObserver);
     }
 
     // Disable ble scan only mode.
@@ -930,7 +972,7 @@ class BluetoothManagerService {
             return false;
         }
 
-        if (!BleScanSettingListener.isScanAllowed()) {
+        if (Flags.respectBleScanSetting() && !BleScanSettingListener.isScanAllowed()) {
             Log.d(TAG, "enableBle: not enabling - Scan mode is not allowed.");
             return false;
         }
@@ -962,6 +1004,12 @@ class BluetoothManagerService {
                         + (" mAdapter=" + mAdapter)
                         + (" isBinding=" + isBinding())
                         + (" mState=" + mState));
+
+        // Remove this with flag, preventing a "disable" make no sense, even in satellite mode
+        if (!Flags.respectBleScanSetting() && isSatelliteModeOn()) {
+            Log.d(TAG, "disableBle: not disabling - satellite mode is on.");
+            return false;
+        }
 
         if (mState.oneOf(STATE_OFF)) {
             Log.i(TAG, "disableBle: Already disabled");
@@ -1027,9 +1075,9 @@ class BluetoothManagerService {
             Log.d(TAG, "sendBrEdrDownCallback: mAdapter is null");
             return;
         }
-        if (BleScanSettingListener.isScanAllowed()
-                && !AirplaneModeListener.isOn()
-                && isBleAppPresent()) {
+        boolean scanIsAllowed =
+                !Flags.respectBleScanSetting() || BleScanSettingListener.isScanAllowed();
+        if (!AirplaneModeListener.isOn() && isBleAppPresent() && scanIsAllowed) {
             // Need to stay at BLE ON. Disconnect all Gatt connections
             Log.i(TAG, "sendBrEdrDownCallback: Staying in BLE_ON");
             try {
