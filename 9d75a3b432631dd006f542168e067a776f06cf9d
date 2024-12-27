@@ -50,6 +50,24 @@
       "message": "If you\u0027re relying on the caller meeting certain preconditions in how it calls this function that are not expressed in the types, then `send_response` needs to be an unsafe function and document what exactly those preconditions are.",
       "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefc962d_1b5a8670",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1505,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2024-12-27T23:00:31Z",
+      "side": 1,
+      "message": "Andrew\u0027s correct, I missed this function in the rest of the changes because it was in between all the `#[log_args]` additions.",
+      "parentUuid": "76028921_46df67f4",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
