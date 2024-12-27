@@ -135,6 +135,30 @@
       },
       "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7459654_b1086d43",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 3781,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-12-27T02:36:07Z",
+      "side": 1,
+      "message": "Thank you William for the comment. I beleive you make a good point and it was not my intention to expose but as Omair said, no guarantee of stability and for extra precuation, I\u0027ve added unit tests to aosp/3432099 for this. PTAL and feel free to reopen this comment or leave a comment there if you think there\u0027s any other improvements I could do for this.",
+      "parentUuid": "f6b6aea6_302e330a",
+      "range": {
+        "startLine": 3781,
+        "startChar": 47,
+        "endLine": 3781,
+        "endChar": 68
+      },
+      "revId": "f4c887d187b9280d2d84d006d8e1dfc078a48116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
