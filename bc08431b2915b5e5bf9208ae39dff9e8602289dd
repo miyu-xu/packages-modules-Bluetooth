@@ -34,6 +34,24 @@
       "parentUuid": "08bcaacc_69aa0541",
       "revId": "bc08431b2915b5e5bf9208ae39dff9e8602289dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad92113e_78ca5c4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-12-27T10:16:17Z",
+      "side": 1,
+      "message": "If you restart the adapter, I think Chrome needs to re-register the callback.\n\nIf  Chrome already knows LL privacy is enabled, and it should know that Floss will be restarted, then it should wait until Floss is up then register the callbacks.",
+      "parentUuid": "0c5c776d_2eb22f07",
+      "revId": "bc08431b2915b5e5bf9208ae39dff9e8602289dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
