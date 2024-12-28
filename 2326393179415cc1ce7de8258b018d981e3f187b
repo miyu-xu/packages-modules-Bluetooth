@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81760927_f28d062f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-28T23:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfd6d330_c09a13cb",
+      "range": {
+        "startLine": 1711,
+        "startChar": 25,
+        "endLine": 1711,
+        "endChar": 49
+      },
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ca5efd3_70c367a8",
@@ -103,6 +127,24 @@
       "side": 1,
       "message": "Good question. If we still call this at the adapter state changed callback, I think the value should be available in some way.",
       "parentUuid": "2ca5efd3_70c367a8",
+      "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "331e6a86_476ff501",
+        "filename": "system/gd/rust/linux/stack/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-28T23:22:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e899c6b8_9738b884",
       "revId": "2326393179415cc1ce7de8258b018d981e3f187b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
