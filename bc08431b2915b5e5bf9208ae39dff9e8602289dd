@@ -52,6 +52,24 @@
       "parentUuid": "0c5c776d_2eb22f07",
       "revId": "bc08431b2915b5e5bf9208ae39dff9e8602289dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5a22181_a7b82b62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-28T00:08:21Z",
+      "side": 1,
+      "message": "I don\u0027t think restart adapter will call register manager callback. This is only called when chrome is restarted, or btmanagerd is restarted. I submitted a CL from the chrome side, which sets LL privacy after receiving the floss enabled callback. That should solve the race issue.",
+      "parentUuid": "ad92113e_78ca5c4d",
+      "revId": "bc08431b2915b5e5bf9208ae39dff9e8602289dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
