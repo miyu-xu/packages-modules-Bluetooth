@@ -22,6 +22,30 @@
       },
       "revId": "37f52bad415e4fac967d2bbed8ceb24eff070a49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d59aca_a9b0d08a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1957215
+      },
+      "writtenOn": "2024-12-30T18:10:51Z",
+      "side": 1,
+      "message": "These aren\u0027t quite ready to land:   I need to get these 5 cls in first:   \n\nhttps://android-review.git.corp.google.com/q/topic:%22upstream%22\n\nWhen I go through the 50 or so cls I autogenned with a shell script yesterday, I can update the messages.    I\u0027ll need to do another round in main when they land.",
+      "parentUuid": "ebf4c77b_90fd77ed",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "37f52bad415e4fac967d2bbed8ceb24eff070a49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
