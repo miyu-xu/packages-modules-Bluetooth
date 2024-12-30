@@ -59,6 +59,7 @@ private:
 
 std::unique_ptr<HfpIntf> GetHfpProfile(const unsigned char* btif);
 bool interop_insert_call_when_sco_start(RawAddress addr);
+bool interop_disregard_hfp_profile(const char* name);
 
 }  // namespace rust
 }  // namespace topshim
