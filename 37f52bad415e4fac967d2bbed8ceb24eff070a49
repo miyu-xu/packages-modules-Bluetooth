@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebf4c77b_90fd77ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-12-30T18:06:16Z",
+      "side": 1,
+      "message": "Commit usually have an empty line between the commit short description and the tag.\n\nAlso, \"removing dead flag\" only mean something for the robolectric team. We could probably have something like\n\n`Remove robolectric upstream option as it is now enabled by default`",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 0
+      },
+      "revId": "37f52bad415e4fac967d2bbed8ceb24eff070a49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
