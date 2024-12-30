@@ -3134,6 +3134,7 @@ public class BassClientService extends ProfileService {
                     }
 
                     /* Store metadata for sink device */
+                    removeSinkMetadata(device, sourceIdToRemove);
                     storeSinkMetadata(device, sourceMetadata.getBroadcastId(), sourceMetadata);
 
                     Message message =
