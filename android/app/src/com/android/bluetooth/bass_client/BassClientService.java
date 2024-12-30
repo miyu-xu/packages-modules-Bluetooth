@@ -1664,6 +1664,7 @@ public class BassClientService extends ProfileService {
             }
 
             checkAndStopBigMonitoring();
+            checkGroupAndRemoveSinksMetadata(device);
 
             if (getConnectedDevices().isEmpty()
                     || (mPausedBroadcastSinks.isEmpty()
@@ -2933,6 +2934,27 @@ public class BassClientService extends ProfileService {
                 });
     }
 
+    private void removeSinkMetadataHelper(BluetoothDevice device, int broadcastId) {
+        mBroadcastMetadataMap.compute(
+                device,
+                (key, existingMap) -> {
+                    if (existingMap != null) {
+                        existingMap.remove(broadcastId);
+                        if (existingMap.isEmpty()) {
+                            return null;
+                        }
+                    } else {
+                        Log.d(
+                                TAG,
+                                "There is no metadata related to sink (device: "
+                                        + device
+                                        + ", broadcastId: "
+                                        + broadcastId);
+                    }
+                    return existingMap;
+                });
+    }
+
     private void removeSinkMetadata(BluetoothDevice device, int broadcastId) {
         if (device == null || broadcastId == BassConstants.INVALID_BROADCAST_ID) {
             Log.e(
@@ -2945,24 +2967,8 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        mBroadcastMetadataMap.compute(
-                device,
-                (key, existingMap) -> {
-                    if (existingMap != null) {
-                        existingMap.remove(broadcastId);
-                        if (existingMap.isEmpty()) {
-                            return null;
-                        }
-                    } else {
-                        Log.w(
-                                TAG,
-                                "There is no metadata related to sink (device: "
-                                        + device
-                                        + ", broadcastId: "
-                                        + broadcastId);
-                    }
-                    return existingMap;
-                });
+        removeSinkMetadataHelper(device, broadcastId);
+        checkGroupAndRemoveSinksMetadata(device);
     }
 
     private void removeSinkMetadata(BluetoothDevice device) {
@@ -2974,6 +2980,47 @@ public class BassClientService extends ProfileService {
         }
 
         mBroadcastMetadataMap.remove(device);
+        checkGroupAndRemoveSinksMetadata(device);
+    }
+
+    private void checkGroupAndRemoveSinksMetadata(BluetoothDevice device) {
+        if (device == null) {
+            Log.e(
+                    TAG,
+                    "Failed to remove Sink Metadata, invalid parameters (device: " + device + ")");
+            return;
+        }
+
+        List<BluetoothDevice> sinks = getTargetDeviceList(device, true);
+        // Check all sinks from group as device could be already removed from mBroadcastMetadataMap
+        for (BluetoothDevice sinkOuter : sinks) {
+            List<Integer> broadcastIds =
+                    new ArrayList<>(
+                            mBroadcastMetadataMap
+                                    .getOrDefault(sinkOuter, Collections.emptyMap())
+                                    .keySet());
+            // Check all broadcastIds for each sink
+            for (Integer broadcastId : broadcastIds) {
+                boolean removeSinks = true;
+                // Check if all others than device (it is removed or should be removed) are unsynced
+                for (BluetoothDevice sink : sinks) {
+                    if (sink.equals(device)) {
+                        continue;
+                    }
+                    if (getAllSources(sink).stream()
+                            .anyMatch(rs -> (rs.getBroadcastId() == broadcastId))) {
+                        removeSinks = false;
+                        break;
+                    }
+                }
+                // Then remove such broadcastId from all of them
+                if (removeSinks) {
+                    for (BluetoothDevice sink : sinks) {
+                        removeSinkMetadataHelper(sink, broadcastId);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -3121,6 +3168,8 @@ public class BassClientService extends ProfileService {
                         if (sourceMetadata.getBroadcastId() != metaData.getBroadcastId()) {
                             stopBigMonitoring(metaData.getBroadcastId(), true);
                         }
+
+                        removeSinkMetadata(device, metaData.getBroadcastId());
                     }
 
                     sEventLogger.logd(
