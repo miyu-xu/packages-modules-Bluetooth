@@ -30,6 +30,7 @@ import static com.android.bluetooth.flags.Flags.leaudioBroadcastExtractPeriodicS
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastResyncHelper;
 import static com.android.bluetooth.flags.Flags.leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator;
 import static com.android.bluetooth.flags.Flags.leaudioSortScansToSyncByFails;
+import static com.android.modules.utils.build.SdkLevel.isAtLeastB;
 
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
@@ -344,7 +345,7 @@ public class BassClientService extends ProfileService {
         }
 
         private boolean hasAnyMessagesOrCallbacks(Handler handler) {
-            if (android.os.Flags.mainlineVcnPlatformApi()) {
+            if (android.os.Flags.mainlineVcnPlatformApi() && isAtLeastB()) {
                 return handler.hasMessagesOrCallbacks();
             } else {
                 return handler.hasMessages(MESSAGE_SYNC_LOST_TIMEOUT)
