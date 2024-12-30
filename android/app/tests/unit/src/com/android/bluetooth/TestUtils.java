@@ -205,6 +205,8 @@ public class TestUtils {
      * @param looper looper of interest
      */
     public static void waitForLooperToFinishScheduledTask(Looper looper) {
+        // Note, we don't care if this returns false. A false implies the looper we were given was
+        // quit and isn't accepting any new messages. This means all scheduled tasks are complete.
         runOnLooperSync(
                 looper,
                 () -> {
@@ -286,17 +288,23 @@ public class TestUtils {
      *
      * @param looper the looper used to run the action
      * @param action the action to run
+     * @return True if the action was run on the given looper, False otherwise.
      */
-    public static void runOnLooperSync(Looper looper, Runnable action) {
+    public static boolean runOnLooperSync(Looper looper, Runnable action) {
         if (Looper.myLooper() == looper) {
             // requested thread is the same as the current thread. call directly.
             action.run();
         } else {
             Handler handler = new Handler(looper);
             SyncRunnable sr = new SyncRunnable(action);
-            handler.post(sr);
-            sr.waitForComplete();
+            if (handler.post(sr)) {
+                sr.waitForComplete();
+            } else {
+                Log.w(TAG, "runOnLooperSync: Failed to put action on looper. Is the thread quit?");
+                return false;
+            }
         }
+        return true;
     }
 
     /**
