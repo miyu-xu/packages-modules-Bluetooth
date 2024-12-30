@@ -33,6 +33,24 @@
       "message": "Flag exempt for DrNo.",
       "revId": "01118e391a3c1de2a83d025157a3095bed549994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dc3e07a_4b4d595a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-12-30T21:53:00Z",
+      "side": 1,
+      "message": "Thanks I missed this",
+      "parentUuid": "ca75a89f_1b069406",
+      "revId": "01118e391a3c1de2a83d025157a3095bed549994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
