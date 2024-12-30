@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6937147_a6c1a6c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-30T20:35:06Z",
+      "side": 1,
+      "message": "I think we have misdiagnosed the problem.\n\n`bta_hh_api_disc_act()` generates `BTA_HH_CLOSE_EVT` immediately when requesting disconnection. Instead, `bta_hh` should wait for the `HID_HDEV_EVT_CLOSE` event which is generated when both channels are disconnected.\n\nSee https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/hh/bta_hh_act.cc;drc\u003db4d6320e2ae398b36f0aaafb2ecd83609d2d99af;l\u003d549",
+      "revId": "72b393f06d453133e0cb7f852268b1f497b530ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
