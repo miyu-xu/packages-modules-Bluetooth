@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca75a89f_1b069406",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-30T21:51:06Z",
+      "side": 1,
+      "message": "Flag exempt for DrNo.",
+      "revId": "01118e391a3c1de2a83d025157a3095bed549994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
