@@ -113,7 +113,7 @@ static const char kPropertySniffOffloadEnabled[] = "persist.bluetooth.sniff_offl
 
 /* Switch delay timer (in milliseconds) */
 #ifndef BTA_DM_SWITCH_DELAY_TIMER_MS
-#define BTA_DM_SWITCH_DELAY_TIMER_MS 500
+#define BTA_DM_SWITCH_DELAY_TIMER_MS 1000
 #endif
 
 /* Sysprop path for page timeout */
