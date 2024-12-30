@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1912710c_432a3674",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-30T16:41:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d54321f9_eec0ae6a",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf702c27_b0c1f573",
@@ -106,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1108b559_a479ab84",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-30T16:41:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "19a6de2b_4ab0d8b0",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a58cda13_03385bfb",
@@ -137,6 +173,24 @@
       "side": 1,
       "message": "Yeah, it seems GATT open is idempotent. I don\u0027t think there should be a problem.\nHowever, I changed the code so we check first if we have background connection before we actually add the background connection. WDYT?",
       "parentUuid": "a58cda13_03385bfb",
+      "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8cdc6e7_59fa3be3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-12-30T16:41:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7dca5230_48dd8832",
       "revId": "b82333c7876ebe447af98072fb295adf92738a9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
