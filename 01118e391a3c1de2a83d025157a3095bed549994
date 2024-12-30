@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06d69eed_091281ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-12-30T21:52:39Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is always the case. Please double check. Otherwise LGTM.",
+      "revId": "01118e391a3c1de2a83d025157a3095bed549994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca75a89f_1b069406",
