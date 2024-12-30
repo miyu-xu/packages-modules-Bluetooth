@@ -45,6 +45,7 @@
 #include "bta/sys/bta_sys.h"
 #include "btif/include/btif_dm.h"
 #include "btif/include/stack_manager_t.h"
+#include "gd/os/rand.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
@@ -1174,8 +1175,12 @@ static void bta_dm_adjust_roles(bool delay_role_switch) {
                 break;
             }
           } else {
-            alarm_set_on_mloop(bta_dm_cb.switch_delay_timer, BTA_DM_SWITCH_DELAY_TIMER_MS,
-                               bta_dm_delay_role_switch_cback, NULL);
+            uint64_t delay = BTA_DM_SWITCH_DELAY_TIMER_MS;
+            if (com::android::bluetooth::flags::extend_and_randomize_role_switch_delay()) {
+              delay = bluetooth::os::GenerateRandom() % 500 + 1000;
+            }
+            alarm_set_on_mloop(bta_dm_cb.switch_delay_timer, delay, bta_dm_delay_role_switch_cback,
+                               NULL);
           }
         }
       }
