@@ -14,18 +14,28 @@
  * limitations under the License.
  */
 
-/**
- * Bluetooth MAP MCE StateMachine (Disconnected) | ^ CONNECT | | DISCONNECTED V | (Connecting)
- * (Disconnecting) | ^ CONNECTED | | DISCONNECT V | (Connected)
- *
- * <p>Valid Transitions: State + Event -> Transition:
- *
- * <p>Disconnected + CONNECT -> Connecting Connecting + CONNECTED -> Connected Connecting + TIMEOUT
- * -> Disconnecting Connecting + DISCONNECT/CONNECT -> Defer Message Connected + DISCONNECT ->
- * Disconnecting Connected + CONNECT -> Disconnecting + Defer Message Disconnecting + DISCONNECTED
- * -> (Safe) Disconnected Disconnecting + TIMEOUT -> (Force) Disconnected Disconnecting +
- * DISCONNECT/CONNECT : Defer Message
- */
+// Bluetooth MAP MCE StateMachine
+//         (Disconnected)
+//             |    ^
+//     CONNECT |    | DISCONNECTED
+//             V    |
+//    (Connecting) (Disconnecting)
+//             |    ^
+//   CONNECTED |    | DISCONNECT
+//             V    |
+//           (Connected)
+
+// Valid Transitions: State + Event -> Transition:
+
+// Disconnected + CONNECT -> Connecting
+// Connecting + CONNECTED -> Connected
+// Connecting + TIMEOUT -> Disconnecting
+// Connecting + DISCONNECT/CONNECT -> Defer Message
+// Connected + DISCONNECT -> Disconnecting
+// Connected + CONNECT -> Disconnecting + Defer Message
+// Disconnecting + DISCONNECTED -> (Safe) Disconnected
+// Disconnecting + TIMEOUT -> (Force) Disconnected
+// Disconnecting + DISCONNECT/CONNECT : Defer Message
 package com.android.bluetooth.mapclient;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
@@ -214,26 +224,9 @@ class MceStateMachine extends StateMachine {
     ConcurrentHashMap<String, MessageMetadata> mMessages =
             new ConcurrentHashMap<String, MessageMetadata>();
 
-    MceStateMachine(MapClientService service, BluetoothDevice device) {
-        this(service, device, null, null);
-    }
 
     MceStateMachine(MapClientService service, BluetoothDevice device, Looper looper) {
         this(service, device, null, null, looper);
-    }
-
-    @VisibleForTesting
-    MceStateMachine(
-            MapClientService service,
-            BluetoothDevice device,
-            MasClient masClient,
-            MapClientContent database) {
-        super(TAG);
-        mService = service;
-        mMasClient = masClient;
-        mDevice = device;
-        mDatabase = database;
-        initStateMachine();
     }
 
     @VisibleForTesting

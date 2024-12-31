@@ -173,7 +173,7 @@ public class MapClientService extends ProfileService {
         // connect.
         MceStateMachine mapStateMachine;
         if (mSmLooper != null) mapStateMachine = new MceStateMachine(this, device, mSmLooper);
-        else mapStateMachine = new MceStateMachine(this, device);
+        else mapStateMachine = new MceStateMachine(this, device, Looper.getMainLooper());
         mMapInstanceMap.put(device, mapStateMachine);
     }
 
