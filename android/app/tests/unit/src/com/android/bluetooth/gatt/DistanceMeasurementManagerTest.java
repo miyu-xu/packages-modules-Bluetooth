@@ -20,6 +20,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.after;
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.never;
@@ -33,6 +34,7 @@ import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.DistanceMeasurementResult;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.content.pm.PackageManager;
+import android.os.IBinder;
 import android.os.RemoteException;
 
 import androidx.test.filters.SmallTest;
@@ -62,6 +64,7 @@ public class DistanceMeasurementManagerTest {
     @Mock private AdapterService mAdapterService;
     @Mock private PackageManager mPackageManager;
     @Mock private IDistanceMeasurementCallback mCallback;
+    @Mock private IBinder mBinder;
     private DistanceMeasurementManager mDistanceMeasurementManager;
     private UUID mUuid;
     private BluetoothDevice mDevice;
@@ -77,6 +80,8 @@ public class DistanceMeasurementManagerTest {
         doReturn(true).when(mAdapterService).isLeChannelSoundingSupported();
         doReturn(IDENTITY_ADDRESS).when(mAdapterService).getIdentityAddress(IDENTITY_ADDRESS);
         doReturn(true).when(mAdapterService).isConnected(any());
+        doReturn(mBinder).when(mCallback).asBinder();
+        doNothing().when(mBinder).linkToDeath(any(), eq(0));
         DistanceMeasurementNativeInterface.setInstance(mDistanceMeasurementNativeInterface);
         mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
         mUuid = UUID.randomUUID();
