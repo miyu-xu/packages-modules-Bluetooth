@@ -945,6 +945,7 @@ static void bta_dm_execute_queued_request() {
     tBTA_DM_API_DISCOVER pending_discovery = bta_dm_search_cb.pending_discovery_queue.front();
     bta_dm_search_cb.pending_discovery_queue.pop();
     log::info("Start pending discovery");
+    bta_dm_search_cb.pending_close_bda = RawAddress::kEmpty;
     post_disc_evt(BTA_DM_API_DISCOVER_EVT,
                   std::make_unique<tBTA_DM_MSG>(tBTA_DM_API_DISCOVER{pending_discovery}));
   } else if (bta_dm_search_cb.p_pending_search) {

@@ -361,6 +361,7 @@ static void bta_dm_execute_queued_discovery_request() {
   bta_dm_discovery_cb.pending_discovery_queue.pop();
   log::info("Start pending discovery {} [{}]", pending_discovery.bd_addr,
             pending_discovery.transport);
+  bta_dm_discovery_cb.pending_close_bda = RawAddress::kEmpty;
   post_disc_evt(BTA_DM_API_DISCOVER_EVT,
                 std::make_unique<tBTA_DM_MSG>(tBTA_DM_API_DISCOVER{pending_discovery}));
 }
