@@ -26,10 +26,10 @@ import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 
 import static java.util.Objects.requireNonNull;
 
-import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
@@ -50,7 +50,12 @@ import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IAdvertisingSetCallback;
 import android.bluetooth.le.IDistanceMeasurementCallback;
+import android.bluetooth.le.IPeriodicAdvertisingCallback;
+import android.bluetooth.le.IScannerCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
+import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.ScanResult;
+import android.bluetooth.le.ScanSettings;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.pm.PackageManager;
@@ -59,11 +64,16 @@ import android.content.pm.PackageManager.PackageInfoFlags;
 import android.content.res.Resources;
 import android.os.Binder;
 import android.os.Build;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
+import android.os.WorkSource;
 import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
+import android.text.format.DateUtils;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
@@ -77,8 +87,10 @@ import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hid.HidHostService;
-import com.android.bluetooth.le_scan.ScanController;
+import com.android.bluetooth.le_scan.TransitionalScanHelper;
 import com.android.internal.annotations.VisibleForTesting;
+
+import libcore.util.HexEncoding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -123,13 +135,23 @@ public class GattService extends ProfileService {
         UUID.fromString("00001846-0000-1000-8000-00805F9B34FB"), // CSIS
     };
 
+    /** Example raw beacons captured from a Blue Charm BC011 */
+    private static final String[] TEST_MODE_BEACONS =
+            new String[] {
+                "020106",
+                "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+                "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+                "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
+                "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
+            };
+
     private static final Integer GATT_MTU_MAX = 517;
     private static final Map<String, Integer> EARLY_MTU_EXCHANGE_PACKAGES =
             Map.of("com.teslamotors", GATT_MTU_MAX);
 
     @VisibleForTesting static final int GATT_CLIENT_LIMIT_PER_APP = 32;
 
-    @Nullable public final ScanController mScanController;
+    public final TransitionalScanHelper mTransitionalScanHelper;
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
     private static GattService sGattService;
@@ -154,6 +176,8 @@ public class GattService extends ProfileService {
      */
     private final HashMap<String, Integer> mPermits = new HashMap<>();
 
+    private final Object mTestModeLock = new Object();
+
     private final AdapterService mAdapterService;
     private final AdvertiseManager mAdvertiseManager;
     private final GattNativeInterface mNativeInterface;
@@ -161,6 +185,9 @@ public class GattService extends ProfileService {
     private final DistanceMeasurementManager mDistanceMeasurementManager;
     private final ActivityManager mActivityManager;
     private final PackageManager mPackageManager;
+    private final HandlerThread mScanThread;
+
+    private Handler mTestModeHandler;
 
     public GattService(AdapterService adapterService) {
         super(requireNonNull(adapterService));
@@ -168,6 +195,9 @@ public class GattService extends ProfileService {
         mActivityManager = requireNonNull(getSystemService(ActivityManager.class));
         mPackageManager = requireNonNull(mAdapterService.getPackageManager());
         mCompanionDeviceManager = requireNonNull(getSystemService(CompanionDeviceManager.class));
+
+        mTransitionalScanHelper =
+                new TransitionalScanHelper(adapterService, this::isTestModeEnabled);
 
         Settings.Global.putInt(
                 getContentResolver(), "bluetooth_sanitized_exposure_notification_supported", 1);
@@ -177,9 +207,11 @@ public class GattService extends ProfileService {
         mAdvertiseManager = new AdvertiseManager(this);
 
         if (!Flags.scanManagerRefactor()) {
-            mScanController = new ScanController(adapterService);
+            mScanThread = new HandlerThread("BluetoothScanManager");
+            mScanThread.start();
+            mTransitionalScanHelper.start(mScanThread.getLooper());
         } else {
-            mScanController = null;
+            mScanThread = null;
         }
         mDistanceMeasurementManager =
                 GattObjectsFactory.getInstance().createDistanceMeasurementManager(mAdapterService);
@@ -210,9 +242,8 @@ public class GattService extends ProfileService {
         }
         if (Flags.scanManagerRefactor()) {
             setGattService(null);
-        }
-        if (mScanController != null) {
-            mScanController.stop();
+        } else {
+            mTransitionalScanHelper.stop();
         }
         mAdvertiseManager.clear();
         mClientMap.clear();
@@ -226,9 +257,15 @@ public class GattService extends ProfileService {
     @Override
     public void cleanup() {
         Log.d(TAG, "cleanup()");
+        if (!Flags.scanManagerRefactor()) {
+            mScanThread.quitSafely();
+        }
         mNativeInterface.cleanup();
         mAdvertiseManager.cleanup();
         mDistanceMeasurementManager.cleanup();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.cleanup();
+        }
     }
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
@@ -249,15 +286,50 @@ public class GattService extends ProfileService {
         sGattService = instance;
     }
 
-    @Nullable
-    public ScanController getScanController() {
-        return mScanController;
+    public TransitionalScanHelper getTransitionalScanHelper() {
+        return mTransitionalScanHelper;
     }
 
+    // While test mode is enabled, pretend as if the underlying stack
+    // discovered a specific set of well-known beacons every second
     @Override
     protected void setTestModeEnabled(boolean enableTestMode) {
-        if (mScanController != null) {
-            mScanController.setTestModeEnabled(enableTestMode);
+        synchronized (mTestModeLock) {
+            if (mTestModeHandler == null) {
+                mTestModeHandler =
+                        new Handler(getMainLooper()) {
+                            public void handleMessage(Message msg) {
+                                synchronized (mTestModeLock) {
+                                    if (!GattService.this.isTestModeEnabled()
+                                            || Flags.scanManagerRefactor()) {
+                                        return;
+                                    }
+                                    for (String test : TEST_MODE_BEACONS) {
+                                        mTransitionalScanHelper.onScanResultInternal(
+                                                0x1b,
+                                                0x1,
+                                                "DD:34:02:05:5C:4D",
+                                                1,
+                                                0,
+                                                0xff,
+                                                127,
+                                                -54,
+                                                0x0,
+                                                HexEncoding.decode(test),
+                                                "DD:34:02:05:5C:4E");
+                                    }
+                                    sendEmptyMessageDelayed(0, DateUtils.SECOND_IN_MILLIS);
+                                }
+                            }
+                        };
+            }
+            if (enableTestMode == isTestModeEnabled()) {
+                return;
+            }
+            super.setTestModeEnabled(enableTestMode);
+            mTestModeHandler.removeMessages(0);
+            mTestModeHandler.sendEmptyMessageDelayed(
+                    0, enableTestMode ? DateUtils.SECOND_IN_MILLIS : 0);
         }
     }
 
@@ -286,9 +358,7 @@ public class GattService extends ProfileService {
 
     /** Notify Scan manager of bluetooth profile connection state changes */
     public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
-        if (mScanController != null) {
-            mScanController.notifyProfileConnectionStateChange(profile, fromState, toState);
-        }
+        mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
     }
 
     class ServerDeathRecipient implements IBinder.DeathRecipient {
@@ -383,6 +453,85 @@ public class GattService extends ProfileService {
                 return;
             }
             service.unregisterClient(clientIf, attributionSource);
+        }
+
+        @Override
+        public void registerScanner(
+                IScannerCallback callback,
+                WorkSource workSource,
+                AttributionSource attributionSource)
+                throws RemoteException {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .registerScanner(callback, workSource, attributionSource);
+        }
+
+        @Override
+        public void unregisterScanner(int scannerId, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper().unregisterScanner(scannerId, attributionSource);
+        }
+
+        @Override
+        public void startScan(
+                int scannerId,
+                ScanSettings settings,
+                List<ScanFilter> filters,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .startScan(scannerId, settings, filters, attributionSource);
+        }
+
+        @Override
+        public void startScanForIntent(
+                PendingIntent intent,
+                ScanSettings settings,
+                List<ScanFilter> filters,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .registerPiAndStartScan(intent, settings, filters, attributionSource);
+        }
+
+        @Override
+        public void stopScanForIntent(PendingIntent intent, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper().stopScan(intent, attributionSource);
+        }
+
+        @Override
+        public void stopScan(int scannerId, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper().stopScan(scannerId, attributionSource);
+        }
+
+        @Override
+        public void flushPendingBatchResults(int scannerId, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .flushPendingBatchResults(scannerId, attributionSource);
         }
 
         @Override
@@ -960,12 +1109,76 @@ public class GattService extends ProfileService {
         }
 
         @Override
+        public void registerSync(
+                ScanResult scanResult,
+                int skip,
+                int timeout,
+                IPeriodicAdvertisingCallback callback,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .registerSync(scanResult, skip, timeout, callback, attributionSource);
+        }
+
+        @Override
+        public void transferSync(
+                BluetoothDevice bda,
+                int serviceData,
+                int syncHandle,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .transferSync(bda, serviceData, syncHandle, attributionSource);
+        }
+
+        @Override
+        public void transferSetInfo(
+                BluetoothDevice bda,
+                int serviceData,
+                int advHandle,
+                IPeriodicAdvertisingCallback callback,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper()
+                    .transferSetInfo(bda, serviceData, advHandle, callback, attributionSource);
+        }
+
+        @Override
+        public void unregisterSync(
+                IPeriodicAdvertisingCallback callback, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.getTransitionalScanHelper().unregisterSync(callback, attributionSource);
+        }
+
+        @Override
         public void disconnectAll(AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
             service.disconnectAll(attributionSource);
+        }
+
+        @Override
+        public int numHwTrackFiltersAvailable(AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return 0;
+            }
+            return service.getTransitionalScanHelper()
+                    .numHwTrackFiltersAvailable(attributionSource);
         }
 
         @Override
@@ -3479,9 +3692,8 @@ public class GattService extends ProfileService {
     }
 
     void dumpRegisterId(StringBuilder sb) {
-        if (mScanController != null) {
-            mScanController.dumpRegisterId(sb);
-        }
+        sb.append("  Scanner:\n");
+        mTransitionalScanHelper.getScannerMap().dumpApps(sb, ProfileService::println);
         sb.append("  Client:\n");
         for (Integer appId : mClientMap.getAllAppsIds()) {
             ContextMap.App app = mClientMap.getById(appId);
@@ -3513,9 +3725,8 @@ public class GattService extends ProfileService {
         sb.append("\nRegistered App\n");
         dumpRegisterId(sb);
 
-        if (mScanController != null) {
-            mScanController.dump(sb);
-        }
+        sb.append("GATT Scanner Map\n");
+        mTransitionalScanHelper.getScannerMap().dump(sb);
 
         sb.append("GATT Advertiser Map\n");
         mAdvertiseManager.dump(sb);
@@ -3575,9 +3786,7 @@ public class GattService extends ProfileService {
 
     @Override
     public void dumpProto(BluetoothMetricsProto.BluetoothLog.Builder builder) {
-        if (mScanController != null) {
-            mScanController.dumpProto(builder);
-        }
+        mTransitionalScanHelper.dumpProto(builder);
     }
 
     private BluetoothDevice getDevice(String address) {

@@ -6135,17 +6135,11 @@ public class AdapterService extends Service {
     }
 
     IBinder getBluetoothScan() {
-        ScanController controller = getBluetoothScanController();
-        return controller == null ? null : controller.getBinder();
+        return mScanController == null ? null : mScanController.getBinder();
     }
 
-    @Nullable
     public ScanController getBluetoothScanController() {
-        if (Flags.scanManagerRefactor()) {
-            return mScanController;
-        } else {
-            return mGattService == null ? null : mGattService.getScanController();
-        }
+        return mScanController;
     }
 
     @RequiresPermission(BLUETOOTH_CONNECT)
