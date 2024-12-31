@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c72058d_5bcd7ec7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-31T10:36:21Z",
+      "side": 0,
+      "message": "What about rest of elements? Why we care only about subgroups and channels? Maybe we should use value on all of them instead of reference?\n\nreference copy",
+      "range": {
+        "startLine": 538,
+        "startChar": 0,
+        "endLine": 538,
+        "endChar": 55
+      },
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f2fc7ab_1e79ba94",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-31T10:36:21Z",
+      "side": 0,
+      "message": "reference copy",
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8108e808_75975cb6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-31T10:36:21Z",
+      "side": 0,
+      "message": "reference copy",
+      "range": {
+        "startLine": 549,
+        "startChar": 12,
+        "endLine": 549,
+        "endChar": 36
+      },
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bebf7e7_46ceb6a2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroup.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-31T10:36:21Z",
+      "side": 0,
+      "message": "reference copy",
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "068f0394_5bc943a9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroup.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-12-31T10:36:21Z",
+      "side": 0,
+      "message": "reference copy",
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
