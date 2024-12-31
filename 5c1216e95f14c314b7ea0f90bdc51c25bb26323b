@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e51024a_e1210e64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-12-31T20:16:35Z",
+      "side": 1,
+      "message": "can you handle the bt stack crash or exit(turn off BT), app should get notification of onStopped ?",
+      "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
