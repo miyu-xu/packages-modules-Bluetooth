@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60088f3d_fe29b6ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-12-31T00:43:39Z",
+      "side": 1,
+      "message": "rebase on Grzegorz\u0027s behalf to resolve merge conflict",
+      "revId": "79bae38b0bb221f6c5734785ce78d8ca3443ad3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
