@@ -2718,12 +2718,21 @@ public final class BluetoothAdapter {
             return false;
         }
         try {
-            IBluetoothScan scan = getBluetoothScan();
-            if (scan == null) {
-                // BLE is not supported
-                return false;
+            if (Flags.scanManagerRefactor()) {
+                IBluetoothScan scan = getBluetoothScan();
+                if (scan == null) {
+                    // BLE is not supported
+                    return false;
+                }
+                return scan.numHwTrackFiltersAvailable(mAttributionSource) != 0;
+            } else {
+                IBluetoothGatt iGatt = getBluetoothGatt();
+                if (iGatt == null) {
+                    // BLE is not supported
+                    return false;
+                }
+                return iGatt.numHwTrackFiltersAvailable(mAttributionSource) != 0;
             }
-            return scan.numHwTrackFiltersAvailable(mAttributionSource) != 0;
         } catch (RemoteException e) {
             logRemoteException(TAG, e);
         }

@@ -42,6 +42,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.platform.test.annotations.DisableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 import android.provider.Settings;
 import android.test.mock.MockContentProvider;
@@ -57,6 +58,7 @@ import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_scan.ScanManager;
 import com.android.bluetooth.le_scan.ScanObjectsFactory;
+import com.android.bluetooth.le_scan.ScannerMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -83,6 +85,7 @@ public class GattServiceTest {
     @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
     @Mock private ContextMap<IBluetoothGattCallback> mClientMap;
+    @Mock private ScannerMap mScannerMap;
     @Mock private ScanManager mScanManager;
     @Mock private Set<String> mReliableQueue;
     @Mock private ContextMap<IBluetoothGattServerCallback> mServerMap;
@@ -154,6 +157,7 @@ public class GattServiceTest {
         mService = new GattService(mAdapterService);
 
         mService.mClientMap = mClientMap;
+        mService.mTransitionalScanHelper.setScannerMap(mScannerMap);
         mService.mReliableQueue = mReliableQueue;
         mService.mServerMap = mServerMap;
     }
@@ -656,6 +660,13 @@ public class GattServiceTest {
     }
 
     @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
+    public void numHwTrackFiltersAvailable() {
+        mService.getTransitionalScanHelper().numHwTrackFiltersAvailable(mAttributionSource);
+        verify(mScanManager).getCurrentUsedTrackingAdvertisement();
+    }
+
+    @Test
     public void getSupportedDistanceMeasurementMethods() {
         mService.getSupportedDistanceMeasurementMethods();
         verify(mDistanceMeasurementManager).getSupportedDistanceMeasurementMethods();
@@ -687,6 +698,20 @@ public class GattServiceTest {
     @Test
     public void cleanUp_doesNotCrash() {
         mService.cleanup();
+    }
+
+    @Test
+    @DisableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR)
+    public void profileConnectionStateChanged_notifyScanManager() {
+        mService.notifyProfileConnectionStateChange(
+                BluetoothProfile.A2DP,
+                BluetoothProfile.STATE_CONNECTING,
+                BluetoothProfile.STATE_CONNECTED);
+        verify(mScanManager)
+                .handleBluetoothProfileConnectionStateChanged(
+                        BluetoothProfile.A2DP,
+                        BluetoothProfile.STATE_CONNECTING,
+                        BluetoothProfile.STATE_CONNECTED);
     }
 
     @Test

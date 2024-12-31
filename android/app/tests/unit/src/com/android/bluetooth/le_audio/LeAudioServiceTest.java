@@ -229,6 +229,7 @@ public class LeAudioServiceTest {
                 .getBondedDevices();
         doReturn(mGattService).when(mAdapterService).getBluetoothGattService();
         doReturn(mScanController).when(mAdapterService).getBluetoothScanController();
+        doReturn(mTransitionalScanHelper).when(mGattService).getTransitionalScanHelper();
         doReturn(mTransitionalScanHelper).when(mScanController).getTransitionalScanHelper();
 
         LeAudioBroadcasterNativeInterface.setInstance(mLeAudioBroadcasterNativeInterface);
