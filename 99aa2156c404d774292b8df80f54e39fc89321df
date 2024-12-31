@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e2b7eb_07c7ce34",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 2059052
+      },
+      "writtenOn": "2024-12-31T04:42:49Z",
+      "side": 1,
+      "message": "@wescande@google.com Do you have experience with \"Flagged API\" presubmit lint check. Does it mean this change cannot be picked on the CTS sdk because it will be externally visible ?",
+      "range": {
+        "startLine": 875,
+        "startChar": 0,
+        "endLine": 875,
+        "endChar": 157
+      },
+      "revId": "99aa2156c404d774292b8df80f54e39fc89321df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
