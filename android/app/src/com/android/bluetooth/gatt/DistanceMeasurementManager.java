@@ -26,7 +26,10 @@ import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.DistanceMeasurementResult;
 import android.bluetooth.le.IDistanceMeasurementCallback;
+import android.os.Binder;
 import android.os.HandlerThread;
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -55,6 +58,8 @@ public class DistanceMeasurementManager {
     private final AdapterService mAdapterService;
     private final HandlerThread mHandlerThread;
     DistanceMeasurementNativeInterface mDistanceMeasurementNativeInterface;
+    private final ConcurrentHashMap<IBinder, DistanceMeasurementDeathRecipient> mDeathRecipients =
+            new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, CopyOnWriteArraySet<DistanceMeasurementTracker>>
             mRssiTrackers = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, CopyOnWriteArraySet<DistanceMeasurementTracker>>
@@ -84,6 +89,42 @@ public class DistanceMeasurementManager {
         mDistanceMeasurementNativeInterface.cleanup();
     }
 
+    IBinder toBinder(IDistanceMeasurementCallback e) {
+        return ((IInterface) e).asBinder();
+    }
+
+    class DistanceMeasurementDeathRecipient implements IBinder.DeathRecipient {
+        private UUID mUuid;
+        private BluetoothDevice mDevice;
+        private int mMethod;
+        private String mPackageName;
+
+        DistanceMeasurementDeathRecipient(
+                UUID uuid, BluetoothDevice device, int method, String packageName) {
+            mUuid = uuid;
+            mDevice = device;
+            mMethod = method;
+            mPackageName = packageName;
+        }
+
+        @Override
+        public void binderDied() {
+            Log.i(TAG, "Binder is dead - stop distance measurement (" + mPackageName + ")!");
+            stopDistanceMeasurement(mUuid, mDevice, mMethod, false);
+        }
+    }
+
+    void unlinkToDeath(IDistanceMeasurementCallback callback) {
+        IBinder binder = toBinder(callback);
+        DistanceMeasurementDeathRecipient deathRecipient = mDeathRecipients.remove(binder);
+        if (deathRecipient == null) {
+            Log.w(TAG, "can't find deathRecipient to unlink");
+            return;
+        }
+        Log.d(TAG, "unlinkToDeath");
+        binder.unlinkToDeath(deathRecipient, 0);
+    }
+
     DistanceMeasurementMethod[] getSupportedDistanceMeasurementMethods() {
         ArrayList<DistanceMeasurementMethod> methods = new ArrayList<DistanceMeasurementMethod>();
         methods.add(
@@ -102,11 +143,31 @@ public class DistanceMeasurementManager {
 
     void startDistanceMeasurement(
             UUID uuid, DistanceMeasurementParams params, IDistanceMeasurementCallback callback) {
+        int appUid = Binder.getCallingUid();
+        String packageName = null;
+        if (mAdapterService.getPackageManager() != null) {
+            packageName = mAdapterService.getPackageManager().getNameForUid(appUid);
+        }
+        if (packageName == null) {
+            packageName = "Unknown package name (UID: " + appUid + ")";
+        }
         Log.i(
                 TAG,
                 "startDistanceMeasurement:"
                         + (" device=" + params.getDevice())
-                        + (" method=" + params.getMethodId()));
+                        + (" method=" + params.getMethodId())
+                        + (" package name=" + packageName));
+        DistanceMeasurementDeathRecipient deathRecipient =
+                new DistanceMeasurementDeathRecipient(
+                        uuid, params.getDevice(), params.getMethodId(), packageName);
+        IBinder binder = toBinder(callback);
+        try {
+            binder.linkToDeath(deathRecipient, 0);
+            mDeathRecipients.put(binder, deathRecipient);
+        } catch (RemoteException e) {
+            throw new IllegalArgumentException("Can't link to death");
+        }
+
         if (!mAdapterService.isConnected(params.getDevice())) {
             Log.e(TAG, "Device " + params.getDevice() + " is not connected");
             invokeStartFail(
@@ -306,18 +367,20 @@ public class DistanceMeasurementManager {
     private void invokeStartFail(
             IDistanceMeasurementCallback callback, BluetoothDevice device, int reason) {
         try {
+            unlinkToDeath(callback);
             callback.onStartFail(device, reason);
         } catch (RemoteException e) {
-            Log.e(TAG, "Exception: " + e);
+            Log.e(TAG, "invokeStartFail, Exception: " + e);
         }
     }
 
     private void invokeOnStopped(
             IDistanceMeasurementCallback callback, BluetoothDevice device, int reason) {
         try {
+            unlinkToDeath(callback);
             callback.onStopped(device, reason);
         } catch (RemoteException e) {
-            Log.e(TAG, "Exception: " + e);
+            Log.e(TAG, "invokeOnStopped, Exception: " + e);
         }
     }
 
@@ -383,7 +446,7 @@ public class DistanceMeasurementManager {
                     tracker.startTimer(mHandlerThread.getLooper());
                 }
             } catch (RemoteException e) {
-                Log.e(TAG, "Exception: " + e);
+                Log.e(TAG, "handleRssiStarted, Exception: " + e);
             }
         }
     }
@@ -402,7 +465,7 @@ public class DistanceMeasurementManager {
                     tracker.startTimer(mHandlerThread.getLooper());
                 }
             } catch (RemoteException e) {
-                Log.e(TAG, "Exception: " + e);
+                Log.e(TAG, "handleCsStarted, Exception: " + e);
             }
         }
     }
@@ -511,7 +574,7 @@ public class DistanceMeasurementManager {
             try {
                 tracker.mCallback.onResult(tracker.mDevice, result);
             } catch (RemoteException e) {
-                Log.e(TAG, "Exception: " + e);
+                Log.e(TAG, "handleRssiResult, Exception: " + e);
             }
         }
     }
@@ -529,7 +592,7 @@ public class DistanceMeasurementManager {
             try {
                 tracker.mCallback.onResult(tracker.mDevice, result);
             } catch (RemoteException e) {
-                Log.e(TAG, "Exception: " + e);
+                Log.e(TAG, "handleCsResult, Exception: " + e);
             }
         }
     }
