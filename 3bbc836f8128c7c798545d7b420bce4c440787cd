@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e852e4_326bdf37",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-02T10:12:49Z",
+      "side": 1,
+      "message": "indicatorId is nt required if rename function to handleHfBatteryIndicatorStatus",
+      "range": {
+        "startLine": 1657,
+        "startChar": 40,
+        "endLine": 1657,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "668ce3ef_1053db72",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1656,
+                "startChar": 0,
+                "endLine": 1659,
+                "endChar": 0
+              },
+              "replacement": "    public void handleHfBatteryIndicatorStatus(BluetoothDevice device, boolean indicatorStatus) {\n        mMainHandler.post(() -\u003e onHfBatteryIndicatorStatus(device, indicatorStatus));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1662,
+                "startChar": 0,
+                "endLine": 1663,
+                "endChar": 0
+              },
+              "replacement": "    void onHfBatteryIndicatorStatus(BluetoothDevice device, boolean indicatorStatus) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1667,
+                "startChar": 0,
+                "endLine": 1669,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.enableBatteryLevelUpdateOnlyThroughHfIndicator()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3bbc836f8128c7c798545d7b420bce4c440787cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "482e25ad_077da617",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-02T10:12:49Z",
+      "side": 1,
+      "message": "These check are not required if rename function name to onHfBatteryIndicatorStatus",
+      "range": {
+        "startLine": 1667,
+        "startChar": 6,
+        "endLine": 1669,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "36f89efd_df025337",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1656,
+                "startChar": 0,
+                "endLine": 1657,
+                "endChar": 0
+              },
+              "replacement": "    public void handleHfBatteryIndicatorStatus(\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1658,
+                "startChar": 0,
+                "endLine": 1659,
+                "endChar": 0
+              },
+              "replacement": "        mMainHandler.post(() -\u003e onHfBatteryIndicatorStatus(device, indicatorId, indicatorStatus));\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1662,
+                "startChar": 0,
+                "endLine": 1663,
+                "endChar": 0
+              },
+              "replacement": "    void onHfBatteryIndicatorStatus(BluetoothDevice device, int indicatorId, boolean indicatorStatus) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1664,
+                "startChar": 0,
+                "endLine": 1665,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"onHfBatteryIndicatorStatus() remote device is null\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1667,
+                "startChar": 0,
+                "endLine": 1669,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.enableBatteryLevelUpdateOnlyThroughHfIndicator()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3bbc836f8128c7c798545d7b420bce4c440787cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6b24a3f_ab6facea",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2674,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-02T10:12:49Z",
+      "side": 1,
+      "message": "As handleHfIndicatorStatus is called only for Battery level status indicator , indId may not be required",
+      "range": {
+        "startLine": 2674,
+        "startChar": 65,
+        "endLine": 2674,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e94f6e88_d36372f1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2674,
+                "startChar": 0,
+                "endLine": 2675,
+                "endChar": 0
+              },
+              "replacement": "                                .handleHfIndicatorStatus(device, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3bbc836f8128c7c798545d7b420bce4c440787cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
