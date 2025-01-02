@@ -1725,7 +1725,8 @@ public class ScanManager {
                 int filterIndex,
                 int numOfTrackingEntries) {
             int deliveryMode = getDeliveryMode(client);
-            int rssiThreshold = Byte.MIN_VALUE;
+            int rssiThresholdLow = getLowRssiThreshold(client);
+            int rssiThresholdHigh = getHighRssiThreshold(client);
             ScanSettings settings = client.settings;
             int onFoundTimeout = getOnFoundOnLostTimeoutMillis(settings, true);
             int onFoundCount = getOnFoundOnLostSightings(settings);
@@ -1733,6 +1734,10 @@ public class ScanManager {
             Log.d(
                     TAG,
                     "configureFilterParameter "
+                            + rssiThresholdLow
+                            + " "
+                            + rssiThresholdHigh
+                            + " "
                             + onFoundTimeout
                             + " "
                             + onLostTimeout
@@ -1747,14 +1752,36 @@ public class ScanManager {
                             featureSelection,
                             LIST_LOGIC_TYPE,
                             FILTER_LOGIC_TYPE,
-                            rssiThreshold,
-                            rssiThreshold,
+                            rssiThresholdHigh,
+                            rssiThresholdLow,
                             deliveryMode,
                             onFoundTimeout,
                             onLostTimeout,
                             onFoundCount,
                             numOfTrackingEntries);
             mNativeInterface.gattClientScanFilterParamAdd(filtValue);
+        }
+
+        // Get Low RSSI Threashhold for the scan client
+        private int getLowRssiThreshold(ScanClient client) {
+            if (client == null || client.settings == null) {
+                Log.d(TAG, "getLowRssiThreshold: client is null");
+                return Byte.MIN_VALUE;
+            }
+            if (getDeliveryMode(client) != DELIVERY_MODE_ON_FOUND_LOST) {
+                Log.d(TAG, "getLowRssiThreshold: client settings is null");
+                return Byte.MIN_VALUE;
+            }
+            return client.settings.getRssiLowThreshold();
+        }
+
+        // Get High RSSI Threashhold for the scan client
+        private int getHighRssiThreshold(ScanClient client) {
+            if (client == null || client.settings == null) {
+                Log.d(TAG, "getHighRssiThreshold: client is null");
+                return Byte.MIN_VALUE;
+            }
+            return client.settings.getRssiHighThreshold();
         }
 
         // Get delivery mode based on scan settings.
