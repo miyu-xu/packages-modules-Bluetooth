@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b72bb65d_84963b6c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2469,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-02T14:31:27Z",
+      "side": 1,
+      "message": "Isn\u0027t this already checked inside the `updateActiveDevices()` function? Feel free to ignore my complain if this code block is flagged this way just to easilily remove it as a whole block in future.",
+      "range": {
+        "startLine": 2469,
+        "startChar": 17,
+        "endLine": 2469,
+        "endChar": 51
+      },
+      "revId": "b3effcb12f07aef57922ddbd814a99db14f7ff26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
