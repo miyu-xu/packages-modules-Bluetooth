@@ -16,6 +16,7 @@
 
 package android.bluetooth.le;
 
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.app.compat.CompatChanges;
 import android.bluetooth.BluetoothDevice;
@@ -23,6 +24,9 @@ import android.compat.annotation.ChangeId;
 import android.compat.annotation.EnabledSince;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
+import android.bluetooth.annotations.RequiresBluetoothScanPermission;
+import android.annotation.RequiresPermission;
 
 import com.android.bluetooth.flags.Flags;
 
@@ -197,6 +201,9 @@ public final class ScanSettings implements Parcelable {
 
     private final int mPhy;
 
+    private int mRssiHighThreshold = Byte.MIN_VALUE;
+    private int mRssiLowThreshold = Byte.MIN_VALUE;
+
     public int getScanMode() {
         return mScanMode;
     }
@@ -237,6 +244,24 @@ public final class ScanSettings implements Parcelable {
         return mReportDelayMillis;
     }
 
+    /**
+     * @hide
+     * Returns high rssi threshold for the scan results.
+     */
+    @SuppressLint("MissingNullability")
+    public int getRssiHighThreshold() {
+        return mRssiHighThreshold;
+    }
+
+    /**
+     * @hide
+     * Returns low rssi threshold for the scan results.
+     */
+    @SuppressLint("MissingNullability")
+    public int getRssiLowThreshold() {
+        return mRssiLowThreshold;
+    }
+
     private ScanSettings(
             int scanMode,
             int callbackType,
@@ -245,7 +270,10 @@ public final class ScanSettings implements Parcelable {
             int matchMode,
             int numOfMatchesPerFilter,
             boolean legacy,
-            int phy) {
+            int phy,
+            int rssiLowThreshold,
+            int rssiHighThreshold) {
+
         mScanMode = scanMode;
         mCallbackType = callbackType;
         mScanResultType = scanResultType;
@@ -254,6 +282,8 @@ public final class ScanSettings implements Parcelable {
         mMatchMode = matchMode;
         mLegacy = legacy;
         mPhy = phy;
+        mRssiLowThreshold = rssiLowThreshold;
+        mRssiHighThreshold = rssiHighThreshold;
     }
 
     private ScanSettings(Parcel in) {
@@ -265,6 +295,8 @@ public final class ScanSettings implements Parcelable {
         mNumOfMatchesPerFilter = in.readInt();
         mLegacy = in.readInt() != 0;
         mPhy = in.readInt();
+        mRssiLowThreshold = in.readInt();
+        mRssiHighThreshold = in.readInt();
     }
 
     @Override
@@ -277,6 +309,8 @@ public final class ScanSettings implements Parcelable {
         dest.writeInt(mNumOfMatchesPerFilter);
         dest.writeInt(mLegacy ? 1 : 0);
         dest.writeInt(mPhy);
+        dest.writeInt(mRssiLowThreshold);
+        dest.writeInt(mRssiHighThreshold);
     }
 
     @Override
@@ -315,6 +349,8 @@ public final class ScanSettings implements Parcelable {
                 mNumOfMatchesPerFilter = MATCH_NUM_FEW_ADVERTISEMENT;
             }
         }
+        private int mRssiHighThreshold = Byte.MIN_VALUE;
+        private int mRssiLowThreshold = Byte.MIN_VALUE;
 
         /**
          * Set scan mode for Bluetooth LE scan.
@@ -465,6 +501,24 @@ public final class ScanSettings implements Parcelable {
         }
 
         /**
+         * @hide
+         */
+        @SuppressLint("MissingNullability")
+        public Builder setRssiHighThreshold(int rssiHighThreshold) {
+            mRssiHighThreshold = rssiHighThreshold;
+            return this;
+        }
+
+        /**
+         * @hide
+         */
+        @SuppressLint("MissingNullability")
+        public Builder setRssiLowThreshold(int rssiLowThreshold) {
+            mRssiLowThreshold = rssiLowThreshold;
+            return this;
+        }
+
+        /**
          * Build {@link ScanSettings}.
          *
          * @throws IllegalArgumentException if the settings cannot be built.
@@ -484,7 +538,9 @@ public final class ScanSettings implements Parcelable {
                     mMatchMode,
                     mNumOfMatchesPerFilter,
                     mLegacy,
-                    mPhy);
+                    mPhy,
+                    mRssiLowThreshold,
+                    mRssiHighThreshold);
         }
     }
 
