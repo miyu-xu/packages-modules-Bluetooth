@@ -16,6 +16,24 @@
       "message": "The revert and the build error doesn\u0027t make sense next to each other.\n\nThis seems to be a deeper issue than reverting this CL.\n\nI don\u0027t think we should land this revert and instead there should be an investigation on why the build is only failing on riscV architecture",
       "revId": "5a3711753969cd63c117b059e117e6b62200591b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "025c2155_ec91868d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971940
+      },
+      "writtenOn": "2025-01-02T18:15:09Z",
+      "side": 1,
+      "message": "As per offline chat, merging the revert-first (go/revert-it)",
+      "parentUuid": "e525806f_b9c6d454",
+      "revId": "5a3711753969cd63c117b059e117e6b62200591b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
