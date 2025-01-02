@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dbfeae0_93576238",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T09:47:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5cccc3e_c4d8b01b",
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "297206bb_30c1982d",
@@ -124,6 +142,24 @@
           ]
         }
       ],
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "499b9343_4aab4599",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T09:47:26Z",
+      "side": 1,
+      "message": "Yes its always identity address here",
+      "parentUuid": "6f88270e_a41bb44a",
       "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
