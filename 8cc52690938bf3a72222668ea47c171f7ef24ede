@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0080dd06_f53a09b5",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T11:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06703250_c34c70be",
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48926ed5_404ed374",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "674171bc_bfce6065",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T11:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48926ed5_404ed374",
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a1e0320_6e4c7e46",
@@ -101,6 +137,42 @@
       "writtenOn": "2024-12-23T18:55:44Z",
       "side": 1,
       "message": "This will just shift crash to somewhere else. All callers of `btm_sec_alloc_dev()` should be checking for nullptr.",
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0e892a9_35c9a3a6",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T11:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a1e0320_6e4c7e46",
+      "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8d06a2b_b9fbe8ba",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T11:25:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "653ab217_b698c92e",
       "revId": "8cc52690938bf3a72222668ea47c171f7ef24ede",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
