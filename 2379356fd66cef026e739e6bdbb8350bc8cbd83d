@@ -16,6 +16,24 @@
       "message": "The old way of doing this basically let the StateMachine implementation create a new HandlerThread/looper each time a new device was connected. AFAIK, this put each device on its own thread/looper. That should, in theory, allow for concurrent operations across devices to run without impacting the performance of other device directly.\n\nFor example, if Device A is processing a message listing of hundreds of messages and Device B enqueues a fetch, the fetch can go out truly in parallel to the processing of the message listing.\n\nWith this method, does every device using the same looper imply that the state machines are all using the same underlying thread/message queue, and that operations from one device can block operations on the other?\n\nIf so, I preferred the method of injecting a looper just for tests (though making the HandlerThread and Looper an implementation detail of the device state machine does pose its own challenges that I\u0027m not sure I\u0027ve seen done in a way I like yet either). I suppose we could also inject a HandlerThread instead too, which I think I\u0027ve seen some classes do in the BT source code. I\u0027m less of a fan of that though.",
       "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d24ea599_98a0954d",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-02T23:31:36Z",
+      "side": 1,
+      "message": "\u003e The old way of doing this basically let the StateMachine implementation create a new HandlerThread/looper each time a new device was connected.\n\nHmmm... That is correct as per the [stateMachine constructor](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/libs/modules-utils/java/com/android/internal/util/StateMachine.java;l\u003d1306;drc\u003da4ce94105aae09e5b75b2cdceeff1e5cd9485423)\nI missed that\n\n\u003e With this method, does every device using the same looper imply that the state machines are all using the same underlying thread/message queue, and that operations from one device can block operations on the other?\n\nTechnically yes. But do we have such long lasting operation ? \n\nWhen you say `if Device A is processing a message listing of hundreds of messages` Are we blocking the thread while processing all the messages or is it done by small chunk with the way to intercept in the middle ?\n\nI am thinking about what if the device is disconnected in between or if the stack try to shutdown. Both these should interrupt the listing already no ?\n\n\u003e If so, I preferred the method of injecting a looper just for tests \n\nI there is the need to keep it blocking, yes you are right, this should be only done for testing. I believe testlooper is fine and there is not that mutch to change to this test in order to do it.\n\n----\n\nAnyway, whatever the decision on the global threading is, we should flag it as this is behavior change. I am gonna edit this CL to keep the change on the test only, but we can style continue this discussion",
+      "parentUuid": "ff37fe54_dd05d15f",
+      "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
