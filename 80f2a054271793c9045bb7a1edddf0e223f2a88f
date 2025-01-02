@@ -34,6 +34,24 @@
       "parentUuid": "ceb1b2fd_1208e71c",
       "revId": "80f2a054271793c9045bb7a1edddf0e223f2a88f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13213674_aba46edd",
+        "filename": "system/stack/include/smp_status.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-01-02T10:51:23Z",
+      "side": 1,
+      "message": "\u003e Done",
+      "parentUuid": "2875eda5_7c4878b0",
+      "revId": "80f2a054271793c9045bb7a1edddf0e223f2a88f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
