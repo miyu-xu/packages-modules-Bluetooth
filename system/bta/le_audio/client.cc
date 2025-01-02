@@ -1376,7 +1376,11 @@ public:
        * before group activation (active group context would take care of
        * Sink HAL client cleanup).
        */
-      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+      if (com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+        if (sink_monitor_mode_ && !enable) {
+          local_metadata_context_types_.sink.clear();
+        }
+      } else {
         if (sink_monitor_mode_ && !enable && le_audio_sink_hal_client_ &&
             active_group_id_ == bluetooth::groups::kGroupUnknown) {
           local_metadata_context_types_.sink.clear();
@@ -6238,13 +6242,20 @@ private:
       le_audio_source_hal_client_.reset();
     }
 
-    if (le_audio_sink_hal_client_) {
-      /* Keep session set up to monitor streaming request. This is required if
-       * there is another LE Audio device streaming (e.g. Broadcast) and via
-       * the session callbacks special action from this Module would be
-       * required e.g. to Unicast handover.
-       */
-      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+    if (com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
+      local_metadata_context_types_.sink.clear();
+
+      if (le_audio_sink_hal_client_) {
+        le_audio_sink_hal_client_->Stop();
+        le_audio_sink_hal_client_.reset();
+      }
+    } else {
+      if (le_audio_sink_hal_client_) {
+        /* Keep session set up to monitor streaming request. This is required if
+         * there is another LE Audio device streaming (e.g. Broadcast) and via
+         * the session callbacks special action from this Module would be
+         * required e.g. to Unicast handover.
+         */
         if (!sink_monitor_mode_) {
           local_metadata_context_types_.sink.clear();
           le_audio_sink_hal_client_->Stop();
@@ -6252,6 +6263,7 @@ private:
         }
       }
     }
+
     local_metadata_context_types_.source.clear();
     configuration_context_type_ = LeAudioContextType::UNINITIALIZED;
 
