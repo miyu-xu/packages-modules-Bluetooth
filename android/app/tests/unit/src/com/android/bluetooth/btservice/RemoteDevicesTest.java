@@ -868,4 +868,115 @@ public class RemoteDevicesTest {
     private static void clearBatteryServiceForTesting(BatteryService service) {
         BatteryService.setBatteryService(service);
     }
+
+    @Test
+    @EnableFlags(Flags.FLAG_ENABLE_BATTERY_LEVEL_UPDATE_ONLY_THROUGH_HF_INDICATOR)
+    public void testResetBatteryLevel_testHfpBatteryIndicatorEnabled() {
+
+        int batteryLevel = 25;
+
+        // Verify that device property is null initially
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1)).isNull();
+
+        // Verify that updating battery level triggers ACTION_BATTERY_LEVEL_CHANGED intent
+        mRemoteDevices.updateBatteryLevel(mDevice1, batteryLevel, /* fromBas= */ false);
+
+        verify(mAdapterService)
+                .sendBroadcast(mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));
+        verifyBatteryLevelChangedIntent(mDevice1, batteryLevel, mIntentArgument);
+
+        // Verify that user can get battery level after the update
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1)).isNotNull();
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).getBatteryLevel())
+                .isEqualTo(batteryLevel);
+
+        // Verify that the HFP indicator is disabled
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).isHfpBatteryIndicatorEnabled())
+                .isEqualTo(false);
+
+        // Set HF indicator
+        mRemoteDevices.onHfIndicatorStatus(
+                mDevice1, HeadsetHalConstants.HF_INDICATOR_BATTERY_LEVEL_STATUS, true);
+
+        // Verify that the HFP indicator is enabled
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).isHfpBatteryIndicatorEnabled())
+                .isEqualTo(true);
+
+        // Try to set battery level with vendor specific event
+        mRemoteDevices.onVendorSpecificHeadsetEvent(
+                mDevice1,
+                BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_IPHONEACCEV,
+                BluetoothAssignedNumbers.APPLE,
+                BluetoothHeadset.AT_CMD_TYPE_SET,
+                new Object[] {
+                    3,
+                    BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_IPHONEACCEV_BATTERY_LEVEL,
+                    5,
+                    2,
+                    1,
+                    3,
+                    10
+                });
+
+        // Vendor specific event xevent
+        mRemoteDevices.onVendorSpecificHeadsetEvent(
+                mDevice1,
+                BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_XEVENT,
+                BluetoothAssignedNumbers.PLANTRONICS,
+                BluetoothHeadset.AT_CMD_TYPE_SET,
+                getXEventArray(3, 8));
+
+        // Verify that the battery level is still same
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).getBatteryLevel())
+                .isEqualTo(batteryLevel);
+
+        int newBatteryLevel = 60;
+
+        // Verify that updating battery level triggers ACTION_BATTERY_LEVEL_CHANGED intent
+        mRemoteDevices.updateBatteryLevel(mDevice1, newBatteryLevel, false);
+
+        verify(mAdapterService, times(2))
+                .sendBroadcast(mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));
+
+        verifyBatteryLevelChangedIntent(mDevice1, newBatteryLevel, mIntentArgument);
+
+        // Verify that user can get battery level after the update
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1)).isNotNull();
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).getBatteryLevel())
+                .isEqualTo(newBatteryLevel);
+
+        // Verify that the HFP indicator is enabled
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).isHfpBatteryIndicatorEnabled())
+                .isEqualTo(true);
+
+        // Set HF indicator to false
+        mRemoteDevices.onHfIndicatorStatus(
+                mDevice1, HeadsetHalConstants.HF_INDICATOR_BATTERY_LEVEL_STATUS, false);
+
+        // Verify that the HFP indicator is disabled
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).isHfpBatteryIndicatorEnabled())
+                .isEqualTo(false);
+
+        // Try to set battery level with vendor specific event
+        mRemoteDevices.onVendorSpecificHeadsetEvent(
+                mDevice1,
+                BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_IPHONEACCEV,
+                BluetoothAssignedNumbers.APPLE,
+                BluetoothHeadset.AT_CMD_TYPE_SET,
+                new Object[] {
+                    3,
+                    BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_IPHONEACCEV_BATTERY_LEVEL,
+                    4,
+                    2,
+                    1,
+                    3,
+                    10
+                });
+
+        newBatteryLevel = 50;
+
+        // Verify that the battery level is still same
+        assertThat(mRemoteDevices.getDeviceProperties(mDevice1).getBatteryLevel())
+                .isEqualTo(newBatteryLevel);
+    }
 }
