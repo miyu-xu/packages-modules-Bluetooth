@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc227e18_0754c938",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 4997,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-02T14:53:32Z",
+      "side": 1,
+      "message": "If possible, this kind of logic should be put into the \n `ReconfigureOrUpdateRemote()` which inhibits some of the reconfigurations or applies some other quirks to optimize the experience. I also agree that the other direction should also be taken into the account (which to some point ReconfigureOrUpdateRemote() already does)",
+      "range": {
+        "startLine": 4995,
+        "startChar": 4,
+        "endLine": 4997,
+        "endChar": 7
+      },
+      "revId": "6b4cc68dd190c771ec9c66b682a255dd3e0e6384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "214fc45b_06bb1bf1",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 15
