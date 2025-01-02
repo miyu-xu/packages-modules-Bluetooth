@@ -22,6 +22,30 @@
       },
       "revId": "4c94dab3ee9846a1b4b4c20ffa3b45da856bce19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fed40417_fd1bc50f",
+        "filename": "flags/hid.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-02T20:01:13Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a6d5d750_927b1ffa",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "4c94dab3ee9846a1b4b4c20ffa3b45da856bce19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
