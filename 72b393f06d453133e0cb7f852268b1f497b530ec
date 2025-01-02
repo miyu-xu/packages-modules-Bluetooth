@@ -16,6 +16,24 @@
       "message": "I think we have misdiagnosed the problem.\n\n`bta_hh_api_disc_act()` generates `BTA_HH_CLOSE_EVT` immediately when requesting disconnection. Instead, `bta_hh` should wait for the `HID_HDEV_EVT_CLOSE` event which is generated when both channels are disconnected.\n\nSee https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/hh/bta_hh_act.cc;drc\u003db4d6320e2ae398b36f0aaafb2ecd83609d2d99af;l\u003d549",
       "revId": "72b393f06d453133e0cb7f852268b1f497b530ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21cb499a_c4487706",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-01-02T05:33:52Z",
+      "side": 1,
+      "message": "From the bug:\n\u003e sometimes it complains because we disconnect both the control and interrupt channel in parallel\n\nThis patch is to fix this issue. We disconnect both control and interrupt channel at the same time and don\u0027t wait for acknowledgement. See https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/hid/hidh_conn.cc;l\u003d575;drc\u003d833941b205fa3a3ed817cc81887b4e67e6cf7cd2\n\nWaiting for `HID_HDEV_EVT_CLOSE` doesn\u0027t seem help in this case.",
+      "parentUuid": "d6937147_a6c1a6c1",
+      "revId": "72b393f06d453133e0cb7f852268b1f497b530ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
