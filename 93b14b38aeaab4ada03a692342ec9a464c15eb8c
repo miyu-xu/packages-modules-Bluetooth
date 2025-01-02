@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72565d3f_bf4d3d00",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-02T19:40:11Z",
+      "side": 0,
+      "message": "Let me explain in this one place to resolve the rest of comments.\n\n1. This CL was created to fix the issue of using List of nested mutable Object reference copy, and to support modifying BISes in the next CLs. Nested + List are the most concerning point here. So I\u0027d prefer not to mix other fields changes here.\n2. String is immutable type, I don\u0027t feel we will hit the same issue.\n3. BluetoothLeAudioContentMetadata and BluetoothLeAudioCodecConfigMetadata are a bit tricky. But IMO they might also not have the same issue as here if you looked at the inner fields there.\n\nBased on my 1st point, I\u0027m resolving those and let\u0027s follow up with a separate CL if you still feel that\u0027s necessary.",
+      "parentUuid": "5c72058d_5bcd7ec7",
+      "range": {
+        "startLine": 538,
+        "startChar": 0,
+        "endLine": 538,
+        "endChar": 55
+      },
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f2fc7ab_1e79ba94",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-12-31T10:36:21Z",
       "side": 0,
       "message": "reference copy",
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42dba1bd_ab8f8e05",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-02T19:40:11Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2f2fc7ab_1e79ba94",
       "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1016eb_44ae0904",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-02T19:40:11Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "8108e808_75975cb6",
+      "range": {
+        "startLine": 549,
+        "startChar": 12,
+        "endLine": 549,
+        "endChar": 36
+      },
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bebf7e7_46ceb6a2",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd1f6f4_71bd5cac",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroup.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-02T19:40:11Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "1bebf7e7_46ceb6a2",
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "068f0394_5bc943a9",
@@ -94,6 +178,24 @@
       "writtenOn": "2024-12-31T10:36:21Z",
       "side": 0,
       "message": "reference copy",
+      "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7066675_7140c3ae",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastSubgroup.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-02T19:40:11Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "068f0394_5bc943a9",
       "revId": "93b14b38aeaab4ada03a692342ec9a464c15eb8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
