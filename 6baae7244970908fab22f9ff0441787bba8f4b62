@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35425bee_f5075c8d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1787007
+      },
+      "writtenOn": "2025-01-02T08:52:20Z",
+      "side": 1,
+      "message": "is there an alternative flag with a system container that is tied to the functionality you need from B that you could use instead or doing a broader atLeastB check?",
+      "range": {
+        "startLine": 348,
+        "startChar": 60,
+        "endLine": 348,
+        "endChar": 73
+      },
+      "revId": "6baae7244970908fab22f9ff0441787bba8f4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
