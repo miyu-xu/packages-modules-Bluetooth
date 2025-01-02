@@ -46,6 +46,30 @@
       },
       "revId": "6baae7244970908fab22f9ff0441787bba8f4b62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc336614_ffa0fe09",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-02T18:37:53Z",
+      "side": 1,
+      "message": "I don\u0027t really like the fact we are adding suppresslint, as this tend to spread in an uncontrollable way, but I have to admit that the lint is wrong in this case, and I understand the \"trunk stable\" concern too\n\nI suppressed it.",
+      "parentUuid": "f4bb1b53_062ae40c",
+      "range": {
+        "startLine": 348,
+        "startChar": 60,
+        "endLine": 348,
+        "endChar": 73
+      },
+      "revId": "6baae7244970908fab22f9ff0441787bba8f4b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
