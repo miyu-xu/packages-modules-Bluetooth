@@ -1465,6 +1465,7 @@ public class RemoteDevices {
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
             if (Flags.keyMissingPublic()) {
+                Log.i(TAG, "KEY_MISSING public: " + bluetoothDevice);
                 mAdapterService.sendOrderedBroadcast(
                         intent,
                         BLUETOOTH_CONNECT,
@@ -1474,12 +1475,14 @@ public class RemoteDevices {
                         Activity.RESULT_OK /* initialCode */,
                         null /* initialData */,
                         null /* initialExtras */);
+                Log.i(TAG, "KEY_MISSING public done!: " + bluetoothDevice);
                 return;
             }
 
             if (isAtLeastV()
                     && Flags.keyMissingAsOrderedBroadcast()
                     && android.os.Flags.orderedBroadcastMultiplePermissions()) {
+                Log.i(TAG, "KEY_MISSING ordered broadcast: " + bluetoothDevice);
                 mAdapterService.sendOrderedBroadcastMultiplePermissions(
                         intent,
                         new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
@@ -1490,11 +1493,14 @@ public class RemoteDevices {
                         null /* initialData */,
                         null /* initialExtras */,
                         Utils.getTempBroadcastOptions().toBundle());
+                Log.i(TAG, "KEY_MISSING ordered broadcast done!: " + bluetoothDevice);
             } else {
+                Log.i(TAG, "KEY_MISSING multiple perm: " + bluetoothDevice);
                 mAdapterService.sendBroadcastMultiplePermissions(
                         intent,
                         new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
                         Utils.getTempBroadcastOptions());
+                Log.i(TAG, "KEY_MISSING multiple perm done!: " + bluetoothDevice);
             }
         }
     }
