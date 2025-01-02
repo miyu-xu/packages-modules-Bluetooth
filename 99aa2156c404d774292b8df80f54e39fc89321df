@@ -22,6 +22,30 @@
       },
       "revId": "99aa2156c404d774292b8df80f54e39fc89321df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a8434a6_ddd181e9",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-02T18:49:38Z",
+      "side": 1,
+      "message": "I believe that this api is available starting android 16 but this CL is adding it to android 15.\n\nI don\u0027t think what is being done in this CL is compatible with android releases",
+      "parentUuid": "21e2b7eb_07c7ce34",
+      "range": {
+        "startLine": 875,
+        "startChar": 0,
+        "endLine": 875,
+        "endChar": 157
+      },
+      "revId": "99aa2156c404d774292b8df80f54e39fc89321df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
