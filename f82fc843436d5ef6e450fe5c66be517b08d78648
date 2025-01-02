@@ -180,6 +180,24 @@
       "parentUuid": "6f88270e_a41bb44a",
       "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec74e9c_7f097f04",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-02T17:50:53Z",
+      "side": 1,
+      "message": "This raw address comes from the `p_cb-\u003epairing_bda` in SMP which is not necessarily the identity address. This would be identity address only if the remote device used identity address in pairing mode.",
+      "parentUuid": "499b9343_4aab4599",
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
