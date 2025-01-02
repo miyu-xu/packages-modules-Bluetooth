@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff37fe54_dd05d15f",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-02T22:31:17Z",
+      "side": 1,
+      "message": "The old way of doing this basically let the StateMachine implementation create a new HandlerThread/looper each time a new device was connected. AFAIK, this put each device on its own thread/looper. That should, in theory, allow for concurrent operations across devices to run without impacting the performance of other device directly.\n\nFor example, if Device A is processing a message listing of hundreds of messages and Device B enqueues a fetch, the fetch can go out truly in parallel to the processing of the message listing.\n\nWith this method, does every device using the same looper imply that the state machines are all using the same underlying thread/message queue, and that operations from one device can block operations on the other?\n\nIf so, I preferred the method of injecting a looper just for tests (though making the HandlerThread and Looper an implementation detail of the device state machine does pose its own challenges that I\u0027m not sure I\u0027ve seen done in a way I like yet either). I suppose we could also inject a HandlerThread instead too, which I think I\u0027ve seen some classes do in the BT source code. I\u0027m less of a fan of that though.",
+      "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
