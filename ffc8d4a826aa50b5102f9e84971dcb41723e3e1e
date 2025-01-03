@@ -118,6 +118,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a76580b_707ed493",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T18:29:30Z",
+      "side": 1,
+      "message": "+1 to this.",
+      "parentUuid": "39b3a88a_e74863a7",
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a332be0_7b585e0f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T18:29:30Z",
+      "side": 1,
+      "message": "make method private",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 36
+      },
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24b12065_e27aee5c",
         "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
         "patchSetId": 2
