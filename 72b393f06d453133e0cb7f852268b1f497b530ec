@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "daafd0ce_a31f716e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-03T22:58:30Z",
+      "side": 1,
+      "message": "Please flag this change",
+      "revId": "72b393f06d453133e0cb7f852268b1f497b530ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6937147_a6c1a6c1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
