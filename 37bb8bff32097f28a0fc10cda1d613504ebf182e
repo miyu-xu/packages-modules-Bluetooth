@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4e504c_e25c18ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-03T01:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df915f7d_903510da",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 4
+      },
+      "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9b8a08c_d2d3cfe1",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-03T00:32:44Z",
       "side": 1,
       "message": "Can the same thing be done here that was done for the pbapclient test, e.g.,\n```\n// Test needs to keep a reference to MceStateMachine\u0027s handler in case of race condition during cleanup during disconnecting/disconnected\nHandler mMceStateMachineHandler \u003d null;\n\n...\n\npublic void setUp() {\n    ...\n    Handler mMceStateMachineHandler \u003d mMceStateMachine.getHandler();\n    ...\n}\n\n...\n\nprivate void assertCurrentStateAfterScheduledTask(int expectedState) { \n    TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachineHandler.getLooper());\n    assertThat(mMceStateMachine.getState()).isEqualTo(expectedState);\n}\n```",
+      "range": {
+        "startLine": 1176,
+        "startChar": 8,
+        "endLine": 1176,
+        "endChar": 28
+      },
+      "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0592089_f395568d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-03T01:53:24Z",
+      "side": 1,
+      "message": "I think that might work, depending on when StateMachine intializes the handler object and the assumptions it has around its lifecycle. Where did we do that though? I\u0027m not finding it 😞\n\n_Really_ what we should do is use `TestLooper` though (which William has a change up for, but I have questions about it), so I didn\u0027t want to put too much thought into this. I just wanted it to work until we can make `TestLooper` work.\n\nWilliam more or less wants to remove all the `waitForLooper*` functions in favor of TestLooper.",
+      "parentUuid": "c9b8a08c_d2d3cfe1",
       "range": {
         "startLine": 1176,
         "startChar": 8,
