@@ -343,6 +343,24 @@
       "parentUuid": "ff3fc2ca_a835c62d",
       "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "902f07a9_b2e6f8cf",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-03T18:57:52Z",
+      "side": 1,
+      "message": "this is running in the binder thread? in this case, I don\u0027t think it should throw exception too. a wtf log may be good.\n and you are right, the threads should be cleared up.",
+      "parentUuid": "1da8643b_621ffb96",
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
