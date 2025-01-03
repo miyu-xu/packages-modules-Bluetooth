@@ -16,6 +16,23 @@
       "message": "rebase on Grzegorz\u0027s behalf to resolve merge conflict",
       "revId": "79bae38b0bb221f6c5734785ce78d8ca3443ad3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d600101_e301f742",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-03T17:14:05Z",
+      "side": 1,
+      "message": "I did a rebase, so might need another vote to merge.\n\nhi @rwt@google.com, can you also help to review this? Thank you!",
+      "revId": "79bae38b0bb221f6c5734785ce78d8ca3443ad3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
