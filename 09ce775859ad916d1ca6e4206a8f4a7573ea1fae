@@ -44,6 +44,24 @@
       ],
       "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7b5b20c_67e8f61c",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-03T23:57:38Z",
+      "side": 1,
+      "message": "I\u0027m still working on that but for context Jakub added this for readability purposes.  I\u0027ll still fix the filtering.",
+      "parentUuid": "07137a5f_65de0d53",
+      "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
