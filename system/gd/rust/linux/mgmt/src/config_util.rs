@@ -249,7 +249,13 @@ pub fn write_floss_address_privacy_enabled(enabled: bool) -> std::io::Result<()>
         data.clone(),
     )?;
 
-    std::fs::write(format!("{}", FLOSS_ADDRESS_PRIVACY_CONFIG_SAVE), data.clone())
+    let save_path = Path::new(FLOSS_ADDRESS_PRIVACY_CONFIG_SAVE);
+
+    if save_path.exists() {
+        std::fs::write(format!("{}", FLOSS_ADDRESS_PRIVACY_CONFIG_SAVE), data.clone())?;
+    }
+
+    OK(())
 }
 
 #[cfg(test)]
