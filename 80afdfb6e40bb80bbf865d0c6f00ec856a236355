@@ -16,6 +16,24 @@
       "message": "what if remote does not support GAME on the source direction?",
       "revId": "80afdfb6e40bb80bbf865d0c6f00ec856a236355",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23796595_f998687f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5266,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-03T16:18:33Z",
+      "side": 1,
+      "message": "I think we should act as previously - added checking remote for context availability.",
+      "parentUuid": "1157274b_53fe35e5",
+      "revId": "80afdfb6e40bb80bbf865d0c6f00ec856a236355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
