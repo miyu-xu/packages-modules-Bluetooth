@@ -64,6 +64,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b0b1226_3da78237",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-03T17:10:48Z",
+      "side": 1,
+      "message": "This won\u0027t work for testing as snoop logger runs host tests this will always crash with such hardcoded path :/ \nThat\u0027s why I handled \u0027logs\u0027 directory, created it when necessary, checked it\u0027s naming etc...\nShouldn\u0027t it handle other platforms then Android? snoop log path is gathered with: \nos::ParameterProvider::SnoopLogFilePath() which is different based on the platform.",
+      "parentUuid": "2235f926_b0f7d1b1",
+      "range": {
+        "startLine": 326,
+        "startChar": 12,
+        "endLine": 326,
+        "endChar": 34
+      },
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c399489e_26ebb161",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 1
@@ -122,6 +146,30 @@
           ]
         }
       ],
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac4c775e_d6853d5b",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-03T17:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ac6455f_6648cb39",
+      "range": {
+        "startLine": 340,
+        "startChar": 26,
+        "endLine": 340,
+        "endChar": 42
+      },
       "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
