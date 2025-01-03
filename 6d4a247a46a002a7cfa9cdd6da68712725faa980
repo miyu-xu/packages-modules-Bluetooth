@@ -22,6 +22,29 @@
       },
       "revId": "6d4a247a46a002a7cfa9cdd6da68712725faa980",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265f9587_35e3e0a4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-01-03T18:27:58Z",
+      "side": 1,
+      "message": "I know you didn\u0027t touch this test, but this test doesn\u0027t seem to be explicitly verifying whether a connect has been issued, i.e., `PbapClientService#connect` returns `true` or not?",
+      "range": {
+        "startLine": 796,
+        "startChar": 50,
+        "endLine": 796,
+        "endChar": 63
+      },
+      "revId": "6d4a247a46a002a7cfa9cdd6da68712725faa980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
