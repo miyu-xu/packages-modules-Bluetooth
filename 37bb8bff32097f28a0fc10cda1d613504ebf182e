@@ -93,6 +93,30 @@
       },
       "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0520a78_dc68e261",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-01-03T18:50:43Z",
+      "side": 1,
+      "message": "Lifecycle seems to be: created in `StateMachine#initStateMachine`, so the Handler should be available as soon as the MceStateMachine is created? Nulled when MceStateMachine enters Disconnected state and calls `StateMachine#quit`.\n\nBut if this meant as a simple fix until we move to a `TestLooper` type solution, I can go ahead and +2 to unblock.",
+      "parentUuid": "d0592089_f395568d",
+      "range": {
+        "startLine": 1176,
+        "startChar": 8,
+        "endLine": 1176,
+        "endChar": 28
+      },
+      "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
