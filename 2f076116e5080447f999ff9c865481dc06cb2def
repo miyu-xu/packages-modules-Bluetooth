@@ -16,6 +16,24 @@
       "message": "Mobly proposes this pattern in one of their doc comments,\nit would help selecting passing tests from the LeHostTest class\n```\n  from mobly import base_suite\n  from mobly import suite_runner\n\n  from my.path import MyFooTest\n  from my.path import MyBarTest\n\n\n  class MySuite(base_suite.BaseSuite):\n\n    def setup_suite(self, config):\n      # Add a class with default config.\n      self.add_test_class(MyFooTest)\n      # Add a class with test selection.\n      self.add_test_class(MyBarTest,\n                          tests\u003d[\u0027test_a\u0027, \u0027test_b\u0027])\n      # Add the same class again with a custom config and suffix.\n      my_config \u003d some_config_logic(config)\n      self.add_test_class(MyBarTest,\n                          config\u003dmy_config,\n                          name_suffix\u003d\u0027WithCustomConfig\u0027)\n\n\n  if __name__ \u003d\u003d \u0027__main__\u0027:\n    suite_runner.run_suite_class()\n```",
       "revId": "2f076116e5080447f999ff9c865481dc06cb2def",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8d69452_90c8b90c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-03T15:44:18Z",
+      "side": 1,
+      "message": "currently run_suite_class is broken in mobly:\n```\ndef run_suite_class(argv\u003dNone):\n  \"\"\"Executes tests in the test suite.\n\n  Args:\n    argv: A list that is then parsed as CLI args. If None, defaults to sys.argv.\n  \"\"\"\n  cli_args \u003d _parse_cli_args(argv)\n  suite_class \u003d _find_suite_class()\n  if cli_args.list_tests:\n    _print_test_names([suite_class])\n    sys.exit(0)\n...\n```\n_print_test_names([suite_class]) causes an error because of type mismatch and constructor parameters being wrong. \n\nFixing that causes other issues. If I understand correctly from _find_suite_class which is used by run_suite_class:\n```\ndef _find_suite_class():\n  \"\"\"Finds the test suite class in the current module.\n\n  Walk through module members and find the subclass of BaseSuite. Only\n  one subclass is allowed in a module.\n``` \nI can create only one suite class that inherits over BaseSuite - so I would need to overwrite main.py - there I would have to add all test classes in setup_suite like:\n```\nclass BluetoothTestSuite(base_suite.BaseSuite):\n    \"\"\"Android Blutooth test suite.\"\"\"\n    skip_tests \u003d [\n        # Reason for skipping tests: b/272120114\n        \"test_extended_scan(\u0027non_connectable_scannable\u0027,\u0027directed\u0027,150,0)\",\n        \"test_extended_scan(\u0027non_connectable_scannable\u0027,\u0027undirected\u0027,150,0)\",\n        \"test_extended_scan(\u0027non_connectable_scannable\u0027,\u0027directed\u0027,150,2)\",\n        \"test_extended_scan(\u0027non_connectable_scannable\u0027,\u0027undirected\u0027,150,2)\",\n    ]\n    def setup_suite(self, config):\n        for test_class in _TEST_CLASSES_LIST:\n            self.add_test_class(test_class)\n\t# here I specify tests to be skipped\n        le_host_tests \u003d []\n        for name, _ in avatar.cases.le_host_test.LeHostTest.__dict__.items():\n            if name not in self.skip_tests:\n                logging.info(f\"Append LE Host test: {name}\")\n                le_host_tests.append(name)\n            else:\n                logging.info(f\"Skipped LE Host test: {name}\")\n\n        self.add_test_class(avatar.cases.le_host_test.LeHostTest,\n                            tests\u003dle_host_tests)\n...\n```\nThis actually runs all the tests even though user passes specific test class to run as run_suite_class doesn\u0027t handle specific test class run...\nSo all in all this approach would require a complete refactor of run_suite_class in mobly - which is probably an overkill. Let me know what do you think, thank you!",
+      "parentUuid": "8a3c5bff_29b3ed47",
+      "revId": "2f076116e5080447f999ff9c865481dc06cb2def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
