@@ -52,6 +52,24 @@
       "parentUuid": "322b3ecb_dc7c19b8",
       "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a42520_c86ba355",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-03T15:37:35Z",
+      "side": 1,
+      "message": "I mean manager the died binder in packages/modules/Bluetooth/framework/java/android/bluetooth/le/DistanceMeasurementManager.java, not DistanceMeasurementSession.java",
+      "parentUuid": "c395ba67_2f62fe48",
+      "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
