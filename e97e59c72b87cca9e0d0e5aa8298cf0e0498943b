@@ -46,6 +46,30 @@
       },
       "revId": "e97e59c72b87cca9e0d0e5aa8298cf0e0498943b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d08b05_bc739619",
+        "filename": "system/bta/gmap/gmap_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-03T09:05:13Z",
+      "side": 0,
+      "message": "While removing the redundant `addr` parameter (which is a mandatory constructor argument, so you have to call it before calling GmapClient::AddFromStorage), I decided to remove the `const` qualifiers for the arguments passed by value. There is no real benefit from making the arguments passed by value a `const` values. Additionally the non-const value arguments match the convention used elsewhere in the code base.",
+      "parentUuid": "449603ba_b15f122c",
+      "range": {
+        "startLine": 40,
+        "startChar": 60,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "e97e59c72b87cca9e0d0e5aa8298cf0e0498943b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
