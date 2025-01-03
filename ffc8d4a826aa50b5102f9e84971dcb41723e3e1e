@@ -118,6 +118,141 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24b12065_e27aee5c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T18:27:25Z",
+      "side": 1,
+      "message": "Is this really needed ? Doesn\u0027t `callback.asBinder()` works directly ?",
+      "range": {
+        "startLine": 118,
+        "startChar": 7,
+        "endLine": 118,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8042cb68_8a3309a7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 118,
+                "startChar": 0,
+                "endLine": 119,
+                "endChar": 0
+              },
+              "replacement": "        IBinder binder \u003d callback.asBinder();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "        IBinder binder \u003d callback.asBinder();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "567312d1_73a63336",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T18:27:25Z",
+      "side": 1,
+      "message": "This log is not very helpful as we don\u0027t know who is unlinking nor what is unlinked",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "faccc58b_34c9adb9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 125,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19310e1c_cefdebb4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T18:27:25Z",
+      "side": 1,
+      "message": "I don\u0027t think we should checking for null here.\n\nSee some other calls, we are even enforcing that the packageManager is not null:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d169;drc\u003d1270a7c62a0c3a92519736bfeb7703e744d1e997",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 58
+      },
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff3fc2ca_a835c62d",
         "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
         "patchSetId": 2
@@ -147,6 +282,24 @@
           ]
         }
       ],
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1da8643b_621ffb96",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T18:27:25Z",
+      "side": 1,
+      "message": "I don\u0027t think it will crash the stack since this is being called by the 3p app.\n\nWhich lead to another issue, why are we doing all this logic on the binder thread ? this is highly error prone and the code is full of race condition",
+      "parentUuid": "ff3fc2ca_a835c62d",
       "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
