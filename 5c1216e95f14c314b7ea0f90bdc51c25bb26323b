@@ -16,6 +16,24 @@
       "message": "can you handle the bt stack crash or exit(turn off BT), app should get notification of onStopped ?",
       "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "322b3ecb_dc7c19b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-01-03T13:02:41Z",
+      "side": 1,
+      "message": "This should be hanlde by the app by monitor BluetoothAdapter.ACTION_STATE_CHANGED",
+      "parentUuid": "4e51024a_e1210e64",
+      "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
