@@ -16,6 +16,24 @@
       "message": "nit: rename to `INTEROP_DISABLE_HF_PROFILE`",
       "revId": "a4d0129fb5c82d18cdff41020d8c768845bf7cce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f9cf3ca_ffa9ee29",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2025-01-03T10:29:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f79f3996_5d3701f7",
+      "revId": "a4d0129fb5c82d18cdff41020d8c768845bf7cce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
