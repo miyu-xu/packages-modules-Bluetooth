@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8effd395_8778a780",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T23:23:21Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this simply be `else` ? to also delete data when BOND_BONDING.\n\nTechnically this should never be triggered since the data will now only be created during BONDED but that doesn\u0027t harm to keep it I think",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "368030bc_016666b3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": "            } else {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "92173d94d0dc6210098595ce8911b47f652d27ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
