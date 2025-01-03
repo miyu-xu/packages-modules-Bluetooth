@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e55bfe_f01513fa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-03T16:56:14Z",
+      "side": 1,
+      "message": "Can you verify that no other intent is recieved after that? `BOND_NONE` may come after the ACL disconnection.",
+      "fixSuggestions": [
+        {
+          "fixId": "8881c43b_99e08181",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 997,
+                "startChar": 0,
+                "endLine": 997,
+                "endChar": 0
+              },
+              "replacement": "        verifyNoMoreInteractions(mReceiver);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "815c9568a37f26cefe753732a5722884996aa473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
