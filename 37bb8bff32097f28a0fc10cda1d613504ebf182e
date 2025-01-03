@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df915f7d_903510da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-01-03T00:32:44Z",
+      "side": 1,
+      "message": "nit: add another test stanza for `PbapClientServiceTest`?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 4
+      },
+      "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b8a08c_d2d3cfe1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-01-03T00:32:44Z",
+      "side": 1,
+      "message": "Can the same thing be done here that was done for the pbapclient test, e.g.,\n```\n// Test needs to keep a reference to MceStateMachine\u0027s handler in case of race condition during cleanup during disconnecting/disconnected\nHandler mMceStateMachineHandler \u003d null;\n\n...\n\npublic void setUp() {\n    ...\n    Handler mMceStateMachineHandler \u003d mMceStateMachine.getHandler();\n    ...\n}\n\n...\n\nprivate void assertCurrentStateAfterScheduledTask(int expectedState) { \n    TestUtils.waitForLooperToFinishScheduledTask(mMceStateMachineHandler.getLooper());\n    assertThat(mMceStateMachine.getState()).isEqualTo(expectedState);\n}\n```",
+      "range": {
+        "startLine": 1176,
+        "startChar": 8,
+        "endLine": 1176,
+        "endChar": 28
+      },
+      "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
