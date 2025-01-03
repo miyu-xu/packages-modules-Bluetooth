@@ -3080,6 +3080,13 @@ public class BassClientService extends ProfileService {
                 mCallbacks.notifySourceAddFailed(device, sourceMetadata, statusCode);
                 continue;
             }
+            if (!stateMachine.isBassStateReady()) {
+                Log.d(TAG, "addSource: BASS state not ready, retry later");
+                synchronized (mPendingSourcesToAdd) {
+                    mPendingSourcesToAdd.add(new AddSourceData(device, sourceMetadata, isGroupOp));
+                }
+                continue;
+            }
             if (stateMachine.hasPendingSourceOperation()) {
                 Log.w(
                         TAG,
@@ -3721,6 +3728,23 @@ public class BassClientService extends ProfileService {
 
     /** Handle device newly connected and its peer device still has active source */
     private void checkAndResumeBroadcast(BluetoothDevice sink) {
+        // Check pending source to add first
+        synchronized (mPendingSourcesToAdd) {
+            Iterator<AddSourceData> iterator = mPendingSourcesToAdd.iterator();
+            while (iterator.hasNext()) {
+                AddSourceData pendingSourcesToAdd = iterator.next();
+                if (pendingSourcesToAdd.mSink.equals(sink)) {
+                    Log.d(TAG, "BASS state ready, retry adding source");
+                    addSource(
+                            pendingSourcesToAdd.mSink,
+                            pendingSourcesToAdd.mSourceMetadata,
+                            pendingSourcesToAdd.mIsGroupOp);
+                    iterator.remove();
+                    return;
+                }
+            }
+        }
+
         Map<Integer, BluetoothLeBroadcastMetadata> entry = mBroadcastMetadataMap.get(sink);
 
         if (entry == null) {

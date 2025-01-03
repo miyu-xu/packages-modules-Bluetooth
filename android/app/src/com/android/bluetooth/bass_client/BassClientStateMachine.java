@@ -156,6 +156,7 @@ class BassClientStateMachine extends StateMachine {
     private final Map<Integer, Boolean> mFirstTimeBisDiscoveryMap;
     private int mPASyncRetryCounter = 0;
     @VisibleForTesting int mNumOfBroadcastReceiverStates = 0;
+    boolean mBassStateReady = false;
     int mNumOfReadyBroadcastReceiverStates = 0;
     @VisibleForTesting int mPendingOperation = -1;
     @VisibleForTesting byte mPendingSourceId = -1;
@@ -1177,6 +1178,7 @@ class BassClientStateMachine extends StateMachine {
             if (leaudioBroadcastResyncHelper()) {
                 // Notify service BASS state ready for operations
                 mService.getCallbacks().notifyBassStateReady(mDevice);
+                mBassStateReady = true;
             }
         } else {
             log("Updated receiver state: " + recvState);
@@ -1560,6 +1562,7 @@ class BassClientStateMachine extends StateMachine {
                     if (mNumOfReadyBroadcastReceiverStates == mNumOfBroadcastReceiverStates) {
                         // Notify service BASS state ready for operations
                         mService.getCallbacks().notifyBassStateReady(mDevice);
+                        mBassStateReady = true;
                     }
                 } else {
                     processBroadcastReceiverStateObsolete(
@@ -1875,6 +1878,7 @@ class BassClientStateMachine extends StateMachine {
         }
         mPendingOperation = -1;
         mPendingMetadata = null;
+        mBassStateReady = false;
         mCurrentMetadata.clear();
         mPendingRemove.clear();
     }
@@ -2861,6 +2865,10 @@ class BassClientStateMachine extends StateMachine {
 
     int getMaximumSourceCapacity() {
         return mNumOfBroadcastReceiverStates;
+    }
+
+    boolean isBassStateReady() {
+        return mBassStateReady;
     }
 
     BluetoothLeBroadcastMetadata getCurrentBroadcastMetadata(Integer sourceId) {
