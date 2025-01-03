@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e144666d_bc35a058",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-03T10:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1fa75cf_02c41045",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "752b3118e3575578965d3363ca5f7fc87ae97b9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fea3f310_84a00026",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-01-02T17:59:08Z",
       "side": 1,
       "message": "Add following stanza:\n`Flag: EXEMPT bugfix`",
+      "revId": "752b3118e3575578965d3363ca5f7fc87ae97b9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c97a211_a613d115",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-03T10:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fea3f310_84a00026",
       "revId": "752b3118e3575578965d3363ca5f7fc87ae97b9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
