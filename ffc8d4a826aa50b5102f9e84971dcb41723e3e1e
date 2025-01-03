@@ -1,0 +1,154 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39b3a88a_e74863a7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-03T15:57:02Z",
+      "side": 1,
+      "message": "This is problematic, the binder is reused by different measurement sessions.\nconsider an app is tracking mulitple devices. the current implementation only handle the last measurement request, and leave the previous request in a pending state.",
+      "fixSuggestions": [
+        {
+          "fixId": "7565ae7b_fcdbf878",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": "import android.os.Handler;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "import java.util.HashMap;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "    private final HashMap\u003cUUID, DistanceMeasurementDeathRecipient\u003e mDeathRecipients \u003d new HashMap\u003c\u003e();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "    void unlinkToDeath(UUID uuid) {\n        DistanceMeasurementDeathRecipient deathRecipient \u003d mDeathRecipients.remove(uuid);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "        deathRecipient.mDeathRecipient.unlinkToDeath(deathRecipient, 0);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 170,
+                "endChar": 0
+              },
+              "replacement": "        deathRecipient.linkToDeath(callback);\n        mDeathRecipients.put(uuid, deathRecipient);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 370,
+                "startChar": 0,
+                "endLine": 371,
+                "endChar": 0
+              },
+              "replacement": "            unlinkToDeath(device.getUuid());\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 380,
+                "startChar": 0,
+                "endLine": 381,
+                "endChar": 0
+              },
+              "replacement": "            unlinkToDeath(device.getUuid());\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 604,
+                "startChar": 0,
+                "endLine": 604,
+                "endChar": 0
+              },
+              "replacement": "\n    class DistanceMeasurementDeathRecipient implements IBinder.DeathRecipient {\n        private final UUID mUuid;\n        private final BluetoothDevice mDevice;\n        private final int mMethod;\n        private final String mPackageName;\n        private final Handler mHandler;\n        private final IBinder.DeathRecipient mDeathRecipient;\n\n        DistanceMeasurementDeathRecipient(\n                UUID uuid, BluetoothDevice device, int method, String packageName) {\n            mUuid \u003d uuid;\n            mDevice \u003d device;\n            mMethod \u003d method;\n            mPackageName \u003d packageName;\n            mHandler \u003d new Handler();\n            mDeathRecipient \u003d new IBinder.DeathRecipient() {\n                @Override\n                public void binderDied() {\n                    mHandler.post(() -\u003e {\n                        Log.i(TAG, \"Binder is dead - stop distance measurement (\" + mPackageName + \")!\");\n                        stopDistanceMeasurement(mUuid, mDevice, mMethod, false);\n                    });\n                }\n            };\n        }\n\n        void linkToDeath(IDistanceMeasurementCallback callback) {\n            IBinder binder \u003d toBinder(callback);\n            try {\n                binder.linkToDeath(mDeathRecipient, 0);\n            } catch (RemoteException e) {\n                throw new IllegalArgumentException(\"Can\u0027t link to death\");\n            }\n        }\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff3fc2ca_a835c62d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-03T15:57:02Z",
+      "side": 1,
+      "message": "if this happens, it means the app was killed, I don\u0027t think we should throw exception, it\u0027ll crash the bt stack. silent return should be good.",
+      "fixSuggestions": [
+        {
+          "fixId": "5dba86ca_4eec844e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 168,
+                "startChar": 0,
+                "endLine": 169,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"Can\u0027t link to death\");\n            return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ffc8d4a826aa50b5102f9e84971dcb41723e3e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
