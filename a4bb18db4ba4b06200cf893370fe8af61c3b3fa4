@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34020bcd_c484867f",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T19:20:14Z",
+      "side": 1,
+      "message": "Is this only use for test now ? Is there a way to annotate code in native to mention this is test only ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 15,
+        "endLine": 73,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "27c5d689_43c0ad7c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/storage/storage_module.cc",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 73,
+                "endChar": 0
+              },
+              "replacement": "// This constructor is only used for testing.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a4bb18db4ba4b06200cf893370fe8af61c3b3fa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c8109c_f7c7b91a",
+        "filename": "system/gd/storage/storage_module_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-03T19:20:14Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 104
+      },
+      "revId": "a4bb18db4ba4b06200cf893370fe8af61c3b3fa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
