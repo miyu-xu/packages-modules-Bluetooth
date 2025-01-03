@@ -98,6 +98,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c015174a_19ecc8ed",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4137,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2025-01-03T06:13:23Z",
+      "side": 1,
+      "message": "Thanks for the clarification!\n\nI think the testing flow fully covers the issue b/384847958 ;)",
+      "parentUuid": "96487fae_4737813b",
+      "range": {
+        "startLine": 4137,
+        "startChar": 20,
+        "endLine": 4137,
+        "endChar": 39
+      },
+      "revId": "76d9103dcb156d3e0c02dba8975c5171f579bc29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9f7ae195_86dee81b",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 1
