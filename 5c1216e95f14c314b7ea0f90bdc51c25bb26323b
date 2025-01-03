@@ -34,6 +34,24 @@
       "parentUuid": "4e51024a_e1210e64",
       "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c395ba67_2f62fe48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-03T15:30:09Z",
+      "side": 1,
+      "message": "The problem is that the APIs are not stateless.\nthe current design does not allow the app calling the startMeasurement 2 times.\nfor example.\napp startMeasurement\nbt stack crash or turned off\napp tried to stop, it does nothing (no onStop is received.)\nif app call startMeasurement again, the app will be crahed.\n\nThis leaves a hole for the api integrity and unexpected behavior/burden for app.\nI think we should manage that in the packages/modules/Bluetooth/framework/java/android/bluetooth/le/DistanceMeasurementSession.java\n\nrefer to https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Media/apex/framework/java/android/media/MediaController2.java;l\u003d65?q\u003dDeathRecipient\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2F\u0026start\u003d31",
+      "parentUuid": "322b3ecb_dc7c19b8",
+      "revId": "5c1216e95f14c314b7ea0f90bdc51c25bb26323b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
