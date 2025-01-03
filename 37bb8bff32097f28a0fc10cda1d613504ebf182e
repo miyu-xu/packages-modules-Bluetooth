@@ -117,6 +117,30 @@
       },
       "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9698df50_4d3bf3fc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-03T21:04:19Z",
+      "side": 1,
+      "message": "See aosp/3434765\n\nI\u0027m working with William to get this all done correctly with TestLooper 😊\n\nYou can add yourself their if you want and chime in and make sure we get it right.",
+      "parentUuid": "e0520a78_dc68e261",
+      "range": {
+        "startLine": 1176,
+        "startChar": 8,
+        "endLine": 1176,
+        "endChar": 28
+      },
+      "revId": "37bb8bff32097f28a0fc10cda1d613504ebf182e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
