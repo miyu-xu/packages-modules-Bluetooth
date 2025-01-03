@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16086cbf_697c4c53",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-01-03T18:16:15Z",
+      "side": 1,
+      "message": "Is there an \"old\" `setConnectionPolicy` that should be used in this test? Otherwise, this test should be the same as `testSetConnectionPolicy_toAllowed_connectIssued`, in that state machine shouldn\u0027t be needed at all?\n```\nPbapClientStateMachineOld sm \u003d mock(PbapClientStateMachineOld.class);\nmService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);\n```",
+      "range": {
+        "startLine": 783,
+        "startChar": 16,
+        "endLine": 783,
+        "endChar": 45
+      },
+      "revId": "6d4a247a46a002a7cfa9cdd6da68712725faa980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
