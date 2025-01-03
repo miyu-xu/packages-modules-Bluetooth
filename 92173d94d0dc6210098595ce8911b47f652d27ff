@@ -40,6 +40,30 @@
       ],
       "revId": "92173d94d0dc6210098595ce8911b47f652d27ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00707c2c_440d05ce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-03T23:27:14Z",
+      "side": 1,
+      "message": "`BOND_BONDING` may come after `BOND_BONDED` as well. This can happen when pairing happen on different transports separately. Or when security is upgraded.",
+      "parentUuid": "8effd395_8778a780",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 60
+      },
+      "revId": "92173d94d0dc6210098595ce8911b47f652d27ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
