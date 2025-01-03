@@ -16,6 +16,24 @@
       "message": "Had to be put on top of aosp/3322820",
       "revId": "26b65812166f576ccab29c76c057ed21b1f71456",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cdd76f8_485e3ed2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-03T11:09:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "441eb672_2329bf24",
+      "revId": "26b65812166f576ccab29c76c057ed21b1f71456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
