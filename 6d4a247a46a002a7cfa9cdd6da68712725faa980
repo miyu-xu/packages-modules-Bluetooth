@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc1d702a_88cf042f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-03T18:36:49Z",
+      "side": 1,
+      "message": "The below test creates the state machine in the setup() function, not in the individual tests. Both of them want mock state machines, or the reported bug happens where the unit test tries to make a _real_ object, which obviously can\u0027t connect to anything because there\u0027s not a real Bluetooth stack or real device.",
+      "parentUuid": "16086cbf_697c4c53",
+      "range": {
+        "startLine": 783,
+        "startChar": 16,
+        "endLine": 783,
+        "endChar": 45
+      },
+      "revId": "6d4a247a46a002a7cfa9cdd6da68712725faa980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "265f9587_35e3e0a4",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-03T18:27:58Z",
       "side": 1,
       "message": "I know you didn\u0027t touch this test, but this test doesn\u0027t seem to be explicitly verifying whether a connect has been issued, i.e., `PbapClientService#connect` returns `true` or not?",
+      "range": {
+        "startLine": 796,
+        "startChar": 50,
+        "endLine": 796,
+        "endChar": 63
+      },
+      "revId": "6d4a247a46a002a7cfa9cdd6da68712725faa980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b0f9b43_cdb9f868",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-03T18:36:49Z",
+      "side": 1,
+      "message": "IMO, the contract between the API caller and the service is that true -\u003e connection request issued (which can still mess up in a variety of ways!), false -\u003e I couldn\u0027t do that for you so don\u0027t expect anything.\n\nOur PbapClientStateMachine tests test that the state machine can fully connect a device, and that it can be robust to the ways it can fail.\n\nI don\u0027t think we need to mix the two.",
+      "parentUuid": "265f9587_35e3e0a4",
       "range": {
         "startLine": 796,
         "startChar": 50,
