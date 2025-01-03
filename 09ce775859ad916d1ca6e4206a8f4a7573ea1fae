@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07137a5f_65de0d53",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-03T23:32:59Z",
+      "side": 1,
+      "message": "I think this will not be a valid command.\nI think the privacy concern around this command is just the phone number, replacing  \n\"+99123456789\" by something like \"+00000000000\" looks more appropriate to me, and we keep valid protocol information.\nI opened a bug \"b/336815713\" some time ago on that.",
+      "fixSuggestions": [
+        {
+          "fixId": "198e5fbb_205f1721",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger_test.cc",
+              "range": {
+                "startLine": 978,
+                "startChar": 0,
+                "endLine": 979,
+                "endChar": 0
+              },
+              "replacement": "          0x35, 0x36, 0x37, 0x38, 0x39, 0x22, 0x2c, 0x31, 0x34, 0x35, 0x0d, 0x0a, 0x49, 0x00,\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger_test.cc",
+              "range": {
+                "startLine": 1417,
+                "startChar": 0,
+                "endLine": 1419,
+                "endChar": 0
+              },
+              "replacement": "          // \"\\r\\n+CLCC: 1,1,4,0,0,\"\n          0x0d, 0x0a, 0x2b, 0x43, 0x4c, 0x43, 0x43, 0x3a, 0x20, 0x31, 0x2c, 0x31, 0x2c, 0x34,\n          0x2c, 0x30, 0x2c, 0x30, 0x2c, 0x22, 0x2b, 0x39, 0x39, 0x31, 0x32, 0x33, 0x34,\n          0x35, 0x36, 0x37, 0x38, 0x39, 0x22, 0x2c, 0x31, 0x34, 0x35, 0x0d, 0x0a, 0x49, 0x00};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
