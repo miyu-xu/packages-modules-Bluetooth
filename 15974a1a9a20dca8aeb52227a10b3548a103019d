@@ -1,0 +1,358 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03dcf55_3abef28a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "Should we put the context to null too ? to avoid leak ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "407d6189_46f8cec8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 44,
+                "endChar": 0
+              },
+              "replacement": "        mContext \u003d null;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc9e474_4d47f770",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "I think the code is slowly moving to call attributionSource to be \"source\" that is lighter on the reader ^^\nBut it would be great if we enforce that this is notNull before using it, as \"data validation\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 43
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17cef844_f2a06053",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "All method are requiring the advertise permission. We could simplify by having a getManager that could enforce permission for every calls",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 9
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe85b16_738f2d61",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "requireNonNull(parameters) before ? to indicate that a null is not an accepted value",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de072dad_b2f2280b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "Remove the @RequiresPermission are they are provided by aidl with the @Javapassthrough",
+      "range": {
+        "startLine": 90,
+        "startChar": 5,
+        "endLine": 90,
+        "endChar": 23
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e106d45f_7bcd50ef",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "same, requireNonNull for callback ?",
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc40b563_c2bf5677",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "manager ? same for others",
+      "range": {
+        "startLine": 151,
+        "startChar": 12,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee6d0a4_5a8bb4f8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "Is it possible to do one binder per CL ? I know that both the change will be a bit similar",
+      "range": {
+        "startLine": 835,
+        "startChar": 6,
+        "endLine": 845,
+        "endChar": 9
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf24c82_2e8d15c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseBinderTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "It is usually not necessary to specify the throws Exception",
+      "range": {
+        "startLine": 172,
+        "startChar": 39,
+        "endLine": 172,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0a3c8654_cfc3cd11",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseBinderTest.java",
+              "range": {
+                "startLine": 164,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": "    public void getOwnAddress() {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseBinderTest.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "    public void enableAdvertisingSet() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba7748bc_580f815f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/DistanceMeasurementBinderTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "prefer `doReturn(..).when()` pattern",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 63,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5501d855_e4bbbe89",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/DistanceMeasurementBinderTest.java",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": "import static org.mockito.Mockito.doReturn;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/DistanceMeasurementBinderTest.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/DistanceMeasurementBinderTest.java",
+              "range": {
+                "startLine": 63,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(new DistanceMeasurementMethod[0])\n                .when(mDistanceMeasurementManager).getSupportedDistanceMeasurementMethods();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20bb1f2c_01632d74",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "This is making 2 binders calls, aka 2 IPC calls.\n\nCan we have only one binder call like before ?\n\nThat means exposing the advertiseBinder threw adapterService, but I think that is a bit better",
+      "range": {
+        "startLine": 937,
+        "startChar": 4,
+        "endLine": 940,
+        "endChar": 90
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab78f86_ab1a3370",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-04T01:12:02Z",
+      "side": 1,
+      "message": "same as for advertise binder",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 310,
+        "endChar": 13
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
