@@ -262,6 +262,24 @@
       "parentUuid": "8a67fea0_5cc095a3",
       "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2a337a1_1d345000",
+        "filename": "system/stack/ais/ais_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-04T01:13:17Z",
+      "side": 1,
+      "message": "I will let @okamil@google.com weigh on this.",
+      "parentUuid": "de9202e2_89dcb381",
+      "revId": "68043ecc29736fe99c139f1f9df1cd2ac3992837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
