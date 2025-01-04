@@ -30,12 +30,6 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.IBluetoothGattCallback;
 import android.bluetooth.IBluetoothGattServerCallback;
-import android.bluetooth.le.AdvertiseData;
-import android.bluetooth.le.AdvertisingSetParameters;
-import android.bluetooth.le.DistanceMeasurementMethod;
-import android.bluetooth.le.DistanceMeasurementParams;
-import android.bluetooth.le.IDistanceMeasurementCallback;
-import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Context;
@@ -283,55 +277,6 @@ public class GattServiceTest {
 
         mService.disconnectAll(mAttributionSource);
         verify(mNativeInterface).gattClientDisconnect(clientIf, address, connId);
-    }
-
-    @Test
-    public void setAdvertisingData() {
-        int advertiserId = 1;
-        AdvertiseData data = new AdvertiseData.Builder().build();
-
-        mService.setAdvertisingData(advertiserId, data, mAttributionSource);
-    }
-
-    @Test
-    public void setAdvertisingParameters() {
-        int advertiserId = 1;
-        AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
-
-        mService.setAdvertisingParameters(advertiserId, parameters, mAttributionSource);
-    }
-
-    @Test
-    public void setPeriodicAdvertisingData() {
-        int advertiserId = 1;
-        AdvertiseData data = new AdvertiseData.Builder().build();
-
-        mService.setPeriodicAdvertisingData(advertiserId, data, mAttributionSource);
-    }
-
-    @Test
-    public void setPeriodicAdvertisingEnable() {
-        int advertiserId = 1;
-        boolean enable = true;
-
-        mService.setPeriodicAdvertisingEnable(advertiserId, enable, mAttributionSource);
-    }
-
-    @Test
-    public void setPeriodicAdvertisingParameters() {
-        int advertiserId = 1;
-        PeriodicAdvertisingParameters parameters =
-                new PeriodicAdvertisingParameters.Builder().build();
-
-        mService.setPeriodicAdvertisingParameters(advertiserId, parameters, mAttributionSource);
-    }
-
-    @Test
-    public void setScanResponseData() {
-        int advertiserId = 1;
-        AdvertiseData data = new AdvertiseData.Builder().build();
-
-        mService.setScanResponseData(advertiserId, data, mAttributionSource);
     }
 
     @Test
@@ -626,24 +571,6 @@ public class GattServiceTest {
     }
 
     @Test
-    public void getOwnAddress() throws Exception {
-        int advertiserId = 1;
-
-        mService.getOwnAddress(advertiserId, mAttributionSource);
-    }
-
-    @Test
-    public void enableAdvertisingSet() throws Exception {
-        int advertiserId = 1;
-        boolean enable = true;
-        int duration = 3;
-        int maxExtAdvEvents = 4;
-
-        mService.enableAdvertisingSet(
-                advertiserId, enable, duration, maxExtAdvEvents, mAttributionSource);
-    }
-
-    @Test
     public void unregAll() throws Exception {
         int appId = 1;
         List<Integer> appIds = new ArrayList<>();
@@ -653,35 +580,6 @@ public class GattServiceTest {
         mService.unregAll(mAttributionSource);
         verify(mClientMap).remove(appId);
         verify(mNativeInterface).gattClientUnregisterApp(appId);
-    }
-
-    @Test
-    public void getSupportedDistanceMeasurementMethods() {
-        mService.getSupportedDistanceMeasurementMethods();
-        verify(mDistanceMeasurementManager).getSupportedDistanceMeasurementMethods();
-    }
-
-    @Test
-    public void startDistanceMeasurement() {
-        UUID uuid = UUID.randomUUID();
-        BluetoothDevice device = mAdapter.getRemoteDevice("00:01:02:03:04:05");
-        DistanceMeasurementParams params =
-                new DistanceMeasurementParams.Builder(device)
-                        .setDurationSeconds(123)
-                        .setFrequency(DistanceMeasurementParams.REPORT_FREQUENCY_LOW)
-                        .build();
-        IDistanceMeasurementCallback callback = mock(IDistanceMeasurementCallback.class);
-        mService.startDistanceMeasurement(uuid, params, callback);
-        verify(mDistanceMeasurementManager).startDistanceMeasurement(uuid, params, callback);
-    }
-
-    @Test
-    public void stopDistanceMeasurement() {
-        UUID uuid = UUID.randomUUID();
-        BluetoothDevice device = mAdapter.getRemoteDevice("00:01:02:03:04:05");
-        int method = DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI;
-        mService.stopDistanceMeasurement(uuid, device, method);
-        verify(mDistanceMeasurementManager).stopDistanceMeasurement(uuid, device, method, false);
     }
 
     @Test
