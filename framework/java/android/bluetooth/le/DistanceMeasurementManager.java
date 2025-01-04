@@ -27,7 +27,9 @@ import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothUtils;
 import android.bluetooth.IBluetoothGatt;
+import android.bluetooth.IDistanceMeasurement;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.le.ChannelSoundingParams.CsSecurityLevel;
 import android.content.AttributionSource;
@@ -94,12 +96,12 @@ public final class DistanceMeasurementManager {
     public @NonNull List<DistanceMeasurementMethod> getSupportedMethods() {
         final List<DistanceMeasurementMethod> supportedMethods = new ArrayList<>();
         try {
-            IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
-            if (gatt == null) {
-                Log.e(TAG, "Bluetooth GATT is null");
+            IDistanceMeasurement distanceMeasurement = getDistanceMeasurement();
+            if (distanceMeasurement == null) {
+                Log.e(TAG, "Distance Measurement is null");
                 return supportedMethods;
             }
-            return gatt.getSupportedDistanceMeasurementMethods(mAttributionSource);
+            return distanceMeasurement.getSupportedDistanceMeasurementMethods(mAttributionSource);
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to get supported methods - ", e);
         }
@@ -137,14 +139,19 @@ public final class DistanceMeasurementManager {
         Objects.requireNonNull(executor, "executor is null");
         Objects.requireNonNull(callback, "callback is null");
         try {
-            IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
-            if (gatt == null) {
-                Log.e(TAG, "Bluetooth GATT is null");
+            IDistanceMeasurement distanceMeasurement = getDistanceMeasurement();
+            if (distanceMeasurement == null) {
+                Log.e(TAG, "Distance Measurement is null");
                 return null;
             }
             DistanceMeasurementSession session =
                     new DistanceMeasurementSession(
-                            gatt, mUuid, params, executor, mAttributionSource, callback);
+                            distanceMeasurement,
+                            mUuid,
+                            params,
+                            executor,
+                            mAttributionSource,
+                            callback);
             CancellationSignal cancellationSignal = new CancellationSignal();
             cancellationSignal.setOnCancelListener(() -> session.stopSession());
 
@@ -154,7 +161,8 @@ public final class DistanceMeasurementManager {
             }
 
             mSessionMap.put(params.getDevice(), session);
-            gatt.startDistanceMeasurement(mUuid, params, mCallbackWrapper, mAttributionSource);
+            distanceMeasurement.startDistanceMeasurement(
+                    mUuid, params, mCallbackWrapper, mAttributionSource);
             return cancellationSignal;
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
@@ -185,12 +193,12 @@ public final class DistanceMeasurementManager {
         Objects.requireNonNull(remoteDevice, "remote device is null");
         final int defaultValue = ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
         try {
-            IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
-            if (gatt == null) {
-                Log.e(TAG, "Bluetooth GATT is null");
+            IDistanceMeasurement distanceMeasurement = getDistanceMeasurement();
+            if (distanceMeasurement == null) {
+                Log.e(TAG, "Distance Measurement is null");
                 return defaultValue;
             }
-            return gatt.getChannelSoundingMaxSupportedSecurityLevel(
+            return distanceMeasurement.getChannelSoundingMaxSupportedSecurityLevel(
                     remoteDevice, mAttributionSource);
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to get supported security Level - ", e);
@@ -217,12 +225,13 @@ public final class DistanceMeasurementManager {
     public @CsSecurityLevel int getLocalChannelSoundingMaxSupportedSecurityLevel() {
         final int defaultValue = ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
         try {
-            IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
-            if (gatt == null) {
-                Log.e(TAG, "Bluetooth GATT is null");
+            IDistanceMeasurement distanceMeasurement = getDistanceMeasurement();
+            if (distanceMeasurement == null) {
+                Log.e(TAG, "Distance Measurement is null");
                 return defaultValue;
             }
-            return gatt.getLocalChannelSoundingMaxSupportedSecurityLevel(mAttributionSource);
+            return distanceMeasurement.getLocalChannelSoundingMaxSupportedSecurityLevel(
+                    mAttributionSource);
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to get supported security Level - ", e);
         }
@@ -247,12 +256,14 @@ public final class DistanceMeasurementManager {
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public @NonNull Set<@CsSecurityLevel Integer> getChannelSoundingSupportedSecurityLevels() {
         try {
-            IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
-            if (gatt == null) {
-                Log.e(TAG, "Bluetooth GATT is null");
+            IDistanceMeasurement distanceMeasurement = getDistanceMeasurement();
+            if (distanceMeasurement == null) {
+                Log.e(TAG, "Distance Measurement is null");
                 return Collections.emptySet();
             }
-            return Arrays.stream(gatt.getChannelSoundingSupportedSecurityLevels(mAttributionSource))
+            return Arrays.stream(
+                            distanceMeasurement.getChannelSoundingSupportedSecurityLevels(
+                                    mAttributionSource))
                     .boxed()
                     .collect(Collectors.toUnmodifiableSet());
         } catch (RemoteException e) {
@@ -290,4 +301,16 @@ public final class DistanceMeasurementManager {
                     session.onResult(device, result);
                 }
             };
+
+    private IDistanceMeasurement getDistanceMeasurement() {
+        IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
+        try {
+            if (gatt != null) {
+                return IDistanceMeasurement.Stub.asInterface(gatt.getDistanceMeasurement());
+            }
+        } catch (RemoteException e) {
+            BluetoothUtils.logRemoteException(TAG, e);
+        }
+        return null;
+    }
 }

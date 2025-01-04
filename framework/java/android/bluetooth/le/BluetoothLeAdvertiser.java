@@ -28,7 +28,9 @@ import android.annotation.SystemApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattServer;
+import android.bluetooth.BluetoothUtils;
 import android.bluetooth.BluetoothUuid;
+import android.bluetooth.IBluetoothAdvertise;
 import android.bluetooth.IBluetoothGatt;
 import android.bluetooth.annotations.RequiresBluetoothAdvertisePermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
@@ -610,10 +612,10 @@ public final class BluetoothLeAdvertiser {
             throw new IllegalArgumentException("duration out of range: " + duration);
         }
 
-        IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
+        IBluetoothAdvertise advertise = getBluetoothAdvertise();
 
-        if (gatt == null) {
-            Log.e(TAG, "Bluetooth GATT is null");
+        if (advertise == null) {
+            Log.e(TAG, "Bluetooth Advertise is null");
             postStartSetFailure(
                     handler, callback, AdvertiseCallback.ADVERTISE_FAILED_INTERNAL_ERROR);
             return;
@@ -626,7 +628,7 @@ public final class BluetoothLeAdvertiser {
         }
 
         try {
-            gatt.startAdvertisingSet(
+            advertise.startAdvertisingSet(
                     parameters,
                     advertiseData,
                     scanResponse,
@@ -665,13 +667,13 @@ public final class BluetoothLeAdvertiser {
             return;
         }
 
-        IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
-        if (gatt == null) {
-            Log.e(TAG, "Bluetooth GATT is null");
+        IBluetoothAdvertise advertise = getBluetoothAdvertise();
+        if (advertise == null) {
+            Log.e(TAG, "Bluetooth Advertise is null");
             return;
         }
         try {
-            gatt.stopAdvertisingSet(wrapped, mAttributionSource);
+            advertise.stopAdvertisingSet(wrapped, mAttributionSource);
         } catch (RemoteException e) {
             Log.e(TAG, "Failed to stop advertising - ", e);
         }
@@ -789,7 +791,7 @@ public final class BluetoothLeAdvertiser {
         return new IAdvertisingSetCallback.Stub() {
             @Override
             public void onAdvertisingSetStarted(
-                    IBinder gattBinder, int advertiserId, int txPower, int status) {
+                    IBinder advertiseBinder, int advertiserId, int txPower, int status) {
                 handler.post(
                         () -> {
                             if (status != AdvertisingSetCallback.ADVERTISE_SUCCESS) {
@@ -800,7 +802,7 @@ public final class BluetoothLeAdvertiser {
 
                             AdvertisingSet advertisingSet =
                                     new AdvertisingSet(
-                                            IBluetoothGatt.Stub.asInterface(gattBinder),
+                                            IBluetoothAdvertise.Stub.asInterface(advertiseBinder),
                                             advertiserId,
                                             mBluetoothAdapter,
                                             mAttributionSource);
@@ -929,5 +931,17 @@ public final class BluetoothLeAdvertiser {
                         callback.onStartSuccess(settings);
                     }
                 });
+    }
+
+    private IBluetoothAdvertise getBluetoothAdvertise() {
+        IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
+        try {
+            if (gatt != null) {
+                return IBluetoothAdvertise.Stub.asInterface(gatt.getBluetoothAdvertise());
+            }
+        } catch (RemoteException e) {
+            BluetoothUtils.logRemoteException(TAG, e);
+        }
+        return null;
     }
 }
