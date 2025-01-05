@@ -74,8 +74,14 @@ size_t list_length(const list_t* list) {
 
 void* list_front(const list_t* list) {
   log::assert_that(list != NULL, "assert failed: list != NULL");
-  log::assert_that(!list_is_empty(list), "assert failed: !list_is_empty(list)");
-
+  if(list_is_empty(list)) {
+    log::error("list is empty");
+    return nullptr;
+  }
+  if (list->head == nullptr) {
+    log::error("Unexpected: list is non-empty but list->head is null");
+    return nullptr;
+  }
   return list->head->data;
 }
 

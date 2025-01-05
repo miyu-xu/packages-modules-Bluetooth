@@ -915,8 +915,12 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid, BT_HDR* p_buf
       if (p_lcb->link_xmit_data_q != NULL && !list_is_empty(p_lcb->link_xmit_data_q)) {
         log::verbose("Sending to lower layer");
         p_buf = (BT_HDR*)list_front(p_lcb->link_xmit_data_q);
-        list_remove(p_lcb->link_xmit_data_q, p_buf);
-        l2c_link_send_to_lower(p_lcb, p_buf, NULL);
+        if (p_buf != NULL) { // Check if p_buf is not NULL before removing and sending
+          list_remove(p_lcb->link_xmit_data_q, p_buf);
+          l2c_link_send_to_lower(p_lcb, p_buf, NULL);
+        } else {
+          log::error("list_front returned NULL unexpectedly when list is not empty");
+        }
       } else if (single_write) {
         /* If only doing one write, break out */
         log::debug("single_write is true, skipping");
@@ -968,8 +972,12 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid, BT_HDR* p_buf
       }
       log::verbose("Sending to lower layer");
       p_buf = (BT_HDR*)list_front(p_lcb->link_xmit_data_q);
-      list_remove(p_lcb->link_xmit_data_q, p_buf);
-      l2c_link_send_to_lower(p_lcb, p_buf, NULL);
+      if (p_buf != NULL) { // Check if p_buf is not NULL before removing and sending
+        list_remove(p_lcb->link_xmit_data_q, p_buf);
+        l2c_link_send_to_lower(p_lcb, p_buf, NULL);
+      } else {
+        log::error("list_front returned NULL unexpectedly when list is not empty");
+      }
     }
 
     if (!single_write) {
