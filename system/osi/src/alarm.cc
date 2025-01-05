@@ -186,6 +186,11 @@ void alarm_free(alarm_t* alarm) {
     return;
   }
 
+  // Prevent double free by checking if callback_mutex is already reset.
+  if (!alarm->callback_mutex) {
+    return;
+  }
+
   alarm_cancel(alarm);
 
   osi_free((void*)alarm->stats.name);
@@ -249,7 +254,10 @@ void alarm_cancel(alarm_t* alarm) {
   }
 
   // If the callback for |alarm| is in progress, wait here until it completes.
-  std::lock_guard<std::recursive_mutex> lock(*local_mutex_ref);
+  // Only acquire the lock if the mutex is still valid.
+  if (local_mutex_ref) {
+    std::lock_guard<std::recursive_mutex> lock(*local_mutex_ref);
+  }
 }
 
 // Internal implementation of canceling an alarm.
