@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ff59d57_ea89796e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-05T20:32:57Z",
+      "side": 1,
+      "message": "API +1 (removal of an already released API), @asapperstein@google.com for +2.",
+      "revId": "e33515649e7e85cf540a0f5e6afd8f9d5dbf7ec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
