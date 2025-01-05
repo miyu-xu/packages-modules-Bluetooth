@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bbc6a0c_c37287e9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-05T07:00:54Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s necessary, as the manager class has the same lifecycle as the binder and also holds a reference to this context (AdapterService). Setting the manager to null serves as a means to prevent further calls on it and through the native interface - although it isn\u0027t quite correct yet due to threading.\n\nHopefully we\u0027ll get to a place where the binder threads don\u0027t reference the manager at all and we can get rid of the cleanup method completely - post onto the appropriate handler, which returns false if it\u0027s exiting although this will log a warning message. Or we can add an AtomicBoolean to more cleanly manage the state of the binder. What do you think?",
+      "parentUuid": "c03dcf55_3abef28a",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abc9e474_4d47f770",
         "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
         "patchSetId": 2
@@ -55,6 +79,30 @@
       "writtenOn": "2025-01-04T01:12:02Z",
       "side": 1,
       "message": "I think the code is slowly moving to call attributionSource to be \"source\" that is lighter on the reader ^^\nBut it would be great if we enforce that this is notNull before using it, as \"data validation\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 43
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac77bb37_c918c00d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-05T07:00:54Z",
+      "side": 1,
+      "message": "Is there a significant difference between doing requireNonNull vs allowing the null pointer exception to be generated? \n\nThe calls to these binder methods are coming from the framework code that we have control of, so it seems like checking non-null is added verbosity for not much gain.",
+      "parentUuid": "abc9e474_4d47f770",
       "range": {
         "startLine": 69,
         "startChar": 26,
