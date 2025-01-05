@@ -1226,6 +1226,14 @@ static void bta_gattc_write_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_OP_CM
   GATT_WRITE_OP_CB cb = p_clcb->p_q_cmd->api_write.write_cb;
   void* my_cb_data = p_clcb->p_q_cmd->api_write.write_cb_data;
 
+  if (p_clcb->p_q_cmd == nullptr) {
+    LOG_WARN("p_q_cmd is null");
+    if (cb) {
+      LOG_WARN("write_cb is not called due to null p_q_cmd");
+    }
+    return;
+  }
+
   if (cb) {
     if (p_data->status == 0 && p_clcb->p_q_cmd->api_write.write_type == BTA_GATTC_WRITE_PREPARE) {
       log::debug("Handling prepare write success response: handle 0x{:04x}",
