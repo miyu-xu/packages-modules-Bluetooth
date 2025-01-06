@@ -1,0 +1,295 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14006be8_18837134",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-06T22:33:40Z",
+      "side": 1,
+      "message": "Can you please add tests as well to make sure this functionality is correct?",
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45ed54d8_bea1762f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-06T22:33:40Z",
+      "side": 1,
+      "message": "We don\u0027t need a flag check in here, we should just be gating the calls for this getter/setter",
+      "range": {
+        "startLine": 696,
+        "startChar": 0,
+        "endLine": 719,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0540fd0f_137939c8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 697,
+                "startChar": 0,
+                "endLine": 703,
+                "endChar": 0
+              },
+              "replacement": "            synchronized (mObject) {\n                this.mHfpBatteryIndicator \u003d HfpBatteryIndicator;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 710,
+                "startChar": 0,
+                "endLine": 717,
+                "endChar": 0
+              },
+              "replacement": "            synchronized (mObject) {\n                return mHfpBatteryIndicator;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ca96d36_4926e6d7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-06T22:33:40Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we need to set a deviceProperty for this.\n\nBasically, the device can report AT+BIEV and AT+IPHONEACCEV.  We always choose AT+BIEV if that\u0027s available.\n\nAre you calling the AT+BIEV as the setHfpBatteryIndicatorStatus?  In that case, when do we set it to true?",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 935,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ba3a206c_8e32ccfd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 342,
+                "startChar": 0,
+                "endLine": 342,
+                "endChar": 0
+              },
+              "replacement": "        private boolean mIsBatteryLevelFromBatteryService \u003d false;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 694,
+                "startChar": 0,
+                "endLine": 695,
+                "endChar": 0
+              },
+              "replacement": "         * @param hfpBatteryIndicator is set to false or true\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 696,
+                "startChar": 0,
+                "endLine": 697,
+                "endChar": 0
+              },
+              "replacement": "        void setHfpBatteryIndicatorStatus(boolean hfpBatteryIndicator) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 699,
+                "startChar": 0,
+                "endLine": 700,
+                "endChar": 0
+              },
+              "replacement": "                    this.mHfpBatteryIndicator \u003d hfpBatteryIndicator;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 719,
+                "startChar": 0,
+                "endLine": 719,
+                "endChar": 0
+              },
+              "replacement": "\n        /**\n         * @return the mIsBatteryLevelFromBatteryService\n         */\n        boolean isBatteryLevelFromBatteryService() {\n            synchronized (mObject) {\n                return mIsBatteryLevelFromBatteryService;\n            }\n        }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 735,
+                "startChar": 0,
+                "endLine": 735,
+                "endChar": 0
+              },
+              "replacement": "                mIsBatteryLevelFromBatteryService \u003d true;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 933,
+                "startChar": 0,
+                "endLine": 936,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1650,
+                "startChar": 0,
+                "endLine": 1651,
+                "endChar": 0
+              },
+              "replacement": "        if (toState \u003d\u003d BluetoothProfile.STATE_DISCONNECTED\n                \u0026\u0026 !hasBatteryService(device)\n                \u0026\u0026 !deviceProperties.isBatteryLevelFromBatteryService()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1667,
+                "startChar": 0,
+                "endLine": 1667,
+                "endChar": 0
+              },
+              "replacement": "        DeviceProperties deviceProperties \u003d getDeviceProperties(device);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1668,
+                "startChar": 0,
+                "endLine": 1669,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1670,
+                "startChar": 0,
+                "endLine": 1670,
+                "endChar": 0
+              },
+              "replacement": "        } else if (indicatorId \u003d\u003d HeadsetHalConstants.HF_INDICATOR_CHARGING_STATUS) {\n            deviceProperties.setIsBatteryLevelFromBatteryService(indicatorStatus);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05fe7619_06ea31ca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-06T22:33:40Z",
+      "side": 1,
+      "message": "This check is redundant.  Just need to say if (deviceProperties.isHfpBatteryIndicatorEnabled())",
+      "range": {
+        "startLine": 1728,
+        "startChar": 17,
+        "endLine": 1728,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3b6be683_17a09852",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1728,
+                "startChar": 0,
+                "endLine": 1729,
+                "endChar": 0
+              },
+              "replacement": "            if (deviceProperties.isHfpBatteryIndicatorEnabled()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "911479f7_eadd5e8b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-06T22:33:40Z",
+      "side": 1,
+      "message": "In this case, when is it sending the Indicator Intent with the correct battery level?",
+      "range": {
+        "startLine": 2671,
+        "startChar": 19,
+        "endLine": 2675,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f6aaf7d9_e0342492",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2671,
+                "startChar": 0,
+                "endLine": 2672,
+                "endChar": 0
+              },
+              "replacement": "                    if (Flags.enableBatteryLevelUpdateThroughHfIndicator()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
