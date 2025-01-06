@@ -22,6 +22,30 @@
       },
       "revId": "481b69d98e14782233337422664a415afd0d9a80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "421704f1_e4449b32",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T19:44:15Z",
+      "side": 0,
+      "message": "There is already those two at the end of the method ;)",
+      "parentUuid": "ddd3815a_f782c362",
+      "range": {
+        "startLine": 1348,
+        "startChar": 12,
+        "endLine": 1351,
+        "endChar": 41
+      },
+      "revId": "481b69d98e14782233337422664a415afd0d9a80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -52,6 +52,24 @@
       "parentUuid": "d24ea599_98a0954d",
       "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2b5305_2a4fa9f1",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T19:44:15Z",
+      "side": 1,
+      "message": "Closing the thread as the CL doesn\u0027t have the initial issue anymore.\n\nquick brainstorming:\n\n\u003e translating them from \"bluetooth\" formats to \"Android\" formats\n\nThis should be an instant operation in my opinion so fine on the shared thread\n\n\u003e calling functions to insert/update the data at rest\n\nDo you mean database write ? Then yes, the database should have an async i/o in order to not block accessor, but that mean that various profiles could get rid of they own thread (or at least rid of the \"one thread per device\" architecture).\n\n\u003e I think we can leverage things like quit()/quitNow()\n\nYep, that\u0027s [what you do](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java;l\u003d271;drc\u003db4d6320e2ae398b36f0aaafb2ecd83609d2d99af)\n---\n\nAlso, is this frequent to have more than one PBAP / MAP client at the same time ? I would assume that there is only one phone connected at a time to the car, but I don\u0027t know the usecase here.",
+      "parentUuid": "a076cb88_3832a88b",
+      "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
