@@ -34,6 +34,24 @@
       "parentUuid": "ff37fe54_dd05d15f",
       "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a076cb88_3832a88b",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-06T18:43:49Z",
+      "side": 1,
+      "message": "So with our (client, typically) profiles that download data for storage, its not uncommon to have events on the state machine where we\u0027re working on chunks of data we get, translating them from \"bluetooth\" formats to \"Android\" formats (i.e. x-bt/message -\u003e sms/mms provider), and calling functions to insert/update the data at rest. MAP Client, PBAP Client, OPP, AVRCP Controller browsing, etc. all do these kinds of operations.\n\nThese operations are typically batched, so they should be minimally long running. But, forcing all devices to do this serially still doesn\u0027t seem like a good idea. The profiles I own usually try to use their own handler thread. The profiles I\u0027ve updated usually abstract that detail away, and provide alternative constructors to inject a test looper.\n\n---\n\nThe device disconnecting or the stack shutting down are _exactly_ the \"challenges\" I was talking about above 😊 So, you nailed it there.\n\nDisconnecting isn\u0027t usually an issue. We usually finish our current operation and then process the request. Most operations don\u0027t run that long for it to be a problem.\n\nHowever, when the stack shuts down, we really don\u0027t want ANRs. I think those are the main risk. I haven\u0027t seen many though in our pitot reports, nor have I seen any with my own eyes. I think we can leverage things like quit()/quitNow() when we know we\u0027re shutting down (or similar patterns). Ultimately, I have the feeling we don\u0027t have this totally right in the stack across all our profiles, so I\u0027d love to brainstorm with you.",
+      "parentUuid": "d24ea599_98a0954d",
+      "revId": "2379356fd66cef026e739e6bdbb8350bc8cbd83d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

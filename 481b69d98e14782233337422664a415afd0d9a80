@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddd3815a_f782c362",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-06T18:43:49Z",
+      "side": 0,
+      "message": "Ah, that was silly.\n\nIf you want to make this actually work, they should be `case MSG_DISCONNECTING_TIMEOUT` and `case MSG_CONNECTING_TIMEOUT`. Otherwise, I\u0027ll do it later on. One of my biggest pet peeves is print numbers in logs when you could just print what they mean!",
+      "range": {
+        "startLine": 1348,
+        "startChar": 12,
+        "endLine": 1351,
+        "endChar": 41
+      },
+      "revId": "481b69d98e14782233337422664a415afd0d9a80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
