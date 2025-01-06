@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9d2548f_ba0387b9",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2917,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T21:23:56Z",
+      "side": 0,
+      "message": "and this break boot of device:\n```\nNo pending exception expected: java.lang.NoSuchMethodError: no non-static method \"Lcom/android/bluetooth/gatt/DistanceMeasurementNativeInterface;.onDistanceMeasurementResult(Ljava/lang/String;IIIIIIIIDIDI)V\"\n```",
+      "parentUuid": "12614239_bdc031bc",
+      "range": {
+        "startLine": 2917,
+        "startChar": 68,
+        "endLine": 2917,
+        "endChar": 69
+      },
+      "revId": "05f65d8f02177513d84af9253b92e29b8babf189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5281ea4_74f63071",
         "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
         "patchSetId": 2
