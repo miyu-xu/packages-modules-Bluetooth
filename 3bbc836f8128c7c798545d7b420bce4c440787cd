@@ -110,6 +110,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60fb3b4_7fa02572",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-06T05:57:53Z",
+      "side": 1,
+      "message": "Thanks Rajesh.\nNot changing the function name, will keep it generic as \"handleHfIndicatorStatus()\".",
+      "parentUuid": "9a018120_603dcd06",
+      "range": {
+        "startLine": 1657,
+        "startChar": 40,
+        "endLine": 1657,
+        "endChar": 51
+      },
+      "revId": "3bbc836f8128c7c798545d7b420bce4c440787cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "482e25ad_077da617",
@@ -239,6 +263,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc6c3e43_4d1d2ba6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-06T05:57:53Z",
+      "side": 1,
+      "message": "Ok,\nUpdated in the patchset 3.",
+      "parentUuid": "0443f11e_d93f1e5c",
+      "range": {
+        "startLine": 1667,
+        "startChar": 6,
+        "endLine": 1669,
+        "endChar": 0
+      },
+      "revId": "3bbc836f8128c7c798545d7b420bce4c440787cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6b24a3f_ab6facea",
@@ -318,6 +366,30 @@
       "side": 1,
       "message": "the comment only if you are changing the function name to \"handleHfBatteryIndicatorStatus\", if not keep it generic and do not change.",
       "parentUuid": "94459beb_095c0ee8",
+      "range": {
+        "startLine": 2674,
+        "startChar": 65,
+        "endLine": 2674,
+        "endChar": 71
+      },
+      "revId": "3bbc836f8128c7c798545d7b420bce4c440787cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb2cdf2c_db1503dd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2674,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-06T05:57:53Z",
+      "side": 1,
+      "message": "Thanks Rajesh.\nNot changing the function name, will keep it generic as \"handleHfIndicatorStatus()\".",
+      "parentUuid": "902293da_a41f2fad",
       "range": {
         "startLine": 2674,
         "startChar": 65,
