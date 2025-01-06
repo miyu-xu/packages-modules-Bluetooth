@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12614239_bdc031bc",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2917,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T21:22:10Z",
+      "side": 0,
+      "message": "J disapeared but you are still sending long",
+      "range": {
+        "startLine": 2917,
+        "startChar": 68,
+        "endLine": 2917,
+        "endChar": 69
+      },
+      "revId": "05f65d8f02177513d84af9253b92e29b8babf189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5281ea4_74f63071",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T21:22:10Z",
+      "side": 0,
+      "message": "This is no longer done with RSSI, is this expected ?",
+      "range": {
+        "startLine": 485,
+        "startChar": 2,
+        "endLine": 487,
+        "endChar": 9
+      },
+      "revId": "05f65d8f02177513d84af9253b92e29b8babf189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
