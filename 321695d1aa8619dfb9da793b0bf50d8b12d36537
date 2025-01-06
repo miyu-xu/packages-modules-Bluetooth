@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c84b04e3_e050cf1a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-06T19:08:36Z",
+      "side": 1,
+      "message": "This `address` is always 0 with Android 13 (with GD enabled), hence this fix is only changes whether it is 0 or null. Do I get it right?",
+      "range": {
+        "startLine": 339,
+        "startChar": 19,
+        "endLine": 339,
+        "endChar": 34
+      },
+      "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0342bcce_6a16f1c0",
         "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
         "patchSetId": 1
@@ -115,6 +138,29 @@
         "startChar": 12,
         "endLine": 371,
         "endChar": 27
+      },
+      "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "882e5fb5_f1bc198a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-06T19:08:36Z",
+      "side": 1,
+      "message": "the `null` case for `originalAddress` is handled here, hence, even if it is assigned to `null` somewhere above, it still won\u0027t matches the filter and won\u0027t change the overall matching result",
+      "range": {
+        "startLine": 573,
+        "startChar": 16,
+        "endLine": 573,
+        "endChar": 39
       },
       "revId": "321695d1aa8619dfb9da793b0bf50d8b12d36537",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
