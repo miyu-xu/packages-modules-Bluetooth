@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82db14b3_eecd5655",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T19:50:42Z",
+      "side": 1,
+      "message": "Can we update the TODO here ?",
+      "range": {
+        "startLine": 341,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 80
+      },
+      "revId": "65f9f3d3a68381d06f3fbdeaaf626ed8a8fdb9e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
