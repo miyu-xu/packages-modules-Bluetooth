@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52fcd2d5_80de1ae0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-06T19:19:53Z",
+      "side": 1,
+      "message": "Rename it to indicate that this is for LE peripheral role.",
+      "revId": "680b4c50f5fb77e06112914507a0596c3613b36d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
