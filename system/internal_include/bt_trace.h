@@ -29,7 +29,6 @@
 #include <sstream>
 #include <type_traits>
 
-#include "os/logging/log_adapter.h"
 
 /* Prints integral parameter x as hex string, with '0' fill */
 template <typename T>
