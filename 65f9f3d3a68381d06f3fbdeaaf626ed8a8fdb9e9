@@ -22,6 +22,29 @@
       },
       "revId": "65f9f3d3a68381d06f3fbdeaaf626ed8a8fdb9e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca48cedd_6c01eca3",
+        "filename": "service/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T19:53:38Z",
+      "side": 1,
+      "message": "This will conflict with internal.\n\nSorry, the transition to the new com.android.bt apex is done in step and needed to happen on internal first.\n\nI recommand splitting this CL in 2, and in the second one add the `service-bluetooth-new` modification with this in the commit message:\n\n```Merged-In: If3ec0ce5bd6243721680510e2c7078ad61c2f0a3```",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 38
+      },
+      "revId": "65f9f3d3a68381d06f3fbdeaaf626ed8a8fdb9e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
