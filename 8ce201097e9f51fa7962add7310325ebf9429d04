@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1f53d5e_1813bc06",
+        "filename": "system/stack/hid/hidh_conn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-06T17:10:10Z",
+      "side": 1,
+      "message": "Can we rearrange this change in a way that we don\u0027t have to do much when removing the flags?\nI was thinking of rearranging it like this\n\n```\nvoid hidh_l2cif_disconnect(uint16_t cid) {\n  L2CA_DisconnectReq(cid);\n  \n  if (!flag) {\n    disconnect_continue(cid);\n  }\n}\n\nvoid hidh_l2cif_disconnect_continue(uint16_t cid) {\n  // if cid is interrupt channel, disconnect control channel\n  // else conclude disconnection request\n}\n\nvoid hidh_l2cif_disconnect_cfm(uint16_t cid, uint16_t result) {\n  if (!flag) {\n    return;\n  }\n  \n  disconnect_continue(cid);\n}\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "196493ff_067f0910",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "static void hidh_l2cif_disconnect_cfm(uint16_t l2cap_cid, uint16_t result, bool disconnect_serially);\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 169,
+                "startChar": 0,
+                "endLine": 170,
+                "endChar": 0
+              },
+              "replacement": "      hidh_l2cif_disconnect(p_hcon-\u003eintr_cid, false);\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 171,
+                "startChar": 0,
+                "endLine": 172,
+                "endChar": 0
+              },
+              "replacement": "      hidh_l2cif_disconnect(p_hcon-\u003ectrl_cid, false);\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 298,
+                "startChar": 0,
+                "endLine": 299,
+                "endChar": 0
+              },
+              "replacement": "  hidh_conn_disconnect(dhandle, true);\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 452,
+                "startChar": 0,
+                "endLine": 453,
+                "endChar": 0
+              },
+              "replacement": "        hidh_conn_disconnect(dhandle, true);\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 560,
+                "startChar": 0,
+                "endLine": 572,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 583,
+                "startChar": 0,
+                "endLine": 592,
+                "endChar": 0
+              },
+              "replacement": "static void hidh_l2cif_disconnect_cfm(uint16_t l2cap_cid, uint16_t result, bool disconnect_serially) {\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 604,
+                "startChar": 0,
+                "endLine": 605,
+                "endChar": 0
+              },
+              "replacement": "    if (p_hcon-\u003ectrl_cid \u0026\u0026 disconnect_serially) {\n"
+            },
+            {
+              "path": "system/stack/hid/hidh_conn.cc",
+              "range": {
+                "startLine": 716,
+                "startChar": 0,
+                "endLine": 717,
+                "endChar": 0
+              },
+              "replacement": "          hidh_conn_disconnect(dhandle, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8ce201097e9f51fa7962add7310325ebf9429d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
