@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c72682a_ce78a71b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T20:05:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6bbc6a0c_c37287e9",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abc9e474_4d47f770",
@@ -103,6 +127,30 @@
       "side": 1,
       "message": "Is there a significant difference between doing requireNonNull vs allowing the null pointer exception to be generated? \n\nThe calls to these binder methods are coming from the framework code that we have control of, so it seems like checking non-null is added verbosity for not much gain.",
       "parentUuid": "abc9e474_4d47f770",
+      "range": {
+        "startLine": 69,
+        "startChar": 26,
+        "endLine": 69,
+        "endChar": 43
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50654e9_02318bc7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-06T20:05:08Z",
+      "side": 1,
+      "message": "Only for the next reader.\n\nI don\u0027t want someone seeing a nullpointer and fixing it by adding a null check and gracefully returning. For me requireNonNull is simply enforcing explicitly what is being expected.\n\nI agree that kotlin give that for free 😊",
+      "parentUuid": "ac77bb37_c918c00d",
       "range": {
         "startLine": 69,
         "startChar": 26,
