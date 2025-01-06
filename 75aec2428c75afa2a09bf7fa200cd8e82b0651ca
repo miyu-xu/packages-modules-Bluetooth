@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6001aea_267616d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-06T23:57:01Z",
+      "side": 1,
+      "message": "lgtm, +1, would like to let gkolodziejczyk@google.com also review here.\n\nAlso please also do some sanity tests with external broadcast handover in calling, local media...",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
