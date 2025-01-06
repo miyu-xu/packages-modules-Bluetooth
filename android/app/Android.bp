@@ -339,7 +339,7 @@ android_app {
         shrink: true,
         optimize: false,
         // TODO(b/289285719): Revisit after resolving mocking issues in testing.
-        proguard_compatibility: true,
+        proguard_compatibility: false,
         proguard_flags_files: ["proguard.flags"],
     },
     apex_available: [
