@@ -132,6 +132,24 @@
       "parentUuid": "c1f53d5e_1813bc06",
       "revId": "8ce201097e9f51fa7962add7310325ebf9429d04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b83db08_f99b7a5a",
+        "filename": "system/stack/hid/hidh_conn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-07T19:16:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d92f7a2a_c4df0564",
+      "revId": "8ce201097e9f51fa7962add7310325ebf9429d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
