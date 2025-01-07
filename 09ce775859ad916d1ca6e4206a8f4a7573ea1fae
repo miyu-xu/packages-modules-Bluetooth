@@ -80,6 +80,24 @@
       "parentUuid": "c7b5b20c_67e8f61c",
       "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63a48f94_32d3edb4",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-07T10:32:51Z",
+      "side": 1,
+      "message": "Let me know if it\u0027s ok with you, thanks!",
+      "parentUuid": "573a621b_273f37cf",
+      "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
