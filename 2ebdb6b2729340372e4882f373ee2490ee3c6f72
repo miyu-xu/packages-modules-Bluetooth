@@ -22,6 +22,30 @@
       },
       "revId": "2ebdb6b2729340372e4882f373ee2490ee3c6f72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8604ffda_bbe2b1f1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6161,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T20:33:50Z",
+      "side": 1,
+      "message": "Yeah I know, I thought about moving it but decided to keep them grouped together and deal with the merge conflict.",
+      "parentUuid": "4ed36fce_99b0d47d",
+      "range": {
+        "startLine": 6157,
+        "startChar": 3,
+        "endLine": 6161,
+        "endChar": 0
+      },
+      "revId": "2ebdb6b2729340372e4882f373ee2490ee3c6f72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
