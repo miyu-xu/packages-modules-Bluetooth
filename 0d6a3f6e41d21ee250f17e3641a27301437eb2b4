@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2c63be3_f6c0ee21",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T18:39:02Z",
+      "side": 1,
+      "message": "This won\u0027t entirely address lifecycle issues on its own. Once we move onto a single thread for advertising functions I\u0027ll expand on this to do a 2nd check on that thread (and make sure the single thread is where this gets updated).",
+      "parentUuid": "40032a07_3b66a053",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "0d6a3f6e41d21ee250f17e3641a27301437eb2b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a006330b_6a054b7b",
