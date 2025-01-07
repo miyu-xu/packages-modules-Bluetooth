@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7df4c994_8804c0c3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-07T20:24:18Z",
+      "side": 0,
+      "message": "Despite not verifying on these mocks, we really want these still included.\n\nThe only reason we should be using the instrumentation\u0027s context/mTargetContext is to facilitate the PendingIntents (which we might also be able to get rid of-- I hate instrumentation contexts!).\n\nWe don\u0027t want to make function calls against the real telephony for these tests. We will get flake.",
+      "range": {
+        "startLine": 217,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 68
+      },
+      "revId": "fff129e486adc498a50d83a168c3ef654908b237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
