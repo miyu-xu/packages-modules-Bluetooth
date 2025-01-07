@@ -3298,6 +3298,14 @@
       "tests": [
         "HFP/AG"
       ]
+    },
+    {
+      "system_properties": {
+        "bluetooth.a2dp.avdt_accept_open_timeout.millis": "15000"
+      },
+      "tests": [
+        "A2DP/SNK/SYN/BV-01-C"
+      ]
     }
   ]
 }
