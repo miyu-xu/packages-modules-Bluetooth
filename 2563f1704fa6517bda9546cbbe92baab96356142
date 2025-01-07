@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d655aadf_188bfe59",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T10:06:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8a8c88d_ad3dd7a0",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95e14c91_5977aa17",
@@ -137,6 +161,24 @@
       "side": 1,
       "message": "This issue seen most of the Legacy devices , hence we dont want blacklisting approach and delayed SDP works for all the devices. will share bug report and snoop in bugnizer soon",
       "parentUuid": "871ebc12_fdcb59ae",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a2c611_9939966d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T10:06:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9792833_1328eaa0",
       "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
