@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa60cd6f_aa8cade7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T09:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e724a524_0609ce70",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8a8c88d_ad3dd7a0",
@@ -64,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad52e949_77304ab0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T09:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95e14c91_5977aa17",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "871ebc12_fdcb59ae",
@@ -83,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9792833_1328eaa0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T09:46:28Z",
+      "side": 1,
+      "message": "This issue seen most of the Legacy devices , hence we dont want blacklisting approach and delayed SDP works for all the devices. will share bug report and snoop in bugnizer soon",
+      "parentUuid": "871ebc12_fdcb59ae",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f331594b_7e0cef4e",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
@@ -94,6 +154,24 @@
       "writtenOn": "2024-12-10T05:25:54Z",
       "side": 1,
       "message": "Is this needed? why we decrease the number?",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83cc075_cf4a1336",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T09:46:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f331594b_7e0cef4e",
       "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
