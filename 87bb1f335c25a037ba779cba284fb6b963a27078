@@ -612,6 +612,24 @@
       "parentUuid": "0397999f_d013efeb",
       "revId": "87bb1f335c25a037ba779cba284fb6b963a27078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fcf0ce7_59e50ecf",
+        "filename": "system/stack/rfcomm/rfc_metrics.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-01-07T05:29:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4636b5dc_03f9659b",
+      "revId": "87bb1f335c25a037ba779cba284fb6b963a27078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
