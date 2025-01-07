@@ -28,6 +28,7 @@ import android.bluetooth.le.DistanceMeasurementResult;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.os.HandlerThread;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.AdapterService;
@@ -35,16 +36,21 @@ import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.stream.Collectors;
 
 /** Manages distance measurement operations and interacts with Gabeldorsche stack. */
 @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
 public class DistanceMeasurementManager {
     private static final String TAG = DistanceMeasurementManager.class.getSimpleName();
 
+    private static final String KEY_LOCAL_SECURITY_LEVELS =
+            "persist.bluetooth.local.cssecuritylevels";
     private static final int RSSI_LOW_FREQUENCY_INTERVAL_MS = 3000;
     private static final int RSSI_MEDIUM_FREQUENCY_INTERVAL_MS = 1000;
     private static final int RSSI_HIGH_FREQUENCY_INTERVAL_MS = 500;
@@ -237,8 +243,23 @@ public class DistanceMeasurementManager {
     }
 
     Set<Integer> getChannelSoundingSupportedSecurityLevels() {
-        // TODO(b/378685103): get it from the HAL when level 4 is supported and HAL v2 is available.
         if (mHasChannelSoundingFeature && mAdapterService.isLeChannelSoundingSupported()) {
+            String localSecurityLevels = SystemProperties.get(KEY_LOCAL_SECURITY_LEVELS);
+            if (!localSecurityLevels.isEmpty()) {
+                String[] values = localSecurityLevels.split(",");
+                return Arrays.stream(values)
+                        .map(
+                                str -> {
+                                    try {
+                                        return Integer.parseInt(str);
+                                    } catch (NumberFormatException e) {
+                                        Log.e(TAG, "Error converting level to integer: " + str);
+                                        return null;
+                                    }
+                                })
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toUnmodifiableSet());
+            }
             return Set.of(ChannelSoundingParams.CS_SECURITY_LEVEL_ONE);
         }
         throw new UnsupportedOperationException("Channel Sounding is not supported.");

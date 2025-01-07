@@ -18,6 +18,7 @@
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <math.h>
+#include <os/system_properties.h>
 
 #include <chrono>
 #include <complex>
@@ -77,6 +78,7 @@ static constexpr uint16_t kInvalidConnInterval = 0;  // valid value is from 0x00
 static constexpr uint16_t kDefaultRasMtu = 247;      // Section 3.1.2 of RAP 1.0
 static constexpr uint8_t kAttHeaderSize = 5;         // Section 3.2.2.1 of RAS 1.0
 static constexpr uint8_t kRasSegmentHeaderSize = 1;
+const std::string kLocalSupportSecurityLevels = "persist.bluetooth.local.cssecuritylevels";
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsProcedureData {
@@ -886,7 +888,42 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     num_antennas_supported_ = complete_view.GetNumAntennasSupported();
     local_support_phase_based_ranging_ = cs_subfeature_supported_.phase_based_ranging_ == 0x01;
     local_supported_sw_time_ = complete_view.GetTSwTimeSupported();
+    local_support_nadm_sounding_capability_ =
+            complete_view.GetOptionalNadmSoundingCapability().normalized_attack_detector_metric_ !=
+            0;
+    local_support_nadm_random_capability_ =
+            complete_view.GetOptionalNadmRandomCapability().normalized_attack_detector_metric_ != 0;
+    updateLocalSupportedSecurityLevels();
     is_local_cs_ready_ = true;
+  }
+
+  void updateLocalSupportedSecurityLevels() const {
+    if (!ranging_hal_->IsBound()) {
+      return;
+    }
+    std::vector<hal::SecurityLevel> securityLevels = ranging_hal_->GetSupportedSecurityLevels();
+    auto it = std::find(securityLevels.begin(), securityLevels.end(), hal::SecurityLevel::FOUR);
+    if (it != securityLevels.end() && !local_support_nadm_random_capability_ &&
+        !local_support_nadm_sounding_capability_) {
+      log::info("controller doesn't support level 4, exclude it.");
+      securityLevels.erase(it);
+    }
+    std::stringstream ss;
+    for (size_t i = 0; i < securityLevels.size(); ++i) {
+      ss << static_cast<uint32_t>(securityLevels[i]);
+      if (i < securityLevels.size() - 1) {
+        ss << ",";
+      }
+    }
+    std::string prop_value = ss.str();
+    bool needs_to_update = true;
+    auto persisted_security_levels = os::GetSystemProperty(kLocalSupportSecurityLevels);
+    if (persisted_security_levels && persisted_security_levels.value() == prop_value) {
+      needs_to_update = false;
+    }
+    if (needs_to_update) {
+      os::SetSystemProperty(kLocalSupportSecurityLevels, prop_value);
+    }
   }
 
   void on_cs_read_remote_supported_capabilities_complete(
@@ -2508,6 +2545,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   uint8_t num_antennas_supported_ = 0x01;
   bool local_support_phase_based_ranging_ = false;
   uint8_t local_supported_sw_time_ = 0;
+  bool local_support_nadm_sounding_capability_ = false;
+  bool local_support_nadm_random_capability_ = false;
   bool is_local_cs_ready_ = false;
   // A table that maps num_antennas_supported and remote_num_antennas_supported to Antenna
   // Configuration Index.
