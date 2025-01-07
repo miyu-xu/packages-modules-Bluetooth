@@ -114,6 +114,24 @@
       ],
       "revId": "8ce201097e9f51fa7962add7310325ebf9429d04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92f7a2a_c4df0564",
+        "filename": "system/stack/hid/hidh_conn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-01-07T06:43:05Z",
+      "side": 1,
+      "message": "That is basically the same thing, right?\n\n```\nvoid hidh_l2cif_disconnect(uint16_t cid) {\n  L2CA_DisconnectReq(cid);\n\n  if (!flag) {\n    disconnect_continue(cid);\n  }\n}\n```\nThis is exactly what we have... right? The `disconnect_continue` is `hidh_l2cif_disconnect_cfm_actual`.\nAfter the flag becomes the default, I think this function does nothing but to call `L2CA_DisconnectReq`, so we can just eliminate that and directly call `L2CA_DisconnectReq`, hence the TODO.\n```\n// TODO: after disconnect_hid_channels_serially aflags is the default,\n//       remove this function and call L2CA_DisconnectReq directly.\n```\n\n---\n\n```\nvoid hidh_l2cif_disconnect_cfm(uint16_t cid, uint16_t result) {\n  if (!flag) {\n    return;\n  }\n\n  disconnect_continue(cid);\n}\n```\nLikewise for this, the function does nothing but to call another function once the flag is the default. So instead of doing that, we can call `hidh_l2cif_disconnect_cfm_actual` directly.\nBut it\u0027s strange if we have `hidh_l2cif_disconnect_cfm_actual` but not `hidh_l2cif_disconnect_cfm`. So I think we should just rename `hidh_l2cif_disconnect_cfm_actual` into `hidh_l2cif_disconnect_cfm`. This effectively is the same as moving the content of `hidh_l2cif_disconnect_cfm_actual` into `hidh_l2cif_disconnect_cfm`.\n\n---\n\nTherefore IIUC the \"we don\u0027t need to do much when removing the flags\" is gained only by not cleaning up the functions that only call one other function - something I think should actually be cleaned.",
+      "parentUuid": "c1f53d5e_1813bc06",
+      "revId": "8ce201097e9f51fa7962add7310325ebf9429d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
