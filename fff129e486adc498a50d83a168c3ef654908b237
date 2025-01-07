@@ -22,6 +22,30 @@
       },
       "revId": "fff129e486adc498a50d83a168c3ef654908b237",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8577fe9_e8fb8d70",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-07T21:55:35Z",
+      "side": 0,
+      "message": "I understand but I thouth that mapclient/MceStateMachine.java doesn\u0027t use the telephony system service, This is used by mapcontent and here, mapcontent is mocked and injected into the stateMachine.\n\nI believe we are good to remove the mock of the system service.",
+      "parentUuid": "7df4c994_8804c0c3",
+      "range": {
+        "startLine": 217,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 68
+      },
+      "revId": "fff129e486adc498a50d83a168c3ef654908b237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
