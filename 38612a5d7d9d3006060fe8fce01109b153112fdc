@@ -16,6 +16,24 @@
       "message": "Minor: Comparing with `nullptr` is preferred as compared to `NULL` to maintain consistency.\nApplicable to other `NULL` based comparison in this file as well.",
       "revId": "38612a5d7d9d3006060fe8fce01109b153112fdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3d56db_a61a9bdd",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1447,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-07T09:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34400c3a_ea84a890",
+      "revId": "38612a5d7d9d3006060fe8fce01109b153112fdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
