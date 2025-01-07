@@ -45,11 +45,7 @@ import android.bluetooth.IBluetoothGattCallback;
 import android.bluetooth.IBluetoothGattServerCallback;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertisingSetParameters;
-import android.bluetooth.le.ChannelSoundingParams;
-import android.bluetooth.le.DistanceMeasurementMethod;
-import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IAdvertisingSetCallback;
-import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
@@ -967,119 +963,7 @@ public class GattService extends ProfileService {
             }
             service.disconnectAll(attributionSource);
         }
-
-        @Override
-        public List<DistanceMeasurementMethod> getSupportedDistanceMeasurementMethods(
-                AttributionSource attributionSource) {
-            GattService service = getService();
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(
-                            service, TAG, "GattService getSupportedDistanceMeasurementMethods")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service,
-                            attributionSource,
-                            "GattService getSupportedDistanceMeasurementMethods")) {
-                return Collections.emptyList();
-            }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            return Arrays.asList(service.getSupportedDistanceMeasurementMethods());
-        }
-
-        @Override
-        public void startDistanceMeasurement(
-                ParcelUuid uuid,
-                DistanceMeasurementParams distanceMeasurementParams,
-                IDistanceMeasurementCallback callback,
-                AttributionSource attributionSource) {
-            GattService service = getService();
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(
-                            service, TAG, "startDistanceMeasurement")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service, attributionSource, "GattService startDistanceMeasurement")) {
-                return;
-            }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            service.startDistanceMeasurement(uuid.getUuid(), distanceMeasurementParams, callback);
-        }
-
-        @Override
-        public int stopDistanceMeasurement(
-                ParcelUuid uuid,
-                BluetoothDevice device,
-                int method,
-                AttributionSource attributionSource) {
-            GattService service = getService();
-            if (service == null) {
-                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
-            } else if (!callerIsSystemOrActiveOrManagedUser(
-                    service, TAG, "stopDistanceMeasurement")) {
-                return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;
-            } else if (!Utils.checkConnectPermissionForDataDelivery(
-                    service, attributionSource, "GattService stopDistanceMeasurement")) {
-                return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
-            }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            return service.stopDistanceMeasurement(uuid.getUuid(), device, method);
-        }
-
-        @Override
-        public int getChannelSoundingMaxSupportedSecurityLevel(
-                BluetoothDevice remoteDevice, AttributionSource attributionSource) {
-            GattService service = getService();
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(
-                            service, TAG, "GattService getChannelSoundingMaxSupportedSecurityLevel")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service,
-                            attributionSource,
-                            "GattService getChannelSoundingMaxSupportedSecurityLevel")) {
-                return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
-            }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            return service.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice);
-        }
-
-        @Override
-        public int getLocalChannelSoundingMaxSupportedSecurityLevel(
-                AttributionSource attributionSource) {
-            GattService service = getService();
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(
-                            service,
-                            TAG,
-                            "GattService getLocalChannelSoundingMaxSupportedSecurityLevel")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service,
-                            attributionSource,
-                            "GattService getLocalChannelSoundingMaxSupportedSecurityLevel")) {
-                return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN;
-            }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            return service.getLocalChannelSoundingMaxSupportedSecurityLevel();
-        }
-
-        @Override
-        public int[] getChannelSoundingSupportedSecurityLevels(
-                AttributionSource attributionSource) {
-            GattService service = getService();
-
-            if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(
-                            service, TAG, "GattService getChannelSoundingSupportedSecurityLevels")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service,
-                            attributionSource,
-                            "GattService getChannelSoundingSupportedSecurityLevels")) {
-                return new int[0];
-            }
-            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-            return service.getChannelSoundingSupportedSecurityLevels().stream()
-                    .mapToInt(i -> i)
-                    .toArray();
-        }
     }
-    ;
 
     /**************************************************************************
      * Callback functions - CLIENT
@@ -1899,39 +1783,6 @@ public class GattService extends ProfileService {
             return;
         }
         mAdvertiseManager.setPeriodicAdvertisingEnable(advertiserId, enable);
-    }
-
-    /**************************************************************************
-     * Distance Measurement
-     *************************************************************************/
-
-    DistanceMeasurementMethod[] getSupportedDistanceMeasurementMethods() {
-        return mDistanceMeasurementManager.getSupportedDistanceMeasurementMethods();
-    }
-
-    void startDistanceMeasurement(
-            UUID uuid,
-            DistanceMeasurementParams distanceMeasurementParams,
-            IDistanceMeasurementCallback callback) {
-        mDistanceMeasurementManager.startDistanceMeasurement(
-                uuid, distanceMeasurementParams, callback);
-    }
-
-    int stopDistanceMeasurement(UUID uuid, BluetoothDevice device, int method) {
-        return mDistanceMeasurementManager.stopDistanceMeasurement(uuid, device, method, false);
-    }
-
-    int getChannelSoundingMaxSupportedSecurityLevel(BluetoothDevice remoteDevice) {
-        return mDistanceMeasurementManager.getChannelSoundingMaxSupportedSecurityLevel(
-                remoteDevice);
-    }
-
-    int getLocalChannelSoundingMaxSupportedSecurityLevel() {
-        return mDistanceMeasurementManager.getLocalChannelSoundingMaxSupportedSecurityLevel();
-    }
-
-    Set<Integer> getChannelSoundingSupportedSecurityLevels() {
-        return mDistanceMeasurementManager.getChannelSoundingSupportedSecurityLevels();
     }
 
     /**************************************************************************
@@ -3347,6 +3198,14 @@ public class GattService extends ProfileService {
         }
 
         return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**************************************************************************
+     * Binder functions
+     *************************************************************************/
+
+    public IBinder getDistanceMeasurement() {
+        return mDistanceMeasurementManager.getBinder();
     }
 
     /**************************************************************************
