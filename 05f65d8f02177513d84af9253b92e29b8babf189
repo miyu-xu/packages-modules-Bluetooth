@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a450bc1f_ed48387d",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2917,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-07T15:42:44Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a9d2548f_ba0387b9",
+      "range": {
+        "startLine": 2917,
+        "startChar": 68,
+        "endLine": 2917,
+        "endChar": 69
+      },
+      "revId": "05f65d8f02177513d84af9253b92e29b8babf189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5281ea4_74f63071",
@@ -61,6 +85,30 @@
       "writtenOn": "2025-01-06T21:22:10Z",
       "side": 0,
       "message": "This is no longer done with RSSI, is this expected ?",
+      "range": {
+        "startLine": 485,
+        "startChar": 2,
+        "endLine": 487,
+        "endChar": 9
+      },
+      "revId": "05f65d8f02177513d84af9253b92e29b8babf189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc49b492_a6d3e576",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-07T15:42:44Z",
+      "side": 0,
+      "message": "yes, for RSSI, no confidence level is defined.",
+      "parentUuid": "e5281ea4_74f63071",
       "range": {
         "startLine": 485,
         "startChar": 2,
