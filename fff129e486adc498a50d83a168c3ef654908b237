@@ -46,6 +46,30 @@
       },
       "revId": "fff129e486adc498a50d83a168c3ef654908b237",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e2f400d_17313892",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-07T22:37:46Z",
+      "side": 0,
+      "message": "You know what, I think you\u0027re right.\n\nI thought we might have had a few brute force calls for clean up, but I think those are on the service and not the state machine.\n\n+2",
+      "parentUuid": "d8577fe9_e8fb8d70",
+      "range": {
+        "startLine": 217,
+        "startChar": 8,
+        "endLine": 220,
+        "endChar": 68
+      },
+      "revId": "fff129e486adc498a50d83a168c3ef654908b237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
