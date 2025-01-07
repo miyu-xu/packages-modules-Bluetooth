@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fee760f_ce416176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-01-07T20:14:25Z",
+      "side": 1,
+      "message": "FYI: I think this solves b/384946328 too if you want the credit.",
+      "revId": "21ac5d4f9b831af0545d68c41988953a5656ff48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
