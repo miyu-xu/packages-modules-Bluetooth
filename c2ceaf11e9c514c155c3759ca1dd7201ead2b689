@@ -33,6 +33,23 @@
       "message": "Hi @rwt@google.com, could you please provide some feedback on this? Thanks!",
       "revId": "c2ceaf11e9c514c155c3759ca1dd7201ead2b689",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3ca15c_5f1d16b0",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-07T19:14:24Z",
+      "side": 1,
+      "message": "Changing it might conflict with some other peripherals.\nI don\u0027t like that we are using a fixed delay here. A better solution could be to use random delay between some range (say 200 ms to 800 ms). That we are unlikely to consistently run into collision with any device.",
+      "revId": "c2ceaf11e9c514c155c3759ca1dd7201ead2b689",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
