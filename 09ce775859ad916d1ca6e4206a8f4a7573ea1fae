@@ -98,6 +98,24 @@
       "parentUuid": "573a621b_273f37cf",
       "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8ed59b0_bc403a19",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-07T17:25:09Z",
+      "side": 1,
+      "message": "Sure, no problem.",
+      "parentUuid": "63a48f94_32d3edb4",
+      "revId": "09ce775859ad916d1ca6e4206a8f4a7573ea1fae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
