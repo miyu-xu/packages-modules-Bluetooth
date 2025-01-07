@@ -71,6 +71,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0eae1ea_36d99a98",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-07T13:13:52Z",
+      "side": 1,
+      "message": "The intention was, to protect all the changes with the flag for this specific enhancement. For that reason, flag check was added. \nHowever, your comment makes sense, we have removed now.\nThanks",
+      "parentUuid": "45ed54d8_bea1762f",
+      "range": {
+        "startLine": 696,
+        "startChar": 0,
+        "endLine": 719,
+        "endChar": 0
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ca96d36_4926e6d7",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 3
@@ -212,6 +236,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "907fc356_ede3f0c0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-07T13:13:52Z",
+      "side": 1,
+      "message": "We believe, the deviceProperties is required here. Because, with a given peer device, we can monitor HfpBatteryIndicator support and update the battery level either through HFP or vendor command and not through both.\n\nYes, the device can report battery level via. AT+BIEV or AT+IPHONEACCEV and  we will choose to update the battery level through AT+BIEV, when the support is present.\n\nYes, we are calling setHfpBatteryIndicatorStatus(), to set HfpBatteryIndicator to true or false.\nIt is set to true, during during HFP SLC connection through processing of processAtBind() \nfrom HeadsetStateMachine.java and set to false in the disconnect path.",
+      "parentUuid": "9ca96d36_4926e6d7",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 935,
+        "endChar": 9
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05fe7619_06ea31ca",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 3
@@ -253,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e87853d_5c1ffc77",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-07T13:13:52Z",
+      "side": 1,
+      "message": "Thanks. Have incorporated your suggestion.",
+      "parentUuid": "05fe7619_06ea31ca",
+      "range": {
+        "startLine": 1728,
+        "startChar": 17,
+        "endLine": 1728,
+        "endChar": 25
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "911479f7_eadd5e8b",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 3
@@ -288,6 +360,30 @@
           ]
         }
       ],
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90309b61_519ae319",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-07T13:13:52Z",
+      "side": 1,
+      "message": "Not very clear on the question/comment.\nAs you know, Here there are two parts, \n1. HfpIndicatorStatusChanged 2. HfpindicatorValueChanged\n\n\n1. Update support for HfpBatteryIndicator. This is set through handleHfIndicatorStatusChanged().\n    It is updated to true during HFP SLC connection, while processing AT+BIND:\n   \n2. Update the battery level. This is done through handleHfIndicatorValueChanged().\n   Battery update is done in  processing path of AT+BIEV: command. \nAnd handleHfIndicatorValueChanged() is exiting fucntion.",
+      "parentUuid": "911479f7_eadd5e8b",
+      "range": {
+        "startLine": 2671,
+        "startChar": 19,
+        "endLine": 2675,
+        "endChar": 21
+      },
       "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
