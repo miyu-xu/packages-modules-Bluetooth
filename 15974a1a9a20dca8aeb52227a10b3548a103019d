@@ -360,6 +360,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ff85637_1f247307",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:43:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dc40b563_c2bf5677",
+      "range": {
+        "startLine": 151,
+        "startChar": 12,
+        "endLine": 151,
+        "endChar": 20
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ee6d0a4_5a8bb4f8",
@@ -454,6 +478,30 @@
           ]
         }
       ],
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32191063_d8911809",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseBinderTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:43:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bf24c82_2e8d15c6",
+      "range": {
+        "startLine": 172,
+        "startChar": 39,
+        "endLine": 172,
+        "endChar": 55
+      },
       "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
