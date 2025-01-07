@@ -203,6 +203,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b18d5bc6_c31cd68d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-07T19:37:16Z",
+      "side": 1,
+      "message": "I agree with the comment. We can\u0027t penalize all other HID devices just because a poorly implemented one can\u0027t handle multiple L2CAP connections requests properly.\n\nThis needs to be an IOP fix at best.",
+      "parentUuid": "fcf15e18_60a9e057",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f331594b_7e0cef4e",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
