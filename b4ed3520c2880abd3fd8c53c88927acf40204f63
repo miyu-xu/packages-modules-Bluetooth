@@ -16,6 +16,24 @@
       "message": "It seems odd that GATT has to inform (`on_connection_complete()`) the connection manager that the connection has been completed.\nIt should be the connection manager\u0027s decision to relieve the connection requests. GATT should not play any role here.\n\nI feel that `on_connection_complete()` should only be called from `acl_ble_common_connection()`.",
       "revId": "b4ed3520c2880abd3fd8c53c88927acf40204f63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09a355f9_441e118a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-07T22:02:09Z",
+      "side": 1,
+      "message": "GATT must copy list of interested apps from connection manager, as it will no longer keep a copy of them, if there is no TCB (next patch)",
+      "parentUuid": "b12f5d80_f3f3598f",
+      "revId": "b4ed3520c2880abd3fd8c53c88927acf40204f63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
