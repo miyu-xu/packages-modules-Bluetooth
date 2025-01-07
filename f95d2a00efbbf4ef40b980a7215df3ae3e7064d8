@@ -218,6 +218,30 @@
       },
       "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc975b36_e91b3914",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-07T20:49:10Z",
+      "side": 1,
+      "message": "Right, you should be adding a test to test your scenario then.  Adding a test when making a change helps ensure that the change is correct and there won\u0027t be any changes in the future that accidentally break this functionality.  So if your scenario is different than in the above file, please add a new test for your scenario.",
+      "parentUuid": "72062ace_f05a020f",
+      "range": {
+        "startLine": 905,
+        "startChar": 12,
+        "endLine": 905,
+        "endChar": 37
+      },
+      "revId": "f95d2a00efbbf4ef40b980a7215df3ae3e7064d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
