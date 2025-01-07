@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5d85a8a_5c00a009",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-07T09:27:16Z",
+      "side": 1,
+      "message": "this was already launched, right ?\nShould you rather have \"Exempt, daily bug fix\" ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 37,
+        "endLine": 12,
+        "endChar": 77
+      },
+      "revId": "c85b4070e5afbec0d58452f200f528a67f21413d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
