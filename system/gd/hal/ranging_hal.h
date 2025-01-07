@@ -286,6 +286,14 @@ struct RangingResult {
   int8_t confidence_level_;
 };
 
+enum SecurityLevel {
+  NOT_SUPPORTED = 0,
+  ONE = 1,
+  TWO = 2,
+  THREE = 3,
+  FOUR = 4,
+};
+
 class RangingHalCallback {
 public:
   virtual ~RangingHalCallback() = default;
@@ -324,6 +332,7 @@ public:
                                   const ProcedureDataV2& procedure_data,
                                   uint16_t procedure_counter) = 0;
   virtual bool IsAbortedProcedureRequired(uint16_t connection_handle) = 0;
+  virtual std::vector<SecurityLevel> GetSupportedSecurityLevels() = 0;
 };
 
 }  // namespace hal

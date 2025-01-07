@@ -38,6 +38,7 @@ using aidl::android::hardware::bluetooth::ranging::ChannelSoudingRawData;
 using aidl::android::hardware::bluetooth::ranging::ChannelSoundingProcedureData;
 using aidl::android::hardware::bluetooth::ranging::ComplexNumber;
 using aidl::android::hardware::bluetooth::ranging::Config;
+using aidl::android::hardware::bluetooth::ranging::CsSecurityLevel;
 using aidl::android::hardware::bluetooth::ranging::CsSyncPhyType;
 using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSounding;
 using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSoundingSession;
@@ -538,6 +539,22 @@ public:
     }
     log::error("can not get result for isAbortedProcedureRequired.");
     return false;
+  }
+
+  std::vector<SecurityLevel> GetSupportedSecurityLevels() override {
+    std::vector<SecurityLevel> security_levels;
+    if (hal_ver_ == V_2) {
+      std::vector<CsSecurityLevel> vendorSupported;
+      auto aidl_ret = bluetooth_channel_sounding_->getSupportedCsSecurityLevels(&vendorSupported);
+      if (aidl_ret.isOk()) {
+        for (const auto& level : vendorSupported) {
+          security_levels.emplace_back(static_cast<SecurityLevel>(level));
+        }
+      }
+    } else {
+      security_levels.emplace_back(SecurityLevel::ONE);
+    }
+    return security_levels;
   }
 
 protected:

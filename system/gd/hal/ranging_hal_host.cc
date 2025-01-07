@@ -65,6 +65,8 @@ public:
 
   bool IsAbortedProcedureRequired(uint16_t /*connection_handle*/) { return false; }
 
+  std::vector<SecurityLevel> GetSupportedSecurityLevels() override { return {}; }
+
 protected:
   void ListDependencies(ModuleList* /*list*/) const {}
 
