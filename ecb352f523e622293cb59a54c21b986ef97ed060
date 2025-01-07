@@ -22,6 +22,30 @@
       },
       "revId": "ecb352f523e622293cb59a54c21b986ef97ed060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c7178d_d549d8e1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6230,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T01:06:58Z",
+      "side": 0,
+      "message": "Yes, the logic of whether or not to use mScanController or the ScanController from GattService is already within the getBluetoothScanController() method. Prior to this CL GattService would just delegate this call to its ScanController, so now we just call the ScanController method directly.",
+      "parentUuid": "82dc592b_ed5db9e1",
+      "range": {
+        "startLine": 6230,
+        "startChar": 0,
+        "endLine": 6230,
+        "endChar": 42
+      },
+      "revId": "ecb352f523e622293cb59a54c21b986ef97ed060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
