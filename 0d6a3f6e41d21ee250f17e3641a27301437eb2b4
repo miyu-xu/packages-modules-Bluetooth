@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40032a07_3b66a053",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-07T18:35:11Z",
+      "side": 1,
+      "message": "I am still uncertain about this.\n\nBinder is running on a different thread than cleanup, therefore the cleanup can be called after the boolean has been checked...\n\nIt\u0027s harmless to keep it so fine to have it, but I don\u0027t know if this address the issue",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "0d6a3f6e41d21ee250f17e3641a27301437eb2b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a006330b_6a054b7b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-07T18:35:11Z",
+      "side": 1,
+      "message": "I am very happy to see this file diff ^^",
+      "revId": "0d6a3f6e41d21ee250f17e3641a27301437eb2b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
