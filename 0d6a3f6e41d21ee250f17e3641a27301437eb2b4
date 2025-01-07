@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2f9d16df_8e4eb6d4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-07T18:45:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d2c63be3_f6c0ee21",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 20
+      },
+      "revId": "0d6a3f6e41d21ee250f17e3641a27301437eb2b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a006330b_6a054b7b",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 6
