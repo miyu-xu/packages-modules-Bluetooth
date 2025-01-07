@@ -184,6 +184,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e90b74_a538b550",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17cef844_f2a06053",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 9
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fe85b16_738f2d61",
@@ -197,6 +221,30 @@
       "writtenOn": "2025-01-04T01:12:02Z",
       "side": 1,
       "message": "requireNonNull(parameters) before ? to indicate that a null is not an accepted value",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "927fdce6_13219fbd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fe85b16_738f2d61",
       "range": {
         "startLine": 72,
         "startChar": 12,
@@ -230,6 +278,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88f98b3f_238d24b7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de072dad_b2f2280b",
+      "range": {
+        "startLine": 90,
+        "startChar": 5,
+        "endLine": 90,
+        "endChar": 23
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e106d45f_7bcd50ef",
@@ -243,6 +315,24 @@
       "writtenOn": "2025-01-04T01:12:02Z",
       "side": 1,
       "message": "same, requireNonNull for callback ?",
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ab7cf1_c1ca4b53",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e106d45f_7bcd50ef",
       "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -283,6 +373,30 @@
       "writtenOn": "2025-01-04T01:12:02Z",
       "side": 1,
       "message": "Is it possible to do one binder per CL ? I know that both the change will be a bit similar",
+      "range": {
+        "startLine": 835,
+        "startChar": 6,
+        "endLine": 845,
+        "endChar": 9
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4744b062_49931163",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ee6d0a4_5a8bb4f8",
       "range": {
         "startLine": 835,
         "startChar": 6,
@@ -418,6 +532,30 @@
       "writtenOn": "2025-01-04T01:12:02Z",
       "side": 1,
       "message": "This is making 2 binders calls, aka 2 IPC calls.\n\nCan we have only one binder call like before ?\n\nThat means exposing the advertiseBinder threw adapterService, but I think that is a bit better",
+      "range": {
+        "startLine": 937,
+        "startChar": 4,
+        "endLine": 940,
+        "endChar": 90
+      },
+      "revId": "15974a1a9a20dca8aeb52227a10b3548a103019d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e3f7745_9d5bc13c",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-07T07:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20bb1f2c_01632d74",
       "range": {
         "startLine": 937,
         "startChar": 4,
