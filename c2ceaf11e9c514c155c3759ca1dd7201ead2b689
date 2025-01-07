@@ -16,6 +16,23 @@
       "message": "Hi @rwt@google.com, I know to submit this change I\u0027ll need to make it behind aflag. But before creating a flag I\u0027d like to request for some feedback from the Andoird team.\n\nIn fact, on ChromeOS it\u0027s a pretty rare conflict that almost only happen in the test environment - It only happens when Fluoride initiates the connection \u0026\u0026 the remote device requests for role switch on accept connection, but on ChromeOS we seldom pair with a device that would prefer central. While for Andoird, I believe this patch affects more in the real world? Please let me know if you have any concern, thanks!",
       "revId": "c2ceaf11e9c514c155c3759ca1dd7201ead2b689",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f78ce4f_4976d8c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-01-07T02:53:52Z",
+      "side": 1,
+      "message": "Hi @rwt@google.com, could you please provide some feedback on this? Thanks!",
+      "revId": "c2ceaf11e9c514c155c3759ca1dd7201ead2b689",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
