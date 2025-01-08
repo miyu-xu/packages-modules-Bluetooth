@@ -45,6 +45,30 @@
       },
       "revId": "65f9f3d3a68381d06f3fbdeaaf626ed8a8fdb9e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61723249_af47d4d8",
+        "filename": "service/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1327199
+      },
+      "writtenOn": "2025-01-08T07:52:52Z",
+      "side": 1,
+      "message": "Thanks for the comments! This is still WIP but I hope to send this out soon. I will introduce a new feature flag and land in trunk_staging first in case anything breaks.",
+      "parentUuid": "ca48cedd_6c01eca3",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 38
+      },
+      "revId": "65f9f3d3a68381d06f3fbdeaaf626ed8a8fdb9e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
