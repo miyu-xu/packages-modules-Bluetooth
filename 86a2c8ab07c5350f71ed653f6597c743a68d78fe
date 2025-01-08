@@ -40,6 +40,30 @@
       ],
       "revId": "86a2c8ab07c5350f71ed653f6597c743a68d78fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "defe8763_af687838",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-08T08:20:05Z",
+      "side": 1,
+      "message": "It is actually set based on AT+BIND command.\n\nWe will add the comment as below:\n@param hfpBatteryIndicator is set to true based on the hf battery indicator    support received from AT+BIND command, and set to false in disconnect path.\n       \nPlease confirm, if the comment is ok.",
+      "parentUuid": "cbe60a4b_637a0a5d",
+      "range": {
+        "startLine": 694,
+        "startChar": 9,
+        "endLine": 694,
+        "endChar": 61
+      },
+      "revId": "86a2c8ab07c5350f71ed653f6597c743a68d78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

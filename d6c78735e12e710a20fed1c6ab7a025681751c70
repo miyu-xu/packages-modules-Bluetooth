@@ -434,6 +434,30 @@
       },
       "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002d5835_81f30156",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-01-08T08:20:05Z",
+      "side": 1,
+      "message": "In line #2677, \"sendIndicatorIntent()\" is an existing function which  is called when we receive AT+BIND command.\n\"AT+BIND\" command is usually sent by the peer during HFP SLC procedure, to indicate support for various HF Indicators.\n\nAfter HFP connection procedure completion,  peer sends \"AT+BIEV\" command to actually update the indicator value, in our case, HfpBatteryIndicator.",
+      "parentUuid": "6698dab3_8587fffd",
+      "range": {
+        "startLine": 2671,
+        "startChar": 19,
+        "endLine": 2675,
+        "endChar": 21
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
