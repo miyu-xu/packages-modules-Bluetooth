@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c1b1db_37f72895",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-08T21:44:25Z",
+      "side": 1,
+      "message": "com.android.bluetooth.flags.extend_and_randomize_role_switch_delay",
+      "revId": "fae8f128723f63379df20e07b39422b90b0c2998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210b0d22_ee9a7e67",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-08T21:44:25Z",
+      "side": 1,
+      "message": "Lets not use magic numbers",
+      "fixSuggestions": [
+        {
+          "fixId": "008ffd36_522e7220",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_act.cc",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "/* Maximum role switch delay (in milliseconds) */\n#ifndef BTA_DM_MAX_SWITCH_DELAY_MS\n#define BTA_DM_MAX_SWITCH_DELAY_MS 1500\n#endif\n\n/* Minimum role switch delay (in milliseconds) */\n#ifndef BTA_DM_MIN_SWITCH_DELAY_MS\n#define BTA_DM_MIN_SWITCH_DELAY_MS 1000\n#endif\n\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_act.cc",
+              "range": {
+                "startLine": 1180,
+                "startChar": 0,
+                "endLine": 1181,
+                "endChar": 0
+              },
+              "replacement": "              delay \u003d bluetooth::os::GenerateRandom() % (BTA_DM_MAX_SWITCH_DELAY_MS - BTA_DM_MIN_SWITCH_DELAY_MS) + BTA_DM_MIN_SWITCH_DELAY_MS;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fae8f128723f63379df20e07b39422b90b0c2998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "193e1921_44a11dea",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-08T21:44:25Z",
+      "side": 1,
+      "message": "We should log the delay here",
+      "fixSuggestions": [
+        {
+          "fixId": "0441a1e5_91d53267",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_act.cc",
+              "range": {
+                "startLine": 1182,
+                "startChar": 0,
+                "endLine": 1182,
+                "endChar": 0
+              },
+              "replacement": "            log::debug(\"Set timer to delay role switch:{}\", delay);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fae8f128723f63379df20e07b39422b90b0c2998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
