@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "279e29c5_aabc0976",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T00:24:10Z",
+      "side": 1,
+      "message": "methods in this file doesn\u0027t have the nodiscard, this is only done in the header.\n\nI don\u0027t know which one is correct but we should remove it here or add it everywhere",
+      "range": {
+        "startLine": 582,
+        "startChar": 2,
+        "endLine": 582,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d43a5cce_75bdeaf5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 582,
+                "startChar": 0,
+                "endLine": 583,
+                "endChar": 0
+              },
+              "replacement": "int PORT_SetAppUid(uint16_t handle, uint32_t app_uid) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "49a449781933d84cfc4b7dd7f1e921bf719f61e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
