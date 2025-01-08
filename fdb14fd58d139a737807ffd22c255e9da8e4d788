@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ecf3a0_0eef49e7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 6258,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-08T13:02:03Z",
+      "side": 1,
+      "message": "Hi Rognxuan! Thank you for checking this - indeed, there is missing clearing of sink hal client for audio recording listener flag path.\n\nI suggest to do only a subtle change:\n\n```\ndiff --git a/system/bta/le_audio/client.cc b/system/bta/le_audio/client.cc\nindex 7008676f9cc..35e19c74ee2 100644\n--- a/system/bta/le_audio/client.cc\n+++ b/system/bta/le_audio/client.cc\n@@ -6238,12 +6238,11 @@ private:\n        * the session callbacks special action from this Module would be\n        * required e.g. to Unicast handover.\n        */\n-      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {\n-        if (!sink_monitor_mode_) {\n-          local_metadata_context_types_.sink.clear();\n-          le_audio_sink_hal_client_-\u003eStop();\n-          le_audio_sink_hal_client_.reset();\n-        }\n+      if (com::android::bluetooth::flags::leaudio_use_audio_recording_listener() ||\n+              !sink_monitor_mode_) {\n+        local_metadata_context_types_.sink.clear();\n+        le_audio_sink_hal_client_-\u003eStop();\n+        le_audio_sink_hal_client_.reset();\n       }\n     }\n```",
+      "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
