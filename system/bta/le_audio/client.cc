@@ -1339,6 +1339,33 @@ public:
       local_metadata_context_types_.source.clear();
       reconfigure = true;
     } else {
+      /* When inCall mode is disabled and remaining metadata is no longer supported by group stream
+       * should be stopped.
+       */
+      if (com::android::bluetooth::flags::leaudio_stop_updated_to_not_available_context_stream()) {
+        if (StopStreamIfUpdatedContextIsNoLongerSupporteded(
+                    bluetooth::le_audio::types::kLeAudioDirectionSource, group,
+                    local_metadata_context_types_.sink)) {
+          log::info(
+                  "After disable InCall mode, updated sink metadata contexts are not allowed "
+                  "context types: {} | configured: {} vs allowed context mask: {}",
+                  ToString(local_metadata_context_types_.sink),
+                  ToString(configuration_context_type_),
+                  ToString(group->GetAllowedContextMask(
+                          bluetooth::le_audio::types::kLeAudioDirectionSource)));
+        } else if (StopStreamIfUpdatedContextIsNoLongerSupporteded(
+                           bluetooth::le_audio::types::kLeAudioDirectionSink, group,
+                           local_metadata_context_types_.source)) {
+          log::info(
+                  "After disable InCall mode, updated source metadata contexts are not allowed "
+                  "context types: {} | configured: {} vs allowed context mask: {}",
+                  ToString(local_metadata_context_types_.source),
+                  ToString(configuration_context_type_),
+                  ToString(group->GetAllowedContextMask(
+                          bluetooth::le_audio::types::kLeAudioDirectionSink)));
+        }
+      }
+
       if (configuration_context_type_ == LeAudioContextType::CONVERSATIONAL) {
         log::info("Call is ended, speed up reconfiguration for media");
         local_metadata_context_types_ = in_call_metadata_context_types_;
@@ -4405,11 +4432,13 @@ public:
     /* Group should not be resumed if:
      * - configured context type is not allowed
      * - updated metadata contains only not allowed context types
+     * - is not in call mode (quick metadata updates between audio modes)
      */
-    if (!group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink)
-                 .test_all(local_metadata_context_types_.source) ||
-        !group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink)
-                 .test(configuration_context_type_)) {
+    if (!IsInCall() &&
+        (!group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink)
+                  .test_all(local_metadata_context_types_.source) ||
+         !group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSink)
+                  .test(configuration_context_type_))) {
       log::warn(
               "Block source resume request context types: {}, allowed context mask: {}, "
               "configured: {}",
@@ -4695,11 +4724,13 @@ public:
     /* Group should not be resumed if:
      * - configured context type is not allowed
      * - updated metadata contains only not allowed context types
+     * - is not in call mode (quick metadata updates between audio modes)
      */
-    if (!group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSource)
-                 .test_all(local_metadata_context_types_.sink) ||
-        !group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSource)
-                 .test(configuration_context_type_)) {
+    if (!IsInCall() &&
+        (!group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSource)
+                  .test_all(local_metadata_context_types_.sink) ||
+         !group->GetAllowedContextMask(bluetooth::le_audio::types::kLeAudioDirectionSource)
+                  .test(configuration_context_type_))) {
       log::warn(
               "Block sink resume request context types: {} vs allowed context mask: {}, "
               "configured: {}",
@@ -4996,8 +5027,12 @@ public:
 
     /* Check if stream should be suspended due to reamaining only not allowed contexts in metadata
      * or configured context.
+     *
+     * If device is inCall mode, AF may quickly change metadata from ringing mode to active.
+     * To avoid short stream suspend, let's keep stream alive.
      */
     if (com::android::bluetooth::flags::leaudio_stop_updated_to_not_available_context_stream() &&
+        !IsInCall() &&
         StopStreamIfUpdatedContextIsNoLongerSupporteded(
                 bluetooth::le_audio::types::kLeAudioDirectionSink, group,
                 local_metadata_context_types_.source)) {
@@ -5163,8 +5198,12 @@ public:
 
     /* Check if stream should be suspended due to only reamaining not allowed contexts in metadata
      * or configured context.
+     *
+     * If device is inCall mode, AF may quickly change metadata from ringing mode to active.
+     * To avoid short stream suspend, let's keep stream alive.
      */
     if (com::android::bluetooth::flags::leaudio_stop_updated_to_not_available_context_stream() &&
+        !IsInCall() &&
         StopStreamIfUpdatedContextIsNoLongerSupporteded(
                 bluetooth::le_audio::types::kLeAudioDirectionSource, group,
                 local_metadata_context_types_.sink)) {
@@ -6238,12 +6277,11 @@ private:
        * the session callbacks special action from this Module would be
        * required e.g. to Unicast handover.
        */
-      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {
-        if (!sink_monitor_mode_) {
-          local_metadata_context_types_.sink.clear();
-          le_audio_sink_hal_client_->Stop();
-          le_audio_sink_hal_client_.reset();
-        }
+      if (com::android::bluetooth::flags::leaudio_use_audio_recording_listener() ||
+          !sink_monitor_mode_) {
+        local_metadata_context_types_.sink.clear();
+        le_audio_sink_hal_client_->Stop();
+        le_audio_sink_hal_client_.reset();
       }
     }
     local_metadata_context_types_.source.clear();
