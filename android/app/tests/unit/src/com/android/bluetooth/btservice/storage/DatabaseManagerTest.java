@@ -51,7 +51,6 @@ import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.flags.Flags;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -872,9 +871,7 @@ public final class DatabaseManagerTest {
         device.put("unthethered_left_charging", testString);
         device.put("unthethered_right_charging", testString);
         device.put("unthethered_case_charging", testString);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Check the metadata names on version 101
         assertHasColumn(cursor, "is_unthethered_headset", true);
@@ -999,9 +996,7 @@ public final class DatabaseManagerTest {
         device.put("untethered_left_charging", testString);
         device.put("untethered_right_charging", testString);
         device.put("untethered_case_charging", testString);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Check the metadata names on version 102
         assertHasColumn(cursor, "a2dp_priority", true);
@@ -1145,9 +1140,7 @@ public final class DatabaseManagerTest {
         device.put("untethered_left_charging", testString);
         device.put("untethered_right_charging", testString);
         device.put("untethered_case_charging", testString);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Migrate database from 103 to 104
         db.close();
@@ -1214,9 +1207,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Migrate database from 105 to 106
         db.close();
@@ -1242,9 +1233,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Migrate database from 106 to 107
         db.close();
@@ -1269,9 +1258,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 107 to 108
         db.close();
         db =
@@ -1293,9 +1280,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 108 to 109
         db.close();
         db =
@@ -1317,9 +1302,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 109 to 110
         db.close();
         db =
@@ -1341,9 +1324,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 111 to 112
         db.close();
         db =
@@ -1365,9 +1346,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 112 to 113
         db.close();
         db =
@@ -1391,9 +1370,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 113 to 114
         db.close();
         db =
@@ -1415,9 +1392,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Migrate database from 114 to 115
         db.close();
@@ -1445,9 +1420,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Migrate database from 115 to 116
         db.close();
@@ -1472,9 +1445,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 116 to 117
         db.close();
         db =
@@ -1498,9 +1469,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 117 to 118
         db.close();
         db =
@@ -1522,9 +1491,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
 
         // Migrate database from 118 to 119
         db.close();
@@ -1547,9 +1514,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 119 to 120
         db.close();
         db =
@@ -1571,9 +1536,7 @@ public final class DatabaseManagerTest {
         ContentValues device = new ContentValues();
         device.put("address", TEST_BT_ADDR);
         device.put("migrated", false);
-        Assert.assertThat(
-                db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device),
-                CoreMatchers.not(-1));
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
         // Migrate database from 120 to 121
         db.close();
         db =
@@ -1590,27 +1553,26 @@ public final class DatabaseManagerTest {
     /** Helper function to check whether the database has the expected column */
     void assertHasColumn(Cursor cursor, String columnName, boolean hasColumn) {
         if (hasColumn) {
-            Assert.assertThat(cursor.getColumnIndex(columnName), CoreMatchers.not(-1));
+            assertThat(cursor.getColumnIndex(columnName)).isNotEqualTo(-1);
         } else {
-            Assert.assertThat(cursor.getColumnIndex(columnName), CoreMatchers.is(-1));
+            assertThat(cursor.getColumnIndex(columnName)).isEqualTo(-1);
         }
     }
 
     /** Helper function to check whether the database has the expected value */
     void assertColumnIntData(Cursor cursor, String columnName, int value) {
-        Assert.assertThat(cursor.getInt(cursor.getColumnIndex(columnName)), CoreMatchers.is(value));
+        assertThat(cursor.getInt(cursor.getColumnIndex(columnName))).isEqualTo(value);
     }
 
     /** Helper function to check whether the column data type is BLOB */
     void assertColumnBlob(Cursor cursor, String columnName) {
-        Assert.assertThat(
-                cursor.getType(cursor.getColumnIndex(columnName)),
-                CoreMatchers.is(Cursor.FIELD_TYPE_BLOB));
+        assertThat(cursor.getType(cursor.getColumnIndex(columnName)))
+                .isEqualTo(Cursor.FIELD_TYPE_BLOB);
     }
 
     /** Helper function to check the BLOB data in a column is expected */
     void assertColumnBlobData(Cursor cursor, String columnName, byte[] data) {
-        Assert.assertThat(cursor.getBlob(cursor.getColumnIndex(columnName)), CoreMatchers.is(data));
+        assertThat(cursor.getBlob(cursor.getColumnIndex(columnName))).isEqualTo(data);
     }
 
     void restartDatabaseManagerHelper() {
