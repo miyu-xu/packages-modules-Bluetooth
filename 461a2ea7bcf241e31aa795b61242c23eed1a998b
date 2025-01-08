@@ -233,6 +233,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fea2cc88_b98da008",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T23:53:02Z",
+      "side": 1,
+      "message": "Understood, Was following the convention used.  Ok to resolve for now as convention is consistent? I\u0027ve filed an internal bug to track a future migration away from raw String addressing.",
+      "parentUuid": "107eb94c_9eb28a99",
+      "range": {
+        "startLine": 2404,
+        "startChar": 24,
+        "endLine": 2404,
+        "endChar": 31
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1dd23852_46eab7f7",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 3
@@ -525,6 +549,30 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "f3e9f57d_3075d0cd",
+      "range": {
+        "startLine": 962,
+        "startChar": 32,
+        "endLine": 962,
+        "endChar": 60
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17b1220_94d73b34",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T23:53:02Z",
+      "side": 1,
+      "message": "This callback defining IBluetoothGattCallback and is only from GattService -\u003e BluetoothGatt layer.   BluetoothGatt -\u003e app uses the BluetoothGattCallback API which :     public void onSubrateChange(\n            @NonNull BluetoothGatt gatt,\n            @IntRange(from \u003d 1, to \u003d 255) int subrateMode,\n            @OnSubrateChangeStatusValues int status)",
+      "parentUuid": "ddc7f0ae_1c75cf64",
       "range": {
         "startLine": 962,
         "startChar": 32,
