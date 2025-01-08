@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2d7a848_e8e35437",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:13:48Z",
+      "side": 1,
+      "message": "`return \"Browsable Package Name: \" + mPackageName + \"\\n\";` will do the same thing\n\nwhat should be avoid is this\n\n```\nStringBuilder sb \u003d new StringBuilder();\nsb.append(\"Browsable Package Name: \" + mPackageName + \"\\n\");\nreturn sb.toString();\n```\n\nas the \"+\" is creating a stringBuilder and my example is therfore having nester un-necessary stringBuilder. But in your case, the string are very easy so just using a + is more readable than using a stringBuilder",
+      "range": {
+        "startLine": 390,
+        "startChar": 4,
+        "endLine": 393,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "169d45de_ff2884fe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 390,
+                "startChar": 0,
+                "endLine": 393,
+                "endChar": 0
+              },
+              "replacement": "        return \"Browsable Package Name: \" + mPackageName + \"\\n\";\n"
+            }
+          ]
+        }
+      ],
+      "revId": "883bb3066e211f655eb38d8fc08d5a8498d58956",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
