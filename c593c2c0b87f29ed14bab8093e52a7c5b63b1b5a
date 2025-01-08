@@ -51,6 +51,24 @@
       "message": "Please address the test failures",
       "revId": "c593c2c0b87f29ed14bab8093e52a7c5b63b1b5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb33bf10_b1d3e0c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-08T09:42:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e1dbc26_f01ac7d1",
+      "revId": "c593c2c0b87f29ed14bab8093e52a7c5b63b1b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
