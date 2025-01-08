@@ -1,0 +1,417 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7833b7a1_c0ff82eb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/CompanionManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "Currently, this is same as \n```suggestion\n    public int verifyGattSubratingPriority(\n            String address,\n            @BluetoothGatt.SubrateMode int requestedMode,\n            int subrateFactor,\n            int latency,\n            int contNum) {\n        return verifyGattSubratingPriorityDefault(\n                                requestedMode, subrateFactor, latency, contNum);\n    }\n```\n\nAre we missing something in this method ?",
+      "range": {
+        "startLine": 538,
+        "startChar": 1,
+        "endLine": 556,
+        "endChar": 5
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a80b7f_86d16ef7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/CompanionManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "Java offer a very nice syntax for switch that become handy in most of the case\n\n```suggestion\n        return switch (mode) {\n            case BluetoothGatt.SUBRATE_MODE_HIGH -\u003e mSubrateHighDefault[type];\n            case BluetoothGatt.SUBRATE_MODE_LOW -\u003e mSubrateLowDefault[type];\n            default -\u003e mSubrateBalanceDefault[type];\n        };\n```",
+      "range": {
+        "startLine": 624,
+        "startChar": 5,
+        "endLine": 630,
+        "endChar": 44
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc29e841_f22e47bd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "remove as this is \"private\" so not visible for testing",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cc40d9ba_c0718fcf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "107eb94c_9eb28a99",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2404,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "We should work with a BluetoothDevice as much as possible and not with a raw string address.\nThe raw address is historically used only to communicate with the native code. (I know that there are a few usage in scan / gatt, but we should really think of moving away from it)",
+      "range": {
+        "startLine": 2404,
+        "startChar": 24,
+        "endLine": 2404,
+        "endChar": 31
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dd23852_46eab7f7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3251,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "I am not sure about the need of keeping both the base 10 and base 16 values",
+      "range": {
+        "startLine": 3251,
+        "startChar": 17,
+        "endLine": 3251,
+        "endChar": 28
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96c53efd_19cc7617",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3260,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "the -\u003e pattern will become very handy here",
+      "range": {
+        "startLine": 3223,
+        "startChar": 0,
+        "endLine": 3260,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9e04cbf9_b184116f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 3225,
+                "startChar": 0,
+                "endLine": 3230,
+                "endChar": 0
+              },
+              "replacement": "        return switch (code) {\n            // GATT_SUCCESS\n            case 0 -\u003e BluetoothStatusCodes.SUCCESS;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 3231,
+                "startChar": 0,
+                "endLine": 3234,
+                "endChar": 0
+              },
+              "replacement": "            case 3 -\u003e BluetoothStatusCodes.ERROR_HARDWARE_GENERIC;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 3235,
+                "startChar": 0,
+                "endLine": 3238,
+                "endChar": 0
+              },
+              "replacement": "            case 12 -\u003e BluetoothStatusCodes.NOT_ALLOWED;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 3239,
+                "startChar": 0,
+                "endLine": 3242,
+                "endChar": 0
+              },
+              "replacement": "            case 26 -\u003e BluetoothStatusCodes.ERROR_REMOTE_OPERATION_NOT_SUPPORTED;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 3243,
+                "startChar": 0,
+                "endLine": 3247,
+                "endChar": 0
+              },
+              "replacement": "            case 13, 58 -\u003e BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 3248,
+                "startChar": 0,
+                "endLine": 3260,
+                "endChar": 0
+              },
+              "replacement": "            case 17, 18, 30, 32, 48, 59 -\u003e BluetoothStatusCodes.ERROR_BAD_PARAMETERS;\n            default -\u003e BluetoothStatusCodes.ERROR_UNKNOWN;\n        };\n"
+            }
+          ]
+        }
+      ],
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01c4b118_260d1dfc",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "This is marked as flagged api but you still have @hide and there is no @systemAPi, therefore these are not api yet.\n\nConsider one of the three option:\n* add @SystemApi if this is intended to be system only api\n* remove @hide if this is intended to be public api\n* remove the @FlaggedApi if this is only for internal implementation details",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3e9f57d_3075d0cd",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "No.\nWe must keep anonymized address in log for privacy reason. This is why the code should use BluetoothDevice instead of raw address, as it is abstracting this complexity from the code\n\nI would love to see an preliminary CL that change this from String to BluetoothDevice, but I understand if I am asking a bit too much",
+      "range": {
+        "startLine": 962,
+        "startChar": 32,
+        "endLine": 962,
+        "endChar": 60
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47ffc913_323748f1",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "Same as above regarding the api callback, this flag alone doesn\u0027t create an API",
+      "range": {
+        "startLine": 2152,
+        "startChar": 0,
+        "endLine": 2152,
+        "endChar": 42
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799bf4f2_728e04a9",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 293,
+        "startChar": 5,
+        "endLine": 293,
+        "endChar": 15
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02d27a3e_05c0d3c3",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "isn\u0027t there a @BluetoothGatt.SubrateMode or something ?",
+      "range": {
+        "startLine": 296,
+        "startChar": 12,
+        "endLine": 296,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "40222a7f_0dd990df",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+              "range": {
+                "startLine": 296,
+                "startChar": 0,
+                "endLine": 297,
+                "endChar": 0
+              },
+              "replacement": "            @BluetoothGatt.SubrateMode int subrateMode,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e561d9e_ced718dc",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c8bca9f_9dd7ee46",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-08T20:56:29Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 58
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
