@@ -29,3 +29,23 @@ BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_PAIRING_REQUEST:
     Field 'ACTION_PAIRING_REQUEST' is missing @BroadcastBehavior
 BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_UUID:
     Field 'ACTION_UUID' is missing @BroadcastBehavior
+
+
+MissingNullability: android.bluetooth.BluetoothGattServerCallback#onSubrateChange(android.bluetooth.BluetoothDevice, int, int) parameter #0:
+    Missing nullability on parameter `device` in method `onSubrateChange`
+
+
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_MODE_BALANCED:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_MODE_BALANCED
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_MODE_HIGH:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_MODE_HIGH
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_MODE_LOW_POWER:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_MODE_LOW_POWER
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_MODE_SYSTEM:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_MODE_SYSTEM
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_MODE_UNKNOWN:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_MODE_UNKNOWN
+UnflaggedApi: android.bluetooth.BluetoothGatt#requestSubrateMode(int):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothGatt.requestSubrateMode(int)
+UnflaggedApi: android.bluetooth.BluetoothGattServerCallback#onSubrateChange(android.bluetooth.BluetoothGatt, int, int):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothGattServerCallback.onSubrateChange(android.bluetooth.BluetoothGatt,int,int)
