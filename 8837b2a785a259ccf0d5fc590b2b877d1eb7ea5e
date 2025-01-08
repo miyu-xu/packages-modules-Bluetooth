@@ -110,6 +110,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7973eab_6fbaba4b",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-08T12:44:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7b0b1226_3da78237",
+      "range": {
+        "startLine": 326,
+        "startChar": 12,
+        "endLine": 326,
+        "endChar": 34
+      },
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c399489e_26ebb161",
@@ -123,6 +147,30 @@
       "writtenOn": "2024-12-13T01:11:50Z",
       "side": 1,
       "message": "I believe this is impossible since the path is hardcoded right ? Should we delete it ?",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 3
+      },
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ae7b58_10aa14e3",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-08T12:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c399489e_26ebb161",
       "range": {
         "startLine": 329,
         "startChar": 0,
@@ -211,6 +259,30 @@
       "writtenOn": "2024-12-13T01:11:50Z",
       "side": 1,
       "message": "why do we want to create the directory when deleting the file ? \n\nif there is no directory, then there is no issue right ?",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 51
+      },
+      "revId": "8837b2a785a259ccf0d5fc590b2b877d1eb7ea5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3813e7b_6240c474",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-08T12:44:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d4c40a3_a31b4263",
       "range": {
         "startLine": 344,
         "startChar": 0,
