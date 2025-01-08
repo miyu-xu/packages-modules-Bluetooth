@@ -40,6 +40,30 @@
       ],
       "revId": "94439fc07ffa31a72b00453bcf14229b95996050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861ba82c_9fc07e8f",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-08T22:40:41Z",
+      "side": 1,
+      "message": "You are correct, the later calls are no longer needed.\nI also added logging around it.",
+      "parentUuid": "4162a0f9_038c9f95",
+      "range": {
+        "startLine": 1586,
+        "startChar": 0,
+        "endLine": 1587,
+        "endChar": 62
+      },
+      "revId": "94439fc07ffa31a72b00453bcf14229b95996050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
