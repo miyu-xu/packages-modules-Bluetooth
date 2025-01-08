@@ -113,6 +113,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ecdcc3_3c4c23a3",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-01-08T10:25:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91056417_359348ce",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 106
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66537f9b_9d8fd556",
@@ -136,6 +160,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2175566c_f76307e8",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-01-08T10:25:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66537f9b_9d8fd556",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 104
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cc5a6f7_9a085d77",
@@ -149,6 +197,30 @@
       "writtenOn": "2024-11-21T18:35:33Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 114
+      },
+      "revId": "2978a7b007231d7189b823ec5d60ef91537faae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbab4267_e5c81e12",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-01-08T10:25:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cc5a6f7_9a085d77",
       "range": {
         "startLine": 478,
         "startChar": 0,
