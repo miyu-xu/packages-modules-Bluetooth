@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11c33886_6aefe31a",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T14:05:43Z",
+      "side": 1,
+      "message": "Remove module comment",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c599907_fa2fe4b8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/main.py",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ef2f6ad7cbb30ff30462ff5c6f6f76062cc6bd19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c754d035_41b8e06a",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T14:05:43Z",
+      "side": 1,
+      "message": "nit: LeHostTestFiltered",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "19b1fc53_301a0588",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/main.py",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "class LeHostTestFiltered(avatar.cases.le_host_test.LeHostTest):\n"
+            },
+            {
+              "path": "android/pandora/test/main.py",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "    LeHostTestFiltered,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ef2f6ad7cbb30ff30462ff5c6f6f76062cc6bd19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e106f2b_1333b184",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T14:05:43Z",
+      "side": 1,
+      "message": "Comment here to indicate that we derive LeHostTest to remove failing tests.",
+      "revId": "ef2f6ad7cbb30ff30462ff5c6f6f76062cc6bd19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
