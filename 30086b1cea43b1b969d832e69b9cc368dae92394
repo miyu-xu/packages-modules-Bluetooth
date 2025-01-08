@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a319448b_40455553",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3182,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T09:42:23Z",
+      "side": 1,
+      "message": "Just `if` since we return in both branches",
+      "range": {
+        "startLine": 3182,
+        "startChar": 4,
+        "endLine": 3182,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fa8e5c5c_893e2bf1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/av/bta_av_aact.cc",
+              "range": {
+                "startLine": 3182,
+                "startChar": 0,
+                "endLine": 3183,
+                "endChar": 0
+              },
+              "replacement": "  }\n  if (bta_av_cb.offload_start_pending_hndl || bta_av_cb.offload_started_hndl) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "30086b1cea43b1b969d832e69b9cc368dae92394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
