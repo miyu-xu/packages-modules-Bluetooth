@@ -22,6 +22,30 @@
       },
       "revId": "38240f1c388cb3b5adf722cbaec7f1f4c9134294",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b6c707d_989ed852",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-08T15:46:47Z",
+      "side": 1,
+      "message": "Yep. It is not a first split log line in this file. Such refactoring should be done in a separate commit to not cover the main change.",
+      "parentUuid": "23fb20d3_2b8e8dde",
+      "range": {
+        "startLine": 947,
+        "startChar": 25,
+        "endLine": 947,
+        "endChar": 39
+      },
+      "revId": "38240f1c388cb3b5adf722cbaec7f1f4c9134294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
