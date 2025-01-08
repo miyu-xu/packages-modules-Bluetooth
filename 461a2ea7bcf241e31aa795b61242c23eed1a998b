@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b030923_46a61841",
+        "filename": "android/app/src/com/android/bluetooth/btservice/CompanionManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "True, i kept it this way in-case in future we define separate Subrating parameters for Primary, Secondary or Default Connections.  Similar to Connection Priority Updates",
+      "parentUuid": "7833b7a1_c0ff82eb",
+      "range": {
+        "startLine": 538,
+        "startChar": 1,
+        "endLine": 556,
+        "endChar": 5
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92a80b7f_86d16ef7",
         "filename": "android/app/src/com/android/bluetooth/btservice/CompanionManager.java",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-08T20:56:29Z",
       "side": 1,
       "message": "Java offer a very nice syntax for switch that become handy in most of the case\n\n```suggestion\n        return switch (mode) {\n            case BluetoothGatt.SUBRATE_MODE_HIGH -\u003e mSubrateHighDefault[type];\n            case BluetoothGatt.SUBRATE_MODE_LOW -\u003e mSubrateLowDefault[type];\n            default -\u003e mSubrateBalanceDefault[type];\n        };\n```",
+      "range": {
+        "startLine": 624,
+        "startChar": 5,
+        "endLine": 630,
+        "endChar": 44
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80328a9c_58d58e61",
+        "filename": "android/app/src/com/android/bluetooth/btservice/CompanionManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "92a80b7f_86d16ef7",
       "range": {
         "startLine": 624,
         "startChar": 5,
@@ -225,6 +273,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5eb7f3c_50b2e837",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3260,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "96c53efd_19cc7617",
+      "range": {
+        "startLine": 3223,
+        "startChar": 0,
+        "endLine": 3260,
+        "endChar": 5
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01c4b118_260d1dfc",
@@ -238,6 +310,30 @@
       "writtenOn": "2025-01-08T20:56:29Z",
       "side": 1,
       "message": "This is marked as flagged api but you still have @hide and there is no @systemAPi, therefore these are not api yet.\n\nConsider one of the three option:\n* add @SystemApi if this is intended to be system only api\n* remove @hide if this is intended to be public api\n* remove the @FlaggedApi if this is only for internal implementation details",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4811bc_b5b1282b",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "I was instructed to keep the @hide in this CL and remove the @hide is a separate CL as the official unhiding.",
+      "parentUuid": "01c4b118_260d1dfc",
       "range": {
         "startLine": 166,
         "startChar": 0,
@@ -271,6 +367,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc7f0ae_1c75cf64",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f3e9f57d_3075d0cd",
+      "range": {
+        "startLine": 962,
+        "startChar": 32,
+        "endLine": 962,
+        "endChar": 60
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47ffc913_323748f1",
@@ -294,6 +414,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52f886bd_52b19671",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47ffc913_323748f1",
+      "range": {
+        "startLine": 2152,
+        "startChar": 0,
+        "endLine": 2152,
+        "endChar": 42
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "799bf4f2_728e04a9",
@@ -307,6 +451,30 @@
       "writtenOn": "2025-01-08T20:56:29Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 293,
+        "startChar": 5,
+        "endLine": 293,
+        "endChar": 15
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "708b84ae_9d06dafb",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "799bf4f2_728e04a9",
       "range": {
         "startLine": 293,
         "startChar": 5,
@@ -370,6 +538,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4bc50325_3955a824",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "There is an addition subrate mode SUBRATE_MODE_SYSTEM which is when a non-framework originating request updated Subrating. Since this can\u0027t be requested on the frameowork side, it was kept out of @BluetoothGatt.SubrateMode.",
+      "parentUuid": "02d27a3e_05c0d3c3",
+      "range": {
+        "startLine": 296,
+        "startChar": 12,
+        "endLine": 296,
+        "endChar": 41
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e561d9e_ced718dc",
         "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
         "patchSetId": 3
@@ -381,6 +573,30 @@
       "writtenOn": "2025-01-08T20:56:29Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0264991_0ff65377",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4e561d9e_ced718dc",
       "range": {
         "startLine": 233,
         "startChar": 0,
@@ -404,6 +620,30 @@
       "writtenOn": "2025-01-08T20:56:29Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 58
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed8d596c_474456b2",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T21:03:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8c8bca9f_9dd7ee46",
       "range": {
         "startLine": 236,
         "startChar": 0,
