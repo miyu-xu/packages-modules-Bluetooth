@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe60a4b_637a0a5d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-08T03:31:08Z",
+      "side": 1,
+      "message": "maybe we can add a comment saying that this value is based on the AT+BIEV",
+      "range": {
+        "startLine": 694,
+        "startChar": 9,
+        "endLine": 694,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c705b51_d0e8191d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 694,
+                "startChar": 0,
+                "endLine": 695,
+                "endChar": 0
+              },
+              "replacement": "         * @param hfpBatteryIndicator is set to false or true based on the AT+BIEV command\n"
+            }
+          ]
+        }
+      ],
+      "revId": "86a2c8ab07c5350f71ed653f6597c743a68d78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -258,6 +258,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5886db0d_830649aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-08T03:31:08Z",
+      "side": 1,
+      "message": "ok that makes sense, sgtm",
+      "parentUuid": "907fc356_ede3f0c0",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 935,
+        "endChar": 9
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05fe7619_06ea31ca",
@@ -378,6 +402,30 @@
       "side": 1,
       "message": "Not very clear on the question/comment.\nAs you know, Here there are two parts, \n1. HfpIndicatorStatusChanged 2. HfpindicatorValueChanged\n\n\n1. Update support for HfpBatteryIndicator. This is set through handleHfIndicatorStatusChanged().\n    It is updated to true during HFP SLC connection, while processing AT+BIND:\n   \n2. Update the battery level. This is done through handleHfIndicatorValueChanged().\n   Battery update is done in  processing path of AT+BIEV: command. \nAnd handleHfIndicatorValueChanged() is exiting fucntion.",
       "parentUuid": "911479f7_eadd5e8b",
+      "range": {
+        "startLine": 2671,
+        "startChar": 19,
+        "endLine": 2675,
+        "endChar": 21
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6698dab3_8587fffd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-08T03:31:08Z",
+      "side": 1,
+      "message": "I mean in line 2677, we are calling sendIndicatorIntent.  This will only be called then if we receive the AT+BIEV?",
+      "parentUuid": "90309b61_519ae319",
       "range": {
         "startLine": 2671,
         "startChar": 19,
