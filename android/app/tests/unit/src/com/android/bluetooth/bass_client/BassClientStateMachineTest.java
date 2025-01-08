@@ -49,6 +49,7 @@ import static com.android.bluetooth.bass_client.BassConstants.CLIENT_CHARACTERIS
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -111,7 +112,6 @@ import com.google.common.primitives.Bytes;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -207,7 +207,7 @@ public class BassClientStateMachineTest {
                 || type == BassClientStateMachine.ConnectedProcessing.class) {
             return BluetoothProfile.STATE_CONNECTED;
         } else {
-            Assert.fail("Invalid class type given: " + type);
+            fail("Invalid class type given: " + type);
             return 0;
         }
     }
