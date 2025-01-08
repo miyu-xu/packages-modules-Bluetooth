@@ -33,6 +33,24 @@
       "message": "...that seems like a good thing to do here as well.\n\nSince we don\u0027t have this, the new constructor this CL adds is leaving `registry_` uninitialized.\n\nIf we end up with code that uses uninitialized memory as a pointer, it can be very hard to debug (since behavior changes).  Initializing this to `nullptr` would at least have us consistently crash in that case, which is much easier to chase down.",
       "revId": "fa6e84621d4a08414abbecf177d3d7eb5c5af114",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca292cc6_75dcebe0",
+        "filename": "system/gd/module.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T16:32:32Z",
+      "side": 1,
+      "message": "Good catch 😊 \nYou will see that I am adding the missing default initializer in the next CL in the chain: https://r.android.com/c/3428005/7. Untangling this class architecture is taking a bit of time and not everything is in order...",
+      "parentUuid": "f98fe343_c0d6fec6",
+      "revId": "fa6e84621d4a08414abbecf177d3d7eb5c5af114",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
