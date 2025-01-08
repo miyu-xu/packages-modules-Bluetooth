@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4162a0f9_038c9f95",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-08T18:42:36Z",
+      "side": 1,
+      "message": "Why is it needed to be called multiple times in this function?",
+      "range": {
+        "startLine": 1586,
+        "startChar": 0,
+        "endLine": 1587,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8d1c5eda_df71ead3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_utils.cc",
+              "range": {
+                "startLine": 1586,
+                "startChar": 0,
+                "endLine": 1589,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "94439fc07ffa31a72b00453bcf14229b95996050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
