@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23fb20d3_2b8e8dde",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-08T15:40:27Z",
+      "side": 1,
+      "message": "NIT:\n\nusing bluetooth::log;\n\nthis line would look nicer",
+      "range": {
+        "startLine": 947,
+        "startChar": 25,
+        "endLine": 947,
+        "endChar": 39
+      },
+      "revId": "38240f1c388cb3b5adf722cbaec7f1f4c9134294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
