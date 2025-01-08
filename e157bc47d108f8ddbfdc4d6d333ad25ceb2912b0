@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f199133_cca92db5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-08T08:52:24Z",
+      "side": 1,
+      "message": "EXEMPT ?",
+      "revId": "e157bc47d108f8ddbfdc4d6d333ad25ceb2912b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a99e09_81234e30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-08T08:52:24Z",
+      "side": 1,
+      "message": "Change looks good.",
+      "revId": "e157bc47d108f8ddbfdc4d6d333ad25ceb2912b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
