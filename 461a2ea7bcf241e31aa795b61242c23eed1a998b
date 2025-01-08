@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98153e16_3eb08903",
+        "filename": "android/app/src/com/android/bluetooth/btservice/CompanionManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T22:40:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "85ea2684_957ba2bb",
+      "range": {
+        "startLine": 538,
+        "startChar": 1,
+        "endLine": 556,
+        "endChar": 5
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92a80b7f_86d16ef7",
@@ -160,6 +184,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc641d7b_5fecd219",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T22:40:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bc29e841_f22e47bd",
+      "range": {
+        "startLine": 162,
+        "startChar": 5,
+        "endLine": 162,
+        "endChar": 22
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "107eb94c_9eb28a99",
@@ -196,6 +244,30 @@
       "writtenOn": "2025-01-08T20:56:29Z",
       "side": 1,
       "message": "I am not sure about the need of keeping both the base 10 and base 16 values",
+      "range": {
+        "startLine": 3251,
+        "startChar": 17,
+        "endLine": 3251,
+        "endChar": 28
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d70c7ce_1d4c821b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3251,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T22:40:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1dd23852_46eab7f7",
       "range": {
         "startLine": 3251,
         "startChar": 17,
@@ -382,6 +454,30 @@
       "side": 1,
       "message": "That make sense and that\u0027s a good idead.\nYou probably want to add the @FlaggedApi at the same time so the API reviewer can see they are matching.",
       "parentUuid": "bd4811bc_b5b1282b",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 0
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dde1db37_df02dc87",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T22:40:41Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "431e4d0e_7980c141",
       "range": {
         "startLine": 166,
         "startChar": 0,
@@ -622,6 +718,30 @@
       "side": 1,
       "message": "Does that mean `SUBRATE_MODE_SYSTEM` will never be exposed as an API ?\n\nHow does this mode get requested and set then ? (even for system app)\n\nBut if we really need to kept it out of the intdef, Then we can defined two different intdef.\n\nOr if this mode is never intended to be sent to 3p app, then we could hard filter the callback and never notify a client when the SUBRATE_MODE_SYSTEM is activate ?\n\nI don\u0027t know what I am talking about from a Bluetooth point of view at this point.\nProbably @okamilin@google.com want to chime in here from a gatt point of view.",
       "parentUuid": "4bc50325_3955a824",
+      "range": {
+        "startLine": 296,
+        "startChar": 12,
+        "endLine": 296,
+        "endChar": 41
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef08df60_bfd4302c",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-01-08T22:40:41Z",
+      "side": 1,
+      "message": "If an OEM implements a custom HAL that sets Subrating from the Controller, or if a remote device requests subrating, then SUBRATE_MODE_SYSTEM could be passed back in the call back.  This could info apps of the update",
+      "parentUuid": "b5e7528f_1ec23778",
       "range": {
         "startLine": 296,
         "startChar": 12,
