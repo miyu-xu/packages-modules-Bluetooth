@@ -34,6 +34,80 @@
       "parentUuid": "8a3c5bff_29b3ed47",
       "revId": "2f076116e5080447f999ff9c865481dc06cb2def",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "977180b7_e5670d9f",
+        "filename": "android/pandora/test/override_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T09:00:13Z",
+      "side": 1,
+      "message": "skipped_tests",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f43e5fdb_2cb105eb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/override_test.py",
+              "range": {
+                "startLine": 15,
+                "startChar": 0,
+                "endLine": 16,
+                "endChar": 0
+              },
+              "replacement": "    skipped_tests \u003d [\n"
+            },
+            {
+              "path": "android/pandora/test/override_test.py",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "            if name \u003d\u003d current_test and name not in self.skipped_tests:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2f076116e5080447f999ff9c865481dc06cb2def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4818de2_77ab19a6",
+        "filename": "android/pandora/test/override_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-08T09:00:13Z",
+      "side": 1,
+      "message": "```suggestion\n        if name not in self.skip_tests:\n            assert name in avatar.cases.le_host_test.LeHostTest.__dict__\n            avatar.cases.le_host_test.LeHostTest.__dict__[name](self)\n```",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "2f076116e5080447f999ff9c865481dc06cb2def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
