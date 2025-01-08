@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.bluetooth.BluetoothUtils.logRemoteException;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -36,6 +37,8 @@ import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -162,36 +165,43 @@ public final class BluetoothGatt implements BluetoothProfile {
     public static final int CONNECTION_PRIORITY_DCK = 3;
 
     /**
-     * Connection subrate request - Balanced.
+     * Connection subrate mode - Balanced.
      *
      * @hide
      */
-    public static final int SUBRATE_REQUEST_MODE_BALANCED = 0;
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_BALANCED = 0;
 
     /**
-     * Connection subrate request - High.
+     * Connection subrate mode - High.
      *
      * @hide
      */
-    public static final int SUBRATE_REQUEST_MODE_HIGH = 1;
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_HIGH = 1;
 
     /**
-     * Connection Subrate Request - Low Power.
+     * Connection Subrate mode - Low
      *
      * @hide
      */
-    public static final int SUBRATE_REQUEST_MODE_LOW_POWER = 2;
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_LOW = 2;
+
+    /**
+     * Connection Subrate mode - System Update.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_SYSTEM = 99;
 
     /** @hide */
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(
-            prefix = {"SUBRATE_REQUEST_MODE"},
-            value = {
-                SUBRATE_REQUEST_MODE_BALANCED,
-                SUBRATE_REQUEST_MODE_HIGH,
-                SUBRATE_REQUEST_MODE_LOW_POWER,
-            })
-    public @interface SubrateRequestMode {}
+            prefix = {"SUBRATE_MODE"},
+            value = {SUBRATE_MODE_BALANCED, SUBRATE_MODE_HIGH, SUBRATE_MODE_LOW})
+    public @interface SubrateMode {}
 
     /**
      * No authentication required.
@@ -945,21 +955,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                  * @hide
                  */
                 @Override
-                public void onSubrateChange(
-                        String address,
-                        int subrateFactor,
-                        int latency,
-                        int contNum,
-                        int timeout,
-                        int status) {
+                public void onSubrateChange(String address, int subrateMode, int status) {
                     Log.d(
                             TAG,
                             "onSubrateChange() - "
-                                    + (" Device=" + BluetoothUtils.toAnonymizedAddress(address))
-                                    + (" subrateFactor=" + subrateFactor)
-                                    + (" latency=" + latency)
-                                    + (" contNum=" + contNum)
-                                    + (" timeout=" + timeout)
+                                    + (" Device=" + address)
+                                    + (" subrateMode=" + subrateMode)
                                     + (" status=" + status));
 
                     if (!address.equals(mDevice.getAddress())) {
@@ -973,12 +974,7 @@ public final class BluetoothGatt implements BluetoothProfile {
                                     final BluetoothGattCallback callback = mCallback;
                                     if (callback != null) {
                                         callback.onSubrateChange(
-                                                BluetoothGatt.this,
-                                                subrateFactor,
-                                                latency,
-                                                contNum,
-                                                timeout,
-                                                status);
+                                                BluetoothGatt.this, subrateMode, status);
                                     }
                                 }
                             });
@@ -2120,6 +2116,24 @@ public final class BluetoothGatt implements BluetoothProfile {
     }
 
     /**
+     * Subrate request return values.
+     *
+     * @hide
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+            prefix = {"SUBRATE_REQUEST_RETURN"},
+            value = {
+                BluetoothStatusCodes.SUCCESS,
+                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED,
+                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED,
+                BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION,
+                BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED,
+                BluetoothStatusCodes.ERROR_UNKNOWN
+            })
+    public @interface SubrateRequestReturnValues {}
+
+    /**
      * Request LE subrate mode.
      *
      * <p>This function will send a LE subrate request to the remote device.
@@ -2135,13 +2149,14 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @return true, if the request is send to the Bluetooth stack.
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
             conditional = true)
-    public int requestSubrateMode(@SubrateRequestMode int subrateMode) {
-        if (subrateMode < SUBRATE_REQUEST_MODE_BALANCED
-                || subrateMode > SUBRATE_REQUEST_MODE_LOW_POWER) {
+    public @SubrateRequestReturnValues int requestSubrateMode(@SubrateMode int subrateMode) {
+        if (subrateMode < BluetoothGatt.SUBRATE_MODE_BALANCED
+                || subrateMode > BluetoothGatt.SUBRATE_MODE_LOW) {
             throw new IllegalArgumentException("Subrate Mode not within valid range");
         }
 
