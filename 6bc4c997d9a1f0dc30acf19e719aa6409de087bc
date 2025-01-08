@@ -50,6 +50,30 @@
       ],
       "revId": "6bc4c997d9a1f0dc30acf19e719aa6409de087bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a87460d7_aeec5a23",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-08T21:52:56Z",
+      "side": 1,
+      "message": "That\u0027s leftover from a previous iteration, it\u0027s unnecessary, so I removed it.",
+      "parentUuid": "1fc64285_22f95e64",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "6bc4c997d9a1f0dc30acf19e719aa6409de087bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
