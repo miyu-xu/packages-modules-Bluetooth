@@ -40,6 +40,30 @@
       ],
       "revId": "49a449781933d84cfc4b7dd7f1e921bf719f61e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ac63d80_fcaa2a8e",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-08T21:55:10Z",
+      "side": 1,
+      "message": "It should only be in the header.  Fixed.",
+      "parentUuid": "279e29c5_aabc0976",
+      "range": {
+        "startLine": 582,
+        "startChar": 2,
+        "endLine": 582,
+        "endChar": 11
+      },
+      "revId": "49a449781933d84cfc4b7dd7f1e921bf719f61e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
