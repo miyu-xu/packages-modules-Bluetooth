@@ -198,6 +198,24 @@
       "parentUuid": "499b9343_4aab4599",
       "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7deb9ea8_04622cac",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-08T09:26:52Z",
+      "side": 1,
+      "message": "Yes i agree.\nadded changes to get identity address and use for blacklist logic",
+      "parentUuid": "1ec74e9c_7f097f04",
+      "revId": "f82fc843436d5ef6e450fe5c66be517b08d78648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
