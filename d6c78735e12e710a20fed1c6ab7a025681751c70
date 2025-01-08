@@ -93,6 +93,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe626855_fd24a9ec",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-08T22:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0eae1ea_36d99a98",
+      "range": {
+        "startLine": 696,
+        "startChar": 0,
+        "endLine": 719,
+        "endChar": 0
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ca96d36_4926e6d7",
@@ -450,6 +474,30 @@
       "side": 1,
       "message": "In line #2677, \"sendIndicatorIntent()\" is an existing function which  is called when we receive AT+BIND command.\n\"AT+BIND\" command is usually sent by the peer during HFP SLC procedure, to indicate support for various HF Indicators.\n\nAfter HFP connection procedure completion,  peer sends \"AT+BIEV\" command to actually update the indicator value, in our case, HfpBatteryIndicator.",
       "parentUuid": "6698dab3_8587fffd",
+      "range": {
+        "startLine": 2671,
+        "startChar": 19,
+        "endLine": 2675,
+        "endChar": 21
+      },
+      "revId": "d6c78735e12e710a20fed1c6ab7a025681751c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab69f51c_479a2b04",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2675,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-08T22:10:12Z",
+      "side": 1,
+      "message": "oh i see, so we\u0027re just saving the value of the hf indicator behind the flag but still sending the intent as before.  ok, that lgtm.",
+      "parentUuid": "002d5835_81f30156",
       "range": {
         "startLine": 2671,
         "startChar": 19,
