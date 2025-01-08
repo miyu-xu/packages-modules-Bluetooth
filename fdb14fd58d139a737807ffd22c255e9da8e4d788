@@ -16,6 +16,24 @@
       "message": "Hi Rognxuan! Thank you for checking this - indeed, there is missing clearing of sink hal client for audio recording listener flag path.\n\nI suggest to do only a subtle change:\n\n```\ndiff --git a/system/bta/le_audio/client.cc b/system/bta/le_audio/client.cc\nindex 7008676f9cc..35e19c74ee2 100644\n--- a/system/bta/le_audio/client.cc\n+++ b/system/bta/le_audio/client.cc\n@@ -6238,12 +6238,11 @@ private:\n        * the session callbacks special action from this Module would be\n        * required e.g. to Unicast handover.\n        */\n-      if (!com::android::bluetooth::flags::leaudio_use_audio_recording_listener()) {\n-        if (!sink_monitor_mode_) {\n-          local_metadata_context_types_.sink.clear();\n-          le_audio_sink_hal_client_-\u003eStop();\n-          le_audio_sink_hal_client_.reset();\n-        }\n+      if (com::android::bluetooth::flags::leaudio_use_audio_recording_listener() ||\n+              !sink_monitor_mode_) {\n+        local_metadata_context_types_.sink.clear();\n+        le_audio_sink_hal_client_-\u003eStop();\n+        le_audio_sink_hal_client_.reset();\n       }\n     }\n```",
       "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84b286f_02e5a7e0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 6258,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-08T18:02:36Z",
+      "side": 1,
+      "message": "This part of logics is actually what I\u0027d need your review inputs.\n\nMy change is when flag is enabled, revert your logic to what was prior to aosp/ 2797698, https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2797698/19/system/bta/le_audio/client.cc#b5573\n\nTo me, I don\u0027t see a good reason why local_metadata_context_types_ should only be cleared under (!sink_monitor_mode_). Just want to confirm was this an intended change for some reason?\n\nAnd with your proposed change, it\u0027s actually just revert aosp/3377853 in this part if I understand correctly, we can simply remove the flag. Could you help to clarify? If that\u0027s what you want, I can update this.\n\nif (le_audio_sink_hal_client_) {\n      if (!sink_monitor_mode_) {\n        local_metadata_context_types_.sink.clear();\n        le_audio_sink_hal_client_-\u003eStop();\n        le_audio_sink_hal_client_.reset();\n      }\n}",
+      "parentUuid": "60ecf3a0_0eef49e7",
+      "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
