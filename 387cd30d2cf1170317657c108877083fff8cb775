@@ -106,6 +106,24 @@
       "parentUuid": "fcf84302_e5c26ea9",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d43b0b_0d36f420",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-09T11:18:18Z",
+      "side": 1,
+      "message": "I recall discussion on this API and I had my concerns on this and I was recommanding to have this in BASS as this is the use case we wanted to support.\nAnyways, after offline discussion with Michał, and of course because we need to keep this SystemApi, let;s keep it as it is.\n\n\nFor the getGroupVolume - note this is in fact internal function not exposed in BluetoothVolumeControl.  This should be ok to have it implemented like this.\n\n@Michal - lets just add a log that groupVolume has been taken based on the device.",
+      "parentUuid": "0bf896b9_23f76943",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
