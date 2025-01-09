@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8684543b_985607f7",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3421,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T20:01:29Z",
+      "side": 1,
+      "message": "we should delete that all together, or put it being a platform check.\n\nAs of today I know 0 devices using ldac decoder. maybe we could even delete it?",
+      "range": {
+        "startLine": 3421,
+        "startChar": 2,
+        "endLine": 3421,
+        "endChar": 28
+      },
+      "revId": "c6346a22ce283b5ce7bccf30b2c6a2c8597dc69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
