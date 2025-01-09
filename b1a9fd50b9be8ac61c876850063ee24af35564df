@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16ba789b_031ba273",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T19:35:20Z",
+      "side": 1,
+      "message": "Sorry for the conflict :/\n\nIt\u0027s due to the package name change in the aconfig file.\n\nBut at least now you don\u0027t have to do a CL on internal 😊",
+      "revId": "b1a9fd50b9be8ac61c876850063ee24af35564df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
