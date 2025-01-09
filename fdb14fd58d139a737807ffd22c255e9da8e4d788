@@ -34,6 +34,24 @@
       "parentUuid": "60ecf3a0_0eef49e7",
       "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604da2f0_843cbd17",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 6258,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-09T13:17:47Z",
+      "side": 1,
+      "message": "In general when audio recording listener flag is enabled while ClientAudioInterfaceRelease call and le_audio_sink_hal_client_ is present hal client should be cleared - this is how it was previousely. \n```\n+      if (com::android::bluetooth::flags::leaudio_use_audio_recording_listener() ||\n+              !sink_monitor_mode_) {\n```",
+      "parentUuid": "b84b286f_02e5a7e0",
+      "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
