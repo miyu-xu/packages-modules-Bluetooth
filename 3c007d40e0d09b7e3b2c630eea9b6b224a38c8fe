@@ -39,6 +39,30 @@
       },
       "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f527af2_cb3a2a39",
+        "filename": "android/app/proguard.flags",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2025-01-09T23:17:59Z",
+      "side": 1,
+      "message": "@Keep would work, though a @VisibleForTesting annotation on the mocked method might be even better. \n\nThe list of test failures in full mode are @ https://android-build.corp.google.com/test_investigate/invocation/I18300010353496769/test/TR18529582381002747/. Several of those involve `doThrow()` usage on `com.android.obex.Operation` mocked types, but as an external lib we can\u0027t really justify something like a `@Keep` annotation. I figured I\u0027d keep these two rules colocated given the similar failure cases, but happy to annotate `BluetoothMethodProxy` instead if you prefer.",
+      "parentUuid": "ce947f1d_9fb165e2",
+      "range": {
+        "startLine": 16,
+        "startChar": 97,
+        "endLine": 16,
+        "endChar": 125
+      },
+      "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
