@@ -63,6 +63,30 @@
       },
       "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1de8f96_6aef1b5d",
+        "filename": "android/app/proguard.flags",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:28:03Z",
+      "side": 1,
+      "message": "No, I am fine keeping them together.\n\nI want to delete BluetoothMethodProxy in the medium/long term anyway.\nBut thanks for the explanation and thank for letting me know that VisibleForTesting is doing that too !",
+      "parentUuid": "5f527af2_cb3a2a39",
+      "range": {
+        "startLine": 16,
+        "startChar": 97,
+        "endLine": 16,
+        "endChar": 125
+      },
+      "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
