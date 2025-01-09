@@ -375,5 +375,47 @@
     "SPP": {},
     "VCP": {}
   },
-  "flags": {}
+  "flags": {},
+  "properties": [
+    {
+      "enable_properties": [
+        "bluetooth.profile.a2dp.source.enabled",
+        "bluetooth.profile.hfp.ag.enabled"
+      ],
+      "disable_properties": [
+        "bluetooth.profile.a2dp.sink.enabled",
+        "bluetooth.profile.hfp.hf.enabled"
+      ],
+      "tests": ["all"]
+    },
+    {
+      "enable_properties": [
+        "bluetooth.profile.a2dp.sink.enabled"
+      ],
+      "disable_properties": [
+        "bluetooth.profile.a2dp.source.enabled"
+      ],
+      "tests": [
+        "A2DP/SNK",
+        "AVCTP/CT",
+        "AVDTP/SNK",
+        "AVRCP/CT/CEC",
+        "AVRCP/CT/CRC",
+        "AVRCP/CT/PTH",
+        "AVRCP/CT/PTT",
+        "AVRCP/TG/VLH"
+      ]
+    },
+    {
+      "enable_properties": [
+        "bluetooth.profile.hfp.hf.enabled"
+      ],
+      "disable_properties": [
+        "bluetooth.profile.hfp.ag.enabled"
+      ],
+      "tests": [
+        "HFP/HF"
+      ]
+    }
+  ]
 }
