@@ -22,6 +22,30 @@
       },
       "revId": "32f4aaaf9d3a8837960278cccc58994c658ff3cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b1dfec9_1b52a294",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-09T22:28:25Z",
+      "side": 1,
+      "message": "it\u0027s taken care of in next patch 😊",
+      "parentUuid": "21ef5534_dcddb0b4",
+      "range": {
+        "startLine": 280,
+        "startChar": 6,
+        "endLine": 280,
+        "endChar": 27
+      },
+      "revId": "32f4aaaf9d3a8837960278cccc58994c658ff3cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
