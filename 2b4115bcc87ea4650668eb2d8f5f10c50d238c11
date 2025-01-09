@@ -93,6 +93,30 @@
       },
       "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0333002f_d70618d4",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:03:46Z",
+      "side": 1,
+      "message": "Yeah, I believe the runner should do something like:\n\n```\nboolean initialA2dpSourceValue \u003d getprop(bluetooth.profile.a2dp.source.enabled)\nsetprop(bluetooth.profile.a2dp.source.enabled, false)\n\nrun test\n\nsetprop(bluetooth.profile.a2dp.source.enabled, initialA2dpSourceValue)\n```\n\n(but while using your class wrapper that does that nicely for all property)",
+      "parentUuid": "bc0c43bc_9ec6d1c5",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
