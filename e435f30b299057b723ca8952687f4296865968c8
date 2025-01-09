@@ -22,6 +22,30 @@
       },
       "revId": "e435f30b299057b723ca8952687f4296865968c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc3457ab_45c2e1c6",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1698,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-01-09T06:40:29Z",
+      "side": 1,
+      "message": "Good suggestion. I\u0027ll check those cases and see whether simliar access happen in other places.\n\nAlso I\u0027ll change the flag name.",
+      "parentUuid": "69b4f31e_f9169551",
+      "range": {
+        "startLine": 1698,
+        "startChar": 7,
+        "endLine": 1698,
+        "endChar": 53
+      },
+      "revId": "e435f30b299057b723ca8952687f4296865968c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
