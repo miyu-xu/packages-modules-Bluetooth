@@ -124,6 +124,24 @@
       "parentUuid": "0bf896b9_23f76943",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f10b7a2f_3ffa6022",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-09T21:25:30Z",
+      "side": 1,
+      "message": "Cool, great to know we\u0027re on the same page now.\nLet\u0027s keep the APIs as they were planned for now. If there is idea to improve this, let\u0027s discuss further and make follow-up changes as needed.\n\n@belusiak@google.com then back to my original comment here, same for setGroupVolume, can we avoid changing its behavior in this CL? keep it same as previous, if not group volume available, skip it.",
+      "parentUuid": "96d43b0b_0d36f420",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
