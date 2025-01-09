@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d76dd398_e382a9cb",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1586,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-09T20:58:29Z",
+      "side": 1,
+      "message": "If there is any issue with removal, I have logs printed in direct_connect_remove and in background_connect_remove.\nSo I only wanted to add success logs.",
+      "parentUuid": "8a064714_01458f1c",
+      "range": {
+        "startLine": 1586,
+        "startChar": 6,
+        "endLine": 1586,
+        "endChar": 7
+      },
+      "revId": "adcba21ee27dcd55982690c16615c2a1940f5a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbd3218b_3c41c981",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-09T19:38:47Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 1589,
+        "startChar": 6,
+        "endLine": 1589,
+        "endChar": 7
+      },
+      "revId": "adcba21ee27dcd55982690c16615c2a1940f5a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1133ac7_8a1c7a92",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-09T20:58:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbd3218b_3c41c981",
       "range": {
         "startLine": 1589,
         "startChar": 6,
