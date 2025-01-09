@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d022846_b99c3b26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-09T18:00:53Z",
+      "side": 1,
+      "message": "this change is blocking some core dogfood CUJs.\nlgtm, so I\u0027m merging this first.\n\nfor other reviewers, if you have any comments, let\u0027s do some follow-up check. thanks for understanding.",
+      "revId": "91ece5b43d611c5cc42dfe04fa273000062f9ef9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
