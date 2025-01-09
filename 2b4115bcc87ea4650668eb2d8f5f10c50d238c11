@@ -117,6 +117,30 @@
       },
       "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c99b78a_48b855d5",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:05:22Z",
+      "side": 1,
+      "message": "That way, we can add any test with any properties, without the need to re-add what we assume is a correct value in the \"all\" section.\n\n\nAnd for now, you are only supporting boolean sysprop, but sysprop are string and they could theoretically be any value, but I am very fine limiting that to boolean value for now I feel like this would be kinda dangerous to allow any property override here",
+      "parentUuid": "0333002f_d70618d4",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
