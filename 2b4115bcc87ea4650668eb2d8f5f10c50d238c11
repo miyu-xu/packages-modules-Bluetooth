@@ -69,6 +69,30 @@
       },
       "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0c43bc_9ec6d1c5",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-09T21:11:25Z",
+      "side": 1,
+      "message": "so you mean we should assume it\u0027s correct by default before the first test runs and store those value to later restore after test? I am no sure I understand",
+      "parentUuid": "af474b21_290ace6c",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
