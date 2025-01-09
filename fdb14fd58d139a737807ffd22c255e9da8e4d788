@@ -70,6 +70,24 @@
       "parentUuid": "b84b286f_02e5a7e0",
       "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "755cd90f_ab536ae4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 6258,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-09T17:24:37Z",
+      "side": 1,
+      "message": "Cool, thank you both!\nApply your suggestion in the new ver. Then we will go ahead with this change.\n\nbtw @tyszkowski@google.com as I understand, if flag remain disabled this part of logic should be fine, curious did you turn on this flag locally?",
+      "parentUuid": "2667b705_c8673a3f",
+      "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
