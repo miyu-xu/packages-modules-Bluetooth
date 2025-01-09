@@ -281,3 +281,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "fix_unusable_adv_slot_due_to_addr_rotation"
+    namespace: "bluetooth"
+    description: "Fixes the advertising slot becoming unusable when address rotation happens right after stop advertising."
+    bug: "388615378"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
