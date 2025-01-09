@@ -88,6 +88,24 @@
       "parentUuid": "2667b705_c8673a3f",
       "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68717343_a139a6b5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 6258,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-09T19:24:10Z",
+      "side": 1,
+      "message": "Checked with @gkolodziejczyk@google.com offline, this only concern resolved.",
+      "parentUuid": "755cd90f_ab536ae4",
+      "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
