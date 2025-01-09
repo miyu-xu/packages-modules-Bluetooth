@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe6b0ca_cd565e06",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-01-09T05:24:17Z",
+      "side": 1,
+      "message": "Note to reviewers: This is in response to the comment received in https://buganizer.corp.google.com/issues/382638020#comment10.\n\nPTAL! Thank you.",
+      "range": {
+        "startLine": 1729,
+        "startChar": 86,
+        "endLine": 1731,
+        "endChar": 25
+      },
+      "revId": "207f0c2f2d6e41d2f3f3f6b9b07fdffc933b2d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
