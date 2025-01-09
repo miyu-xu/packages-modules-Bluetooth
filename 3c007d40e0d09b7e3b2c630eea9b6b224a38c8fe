@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f47aa3f_a8d5c1fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2025-01-09T22:38:05Z",
+      "side": 1,
+      "message": "Looks like the BumbleBluetoothTests failures are preexisting.",
+      "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
