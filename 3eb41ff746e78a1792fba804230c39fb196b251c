@@ -34,6 +34,24 @@
       "parentUuid": "f66b7843_4feb2617",
       "revId": "3eb41ff746e78a1792fba804230c39fb196b251c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "038e67bc_a67dcee4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-01-09T05:46:03Z",
+      "side": 1,
+      "message": "I don\u0027t quite follow how this CL can be argued to not be flagged. This CL\n(1) depends that the hogp_reconnection flag is set, otherwise there would be regression.\n(2) introduce a logical change, not mechanical.",
+      "parentUuid": "c92cce7e_3f5354b3",
+      "revId": "3eb41ff746e78a1792fba804230c39fb196b251c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
