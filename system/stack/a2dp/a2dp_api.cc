@@ -39,6 +39,7 @@
 #include "sdp_discovery_db.h"
 #include "sdp_status.h"
 #include "sdpdefs.h"
+#include "stack/include/a2dp_vendor_ldac_decoder.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/sdp_api.h"
@@ -367,6 +368,8 @@ uint8_t A2DP_BitsSet(uint64_t num) {
  ******************************************************************************/
 void A2DP_Init(void) {
   memset(&a2dp_cb, 0, sizeof(tA2DP_CB));
+
+  A2DP_VendorLoadDecoderLdac();
 }
 
 uint16_t A2DP_GetAvdtpVersion() { return AVDT_VERSION; }

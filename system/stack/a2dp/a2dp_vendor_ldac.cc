@@ -1327,15 +1327,7 @@ A2dpCodecConfigLdacSink::A2dpCodecConfigLdacSink(btav_a2dp_codec_priority_t code
 
 A2dpCodecConfigLdacSink::~A2dpCodecConfigLdacSink() {}
 
-bool A2dpCodecConfigLdacSink::init() {
-  // Load the decoder
-  if (!A2DP_VendorLoadDecoderLdac()) {
-    log::error("cannot load the decoder");
-    return false;
-  }
-
-  return true;
-}
+bool A2dpCodecConfigLdacSink::init() { return true; }
 
 bool A2dpCodecConfigLdacSink::useRtpHeaderMarkerBit() const {
   // TODO: This method applies only to Source codecs
