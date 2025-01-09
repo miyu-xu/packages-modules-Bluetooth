@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6afd34ee_c3928490",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-09T12:43:34Z",
+      "side": 1,
+      "message": "385380583",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "3e73eee84e7dd2f919e78552c59353a19bbc97ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20cf8ffe_4213d246",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 2
