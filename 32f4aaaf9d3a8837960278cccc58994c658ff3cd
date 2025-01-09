@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21ef5534_dcddb0b4",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-09T22:12:13Z",
+      "side": 1,
+      "message": "nit: `direct_connect_remove` is supposed to call `ACL_IgnoreLeConnectionFrom` in the correct case. The fact that we are calling this method after `direct_connect_remove` returned false shows some missed cases in connection_manager. \n\nFrom this CL, this is the legacy behavior and the CL is just moving the code. However, I do want to note it down here that it should be a TODO item to remove this kind of logic.",
+      "range": {
+        "startLine": 280,
+        "startChar": 6,
+        "endLine": 280,
+        "endChar": 27
+      },
+      "revId": "32f4aaaf9d3a8837960278cccc58994c658ff3cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
