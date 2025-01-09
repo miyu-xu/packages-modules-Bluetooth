@@ -52,6 +52,24 @@
       "parentUuid": "c92cce7e_3f5354b3",
       "revId": "3eb41ff746e78a1792fba804230c39fb196b251c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c424a47_68ce19d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-09T20:09:36Z",
+      "side": 1,
+      "message": "I checked internally. Reusing this flag should be fine.",
+      "parentUuid": "038e67bc_a67dcee4",
+      "revId": "3eb41ff746e78a1792fba804230c39fb196b251c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
