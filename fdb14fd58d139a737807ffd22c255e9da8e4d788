@@ -52,6 +52,24 @@
       "parentUuid": "b84b286f_02e5a7e0",
       "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2667b705_c8673a3f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 6258,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-09T14:54:01Z",
+      "side": 1,
+      "message": "Hi,\nI was independetly debugging the not cleaned-up sink HAL client issue on cuttlefish while not being aware of this discussion and this exact line caught my eye.\n\nI came to the conclusion that the condition should look like this:\n```\nif (com::android::bluetooth::flags::leaudio_use_audio_recording_listener() ||\n    !sink_monitor_mode_) {\n```\nand we should be good. Grzogorz have proposed the same solution.\n\nMy understanding of these features/flags:\nThe sink HAL client can be cleaned up here when recording listener is enabled (as there is no need to monitor the sink since the recording listener does it).\nWhen the recording listener is disabled, we need to check the monitor mode and we can clean the sink hal client when the monitor mode is disabled.",
+      "parentUuid": "b84b286f_02e5a7e0",
+      "revId": "fdb14fd58d139a737807ffd22c255e9da8e4d788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
