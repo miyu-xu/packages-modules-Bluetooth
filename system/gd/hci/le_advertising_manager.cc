@@ -1706,7 +1706,17 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     } else {
       log::info("update random address for advertising set {} : {}", advertiser_id,
                 address_with_type.GetAddress());
-      advertising_sets_[advertiser_id].current_address = address_with_type;
+
+      if (com::android::bluetooth::flags::fix_unusable_adv_slot_due_to_addr_rotation()) {
+        if (advertising_sets_.contains(advertiser_id)) {
+          advertising_sets_[advertiser_id].current_address = address_with_type;
+        } else {
+          log::warn("Advertising set {} is removed. Ignoring address rotation complete.",
+                    advertiser_id);
+        }
+      } else {
+        advertising_sets_[advertiser_id].current_address = address_with_type;
+      }
     }
   }
 
