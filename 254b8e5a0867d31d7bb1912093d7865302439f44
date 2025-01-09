@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded5a3bc_b95cb2ac",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-09T00:14:53Z",
+      "side": 1,
+      "message": "Address is already present in `tGATT_TCB`. It does not needed as an argument here.",
+      "fixSuggestions": [
+        {
+          "fixId": "7a34ed50_511061e4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "static bool read_sr_sirk_req(tCONN_ID conn_id,\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 848,
+                "startChar": 0,
+                "endLine": 850,
+                "endChar": 0
+              },
+              "replacement": "static bool read_sr_sirk_req(tCONN_ID conn_id,\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 862,
+                "startChar": 0,
+                "endLine": 863,
+                "endChar": 0
+              },
+              "replacement": "  uint8_t tcb_idx \u003d gatt_get_tcb_idx(conn_id);\n  tGATT_TCB\u0026 tcb \u003d gatt_cb.tcb[tcb_idx];\n\n  RawAddress identity_address \u003d tcb.peer_bda;\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 986,
+                "startChar": 0,
+                "endLine": 987,
+                "endChar": 0
+              },
+              "replacement": "  return read_sr_sirk_req(conn_id, std::move(cb));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00e5405_1e7b7391",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-09T00:14:53Z",
+      "side": 1,
+      "message": "This should be done only for the public addresses.\nI also wonder if we should start with the assumption that the address type is public.",
+      "fixSuggestions": [
+        {
+          "fixId": "3489a150_97e2d222",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 854,
+                "startChar": 0,
+                "endLine": 855,
+                "endChar": 0
+              },
+              "replacement": "  tBLE_ADDR_TYPE address_type \u003d BLE_ADDR_PUBLIC;\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 865,
+                "startChar": 0,
+                "endLine": 866,
+                "endChar": 0
+              },
+              "replacement": "  if (address_type \u003d\u003d BLE_ADDR_PUBLIC \u0026\u0026\n      interop_match_addr(INTEROP_DISABLE_SIRK_READ_BY_TYPE, \u0026identity_address)) {\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 871,
+                "startChar": 0,
+                "endLine": 873,
+                "endChar": 0
+              },
+              "replacement": "  } else {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "753b136a_2b08f72a",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-09T00:14:53Z",
+      "side": 1,
+      "message": "fix the alignment",
+      "fixSuggestions": [
+        {
+          "fixId": "aa200009_f7858388",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 868,
+                "startChar": 0,
+                "endLine": 869,
+                "endChar": 0
+              },
+              "replacement": "                 static_cast\u003cint\u003e(conn_id));\n"
+            },
+            {
+              "path": "system/stack/gatt/gatt_attr.cc",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": "                 static_cast\u003cint\u003e(conn_id));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
