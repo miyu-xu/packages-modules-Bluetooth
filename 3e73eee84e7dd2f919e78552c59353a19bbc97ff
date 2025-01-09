@@ -39,6 +39,24 @@
       "message": "what about IsInVoipCall? shouldn\u0027t it be considered too here?\nsame in other places.",
       "revId": "3e73eee84e7dd2f919e78552c59353a19bbc97ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd1fea2_7bc772e0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4437,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-09T12:54:07Z",
+      "side": 1,
+      "message": "Thank you Michal for review! Acknowledged",
+      "parentUuid": "20cf8ffe_4213d246",
+      "revId": "3e73eee84e7dd2f919e78552c59353a19bbc97ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
