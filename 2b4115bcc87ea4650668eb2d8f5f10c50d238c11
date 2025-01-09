@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c77e7bb4_eb909ca2",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3267,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T19:51:16Z",
+      "side": 1,
+      "message": "This mean we are runing A2DP/SNK too when the sink property is disabled ?\n\nI wonder if we really want to do that, no ?",
+      "range": {
+        "startLine": 3267,
+        "startChar": 0,
+        "endLine": 3267,
+        "endChar": 22
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
