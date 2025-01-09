@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53314567_4a9eed05",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:14:16Z",
+      "side": 1,
+      "message": "cast seems un-necessary as this is already a tBTA_AG_SCO",
+      "range": {
+        "startLine": 209,
+        "startChar": 13,
+        "endLine": 209,
+        "endChar": 38
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eac3e64_91558b50",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:14:16Z",
+      "side": 1,
+      "message": "Type should be changed to a `tBTA_AG_SCO`",
+      "range": {
+        "startLine": 737,
+        "startChar": 2,
+        "endLine": 737,
+        "endChar": 9
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84b6153f_5aaf9ae2",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:14:16Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 739,
+        "startChar": 27,
+        "endLine": 739,
+        "endChar": 53
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0b2f7f_847c4d8d",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:14:16Z",
+      "side": 1,
+      "message": "@henrichataing@google.com DO you have suggestion for having clean print of an enum + it\u0027s value. Can this be done in the formatter ? \n\nDo you think we need to print both ? if we do, should it be printed everywhere and not just here, for consistency ?",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 46
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

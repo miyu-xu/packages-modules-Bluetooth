@@ -50,6 +50,30 @@
       ],
       "revId": "e3e11fc81b50a147313819ff9979bf26412a0992",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2ee6597_a5bcc0b8",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T23:14:16Z",
+      "side": 0,
+      "message": "I assume because the formatter is defined in the header file too.\n\nBut I am not sure if this is a good practice or not",
+      "parentUuid": "352ce71d_83227d5e",
+      "range": {
+        "startLine": 125,
+        "startChar": 19,
+        "endLine": 125,
+        "endChar": 39
+      },
+      "revId": "e3e11fc81b50a147313819ff9979bf26412a0992",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
