@@ -3073,7 +3073,9 @@ public final class BluetoothAdapter {
                 new BluetoothServerSocket(
                         BluetoothSocket.TYPE_RFCOMM, true, true, channel, mitm, min16DigitPin);
         int errno = socket.mSocket.bindListen();
-        if (channel == SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
+        // If the channel was -1 or `SOCKET_CHANNEL_AUTO_STATIC_NO_SDP`,
+        // update the RFCOMM channel automatically assigned to this socket.
+        if (channel < 0) {
             socket.setChannel(socket.mSocket.getPort());
         }
         if (errno != 0) {
@@ -3350,6 +3352,10 @@ public final class BluetoothAdapter {
             // socket.mSocket.throwErrnoNative(errno);
             throw new IOException("Error: " + errno);
         }
+
+        // Update the RFCOMM channel assigned to this socket.
+        socket.setChannel(socket.mSocket.getPort());
+
         return socket;
     }
 
@@ -3368,7 +3374,9 @@ public final class BluetoothAdapter {
         BluetoothServerSocket socket =
                 new BluetoothServerSocket(BluetoothSocket.TYPE_RFCOMM, false, false, port);
         int errno = socket.mSocket.bindListen();
-        if (port == SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
+        // If the channel was -1 or `SOCKET_CHANNEL_AUTO_STATIC_NO_SDP`,
+        // update RFCOMM channel automatically assigned to this socket.
+        if (port < 0) {
             socket.setChannel(socket.mSocket.getPort());
         }
         if (errno != 0) {
@@ -4695,7 +4703,7 @@ public final class BluetoothAdapter {
         if (errno != 0) {
             throw new IOException("Error: " + errno);
         }
-        if (type == BluetoothSocket.TYPE_LE) {
+        if (type == BluetoothSocket.TYPE_LE || type == BluetoothSocket.TYPE_RFCOMM) {
             int assignedPsm = socket.mSocket.getPort();
             if (assignedPsm == 0) {
                 throw new IOException("Error: Unable to assign PSM value");
