@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352ce71d_83227d5e",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-09T20:49:06Z",
+      "side": 0,
+      "message": "Why did you move this to the header file?",
+      "range": {
+        "startLine": 125,
+        "startChar": 19,
+        "endLine": 125,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ff06a599_d3bbaccd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "\n/**\n * Check if bd_addr is the current active device.\n *\n * @param bd_addr target device address\n * @return True if bd_addr is the current active device, False otherwise or if\n * no active device is set (i.e. active_device_addr is empty)\n */\nbool bta_ag_sco_is_active_device(const RawAddress\u0026 bd_addr) {\n  return !active_device_addr.IsEmpty() \u0026\u0026 active_device_addr \u003d\u003d bd_addr;\n}\n\nvoid updateCodecParametersFromProviderInfo(tBTA_AG_UUID_CODEC esco_codec,\n                                           enh_esco_params_t\u0026 params);\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 154,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "e3e11fc81b50a147313819ff9979bf26412a0992",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
