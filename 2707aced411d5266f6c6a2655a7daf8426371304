@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b0539a_dc46a0eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-09T11:24:12Z",
+      "side": 1,
+      "message": "minor comment, otherwise looks good.",
+      "revId": "2707aced411d5266f6c6a2655a7daf8426371304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c482ff1_fb26c11b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-09T11:24:12Z",
+      "side": 1,
+      "message": "could you add comment here how this `mIgnoreSetVolumeFromAF` is used?",
+      "revId": "2707aced411d5266f6c6a2655a7daf8426371304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
