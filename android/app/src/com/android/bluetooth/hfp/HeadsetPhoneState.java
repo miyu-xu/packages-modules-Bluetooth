@@ -289,6 +289,7 @@ public class HeadsetPhoneState {
 
         @Override
         public void onSubscriptionsChanged() {
+            // test cl creation
             synchronized (mDeviceEventMap) {
                 int simState = mTelephonyManager.getSimState();
                 if (simState != TelephonyManager.SIM_STATE_READY) {
