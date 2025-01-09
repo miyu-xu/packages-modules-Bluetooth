@@ -16,6 +16,47 @@
       "message": "Can we add test coverage for this to make sure we don\u0027t encounter anything unexpected?",
       "revId": "a95b814aa9689520635141a2298f50d61db8b1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25fb23cc_5f6a9bd1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-09T17:05:55Z",
+      "side": 1,
+      "message": "should this be flag guarded like in line 1505?\n\nAlso, if this is the same for all cases, maybe we need to pull it out of the if-else if-else statement because I see it\u0027s in the else",
+      "range": {
+        "startLine": 1521,
+        "startChar": 16,
+        "endLine": 1521,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5145aa1b_90411ec9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1521,
+                "startChar": 0,
+                "endLine": 1522,
+                "endChar": 0
+              },
+              "replacement": "                if (Flags.updateActiveDeviceInBandRingtone()) {\n                    updateInbandRinging(device, true);\n                }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a95b814aa9689520635141a2298f50d61db8b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
