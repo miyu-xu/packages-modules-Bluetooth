@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20cf8ffe_4213d246",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4437,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-09T09:14:24Z",
+      "side": 1,
+      "message": "what about IsInVoipCall? shouldn\u0027t it be considered too here?\nsame in other places.",
+      "revId": "3e73eee84e7dd2f919e78552c59353a19bbc97ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
