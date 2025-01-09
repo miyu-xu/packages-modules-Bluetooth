@@ -16,6 +16,29 @@
       "message": "Looks like the BumbleBluetoothTests failures are preexisting.",
       "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce947f1d_9fb165e2",
+        "filename": "android/app/proguard.flags",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-09T22:55:17Z",
+      "side": 1,
+      "message": "BluetoothMethodProxy make sense, it\u0027s a class built for the mocking, but I am surprised about com.android.obex.Operation.\n\nHow did you figure this one out ?\n\nQuestion for my curisosity as I am not very familiar with proguard but could BluetoothMethodProxy be annotated with an @Keep to producethe same result ?",
+      "range": {
+        "startLine": 16,
+        "startChar": 97,
+        "endLine": 16,
+        "endChar": 125
+      },
+      "revId": "3c007d40e0d09b7e3b2c630eea9b6b224a38c8fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
