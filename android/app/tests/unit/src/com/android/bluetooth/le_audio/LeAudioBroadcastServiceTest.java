@@ -1693,18 +1693,12 @@ public class LeAudioBroadcastServiceTest {
     }
 
     @Test
-    @EnableFlags({
-        Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP,
-        Flags.FLAG_LEAUDIO_BROADCAST_PRIMARY_GROUP_SELECTION
-    })
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_API_MANAGE_PRIMARY_GROUP)
     public void testOnBroadcastToUnicastFallbackGroupChanged() {
         int groupId1 = 1;
         int groupId2 = 2;
         int broadcastId = 243;
         byte[] code = {0x00, 0x01, 0x00, 0x02};
-        List<BluetoothDevice> devices = new ArrayList<>();
-
-        when(mDatabaseManager.getMostRecentlyConnectedDevices()).thenReturn(devices);
 
         onBroadcastToUnicastFallbackGroupChangedCallbackCalled = false;
 
@@ -1728,7 +1722,7 @@ public class LeAudioBroadcastServiceTest {
                     @Override
                     public void onBroadcastToUnicastFallbackGroupChanged(int groupId) {
                         onBroadcastToUnicastFallbackGroupChangedCallbackCalled = true;
-                        Assert.assertEquals(groupId2, groupId);
+                        Assert.assertEquals(groupId1, groupId);
                     }
                 };
 
@@ -1737,13 +1731,11 @@ public class LeAudioBroadcastServiceTest {
         }
 
         initializeNative();
-        devices.add(mDevice2);
         prepareConnectedUnicastDevice(groupId2, mDevice2);
-        devices.add(mDevice);
         prepareHandoverStreamingBroadcast(groupId1, broadcastId, code);
 
         TestUtils.waitForLooperToFinishScheduledTask(mService.getMainLooper());
-        Assert.assertEquals(groupId2, mService.mUnicastGroupIdDeactivatedForBroadcastTransition);
+        Assert.assertEquals(groupId1, mService.mUnicastGroupIdDeactivatedForBroadcastTransition);
         assertThat(onBroadcastToUnicastFallbackGroupChangedCallbackCalled).isTrue();
 
         onBroadcastToUnicastFallbackGroupChangedCallbackCalled = false;

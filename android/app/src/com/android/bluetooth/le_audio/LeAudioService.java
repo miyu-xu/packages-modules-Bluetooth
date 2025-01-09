@@ -2425,8 +2425,7 @@ public class LeAudioService extends ProfileService {
                         + ", mExposedActiveDevice: "
                         + mExposedActiveDevice);
 
-        if (!Flags.leaudioBroadcastPrimaryGroupSelection()
-                && isBroadcastActive()
+        if (isBroadcastActive()
                 && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
                 && mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID) {
 
@@ -3134,9 +3133,7 @@ public class LeAudioService extends ProfileService {
                     TAG,
                     "transitionFromBroadcastToUnicast: No valid unicast device for group ID: "
                             + mUnicastGroupIdDeactivatedForBroadcastTransition);
-            if (!Flags.leaudioBroadcastPrimaryGroupSelection()) {
-                updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
-            }
+            updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
             updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
             return;
         }
@@ -3148,9 +3145,7 @@ public class LeAudioService extends ProfileService {
                         + ", with device: "
                         + unicastDevice);
 
-        if (!Flags.leaudioBroadcastPrimaryGroupSelection()) {
-            updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
-        }
+        updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
         setActiveDevice(unicastDevice);
     }
 
@@ -3641,9 +3636,7 @@ public class LeAudioService extends ProfileService {
                         if (isBroadcastAllowedToBeActivateInCurrentAudioMode()) {
                             /* Check if broadcast was deactivated due to unicast */
                             if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
-                                if (!Flags.leaudioBroadcastPrimaryGroupSelection()) {
-                                    updateFallbackUnicastGroupIdForBroadcast(groupId);
-                                }
+                                updateFallbackUnicastGroupIdForBroadcast(groupId);
                                 if (!leaudioUseAudioModeListener()) {
                                     mQueuedInCallValue = Optional.empty();
                                 }
@@ -3652,15 +3645,12 @@ public class LeAudioService extends ProfileService {
                             }
 
                             if (leaudioBigDependsOnAudioState()) {
-                                if (mAwaitingBroadcastCreateResponse
-                                        && !Flags.leaudioBroadcastPrimaryGroupSelection()) {
+                                if (mAwaitingBroadcastCreateResponse) {
                                     updateFallbackUnicastGroupIdForBroadcast(groupId);
                                 }
                             } else {
                                 if (!mCreateBroadcastQueue.isEmpty()) {
-                                    if (!Flags.leaudioBroadcastPrimaryGroupSelection()) {
-                                        updateFallbackUnicastGroupIdForBroadcast(groupId);
-                                    }
+                                    updateFallbackUnicastGroupIdForBroadcast(groupId);
                                     BluetoothLeBroadcastSettings settings =
                                             mCreateBroadcastQueue.remove();
                                     createBroadcast(settings);
