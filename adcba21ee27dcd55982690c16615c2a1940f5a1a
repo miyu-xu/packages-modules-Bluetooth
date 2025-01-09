@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a064714_01458f1c",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1586,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-09T19:38:47Z",
+      "side": 1,
+      "message": "this logic doesn\u0027t look right, if `direct_connect_remove` returns true, it means bda was removed from direct connection. hence the ! sign should be removed.\n\nIMO, if you don\u0027t want to miss any logs, we can log both true and false cases:\n\n```\nif (connection_manager::direct_connect_remove(gatt_if, bda)) {\n    log::info(\"{} was doing direct connect to {}, canceled\", gatt_if, bda);\n} else {\n    log::info(\"{} was not doing direct connect to {}\", gatt_if, bda);\n}\n```",
+      "range": {
+        "startLine": 1586,
+        "startChar": 6,
+        "endLine": 1586,
+        "endChar": 7
+      },
+      "revId": "adcba21ee27dcd55982690c16615c2a1940f5a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd3218b_3c41c981",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-09T19:38:47Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 1589,
+        "startChar": 6,
+        "endLine": 1589,
+        "endChar": 7
+      },
+      "revId": "adcba21ee27dcd55982690c16615c2a1940f5a1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
