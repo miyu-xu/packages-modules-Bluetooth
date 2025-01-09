@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caa0c32f_37646f1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-09T00:15:16Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Inclusive Language: Prefer to use inclusive terms like \u0027deny list\u0027 or \u0027allow list\u0027; see https://developers.google.com/style/word-list#blacklist for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit...\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: inclusive-language-in-code@google.com\n\nPrefer to use inclusive terms like \u0027deny list\u0027 or \u0027allow list\u0027; see https://developers.google.com/style/word-list#blacklist for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ded5a3bc_b95cb2ac",
         "filename": "system/stack/gatt/gatt_attr.cc",
         "patchSetId": 4
