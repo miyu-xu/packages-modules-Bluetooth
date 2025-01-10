@@ -41,6 +41,7 @@ public:
   virtual void Connect(const RawAddress& addr) = 0;
   virtual void Disconnect(const RawAddress& addr) = 0;
   virtual void RemoveDevice(const RawAddress& address) = 0;
+  virtual void BondingFailed(const RawAddress& address) = 0;
   virtual int GetGroupId(const RawAddress& addr,
                          bluetooth::Uuid uuid = bluetooth::groups::kGenericContextUuid) = 0;
   virtual void LockGroup(int group_id, bool lock, CsisLockCb cb) = 0;

@@ -35,6 +35,7 @@ public:
   void disconnect(RawAddress addr);
   void lock_group(int group_id, bool lock);
   void remove_device(RawAddress addr);
+  void bonding_failed(RawAddress addr);
   void cleanup();
 
 private:

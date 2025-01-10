@@ -85,6 +85,9 @@ public:
   /* Called when unbonded. */
   virtual void RemoveDevice(const RawAddress& address) = 0;
 
+  /** Bonding procedure failed. */
+  virtual void BondingFailed(const RawAddress& address) = 0;
+
   /** Closes the interface */
   virtual void Cleanup(void) = 0;
 };

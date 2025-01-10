@@ -150,6 +150,8 @@ void CsisClientIntf::lock_group(int group_id, bool lock) {
 
 void CsisClientIntf::remove_device(RawAddress addr) { return intf_->RemoveDevice(addr); }
 
+void CsisClientIntf::bonding_failed(RawAddress addr) { return intf_->BondingFailed(addr); }
+
 void CsisClientIntf::cleanup() { return intf_->Cleanup(); }
 }  // namespace rust
 }  // namespace topshim

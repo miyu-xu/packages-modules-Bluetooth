@@ -1517,6 +1517,96 @@ TEST_F(CsisClientTest, test_enable_gatt_notifications) {
   TestAppUnregister();
 }
 
+TEST_F(CsisClientTest, test_bonding_failed) {
+  uint16_t conn_id = 0x0001;
+  SetSampleDatabaseCsis(conn_id, 1, 1);
+  TestAppRegister();
+
+  tBTA_DM_SEARCH_CBACK* p_results_cb = nullptr;
+  ON_CALL(dm_interface, BTA_DmBleCsisObserve(true, _))
+          .WillByDefault(DoAll(SaveArg<1>(&p_results_cb)));
+
+  TestConnect(test_address);
+  InjectConnectedEvent(test_address, 1);
+
+  auto ReadCharacteristicCbGenerator = []() {
+    return [](uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb, void* cb_data) -> void {
+      std::vector<uint8_t> value;
+      switch (handle) {
+        case 0x0003:
+          // device name
+          value.resize(20);
+          break;
+        case 0x0021:
+          // plain sirk
+          value.resize(17);
+          value.assign(17, 1);
+          break;
+        case 0x0024:
+          // size
+          value.resize(1);
+          value.assign(1, 2);
+          break;
+        case 0x0027:
+          // lock
+          value.resize(2);
+          break;
+        case 0x0030:
+          // rank
+          value.resize(1);
+          value.assign(1, 1);
+          break;
+        default:
+          FAIL();
+          return;
+      }
+      if (cb) {
+        cb(conn_id, GATT_SUCCESS, handle, value.size(), value.data(), cb_data);
+      }
+    };
+  };
+
+  // We should read 4 times for sirk, rank, size, and lock characteristics
+  EXPECT_CALL(gatt_queue, ReadCharacteristic(conn_id, _, _, _))
+          .Times(4)
+          .WillOnce(Invoke(ReadCharacteristicCbGenerator()))
+          .WillOnce(Invoke(ReadCharacteristicCbGenerator()))
+          .WillOnce(Invoke(ReadCharacteristicCbGenerator()))
+          .WillOnce(Invoke(ReadCharacteristicCbGenerator()));
+
+  GetSearchCompleteEvent(conn_id);
+
+  tBTA_DM_SEARCH result;
+  result.inq_res.include_rsi = true;
+  std::vector<uint8_t> rsi = {0x07, 0x2e, 0x00, 0xed, 0x1a, 0x00, 0x00, 0x00};
+  result.inq_res.p_eir = rsi.data();
+  result.inq_res.eir_len = 8;
+  result.inq_res.bd_addr = test_address2;
+
+  // CSIS client should process Set Member Available event to JNI
+  EXPECT_CALL(*callbacks, OnSetMemberAvailable(test_address2, 1));
+
+  // Simulate set member found report
+  ASSERT_NE(p_results_cb, nullptr);
+  p_results_cb(BTA_DM_INQ_RES_EVT, &result);
+
+  Mock::VerifyAndClearExpectations(callbacks.get());
+
+  // The upper layer notifies that the bonding procedure failed
+  CsisClient::Get()->BondingFailed(test_address2);
+
+  // Assume the user restarts the scan, so the CSIS is notified again once the device is discovered
+
+  // CSIS client should process Set Member Available event to JNI
+  EXPECT_CALL(*callbacks, OnSetMemberAvailable(test_address2, 1));
+
+  // Simulate set member found duplicated report
+  ASSERT_NE(p_results_cb, nullptr);
+  p_results_cb(BTA_DM_INQ_RES_EVT, &result);
+
+  Mock::VerifyAndClearExpectations(callbacks.get());
+}
+
 }  // namespace
 }  // namespace internal
 }  // namespace csis
