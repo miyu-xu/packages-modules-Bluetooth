@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b1ded71_e1513769",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2650,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-10T20:24:57Z",
+      "side": 0,
+      "message": "Can we use the isWatch function instead https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java;drc\u003dec7c60735545925be07b1e54f7d52f1a4a0b6241;l\u003d1356.  \n\nThis will require pulling that into a utils class instead",
+      "range": {
+        "startLine": 2648,
+        "startChar": 10,
+        "endLine": 2650,
+        "endChar": 90
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "45139545_d929c761",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2646,
+                "startChar": 0,
+                "endLine": 2656,
+                "endChar": 0
+              },
+              "replacement": "            if (mAdapterService.getRemoteDevices().isWatch(device)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0b2194196fa49ad4df4b289c05263367c75532b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac2b12ae_1bd55d7d",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 1
@@ -20,6 +71,57 @@
         "endLine": 2652,
         "endChar": 64
       },
+      "revId": "0b2194196fa49ad4df4b289c05263367c75532b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f4e6047_5d58bef0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2653,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-10T20:24:57Z",
+      "side": 0,
+      "message": "The recommendation is actually to use the isWatch function instead",
+      "range": {
+        "startLine": 2648,
+        "startChar": 12,
+        "endLine": 2653,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3511889d_1800710a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2646,
+                "startChar": 0,
+                "endLine": 2656,
+                "endChar": 0
+              },
+              "replacement": "            if (mAdapterService.getRemoteDevices().isWatch(device)) {\n"
+            }
+          ]
+        }
+      ],
       "revId": "0b2194196fa49ad4df4b289c05263367c75532b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
