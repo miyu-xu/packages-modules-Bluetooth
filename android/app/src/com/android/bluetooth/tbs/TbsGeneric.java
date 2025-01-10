@@ -50,7 +50,6 @@ import java.util.UUID;
 
 /** Container class to store TBS instances */
 public class TbsGeneric {
-
     private static final String TAG = "TbsGeneric";
 
     private static final String UCI = "GTBS";
