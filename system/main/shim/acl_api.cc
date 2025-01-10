@@ -55,17 +55,14 @@ void bluetooth::shim::ACL_CancelClassicConnection(const RawAddress& raw_address)
   Stack::GetInstance()->GetAcl()->CancelClassicConnection(address);
 }
 
-bool bluetooth::shim::ACL_AcceptLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type,
+void bluetooth::shim::ACL_AcceptLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type,
                                                  bool is_direct) {
-  std::promise<bool> promise;
-  auto future = promise.get_future();
-  Stack::GetInstance()->GetAcl()->AcceptLeConnectionFrom(
-          ToAddressWithTypeFromLegacy(legacy_address_with_type), is_direct, std::move(promise));
-  return future.get();
+  bluetooth::shim::GetAclManager()->CreateLeConnection(
+          ToAddressWithTypeFromLegacy(legacy_address_with_type), is_direct);
 }
 
 void bluetooth::shim::ACL_IgnoreLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type) {
-  Stack::GetInstance()->GetAcl()->IgnoreLeConnectionFrom(
+  bluetooth::shim::GetAclManager()->CancelLeConnect(
           ToAddressWithTypeFromLegacy(legacy_address_with_type));
 }
 
