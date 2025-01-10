@@ -1099,13 +1099,6 @@ struct shim::Acl::impl {
     return;
   }
 
-  void ignore_le_connection_from(const hci::AddressWithType& address_with_type) {
-    GetAclManager()->CancelLeConnect(address_with_type);
-    log::debug("Ignore Le connection from remote:{}", address_with_type);
-    BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type), "Ignore connection from",
-                   "Le");
-  }
-
   void clear_acceptlist() { GetAclManager()->ClearFilterAcceptList(); }
 
   void AddToAddressResolution(const hci::AddressWithType& address_with_type,
@@ -1365,11 +1358,6 @@ void shim::Acl::AcceptLeConnectionFrom(const hci::AddressWithType& address_with_
   log::debug("AcceptLeConnectionFrom {}", address_with_type.GetAddress());
   handler_->CallOn(pimpl_.get(), &Acl::impl::accept_le_connection_from, address_with_type,
                    is_direct, std::move(promise));
-}
-
-void shim::Acl::IgnoreLeConnectionFrom(const hci::AddressWithType& address_with_type) {
-  log::debug("IgnoreLeConnectionFrom {}", address_with_type.GetAddress());
-  handler_->CallOn(pimpl_.get(), &Acl::impl::ignore_le_connection_from, address_with_type);
 }
 
 void shim::Acl::OnClassicLinkDisconnected(HciHandle handle, hci::ErrorCode reason) {
