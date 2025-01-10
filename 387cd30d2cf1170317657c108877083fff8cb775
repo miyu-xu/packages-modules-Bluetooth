@@ -160,6 +160,24 @@
       "parentUuid": "f10b7a2f_3ffa6022",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c559cccf_9d83d5bb",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-10T21:33:08Z",
+      "side": 1,
+      "message": "Okay, I\u0027m unblocking this considering that\u0027s not a normal use case and this CL is stackd in the middle. let\u0027s keep an eye on this, and ask our testing team verify with flags.",
+      "parentUuid": "18f26cbc_efd58e14",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
