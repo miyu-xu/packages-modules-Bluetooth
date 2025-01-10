@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb52289b_bbaaa42f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-10T17:25:51Z",
+      "side": 1,
+      "message": "Still work in progress. Todo:\n\n1. Add flag:\n2. Add AdapterServiceTests",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
