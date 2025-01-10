@@ -22,6 +22,7 @@ import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREG
 
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
+import static com.android.bluetooth.util.AttributionSourceUtil.getLastAttributionTag;
 
 import static java.util.Objects.requireNonNull;
 
@@ -1519,10 +1520,17 @@ public class GattService extends ProfileService {
             return;
         }
 
-        Log.d(TAG, "registerClient() - UUID=" + uuid);
+        String name = attributionSource.getPackageName();
+        String tag = getLastAttributionTag(attributionSource);
+        if (tag != null) {
+            name = name + "[" + tag + "]";
+        }
+
+        Log.d(TAG, "registerClient() - UUID=" + uuid + " name=" + name);
         mClientMap.add(uuid, callback, this, attributionSource);
+
         mNativeInterface.gattClientRegisterApp(
-                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), eatt_support);
+                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), name, eatt_support);
     }
 
     @RequiresPermission(BLUETOOTH_CONNECT)
