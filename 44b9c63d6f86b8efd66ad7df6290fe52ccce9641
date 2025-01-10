@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dc8452e_d17396f5",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 11958,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-10T13:34:19Z",
+      "side": 1,
+      "message": "I think we should extend this test withe the new case of RELEASING_AUTONOMOUS",
+      "range": {
+        "startLine": 11955,
+        "startChar": 2,
+        "endLine": 11958,
+        "endChar": 83
+      },
+      "revId": "44b9c63d6f86b8efd66ad7df6290fe52ccce9641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b04eb4dc_11ae4245",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-10T13:34:19Z",
+      "side": 1,
+      "message": "We might need to extend the `to_rust_btle_audio_group_stream_status()` in `le_audio_shim.cc` to handle the this new case instead of falling into the default case which triggers an assertion?",
+      "range": {
+        "startLine": 73,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "44b9c63d6f86b8efd66ad7df6290fe52ccce9641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
