@@ -60,9 +60,9 @@ apex {
     systemserverclasspath_fragments: ["com.android.bt-systemserverclasspath-fragment"],
     file_contexts: ":com.android.bt-file_contexts",
     compat_configs: [
-        "bluetooth-compat-config",
         "bluetoothapk-platform-compat-config",
         "framework-bluetooth-compat-config",
+        "service-bluetooth-compat-config",
     ],
     apps: ["Bluetooth"],
 
