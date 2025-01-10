@@ -16,6 +16,24 @@
       "message": "This seemed to be doing more than `stop_connecting_to()` offers. Are we sure that calling `stop_connecting_to()` is enough?",
       "revId": "1f940c596f773da2fbf7e9f0d8d2739532dc4cdb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3344b3ee_ab308376",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-10T22:23:39Z",
+      "side": 0,
+      "message": "Yes.\n\nLong story short: If you look through git log history, original inention was to stop connecting to particular device.\n\nThere used to be just one call. Then it was turned into two calls due to some issues in l2cap. Now that connection manager is separate from l2cap and gatt, this should work good with just one call.",
+      "parentUuid": "2d69665d_cc3225eb",
+      "revId": "1f940c596f773da2fbf7e9f0d8d2739532dc4cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
