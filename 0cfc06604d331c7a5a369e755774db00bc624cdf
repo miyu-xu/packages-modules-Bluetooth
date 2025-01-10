@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61b9b411_df434423",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2076,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-10T18:23:04Z",
+      "side": 1,
+      "message": "nit: add a Log.e here to indicate scanner failed to register.",
+      "revId": "0cfc06604d331c7a5a369e755774db00bc624cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
