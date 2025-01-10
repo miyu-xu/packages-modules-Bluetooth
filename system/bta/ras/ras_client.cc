@@ -155,6 +155,7 @@ public:
       return;
     }
     BTA_GATTC_AppRegister(
+            "RangingService",
             [](tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
               if (instance && p_data) {
                 instance->GattcCallback(event, p_data);
