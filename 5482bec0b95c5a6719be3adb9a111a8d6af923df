@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "879e658d_66d075c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Added responses to review comments.",
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11cd0220_71ae05de",
@@ -124,6 +141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b417e2b6_43d9baba",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Idea behind passing IntentReceiver is to have a single IntentReceiver instance for a test (function), and not have separate ones for each testStep/helper function.\nHence, `null` is passed here as there was no IntentReceiver object created in calller.",
+      "parentUuid": "11cd0220_71ae05de",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 37
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe618d8e_63c94cd7",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 6
@@ -135,6 +176,30 @@
       "writtenOn": "2025-01-10T08:01:54Z",
       "side": 1,
       "message": "firtst parameter is redundant .Can it possible to remove it?",
+      "range": {
+        "startLine": 158,
+        "startChar": 13,
+        "endLine": 158,
+        "endChar": 25
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8ef5c9_50650af5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/11cd0220_71ae05de/",
+      "parentUuid": "fe618d8e_63c94cd7",
       "range": {
         "startLine": 158,
         "startChar": 13,
@@ -228,6 +293,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6589f2a2_937a0d95",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/11cd0220_71ae05de/",
+      "parentUuid": "49ec8953_45a56674",
+      "range": {
+        "startLine": 161,
+        "startChar": 13,
+        "endLine": 161,
+        "endChar": 22
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a01fd00d_a0f40b45",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 6
@@ -269,6 +358,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "047f0492_0b06db7f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Since we are moving to a common pattern of creating IntentReceiver\u0027s, added this to have it at the start, and once we are all accustomed to the format we can chose to remove this block of comment.",
+      "parentUuid": "a01fd00d_a0f40b45",
+      "range": {
+        "startLine": 167,
+        "startChar": 4,
+        "endLine": 184,
+        "endChar": 7
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "185068f8_a0f5ea75",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 6
@@ -280,6 +393,30 @@
       "writtenOn": "2025-01-10T08:01:54Z",
       "side": 1,
       "message": "Not required to pass `intentReceiver` here . build seperate intent reciever inside testStep_BondLe",
+      "range": {
+        "startLine": 482,
+        "startChar": 7,
+        "endLine": 483,
+        "endChar": 5
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f6c4a1b_8839188c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Idea behind using same intentReceiver is mentioned above in comment: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/11cd0220_71ae05de/",
+      "parentUuid": "185068f8_a0f5ea75",
       "range": {
         "startLine": 482,
         "startChar": 7,
@@ -491,6 +628,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1294d69c_be733e71",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/185068f8_a0f5ea75/",
+      "parentUuid": "6d3201d5_6a9dca14",
+      "range": {
+        "startLine": 571,
+        "startChar": 8,
+        "endLine": 571,
+        "endChar": 43
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9a7d37b_bbc015df",
@@ -584,6 +745,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d14b8da_635cf8ce",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Added to be inline with the same IntentReceiver to be used for a single test.\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/11cd0220_71ae05de/",
+      "parentUuid": "c9a7d37b_bbc015df",
+      "range": {
+        "startLine": 620,
+        "startChar": 5,
+        "endLine": 621,
+        "endChar": 10
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "085b50a1_a7cbc999",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 6
@@ -595,6 +780,30 @@
       "writtenOn": "2025-01-10T08:01:54Z",
       "side": 1,
       "message": "Not required to pass intentReceiver here",
+      "range": {
+        "startLine": 666,
+        "startChar": 8,
+        "endLine": 666,
+        "endChar": 26
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4621b90_bff5f871",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/c9a7d37b_bbc015df/\n\nAnd also applicable to similar comments below for all testStep functions.",
+      "parentUuid": "085b50a1_a7cbc999",
       "range": {
         "startLine": 666,
         "startChar": 8,
@@ -628,6 +837,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d7c33e_0593d196",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/a01fd00d_a0f40b45/",
+      "parentUuid": "b8ed79eb_7fd7965e",
+      "range": {
+        "startLine": 714,
+        "startChar": 7,
+        "endLine": 714,
+        "endChar": 20
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46f020a0_9fecf908",
@@ -641,6 +874,30 @@
       "writtenOn": "2025-01-10T08:01:54Z",
       "side": 1,
       "message": "Not required to pass intentReceiver here",
+      "range": {
+        "startLine": 795,
+        "startChar": 8,
+        "endLine": 795,
+        "endChar": 22
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9beb136_93248f30",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/a01fd00d_a0f40b45/",
+      "parentUuid": "46f020a0_9fecf908",
       "range": {
         "startLine": 795,
         "startChar": 8,
@@ -728,6 +985,30 @@
           ]
         }
       ],
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e98ef9ea_34f6874d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 856,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/c9a7d37b_bbc015df/",
+      "parentUuid": "f7ab0ea2_03a4521f",
+      "range": {
+        "startLine": 856,
+        "startChar": 38,
+        "endLine": 856,
+        "endChar": 65
+      },
       "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -828,6 +1109,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b6d3b71_09d74ddd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/c9a7d37b_bbc015df/",
+      "parentUuid": "3043fc36_7d2c8ff4",
+      "range": {
+        "startLine": 997,
+        "startChar": 28,
+        "endLine": 997,
+        "endChar": 57
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f521e109_d3d76191",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Sure, that makes more sense.",
+      "parentUuid": "0b8b2bc3_46151169",
+      "range": {
+        "startLine": 997,
+        "startChar": 17,
+        "endLine": 997,
+        "endChar": 27
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22777bee_9b05311a",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 6
@@ -851,6 +1180,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af7a81d8_2aee4541",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Same as: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/c9a7d37b_bbc015df/",
+      "parentUuid": "22777bee_9b05311a",
+      "range": {
+        "startLine": 1019,
+        "startChar": 33,
+        "endLine": 1019,
+        "endChar": 62
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47e75914_d774e5bd",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 6
@@ -862,6 +1215,30 @@
       "writtenOn": "2025-01-10T08:01:54Z",
       "side": 1,
       "message": "firtst parameter is redundant",
+      "range": {
+        "startLine": 1100,
+        "startChar": 9,
+        "endLine": 1100,
+        "endChar": 29
+      },
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33952dd5_eb9a828a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "This is added with the intention explained above: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/comment/11cd0220_71ae05de/",
+      "parentUuid": "47e75914_d774e5bd",
       "range": {
         "startLine": 1100,
         "startChar": 9,
@@ -959,6 +1336,30 @@
           ]
         }
       ],
+      "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ac58107_ebdaf7a1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T08:18:53Z",
+      "side": 1,
+      "message": "Yes, this basically helps in following ways:\n1. Creates a single pattern to be re-used by all testStep/helper functions.\n2. Avoids code-deduplication.",
+      "parentUuid": "4652448b_5b17680a",
+      "range": {
+        "startLine": 1118,
+        "startChar": 4,
+        "endLine": 1118,
+        "endChar": 125
+      },
       "revId": "5482bec0b95c5a6719be3adb9a111a8d6af923df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
