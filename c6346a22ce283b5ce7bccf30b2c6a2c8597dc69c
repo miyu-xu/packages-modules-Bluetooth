@@ -22,6 +22,30 @@
       },
       "revId": "c6346a22ce283b5ce7bccf30b2c6a2c8597dc69c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d95345_c17c8511",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3421,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-10T07:49:09Z",
+      "side": 1,
+      "message": "For now I am trying to move it out the way so that it is not producing an error message every time ldac sink is initialized",
+      "parentUuid": "8684543b_985607f7",
+      "range": {
+        "startLine": 3421,
+        "startChar": 2,
+        "endLine": 3421,
+        "endChar": 28
+      },
+      "revId": "c6346a22ce283b5ce7bccf30b2c6a2c8597dc69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
