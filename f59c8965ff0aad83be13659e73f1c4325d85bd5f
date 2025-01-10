@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77db7a22_bef9c0b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-10T21:40:46Z",
+      "side": 1,
+      "message": "Presubmit passed on Patchset 2 and there is no code difference between patchset 2 and patchset 4",
+      "revId": "f59c8965ff0aad83be13659e73f1c4325d85bd5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
