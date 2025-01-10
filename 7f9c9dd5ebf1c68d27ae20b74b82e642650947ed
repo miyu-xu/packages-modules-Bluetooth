@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6a77695_50f3486d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-10T12:08:32Z",
+      "side": 1,
+      "message": "The recent Bumble test failures looks to be unrelated to my changes, as it got passed in 2nd run (https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3444063/5?checksPatchset\u003d5\u0026checksResultsFilter\u003dPerformance.*blocking\u0026tab\u003dchecks), but failing after that since the change from `removeBond()` to `testStep_RemoveBond()`.\nI will rerun the pre-submit again after 1 day.",
+      "revId": "7f9c9dd5ebf1c68d27ae20b74b82e642650947ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
