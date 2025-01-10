@@ -16,6 +16,24 @@
       "message": "Can you put sample output in the bug? Thanks!",
       "revId": "fce428773ed397f2613603927cdf0e1f4cf253f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "988a1f28_33324289",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-10T08:20:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31f5ec10_3b189c76",
+      "revId": "fce428773ed397f2613603927cdf0e1f4cf253f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
