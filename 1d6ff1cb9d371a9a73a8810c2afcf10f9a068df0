@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8b21737_c86d63b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3816573
+      },
+      "writtenOn": "2025-01-10T19:12:39Z",
+      "side": 1,
+      "message": "3446488: Revert \"Return -1 on socket read EOF\" | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3446488",
+      "revId": "1d6ff1cb9d371a9a73a8810c2afcf10f9a068df0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
