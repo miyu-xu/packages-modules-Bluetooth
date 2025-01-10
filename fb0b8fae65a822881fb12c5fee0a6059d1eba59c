@@ -91,6 +91,114 @@
       },
       "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d67d2557_c92606b8",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-10T07:40:39Z",
+      "side": 1,
+      "message": "It is more useful to have the tag name printed compared to the tag value.\nThe tag values are non normative.\n\nThat aside, if you wanted to print both you could implement the formatter to do so.",
+      "parentUuid": "4f0b2f7f_847c4d8d",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 46
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "502ffdd0_f26b6f78",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-10T07:40:39Z",
+      "side": 1,
+      "message": "unnecessary cast (assuming the type of previous_state is changed to tBTA_AG_SCO",
+      "range": {
+        "startLine": 1230,
+        "startChar": 12,
+        "endLine": 1230,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "90253952_de8b09e7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 737,
+                "startChar": 0,
+                "endLine": 738,
+                "endChar": 0
+              },
+              "replacement": "  tBTA_AG_SCO previous_state \u003d p_sco-\u003estate;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 739,
+                "startChar": 0,
+                "endLine": 741,
+                "endChar": 0
+              },
+              "replacement": "            p_scb-\u003esco_idx, p_sco-\u003estate, static_cast\u003cuint8_t\u003e(p_sco-\u003estate), bta_ag_sco_evt_str(event), event);\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1230,
+                "startChar": 0,
+                "endLine": 1232,
+                "endChar": 0
+              },
+              "replacement": "            previous_state, previous_state,\n            p_sco-\u003estate, static_cast\u003cuint8_t\u003e(p_sco-\u003estate),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7383a00_a6ff3196",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-10T07:40:39Z",
+      "side": 1,
+      "message": "unnecessary cast",
+      "range": {
+        "startLine": 1231,
+        "startChar": 13,
+        "endLine": 1231,
+        "endChar": 36
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
