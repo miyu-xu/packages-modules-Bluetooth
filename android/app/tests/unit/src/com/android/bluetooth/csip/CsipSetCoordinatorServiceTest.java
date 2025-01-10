@@ -429,6 +429,18 @@ public class CsipSetCoordinatorServiceTest {
                         CONNECTION_POLICY_FORBIDDEN);
     }
 
+    /** Test that native is notified when bonding process fails. */
+    @Test
+    public void testBondFailed() {
+        mService.bondStateChanged(mDevice, BOND_NONE, BOND_BONDING);
+        mService.bondStateChanged(mDevice, BOND_BONDING, BOND_NONE);
+
+        InOrder inOrder = inOrder(mNativeInterface);
+
+        // Native shall be notified
+        inOrder.verify(mNativeInterface).bondingFailed(mDevice);
+    }
+
     @Test
     public void testDump_doesNotCrash() {
         // add state machines for testing dump()

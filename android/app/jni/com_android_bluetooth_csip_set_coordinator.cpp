@@ -269,6 +269,24 @@ static void groupLockSetNative(JNIEnv* /* env */, jobject /* object */, jint gro
   sCsisClientInterface->LockGroup(group_id, lock);
 }
 
+static void bondingFailedNative(JNIEnv* env, jobject /* object */, jbyteArray address) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sCsisClientInterface) {
+    log::error("Failed to get the Bluetooth Csis Client Interface");
+    return;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (!addr) {
+    jniThrowIOException(env, EINVAL);
+    return;
+  }
+
+  RawAddress* tmpraw = (RawAddress*)addr;
+  sCsisClientInterface->BondingFailed(*tmpraw);
+  env->ReleaseByteArrayElements(address, addr, 0);
+}
+
 int register_com_android_bluetooth_csip_set_coordinator(JNIEnv* env) {
   const JNINativeMethod methods[] = {
           {"initNative", "()V", (void*)initNative},
@@ -276,6 +294,7 @@ int register_com_android_bluetooth_csip_set_coordinator(JNIEnv* env) {
           {"connectNative", "([B)Z", (void*)connectNative},
           {"disconnectNative", "([B)Z", (void*)disconnectNative},
           {"groupLockSetNative", "(IZ)V", (void*)groupLockSetNative},
+          {"bondingFailedNative", "([B)V", (void*)bondingFailedNative},
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/csip/CsipSetCoordinatorNativeInterface", methods);

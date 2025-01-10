@@ -155,6 +155,16 @@ public class CsipSetCoordinatorNativeInterface {
         groupLockSetNative(groupId, lock);
     }
 
+    /**
+     * Device bonding failed.
+     *
+     * @param device Bluetooth device
+     */
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void bondingFailed(BluetoothDevice device) {
+        bondingFailedNative(getByteAddress(device));
+    }
+
     // Native methods that call into the JNI interface
     private native void initNative();
 
@@ -165,4 +175,6 @@ public class CsipSetCoordinatorNativeInterface {
     private native boolean disconnectNative(byte[] address);
 
     private native void groupLockSetNative(int groupId, boolean lock);
+
+    private native void bondingFailedNative(byte[] address);
 }

@@ -113,6 +113,17 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
                            base::DoNothing()));
   }
 
+  void BondingFailed(const RawAddress& addr) override {
+    if (!initialized || !CsisClient::IsCsisClientRunning()) {
+      log::verbose(
+              "call ignored, due to already started cleanup procedure or service "
+              "being not ready");
+      return;
+    }
+
+    do_in_main_thread(Bind(&CsisClient::BondingFailed, Unretained(CsisClient::Get()), addr));
+  }
+
   void Cleanup(void) override {
     if (!initialized || !CsisClient::IsCsisClientRunning()) {
       log::verbose(
