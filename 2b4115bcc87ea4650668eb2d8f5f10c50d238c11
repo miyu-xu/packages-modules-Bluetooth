@@ -141,6 +141,30 @@
       },
       "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eb84769_9c2a59df",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-10T06:49:36Z",
+      "side": 1,
+      "message": "I wanted to avoid having some test specific sysprops enabled under the mask - but to put all that\u0027s configured visible in the XML config. I think it\u0027s good to have it clearly stated in one place.\n\nAbout boolean - yeah, for now I think it should be sufficient, good we don\u0027t have too much sysprops to toggle",
+      "parentUuid": "5c99b78a_48b855d5",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
