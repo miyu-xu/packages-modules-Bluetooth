@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "609fba8d_5544bb32",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T19:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66136704_efd45e36",
+      "range": {
+        "startLine": 336,
+        "startChar": 40,
+        "endLine": 336,
+        "endChar": 65
+      },
+      "revId": "8c442c4d7885d9de5bf2dec483848150510ad392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9dc4d36_3dd87140",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "8c442c4d7885d9de5bf2dec483848150510ad392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84d99d6_1b1adcd9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1976,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T19:11:30Z",
+      "side": 1,
+      "message": "Good idea",
+      "parentUuid": "e9dc4d36_3dd87140",
+      "range": {
+        "startLine": 1976,
+        "startChar": 8,
+        "endLine": 1976,
+        "endChar": 28
+      },
       "revId": "8c442c4d7885d9de5bf2dec483848150510ad392",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
