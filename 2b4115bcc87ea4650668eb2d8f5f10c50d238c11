@@ -165,6 +165,30 @@
       },
       "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c5ceff_08d4b2ef",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-10T13:15:20Z",
+      "side": 1,
+      "message": "Also it used to be this for example:\n```\n    private void toggleA2dpSinkIfNeeded(ITestDevice testDevice, String testName) {\n        CLog.i(\"toggleA2dpSinkIfNeeded: \" + testName);\n        if (testName.startsWith(\"A2DP/SNK\")\n                || testName.startsWith(\"AVCTP/CT\")\n                || testName.startsWith(\"AVDTP/SNK\")\n                || (testName.startsWith(\"AVRCP/CT\") \u0026\u0026 !testName.startsWith(\"AVRCP/CT/VLH\"))\n                || testName.startsWith(\"AVRCP/TG/VLH\")) {\n            setProperty(testDevice, A2DP_SNK_PROPERTY, true);\n            setProperty(testDevice, A2DP_SRC_PROPERTY, false);\n        } else if (!getProperty(testDevice, A2DP_SRC_PROPERTY).equals(\"true\")) {\n            setProperty(testDevice, A2DP_SNK_PROPERTY, false);\n            setProperty(testDevice, A2DP_SRC_PROPERTY, true);\n        }\n    }\n```\nso for example for A2DP/SNK test we have sink prop enabled, source prop disabled - and that\u0027s all. After the test we don\u0027t restore anything, only before the next test we repeat toggleA2dpSinkIfNeeded. I think we shouldn\u0027t rely on what\u0027s already set but set what we want before the test, WDYT?",
+      "parentUuid": "4eb84769_9c2a59df",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
