@@ -320,6 +320,18 @@ public:
     dev_groups_->RemoveDevice(addr);
   }
 
+  void BondingFailed(const RawAddress& addr) override {
+    log::info("{}", addr);
+
+    auto device = FindDeviceByAddress(addr);
+    if (device == nullptr) {
+      log::warn("{} not found", addr);
+      return;
+    }
+
+    RemoveCsisDevice(device);
+  }
+
   int GetGroupId(const RawAddress& addr, Uuid uuid) override {
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
