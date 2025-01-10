@@ -16,6 +16,24 @@
       "message": "this block seems to be called in different places - maybe you could extract it to some helper function ?",
       "revId": "353b443c95d52bd20560714c90110f9405f6284d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a545d031_ac311991",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-10T13:40:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d1d8796_c1323c9f",
+      "revId": "353b443c95d52bd20560714c90110f9405f6284d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

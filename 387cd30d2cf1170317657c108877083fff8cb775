@@ -142,6 +142,24 @@
       "parentUuid": "96d43b0b_0d36f420",
       "revId": "387cd30d2cf1170317657c108877083fff8cb775",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f26cbc_efd58e14",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-10T13:40:37Z",
+      "side": 1,
+      "message": "I added warning that volume is from device.\nI do not want to change that as I done a lot of sanity tests with this code. Another thing is that, it is almost impossible to get this case as setGroupVolume is always called at first remote connection by AF. Even with my next CL where I ignore first call from AF, it will be send again after setting volume by first device from persisted because of updateGroupCacheAndAudioSystem.",
+      "parentUuid": "f10b7a2f_3ffa6022",
+      "revId": "387cd30d2cf1170317657c108877083fff8cb775",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
