@@ -120,6 +120,7 @@ public class PbapClientService extends ProfileService {
             mPbapClientContactsStorage = null;
             mPbapClientStateMachineMap = null;
         }
+        start();
     }
 
     @VisibleForTesting
@@ -134,6 +135,7 @@ public class PbapClientService extends ProfileService {
         // For compatibility with tests while we phase the old state machine out
         mPbapClientAccountManager =
                 new PbapClientAccountManager(context, new PbapClientAccountManagerCallback());
+        start();
     }
 
     public static boolean isEnabled() {
@@ -145,8 +147,7 @@ public class PbapClientService extends ProfileService {
         return new PbapClientBinder(this);
     }
 
-    @Override
-    public void start() {
+    private void start() {
         Log.v(TAG, "onStart");
 
         mDatabaseManager =
@@ -718,6 +719,7 @@ public class PbapClientService extends ProfileService {
         mPbapClientAccountManager = accountManager;
         mPbapClientContactsStorage = null;
         mPbapClientStateMachineMap = null;
+        start();
     }
 
     void cleanupDevice(BluetoothDevice device) {

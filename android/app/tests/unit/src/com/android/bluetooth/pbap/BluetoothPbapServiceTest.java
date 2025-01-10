@@ -98,7 +98,6 @@ public class BluetoothPbapServiceTest {
         mTestLooper.startAutoDispatch();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         mService = new BluetoothPbapService(mAdapterService, mNotificationManager);
-        mService.start();
         mService.setAvailable(true);
 
         PackageManager pm = mTargetContext.getPackageManager();

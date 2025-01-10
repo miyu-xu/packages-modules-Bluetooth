@@ -174,7 +174,6 @@ public class PbapClientServiceTest {
         }
 
         mService = new PbapClientService(mMockContext, mMockStorage, mMockDeviceMap);
-        mService.start();
         mService.setAvailable(true);
 
         // new
