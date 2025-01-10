@@ -16,6 +16,103 @@
       "message": "Still work in progress. Todo:\n\n1. Add flag:\n2. Add AdapterServiceTests",
       "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b8f5aa_38f4d86f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6725,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-10T17:28:35Z",
+      "side": 1,
+      "message": "self review: LE Gatt clients for audio devices:",
+      "fixSuggestions": [
+        {
+          "fixId": "71a29280_99c204c1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 6725,
+                "startChar": 0,
+                "endLine": 6726,
+                "endChar": 0
+              },
+              "replacement": "        writer.println(\"LE Gatt cli:\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2767ea44_8072ac15",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-10T17:28:35Z",
+      "side": 1,
+      "message": "selfreview: this is not needed anymore",
+      "fixSuggestions": [
+        {
+          "fixId": "214c54c3_f9635292",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88557660_2de4abb4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-10T17:28:35Z",
+      "side": 1,
+      "message": "self review: this is not needed anymore",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
