@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec8a34b4_cb11e216",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3177,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-10T18:29:42Z",
+      "side": 1,
+      "message": "`!p_scb-\u003estarted`\n\nplease do not compare boolean variables",
+      "range": {
+        "startLine": 3177,
+        "startChar": 6,
+        "endLine": 3177,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9ec9619f_49d9e737",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/av/bta_av_aact.cc",
+              "range": {
+                "startLine": 3177,
+                "startChar": 0,
+                "endLine": 3178,
+                "endChar": 0
+              },
+              "replacement": "  if (!p_scb-\u003estarted) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9021d711388070b67d4cfe839a7d02ff35b6e265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a53945d8_74e4c9cd",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3188,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-10T18:29:42Z",
+      "side": 1,
+      "message": "note: this is new logic, previous logic returns directly without invoking the callback. Hence this is not just a refactor or code move. \n\nCould you explain why this change is needed and why it is not flagged or auto-tested?",
+      "range": {
+        "startLine": 3186,
+        "startChar": 0,
+        "endLine": 3188,
+        "endChar": 11
+      },
+      "revId": "9021d711388070b67d4cfe839a7d02ff35b6e265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
