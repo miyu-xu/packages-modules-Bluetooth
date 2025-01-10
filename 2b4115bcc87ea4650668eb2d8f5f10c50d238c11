@@ -189,6 +189,30 @@
       },
       "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55449f3c_7adb4ea6",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:42:16Z",
+      "side": 1,
+      "message": "@henrichataing@google.com do you have an opinion here ?\n\nI think it still make more sense to me to only set the required property for a test, run it and then set it back to what it was before, without having to list all property in a common section.\n\nWhat was done before was maybe not the best thing to do neither :/",
+      "parentUuid": "18c5ceff_08d4b2ef",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
