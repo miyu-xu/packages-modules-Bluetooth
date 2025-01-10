@@ -320,6 +320,22 @@ public:
     dev_groups_->RemoveDevice(addr);
   }
 
+  void BondingFailed(const RawAddress& addr) override {
+    log::info("{}", addr);
+
+    auto device = FindDeviceByAddress(addr);
+    if (device == nullptr) {
+      log::warn("{} not found", addr);
+      return;
+    }
+
+    if (device->GetExpectedGroupIdMember() != bluetooth::groups::kGroupUnknown) {
+      RemoveCsisDevice(device);
+    } else {
+      log::warn("{} bonded already", addr);
+    }
+  }
+
   int GetGroupId(const RawAddress& addr, Uuid uuid) override {
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {

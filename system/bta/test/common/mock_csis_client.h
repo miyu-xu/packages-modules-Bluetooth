@@ -26,6 +26,7 @@ public:
   MOCK_METHOD((void), Connect, (const RawAddress& addr), (override));
   MOCK_METHOD((void), Disconnect, (const RawAddress& addr), (override));
   MOCK_METHOD((void), RemoveDevice, (const RawAddress& address), (override));
+  MOCK_METHOD((void), BondingFailed, (const RawAddress& address), (override));
   MOCK_METHOD((int), GetGroupId, (const RawAddress& addr, bluetooth::Uuid uuid), (override));
   MOCK_METHOD((void), LockGroup, (const int group_id, bool lock, bluetooth::csis::CsisLockCb cb),
               (override));

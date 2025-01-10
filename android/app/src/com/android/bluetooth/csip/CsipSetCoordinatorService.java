@@ -883,27 +883,37 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     /** Process a change in the bonding state for a device */
     public void handleBondStateChanged(BluetoothDevice device, int fromState, int toState) {
-        mHandler.post(() -> bondStateChanged(device, toState));
+        mHandler.post(() -> bondStateChanged(device, fromState, toState));
     }
 
     /**
      * Remove state machine if the bonding for a device is removed
      *
      * @param device the device whose bonding state has changed
-     * @param bondState the new bond state for the device. Possible values are: {@link
+     * @param fromState the old bond state for the device. Possible values are: {@link
+     *     BluetoothDevice#BOND_NONE}, {@link BluetoothDevice#BOND_BONDING}, {@link
+     *     BluetoothDevice#BOND_BONDED}.
+     * @param toState the new bond state for the device. Possible values are: {@link
      *     BluetoothDevice#BOND_NONE}, {@link BluetoothDevice#BOND_BONDING}, {@link
      *     BluetoothDevice#BOND_BONDED}.
      */
     @VisibleForTesting
-    void bondStateChanged(BluetoothDevice device, int bondState) {
-        Log.d(TAG, "Bond state changed for device: " + device + " state: " + bondState);
-        if (bondState == BluetoothDevice.BOND_BONDING
+    void bondStateChanged(BluetoothDevice device, int fromState, int toState) {
+        Log.d(TAG, "Bond state changed for device: " + device + " state: " + toState);
+        if (toState == BluetoothDevice.BOND_BONDING
                 && mFoundSetMemberToGroupId.containsKey(device)) {
             mFoundSetMemberToGroupId.remove(device);
         }
 
+        // Native CSIS holds temporary info about device in bonding state,
+        // that has to be cleared in case of an error.
+        if (toState == BluetoothDevice.BOND_NONE && fromState == BluetoothDevice.BOND_BONDING) {
+            mNativeInterface.bondingFailed(device);
+            return;
+        }
+
         // Remove state machine if the bonding for a device is removed
-        if (bondState != BluetoothDevice.BOND_NONE) {
+        if (toState != BluetoothDevice.BOND_NONE) {
             return;
         }
 
