@@ -189,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33cf9ac7_20db608b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:47:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d67d2557_c92606b8",
+      "range": {
+        "startLine": 740,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 46
+      },
+      "revId": "fb0b8fae65a822881fb12c5fee0a6059d1eba59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "502ffdd0_f26b6f78",
