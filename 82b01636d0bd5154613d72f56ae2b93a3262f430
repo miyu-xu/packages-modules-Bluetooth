@@ -1,5 +1,115 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04e3c70_55098280",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:26:51Z",
+      "side": 1,
+      "message": "Why is this public now ?",
+      "range": {
+        "startLine": 536,
+        "startChar": 4,
+        "endLine": 536,
+        "endChar": 10
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d547b826_02ab7349",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:26:51Z",
+      "side": 1,
+      "message": "Isn\u0027t warning too high here?",
+      "range": {
+        "startLine": 571,
+        "startChar": 16,
+        "endLine": 571,
+        "endChar": 17
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff545131_7fa4e336",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:26:51Z",
+      "side": 1,
+      "message": "You created this map as a concurrentHashMap but you are taking a lock anyway. What is the threading model here ? Why locking here but not locking line 556 ?",
+      "range": {
+        "startLine": 598,
+        "startChar": 22,
+        "endLine": 598,
+        "endChar": 40
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83203ac2_79b19085",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:26:51Z",
+      "side": 1,
+      "message": "why mGroupVolumeCache is in the mDeviceVolumeCache lock ?",
+      "range": {
+        "startLine": 653,
+        "startChar": 33,
+        "endLine": 653,
+        "endChar": 50
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ac1414_e2ca41e1",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-10T22:26:51Z",
+      "side": 1,
+      "message": "not a warning ?",
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
