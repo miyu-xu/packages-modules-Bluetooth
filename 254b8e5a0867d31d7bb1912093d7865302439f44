@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e89e25a_58bf3118",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-10T05:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caa0c32f_37646f1c",
+      "range": {
+        "startLine": 22,
+        "startChar": 6,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ded5a3bc_b95cb2ac",
@@ -89,6 +113,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7d05523_aa640618",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-10T05:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded5a3bc_b95cb2ac",
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d00e5405_1e7b7391",
@@ -144,6 +186,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03dbc28a_55152699",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-10T05:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d00e5405_1e7b7391",
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "753b136a_2b08f72a",
@@ -185,6 +245,24 @@
           ]
         }
       ],
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d44907d_a0ba2910",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-10T05:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "753b136a_2b08f72a",
       "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
