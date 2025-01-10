@@ -54,6 +54,11 @@ public class TbsService extends ProfileService {
 
     public TbsService(Context ctx) {
         super(ctx);
+
+        // Mark service as started
+        setTbsService(this);
+
+        mTbsGeneric.init(new TbsGatt(this));
     }
 
     public static boolean isEnabled() {
@@ -63,19 +68,6 @@ public class TbsService extends ProfileService {
     @Override
     protected IProfileServiceBinder initBinder() {
         return new TbsServerBinder(this);
-    }
-
-    @Override
-    public void start() {
-        Log.d(TAG, "start()");
-        if (sTbsService != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
-        // Mark service as started
-        setTbsService(this);
-
-        mTbsGeneric.init(new TbsGatt(this));
     }
 
     @Override
