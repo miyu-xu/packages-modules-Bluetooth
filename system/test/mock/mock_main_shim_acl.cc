@@ -79,10 +79,6 @@ void shim::Acl::AcceptLeConnectionFrom(const hci::AddressWithType& /* address_wi
   inc_func_call_count(__func__);
 }
 
-void shim::Acl::IgnoreLeConnectionFrom(const hci::AddressWithType& /* address_with_type */) {
-  inc_func_call_count(__func__);
-}
-
 void bluetooth::shim::Acl::OnClassicLinkDisconnected(HciHandle /* handle */,
                                                      hci::ErrorCode /* reason */) {
   inc_func_call_count(__func__);
