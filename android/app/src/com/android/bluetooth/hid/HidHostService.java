@@ -136,6 +136,10 @@ public class HidHostService extends ProfileService {
         mAdapterService = requireNonNull(adapterService);
         mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
         mNativeInterface = requireNonNull(HidHostNativeInterface.getInstance());
+
+        mNativeInterface.init(this);
+        mNativeAvailable = true;
+        setHidHostService(this);
     }
 
     public static boolean isEnabled() {
@@ -145,13 +149,6 @@ public class HidHostService extends ProfileService {
     @Override
     public IProfileServiceBinder initBinder() {
         return new BluetoothHidHostBinder(this);
-    }
-
-    @Override
-    public void start() {
-        mNativeInterface.init(this);
-        mNativeAvailable = true;
-        setHidHostService(this);
     }
 
     @Override
