@@ -136,6 +136,10 @@ public class HidHostService extends ProfileService {
         mAdapterService = requireNonNull(adapterService);
         mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
         mNativeInterface = requireNonNull(HidHostNativeInterface.getInstance());
+
+        mNativeInterface.init(this);
+        mNativeAvailable = true;
+        setHidHostService(this);
     }
 
     public static boolean isEnabled() {
@@ -145,13 +149,6 @@ public class HidHostService extends ProfileService {
     @Override
     public IProfileServiceBinder initBinder() {
         return new BluetoothHidHostBinder(this);
-    }
-
-    @Override
-    public void start() {
-        mNativeInterface.init(this);
-        mNativeAvailable = true;
-        setHidHostService(this);
     }
 
     @Override
@@ -1083,6 +1080,7 @@ public class HidHostService extends ProfileService {
     /**
      * @see BluetoothHidHost#getPreferredTransport
      */
+    @VisibleForTesting
     int getPreferredTransport(BluetoothDevice device) {
         Log.d(TAG, "getPreferredTransport: device=" + device);
 
@@ -1091,6 +1089,7 @@ public class HidHostService extends ProfileService {
     }
 
     /* The following APIs regarding test app for compliance */
+    @VisibleForTesting
     boolean getProtocolMode(BluetoothDevice device) {
         Log.d(TAG, "getProtocolMode: device=" + device);
         int state = this.getConnectionState(device);
@@ -1102,6 +1101,7 @@ public class HidHostService extends ProfileService {
         return true;
     }
 
+    @VisibleForTesting
     boolean virtualUnplug(BluetoothDevice device) {
         Log.d(TAG, "virtualUnplug: device=" + device);
         int state = this.getConnectionState(device);
@@ -1113,6 +1113,7 @@ public class HidHostService extends ProfileService {
         return true;
     }
 
+    @VisibleForTesting
     boolean setProtocolMode(BluetoothDevice device, int protocolMode) {
         Log.d(TAG, "setProtocolMode: device=" + device);
         int state = this.getConnectionState(device);
@@ -1126,6 +1127,7 @@ public class HidHostService extends ProfileService {
         return true;
     }
 
+    @VisibleForTesting
     boolean getReport(BluetoothDevice device, byte reportType, byte reportId, int bufferSize) {
         Log.d(TAG, "getReport: device=" + device);
         int state = this.getConnectionState(device);
@@ -1143,6 +1145,7 @@ public class HidHostService extends ProfileService {
         return true;
     }
 
+    @VisibleForTesting
     boolean setReport(BluetoothDevice device, byte reportType, String report) {
         Log.d(TAG, "setReport: device=" + device);
         int state = this.getConnectionState(device);
@@ -1159,6 +1162,7 @@ public class HidHostService extends ProfileService {
         return true;
     }
 
+    @VisibleForTesting
     boolean sendData(BluetoothDevice device, String report) {
         Log.d(TAG, "sendData: device=" + device);
         int state = this.getConnectionState(device);
