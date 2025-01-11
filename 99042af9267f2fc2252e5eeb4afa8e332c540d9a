@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98cc59e3_8bbe8a1f",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:24:25Z",
+      "side": 1,
+      "message": "This is not a trivial bugfix, should we have this as a \"feature\" instead ?\n\n@siyuanh@google.com / @girardier@google.com ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "99042af9267f2fc2252e5eeb4afa8e332c540d9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
