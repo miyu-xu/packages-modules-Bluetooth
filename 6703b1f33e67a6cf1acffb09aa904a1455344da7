@@ -16,6 +16,24 @@
       "message": "Hi @wescande@google.com, I found that Christine is OOO till March. Do you know who other can approve this change? thanks!",
       "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6116bbe1_285328df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:22:38Z",
+      "side": 1,
+      "message": "Girardier can approve the API then he will defer to api reviewer",
+      "parentUuid": "f01e092d_d2bac60d",
+      "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
