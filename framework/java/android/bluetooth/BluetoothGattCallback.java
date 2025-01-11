@@ -16,7 +16,12 @@
 
 package android.bluetooth;
 
+import android.annotation.IntDef;
+import android.annotation.IntRange;
 import android.annotation.NonNull;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /** This abstract class is used to implement {@link BluetoothGatt} callbacks. */
 public abstract class BluetoothGattCallback {
@@ -254,24 +259,36 @@ public abstract class BluetoothGattCallback {
     public void onServiceChanged(@NonNull BluetoothGatt gatt) {}
 
     /**
+     * Subrate request return values.
+     *
+     * @hide
+     */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+            prefix = {"ON_SUBRATE_CHANGE"},
+            value = {
+                BluetoothStatusCodes.SUCCESS,
+                BluetoothStatusCodes.REASON_SYSTEM_POLICY,
+                BluetoothStatusCodes.ERROR_UNKNOWN,
+                BluetoothStatusCodes.ERROR_HARDWARE_GENERIC,
+                BluetoothStatusCodes.NOT_ALLOWED,
+                BluetoothStatusCodes.ERROR_REMOTE_OPERATION_NOT_SUPPORTED,
+                BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES,
+                BluetoothStatusCodes.ERROR_BAD_PARAMETERS,
+            })
+    public @interface OnSubrateChangeStatusValues {}
+
+    /**
      * Callback indicating LE connection's subrate parameters have changed.
      *
      * @param gatt GATT client involved
-     * @param subrateFactor for the LE connection.
-     * @param latency Worker latency for the connection in number of connection events. Valid range
-     *     is from 0 to 499
-     * @param contNum Valid range is from 0 to 499.
-     * @param timeout Supervision timeout for this connection, in 10ms unit. Valid range is from 10
-     *     (0.1s) to 3200 (32s)
-     * @param status {@link BluetoothGatt#GATT_SUCCESS} if LE connection subrating has been changed
-     *     successfully.
+     * @param subrateMode for this LE connection.
+     * @param status {@link BluetoothGatt#GATT_SUCCESS} if the connection subrating has been updated
+     *     successfully
      * @hide
      */
     public void onSubrateChange(
-            BluetoothGatt gatt,
-            int subrateFactor,
-            int latency,
-            int contNum,
-            int timeout,
-            int status) {}
+            @NonNull BluetoothGatt gatt,
+            @IntRange(from = 1, to = 255) int subrateMode,
+            @OnSubrateChangeStatusValues int status) {}
 }
