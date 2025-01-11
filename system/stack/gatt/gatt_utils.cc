@@ -1783,11 +1783,13 @@ static void gatt_disconnect_complete_notify_user(const RawAddress& bda, tGATT_DI
                                                  tBT_TRANSPORT transport) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, transport);
 
+  if (!p_tcb) return;
+
   if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
     for (auto& [i, p_reg] : gatt_cb.cl_rcb_map) {
       if (p_reg->in_use && p_reg->app_cb.p_conn_cb) {
         tCONN_ID conn_id =
-                p_tcb ? gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if) : GATT_INVALID_CONN_ID;
+                gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, bda, conn_id, kGattDisconnected, reason,
                                    transport);
       }
@@ -1797,7 +1799,7 @@ static void gatt_disconnect_complete_notify_user(const RawAddress& bda, tGATT_DI
       tGATT_REG* p_reg = &gatt_cb.cl_rcb[i];
       if (p_reg->in_use && p_reg->app_cb.p_conn_cb) {
         tCONN_ID conn_id =
-                p_tcb ? gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if) : GATT_INVALID_CONN_ID;
+                gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, bda, conn_id, kGattDisconnected, reason,
                                    transport);
       }
