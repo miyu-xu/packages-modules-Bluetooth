@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0897fa3a_c358f809",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-11T21:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad341a22_47999778",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb52289b_bbaaa42f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9541d9bc_c099d2b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-11T21:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb52289b_bbaaa42f",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3e0e955_0242ee68",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-01-11T18:45:59Z",
       "side": 1,
       "message": "selfReview: device instead groupId",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbbdce3c_aa776d6a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 5186,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-11T21:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3e0e955_0242ee68",
       "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -83,6 +137,24 @@
           ]
         }
       ],
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0f4281d_f9483df5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6725,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-11T21:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06b8f5aa_38f4d86f",
       "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -132,6 +204,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25ee4ab8_4cec0393",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-11T21:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2767ea44_8072ac15",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88557660_2de4abb4",
@@ -145,6 +235,24 @@
       "writtenOn": "2025-01-10T17:28:35Z",
       "side": 1,
       "message": "self review: this is not needed anymore",
+      "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d6790a_cbf5a8e2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-11T21:07:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88557660_2de4abb4",
       "revId": "e6f669a4fb905f968b336fbef8873f4442eb8c42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
