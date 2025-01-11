@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2603d744_e3f5ee4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:47:04Z",
+      "side": 1,
+      "message": "n",
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03868149_53506b68",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6743,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:47:04Z",
+      "side": 1,
+      "message": "Add one `writer.println();` to have a separation before the statemachine dump?",
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ffd2fce_83f949ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:47:04Z",
+      "side": 1,
+      "message": "THe test is putting the java in state_turning_off ? Why are we having the test run in an intermediary state?\n\nNote that in ble_on there is no leAudio service available, I am wondering how the verify on the mMockLeAudioService can works. (line 1149 of this patchset)",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 55
+      },
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30081f13_2c42f1e3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:47:04Z",
+      "side": 1,
+      "message": "`asssertThat(...).containsExactly(mLeftDevice,mRightDevice)`\n\nAlso, is there an order to check here ? if so adding `.inOrder()` at the end would do it",
+      "range": {
+        "startLine": 3145,
+        "startChar": 5,
+        "endLine": 3147,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "812a47c1_2e12005f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 2997,
+                "startChar": 0,
+                "endLine": 3000,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(groupDevicesById).containsExactly(mLeftDevice, mRightDevice);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3102,
+                "startChar": 0,
+                "endLine": 3105,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(groupDevicesById).containsExactly(mLeftDevice, mRightDevice);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3145,
+                "startChar": 0,
+                "endLine": 3148,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(groupDevicesById).containsExactly(mLeftDevice, mRightDevice);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3195,
+                "startChar": 0,
+                "endLine": 3198,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(groupDevicesById).containsExactly(mLeftDevice, mRightDevice);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3253,
+                "startChar": 0,
+                "endLine": 3256,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(groupDevicesById).containsExactly(mLeftDevice, mRightDevice);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75e8cdff_b59dffac",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3225,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:47:04Z",
+      "side": 1,
+      "message": "go/unit-testing-practices?polyglot\u003djava#naming\n\nHere we could have for example:\n\n`targetedAnnoucement_whenAutoActiveMode_resetToDefault` (idk if I understood the test correctly so my naming may not be correct neither)\n\nBut this is showing that \"autoActiveMode\" is a bit of an obscur naming.",
+      "range": {
+        "startLine": 3225,
+        "startChar": 16,
+        "endLine": 3225,
+        "endChar": 83
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5e06430d_c89e8bcd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3225,
+                "startChar": 0,
+                "endLine": 3226,
+                "endChar": 0
+              },
+              "replacement": "    public void testAutoActiveMode_whenRemoteTargetedAnnouncements_resetToDefault() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c736be3_5133ee2d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3283,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-11T22:47:04Z",
+      "side": 1,
+      "message": "Don\u0027t catch anything and let the test throw an exception `throws RemoteException {`.\n\nThat way the test will fail when the exception occur (even if I think this will never fail)",
+      "range": {
+        "startLine": 3283,
+        "startChar": 0,
+        "endLine": 3283,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b1b35b66_47c3b1d4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3225,
+                "startChar": 0,
+                "endLine": 3226,
+                "endChar": 0
+              },
+              "replacement": "    public void testAutoActiveModeBackToDefaultBecauseOfRemoteTargetedAnnouncements()\n            throws RemoteException {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+              "range": {
+                "startLine": 3281,
+                "startChar": 0,
+                "endLine": 3286,
+                "endChar": 0
+              },
+              "replacement": "        scanCallbacks.getValue().onScanResult(scanResult);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
