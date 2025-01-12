@@ -72,8 +72,12 @@ size_t list_length(const list_t* list) {
   return list->length;
 }
 
+++
 void* list_front(const list_t* list) {
   log::assert_that(list != NULL, "assert failed: list != NULL");
+  if (list->head == NULL) {
+    return NULL;
+  }
   log::assert_that(!list_is_empty(list), "assert failed: !list_is_empty(list)");
 
   return list->head->data;
