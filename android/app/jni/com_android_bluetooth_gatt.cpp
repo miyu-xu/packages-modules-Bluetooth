@@ -2447,6 +2447,11 @@ static void startAdvertisingSetNative(JNIEnv* env, jobject /* object */, jobject
                                          periodic_data_data + periodic_data_len);
   env->ReleaseByteArrayElements(periodic_data, periodic_data_data, JNI_ABORT);
 
+  if (!sGattIf->advertiser) {
+    LOG(ERROR) << "sGattIf->advertiser is null";
+    return;
+  }
+
   sGattIf->advertiser->StartAdvertisingSet(
           kAdvertiserClientIdJni, reg_id,
           base::Bind(&ble_advertising_set_started_cb, reg_id, server_if), params, data_vec,
