@@ -62,6 +62,23 @@
       "message": "Do we have sufficient test coverage of this that this bug wasn\u0027t caught earlier?  Might need to update the unit tests",
       "revId": "ce6851089ceea201053e83c5d504395c72eaff52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a751f0d_20214069",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-13T23:14:23Z",
+      "side": 1,
+      "message": "removing approval until test is written per william\u0027s comment",
+      "revId": "ce6851089ceea201053e83c5d504395c72eaff52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
