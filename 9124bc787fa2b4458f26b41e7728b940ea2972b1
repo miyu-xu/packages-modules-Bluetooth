@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0918196e_05992542",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-01-13T10:47:17Z",
+      "side": 1,
+      "message": "Manually tested using a test app and it successfully got the UUIDs.\nWill add a Bumble test for automation.",
+      "revId": "9124bc787fa2b4458f26b41e7728b940ea2972b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
