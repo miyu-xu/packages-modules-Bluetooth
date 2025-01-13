@@ -981,6 +981,126 @@ public class BluetoothInCallServiceTest {
     }
 
     @Test
+    public void endActivecallWhenConferenceCallInHoldState() throws Exception {
+        mSetFlagsRule.enableFlags(Flags.FLAG_NON_CONFERENCE_CALL_HANGUP);
+        doReturn("").when(mMockTelephonyManager).getNetworkCountryIso();
+
+        List<BluetoothCall> calls = new ArrayList<>();
+        doReturn(calls).when(mMockCallInfo).getBluetoothCalls();
+
+        // Call 1 active call is added
+        BluetoothCall activeCall_1 = createActiveCall(UUID.randomUUID());
+        calls.add(activeCall_1);
+        mBluetoothInCallService.onCallAdded(activeCall_1);
+
+        doReturn(Call.STATE_ACTIVE).when(activeCall_1).getState();
+        doReturn(Uri.parse("tel:555-0001")).when(activeCall_1).getHandle();
+        doReturn(new GatewayInfo(null, null, Uri.parse("tel:555-0001")))
+                .when(activeCall_1)
+                .getGatewayInfo();
+
+        // Call 2 holding call is added
+        BluetoothCall activeCall_2 = createHeldCall(UUID.randomUUID());
+        calls.add(activeCall_2);
+        mBluetoothInCallService.onCallAdded(activeCall_2);
+
+        doReturn(Call.STATE_HOLDING).when(activeCall_2).getState();
+        doReturn(true).when(activeCall_2).isIncoming();
+        doReturn(Uri.parse("tel:555-0002")).when(activeCall_2).getHandle();
+        doReturn(new GatewayInfo(null, null, Uri.parse("tel:555-0002")))
+                .when(activeCall_2)
+                .getGatewayInfo();
+
+        // needs to have at least one CLCC response before merge to enable call inference
+        clearInvocations(mMockBluetoothHeadset);
+        mBluetoothInCallService.listCurrentCalls();
+        verify(mMockBluetoothHeadset)
+                .clccResponse(
+                        1, 0, CALL_STATE_ACTIVE, 0, false, "5550001", PhoneNumberUtils.TOA_Unknown);
+        verify(mMockBluetoothHeadset)
+                .clccResponse(
+                        2, 1, CALL_STATE_HELD, 0, false, "5550002", PhoneNumberUtils.TOA_Unknown);
+        calls.clear();
+
+        // calls merged for conference call
+        DisconnectCause cause =
+                new DisconnectCause(DisconnectCause.OTHER, "IMS_MERGED_SUCCESSFULLY");
+        doReturn(cause).when(activeCall_1).getDisconnectCause();
+        doReturn(cause).when(activeCall_2).getDisconnectCause();
+        mBluetoothInCallService.onCallRemoved(activeCall_1, true);
+        mBluetoothInCallService.onCallRemoved(activeCall_2, true);
+
+        BluetoothCall conferenceCall = createActiveCall(UUID.randomUUID());
+        addCallCapability(conferenceCall, Connection.CAPABILITY_MANAGE_CONFERENCE);
+
+        doReturn(Uri.parse("tel:555-1234")).when(conferenceCall).getHandle();
+        doReturn(true).when(conferenceCall).isConference();
+        doReturn(Call.STATE_ACTIVE).when(conferenceCall).getState();
+        doReturn(true).when(conferenceCall).hasProperty(Call.Details.PROPERTY_GENERIC_CONFERENCE);
+        doReturn(true).when(conferenceCall).isIncoming();
+        doReturn(calls).when(mMockCallInfo).getBluetoothCalls();
+
+        // parent call arrived, but children have not, then do inference on children
+        calls.add(conferenceCall);
+        doReturn(3).when(conferenceCall).getParentId();
+        doReturn(3).when(conferenceCall).getId();
+        Assert.assertEquals(calls.size(), 1);
+        System.out.println("$$$ onCallAdded(conferenceCall) $$$");
+        mBluetoothInCallService.onCallAdded(conferenceCall);
+
+        clearInvocations(mMockBluetoothHeadset);
+        mBluetoothInCallService.listCurrentCalls();
+        verify(mMockBluetoothHeadset)
+                .clccResponse(
+                        1, 0, CALL_STATE_ACTIVE, 0, true, "5550001", PhoneNumberUtils.TOA_Unknown);
+        verify(mMockBluetoothHeadset)
+                .clccResponse(
+                        2, 1, CALL_STATE_ACTIVE, 0, true, "5550002", PhoneNumberUtils.TOA_Unknown);
+
+        // real children arrive, no change on CLCC response
+        calls.add(activeCall_1);
+        mBluetoothInCallService.onCallAdded(activeCall_1);
+        doReturn(true).when(activeCall_1).isConference();
+        calls.add(activeCall_2);
+        mBluetoothInCallService.onCallAdded(activeCall_2);
+        doReturn(Call.STATE_ACTIVE).when(activeCall_2).getState();
+        doReturn(true).when(activeCall_2).isConference();
+        doReturn(List.of(1, 2)).when(conferenceCall).getChildrenIds();
+        doReturn(conferenceCall).when(mMockCallInfo).getForegroundCall();
+
+        clearInvocations(mMockBluetoothHeadset);
+        mBluetoothInCallService.listCurrentCalls();
+        verify(mMockBluetoothHeadset)
+                .clccResponse(
+                        1, 0, CALL_STATE_ACTIVE, 0, true, "5550001", PhoneNumberUtils.TOA_Unknown);
+        verify(mMockBluetoothHeadset)
+                .clccResponse(
+                        2, 1, CALL_STATE_ACTIVE, 0, true, "5550002", PhoneNumberUtils.TOA_Unknown);
+
+        // Call 3 is added
+        BluetoothCall activeCall_3 = createActiveCall(UUID.randomUUID());
+        doReturn(null).when(activeCall_3).getParentId();
+        calls.add(activeCall_3);
+        mBluetoothInCallService.onCallAdded(activeCall_3);
+
+        // Call 3 active call, Conference on hold
+        doReturn(Call.STATE_HOLDING).when(conferenceCall).getState();
+        doReturn(true).when(activeCall_3).isIncoming();
+        doReturn(Call.STATE_ACTIVE).when(activeCall_3).getState();
+        doReturn(Uri.parse("tel:555-0003")).when(activeCall_3).getHandle();
+        doReturn(new GatewayInfo(null, null, Uri.parse("tel:555-0003")))
+                .when(activeCall_3)
+                .getGatewayInfo();
+
+        mBluetoothInCallService.hangupCall();
+
+        clearInvocations(mMockBluetoothHeadset);
+        mBluetoothInCallService.listCurrentCalls();
+
+        verify(activeCall_3).disconnect();
+    }
+
+    @Test
     public void conferenceLastCallIndexIsMaintained() throws Exception {
         mSetFlagsRule.enableFlags(Flags.FLAG_MAINTAIN_CALL_INDEX_AFTER_CONFERENCE);
         doReturn("").when(mMockTelephonyManager).getNetworkCountryIso();
