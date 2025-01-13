@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d03c2a59_663ff9f1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T14:35:05Z",
+      "side": 1,
+      "message": "code below (line 1369 -\u003e is responsible for getting back context which were stored before the call. \n\nwhat this code (1342 -\u003e 1368) is indending to do? \nHow it will work with SinkOnly devices ? e.g. Hearing aids",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7508febd_41e4b2da",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T14:35:05Z",
+      "side": 1,
+      "message": "Not related to this CL, but still: Since in Unicast we do have Supported and Available context, and I have feeling that this function is not really checking \"Supported ones\", can we please adjust the naming to avoid future confusions ?",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
