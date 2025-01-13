@@ -22,6 +22,30 @@
       },
       "revId": "99042af9267f2fc2252e5eeb4afa8e332c540d9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3558b09b_a6faec82",
+        "filename": "flags/connectivity.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-13T17:11:40Z",
+      "side": 1,
+      "message": "Ideally yes, this should be a standard feature flag and go over the same soak time. However, we may want to have this flag enabled asap in a Beta to get early validations. Beta 2 is going to be challenging considering that changes are due for Jan 22 which won\u0027t give us enough time to do QA on it except if we make it part of this week prebuilt. Beta 3 changes due are Feb 19, but Beta 3 will only be released on March 12, almost at the same time of our bug fix cutoff. If these changes are fully ready / validated on our side and can be merged today, we can try including in Beta 2 (and in this case we should keep it under a bugfix flag). If we need more time, then Beta 3 is the only option and I would recommend switching to a standard flag.",
+      "parentUuid": "98cc59e3_8bbe8a1f",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 5
+      },
+      "revId": "99042af9267f2fc2252e5eeb4afa8e332c540d9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
