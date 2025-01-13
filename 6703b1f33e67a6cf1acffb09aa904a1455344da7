@@ -69,6 +69,24 @@
       "parentUuid": "a869456b_1f3a1f51",
       "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bace6720_52c8f83c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T18:05:43Z",
+      "side": 1,
+      "message": "It\u0027s a 24Q3 feature",
+      "parentUuid": "cb2c68c4_eba4705f",
+      "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
