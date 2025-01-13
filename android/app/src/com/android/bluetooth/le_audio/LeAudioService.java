@@ -2442,8 +2442,11 @@ public class LeAudioService extends ProfileService {
                         + ", mExposedActiveDevice: "
                         + mExposedActiveDevice);
 
-        if (!Flags.leaudioBroadcastPrimaryGroupSelection()
-                && isBroadcastActive()
+        /* Replace fallback unicast and monitoring input device if device is local broadcaster and
+         * broadcast is running.
+         */
+        if (isBroadcastActive()
+                && getFirstNotStoppedBroadcastId().isPresent()
                 && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
                 && mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID) {
 
