@@ -51,6 +51,7 @@ import android.content.pm.PackageManager.PackageInfoFlags;
 import android.content.res.Resources;
 import android.os.Binder;
 import android.os.Build;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
@@ -153,6 +154,7 @@ public class GattService extends ProfileService {
     private final DistanceMeasurementManager mDistanceMeasurementManager;
     private final ActivityManager mActivityManager;
     private final PackageManager mPackageManager;
+    private final HandlerThread mHandlerThread;
 
     public GattService(AdapterService adapterService) {
         super(requireNonNull(adapterService));
@@ -166,7 +168,12 @@ public class GattService extends ProfileService {
 
         mNativeInterface = GattObjectsFactory.getInstance().getNativeInterface();
         mNativeInterface.init(this);
-        mAdvertiseManager = new AdvertiseManager(this);
+
+        // Create a thread to handle LE operations
+        mHandlerThread = new HandlerThread("Bluetooth LE");
+        mHandlerThread.start();
+
+        mAdvertiseManager = new AdvertiseManager(mAdapterService, mHandlerThread.getLooper());
 
         if (!Flags.scanManagerRefactor()) {
             mScanController = new ScanController(adapterService);
@@ -206,7 +213,6 @@ public class GattService extends ProfileService {
         if (mScanController != null) {
             mScanController.stop();
         }
-        mAdvertiseManager.clear();
         mClientMap.clear();
         mRestrictedHandles.clear();
         mServerMap.clear();
@@ -221,6 +227,7 @@ public class GattService extends ProfileService {
         mNativeInterface.cleanup();
         mAdvertiseManager.cleanup();
         mDistanceMeasurementManager.cleanup();
+        mHandlerThread.quit();
     }
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
