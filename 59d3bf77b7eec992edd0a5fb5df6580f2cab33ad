@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa38b338_471f8c2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T18:02:56Z",
+      "side": 1,
+      "message": "risc-v target cannot build and is randomly failing.\n\nThe change is correct, and nothing is wrong on Bluetooth side.\n\nAs mentionned in b/386842159, the Bluetooth team will not revert their change anymore for this target as it will simply break again with another change or be fixed randomly by another change",
+      "revId": "59d3bf77b7eec992edd0a5fb5df6580f2cab33ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
