@@ -51,6 +51,24 @@
       "message": "API +1, removal of an already shipped API. @asapperstein@google.com\nfor +2.",
       "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2c68c4_eba4705f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2025-01-13T17:29:00Z",
+      "side": 1,
+      "message": "When did it ship? Just want to make sure this isn\u0027t a new API in 25Q2 since I think we ought to leave those for awhile.",
+      "parentUuid": "a869456b_1f3a1f51",
+      "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
