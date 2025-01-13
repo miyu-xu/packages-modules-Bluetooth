@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6abc7f3_a6a5572f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-13T10:36:19Z",
+      "side": 1,
+      "message": "I make it public in analogy to the setGroupVolume and to use it in unit tests.",
+      "parentUuid": "f04e3c70_55098280",
+      "range": {
+        "startLine": 536,
+        "startChar": 4,
+        "endLine": 536,
+        "endChar": 10
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d547b826_02ab7349",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-10T22:26:51Z",
       "side": 1,
       "message": "Isn\u0027t warning too high here?",
+      "range": {
+        "startLine": 571,
+        "startChar": 16,
+        "endLine": 571,
+        "endChar": 17
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "030a1ea6_8c97051f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-13T10:36:19Z",
+      "side": 1,
+      "message": "I thought that not, as it was used in setGroupVolume too. adjustDeviceMute is similar logic as in group but adopted to use with one device only.\n\nBut I checked it right now and notice that this warning from setGroupVolume is always logged when you go down volume to 0 using phone volume contrl button and again when goin up. So maybe we should change it in both places.\n\nAnother thing which I found in this test is that on Samsung Galaxy 2/3 Pro (on Sony XM5 did not shows) when you go with volume down or up you always get error log:\n```\nsystem/bta/vc/vc.cc:425 HandleAutonomusVolumeChange: Autonomous change but volume and mute did not changed.\n```\nor\n```\nsystem/bta/vc/vc.cc:923 RemoveDeviceFromOperationList: Could not find operation id: 288\n```\n\nAnd one more that Samsung Samsung Galaxy 2/3 Pro does not unmute so if go with volume to 0 using phone buttons and volume up by HS then it is still muted.\nHS issue which was very common on march UPF.\n\n@rlukasz@google.com Do you remember if this was reported to the Samsung? Should we fix smth on our side with logs severity?",
+      "parentUuid": "d547b826_02ab7349",
       "range": {
         "startLine": 571,
         "startChar": 16,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa72bc89_34ce22dd",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-13T10:36:19Z",
+      "side": 1,
+      "message": "synchronize is needed as when mGroupVolumeCache is changed we need to update mDeviceVolumeCache too so I want to be sure that it is done atomically.\n\nNevertheless in next CL I synchronized whole method because there was reces between AF/VCS/BothRemotes",
+      "parentUuid": "ff545131_7fa4e336",
+      "range": {
+        "startLine": 598,
+        "startChar": 22,
+        "endLine": 598,
+        "endChar": 40
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83203ac2_79b19085",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13e0e766_ba225720",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-13T10:36:19Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "83203ac2_79b19085",
+      "range": {
+        "startLine": 653,
+        "startChar": 33,
+        "endLine": 653,
+        "endChar": 50
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4ac1414_e2ca41e1",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
@@ -106,6 +202,24 @@
       "writtenOn": "2025-01-10T22:26:51Z",
       "side": 1,
       "message": "not a warning ?",
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f251d2_78c476f1",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-13T10:36:19Z",
+      "side": 1,
+      "message": "Yep, it could be a debug as this is no so crucial as the next one (which have to be warning).",
+      "parentUuid": "f4ac1414_e2ca41e1",
       "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
