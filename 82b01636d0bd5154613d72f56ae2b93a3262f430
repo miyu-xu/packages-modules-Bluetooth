@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "068d8af4_83711917",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T20:21:02Z",
+      "side": 1,
+      "message": "Unit test run in the same package and doesn\u0027t need to be public.\nThis method could be private for the main usage, and for test purposes it need to be package-private, we should add @VisibleForTesting then:\n\n\nWe can probably do the same for others method like setGroupVolume (and more ?)\n\n```suggestion\n    @VisibleForTesting\n    void setDeviceVolume(BluetoothDevice device, int volume, boolean isGroupOp) {\n```",
+      "parentUuid": "e6abc7f3_a6a5572f",
+      "range": {
+        "startLine": 536,
+        "startChar": 4,
+        "endLine": 536,
+        "endChar": 10
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d547b826_02ab7349",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
@@ -144,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b095e69_f36cc63f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T20:21:02Z",
+      "side": 1,
+      "message": "\u003e  I want to be sure that it is done atomically.\n\nMake sens, but in that case you want to annotate your variable with `@GuardedBy`, that way you will have report at compile time of the variable being accessed outside of the lock\n\n\n\n---\n\n---\n\n\n\nSomehow related but not 100% related:\n\nI had a change to fix all possible race in vcp with aosp/3379907, the change consist in making run everything on one thread.\n\nBut it need to be re-done due to the huge amount of merge conflicts",
+      "parentUuid": "fa72bc89_34ce22dd",
+      "range": {
+        "startLine": 598,
+        "startChar": 22,
+        "endLine": 598,
+        "endChar": 40
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83203ac2_79b19085",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "Same as above.",
       "parentUuid": "83203ac2_79b19085",
+      "range": {
+        "startLine": 653,
+        "startChar": 33,
+        "endLine": 653,
+        "endChar": 50
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "002fa980_966f39f8",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T20:21:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "13e0e766_ba225720",
       "range": {
         "startLine": 653,
         "startChar": 33,
