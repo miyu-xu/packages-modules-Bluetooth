@@ -33,6 +33,288 @@
       "message": "@bhuthaiah@google.com I have responded to the review comments.\nCould you please do the further review ?\nThanks",
       "revId": "026e71c13184fe6a16d6ae4674bda14ee1e20f80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d90c46a_da3c6b1f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-13T06:16:17Z",
+      "side": 1,
+      "message": "Can it possible to declare `intentReceiver` as global instead of local value",
+      "range": {
+        "startLine": 309,
+        "startChar": 7,
+        "endLine": 309,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0b7ca894_898c5145",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 200,
+                "startChar": 0,
+                "endLine": 204,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothDevice.ACTION_PAIRING_REQUEST)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 254,
+                "startChar": 0,
+                "endLine": 258,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothDevice.ACTION_PAIRING_REQUEST)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 309,
+                "startChar": 0,
+                "endLine": 314,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_ACL_CONNECTED,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothDevice.ACTION_PAIRING_REQUEST)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 381,
+                "startChar": 0,
+                "endLine": 384,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(sTargetContext, BluetoothDevice.ACTION_BOND_STATE_CHANGED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 432,
+                "startChar": 0,
+                "endLine": 435,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(sTargetContext, BluetoothDevice.ACTION_BOND_STATE_CHANGED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 478,
+                "startChar": 0,
+                "endLine": 481,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(sTargetContext, BluetoothDevice.ACTION_ACL_CONNECTED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 567,
+                "startChar": 0,
+                "endLine": 570,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(sTargetContext, BluetoothDevice.ACTION_ACL_CONNECTED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 615,
+                "startChar": 0,
+                "endLine": 619,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_ACL_DISCONNECTED,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 661,
+                "startChar": 0,
+                "endLine": 665,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_ACL_DISCONNECTED,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 708,
+                "startChar": 0,
+                "endLine": 713,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_ACL_DISCONNECTED,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 779,
+                "startChar": 0,
+                "endLine": 784,
+                "endChar": 0
+              },
+              "replacement": "        IntentReceiver intentReceiver \u003d\n                new IntentReceiver.Builder(\n                        sTargetContext,\n                        BluetoothDevice.ACTION_ACL_DISCONNECTED,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)\n                        .build();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 857,
+                "startChar": 0,
+                "endLine": 861,
+                "endChar": 0
+              },
+              "replacement": "        intentReceiver \u003d\n                helper_registerNewIntentActionsInTestStep(\n                        intentReceiver,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothDevice.ACTION_ACL_CONNECTED,\n                        BluetoothDevice.ACTION_PAIRING_REQUEST);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 911,
+                "startChar": 0,
+                "endLine": 916,
+                "endChar": 0
+              },
+              "replacement": "        intentReceiver \u003d\n                helper_registerNewIntentActionsInTestStep(\n                        intentReceiver,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothDevice.ACTION_PAIRING_REQUEST,\n                        BluetoothDevice.ACTION_UUID,\n                        BluetoothDevice.ACTION_ACL_CONNECTED);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 998,
+                "startChar": 0,
+                "endLine": 1000,
+                "endChar": 0
+              },
+              "replacement": "        intentReceiver \u003d\n                helper_registerNewIntentActionsInTestStep(\n                        intentReceiver, BluetoothDevice.ACTION_BOND_STATE_CHANGED);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1019,
+                "startChar": 0,
+                "endLine": 1024,
+                "endChar": 0
+              },
+              "replacement": "    private void testStep_BondLe(\n            IntentReceiver intentReceiver, BluetoothDevice device, OwnAddressType ownAddressType) {\n        intentReceiver \u003d\n                helper_registerNewIntentActionsInTestStep(\n                        intentReceiver,\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n                        BluetoothDevice.ACTION_ACL_CONNECTED,\n                        BluetoothDevice.ACTION_PAIRING_REQUEST);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1089,
+                "startChar": 0,
+                "endLine": 1091,
+                "endChar": 0
+              },
+              "replacement": "    private void doTestIdentityAddressWithType(BluetoothDevice device, OwnAddressType ownAddressType) {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1118,
+                "startChar": 0,
+                "endLine": 1119,
+                "endChar": 0
+              },
+              "replacement": "    private IntentReceiver helper_registerNewIntentActionsInTestStep(\n            IntentReceiver intentReceiver, String... intentStrings) {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1124,
+                "startChar": 0,
+                "endLine": 1125,
+                "endChar": 0
+              },
+              "replacement": "        if (intentReceiver \u003d\u003d null) {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1126,
+                "startChar": 0,
+                "endLine": 1127,
+                "endChar": 0
+              },
+              "replacement": "        } else {\n            intentReceiver.registerIntentActions(intentStrings);\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "026e71c13184fe6a16d6ae4674bda14ee1e20f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b82a09_a6e57844",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-13T06:16:17Z",
+      "side": 1,
+      "message": "log the intent names for registering and unregister",
+      "range": {
+        "startLine": 302,
+        "startChar": 5,
+        "endLine": 302,
+        "endChar": 106
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fb2191d1_dde7969e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 302,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"helper_RegisterReceiver(): Registering for intents, size: \" + mStIntentFilter.size() + \", intents: \" + Arrays.toString(mStIntentFilter.peek().getAction()));\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 316,
+                "startChar": 0,
+                "endLine": 317,
+                "endChar": 0
+              },
+              "replacement": "        Log.d(TAG, \"helper_UnregisterReceiver(): Unregistering for intents, size: \" + mStIntentFilter.size() + \", intents: \" + Arrays.toString(mStIntentFilter.peek().getAction()));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "026e71c13184fe6a16d6ae4674bda14ee1e20f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
