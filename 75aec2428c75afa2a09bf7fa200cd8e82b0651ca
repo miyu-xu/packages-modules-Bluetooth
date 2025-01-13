@@ -16,6 +16,92 @@
       "message": "lgtm, +1, would like to let gkolodziejczyk@google.com also review here.\n\nAlso please also do some sanity tests with external broadcast handover in calling, local media...",
       "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1fd3e62_52f196f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-13T14:27:56Z",
+      "side": 1,
+      "message": "I have general problem with understanding the implemented solution here. Problem is well described. Could you @belusiak@google.com please explain a bit more what was missing to achieve expected result ?",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f52ec93a_88494df9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-13T14:27:56Z",
+      "side": 1,
+      "message": "I have a problem with understanding that is the first condition (https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3345785/4/android/app/src/com/android/bluetooth/bass_client/BassClientService.java#1152) to check this \"else if\". What about some comment or some refactor to make it easier to maintenance in future/review/readibility ?\n\nSecond thing is that \"HOST INTENTIONAL\" pause is set from `stopBigMonitoring` method. It looks like this method check if Host is `isHostPauseType` then add again to `mPausedBroadcastIds` broadcastId.\n\nThe biggest challenge for me is differantiation between the `if` and `else if` what is the scenario difference - lack of comment when this may happen.",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d5e529_ba9901e2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2501,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-13T14:27:56Z",
+      "side": 1,
+      "message": "Did you consider optimizing this multiple maps where keys are syncHandle with some descriptor e.g. https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d578d17e3c565de89010fe4cb7ed8d9db2b95dcef;l\u003d241 ?",
+      "fixSuggestions": [
+        {
+          "fixId": "24824a3f_974697d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2497,
+                "startChar": 0,
+                "endLine": 2497,
+                "endChar": 0
+              },
+              "replacement": "    // TODO: b/350563786 - Consider optimizing multiple maps where keys are syncHandle\n    // with some descriptor e.g.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9ba19e0_60072798",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2505,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-13T14:27:56Z",
+      "side": 1,
+      "message": "This method is getting dense - can it be somehow refactored and or added some comment for better future maintenace or readibility ?",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
