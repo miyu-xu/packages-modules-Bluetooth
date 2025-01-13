@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4df1ba5_2eb2da33",
+        "filename": "offload/hal/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T19:28:33Z",
+      "side": 1,
+      "message": "Most of the bp also have a licence header.\n\nI think we should add it just to be safe",
+      "revId": "3c2e93ffce6314f8de4d0848cd96ad1e4a489d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89d3cc5b_f67dddeb",
+        "filename": "offload/leaudio/hci/arbiter.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T19:28:33Z",
+      "side": 1,
+      "message": "Can we comments on the data here ? what is the uszie and what in_transit refer to as u16",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "3c2e93ffce6314f8de4d0848cd96ad1e4a489d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c480ed3a_d4cabf05",
+        "filename": "offload/leaudio/hci/arbiter.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T19:28:33Z",
+      "side": 1,
+      "message": "can we add handle in error message ?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 48
+      },
+      "revId": "3c2e93ffce6314f8de4d0848cd96ad1e4a489d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
