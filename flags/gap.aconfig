@@ -291,3 +291,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "report_uuids_from_le_advertising_data"
+    namespace: "bluetooth"
+    description: "Report UUIDs in BLE advertising data"
+    bug: "389598210"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
