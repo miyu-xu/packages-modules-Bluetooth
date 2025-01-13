@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
+import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 import android.telecom.BluetoothCallQualityReport;
 import android.telecom.Call;
@@ -978,6 +979,95 @@ public class BluetoothInCallServiceTest {
                         anyBoolean(),
                         nullable(String.class),
                         anyInt());
+    }
+
+    @Test
+    @EnableFlags({Flags.FLAG_NON_CONFERENCE_CALL_HANGUP})
+    public void endActivecallWhenConferenceCallInHoldState() {
+        doReturn("").when(mMockTelephonyManager).getNetworkCountryIso();
+
+        List<BluetoothCall> calls = new ArrayList<>();
+        doReturn(calls).when(mMockCallInfo).getBluetoothCalls();
+
+        // Call 1 active call is added
+        BluetoothCall activeCall_1 = createActiveCall(UUID.randomUUID());
+        calls.add(activeCall_1);
+        mBluetoothInCallService.onCallAdded(activeCall_1);
+
+        doReturn(Call.STATE_ACTIVE).when(activeCall_1).getState();
+        doReturn(Uri.parse("tel:555-0001")).when(activeCall_1).getHandle();
+        doReturn(new GatewayInfo(null, null, Uri.parse("tel:555-0001")))
+                .when(activeCall_1)
+                .getGatewayInfo();
+
+        // Call 2 holding call is added
+        BluetoothCall activeCall_2 = createHeldCall(UUID.randomUUID());
+        calls.add(activeCall_2);
+        mBluetoothInCallService.onCallAdded(activeCall_2);
+
+        doReturn(Call.STATE_HOLDING).when(activeCall_2).getState();
+        doReturn(true).when(activeCall_2).isIncoming();
+        doReturn(Uri.parse("tel:555-0002")).when(activeCall_2).getHandle();
+        doReturn(new GatewayInfo(null, null, Uri.parse("tel:555-0002")))
+                .when(activeCall_2)
+                .getGatewayInfo();
+
+        // calls merged for conference call
+        DisconnectCause cause =
+                new DisconnectCause(DisconnectCause.OTHER, "IMS_MERGED_SUCCESSFULLY");
+        doReturn(cause).when(activeCall_1).getDisconnectCause();
+        doReturn(cause).when(activeCall_2).getDisconnectCause();
+        mBluetoothInCallService.onCallRemoved(activeCall_1, true);
+        mBluetoothInCallService.onCallRemoved(activeCall_2, true);
+
+        BluetoothCall conferenceCall = createActiveCall(UUID.randomUUID());
+        addCallCapability(conferenceCall, Connection.CAPABILITY_MANAGE_CONFERENCE);
+
+        doReturn(Uri.parse("tel:555-1234")).when(conferenceCall).getHandle();
+        doReturn(true).when(conferenceCall).isConference();
+        doReturn(Call.STATE_ACTIVE).when(conferenceCall).getState();
+        doReturn(true).when(conferenceCall).hasProperty(Call.Details.PROPERTY_GENERIC_CONFERENCE);
+        doReturn(true).when(conferenceCall).isIncoming();
+        doReturn(calls).when(mMockCallInfo).getBluetoothCalls();
+
+        // Conference created
+        calls.add(conferenceCall);
+        doReturn(3).when(conferenceCall).getParentId();
+        doReturn(3).when(conferenceCall).getId();
+        mBluetoothInCallService.onCallAdded(conferenceCall);
+
+        // Call_1 and Call_2 are part of conference
+        calls.add(activeCall_1);
+        mBluetoothInCallService.onCallAdded(activeCall_1);
+        doReturn(true).when(activeCall_1).isConference();
+        calls.add(activeCall_2);
+        mBluetoothInCallService.onCallAdded(activeCall_2);
+        doReturn(Call.STATE_ACTIVE).when(activeCall_2).getState();
+        doReturn(true).when(activeCall_2).isConference();
+        doReturn(List.of(1, 2)).when(conferenceCall).getChildrenIds();
+        doReturn(conferenceCall).when(mMockCallInfo).getForegroundCall();
+
+        // Call 3 is added
+        BluetoothCall activeCall_3 = createActiveCall(UUID.randomUUID());
+        doReturn(null).when(activeCall_3).getParentId();
+        calls.add(activeCall_3);
+        mBluetoothInCallService.onCallAdded(activeCall_3);
+
+        // Call 3 active call, Conference on hold
+        doReturn(Call.STATE_HOLDING).when(conferenceCall).getState();
+        doReturn(true).when(activeCall_3).isIncoming();
+        doReturn(Call.STATE_ACTIVE).when(activeCall_3).getState();
+        doReturn(Uri.parse("tel:555-0003")).when(activeCall_3).getHandle();
+        doReturn(new GatewayInfo(null, null, Uri.parse("tel:555-0003")))
+                .when(activeCall_3)
+                .getGatewayInfo();
+
+        mBluetoothInCallService.hangupCall();
+
+        clearInvocations(mMockBluetoothHeadset);
+        mBluetoothInCallService.listCurrentCalls();
+
+        verify(activeCall_3).disconnect();
     }
 
     @Test
