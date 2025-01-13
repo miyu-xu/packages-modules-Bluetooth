@@ -87,6 +87,24 @@
       "parentUuid": "cb2c68c4_eba4705f",
       "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0f17664_53565215",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2025-01-13T20:45:47Z",
+      "side": 1,
+      "message": "Acknowledged. Might be good to include that in the commit message.",
+      "parentUuid": "bace6720_52c8f83c",
+      "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
