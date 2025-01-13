@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac351be1_3adf14a9",
+        "filename": "Android.bp",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T20:05:48Z",
+      "side": 1,
+      "message": "I think it should be:\n\n```suggestion\n            ldflags: [\n                \"-Wl\",\n\n                \"--no-relax\",\n            ],\n```\n\nYou may want to (or not) jump an empty line to make sure the bpfmt doesn\u0027t force the re-order here (if it matter)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "31a325586fb7f2d90cae42ea53eb949f19d5e237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
