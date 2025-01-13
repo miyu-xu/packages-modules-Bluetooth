@@ -22,6 +22,30 @@
       },
       "revId": "8239f9a06cadee49c01d7f4a3aed520374e7dab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9b4ad5_9b3cca5a",
+        "filename": "Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1978766
+      },
+      "writtenOn": "2025-01-13T19:55:21Z",
+      "side": 1,
+      "message": "formatted hte file. `bpfmt \u003d true` is already there in PREUPLOAD.cfg file.",
+      "parentUuid": "33e7e496_d707470c",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "8239f9a06cadee49c01d7f4a3aed520374e7dab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
