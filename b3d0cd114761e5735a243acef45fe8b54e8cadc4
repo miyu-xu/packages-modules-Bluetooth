@@ -1,0 +1,471 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7038f6bb_3202d88c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "What exception is being thrown in this test ? can we remove it ?",
+      "range": {
+        "startLine": 984,
+        "startChar": 68,
+        "endLine": 984,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "52d65859_34d0f279",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 984,
+                "startChar": 0,
+                "endLine": 985,
+                "endChar": 0
+              },
+              "replacement": "    public void endActivecallWhenConferenceCallInHoldState() {\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1104,
+                "startChar": 0,
+                "endLine": 1105,
+                "endChar": 0
+              },
+              "replacement": "    public void conferenceLastCallIndexIsMaintained() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09e58cf0_69ef8787",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "Replace with @EnableFlag instead of this. (deprecated)",
+      "range": {
+        "startLine": 985,
+        "startChar": 0,
+        "endLine": 985,
+        "endChar": 73
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a9c0ed_2ec6d3c3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "Should this be moved into `createHeldCall` ? same for createActiveCall and doeReturn STATE_ACTIVE ?",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 67
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5701cc_51ccf82f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "Use truth instead of Assert.assertEquals",
+      "range": {
+        "startLine": 1047,
+        "startChar": 0,
+        "endLine": 1047,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "86c1960c_8d787880",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1047,
+                "startChar": 0,
+                "endLine": 1049,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(calls).hasSize(1);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d46830e0_65c3d97b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "remove the system println or add an `android.util.Log.d(TAG, \"foobar\");`",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1048,
+        "endChar": 66
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8e04bc01_b560aff1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1048,
+                "startChar": 0,
+                "endLine": 1049,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29dd800f_0537a65e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "what other interaction is there with mMockBluetoothHeadset ? \n\nclearInvocation should be avoided as much as possible, and if some interaction are supposed to happen in sequence, using inOrder would allow you to not take into consideration previous calls.",
+      "range": {
+        "startLine": 1051,
+        "startChar": 25,
+        "endLine": 1051,
+        "endChar": 46
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e78f84ed_b682c090",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "What does that mean ?",
+      "range": {
+        "startLine": 1060,
+        "startChar": 33,
+        "endLine": 1060,
+        "endChar": 59
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e5007e_b3aad649",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "Does these need to be linked to one of the call 1 or call 2 ? or is the value random ?",
+      "range": {
+        "startLine": 1068,
+        "startChar": 24,
+        "endLine": 1068,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7a04cbb2_1ea6fe27",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1068,
+                "startChar": 0,
+                "endLine": 1069,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(List.of(activeCall_1.getId(), activeCall_2.getId()))\n                .when(conferenceCall)\n                .getChildrenIds();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dce15cff_80f6ef77",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T22:51:22Z",
+      "side": 1,
+      "message": "This is done the same for alls calls, do we want to have that in a specific method ? and just call it with parameters ?\n\nI believe that all the test in this file would benefit from this",
+      "range": {
+        "startLine": 1088,
+        "startChar": 0,
+        "endLine": 1093,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "390ed008_614fc07c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 992,
+                "startChar": 0,
+                "endLine": 1001,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothCall activeCall1 \u003d createActiveCall(UUID.randomUUID());\n        calls.add(activeCall1);\n        mBluetoothInCallService.onCallAdded(activeCall1);\n        setupCall(activeCall1, Call.STATE_ACTIVE, \"tel:555-0001\");\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1003,
+                "startChar": 0,
+                "endLine": 1013,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothCall activeCall2 \u003d createHeldCall(UUID.randomUUID());\n        calls.add(activeCall2);\n        mBluetoothInCallService.onCallAdded(activeCall2);\n        setupCall(activeCall2, Call.STATE_HOLDING, \"tel:555-0002\");\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1028,
+                "startChar": 0,
+                "endLine": 1032,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(cause).when(activeCall1).getDisconnectCause();\n        doReturn(cause).when(activeCall2).getDisconnectCause();\n        mBluetoothInCallService.onCallRemoved(activeCall1, true);\n        mBluetoothInCallService.onCallRemoved(activeCall2, true);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1061,
+                "startChar": 0,
+                "endLine": 1068,
+                "endChar": 0
+              },
+              "replacement": "        calls.add(activeCall1);\n        mBluetoothInCallService.onCallAdded(activeCall1);\n        doReturn(true).when(activeCall1).isConference();\n        calls.add(activeCall2);\n        mBluetoothInCallService.onCallAdded(activeCall2);\n        doReturn(Call.STATE_ACTIVE).when(activeCall2).getState();\n        doReturn(true).when(activeCall2).isConference();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1075,
+                "startChar": 0,
+                "endLine": 1076,
+                "endChar": 0
+              },
+              "replacement": "                        1, 0, CALL_STATE_ACTIVE, 0, true, \"555-0001\", PhoneNumberUtils.TOA_Unknown);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1078,
+                "startChar": 0,
+                "endLine": 1079,
+                "endChar": 0
+              },
+              "replacement": "                        2, 1, CALL_STATE_ACTIVE, 0, true, \"555-0002\", PhoneNumberUtils.TOA_Unknown);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1081,
+                "startChar": 0,
+                "endLine": 1085,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothCall activeCall3 \u003d createActiveCall(UUID.randomUUID());\n        doReturn(null).when(activeCall3).getParentId();\n        calls.add(activeCall3);\n        mBluetoothInCallService.onCallAdded(activeCall3);\n        setupCall(activeCall3, Call.STATE_ACTIVE, \"tel:555-0003\");\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1088,
+                "startChar": 0,
+                "endLine": 1094,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1100,
+                "startChar": 0,
+                "endLine": 1101,
+                "endChar": 0
+              },
+              "replacement": "        verify(activeCall3).disconnect();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1112,
+                "startChar": 0,
+                "endLine": 1121,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothCall activeCall1 \u003d createActiveCall(UUID.randomUUID());\n        calls.add(activeCall1);\n        mBluetoothInCallService.onCallAdded(activeCall1);\n        setupCall(activeCall1, Call.STATE_ACTIVE, \"tel:555-0001\");\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1123,
+                "startChar": 0,
+                "endLine": 1133,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothCall activeCall2 \u003d createHeldCall(UUID.randomUUID());\n        calls.add(activeCall2);\n        mBluetoothInCallService.onCallAdded(activeCall2);\n        setupCall(activeCall2, Call.STATE_HOLDING, \"tel:555-0002\");\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1148,
+                "startChar": 0,
+                "endLine": 1152,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(cause).when(activeCall1).getDisconnectCause();\n        doReturn(cause).when(activeCall2).getDisconnectCause();\n        mBluetoothInCallService.onCallRemoved(activeCall1, true);\n        mBluetoothInCallService.onCallRemoved(activeCall2, true);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1178,
+                "startChar": 0,
+                "endLine": 1185,
+                "endChar": 0
+              },
+              "replacement": "        calls.add(activeCall1);\n        mBluetoothInCallService.onCallAdded(activeCall1);\n        doReturn(true).when(activeCall1).isConference();\n        calls.add(activeCall2);\n        mBluetoothInCallService.onCallAdded(activeCall2);\n        doReturn(Call.STATE_ACTIVE).when(activeCall2).getState();\n        doReturn(true).when(activeCall2).isConference();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1197,
+                "startChar": 0,
+                "endLine": 1198,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(Call.STATE_DISCONNECTED).when(activeCall1).getState();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1199,
+                "startChar": 0,
+                "endLine": 1203,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(cause).when(activeCall1).getDisconnectCause();\n        mBluetoothInCallService.onCallRemoved(activeCall1, true);\n        doReturn(false).when(activeCall1).isConference();\n        calls.remove(activeCall1);\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 1206,
+                "startChar": 0,
+                "endLine": 1209,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(cause).when(activeCall2).getDisconnectCause();\n        mBluetoothInCallService.onCallRemoved(activeCall2, true);\n        doReturn(false).when(activeCall2).isConference();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+              "range": {
+                "startLine": 2160,
+                "startChar": 0,
+                "endLine": 2160,
+                "endChar": 0
+              },
+              "replacement": "\n    private void setupCall(BluetoothCall call, int state, String number) {\n        doReturn(state).when(call).getState();\n        doReturn(Uri.parse(number)).when(call).getHandle();\n        doReturn(new GatewayInfo(null, null, Uri.parse(number))).when(call).getGatewayInfo();\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
