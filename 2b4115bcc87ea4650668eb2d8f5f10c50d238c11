@@ -241,6 +241,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1dfe4e8_a908a1c4",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-13T18:55:51Z",
+      "side": 1,
+      "message": "please check the current version",
+      "parentUuid": "3314a4c7_c081f22e",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3483d9e5_fbbe8a37",
         "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
         "patchSetId": 1
@@ -252,6 +276,30 @@
       "writtenOn": "2025-01-13T09:10:00Z",
       "side": 1,
       "message": "Note: I am adding the comment here but it will apply to the parent commit.\nEnable / disable have an ambiguous meaning in this context, properties are set with a value but not enabled. A more correct notation would be \n\n```\n\"set_properties\" : { // or system_properties ?\n    \"property_a\": \"value_a\", // property is set to \"value_a\"\n    \"property_b\": \"value_b\",\n    \"property_c\": null, // property is unset\n}\n```\n\nThe test preparer applies the selected values for the system properties, unsets the properties when the value is null, and restores the previous state after the test.",
+      "range": {
+        "startLine": 3270,
+        "startChar": 0,
+        "endLine": 3275,
+        "endChar": 2
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c89520e6_9581ec61",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3275,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-13T18:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3483d9e5_fbbe8a37",
       "range": {
         "startLine": 3270,
         "startChar": 0,
