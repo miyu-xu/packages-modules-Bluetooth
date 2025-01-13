@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d82682_04973158",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1683,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T19:49:22Z",
+      "side": 1,
+      "message": "Can we do it in this method instead ?\n\nI don\u0027t think we should expend the intent receiver",
+      "range": {
+        "startLine": 1683,
+        "startChar": 0,
+        "endLine": 1683,
+        "endChar": 38
+      },
+      "revId": "e139df50e03154624af49e287bc1abe4c480d045",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
