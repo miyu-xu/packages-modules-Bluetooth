@@ -118,6 +118,9 @@ public class GattService extends ProfileService {
     private static final Map<String, Integer> EARLY_MTU_EXCHANGE_PACKAGES =
             Map.of("com.teslamotors", GATT_MTU_MAX);
 
+    private static final List<String> GATT_CLIENTS_NOTIFY_TO_ADAPTER_PACKAGES =
+            List.of("com.google.android.gms.findmydevice");
+
     @VisibleForTesting static final int GATT_CLIENT_LIMIT_PER_APP = 32;
 
     @Nullable public final ScanController mScanController;
@@ -1622,7 +1625,16 @@ public class GattService extends ProfileService {
         }
 
         if (transport != BluetoothDevice.TRANSPORT_BREDR && isDirect && !opportunistic) {
-            mAdapterService.notifyDirectLeGattClientConnect(clientIf, getDevice(address));
+            String attributionTag = attributionSource.getAttributionTag();
+            if (attributionTag != null) {
+                for (String entry : GATT_CLIENTS_NOTIFY_TO_ADAPTER_PACKAGES) {
+                    if (attributionTag.contains(entry)) {
+                        mAdapterService.notifyDirectLeGattClientConnect(
+                                clientIf, getDevice(address));
+                        break;
+                    }
+                }
+            }
         }
 
         mNativeInterface.gattClientConnect(
