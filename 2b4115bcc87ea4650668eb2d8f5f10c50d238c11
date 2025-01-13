@@ -217,6 +217,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3314a4c7_c081f22e",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 3268,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-13T09:11:53Z",
+      "side": 1,
+      "message": "Responded in a separate comment but I agree to set a minimal amount of properties for a test. Whether to restore the state after can be discussed.",
+      "parentUuid": "55449f3c_7adb4ea6",
+      "range": {
+        "startLine": 3258,
+        "startChar": 4,
+        "endLine": 3268,
+        "endChar": 6
+      },
+      "revId": "2b4115bcc87ea4650668eb2d8f5f10c50d238c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3483d9e5_fbbe8a37",
         "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
         "patchSetId": 1
