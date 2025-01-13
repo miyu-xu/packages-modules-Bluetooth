@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0263600a_7d038ea6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-13T19:53:19Z",
+      "side": 1,
+      "message": "This code is not covered by the BluetoothInstrumentationTests are you are making modification in the system server.\n\nWe should write a test that correspond to the user journey and assert the behavior is expected.\nBut unfortunately there is 0 test in the system server based on multiples users. That mean we need to start writing those from scratch.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 41
+      },
+      "revId": "e139df50e03154624af49e287bc1abe4c480d045",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15d82682_04973158",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 1
