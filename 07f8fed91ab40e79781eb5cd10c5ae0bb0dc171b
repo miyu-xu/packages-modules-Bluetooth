@@ -1,0 +1,598 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b04ec4_9af77cc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "Could you draw a diagram in the design doc to describe how AdapterService, LeAudioService work with each other to Not Activate or Activate the LE audio stream and each of the triggering points? So that it is clear what this CL is doing?",
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f98bebb2_5711ffd6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "nit: comment on the meaning of this data structure\n\nbased on my understanding\n\nlist of pairs of GATT client interface ID and remote `BluetoothDevice`",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 97
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a577944_94771cd3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "suggest to change this to `mLeGattClientsPreventingLeAudioFromAutoConnection`, see my comment below",
+      "range": {
+        "startLine": 296,
+        "startChar": 47,
+        "endLine": 296,
+        "endChar": 76
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74a247a8_5afce5b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5165,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "in another word, calling this method will prevent LE audio from automatically connect to the device because `clientIf` is using that device? \n\nDoes it allow multiple clientIf to keep the device at this state? (I guess yes)\n\nAnd do ALL `clientIF` for a device need to remove itself for the device to go back to autoconnect LE audio? \n\nThen this method sounds more like\n\n`addGattClientToPreventLeAudioFromAutoActivation(clientIf, device);`\n\nand\n\n`removeGattClientFromPreventingLeAudioFromAutoActivation(clientIf, device);`\n\nand the data structure above (`mLeGattClientsForAudioDevices`) be like\n\n`mGattClientsPreventingLeAudioFromAutoActivation`\n\nIMO it is less ambiguous this way",
+      "range": {
+        "startLine": 5162,
+        "startChar": 0,
+        "endLine": 5165,
+        "endChar": 55
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a4fa17_f90c397e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5170,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "see above, suggest changing this to `addGattClientToPreventLeAudioFromAutoActivation`",
+      "range": {
+        "startLine": 5170,
+        "startChar": 16,
+        "endLine": 5170,
+        "endChar": 47
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67da325f_761e6558",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5174,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "nit: split this into two separate conditions to make flag removeal easier",
+      "range": {
+        "startLine": 5171,
+        "startChar": 0,
+        "endLine": 5174,
+        "endChar": 9
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a6e2108_b8706ac4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5178,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "nit: not a",
+      "range": {
+        "startLine": 5178,
+        "startChar": 26,
+        "endLine": 5178,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "01d9215f_279449fd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 5178,
+                "startChar": 0,
+                "endLine": 5179,
+                "endChar": 0
+              },
+              "replacement": "            /* If this is not a LeAudio device, there is nothing to do here. */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae9a372_c10baa9c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "looks like this method only aims to remove a single holding clientIf from a particular device. \n\nHence, a better name would be `removeGattClientFromPreventingLeAudioFromAutoActivation` as suggested above",
+      "range": {
+        "startLine": 5216,
+        "startChar": 20,
+        "endLine": 5216,
+        "endChar": 39
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b107b11_aa07043b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "so the return value true means no other clients is preventing this device from autoconnecting to LEA, and false means some other clients are still holding it\n\nPlease add java doc to explain this even though this is a private method",
+      "range": {
+        "startLine": 5216,
+        "startChar": 12,
+        "endLine": 5216,
+        "endChar": 19
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c19d2d0_14b9cedd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "why both device and groupId are given here? \n\nIMO, only `device` should be here since the method above has only `device`\n\nif you need a shortcut method to remove `clientIf` from a whole group, it should be something like\n\n`removeGattClientFromPreventingLeAudioFromAutoActivation(clientIf, groupId)`\n\nand in this method, you for-loop over all groupo members and call \n\n`removeGattClientFromPreventingLeAudioFromAutoActivation(clientIf, device)` \n\nindividually",
+      "range": {
+        "startLine": 5216,
+        "startChar": 54,
+        "endLine": 5216,
+        "endChar": 90
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53a34573_a03fade4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5229,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "nit: !mLeGattClientsForAudioDevices.isEmpty()",
+      "range": {
+        "startLine": 5229,
+        "startChar": 16,
+        "endLine": 5229,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "afb084cb_15cf0dd2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 5229,
+                "startChar": 0,
+                "endLine": 5230,
+                "endChar": 0
+              },
+              "replacement": "            if (!mLeGattClientsForAudioDevices.isEmpty()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82812ed_0e5b3005",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5295,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "false means LE audio became auto-activating again, please add a comment or note here\n\n(also feel free to add info / debug log here to track this)",
+      "range": {
+        "startLine": 5295,
+        "startChar": 11,
+        "endLine": 5295,
+        "endChar": 15
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14465e8b_e0bf163a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5295,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "groupId is not needed for the this method",
+      "range": {
+        "startLine": 5295,
+        "startChar": 51,
+        "endLine": 5295,
+        "endChar": 58
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab013b9c_a1cd1c6a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5311,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "why do we have to do this? what sequence of events would lead to the case where some profiles are connected, but `mLeGattClientsForAudioDevices` is not empty?",
+      "range": {
+        "startLine": 5303,
+        "startChar": 19,
+        "endLine": 5311,
+        "endChar": 13
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80646dda_c19beb03",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "prefer to have this false by default to avoid any potential typos such as\n\n```\nmShallNotAutoActivate \u003d false;\n```\n\nAnd revert the logic in all its usages",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 258,
+        "endChar": 42
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df217aa0_4e327615",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1998,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "reverse logic as suggested above will make this code easier to read",
+      "range": {
+        "startLine": 1998,
+        "startChar": 18,
+        "endLine": 1998,
+        "endChar": 56
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106a0dd9_e10c5d4b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2001,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "nit: \"disabled for groupId:\"",
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca8a286b_2cd49059",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "not sure if I understand this logic, why do we return true here when some group disabled auto active mode?",
+      "range": {
+        "startLine": 2017,
+        "startChar": 0,
+        "endLine": 2020,
+        "endChar": 9
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b98376d_759b43c8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "why is this change needed for this CL?",
+      "range": {
+        "startLine": 2108,
+        "startChar": 28,
+        "endLine": 2108,
+        "endChar": 81
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fea2b4f_3a5ff1c5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "why is this change needed for this CL?",
+      "range": {
+        "startLine": 2114,
+        "startChar": 1,
+        "endLine": 2114,
+        "endChar": 84
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7a8928_5ebb8457",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "why do we need to parse scan result for this CL? Just to detect new targeted annoucements? or for CAP?? why?",
+      "range": {
+        "startLine": 2128,
+        "startChar": 0,
+        "endLine": 2137,
+        "endChar": 23
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd72dd5_2237346d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2143,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "nit: !isEmpty()",
+      "range": {
+        "startLine": 2143,
+        "startChar": 20,
+        "endLine": 2143,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "75b32377_895004db",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2143,
+                "startChar": 0,
+                "endLine": 2144,
+                "endChar": 0
+              },
+              "replacement": "                if (!getConnectedPeerDevices(groupId).isEmpty()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfdcfa98_9a4be760",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2457,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "again, reverting this logic will make it more readable",
+      "range": {
+        "startLine": 2457,
+        "startChar": 17,
+        "endLine": 2457,
+        "endChar": 66
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5614ac_acfdc339",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 4660,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-13T23:56:17Z",
+      "side": 1,
+      "message": "if it is returning a boolean, the method name should be `isInAutoActiveMode(groupId)`",
+      "range": {
+        "startLine": 4659,
+        "startChar": 7,
+        "endLine": 4660,
+        "endChar": 22
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
