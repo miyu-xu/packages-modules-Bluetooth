@@ -1,0 +1,79 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6943c697_c9ce5b39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-01-13T21:14:13Z",
+      "side": 1,
+      "message": "Nit: Please fix typo for \"music\" and \"temporary\".",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9032cf0_ad2fd79c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-01-13T21:14:13Z",
+      "side": 1,
+      "message": "Nit: Please fix typo for \"temporary\".",
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a9971b1_bfff484d",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-01-13T21:14:13Z",
+      "side": 1,
+      "message": "Can you check why sec_flags has BTM_SEC_AUTHENTICATED bit set and bond type is temporary after unbonding the device?",
+      "fixSuggestions": [
+        {
+          "fixId": "97d81abd_5b753e71",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 687,
+                "startChar": 0,
+                "endLine": 688,
+                "endChar": 0
+              },
+              "replacement": "       (btm_get_bond_type_dev(bd_addr) \u003d\u003d BOND_TYPE_PERSISTENT) \u0026\u0026\n       (p_dev_rec-\u003esec_rec.sec_flags \u0026 BTM_SEC_LINK_KEY_KNOWN)) ||\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
