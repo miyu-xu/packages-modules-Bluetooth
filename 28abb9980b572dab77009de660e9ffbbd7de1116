@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d19bf522_b6793e36",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6743,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T12:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03868149_53506b68",
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ffd2fce_83f949ab",
@@ -48,6 +66,30 @@
       "writtenOn": "2025-01-11T22:47:04Z",
       "side": 1,
       "message": "THe test is putting the java in state_turning_off ? Why are we having the test run in an intermediary state?\n\nNote that in ble_on there is no leAudio service available, I am wondering how the verify on the mMockLeAudioService can works. (line 1149 of this patchset)",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 55
+      },
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54295e72_c1a3fdf8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T12:07:41Z",
+      "side": 1,
+      "message": "Thanks, this is some not needed code - don\u0027t know why I put it there.\n\nFor the mock question:\n\nI was trying to enable service in other way, like extending `listOfMockServices` and also aslo adding LE_AUDIO profile here: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java;l\u003d191?q\u003dAdapterServiceTest\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain\n\nbut it did not work for me. Note that `AdapterService.initProfileServices()` calles static functions from the Services and this is why I endup extending `setUp()` function with calls to set mMockLeAudioService and make it available.\n\nIt works for me now, but I agree that AdapterServiceTest could be improved around enabling services and preparing mocks for those services. But I see it as another issue not related to this.",
+      "parentUuid": "3ffd2fce_83f949ab",
       "range": {
         "startLine": 1138,
         "startChar": 0,
@@ -139,6 +181,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b5afdd8_39ec88b0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3147,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T12:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30081f13_2c42f1e3",
+      "range": {
+        "startLine": 3145,
+        "startChar": 5,
+        "endLine": 3147,
+        "endChar": 69
+      },
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75e8cdff_b59dffac",
@@ -176,6 +242,30 @@
           ]
         }
       ],
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b6b1bc_b5c280c1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3225,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T12:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75e8cdff_b59dffac",
+      "range": {
+        "startLine": 3225,
+        "startChar": 16,
+        "endLine": 3225,
+        "endChar": 83
+      },
       "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -227,6 +317,30 @@
           ]
         }
       ],
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50bdd1ec_85e2b78c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3283,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-13T12:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c736be3_5133ee2d",
+      "range": {
+        "startLine": 3283,
+        "startChar": 0,
+        "endLine": 3283,
+        "endChar": 32
+      },
       "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
