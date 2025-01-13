@@ -627,6 +627,12 @@ class BluetoothManagerService {
                                 int foregroundUserId =
                                         intent.getIntExtra(Intent.EXTRA_USER_HANDLE, 0);
                                 propagateForegroundUserId(foregroundUserId);
+                                // When user restrictions are changed before switching users,
+                                // USER_RESTRICTIONS_CHANGED isn't broadcast to the new user.
+                                // Check whenever the user is changed to handle this case.
+                                if (Flags.updateOppLauncherUserChanged()) {
+                                    onUserRestrictionsChanged(UserHandle.of(foregroundUserId));
+                                }
                                 break;
                             case UserManager.ACTION_USER_RESTRICTIONS_CHANGED:
                                 onUserRestrictionsChanged(getSendingUser());
