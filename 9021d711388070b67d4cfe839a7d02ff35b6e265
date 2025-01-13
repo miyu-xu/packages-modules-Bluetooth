@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a3bda8_08b94d91",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3177,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-13T14:21:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec8a34b4_cb11e216",
+      "range": {
+        "startLine": 3177,
+        "startChar": 6,
+        "endLine": 3177,
+        "endChar": 28
+      },
+      "revId": "9021d711388070b67d4cfe839a7d02ff35b6e265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a53945d8_74e4c9cd",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-01-10T18:29:42Z",
       "side": 1,
       "message": "note: this is new logic, previous logic returns directly without invoking the callback. Hence this is not just a refactor or code move. \n\nCould you explain why this change is needed and why it is not flagged or auto-tested?",
+      "range": {
+        "startLine": 3186,
+        "startChar": 0,
+        "endLine": 3188,
+        "endChar": 11
+      },
+      "revId": "9021d711388070b67d4cfe839a7d02ff35b6e265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36bd7ae6_7ac3e6b1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3188,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-13T14:21:33Z",
+      "side": 1,
+      "message": "my bad, thanks for catching it! here it should return only.\n\nWhy the whole change is needed:\nIt is possible that we triggered the start offload in a wrong state of SSM and before the stream started. That could cause the bta_av_get_a2dp_current_codec() to return null and crush on the assert.\nAnyway if the stream did not yet start we don\u0027t allow to start offload. So now we only ask for current codec if if the stream started. \n\nNow it doesn\u0027t change any relevant logic so I don\u0027t think the flag is necessary. I tested offload manually before pushing - we currently don\u0027t have any means of testing that automatically.",
+      "parentUuid": "a53945d8_74e4c9cd",
       "range": {
         "startLine": 3186,
         "startChar": 0,
