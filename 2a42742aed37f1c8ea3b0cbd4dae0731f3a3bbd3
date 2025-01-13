@@ -33,6 +33,23 @@
       "message": "Not related to this CL, but still: Since in Unicast we do have Supported and Available context, and I have feeling that this function is not really checking \"Supported ones\", can we please adjust the naming to avoid future confusions ?",
       "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2011e303_2a339c3b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4437,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-13T21:01:43Z",
+      "side": 1,
+      "message": "nit: would it better to have a wrapper for \"!IsInCall() \u0026\u0026 !IsInVoipCall()\"?",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
