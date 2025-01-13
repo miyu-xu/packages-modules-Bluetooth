@@ -27,15 +27,14 @@ import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.IAdvertisingSetCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
 import android.os.IBinder;
+import android.os.test.TestLooper;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -53,8 +52,6 @@ public class AdvertiseManagerTest {
 
     @Mock private AdapterService mAdapterService;
 
-    @Mock private GattService mService;
-
     @Mock private AdvertiserMap mAdvertiserMap;
 
     @Mock private AdvertiseManagerNativeInterface mNativeInterface;
@@ -68,8 +65,12 @@ public class AdvertiseManagerTest {
 
     @Before
     public void setUp() throws Exception {
-        TestUtils.setAdapterService(mAdapterService);
-        mAdvertiseManager = new AdvertiseManager(mService, mNativeInterface, mAdvertiserMap);
+        mAdvertiseManager =
+                new AdvertiseManager(
+                        mAdapterService,
+                        new TestLooper().getLooper(),
+                        mNativeInterface,
+                        mAdvertiserMap);
 
         AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
         AdvertiseData advertiseData = new AdvertiseData.Builder().build();
@@ -95,12 +96,7 @@ public class AdvertiseManagerTest {
                 mCallback,
                 InstrumentationRegistry.getTargetContext().getAttributionSource());
 
-        mAdvertiserId = AdvertiseManager.sTempRegistrationId;
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        TestUtils.clearAdapterService(mAdapterService);
+        mAdvertiserId = AdvertiseManager.mTempRegistrationId;
     }
 
     @Test
