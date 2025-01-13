@@ -34,6 +34,23 @@
       "parentUuid": "f01e092d_d2bac60d",
       "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a869456b_1f3a1f51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-13T17:13:42Z",
+      "side": 1,
+      "message": "API +1, removal of an already shipped API. @asapperstein@google.com\nfor +2.",
+      "revId": "6703b1f33e67a6cf1acffb09aa904a1455344da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
