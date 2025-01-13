@@ -26,7 +26,9 @@ import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.IAdvertisingSetCallback;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
@@ -64,12 +66,17 @@ public class AdvertiseManagerTest {
     @Mock private IBinder mBinder;
 
     private AdvertiseManager mAdvertiseManager;
+    private Looper mLooper;
     private int mAdvertiserId;
 
     @Before
     public void setUp() throws Exception {
         TestUtils.setAdapterService(mAdapterService);
-        mAdvertiseManager = new AdvertiseManager(mService, mNativeInterface, mAdvertiserMap);
+        HandlerThread thread = new HandlerThread("AdvertiseManagerTest");
+        thread.start();
+        mLooper = thread.getLooper();
+        mAdvertiseManager =
+                new AdvertiseManager(mService, mLooper, mNativeInterface, mAdvertiserMap);
 
         AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
         AdvertiseData advertiseData = new AdvertiseData.Builder().build();
@@ -83,17 +90,20 @@ public class AdvertiseManagerTest {
         doReturn(mBinder).when(mCallback).asBinder();
         doNothing().when(mBinder).linkToDeath(any(), eq(0));
 
-        mAdvertiseManager.startAdvertisingSet(
-                parameters,
-                advertiseData,
-                scanResponse,
-                periodicParameters,
-                periodicData,
-                duration,
-                maxExtAdvEvents,
-                0,
-                mCallback,
-                InstrumentationRegistry.getTargetContext().getAttributionSource());
+        TestUtils.runOnLooperSync(
+                mLooper,
+                () ->
+                        mAdvertiseManager.startAdvertisingSet(
+                                parameters,
+                                advertiseData,
+                                scanResponse,
+                                periodicParameters,
+                                periodicData,
+                                duration,
+                                maxExtAdvEvents,
+                                0,
+                                mCallback,
+                                InstrumentationRegistry.getTargetContext().getAttributionSource()));
 
         mAdvertiserId = AdvertiseManager.sTempRegistrationId;
     }
@@ -101,6 +111,7 @@ public class AdvertiseManagerTest {
     @After
     public void tearDown() throws Exception {
         TestUtils.clearAdapterService(mAdapterService);
+        mLooper.quit();
     }
 
     @Test
@@ -109,7 +120,11 @@ public class AdvertiseManagerTest {
         int duration = 60;
         int maxExtAdvEvents = 100;
 
-        mAdvertiseManager.enableAdvertisingSet(mAdvertiserId, enable, duration, maxExtAdvEvents);
+        TestUtils.runOnLooperSync(
+                mLooper,
+                () ->
+                        mAdvertiseManager.enableAdvertisingSet(
+                                mAdvertiserId, enable, duration, maxExtAdvEvents));
 
         verify(mAdvertiserMap)
                 .enableAdvertisingSet(mAdvertiserId, enable, duration, maxExtAdvEvents);
@@ -119,7 +134,8 @@ public class AdvertiseManagerTest {
     public void advertisingData() {
         AdvertiseData advertiseData = new AdvertiseData.Builder().build();
 
-        mAdvertiseManager.setAdvertisingData(mAdvertiserId, advertiseData);
+        TestUtils.runOnLooperSync(
+                mLooper, () -> mAdvertiseManager.setAdvertisingData(mAdvertiserId, advertiseData));
 
         verify(mAdvertiserMap).setAdvertisingData(mAdvertiserId, advertiseData);
     }
@@ -128,7 +144,8 @@ public class AdvertiseManagerTest {
     public void scanResponseData() {
         AdvertiseData scanResponse = new AdvertiseData.Builder().build();
 
-        mAdvertiseManager.setScanResponseData(mAdvertiserId, scanResponse);
+        TestUtils.runOnLooperSync(
+                mLooper, () -> mAdvertiseManager.setScanResponseData(mAdvertiserId, scanResponse));
 
         verify(mAdvertiserMap).setScanResponseData(mAdvertiserId, scanResponse);
     }
@@ -137,7 +154,9 @@ public class AdvertiseManagerTest {
     public void advertisingParameters() {
         AdvertisingSetParameters parameters = new AdvertisingSetParameters.Builder().build();
 
-        mAdvertiseManager.setAdvertisingParameters(mAdvertiserId, parameters);
+        TestUtils.runOnLooperSync(
+                mLooper,
+                () -> mAdvertiseManager.setAdvertisingParameters(mAdvertiserId, parameters));
 
         verify(mAdvertiserMap).setAdvertisingParameters(mAdvertiserId, parameters);
     }
@@ -147,7 +166,11 @@ public class AdvertiseManagerTest {
         PeriodicAdvertisingParameters periodicParameters =
                 new PeriodicAdvertisingParameters.Builder().build();
 
-        mAdvertiseManager.setPeriodicAdvertisingParameters(mAdvertiserId, periodicParameters);
+        TestUtils.runOnLooperSync(
+                mLooper,
+                () ->
+                        mAdvertiseManager.setPeriodicAdvertisingParameters(
+                                mAdvertiserId, periodicParameters));
 
         verify(mAdvertiserMap).setPeriodicAdvertisingParameters(mAdvertiserId, periodicParameters);
     }
@@ -156,7 +179,9 @@ public class AdvertiseManagerTest {
     public void periodicAdvertisingData() {
         AdvertiseData periodicData = new AdvertiseData.Builder().build();
 
-        mAdvertiseManager.setPeriodicAdvertisingData(mAdvertiserId, periodicData);
+        TestUtils.runOnLooperSync(
+                mLooper,
+                () -> mAdvertiseManager.setPeriodicAdvertisingData(mAdvertiserId, periodicData));
 
         verify(mAdvertiserMap).setPeriodicAdvertisingData(mAdvertiserId, periodicData);
     }

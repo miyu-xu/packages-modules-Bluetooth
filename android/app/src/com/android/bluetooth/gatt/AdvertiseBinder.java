@@ -81,17 +81,19 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
                 || parameters.isDirected()) {
             mContext.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
         }
-        manager.startAdvertisingSet(
-                parameters,
-                advertiseData,
-                scanResponse,
-                periodicParameters,
-                periodicData,
-                duration,
-                maxExtAdvEvents,
-                serverIf,
-                callback,
-                source);
+        manager.doOnAdvertiseThread(
+                () ->
+                        manager.startAdvertisingSet(
+                                parameters,
+                                advertiseData,
+                                scanResponse,
+                                periodicParameters,
+                                periodicData,
+                                duration,
+                                maxExtAdvEvents,
+                                serverIf,
+                                callback,
+                                source));
     }
 
     @Override
@@ -101,7 +103,7 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.stopAdvertisingSet(callback);
+        manager.doOnAdvertiseThread(() -> manager.stopAdvertisingSet(callback));
     }
 
     @Override
@@ -111,7 +113,7 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
             return;
         }
         mContext.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
-        manager.getOwnAddress(advertiserId);
+        manager.doOnAdvertiseThread(() -> manager.getOwnAddress(advertiserId));
     }
 
     @Override
@@ -125,7 +127,10 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.enableAdvertisingSet(advertiserId, enable, duration, maxExtAdvEvents);
+        manager.doOnAdvertiseThread(
+                () ->
+                        manager.enableAdvertisingSet(
+                                advertiserId, enable, duration, maxExtAdvEvents));
     }
 
     @Override
@@ -135,7 +140,7 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.setAdvertisingData(advertiserId, data);
+        manager.doOnAdvertiseThread(() -> manager.setAdvertisingData(advertiserId, data));
     }
 
     @Override
@@ -145,7 +150,7 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.setScanResponseData(advertiserId, data);
+        manager.doOnAdvertiseThread(() -> manager.setScanResponseData(advertiserId, data));
     }
 
     @Override
@@ -160,7 +165,8 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
                 || parameters.isDirected()) {
             mContext.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
         }
-        manager.setAdvertisingParameters(advertiserId, parameters);
+        manager.doOnAdvertiseThread(
+                () -> manager.setAdvertisingParameters(advertiserId, parameters));
     }
 
     @Override
@@ -172,7 +178,8 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.setPeriodicAdvertisingParameters(advertiserId, parameters);
+        manager.doOnAdvertiseThread(
+                () -> manager.setPeriodicAdvertisingParameters(advertiserId, parameters));
     }
 
     @Override
@@ -182,7 +189,7 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.setPeriodicAdvertisingData(advertiserId, data);
+        manager.doOnAdvertiseThread(() -> manager.setPeriodicAdvertisingData(advertiserId, data));
     }
 
     @Override
@@ -192,6 +199,7 @@ class AdvertiseBinder extends IBluetoothAdvertise.Stub {
         if (manager == null) {
             return;
         }
-        manager.setPeriodicAdvertisingEnable(advertiserId, enable);
+        manager.doOnAdvertiseThread(
+                () -> manager.setPeriodicAdvertisingEnable(advertiserId, enable));
     }
 }
