@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44517a99_e589d470",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5246,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T22:23:37Z",
+      "side": 1,
+      "message": "Previously code was organized in a bit different way. Now removing gatt client is a single helper function with isDisconnected boolean.",
+      "parentUuid": "e2bb5c86_7825e97e",
+      "range": {
+        "startLine": 5246,
+        "startChar": 58,
+        "endLine": 5246,
+        "endChar": 72
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f7c51e0_81ff4117",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-14T21:51:23Z",
       "side": 1,
       "message": "so when this client failed to connect, we don\u0027t have to disconnect other pending profiles?",
+      "range": {
+        "startLine": 5328,
+        "startChar": 72,
+        "endLine": 5328,
+        "endChar": 77
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b451c3f_c1ac7896",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5328,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T22:23:37Z",
+      "side": 1,
+      "message": "No, as the connection did not happen.",
+      "parentUuid": "5f7c51e0_81ff4117",
       "range": {
         "startLine": 5328,
         "startChar": 72,
@@ -98,6 +146,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25aa37fc_4717fc84",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5340,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T22:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be80aad0_dfdb6195",
+      "range": {
+        "startLine": 5340,
+        "startChar": 72,
+        "endLine": 5340,
+        "endChar": 76
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5edb842_ca934fcb",
@@ -111,6 +183,30 @@
       "writtenOn": "2025-01-14T21:46:37Z",
       "side": 1,
       "message": "you probably wants to define an int for this integer to indicate that you are filtering for Targeted Annoucements. For example\n\n```\nstatic final byte[] CAP_TARGETED_ANNOUCEMENT_PAYLOAD \u003d new byte[] {0x01};\n```\n\nThis way, it is more obvious what you are filtering.",
+      "range": {
+        "startLine": 2106,
+        "startChar": 75,
+        "endLine": 2106,
+        "endChar": 79
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfcad731_c9b90290",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T22:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5edb842_ca934fcb",
       "range": {
         "startLine": 2106,
         "startChar": 75,
@@ -146,6 +242,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "235e0d41_e1b0e68c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2125,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T22:23:37Z",
+      "side": 1,
+      "message": "Not sure this is that simple, as payload might be much bigger then this.\nWe are filtering over service data for CAP, but not sure if this is the only data we are receiving here.\n\nSince this is nit: I need to verify how this works and maybe can add CL on top of this.",
+      "parentUuid": "3dfe81d8_2beb828b",
+      "range": {
+        "startLine": 2125,
+        "startChar": 37,
+        "endLine": 2125,
+        "endChar": 47
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b09b595_26fa910d",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 10
@@ -157,6 +277,30 @@
       "writtenOn": "2025-01-14T21:59:35Z",
       "side": 1,
       "message": "Do you need to clear the entry in `AdapterService` as well?",
+      "range": {
+        "startLine": 2136,
+        "startChar": 12,
+        "endLine": 2142,
+        "endChar": 13
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09bc3d10_860d94df",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2142,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T22:23:37Z",
+      "side": 1,
+      "message": "no, this is handled by the AdapterService itself.",
+      "parentUuid": "3b09b595_26fa910d",
       "range": {
         "startLine": 2136,
         "startChar": 12,
