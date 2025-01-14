@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f79ef44_b68e855a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3076,
+      "author": {
+        "id": 1973180
+      },
+      "writtenOn": "2025-01-14T00:10:20Z",
+      "side": 1,
+      "message": "Thanks for the quick review!\n\n`SOCKET_CHANNEL_AUTO_STATIC_NO_SDP` is defined as `-2`, while `-1` is used by `BluetoothSocket` internally to represent \"Use SDP and let SDP auto-assign the channel\". Most RFCOMM server sockets in Android are created with a service UUID and no specified channel, so `mChannel` will be set to `-1`. \n\n`BluetoothSocket::bindListen()` updates `mPort` to the assigned channel [here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;l\u003d815), after which `BluetoothAdapter` (this file) manually updates the `BluetoothServerSocket`\u0027s channel value [here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d3077).\n\nI followed the call stack down to the socket manager and this CL does seem to work, but I\u0027m not sure if this behavior is intentional or just an oversight when LE CoC was added.\n\nThere are some relevant TODOs from 2015 in `BluetoothServerSocket.java` here:\n * [TODO 1](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothServerSocket.java;l\u003d325)\n * [TODO 2](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothServerSocket.java;l\u003d152)\n\nThis CL relies on the behavior tagged with those TODOs, so I wasn\u0027t sure how much of that behavior to codify in this class. I can refactor this CL to be more descriptive.\n\nAdditionally, the `getChannel()` API is marked `@hide`, while `getPsm()` is not. Both functions simply return `mChannel`. ([Source](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothServerSocket.java;l\u003d303))\n\nWith this CL, users can get the assigned RFCOMM channel via `getPsm()`, but `getChannel()` would be more appropriate. I don\u0027t have the context around why `getChannel()` was marked hidden, but I don\u0027t see any reason we couldn\u0027t unhide it.",
+      "parentUuid": "85b44094_bc970c1b",
+      "range": {
+        "startLine": 3076,
+        "startChar": 30,
+        "endLine": 3076,
+        "endChar": 32
+      },
+      "revId": "49f456bb58504f82c1ec5c90e73b8931f2e22337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a420a6f2_739b422a",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
