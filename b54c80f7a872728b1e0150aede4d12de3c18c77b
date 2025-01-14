@@ -16,6 +16,149 @@
       "message": "is aosp/3448973 the test associated with this change ?",
       "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c5c8c1c_bc033f00",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-14T18:19:24Z",
+      "side": 1,
+      "message": "you can inline this variable since you don\u0027t use calls anywhere else",
+      "range": {
+        "startLine": 434,
+        "startChar": 46,
+        "endLine": 434,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3ed4a79e_8e6e3a1a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 432,
+                "startChar": 0,
+                "endLine": 433,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 434,
+                "startChar": 0,
+                "endLine": 435,
+                "endChar": 0
+              },
+              "replacement": "                for (BluetoothCall findCall : mCallInfo.getBluetoothCalls()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a57312f_dfae84e3",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-14T18:19:24Z",
+      "side": 1,
+      "message": "findCall doesn\u0027t seem descriptive of what you\u0027re looking at.  Maybe something like bluetoothCall instead",
+      "range": {
+        "startLine": 434,
+        "startChar": 35,
+        "endLine": 434,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cf56906d_4dedd807",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 434,
+                "startChar": 0,
+                "endLine": 439,
+                "endChar": 0
+              },
+              "replacement": "                for (BluetoothCall bluetoothCall : calls) {\n                    if (!bluetoothCall.isConference()\n                            \u0026\u0026 bluetoothCall.getState() \u003d\u003d Call.STATE_ACTIVE\n                            \u0026\u0026 bluetoothCall.getParentId() \u003d\u003d null) {\n                        call \u003d bluetoothCall;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a4485e3_4188342a",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-14T18:19:24Z",
+      "side": 1,
+      "message": "The log statement says that you are hanging up active calls that are not the conference call.\n\nThe for loop logic however finds a call that is not a conference call, that is active, and then sets the call to be that call rather than hanging it up.  Shouldn\u0027t we call findCall.disconnect() instead?",
+      "range": {
+        "startLine": 438,
+        "startChar": 24,
+        "endLine": 438,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "602fb43e_1cf1e64d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 431,
+                "startChar": 0,
+                "endLine": 432,
+                "endChar": 0
+              },
+              "replacement": "                Log.i(TAG, \"BT - hanging up active call other than conference call or held call\");\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 433,
+                "startChar": 0,
+                "endLine": 434,
+                "endChar": 0
+              },
+              "replacement": "                /*Find active call other than conference or held call */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
