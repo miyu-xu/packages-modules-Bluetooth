@@ -16,6 +16,24 @@
       "message": "Consider adding a `cc_library_headers`:\n```\ncc_library_headers {\n    name: \"bluetooth_hal_offload\",\n    vendor_available: true, // ?\n    export_include_dirs: [\n        \"include\",\n    ],\n}\n```\n\nAnd maybe you should move ffi.h in `include/hal/ffi.h` to offer a nicer path to include from the caller (maybe hal is too generic name and this should be hci_hal_proxy/ffi.h ?\n\nWe have some example for pdl: packages/modules/Bluetooth/system/pdl/hci/Android.bp",
       "revId": "9afcf7eb3e04be63532282d37e6ed5ef9a03c344",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2338dce4_05274f28",
+        "filename": "offload/hal/Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-14T22:29:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7d38e3d3_6b8996ab",
+      "revId": "9afcf7eb3e04be63532282d37e6ed5ef9a03c344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
