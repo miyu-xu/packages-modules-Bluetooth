@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e029e55_cb7b2e24",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-14T00:06:51Z",
+      "side": 1,
+      "message": "I see. I don\u0027t like this very much but changing the adapter to not depend on static method is out of scope of this change. I keep that in my mind in case I have time to remove this dependency later on, but that should not block this change",
+      "parentUuid": "54295e72_c1a3fdf8",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 55
+      },
+      "revId": "28abb9980b572dab77009de660e9ffbbd7de1116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30081f13_2c42f1e3",
