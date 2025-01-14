@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc02a82f_f91f57cb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1563,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-14T20:45:27Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 1563,
+        "startChar": 0,
+        "endLine": 1563,
+        "endChar": 2
+      },
+      "revId": "2c0591bc057c4247df984ab1a767515ca9702dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
