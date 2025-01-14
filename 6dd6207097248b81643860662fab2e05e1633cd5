@@ -94,6 +94,24 @@
       ],
       "revId": "6dd6207097248b81643860662fab2e05e1633cd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f159bb1e_e7df6b24",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T16:20:06Z",
+      "side": 1,
+      "message": "maybe packageName should be \"com.google.android.gms\" and attributionTag \"findmydevice\"  ?",
+      "parentUuid": "f6cd4fb1_54e4cb44",
+      "revId": "6dd6207097248b81643860662fab2e05e1633cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
