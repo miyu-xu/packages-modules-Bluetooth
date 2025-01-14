@@ -1,0 +1,92 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a470d68_baccfaee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-14T23:22:53Z",
+      "side": 1,
+      "message": "Please add a unit test",
+      "revId": "00d02cb4fc7d9e45d2023701bec7a7f05d68475d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7266e8_b7a4759d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-14T23:22:53Z",
+      "side": 1,
+      "message": "It\u0027s preferable to check where the issue is occuring, in finishInitializing.  You can just make sure that mCurrentCall is not null.\n\nAdditionally, there\u0027s another constructor below that has a finishInitializing so it\u0027s better to add the check there.",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "151b7bde_0c2ae81f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+              "range": {
+                "startLine": 79,
+                "startChar": 0,
+                "endLine": 85,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 91,
+                "endChar": 0
+              },
+              "replacement": "        if (mCurrentCall \u003d\u003d null) {\n            close(DisconnectCause.ERROR);\n            error(\"Failed to create the call, dial failed.\");\n            return;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "00d02cb4fc7d9e45d2023701bec7a7f05d68475d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
