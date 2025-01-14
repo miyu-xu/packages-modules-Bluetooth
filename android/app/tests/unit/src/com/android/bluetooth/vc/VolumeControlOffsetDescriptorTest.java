@@ -67,13 +67,13 @@ public class VolumeControlOffsetDescriptorTest {
         int validId = 10;
 
         // Verify adding input
-        assertThat(descriptor.size()).isEqualTo(0);
+        assertThat(descriptor).isEmpty();
         descriptor.add(validId);
-        assertThat(descriptor.size()).isEqualTo(1);
+        assertThat(descriptor).hasSize(1);
 
         // Verify adding same instance will not increase number of descriptors
         descriptor.add(validId);
-        assertThat(descriptor.size()).isEqualTo(1);
+        assertThat(descriptor).hasSize(1);
     }
 
     @Test
@@ -85,19 +85,19 @@ public class VolumeControlOffsetDescriptorTest {
 
         descriptor.add(id_1);
         descriptor.add(id_2);
-        assertThat(descriptor.size()).isEqualTo(2);
+        assertThat(descriptor).hasSize(2);
 
         // Check remove api
         descriptor.remove(id_1);
-        assertThat(descriptor.size()).isEqualTo(1);
+        assertThat(descriptor).hasSize(1);
 
         // Check remove api with invalid id
         descriptor.remove(invalidId);
-        assertThat(descriptor.size()).isEqualTo(1);
+        assertThat(descriptor).hasSize(1);
 
         // Check clear API
         descriptor.clear();
-        assertThat(descriptor.size()).isEqualTo(0);
+        assertThat(descriptor).isEmpty();
     }
 
     @Test

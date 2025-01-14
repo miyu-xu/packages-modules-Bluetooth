@@ -122,7 +122,7 @@ public class MapClientTest {
         // is the statemachine created
         Map<BluetoothDevice, MceStateMachine> map = mService.getInstanceMap();
 
-        assertThat(map.size()).isEqualTo(1);
+        assertThat(map).hasSize(1);
         MceStateMachine sm = map.get(device);
         assertThat(sm).isNotNull();
         TestUtils.waitForLooperToFinishScheduledTask(sm.getHandler().getLooper());
@@ -170,7 +170,7 @@ public class MapClientTest {
 
         // verify
         Map<BluetoothDevice, MceStateMachine> map = mService.getInstanceMap();
-        assertThat(map.size()).isEqualTo(MapClientService.MAXIMUM_CONNECTED_DEVICES);
+        assertThat(map).hasSize(MapClientService.MAXIMUM_CONNECTED_DEVICES);
         for (BluetoothDevice d : list) {
             assertThat(map).containsKey(d);
         }

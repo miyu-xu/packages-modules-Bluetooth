@@ -771,7 +771,7 @@ public class AvrcpControllerStateMachineTest {
         assertThat(mAvrcpStateMachine.mBrowseTree.mRootNode.isCached()).isTrue();
         SparseArray<AvrcpPlayer> players = mAvrcpStateMachine.getAvailablePlayers();
         assertThat(players.contains(mAvrcpStateMachine.getAddressedPlayerId())).isTrue();
-        assertThat(players.size()).isEqualTo(testPlayers.size());
+        assertThat(players).hasSize(testPlayers.size());
         for (AvrcpPlayer player : testPlayers) {
             assertThat(players.contains(player.getId())).isTrue();
         }
@@ -823,7 +823,7 @@ public class AvrcpControllerStateMachineTest {
         assertThat(mAvrcpStateMachine.mBrowseTree.mRootNode.isCached()).isTrue();
         SparseArray<AvrcpPlayer> players = mAvrcpStateMachine.getAvailablePlayers();
         assertThat(players.contains(mAvrcpStateMachine.getAddressedPlayerId())).isTrue();
-        assertThat(players.size()).isEqualTo(testPlayers.size() + 1);
+        assertThat(players).hasSize(testPlayers.size() + 1);
         for (AvrcpPlayer player : testPlayers) {
             assertThat(players.contains(player.getId())).isTrue();
         }
@@ -1236,7 +1236,7 @@ public class AvrcpControllerStateMachineTest {
 
         List<MediaSessionCompat.QueueItem> queue = controller.getQueue();
         assertThat(queue).isNotNull();
-        assertThat(queue.size()).isEqualTo(2);
+        assertThat(queue).hasSize(2);
         assertThat(queue.get(0).getDescription().getTitle().toString()).isEqualTo("title");
         assertThat(queue.get(1).getDescription().getTitle().toString()).isEqualTo("title 2");
     }
@@ -2054,7 +2054,7 @@ public class AvrcpControllerStateMachineTest {
         playerNodes = mAvrcpStateMachine.findNode(results.getID());
         assertThat(playerNodes.isCached()).isTrue();
         assertThat(playerNodes.getChildren()).isNotNull();
-        assertThat(playerNodes.getChildren().size()).isEqualTo(2);
+        assertThat(playerNodes.getChildren()).hasSize(2);
         assertThat(playerNodes.getChildren().get(0).getMediaItem().toString())
                 .isEqualTo("MediaItem{mFlags=1, mDescription=player 1, null, null}");
         assertThat(playerNodes.getChildren().get(1).getMediaItem().toString())

@@ -165,7 +165,7 @@ public class CallLogPullRequestTest {
 
         request.onPullComplete();
 
-        assertThat(mCallCounter.size()).isEqualTo(1);
+        assertThat(mCallCounter).hasSize(1);
         for (String key : mCallCounter.keySet()) {
             assertThat(mCallCounter.get(key)).isEqualTo(2);
             break;
@@ -192,7 +192,7 @@ public class CallLogPullRequestTest {
 
         SparseArray<FakeContactsProvider.FakeRawContact> rawContacts =
                 mFakeContactsProvider.getRawContacts();
-        assertThat(rawContacts.size()).isEqualTo(1);
+        assertThat(rawContacts).hasSize(1);
         FakeContactsProvider.FakeRawContact contact = rawContacts.valueAt(0);
         assertThat(contact).isNotNull();
         assertThat(contact.getTimesContacted()).isEqualTo(1);

@@ -244,7 +244,7 @@ public class PbapClientContactsStorageTest {
         assertThat(mStorage.getStorageAccounts()).contains(account1);
 
         mStorage.removeAccount(account2);
-        assertThat(mStorage.getStorageAccounts().size()).isEqualTo(mMockedAccounts.size());
+        assertThat(mStorage.getStorageAccounts()).hasSize(mMockedAccounts.size());
         assertThat(mStorage.getStorageAccounts()).contains(account1);
         assertThat(mStorage.getStorageAccounts()).doesNotContain(account2);
     }
@@ -637,29 +637,29 @@ public class PbapClientContactsStorageTest {
     private void verifyDbRawContacts(int numRawContacts) {
         SparseArray<FakeContactsProvider.FakeRawContact> rawContacts =
                 mFakeContactsProvider.getRawContacts();
-        assertThat(rawContacts.size()).isEqualTo(numRawContacts);
+        assertThat(rawContacts).hasSize(numRawContacts);
     }
 
     private void verifyDbFavorites(int numFavorites) {
         SparseArray<FakeContactsProvider.FakeRawContact> favorites =
                 mFakeContactsProvider.getFavorites();
-        assertThat(favorites.size()).isEqualTo(numFavorites);
+        assertThat(favorites).hasSize(numFavorites);
     }
 
     private void verifyDbData(int numData) {
         SparseArray<FakeContactsProvider.FakeData> data = mFakeContactsProvider.getData();
-        assertThat(data.size()).isEqualTo(numData);
+        assertThat(data).hasSize(numData);
     }
 
     private void verifyDbAccounts(int numAccounts) {
         SparseArray<FakeContactsProvider.FakeAccount> accounts =
                 mFakeContactsProvider.getAccounts();
-        assertThat(accounts.size()).isEqualTo(numAccounts);
+        assertThat(accounts).hasSize(numAccounts);
     }
 
     private void verifyDbCallHistory(int numCallHistory) {
         SparseArray<FakeContactsProvider.FakeCallLog> calls =
                 mFakeContactsProvider.getCallHistory();
-        assertThat(calls.size()).isEqualTo(numCallHistory);
+        assertThat(calls).hasSize(numCallHistory);
     }
 }
