@@ -112,6 +112,24 @@
       "parentUuid": "f6cd4fb1_54e4cb44",
       "revId": "6dd6207097248b81643860662fab2e05e1633cd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb2af368_d41797eb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-14T18:07:37Z",
+      "side": 1,
+      "message": "We should be checking both the name and attribution tag from the attribution source. See b/372576833#comment6 for what FMD looks like in our logging.\n\nSome experimentation may be required. See ScannerMap#add for how we get the name from the calling UID. Use AttributionSourceUtil to get the last populated attribution tag, which is what should be checked.",
+      "parentUuid": "f159bb1e_e7df6b24",
+      "revId": "6dd6207097248b81643860662fab2e05e1633cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
