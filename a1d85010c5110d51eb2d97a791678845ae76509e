@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "256412cb_b632b2f0",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3259,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-14T14:26:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ae9829d_6278a513",
+      "range": {
+        "startLine": 3259,
+        "startChar": 7,
+        "endLine": 3259,
+        "endChar": 21
+      },
+      "revId": "a1d85010c5110d51eb2d97a791678845ae76509e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd42e44f_bc2cb322",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-13T19:34:45Z",
       "side": 1,
       "message": "isn\u0027t auto using a2dp sink ? (aka should this be \"false\" ?)\n\n---\n\n😄 \"restoring\" the property would avoid us to have to think about that and to keep these property in sync with the target configuration",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 57
+      },
+      "revId": "a1d85010c5110d51eb2d97a791678845ae76509e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859072de_e768fae6",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config_auto.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-14T14:26:26Z",
+      "side": 1,
+      "message": "if they use another pts bot - yes :D but I don\u0027t think so, the pts bot code always enabled these sysprops in this way",
+      "parentUuid": "fd42e44f_bc2cb322",
       "range": {
         "startLine": 382,
         "startChar": 0,
