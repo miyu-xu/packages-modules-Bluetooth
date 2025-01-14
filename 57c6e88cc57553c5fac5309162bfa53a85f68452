@@ -22,6 +22,30 @@
       },
       "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064f1a3e_01ebf469",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-14T14:58:17Z",
+      "side": 1,
+      "message": "this is exactly what was in the previous implementation by Charlie. At the beginning he set those properties like that.",
+      "parentUuid": "7d42ea7d_c81187bf",
+      "range": {
+        "startLine": 3257,
+        "startChar": 24,
+        "endLine": 3266,
+        "endChar": 6
+      },
+      "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
