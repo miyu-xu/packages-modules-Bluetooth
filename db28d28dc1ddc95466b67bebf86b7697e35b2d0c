@@ -142,6 +142,29 @@
       },
       "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b09b595_26fa910d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2142,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T21:59:35Z",
+      "side": 1,
+      "message": "Do you need to clear the entry in `AdapterService` as well?",
+      "range": {
+        "startLine": 2136,
+        "startChar": 12,
+        "endLine": 2142,
+        "endChar": 13
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
