@@ -94,6 +94,30 @@
       },
       "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29d76aae_099a364d",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-14T16:31:50Z",
+      "side": 1,
+      "message": "We need to add the symmetrical to AD2DP/SNK\nI am more curious to know if this coni\u003dfiguration will affact more test suites than A2DP / AVDTP",
+      "parentUuid": "ef4f4321_d0cb3e7f",
+      "range": {
+        "startLine": 3257,
+        "startChar": 24,
+        "endLine": 3266,
+        "endChar": 6
+      },
+      "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
