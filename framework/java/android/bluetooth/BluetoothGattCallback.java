@@ -16,9 +16,12 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.IntRange;
 import android.annotation.NonNull;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -285,8 +288,8 @@ public abstract class BluetoothGattCallback {
      * @param subrateMode for this LE connection.
      * @param status {@link BluetoothGatt#GATT_SUCCESS} if the connection subrating has been updated
      *     successfully
-     * @hide
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public void onSubrateChange(
             @NonNull BluetoothGatt gatt,
             @IntRange(from = 1, to = 255) int subrateMode,

@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.bluetooth.BluetoothUtils.logRemoteException;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -36,6 +37,8 @@ import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -161,32 +164,20 @@ public final class BluetoothGatt implements BluetoothProfile {
      */
     public static final int CONNECTION_PRIORITY_DCK = 3;
 
-    /**
-     * Connection subrate mode - Balanced.
-     *
-     * @hide
-     */
+    /** Connection subrate mode - Balanced. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_MODE_BALANCED = 0;
 
-    /**
-     * Connection subrate mode - High.
-     *
-     * @hide
-     */
+    /** Connection subrate mode - High. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_MODE_HIGH = 1;
 
-    /**
-     * Connection Subrate mode - Low
-     *
-     * @hide
-     */
+    /** Connection Subrate mode - Low */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_MODE_LOW = 2;
 
-    /**
-     * Connection Subrate mode - System Update.
-     *
-     * @hide
-     */
+    /** Connection Subrate mode - System Update. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     public static final int SUBRATE_MODE_SYSTEM = 99;
 
     /** @hide */
@@ -2139,8 +2130,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @param subrateMode Request a specific subrate mode.
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
      * @return true, if the request is send to the Bluetooth stack.
-     * @hide
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
