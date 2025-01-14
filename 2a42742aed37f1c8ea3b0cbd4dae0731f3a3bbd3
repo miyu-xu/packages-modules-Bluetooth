@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "996dd3e2_9d6c823b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-14T11:25:18Z",
+      "side": 1,
+      "message": "Thank you for review.\n\n\u003e code below (line 1369 -\u003e is responsible for getting back context which were stored before the call.\nI see, the \"before\" context is always \"media\" ? as can be read from comment in lin #1370.\nI think then that this code needs to be moved below this part - thanks.\n\n\u003e what this code (1342 -\u003e 1368) is indending to do?\nIntention is to stop stream (if there is some group streaming) if current metadata for source/sink is not supported.\n\n\u003e How it will work with SinkOnly devices ? e.g. Hearing aids\nMaybe I don\u0027t get the question. This should behave exactly the same since `StopStreamIfUpdatedContextIsNoLongerSupporteded` relies on local_metadata_context_types_.",
+      "parentUuid": "d03c2a59_663ff9f1",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7508febd_41e4b2da",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2025-01-13T14:35:05Z",
       "side": 1,
       "message": "Not related to this CL, but still: Since in Unicast we do have Supported and Available context, and I have feeling that this function is not really checking \"Supported ones\", can we please adjust the naming to avoid future confusions ?",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b84860_76dc381f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-14T11:25:18Z",
+      "side": 1,
+      "message": "Any suggestion for rename `StopStreamIfUpdatedContextIsNoLongerSupporteded` maybe `StopStreamIfUpdatedContextIsNoLongerAllowed` ?",
+      "parentUuid": "7508febd_41e4b2da",
       "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
