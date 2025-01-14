@@ -70,6 +70,30 @@
       },
       "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4f4321_d0cb3e7f",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-14T16:04:47Z",
+      "side": 1,
+      "message": "from: atest pts-bot:A2DP -v\n\nSummary (Test executed with 1 devices.)\n-------\nx86_64 pts-bot:A2DP/SNK: Passed: 15, Failed: 1, Ignored: 0, Assumption Failed: 0  \nx86_64 pts-bot:A2DP/SRC: Passed: 3, Failed: 6, Ignored: 0, Assumption Failed: 0  \n\n7 tests failed\n--------------\nA2DP/SNK#A2DP/SNK/SYN/BV-01-C\nA2DP/SRC#A2DP/SRC/CC/BV-09-I\nA2DP/SRC#A2DP/SRC/REL/BV-01-I\nA2DP/SRC#A2DP/SRC/REL/BV-02-I\nA2DP/SRC#A2DP/SRC/SET/BV-03-I\nA2DP/SRC#A2DP/SRC/SET/BV-04-I\nA2DP/SRC#A2DP/SRC/SUS/BV-01-I",
+      "parentUuid": "b3ff36f7_9e9073d9",
+      "range": {
+        "startLine": 3257,
+        "startChar": 24,
+        "endLine": 3266,
+        "endChar": 6
+      },
+      "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
