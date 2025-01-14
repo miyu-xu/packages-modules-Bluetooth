@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbd8e40b_b0dcbdff",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-14T23:29:32Z",
+      "side": 1,
+      "message": "BatteryService would be preferred for me, since bas is too close to BASS",
+      "parentUuid": "cd1e9e77_aa5b9568",
+      "range": {
+        "startLine": 177,
+        "startChar": 44,
+        "endLine": 177,
+        "endChar": 51
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "367c6f08_962dcac4",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 5
@@ -125,6 +149,30 @@
           ]
         }
       ],
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2ec28c_10c143ef",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-14T23:29:32Z",
+      "side": 1,
+      "message": "LeAudio matches the other provided strings better though",
+      "parentUuid": "035fd821_f355ec28",
+      "range": {
+        "startLine": 425,
+        "startChar": 13,
+        "endLine": 425,
+        "endChar": 20
+      },
       "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
