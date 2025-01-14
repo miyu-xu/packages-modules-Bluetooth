@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d6ec02d_82295229",
+        "filename": "offload/hal/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-14T00:35:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4df1ba5_2eb2da33",
+      "revId": "3c2e93ffce6314f8de4d0848cd96ad1e4a489d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89d3cc5b_f67dddeb",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d07990_8fab95b6",
+        "filename": "offload/leaudio/hci/arbiter.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-14T00:35:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89d3cc5b_f67dddeb",
+      "range": {
+        "startLine": 29,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "3c2e93ffce6314f8de4d0848cd96ad1e4a489d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c480ed3a_d4cabf05",
@@ -54,6 +96,30 @@
       "writtenOn": "2025-01-13T19:28:33Z",
       "side": 1,
       "message": "can we add handle in error message ?",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 48
+      },
+      "revId": "3c2e93ffce6314f8de4d0848cd96ad1e4a489d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99b7fbda_1e12ba87",
+        "filename": "offload/leaudio/hci/arbiter.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-14T00:35:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c480ed3a_d4cabf05",
       "range": {
         "startLine": 52,
         "startChar": 0,
