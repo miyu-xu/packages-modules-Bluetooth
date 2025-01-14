@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadf4520_1efc4215",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "7038f6bb_3202d88c",
+      "range": {
+        "startLine": 984,
+        "startChar": 68,
+        "endLine": 984,
+        "endChar": 77
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09e58cf0_69ef8787",
@@ -75,6 +99,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b46c84a_f78a552a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09e58cf0_69ef8787",
+      "range": {
+        "startLine": 985,
+        "startChar": 0,
+        "endLine": 985,
+        "endChar": 73
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3a9c0ed_2ec6d3c3",
@@ -88,6 +136,30 @@
       "writtenOn": "2025-01-13T22:51:22Z",
       "side": 1,
       "message": "Should this be moved into `createHeldCall` ? same for createActiveCall and doeReturn STATE_ACTIVE ?",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 67
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96444fcf_64185e30",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Created a common function to handle call state part.",
+      "parentUuid": "a3a9c0ed_2ec6d3c3",
       "range": {
         "startLine": 1007,
         "startChar": 0,
@@ -139,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "921035e9_df0a6a64",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Removed redundant code",
+      "parentUuid": "ed5701cc_51ccf82f",
+      "range": {
+        "startLine": 1047,
+        "startChar": 0,
+        "endLine": 1047,
+        "endChar": 45
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d46830e0_65c3d97b",
@@ -180,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e63cc9cf_8d57cf21",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1048,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Removed redundant code",
+      "parentUuid": "d46830e0_65c3d97b",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1048,
+        "endChar": 66
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29dd800f_0537a65e",
@@ -203,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef8e51b_21b7fd7a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "As per current test case scenario these verification are not need hence removing it.",
+      "parentUuid": "29dd800f_0537a65e",
+      "range": {
+        "startLine": 1051,
+        "startChar": 25,
+        "endLine": 1051,
+        "endChar": 46
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e78f84ed_b682c090",
@@ -216,6 +360,30 @@
       "writtenOn": "2025-01-13T22:51:22Z",
       "side": 1,
       "message": "What does that mean ?",
+      "range": {
+        "startLine": 1060,
+        "startChar": 33,
+        "endLine": 1060,
+        "endChar": 59
+      },
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed3be59_1d477850",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1060,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Corrected the comment.",
+      "parentUuid": "e78f84ed_b682c090",
       "range": {
         "startLine": 1060,
         "startChar": 33,
@@ -263,6 +431,30 @@
           ]
         }
       ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f287eb3_c604f74b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Yes linked with Call 1 and 2 as part of conference",
+      "parentUuid": "88e5007e_b3aad649",
+      "range": {
+        "startLine": 1068,
+        "startChar": 24,
+        "endLine": 1068,
+        "endChar": 29
+      },
       "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -464,6 +656,30 @@
           ]
         }
       ],
+      "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94569e13_e80fe8d1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-14T13:09:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dce15cff_80f6ef77",
+      "range": {
+        "startLine": 1088,
+        "startChar": 0,
+        "endLine": 1093,
+        "endChar": 34
+      },
       "revId": "b3d0cd114761e5735a243acef45fe8b54e8cadc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
