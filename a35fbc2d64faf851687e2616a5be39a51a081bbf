@@ -52,6 +52,24 @@
       "parentUuid": "524cbfcf_a14f83d1",
       "revId": "a35fbc2d64faf851687e2616a5be39a51a081bbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f5dd0f6_944d5c70",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T12:24:08Z",
+      "side": 1,
+      "message": "GetExpectedGroupIdMember() is used only when device is cached for upcoming bonding.",
+      "parentUuid": "524cbfcf_a14f83d1",
+      "revId": "a35fbc2d64faf851687e2616a5be39a51a081bbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
