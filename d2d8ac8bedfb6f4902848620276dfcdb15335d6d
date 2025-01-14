@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a57709c3_2030e152",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-14T13:50:50Z",
+      "side": 1,
+      "message": "Native stack sends BOND_NONE event to java, and now you are passing it back to native.\n\nin btif_dm.cc , bond_state_changed function calls invoke_bond_state_changed_cb. \n\nIf you are interested just in \"bond state change\" that is a result of current pairing failure, btif_dm_ble_auth_cmpl_evt would be a better place. Or to not cross the btif/bta layers, in bta_dm_sec.cc you have just one place that sends the BTA_DM_BLE_AUTH_CMPL_EVT, so make it call CSIS client.",
+      "range": {
+        "startLine": 323,
+        "startChar": 7,
+        "endLine": 323,
+        "endChar": 20
+      },
+      "revId": "d2d8ac8bedfb6f4902848620276dfcdb15335d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
