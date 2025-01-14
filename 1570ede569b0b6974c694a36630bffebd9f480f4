@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb10fefb_9f0aed51",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-14T19:35:34Z",
+      "side": 1,
+      "message": "Both the service and device are guaranteed to be not null here. You can either add @NonNull in the parameter or add a `requireNonNull` as first member of the method, but I would like not to add any non-necessary branch to the code",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 48
+      },
+      "revId": "1570ede569b0b6974c694a36630bffebd9f480f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
