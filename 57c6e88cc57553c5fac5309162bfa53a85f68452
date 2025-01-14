@@ -118,6 +118,30 @@
       },
       "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc403224_174fe26c",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-14T17:10:35Z",
+      "side": 1,
+      "message": "I tried to map symmetrical test cases for SRC. Let\u0027s try and run presubmit",
+      "parentUuid": "29d76aae_099a364d",
+      "range": {
+        "startLine": 3257,
+        "startChar": 24,
+        "endLine": 3266,
+        "endChar": 6
+      },
+      "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
