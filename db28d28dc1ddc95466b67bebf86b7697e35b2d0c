@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f7c51e0_81ff4117",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5328,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T21:51:23Z",
+      "side": 1,
+      "message": "so when this client failed to connect, we don\u0027t have to disconnect other pending profiles?",
+      "range": {
+        "startLine": 5328,
+        "startChar": 72,
+        "endLine": 5328,
+        "endChar": 77
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be80aad0_dfdb6195",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 10
