@@ -133,6 +133,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26eefc1c_4509ec52",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3076,
+      "author": {
+        "id": 1973180
+      },
+      "writtenOn": "2025-01-14T20:38:46Z",
+      "side": 1,
+      "message": "When a `BluetoothServerSocket` is constructed with only a service UUID [here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothServerSocket.java;drc\u003d77fbb39b60c7bcafc758f6e5851ca57d23404583;l\u003d151), it passes in `-1` to the `BluetoothSocket` constructor. This sets both the Socket\u0027s `mPort` and the ServerSocket\u0027s `mChannel` to `-1`.\n\nOnce `bindListen()` is called on the `BluetoothSocket`, it updates `mPort` if `mPort \u003c\u003d -1`. However, it does not inform the `BluetoothServerSocket` wrapper class. Instead, `BluetoothAdapter` manually fixes up the `BluetoothServerSocket`\u0027s channel after calling `bindListen()` [here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;drc\u003daa5db2ec7239735f9f3be478eeeaaf00542766f3;l\u003d3076).\n\nBasically, the top-level `BluetoothAdapter` only considers the `-2` case, but `BluetoothServerSocket` and `BluetoothSocket` handle both `-1` and `-2` to differentiate between \"auto-assign w/ SDP\" and \"auto-assign w/o SDP\".",
+      "parentUuid": "2f137313_bf24a44e",
+      "range": {
+        "startLine": 3076,
+        "startChar": 30,
+        "endLine": 3076,
+        "endChar": 32
+      },
+      "revId": "49f456bb58504f82c1ec5c90e73b8931f2e22337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a420a6f2_739b422a",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
