@@ -16,6 +16,24 @@
       "message": "Are we intended to keep the fallback after we switched to unicast?\n\nThis might have issue with ln.2451. If we don\u0027t clear this fallback, the next setActiveDevice will get blocked, and then unicast won\u0027t have active device.",
       "revId": "344e2d0542fccedde37d6e55f6633e590404b981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13a5ba60_e58363bb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3172,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-14T13:58:10Z",
+      "side": 1,
+      "message": "Maybe I don\u0027t get clearly what you mean here. This clearance of fallback group id is for backward compatibility (without support of PrimaryGroupSelection).\n\nWith enabled flag there is no need to clear fallback group since the fallback group should be either:\n- default (earliest connected)\n- selected by user\n\nIntention in #2451 is to change only fallback group when broadcast is streaming while setting active device.\n\nDid I miss something ? Do you see a problem with that while testing or is this just theoretical question ?",
+      "parentUuid": "b9a0d24a_e5ece11e",
+      "revId": "344e2d0542fccedde37d6e55f6633e590404b981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
