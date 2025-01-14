@@ -1,0 +1,132 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa301daa_f53d496d",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T23:02:49Z",
+      "side": 1,
+      "message": "nit: `cstr !\u003d NULL`",
+      "range": {
+        "startLine": 127,
+        "startChar": 6,
+        "endLine": 127,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a01f673a_67e756ee",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 127,
+                "startChar": 0,
+                "endLine": 128,
+                "endChar": 0
+              },
+              "replacement": "  if (cstr \u003d\u003d NULL) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd1e9e77_aa5b9568",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T23:02:49Z",
+      "side": 1,
+      "message": "aBatteryServicea or `bas` so that it matches the Bluetooth SIG naming",
+      "range": {
+        "startLine": 177,
+        "startChar": 44,
+        "endLine": 177,
+        "endChar": 51
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "367c6f08_962dcac4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T23:02:49Z",
+      "side": 1,
+      "message": "`bass_client` as you will have `bass_server` later or `BassClient` to match Java naming convention\n\nuse camel case in Java and underscores in C++",
+      "range": {
+        "startLine": 1810,
+        "startChar": 44,
+        "endLine": 1810,
+        "endChar": 48
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "035fd821_f355ec28",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T23:02:49Z",
+      "side": 1,
+      "message": "nit: `le_audio` to match the directory name?",
+      "range": {
+        "startLine": 425,
+        "startChar": 13,
+        "endLine": 425,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c0b4cd40_68ef76f8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 425,
+                "startChar": 0,
+                "endLine": 426,
+                "endChar": 0
+              },
+              "replacement": "            \"le_audio\", le_audio_gattc_callback,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
