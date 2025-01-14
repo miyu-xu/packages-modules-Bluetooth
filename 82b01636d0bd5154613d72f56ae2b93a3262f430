@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75e1f82a_2ef0e7b5",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-14T08:01:51Z",
+      "side": 1,
+      "message": "Thank you for explenation! Does it means that all variables which are synchronized, should have such @GuardedBy? I.e. in BassClientService.java there are a lot of variable synchronizations (added by me too) but almost not @GuardedBy,  should they be added?\n\n`synchronized (mDeviceVolumeCache)` is not valid anymore as aosp/3422359 change it to method synchronization, at least before you rebase/merge your changes.",
+      "parentUuid": "2b095e69_f36cc63f",
+      "range": {
+        "startLine": 598,
+        "startChar": 22,
+        "endLine": 598,
+        "endChar": 40
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83203ac2_79b19085",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
