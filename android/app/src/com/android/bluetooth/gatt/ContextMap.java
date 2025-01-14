@@ -353,6 +353,15 @@ public class ContextMap<C> {
         }
     }
 
+    public int countConnectionsByAddress(int appId, String address) {
+        synchronized (mConnectionsLock) {
+            return (int)
+                    mConnections.stream()
+                            .filter(conn -> conn.appId == appId && conn.address.equals(address))
+                            .count();
+        }
+    }
+
     /** Erases all application context entries. */
     public void clear() {
         synchronized (mAppsLock) {

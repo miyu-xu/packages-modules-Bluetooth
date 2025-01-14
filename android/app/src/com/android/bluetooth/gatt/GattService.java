@@ -2374,12 +2374,15 @@ public class GattService extends ProfileService {
             return;
         }
         int connectionState;
+        boolean shouldInvokeCallback = false;
         if (connected) {
+            shouldInvokeCallback = mServerMap.countConnectionsByAddress(serverIf, address) == 0;
             mServerMap.addConnection(serverIf, connId, address);
             connectionState = BluetoothProtoEnums.CONNECTION_STATE_CONNECTED;
         } else {
             mServerMap.removeConnection(serverIf, connId);
             connectionState = BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED;
+            shouldInvokeCallback = mServerMap.countConnectionsByAddress(serverIf, address) == 0;
         }
 
         int applicationUid = -1;
@@ -2392,7 +2395,9 @@ public class GattService extends ProfileService {
             Log.d(TAG, "onClientConnected() uid_not_found=" + app.name);
         }
 
-        app.callback.onServerConnectionState((byte) 0, serverIf, connected, address);
+        if (shouldInvokeCallback) {
+            app.callback.onServerConnectionState((byte) 0, serverIf, connected, address);
+        }
         statsLogAppPackage(address, applicationUid, serverIf);
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT_SERVER, address, serverIf, connectionState, -1);
