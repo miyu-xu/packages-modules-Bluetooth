@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e23c59f2_9ca5eafa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "can do that, but also with unit tests it should be pretty clear.",
+      "parentUuid": "c9b04ec4_9af77cc9",
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f98bebb2_5711ffd6",
@@ -59,6 +77,54 @@
         "startChar": 47,
         "endLine": 296,
         "endChar": 76
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abd96a7d_3b43d6fb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a577944_94771cd3",
+      "range": {
+        "startLine": 296,
+        "startChar": 47,
+        "endLine": 296,
+        "endChar": 76
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fcd93df_b6e3b940",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I haven\u0027t seen any other list having comments but I can add it. Even, you got it right.",
+      "parentUuid": "f98bebb2_5711ffd6",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 97
       },
       "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -130,6 +196,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f5cd7f2_fafd49b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5165,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Idea is that GattService just notifies AdapterService about Direct Le GATT connections. How the AdapterService will use it is another story and not relevant here.\n\nThis is why name of this function does not expose any specific actions, as it should be not important to GattService. In this way, we move business logic down to AdapterService .\n\nMoreover, we might want to have additional actions in the AdapterService for this call.\n\nI do recommand to keep it as it is.\n\nHowever I will create private functions for LeAudio case which hopefully will be more clear for readers",
+      "parentUuid": "74a247a8_5afce5b8",
+      "range": {
+        "startLine": 5162,
+        "startChar": 0,
+        "endLine": 5165,
+        "endChar": 55
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4ad656a_f8dfb83f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5165,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f739b8c_bed8de74",
+      "range": {
+        "startLine": 5165,
+        "startChar": 10,
+        "endLine": 5165,
+        "endChar": 22
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56a4fa17_f90c397e",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 7
@@ -141,6 +255,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "see above, suggest changing this to `addGattClientToPreventLeAudioFromAutoActivation`",
+      "range": {
+        "startLine": 5170,
+        "startChar": 16,
+        "endLine": 5170,
+        "endChar": 47
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0871f07d_ab221be3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5170,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I can do it as a private function which is called when leAudioService is there.",
+      "parentUuid": "56a4fa17_f90c397e",
       "range": {
         "startLine": 5170,
         "startChar": 16,
@@ -164,6 +302,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "nit: split this into two separate conditions to make flag removeal easier",
+      "range": {
+        "startLine": 5171,
+        "startChar": 0,
+        "endLine": 5174,
+        "endChar": 9
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f46c565_e25a7066",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5174,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67da325f_761e6558",
       "range": {
         "startLine": 5171,
         "startChar": 0,
@@ -211,6 +373,30 @@
           ]
         }
       ],
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79e15b06_1eb91036",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5178,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a6e2108_b8706ac4",
+      "range": {
+        "startLine": 5178,
+        "startChar": 26,
+        "endLine": 5178,
+        "endChar": 29
+      },
       "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -284,6 +470,78 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6fc7b8d_c2bc530b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I modify the code so this is not relevant anymore.",
+      "parentUuid": "6c19d2d0_14b9cedd",
+      "range": {
+        "startLine": 5216,
+        "startChar": 54,
+        "endLine": 5216,
+        "endChar": 90
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e60e6e7_f25dba0c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I modify the code so this is not relevant now. I agree it was confusing.",
+      "parentUuid": "2b107b11_aa07043b",
+      "range": {
+        "startLine": 5216,
+        "startChar": 12,
+        "endLine": 5216,
+        "endChar": 19
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b45ba02_8e9c4615",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae9a372_c10baa9c",
+      "range": {
+        "startLine": 5216,
+        "startChar": 20,
+        "endLine": 5216,
+        "endChar": 39
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53a34573_a03fade4",
@@ -348,6 +606,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1594f49e_74ca04a6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5229,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe64a08f_95d4a878",
+      "range": {
+        "startLine": 5229,
+        "startChar": 46,
+        "endLine": 5229,
+        "endChar": 56
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d82812ed_0e5b3005",
@@ -394,6 +676,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e127f76_adba401d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5295,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Modify the code so this is not relevant anymore.",
+      "parentUuid": "d82812ed_0e5b3005",
+      "range": {
+        "startLine": 5295,
+        "startChar": 11,
+        "endLine": 5295,
+        "endChar": 15
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab013b9c_a1cd1c6a",
@@ -407,6 +713,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "why do we have to do this? what sequence of events would lead to the case where some profiles are connected, but `mLeGattClientsForAudioDevices` is not empty?",
+      "range": {
+        "startLine": 5303,
+        "startChar": 19,
+        "endLine": 5311,
+        "endChar": 13
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4f6e89_bfc7ecff",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5311,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I\u0027m sorry but I have problems with understanding the question.\n\nRegarding this code - when device was prevented to be in Active Mode, and all the clients preventing that Disconnected, this code will make sure that device will be disconnected (ACL needs to be disconnected).\n\nWihtout this code, internal GATT services keeps ACL alive in native code, and we want to avoid it.\n\nhope that helps.",
+      "parentUuid": "ab013b9c_a1cd1c6a",
       "range": {
         "startLine": 5303,
         "startChar": 19,
@@ -442,6 +772,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "732aeb1d_8961d68a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I had this logic reverted at the beggining and change to this way.\nReason for doing this, is that on the LeAudioService level I want to have AutoActiveMode as a feature of this group directly.",
+      "parentUuid": "80646dda_c19beb03",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 258,
+        "endChar": 42
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df217aa0_4e327615",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
@@ -453,6 +807,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "reverse logic as suggested above will make this code easier to read",
+      "range": {
+        "startLine": 1998,
+        "startChar": 18,
+        "endLine": 1998,
+        "endChar": 56
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7a5942_137b37a6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1998,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "depends how you read it. When you read it in the context of the Finder issue, you find it easier to read, but when you look at this as a feature of the group, it make sense to have this logic. I would like to keep it this way.",
+      "parentUuid": "df217aa0_4e327615",
       "range": {
         "startLine": 1998,
         "startChar": 18,
@@ -480,6 +858,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d1ede58_df3002d4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2001,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "106a0dd9_e10c5d4b",
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca8a286b_2cd49059",
@@ -493,6 +889,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "not sure if I understand this logic, why do we return true here when some group disabled auto active mode?",
+      "range": {
+        "startLine": 2017,
+        "startChar": 0,
+        "endLine": 2020,
+        "endChar": 9
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "543fa5de_299774a6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "because this retur true is to function called `isScannerNeeded`.\n\nIf there are any groups with disabled AutoActiveMode we want Scanner to be active to monitor Targeted Announcements.",
+      "parentUuid": "ca8a286b_2cd49059",
       "range": {
         "startLine": 2017,
         "startChar": 0,
@@ -528,6 +948,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64b67c5a_39ca4d83",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "As per commmit message \n\n```\nInstead it will stay in the background waiting for user action to make\nit Active or Remote device starts Targeted Annoucements.\n```",
+      "parentUuid": "9b98376d_759b43c8",
+      "range": {
+        "startLine": 2108,
+        "startChar": 28,
+        "endLine": 2108,
+        "endChar": 81
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fea2b4f_3a5ff1c5",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
@@ -551,6 +995,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68c8d851_6c11605e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "ditto.\n\nNote, previously this scanner was not interested in the scan results at all. It was running in the background and was making sure that Filters in the controller are actually running. Now, we are making use of this Scanner to change the AutoActive state if necessary.",
+      "parentUuid": "8fea2b4f_3a5ff1c5",
+      "range": {
+        "startLine": 2114,
+        "startChar": 1,
+        "endLine": 2114,
+        "endChar": 84
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff7a8928_5ebb8457",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
@@ -562,6 +1030,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "why do we need to parse scan result for this CL? Just to detect new targeted annoucements? or for CAP?? why?",
+      "range": {
+        "startLine": 2128,
+        "startChar": 0,
+        "endLine": 2137,
+        "endChar": 23
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "625b1dac_a55755c6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "ff7a8928_5ebb8457",
       "range": {
         "startLine": 2128,
         "startChar": 0,
@@ -613,6 +1105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88032c4_7ea064da",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2143,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd72dd5_2237346d",
+      "range": {
+        "startLine": 2143,
+        "startChar": 20,
+        "endLine": 2143,
+        "endChar": 64
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfdcfa98_9a4be760",
@@ -636,6 +1152,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "186af010_e92f85a6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2457,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "I want to keep it this way.",
+      "parentUuid": "dfdcfa98_9a4be760",
+      "range": {
+        "startLine": 2457,
+        "startChar": 17,
+        "endLine": 2457,
+        "endChar": 66
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a5614ac_acfdc339",
@@ -649,6 +1189,30 @@
       "writtenOn": "2025-01-13T23:56:17Z",
       "side": 1,
       "message": "if it is returning a boolean, the method name should be `isInAutoActiveMode(groupId)`",
+      "range": {
+        "startLine": 4659,
+        "startChar": 7,
+        "endLine": 4660,
+        "endChar": 22
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cdae572_5cdc167c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 4660,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "but the AutoActiveModeState is a boolean and this is just getter.\nIf you have very strong opinion on that I will change that, but if not I wish to keep it this way.",
+      "parentUuid": "2a5614ac_acfdc339",
       "range": {
         "startLine": 4659,
         "startChar": 7,
@@ -760,6 +1324,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7abdc55_5ae7f95b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1219,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f005c78b_43acb800",
+      "range": {
+        "startLine": 1219,
+        "startChar": 0,
+        "endLine": 1219,
+        "endChar": 86
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37e76258_2eb59175",
@@ -773,6 +1361,24 @@
       "writtenOn": "2025-01-14T00:06:51Z",
       "side": 1,
       "message": "You have multiple test that does the same or similar \"basic\" actions.\n\ncan we wrap them in a method to factorize the operation ?\n\n```\nprivate final BluetoothAdapter mAdapter \u003d BluetoothAdapter.getDefaultAdapter();\nprivate final BluetoothDevice mDevice \u003d TestUtils.getTestDevice(mAdapter, 0);\nprivate final BluetoothDevice mDevice2 \u003d TestUtils.getTestDevice(mAdapter, 43);\n\nInOrder prepareLeAudioWithConnectedDevices(List\u003cBluetoothDevice\u003e devices, int groupId) {\n        doEnable(false);\n\n        doReturn(groupId).when(mMockLeAudioService).getGroupId(any());\n        doReturn(STATE_CONNECTED).when(mMockLeAudioService).getConnectionState(any());\n        doReturn(devices).when(mMockLeAudioService).getGroupDevices(anyInt());        doReturn(STATE_CONNECTED).when(mNativeInterface).getConnectionState(any()));\n        doReturn(true).when(mMockLeAudioService).setAutoActiveModeState(groupId, false);\n\n        return inOrder(mMockLeAudioService);\n}\n\n    @Test\n    @EnableFlags(Flags.FLAG_ALLOW_GATT_CONNECT_FROM_THE_APPS_WITHOUT_MAKING_LEAUDIO_DEVICE_ACTIVE)\n    public void testGattConnectionToLeAudioDevice_triggerDisconnecting() {\n        int groupId \u003d 1;\n        InOrder order \u003d prepareLeAudioWithConnectedDevices(List.of(mDevice), groupId);\n```\n\n(note that I have also replace the `when(xxx).ThenReturn` by `doReturn(xx).when(` that is preferred and that I am using an immutable list with `List.of(xxx)` instead of dynamic list (3 lines editable to 1 lines const)",
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "261c050a_1dde5869",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Good point!",
+      "parentUuid": "37e76258_2eb59175",
       "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -878,6 +1484,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bbe1afa_0b82b0ae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1336,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cc79520_4e886c08",
+      "range": {
+        "startLine": 1336,
+        "startChar": 42,
+        "endLine": 1336,
+        "endChar": 50
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b2b7658_982dd047",
@@ -891,6 +1521,30 @@
       "writtenOn": "2025-01-14T00:06:51Z",
       "side": 1,
       "message": "We could probably move that to global setup as this seems to be a sane default",
+      "range": {
+        "startLine": 3071,
+        "startChar": 0,
+        "endLine": 3071,
+        "endChar": 89
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1461af7_bb3b31e5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3071,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "This would be nice cleaning move, but I would like to keep it out of this change as it would affect all other test cases.",
+      "parentUuid": "8b2b7658_982dd047",
       "range": {
         "startLine": 3071,
         "startChar": 0,
@@ -942,6 +1596,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea57e072_bd2536b9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99bea4fd_7aa9357e",
+      "range": {
+        "startLine": 3101,
+        "startChar": 0,
+        "endLine": 3104,
+        "endChar": 69
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11e86370_29fde792",
@@ -955,6 +1633,30 @@
       "writtenOn": "2025-01-14T00:06:51Z",
       "side": 1,
       "message": "We probably watn to have a method that return this event already filled.\nThis is used in all you test, and you have config declaration in the start of all the test with the exact same data in each test.",
+      "range": {
+        "startLine": 3107,
+        "startChar": 0,
+        "endLine": 3113,
+        "endChar": 60
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f58c850_e74caa99",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3113,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:07:02Z",
+      "side": 1,
+      "message": "actually there is such method",
+      "parentUuid": "11e86370_29fde792",
       "range": {
         "startLine": 3107,
         "startChar": 0,
