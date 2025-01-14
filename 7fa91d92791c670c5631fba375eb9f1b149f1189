@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "273ed7b5_65fc5bb4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1735,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-14T08:56:08Z",
+      "side": 1,
+      "message": "Typo. There is no need for an additional group lookup inside the `ConfiguredStream()` since we already have the group pointer at line #1631.",
+      "range": {
+        "startLine": 1735,
+        "startChar": 15,
+        "endLine": 1735,
+        "endChar": 16
+      },
+      "revId": "7fa91d92791c670c5631fba375eb9f1b149f1189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
