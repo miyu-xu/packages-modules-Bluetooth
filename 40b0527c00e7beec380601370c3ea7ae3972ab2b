@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d363da_fce18d1b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1638,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T00:05:13Z",
+      "side": 1,
+      "message": "Could the logic be more nested like:\n\n```java\nif (transport !\u003d BluetoothDevice.TRANSPORT_BREDR \u0026\u0026 isDirect \u0026\u0026 !opportunistic) {\n    String attributionTag \u003d attributionSource.getAttributionTag();\n    if (attributionTag !\u003d null) {\n        for (String entry : GATT_CLIENTS_NOTIFY_TO_ADAPTER_PACKAGES) {\n            if (attributionTag.contains(entry)) {\n                mAdapterService.notifyDirectLeGattClientConnect(clientIf, getDevice(address));\n                break;\n            }\n        }\n    }\n}\n```\n\nSo that the outter condition does not get modified in this CL.",
+      "range": {
+        "startLine": 1626,
+        "startChar": 0,
+        "endLine": 1638,
+        "endChar": 9
+      },
+      "revId": "40b0527c00e7beec380601370c3ea7ae3972ab2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
