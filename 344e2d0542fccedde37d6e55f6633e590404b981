@@ -34,6 +34,24 @@
       "parentUuid": "b9a0d24a_e5ece11e",
       "revId": "344e2d0542fccedde37d6e55f6633e590404b981",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e859089_a12c3506",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3172,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-14T17:29:39Z",
+      "side": 1,
+      "message": "I got your intent, and actually that\u0027s also what I preferred.\n\nBut if we don\u0027t reset fallback to -1, then the next setActiveDevice won\u0027t take any effect because it will fall into the block due to #2451.\n\nYou can hit this issue by enabling this flag, start audio sharing -\u003e incoming call -\u003e accept the call -\u003e no audio.",
+      "parentUuid": "13a5ba60_e58363bb",
+      "revId": "344e2d0542fccedde37d6e55f6633e590404b981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
