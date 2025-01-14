@@ -1,0 +1,99 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6cd4fb1_54e4cb44",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-14T14:57:42Z",
+      "side": 1,
+      "message": "Martin, could you confirm this is correct?",
+      "fixSuggestions": [
+        {
+          "fixId": "1c60d15c_3675a8d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 26,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.SuppressLint;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "            List.of(\"com.google.android.gms.findmydevice\", \"com.google.android.gms.nearby\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6dd6207097248b81643860662fab2e05e1633cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
