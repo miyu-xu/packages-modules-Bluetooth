@@ -109,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f137313_bf24a44e",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3076,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-14T20:01:46Z",
+      "side": 1,
+      "message": "marking as unresolved again (sorry)\n\nWe use SOCKET_CHANNEL_AUTO_STATIC_NO_SDP when we want to auto-assign the channel.  Do you see a case where you are specifically looking for -1?  \n\nre: `getChannel()`, there\u0027s no intention on unhiding it as of now, so for now it\u0027s okay to just use `getPsm()`.",
+      "parentUuid": "10170122_88d79d10",
+      "range": {
+        "startLine": 3076,
+        "startChar": 30,
+        "endLine": 3076,
+        "endChar": 32
+      },
+      "revId": "49f456bb58504f82c1ec5c90e73b8931f2e22337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a420a6f2_739b422a",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
