@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f6abd6_d3486224",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1973180
+      },
+      "writtenOn": "2025-01-14T00:30:39Z",
+      "side": 1,
+      "message": "Done\n\nSee: aosp/3451050",
+      "parentUuid": "e1c4e954_0b431c78",
+      "revId": "49f456bb58504f82c1ec5c90e73b8931f2e22337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85b44094_bc970c1b",
@@ -78,6 +96,30 @@
       "writtenOn": "2025-01-13T23:36:39Z",
       "side": 1,
       "message": "mPort is either the PSM or the channel number\nI\u0027d prefer an else if for type RFCOMM just so we have logging that states \"channel\" instead of \"PSM\", just to make it clear.",
+      "range": {
+        "startLine": 4706,
+        "startChar": 47,
+        "endLine": 4706,
+        "endChar": 82
+      },
+      "revId": "49f456bb58504f82c1ec5c90e73b8931f2e22337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae554fe_667bd635",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4706,
+      "author": {
+        "id": 1973180
+      },
+      "writtenOn": "2025-01-14T00:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a420a6f2_739b422a",
       "range": {
         "startLine": 4706,
         "startChar": 47,
