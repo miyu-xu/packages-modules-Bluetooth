@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a0d24a_e5ece11e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3172,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-14T01:24:11Z",
+      "side": 1,
+      "message": "Are we intended to keep the fallback after we switched to unicast?\n\nThis might have issue with ln.2451. If we don\u0027t clear this fallback, the next setActiveDevice will get blocked, and then unicast won\u0027t have active device.",
+      "revId": "344e2d0542fccedde37d6e55f6633e590404b981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
