@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdde880a_dc49240f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-14T19:02:43Z",
+      "side": 1,
+      "message": "Now that we have the flag, we need to add it to the relevant places in the code.  If the flag is true, use the new code, else go back to the old behavior.  \n\nThis file already has a few flags (like `getProfileUseLock`) that you can use as reference if that helps",
+      "range": {
+        "startLine": 18,
+        "startChar": 6,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "2b93d3f315229d4adae96103b6d724b836192aa7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10170122_88d79d10",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3076,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-14T19:02:43Z",
+      "side": 1,
+      "message": "Thanks for the detailed explanation, I\u0027ll mark this as resolved\n\nI can also look into `getChannel()`.  I\u0027m not sure if there\u0027s a process we\u0027d need to go through to unhide it, but I\u0027d ideally want to understand why it was hidden before we go ahead and try to change it.",
+      "parentUuid": "9f79ef44_b68e855a",
+      "range": {
+        "startLine": 3076,
+        "startChar": 30,
+        "endLine": 3076,
+        "endChar": 32
+      },
+      "revId": "49f456bb58504f82c1ec5c90e73b8931f2e22337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a420a6f2_739b422a",
