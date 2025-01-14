@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d021199_3bff9ba2",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T22:58:33Z",
+      "side": 0,
+      "message": "why was this promise needed earlier? \n\nremovign it would make the new code asynchronous. For example, `CreateLeConnection` will post a task on GD thread without waiting for it to run. \n\nCould we figure out why the promise was needed in the first place before removing it?",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 29
+      },
+      "revId": "27f24cb419044121a130e255c7ed27515cd8e767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
