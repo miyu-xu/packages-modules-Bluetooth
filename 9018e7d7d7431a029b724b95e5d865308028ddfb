@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "625d77ed_d4acc668",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-14T19:34:20Z",
+      "side": 1,
+      "message": "day-to-day bugfix is not a valid exempt reason, you can say covered by unit tests.",
+      "revId": "9018e7d7d7431a029b724b95e5d865308028ddfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ba64441_66378070",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3036,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-14T19:34:20Z",
+      "side": 1,
+      "message": "nit: interested? also rephrase it a bit to make it more clear",
+      "range": {
+        "startLine": 3036,
+        "startChar": 26,
+        "endLine": 3036,
+        "endChar": 35
+      },
+      "revId": "9018e7d7d7431a029b724b95e5d865308028ddfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
