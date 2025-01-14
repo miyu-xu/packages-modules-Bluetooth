@@ -40,3 +40,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "rfcomm_sockets_report_channel_number"
+    namespace: "bluetooth"
+    description: "Allow RFCOMM socket users to access the SDP-assigned channel number"
+    bug: "389768053"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
