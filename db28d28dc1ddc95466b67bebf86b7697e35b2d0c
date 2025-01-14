@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2bb5c86_7825e97e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5246,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T21:46:37Z",
+      "side": 1,
+      "message": "this is new parameter, why is this needed in latest patch but not previous ones?",
+      "range": {
+        "startLine": 5246,
+        "startChar": 58,
+        "endLine": 5246,
+        "endChar": 72
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be80aad0_dfdb6195",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5340,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T21:46:37Z",
+      "side": 1,
+      "message": "nit: for boolean parameters, please add comment like\n\n`/* isDisconnected */ true`\n\nso that the code is more readable",
+      "range": {
+        "startLine": 5340,
+        "startChar": 72,
+        "endLine": 5340,
+        "endChar": 76
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d4d1cce9_285942da",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 5328,
+                "startChar": 0,
+                "endLine": 5329,
+                "endChar": 0
+              },
+              "replacement": "            removeGattClientFromControlAutoActiveMode(clientIf, device, /* isDisconnected */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 5340,
+                "startChar": 0,
+                "endLine": 5341,
+                "endChar": 0
+              },
+              "replacement": "            removeGattClientFromControlAutoActiveMode(clientIf, device, /* isDisconnected */ true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5edb842_ca934fcb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2106,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T21:46:37Z",
+      "side": 1,
+      "message": "you probably wants to define an int for this integer to indicate that you are filtering for Targeted Annoucements. For example\n\n```\nstatic final byte[] CAP_TARGETED_ANNOUCEMENT_PAYLOAD \u003d new byte[] {0x01};\n```\n\nThis way, it is more obvious what you are filtering.",
+      "range": {
+        "startLine": 2106,
+        "startChar": 75,
+        "endLine": 2106,
+        "endChar": 79
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dfe81d8_2beb828b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2125,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-14T21:46:37Z",
+      "side": 1,
+      "message": "nit: double check if the CAP `payload \u0026 CAP_TARGETED_ANNOUCEMENT_PAYLOAD !\u003d 0`\n\njust in case you set multiple filters later or the lower later returned you something you didn\u0027t filter for in a buggy condition.",
+      "range": {
+        "startLine": 2125,
+        "startChar": 37,
+        "endLine": 2125,
+        "endChar": 47
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
