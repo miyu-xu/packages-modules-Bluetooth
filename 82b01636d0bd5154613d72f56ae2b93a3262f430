@@ -216,6 +216,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b341651_124487b7",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-14T08:20:16Z",
+      "side": 1,
+      "message": "Correct, the only way to have a compile time check on race sensitive variable is the @GuardedBy.\n\nSadly, I am not surprise about BassClientService.",
+      "parentUuid": "75e1f82a_2ef0e7b5",
+      "range": {
+        "startLine": 598,
+        "startChar": 22,
+        "endLine": 598,
+        "endChar": 40
+      },
+      "revId": "82b01636d0bd5154613d72f56ae2b93a3262f430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83203ac2_79b19085",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 14
