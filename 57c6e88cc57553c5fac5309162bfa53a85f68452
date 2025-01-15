@@ -142,6 +142,30 @@
       },
       "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d243cd7_9c14b36e",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3266,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-15T07:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc403224_174fe26c",
+      "range": {
+        "startLine": 3257,
+        "startChar": 24,
+        "endLine": 3266,
+        "endChar": 6
+      },
+      "revId": "57c6e88cc57553c5fac5309162bfa53a85f68452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
