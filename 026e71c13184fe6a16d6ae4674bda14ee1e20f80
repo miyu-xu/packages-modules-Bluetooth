@@ -266,6 +266,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9c3bfda_e4410489",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-15T09:15:06Z",
+      "side": 1,
+      "message": "Actually we should avoid declaring globals if we are only referring to local scope, and we can manage through local definitions itself.",
+      "parentUuid": "8d90c46a_da3c6b1f",
+      "range": {
+        "startLine": 309,
+        "startChar": 7,
+        "endLine": 309,
+        "endChar": 37
+      },
+      "revId": "026e71c13184fe6a16d6ae4674bda14ee1e20f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68b82a09_a6e57844",
@@ -313,6 +337,30 @@
           ]
         }
       ],
+      "revId": "026e71c13184fe6a16d6ae4674bda14ee1e20f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6e5c62d_fe841076",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-15T09:15:06Z",
+      "side": 1,
+      "message": "Sure, added the names of registered intents.",
+      "parentUuid": "68b82a09_a6e57844",
+      "range": {
+        "startLine": 302,
+        "startChar": 5,
+        "endLine": 302,
+        "endChar": 106
+      },
       "revId": "026e71c13184fe6a16d6ae4674bda14ee1e20f80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
