@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9763e26_1af1e122",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-15T18:13:56Z",
+      "side": 1,
+      "message": "See https://github.com/google/rootcanal/blob/main/BUILD#L64 for example PDL usage",
+      "revId": "775bf87a4687d317cef3173539ffb1b8f2040ee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f75513e3_ec65b49d",
         "filename": "offload/hci/command.rs",
         "patchSetId": 18
