@@ -16,6 +16,24 @@
       "message": "Inlining this call removed a BTM_LogHistory invocation.\nThis is also true for other modifications in this CL.",
       "revId": "caabbc03c14d88d141c554994fe4f5f053514ad5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcd70d0_d0994071",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T15:44:51Z",
+      "side": 1,
+      "message": "For now I moved the BTM_LogHistory calls into acl_api.cc\nBefore I get rid of this shim, I\u0027ll clean up this calls and have them either in connection_manager, or in acl_manager.",
+      "parentUuid": "263e2450_cf26a460",
+      "revId": "caabbc03c14d88d141c554994fe4f5f053514ad5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
