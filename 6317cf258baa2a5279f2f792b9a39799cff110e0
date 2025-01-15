@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bca992a1_51afefad",
+        "filename": "system/stack/connection_manager/connection_manager.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-15T19:38:23Z",
+      "side": 1,
+      "message": "this does exactly the same thing",
+      "range": {
+        "startLine": 56,
+        "startChar": 5,
+        "endLine": 56,
+        "endChar": 25
+      },
+      "revId": "6317cf258baa2a5279f2f792b9a39799cff110e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
