@@ -1,0 +1,139 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86dc7038_5bcf969b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T08:49:20Z",
+      "side": 1,
+      "message": "Why do you use a system property when the information is queried from the ranging HAL ? If this is a vector to convey the information to the Java layer, please consider adding a JNI getter instead.",
+      "range": {
+        "startLine": 53,
+        "startChar": 13,
+        "endLine": 53,
+        "endChar": 54
+      },
+      "revId": "fdcad919cf222054aaf72d0c73ec5c8b046549bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc3ca056_8013ff1d",
+        "filename": "system/gd/hal/ranging_hal.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T08:49:20Z",
+      "side": 1,
+      "message": "1. Please use `enum class`\n\n2. This type is declared in the namespace `bluetooth::hal`, this is too wide for a generically named type like this. Consider moving the type to a subnamespace (e.g. `bluetooth::hal::cs`) or making the name more specific (e.g. `CsSecurityLevel`).\n\n3. From inspecting the other files in this CL, it seems that the values are tied to AIDL\u0027s `CsSecurityLevel` type. This must be documented.",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 4
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9f600ba1_91ebc33c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 289,
+                "startChar": 0,
+                "endLine": 290,
+                "endChar": 0
+              },
+              "replacement": "namespace ranging {\nenum class SecurityLevel {\n"
+            },
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 296,
+                "startChar": 0,
+                "endLine": 296,
+                "endChar": 0
+              },
+              "replacement": "}  // namespace ranging\n"
+            },
+            {
+              "path": "system/gd/hal/ranging_hal.h",
+              "range": {
+                "startLine": 335,
+                "startChar": 0,
+                "endLine": 336,
+                "endChar": 0
+              },
+              "replacement": "  virtual std::vector\u003cranging::SecurityLevel\u003e GetSupportedSecurityLevels() \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fdcad919cf222054aaf72d0c73ec5c8b046549bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ead796_8b34d0ac",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T08:49:20Z",
+      "side": 1,
+      "message": "This is outside the scope of this CL. Please move this change to a separate commit.",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 895,
+        "endChar": 100
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cd465a0d_ebc2a303",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 891,
+                "startChar": 0,
+                "endLine": 896,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 906,
+                "startChar": 0,
+                "endLine": 908,
+                "endChar": 0
+              },
+              "replacement": "    if (it !\u003d securityLevels.end()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fdcad919cf222054aaf72d0c73ec5c8b046549bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
