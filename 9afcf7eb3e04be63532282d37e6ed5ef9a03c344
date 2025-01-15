@@ -34,6 +34,24 @@
       "parentUuid": "7d38e3d3_6b8996ab",
       "revId": "9afcf7eb3e04be63532282d37e6ed5ef9a03c344",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "201beefa_9a1b0d5a",
+        "filename": "offload/hal/Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-15T21:25:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7d38e3d3_6b8996ab",
+      "revId": "9afcf7eb3e04be63532282d37e6ed5ef9a03c344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

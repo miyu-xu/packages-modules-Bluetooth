@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "228954ab_ba02260d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-15T21:25:03Z",
+      "side": 1,
+      "message": "As already discussed, I don\u0027t see the point of using different langage, generating unreadable file, for definetely no service offered.\nMoreover, some structure like `IsoData` headers are not supported... If I need to bump another interface, different structure for some packets, definitely it\u0027s useless.\nPlease, make it simple.",
+      "parentUuid": "d9763e26_1af1e122",
+      "revId": "775bf87a4687d317cef3173539ffb1b8f2040ee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f75513e3_ec65b49d",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-01-15T18:13:04Z",
       "side": 1,
       "message": "these command can use PDL as well",
+      "revId": "775bf87a4687d317cef3173539ffb1b8f2040ee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59ee8f84_649c5ff2",
+        "filename": "offload/hci/command.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-15T21:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f75513e3_ec65b49d",
       "revId": "775bf87a4687d317cef3173539ffb1b8f2040ee0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9475030e_157afec8",
+        "filename": "offload/hci/event.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-15T21:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8a4c262_342b7623",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "775bf87a4687d317cef3173539ffb1b8f2040ee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a647d1e8_ded54902",
@@ -71,6 +131,30 @@
       "writtenOn": "2025-01-15T18:13:04Z",
       "side": 1,
       "message": "Could we use PDL generated Rust library for this? \n\nPlease check with Henry and `BluetoothGeneratedPacketsHci_h`",
+      "range": {
+        "startLine": 22,
+        "startChar": 9,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "775bf87a4687d317cef3173539ffb1b8f2040ee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae82755_089868a2",
+        "filename": "offload/hci/status.rs",
+        "patchSetId": 18
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-01-15T21:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a647d1e8_ded54902",
       "range": {
         "startLine": 22,
         "startChar": 9,
