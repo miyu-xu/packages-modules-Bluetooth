@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee2ac5a7_5681ac3e",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T02:20:50Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 433,
+        "startChar": 15,
+        "endLine": 433,
+        "endChar": 19
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c5c8c1c_bc033f00",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 1
@@ -112,6 +135,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33faca30_c65f5bd6",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T02:20:50Z",
+      "side": 1,
+      "message": "bluetoothCall is the same as the variable type, I am not sure that give more information ^^\n\nMaybe its a sign for using stream method instead ?: (idk if the logic is correct as per aarthi comment on the .disconnect(), I am just suggesting an alternative on how to write this loop)\n\n\n```\n /* Find active call other than conference */\n call \u003d mCallInfo.getBluetoothCalls().stream()\n        .filter(findCall -\u003e !findCall.isConference()\n                \u0026\u0026 findCall.getState() \u003d\u003d Call.STATE_ACTIVE\n                \u0026\u0026 findCall.getParentId() \u003d\u003d null)\n        .findFirst()\n        .orElse(null);\n```",
+      "parentUuid": "1a57312f_dfae84e3",
+      "range": {
+        "startLine": 434,
+        "startChar": 35,
+        "endLine": 434,
+        "endChar": 43
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a4485e3_4188342a",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 1
@@ -157,6 +204,29 @@
           ]
         }
       ],
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e51e260_b32139c0",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T02:20:50Z",
+      "side": 1,
+      "message": "can call be null now ? or this is never null due to having another call in HOLDING ?",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 20
+      },
       "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
