@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96991a06_6251dd51",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-15T14:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee2ac5a7_5681ac3e",
+      "range": {
+        "startLine": 433,
+        "startChar": 15,
+        "endLine": 433,
+        "endChar": 19
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c5c8c1c_bc033f00",
@@ -159,6 +183,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9edd8a01_c4aee7f0",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-15T14:32:12Z",
+      "side": 1,
+      "message": "kept the name as `btCall` . suggested stream method may not be suitable here . assigning `call` with `null` breaks the following [logic](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3440522/1/android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java#443)",
+      "parentUuid": "33faca30_c65f5bd6",
+      "range": {
+        "startLine": 434,
+        "startChar": 35,
+        "endLine": 434,
+        "endChar": 43
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e998f84a_e667d43f",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-15T14:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c5c8c1c_bc033f00",
+      "range": {
+        "startLine": 434,
+        "startChar": 46,
+        "endLine": 434,
+        "endChar": 50
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a4485e3_4188342a",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 1
@@ -210,6 +282,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6ae2ec6_0778c17b",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-15T14:32:12Z",
+      "side": 1,
+      "message": "`.disconnect()` logic is kept in [common place](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3440522/2/android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java#442) for call disconnect. So not required to do call.disconnect() here",
+      "parentUuid": "6a4485e3_4188342a",
+      "range": {
+        "startLine": 438,
+        "startChar": 24,
+        "endLine": 438,
+        "endChar": 40
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e51e260_b32139c0",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 1
@@ -221,6 +317,30 @@
       "writtenOn": "2025-01-15T02:20:50Z",
       "side": 1,
       "message": "can call be null now ? or this is never null due to having another call in HOLDING ?",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 20
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "910b1fe0_fc08d813",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-15T14:32:12Z",
+      "side": 1,
+      "message": "This can become `null` if we use suggested stream method.",
+      "parentUuid": "7e51e260_b32139c0",
       "range": {
         "startLine": 443,
         "startChar": 16,
