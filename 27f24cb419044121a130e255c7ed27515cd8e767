@@ -22,6 +22,30 @@
       },
       "revId": "27f24cb419044121a130e255c7ed27515cd8e767",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a4feaa9_083244c1",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T09:37:31Z",
+      "side": 0,
+      "message": "I don\u0027t think it was needed, I think this was unfinished piece of code.\nThis promise was always set to true, and value was set before the call to acl_manager was executed, so wasn\u0027t synchronizing the code properly. \nHere is how it worked:\n1. acl_api.cc create promise calss to acl.cc\n2. in acl.cc, we schedule on GD thread \n3. when scheduled accept_le_connection_from is exectued, the promise value is set, then call to acl_manager.cc is made\n3. in acl_manager.cc we schedule call GD thread to actually execute the operation\n\nSo there are two \"CallOn\", and the promise was returning immediately after first one is triggered.\nWe are removing this first schedule, so the promise is not used at all.",
+      "parentUuid": "7d021199_3bff9ba2",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 60,
+        "endChar": 29
+      },
+      "revId": "27f24cb419044121a130e255c7ed27515cd8e767",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
