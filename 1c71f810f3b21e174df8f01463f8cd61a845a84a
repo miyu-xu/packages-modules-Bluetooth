@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8809f60b_b49e63b2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T01:04:02Z",
+      "side": 1,
+      "message": "Do you want to flag this ? (and keep the synchronized for now with a TODO to delete with the flag)",
+      "range": {
+        "startLine": 621,
+        "startChar": 0,
+        "endLine": 635,
+        "endChar": 5
+      },
+      "revId": "1c71f810f3b21e174df8f01463f8cd61a845a84a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "962f94a0_9a5c1a7f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T01:04:02Z",
+      "side": 1,
+      "message": "Use a testLooper instead",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 37
+      },
+      "revId": "1c71f810f3b21e174df8f01463f8cd61a845a84a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1352cbe0_c7d44208",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T01:04:02Z",
+      "side": 1,
+      "message": "With the mLooper modification:\n\n```suggestion\n    mAdvertiseManager.enableAdvertisingSet(mAdvertiserId, enable, duration, maxExtAdvEvents));\n    mLooper.dispatchAll()\n```",
+      "range": {
+        "startLine": 123,
+        "startChar": 1,
+        "endLine": 127,
+        "endChar": 83
+      },
+      "revId": "1c71f810f3b21e174df8f01463f8cd61a845a84a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
