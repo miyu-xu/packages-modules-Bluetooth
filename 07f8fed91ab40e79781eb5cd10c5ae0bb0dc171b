@@ -917,6 +917,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "035d9521_b0027494",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5311,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-15T14:58:24Z",
+      "side": 1,
+      "message": "After our offline discussion we came to the conclusion that we should not disconnect all the profiles because it could be dual mode device connected connected over BR/EDR for Audio Usecases.\n\nWith latest changes, if Android connects to LEAudio device with disabled AutoActiveMode and later all the GATT clients holding disabled AutoActiveMode will disconnect, then Android will drop only LE ACL.",
+      "parentUuid": "3e6fd862_290840d2",
+      "range": {
+        "startLine": 5303,
+        "startChar": 19,
+        "endLine": 5311,
+        "endChar": 13
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80646dda_c19beb03",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 7
