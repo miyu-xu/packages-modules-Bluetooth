@@ -66,6 +66,7 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_ble_sec_api.h"
 #include "stack/include/btm_client_interface.h"
+#include "stack/include/btm_sec_api.h"
 #include "stack/include/btm_status.h"
 #include "types/bluetooth/uuid.h"
 #include "types/bt_transport.h"
@@ -169,6 +170,17 @@ public:
       instance->VerifySetMember(p_data->ble_req.bd_addr);
     });
 
+    BTA_DmBleAuthCmplCbRegister([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
+      if (event != BTA_DM_BLE_AUTH_CMPL_EVT) {
+        log::error("Invalid event received by CSIP: {}", static_cast<int>(event));
+        return;
+      }
+
+      if (!p_data->auth_cmpl.success && !btm_sec_is_a_bonded_dev(p_data->auth_cmpl.bd_addr)) {
+        instance->BondingFailed(p_data->auth_cmpl.bd_addr);
+      }
+    });
+
     log::debug("Background scan enabled");
     CsisObserverSetBackground(true);
   }
@@ -263,6 +275,22 @@ public:
 
     callbacks_->OnDeviceAvailable(device->addr, csis_group->GetGroupId(),
                                   csis_group->GetDesiredSize(), rank, uuid);
+  }
+
+  void BondingFailed(const RawAddress& addr) {
+    log::info("{}", addr);
+
+    auto device = FindDeviceByAddress(addr);
+    if (device == nullptr) {
+      log::warn("{} not found", addr);
+      return;
+    }
+
+    if (device->GetExpectedGroupIdMember() != bluetooth::groups::kGroupUnknown) {
+      RemoveCsisDevice(device);
+    } else {
+      log::warn("{} bonded already", addr);
+    }
   }
 
   void Connect(const RawAddress& address) override {
@@ -2380,6 +2408,7 @@ bool CsisClient::GetForStorage(const RawAddress& addr, std::vector<uint8_t>& out
 void CsisClient::CleanUp() {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   BTA_DmSirkSecCbRegister(nullptr);
+  BTA_DmBleAuthCmplCbRegister(nullptr);
   CsisClientImpl* ptr = instance;
   instance = nullptr;
 

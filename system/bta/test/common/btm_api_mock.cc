@@ -119,3 +119,8 @@ std::optional<tBLE_BD_ADDR> BTM_BleGetIdentityAddress(const RawAddress address) 
   log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
   return btm_interface->BTM_BleGetIdentityAddress(address);
 }
+
+bool btm_sec_is_a_bonded_dev(const RawAddress& address) {
+  log::assert_that(btm_interface != nullptr, "Mock btm interface not set!");
+  return btm_interface->btm_sec_is_a_bonded_dev(address);
+}
