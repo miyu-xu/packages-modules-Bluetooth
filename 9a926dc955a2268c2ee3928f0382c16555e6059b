@@ -1,0 +1,596 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a107723_7db45ca4",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Please consider moving to `static_libs` instead\n(that also means adding the library in a couple other places to satisfy linking requirements).",
+      "range": {
+        "startLine": 124,
+        "startChar": 17,
+        "endLine": 124,
+        "endChar": 48
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8bdf6d7_40d5299a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "```suggestion\n#ifdef __ANDROID__\n  SnoopLoggerTracing::InitializePerfetto();\n#endif //__ANDROID__\n```",
+      "range": {
+        "startLine": 1298,
+        "startChar": 0,
+        "endLine": 1301,
+        "endChar": 0
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c9b0bd2_8d8ed589",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1417,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Use constructor field assignments",
+      "range": {
+        "startLine": 1415,
+        "startChar": 1,
+        "endLine": 1417,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5a85a2ce_bfa36e54",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1414,
+                "startChar": 0,
+                "endLine": 1419,
+                "endChar": 0
+              },
+              "replacement": "BundleKey::BundleKey(const HciPacket\u0026 packet, uint8_t direction, uint8_t type)\n        : packet_type(type), direction(direction), length(packet.size()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a595d28d_56a0f5bb",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "`this-\u003e` is not necessary in this context",
+      "range": {
+        "startLine": 1422,
+        "startChar": 6,
+        "endLine": 1422,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "351a042d_38d14b0e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1422,
+                "startChar": 0,
+                "endLine": 1423,
+                "endChar": 0
+              },
+              "replacement": "      event_code \u003d evt_code;\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1427,
+                "startChar": 0,
+                "endLine": 1428,
+                "endChar": 0
+              },
+              "replacement": "        subevent_code \u003d subevt_code;\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1432,
+                "startChar": 0,
+                "endLine": 1433,
+                "endChar": 0
+              },
+              "replacement": "      op_code \u003d op_code;\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1436,
+                "startChar": 0,
+                "endLine": 1437,
+                "endChar": 0
+              },
+              "replacement": "      handle \u003d handle;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f4ca845_0cea84a2",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "```suggestion\n    case SnoopLogger::PacketType::CMD:\n      op_code \u003d packet[0] | (packet[1] \u003c\u003c 8);\n      break;\n```",
+      "range": {
+        "startLine": 1430,
+        "startChar": 39,
+        "endLine": 1433,
+        "endChar": 12
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de8478a5_e7203609",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "```suggestion\n    case SnoopLogger::PacketType::ACL:\n      handle \u003d (packet[0] | (packet[1] \u003c\u003c 8)) \u0026 0x0fff;\n      break;\n```",
+      "range": {
+        "startLine": 1434,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 12
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7de74c66_952c3e33",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Unnecessary braces",
+      "range": {
+        "startLine": 1439,
+        "startChar": 39,
+        "endLine": 1440,
+        "endChar": 5
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc65c59_99e5cffc",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1463,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "This helper is only used once, I suggest inlining the logic to clarify the class API.",
+      "range": {
+        "startLine": 1463,
+        "startChar": 18,
+        "endLine": 1463,
+        "endChar": 32
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d509e7_474ea369",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "The trace point is only skipped in the perfetto trace, ATRACE_INSTANT_FOR_TRACK should still be displayed for all packets.",
+      "range": {
+        "startLine": 1483,
+        "startChar": 6,
+        "endLine": 1483,
+        "endChar": 20
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf1a18f5_92007047",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1495,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Remove unnecessary ()",
+      "range": {
+        "startLine": 1495,
+        "startChar": 7,
+        "endLine": 1495,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7717f576_f9c2d83c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1495,
+                "startChar": 0,
+                "endLine": 1496,
+                "endChar": 0
+              },
+              "replacement": "  if (elapsed_timestamp_ms \u003e 100) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68aa95e1_05d51ab3",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Please add a short description for this structure and its use",
+      "range": {
+        "startLine": 142,
+        "startChar": 7,
+        "endLine": 142,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8b19ea22_29aec9b0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 142,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "// BundleKey is used to group packets into bundles. It contains the packet type,\n// direction, length, and optional op code, event code, subevent code, and handle.\n// This allows us to track the number of packets in each bundle and calculate\n// statistics about the bundles.\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 154,
+                "startChar": 0,
+                "endLine": 154,
+                "endChar": 0
+              },
+              "replacement": "// BundleEq is used to compare BundleKeys. It compares the packet type, direction,\n// length, op code, event code, subevent code, and handle.\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "// BundleHash is used to hash BundleKeys. It hashes the packet type, direction,\n// length, op code, event code, subevent code, and handle.\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 162,
+                "endChar": 0
+              },
+              "replacement": "// BundleDetails contains information about a bundle, such as the number of packets\n// in the bundle, the total length of the bundle, and the minimum and maximum\n// timestamps of the packets in the bundle.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "304dc7be_18385d82",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Alternatively you can implement `operator\u003d\u003d` on `BundleKey`",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "637e1b43_84f7853a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 153,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 154,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": "  bool operator\u003d\u003d(const BundleKey\u0026 other) const {\n    return packet_type \u003d\u003d other.packet_type \u0026\u0026 direction \u003d\u003d other.direction \u0026\u0026 length \u003d\u003d other.length \u0026\u0026\n           op_code \u003d\u003d other.op_code \u0026\u0026 event_code \u003d\u003d other.event_code \u0026\u0026 subevent_code \u003d\u003d other.subevent_code \u0026\u0026\n           handle \u003d\u003d other.handle;\n  }\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 372,
+                "startChar": 0,
+                "endLine": 373,
+                "endChar": 0
+              },
+              "replacement": "  std::unordered_map\u003cBundleKey, BundleDetails, BundleHash\u003e bttrace_bundles_;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cec440b9_7880a1c3",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "Alternatively you could also provide the specialization as\n```\ntemplate \u003c\u003e\nstruct std::hash\u003cBundleKey\u003e {\n  std::size_t operator()(const BundleKey\u0026 val) const {}\n}\n```",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 2
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09301937_0055381a",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "nit: casing should be `min_ts` / `max_ts`.\nProposed alternate naming : `start_ts`, `end_ts`",
+      "range": {
+        "startLine": 165,
+        "startChar": 11,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f78918cc_7c453f5f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "  uint64_t start_ts \u003d std::numeric_limits\u003cuint64_t\u003e::max();\n  uint64_t end_ts \u003d std::numeric_limits\u003cuint64_t\u003e::min();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b8bb6a_d98ff697",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "nit: total_length ?",
+      "range": {
+        "startLine": 167,
+        "startChar": 11,
+        "endLine": 167,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b1eb10e2_444abcc0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 167,
+                "startChar": 0,
+                "endLine": 168,
+                "endChar": 0
+              },
+              "replacement": "  uint32_t total_length \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1e3b132_ab74acb7",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-15T09:25:57Z",
+      "side": 1,
+      "message": "The naming does not indicate that its use is tied to bttrace_bundles.\nI suggest either changing the name, or moving both fields to an helper struct definition",
+      "range": {
+        "startLine": 373,
+        "startChar": 11,
+        "endLine": 373,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c68e75a4_6a1172fd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 373,
+                "startChar": 0,
+                "endLine": 374,
+                "endChar": 0
+              },
+              "replacement": "  uint64_t last_bttrace_timestamp_us;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
