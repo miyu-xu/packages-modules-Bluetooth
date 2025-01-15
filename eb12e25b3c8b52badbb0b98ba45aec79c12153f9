@@ -46,6 +46,30 @@
       },
       "revId": "eb12e25b3c8b52badbb0b98ba45aec79c12153f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9db817dd_6f11083a",
+        "filename": "android/pandora/server/configs/PtsBotTestMts.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-15T23:15:58Z",
+      "side": 1,
+      "message": "We cannot setup sysprop in *TS it appears: https://cs.android.com/android/platform/superproject/+/android14-qpr3-release:cts/tools/cts-tradefed/tests/src/com/android/compatibility/common/tradefed/loading/CommonConfigLoadingTest.java?q\u003dforce-skip-system-props%20-%22xml%22",
+      "parentUuid": "44fe82a8_c2c0b738",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 0
+      },
+      "revId": "eb12e25b3c8b52badbb0b98ba45aec79c12153f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
