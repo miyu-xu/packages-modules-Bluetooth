@@ -46,6 +46,30 @@
       },
       "revId": "85110812665e397cdb3a8cdc7c1a1cdf73fc73e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e9a335_44869529",
+        "filename": "android/pandora/test/a2dp/signaling_channel_test.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T17:50:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "acf5b4ee_caeb289c",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "85110812665e397cdb3a8cdc7c1a1cdf73fc73e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
