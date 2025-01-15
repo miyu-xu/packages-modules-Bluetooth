@@ -46,6 +46,7 @@ import org.mockito.junit.MockitoRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -707,5 +708,82 @@ public class TbsGenericTest {
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_JOIN),
                         anyInt(),
                         eq(BluetoothLeCallControl.RESULT_SUCCESS));
+    }
+
+    @Test
+    public void testCallOperationsBlockedForBroadcastReceiver() {
+        mCurrentDevice = TestUtils.getTestDevice(mAdapter, 0);
+        Integer ccid = prepareTestBearer();
+        reset(mTbsGatt);
+
+        LeAudioService leAudioService = mock(LeAudioService.class);
+        mTbsGeneric.setLeAudioServiceForTesting(leAudioService);
+
+        // Prepare the incoming call
+        UUID callUuid = UUID.randomUUID();
+        List<BluetoothLeCall> tbsCalls = new ArrayList<>();
+        tbsCalls.add(
+                new BluetoothLeCall(
+                        callUuid,
+                        "tel:987654321",
+                        "aFriendlyCaller",
+                        BluetoothLeCall.STATE_INCOMING,
+                        0));
+        mTbsGeneric.currentCallsList(ccid, tbsCalls);
+
+        ArgumentCaptor<Map> currentCallsCaptor = ArgumentCaptor.forClass(Map.class);
+        verify(mTbsGatt).setCallState(currentCallsCaptor.capture());
+        Map<Integer, TbsCall> capturedCurrentCalls = currentCallsCaptor.getValue();
+        assertThat(capturedCurrentCalls.size()).isEqualTo(1);
+        Integer callIndex = capturedCurrentCalls.entrySet().iterator().next().getKey();
+        reset(mTbsGatt);
+
+        doReturn(new HashSet<>(Arrays.asList(mCurrentDevice)))
+                .when(leAudioService)
+                .getLocalBroadcastReceivers();
+
+        doReturn(false).when(leAudioService).isPrimaryDevice(mCurrentDevice);
+
+        // Verify call accept
+        byte args[] = new byte[1];
+        args[0] = (byte) (callIndex & 0xFF);
+        mTbsGattCallback
+                .getValue()
+                .onCallControlPointRequest(
+                        mCurrentDevice, TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT, args);
+
+        // Active device should not be changed
+        verify(leAudioService, never()).setActiveDevice(mCurrentDevice);
+        // Verify if GTBS control point is updated to notify the peer about the result
+        verify(mTbsGatt)
+                .setCallControlPointResult(
+                        eq(mCurrentDevice),
+                        eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT),
+                        eq(0),
+                        eq(TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE));
+
+        // Verify call terminate
+        tbsCalls.clear();
+        tbsCalls.add(
+                new BluetoothLeCall(
+                        callUuid,
+                        "tel:987654321",
+                        "aFriendlyCaller",
+                        BluetoothLeCall.STATE_ACTIVE,
+                        0));
+        mTbsGeneric.currentCallsList(ccid, tbsCalls);
+
+        mTbsGattCallback
+                .getValue()
+                .onCallControlPointRequest(
+                        mCurrentDevice, TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE, args);
+
+        // Verify if GTBS control point is updated to notify the peer about the result
+        verify(mTbsGatt)
+                .setCallControlPointResult(
+                        eq(mCurrentDevice),
+                        eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE),
+                        eq(0),
+                        eq(TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE));
     }
 }
