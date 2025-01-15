@@ -271,6 +271,30 @@
       },
       "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35afbcea_5a600805",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T09:06:50Z",
+      "side": 1,
+      "message": "Will follow a scheme where Java clients use CamelCase and native_clients use_underscores",
+      "parentUuid": "848242ca_362447b8",
+      "range": {
+        "startLine": 425,
+        "startChar": 13,
+        "endLine": 425,
+        "endChar": 20
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
