@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07634f1a_8277036f",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T02:11:50Z",
+      "side": 1,
+      "message": "This... this.... this works in python ???? O_o\n\nAmazing, I just went to check your avatar contribution, this is very nice\n\n+2 LGTM, I don\u0027t need to look the change after seeing that 😄",
+      "range": {
+        "startLine": 725,
+        "startChar": 0,
+        "endLine": 725,
+        "endChar": 66
+      },
+      "revId": "6f4dfcac72da8bc1f75a8679f5ae28194f0888eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
