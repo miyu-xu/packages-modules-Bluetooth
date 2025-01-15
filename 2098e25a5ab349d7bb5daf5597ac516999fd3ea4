@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c92f686_9cab5bd4",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T17:45:47Z",
+      "side": 1,
+      "message": "Maybe another wrong comment from me, but do we need to check mCallInfo.isNullCall(btCall) ? or is getBluetoothCalls returning only non null call calue",
+      "range": {
+        "startLine": 430,
+        "startChar": 35,
+        "endLine": 430,
+        "endChar": 41
+      },
+      "revId": "2098e25a5ab349d7bb5daf5597ac516999fd3ea4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
