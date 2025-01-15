@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "637b4a2b_0428c575",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-15T13:00:17Z",
+      "side": 1,
+      "message": "I will add some comments to each condition but in next CL.\nI separeted this CL (quick handovers) from \"not interrupting PA reques if occurred\" to not mismatch these too.\n\nThat\n```\n} else if (leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator() \u0026\u0026 isHostPauseType(broadcastId)) {\nstopBigMonitoring(broadcastId, true);\n```\n\nWas for stopping active sync because even if stopBigMonitoring was called before, because of potential pending past request it could be not stopped (bass sync, not monitoring).\n\n\nThanks for review!",
+      "parentUuid": "f52ec93a_88494df9",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44d5e529_ba9901e2",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 4
@@ -89,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b67f7948_f4a33323",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2501,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-15T13:00:17Z",
+      "side": 1,
+      "message": "I thought about that as there is a lot variables which should be collected in one or few objects combined depends on the usage. We should add such task to the our backlog.",
+      "parentUuid": "44d5e529_ba9901e2",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9ba19e0_60072798",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 4
@@ -100,6 +136,24 @@
       "writtenOn": "2025-01-13T14:27:56Z",
       "side": 1,
       "message": "This method is getting dense - can it be somehow refactored and or added some comment for better future maintenace or readibility ?",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7989a6c_fae3a1a9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2505,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-15T13:00:17Z",
+      "side": 1,
+      "message": "Above (potential) refactor will help for that. For now clarity of this method IMHO is fine. It does exactly what names said `clearAllDataForSyncHandle`, it clears all data corresponded to that sync handle (BASS sync, not sink sync). mPendingSourcesToAdd and mSinksWaitingForPast for broadcastId for that syncHandle have to be removed too as they could be used only with active broadcast sync.",
+      "parentUuid": "e9ba19e0_60072798",
       "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
