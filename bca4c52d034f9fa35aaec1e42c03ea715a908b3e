@@ -16,6 +16,24 @@
       "message": "Save the identity address in a variable to compare with it after restarting the BT",
       "revId": "bca4c52d034f9fa35aaec1e42c03ea715a908b3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0266ce9_f36195ee",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-15T09:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6467c6a1_440bf5ca",
+      "revId": "bca4c52d034f9fa35aaec1e42c03ea715a908b3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
