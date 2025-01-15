@@ -229,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ae5cdf3_e8660c07",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T17:44:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9edd8a01_c4aee7f0",
+      "range": {
+        "startLine": 434,
+        "startChar": 35,
+        "endLine": 434,
+        "endChar": 43
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a4485e3_4188342a",
@@ -341,6 +365,30 @@
       "side": 1,
       "message": "This can become `null` if we use suggested stream method.",
       "parentUuid": "7e51e260_b32139c0",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 20
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e473c00_a8bb5b89",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T17:44:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "910b1fe0_fc08d813",
       "range": {
         "startLine": 443,
         "startChar": 16,
