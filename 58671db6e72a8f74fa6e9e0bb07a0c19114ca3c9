@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1cfd340_3ba4dbb9",
+        "filename": "sysprop/a2dp.sysprop",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-15T08:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "766e9af0_8154677e",
+      "range": {
+        "startLine": 13,
+        "startChar": 15,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "58671db6e72a8f74fa6e9e0bb07a0c19114ca3c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "522be1d5_0bb0e353",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-01-15T08:31:00Z",
       "side": 1,
       "message": "`avdt_accept_open_timeout_ms`",
+      "range": {
+        "startLine": 17,
+        "startChar": 31,
+        "endLine": 17,
+        "endChar": 62
+      },
+      "revId": "58671db6e72a8f74fa6e9e0bb07a0c19114ca3c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "810a1254_9c439700",
+        "filename": "sysprop/a2dp.sysprop",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-15T08:42:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "522be1d5_0bb0e353",
       "range": {
         "startLine": 17,
         "startChar": 31,
