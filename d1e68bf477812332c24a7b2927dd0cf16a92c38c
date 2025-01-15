@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1707e574_f984ddde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T17:40:00Z",
+      "side": 1,
+      "message": "code LGTM, but DRI need to approve the behavior related change",
+      "revId": "d1e68bf477812332c24a7b2927dd0cf16a92c38c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
