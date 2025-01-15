@@ -16,6 +16,24 @@
       "message": "Is this change intended ?",
       "revId": "b42c1ba403003ed67d10c629a145a9a21176f465",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b860839a_589ae8fb",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-15T14:12:28Z",
+      "side": 1,
+      "message": "yes, more information here:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3383869/comment/f04e3c70_55098280/",
+      "parentUuid": "50658594_f668da3b",
+      "revId": "b42c1ba403003ed67d10c629a145a9a21176f465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
