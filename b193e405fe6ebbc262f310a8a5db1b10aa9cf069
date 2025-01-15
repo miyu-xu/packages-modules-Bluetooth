@@ -16,6 +16,24 @@
       "message": "Why not use simply com.android.bluetooth.le_audio.LeAudioService.isPrimaryDevice ?\n\nAdditional thing could be a log with operation which is blocked.",
       "revId": "b193e405fe6ebbc262f310a8a5db1b10aa9cf069",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a85af0_96e113ff",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-15T09:57:11Z",
+      "side": 1,
+      "message": "we need to send result to remote device \n\n```\nmTbsGatt.setCallControlPointResult(device, opcode, 0, CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE);\n```",
+      "parentUuid": "289c9eef_2233807e",
+      "revId": "b193e405fe6ebbc262f310a8a5db1b10aa9cf069",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
