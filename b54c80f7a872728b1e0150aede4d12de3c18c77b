@@ -330,6 +330,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6b3463f_b67bd036",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-15T17:51:06Z",
+      "side": 1,
+      "message": "But it looks like you are setting call to the other call, and overriding setting it to conference call in line 424.  So why is call set to btCall?\n\nCall is the foreground call and you want to keep the conference call as the foreground call.",
+      "parentUuid": "d6ae2ec6_0778c17b",
+      "range": {
+        "startLine": 438,
+        "startChar": 24,
+        "endLine": 438,
+        "endChar": 40
+      },
+      "revId": "b54c80f7a872728b1e0150aede4d12de3c18c77b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e51e260_b32139c0",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 1
