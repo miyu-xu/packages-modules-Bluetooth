@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8af92f56_f495391b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-15T16:59:05Z",
+      "side": 1,
+      "message": "Please have a look at line 1371. \nIn here we do restore `local_metadata_context_types_ ` from the `in_call_metadata_context_types_`\n\nso whatever is done before that is done on not valid metadata.\n\nI\u0027m not sure this fits here, let;s talk offline",
+      "parentUuid": "996dd3e2_9d6c823b",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7508febd_41e4b2da",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 4
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Any suggestion for rename `StopStreamIfUpdatedContextIsNoLongerSupporteded` maybe `StopStreamIfUpdatedContextIsNoLongerAllowed` ?",
       "parentUuid": "7508febd_41e4b2da",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9207ed7_fd6844d0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-15T16:59:05Z",
+      "side": 1,
+      "message": "maybe stopStreamIfCurrentContextTypeIsNotAllowed() ?",
+      "parentUuid": "e5b84860_76dc381f",
       "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
