@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61ce607a_1cab2cd4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-15T04:09:50Z",
+      "side": 1,
+      "message": "Verify that there is no BOND_NONE event",
+      "revId": "603794f2afed1d58bbaa3c6856efaa5297c12926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
