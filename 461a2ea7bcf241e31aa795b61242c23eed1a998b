@@ -922,6 +922,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f19649fc_00a285ac",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-15T02:02:28Z",
+      "side": 1,
+      "message": "I see, API feedback will probably be to have 2 intDef and to use one for the request, and one for the callback.\n\nBut I let @okamil@google.com take the decision as in the end, he own this code",
+      "parentUuid": "ef08df60_bfd4302c",
+      "range": {
+        "startLine": 296,
+        "startChar": 12,
+        "endLine": 296,
+        "endChar": 41
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e561d9e_ced718dc",
         "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
         "patchSetId": 3
