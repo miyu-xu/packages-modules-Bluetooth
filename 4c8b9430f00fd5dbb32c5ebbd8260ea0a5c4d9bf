@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dad5aa80_df84ea99",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T09:00:46Z",
+      "side": 1,
+      "message": "will use nullptr",
+      "parentUuid": "fa301daa_f53d496d",
+      "range": {
+        "startLine": 127,
+        "startChar": 6,
+        "endLine": 127,
+        "endChar": 11
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd1e9e77_aa5b9568",
@@ -89,6 +113,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7750aba_3bab0d5b",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T09:00:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbd8e40b_b0dcbdff",
+      "range": {
+        "startLine": 177,
+        "startChar": 44,
+        "endLine": 177,
+        "endChar": 51
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "367c6f08_962dcac4",
@@ -102,6 +150,30 @@
       "writtenOn": "2025-01-14T23:02:49Z",
       "side": 1,
       "message": "`bass_client` as you will have `bass_server` later or `BassClient` to match Java naming convention\n\nuse camel case in Java and underscores in C++",
+      "range": {
+        "startLine": 1810,
+        "startChar": 44,
+        "endLine": 1810,
+        "endChar": 48
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "714b5485_7e20fdaf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T09:00:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "367c6f08_962dcac4",
       "range": {
         "startLine": 1810,
         "startChar": 44,
@@ -167,6 +239,30 @@
       "side": 1,
       "message": "LeAudio matches the other provided strings better though",
       "parentUuid": "035fd821_f355ec28",
+      "range": {
+        "startLine": 425,
+        "startChar": 13,
+        "endLine": 425,
+        "endChar": 20
+      },
+      "revId": "4c8b9430f00fd5dbb32c5ebbd8260ea0a5c4d9bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "848242ca_362447b8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-15T09:00:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff2ec28c_10c143ef",
       "range": {
         "startLine": 425,
         "startChar": 13,
