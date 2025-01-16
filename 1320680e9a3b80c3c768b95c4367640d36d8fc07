@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55f3959_72956a08",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2757,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-16T14:47:04Z",
+      "side": 1,
+      "message": "delete \"this.\"",
+      "range": {
+        "startLine": 2757,
+        "startChar": 58,
+        "endLine": 2757,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ecef4ac5_306908b6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2757,
+                "startChar": 0,
+                "endLine": 2758,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cBluetoothDevice\u003e leAudioActiveGroupDevices \u003d getGroupDevices(groupId);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2761,
+                "startChar": 0,
+                "endLine": 2762,
+                "endChar": 0
+              },
+              "replacement": "            setConnectionPolicy(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1320680e9a3b80c3c768b95c4367640d36d8fc07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
