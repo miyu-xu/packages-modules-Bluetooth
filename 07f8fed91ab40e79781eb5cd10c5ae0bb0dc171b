@@ -939,6 +939,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a9cd45_5dd6d1cc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 5311,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T01:05:19Z",
+      "side": 1,
+      "message": "Thanks for revising the implementation. The latest patchset logic looks good to me.",
+      "parentUuid": "035d9521_b0027494",
+      "range": {
+        "startLine": 5303,
+        "startChar": 19,
+        "endLine": 5311,
+        "endChar": 13
+      },
+      "revId": "07f8fed91ab40e79781eb5cd10c5ae0bb0dc171b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80646dda_c19beb03",

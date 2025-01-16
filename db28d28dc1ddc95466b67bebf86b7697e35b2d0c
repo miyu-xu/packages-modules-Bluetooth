@@ -264,6 +264,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a5b138_3a5b79b9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2125,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T01:05:19Z",
+      "side": 1,
+      "message": "ok, fine to do this in a follow-up CL and this is defensive programming any way. closing this out.",
+      "parentUuid": "235e0d41_e1b0e68c",
+      "range": {
+        "startLine": 2125,
+        "startChar": 37,
+        "endLine": 2125,
+        "endChar": 47
+      },
+      "revId": "db28d28dc1ddc95466b67bebf86b7697e35b2d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b09b595_26fa910d",

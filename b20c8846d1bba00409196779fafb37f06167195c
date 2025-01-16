@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d21be75_bb80b9ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T01:05:19Z",
+      "side": 1,
+      "message": "Thanks for addressing all comments. Given the CL is very different from the first version, please get it re-tested, especially for the LE ACL disconnection logic. \n\nMoreover, I think it will be cleaner to land the `btif_dm_disconnect_le_acl` method in a CL below this one and maybe land another one with `btif_dm_disconnect_bredr_acl` as well to complete the puzzle. \n\nThanks!",
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70b7cbe5_993a93b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5307,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T01:05:19Z",
+      "side": 1,
+      "message": "nit: why does it matter if LE link is encrypted? \n\nIf the device is not an LE audio device, could we have a profile or CoC connection that doesn\u0027t require encryption?",
+      "range": {
+        "startLine": 5307,
+        "startChar": 32,
+        "endLine": 5307,
+        "endChar": 61
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d79b16ac_f4997ba2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 3899,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T01:05:19Z",
+      "side": 1,
+      "message": "maybe move everything related to `btif_dm_disconnect_le_acl` into a separate CL so that it can be merged faster? \n\nalso you can add `btif_dm_disconnect_bredr_acl` so that you have\n\n- btif_dm_disconnect_all_acls(address)\n- btif_dm_disconnect_le_acl(address, address_type)\n- btif_dm_disconnect_bredr_acl(address)",
+      "range": {
+        "startLine": 3899,
+        "startChar": 5,
+        "endLine": 3899,
+        "endChar": 30
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0546ca_8ff19f57",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 3899,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T01:05:19Z",
+      "side": 1,
+      "message": "also, please add `address_type` here. you can put a default type as UNKNOWN and native layer doesn\u0027t do anything yet. But correct API for BLE should always have address type.",
+      "range": {
+        "startLine": 3899,
+        "startChar": 5,
+        "endLine": 3899,
+        "endChar": 30
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
