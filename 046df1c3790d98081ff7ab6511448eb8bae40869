@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5791656b_b8a3bfee",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-16T19:20:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "803ba345_418131eb",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 44
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c4c175c_6f0d8c2e",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-01-16T07:54:06Z",
       "side": 1,
       "message": "You can advertise null data ? I don\u0027t understand what the point would be. Should that throw an error ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 29
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f857d4f_192c5191",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-16T19:20:54Z",
+      "side": 1,
+      "message": "It\u0027s possible to do so right now, although I don\u0027t know why you\u0027d want to. We don\u0027t specify any specific exception for null/empty advertising data or scan response data. The code checks for null and replaces with an empty byte array here:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java;l\u003d48;drc\u003d28a98072eee9e54e7f1007f9df4a00cc2f517be6\n\nLower layers of the stack can add to the empty data as well.",
+      "parentUuid": "8c4c175c_6f0d8c2e",
       "range": {
         "startLine": 109,
         "startChar": 0,
@@ -90,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44dec47d_5694735e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-16T19:20:54Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "f46e7696_42f342d7",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 29
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "406fbffc_e7b3a7c5",
         "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
         "patchSetId": 1
@@ -101,6 +173,30 @@
       "writtenOn": "2025-01-16T07:54:06Z",
       "side": 1,
       "message": "even in case like this, we can do a `getManager(source)?.foo` by checking the PRIVILEGED first",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 138,
+        "endChar": 66
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f2c61df_77c41d77",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-16T19:20:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "406fbffc_e7b3a7c5",
       "range": {
         "startLine": 130,
         "startChar": 1,
