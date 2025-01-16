@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e22532_2426dc60",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-16T13:09:04Z",
+      "side": 1,
+      "message": "I would be fine with a simple thing like this:\n1. Add function handler in csis_client.cc.\n2. add \"extern\" definition of this function in this source file\n3. Call it directly from here.\n\nHaving a callback registered, then calling the callback is also ok, just lots of boilerplate.",
+      "revId": "c7423127fe8a6c11efb9e19cd0d3eb36bbdd5c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f16fb949_4daf424d",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-16T13:09:04Z",
+      "side": 1,
+      "message": "was this just for testing or you really need it logged every time ?",
+      "range": {
+        "startLine": 308,
+        "startChar": 2,
+        "endLine": 308,
+        "endChar": 17
+      },
+      "revId": "c7423127fe8a6c11efb9e19cd0d3eb36bbdd5c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
