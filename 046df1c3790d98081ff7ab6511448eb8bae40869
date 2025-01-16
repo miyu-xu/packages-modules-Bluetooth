@@ -113,6 +113,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7621b1b3_2d758044",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T21:18:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6f857d4f_192c5191",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 29
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f46e7696_42f342d7",
@@ -150,6 +174,30 @@
       "side": 1,
       "message": "Same as above.",
       "parentUuid": "f46e7696_42f342d7",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 29
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da6f766_05f46323",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T21:18:40Z",
+      "side": 1,
+      "message": "Same Acknowledged as above",
+      "parentUuid": "44dec47d_5694735e",
       "range": {
         "startLine": 118,
         "startChar": 0,
