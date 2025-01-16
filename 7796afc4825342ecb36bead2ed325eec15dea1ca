@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2169fe_63e280cc",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-16T08:00:10Z",
+      "side": 1,
+      "message": "enum class",
+      "fixSuggestions": [
+        {
+          "fixId": "0c95eb7e_6a6ac65e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_ras_api.h",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": "enum class RasDisconnectReason {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7796afc4825342ecb36bead2ed325eec15dea1ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
