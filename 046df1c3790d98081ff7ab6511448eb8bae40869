@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "803ba345_418131eb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T07:54:06Z",
+      "side": 1,
+      "message": "can we do `getManager(source)?.stopAdvertisingSet(callback) directly ?`",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6babc213_96094616",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "        getManager(source)?.stopAdvertisingSet(callback)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c4c175c_6f0d8c2e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T07:54:06Z",
+      "side": 1,
+      "message": "You can advertise null data ? I don\u0027t understand what the point would be. Should that throw an error ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 29
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f46e7696_42f342d7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T07:54:06Z",
+      "side": 1,
+      "message": "same question",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 29
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406fbffc_e7b3a7c5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseBinder.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T07:54:06Z",
+      "side": 1,
+      "message": "even in case like this, we can do a `getManager(source)?.foo` by checking the PRIVILEGED first",
+      "range": {
+        "startLine": 130,
+        "startChar": 1,
+        "endLine": 138,
+        "endChar": 66
+      },
+      "revId": "046df1c3790d98081ff7ab6511448eb8bae40869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
