@@ -60,7 +60,7 @@ public class TbsGatt {
 
     /* TBS assigned uuid's */
     @VisibleForTesting static final UUID UUID_TBS = makeUuid("184B");
-    @VisibleForTesting public static final UUID UUID_GTBS = makeUuid("184C");
+    public static final UUID UUID_GTBS = makeUuid("184C");
     @VisibleForTesting static final UUID UUID_BEARER_PROVIDER_NAME = makeUuid("2BB3");
     @VisibleForTesting static final UUID UUID_BEARER_UCI = makeUuid("2BB4");
     @VisibleForTesting static final UUID UUID_BEARER_TECHNOLOGY = makeUuid("2BB5");
@@ -87,26 +87,19 @@ public class TbsGatt {
     @VisibleForTesting static final int CALL_CONTROL_POINT_OPTIONAL_OPCODE_LOCAL_HOLD = 0x0001;
     @VisibleForTesting static final int CALL_CONTROL_POINT_OPTIONAL_OPCODE_JOIN = 0x0002;
 
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_OPCODE_ACCEPT = 0x00;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_OPCODE_TERMINATE = 0x01;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD = 0x02;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE = 0x03;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_OPCODE_ORIGINATE = 0x04;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_OPCODE_JOIN = 0x05;
+    public static final int CALL_CONTROL_POINT_OPCODE_ACCEPT = 0x00;
+    public static final int CALL_CONTROL_POINT_OPCODE_TERMINATE = 0x01;
+    public static final int CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD = 0x02;
+    public static final int CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE = 0x03;
+    public static final int CALL_CONTROL_POINT_OPCODE_ORIGINATE = 0x04;
+    public static final int CALL_CONTROL_POINT_OPCODE_JOIN = 0x05;
 
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_RESULT_SUCCESS = 0x00;
-
-    @VisibleForTesting
+    public static final int CALL_CONTROL_POINT_RESULT_SUCCESS = 0x00;
     public static final int CALL_CONTROL_POINT_RESULT_OPCODE_NOT_SUPPORTED = 0x01;
-
-    @VisibleForTesting
     public static final int CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE = 0x02;
-
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_RESULT_INVALID_CALL_INDEX = 0x03;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_RESULT_STATE_MISMATCH = 0x04;
-    @VisibleForTesting public static final int CALL_CONTROL_POINT_RESULT_LACK_OF_RESOURCES = 0x05;
-
-    @VisibleForTesting
+    public static final int CALL_CONTROL_POINT_RESULT_INVALID_CALL_INDEX = 0x03;
+    public static final int CALL_CONTROL_POINT_RESULT_STATE_MISMATCH = 0x04;
+    public static final int CALL_CONTROL_POINT_RESULT_LACK_OF_RESOURCES = 0x05;
     public static final int CALL_CONTROL_POINT_RESULT_INVALID_OUTGOING_URI = 0x06;
 
     private final Object mPendingGattOperationsLock = new Object();
