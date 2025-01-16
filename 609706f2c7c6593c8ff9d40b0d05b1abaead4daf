@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "856b9f0d_cc9d7365",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2754,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-01-16T14:10:09Z",
+      "side": 1,
+      "message": "right 😊",
+      "parentUuid": "b7048724_3eeebc09",
+      "range": {
+        "startLine": 2754,
+        "startChar": 8,
+        "endLine": 2754,
+        "endChar": 76
+      },
+      "revId": "609706f2c7c6593c8ff9d40b0d05b1abaead4daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1fb4dc3_061913b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-16T13:24:24Z",
       "side": 1,
       "message": "just call getGroupDevices() from \"this\" ?",
+      "range": {
+        "startLine": 2758,
+        "startChar": 8,
+        "endLine": 2762,
+        "endChar": 98
+      },
+      "revId": "609706f2c7c6593c8ff9d40b0d05b1abaead4daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daca8f81_949c93de",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2762,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-01-16T14:10:09Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "f1fb4dc3_061913b7",
       "range": {
         "startLine": 2758,
         "startChar": 8,
