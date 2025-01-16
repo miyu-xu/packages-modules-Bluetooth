@@ -517,6 +517,8 @@ void l2c_info_resp_timer_timeout(void* data) {
                 .peer_mtu{},
         };
         for (p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb; p_ccb = p_ccb->p_next_ccb) {
+          // downgrade preferred mode to basic
+          p_ccb->p_rcb->ertm_info.preferred_mode = L2CAP_FCR_BASIC_MODE;
           l2c_csm_execute(p_ccb, L2CEVT_L2CAP_INFO_RSP, &ci);
         }
       }
