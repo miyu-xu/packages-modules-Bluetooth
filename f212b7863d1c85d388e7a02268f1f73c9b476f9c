@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86f6035_496ca00d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T21:27:38Z",
+      "side": 1,
+      "message": "Disconnection seems not needed,. but shouldn\u0027t the a2dp device be marked as non-active ?\n\nthe fact that we are entirely removing the handling of wired device is strongly suspicious...",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
