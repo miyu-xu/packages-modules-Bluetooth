@@ -1,0 +1,330 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b88d8759_442c7ec2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "why changed to debug ?",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08a62ad_a89b0e5b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2986,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "what \"checkGroup\" stands here for ? Is this to remove metadata for sinks matching broadcastId ?",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "876b1565_418bdb2b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "Looks like this part is done in caller functions `removeSinkMetadata`",
+      "fixSuggestions": [
+        {
+          "fixId": "f6e1f31b_3e3387d3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2987,
+                "startChar": 0,
+                "endLine": 2998,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15ba858_b73aebf7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2998,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "Target device list is a list of devices from set ? btw. what is \"Target\" 😊\n\nI\u0027ve checked this `getTargetDeviceList` method and looks weird:\n- for `isGroupOp` \u003d\u003d false it returns list with given device input argument\n- for `isGroupOp` \u003d\u003d true it returns device from the same group as input device:\n\n```\nList\u003cBluetoothDevice\u003e csipDevices \u003d\n                        csipClient.getGroupDevicesOrdered(device, BluetoothUuid.CAP);\n```\n\nI see here a possibility of opitimization - but understand that it\u0027s not in scope of this CL.",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221479a3_941ee508",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3000,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "I see that this loop check if only source is present with given broadcastId - why in comment there is \"are unsynced\" ? Is here missing some logic ?",
+      "fixSuggestions": [
+        {
+          "fixId": "b3ea4135_12d9dae7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3000,
+                "startChar": 0,
+                "endLine": 3001,
+                "endChar": 0
+              },
+              "replacement": "        // Check if all others than device (it is removed or should be removed) are synced\n"
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61f5aa3e_5f026bac",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3010,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "remove broadcastId or SinkMetadata ?",
+      "fixSuggestions": [
+        {
+          "fixId": "6740235c_1651802f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3010,
+                "startChar": 0,
+                "endLine": 3011,
+                "endChar": 0
+              },
+              "replacement": "        // Then remove SinkMetadata for such broadcastId from all of them\n"
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95348459_81fb5d65",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3010,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "I would say that this condition code self explains well - no comment needed.",
+      "fixSuggestions": [
+        {
+          "fixId": "afbdb3f5_94b0f560",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3010,
+                "startChar": 0,
+                "endLine": 3011,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b48d06e_98484e95",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3034,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "Check ?",
+      "fixSuggestions": [
+        {
+          "fixId": "0368c746_fcdf2b4b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3034,
+                "startChar": 0,
+                "endLine": 3035,
+                "endChar": 0
+              },
+              "replacement": "            // Remove all broadcastIds for each sink\n"
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f6e5e0d_4da08eba",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3396,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "This comment is tricky :D \"Or paused unintentionally\" I woudl expect to have this comments both here or switch logic to \"keep metadata for intentionaly paused sink devices\" - what about that ?",
+      "fixSuggestions": [
+        {
+          "fixId": "0cf0ece2_06100aa2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3396,
+                "startChar": 0,
+                "endLine": 3397,
+                "endChar": 0
+              },
+              "replacement": "            // Removes metadata for sink device if not paused intentionally\n"
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1fab9e_1e6e8958",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3403,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-16T16:13:20Z",
+      "side": 1,
+      "message": "In term of code here, maybe:\n```\nif (metadata !\u003d null) {\n    if (!mPausedBroadcastSinks.contains(device)) {\n    } else {\n    ...\n    }\n}\n```\n?",
+      "fixSuggestions": [
+        {
+          "fixId": "d2f1fa79_fecd4779",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3396,
+                "startChar": 0,
+                "endLine": 3399,
+                "endChar": 0
+              },
+              "replacement": "            if (metaData !\u003d null) {\n                // Removes metadata for sink device if not paused\n                if (!mPausedBroadcastSinks.contains(device)) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3400,
+                "startChar": 0,
+                "endLine": 3405,
+                "endChar": 0
+              },
+              "replacement": "                } else if (isSinkUnintentionalPauseType(metaData.getBroadcastId())) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3407,
+                "startChar": 0,
+                "endLine": 3407,
+                "endChar": 0
+              },
+              "replacement": "            } else {\n                removeSinkMetadata(device);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3409,
+                "startChar": 0,
+                "endLine": 3410,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
