@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyBoolean;
 import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
@@ -45,6 +46,7 @@ import android.media.AudioManager;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.platform.test.annotations.EnableFlags;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -1275,6 +1277,30 @@ public class HeadsetServiceTest {
                                         BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED)
                                 .build());
         assertThat(mHeadsetService.isInbandRingingEnabled()).isFalse();
+    }
+
+    @Test
+    @EnableFlags({Flags.FLAG_UPDATE_ACTIVE_DEVICE_IN_BAND_RINGTONE})
+    public void testIncomingCallDeviceConnect_InbandRingStatus() {
+        when(mDatabaseManager.getProfileConnectionPolicy(
+                        any(BluetoothDevice.class), eq(BluetoothProfile.HEADSET)))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        mCurrentDevice = TestUtils.getTestDevice(mAdapter, 0);
+        assertThat(mHeadsetService.connect(mCurrentDevice)).isTrue();
+        when(mStateMachines.get(mCurrentDevice).getDevice()).thenReturn(mCurrentDevice);
+        when(mStateMachines.get(mCurrentDevice).getConnectionState())
+                .thenReturn(BluetoothProfile.STATE_CONNECTED);
+
+        when(mSystemInterface.isRinging()).thenReturn(true);
+
+        System.out.println("QAZ setActiveDevice");
+        mHeadsetService.setActiveDevice(mCurrentDevice);
+
+        verify(mNativeInterface).setActiveDevice(mCurrentDevice);
+        // assertThat(mHeadsetService.getActiveDevice()).isEqualTo(mCurrentDevice);
+        // verify(mNativeInterface, atLeast(1)).enableSwb(1, true, null);
+        // verify(mNativeInterface).setActiveDevice(mCurrentDevice);
+        verify(mNativeInterface, atLeast(1)).sendBsir(eq(mCurrentDevice), eq(true));
     }
 
     private void addConnectedDeviceHelper(BluetoothDevice device) {
