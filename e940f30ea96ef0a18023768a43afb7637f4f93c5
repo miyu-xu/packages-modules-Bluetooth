@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9460b746_28922c21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-16T17:18:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "676e6d63_6a2f77ac",
+      "range": {
+        "startLine": 1413,
+        "startChar": 8,
+        "endLine": 1415,
+        "endChar": 9
+      },
+      "revId": "e940f30ea96ef0a18023768a43afb7637f4f93c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f59adc4_b8893318",
@@ -103,6 +127,24 @@
           ]
         }
       ],
+      "revId": "e940f30ea96ef0a18023768a43afb7637f4f93c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85202f22_e9329914",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-16T17:18:52Z",
+      "side": 1,
+      "message": "@wescande@google.com \nWe were trying to figure out with Henri what\u0027s good approach with the tests and code that is to be removed. \nIf I add DisableFlags - even though the flag will be evantually enabled the test will disable flag and run the old code, right? Does it make sense here then ? or should I leave it as is ?",
+      "parentUuid": "1f59adc4_b8893318",
       "revId": "e940f30ea96ef0a18023768a43afb7637f4f93c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
