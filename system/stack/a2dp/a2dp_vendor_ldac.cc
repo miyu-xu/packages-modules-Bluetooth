@@ -37,7 +37,6 @@
 #include "a2dp_codec_api.h"
 #include "a2dp_constants.h"
 #include "a2dp_vendor_ldac_constants.h"
-#include "a2dp_vendor_ldac_decoder.h"
 #include "a2dp_vendor_ldac_encoder.h"
 #include "avdt_api.h"
 #include "btif/include/btif_av_co.h"
@@ -101,12 +100,6 @@ static const tA2DP_ENCODER_INTERFACE a2dp_encoder_interface_ldac = {
         a2dp_vendor_ldac_get_effective_frame_size,
         a2dp_vendor_ldac_send_frames,
         a2dp_vendor_ldac_set_transmit_queue_length};
-
-static const tA2DP_DECODER_INTERFACE a2dp_decoder_interface_ldac = {
-        a2dp_vendor_ldac_decoder_init,          a2dp_vendor_ldac_decoder_cleanup,
-        a2dp_vendor_ldac_decoder_decode_packet, a2dp_vendor_ldac_decoder_start,
-        a2dp_vendor_ldac_decoder_suspend,       a2dp_vendor_ldac_decoder_configure,
-};
 
 static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilityLdac(const tA2DP_LDAC_CIE* p_cap,
                                                         const uint8_t* p_codec_info,
@@ -248,10 +241,6 @@ bool A2DP_IsCodecValidLdac(const uint8_t* p_codec_info) {
   /* Use a liberal check when parsing the codec info */
   return (A2DP_ParseInfoLdac(&cfg_cie, p_codec_info, false) == A2DP_SUCCESS) ||
          (A2DP_ParseInfoLdac(&cfg_cie, p_codec_info, true) == A2DP_SUCCESS);
-}
-
-tA2DP_STATUS A2DP_IsVendorSinkCodecSupportedLdac(const uint8_t* p_codec_info) {
-  return A2DP_CodecInfoMatchesCapabilityLdac(&a2dp_ldac_sink_caps, p_codec_info, false);
 }
 
 // Checks whether A2DP LDAC codec configuration matches with a device's codec
@@ -566,15 +555,6 @@ const tA2DP_ENCODER_INTERFACE* A2DP_VendorGetEncoderInterfaceLdac(
   return &a2dp_encoder_interface_ldac;
 }
 
-const tA2DP_DECODER_INTERFACE* A2DP_VendorGetDecoderInterfaceLdac(
-    const uint8_t* p_codec_info) {
-  if (!A2DP_IsCodecValidLdac(p_codec_info)) {
-    return NULL;
-  }
-
-  return &a2dp_decoder_interface_ldac;
-}
-
 bool A2DP_VendorAdjustCodecLdac(uint8_t* p_codec_info) {
   tA2DP_LDAC_CIE cfg_cie;
 
@@ -590,20 +570,8 @@ btav_a2dp_codec_index_t A2DP_VendorSourceCodecIndexLdac(const uint8_t* /* p_code
   return BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC;
 }
 
-btav_a2dp_codec_index_t A2DP_VendorSinkCodecIndexLdac(const uint8_t* /* p_codec_info */) {
-  return BTAV_A2DP_CODEC_INDEX_SINK_LDAC;
-}
-
-const char* A2DP_VendorCodecIndexStrLdac(void) { return "LDAC"; }
-
-const char* A2DP_VendorCodecIndexStrLdacSink(void) { return "LDAC SINK"; }
-
 bool A2DP_VendorInitCodecConfigLdac(AvdtpSepConfig* p_cfg) {
   return A2DP_BuildInfoLdac(AVDT_MEDIA_TYPE_AUDIO, &a2dp_ldac_source_caps, p_cfg->codec_info);
-}
-
-bool A2DP_VendorInitCodecConfigLdacSink(AvdtpSepConfig* p_cfg) {
-  return A2DP_BuildInfoLdac(AVDT_MEDIA_TYPE_AUDIO, &a2dp_ldac_sink_caps, p_cfg->codec_info);
 }
 
 A2dpCodecConfigLdacSource::A2dpCodecConfigLdacSource(btav_a2dp_codec_priority_t codec_priority)
@@ -1318,26 +1286,5 @@ fail:
   codec_selectable_capability_ = saved_codec_selectable_capability;
   memcpy(ota_codec_peer_capability_, saved_ota_codec_peer_capability,
          sizeof(ota_codec_peer_capability_));
-  return false;
-}
-
-A2dpCodecConfigLdacSink::A2dpCodecConfigLdacSink(btav_a2dp_codec_priority_t codec_priority)
-    : A2dpCodecConfigLdacBase(BTAV_A2DP_CODEC_INDEX_SINK_LDAC, A2DP_VendorCodecIndexStrLdacSink(),
-                              codec_priority, false) {}
-
-A2dpCodecConfigLdacSink::~A2dpCodecConfigLdacSink() {}
-
-bool A2dpCodecConfigLdacSink::init() {
-  // Load the decoder
-  if (!A2DP_VendorLoadDecoderLdac()) {
-    log::error("cannot load the decoder");
-    return false;
-  }
-
-  return true;
-}
-
-bool A2dpCodecConfigLdacSink::useRtpHeaderMarkerBit() const {
-  // TODO: This method applies only to Source codecs
   return false;
 }
