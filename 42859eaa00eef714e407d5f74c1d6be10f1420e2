@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4970024_0cb450d6",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-16T10:12:44Z",
+      "side": 1,
+      "message": "Remove in favor of using mTbsService ?",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0618cf_2eee84dd",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-16T10:12:44Z",
+      "side": 1,
+      "message": "Inject as constructor parameter and make final ?",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 314,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7a7bb21f_784ebe25",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "    private final BluetoothGattServerProxy mBluetoothGattServer;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 236,
+                "startChar": 0,
+                "endLine": 237,
+                "endChar": 0
+              },
+              "replacement": "    TbsGatt(AdapterService adapterService, TbsService tbsService, BluetoothGattServerProxy proxy) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 239,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "        mBluetoothGattServer \u003d proxy;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 309,
+                "startChar": 0,
+                "endLine": 315,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 336,
+                "startChar": 0,
+                "endLine": 340,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 378,
+                "startChar": 0,
+                "endLine": 381,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 382,
+                "startChar": 0,
+                "endLine": 383,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 496,
+                "startChar": 0,
+                "endLine": 500,
+                "endChar": 0
+              },
+              "replacement": "            mBluetoothGattServer.notifyCharacteristicChanged(\n                    device, characteristic, false, value);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 506,
+                "startChar": 0,
+                "endLine": 509,
+                "endChar": 0
+              },
+              "replacement": "            mBluetoothGattServer.notifyCharacteristicChanged(device, characteristic, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f989c59b_58b792e1",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-16T10:12:44Z",
+      "side": 1,
+      "message": "Move to constructor and make final ?",
+      "range": {
+        "startLine": 334,
+        "startChar": 8,
+        "endLine": 334,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "88220c7b_90ecc4ed",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "    private final Handler mHandler;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 310,
+                "startChar": 0,
+                "endLine": 310,
+                "endChar": 0
+              },
+              "replacement": "        mHandler \u003d new Handler(Looper.getMainLooper());\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+              "range": {
+                "startLine": 334,
+                "startChar": 0,
+                "endLine": 335,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1ea45b_c8cad2ab",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-16T10:12:44Z",
+      "side": 1,
+      "message": "Inline init into the TbsGeneric constructor ?",
+      "range": {
+        "startLine": 62,
+        "startChar": 20,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
