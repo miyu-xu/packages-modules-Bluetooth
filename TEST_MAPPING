@@ -133,9 +133,6 @@
       "name": "net_test_performance"
     },
     {
-      "name": "net_test_stack_a2dp_native"
-    },
-    {
       "name": "net_test_stack_acl"
     },
     {
@@ -327,9 +324,6 @@
     },
     {
       "name": "net_test_performance"
-    },
-    {
-      "name": "net_test_stack_a2dp_native"
     },
     {
       "name": "net_test_stack_acl"

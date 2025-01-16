@@ -91,11 +91,7 @@ btav_a2dp_codec_index_t A2DP_VendorSinkCodecIndexLdac(const uint8_t* p_codec_inf
 
 const char* A2DP_VendorCodecIndexStrLdac(void) { return "Ldac"; }
 
-const char* A2DP_VendorCodecIndexStrLdacSink(void) { return "Ldac SINK"; }
-
 bool A2DP_VendorInitCodecConfigLdac(AvdtpSepConfig* p_cfg) { return false; }
-
-bool A2DP_VendorInitCodecConfigLdacSink(AvdtpSepConfig* p_cfg) { return false; }
 
 A2dpCodecConfigLdacSource::A2dpCodecConfigLdacSource(btav_a2dp_codec_priority_t codec_priority)
     : A2dpCodecConfigLdacBase(BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC, A2DP_VendorCodecIndexStrLdac(),
@@ -118,13 +114,3 @@ tA2DP_STATUS A2dpCodecConfigLdacBase::setCodecConfig(const uint8_t* p_peer_codec
 bool A2dpCodecConfigLdacBase::setPeerCodecCapabilities(const uint8_t* p_peer_codec_capabilities) {
   return false;
 }
-
-A2dpCodecConfigLdacSink::A2dpCodecConfigLdacSink(btav_a2dp_codec_priority_t codec_priority)
-    : A2dpCodecConfigLdacBase(BTAV_A2DP_CODEC_INDEX_SINK_LDAC, A2DP_VendorCodecIndexStrLdacSink(),
-                              codec_priority, false) {}
-
-A2dpCodecConfigLdacSink::~A2dpCodecConfigLdacSink() {}
-
-bool A2dpCodecConfigLdacSink::init() { return false; }
-
-bool A2dpCodecConfigLdacSink::useRtpHeaderMarkerBit() const { return false; }

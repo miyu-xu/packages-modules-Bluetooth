@@ -56,17 +56,6 @@ private:
   void debug_codec_dump(int fd) override;
 };
 
-class A2dpCodecConfigLdacSink : public A2dpCodecConfigLdacBase {
-public:
-  A2dpCodecConfigLdacSink(btav_a2dp_codec_priority_t codec_priority);
-  virtual ~A2dpCodecConfigLdacSink();
-
-  bool init() override;
-
-private:
-  bool useRtpHeaderMarkerBit() const override;
-};
-
 // Checks whether the codec capabilities contain a valid A2DP LDAC Source
 // codec.
 // NOTE: only codecs that are implemented are considered valid.
@@ -184,23 +173,11 @@ bool A2DP_VendorAdjustCodecLdac(uint8_t* p_codec_info);
 // otherwise |BTAV_A2DP_CODEC_INDEX_MAX|.
 btav_a2dp_codec_index_t A2DP_VendorSourceCodecIndexLdac(const uint8_t* p_codec_info);
 
-// Gets the A2DP LDAC Sink codec index for a given |p_codec_info|.
-// Returns the corresponding |btav_a2dp_codec_index_t| on success,
-// otherwise |BTAV_A2DP_CODEC_INDEX_MAX|.
-btav_a2dp_codec_index_t A2DP_VendorSinkCodecIndexLdac(const uint8_t* p_codec_info);
-
 // Gets the A2DP LDAC Source codec name.
 const char* A2DP_VendorCodecIndexStrLdac(void);
-
-// Gets the A2DP LDAC Sink codec name.
-const char* A2DP_VendorCodecIndexStrLdacSink(void);
 
 // Initializes A2DP LDAC Source codec information into |AvdtpSepConfig|
 // configuration entry pointed by |p_cfg|.
 bool A2DP_VendorInitCodecConfigLdac(AvdtpSepConfig* p_cfg);
-
-// Initializes A2DP LDAC Sink codec information into |AvdtpSepConfig|
-// configuration entry pointed by |p_cfg|.
-bool A2DP_VendorInitCodecConfigLdacSink(AvdtpSepConfig* p_cfg);
 
 #endif  // A2DP_VENDOR_LDAC_H
