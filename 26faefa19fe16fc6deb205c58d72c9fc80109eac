@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a35602f8_24f1e6da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1361,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T19:51:08Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 1361,
+        "startChar": 0,
+        "endLine": 1361,
+        "endChar": 109
+      },
+      "revId": "26faefa19fe16fc6deb205c58d72c9fc80109eac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47c6df80_c5ecab91",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
         "patchSetId": 16
