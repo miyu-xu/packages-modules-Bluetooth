@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "192bda5c_e4b565af",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1412,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T21:36:34Z",
+      "side": 0,
+      "message": "This is used and referenced for MTS test.\nCan you update the mts configuration in the same topic ?",
+      "range": {
+        "startLine": 1412,
+        "startChar": 11,
+        "endLine": 1412,
+        "endChar": 37
+      },
+      "revId": "4b9f7e2956bd224504186a71ed46243496c553ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

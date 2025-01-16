@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a240f87_3e14a289",
+        "filename": "system/stack/a2dp/a2dp_vendor.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T21:36:34Z",
+      "side": 1,
+      "message": "Don\u0027t you want to remove it from the enum entirely ?",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 4
+      },
+      "revId": "89104c514f7fbfa6a7bc81bd2cbaa71234d4059d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
