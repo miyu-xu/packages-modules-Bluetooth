@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e2a63d_12fa290b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-16T10:28:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d21be75_bb80b9ae",
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70b7cbe5_993a93b0",
@@ -197,6 +215,30 @@
       "side": 1,
       "message": "Got it. If we assume the 6 byte identifier is unique on a single Android device, this is fine.",
       "parentUuid": "80872250_8867de14",
+      "range": {
+        "startLine": 3899,
+        "startChar": 5,
+        "endLine": 3899,
+        "endChar": 30
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9ad70b_023f1bcb",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 3899,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-16T10:28:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e830cb9c_552c288f",
       "range": {
         "startLine": 3899,
         "startChar": 5,
