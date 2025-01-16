@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7438e8c0_c0753820",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T22:18:19Z",
+      "side": 1,
+      "message": "We have context + adapterService + tbsService that are all three living in this class. There is definitively one or two too many.\n\nBut that may require changing deeper and way more change. I prefer to keep it for another CL",
+      "parentUuid": "d4970024_0cb450d6",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa0618cf_2eee84dd",
@@ -155,6 +179,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "184b45de_e02f1e67",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T22:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0618cf_2eee84dd",
+      "range": {
+        "startLine": 314,
+        "startChar": 8,
+        "endLine": 314,
+        "endChar": 28
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f989c59b_58b792e1",
@@ -216,6 +264,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ece7e6f_aa4e4898",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T22:18:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f989c59b_58b792e1",
+      "range": {
+        "startLine": 334,
+        "startChar": 8,
+        "endLine": 334,
+        "endChar": 55
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d1ea45b_c8cad2ab",
@@ -229,6 +301,30 @@
       "writtenOn": "2025-01-16T10:12:44Z",
       "side": 1,
       "message": "Inline init into the TbsGeneric constructor ?",
+      "range": {
+        "startLine": 62,
+        "startChar": 20,
+        "endLine": 62,
+        "endChar": 24
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543a5aa9_d5426ff2",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T22:18:19Z",
+      "side": 1,
+      "message": "Done, this required a bit more then as I wasn\u0027t modifying tbsgeneric constructor until now",
+      "parentUuid": "8d1ea45b_c8cad2ab",
       "range": {
         "startLine": 62,
         "startChar": 20,
