@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "475b610b_b32d946e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 5307,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-16T08:09:01Z",
+      "side": 1,
+      "message": "If encryption is not enabled LEAudio will not work anyway.\n\nAnd this flag says us that LE is actually there.",
+      "parentUuid": "70b7cbe5_993a93b0",
+      "range": {
+        "startLine": 5307,
+        "startChar": 32,
+        "endLine": 5307,
+        "endChar": 61
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d79b16ac_f4997ba2",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 12
