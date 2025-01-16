@@ -1705,6 +1705,9 @@ public class ActiveDeviceManagerTest {
     /** A wired audio device is connected. Then all active devices are set to null. */
     @Test
     public void wiredAudioDeviceConnected_setAllActiveDevicesNull() {
+        if (Flags.admRemoveHandlingWired()) {
+            return;
+        }
         a2dpConnected(mA2dpDevice, false);
         headsetConnected(mHeadsetDevice, false);
         mTestLooper.dispatchAll();
@@ -1720,6 +1723,9 @@ public class ActiveDeviceManagerTest {
     /** A wired audio device is disconnected. Check if falls back to connected A2DP. */
     @Test
     public void wiredAudioDeviceDisconnected_setFallbackDevice() throws Exception {
+        if (Flags.admRemoveHandlingWired()) {
+            return;
+        }
         AudioDeviceInfo[] testDevices = createAudioDeviceInfoTestDevices();
 
         // Connect A2DP headphones
