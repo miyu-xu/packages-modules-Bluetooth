@@ -133,6 +133,54 @@
       },
       "revId": "b20c8846d1bba00409196779fafb37f06167195c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80872250_8867de14",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 3899,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-16T09:26:26Z",
+      "side": 1,
+      "message": "I don\u0027t think we need address type for the disconnect metphod as we use here pseudo_address which is just an identified here to find ACL.\n\naddress_type makes sense to have when creating connection but not for the discoonect.",
+      "parentUuid": "fb0546ca_8ff19f57",
+      "range": {
+        "startLine": 3899,
+        "startChar": 5,
+        "endLine": 3899,
+        "endChar": 30
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e830cb9c_552c288f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 3899,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-16T09:26:26Z",
+      "side": 1,
+      "message": "Ok will do.",
+      "parentUuid": "d79b16ac_f4997ba2",
+      "range": {
+        "startLine": 3899,
+        "startChar": 5,
+        "endLine": 3899,
+        "endChar": 30
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
