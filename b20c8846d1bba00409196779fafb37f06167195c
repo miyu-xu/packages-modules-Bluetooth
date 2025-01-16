@@ -181,6 +181,30 @@
       },
       "revId": "b20c8846d1bba00409196779fafb37f06167195c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27f9592c_01580dd5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 3899,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-16T09:28:18Z",
+      "side": 1,
+      "message": "Got it. If we assume the 6 byte identifier is unique on a single Android device, this is fine.",
+      "parentUuid": "80872250_8867de14",
+      "range": {
+        "startLine": 3899,
+        "startChar": 5,
+        "endLine": 3899,
+        "endChar": 30
+      },
+      "revId": "b20c8846d1bba00409196779fafb37f06167195c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
