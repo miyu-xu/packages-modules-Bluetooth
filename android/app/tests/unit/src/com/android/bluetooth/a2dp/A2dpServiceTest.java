@@ -1288,6 +1288,23 @@ public class A2dpServiceTest {
                         sTestDevice, BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED);
     }
 
+    /** Test that audio route is updated after active device reset */
+    @Test
+    @EnableFlags(Flags.FLAG_ADM_REMOVE_HANDLING_WIRED)
+    public void testSetPreferredDeviceForAudioRoute() {
+        connectDevice(sTestDevice);
+        doReturn(true).when(mMockNativeInterface).setActiveDevice(any(BluetoothDevice.class));
+
+        // Set and check test active device.
+        assertThat(mA2dpService.setActiveDevice(sTestDevice)).isTrue();
+        assertThat(mA2dpService.getActiveDevice()).isEqualTo(sTestDevice);
+
+        // Reset and check test active device.
+        assertThat(mA2dpService.setActiveDevice(sTestDevice)).isTrue();
+        assertThat(mA2dpService.getActiveDevice()).isEqualTo(sTestDevice);
+        verify(mActiveDeviceManager, times(1)).setPreferredDeviceForAudioRoute(sTestDevice);
+    }
+
     private BluetoothCodecConfig buildBluetoothCodecConfig(
             int sourceCodecType,
             int codecPriority,

@@ -16,6 +16,10 @@
 
 package com.android.bluetooth.btservice;
 
+import static android.media.AudioDeviceInfo.TYPE_BLE_HEADSET;
+import static android.media.AudioDeviceInfo.TYPE_BLE_SPEAKER;
+import static android.media.AudioDeviceInfo.TYPE_BLUETOOTH_A2DP;
+
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.bluetooth.BluetoothAdapter;
@@ -24,9 +28,12 @@ import android.bluetooth.BluetoothHearingAid;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
+import android.media.AudioAttributes;
+import android.media.AudioDeviceAttributes;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
+import android.media.audiopolicy.AudioProductStrategy;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -91,6 +98,8 @@ import java.util.Set;
  *
  * <p>8) If there is already an active device, however, if active device change notified with a null
  * device, the corresponding profile is marked as having no active device.
+ *
+ * <p>TODO: Remove with com.android.bluetooth.flags.adm_remove_handling_wired
  *
  * <p>9) If a wired audio device is connected, the audio output is switched by the Audio Framework
  * itself to that device. We detect this here, and the active device for each profile
@@ -856,22 +865,26 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         @Override
         public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
             Log.d(TAG, "onAudioDevicesAdded");
-            if (!Arrays.stream(addedDevices)
-                    .anyMatch(AudioManagerAudioDeviceCallback::isWiredAudioHeadset)) {
-                return;
+            if (!Flags.admRemoveHandlingWired()) {
+                if (!Arrays.stream(addedDevices)
+                        .anyMatch(AudioManagerAudioDeviceCallback::isWiredAudioHeadset)) {
+                    return;
+                }
+                wiredAudioDeviceConnected();
             }
-            wiredAudioDeviceConnected();
         }
 
         @Override
         public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
             Log.d(TAG, "onAudioDevicesRemoved");
-            if (!Arrays.stream(removedDevices)
-                    .anyMatch(AudioManagerAudioDeviceCallback::isWiredAudioHeadset)) {
-                return;
-            }
-            synchronized (mLock) {
-                setFallbackDeviceActiveLocked(null);
+            if (!Flags.admRemoveHandlingWired()) {
+                if (!Arrays.stream(removedDevices)
+                        .anyMatch(AudioManagerAudioDeviceCallback::isWiredAudioHeadset)) {
+                    return;
+                }
+                synchronized (mLock) {
+                    setFallbackDeviceActiveLocked(null);
+                }
             }
         }
     }
@@ -1378,5 +1391,53 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         setHfpActiveDevice(null);
         setHearingAidActiveDevice(null, true);
         setLeAudioActiveDevice(null, true);
+    }
+
+    /**
+     * Set the preferred device for audio route.
+     *
+     * @return true on success, otherwise false
+     */
+    public boolean setPreferredDeviceForAudioRoute(@NonNull BluetoothDevice device) {
+        AudioProductStrategy preferredStrategy = null;
+        AudioDeviceAttributes preferredAudioDeviceAttributes = null;
+        AudioAttributes preferredAudioAttributes =
+                new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_MEDIA).build();
+
+        for (AudioDeviceInfo audioDeviceInfo :
+                mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)) {
+            int deviceType = audioDeviceInfo.getType();
+            if (audioDeviceInfo.getAddress().equals(device.getAddress())
+                    && (deviceType == TYPE_BLUETOOTH_A2DP
+                            || deviceType == TYPE_BLE_SPEAKER
+                            || deviceType == TYPE_BLE_HEADSET)) {
+                preferredAudioDeviceAttributes = new AudioDeviceAttributes(audioDeviceInfo);
+                Log.d(TAG, "preferredAudioDeviceAttributes: " + preferredAudioDeviceAttributes);
+                break;
+            }
+        }
+
+        if (preferredAudioDeviceAttributes == null) {
+            Log.e(TAG, "preferredAudioDeviceAttributes is null");
+            return false;
+        }
+
+        List<AudioProductStrategy> audioProductStrategies =
+                mAudioManager.getAudioProductStrategies();
+        for (AudioProductStrategy strategy : audioProductStrategies) {
+            if (strategy.supportsAudioAttributes(preferredAudioAttributes)) {
+                preferredStrategy = strategy;
+                Log.d(TAG, "preferredStrategy: " + preferredStrategy);
+                break;
+            }
+        }
+
+        if (preferredStrategy == null) {
+            Log.e(TAG, "preferredStrategy is null");
+            return false;
+        }
+
+        return mAudioManager.setPreferredDeviceForStrategy(
+                preferredStrategy, preferredAudioDeviceAttributes);
     }
 }

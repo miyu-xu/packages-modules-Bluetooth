@@ -20,6 +20,7 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
@@ -39,9 +40,13 @@ import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.content.Context;
+import android.media.AudioDeviceAttributes;
 import android.media.AudioDeviceInfo;
 import android.media.AudioDevicePort;
 import android.media.AudioManager;
+import android.media.AudioPort;
+import android.media.AudioSystem;
+import android.media.audiopolicy.AudioProductStrategy;
 import android.os.test.TestLooper;
 import android.platform.test.annotations.DisableFlags;
 import android.platform.test.annotations.EnableFlags;
@@ -1704,6 +1709,7 @@ public class ActiveDeviceManagerTest {
 
     /** A wired audio device is connected. Then all active devices are set to null. */
     @Test
+    @DisableFlags(Flags.FLAG_ADM_REMOVE_HANDLING_WIRED)
     public void wiredAudioDeviceConnected_setAllActiveDevicesNull() {
         a2dpConnected(mA2dpDevice, false);
         headsetConnected(mHeadsetDevice, false);
@@ -1719,6 +1725,7 @@ public class ActiveDeviceManagerTest {
 
     /** A wired audio device is disconnected. Check if falls back to connected A2DP. */
     @Test
+    @DisableFlags(Flags.FLAG_ADM_REMOVE_HANDLING_WIRED)
     public void wiredAudioDeviceDisconnected_setFallbackDevice() throws Exception {
         AudioDeviceInfo[] testDevices = createAudioDeviceInfoTestDevices();
 
@@ -1817,6 +1824,97 @@ public class ActiveDeviceManagerTest {
         leAudioConnected(mLeAudioDevice);
         mTestLooper.dispatchAll();
         verify(mLeAudioService).setActiveDevice(mLeAudioDevice);
+    }
+
+    /** A sanity check tests for setPreferredDeviceForAudioRoute - valid devices. */
+    @Test
+    public void setPreferredDeviceForAudioRoute_checkValidDevice() throws Exception {
+        // Create devices with supported types
+        AudioDevicePort a2dpPort = mock(AudioDevicePort.class);
+        doReturn(AudioSystem.DEVICE_OUT_BLUETOOTH_A2DP).when(a2dpPort).type();
+        doReturn(mA2dpDevice.getAddress()).when(a2dpPort).address();
+        doReturn("a2dpHfp").when(a2dpPort).name();
+        doReturn(AudioPort.ROLE_SINK).when(a2dpPort).role();
+
+        AudioDevicePort blePort = mock(AudioDevicePort.class);
+        doReturn(AudioSystem.DEVICE_OUT_BLE_HEADSET).when(blePort).type();
+        doReturn(mLeAudioDevice.getAddress()).when(blePort).address();
+        doReturn("ble").when(blePort).name();
+        doReturn(AudioPort.ROLE_SINK).when(blePort).role();
+
+        AudioDevicePort bleHeadsetPort = mock(AudioDevicePort.class);
+        doReturn(AudioSystem.DEVICE_OUT_BLE_SPEAKER).when(bleHeadsetPort).type();
+        doReturn(mLeAudioDevice2.getAddress()).when(bleHeadsetPort).address();
+        doReturn("bleHeadset").when(bleHeadsetPort).name();
+        doReturn(AudioPort.ROLE_SINK).when(bleHeadsetPort).role();
+
+        AudioProductStrategy strategy = getAudioProductStrategyMedia();
+        AudioDeviceInfo[] testDevices = new AudioDeviceInfo[3];
+        testDevices[0] = new AudioDeviceInfo(a2dpPort);
+        testDevices[1] = new AudioDeviceInfo(blePort);
+        testDevices[2] = new AudioDeviceInfo(bleHeadsetPort);
+        AudioDeviceAttributes[] testAudioDeviceAttributes = new AudioDeviceAttributes[3];
+        for (int i = 0; i < 3; i++) {
+            testAudioDeviceAttributes[i] = new AudioDeviceAttributes(testDevices[i]);
+        }
+
+        // Set up Audio Manager mocks
+        doReturn(true).when(mAudioManager).setPreferredDeviceForStrategy(any(), any());
+        doReturn(testDevices).when(mAudioManager).getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+
+        // Check correct devices parameters
+        assertThat(mActiveDeviceManager.setPreferredDeviceForAudioRoute(mA2dpDevice)).isTrue();
+        verify(mAudioManager)
+                .setPreferredDeviceForStrategy(eq(strategy), eq(testAudioDeviceAttributes[0]));
+
+        assertThat(mActiveDeviceManager.setPreferredDeviceForAudioRoute(mLeAudioDevice)).isTrue();
+        verify(mAudioManager)
+                .setPreferredDeviceForStrategy(eq(strategy), eq(testAudioDeviceAttributes[1]));
+
+        assertThat(mActiveDeviceManager.setPreferredDeviceForAudioRoute(mLeAudioDevice2)).isTrue();
+        verify(mAudioManager)
+                .setPreferredDeviceForStrategy(eq(strategy), eq(testAudioDeviceAttributes[2]));
+    }
+
+    /** A sanity check tests for setPreferredDeviceForAudioRoute - invalid device type. */
+    @Test
+    public void setPreferredDeviceForAudioRoute_checkInvalidType() throws Exception {
+        // Create A2dp/Hfp device with unsupported type DEVICE_OUT_BLUETOOTH_SCO
+        AudioDevicePort a2dpHfpPort = mock(AudioDevicePort.class);
+        doReturn(AudioSystem.DEVICE_OUT_BLUETOOTH_SCO).when(a2dpHfpPort).type();
+        doReturn(mA2dpHeadsetDevice.getAddress()).when(a2dpHfpPort).address();
+        doReturn("a2dpHfp").when(a2dpHfpPort).name();
+        doReturn(AudioPort.ROLE_SINK).when(a2dpHfpPort).role();
+
+        AudioDeviceInfo[] testDevices = new AudioDeviceInfo[1];
+        testDevices[0] = new AudioDeviceInfo(a2dpHfpPort);
+
+        // Set up Audio Manager mocks
+        doReturn(true).when(mAudioManager).setPreferredDeviceForStrategy(any(), any());
+        doReturn(testDevices).when(mAudioManager).getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+
+        // Check invalid type
+        assertThat(mActiveDeviceManager.setPreferredDeviceForAudioRoute(mA2dpHeadsetDevice))
+                .isFalse();
+    }
+
+    /** A sanity check tests for setPreferredDeviceForAudioRoute - invalid device address. */
+    @Test
+    public void setPreferredDeviceForAudioRoute_checkInvalidAddress() throws Exception {
+        // Create A2dp/Hfp device with supported type DEVICE_OUT_BLUETOOTH_A2DP
+        AudioDevicePort a2dpHfpPort = mock(AudioDevicePort.class);
+        doReturn(AudioSystem.DEVICE_OUT_BLUETOOTH_A2DP).when(a2dpHfpPort).type();
+        doReturn(mA2dpHeadsetDevice.getAddress()).when(a2dpHfpPort).address();
+
+        AudioDeviceInfo[] testDevices = new AudioDeviceInfo[1];
+        testDevices[0] = new AudioDeviceInfo(a2dpHfpPort);
+
+        // Set up Audio Manager mocks
+        doReturn(true).when(mAudioManager).setPreferredDeviceForStrategy(any(), any());
+        doReturn(testDevices).when(mAudioManager).getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+
+        // Check invalid address
+        assertThat(mActiveDeviceManager.setPreferredDeviceForAudioRoute(mA2dpDevice)).isFalse();
     }
 
     /** Helper to indicate A2dp connected for a device. */
@@ -2067,5 +2165,17 @@ public class ActiveDeviceManagerTest {
             }
             return policy.get(profile, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
         }
+    }
+
+    /** Helper to get MEDIA AudioProductStrategy. */
+    private AudioProductStrategy getAudioProductStrategyMedia() {
+        AudioProductStrategy testAudioProductStrategy = null;
+        for (AudioProductStrategy strategy : AudioProductStrategy.getAudioProductStrategies()) {
+            if (strategy.getId() == 5 && strategy.getName().equals("STRATEGY_MEDIA")) {
+                testAudioProductStrategy = strategy;
+            }
+        }
+        assertThat(testAudioProductStrategy).isNotNull();
+        return testAudioProductStrategy;
     }
 }

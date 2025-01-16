@@ -50,7 +50,6 @@ import android.media.BluetoothProfileConnectionInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
@@ -519,6 +518,11 @@ public class A2dpService extends ProfileService {
                                     + mActiveDevice
                                     + " no changed");
                     // returns true since the device is activated even double attempted
+                    if (Flags.admRemoveHandlingWired()) {
+                        // Force audio route change in case we reactivate the same device.
+                        // This handles switching from wired device to currently active BT.
+                        getActiveDeviceManager().setPreferredDeviceForAudioRoute(device);
+                    }
                     return true;
                 }
                 Log.d(TAG, "setActiveDevice(" + device + "): current is " + mActiveDevice);

@@ -2655,7 +2655,15 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
         }
-        return setActiveGroupWithDevice(device, false);
+        boolean isAlreadyActive = getActiveDevices().contains(device);
+        boolean success = setActiveGroupWithDevice(device, false);
+
+        if (Flags.admRemoveHandlingWired() && success && isAlreadyActive) {
+            // Force audio route change in case we reactivate the same device.
+            // This handles switching from wired device to currently active BT.
+            mAdapterService.getActiveDeviceManager().setPreferredDeviceForAudioRoute(device);
+        }
+        return success;
     }
 
     /**

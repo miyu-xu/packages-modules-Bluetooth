@@ -3498,4 +3498,47 @@ public class LeAudioServiceTest {
         groupStatusChangedEvent.valueInt2 = LeAudioStackEvent.GROUP_STATUS_INACTIVE;
         mService.messageFromNative(groupStatusChangedEvent);
     }
+
+    /** Test that audio route is updated after active device reset */
+    @Test
+    @EnableFlags(Flags.FLAG_ADM_REMOVE_HANDLING_WIRED)
+    public void testSetPreferredDeviceForAudioRoute() {
+        int groupId = 1;
+        /* AUDIO_DIRECTION_OUTPUT_BIT = 0x01 */
+        int direction = 1;
+        int availableContexts = 5;
+        int nodeStatus = LeAudioStackEvent.GROUP_NODE_ADDED;
+        int groupStatus = LeAudioStackEvent.GROUP_STATUS_ACTIVE;
+
+        // Single active device
+        connectTestDevice(mSingleDevice, testGroupId);
+
+        // Add device to group
+        LeAudioStackEvent nodeStatusChangedEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_NODE_STATUS_CHANGED);
+        nodeStatusChangedEvent.device = mSingleDevice;
+        nodeStatusChangedEvent.valueInt1 = groupId;
+        nodeStatusChangedEvent.valueInt2 = nodeStatus;
+        mService.messageFromNative(nodeStatusChangedEvent);
+
+        assertThat(mService.setActiveDevice(mSingleDevice)).isFalse();
+
+        // Add location support
+        injectAudioConfChanged(groupId, availableContexts, direction);
+
+        // Set and check test active device.
+        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+
+        // Set group and device as active
+        LeAudioStackEvent groupStatusChangedEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_STATUS_CHANGED);
+        groupStatusChangedEvent.device = mSingleDevice;
+        groupStatusChangedEvent.valueInt1 = groupId;
+        groupStatusChangedEvent.valueInt2 = groupStatus;
+        mService.messageFromNative(groupStatusChangedEvent);
+
+        // Reset and check test active device.
+        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+        verify(mActiveDeviceManager, times(1)).setPreferredDeviceForAudioRoute(mSingleDevice);
+    }
 }
