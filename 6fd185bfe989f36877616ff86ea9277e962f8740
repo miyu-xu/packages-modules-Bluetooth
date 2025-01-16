@@ -16,6 +16,24 @@
       "message": "Although test is passed, this CL needs more logic checks on below things:\n- Whether this overwrites UUIDs got from service discovery.\n- What actually happens on dual mode devices after pairing.",
       "revId": "6fd185bfe989f36877616ff86ea9277e962f8740",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f45282f5_47c96a70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-01-16T09:57:48Z",
+      "side": 1,
+      "message": "I think we need to create new APIs for getting UUIDs in BLE advertising.\nPutting this into `ACTION_UUID` intent and `BluetoothDevice.getUuids()` seems not applicable.\n\nWill discuss more.",
+      "parentUuid": "418a0e03_bcefc3f6",
+      "revId": "6fd185bfe989f36877616ff86ea9277e962f8740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
