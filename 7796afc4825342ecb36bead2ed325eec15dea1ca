@@ -34,6 +34,24 @@
       ],
       "revId": "7796afc4825342ecb36bead2ed325eec15dea1ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18b7fe9d_c83bd6e2",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-16T14:55:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf2169fe_63e280cc",
+      "revId": "7796afc4825342ecb36bead2ed325eec15dea1ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
