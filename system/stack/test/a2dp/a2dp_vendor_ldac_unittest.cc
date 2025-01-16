@@ -57,9 +57,6 @@ protected:
     encoder_iface_ = const_cast<tA2DP_ENCODER_INTERFACE*>(
             A2DP_VendorGetEncoderInterfaceLdac(kCodecInfoLdacCapability));
     ASSERT_NE(encoder_iface_, nullptr);
-    decoder_iface_ = const_cast<tA2DP_DECODER_INTERFACE*>(
-            A2DP_VendorGetDecoderInterfaceLdac(kCodecInfoLdacCapability));
-    ASSERT_NE(decoder_iface_, nullptr);
   }
 
   void TearDown() override {
@@ -68,9 +65,6 @@ protected:
     }
     if (encoder_iface_ != nullptr) {
       encoder_iface_->encoder_cleanup();
-    }
-    if (decoder_iface_ != nullptr) {
-      decoder_iface_->decoder_cleanup();
     }
   }
 
@@ -103,7 +97,6 @@ protected:
     encoder_iface_->encoder_init(&peer_params, source_codec_config_, read_cb, enqueue_cb);
   }
 
-  void InitializeDecoder(decoded_data_callback_t data_cb) { decoder_iface_->decoder_init(data_cb); }
   BT_HDR* AllocateL2capPacket(const std::vector<uint8_t> data) const {
     auto packet = AllocatePacket(data.size());
     std::copy(data.cbegin(), data.cend(), Data(packet));
@@ -118,7 +111,6 @@ protected:
   A2dpCodecConfig* source_codec_config_;
   A2dpCodecs* a2dp_codecs_;
   tA2DP_ENCODER_INTERFACE* encoder_iface_;
-  tA2DP_DECODER_INTERFACE* decoder_iface_;
 };
 
 TEST_F(A2dpLdacTest, a2dp_source_read_underflow) {
