@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "365375af_45f6a7b1",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-16T22:18:46Z",
+      "side": 1,
+      "message": "actually no, I did it",
+      "parentUuid": "7438e8c0_c0753820",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 101,
+        "endChar": 34
+      },
+      "revId": "42859eaa00eef714e407d5f74c1d6be10f1420e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa0618cf_2eee84dd",
