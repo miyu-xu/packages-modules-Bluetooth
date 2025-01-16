@@ -34,6 +34,24 @@
       "parentUuid": "289c9eef_2233807e",
       "revId": "b193e405fe6ebbc262f310a8a5db1b10aa9cf069",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f47c980_96598174",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-16T04:26:54Z",
+      "side": 1,
+      "message": "I\u0027d like to be more cautious on blocking TBS operations by confirming the sinks are actually syncing to the active local broadcast. If we only check the primary device, I\u0027m worried we might hit some race conditon which lead to us to mistakenly block this.\n\nAlso considering we\u0027re rolling out flags to change the fallback device flow now, I\u0027d like to avoid dependence on that behavior change. So the current checks would be a safer solution IMO.\n\nThe operation code has been logged above, but sure, added this here as well in case debug level is not on.\n\nTo Lukasz, that\u0027s a good point, thanks, adding this in my published ver..",
+      "parentUuid": "a4a85af0_96e113ff",
+      "revId": "b193e405fe6ebbc262f310a8a5db1b10aa9cf069",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
