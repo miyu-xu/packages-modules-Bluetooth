@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39b8d62_c854a4db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-17T12:46:59Z",
+      "side": 1,
+      "message": "[Pairing completed](https://android-bug-tool.corp.google.com/bug_tool?url\u003dhttps%3A%2F%2Fandroid-build.googleplex.com%2Fbuilds%2FI13300010355913550%2FP88507961%252Fstub%252Finv_17045103811475582845%252Fsandbox-android.bluetooth.pairing.PairingTest%2523testIdentityAddressRetentionOnRestart-127.0.0.1%253A39537-logcat-on-failure_10293037920937456961.txt\u0026section\u003dsandbox-android.bluetooth.pairing.PairingTest%2523testIdentityAddressRetentionOnRestart-127.0.0.1%3A39537-logcat-on-failure_10293037920937456961.txt\u0026hnmr\u003dtrue\u0026sl\u003d12946\u0026ss\u003dCjoKNEJsdWV0b290aEJvbmRTdGF0ZU1hY2hpbmU6IEJvbmQgU3RhdGUgQ2hhbmdlIEludGVudDoQBCABCkAKOlRlc3RSdW5uZXI6IHN0YXJ0ZWQ6IHRlc3RJZGVudGl0eUFkZHJlc3NSZXRlbnRpb25PblJlc3RhcnQQBCABChsKFVRlc3RSdW5uZXI6IGV4cGVjdGVkOhAEIAEKHQoVVGVzdFJ1bm5lcjogYnV0IHdhcyA6EAQYASAB)  but test case verifictaion failed as identity address is `NULL` after BT restart",
+      "parentUuid": "f571134b_02c861b9",
+      "revId": "a67f1051e5a112ddb4d654bd0dc0ae1b246f49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6f0c38b_60845d2c",
@@ -49,6 +67,24 @@
           ]
         }
       ],
+      "revId": "a67f1051e5a112ddb4d654bd0dc0ae1b246f49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fc94aa6_3fcb4b76",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-17T12:46:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6f0c38b_60845d2c",
       "revId": "a67f1051e5a112ddb4d654bd0dc0ae1b246f49e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
