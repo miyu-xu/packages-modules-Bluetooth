@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4961d86d_ee95c6d7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "Right now because of checkGroupAndRemoveSinksMetadata methods, it could be called for sink which has already removed metadata.",
+      "parentUuid": "b88d8759_442c7ec2",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c08a62ad_a89b0e5b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -31,6 +49,24 @@
       "writtenOn": "2025-01-16T16:13:20Z",
       "side": 1,
       "message": "what \"checkGroup\" stands here for ? Is this to remove metadata for sinks matching broadcastId ?",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce979ad4_839c0d81",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2986,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "yes, but before removing there is need to check group, as we want to remove metadata only if all others are unsynced too.",
+      "parentUuid": "c08a62ad_a89b0e5b",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +102,24 @@
           ]
         }
       ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b5ccc0_2f95be06",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "yes and I want to leave it here too, as this method could be used separately. Right now only version with one argument is used standalone but maybe in the future this one will be used too, so better that this method is \"complete\":) The overhead is negligible.",
+      "parentUuid": "876b1565_418bdb2b",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -118,6 +172,24 @@
           ]
         }
       ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96765020_b9d19279",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3000,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "These methods remove metadata from all sinks only if all others sinks than this one are unsynced too. We do not check current one as it is already removed (i.e. during removeSource) or will be removed (i.e. during disconnection).",
+      "parentUuid": "221479a3_941ee508",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -192,6 +264,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13547b11_c16f4070",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3010,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61f5aa3e_5f026bac",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5af1747_3ae063ab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3010,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "I will left it as it nice to read described condition with described result:)\nCheck if all others than this device (it is removed or should be removed) are unsynced. Then remove such metadata from all of them.",
+      "parentUuid": "95348459_81fb5d65",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b48d06e_98484e95",
@@ -229,6 +337,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bfd6399_a7cab68d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3034,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "First you need to check, deletion is a secondary thing:)",
+      "parentUuid": "5b48d06e_98484e95",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f6e5e0d_4da08eba",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -258,6 +384,24 @@
           ]
         }
       ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8ab822c_82b9b9a1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3396,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "You have right, thanks:)",
+      "parentUuid": "6f6e5e0d_4da08eba",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -323,6 +467,24 @@
           ]
         }
       ],
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71553f06_2bf15490",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3403,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T11:25:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b1fab9e_1e6e8958",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
