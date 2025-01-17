@@ -845,7 +845,10 @@ public final class Utils {
             return true;
         }
 
-        Log.e(TAG, "Need ACCESS_COARSE_LOCATION permission for " + currentAttribution);
+        Log.e(
+                TAG,
+                "Permission denial: Need ACCESS_COARSE_LOCATION "
+                        + "permission to get scan results");
         return false;
     }
 
@@ -886,8 +889,8 @@ public final class Utils {
 
         Log.e(
                 TAG,
-                "Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission for "
-                        + currentAttribution);
+                "Permission denial: Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION"
+                        + "permission to get scan results");
         return false;
     }
 
@@ -917,7 +920,9 @@ public final class Utils {
             return true;
         }
 
-        Log.e(TAG, "Need ACCESS_FINE_LOCATION permission for " + currentAttribution);
+        Log.e(
+                TAG,
+                "Permission denial: Need ACCESS_FINE_LOCATION " + "permission to get scan results");
         return false;
     }
 
