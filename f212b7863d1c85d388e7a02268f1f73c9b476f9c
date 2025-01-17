@@ -94,6 +94,30 @@
       },
       "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dbdc08c_a41ea414",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-17T19:47:11Z",
+      "side": 1,
+      "message": "What I understand from the old bugreport it was about manually switching back to BT, while wired is still connected.\n\nAnyway the active device manager is for bluetooth, not audio - so I guess it\u0027s very fine to not care about wired there",
+      "parentUuid": "38d8d1d3_39d07986",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
