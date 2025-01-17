@@ -22,6 +22,30 @@
       },
       "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf2b65b_3f21b61f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-17T10:44:27Z",
+      "side": 1,
+      "message": "The whole problem is that when we plug wired headphones we set A2DP as inactive (we set a2dp active device to null) so it disappears in the audio framework - and since it\u0027s still connected it should be feasible to select from the audio framework point of view. Check Eric\u0027s comment on the bug: https://buganizer.corp.google.com/issues/202832397#comment22\n\nThe initial cause for all this wired device handling implemenation was that it wasn\u0027t possible to select back BT device when wired connected - and it\u0027s not the case anymore. It\u0027s unfeasible to check the underlying issue because the bugreports from the initial case are deleted, the bug is from 2018 ; )\n\nI did some testing:\nI removed wired handling and checked some scenarios - two bt devices and one wired, plugged/unplugged and tested if it plays on the correct device. Both for LE Audio and A2DP. \nAnother test that I did was a phone call and plugging/unplugging wired - it selects a proper device and everything works. \n\nI think it\u0027s safe to try and remove it under the flag.",
+      "parentUuid": "b86f6035_496ca00d",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
