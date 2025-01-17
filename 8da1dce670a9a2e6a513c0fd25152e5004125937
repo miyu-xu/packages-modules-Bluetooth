@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5d9d982_dfcae003",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T13:42:50Z",
+      "side": 1,
+      "message": "Can you please extend commit message explaining how this helps to handle quick changes of local stream status changes ?",
+      "revId": "8da1dce670a9a2e6a513c0fd25152e5004125937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4229bc9_6d48768e",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 5
