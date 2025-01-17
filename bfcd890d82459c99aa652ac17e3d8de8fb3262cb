@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05b5eb5d_96a76f07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-17T00:15:01Z",
+      "side": 1,
+      "message": "I like this change to simplify the fallback selection logic, broadcast fallback device management has been a bit over-designed before.\n\nAs we discussed offline, I was a bit worried this might break some CUJs with removing the flag. While after more thoughts, I think this should be fine to support most of our use cases, either current or future new API flow.\n\n+2 to unblock this. if others don\u0027t have additional concern here, let\u0027s go ahead to get this in and start rolling our our primary selection flags to simplify this further.",
+      "revId": "bfcd890d82459c99aa652ac17e3d8de8fb3262cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
