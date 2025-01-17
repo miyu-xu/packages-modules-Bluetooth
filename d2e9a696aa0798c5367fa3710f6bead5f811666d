@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17183683_baa41ad4",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T19:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7a268c2_49581a2c",
+      "range": {
+        "startLine": 244,
+        "startChar": 22,
+        "endLine": 244,
+        "endChar": 32
+      },
+      "revId": "d2e9a696aa0798c5367fa3710f6bead5f811666d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40ecff76_3c7e4503",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97dc6736_00250b6d",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T19:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40ecff76_3c7e4503",
+      "range": {
+        "startLine": 246,
+        "startChar": 31,
+        "endLine": 246,
+        "endChar": 46
+      },
+      "revId": "d2e9a696aa0798c5367fa3710f6bead5f811666d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75ee40ac_da20c2b9",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-01-17T10:32:56Z",
       "side": 1,
       "message": "requireNonNull ?",
+      "range": {
+        "startLine": 171,
+        "startChar": 19,
+        "endLine": 171,
+        "endChar": 22
+      },
+      "revId": "d2e9a696aa0798c5367fa3710f6bead5f811666d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27bef21b_3b463d1a",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T19:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75ee40ac_da20c2b9",
       "range": {
         "startLine": 171,
         "startChar": 19,
@@ -117,6 +189,30 @@
           ]
         }
       ],
+      "revId": "d2e9a696aa0798c5367fa3710f6bead5f811666d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f870c1b_c2204041",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T19:25:44Z",
+      "side": 1,
+      "message": "I 100% agree with you, constructor should just works one thread, but previously it was silently failing and I am not fixing this behavior.\n\nMy change is currently no op change, only integrating the start into the constructor and removing un-necessary init method.\n\nIf I were to throw an exception here, it could potentially crash down the entire Bluetooth at start, while keeping it would only crash when tbs is getting called into.\n\nI do prefer to crash hard and early, in order to have better signal, but this is not my area here and since I will probably not be the one investigating, I don\u0027t want to change it.",
+      "parentUuid": "29066a9b_6bfc2865",
+      "range": {
+        "startLine": 180,
+        "startChar": 12,
+        "endLine": 180,
+        "endChar": 18
+      },
       "revId": "d2e9a696aa0798c5367fa3710f6bead5f811666d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
