@@ -16,6 +16,24 @@
       "message": "Verify that there is no BOND_NONE event",
       "revId": "603794f2afed1d58bbaa3c6856efaa5297c12926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b6aebd_d7bcbf95",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-17T09:16:34Z",
+      "side": 1,
+      "message": "Waiting 30seconds [here](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3435839/6/framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java#1042) and Verified the bonded device list",
+      "parentUuid": "61ce607a_1cab2cd4",
+      "revId": "603794f2afed1d58bbaa3c6856efaa5297c12926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
