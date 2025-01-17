@@ -19,6 +19,7 @@ package com.android.bluetooth.btservice;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHearingAid;
 import android.bluetooth.BluetoothLeAudio;
@@ -360,7 +361,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                 if (mDbManager.getProfileConnectionPolicy(device, BluetoothProfile.A2DP)
                                 != BluetoothProfile.CONNECTION_POLICY_ALLOWED
                         || mAudioManager.getMode() != AudioManager.MODE_NORMAL) {
-                    if (Utils.isWatch(mAdapterService, device)) {
+                    if (isWatch(device)) {
                         Log.i(TAG, "Do not set hfp active for watch device " + device);
                         return;
                     }
@@ -1344,6 +1345,32 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
             return hearingAidService.getHiSyncId(mHearingAidActiveDevices.iterator().next());
         }
         return BluetoothHearingAid.HI_SYNC_ID_INVALID;
+    }
+
+    /**
+     * Checks CoD and metadata to determine if the device is a watch
+     *
+     * @param device the remote device
+     * @return {@code true} if it's a watch, {@code false} otherwise
+     */
+    private boolean isWatch(BluetoothDevice device) {
+        // Check CoD
+        BluetoothClass deviceClass = new BluetoothClass(mAdapterService.getRemoteClass(device));
+        if (deviceClass.getDeviceClass() == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
+            return true;
+        }
+
+        // Check metadata
+        byte[] deviceType = mDbManager.getCustomMeta(device, BluetoothDevice.METADATA_DEVICE_TYPE);
+        if (deviceType == null) {
+            return false;
+        }
+        String deviceTypeStr = new String(deviceType);
+        if (deviceTypeStr.equals(BluetoothDevice.DEVICE_TYPE_WATCH)) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
