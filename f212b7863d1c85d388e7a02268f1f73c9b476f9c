@@ -46,6 +46,30 @@
       },
       "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d1c626_67df45a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T19:14:53Z",
+      "side": 1,
+      "message": "For me this situation should be similar to when we have multiple a2dp devices.\n\nI just quickly tested this (without wired device, just 2 a2dp) and I can still select both my device from the audio switcher, but only the one being streamed on is marked as active.\n\nBut I also noticed that if I switch the output to the phone speaker, I still have a Bluetooth device marked as active while not being the active audio output which is weird to me.\n\nI anticipate the wired device to work as the phone speaker, but it\u0027s a bit weird to me that we will be streaming on a wired device while having an a2dp device as active.",
+      "parentUuid": "caf2b65b_3f21b61f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
