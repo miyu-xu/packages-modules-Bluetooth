@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00271cb_18114b75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T14:28:50Z",
+      "side": 1,
+      "message": "Thank you, right it should be clear where was a problem and what was done to solve it.",
+      "parentUuid": "b5d9d982_dfcae003",
+      "revId": "8da1dce670a9a2e6a513c0fd25152e5004125937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4229bc9_6d48768e",
@@ -49,6 +67,24 @@
           ]
         }
       ],
+      "revId": "8da1dce670a9a2e6a513c0fd25152e5004125937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e0bcafb_d40de01a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4079,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-17T14:28:50Z",
+      "side": 1,
+      "message": "IMHO it is not needed as here is only one check: `hasPrimaryDeviceManagedExternalBroadcast` which great self explaining what it does and previous check (without flag) is well described too.",
+      "parentUuid": "d4229bc9_6d48768e",
       "revId": "8da1dce670a9a2e6a513c0fd25152e5004125937",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
