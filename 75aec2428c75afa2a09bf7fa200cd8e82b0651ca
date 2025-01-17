@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c370801c_7a2f6829",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1176,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T13:42:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "637b4a2b_0428c575",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44d5e529_ba9901e2",
@@ -123,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75f30047_1d872608",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2501,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T13:42:02Z",
+      "side": 1,
+      "message": "Lets do that.",
+      "parentUuid": "b67f7948_f4a33323",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9ba19e0_60072798",
@@ -154,6 +190,24 @@
       "side": 1,
       "message": "Above (potential) refactor will help for that. For now clarity of this method IMHO is fine. It does exactly what names said `clearAllDataForSyncHandle`, it clears all data corresponded to that sync handle (BASS sync, not sink sync). mPendingSourcesToAdd and mSinksWaitingForPast for broadcastId for that syncHandle have to be removed too as they could be used only with active broadcast sync.",
       "parentUuid": "e9ba19e0_60072798",
+      "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db711aca_ee90df67",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2505,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T13:42:02Z",
+      "side": 1,
+      "message": "In term of clarity I see here a lot of possible update. The most challenging thing here is an abstraction of: SyncHandle having some Data.\n\nSyncHandle is a handle e.g. integer, what kind of data it has ? or does it mean that this code does for SyncHandle ?\n\nWhat I see is refactor that would extract abstraction to managable objects that would have real meaning/self descriptive.\n\nBecause we know the code we know that this is a part of scanner then it\u0027s clear the same for all Maps. Generally there is lack of encapsulation as previousely mentioned to some abstraction for scanner for assistant, sink etc. but this is for future refactor.",
+      "parentUuid": "d7989a6c_fae3a1a9",
       "revId": "75aec2428c75afa2a09bf7fa200cd8e82b0651ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4229bc9_6d48768e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4079,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T13:42:02Z",
+      "side": 1,
+      "message": "can we have here a comment ?",
+      "fixSuggestions": [
+        {
+          "fixId": "088bdf84_91930843",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 4079,
+                "startChar": 0,
+                "endLine": 4079,
+                "endChar": 0
+              },
+              "replacement": "            /* Check if assistant should cache suspending sources and stop broadcast\n             * synchronization.\n             *\n             * If leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator() is true,\n             * assistant should cache suspending sources and stop broadcast synchronization\n             * only if there is a primary device managed external broadcast.\n             *\n             * If leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator() is false,\n             * assistant should cache suspending sources and stop broadcast synchronization\n             * only if all receivers are receiving only external broadcast.\n             */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8da1dce670a9a2e6a513c0fd25152e5004125937",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
