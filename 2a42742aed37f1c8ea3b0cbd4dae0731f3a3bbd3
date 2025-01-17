@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "420c3c93_0ed7fe2d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T14:32:36Z",
+      "side": 1,
+      "message": "I agree that this should be moved below 1371. Applying change.",
+      "parentUuid": "8af92f56_f495391b",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7508febd_41e4b2da",
@@ -107,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e33c14a5_eab5e4e0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T14:32:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c9207ed7_fd6844d0",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2011e303_2a339c3b",
@@ -120,6 +156,24 @@
       "writtenOn": "2025-01-13T21:01:43Z",
       "side": 1,
       "message": "nit: would it better to have a wrapper for \"!IsInCall() \u0026\u0026 !IsInVoipCall()\"?",
+      "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be0aacd_4dc39f0b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4437,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-17T14:32:36Z",
+      "side": 1,
+      "message": "yeah, good idea, especially that this is not in only one place",
+      "parentUuid": "2011e303_2a339c3b",
       "revId": "2a42742aed37f1c8ea3b0cbd4dae0731f3a3bbd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
