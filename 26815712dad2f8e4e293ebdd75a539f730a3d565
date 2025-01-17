@@ -16,6 +16,24 @@
       "message": "flag in itself lgtm but I have concerned about the underlying change",
       "revId": "26815712dad2f8e4e293ebdd75a539f730a3d565",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1365dcfb_4f4c6ef3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T20:00:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a71473f_df652810",
+      "revId": "26815712dad2f8e4e293ebdd75a539f730a3d565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
