@@ -70,6 +70,30 @@
       },
       "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d8d1d3_39d07986",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-17T19:17:48Z",
+      "side": 1,
+      "message": "Or am I thinking to much, and \"active\" only means in a Bluetooth context and not in a phone context...\n\n\nBut because you keep a device actif, we can see the little bluetooth icon in the status bar of the phone, which usually indicate that a bluetooth device is connected (which it is) and that the audio will stream on it... but actually it doesn\u0027t.\n\nMaybe I don\u0027t understand the bug case.\nWhen you say \"it wasn\u0027t possible to select back BT device when wired connected\" do you mean manully selecting the audio device by going into the audio routing menu ? or do you mean a switch back when you unplug the wire ?",
+      "parentUuid": "d1d1c626_67df45a3",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 53
+      },
+      "revId": "f212b7863d1c85d388e7a02268f1f73c9b476f9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
