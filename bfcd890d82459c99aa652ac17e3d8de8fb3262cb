@@ -16,6 +16,24 @@
       "message": "I like this change to simplify the fallback selection logic, broadcast fallback device management has been a bit over-designed before.\n\nAs we discussed offline, I was a bit worried this might break some CUJs with removing the flag. While after more thoughts, I think this should be fine to support most of our use cases, either current or future new API flow.\n\n+2 to unblock this. if others don\u0027t have additional concern here, let\u0027s go ahead to get this in and start rolling our our primary selection flags to simplify this further.",
       "revId": "bfcd890d82459c99aa652ac17e3d8de8fb3262cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d9b64b_768697dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-17T02:26:55Z",
+      "side": 1,
+      "message": "The only potential issue is Audio sharing with paused audio -\u003e no broadcast in streaming state -\u003e change fallback from UI -\u003e this will change active device instead of only changing fallback device. Well the expected behavior should be to only change fallback device. \n\nUnderstand we might not have a cleaner solution to differentiate this case from in calling handover(broadcast also paused) if all APPs are using setActiveDevice, so this might not necessarily block this change. And once UI start using the new API to set fallback device, this should be fine then. \n\nBut might be something we\u0027d need to follow-up.",
+      "parentUuid": "05b5eb5d_96a76f07",
+      "revId": "bfcd890d82459c99aa652ac17e3d8de8fb3262cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
