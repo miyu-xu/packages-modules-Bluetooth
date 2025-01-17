@@ -1,0 +1,206 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e55d8158_279be185",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "```suggestion\n      event_code \u003d packet[0];\n```",
+      "range": {
+        "startLine": 1418,
+        "startChar": 5,
+        "endLine": 1419,
+        "endChar": 28
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a1de51b_96b94bef",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "```suggestion\n        subevent_code \u003d packet[2];\n```",
+      "range": {
+        "startLine": 1423,
+        "startChar": 8,
+        "endLine": 1424,
+        "endChar": 36
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7874f0b_1d8ba29a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "ISO and SCO packets also have a connection handle, though the offset is different.",
+      "range": {
+        "startLine": 1433,
+        "startChar": 4,
+        "endLine": 1434,
+        "endChar": 38
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67070215_266412f5",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "`bundles organized by direction, type, and eventual op_code or event_code`",
+      "fixSuggestions": [
+        {
+          "fixId": "c0351698_e59ddd0a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "// BundleKey is used to group packets into bundles organized by direction, type,\n// and eventual op_code or event_code.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afb8c191_e8be553c",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "I am not certain that the length should be part of the key.",
+      "range": {
+        "startLine": 149,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 17
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ee1c3d_bf8245ea",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "Please avoid #define-ing local macros in headers, they will leak into the scope of every file including this header",
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73372756_17e5f0d0",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "Why have you removed the timestamps here ?",
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae5cd123_26e59cf8",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-17T11:14:20Z",
+      "side": 1,
+      "message": "nit: total_length",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d8a1c9ed_4769c6f7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 169,
+                "startChar": 0,
+                "endLine": 170,
+                "endChar": 0
+              },
+              "replacement": "  uint32_t total_length;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
