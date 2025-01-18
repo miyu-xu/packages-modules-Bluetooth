@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdaa7173_4af4d12d",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Thanks for the pointers! The linker error I\u0027m getting isn\u0027t descriptive -- getting errors within the perfetto files when I try to move this library out of `whole_static_libs` into `static_libs`. I\u0027ll continue trying to resolve this, but feel free to chime in if you have any suggestions on debugging the linker error.",
+      "parentUuid": "6d66d4d6_6b8d2fdd",
+      "range": {
+        "startLine": 124,
+        "startChar": 17,
+        "endLine": 124,
+        "endChar": 48
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8bdf6d7_40d5299a",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 5
@@ -540,6 +564,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ede432c4_2a670d99",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47a91f47_e5c99ee5",
+      "range": {
+        "startLine": 1483,
+        "startChar": 6,
+        "endLine": 1483,
+        "endChar": 20
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bf1a18f5_92007047",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 5
@@ -973,6 +1021,30 @@
           ]
         }
       ],
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb9fa9d3_c8cc31f7",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c1e3b132_ab74acb7",
+      "range": {
+        "startLine": 373,
+        "startChar": 11,
+        "endLine": 373,
+        "endChar": 28
+      },
       "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

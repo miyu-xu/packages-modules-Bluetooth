@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "808c89a1_4a91354a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1419,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e55d8158_279be185",
+      "range": {
+        "startLine": 1418,
+        "startChar": 5,
+        "endLine": 1419,
+        "endChar": 28
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a1de51b_96b94bef",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dbd483a_651994c7",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7a1de51b_96b94bef",
+      "range": {
+        "startLine": 1423,
+        "startChar": 8,
+        "endLine": 1424,
+        "endChar": 36
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7874f0b_1d8ba29a",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-01-17T11:14:20Z",
       "side": 1,
       "message": "ISO and SCO packets also have a connection handle, though the offset is different.",
+      "range": {
+        "startLine": 1433,
+        "startChar": 4,
+        "endLine": 1434,
+        "endChar": 38
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca27e6c_cc9daf80",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Based on 5.4.2, 5.4.3, and 5.4.5, from bluetooth specification, ISO and SCO looks to have the same schematic as ACL.",
+      "parentUuid": "b7874f0b_1d8ba29a",
       "range": {
         "startLine": 1433,
         "startChar": 4,
@@ -105,6 +177,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bb9599f_14223c17",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "thanks! That\u0027s definitely more descriptive, I\u0027ll definitely add that part in.",
+      "parentUuid": "67070215_266412f5",
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afb8c191_e8be553c",
@@ -128,6 +218,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf05c61a_9a4253b5",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "afb8c191_e8be553c",
+      "range": {
+        "startLine": 149,
+        "startChar": 11,
+        "endLine": 149,
+        "endChar": 17
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0ee1c3d_bf8245ea",
@@ -141,6 +255,24 @@
       "writtenOn": "2025-01-17T11:14:20Z",
       "side": 1,
       "message": "Please avoid #define-ing local macros in headers, they will leak into the scope of every file including this header",
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0fac16d_aa42a57e",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d0ee1c3d_bf8245ea",
       "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -199,6 +331,48 @@
           ]
         }
       ],
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b05eac_c4981348",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "I should add that back in, thanks for catching! The timestamp for start and stop should be unique per bundles -- adding it back.",
+      "parentUuid": "73372756_17e5f0d0",
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ced3fbd0_18f7b451",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-18T01:28:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ae5cd123_26e59cf8",
+      "range": {
+        "startLine": 169,
+        "startChar": 11,
+        "endLine": 169,
+        "endChar": 17
+      },
       "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
