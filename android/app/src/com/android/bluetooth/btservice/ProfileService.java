@@ -233,6 +233,17 @@ public abstract class ProfileService extends Service {
         if (component == null) {
             return;
         }
+
+        if (enable
+                && getPackageManager().getComponentEnabledSetting(component)
+                        == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+            getPackageManager()
+                    .setComponentEnabledSetting(
+                            component,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP | PackageManager.SYNCHRONOUS);
+        }
+
         getPackageManager().setComponentEnabledSetting(
                 component,
                 enable ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
