@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c66bb80_b625e844",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-20T09:58:52Z",
+      "side": 1,
+      "message": "I think ActiveDeviceManager should be registered to AudioManager and with b/382225511 the idea will be that ONLY ActiveDeviceManager will be handling this callbacks and not other profiles.\n\nI know that work on above did not start, but maybe to avoid merge conflics and other colitions, that CL should just cut the wire headset monitoring in another place ?\n\n\nActually I see flag is added in a callbacks itself, maybe this would be enought for now ?",
+      "revId": "a2e8be846ecf9e7c503523a3d466781676464a2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
