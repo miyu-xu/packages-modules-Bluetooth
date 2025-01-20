@@ -44,3 +44,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "l2cap_fix_disconnecting_le_att_fixed_channel"
+    namespace: "bluetooth"
+    description: "Disconnecting Fixed ATT channel, means link disconnection"
+    bug: "391114340"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
