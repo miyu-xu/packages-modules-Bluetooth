@@ -26,7 +26,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.AudioPlaybackConfiguration;
 import android.os.Looper;
 import android.os.UserManager;
 import android.sysprop.BluetoothProperties;
@@ -504,34 +506,54 @@ public class AvrcpTargetService extends ProfileService {
     /** Informs {@link AudioManager} of an incoming key event from a remote device. */
     void sendMediaKeyEvent(int key, boolean pushed) {
         MediaPlayerWrapper activePlayer = mMediaPlayerList.getActivePlayer();
+        boolean voiceCommunicationActive = isVoiceCommunicationActive();
+        BluetoothDevice activeDevice = getA2dpActiveDevice();
+        int keyCode = AvrcpPassthrough.toKeyCode(key);
+
+        String keyEventLog =
+                "sendMediaKeyEvent:"
+                        + " device="
+                        + activeDevice
+                        + " key="
+                        + (KeyEvent.KEYCODE_MEDIA_PLAY == keyCode ? "PLAY" : "PAUSE")
+                        + " pushed="
+                        + pushed
+                        + " voice active="
+                        + voiceCommunicationActive
+                        + " internal active player is "
+                        + (activePlayer == null ? null : activePlayer.getPackageName());
+        mMediaKeyEventLogger.logd(TAG, keyEventLog);
+
+        // Some devices will send a play event upon SCO disconnection, resulting in music starting
+        // even if the call is still ongoing. As this is a BT specific issue we handle it here.
+        if (voiceCommunicationActive && KeyEvent.KEYCODE_MEDIA_PLAY == keyCode) {
+            Log.w(TAG, "Received play event while call is active, not sending it to AudioManager");
+            return;
+        }
+
         if (Flags.setAddressedPlayer()) {
-            MediaPlayerWrapper addressedPlayer = mMediaPlayerList.getAddressedPlayer();
             // A/V controls should be sent to the addressed player.
             // We don't have a way to set a media player as the active session so we
             // keep the active device playing until we receive a PLAY event for the
             // addressed player. Other events will still be broadcasted to active player.
+            // Note: some devices will only send the event when the button is released and some
+            // will only send the event when the button is pressed, so we can't filter it here.
+            MediaPlayerWrapper addressedPlayer = mMediaPlayerList.getAddressedPlayer();
             if (addressedPlayer != null
-                    && KeyEvent.KEYCODE_MEDIA_PLAY == AvrcpPassthrough.toKeyCode(key)
+                    && KeyEvent.KEYCODE_MEDIA_PLAY == keyCode
                     && activePlayer != addressedPlayer) {
+                Log.d(
+                        TAG,
+                        "Sending play event directly to addressed player: "
+                                + addressedPlayer.getPackageName());
                 addressedPlayer.playCurrent();
                 return;
             }
         }
 
-        BluetoothDevice activeDevice = getA2dpActiveDevice();
-        mMediaKeyEventLogger.logd(
-                TAG,
-                "sendMediaKeyEvent:"
-                        + " device="
-                        + activeDevice
-                        + " key="
-                        + key
-                        + " pushed="
-                        + pushed
-                        + " to "
-                        + (activePlayer == null ? null : activePlayer.getPackageName()));
+        Log.d(TAG, "KeyEvent dispatched to AudioManager");
         int action = pushed ? KeyEvent.ACTION_DOWN : KeyEvent.ACTION_UP;
-        KeyEvent event = new KeyEvent(action, AvrcpPassthrough.toKeyCode(key));
+        KeyEvent event = new KeyEvent(action, keyCode);
         mAudioManager.dispatchMediaKeyEvent(event);
     }
 
@@ -601,6 +623,23 @@ public class AvrcpTargetService extends ProfileService {
 
             if (!Objects.equals(currentMetadata.title, newMetadata.title)
                     || !Objects.equals(currentMetadata.artist, newMetadata.artist)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isVoiceCommunicationActive() {
+        List<AudioPlaybackConfiguration> audioConfigs;
+
+        if (mAudioManager == null) return false;
+        audioConfigs = mAudioManager.getActivePlaybackConfigurations();
+
+        for (AudioPlaybackConfiguration audioConfig : audioConfigs) {
+            if (audioConfig.getAudioAttributes().getUsage()
+                            == AudioAttributes.USAGE_VOICE_COMMUNICATION
+                    && audioConfig.isActive()) {
+                Log.d(TAG, "Voice active playback found: " + audioConfig);
                 return true;
             }
         }
