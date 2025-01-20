@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f94b426_fa3d394e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-20T12:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e123c2f7_f3141687",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "ce6851089ceea201053e83c5d504395c72eaff52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc0d1759_94ae45d2",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-13T23:09:24Z",
       "side": 1,
       "message": "I believe there is com.android.bluetooth.flags.update_active_device_in_band_ringtone",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "ce6851089ceea201053e83c5d504395c72eaff52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a9177a_7c7a3e84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-20T12:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc0d1759_94ae45d2",
       "range": {
         "startLine": 12,
         "startChar": 6,
@@ -95,6 +143,24 @@
       "side": 1,
       "message": "making sure this is addressed before approval",
       "parentUuid": "2b0493b2_027b4949",
+      "revId": "ce6851089ceea201053e83c5d504395c72eaff52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e73d978_d6a1c5e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-20T12:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8130e730_bc01c778",
       "revId": "ce6851089ceea201053e83c5d504395c72eaff52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
