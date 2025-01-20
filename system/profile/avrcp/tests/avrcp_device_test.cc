@@ -24,6 +24,7 @@
 
 #include "avrcp_packet.h"
 #include "avrcp_test_helper.h"
+#include "btif/include/btif_hf.h"
 #include "device.h"
 #include "internal_include/stack_config.h"
 #include "tests/avrcp/avrcp_test_packets.h"
@@ -34,6 +35,7 @@
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 bool btif_av_src_sink_coexist_enabled(void) { return true; }
+bool bluetooth::headset::IsCallIdle(void) { return true; }
 
 namespace bluetooth {
 namespace avrcp {

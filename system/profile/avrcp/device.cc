@@ -23,6 +23,7 @@
 
 #include "abstract_message_loop.h"
 #include "avrcp_common.h"
+#include "btif/include/btif_hf.h"
 #include "internal_include/stack_config.h"
 #include "packet/avrcp/avrcp_reject_packet.h"
 #include "packet/avrcp/general_reject_packet.h"
@@ -862,6 +863,11 @@ void Device::MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt) {
         media_interface_->GetPlayStatus(base::Bind(
                 [](base::WeakPtr<Device> d, PlayStatus s) {
                   if (!d) {
+                    return;
+                  }
+
+                  if (!bluetooth::headset::IsCallIdle()) {
+                    log::warn("Ignore passthrough play during active Call");
                     return;
                   }
 
