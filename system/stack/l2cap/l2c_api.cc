@@ -1398,14 +1398,14 @@ bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
   p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL] = NULL;
   p_lcb->SetDisconnectReason(HCI_ERR_CONN_CAUSE_LOCAL_HOST);
 
-  // Retain the link for a few more seconds after SMP pairing is done, since
-  // the Android platform always does service discovery after pairing is
-  // complete. This will avoid the link down (pairing is complete) and an
-  // immediate re-connection for service discovery.
-  // Some devices do not do auto advertising when link is dropped, thus fail
-  // the second connection and service discovery.
-  if ((fixed_cid == L2CAP_ATT_CID) && !p_lcb->ccb_queue.p_first_ccb) {
-    p_lcb->idle_timeout = 0;
+  if (fixed_cid == L2CAP_ATT_CID) {
+    /* When closing ATT channel, clear the idle_timeout to let L2CAP know that LE ACL shall be
+     * disconnected without unnecessary delay
+     */
+    if (!p_lcb->ccb_queue.p_first_ccb ||
+        com::android::bluetooth::flags::l2cap_fix_handling_no_dynamic_ccbs()) {
+      p_lcb->idle_timeout = 0;
+    }
   }
 
   l2cu_release_ccb(p_ccb);
