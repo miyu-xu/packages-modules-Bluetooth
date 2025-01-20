@@ -39,6 +39,30 @@
       },
       "revId": "c7423127fe8a6c11efb9e19cd0d3eb36bbdd5c3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a9d333e_0aff2468",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2025-01-20T13:29:02Z",
+      "side": 1,
+      "message": "As BTA_DmSirkSecCbRegister, where is debug log as well",
+      "parentUuid": "f16fb949_4daf424d",
+      "range": {
+        "startLine": 308,
+        "startChar": 2,
+        "endLine": 308,
+        "endChar": 17
+      },
+      "revId": "c7423127fe8a6c11efb9e19cd0d3eb36bbdd5c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
