@@ -44,3 +44,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "l2cap_fix_handling_no_dynamic_ccbs"
+    namespace: "bluetooth"
+    description: "Fix disconnectin LE ACL when there is no dynamic L2CAP channels available"
+    bug: "391114340"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
