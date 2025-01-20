@@ -292,6 +292,25 @@ GetAidlLeAudioDeviceCapabilitiesFromStackFormat(
                                         IBluetoothAudioProvider::LeAudioDeviceCapabilities>>>(caps);
 }
 
+::aidl::android::hardware::bluetooth::audio::LeAudioAseConfiguration
+GetAidlLeAudioAseConfigurationFromStackFormat(
+        const ::bluetooth::le_audio::types::LeAudioCodecId& codec_id,
+        const ::bluetooth::le_audio::types::LeAudioLtvMap& codec_config,
+        const std::vector<uint8_t>& vendor_codec_config, uint8_t target_latency, uint8_t target_phy,
+        const ::bluetooth::le_audio::types::LeAudioLtvMap& metadata) {
+  ::aidl::android::hardware::bluetooth::audio::LeAudioAseConfiguration ase_config;
+
+  ase_config.targetLatency =
+          ::aidl::android::hardware::bluetooth::audio::LeAudioAseConfiguration::TargetLatency(
+                  target_latency);
+  ase_config.targetPhy = static_cast<::aidl::android::hardware::bluetooth::audio::Phy>(target_phy);
+  ase_config.codecId = GetAidlCodecIdFromStackFormat(codec_id);
+  ase_config.codecConfiguration = GetAidlCodecSpecificConfigurationFromStack(codec_config);
+  ase_config.vendorCodecConfiguration = vendor_codec_config;
+  ase_config.metadata = GetAidlMetadataFromStackFormat(metadata);
+  return ase_config;
+}
+
 ::bluetooth::le_audio::types::LeAudioLtvMap GetStackLeAudioLtvMapFromAidlFormat(
         const std::vector<
                 ::aidl::android::hardware::bluetooth::audio::CodecSpecificConfigurationLtv>&
