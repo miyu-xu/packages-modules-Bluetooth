@@ -124,6 +124,31 @@ public abstract class ProfileService extends ContextWrapper {
         if (component == null) {
             return;
         }
+<<<<<<< PATCH SET (200355 Fix enabling profile if already enabled, this change ensure )
+
+        // Ensure the state in PackageManager has DISABLED to ENABLED to trigger PACKAGE_CHANGED intent
+        if (enable
+                && getPackageManager().getComponentEnabledSetting(component)
+                        == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+            getPackageManager()
+                    .setComponentEnabledSetting(
+                            component,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP | PackageManager.SYNCHRONOUS);
+        }
+
+        getPackageManager().setComponentEnabledSetting(
+                component,
+                enable ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                       : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP | PackageManager.SYNCHRONOUS);
+||||||| BASE
+        getPackageManager().setComponentEnabledSetting(
+                component,
+                enable ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+                       : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP | PackageManager.SYNCHRONOUS);
+=======
         getPackageManager()
                 .setComponentEnabledSetting(
                         component,
@@ -131,6 +156,7 @@ public abstract class ProfileService extends ContextWrapper {
                                 ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
                                 : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                         PackageManager.DONT_KILL_APP | PackageManager.SYNCHRONOUS);
+>>>>>>> BASE      (3cbe20 Add @VirtualOnly annotation for startBleScan_withServiceData)
     }
 
     /**
