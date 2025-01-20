@@ -118,3 +118,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "cleanup_sco_if_headset_disconnected"
+    namespace: "bluetooth"
+    description: "Cleanup SCO SM if headset disconnected during opening."
+    bug: "391090332"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }    
+}
