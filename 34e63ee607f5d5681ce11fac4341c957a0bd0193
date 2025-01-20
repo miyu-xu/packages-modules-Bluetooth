@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5824b49_10528fc8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2761,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-20T10:13:47Z",
+      "side": 1,
+      "message": "What if device is LE only, and none of profiles below made successful connection ? Maybe you should keep the profile connected in this case ?",
+      "range": {
+        "startLine": 2760,
+        "startChar": 12,
+        "endLine": 2761,
+        "endChar": 97
+      },
+      "revId": "34e63ee607f5d5681ce11fac4341c957a0bd0193",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0296927_86551e1e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2762,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-20T10:13:47Z",
+      "side": 1,
+      "message": "In code that decides how to enable profiles, we always check wether service is not null, and if both we and remote supports particular UUID:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/PhonePolicy.java;l\u003d473?q\u003dPhonePolicy.java\n\nYou should have same or similar checks here.",
+      "range": {
+        "startLine": 2762,
+        "startChar": 12,
+        "endLine": 2762,
+        "endChar": 51
+      },
+      "revId": "34e63ee607f5d5681ce11fac4341c957a0bd0193",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
