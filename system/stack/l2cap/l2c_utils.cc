@@ -2766,19 +2766,32 @@ bool l2cu_initialize_fixed_ccb(tL2C_LCB* p_lcb, uint16_t fixed_cid) {
 void l2cu_no_dynamic_ccbs(tL2C_LCB* p_lcb) {
   tBTM_STATUS rc;
   uint64_t timeout_ms = p_lcb->idle_timeout * 1000;
-  bool start_timeout = true;
+  bool start_timeout = false;
 
-  int xx;
+  log::debug("{} {} {}, timeout {} ", std::format_ptr(p_lcb), p_lcb->remote_bd_addr,
+             bt_transport_text(p_lcb->transport), timeout_ms);
 
-  for (xx = 0; xx < L2CAP_NUM_FIXED_CHNLS; xx++) {
-    if ((p_lcb->p_fixed_ccbs[xx] != NULL) &&
-        (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout * 1000 > timeout_ms)) {
-      if (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout == L2CAP_NO_IDLE_TIMEOUT) {
-        log::verbose("NO IDLE timeout set for fixed cid 0x{:04x}",
+  /* If idle_timeout in the p_lcb control block is already 0 it means, ACL should be disconnected
+   * without any delay. Therefore there is no need to choose longest timeout.
+   */
+  bool choose_longest_timeout =
+          (timeout_ms != 0 ||
+           !com::android::bluetooth::flags::l2cap_fix_handling_no_dynamic_ccbs());
+
+  if (choose_longest_timeout) {
+    start_timeout = true;
+    for (size_t xx = 0; xx < L2CAP_NUM_FIXED_CHNLS; xx++) {
+      if ((p_lcb->p_fixed_ccbs[xx] != NULL) &&
+          (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout * 1000 > timeout_ms)) {
+        if (p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout == L2CAP_NO_IDLE_TIMEOUT) {
+          log::verbose("NO IDLE timeout set for fixed cid 0x{:04x}",
+                       p_lcb->p_fixed_ccbs[xx]->local_cid);
+          start_timeout = false;
+        }
+        log::verbose("Update timeout to {} due fixed cid 0x{:04x} ", timeout_ms,
                      p_lcb->p_fixed_ccbs[xx]->local_cid);
-        start_timeout = false;
+        timeout_ms = p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout * 1000;
       }
-      timeout_ms = p_lcb->p_fixed_ccbs[xx]->fixed_chnl_idle_tout * 1000;
     }
   }
 
