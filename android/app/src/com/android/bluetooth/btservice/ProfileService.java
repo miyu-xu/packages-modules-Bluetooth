@@ -124,6 +124,18 @@ public abstract class ProfileService extends ContextWrapper {
         if (component == null) {
             return;
         }
+
+        // Ensure the state in PackageManager has DISABLED to ENABLED to trigger PACKAGE_CHANGED intent
+        if (enable
+                && getPackageManager().getComponentEnabledSetting(component)
+                        == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+            getPackageManager()
+                    .setComponentEnabledSetting(
+                            component,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP | PackageManager.SYNCHRONOUS);
+        }
+
         getPackageManager()
                 .setComponentEnabledSetting(
                         component,
