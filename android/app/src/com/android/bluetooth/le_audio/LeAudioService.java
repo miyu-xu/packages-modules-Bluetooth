@@ -2852,6 +2852,7 @@ public class LeAudioService extends ProfileService {
     }
 
     private void handleGroupTransitToActive(int groupId) {
+        int currentlyActiveGroupId = getActiveGroupId();
         mGroupReadLock.lock();
         try {
             LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
@@ -2877,6 +2878,9 @@ public class LeAudioService extends ProfileService {
                                 notifyGroupStatusChanged(
                                         groupId, LeAudioStackEvent.GROUP_STATUS_ACTIVE));
                 updateInbandRingtoneForTheGroup(groupId);
+                if (currentlyActiveGroupId != LE_AUDIO_GROUP_ID_INVALID) {
+                    updateInbandRingtoneForTheGroup(currentlyActiveGroupId);
+                }
             }
         } finally {
             mGroupReadLock.unlock();
@@ -3120,9 +3124,11 @@ public class LeAudioService extends ProfileService {
                 ringtoneContextAvailable = false;
             }
 
-            Log.d(
+            Log.i(
                     TAG,
-                    "groupId active state: "
+                    "updateInbandRingtoneForTheGroup groupId: "
+                            + groupId
+                            + ", active state: "
                             + groupDescriptor.mActiveState
                             + " ringtone supported: "
                             + ringtoneContextAvailable);
@@ -3158,12 +3164,13 @@ public class LeAudioService extends ProfileService {
                     LeAudioDeviceDescriptor deviceDescriptor = entry.getValue();
                     Log.i(
                             TAG,
-                            "updateInbandRingtoneForTheGroup, setting inband ringtone to: "
+                            "updateInbandRingtoneForTheGroup, setting group inband ringtone to: "
                                     + groupDescriptor.mInbandRingtoneEnabled
                                     + " for "
                                     + device
-                                    + " "
-                                    + deviceDescriptor.mDevInbandRingtoneEnabled);
+                                    + " (current dev inband mode: "
+                                    + deviceDescriptor.mDevInbandRingtoneEnabled
+                                    + " )");
                     if (Objects.equals(
                             groupDescriptor.mInbandRingtoneEnabled,
                             deviceDescriptor.mDevInbandRingtoneEnabled)) {
