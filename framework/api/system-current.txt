@@ -373,6 +373,7 @@ package android.bluetooth {
     field public static final String EXTRA_LAUNCH_CLASS = "android.bluetooth.devicepicker.extra.DEVICE_PICKER_LAUNCH_CLASS";
     field public static final String EXTRA_LAUNCH_PACKAGE = "android.bluetooth.devicepicker.extra.LAUNCH_PACKAGE";
     field public static final String EXTRA_NEED_AUTH = "android.bluetooth.devicepicker.extra.NEED_AUTH";
+    field @FlaggedApi("com.android.bluetooth.flags.opp_device_picker_extra_intent_apis") public static final String EXTRA_ORIGINAL_SEND_INTENT = "android.bluetooth.devicepicker.extra.ORIGINAL_SEND_INTENT";
     field public static final int FILTER_TYPE_ALL = 0; // 0x0
     field public static final int FILTER_TYPE_AUDIO = 1; // 0x1
     field public static final int FILTER_TYPE_NAP = 4; // 0x4
