@@ -103,6 +103,7 @@ static const BtifStorageKey BTIF_STORAGE_LOCAL_LE_KEYS[] = {
  ******************************************************************************/
 
 void btif_gatts_add_bonded_dev_from_nv(const RawAddress& bda);
+bool btif_is_interesting_le_service(const bluetooth::Uuid& uuid);
 
 /*******************************************************************************
  *  Internal Functions
@@ -179,15 +180,23 @@ static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     case BT_PROPERTY_TYPE_OF_DEVICE:
       btif_config_set_int(bdstr, BTIF_STORAGE_KEY_DEV_TYPE, *reinterpret_cast<int*>(prop->val));
       break;
-    case BT_PROPERTY_UUIDS: {
+    case BT_PROPERTY_UUIDS:
+    case BT_PROPERTY_UUIDS_LE: {
       std::string val;
       size_t cnt = (prop->len) / sizeof(Uuid);
       for (size_t i = 0; i < cnt; i++) {
         val += (reinterpret_cast<Uuid*>(prop->val) + i)->ToString() + " ";
       }
-      btif_config_set_str(bdstr, BTIF_STORAGE_KEY_REMOTE_SERVICE, val);
-      break;
-    }
+      std::string key;
+      if (prop->type == BT_PROPERTY_UUIDS_LE) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE_LE;
+      } else {
+        log::fatal("bad prop->type with UUIDs");
+      }
+
+      btif_config_set_str(bdstr, key, val);
+    } break;
+
     case BT_PROPERTY_REMOTE_VERSION_INFO: {
       bt_remote_version_t* info = reinterpret_cast<bt_remote_version_t*>(prop->val);
 
@@ -300,10 +309,21 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
                                   reinterpret_cast<int*>(prop->val));
       }
       break;
-    case BT_PROPERTY_UUIDS: {
+    case BT_PROPERTY_UUIDS:
+    case BT_PROPERTY_UUIDS_LE: {
       char value[1280];
       int size = sizeof(value);
-      if (btif_config_get_str(bdstr, BTIF_STORAGE_KEY_REMOTE_SERVICE, value, &size)) {
+
+      std::string key;
+      if (prop->type == BT_PROPERTY_UUIDS) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE;
+      } else if (prop->type == BT_PROPERTY_UUIDS_LE) {
+        key = BTIF_STORAGE_KEY_REMOTE_SERVICE_LE;
+      } else {
+        log::fatal("bad prop->type with UUIDs");
+      }
+
+      if (btif_config_get_str(bdstr, key, value, &size)) {
         Uuid* p_uuid = reinterpret_cast<Uuid*>(prop->val);
         size_t num_uuids = btif_split_uuids_string(value, p_uuid, BT_MAX_NUM_UUIDS);
         prop->len = num_uuids * sizeof(Uuid);
@@ -1436,6 +1456,46 @@ void btif_storage_remove_gatt_cl_db_hash(const RawAddress& bd_addr) {
             }
           },
           bd_addr));
+}
+
+void btif_storage_migrate_services() {
+  for (const auto& mac_address : btif_config_get_paired_devices()) {
+    auto addr_str = mac_address.ToString();
+
+    int device_type = BT_DEVICE_TYPE_UNKNOWN;
+    btif_config_get_int(addr_str, BTIF_STORAGE_KEY_DEV_TYPE, &device_type);
+
+    if ((device_type == BT_DEVICE_TYPE_BREDR) ||
+        btif_config_exist(addr_str, BTIF_STORAGE_KEY_REMOTE_SERVICE_LE)) {
+      /* Classic only, or already migrated entries don't need migration */
+      continue;
+    }
+
+    bt_property_t remote_uuids_prop;
+    Uuid remote_uuids[BT_MAX_NUM_UUIDS];
+    BTIF_STORAGE_FILL_PROPERTY(&remote_uuids_prop, BT_PROPERTY_UUIDS, sizeof(remote_uuids),
+                               remote_uuids);
+    bool old_svcs_present =
+            btif_storage_get_remote_device_property(&mac_address, &remote_uuids_prop);
+
+    std::vector<uint8_t> property_value;
+    for (auto& uuid : remote_uuids) {
+      if (!btif_is_interesting_le_service(uuid)) {
+        continue;
+      }
+
+      auto uuid_128bit = uuid.To128BitBE();
+      property_value.insert(property_value.end(), uuid_128bit.begin(), uuid_128bit.end());
+    }
+
+    log::info("Migrating merged UUIDS into LE UUIDs for {}", mac_address.ToStringForLogging());
+
+    bt_property_t le_uuids_prop{BT_PROPERTY_UUIDS_LE, static_cast<int>(property_value.size()),
+                                (void*)property_value.data()};
+
+    /* Write LE services to storage */
+    bt_status_t ret = btif_storage_set_remote_device_property(&mac_address, &le_uuids_prop);
+  }
 }
 
 void btif_debug_linkkey_type_dump(int fd) {

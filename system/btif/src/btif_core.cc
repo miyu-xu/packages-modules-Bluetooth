@@ -134,7 +134,12 @@ int btif_is_enabled(void) {
   return (!btif_is_dut_mode()) && (stack_manager_get_interface()->get_stack_is_running());
 }
 
-void btif_init_ok() { btif_dm_load_ble_local_keys(); }
+void btif_init_ok() {
+  btif_dm_load_ble_local_keys();
+  if (com::android::bluetooth::flags::separate_service_storage()) {
+    btif_storage_migrate_services();
+  }
+}
 
 /*******************************************************************************
  *
@@ -370,7 +375,34 @@ static bt_status_t btif_in_get_remote_device_properties(RawAddress* bd_addr) {
 
   BTIF_STORAGE_FILL_PROPERTY(&remote_properties[num_props], BT_PROPERTY_UUIDS, sizeof(remote_uuids),
                              remote_uuids);
-  btif_storage_get_remote_device_property(bd_addr, &remote_properties[num_props]);
+  bool old_svc_entry_present =
+          btif_storage_get_remote_device_property(bd_addr, &remote_properties[num_props]);
+
+  if (com::android::bluetooth::flags::separate_service_storage()) {
+    bt_property_t* uuid_prop = &remote_properties[num_props];
+    int num_br_uuids = uuid_prop->len / sizeof(Uuid);
+
+    bt_property_t le_uuids_prop;
+    Uuid remote_uuids_le[BT_MAX_NUM_UUIDS];
+    BTIF_STORAGE_FILL_PROPERTY(&le_uuids_prop, BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids_le),
+                               remote_uuids_le);
+    if (btif_storage_get_remote_device_property(bd_addr, &le_uuids_prop) != BT_STATUS_FAIL) {
+      int num_le_uuids = le_uuids_prop.len / sizeof(Uuid);
+      int uuids_total = std::min(num_br_uuids + num_le_uuids, BT_MAX_NUM_UUIDS);
+
+      if (uuids_total > BT_MAX_NUM_UUIDS) {
+        log::error("too many total UUIDS, br:{}, le:{} for {}, will trim", num_br_uuids,
+                   num_le_uuids, bd_addr->ToStringForLogging());
+      }
+
+      int uuids_to_copy = uuids_total - num_br_uuids;
+
+      memcpy(uuid_prop->val, le_uuids_prop.val, uuids_to_copy * sizeof(Uuid));
+
+      uuid_prop->len += uuids_to_copy * sizeof(Uuid);
+    }
+  }
+
   num_props++;
 
   GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(

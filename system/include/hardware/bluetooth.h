@@ -427,6 +427,8 @@ typedef enum {
    */
   BT_PROPERTY_LPP_OFFLOAD_FEATURES,
 
+  BT_PROPERTY_UUIDS_LE,
+
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
 
