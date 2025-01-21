@@ -57,7 +57,7 @@ public:
 std::shared_ptr<TestBackend> backend;
 std::chrono::milliseconds TestBackend::initialization_delay = std::chrono::milliseconds(0);
 
-std::shared_ptr<HciBackend> HciBackend::CreateAidl() {
+std::shared_ptr<HciBackend> HciBackend::CreateAidl(const std::string& /* instance */) {
   backend = std::make_shared<TestBackend>();
   return backend;
 }
