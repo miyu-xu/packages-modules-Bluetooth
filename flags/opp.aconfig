@@ -4,6 +4,23 @@ container: "com.android.bt"
 flag {
     name: "opp_ignore_content_observer_after_service_stop"
     namespace: "bluetooth"
+    description: "Make OPP notification start activities directly from it, not via OppReceiver"
+    bug: "319050411"
+}
+
+flag {
+    name: "opp_fix_multiple_notifications_issues"
+    namespace: "bluetooth"
+    description: "Fix UI issues related to multiple OPP notifications"
+    bug: "323096132"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "opp_ignore_content_observer_after_service_stop"
+    namespace: "bluetooth"
     description: "When OppService.stop() is called, previously posted ContentObserver.onChange() should not run"
     bug: "346467641"
     metadata {
@@ -22,11 +39,8 @@ flag {
 }
 
 flag {
-    name: "update_opp_launcher_user_changed"
+    name: "opp_device_picker_extra_intent_apis"
     namespace: "bluetooth"
-    description: "Enable/disable OPP launcher when user changed"
-    bug: "389596902"
-    metadata {
-        purpose: PURPOSE_BUGFIX
-    }
+    description: "Send the original intent when opening Bluetooth device picker"
+    bug: "381799866"
 }
