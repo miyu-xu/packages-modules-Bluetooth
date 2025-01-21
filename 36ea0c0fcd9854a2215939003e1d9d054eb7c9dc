@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82e21565_c513b618",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "then what is the reason to keep such entity in map (key without existingMap) ? Why the entry was not removed when metadata was removed ?",
+      "parentUuid": "4961d86d_ee95c6d7",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c08a62ad_a89b0e5b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "yes, but before removing there is need to check group, as we want to remove metadata only if all others are unsynced too.",
       "parentUuid": "c08a62ad_a89b0e5b",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e903ea7d_6ad3b2f4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2986,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "I mean what \"check\" means - Group is a complex entity in term of LE Audio and check of it can mean a lot of things.",
+      "parentUuid": "ce979ad4_839c0d81",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +156,24 @@
       "side": 1,
       "message": "yes and I want to leave it here too, as this method could be used separately. Right now only version with one argument is used standalone but maybe in the future this one will be used too, so better that this method is \"complete\":) The overhead is negligible.",
       "parentUuid": "876b1565_418bdb2b",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db17a6f5_b8331598",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "So in general this is indended ?",
+      "parentUuid": "77b5ccc0_2f95be06",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -190,6 +244,24 @@
       "side": 1,
       "message": "These methods remove metadata from all sinks only if all others sinks than this one are unsynced too. We do not check current one as it is already removed (i.e. during removeSource) or will be removed (i.e. during disconnection).",
       "parentUuid": "221479a3_941ee508",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175d663e_0df65352",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3000,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "Hmmm let me rephrase my comment. \"Check if all others than device (it is removed or should be removed) are unsynced\" How it\u0027s \"Check\" that \"all others than device\" \"are unsynced\" with checking broadcastId ? With such comment I would expect here a check of sink being synced - this is why I ask if something is missing here ? Sometimes it happens (for me as well ;) ) that code is changing but comment not, this is why I only double check it here.",
+      "parentUuid": "96765020_b9d19279",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -300,6 +372,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4921f6d6_12dd4bc0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3010,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f5af1747_3ae063ab",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b48d06e_98484e95",
@@ -355,6 +445,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3056c89_29a781e0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3034,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "who is \"you\" here - user/scanner/sink ? as previousely mentioned \"check\" is enigmatic in group perspective.",
+      "parentUuid": "5bfd6399_a7cab68d",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f6e5e0d_4da08eba",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -402,6 +510,24 @@
       "side": 1,
       "message": "You have right, thanks:)",
       "parentUuid": "6f6e5e0d_4da08eba",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c2b40a3_cd5f023a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3396,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T08:47:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a8ab822c_82b9b9a1",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
