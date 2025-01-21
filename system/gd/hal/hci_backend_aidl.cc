@@ -114,12 +114,12 @@ private:
   std::shared_ptr<AidlHciCallbacks> hci_callbacks_;
 };
 
-std::shared_ptr<HciBackend> HciBackend::CreateAidl() {
-  static constexpr char kBluetoothAidlHalServiceName[] =
-          "android.hardware.bluetooth.IBluetoothHci/default";
+static constexpr char kBluetoothAidlHalServiceName[] = "android.hardware.bluetooth.IBluetoothHci";
 
-  if (AServiceManager_isDeclared(kBluetoothAidlHalServiceName)) {
-    return std::make_shared<AidlHci>(kBluetoothAidlHalServiceName);
+std::shared_ptr<HciBackend> HciBackend::CreateAidl(const std::string& instance) {
+  std::string hci_interface = std::string(kBluetoothAidlHalServiceName) + '/' + instance;
+  if (AServiceManager_isDeclared(hci_interface.data())) {
+    return std::make_shared<AidlHci>(hci_interface.data());
   }
 
   return std::shared_ptr<HciBackend>();
