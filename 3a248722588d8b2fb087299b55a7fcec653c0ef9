@@ -16,6 +16,24 @@
       "message": "These values are defined by the spec, so \"BTM\" prefix does not make sense.\n\nClass of device identifiers should be named as `COD_XYZ` And LE Appearance identifers should be named as `LE_APPEARANCE_XYZ`.\n\nExisting identifiers should either be completely replaced by these new identifiers or be mapped to the new ones.\n\nLE Appearance identifiers should live in a separate header file.",
       "revId": "3a248722588d8b2fb087299b55a7fcec653c0ef9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b28d807f_c360faa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-21T06:24:20Z",
+      "side": 1,
+      "message": "Sure understood, amended following chanages:\n1. Removed \"BTM\" in new definitions -\u003e `COD_` and `BLE_APPEARANCE_` are used now.\n2. Updated old `BTM_` defines used in places mapped to new defines.\n3. Moved LE appreances defines to a separate file, and included it in the older file to minimize changes in #includes.",
+      "parentUuid": "9ae9eb82_04802fd4",
+      "revId": "3a248722588d8b2fb087299b55a7fcec653c0ef9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
