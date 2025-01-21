@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d5fe41c_cba8f99c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-21T17:59:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "962f94a0_9a5c1a7f",
+      "range": {
+        "startLine": 75,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 37
+      },
+      "revId": "1c71f810f3b21e174df8f01463f8cd61a845a84a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1352cbe0_c7d44208",
@@ -84,6 +108,30 @@
       "writtenOn": "2025-01-15T01:04:02Z",
       "side": 1,
       "message": "With the mLooper modification:\n\n```suggestion\n    mAdvertiseManager.enableAdvertisingSet(mAdvertiserId, enable, duration, maxExtAdvEvents));\n    mLooper.dispatchAll()\n```",
+      "range": {
+        "startLine": 123,
+        "startChar": 1,
+        "endLine": 127,
+        "endChar": 83
+      },
+      "revId": "1c71f810f3b21e174df8f01463f8cd61a845a84a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "568cfac4_19d992f9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-21T17:59:37Z",
+      "side": 1,
+      "message": "Discussed offline, bypassing thread check when under test instead.",
+      "parentUuid": "1352cbe0_c7d44208",
       "range": {
         "startLine": 123,
         "startChar": 1,
