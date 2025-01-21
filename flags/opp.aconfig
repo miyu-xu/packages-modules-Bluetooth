@@ -30,3 +30,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "opp_device_picker_extra_intent_apis"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Send the original intent when opening Bluetooth device picker"
+    bug: "381799866"
+}
