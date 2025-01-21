@@ -223,6 +223,7 @@ public class HeadsetService extends ProfileService {
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction(AudioManager.ACTION_VOLUME_CHANGED);
+        filter.addAction(AudioManager.ACTION_MICROPHONE_MUTE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
         registerReceiver(mHeadsetReceiver, filter);
     }
@@ -442,6 +443,7 @@ public class HeadsetService extends ProfileService {
                                 break;
                             }
                         case AudioManager.ACTION_VOLUME_CHANGED:
+                        case AudioManager.ACTION_MICROPHONE_MUTE_CHANGED:
                             {
                                 int streamType =
                                         intent.getIntExtra(
