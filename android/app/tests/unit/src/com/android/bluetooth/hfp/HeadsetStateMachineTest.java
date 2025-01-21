@@ -1756,12 +1756,21 @@ public class HeadsetStateMachineTest {
     }
 
     @Test
+    @EnableFlags({Flags.FLAG_MICROPHONE_MUTE_STATUS_SYNC})
     public void testProcessVolumeEvent_withVolumeTypeMic() {
         when(mHeadsetService.getActiveDevice()).thenReturn(mTestDevice);
+        AudioManager mockAudioManager = mock(AudioManager.class);
+        when(mSystemInterface.getAudioManager()).thenReturn(mockAudioManager);
 
-        mHeadsetStateMachine.processVolumeEvent(HeadsetHalConstants.VOLUME_TYPE_MIC, 1);
+        mHeadsetStateMachine.processVolumeEvent(HeadsetHalConstants.VOLUME_TYPE_MIC, 15);
 
-        assertThat(mHeadsetStateMachine.mMicVolume).isEqualTo(1);
+        assertThat(mHeadsetStateMachine.mMicVolume).isEqualTo(15);
+        verify(mockAudioManager).setMicrophoneMute(false);
+
+        mHeadsetStateMachine.processVolumeEvent(HeadsetHalConstants.VOLUME_TYPE_MIC, 0);
+
+        assertThat(mHeadsetStateMachine.mMicVolume).isEqualTo(0);
+        verify(mockAudioManager).setMicrophoneMute(true);
     }
 
     @RequiresFlagsDisabled(FLAG_DEPRECATE_STREAM_BT_SCO)
@@ -1833,6 +1842,37 @@ public class HeadsetStateMachineTest {
         verify(mNativeInterface).setVolume(mTestDevice, HeadsetHalConstants.VOLUME_TYPE_SPK, vol);
 
         mHeadsetStateMachine.mSpeakerVolume = originalVolume;
+    }
+
+    @Test
+    @EnableFlags({Flags.FLAG_MICROPHONE_MUTE_STATUS_SYNC})
+    public void testMicStatusChangeEvent_fromIntentWhenAudioOn() {
+        setUpAudioOnState();
+        AudioManager mockAudioManager = mock(AudioManager.class);
+        when(mockAudioManager.isMicrophoneMute()).thenReturn(true);
+        when(mSystemInterface.getAudioManager()).thenReturn(mockAudioManager);
+        int originalMicVolume = mHeadsetStateMachine.mMicVolume;
+        mHeadsetStateMachine.mMicVolume = 10;
+
+        // Send INTENT_SCO_VOLUME_CHANGED message
+        Intent micVolumeChange = new Intent(AudioManager.ACTION_MICROPHONE_MUTE_CHANGED);
+
+        mHeadsetStateMachine.sendMessage(
+                HeadsetStateMachine.INTENT_SCO_VOLUME_CHANGED, micVolumeChange);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        // verify volume processed
+        verify(mNativeInterface).setVolume(mTestDevice, HeadsetHalConstants.VOLUME_TYPE_MIC, 0);
+
+        when(mockAudioManager.isMicrophoneMute()).thenReturn(false);
+        mHeadsetStateMachine.sendMessage(
+                HeadsetStateMachine.INTENT_SCO_VOLUME_CHANGED, micVolumeChange);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        // verify volume processed
+        verify(mNativeInterface).setVolume(mTestDevice, HeadsetHalConstants.VOLUME_TYPE_MIC, 10);
+
+        mHeadsetStateMachine.mMicVolume = originalMicVolume;
     }
 
     @Test
