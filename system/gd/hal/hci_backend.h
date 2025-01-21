@@ -28,6 +28,8 @@
 
 namespace bluetooth::hal {
 
+constexpr char kDefaultInstance[] = "default";
+
 class HciBackendCallbacks {
 public:
   virtual ~HciBackendCallbacks() = default;
@@ -40,7 +42,7 @@ public:
 
 class HciBackend {
 public:
-  static std::shared_ptr<HciBackend> CreateAidl();
+  static std::shared_ptr<HciBackend> CreateAidl(const std::string& instance = kDefaultInstance);
   static std::shared_ptr<HciBackend> CreateHidl(::bluetooth::os::Handler*);
 
   virtual ~HciBackend() = default;
