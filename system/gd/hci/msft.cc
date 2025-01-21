@@ -15,6 +15,7 @@
  */
 #include "hci/msft.h"
 
+#include <android_bluetooth_sysprop.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <hardware/bt_common_types.h>
@@ -128,7 +129,11 @@ struct MsftExtensionManager::impl {
 
     uint16_t opcode = hal_->getMsftOpcode();
     if (opcode == 0) {
-      return false;
+      log::info("No MSFT vendor opcode read from kernel");
+      opcode = android::sysprop::bluetooth::Ble::msft_vendor_opcode().value_or(0);
+      if (opcode == 0) {
+        return false;
+      }
     }
 
     msft_.opcode = opcode;
