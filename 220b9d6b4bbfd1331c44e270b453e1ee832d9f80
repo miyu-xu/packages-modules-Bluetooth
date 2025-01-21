@@ -22,6 +22,30 @@
       },
       "revId": "220b9d6b4bbfd1331c44e270b453e1ee832d9f80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2667bc6_7e952828",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-21T18:18:59Z",
+      "side": 1,
+      "message": "We are planning to merge this change for now so that the underlying flag can be ramped up without affecting all apps. The list of package names can be iterated after merging this fix.",
+      "parentUuid": "cb476e7f_98974ce0",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 41
+      },
+      "revId": "220b9d6b4bbfd1331c44e270b453e1ee832d9f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
