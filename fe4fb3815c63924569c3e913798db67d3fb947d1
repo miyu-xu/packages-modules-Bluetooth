@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fcd0a79_cb93113f",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-21T16:58:02Z",
+      "side": 1,
+      "message": "We don;t care here about EATT channels as those are disconnecting not.\nMoreover, if ATT FIXED Channel is closing, nothing should prevent us to set idle_timeout to 0. Without this Fixed channel, LE ACL shall not exist.",
+      "parentUuid": "97027640_440326d2",
+      "range": {
+        "startLine": 1405,
+        "startChar": 8,
+        "endLine": 1405,
+        "endChar": 37
+      },
+      "revId": "fe4fb3815c63924569c3e913798db67d3fb947d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "903ec499_e1871cf7",
         "filename": "system/stack/l2cap/l2c_utils.cc",
         "patchSetId": 3
@@ -55,6 +79,30 @@
       "writtenOn": "2025-01-21T09:30:28Z",
       "side": 1,
       "message": "That is not how this logic worked before. Are you certain no corner case is broken with that change ?",
+      "range": {
+        "startLine": 2774,
+        "startChar": 0,
+        "endLine": 2776,
+        "endChar": 5
+      },
+      "revId": "fe4fb3815c63924569c3e913798db67d3fb947d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c74ab81_74e3000c",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2776,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-21T16:58:02Z",
+      "side": 1,
+      "message": "could you elaborate then more on how that suppose to work?\nI was looking into history and found something like this:\n\nhttps://cs.android.com/android/_/android/platform/packages/modules/Bluetooth/+/ae74d761e55901f6f0037f161247a77911ac67f7",
+      "parentUuid": "903ec499_e1871cf7",
       "range": {
         "startLine": 2774,
         "startChar": 0,

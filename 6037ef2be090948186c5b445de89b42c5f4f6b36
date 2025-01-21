@@ -22,6 +22,30 @@
       },
       "revId": "6037ef2be090948186c5b445de89b42c5f4f6b36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3381c6c6_9237c921",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1409,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-21T16:58:02Z",
+      "side": 0,
+      "message": "can you please point me to this logic in the code as I was unable to find it?\n\nAlso, setting `idle_timeout` to `0` in order to have 1 sec timeout sounds fishy",
+      "parentUuid": "6066321d_77a4c394",
+      "range": {
+        "startLine": 1401,
+        "startChar": 0,
+        "endLine": 1409,
+        "endChar": 3
+      },
+      "revId": "6037ef2be090948186c5b445de89b42c5f4f6b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
