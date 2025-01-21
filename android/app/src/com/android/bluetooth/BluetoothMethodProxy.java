@@ -283,4 +283,10 @@ public class BluetoothMethodProxy {
             MediaSessionManager manager) {
         return manager.getActiveSessions(null);
     }
+
+    /** Proxies {@link Context#grantUriPermission(String, Uri, int)}. } */
+    @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
+    public void grantUriPermission(Context context, String packageName, Uri uri, int modeFlags) {
+        context.grantUriPermission(packageName, uri, modeFlags);
+    }
 }

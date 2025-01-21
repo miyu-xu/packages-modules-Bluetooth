@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import android.annotation.FlaggedApi;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
@@ -62,6 +63,15 @@ public interface BluetoothDevicePicker {
      */
     @SuppressLint("ActionValue")
     String EXTRA_LAUNCH_CLASS = "android.bluetooth.devicepicker.extra.DEVICE_PICKER_LAUNCH_CLASS";
+
+    /**
+     * Reports that a compatibility change is affecting the current process now.
+     *
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.opp_device_picker_extra_intent_apis")
+    @SuppressLint("ActionValue")
+    String EXTRA_ORIGINAL_SEND_INTENT = "android.bluetooth.devicepicker.extra.ORIGINAL_SEND_INTENT"
 
     /**
      * Broadcast when one BT device is selected from BT device picker screen. Selected {@link
