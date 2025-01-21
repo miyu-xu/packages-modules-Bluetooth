@@ -22,6 +22,14 @@ flag {
 }
 
 flag {
+    name: "opp_device_picker_extra_intent_apis"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Send the original intent when opening Bluetooth device picker"
+    bug: "381799866"
+}
+
+flag {
     name: "update_opp_launcher_user_changed"
     namespace: "bluetooth"
     description: "Enable/disable OPP launcher when user changed"
