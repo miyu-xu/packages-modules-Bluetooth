@@ -30,6 +30,7 @@ using namespace ::ras::uuid;
 
 namespace ras {
 std::string uuid::getUuidName(const bluetooth::Uuid& uuid) {
+  // CYDBG
   switch (uuid.As16Bit()) {
     case kRangingService16Bit:
       return "Ranging Service";
@@ -53,6 +54,7 @@ std::string uuid::getUuidName(const bluetooth::Uuid& uuid) {
 }
 
 bool ParseControlPointCommand(ControlPointCommand* command, const uint8_t* value, uint16_t len) {
+  // CYDBG
   command->opcode_ = static_cast<Opcode>(value[0]);
   // Check for minimum expected length
   switch (value[0]) {
@@ -84,6 +86,7 @@ bool ParseControlPointCommand(ControlPointCommand* command, const uint8_t* value
 }
 
 std::string GetOpcodeText(Opcode opcode) {
+  // CYDBG
   switch (opcode) {
     case Opcode::GET_RANGING_DATA:
       return "GET_RANGING_DATA";
@@ -101,6 +104,7 @@ std::string GetOpcodeText(Opcode opcode) {
 }
 
 std::string GetResponseOpcodeValueText(ResponseCodeValue response_code_value) {
+  // CYDBG
   switch (response_code_value) {
     case ResponseCodeValue::RESERVED_FOR_FUTURE_USE:
       return "RESERVED_FOR_FUTURE_USE";
@@ -126,6 +130,7 @@ std::string GetResponseOpcodeValueText(ResponseCodeValue response_code_value) {
 }
 
 bool IsRangingServiceCharacteristic(const bluetooth::Uuid& uuid) {
+  // CYDBG
   if (!uuid.Is16Bit()) {
     return false;
   }
