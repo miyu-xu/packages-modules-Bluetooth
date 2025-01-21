@@ -19,6 +19,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <algorithm>
+#include <fstream>
 #include <vector>
 
 #include "hci/controller_interface.h"
@@ -226,56 +228,8 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
   return ret;
 }
 
-#define MGMT_OP_NOTIFY_SCO_CONNECTION_CHANGE 0x0101
-struct mgmt_cp_notify_sco_connection_change {
-  uint16_t hci_dev;
-  uint8_t addr[6];
-  uint8_t addr_type;
-  uint8_t connected;
-  uint8_t codec;
-} __attribute__((packed));
-
-int mgmt_notify_sco_connection_change(int fd, int hci, RawAddress device, bool is_connected,
-                                      int codec) {
-  struct mgmt_pkt ev;
-  ev.opcode = MGMT_OP_NOTIFY_SCO_CONNECTION_CHANGE;
-  ev.index = HCI_DEV_NONE;
-  ev.len = sizeof(struct mgmt_cp_notify_sco_connection_change);
-
-  struct mgmt_cp_notify_sco_connection_change* cp =
-          reinterpret_cast<struct mgmt_cp_notify_sco_connection_change*>(ev.data);
-
-  cp->hci_dev = hci;
-  cp->connected = is_connected;
-  cp->codec = codec;
-  memcpy(cp->addr, device.address, sizeof(cp->addr));
-  cp->addr_type = 0;
-
-  int ret;
-
-  struct pollfd writable[1];
-  writable[0].fd = fd;
-  writable[0].events = POLLOUT;
-
-  do {
-    ret = poll(writable, 1, MGMT_POLL_TIMEOUT_MS);
-    if (ret > 0) {
-      RETRY_ON_INTR(ret = write(fd, &ev, MGMT_PKT_HDR_SIZE + ev.len));
-      if (ret < 0) {
-        bluetooth::log::error("Failed to call MGMT_OP_NOTIFY_SCO_CONNECTION_CHANGE: {}", -errno);
-        return -errno;
-      }
-      break;
-    }
-  } while (ret > 0);
-
-  if (ret <= 0) {
-    bluetooth::log::debug("Failed waiting for mgmt socket to be writable.");
-    return -1;
-  }
-
-  return 0;
-}
+constexpr char isoc_alt_path_format[] = "/sys/class/bluetooth/hci{}/isoc_alt";
+std::vector<RawAddress> sco_connected_devices;
 }  // namespace
 
 void init() {
@@ -455,45 +409,36 @@ size_t get_packet_size(int codec) {
 }
 
 void notify_sco_connection_change(RawAddress device, bool is_connected, int codec) {
-  int hci = GetAdapterIndex();
-  int fd = btsocket_open_mgmt(hci);
-  if (fd < 0) {
-    bluetooth::log::error("Failed to open mgmt channel, error= {}.", fd);
+  auto it = std::find(sco_connected_devices.begin(), sco_connected_devices.end(), device);
+  bool was_connected = it != sco_connected_devices.end();
+
+  if (is_connected == was_connected) {
     return;
   }
 
-  if (codec == codec::LC3) {
-    bluetooth::log::error("Offload path for LC3 is not implemented.");
-    return;
-  }
+  std::string isoc_alt_path = std::format(isoc_alt_path_format, GetAdapterIndex());
+  std::fstream fs(isoc_alt_path.c_str(), std::fstream::out);
 
-  int converted_codec;
-
-  switch (codec) {
-    case codec::MSBC:
-      converted_codec = MGMT_SCO_CODEC_MSBC;
-      break;
-    case codec::MSBC_TRANSPARENT:
-      converted_codec = MGMT_SCO_CODEC_MSBC_TRANSPARENT;
-      break;
-    default:
-      converted_codec = MGMT_SCO_CODEC_CVSD;
-  }
-
-  int ret = mgmt_notify_sco_connection_change(fd, hci, device, is_connected, converted_codec);
-  if (ret) {
-    bluetooth::log::error(
-            "Failed to notify HAL of connection change: hci {}, device {}, "
-            "connected {}, codec {}",
-            hci, device, is_connected, codec);
+  if (is_connected) {
+    sco_connected_devices.push_back(device);
+    // TODO: Determine the supported alt settings first in |init|
+    switch (codec) {
+      case codec::MSBC_TRANSPARENT:
+        // TODO: Handle BTUSB_USE_ALT3_FOR_WBS quirk
+        fs << '6';
+        break;
+      default:
+        // TODO: Add support for other offloaded settings
+        fs << '2';
+    }
   } else {
-    bluetooth::log::info(
-            "Notified HAL of connection change: hci {}, device {}, connected {}, "
-            "codec {}",
-            hci, device, is_connected, codec);
+    sco_connected_devices.erase(it);
+    fs << '0';
   }
 
-  close(fd);
+  if (!fs) {
+    bluetooth::log::warn("Failed to configure USB alt settings, err:{}", std::strerror(errno));
+  }
 }
 
 void update_esco_parameters(enh_esco_params_t* p_parms) {
