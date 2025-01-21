@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6bd0082_dde3adee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T09:10:19Z",
+      "side": 1,
+      "message": "Thank you for making commit message more detailed.\n\nWhile reading current commit message a question came to my mind. Important is second sentence \"Because paused broadcast sinks data are cleared at the beginning of the resume, then we lost this information.\" for me this sound like a general problem and a possible soultion is to synchronize resume data - when Sink is resumed then data should be removed.\n\n\"suspend procedure will always be executed if the primary\ndevice has managed external broadcast, so sinks will be properly cached.\" what always means here - for sink managing external broadcast while suspending but there would be no \"sink data\" ?",
+      "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
