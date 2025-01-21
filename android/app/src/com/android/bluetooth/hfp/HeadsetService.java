@@ -223,6 +223,7 @@ public class HeadsetService extends ProfileService {
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(Intent.ACTION_BATTERY_CHANGED);
         filter.addAction(AudioManager.ACTION_VOLUME_CHANGED);
+        filter.addAction(AudioManager.ACTION_MICROPHONE_MUTE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
         registerReceiver(mHeadsetReceiver, filter);
     }
@@ -442,10 +443,17 @@ public class HeadsetService extends ProfileService {
                                 break;
                             }
                         case AudioManager.ACTION_VOLUME_CHANGED:
+                        case AudioManager.ACTION_MICROPHONE_MUTE_CHANGED:
                             {
                                 int streamType =
-                                        intent.getIntExtra(
-                                                AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
+                                        deprecateStreamBtSco()
+                                                ? AudioManager.STREAM_VOICE_CALL
+                                                : AudioManager.STREAM_BLUETOOTH_SCO;
+                                if (AudioManager.ACTION_VOLUME_CHANGED.equals(intent.getAction())) {
+                                    streamType =
+                                            intent.getIntExtra(
+                                                    AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
+                                }
                                 int volStream = AudioManager.STREAM_BLUETOOTH_SCO;
                                 if (deprecateStreamBtSco()) {
                                     volStream = AudioManager.STREAM_VOICE_CALL;

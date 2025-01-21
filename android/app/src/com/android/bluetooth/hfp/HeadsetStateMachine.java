@@ -1251,16 +1251,30 @@ class HeadsetStateMachine extends StateMachine {
         public abstract void processAudioEvent(int state);
 
         void processIntentScoVolume(Intent intent, BluetoothDevice device) {
-            int volumeValue = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE, 0);
-            stateLogD(
-                    "processIntentScoVolume: mSpeakerVolume="
-                            + mSpeakerVolume
-                            + ", volumeValue="
-                            + volumeValue);
-            if (mSpeakerVolume != volumeValue) {
-                mSpeakerVolume = volumeValue;
-                mNativeInterface.setVolume(
-                        device, HeadsetHalConstants.VOLUME_TYPE_SPK, mSpeakerVolume);
+            if (Flags.microphoneMuteStatusSync()
+                    && AudioManager.ACTION_MICROPHONE_MUTE_CHANGED.equals(intent.getAction())) {
+                boolean isStreamMuted = mSystemInterface.getAudioManager().isMicrophoneMute();
+                // set Unmute volume to non zero (15 or previous value)
+                int unMuteVolume = (mMicVolume == 0) ? 15 : mMicVolume;
+                int micVolume = isStreamMuted ? 0 : unMuteVolume;
+                stateLogD(
+                        "processIntentScoVolume: isStreamMuted="
+                                + isStreamMuted
+                                + ", micVolume="
+                                + micVolume);
+                mNativeInterface.setVolume(device, HeadsetHalConstants.VOLUME_TYPE_MIC, micVolume);
+            } else {
+                int volumeValue = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE, 0);
+                stateLogD(
+                        "processIntentScoVolume: mSpeakerVolume="
+                                + mSpeakerVolume
+                                + ", volumeValue="
+                                + volumeValue);
+                if (mSpeakerVolume != volumeValue) {
+                    mSpeakerVolume = volumeValue;
+                    mNativeInterface.setVolume(
+                            device, HeadsetHalConstants.VOLUME_TYPE_SPK, mSpeakerVolume);
+                }
             }
         }
     }
@@ -2007,8 +2021,10 @@ class HeadsetStateMachine extends StateMachine {
                 mSystemInterface.getAudioManager().setStreamVolume(volStream, volume, flag);
             }
         } else if (volumeType == HeadsetHalConstants.VOLUME_TYPE_MIC) {
-            // Not used currently
             mMicVolume = volume;
+            if (Flags.microphoneMuteStatusSync()) {
+                mSystemInterface.getAudioManager().setMicrophoneMute(mMicVolume == 0);
+            }
         } else {
             Log.e(TAG, "Bad volume type: " + volumeType);
         }
