@@ -15,10 +15,18 @@
  */
 
 #include <bluetooth/log.h>
+#include <fcntl.h>
+#include <linux/usbdevice_fs.h>
 #include <poll.h>
+#include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <optional>
+#include <string>
 #include <vector>
 
 #include "hci/controller_interface.h"
@@ -226,56 +234,9 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
   return ret;
 }
 
-#define MGMT_OP_NOTIFY_SCO_CONNECTION_CHANGE 0x0101
-struct mgmt_cp_notify_sco_connection_change {
-  uint16_t hci_dev;
-  uint8_t addr[6];
-  uint8_t addr_type;
-  uint8_t connected;
-  uint8_t codec;
-} __attribute__((packed));
-
-int mgmt_notify_sco_connection_change(int fd, int hci, RawAddress device, bool is_connected,
-                                      int codec) {
-  struct mgmt_pkt ev;
-  ev.opcode = MGMT_OP_NOTIFY_SCO_CONNECTION_CHANGE;
-  ev.index = HCI_DEV_NONE;
-  ev.len = sizeof(struct mgmt_cp_notify_sco_connection_change);
-
-  struct mgmt_cp_notify_sco_connection_change* cp =
-          reinterpret_cast<struct mgmt_cp_notify_sco_connection_change*>(ev.data);
-
-  cp->hci_dev = hci;
-  cp->connected = is_connected;
-  cp->codec = codec;
-  memcpy(cp->addr, device.address, sizeof(cp->addr));
-  cp->addr_type = 0;
-
-  int ret;
-
-  struct pollfd writable[1];
-  writable[0].fd = fd;
-  writable[0].events = POLLOUT;
-
-  do {
-    ret = poll(writable, 1, MGMT_POLL_TIMEOUT_MS);
-    if (ret > 0) {
-      RETRY_ON_INTR(ret = write(fd, &ev, MGMT_PKT_HDR_SIZE + ev.len));
-      if (ret < 0) {
-        bluetooth::log::error("Failed to call MGMT_OP_NOTIFY_SCO_CONNECTION_CHANGE: {}", -errno);
-        return -errno;
-      }
-      break;
-    }
-  } while (ret > 0);
-
-  if (ret <= 0) {
-    bluetooth::log::debug("Failed waiting for mgmt socket to be writable.");
-    return -1;
-  }
-
-  return 0;
-}
+constexpr char hci_dev_path_format[] = "/sys/class/bluetooth/hci{}/device";
+constexpr char usbfs_path_format[] = "/dev/bus/usb/{:03}/{:03}";
+std::vector<RawAddress> sco_connected_devices;
 }  // namespace
 
 void init() {
@@ -455,45 +416,87 @@ size_t get_packet_size(int codec) {
 }
 
 void notify_sco_connection_change(RawAddress device, bool is_connected, int codec) {
-  int hci = GetAdapterIndex();
-  int fd = btsocket_open_mgmt(hci);
-  if (fd < 0) {
-    bluetooth::log::error("Failed to open mgmt channel, error= {}.", fd);
+  auto it = std::find(sco_connected_devices.begin(), sco_connected_devices.end(), device);
+  bool was_connected = it != sco_connected_devices.end();
+
+  if (is_connected == was_connected) {
     return;
   }
 
-  if (codec == codec::LC3) {
-    bluetooth::log::error("Offload path for LC3 is not implemented.");
-    return;
-  }
-
-  int converted_codec;
-
-  switch (codec) {
-    case codec::MSBC:
-      converted_codec = MGMT_SCO_CODEC_MSBC;
-      break;
-    case codec::MSBC_TRANSPARENT:
-      converted_codec = MGMT_SCO_CODEC_MSBC_TRANSPARENT;
-      break;
-    default:
-      converted_codec = MGMT_SCO_CODEC_CVSD;
-  }
-
-  int ret = mgmt_notify_sco_connection_change(fd, hci, device, is_connected, converted_codec);
-  if (ret) {
-    bluetooth::log::error(
-            "Failed to notify HAL of connection change: hci {}, device {}, "
-            "connected {}, codec {}",
-            hci, device, is_connected, codec);
+  unsigned int new_altsetting;
+  if (is_connected) {
+    sco_connected_devices.push_back(device);
+    // TODO: Determine the supported alt settings first in |init|
+    switch (codec) {
+      case codec::MSBC_TRANSPARENT:
+        // TODO: Handle BTUSB_USE_ALT3_FOR_WBS quirk
+        new_altsetting = 6;
+        break;
+      default:
+        // TODO: Add support for other offloaded settings
+        new_altsetting = 2;
+    }
   } else {
-    bluetooth::log::info(
-            "Notified HAL of connection change: hci {}, device {}, connected {}, "
-            "codec {}",
-            hci, device, is_connected, codec);
+    sco_connected_devices.erase(it);
+    new_altsetting = 0;
   }
 
-  close(fd);
+  auto read_int_attr = [&](const std::filesystem::path& attr_path) -> std::optional<unsigned long> {
+    std::fstream fs(attr_path, std::fstream::in);
+    if (!fs.is_open()) {
+      bluetooth::log::warn("Failed to open {}, err:{}", attr_path.string(), std::strerror(errno));
+      return std::nullopt;
+    }
+    std::string buf;
+    std::getline(fs, buf);
+    if (!fs && !fs.eof()) {
+      bluetooth::log::warn("Failed to read {}, err:{}", attr_path.string(), std::strerror(errno));
+      return std::nullopt;
+    }
+    if (buf.empty()) {
+      bluetooth::log::warn("Unexpected empty {}", attr_path.string());
+      return std::nullopt;
+    }
+    char* endptr = nullptr;
+    unsigned long ret = std::strtoul(buf.c_str(), &endptr, 10);
+    if (endptr && *endptr != '\0') {
+      bluetooth::log::warn("Invalid {}: {}", attr_path.string(), buf);
+      return std::nullopt;
+    }
+    return ret;
+  };
+
+  std::filesystem::path hci_dev_path = std::format(hci_dev_path_format, GetAdapterIndex());
+  std::filesystem::path usb_dev_path = std::filesystem::canonical(hci_dev_path).parent_path();
+
+  auto ifacenum = read_int_attr(hci_dev_path / "bInterfaceNumber");
+  auto busnum = read_int_attr(usb_dev_path / "busnum");
+  auto devnum = read_int_attr(usb_dev_path / "devnum");
+  if (!ifacenum.has_value() || !busnum.has_value() || !devnum.has_value()) {
+    return;
+  }
+
+  std::filesystem::path usbfs_path = std::format(usbfs_path_format, *busnum, *devnum);
+  int usbfs_fd = open(usbfs_path.c_str(), O_RDWR | O_CLOEXEC);
+  if (usbfs_fd < 0) {
+    bluetooth::log::warn("Failed to open usbfs, err:{}", std::strerror(errno));
+    return;
+  }
+
+  auto isoc_iface = static_cast<unsigned int>(*ifacenum) + 1;
+  if (int ret = ioctl(usbfs_fd, USBDEVFS_CLAIMINTERFACE, &isoc_iface); ret < 0) {
+    bluetooth::log::warn("Failed to claim the isoc interface, err:{}", std::strerror(errno));
+    close(usbfs_fd);
+    return;
+  }
+
+  struct usbdevfs_setinterface ctl{};
+  ctl.interface = isoc_iface;
+  ctl.altsetting = new_altsetting;
+  if (int ret = ioctl(usbfs_fd, USBDEVFS_SETINTERFACE, &ctl); ret < 0) {
+    bluetooth::log::warn("Failed to configure USB alt settings, err:{}", std::strerror(errno));
+  }
+  close(usbfs_fd);
 }
 
 void update_esco_parameters(enh_esco_params_t* p_parms) {
