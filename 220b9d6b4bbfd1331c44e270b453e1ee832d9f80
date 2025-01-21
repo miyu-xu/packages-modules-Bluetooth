@@ -46,6 +46,30 @@
       },
       "revId": "220b9d6b4bbfd1331c44e270b453e1ee832d9f80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "886d9bd6_52b5d7f5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2025-01-21T18:29:17Z",
+      "side": 1,
+      "message": "Thanks Jack! Everything looks as good as it can.  We just need to figure out why we aren\u0027t getting the data we expect.",
+      "parentUuid": "b2667bc6_7e952828",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 122,
+        "endChar": 41
+      },
+      "revId": "220b9d6b4bbfd1331c44e270b453e1ee832d9f80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
