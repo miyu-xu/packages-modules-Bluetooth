@@ -16,6 +16,24 @@
       "message": "As I read it, the behavior was to disconnect BT device when wired device is connected.\n\nWith flag, you keep the device, and switch back to it, when the wired device is disconnected.\n\nPlease verify this new behavior with test when the flag is set.",
       "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf89f802_8f4464a2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-21T09:38:11Z",
+      "side": 1,
+      "message": "This happens now outside of ActiveDeviceManager, we can not test it here",
+      "parentUuid": "910bd8d9_d286e82a",
+      "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
