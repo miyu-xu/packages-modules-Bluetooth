@@ -113,6 +113,7 @@ void SyspropsModule::parse_config(std::string file_path) {
           "bluetooth.core.le.adv_mon_rtl_quirk",
           "bluetooth.core.le.adv_mon_qca_quirk",
           "bluetooth.core.le.vendor_capabilities.enabled",
+          "bluetooth.core.le.msft_vendor_opcode",
           // LE Audio
           "bluetooth.le_audio.enable_le_audio_only",
           "bluetooth.leaudio.dual_bidirection_swb.supported",

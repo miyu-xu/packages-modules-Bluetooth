@@ -22,6 +22,7 @@
 #include "hal/hci_hal.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
+#include "osi/include/properties.h"
 
 namespace bluetooth {
 namespace hci {
@@ -128,7 +129,12 @@ struct MsftExtensionManager::impl {
 
     uint16_t opcode = hal_->getMsftOpcode();
     if (opcode == 0) {
-      return false;
+      log::info("No MSFT vendor opcode read from kernel");
+      opcode = static_cast<uint16_t>(
+              osi_property_get_int32("bluetooth.core.le.msft_vendor_opcode", 0));
+      if (opcode == 0) {
+        return false;
+      }
     }
 
     msft_.opcode = opcode;
