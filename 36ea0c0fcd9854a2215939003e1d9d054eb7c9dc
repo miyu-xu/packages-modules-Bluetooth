@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba93c50f_497f6f4c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-21T09:31:48Z",
+      "side": 1,
+      "message": "It was removed and in second call there is no such key.\nI fyou call \"removeSinkMetadataHelper\" call twice for the same device in second call, you will go to this else as there is no such key.\n\nIt could be called twice as checkGroupAndRemoveSinksMetadata call remove all on devices in group. Sometimes device is already removed by removeSinkMetadata but sometimes not (i.e. in disconnection) when checkGroupAndRemoveSinksMetadata is called standalone.",
+      "parentUuid": "82e21565_c513b618",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c08a62ad_a89b0e5b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "I mean what \"check\" means - Group is a complex entity in term of LE Audio and check of it can mean a lot of things.",
       "parentUuid": "ce979ad4_839c0d81",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8aafe9_7416630a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2986,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-21T09:31:48Z",
+      "side": 1,
+      "message": "`removeSinkMetadaFromGroupIfUnsynced` ?\n`removeSinkMetadaFromGroupIfWholeUnsynced` ?\n`removeSinkMetadaFromGroupIfAllUnsynced` ?\n\nOr could you suggest something better?",
+      "parentUuid": "e903ea7d_6ad3b2f4",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -174,6 +210,24 @@
       "side": 1,
       "message": "So in general this is indended ?",
       "parentUuid": "77b5ccc0_2f95be06",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "081b63c1_1ff0d4a5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-21T09:31:48Z",
+      "side": 1,
+      "message": "yes, as described in previous comment",
+      "parentUuid": "db17a6f5_b8331598",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -262,6 +316,24 @@
       "side": 1,
       "message": "Hmmm let me rephrase my comment. \"Check if all others than device (it is removed or should be removed) are unsynced\" How it\u0027s \"Check\" that \"all others than device\" \"are unsynced\" with checking broadcastId ? With such comment I would expect here a check of sink being synced - this is why I ask if something is missing here ? Sometimes it happens (for me as well ;) ) that code is changing but comment not, this is why I only double check it here.",
       "parentUuid": "96765020_b9d19279",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67acf2f4_06c70c55",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3000,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-21T09:31:48Z",
+      "side": 1,
+      "message": "`With such comment I would expect here a check of sink being synced`\nAnd that\u0027s exactly what it does, for all other devices.\nLook for new comment?\n`// Check broadcastIds from all sinks in group as device could be already removed`\nMaybe I will rephrase it a little:\n`// Check sync for broadcastIds from all sinks in group as device could be already removed`",
+      "parentUuid": "175d663e_0df65352",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -457,6 +529,24 @@
       "side": 1,
       "message": "who is \"you\" here - user/scanner/sink ? as previousely mentioned \"check\" is enigmatic in group perspective.",
       "parentUuid": "5bfd6399_a7cab68d",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "839880b7_fe574047",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3034,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-21T09:31:48Z",
+      "side": 1,
+      "message": "Is new comment still enigmatic?\n`// Check all broadcastIds for each sink and remove metadata if needed`\n\nMaybe I will rephrase it a little:\n`// Check all broadcastIds sync for each sink and remove metadata if needed`",
+      "parentUuid": "c3056c89_29a781e0",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
