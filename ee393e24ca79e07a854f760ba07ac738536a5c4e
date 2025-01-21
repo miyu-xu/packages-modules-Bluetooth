@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624e3930_2f814438",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2883,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-21T09:17:56Z",
+      "side": 1,
+      "message": "So the missing part here was to disable inband ringtone for previous group (to be changed to inactive if group with id `groupId` would be activated) ?",
+      "revId": "ee393e24ca79e07a854f760ba07ac738536a5c4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
