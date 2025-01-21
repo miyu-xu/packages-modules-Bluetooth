@@ -16,6 +16,24 @@
       "message": "Thank you for making commit message more detailed.\n\nWhile reading current commit message a question came to my mind. Important is second sentence \"Because paused broadcast sinks data are cleared at the beginning of the resume, then we lost this information.\" for me this sound like a general problem and a possible soultion is to synchronize resume data - when Sink is resumed then data should be removed.\n\n\"suspend procedure will always be executed if the primary\ndevice has managed external broadcast, so sinks will be properly cached.\" what always means here - for sink managing external broadcast while suspending but there would be no \"sink data\" ?",
       "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd1942bb_504b7890",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-21T09:44:46Z",
+      "side": 1,
+      "message": "This CL is a fix need for new quicker suspend/resume approach.\n`when Sink is resumed then data should be removed.`\nYour proposition sounds good, but this is a much bigger change which influence a whole logic of resuming, which i.e. could fail in a lot of places.\nMaybe that would be good to implement if we decide to implement some retry logic on fail resume, but this need to agreed together with UI team.\n\n`what always means here - for sink managing external broadcast while suspending but there would be no \"sink data\" ?`\nHmm always mean always;) There will be no other checks than hasPrimaryDeviceManagedExternalBroadcast. What do you mean by \"no sink data\"? sinkMetadata? Then according to hasPrimaryDeviceManagedExternalBroadcast there is no managed external broadcast by primary device so sentence is still right:)",
+      "parentUuid": "f6bd0082_dde3adee",
+      "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
