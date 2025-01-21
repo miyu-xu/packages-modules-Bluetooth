@@ -40,12 +40,22 @@ import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
+<<<<<<< HEAD
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 
+=======
+import android.platform.test.annotations.DisableFlags;
+import android.platform.test.annotations.EnableFlags;
+import android.platform.test.flag.junit.SetFlagsRule;
+import android.provider.Settings;
+import android.sysprop.BluetoothProperties;
+
+import androidx.lifecycle.Lifecycle;
+>>>>>>> PATCH
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
@@ -141,6 +151,29 @@ public class BluetoothOppLauncherActivityTest {
         assertThat(argument.getValue().getComponent().getClassName())
                 .isEqualTo(BluetoothOppReceiver.class.getName());
         assertThat(argument.getValue().getData()).isEqualTo(Uri.EMPTY);
+    }
+
+    @Test
+    public void onCreate_withActionSend_grantUriPermissionToNearbyComponent() {
+        doReturn(true).when(mMethodProxy).bluetoothAdapterIsEnabled(any());
+        doReturn(PackageManager.PERMISSION_GRANTED)
+                .when(mMethodProxy)
+                .componentCallerCheckContentUriPermission(any(), any(), anyInt());
+        String uriString = "content://test.provider/1";
+        Settings.Secure.putString(
+                mTargetContext.getContentResolver(),
+                "nearby_sharing_component",
+                "com.example/.BComponent");
+
+        ActivityScenario<BluetoothOppLauncherActivity> unused =
+                ActivityScenario.launch(createSendIntent(uriString));
+
+        verify(mMethodProxy)
+                .grantUriPermission(
+                        any(),
+                        eq("com.example"),
+                        eq(Uri.parse(uriString)),
+                        eq(Intent.FLAG_GRANT_READ_URI_PERMISSION));
     }
 
     @Ignore("b/263724420")
