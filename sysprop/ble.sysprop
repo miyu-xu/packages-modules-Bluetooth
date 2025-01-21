@@ -32,3 +32,11 @@ prop {
     access: Readonly
     prop_name: "bluetooth.ble.allow_enc_with_bredr"
 }
+
+prop {
+    api_name: "msft_vendor_opcode"
+    type: Integer
+    scope: Internal
+    access: Readonly
+    prop_name: "bluetooth.core.le.msft_vendor_opcode"
+}
