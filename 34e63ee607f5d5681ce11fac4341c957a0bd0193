@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "657df4b4_c3c0ca70",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2761,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-01-21T05:49:57Z",
+      "side": 1,
+      "message": "When we get this health status it means that LE Audio is unusable on this device, not only fails too often, but either never succeeded or failed 3 times in a row. That means that we should not hope for next try to succeed, but disconnect the profile - we will fall back to another device, or in worst case, speaker.",
+      "parentUuid": "a5824b49_10528fc8",
+      "range": {
+        "startLine": 2760,
+        "startChar": 12,
+        "endLine": 2761,
+        "endChar": 97
+      },
+      "revId": "34e63ee607f5d5681ce11fac4341c957a0bd0193",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0296927_86551e1e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 10
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-20T10:13:47Z",
       "side": 1,
       "message": "In code that decides how to enable profiles, we always check wether service is not null, and if both we and remote supports particular UUID:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/PhonePolicy.java;l\u003d473?q\u003dPhonePolicy.java\n\nYou should have same or similar checks here.",
+      "range": {
+        "startLine": 2762,
+        "startChar": 12,
+        "endLine": 2762,
+        "endChar": 51
+      },
+      "revId": "34e63ee607f5d5681ce11fac4341c957a0bd0193",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af7540cd_583d32d2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2762,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-01-21T05:49:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0296927_86551e1e",
       "range": {
         "startLine": 2762,
         "startChar": 12,
