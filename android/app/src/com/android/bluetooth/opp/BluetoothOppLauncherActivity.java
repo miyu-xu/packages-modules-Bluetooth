@@ -260,12 +260,25 @@ public class BluetoothOppLauncherActivity extends Activity {
             // To prevent activity to finish immediately in testing mode
             if (!Utils.isInstrumentationTestMode()) {
                 finish();
+<<<<<<< HEAD
             }
         }
     }
 
     /** Turns on Bluetooth if not already on, or launches device picker if Bluetooth is on */
     @VisibleForTesting
+=======
+                                                                permittedUris,
+                                                                false /* isHandover */,
+                                                                true /* fromExternal */);
+                                                BluetoothOppUtility
+                                                        .grantPermissionToNearbyComponent(
+                                                                BluetoothOppLauncherActivity.this,
+                                                                permittedUris);
+                                                // Done getting file info..Launch device picker
+                                                // and finish this activity
+                                                launchDevicePicker();
+>>>>>>> PATCH
     void launchDevicePicker() {
         // TODO: In the future, we may send intent to DevicePickerActivity
         // directly,
@@ -284,6 +297,7 @@ public class BluetoothOppLauncherActivity extends Activity {
                     BluetoothDevicePicker.EXTRA_FILTER_TYPE,
                     BluetoothDevicePicker.FILTER_TYPE_TRANSFER);
             in1.putExtra(BluetoothDevicePicker.EXTRA_LAUNCH_PACKAGE, getPackageName());
+            in1.putExtra(BluetoothDevicePicker.EXTRA_ORIGINAL_SEND_INTENT, getIntent());
             in1.putExtra(
                     BluetoothDevicePicker.EXTRA_LAUNCH_CLASS, BluetoothOppReceiver.class.getName());
             Log.v(TAG, "Launching " + BluetoothDevicePicker.ACTION_LAUNCH);
@@ -492,6 +506,8 @@ public class BluetoothOppLauncherActivity extends Activity {
     void sendFileInfo(String mimeType, String uriString, boolean isHandover, boolean fromExternal) {
         BluetoothOppManager manager = BluetoothOppManager.getInstance(getApplicationContext());
         try {
+            BluetoothOppUtility.grantPermissionToNearbyComponent(
+                    this, List.of(Uri.parse(uriString)));
             manager.saveSendingFileInfo(mimeType, uriString, isHandover, fromExternal);
             launchDevicePicker();
             finish();
