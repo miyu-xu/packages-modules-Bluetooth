@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6066321d_77a4c394",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1409,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-21T09:30:28Z",
+      "side": 0,
+      "message": "idle_timeout\u003d0 meant that the link is to be kept for a second, so that BTIF logic could start service discovery before the link is closed.\n\nIs behavior from this comment preserved ?",
+      "range": {
+        "startLine": 1401,
+        "startChar": 0,
+        "endLine": 1409,
+        "endChar": 3
+      },
+      "revId": "6037ef2be090948186c5b445de89b42c5f4f6b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

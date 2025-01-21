@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97027640_440326d2",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-21T09:30:28Z",
+      "side": 1,
+      "message": "That\u0027s still a bad check, because EATT channels would still be in this queue.",
+      "range": {
+        "startLine": 1405,
+        "startChar": 8,
+        "endLine": 1405,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "84eaee76_755aa9f6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1405,
+                "startChar": 0,
+                "endLine": 1407,
+                "endChar": 0
+              },
+              "replacement": "    if (com::android::bluetooth::flags::l2cap_fix_handling_no_dynamic_ccbs() \u0026\u0026\n        !p_lcb-\u003eccb_queue.p_first_ccb) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fe4fb3815c63924569c3e913798db67d3fb947d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "903ec499_e1871cf7",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2776,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-21T09:30:28Z",
+      "side": 1,
+      "message": "That is not how this logic worked before. Are you certain no corner case is broken with that change ?",
+      "range": {
+        "startLine": 2774,
+        "startChar": 0,
+        "endLine": 2776,
+        "endChar": 5
+      },
+      "revId": "fe4fb3815c63924569c3e913798db67d3fb947d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
