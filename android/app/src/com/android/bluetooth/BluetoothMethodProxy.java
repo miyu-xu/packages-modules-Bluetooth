@@ -295,3 +295,16 @@ public class BluetoothMethodProxy {
         return manager.getActiveSessions(null);
     }
 }
+<<<<<<< HEAD
+=======
+            ComponentCaller caller, Uri uri, int modeFlags) {
+        return caller.checkContentUriPermission(uri, modeFlags);
+    }
+
+    /** Proxies {@link Context#grantUriPermission(String, Uri, int)}. } */
+    @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
+    public void grantUriPermission(Context context, String packageName, Uri uri, int modeFlags) {
+        context.grantUriPermission(packageName, uri, modeFlags);
+    }
+}
+>>>>>>> PATCH

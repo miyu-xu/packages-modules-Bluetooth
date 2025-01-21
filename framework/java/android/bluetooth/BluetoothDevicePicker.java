@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import android.annotation.FlaggedApi;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
@@ -48,6 +49,15 @@ public interface BluetoothDevicePicker {
      */
     @SuppressLint("ActionValue")
     String EXTRA_FILTER_TYPE = "android.bluetooth.devicepicker.extra.FILTER_TYPE";
+
+    /**
+     * Reports that a compatibility change is affecting the current process now.
+     *
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.opp_device_picker_extra_intent_apis")
+    @SuppressLint("ActionValue")
+    String EXTRA_ORIGINAL_SEND_INTENT = "android.bluetooth.devicepicker.extra.ORIGINAL_SEND_INTENT";
 
     /**
      * Extra for filter type used with {@link #ACTION_LAUNCH}. This extra must contain the package
