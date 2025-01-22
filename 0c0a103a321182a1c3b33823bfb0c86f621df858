@@ -16,6 +16,41 @@
       "message": "code comments are updated as per the warnings.",
       "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bbd13d9_147468a0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-22T02:32:16Z",
+      "side": 1,
+      "message": "2025",
+      "fixSuggestions": [
+        {
+          "fixId": "ea7746c0_944e7378",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright (C) 2025 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
