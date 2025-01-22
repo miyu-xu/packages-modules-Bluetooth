@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95ccc467_ca83da59",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-22T01:05:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1ca27e6c_cc9daf80",
+      "range": {
+        "startLine": 1433,
+        "startChar": 4,
+        "endLine": 1434,
+        "endChar": 38
+      },
+      "revId": "4423fbd4804c642e275d55ee29e5e719b9bf6b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67070215_266412f5",

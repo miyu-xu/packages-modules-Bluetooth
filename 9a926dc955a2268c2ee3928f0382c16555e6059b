@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "187cc89b_a8731dc0",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-22T01:05:44Z",
+      "side": 1,
+      "message": "Added to static_libs in bluetooth JNI as well. Can you please review if that was appropriate place to add the library? The build is no longer failing locally with that addition",
+      "parentUuid": "fdaa7173_4af4d12d",
+      "range": {
+        "startLine": 124,
+        "startChar": 17,
+        "endLine": 124,
+        "endChar": 48
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8bdf6d7_40d5299a",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 5
@@ -586,6 +610,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0229b10e_e2a5cd53",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-22T01:05:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ede432c4_2a670d99",
+      "range": {
+        "startLine": 1483,
+        "startChar": 6,
+        "endLine": 1483,
+        "endChar": 20
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf1a18f5_92007047",
@@ -844,6 +892,30 @@
       "writtenOn": "2025-01-15T09:25:57Z",
       "side": 1,
       "message": "Alternatively you could also provide the specialization as\n```\ntemplate \u003c\u003e\nstruct std::hash\u003cBundleKey\u003e {\n  std::size_t operator()(const BundleKey\u0026 val) const {}\n}\n```",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 2
+      },
+      "revId": "9a926dc955a2268c2ee3928f0382c16555e6059b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8026811c_ec2176b9",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1951243
+      },
+      "writtenOn": "2025-01-22T01:05:44Z",
+      "side": 1,
+      "message": "Wanted to check if there is a strong preference here, otherwise, I\u0027m inclined to keep it as is becacuse it\u0027s currently working.",
+      "parentUuid": "cec440b9_7880a1c3",
       "range": {
         "startLine": 158,
         "startChar": 0,
