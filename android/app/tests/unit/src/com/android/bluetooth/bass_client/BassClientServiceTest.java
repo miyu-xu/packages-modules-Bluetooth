@@ -4049,11 +4049,11 @@ public class BassClientServiceTest {
 
         // mock the update in selectSource
         mBassClientService.updateSyncHandleForBroadcastId(
-                BassConstants.INVALID_SYNC_HANDLE, testBroadcastId);
+                BassConstants.PENDING_SYNC_HANDLE, testBroadcastId);
         mBassClientService.updatePeriodicAdvertisementResultMap(
                 mSourceDevice,
                 mSourceDevice.getAddressType(),
-                BassConstants.INVALID_SYNC_HANDLE,
+                BassConstants.PENDING_SYNC_HANDLE,
                 BassConstants.INVALID_ADV_SID,
                 testAdvInterval,
                 testBroadcastId,
@@ -4105,11 +4105,11 @@ public class BassClientServiceTest {
 
         // mock the update in selectSource
         mBassClientService.updateSyncHandleForBroadcastId(
-                BassConstants.INVALID_SYNC_HANDLE, testBroadcastId1);
+                BassConstants.PENDING_SYNC_HANDLE, testBroadcastId1);
         mBassClientService.updatePeriodicAdvertisementResultMap(
                 mSourceDevice,
                 mSourceDevice.getAddressType(),
-                BassConstants.INVALID_SYNC_HANDLE,
+                BassConstants.PENDING_SYNC_HANDLE,
                 BassConstants.INVALID_ADV_SID,
                 testAdvInterval1,
                 testBroadcastId1,
@@ -4141,11 +4141,11 @@ public class BassClientServiceTest {
 
         // mock the update in selectSource
         mBassClientService.updateSyncHandleForBroadcastId(
-                BassConstants.INVALID_SYNC_HANDLE, testBroadcastId2);
+                BassConstants.PENDING_SYNC_HANDLE, testBroadcastId2);
         mBassClientService.updatePeriodicAdvertisementResultMap(
                 mSourceDevice,
                 mSourceDevice.getAddressType(),
-                BassConstants.INVALID_SYNC_HANDLE,
+                BassConstants.PENDING_SYNC_HANDLE,
                 BassConstants.INVALID_ADV_SID,
                 testAdvInterval2,
                 testBroadcastId2,
@@ -4210,7 +4210,7 @@ public class BassClientServiceTest {
             mBassClientService.updatePeriodicAdvertisementResultMap(
                     mSourceDevice,
                     mSourceDevice.getAddressType(),
-                    BassConstants.INVALID_SYNC_HANDLE,
+                    BassConstants.PENDING_SYNC_HANDLE,
                     BassConstants.INVALID_ADV_SID,
                     testAdvInterval,
                     testBroadcastId,
