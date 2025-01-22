@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d8f09b_1a02a3a5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-22T17:54:59Z",
+      "side": 1,
+      "message": "I don\u0027t think we\u0027re testing all 3 states with this test.  Since we had a regression with this, we should make sure we have tests that test all 3 paths.",
+      "range": {
+        "startLine": 1283,
+        "startChar": 4,
+        "endLine": 1283,
+        "endChar": 65
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ea0191c8_d9ccdcf7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+              "range": {
+                "startLine": 1308,
+                "startChar": 0,
+                "endLine": 1308,
+                "endChar": 0
+              },
+              "replacement": "        // Test that active device should not be changed if audio is not allowed\n        assertThat(mHeadsetService.setActiveDevice(mCurrentDevice)).isFalse();\n        assertThat(mHeadsetService.getActiveDevice()).isNull();\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "26537b99e59c5adfc323ffbd540b90e510b49fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
