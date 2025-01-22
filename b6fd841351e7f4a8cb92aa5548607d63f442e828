@@ -88,6 +88,24 @@
       "parentUuid": "b42042ad_b88b1c2c",
       "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "722a4548_ec34baf9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-22T14:43:59Z",
+      "side": 1,
+      "message": "A2dpService will just return true as the active device did not change, and it will be no-op indeed, but what could be wrong with that? The bug description:\n```\nSTEPS TO REPRODUCE:\n1. Pair and connect two BT devices.\n2. Play music -\u003e open sound settings -\u003e play media to -\u003e SRS-XB30\n3. Plug in wired headset then music switch to wired headset(This device) automatically.\n4. Switch back to the connected SRS-XB30.\n\nEXPECTED RESULTS:\nMusic switch back to SRS-XB30\n\nOBSERVED RESULTS:\nUnable to switch back to SRS-XB30\n```\nshows that switching back did not work - but now it does, it\u0027s not the case anymore - I am not sure in what other way I could reproduce this issue, how else are we able to switch devices?",
+      "parentUuid": "2b9a5256_fb2c434f",
+      "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
