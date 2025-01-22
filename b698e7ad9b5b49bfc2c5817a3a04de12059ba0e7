@@ -16,6 +16,47 @@
       "message": "Can we add unit tests for this?",
       "revId": "b698e7ad9b5b49bfc2c5817a3a04de12059ba0e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c8ecf9_1dd9d314",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1661,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-22T17:39:35Z",
+      "side": 1,
+      "message": "We can inline this getDeviceProperties(device).setHfp...",
+      "range": {
+        "startLine": 1661,
+        "startChar": 12,
+        "endLine": 1661,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bcebacd3_1903ac32",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1660,
+                "startChar": 0,
+                "endLine": 1662,
+                "endChar": 0
+              },
+              "replacement": "            getDeviceProperties(device).setHfpBatteryIndicatorStatus(indicatorStatus);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b698e7ad9b5b49bfc2c5817a3a04de12059ba0e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
