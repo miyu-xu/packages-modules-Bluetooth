@@ -564,8 +564,8 @@ struct iso_impl {
     log::assert_that(cis != nullptr, "No such cis: {}", evt.cis_conn_hdl);
 
     BTM_LogHistory(kBtmLogTag, cis_hdl_to_addr[evt.cis_conn_hdl], "CIS established event",
-                   std::format("cis_handle:0x{:04x} status:{}", evt.cis_conn_hdl,
-                               hci_error_code_text((tHCI_STATUS)(evt.status))));
+                   std::format("cis_handle:0x{:04x} status:{} flags:{:#x}", evt.cis_conn_hdl,
+                               hci_error_code_text((tHCI_STATUS)(evt.status)), cis->state_flags));
 
     STREAM_TO_UINT24(evt.cig_sync_delay, data);
     STREAM_TO_UINT24(evt.cis_sync_delay, data);
@@ -584,7 +584,21 @@ struct iso_impl {
 
     if (evt.status == HCI_SUCCESS) {
       cis->state_flags |= kStateFlagIsConnected;
+    } else if (evt.status == HCI_ERR_CANCELLED_BY_LOCAL_HOST) {
+      /* kStateFlagIsCancelled is cleared in disconnection complete event which should also arrived
+       * when canceling CISes. If flag is cleared it means that Disconnection Complete Event arrived
+       * before this CIS established event. This is also fine. In such case clear address to handle
+       * mapping and flags. Otherwise, wait with clearing it when Disconnect Complete event arrives
+       */
+      if (!(cis->state_flags & kStateFlagIsCancelled)) {
+        log::info(
+                "Flag kStateFlagIsCancelled already cleared, means Disconnect Complete arrived "
+                "before this event.");
+        cis->state_flags = kStateFlagsNone;
+        cis_hdl_to_addr.erase(evt.cis_conn_hdl);
+      }
     } else {
+      cis->state_flags = kStateFlagsNone;
       cis_hdl_to_addr.erase(evt.cis_conn_hdl);
     }
 
@@ -603,12 +617,18 @@ struct iso_impl {
 
     log::assert_that(cig_callbacks_ != nullptr, "Invalid CIG callbacks");
 
-    log::info("flags: {}", cis->state_flags);
+    log::info("{}, cis_handle {:#x} flags: {}", cis_hdl_to_addr[handle], handle, cis->state_flags);
 
     BTM_LogHistory(kBtmLogTag, cis_hdl_to_addr[handle], "CIS disconnected",
                    std::format("cis_handle:0x{:04x}, reason:{}", handle,
                                hci_error_code_text((tHCI_REASON)(reason))));
-    cis_hdl_to_addr.erase(handle);
+
+    if (cis->state_flags & kStateFlagIsConnecting) {
+      log::info("{}, cis_handle: {:#x} waiting for cis established event with cancel status",
+                cis_hdl_to_addr[handle], handle);
+    } else {
+      cis_hdl_to_addr.erase(handle);
+    }
 
     if (cis->state_flags & kStateFlagIsConnected || cis->state_flags & kStateFlagIsCancelled) {
       cis_disconnected_evt evt = {
