@@ -51,6 +51,161 @@
       ],
       "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8868633_e90de34e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-22T02:57:42Z",
+      "side": 1,
+      "message": "Remove the helper prefix from these functions",
+      "fixSuggestions": [
+        {
+          "fixId": "ccb5b8ec_826490f3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 117,
+                "endChar": 0
+              },
+              "replacement": "        mDqIntentFilter.addFirst(prepareIntentFilter(mIntentStrings));\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 118,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "        setupListener();\n        registerReceiver();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 255,
+                "startChar": 0,
+                "endLine": 256,
+                "endChar": 0
+              },
+              "replacement": "            unregisterReceiver();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 266,
+                "startChar": 0,
+                "endLine": 267,
+                "endChar": 0
+              },
+              "replacement": "        IntentFilter intentFilter \u003d prepareIntentFilter(intentStrings);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 268,
+                "startChar": 0,
+                "endLine": 269,
+                "endChar": 0
+              },
+              "replacement": "        unregisterReceiver();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 271,
+                "startChar": 0,
+                "endLine": 272,
+                "endChar": 0
+              },
+              "replacement": "        registerReceiver();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 306,
+                "startChar": 0,
+                "endLine": 307,
+                "endChar": 0
+              },
+              "replacement": "    private void setupListener() {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 326,
+                "startChar": 0,
+                "endLine": 327,
+                "endChar": 0
+              },
+              "replacement": "    private IntentFilter prepareIntentFilter(String... intentStrings) {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 339,
+                "startChar": 0,
+                "endLine": 342,
+                "endChar": 0
+              },
+              "replacement": "    private void registerReceiver() {\n        Log.d(TAG, \"registerReceiver(): Registering for intents: \" +\n            getActionsFromIntentFilter(mDqIntentFilter.peekFirst()));\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 356,
+                "startChar": 0,
+                "endLine": 358,
+                "endChar": 0
+              },
+              "replacement": "    private void unregisterReceiver() {\n        Log.d(TAG, \"unregisterReceiver()\");\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 376,
+                "startChar": 0,
+                "endLine": 377,
+                "endChar": 0
+              },
+              "replacement": "        unregisterReceiver();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 379,
+                "startChar": 0,
+                "endLine": 380,
+                "endChar": 0
+              },
+              "replacement": "        registerReceiver();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 390,
+                "startChar": 0,
+                "endLine": 391,
+                "endChar": 0
+              },
+              "replacement": "    private String getActionsFromIntentFilter(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
