@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef1aa2f_d9b12f8b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-22T09:13:40Z",
+      "side": 1,
+      "message": "is that intentional, why change to \"?\"",
+      "range": {
+        "startLine": 325,
+        "startChar": 19,
+        "endLine": 325,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7233e3e5_b43d690d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 325,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "      stream \u003c\u003c \"[ ⏳ \";\n"
+            },
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 327,
+                "startChar": 0,
+                "endLine": 328,
+                "endChar": 0
+              },
+              "replacement": "      stream \u003c\u003c \"[ ⏳ \";\n"
+            },
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 329,
+                "startChar": 0,
+                "endLine": 330,
+                "endChar": 0
+              },
+              "replacement": "      stream \u003c\u003c \"[ ⏳ \";\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d72d1eb2d8273015acb0156aaf95a70fe2b9c2f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
