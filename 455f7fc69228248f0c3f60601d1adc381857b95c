@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac8c8c0_701b855b",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-22T08:47:28Z",
+      "side": 1,
+      "message": "@rwt@google.com, please suggest if this copyright info is correct ?",
+      "fixSuggestions": [
+        {
+          "fixId": "d110ab5d_98e80e11",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 3,
+                "startChar": 0,
+                "endLine": 4,
+                "endChar": 0
+              },
+              "replacement": " *  Copyright (C) 2025 The Linux Foundation\n"
+            }
+          ]
+        }
+      ],
+      "revId": "455f7fc69228248f0c3f60601d1adc381857b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
