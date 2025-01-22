@@ -60,6 +60,30 @@
       ],
       "revId": "d72d1eb2d8273015acb0156aaf95a70fe2b9c2f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb184be4_328f7310",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-22T09:25:06Z",
+      "side": 1,
+      "message": "No! Most likely one of my tools (merge tool?) did not handle these UTF emojis and did this on its own during the rebase. Fixed.",
+      "parentUuid": "6ef1aa2f_d9b12f8b",
+      "range": {
+        "startLine": 325,
+        "startChar": 19,
+        "endLine": 325,
+        "endChar": 20
+      },
+      "revId": "d72d1eb2d8273015acb0156aaf95a70fe2b9c2f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
