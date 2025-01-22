@@ -34,6 +34,24 @@
       "parentUuid": "910bd8d9_d286e82a",
       "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c57fc7_79fa41c1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2025-01-22T14:08:40Z",
+      "side": 1,
+      "message": "Jakub,\n\nDo you remember why the BT device was made inactive when a wired headset was connected?",
+      "parentUuid": "bf89f802_8f4464a2",
+      "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
