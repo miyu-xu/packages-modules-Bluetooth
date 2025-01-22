@@ -52,6 +52,24 @@
       "parentUuid": "bf89f802_8f4464a2",
       "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b42042ad_b88b1c2c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-01-22T14:15:11Z",
+      "side": 1,
+      "message": "unfortunately no, not exactly. The bugreports are unavailable to recheck as it\u0027s a really old bug. Just this commit message:\n```\nIf a Bluetooth headset is connected, it will become the Active device\nfor A2DP/HFP, and will be used for audio output. Then, if a wired\nheadset is connected, audio is automatically rerouted to the wired headset\nby the Audio Framework. However, from Bluetooth perspective, the Active\ndevice hasn\u0027t changed, therefore attempts to (re)set the Active device\nto the Bluetooth headset will not be successful (the processing\nwill be no-op).\n```\nwhich if I understand correctly states that we couldn\u0027t switch back to BT headset when wired was connected - which is not the case anymore, at least not when using UI to switch back to BT",
+      "parentUuid": "85c57fc7_79fa41c1",
+      "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
