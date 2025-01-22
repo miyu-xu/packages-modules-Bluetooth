@@ -459,6 +459,8 @@ public class BassClientService extends ProfileService {
             if (paResMap == null
                     || (bId != BassConstants.INVALID_BROADCAST_ID && !paResMap.containsKey(bId))) {
                 log("PAResmap: add >>>");
+                mSyncHandleToDeviceMap.put(syncHandle, device);
+                updateSyncHandleForBroadcastId(syncHandle, bId);
                 PeriodicAdvertisementResult paRes =
                         new PeriodicAdvertisementResult(
                                 device,
@@ -521,6 +523,9 @@ public class BassClientService extends ProfileService {
                 }
                 if (syncHandle != BassConstants.INVALID_SYNC_HANDLE) {
                     if (mSyncHandleToDeviceMap != null) {
+                        mSyncHandleToDeviceMap
+                                .entrySet()
+                                .removeIf(entry -> entry.getValue().equals(device));
                         mSyncHandleToDeviceMap.put(syncHandle, device);
                     }
                     paRes.updateSyncHandle(syncHandle);
@@ -875,12 +880,12 @@ public class BassClientService extends ProfileService {
         return mSyncHandleToDeviceMap.get(syncHandle);
     }
 
-    int getSyncHandleForBroadcastId(int broadcastId) {
+    Integer getSyncHandleForBroadcastId(int broadcastId) {
         if (mSyncHandleToBroadcastIdMap == null) {
             return BassConstants.INVALID_SYNC_HANDLE;
         }
 
-        int syncHandle = BassConstants.INVALID_SYNC_HANDLE;
+        Integer syncHandle = BassConstants.INVALID_SYNC_HANDLE;
         for (Map.Entry<Integer, Integer> entry : mSyncHandleToBroadcastIdMap.entrySet()) {
             Integer value = entry.getValue();
             if (value == broadcastId) {
@@ -891,7 +896,7 @@ public class BassClientService extends ProfileService {
         return syncHandle;
     }
 
-    int getBroadcastIdForSyncHandle(int syncHandle) {
+    Integer getBroadcastIdForSyncHandle(int syncHandle) {
         if (mSyncHandleToBroadcastIdMap == null) {
             return BassConstants.INVALID_BROADCAST_ID;
         }
@@ -2007,11 +2012,7 @@ public class BassClientService extends ProfileService {
                                 }
                                 log("Broadcast Source Found:" + result.getDevice());
                                 byte[] broadcastIdArray = listOfUuids.get(BassConstants.BAAS_UUID);
-                                int broadcastId =
-                                        (int)
-                                                (((broadcastIdArray[2] & 0xff) << 16)
-                                                        | ((broadcastIdArray[1] & 0xff) << 8)
-                                                        | (broadcastIdArray[0] & 0xff));
+                                int broadcastId = BassUtils.parseBroadcastId(broadcastIdArray);
 
                                 sEventLogger.logd(
                                         TAG,
@@ -2257,7 +2258,7 @@ public class BassClientService extends ProfileService {
                 }
 
                 // update valid sync handle in mPeriodicAdvCallbacksMap
-                synchronized (mPeriodicAdvCallbacksMap) {
+                synchronized (mSourceSyncRequestsQueue) {
                     if (mPeriodicAdvCallbacksMap.containsKey(BassConstants.INVALID_SYNC_HANDLE)) {
                         PeriodicAdvertisingCallback paCb =
                                 mPeriodicAdvCallbacksMap.get(BassConstants.INVALID_SYNC_HANDLE);
@@ -2357,7 +2358,7 @@ public class BassClientService extends ProfileService {
                         }
                     }
                 }
-                mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);
+                clearAllDataForSyncHandle(BassConstants.INVALID_SYNC_HANDLE);
             }
             handleSelectSourceRequest();
         }
@@ -2668,7 +2669,7 @@ public class BassClientService extends ProfileService {
                                         .getPeriodicAdvertisingManager(),
                                 mPeriodicAdvCallbacksMap.get(syncHandle));
             } catch (IllegalArgumentException ex) {
-                Log.w(TAG, "unregisterSync:IllegalArgumentException");
+                Log.e(TAG, "unregisterSync:IllegalArgumentException");
                 return false;
             }
         } else {
@@ -2779,60 +2780,70 @@ public class BassClientService extends ProfileService {
     @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
     private void handleSelectSourceRequest() {
         PeriodicAdvertisingCallback paCb;
-        synchronized (mPeriodicAdvCallbacksMap) {
+        ScanResult scanRes;
+        int broadcastId = BassConstants.INVALID_BROADCAST_ID;
+        PublicBroadcastData pbData = null;
+        List<Integer> activeSyncedSrc;
+        String broadcastName;
+
+        synchronized (mSourceSyncRequestsQueue) {
             if (mSourceSyncRequestsQueue.isEmpty()) {
                 return;
             } else if (mPeriodicAdvCallbacksMap.containsKey(BassConstants.INVALID_SYNC_HANDLE)) {
                 log("handleSelectSourceRequest: already pending sync");
                 return;
-            } else {
-                paCb = new PACallback();
-                // put INVALID_SYNC_HANDLE and update in onSyncEstablished
-                mPeriodicAdvCallbacksMap.put(BassConstants.INVALID_SYNC_HANDLE, paCb);
             }
-        }
-        ScanResult scanRes;
-        synchronized (mSourceSyncRequestsQueue) {
+
             scanRes = mSourceSyncRequestsQueue.poll().getScanResult();
-        }
-        ScanRecord scanRecord = scanRes.getScanRecord();
+            ScanRecord scanRecord = scanRes.getScanRecord();
 
-        sEventLogger.logd(TAG, "Select Broadcast Source, result: " + scanRes);
+            sEventLogger.logd(TAG, "Select Broadcast Source, result: " + scanRes);
 
-        // updating mainly for Address type and PA Interval here
-        // extract BroadcastId from ScanResult
-        Map<ParcelUuid, byte[]> listOfUuids = scanRecord.getServiceData();
-        int broadcastId = BassConstants.INVALID_BROADCAST_ID;
-        PublicBroadcastData pbData = null;
-        if (listOfUuids != null) {
-            if (listOfUuids.containsKey(BassConstants.BAAS_UUID)) {
-                byte[] bId = listOfUuids.get(BassConstants.BAAS_UUID);
-                broadcastId = BassUtils.parseBroadcastId(bId);
+            // updating mainly for Address type and PA Interval here
+            // extract BroadcastId from ScanResult
+            Map<ParcelUuid, byte[]> listOfUuids = scanRecord.getServiceData();
+            if (listOfUuids != null) {
+                if (listOfUuids.containsKey(BassConstants.BAAS_UUID)) {
+                    byte[] bId = listOfUuids.get(BassConstants.BAAS_UUID);
+                    broadcastId = BassUtils.parseBroadcastId(bId);
+                }
+                if (listOfUuids.containsKey(BassConstants.PUBLIC_BROADCAST_UUID)) {
+                    byte[] pbAnnouncement = listOfUuids.get(BassConstants.PUBLIC_BROADCAST_UUID);
+                    pbData = PublicBroadcastData.parsePublicBroadcastData(pbAnnouncement);
+                }
             }
-            if (listOfUuids.containsKey(BassConstants.PUBLIC_BROADCAST_UUID)) {
-                byte[] pbAnnouncement = listOfUuids.get(BassConstants.PUBLIC_BROADCAST_UUID);
-                pbData = PublicBroadcastData.parsePublicBroadcastData(pbAnnouncement);
+
+            if (broadcastId == BassConstants.INVALID_BROADCAST_ID) {
+                Log.e(TAG, "Invalid broadcast ID");
+                handleSelectSourceRequest();
+                return;
             }
-        }
 
-        if (broadcastId == BassConstants.INVALID_BROADCAST_ID) {
-            Log.w(TAG, "Invalid broadcast ID");
-            mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);
-            handleSelectSourceRequest();
-            return;
-        }
+            // Avoid duplicated sync request if the same broadcast BIG is synced
+            activeSyncedSrc = new ArrayList<>(getActiveSyncedSources());
+            if (activeSyncedSrc.contains(getSyncHandleForBroadcastId(broadcastId))) {
+                log("Skip duplicated sync request to broadcast id: " + broadcastId);
+                handleSelectSourceRequest();
+                return;
+            }
 
-        // Check if broadcast name present in scan record and parse
-        // null if no name present
-        String broadcastName = checkAndParseBroadcastName(scanRecord);
+            // Check if broadcast name present in scan record and parse
+            // null if no name present
+            broadcastName = checkAndParseBroadcastName(scanRecord);
 
-        // Avoid duplicated sync request if the same broadcast BIG is synced
-        List<Integer> activeSyncedSrc = new ArrayList<>(getActiveSyncedSources());
-        if (activeSyncedSrc.contains(getSyncHandleForBroadcastId(broadcastId))) {
-            log("Skip duplicated sync request to broadcast id: " + broadcastId);
-            mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);
-            handleSelectSourceRequest();
-            return;
+            paCb = new PACallback();
+            // put INVALID_SYNC_HANDLE and update in onSyncEstablished
+            mPeriodicAdvCallbacksMap.put(BassConstants.INVALID_SYNC_HANDLE, paCb);
+
+            updatePeriodicAdvertisementResultMap(
+                    scanRes.getDevice(),
+                    scanRes.getDevice().getAddressType(),
+                    BassConstants.INVALID_SYNC_HANDLE,
+                    BassConstants.INVALID_ADV_SID,
+                    scanRes.getPeriodicAdvertisingInterval(),
+                    broadcastId,
+                    pbData,
+                    broadcastName);
         }
 
         // Check if there are resources for sync
@@ -2874,22 +2885,11 @@ public class BassClientService extends ProfileService {
                             paCb,
                             null);
         } catch (IllegalArgumentException ex) {
-            Log.w(TAG, "registerSync:IllegalArgumentException");
-            mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);
+            Log.e(TAG, "registerSync:IllegalArgumentException");
+            clearAllDataForSyncHandle(BassConstants.INVALID_SYNC_HANDLE);
             handleSelectSourceRequest();
             return;
         }
-
-        updateSyncHandleForBroadcastId(BassConstants.INVALID_SYNC_HANDLE, broadcastId);
-        updatePeriodicAdvertisementResultMap(
-                scanRes.getDevice(),
-                scanRes.getDevice().getAddressType(),
-                BassConstants.INVALID_SYNC_HANDLE,
-                BassConstants.INVALID_ADV_SID,
-                scanRes.getPeriodicAdvertisingInterval(),
-                broadcastId,
-                pbData,
-                broadcastName);
     }
 
     void selectSource(BluetoothDevice sink, ScanResult result, boolean autoTrigger) {
@@ -3070,6 +3070,30 @@ public class BassClientService extends ProfileService {
         }
     }
 
+    private Boolean isAddedToSync(int broadcastId) {
+        synchronized (mSourceSyncRequestsQueue) {
+            if (getBroadcastIdForSyncHandle(BassConstants.INVALID_SYNC_HANDLE) == broadcastId) {
+                return true;
+            }
+
+            for (SourceSyncRequest sourceSyncRequest : mSourceSyncRequestsQueue) {
+                ScanRecord scanRecord = sourceSyncRequest.getScanResult().getScanRecord();
+                Map<ParcelUuid, byte[]> listOfUuids = scanRecord.getServiceData();
+                if (listOfUuids != null) {
+                    if (listOfUuids.containsKey(BassConstants.BAAS_UUID)) {
+                        byte[] bId = listOfUuids.get(BassConstants.BAAS_UUID);
+                        int queuedBroadcastId = BassUtils.parseBroadcastId(bId);
+                        if (queuedBroadcastId == broadcastId) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Add a Broadcast Source to the Broadcast Sink
      *
@@ -3144,27 +3168,24 @@ public class BassClientService extends ProfileService {
                             getSyncHandleForBroadcastId(sourceMetadata.getBroadcastId())))) {
                 log("Adding inactive source: " + sourceDevice);
                 int broadcastId = sourceMetadata.getBroadcastId();
-                if (broadcastId != BassConstants.INVALID_BROADCAST_ID
-                        && getCachedBroadcast(broadcastId) != null) {
-                    // If the source has been synced before, try to re-sync
-                    // with the source by previously cached scan result.
+                if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
                     // Check if not added already
-                    boolean alreadyAdded = false;
-                    synchronized (mPendingSourcesToAdd) {
-                        for (AddSourceData pendingSourcesToAdd : mPendingSourcesToAdd) {
-                            if (pendingSourcesToAdd.mSourceMetadata.getBroadcastId()
-                                    == broadcastId) {
-                                alreadyAdded = true;
-                            }
-                        }
+                    if (isAddedToSync(broadcastId)) {
                         mPendingSourcesToAdd.add(
                                 new AddSourceData(sink, sourceMetadata, isGroupOp));
-                        if (!alreadyAdded) {
+                        // If the source has been synced before, try to re-sync
+                        // with the source by previously cached scan result.
+                    } else if (getCachedBroadcast(broadcastId) != null) {
+                        mPendingSourcesToAdd.add(
+                                new AddSourceData(sink, sourceMetadata, isGroupOp));
                             addSelectSourceRequest(broadcastId, true);
-                        }
+                    } else {
+                        Log.w(TAG, "AddSource: broadcast not cached, broadcastId: " + broadcastId);
+                        mCallbacks.notifySourceAddFailed(
+                                sink, sourceMetadata, BluetoothStatusCodes.ERROR_BAD_PARAMETERS);
                     }
                 } else {
-                    log("AddSource: broadcast not cached or invalid, broadcastId: " + broadcastId);
+                    Log.w(TAG, "AddSource: invalid broadcastId");
                     mCallbacks.notifySourceAddFailed(
                             sink, sourceMetadata, BluetoothStatusCodes.ERROR_BAD_PARAMETERS);
                 }
