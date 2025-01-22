@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 import android.os.ParcelUuid;
 import android.platform.test.flag.junit.SetFlagsRule;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.BytesMatcher;
 
 import org.junit.Rule;
@@ -194,6 +195,8 @@ public class ScanRecordTest {
 
     @Test
     public void testParserMultipleManufacturerSpecificData() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_SCAN_RECORD_MANUFACTURER_DATA_MERGE);
+
         byte[] scanRecord =
                 new byte[] {
                     0x02,
