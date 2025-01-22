@@ -70,6 +70,24 @@
       "parentUuid": "85c57fc7_79fa41c1",
       "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b9a5256_fb2c434f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2025-01-22T14:17:53Z",
+      "side": 1,
+      "message": "we must run a test that verifies that \"attempts to (re)set the Active device\nto the Bluetooth headset will not be successful (the processing\nwill be no-op).\" is not true anymore.",
+      "parentUuid": "b42042ad_b88b1c2c",
+      "revId": "b6fd841351e7f4a8cb92aa5548607d63f442e828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
