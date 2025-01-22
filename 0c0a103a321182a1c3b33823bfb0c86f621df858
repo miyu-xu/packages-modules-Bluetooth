@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d571917_94536664",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-22T05:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bbd13d9_147468a0",
+      "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8868633_e90de34e",
@@ -204,6 +222,24 @@
           ]
         }
       ],
+      "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8553bd4_01ce4d2e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-22T05:11:07Z",
+      "side": 1,
+      "message": "Sure, done.",
+      "parentUuid": "b8868633_e90de34e",
       "revId": "0c0a103a321182a1c3b33823bfb0c86f621df858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
