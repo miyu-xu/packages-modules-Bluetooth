@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4873456_3fb6c85b",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T22:05:43Z",
+      "side": 1,
+      "message": "It would be simpler to just different property type based on the flag.",
+      "fixSuggestions": [
+        {
+          "fixId": "7862c034_942c5e59",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "    bt_property_t remote_properties \u003d {\n        com::android::bluetooth::flags::separate_service_storage() ? BT_PROPERTY_UUIDS_LE\n                                                                   : BT_PROPERTY_UUIDS,\n        sizeof(remote_uuids), \u0026remote_uuids};\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
