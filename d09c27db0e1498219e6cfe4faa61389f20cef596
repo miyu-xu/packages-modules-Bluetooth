@@ -609,6 +609,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f222a1b8_235e1871",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T21:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73455343_5c19890f",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 65
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92246576_378b14cf",
@@ -1210,6 +1234,30 @@
       "side": 1,
       "message": "Actually, nothing prevengs me from passing them separately. Let me re-do this piece of patch.",
       "parentUuid": "ab1f342e_aa2719a7",
+      "range": {
+        "startLine": 302,
+        "startChar": 19,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f696d4e9_e311de6d",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T21:03:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfa2b3bf_f4077e84",
       "range": {
         "startLine": 302,
         "startChar": 19,
