@@ -28,4 +28,9 @@ public class ChangeIds {
     @ChangeId
     @EnabledSince(targetSdkVersion = android.os.Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     public static final long ENFORCE_CONNECT = 211757425L;
+
+    // TODO: b/391981111 - Change 36 to VERSION_CODES.BAKLAVA when available.
+    @ChangeId
+    @EnabledSince(targetSdkVersion = 36)
+    public static final long CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER = 391958027L;
 }

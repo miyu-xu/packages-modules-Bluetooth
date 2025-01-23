@@ -16,10 +16,15 @@
 
 package android.bluetooth.le;
 
+import static com.android.bluetooth.ChangeIds.CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER;
+
 import android.annotation.SystemApi;
+import android.app.compat.CompatChanges;
 import android.bluetooth.BluetoothDevice;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.android.bluetooth.flags.Flags;
 
 /**
  * Bluetooth LE scan settings are passed to {@link BluetoothLeScanner#startScan} to define the
@@ -293,6 +298,14 @@ public final class ScanSettings implements Parcelable {
         private int mNumOfMatchesPerFilter = MATCH_NUM_MAX_ADVERTISEMENT;
         private boolean mLegacy = true;
         private int mPhy = PHY_LE_ALL_SUPPORTED;
+
+        // Instance initializer for mNumOfMatchesPerFilter
+        {
+            if (Flags.changeDefaultTrackableAdvNumber()
+                    && CompatChanges.isChangeEnabled(CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER)) {
+                mNumOfMatchesPerFilter = MATCH_NUM_FEW_ADVERTISEMENT;
+            }
+        }
 
         /**
          * Set scan mode for Bluetooth LE scan.
