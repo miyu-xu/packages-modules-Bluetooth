@@ -16,6 +16,24 @@
       "message": "the idea about `in_call_metadata_context_types_` was to store metadata before `in_call` flag is set so when call is ended, stack can came back to the context types before the call.\n\nWIth this CL, this functionality does not work and `in_call_metadata_context_types_` does not bring any value.\n\nMaybe this variable is not needed anymore and the only thing we need is to clear CONVERSATIONAL context type when call is ended here: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d1351?q\u003dle_audio%2Fclient.cc\n\n?",
       "revId": "fc5015ca2caf33c42195dc6c9d8371abcced24a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4dfc4eb_358291e3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T15:56:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d0b8fa55_a39e6c68",
+      "revId": "fc5015ca2caf33c42195dc6c9d8371abcced24a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
