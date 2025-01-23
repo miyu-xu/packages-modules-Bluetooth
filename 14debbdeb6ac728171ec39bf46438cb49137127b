@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "044e0731_d6452211",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1528,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-23T17:56:50Z",
+      "side": 1,
+      "message": "This could lead to overflow actually because we use 1.1 * returned value.",
+      "range": {
+        "startLine": 1528,
+        "startChar": 34,
+        "endLine": 1528,
+        "endChar": 48
+      },
+      "revId": "14debbdeb6ac728171ec39bf46438cb49137127b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bd29647_0c081cd3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2270,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-23T17:56:50Z",
+      "side": 1,
+      "message": "The new interval is actually used in the \"next\" time because there is time gap between when the alarm is set and when we get the batched results.",
+      "range": {
+        "startLine": 2270,
+        "startChar": 9,
+        "endLine": 2270,
+        "endChar": 42
+      },
+      "revId": "14debbdeb6ac728171ec39bf46438cb49137127b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
