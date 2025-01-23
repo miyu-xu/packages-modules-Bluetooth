@@ -44,6 +44,11 @@ class AdapterBinder(rawBinder: IBinder) {
     }
 
     @Throws(RemoteException::class)
+    fun bredrDisable() {
+        adapterBinder.bredrDisable()
+    }
+
+    @Throws(RemoteException::class)
     fun getAddress(source: AttributionSource): String? {
         return adapterBinder.getAddress(source)
     }
