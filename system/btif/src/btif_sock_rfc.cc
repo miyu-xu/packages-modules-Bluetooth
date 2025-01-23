@@ -1467,3 +1467,21 @@ bt_status_t btsock_rfc_disconnect(const RawAddress* bd_addr) {
 
   return BT_STATUS_SUCCESS;
 }
+
+bt_status_t btsock_rfc_disconnect_all(void) {
+  if (!is_init_done()) {
+    log::error("BT not ready");
+    return BT_STATUS_NOT_READY;
+  }
+
+  std::unique_lock<std::recursive_mutex> lock(slot_lock);
+  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i) {
+    if (rfc_slots[i].id) {
+      log::info("disconnecting rfc slot with id: {}, app_uid:{}, rfc_handle:{}, scn:{}",
+                 rfc_slots[i].id, rfc_slots[i].app_uid, rfc_slots[i].rfc_handle, rfc_slots[i].scn);
+      cleanup_rfc_slot(&rfc_slots[i]);
+    }
+  }
+
+  return BT_STATUS_SUCCESS;
+}

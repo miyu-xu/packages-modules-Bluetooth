@@ -1037,6 +1037,12 @@ class BluetoothManagerService {
             } catch (RemoteException e) {
                 Log.e(TAG, "sendBrEdrDownCallback: failed to call unregAllGattClient()", e);
             }
+            // call bredrDisable when just BREDR is down but BLE is still on
+            try {
+                mAdapter.bredrDisable();
+            } catch (RemoteException e) {
+                Log.e(TAG, "continueFromBleOnState(): Failed to call bredrDisable()", e);
+            }
         } else {
             Log.i(TAG, "sendBrEdrDownCallback: Stopping ble");
             bleOnToOff();

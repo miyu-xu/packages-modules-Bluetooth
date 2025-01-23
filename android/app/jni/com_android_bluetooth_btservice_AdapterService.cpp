@@ -2279,6 +2279,16 @@ static jboolean restoreFilterAcceptListNative(JNIEnv* /* env */, jobject /* obj 
   return (ret == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
 }
 
+static jboolean bredrDisableNative(JNIEnv* /* env */, jobject /* obj */) {
+  log::verbose("");
+
+  if (!sBluetoothInterface) {
+    return JNI_FALSE;
+  }
+  int ret = sBluetoothInterface->bredr_disable();
+  return (ret == BT_STATUS_SUCCESS || ret == BT_STATUS_DONE) ? JNI_TRUE : JNI_FALSE;
+}
+
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
   const JNINativeMethod methods[] = {
           {"initNative", "(ZZIZ)Z", reinterpret_cast<void*>(initNative)},
@@ -2353,6 +2363,7 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
           {"allowWakeByHidNative", "()Z", reinterpret_cast<void*>(allowWakeByHidNative)},
           {"restoreFilterAcceptListNative", "()Z",
            reinterpret_cast<void*>(restoreFilterAcceptListNative)},
+          {"bredrDisableNative", "()Z", reinterpret_cast<void*>(bredrDisableNative)},
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/btservice/AdapterNativeInterface", methods);

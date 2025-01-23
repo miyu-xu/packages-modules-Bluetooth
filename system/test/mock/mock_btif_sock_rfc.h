@@ -192,6 +192,16 @@ struct on_btsocket_rfc_opened_complete {
 };
 extern struct on_btsocket_rfc_opened_complete on_btsocket_rfc_opened_complete;
 
+// Name: btsock_rfc_disconnect_all
+// Params: void
+// Return: bt_status_t
+struct btsock_rfc_disconnect_all {
+  static bt_status_t return_value;
+  std::function<bt_status_t(void)> body{[](void) { return return_value; }};
+  bt_status_t operator()(void) { return body(); }
+};
+extern struct btsock_rfc_disconnect_all btsock_rfc_disconnect_all;
+
 }  // namespace btif_sock_rfc
 }  // namespace mock
 }  // namespace test
