@@ -104,6 +104,30 @@
       },
       "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "903bad4f_03f20425",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-01-23T08:06:35Z",
+      "side": 1,
+      "message": "Yes, Jack, i got the information(new API) from you and of course i am conside how to do better. This patch just cherry pick from internal one, and i have already reach-out will Pomai and will sync new solution(disconnect all ACLs using the new API) with Pomai and William if they provide more details.\n\nAny other suggesstions please let me know. I\u0027m so grateful and i will try to over-write after my New-Year vacation.",
+      "parentUuid": "eca92df8_14048868",
+      "range": {
+        "startLine": 935,
+        "startChar": 0,
+        "endLine": 940,
+        "endChar": 1
+      },
+      "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
