@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14052b0c_fbaf357f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-23T20:07:09Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it also block broadcast for hearing aids even if LEA is not enabled by default? I guess broadcast be disabled anyway because LEA toggle is not enabled by default but we may want to still disable it even if the user manually toggles it.",
+      "range": {
+        "startLine": 289,
+        "startChar": 8,
+        "endLine": 292,
+        "endChar": 9
+      },
+      "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
