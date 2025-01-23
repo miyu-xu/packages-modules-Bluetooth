@@ -39,6 +39,29 @@
       "message": "Please get this CL reviewed by William and Pomai as it touches both areas",
       "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca92df8_14048868",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:29:09Z",
+      "side": 1,
+      "message": "why can\u0027t we go through all connected devices in Java and disconnect all ACLs using the new API in AdapterService native interface",
+      "range": {
+        "startLine": 935,
+        "startChar": 0,
+        "endLine": 940,
+        "endChar": 1
+      },
+      "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
