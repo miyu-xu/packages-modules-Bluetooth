@@ -44,6 +44,98 @@
       ],
       "revId": "597023e8531f38d76a11776865f42d6727e80492",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d62b54b_b6bf61fd",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T21:42:09Z",
+      "side": 1,
+      "message": "go back to `\u0026remote_uuids`",
+      "range": {
+        "startLine": 143,
+        "startChar": 80,
+        "endLine": 143,
+        "endChar": 93
+      },
+      "revId": "597023e8531f38d76a11776865f42d6727e80492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "025726a2_a6df0fd1",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T21:42:09Z",
+      "side": 1,
+      "message": "`\u0026remote_uuids`",
+      "range": {
+        "startLine": 160,
+        "startChar": 71,
+        "endLine": 160,
+        "endChar": 83
+      },
+      "revId": "597023e8531f38d76a11776865f42d6727e80492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f949871_2e508140",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T21:42:09Z",
+      "side": 1,
+      "message": "nit: per @rwt\u0027s point, this should be changed to `\u0026remote_uuids`",
+      "range": {
+        "startLine": 378,
+        "startChar": 29,
+        "endLine": 378,
+        "endChar": 41
+      },
+      "revId": "597023e8531f38d76a11776865f42d6727e80492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1891f78_ec2f4d23",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1486,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T21:42:09Z",
+      "side": 1,
+      "message": "Please print out the two lists\n\n- Service\n- ServiceLe\n\nafter the conversion and/or add dumpsys information for bonded device",
+      "range": {
+        "startLine": 1486,
+        "startChar": 15,
+        "endLine": 1486,
+        "endChar": 58
+      },
+      "revId": "597023e8531f38d76a11776865f42d6727e80492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

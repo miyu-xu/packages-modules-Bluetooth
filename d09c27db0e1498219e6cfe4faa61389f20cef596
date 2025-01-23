@@ -962,6 +962,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cf774a2_494203d3",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1477,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T21:42:09Z",
+      "side": 1,
+      "message": "Let\u0027s do this in the next patch.",
+      "parentUuid": "489f73ec_61374f41",
+      "range": {
+        "startLine": 1474,
+        "startChar": 0,
+        "endLine": 1477,
+        "endChar": 45
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "829e8ff0_eb8ef276",
