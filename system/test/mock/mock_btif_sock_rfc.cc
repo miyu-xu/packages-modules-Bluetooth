@@ -51,6 +51,7 @@ struct btsock_rfc_listen btsock_rfc_listen;
 struct btsock_rfc_signaled btsock_rfc_signaled;
 struct on_btsocket_rfc_close on_btsocket_rfc_close;
 struct on_btsocket_rfc_opened_complete on_btsocket_rfc_opened_complete;
+struct btsock_rfc_disconnect_all btsock_rfc_disconnect_all;
 
 }  // namespace btif_sock_rfc
 }  // namespace mock
@@ -69,6 +70,7 @@ bt_status_t btsock_rfc_control_req::return_value = BT_STATUS_SUCCESS;
 bt_status_t btsock_rfc_disconnect::return_value = BT_STATUS_SUCCESS;
 bt_status_t btsock_rfc_init::return_value = BT_STATUS_SUCCESS;
 bt_status_t btsock_rfc_listen::return_value = BT_STATUS_SUCCESS;
+bt_status_t btsock_rfc_disconnect_all::return_value = BT_STATUS_SUCCESS;
 
 }  // namespace btif_sock_rfc
 }  // namespace mock
@@ -129,6 +131,10 @@ void on_btsocket_rfc_close(uint64_t socket_id) {
 void on_btsocket_rfc_opened_complete(uint64_t socket_id, bool success) {
   inc_func_call_count(__func__);
   test::mock::btif_sock_rfc::on_btsocket_rfc_opened_complete(socket_id, success);
+}
+bt_status_t btsock_rfc_disconnect_all(void) {
+  inc_func_call_count(__func__);
+  return test::mock::btif_sock_rfc::btsock_rfc_disconnect_all();
 }
 // Mocked functions complete
 // END mockcify generation
