@@ -205,6 +205,41 @@
       },
       "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fd29093_cc41aa4d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T22:39:07Z",
+      "side": 1,
+      "message": "Nit: Might consider using vector here",
+      "fixSuggestions": [
+        {
+          "fixId": "3d04e26e_b05742ae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_storage.cc",
+              "range": {
+                "startLine": 950,
+                "startChar": 0,
+                "endLine": 951,
+                "endChar": 0
+              },
+              "replacement": "  bt_property_t remote_properties[BT_MAX_NUM_REMOTE_PROPERTIES];\n"
+            }
+          ]
+        }
+      ],
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
