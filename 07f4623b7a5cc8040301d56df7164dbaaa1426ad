@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acadea11_14eb8909",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-23T01:18:48Z",
+      "side": 1,
+      "message": "Could we add a debug level log here?",
+      "range": {
+        "startLine": 980,
+        "startChar": 19,
+        "endLine": 980,
+        "endChar": 48
+      },
+      "revId": "07f4623b7a5cc8040301d56df7164dbaaa1426ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
