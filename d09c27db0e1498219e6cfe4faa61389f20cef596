@@ -1198,6 +1198,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfa2b3bf_f4077e84",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T15:09:09Z",
+      "side": 1,
+      "message": "Actually, nothing prevengs me from passing them separately. Let me re-do this piece of patch.",
+      "parentUuid": "ab1f342e_aa2719a7",
+      "range": {
+        "startLine": 302,
+        "startChar": 19,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7fdad92_6644718b",
         "filename": "system/include/hardware/bluetooth.h",
         "patchSetId": 1
