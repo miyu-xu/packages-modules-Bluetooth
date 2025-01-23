@@ -136,6 +136,7 @@ public class ScanManagerTest {
     private static final int DEFAULT_BATCH_SCAN_REPORT_DELAY_MS = 100;
     private static final int DEFAULT_NUM_OFFLOAD_SCAN_FILTER = 16;
     private static final int DEFAULT_BYTES_OFFLOAD_SCAN_RESULT_STORAGE = 4096;
+    private static final int DEFAULT_TOTAL_NUM_OF_TRACKABLE_ADVERTISEMENTS = 32;
     private static final int TEST_SCAN_QUOTA_COUNT = 5;
     private static final String TEST_APP_NAME = "Test";
     private static final String TEST_PACKAGE_NAME = "com.test.package";
@@ -188,6 +189,9 @@ public class ScanManagerTest {
         doReturn(SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS)
                 .when(mAdapterService)
                 .getScreenOffBalancedIntervalMillis();
+        doReturn(DEFAULT_TOTAL_NUM_OF_TRACKABLE_ADVERTISEMENTS)
+                .when(mAdapterService)
+                .getTotalNumOfTrackableAdvertisements();
 
         TestUtils.mockGetSystemService(
                 mAdapterService, Context.LOCATION_SERVICE, LocationManager.class, mLocationManager);
@@ -1854,6 +1858,29 @@ public class ScanManagerTest {
                 BluetoothProfile.HID_HOST, STATE_DISCONNECTED, STATE_CONNECTING);
         mLooper.dispatchAll();
         assertThat(mScanManager.mProfilesConnecting).isEqualTo(3);
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER)
+    public void getNumOfTrackingAdvertisements_withDefaultMatchNumAdvertisement() {
+        ScanSettings scanSettings;
+        scanSettings = new ScanSettings.Builder().build();
+
+        assertThat(mScanManager.mScanNative.getNumOfTrackingAdvertisements(scanSettings))
+                .isEqualTo(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT);
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER)
+    public void getNumOfTrackingAdvertisements_withMatchNumMaxAdvertisement() {
+        ScanSettings scanSettings;
+        scanSettings =
+                new ScanSettings.Builder()
+                        .setNumOfMatches(ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT)
+                        .build();
+
+        assertThat(mScanManager.mScanNative.getNumOfTrackingAdvertisements(scanSettings))
+                .isEqualTo(DEFAULT_TOTAL_NUM_OF_TRACKABLE_ADVERTISEMENTS / 4);
     }
 
     private void phytest(int phy, int expectedPhy) {

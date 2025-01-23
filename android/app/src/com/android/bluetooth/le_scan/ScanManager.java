@@ -122,7 +122,7 @@ public class ScanManager {
     private final ScanController mScanController;
     private final AdapterService mAdapterService;
     private final TimeProvider mTimeProvider;
-    private ScanNative mScanNative;
+    @VisibleForTesting ScanNative mScanNative;
     private BluetoothAdapterProxy mBluetoothAdapterProxy;
     @VisibleForTesting final ClientHandler mHandler;
 
@@ -956,7 +956,8 @@ public class ScanManager {
         }
     }
 
-    private class ScanNative {
+    @VisibleForTesting
+    class ScanNative {
 
         // Delivery mode defined in bt stack.
         private static final int DELIVERY_MODE_IMMEDIATE = 0;
@@ -1900,7 +1901,8 @@ public class ScanManager {
             }
         }
 
-        private int getNumOfTrackingAdvertisements(ScanSettings settings) {
+        @VisibleForTesting
+        int getNumOfTrackingAdvertisements(ScanSettings settings) {
             if (settings == null) {
                 return 0;
             }
@@ -1920,6 +1922,9 @@ public class ScanManager {
                     break;
                 case ScanSettings.MATCH_NUM_MAX_ADVERTISEMENT:
                     val = maxTotalTrackableAdvertisements / 2;
+                    if (Flags.changeDefaultTrackableAdvNumber()) {
+                        val = maxTotalTrackableAdvertisements / 4;
+                    }
                     break;
                 default:
                     val = 1;
