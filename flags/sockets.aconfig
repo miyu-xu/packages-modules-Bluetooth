@@ -74,10 +74,18 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (15412b Add rfcomm_socket_closed_by_bredr_disabled flag to fix BREDR)
+    name: "rfcomm_socket_closed_by_bredr_disabled"
+    namespace: "bluetooth"
+    description: "Fix RFCOMM socket still open even BREDR is disabled"
+    bug: "387198958"
+||||||| BASE
+=======
     name: "invalidate_hci_handle_on_acl_removal"
     namespace: "bluetooth"
     description: "invalidate hci handle associated with lcb on acl removal"
     bug: "394329150"
+>>>>>>> BASE      (949d18 Merge "Split Bluetooth into an android library" into main)
     metadata {
         purpose: PURPOSE_BUGFIX
     }
