@@ -29,9 +29,7 @@ use tokio::time::{sleep, Duration};
 
 use crate::battery_manager::{BatteryManager, BatterySet};
 use crate::battery_provider_manager::BatteryProviderManager;
-use crate::battery_service::{
-    BatteryService, BatteryServiceActions, BATTERY_SERVICE_GATT_CLIENT_APP_ID,
-};
+use crate::battery_service::{BatteryService, BatteryServiceActions};
 use crate::bluetooth::{
     dispatch_base_callbacks, dispatch_hid_host_callbacks, dispatch_sdp_callbacks, AdapterActions,
     Bluetooth, BluetoothDevice, IBluetooth,
@@ -47,7 +45,7 @@ use crate::dis::{DeviceInformation, ServiceCallbacks};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
 use crate::suspend::Suspend;
 use bt_topshim::{
-    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, DisplayAddress, RawAddress, Uuid},
+    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, DisplayAddress, RawAddress},
     profiles::{
         a2dp::A2dpCallbacks,
         avrcp::AvrcpCallbacks,
@@ -611,23 +609,12 @@ impl Stack {
                 }
 
                 Message::ProfileDisconnected(addr) => {
-                    let bas_app_uuid =
-                        Uuid::from_string(String::from(BATTERY_SERVICE_GATT_CLIENT_APP_ID))
-                            .expect("BAS Uuid failed to be parsed");
-                    // Ideally we would also check that there are no open sockets for this device
-                    // but Floss does not manage socket state so there is no reasonable way for us
-                    // to know whether a socket is open or not.
-                    if bluetooth_gatt.lock().unwrap().get_connected_applications(&addr)
-                        == vec![bas_app_uuid]
-                        && !bluetooth.lock().unwrap().is_hh_connected(&addr)
-                        && bluetooth_media.lock().unwrap().get_connected_profiles(&addr).is_empty()
-                    {
-                        info!(
-                            "BAS: Disconnecting from {} since it's the last active profile",
-                            DisplayAddress(&addr)
-                        );
-                        battery_service.lock().unwrap().drop_device(addr);
-                    }
+                    battery_service.lock().unwrap().on_profile_disconnected(
+                        addr.clone(),
+                        bluetooth_gatt.lock().unwrap().get_connected_applications(&addr),
+                        bluetooth_media.lock().unwrap().get_connected_profiles(&addr),
+                        bluetooth.lock().unwrap().hh_connection_state(&addr),
+                    );
                 }
             }
         }

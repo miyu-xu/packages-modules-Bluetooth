@@ -11,8 +11,9 @@ use crate::RPCProxy;
 use crate::{uuid, APIMessage, BluetoothAPI};
 use bt_topshim::btif::{BtTransport, DisplayAddress, RawAddress, Uuid};
 use bt_topshim::profiles::gatt::{GattStatus, LePhy};
+use bt_topshim::profiles::hid_host::BthhConnectionState;
 use log::{debug, info};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::convert::TryInto;
 use std::iter;
 use std::sync::{Arc, Mutex};
@@ -320,6 +321,30 @@ impl BatteryService {
             }
         };
         Ok(battery_level.instance_id)
+    }
+
+    pub(crate) fn on_profile_disconnected(
+        &mut self,
+        address: RawAddress,
+        connected_gatt_applications: Vec<Uuid>,
+        connected_media_profiles: HashSet<uuid::Profile>,
+        hh_connection_state: BthhConnectionState,
+    ) {
+        // Ideally we would also check that there are no open sockets for this device
+        // but Floss does not manage socket state so there is no reasonable way for us
+        // to know whether a socket is open or not.
+        if connected_gatt_applications
+            == vec![Uuid::from_string(BATTERY_SERVICE_GATT_CLIENT_APP_ID).unwrap()]
+            && connected_media_profiles.is_empty()
+            && (hh_connection_state != BthhConnectionState::Connecting
+                && hh_connection_state != BthhConnectionState::Connected)
+        {
+            info!(
+                "BAS: Disconnecting from {} since it's the last active profile",
+                DisplayAddress(&address)
+            );
+            self.drop_device(address);
+        }
     }
 
     /// Perform an explicit read on all devices BAS knows about.
