@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2f1b5ef_7bb9ad6e",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T02:30:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cac8c8c0_701b855b",
+      "revId": "455f7fc69228248f0c3f60601d1adc381857b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24237bea_07515efe",
@@ -49,6 +67,24 @@
       "writtenOn": "2025-01-23T02:27:50Z",
       "side": 1,
       "message": "Group the existing identifiers separate from the new ones",
+      "revId": "455f7fc69228248f0c3f60601d1adc381857b95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e05ea7_54fc5d1f",
+        "filename": "system/stack/include/bt_dev_class.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T02:30:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24237bea_07515efe",
       "revId": "455f7fc69228248f0c3f60601d1adc381857b95c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
