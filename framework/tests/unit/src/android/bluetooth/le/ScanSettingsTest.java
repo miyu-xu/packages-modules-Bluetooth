@@ -16,8 +16,17 @@
 
 package android.bluetooth.le;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.junit.Assert.assertThrows;
 
+import android.platform.test.annotations.RequiresFlagsEnabled;
+import android.platform.test.flag.junit.CheckFlagsRule;
+import android.platform.test.flag.junit.DeviceFlagsValueProvider;
+
+import com.android.bluetooth.flags.Flags;
+
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -25,6 +34,8 @@ import org.junit.runners.JUnit4;
 /** Test for Bluetooth LE {@link ScanSettings}. */
 @RunWith(JUnit4.class)
 public class ScanSettingsTest {
+    @Rule
+    public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
 
     @Test
     public void testCallbackType() {
@@ -102,5 +113,13 @@ public class ScanSettingsTest {
                         builder.setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH)
                                 .setReportDelay(0)
                                 .build());
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER)
+    public void builderInitialize() {
+        ScanSettings settings = new ScanSettings.Builder().build();
+
+        assertThat(settings.getNumOfMatches()).isEqualTo(ScanSettings.MATCH_NUM_FEW_ADVERTISEMENT);
     }
 }
