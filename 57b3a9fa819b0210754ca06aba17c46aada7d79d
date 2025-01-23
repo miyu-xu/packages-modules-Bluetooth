@@ -26,6 +26,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf928088_4a1bab2e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T22:42:39Z",
+      "side": 1,
+      "message": "As discussed, instead of getting merged from the native, we should recieve separate list of UUIDs. If services were discovered over both the transports, they must be reported at the same time but as separate properties.\nUUID updates to the rest of the Java stack and apps would be sent after all the received properties in the function have been processed.",
+      "fixSuggestions": [
+        {
+          "fixId": "b77f9c83_98261248",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.SuppressLint;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 510,
+                "startChar": 0,
+                "endLine": 511,
+                "endChar": 0
+              },
+              "replacement": "         * @return the UUIDs on Classic transport\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 514,
+                "startChar": 0,
+                "endLine": 545,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 557,
+                "startChar": 0,
+                "endLine": 566,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1110,
+                "startChar": 0,
+                "endLine": 1133,
+                "endChar": 0
+              },
+              "replacement": "                            final ParcelUuid[] newUuids \u003d Utils.byteArrayToUuid(val);\n                            if (areUuidsEqual(newUuids, deviceProperties.getUuids())) {\n                                // SDP Skip adding UUIDs to property cache if equal\n                                debugLog(\"Skip uuids update for \" + bdDevice.getAddress());\n                                MetricsLogger.getInstance()\n                                        .cacheCount(BluetoothProtoEnums.SDP_UUIDS_EQUAL_SKIP, 1);\n                                break;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1134,
+                "startChar": 0,
+                "endLine": 1134,
+                "endChar": 0
+              },
+              "replacement": "                            deviceProperties.setUuidsBrEdr(newUuids);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4873456_3fb6c85b",
         "filename": "system/bta/hh/bta_hh_headtracker.cc",
         "patchSetId": 11
