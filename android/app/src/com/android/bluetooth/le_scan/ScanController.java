@@ -93,6 +93,7 @@ public class ScanController {
     /** The default floor value for LE batch scan report delays greater than 0 */
     @VisibleForTesting static final long DEFAULT_REPORT_DELAY_FLOOR = 5000;
 
+
     private static final int NUM_SCAN_EVENTS_KEPT = 20;
 
     // onFoundLost related constants
@@ -785,6 +786,7 @@ public class ScanController {
                 deliverBatchScan(client, results);
             }
         }
+        mScanManager.adjustBatchTriggerIntervalBackoff(results.isEmpty());
         mScanManager.callbackDone(scannerId, status);
     }
 

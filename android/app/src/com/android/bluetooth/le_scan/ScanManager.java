@@ -147,6 +147,11 @@ public class ScanManager {
     @VisibleForTesting int mProfilesConnecting;
     private int mProfilesConnected, mProfilesDisconnecting;
 
+    private static final long BATCH_INTERVAL_BACKOFF_MIN_DURATION = 5_000;
+    private static final long MAX_BATCH_INTERVAL_BACKOFF_SCREEN_ON_MS = 20_000;
+    private static final long MAX_BATCH_INTERVAL_BACKOFF_SCREEN_OFF_MS = 60_000;
+    long mBatchTriggerIntervalBackoff = BATCH_INTERVAL_BACKOFF_MIN_DURATION;
+
     @VisibleForTesting
     static class UidImportance {
         public int uid;
@@ -1527,7 +1532,15 @@ public class ScanManager {
                             Math.min(intervalMillis, client.settings.getReportDelayMillis());
                 }
             }
-            return intervalMillis;
+            if (mScreenOn) {
+                return Math.max(
+                        intervalMillis,
+                        Math.min(
+                                mBatchTriggerIntervalBackoff,
+                                MAX_BATCH_INTERVAL_BACKOFF_SCREEN_ON_MS));
+            } else {
+                return Math.max(intervalMillis, mBatchTriggerIntervalBackoff);
+            }
         }
 
         // Add scan filters. The logic is:
@@ -2252,5 +2265,16 @@ public class ScanManager {
             int profile, int fromState, int toState) {
         mHandler.post(
                 () -> mHandler.handleProfileConnectionStateChanged(profile, fromState, toState));
+    }
+
+    void adjustBatchTriggerIntervalBackoff(boolean shouldBackOff) {
+        if (shouldBackOff) {
+            mBatchTriggerIntervalBackoff =
+                    Math.min(
+                            MAX_BATCH_INTERVAL_BACKOFF_SCREEN_OFF_MS,
+                            mBatchTriggerIntervalBackoff * 2);
+        } else {
+            mBatchTriggerIntervalBackoff = BATCH_INTERVAL_BACKOFF_MIN_DURATION;
+        }
     }
 }
