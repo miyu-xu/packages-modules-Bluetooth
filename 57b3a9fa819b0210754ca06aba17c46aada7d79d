@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1357ff1_45666e3e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "Let\u0027s dedupe the UUIDs for the return value\n\nnit: try to keep the order if you can",
+      "range": {
+        "startLine": 526,
+        "startChar": 16,
+        "endLine": 535,
+        "endChar": 17
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4873456_3fb6c85b",
         "filename": "system/bta/hh/bta_hh_headtracker.cc",
         "patchSetId": 11
@@ -42,6 +65,144 @@
           ]
         }
       ],
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f89cc28c_247330d7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "nit: one thing is to add a function to check if a UUID is confirmed to be LE-only like \n- ANDROID_HEADTRACKER_SERVICE_UUID\n- UUID_SERVCLASS_LE_HID",
+      "range": {
+        "startLine": 1524,
+        "startChar": 0,
+        "endLine": 1524,
+        "endChar": 1
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f5b50f_f17e601e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "nit: be consistent and use `bredr_property_value`",
+      "range": {
+        "startLine": 1614,
+        "startChar": 27,
+        "endLine": 1614,
+        "endChar": 49
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d59e94_8bb7c768",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 1622,
+        "startChar": 20,
+        "endLine": 1622,
+        "endChar": 32
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc037cd_7eca6423",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "we don\u0027t use NVRAM anymore",
+      "range": {
+        "startLine": 1626,
+        "startChar": 5,
+        "endLine": 1626,
+        "endChar": 40
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e883f28_dd7aa198",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1627,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "it is already saved here",
+      "range": {
+        "startLine": 1627,
+        "startChar": 24,
+        "endLine": 1627,
+        "endChar": 63
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca40200_251c2d6a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T22:11:42Z",
+      "side": 1,
+      "message": "are you sure we no longer need to save it?",
+      "range": {
+        "startLine": 1709,
+        "startChar": 30,
+        "endLine": 1709,
+        "endChar": 69
+      },
       "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
