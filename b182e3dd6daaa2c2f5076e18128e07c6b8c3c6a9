@@ -88,6 +88,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99a82638_2d9e53d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-01-23T22:48:26Z",
+      "side": 1,
+      "message": "This code doesn\u0027t change any behavior that I know of, instead it will log loudly and then fail the same way it did before.\n\nIn future we may relax the requirement that registering to gatt before it is started is a crash (it will process when gatt starts) but that would be a different CL.",
+      "parentUuid": "880d1737_0bdc627d",
+      "revId": "b182e3dd6daaa2c2f5076e18128e07c6b8c3c6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6fff94e_ce5954c5",
         "filename": "system/rust/src/lib.rs",
         "patchSetId": 2
@@ -99,6 +117,30 @@
       "writtenOn": "2024-12-24T01:15:40Z",
       "side": 1,
       "message": "@ofy@google.com / @okamil@google.com Once the ScanManager refactor flag is activated, this will be called each time we go from BLE_ON to ON.\n\nThe documentation specify that this is not supposed to happen and that it will panic.\nIs this what is happening in the bug ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 86
+      },
+      "revId": "b182e3dd6daaa2c2f5076e18128e07c6b8c3c6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78a8a3c9_a8680636",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-01-23T22:48:26Z",
+      "side": 1,
+      "message": "It was my understanding that this shouldn\u0027t happen, but if this is called every time BLE_ON to ON we should consider instead logging loudly and doing nothing instead of panicking.\n\nBut the previous behavior would panic if this was called twice and the previous GATT thread was stopped, so this code does as well.",
+      "parentUuid": "b6fff94e_ce5954c5",
       "range": {
         "startLine": 73,
         "startChar": 0,
