@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9128c82_7d058e1c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3133,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T21:38:58Z",
+      "side": 1,
+      "message": "typo \"ot its\"",
+      "fixSuggestions": [
+        {
+          "fixId": "9abd8de3_9b8d99cf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3133,
+                "startChar": 0,
+                "endLine": 3134,
+                "endChar": 0
+              },
+              "replacement": "             * Devices are notified of its state over GTBS.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5d28d5e6cefad2a1c7a48daca209ed1ea81a55f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
