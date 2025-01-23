@@ -22,6 +22,30 @@
       },
       "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2bbb23_4c14f89d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-23T23:46:43Z",
+      "side": 1,
+      "message": "That\u0027s a very good point.\n\nTo fully block this for HAP, we have 2 places to change:\n1. If device is default LEA enabled, like HAP, this CL will cover from stack to disable BASS profile at pairing.\n\n2. User toggle LEA, currently UI is triggering BASS connecion from here, I think it would be cleaner to let UI team block this from their code base. Current logic is to connect BASS with other LEA profiles whenever user turned ON LEA toggle.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/apps/Settings/src/com/android/settings/bluetooth/BluetoothDetailsProfilesController.java;l\u003d487;bpv\u003d0\n\nWhat do you think?",
+      "parentUuid": "14052b0c_fbaf357f",
+      "range": {
+        "startLine": 289,
+        "startChar": 8,
+        "endLine": 292,
+        "endChar": 9
+      },
+      "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
