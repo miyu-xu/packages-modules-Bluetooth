@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dd5a030_9c849b09",
+        "filename": "system/stack/include/smp_status.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-23T22:17:04Z",
+      "side": 1,
+      "message": "What is SMP_IMPL_BUSY (how is it different than SMP_BUSY)? A comment would be helpful here.",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8367ef55_a5a5f620",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/smp_status.h",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "  /* Pairing procedure is already in progress */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91c01fbab71b44de2471d28d8bd45e4676f55141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
