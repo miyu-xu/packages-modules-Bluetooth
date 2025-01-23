@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e09d398b_c4d887a9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-23T16:00:24Z",
+      "side": 1,
+      "message": "to speed up we want to clear CONVERSATIONAL context here",
+      "revId": "86bd6cc3ab22b0ce1551b26393218a231ad01c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
