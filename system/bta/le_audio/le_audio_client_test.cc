@@ -8763,7 +8763,7 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure_SpeedUpReconfigF
   // Conversational is a bidirectional scenario so expect GTBS CCID
   // in the metadata for both directions. Can be called twice when one
   // direction resume after the other and metadata is updated.
-  ccids = {.sink = {gtbs_ccid}, .source = {gtbs_ccid}};
+  ccids = {.sink = {gtbs_ccid, gmcs_ccid}, .source = {gtbs_ccid}};
   EXPECT_CALL(mock_state_machine_,
               StartStream(_, types::LeAudioContextType::CONVERSATIONAL, _, ccids))
           .Times(AtLeast(1));

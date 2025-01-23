@@ -402,7 +402,6 @@ public:
         callbacks_(callbacks),
         active_group_id_(bluetooth::groups::kGroupUnknown),
         configuration_context_type_(LeAudioContextType::UNINITIALIZED),
-        in_call_metadata_context_types_({.sink = AudioContexts(), .source = AudioContexts()}),
         local_metadata_context_types_({.sink = AudioContexts(), .source = AudioContexts()}),
         audio_receiver_state_(AudioState::IDLE),
         audio_sender_state_(AudioState::IDLE),
@@ -1330,30 +1329,21 @@ public:
     bool reconfigure = false;
 
     if (in_call_) {
-      in_call_metadata_context_types_ = local_metadata_context_types_;
-
-      log::debug("in_call_metadata_context_types_ sink: {}  source: {}",
-                 in_call_metadata_context_types_.sink.to_string(),
-                 in_call_metadata_context_types_.source.to_string());
-
       auto audio_set_conf = group->GetConfiguration(LeAudioContextType::CONVERSATIONAL);
       if (audio_set_conf && group->IsGroupConfiguredTo(*audio_set_conf)) {
         log::info("Call is coming, but CIG already set for a call");
         return;
       }
       log::info("Call is coming, speed up reconfiguration for a call");
-      local_metadata_context_types_.sink.clear();
-      local_metadata_context_types_.source.clear();
       reconfigure = true;
     } else {
       if (configuration_context_type_ == LeAudioContextType::CONVERSATIONAL) {
         log::info("Call is ended, speed up reconfiguration for media");
-        local_metadata_context_types_ = in_call_metadata_context_types_;
+        local_metadata_context_types_.source.unset(LeAudioContextType::CONVERSATIONAL);
+        local_metadata_context_types_.sink.unset(LeAudioContextType::CONVERSATIONAL);
         log::debug("restored local_metadata_context_types_ sink: {}  source: {}",
                    local_metadata_context_types_.sink.to_string(),
                    local_metadata_context_types_.source.to_string());
-        in_call_metadata_context_types_.sink.clear();
-        in_call_metadata_context_types_.source.clear();
         reconfigure = true;
       }
     }
@@ -6218,7 +6208,6 @@ private:
   LeAudioContextType configuration_context_type_;
   static constexpr char kAllowMultipleContextsInMetadata[] =
           "persist.bluetooth.leaudio.allow.multiple.contexts";
-  BidirectionalPair<AudioContexts> in_call_metadata_context_types_;
   BidirectionalPair<AudioContexts> local_metadata_context_types_;
   StreamSpeedTracker speed_tracker_;
   std::deque<StreamSpeedTracker> stream_speed_history_;
