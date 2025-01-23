@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "077d8f6e_2381e856",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 3840712
+      },
+      "writtenOn": "2025-01-23T15:46:39Z",
+      "side": 1,
+      "message": "Jakub, could you please use LeAudioLtvMap for the metadata as well like codec_spec_caps, instead of using std::vector\u003cuint8_t\u003e\n\nBecasue as per the spec recommendation metadata should be in LTV formatt. \n\nIn this way LTV formatt metadata used across all layesr of the stack.",
+      "revId": "25ebe775e1b7446f1ecc824eac6b1d222996da0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
