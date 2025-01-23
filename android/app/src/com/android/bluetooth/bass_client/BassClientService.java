@@ -1683,6 +1683,15 @@ public class BassClientService extends ProfileService {
             synchronized (mSinksWaitingForPast) {
                 mSinksWaitingForPast.remove(device);
             }
+            synchronized (mPendingSourcesToAdd) {
+                Iterator<AddSourceData> iterator = mPendingSourcesToAdd.iterator();
+                while (iterator.hasNext()) {
+                    AddSourceData pendingSourcesToAdd = iterator.next();
+                    if (pendingSourcesToAdd.mSink.equals(device)) {
+                        iterator.remove();
+                    }
+                }
+            }
 
             int bondState = mAdapterService.getBondState(device);
             if (bondState == BluetoothDevice.BOND_NONE) {
@@ -1696,6 +1705,7 @@ public class BassClientService extends ProfileService {
             if (getConnectedDevices().isEmpty()
                     || (mPausedBroadcastSinks.isEmpty()
                             && mSinksWaitingForPast.isEmpty()
+                            && mPendingSourcesToAdd.isEmpty()
                             && !isAnyConnectedDeviceSwitchingSource())) {
                 synchronized (mSearchScanCallbackLock) {
                     // when searching is stopped then clear all sync data
@@ -2523,25 +2533,23 @@ public class BassClientService extends ProfileService {
         BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
         mSyncHandleToDeviceMap.remove(syncHandle);
         int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
-        if (leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator()) {
-            synchronized (mPendingSourcesToAdd) {
-                Iterator<AddSourceData> iterator = mPendingSourcesToAdd.iterator();
-                while (iterator.hasNext()) {
-                    AddSourceData pendingSourcesToAdd = iterator.next();
-                    if (pendingSourcesToAdd.mSourceMetadata.getBroadcastId() == broadcastId) {
-                        iterator.remove();
-                    }
+        synchronized (mPendingSourcesToAdd) {
+            Iterator<AddSourceData> iterator = mPendingSourcesToAdd.iterator();
+            while (iterator.hasNext()) {
+                AddSourceData pendingSourcesToAdd = iterator.next();
+                if (pendingSourcesToAdd.mSourceMetadata.getBroadcastId() == broadcastId) {
+                    iterator.remove();
                 }
             }
-            synchronized (mSinksWaitingForPast) {
-                Iterator<Map.Entry<BluetoothDevice, Pair<Integer, Integer>>> iterator =
-                        mSinksWaitingForPast.entrySet().iterator();
-                while (iterator.hasNext()) {
-                    Map.Entry<BluetoothDevice, Pair<Integer, Integer>> entry = iterator.next();
-                    int broadcastIdForPast = entry.getValue().first;
-                    if (broadcastId == broadcastIdForPast) {
-                        iterator.remove();
-                    }
+        }
+        synchronized (mSinksWaitingForPast) {
+            Iterator<Map.Entry<BluetoothDevice, Pair<Integer, Integer>>> iterator =
+                    mSinksWaitingForPast.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<BluetoothDevice, Pair<Integer, Integer>> entry = iterator.next();
+                int broadcastIdForPast = entry.getValue().first;
+                if (broadcastId == broadcastIdForPast) {
+                    iterator.remove();
                 }
             }
         }
