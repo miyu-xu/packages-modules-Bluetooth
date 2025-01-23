@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09118f85_eca45cf3",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T21:30:33Z",
+      "side": 1,
+      "message": "Nit: Using \"\u0026\" should be preferred since it resilient to changes in the type of the variable. Also it looks odd without \"\u0026\".",
+      "fixSuggestions": [
+        {
+          "fixId": "bfe50ce5_740f0059",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "    bt_property_t remote_properties \u003d {BT_PROPERTY_UUIDS, sizeof(remote_uuids), \u0026remote_uuids};\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "      remote_properties \u003d {BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids), \u0026remote_uuids};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "597023e8531f38d76a11776865f42d6727e80492",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
