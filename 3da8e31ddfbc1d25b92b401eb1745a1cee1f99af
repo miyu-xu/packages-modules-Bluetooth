@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b56df9_00e89318",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3125,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-23T16:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5121a15_404bc1bd",
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc7669f4_9d990f9d",
@@ -151,6 +169,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da9d3d1e_5e2f7fed",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-23T16:20:35Z",
+      "side": 1,
+      "message": "Done partially, please check",
+      "parentUuid": "cfea6d87_1e491f0c",
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8abdfd4_7d2178b5",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 4
@@ -180,6 +216,24 @@
           ]
         }
       ],
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e88fbabd_945887f6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3142,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-23T16:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8abdfd4_7d2178b5",
       "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
