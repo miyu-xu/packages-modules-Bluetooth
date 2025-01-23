@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5121a15_404bc1bd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3125,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T16:05:46Z",
+      "side": 1,
+      "message": "boolean ringtoneContextAvailable \u003d false; ?",
+      "fixSuggestions": [
+        {
+          "fixId": "d0864540_9adb5309",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3125,
+                "startChar": 0,
+                "endLine": 3126,
+                "endChar": 0
+              },
+              "replacement": "            boolean ringtoneContextAvailable \u003d false;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3129,
+                "startChar": 0,
+                "endLine": 3131,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc7669f4_9d990f9d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3133,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T16:05:46Z",
+      "side": 1,
+      "message": "typo \"Rrngtone\"",
+      "fixSuggestions": [
+        {
+          "fixId": "345dd5a7_b1c78ae3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3133,
+                "startChar": 0,
+                "endLine": 3134,
+                "endChar": 0
+              },
+              "replacement": "            /* Inband Ringtone is enabled only for device which are currectly Active or\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7945bbb_a2a46f30",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3133,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T16:05:46Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"currectly\" -- should it be \"currently\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"currectly\" -- should it be \"currently\"?\nor, alternatively \u0027correct\u0027 or \u0027correctly\u0027\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 3133,
+        "startChar": 68,
+        "endLine": 3133,
+        "endChar": 77
+      },
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfea6d87_1e491f0c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T16:05:46Z",
+      "side": 1,
+      "message": "what about:\n\"Enables in-band ringtone only for the currently active device (or primary device in broadcast scenarios). \nThe active device is notified of its state via GTBS. \nWhen enabled, remote devices will not generate an internal ringtone upon receiving a GTBS incoming call notification; \ninstead, they will wait for a Unicast stream containing the in-band ringtone.\nNote: In-band ringtone is disabled if any device in the group removes \"Ringtone\" from its available context types.\" ?",
+      "fixSuggestions": [
+        {
+          "fixId": "44dbdece_7b55e784",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3133,
+                "startChar": 0,
+                "endLine": 3137,
+                "endChar": 0
+              },
+              "replacement": "            /* Enables in-band ringtone only for the currently active device (or primary\n             * device in broadcast scenarios).\n             * The active device is notified of its state via GTBS.\n             * When enabled, remote device will not generate internal ringtone\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3140,
+                "startChar": 0,
+                "endLine": 3141,
+                "endChar": 0
+              },
+              "replacement": "             * context types, the inband ringtone will be removed.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8abdfd4_7d2178b5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3142,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-23T16:05:46Z",
+      "side": 1,
+      "message": "spare white space ?",
+      "fixSuggestions": [
+        {
+          "fixId": "486647a5_fd4d1931",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3142,
+                "startChar": 0,
+                "endLine": 3143,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "3da8e31ddfbc1d25b92b401eb1745a1cee1f99af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
