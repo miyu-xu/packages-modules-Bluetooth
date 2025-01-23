@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d1d0f9d_970a6464",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-01-23T18:35:27Z",
+      "side": 1,
+      "message": "Jakub, using LeAudioLtvMap instead of just std::vector\u003cuint_8\u003e will also ensure during parsing if metadata is not in LTV format we can throw error.\n\nint ParseSinglePac(std::vector\u003cstruct acs_ac_record\u003e\u0026 pac_recs, uint16_t len,\n                   const uint8_t* value) {\n// Like codec config LTV\n  if (utils::IsCodecUsingLtvFormat(rec.codec_id)) {\n    bool parsed;\n    rec.codec_spec_caps \u003d\n        types::LeAudioLtvMap::Parse(value, codec_spec_cap_len, parsed);\n    if (!parsed) return -1;\n  }\n\nWe will have \n\n  bool parsed;\n  rec.metadata \u003d\n      types::LeAudioLtvMap::Parse(value, metadata_len, parsed);\n  if (!parsed) return -1;\n\ninstead of just\n\n  rec.metadata.assign(value, value+metadata_len);\n\n\n\nAlso metadata could be more than one of different types like preferred Audio context and vendor etc. It\u0027s maintainablity/convertablity might be difficult across stack.\n\nCurrent AOSP might not be making much use of PAC metadata but vendor codecs it\u0027s heavily used and using LeAudioLtvMap is easiler to convert/maintain as all utility functions are already present around it.",
+      "revId": "25ebe775e1b7446f1ecc824eac6b1d222996da0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad82805d_08d6de1b",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 5
