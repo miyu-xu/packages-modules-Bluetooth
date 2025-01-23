@@ -40,6 +40,30 @@
       ],
       "revId": "91c01fbab71b44de2471d28d8bd45e4676f55141",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "930cf8d6_43f9311f",
+        "filename": "system/stack/include/smp_status.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-23T22:48:02Z",
+      "side": 1,
+      "message": "SMP_BUSY: New specification error code meaning that peer device is busy. This error is sent to or received from the remote device.\nSMP_IMPL_BUSY: Existing internal error code meaning that smp/pairing module is busy. This error is sent by the smp module to its client modules.",
+      "parentUuid": "9dd5a030_9c849b09",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "91c01fbab71b44de2471d28d8bd45e4676f55141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
