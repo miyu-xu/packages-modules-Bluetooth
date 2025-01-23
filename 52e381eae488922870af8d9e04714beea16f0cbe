@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76bab5b4_62dd166b",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 0,
+      "message": "`prop-\u003eval` should be an Uuid pointer. Hence\n\nfor\n\nUuid uuids[SIZE] \u003d {}\n\n`uuids` should be used instead of `\u0026uuids`",
+      "range": {
+        "startLine": 307,
+        "startChar": 47,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "52e381eae488922870af8d9e04714beea16f0cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

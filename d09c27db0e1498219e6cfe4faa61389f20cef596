@@ -1,0 +1,775 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "916138c9_082bbc63",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "same as below, shouldn\u0027t this be just `remote_uuids` as it is already a pointer?",
+      "range": {
+        "startLine": 143,
+        "startChar": 80,
+        "endLine": 143,
+        "endChar": 93
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e1c032fc_fc6782aa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 143,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "    bt_property_t remote_properties \u003d {BT_PROPERTY_UUIDS, sizeof(remote_uuids), remote_uuids};\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "      remote_properties \u003d {BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids), remote_uuids};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d004ba4c_4e373f1e",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "is this correct? \n\n`remote_uuids` is already a pointer and shouldn\u0027t it be just `remote_uuids` without the `\u0026`?",
+      "range": {
+        "startLine": 160,
+        "startChar": 71,
+        "endLine": 160,
+        "endChar": 84
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "063ceb85_5d7d6e1b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "      remote_properties \u003d {BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids), remote_uuids};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b503d5eb_4b46c1fd",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "FYI: note that this array is only of size 8",
+      "range": {
+        "startLine": 348,
+        "startChar": 34,
+        "endLine": 348,
+        "endChar": 35
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5209fc_3171be26",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "this returns bt_status_t -\u003e converting to bool directly here is a bit confusing and not readable, please do an explicit comparison with `BT_STATUS_SUCCESS` instead",
+      "range": {
+        "startLine": 379,
+        "startChar": 10,
+        "endLine": 379,
+        "endChar": 49
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53dce3b_c98e21fc",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "nit: num_bredr_uuids",
+      "range": {
+        "startLine": 383,
+        "startChar": 8,
+        "endLine": 383,
+        "endChar": 20
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb930aa0_36ff5909",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "why do we need this macro while this can be expressed as:\n\n```c++\nUuid remote_uuids_le[BT_MAX_NUM_UUIDS] \u003d {};\nbt_property_t le_uuids_prop \u003d  {BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids_le), remote_uuids_le};\n```\n\nthe AI suggested fix below also makes sense",
+      "range": {
+        "startLine": 387,
+        "startChar": 4,
+        "endLine": 387,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "63ded2d2_4354cb02",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 311,
+                "startChar": 0,
+                "endLine": 312,
+                "endChar": 0
+              },
+              "replacement": "  properties[num_props] \u003d {BT_PROPERTY_BDADDR, sizeof(addr), \u0026addr};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 321,
+                "endChar": 0
+              },
+              "replacement": "  properties[num_props] \u003d {BT_PROPERTY_BDNAME, sizeof(name), \u0026name};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 325,
+                "startChar": 0,
+                "endLine": 327,
+                "endChar": 0
+              },
+              "replacement": "  properties[num_props] \u003d {BT_PROPERTY_ADAPTER_DISCOVERABLE_TIMEOUT, sizeof(disc_timeout),\n                           \u0026disc_timeout};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 331,
+                "startChar": 0,
+                "endLine": 333,
+                "endChar": 0
+              },
+              "replacement": "  properties[num_props] \u003d {BT_PROPERTY_ADAPTER_BONDED_DEVICES, sizeof(bonded_devices), bonded_devices};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 337,
+                "startChar": 0,
+                "endLine": 339,
+                "endChar": 0
+              },
+              "replacement": "  properties[num_props] \u003d {BT_PROPERTY_UUIDS, sizeof(local_uuids), local_uuids};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 356,
+                "startChar": 0,
+                "endLine": 358,
+                "endChar": 0
+              },
+              "replacement": "  remote_properties[num_props] \u003d {BT_PROPERTY_BDNAME, sizeof(name), \u0026name};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 361,
+                "startChar": 0,
+                "endLine": 363,
+                "endChar": 0
+              },
+              "replacement": "  remote_properties[num_props] \u003d {BT_PROPERTY_REMOTE_FRIENDLY_NAME, sizeof(alias), \u0026alias};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 366,
+                "startChar": 0,
+                "endLine": 368,
+                "endChar": 0
+              },
+              "replacement": "  remote_properties[num_props] \u003d {BT_PROPERTY_CLASS_OF_DEVICE, sizeof(cod), \u0026cod};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 371,
+                "startChar": 0,
+                "endLine": 373,
+                "endChar": 0
+              },
+              "replacement": "  remote_properties[num_props] \u003d {BT_PROPERTY_TYPE_OF_DEVICE, sizeof(devtype), \u0026devtype};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 376,
+                "startChar": 0,
+                "endLine": 378,
+                "endChar": 0
+              },
+              "replacement": "  remote_properties[num_props] \u003d {BT_PROPERTY_UUIDS, sizeof(remote_uuids), remote_uuids};\n"
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 385,
+                "startChar": 0,
+                "endLine": 386,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_core.cc",
+              "range": {
+                "startLine": 387,
+                "startChar": 0,
+                "endLine": 389,
+                "endChar": 0
+              },
+              "replacement": "    bt_property_t le_uuids_prop \u003d {BT_PROPERTY_UUIDS_LE, sizeof(remote_uuids_le), remote_uuids_le};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "737b352f_7d90e375",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "check `\u003d\u003d BT_STATUS_SUCCESS` instead",
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9cd37a2_252fe719",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "Not very sure about this logic, you already did std::min, then it must be smaller than BT_MAX_NUM_UUIDs, did you mean:\n\n```\nint uuids_total \u003d num_br_uuids + num_le_uuids;\n\nif (uuids_total \u003e BT_MAX_NUM_UUIDS) {\n    log::error(\"too many total UUIDS, br:{}, le:{} for {}, will trim\", num_br_uuids, num_le_uuids, bd_addr-\u003eToStringForLogging());\n    uuids_total \u003d BT_MAX_NUM_UUIDS;\n}\n```\n\n`BT_MAX_NUM_UUIDS` is 32, which is quite small. I wonder if we need to increase its size.\n\nHow did we handle overflow before? I guess 32+ UUIDs will be ignored as well as BT_MAX_NUM_UUIDS is the size of the array passed to `bt_property_t`",
+      "range": {
+        "startLine": 391,
+        "startChar": 6,
+        "endLine": 396,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "300cbac1_ef044140",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be `uuid_prop-\u003eval + uuid_prop-\u003elen` as otherwise you will overwrite the classic UUIDs",
+      "range": {
+        "startLine": 400,
+        "startChar": 13,
+        "endLine": 400,
+        "endChar": 27
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73455343_5c19890f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "same as below: can we expose this in a header to avoid forward declaration?",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 65
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92246576_378b14cf",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "can we expose this in a header to avoid forward declaration?",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 65
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7adfb81_747877a9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "Should key has a default value of `BTIF_STORAGE_KEY_REMOTE_SERVICE`",
+      "range": {
+        "startLine": 190,
+        "startChar": 18,
+        "endLine": 190,
+        "endChar": 21
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4d90f0_bd5aef6f",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "also this logic is kind of strange, what if `prop-\u003etype` is `BT_PROPERTY_UUIDS`, are we always going to crash?",
+      "range": {
+        "startLine": 191,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e9cb07_6216d59d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "if we are doing this check in a switch case for `prop-\u003etype`, shouldn\u0027t we put LE service in a different case and copy the code?",
+      "range": {
+        "startLine": 191,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "728bc43c_f27eaacb",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "might as well just copy-paste the code into two cases and avoid the `log::fatal` same as above",
+      "range": {
+        "startLine": 312,
+        "startChar": 4,
+        "endLine": 324,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccac5602_83c64f52",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "best to have some unit tests for this\n\nOR you can do this in GD `packages/modules/Bluetooth/system/gd/storage/` when `storage_module.cc` initializes.",
+      "range": {
+        "startLine": 1461,
+        "startChar": 5,
+        "endLine": 1461,
+        "endChar": 34
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "187bca2b_645c56b4",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1477,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "same question as above, why do we need this macro as it can be replaced with\n\n```\nUuid remote_uuids[BT_MAX_NUM_UUIDS] \u003d {};\nbt_property_t remote_uuids_prop \u003d {BT_PROPERTY_UUIDS, sizeof(remote_uuids), remote_uuids};\n```",
+      "range": {
+        "startLine": 1474,
+        "startChar": 0,
+        "endLine": 1477,
+        "endChar": 45
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "829e8ff0_eb8ef276",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "please compare with BT_STATUS_SUCCESS instead of implicitly convert to bool",
+      "range": {
+        "startLine": 1478,
+        "startChar": 4,
+        "endLine": 1479,
+        "endChar": 12
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2701fbae_99b4abc2",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "std::vector\u003cuint8_t\u003e property_value \u003d {};\n\nor why can\u0027t you use `std::string`, since it is a config file?\n\nyou can use a StringStream for easier appending",
+      "range": {
+        "startLine": 1481,
+        "startChar": 25,
+        "endLine": 1481,
+        "endChar": 39
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8cea16_5e7cd615",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1488,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "I believe previous code was just calling `uuid.ToString()` in `prop2cfg` above",
+      "range": {
+        "startLine": 1487,
+        "startChar": 6,
+        "endLine": 1488,
+        "endChar": 90
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70bab88f_540638c9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "if return value is not checked, no need to declare it",
+      "range": {
+        "startLine": 1497,
+        "startChar": 4,
+        "endLine": 1497,
+        "endChar": 19
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618c61c5_701bea07",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "Do we still need this with the latest design?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 60
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60635ee2_510a1384",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "Probably need to update here to indicate that this is only for BR/EDR service record including both SDP services and GATT over BR/EDR services",
+      "range": {
+        "startLine": 302,
+        "startChar": 19,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7fdad92_6644718b",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "Please add some documentation for this enum like the ones shown above like\n\n```c++\n  /**\n   * Description - Bluetooth Low Energy Service Record\n   * Access mode - GET.\n   * Data Type   - bt_service_record_t\n   */\n```",
+      "range": {
+        "startLine": 430,
+        "startChar": 2,
+        "endLine": 430,
+        "endChar": 22
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b48f27f4_c32da6e1",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-01-23T07:25:54Z",
+      "side": 1,
+      "message": "FYI: There is another copy of this enum list in \n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java;l\u003d52",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d797de83_06b40427",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 430,
+                "startChar": 0,
+                "endLine": 430,
+                "endChar": 0
+              },
+              "replacement": "  /**\n   * Description - Bluetooth Service 128-bit UUIDs for LE\n   * Access mode - Only GET.\n   * Data type   - Array of bluetooth::Uuid (Array size inferred from property\n   *               length).\n   */\n"
+            },
+            {
+              "path": "system/include/hardware/bluetooth.h",
+              "range": {
+                "startLine": 432,
+                "startChar": 0,
+                "endLine": 432,
+                "endChar": 0
+              },
+              "replacement": "  /**\n   * Description - Timestamp of the remote device\n   * Access mode - Only GET.\n   * Data type   - uint64_t.\n   */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
