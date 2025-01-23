@@ -843,6 +843,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e80fa82_03c79664",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:08:50Z",
+      "side": 1,
+      "message": "storage_module.cc is not aware of insteresting services. Also, it doesn\u0027t know how to parse values. So not a good fit.",
+      "parentUuid": "ccac5602_83c64f52",
+      "range": {
+        "startLine": 1461,
+        "startChar": 5,
+        "endLine": 1461,
+        "endChar": 34
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "187bca2b_645c56b4",

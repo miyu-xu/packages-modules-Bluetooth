@@ -22,6 +22,54 @@
       },
       "revId": "52e381eae488922870af8d9e04714beea16f0cbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35bf86eb_5a62587d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:08:50Z",
+      "side": 0,
+      "message": "I don\u0027t understand what you mean here.",
+      "parentUuid": "76bab5b4_62dd166b",
+      "range": {
+        "startLine": 307,
+        "startChar": 47,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "52e381eae488922870af8d9e04714beea16f0cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28320021_c4feb655",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:08:50Z",
+      "side": 0,
+      "message": "I don\u0027t understand what you mean here.",
+      "parentUuid": "76bab5b4_62dd166b",
+      "range": {
+        "startLine": 307,
+        "startChar": 47,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "52e381eae488922870af8d9e04714beea16f0cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
