@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "562cbcef_dbd5111e",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "916138c9_082bbc63",
+      "range": {
+        "startLine": 143,
+        "startChar": 80,
+        "endLine": 143,
+        "endChar": 93
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d004ba4c_4e373f1e",
@@ -95,6 +119,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b41fc961_46fa5c0a",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d004ba4c_4e373f1e",
+      "range": {
+        "startLine": 160,
+        "startChar": 71,
+        "endLine": 160,
+        "endChar": 84
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b503d5eb_4b46c1fd",
         "filename": "system/btif/src/btif_core.cc",
         "patchSetId": 1
@@ -106,6 +154,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "FYI: note that this array is only of size 8",
+      "range": {
+        "startLine": 348,
+        "startChar": 34,
+        "endLine": 348,
+        "endChar": 35
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d6d10c_59695ee1",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "New property is read to separate variable, and merged into existing UUIDS property, so no need to increase the size.",
+      "parentUuid": "b503d5eb_4b46c1fd",
       "range": {
         "startLine": 348,
         "startChar": 34,
@@ -139,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "156a7c05_ba117174",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "This was unused, removing.",
+      "parentUuid": "5e5209fc_3171be26",
+      "range": {
+        "startLine": 379,
+        "startChar": 10,
+        "endLine": 379,
+        "endChar": 49
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c53dce3b_c98e21fc",
@@ -152,6 +248,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "nit: num_bredr_uuids",
+      "range": {
+        "startLine": 383,
+        "startChar": 8,
+        "endLine": 383,
+        "endChar": 20
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6320976a_a75d68ca",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c53dce3b_c98e21fc",
       "range": {
         "startLine": 383,
         "startChar": 8,
@@ -315,6 +435,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8cdc6ede_7df6b247",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "I\u0027m just folowing convention here. \n\nIMHO we don\u0027t need separate \"confing\" and \"Strorage\" layers at all, and should return proper data types like \"vector\" from storage module, and not \"property\"",
+      "parentUuid": "eb930aa0_36ff5909",
+      "range": {
+        "startLine": 387,
+        "startChar": 4,
+        "endLine": 387,
+        "endChar": 30
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "737b352f_7d90e375",
         "filename": "system/btif/src/btif_core.cc",
         "patchSetId": 1
@@ -326,6 +470,24 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "check `\u003d\u003d BT_STATUS_SUCCESS` instead",
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "585b81a9_c3e5ac1b",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "737b352f_7d90e375",
       "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -353,6 +515,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46fb2924_572b00d2",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9cd37a2_252fe719",
+      "range": {
+        "startLine": 391,
+        "startChar": 6,
+        "endLine": 396,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "300cbac1_ef044140",
@@ -366,6 +552,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "shouldn\u0027t this be `uuid_prop-\u003eval + uuid_prop-\u003elen` as otherwise you will overwrite the classic UUIDs",
+      "range": {
+        "startLine": 400,
+        "startChar": 13,
+        "endLine": 400,
+        "endChar": 27
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b166b2_4325f657",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "300cbac1_ef044140",
       "range": {
         "startLine": 400,
         "startChar": 13,
@@ -445,6 +655,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f39b2ee_a520cd87",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "This was bad patch version",
+      "parentUuid": "a7adfb81_747877a9",
+      "range": {
+        "startLine": 190,
+        "startChar": 18,
+        "endLine": 190,
+        "endChar": 21
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e4d90f0_bd5aef6f",
@@ -491,6 +725,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83dd3a87_3d3b0dac",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "This was bad patch version",
+      "parentUuid": "79e9cb07_6216d59d",
+      "range": {
+        "startLine": 191,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15b2dd04_a37a5fac",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "This was bad patch version",
+      "parentUuid": "4e4d90f0_bd5aef6f",
+      "range": {
+        "startLine": 191,
+        "startChar": 6,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "728bc43c_f27eaacb",
@@ -504,6 +786,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "might as well just copy-paste the code into two cases and avoid the `log::fatal` same as above",
+      "range": {
+        "startLine": 312,
+        "startChar": 4,
+        "endLine": 324,
+        "endChar": 7
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25096ac4_1dd89871",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "728bc43c_f27eaacb",
       "range": {
         "startLine": 312,
         "startChar": 4,
@@ -562,6 +868,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "489f73ec_61374f41",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1477,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Just folowing convention here. Do you want me to prepare a patch where I remove this macro everywhere ?",
+      "parentUuid": "187bca2b_645c56b4",
+      "range": {
+        "startLine": 1474,
+        "startChar": 0,
+        "endLine": 1477,
+        "endChar": 45
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "829e8ff0_eb8ef276",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 1
@@ -573,6 +903,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "please compare with BT_STATUS_SUCCESS instead of implicitly convert to bool",
+      "range": {
+        "startLine": 1478,
+        "startChar": 4,
+        "endLine": 1479,
+        "endChar": 12
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ae5c2f_b1675456",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "829e8ff0_eb8ef276",
       "range": {
         "startLine": 1478,
         "startChar": 4,
@@ -606,6 +960,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f411f0fe_4efde512",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "This is copy-paste from btif_dm.cc , where we always use such pattern to fill those properties.\n\nI can prepare separate patch to update all places if needed",
+      "parentUuid": "2701fbae_99b4abc2",
+      "range": {
+        "startLine": 1481,
+        "startChar": 25,
+        "endLine": 1481,
+        "endChar": 39
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c8cea16_5e7cd615",
@@ -619,6 +997,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "I believe previous code was just calling `uuid.ToString()` in `prop2cfg` above",
+      "range": {
+        "startLine": 1487,
+        "startChar": 6,
+        "endLine": 1488,
+        "endChar": 90
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8fb2a9_b9365f0b",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1488,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "There is no pervious code here. The migration piece is new.\n\nWe prepare a \"property\" value. We call btif_storage_set_remote_device_property, and it would internally call ``prop2cfg`` on the value provided and convert it to string form.",
+      "parentUuid": "2c8cea16_5e7cd615",
       "range": {
         "startLine": 1487,
         "startChar": 6,
@@ -652,6 +1054,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e18b7be_f3c2c3f4",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "yet another copy-paste error...",
+      "parentUuid": "70bab88f_540638c9",
+      "range": {
+        "startLine": 1497,
+        "startChar": 4,
+        "endLine": 1497,
+        "endChar": 19
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "618c61c5_701bea07",
@@ -675,6 +1101,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35da4866_26ecabce",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Bad patch version, removed in V2.",
+      "parentUuid": "618c61c5_701bea07",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 60
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60635ee2_510a1384",
@@ -688,6 +1138,30 @@
       "writtenOn": "2025-01-23T07:25:54Z",
       "side": 1,
       "message": "Probably need to update here to indicate that this is only for BR/EDR service record including both SDP services and GATT over BR/EDR services",
+      "range": {
+        "startLine": 302,
+        "startChar": 19,
+        "endLine": 302,
+        "endChar": 43
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab1f342e_aa2719a7",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "That\u0027s the tricky part:\nwith this design, meaning of \"service record\" in this layer is both LE and Classic services.\nJust in storage and navitve we have a split, where it\u0027s separate LE and Classic services.\n\nThat\u0027s why I was opposing this design, and leaning towards separating services through all layers.",
+      "parentUuid": "60635ee2_510a1384",
       "range": {
         "startLine": 302,
         "startChar": 19,
@@ -768,6 +1242,54 @@
           ]
         }
       ],
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35a02035_814fab49",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "AbstractionLayer.java is not 1:1 match. I.e. BT_PROPERTY_REMOTE_MAX_SESSION_KEY_SIZE is just in native, but never sent to Java, so not in AbstractionLayer.java",
+      "parentUuid": "b48f27f4_c32da6e1",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 23
+      },
+      "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc686fb_84027551",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-23T10:04:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7fdad92_6644718b",
+      "range": {
+        "startLine": 430,
+        "startChar": 2,
+        "endLine": 430,
+        "endChar": 22
+      },
       "revId": "d09c27db0e1498219e6cfe4faa61389f20cef596",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
