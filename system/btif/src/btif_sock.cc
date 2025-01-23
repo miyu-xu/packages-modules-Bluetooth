@@ -152,6 +152,13 @@ void btif_sock_cleanup(void) {
   thread = NULL;
 }
 
+void btif_bredr_socket_disconnect_all(void) {
+  if (com::android::bluetooth::flags::rfcomm_socket_closed_by_bredr_disabled()) {
+    // disconnect all RFCOMM sockets
+    btsock_rfc_disconnect_all();
+  }
+}
+
 static bt_status_t btsock_control_req(uint8_t dlci, const RawAddress& bd_addr, uint8_t modem_signal,
                                       uint8_t break_signal, uint8_t discard_buffers,
                                       uint8_t break_signal_seq, bool fc) {
