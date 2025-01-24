@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39d84174_10f30988",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3012,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-01-24T19:31:02Z",
+      "side": 1,
+      "message": "We would receive another `ProfileDisconnected` message at that time, which would re-trigger the check.",
+      "parentUuid": "e578d03b_258c31cc",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9ae002e_979f7602",
         "filename": "system/gd/rust/linux/stack/src/lib.rs",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-01-24T19:19:33Z",
       "side": 1,
       "message": "I\u0027m not sure it makes sense to move these checks into the battery service. These checks make more sense in the context of many different services and passing all this info to battery service seems superfluous.",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ded5192_2ace0f88",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-01-24T19:31:02Z",
+      "side": 1,
+      "message": "I felt that `lib.rs` is more for communication and actual execution logic should be kept out of it as much as possible. It made sense to pass information to BAS and allow it to determine whether or not it should be disconnecting itself. If you feel strongly otherwise, I can leave it as is.",
+      "parentUuid": "e9ae002e_979f7602",
       "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
