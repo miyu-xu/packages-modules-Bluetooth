@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8420515b_a7f2c867",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-24T06:28:14Z",
+      "side": 1,
+      "message": "Let\u0027s put this in an if else case, since unregisterApp won\u0027t do anything if the flag is on. Have unregisterApp in the else case.",
+      "range": {
+        "startLine": 1053,
+        "startChar": 8,
+        "endLine": 1055,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6a01b215_c8e15f04",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGatt.java",
+              "range": {
+                "startLine": 1052,
+                "startChar": 0,
+                "endLine": 1053,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGatt.java",
+              "range": {
+                "startLine": 1055,
+                "startChar": 0,
+                "endLine": 1055,
+                "endChar": 0
+              },
+              "replacement": "        } else {\n            unregisterApp();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9673631f46a98293f1e5c540c6e94d8b93244049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0060acdb_7f1ba6d5",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-24T06:28:14Z",
+      "side": 1,
+      "message": "Probably shouldn\u0027t be checked under the flag since this unregisterApp can be called via onClientRegistered.",
+      "range": {
+        "startLine": 1189,
+        "startChar": 12,
+        "endLine": 1191,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8688a24e_377eeb43",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGatt.java",
+              "range": {
+                "startLine": 1189,
+                "startChar": 0,
+                "endLine": 1192,
+                "endChar": 0
+              },
+              "replacement": "            mCallback \u003d null;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9673631f46a98293f1e5c540c6e94d8b93244049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
