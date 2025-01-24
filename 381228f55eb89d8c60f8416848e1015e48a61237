@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14f637be_8797340e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4473,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-24T07:44:54Z",
+      "side": 1,
+      "message": "Does it mean that when the earbuds tell us that they are not available for CONVERSATIONAL audio context, we will not respect this?",
+      "range": {
+        "startLine": 4473,
+        "startChar": 8,
+        "endLine": 4473,
+        "endChar": 32
+      },
+      "revId": "381228f55eb89d8c60f8416848e1015e48a61237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
