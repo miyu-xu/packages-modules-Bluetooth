@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a220471_1c4aed43",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-24T07:25:20Z",
+      "side": 1,
+      "message": "When the user calls this method without calling `disconnect`, we should unregister the app.",
+      "parentUuid": "8420515b_a7f2c867",
+      "range": {
+        "startLine": 1053,
+        "startChar": 8,
+        "endLine": 1055,
+        "endChar": 9
+      },
+      "revId": "9673631f46a98293f1e5c540c6e94d8b93244049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0060acdb_7f1ba6d5",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "9673631f46a98293f1e5c540c6e94d8b93244049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a15307_29cf5994",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-24T07:25:20Z",
+      "side": 1,
+      "message": "I updated the caller side.",
+      "parentUuid": "0060acdb_7f1ba6d5",
+      "range": {
+        "startLine": 1189,
+        "startChar": 12,
+        "endLine": 1191,
+        "endChar": 13
+      },
       "revId": "9673631f46a98293f1e5c540c6e94d8b93244049",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
