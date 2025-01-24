@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50914ca5_745ca45f",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-01-24T06:22:12Z",
+      "side": 1,
+      "message": "Added to ChangeIds, but since BAKLAVA is not added, using 36 for now and added a comment with Todo!",
+      "parentUuid": "49c697cc_bc84302c",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 79
+      },
+      "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04113416_2cf6c486",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-01-24T02:16:35Z",
       "side": 1,
       "message": "I believe that change id has their own way to enforce a value during test and you may want to look into that to avoid flakiness, or unreliable result",
+      "range": {
+        "startLine": 123,
+        "startChar": 10,
+        "endLine": 123,
+        "endChar": 99
+      },
+      "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63e9ed61_1b72960d",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-01-24T06:22:12Z",
+      "side": 1,
+      "message": "Got it, will look into it.",
+      "parentUuid": "04113416_2cf6c486",
       "range": {
         "startLine": 123,
         "startChar": 10,

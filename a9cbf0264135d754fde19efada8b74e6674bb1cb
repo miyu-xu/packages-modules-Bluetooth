@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51a24c23_4538b3c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-01-24T06:22:12Z",
+      "side": 1,
+      "message": "Moved ChangeId to app/ChangeIds, and got all the test working, but the build is failing like a mentioned in the team chat. @wescande@google.com William, what do you think about moving `ChangeIds.java` under frameworks instead of app? Hyundo suggested that that direction may be desirable since most files under app use framework code, but files under framework code rarely or never use code under the app directory. WDYT?",
+      "revId": "a9cbf0264135d754fde19efada8b74e6674bb1cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
