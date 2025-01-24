@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91b3ccd1_4133221e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-01-24T08:27:25Z",
+      "side": 1,
+      "message": "Tried to merge the ChangeId to app/ChangeId.java but couldn\u0027t solve build errors in the end. Therefore, keeping the ChangeId local an will see if I can address local ChangeIds under `framework` and merge them together. Tests were all checked to be successful with flags on locally.",
+      "revId": "b5ddc4e5fc785d5f7d2d532b86d806fcc1995dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
