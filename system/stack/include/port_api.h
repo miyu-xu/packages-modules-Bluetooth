@@ -373,6 +373,19 @@ typedef void(tPORT_MGMT_CALLBACK)(const tPORT_RESULT code, uint16_t port_handle)
 
 /*******************************************************************************
  *
+ * Function         PORT_SetSdpDuration
+ *
+ * Description      This function configures connection according to the
+ *                  specifications in the tPORT_STATE structure.
+ *
+ * Parameters:      handle          - Handle returned in RFCOMM_CreateConnection
+ *                  sdp_duration_ms - Time spent doing sdp
+ *
+ ******************************************************************************/
+[[nodiscard]] int PORT_SetSdpDuration(uint16_t handle, uint64_t sdp_duration_ms);
+
+/*******************************************************************************
+ *
  * Function         PORT_SetState
  *
  * Description      This function configures connection according to the
