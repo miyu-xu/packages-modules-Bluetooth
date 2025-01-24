@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0fb3a5b_1e15a25b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1205,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-24T17:55:11Z",
+      "side": 1,
+      "message": "Can we refactor this into a separate function?",
+      "range": {
+        "startLine": 1188,
+        "startChar": 0,
+        "endLine": 1205,
+        "endChar": 9
+      },
+      "revId": "bf7eb53613ddbb1e09ad666fee093f8a7f1f30d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

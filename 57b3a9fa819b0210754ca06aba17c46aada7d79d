@@ -243,6 +243,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bade5177_649c03d4",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-24T17:55:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4873456_3fb6c85b",
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f89cc28c_247330d7",
