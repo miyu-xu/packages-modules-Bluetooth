@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f2b557_472b3deb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-01-24T00:47:07Z",
+      "side": 1,
+      "message": "Solved the Baklava issue by using 36 like in https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/core/java/android/widget/Button.java;l\u003d97;drc\u003df74230f0eb7014a98d9903d7374f740edff4e39c.\n\nAlso trying to solve a presubmit error by adding another bug that is the same as @ChangeId in the CL b/391958027.\n\nWill try to see if I can guard a test with targetSDK. Please let me know if more tests need to be added.",
+      "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
