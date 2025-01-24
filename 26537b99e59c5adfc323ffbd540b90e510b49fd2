@@ -40,6 +40,30 @@
       ],
       "revId": "26537b99e59c5adfc323ffbd540b90e510b49fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df85b788_840d7aa2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2025-01-24T12:38:40Z",
+      "side": 1,
+      "message": "Unit test for one of the path is already handled in file HeadsetServiceAndStateMachineTest.java in function testIsInbandRingingEnabled_SwitchActiveDevice() \n\nModified the current CL (unit testcase code) to handle remaining 2 paths.",
+      "parentUuid": "12d8f09b_1a02a3a5",
+      "range": {
+        "startLine": 1283,
+        "startChar": 4,
+        "endLine": 1283,
+        "endChar": 65
+      },
+      "revId": "26537b99e59c5adfc323ffbd540b90e510b49fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
