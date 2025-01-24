@@ -52,6 +52,24 @@
       "parentUuid": "fd1942bb_504b7890",
       "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "073d8493_4c3f53c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-24T11:01:33Z",
+      "side": 1,
+      "message": "got it, fix was obvious for me but it was not so clear from commit message to understand that. Now should be better:)",
+      "parentUuid": "91f8d580_251065e0",
+      "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
