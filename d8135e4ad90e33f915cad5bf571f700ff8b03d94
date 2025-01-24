@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e578d03b_258c31cc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3012,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-01-24T19:19:33Z",
+      "side": 1,
+      "message": "What if we fail to connect and go from connecting -\u003e disconnected?",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9ae002e_979f7602",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-01-24T19:19:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure it makes sense to move these checks into the battery service. These checks make more sense in the context of many different services and passing all this info to battery service seems superfluous.",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
