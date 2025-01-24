@@ -22,6 +22,30 @@
       },
       "revId": "381228f55eb89d8c60f8416848e1015e48a61237",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "611afd97_995b3f0f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 4473,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-24T14:59:17Z",
+      "side": 1,
+      "message": "In general - yes. The idea is to not CancelStreaming request here if group is \"InCall\" mode, even if this context is not allowed to stream.",
+      "parentUuid": "14f637be_8797340e",
+      "range": {
+        "startLine": 4473,
+        "startChar": 8,
+        "endLine": 4473,
+        "endChar": 32
+      },
+      "revId": "381228f55eb89d8c60f8416848e1015e48a61237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
