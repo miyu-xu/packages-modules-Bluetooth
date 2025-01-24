@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4255b06_33062f7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-01-24T11:57:03Z",
+      "side": 1,
+      "message": "Looks like DrNo+1 is not being granted automatically. Omair, could you give DrNo? Thanks!",
+      "revId": "5f7c4834909295b57cfdb394a4ad7a2f555620db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
