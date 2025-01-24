@@ -34,6 +34,24 @@
       "parentUuid": "f6bd0082_dde3adee",
       "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f8d580_251065e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-24T10:37:28Z",
+      "side": 1,
+      "message": "\"Hmm always mean always;)\" I\u0027m not talking about the meaning of the word. Now I understand what the problem is clearly reading commit message but not solution. How \"suspend procedure will always be executed if the primary\ndevice has managed external broadcast, so sinks will be properly cached.\" if \"Because paused broadcast sinks data are cleared at the beginning of the resume, then we lost this information.\" ?\n\n\"What do you mean by \"no sink data\"?\" and this is the example of understanding of this commit message :) you\u0027ve used this term \"Because paused broadcast sinks data are cleared\" - I\u0027m trying just use your language to be on the same page.\n\nThe solution that I understand if I follow the commit message is:\n1. \"sinks data are cleared at the beginning of the resume, then we lost this information\"\n2. So if there is another suspend request then it means: \"for sink managing external broadcast while suspending but there would be no \"sink data\" \"\n\nanother question is who is \"we\" in \"then we lost this information\" and what is an information carried in this sentence in term of problem vs solution ?\n\nIn general to finish the topic I would like understand how \"if the primary\ndevice has managed external broadcast\" solves problem of races here.",
+      "parentUuid": "fd1942bb_504b7890",
+      "revId": "0eb43450e1c45e3113cf38347d2111b3afabeea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
