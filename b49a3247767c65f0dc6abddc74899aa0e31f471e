@@ -70,6 +70,30 @@
       },
       "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25805e09_cc51a07d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-24T18:17:29Z",
+      "side": 1,
+      "message": "Yeah LEA will be enabled by default in 25Q2 anyway so that doesn\u0027t matter so much.",
+      "parentUuid": "6ab6cd66_fcc27a23",
+      "range": {
+        "startLine": 289,
+        "startChar": 8,
+        "endLine": 292,
+        "endChar": 9
+      },
+      "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
