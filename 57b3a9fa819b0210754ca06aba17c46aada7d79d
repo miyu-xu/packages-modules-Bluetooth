@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1bac87a_2d1d08bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-24T15:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1357ff1_45666e3e",
+      "range": {
+        "startLine": 526,
+        "startChar": 16,
+        "endLine": 535,
+        "endChar": 17
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf928088_4a1bab2e",
@@ -139,6 +163,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fb653ae_c6af18aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-24T15:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf928088_4a1bab2e",
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c005657_204cdd5b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-24T15:25:57Z",
+      "side": 1,
+      "message": "services_changed \u003d ture;",
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4873456_3fb6c85b",
@@ -230,6 +289,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0063089b_cdb9fe1a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-24T15:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80f5b50f_f17e601e",
+      "range": {
+        "startLine": 1614,
+        "startChar": 27,
+        "endLine": 1614,
+        "endChar": 49
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49d59e94_8bb7c768",
@@ -253,6 +336,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7775f1e6_ccccb113",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-24T15:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d59e94_8bb7c768",
+      "range": {
+        "startLine": 1622,
+        "startChar": 20,
+        "endLine": 1622,
+        "endChar": 32
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cc037cd_7eca6423",
@@ -266,6 +373,30 @@
       "writtenOn": "2025-01-23T22:11:42Z",
       "side": 1,
       "message": "we don\u0027t use NVRAM anymore",
+      "range": {
+        "startLine": 1626,
+        "startChar": 5,
+        "endLine": 1626,
+        "endChar": 40
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35bccd8b_5f8b36f2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-24T15:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cc037cd_7eca6423",
       "range": {
         "startLine": 1626,
         "startChar": 5,
