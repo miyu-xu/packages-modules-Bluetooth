@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ac2e63a_ecb3320c",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 8766,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-24T07:33:32Z",
+      "side": 1,
+      "message": "How is GMCS CCID still there? Shouldn\u0027t we already be clear of any MEDIA audio context when in a call? The local audio track metadata for MEDIA could still be there, but when InCall is set, I think we should not take this context when the remote metadata is composed.",
+      "range": {
+        "startLine": 8766,
+        "startChar": 31,
+        "endLine": 8766,
+        "endChar": 40
+      },
+      "revId": "d98a801f03c7c4594b4bddae16f4c4dea69c1637",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
