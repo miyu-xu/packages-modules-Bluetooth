@@ -16,6 +16,52 @@
       "message": "Solved the Baklava issue by using 36 like in https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/core/java/android/widget/Button.java;l\u003d97;drc\u003df74230f0eb7014a98d9903d7374f740edff4e39c.\n\nAlso trying to solve a presubmit error by adding another bug that is the same as @ChangeId in the CL b/391958027.\n\nWill try to see if I can guard a test with targetSDK. Please let me know if more tests need to be added.",
       "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49c697cc_bc84302c",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-24T02:16:35Z",
+      "side": 1,
+      "message": "Can you add it to packages/modules/Bluetooth/android/app/change-ids/com/android/bluetooth/ChangeIds.java and use the Build.version ? if it is not available, then at least annotate with a comment and a todo linked to a bug so we can assigned it to bugjuggler and fixed it after",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 79
+      },
+      "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04113416_2cf6c486",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-24T02:16:35Z",
+      "side": 1,
+      "message": "I believe that change id has their own way to enforce a value during test and you may want to look into that to avoid flakiness, or unreliable result",
+      "range": {
+        "startLine": 123,
+        "startChar": 10,
+        "endLine": 123,
+        "endChar": 99
+      },
+      "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
