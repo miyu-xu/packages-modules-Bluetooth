@@ -954,7 +954,19 @@ public final class BluetoothSocket implements Closeable {
 
     /*package*/ int available() throws IOException {
         if (VDBG) Log.d(TAG, "available: " + mSocketIS);
-        return mSocketIS.available();
+        if (mType == TYPE_L2CAP || mType == TYPE_L2CAP_LE) {
+            if (mL2capBuffer == null) {
+                createL2capRxBuffer();
+            }
+            int available = mL2capBuffer.remaining();
+            if (available == 0) {
+                available = mSocketIS.available();
+            }
+        } else {
+            available = mSocketIS.available();
+        }
+        Log.d(TAG, "available returns: " + available);
+        return available;
     }
 
     /*package*/ int read(byte[] b, int offset, int length) throws IOException {
