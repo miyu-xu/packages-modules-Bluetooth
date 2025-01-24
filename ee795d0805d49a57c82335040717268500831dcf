@@ -22,6 +22,30 @@
       },
       "revId": "ee795d0805d49a57c82335040717268500831dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492b9e91_3ae2ef3c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-24T21:42:11Z",
+      "side": 1,
+      "message": "I also wanted to check the behavior of read() in general,\n-  read() will be blocking if connection is alive and there is no data to read on the pipe\n- read() returns -1 on underlying socket disconnection\n\nadding some time to ensure read() is blocking till disconnection is triggered for the socket",
+      "parentUuid": "ec04ff68_3c6f9a31",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 31
+      },
+      "revId": "ee795d0805d49a57c82335040717268500831dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
