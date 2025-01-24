@@ -594,6 +594,30 @@ int PORT_SetAppUid(uint16_t handle, uint32_t app_uid) {
 
 /*******************************************************************************
  *
+ * Function         PORT_SetSdpDuration
+ *
+ * Description      This function configures connection according to the
+ *                  specifications in the tPORT_STATE structure.
+ *
+ * Parameters:      handle          - Handle returned in RFCOMM_CreateConnection
+ *                  sdp_duration_ms - Time spent doing sdp
+ *
+ ******************************************************************************/
+int PORT_SetSdpDuration(uint16_t handle, uint64_t sdp_duration_ms) {
+  tPORT* p_port = get_port_from_handle(handle);
+
+  if (p_port == nullptr) {
+    log::error("Unable to get RFCOMM port control block bad handle:{}", handle);
+    return PORT_BAD_HANDLE;
+  }
+
+  p_port->sdp_duration_ms = sdp_duration_ms;
+
+  return PORT_SUCCESS;
+}
+
+/*******************************************************************************
+ *
  * Function         PORT_SetSettings
  *
  * Description      This function configures connection according to the
