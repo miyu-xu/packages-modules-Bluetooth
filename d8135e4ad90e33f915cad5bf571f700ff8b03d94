@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "674474d8_024daedb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3012,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-01-24T19:36:31Z",
+      "side": 1,
+      "message": "No we would not because of this check. We only send it if we\u0027re currently connected",
+      "parentUuid": "39d84174_10f30988",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9ae002e_979f7602",
         "filename": "system/gd/rust/linux/stack/src/lib.rs",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "I felt that `lib.rs` is more for communication and actual execution logic should be kept out of it as much as possible. It made sense to pass information to BAS and allow it to determine whether or not it should be disconnecting itself. If you feel strongly otherwise, I can leave it as is.",
       "parentUuid": "e9ae002e_979f7602",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "699475fa_a607463b",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-01-24T19:36:31Z",
+      "side": 1,
+      "message": "I disagree since you\u0027re passing a lot of other services\u0027 information to battery service. If you really want to move this to battery service, you should pass bools like `are_media_profiles_connected` instead of all the connected media profiles",
+      "parentUuid": "0ded5192_2ace0f88",
       "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
