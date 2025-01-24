@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a264fb49_9846f329",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-24T13:21:38Z",
+      "side": 1,
+      "message": "I was considering this but I wasnt convinced to do even more refactoring changes. I was considering going back with another round a bit later. Touching the legacy raw metadata buffers would propagate on many levels... Oh well, let\u0027s try and see how big of a change it would be.",
+      "parentUuid": "077d8f6e_2381e856",
+      "revId": "25ebe775e1b7446f1ecc824eac6b1d222996da0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad82805d_08d6de1b",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 5
