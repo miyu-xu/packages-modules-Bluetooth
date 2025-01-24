@@ -70,6 +70,30 @@
       },
       "revId": "ee795d0805d49a57c82335040717268500831dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9f0f05_136e3f29",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-24T22:04:21Z",
+      "side": 1,
+      "message": "Sure, thats fine. I can even bring it down to 10 sec and add an assert",
+      "parentUuid": "8bb564e2_7d2f315f",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 31
+      },
+      "revId": "ee795d0805d49a57c82335040717268500831dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
