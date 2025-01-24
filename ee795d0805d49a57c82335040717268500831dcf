@@ -46,6 +46,30 @@
       },
       "revId": "ee795d0805d49a57c82335040717268500831dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb564e2_7d2f315f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-24T21:51:46Z",
+      "side": 1,
+      "message": "If that\u0027s the case I think there should be a assert during the wait where you check that we are connected- that plus maybe a comment will make it more clear what the wait is testing.\n\nAlso bumblebluetooth tests are already on the longer side, does it have to be 30?  Maybe reduce it to 20?  (loose suggestion, I won\u0027t be bothered if you keep it at 30)",
+      "parentUuid": "492b9e91_3ae2ef3c",
+      "range": {
+        "startLine": 259,
+        "startChar": 8,
+        "endLine": 259,
+        "endChar": 31
+      },
+      "revId": "ee795d0805d49a57c82335040717268500831dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
