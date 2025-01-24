@@ -22,6 +22,30 @@
       },
       "revId": "d98a801f03c7c4594b4bddae16f4c4dea69c1637",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd766ee_e5489d8b",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 8766,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-24T08:51:01Z",
+      "side": 1,
+      "message": "This is the result of removing `in_call_metadata_context_types_` if this ccid of previous metadata set by AF should not be there - only GTBS then this `in_call_metadata_context_types_` can\u0027t be removed.",
+      "parentUuid": "1ac2e63a_ecb3320c",
+      "range": {
+        "startLine": 8766,
+        "startChar": 31,
+        "endLine": 8766,
+        "endChar": 40
+      },
+      "revId": "d98a801f03c7c4594b4bddae16f4c4dea69c1637",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
