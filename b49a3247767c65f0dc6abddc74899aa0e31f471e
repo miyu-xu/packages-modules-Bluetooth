@@ -46,6 +46,30 @@
       },
       "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab6cd66_fcc27a23",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-24T01:24:11Z",
+      "side": 1,
+      "message": "Just had a syncup with UI team, they mentioned there is a request to hearingAid UI team to hide the LEA toggle for HA device for 25. Once that is implemented, we\u0027ll also be fine with this since users won\u0027t be able to manually toggle this?",
+      "parentUuid": "fc2bbb23_4c14f89d",
+      "range": {
+        "startLine": 289,
+        "startChar": 8,
+        "endLine": 292,
+        "endChar": 9
+      },
+      "revId": "b49a3247767c65f0dc6abddc74899aa0e31f471e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
