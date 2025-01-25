@@ -146,6 +146,7 @@ public class ScanManager {
     @VisibleForTesting boolean mIsConnecting;
     @VisibleForTesting int mProfilesConnecting;
     private int mProfilesConnected, mProfilesDisconnecting;
+    private BatchScanThrottler mBatchScanThrottler;
 
     @VisibleForTesting
     static class UidImportance {
@@ -202,6 +203,7 @@ public class ScanManager {
         IntentFilter locationIntentFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
         locationIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         mAdapterService.registerReceiver(mLocationReceiver, locationIntentFilter);
+        mBatchScanThrottler = new BatchScanThrottler(mScreenOn);
     }
 
     public void cleanup() {
@@ -291,6 +293,10 @@ public class ScanManager {
 
     public void callbackDone(int scannerId, int status) {
         mScanNative.callbackDone(scannerId, status);
+    }
+
+    void batchScanResultDelivered() {
+        mBatchScanThrottler.resetBackoff();
     }
 
     private void sendMessage(int what, ScanClient client) {
@@ -534,6 +540,7 @@ public class ScanManager {
             }
             mScreenOn = false;
             Log.d(TAG, "handleScreenOff()");
+            mBatchScanThrottler.onScreenOn(false);
             handleSuspendScans();
             updateRegularScanClientsScreenOff();
             updateRegularScanToBatchScanClients();
@@ -864,6 +871,7 @@ public class ScanManager {
             }
             mScreenOn = true;
             Log.d(TAG, "handleScreenOn()");
+            mBatchScanThrottler.onScreenOn(true);
             updateBatchScanToRegularScanClients();
             handleResumeScans();
             updateRegularScanClientsScreenOn();
@@ -1359,7 +1367,8 @@ public class ScanManager {
             if (mBatchClients.isEmpty()) {
                 return;
             }
-            long batchTriggerIntervalMillis = getBatchTriggerIntervalMillis();
+            long batchTriggerIntervalMillis =
+                    mBatchScanThrottler.getBatchTriggerIntervalMillis(mBatchClients);
             // Allows the alarm to be triggered within
             // [batchTriggerIntervalMillis, 1.1 * batchTriggerIntervalMillis]
             long windowLengthMillis = batchTriggerIntervalMillis / 10;
@@ -1517,17 +1526,6 @@ public class ScanManager {
                 mAdapterService.unregisterReceiver(receiver);
             }
             mNativeInterface.cleanup();
-        }
-
-        private long getBatchTriggerIntervalMillis() {
-            long intervalMillis = Long.MAX_VALUE;
-            for (ScanClient client : mBatchClients) {
-                if (client.settings != null && client.settings.getReportDelayMillis() > 0) {
-                    intervalMillis =
-                            Math.min(intervalMillis, client.settings.getReportDelayMillis());
-                }
-            }
-            return intervalMillis;
         }
 
         // Add scan filters. The logic is:
@@ -2253,4 +2251,5 @@ public class ScanManager {
         mHandler.post(
                 () -> mHandler.handleProfileConnectionStateChanged(profile, fromState, toState));
     }
+
 }
