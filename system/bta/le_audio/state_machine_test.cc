@@ -4147,12 +4147,8 @@ TEST_F(StateMachineTest, testAutonomousReleaseMultiple) {
 
   // Validate GroupStreamStatus
   EXPECT_CALL(mock_callbacks_,
-              StatusReportCb(leaudio_group_id,
-                             bluetooth::le_audio::GroupStreamStatus::RELEASING_AUTONOMOUS))
-          .Times(1);
-  EXPECT_CALL(mock_callbacks_,
               StatusReportCb(leaudio_group_id, bluetooth::le_audio::GroupStreamStatus::RELEASING))
-          .Times(0);
+          .Times(1);
   EXPECT_CALL(mock_callbacks_,
               StatusReportCb(leaudio_group_id, bluetooth::le_audio::GroupStreamStatus::IDLE))
           .Times(1);
