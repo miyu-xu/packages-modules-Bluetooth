@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb9d0ed3_97791bfa",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2234,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T22:23:20Z",
+      "side": 1,
+      "message": "Is it possible broadcastId still invalid here?",
+      "range": {
+        "startLine": 2234,
+        "startChar": 48,
+        "endLine": 2234,
+        "endChar": 59
+      },
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "252fba2a_072e9321",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2843,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T22:23:20Z",
+      "side": 1,
+      "message": "curious any reason we\u0027re moving this up here?",
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee7715e7_ff8f0ed3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3178,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T22:23:20Z",
+      "side": 1,
+      "message": "isAddedToSync() is not that clear to present the intent.\nCan we consider to rename it to something like isSyncInitiatedByAddingSourceRequest() or ...?",
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
