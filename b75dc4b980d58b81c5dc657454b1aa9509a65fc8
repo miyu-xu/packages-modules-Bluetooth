@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c370cf_09c104b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T20:09:30Z",
+      "side": 1,
+      "message": "Nice :)",
+      "revId": "b75dc4b980d58b81c5dc657454b1aa9509a65fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9a62bf8_594f9e9e",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T20:09:30Z",
+      "side": 1,
+      "message": "Use `any` here; the value could fluctuate",
+      "range": {
+        "startLine": 629,
+        "startChar": 53,
+        "endLine": 629,
+        "endChar": 57
+      },
+      "revId": "b75dc4b980d58b81c5dc657454b1aa9509a65fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7b514c_2faf6423",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T20:09:30Z",
+      "side": 1,
+      "message": "nit: I would prefer the values to be inlined, keeping local variables wrongly suggest that they will be reused somewhere.",
+      "range": {
+        "startLine": 638,
+        "startChar": 68,
+        "endLine": 638,
+        "endChar": 84
+      },
+      "revId": "b75dc4b980d58b81c5dc657454b1aa9509a65fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9ac6b14_21e7021f",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T20:09:30Z",
+      "side": 1,
+      "message": "Would use `any`, we don\u0027t care about the capabilities in this test.",
+      "range": {
+        "startLine": 639,
+        "startChar": 72,
+        "endLine": 639,
+        "endChar": 101
+      },
+      "revId": "b75dc4b980d58b81c5dc657454b1aa9509a65fc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
