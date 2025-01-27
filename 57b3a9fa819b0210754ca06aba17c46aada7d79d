@@ -302,6 +302,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aadea4a7_e91b3cf7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T22:08:48Z",
+      "side": 1,
+      "message": "On second fought, if you ever need to disable flag, I would prefer to keep the original list of services untouched.",
+      "parentUuid": "f89cc28c_247330d7",
+      "range": {
+        "startLine": 1524,
+        "startChar": 0,
+        "endLine": 1524,
+        "endChar": 1
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80f5b50f_f17e601e",
