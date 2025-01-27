@@ -16,6 +16,24 @@
       "message": "This API seems to be used by AudioManagerRouteController only. Not sure we should use it internally here in ActiveDeviceManager.\n\nWe had plans to refactor handling ActiveDeviceManager in the way, that each of the Audio service will just pass setActiveDevice call down to the ActiveDeviceManager and only ActiveDeviceManager will handle communication with AudioManager.\nIf we would have it, then ActiveDeviceManager could still track Wired headset connect/disconnect state and set proper new routing device.\n\nAnyways, what I\u0027m trying to say is to solve this issue lets try to do codec changes which will bring as closer to what we plan to refactor instead of creating additional paths.",
       "revId": "3d0a477dff4ebbcdf7087d39a13e8c46f8841cc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed02895b_497fa929",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-27T12:25:35Z",
+      "side": 1,
+      "message": "As discussed offline, we both believe that WiredHeadset shall be removed from ActiveDeviceManager (as this is for Bluetooth only), but application which tries set Bluetooth ActiveDevice should probably  check if it is active and if it is then setPreferedDevice API from AudioManagers should be used.",
+      "parentUuid": "6f3ee8a5_e29c11d5",
+      "revId": "3d0a477dff4ebbcdf7087d39a13e8c46f8841cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
