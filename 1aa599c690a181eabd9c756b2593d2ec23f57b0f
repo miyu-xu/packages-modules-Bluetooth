@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd6cd075_ebb53ea5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-27T20:41:15Z",
+      "side": 1,
+      "message": "Audio framework team prefers an api based solution so looking into that.  Let\u0027s put a hold on this CL until we decide the best path forward",
+      "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c56742b3_a8ce6f1f",
@@ -20,6 +37,57 @@
         "endLine": 451,
         "endChar": 84
       },
+      "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98378463_a0916ab4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-27T20:41:15Z",
+      "side": 1,
+      "message": "I\u0027m not sure why this has been modified since the switch statement is already filtering on the action",
+      "range": {
+        "startLine": 448,
+        "startChar": 32,
+        "endLine": 456,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ff285bdb_499c580b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 448,
+                "startChar": 0,
+                "endLine": 462,
+                "endChar": 0
+              },
+              "replacement": "                                int streamType \u003d intent.getIntExtra(\n                                        AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);\n                                if (streamType \u003d\u003d AudioManager.STREAM_BLUETOOTH_SCO) {\n"
+            }
+          ]
+        }
+      ],
       "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
