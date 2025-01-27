@@ -22,6 +22,30 @@
       },
       "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46d039cb_4b02a566",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-01-27T22:55:46Z",
+      "side": 1,
+      "message": "The crash is in btservice.\nWe may not be able to iterate all components onCrash.\n\nAnd yes, turn off BT doesn\u0027t have this problem since each profile will disable itself on stop()",
+      "parentUuid": "40b74a2c_429095c0",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
