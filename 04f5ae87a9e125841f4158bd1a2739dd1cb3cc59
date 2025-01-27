@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a4e4fd7_0fd0a515",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-27T07:17:03Z",
+      "side": 1,
+      "message": "unit test does not cover this path. With existing unit test framework, not possible to make `bta_ag_other_scb_open()` returns TRUE",
+      "range": {
+        "startLine": 896,
+        "startChar": 13,
+        "endLine": 898,
+        "endChar": 0
+      },
+      "revId": "04f5ae87a9e125841f4158bd1a2739dd1cb3cc59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
