@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9d2bfe5_9aaa3acf",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T19:23:24Z",
+      "side": 1,
+      "message": "There are 37 calls to StopStream in this file. Why do you protect only this one ?\nShould this check be inside StopStream ?",
+      "range": {
+        "startLine": 1981,
+        "startChar": 12,
+        "endLine": 1981,
+        "endChar": 22
+      },
+      "revId": "846360e8c55a4e50427dca192548e3901af2b9a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
