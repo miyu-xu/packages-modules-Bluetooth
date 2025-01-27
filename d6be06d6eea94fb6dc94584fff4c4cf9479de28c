@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f781948d_1fa5172c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T22:07:53Z",
+      "side": 1,
+      "message": "This CL lgtm, considering we\u0027re introducing the new pending handle to replace -1, please help to do some sanity tests to ensure nothing got broken by this.",
+      "revId": "d6be06d6eea94fb6dc94584fff4c4cf9479de28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f4d392_2458e58e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2647,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T22:07:53Z",
+      "side": 1,
+      "message": "comment to update",
+      "revId": "d6be06d6eea94fb6dc94584fff4c4cf9479de28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
