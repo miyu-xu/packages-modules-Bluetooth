@@ -261,6 +261,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39cb40eb_f3f5e9dd",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T15:08:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4873456_3fb6c85b",
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f89cc28c_247330d7",
@@ -448,6 +466,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99ca1a57_e72fd353",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1627,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T15:08:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e883f28_dd7aa198",
+      "range": {
+        "startLine": 1627,
+        "startChar": 24,
+        "endLine": 1627,
+        "endChar": 63
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eca40200_251c2d6a",
@@ -461,6 +503,30 @@
       "writtenOn": "2025-01-23T22:11:42Z",
       "side": 1,
       "message": "are you sure we no longer need to save it?",
+      "range": {
+        "startLine": 1709,
+        "startChar": 30,
+        "endLine": 1709,
+        "endChar": 69
+      },
+      "revId": "57b3a9fa819b0210754ca06aba17c46aada7d79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e040a0f5_5bbd3c22",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T15:08:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eca40200_251c2d6a",
       "range": {
         "startLine": 1709,
         "startChar": 30,
