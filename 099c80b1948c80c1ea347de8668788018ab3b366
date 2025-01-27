@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f94df6c_046f0f6d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-27T18:12:31Z",
+      "side": 1,
+      "message": "Nit: `ARRAY_SIZE(uuid_props), \u0026uuid_props` may be more resilient to change in the array size and makes it clear that it is an array.",
+      "fixSuggestions": [
+        {
+          "fixId": "88146f16_ad29b626",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1724,
+                "startChar": 0,
+                "endLine": 1725,
+                "endChar": 0
+              },
+              "replacement": "                                                                         ARRAY_SIZE(uuid_props), uuid_props);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "099c80b1948c80c1ea347de8668788018ab3b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb4eaec3_bec600d3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1840,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-27T18:12:31Z",
+      "side": 1,
+      "message": "Unnecessary",
+      "fixSuggestions": [
+        {
+          "fixId": "9efca85b_670cc800",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1840,
+                "startChar": 0,
+                "endLine": 1841,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "099c80b1948c80c1ea347de8668788018ab3b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
