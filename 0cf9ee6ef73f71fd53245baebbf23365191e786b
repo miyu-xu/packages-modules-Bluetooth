@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff167d9f_0b354897",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1512,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "unncessary parentheses",
+      "range": {
+        "startLine": 1512,
+        "startChar": 46,
+        "endLine": 1512,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d6886862_87dadd3e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1512,
+                "startChar": 0,
+                "endLine": 1514,
+                "endChar": 0
+              },
+              "replacement": "  bundle.start_ts \u003d std::min(bundle.start_ts, timestamp_us);\n  bundle.end_ts \u003d std::max(bundle.end_ts, timestamp_us);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d59b3c3a_54b22424",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "Consider using an early return instead",
+      "range": {
+        "startLine": 1515,
+        "startChar": 2,
+        "endLine": 1515,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "63c600d6_7c255619",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1515,
+                "startChar": 0,
+                "endLine": 1519,
+                "endChar": 0
+              },
+              "replacement": "  if ((timestamp_us - last_bttrace_timestamp_us) \u003c\u003d 100000) {\n    return;\n  }\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1520,
+                "startChar": 0,
+                "endLine": 1522,
+                "endChar": 0
+              },
+              "replacement": "  for (const auto\u0026 key : bttrace_bundles_) {\n    SnoopLoggerTracing::TracePacket(key.first, key.second);\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1523,
+                "startChar": 0,
+                "endLine": 1523,
+                "endChar": 0
+              },
+              "replacement": "\n  bttrace_bundles_.clear();\n  last_bttrace_timestamp_us \u003d timestamp_us;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a136802_1d656c3d",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "Please declare this constant as static constexpr at the top of the file",
+      "range": {
+        "startLine": 1515,
+        "startChar": 51,
+        "endLine": 1515,
+        "endChar": 57
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "22f075f3_a94b05cc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 280,
+                "startChar": 0,
+                "endLine": 280,
+                "endChar": 0
+              },
+              "replacement": "// The maximum time between two trace points before we flush the bundle\nstatic constexpr uint64_t kMaxTracePointIntervalUs \u003d 100000;\n\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1515,
+                "startChar": 0,
+                "endLine": 1516,
+                "endChar": 0
+              },
+              "replacement": "  if ((timestamp_us - last_bttrace_timestamp_us) \u003e kMaxTracePointIntervalUs) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab64a240_f2a7fa4f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1516,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "nit: you can deconstruct the entry with `[key, details]`",
+      "range": {
+        "startLine": 1516,
+        "startChar": 21,
+        "endLine": 1516,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f621edae_bd4eab7c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1516,
+                "startChar": 0,
+                "endLine": 1518,
+                "endChar": 0
+              },
+              "replacement": "    for (const auto\u0026 [key, details] : bttrace_bundles_) {\n      SnoopLoggerTracing::TracePacket(key, details);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e44c96ff_e1c93dc0",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "Please add default initializers",
+      "range": {
+        "startLine": 165,
+        "startChar": 11,
+        "endLine": 165,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c3f20474_967f64df",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 165,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "  uint32_t count \u003d 0;\n  uint32_t total_length \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de790582_b3000ee4",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "Tempted to use const\u0026 for the parameters to avoid the copy",
+      "range": {
+        "startLine": 78,
+        "startChar": 37,
+        "endLine": 78,
+        "endChar": 73
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "41500980_696fd7ab",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger_tracing.cc",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": "void SnoopLoggerTracing::TracePacket(const BundleKey\u0026 key, const BundleDetails\u0026 details) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c61b4e0_9ff7e1e0",
+        "filename": "system/stack/test/fuzzers/a2dp/codec/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:02:21Z",
+      "side": 1,
+      "message": "Consider adding the library to `libbt-stack_fuzz_defaults` to reduce build verbosity",
+      "range": {
+        "startLine": 12,
+        "startChar": 22,
+        "endLine": 12,
+        "endChar": 41
+      },
+      "revId": "0cf9ee6ef73f71fd53245baebbf23365191e786b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
