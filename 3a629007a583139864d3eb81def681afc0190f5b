@@ -46,6 +46,30 @@
       },
       "revId": "3a629007a583139864d3eb81def681afc0190f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f58d6ec_d258b27a",
+        "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-01-27T19:33:08Z",
+      "side": 1,
+      "message": "I see that this is the implementaiton for `Wait for longer interval when there are no results`. Design looks great.",
+      "parentUuid": "18181201_d25b86d2",
+      "range": {
+        "startLine": 94,
+        "startChar": 63,
+        "endLine": 95,
+        "endChar": 59
+      },
+      "revId": "3a629007a583139864d3eb81def681afc0190f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
