@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f61599f6_641e34b5",
+        "filename": "flags/l2cap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T17:53:28Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 51,
+        "startChar": 22,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "6037ef2be090948186c5b445de89b42c5f4f6b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
