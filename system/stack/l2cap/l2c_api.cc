@@ -37,6 +37,7 @@
 #include "hal/snoop_logger.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
+#include "main/shim/acl_api.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/entry.h"
 #include "os/system_properties.h"
@@ -1398,17 +1399,32 @@ bool L2CA_RemoveFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
   p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL] = NULL;
   p_lcb->SetDisconnectReason(HCI_ERR_CONN_CAUSE_LOCAL_HOST);
 
-  // Retain the link for a few more seconds after SMP pairing is done, since
-  // the Android platform always does service discovery after pairing is
-  // complete. This will avoid the link down (pairing is complete) and an
-  // immediate re-connection for service discovery.
-  // Some devices do not do auto advertising when link is dropped, thus fail
-  // the second connection and service discovery.
-  if ((fixed_cid == L2CAP_ATT_CID) && !p_lcb->ccb_queue.p_first_ccb) {
-    p_lcb->idle_timeout = 0;
-  }
+  if (com::android::bluetooth::flags::l2cap_fix_disconnecting_le_att_fixed_channel()) {
+    /*
+     * As per: BLUETOOTH CORE SPECIFICATION Version 6.0 | Vol 3, Part F, 3.2.11 ATT bearers:
+     * An LE fixed channel can only be terminated by disconnecting the physical link.
+     *
+     * Note: Id does not make sense to check any dynamic channels. When ATT channel is
+     * order to be close, there is nothing left like close the link.
+     */
+    log::info("Disconnecting ACL to {} when LE ATT Fixed channel is disconnecting", rem_bda);
+    bluetooth::shim::ACL_Disconnect(p_lcb->Handle(), BT_TRANSPORT_LE, HCI_ERR_PEER_USER,
+                                    "stack::l2cap::l2c_api::L2CA_RemoveFixedChnl");
+    l2cu_process_fixed_disc_cback(p_lcb);
+    p_lcb->link_state = LST_DISCONNECTING;
+  } else {
+    // Retain the link for a few more seconds after SMP pairing is done, since
+    // the Android platform always does service discovery after pairing is
+    // complete. This will avoid the link down (pairing is complete) and an
+    // immediate re-connection for service discovery.
+    // Some devices do not do auto advertising when link is dropped, thus fail
+    // the second connection and service discovery.
+    if ((fixed_cid == L2CAP_ATT_CID) && !p_lcb->ccb_queue.p_first_ccb) {
+      p_lcb->idle_timeout = 0;
+    }
 
-  l2cu_release_ccb(p_ccb);
+    l2cu_release_ccb(p_ccb);
+  }
 
   return true;
 }
