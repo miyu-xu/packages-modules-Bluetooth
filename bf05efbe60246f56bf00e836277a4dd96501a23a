@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "274519ca_bfc8db0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T18:27:56Z",
+      "side": 1,
+      "message": "Passed pts-bot presubmits, good for me",
+      "revId": "bf05efbe60246f56bf00e836277a4dd96501a23a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
