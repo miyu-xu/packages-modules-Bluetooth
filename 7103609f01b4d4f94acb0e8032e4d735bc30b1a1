@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c5bb9bf_31cebc8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:50:41Z",
+      "side": 1,
+      "message": "Can we merge in the same CL the code and the associated test ?",
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924a896c_7c298eeb",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
         "patchSetId": 4
