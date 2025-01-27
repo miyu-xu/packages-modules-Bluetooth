@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ffc5225_d893d885",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1724,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T21:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f94df6c_046f0f6d",
+      "revId": "099c80b1948c80c1ea347de8668788018ab3b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb4eaec3_bec600d3",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "I understand it is a long function with both pre and post flag implementations. It is a bit too much context to remember in this function.\nWe can either break this function down into smaller functions. Or we can create a new copy keeping it separate from the old implementation.\n\n```c++\n// Remove when separate_service_storage flag is shipped\nstatic void btif_on_gatt_results_(RawAddress bd_addr, std::vector\u003cbluetooth::Uuid\u003e\u0026 services,\n                                  bool is_transport_le) {\n  // Old implementation\n}\n\nstatic void btif_on_gatt_results(RawAddress bd_addr, std::vector\u003cbluetooth::Uuid\u003e\u0026 services,\n                                 bool is_transport_le) {\n  if (!com::android::bluetooth::flags::separate_service_storage()) {\n    btif_on_gatt_results_(bd_addr, services, is_transport_le);\n    return;\n  }\n  \n  // New implementation\n}\n```",
       "parentUuid": "fb4eaec3_bec600d3",
+      "revId": "099c80b1948c80c1ea347de8668788018ab3b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79f88599_3093a11b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1840,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T21:57:44Z",
+      "side": 1,
+      "message": "Removed the unnecessary comment.\nAfter minor improvements in parent patch, this function got little shorter and easier to follow.\n\nI agree that there is too much happening there, but a better way out of this situation is to clean up bta/btif layer interactions during service discovery.\n\nI can do it, but not as part of this storage split.",
+      "parentUuid": "31c02de1_81a6b569",
       "revId": "099c80b1948c80c1ea347de8668788018ab3b366",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
