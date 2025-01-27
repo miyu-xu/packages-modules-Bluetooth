@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56872781_19380216",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T21:38:04Z",
+      "side": 1,
+      "message": "Please, trigger the request directly within AdapterState.java:TurningOffState.exit()\n\nWe don\u0027t want a special case handling if we are staying in BLE_ON or if we are turning full off, we want to disconnect in every single case in order to have a consistent behavior",
+      "revId": "439b3697921427d32bb93ff321fba39fe84e1228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5adbdb7b_4be77a7e",
         "filename": "system/btif/src/btif_sock.cc",
         "patchSetId": 4
