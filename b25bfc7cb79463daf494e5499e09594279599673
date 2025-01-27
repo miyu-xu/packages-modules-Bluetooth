@@ -1,0 +1,148 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19e61f9d_e76e96a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T20:04:15Z",
+      "side": 1,
+      "message": "More specifically:\n\n```\nImplement additional helpers in signaling channel helper class\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "b25bfc7cb79463daf494e5499e09594279599673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81862a3c_9bf3eb65",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T20:04:15Z",
+      "side": 1,
+      "message": "You should be more specific in the naming; it could mean discover command or response.\n\nSeeing that you are expecting a command and sending an accept response;\nI would name it `accept_discover`",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "babe9af1_1aab4174",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_discover(self, seid_information: List[av.SeidInformation]):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 211,
+                "startChar": 0,
+                "endLine": 212,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_get_caps(self, service_capabilities: List[ServiceCapability]):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 218,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_set_conf(self):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_open(self, timeout: float \u003d 3.0):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 229,
+                "startChar": 0,
+                "endLine": 230,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_start(self, timeout: float \u003d 3.0):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 233,
+                "startChar": 0,
+                "endLine": 234,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_suspend(self, timeout: float \u003d 3.0):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 238,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_close(self, timeout: float \u003d 3.0):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 242,
+                "startChar": 0,
+                "endLine": 243,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_open_stream(self,\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 255,
+                "startChar": 0,
+                "endLine": 259,
+                "endChar": 0
+              },
+              "replacement": "        await self.accept_discover(seid_information)\n        await self.accept_get_caps(service_capabilities)\n        await self.accept_set_conf()\n        await self.accept_open()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b25bfc7cb79463daf494e5499e09594279599673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
