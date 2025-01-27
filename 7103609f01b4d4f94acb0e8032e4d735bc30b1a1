@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "924a896c_7c298eeb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:49:41Z",
+      "side": 1,
+      "message": "replace with eq(BLUETOOTH_CONNECT) and remove assertiong 2 line belows",
+      "range": {
+        "startLine": 884,
+        "startChar": 51,
+        "endLine": 884,
+        "endChar": 76
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d26d3c6a_c2bdf148",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "                        mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e47b157_1d07d5c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:49:41Z",
+      "side": 1,
+      "message": "by using InOrder, you can simply check that the intent is not sent.\n\nsomething like\n\n```\nmInOrder.verify(mAdapterService, never()).sendBroadcast(any(), eq(BLUETOOTH_CONNECT), any(Bundle.class));\n```",
+      "range": {
+        "startLine": 937,
+        "startChar": 7,
+        "endLine": 940,
+        "endChar": 76
+      },
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
