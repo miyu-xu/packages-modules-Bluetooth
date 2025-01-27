@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
 
 package android.bluetooth;
 
@@ -22,6 +23,20 @@ import android.annotation.NonNull;
 public abstract class BluetoothGattCallback {
 
     /**
+=======
+
+package android.bluetooth;
+
+import android.annotation.FlaggedApi;
+import android.annotation.IntDef;
+import android.annotation.NonNull;
+
+import com.android.bluetooth.flags.Flags;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+>>>>>>> PATCH
      * Callback triggered as result of {@link BluetoothGatt#setPreferredPhy}, or as a result of
      * remote device changing the PHY.
      *
@@ -275,3 +290,14 @@ public abstract class BluetoothGattCallback {
             int timeout,
             int status) {}
 }
+<<<<<<< HEAD
+=======
+     * @param subrateMode for this LE connection.
+     * @param status {@link BluetoothGatt#GATT_SUCCESS} if the connection subrating has been updated
+     *     successfully
+     */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public void onSubrateChange(
+            @NonNull BluetoothGatt gatt,
+            @OnSubrateChangeModeValues int subrateMode,
+>>>>>>> PATCH

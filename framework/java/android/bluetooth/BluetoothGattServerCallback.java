@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+<<<<<<< HEAD
 
 package android.bluetooth;
 
@@ -22,6 +23,20 @@ public abstract class BluetoothGattServerCallback {
     /**
      * Callback indicating when a remote device has been connected or disconnected.
      *
+=======
+
+package android.bluetooth;
+
+import android.annotation.FlaggedApi;
+import android.annotation.IntDef;
+import android.annotation.NonNull;
+
+import com.android.bluetooth.flags.Flags;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+>>>>>>> PATCH
      * @param device Remote device that has been connected or disconnected.
      * @param status Status of the connect or disconnect operation.
      * @param newState Returns the new connection state. Can be one of {@link
@@ -213,3 +228,14 @@ public abstract class BluetoothGattServerCallback {
             int timeout,
             int status) {}
 }
+<<<<<<< HEAD
+=======
+     * @param subrateMode for this LE connection.
+     * @param status {@link BluetoothGatt#GATT_SUCCESS} if the connection subrating has been updated
+     *     successfully
+     */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public void onSubrateChange(
+            @NonNull BluetoothDevice device,
+            @OnSubrateChangeModeValues int subrateMode,
+>>>>>>> PATCH
