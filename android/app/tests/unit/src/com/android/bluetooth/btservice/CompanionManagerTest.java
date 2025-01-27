@@ -15,10 +15,16 @@
  */
 package com.android.bluetooth.btservice;
 
-import static com.google.common.truth.Truth.assertThat;
+import static com.android.bluetooth.TestUtils.getTestDevice;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.when;
 
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.content.Context;
@@ -30,6 +36,8 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
+
+import com.google.common.truth.Expect;
 
 import org.junit.After;
 import org.junit.Before;
@@ -48,6 +56,8 @@ public class CompanionManagerTest {
 
     private Context mTargetContext;
     private CompanionManager mCompanionManager;
+    private final BluetoothAdapter mAdapter;
+    private final BluetoothDevice mTestDevice;
 
     private HandlerThread mHandlerThread;
 
@@ -56,6 +66,13 @@ public class CompanionManagerTest {
     @Mock private AdapterService mAdapterService;
     @Mock SharedPreferences mSharedPreferences;
     @Mock SharedPreferences.Editor mEditor;
+
+    @Rule public Expect expect = Expect.create();
+
+    public CompanionManagerTest() {
+        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mTestDevice = getTestDevice(mAdapter, 59);
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -104,13 +121,13 @@ public class CompanionManagerTest {
     @Test
     public void testIsCompanionDevice() {
         loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_NONE);
-        assertThat(mCompanionManager.isCompanionDevice(TEST_DEVICE)).isTrue();
+        expect.that(mCompanionManager.isCompanionDevice(TEST_DEVICE)).isTrue();
 
         loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_PRIMARY);
-        assertThat(mCompanionManager.isCompanionDevice(TEST_DEVICE)).isTrue();
+        expect.that(mCompanionManager.isCompanionDevice(TEST_DEVICE)).isTrue();
 
         loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_SECONDARY);
-        assertThat(mCompanionManager.isCompanionDevice(TEST_DEVICE)).isTrue();
+        expect.that(mCompanionManager.isCompanionDevice(TEST_DEVICE)).isTrue();
     }
 
     @Test
@@ -130,6 +147,42 @@ public class CompanionManagerTest {
         checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_BALANCED);
         checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_LOW_POWER);
         checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_DCK);
+    }
+
+    @Test
+    public void testGetGattSubrateParameters() {
+        loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_PRIMARY);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_HIGH);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_BALANCED);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_LOW);
+
+        loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_SECONDARY);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_HIGH);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_BALANCED);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_LOW);
+
+        loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_NONE);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_HIGH);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_BALANCED);
+        checkReasonableSubrateParameterHelper(BluetoothGatt.SUBRATE_MODE_LOW);
+    }
+
+    @Test
+    public void testGetGattSubratePriorities() {
+        loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_PRIMARY);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_HIGH);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_BALANCED);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_LOW);
+
+        loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_SECONDARY);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_HIGH);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_BALANCED);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_LOW);
+
+        loadCompanionInfoHelper(TEST_DEVICE, CompanionManager.COMPANION_TYPE_NONE);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_HIGH);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_BALANCED);
+        getReasonableSubrateParametersHelper(BluetoothGatt.SUBRATE_MODE_LOW);
     }
 
     private void loadCompanionInfoHelper(String address, int companionType) {
@@ -159,12 +212,84 @@ public class CompanionManagerTest {
                 mCompanionManager.getGattConnParameters(
                         TEST_DEVICE, CompanionManager.GATT_CONN_LATENCY, priority);
 
-        assertThat(max).isAtLeast(min);
-        assertThat(max).isAtLeast(minInterval);
-        assertThat(min).isAtLeast(minInterval);
-        assertThat(max).isAtMost(maxInterval);
-        assertThat(min).isAtMost(maxInterval);
-        assertThat(latency).isAtLeast(minLatency);
-        assertThat(latency).isAtMost(maxLatency);
+        expect.that(max).isAtLeast(min);
+        expect.that(max).isAtLeast(minInterval);
+        expect.that(min).isAtLeast(minInterval);
+        expect.that(max).isAtMost(maxInterval);
+        expect.that(min).isAtMost(maxInterval);
+        expect.that(latency).isAtLeast(minLatency);
+        expect.that(latency).isAtMost(maxLatency);
+    }
+
+    private void checkReasonableSubrateParameterHelper(int priority) {
+        // Max/Min values from the Bluetooth spec Version 5.3 | Vol 4, Part E | 7.8.123
+        final int minSubrateFactorLimit = 1; // 0x0001
+        final int maxSubrateFactorLimit = 500; // 0x01F4
+        final int minSubrateLatencyLimit = 0; // 0x0000
+        final int maxSubrateLatencyLimit = 499; // 0x01F3
+        final int minSubrateContNumLimit = 0; // 0x0000
+        final int maxSubrateContNumLimit = 499; // 0x01F3
+
+        int minSubrateFactor =
+                mCompanionManager.getGattSubratingParameters(
+                        mTestDevice, CompanionManager.GATT_SUBRATE_MIN_SUBRATE_FACTOR, priority);
+        int maxSubrateFactor =
+                mCompanionManager.getGattSubratingParameters(
+                        mTestDevice, CompanionManager.GATT_SUBRATE_MAX_SUBRATE_FACTOR, priority);
+        int subrateLatency =
+                mCompanionManager.getGattSubratingParameters(
+                        mTestDevice, CompanionManager.GATT_SUBRATE_LATENCY, priority);
+        int subrateContNum =
+                mCompanionManager.getGattSubratingParameters(
+                        mTestDevice, CompanionManager.GATT_SUBRATE_CONT_NUM, priority);
+
+        expect.that(maxSubrateFactor).isAtLeast(minSubrateFactor);
+        expect.that(maxSubrateFactor).isAtLeast(minSubrateFactorLimit);
+        expect.that(minSubrateFactor).isAtLeast(minSubrateFactorLimit);
+        expect.that(maxSubrateFactor).isAtMost(maxSubrateFactorLimit);
+        expect.that(minSubrateFactor).isAtMost(maxSubrateFactorLimit);
+        expect.that(subrateLatency).isAtLeast(minSubrateLatencyLimit);
+        expect.that(subrateLatency).isAtMost(maxSubrateLatencyLimit);
+        expect.that(subrateContNum).isAtLeast(minSubrateContNumLimit);
+        expect.that(subrateContNum).isAtMost(maxSubrateContNumLimit);
+    }
+
+    private void getReasonableSubrateParametersHelper(int priority) {
+        int minSubrateFactor = 0;
+        int maxSubrateFactor = 0;
+        int subrateLatency = 0;
+        int subrateContNum = 0;
+
+        switch (priority) {
+            case BluetoothGatt.SUBRATE_MODE_HIGH:
+                minSubrateFactor = 9;
+                maxSubrateFactor = 12;
+                subrateLatency = 0;
+                subrateContNum = 2;
+                break;
+            case BluetoothGatt.SUBRATE_MODE_BALANCED:
+                minSubrateFactor = 5;
+                maxSubrateFactor = 8;
+                subrateLatency = 0;
+                subrateContNum = 2;
+                break;
+            case BluetoothGatt.SUBRATE_MODE_LOW:
+                minSubrateFactor = 2;
+                maxSubrateFactor = 4;
+                subrateLatency = 0;
+                subrateContNum = 2;
+                break;
+        }
+
+        int priorityMinSubrateFactor =
+                mCompanionManager.verifyGattSubratingPriority(
+                        TEST_DEVICE, minSubrateFactor, subrateLatency, subrateContNum);
+
+        int priorityMaxSubrateFactor =
+                mCompanionManager.verifyGattSubratingPriority(
+                        TEST_DEVICE, maxSubrateFactor, subrateLatency, subrateContNum);
+
+        expect.that(priorityMinSubrateFactor).isEqualTo(priority);
+        expect.that(priorityMaxSubrateFactor).isEqualTo(priority);
     }
 }

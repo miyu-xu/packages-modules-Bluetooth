@@ -48,7 +48,6 @@ import android.content.AttributionSource;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager.PackageInfoFlags;
-import android.content.res.Resources;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
@@ -60,7 +59,6 @@ import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
-import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AbstractionLayer;
 import com.android.bluetooth.btservice.AdapterService;
@@ -670,8 +668,8 @@ public class GattService extends ProfileService {
             Utils.enforceCdmAssociationIfNotBluetoothPrivileged(
                     service, service.mCompanionDeviceManager, attributionSource, device);
 
-            if (subrateMode < BluetoothGatt.SUBRATE_REQUEST_MODE_BALANCED
-                    || subrateMode > BluetoothGatt.SUBRATE_REQUEST_MODE_LOW_POWER) {
+            if (subrateMode < BluetoothGatt.SUBRATE_MODE_BALANCED
+                    || subrateMode > BluetoothGatt.SUBRATE_MODE_LOW) {
                 throw new IllegalArgumentException("Subrate Mode not within valid range");
             }
 
@@ -1032,6 +1030,8 @@ public class GattService extends ProfileService {
             throws RemoteException {
         Log.d(TAG, "onClientSubrateChange() - connId=" + connId + ", status=" + status);
 
+        CompanionManager manager;
+        int subrateMode;
         String address = mClientMap.addressByConnId(connId);
         if (address == null) {
             return;
@@ -1042,7 +1042,14 @@ public class GattService extends ProfileService {
             return;
         }
 
-        app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
+        if (status == BluetoothStatusCodes.SUCCESS) {
+            manager = mAdapterService.getCompanionManager();
+            subrateMode =
+                    manager.verifyGattSubratingPriority(address, subrateFactor, latency, contNum);
+        } else {
+            subrateMode = BluetoothGatt.SUBRATE_MODE_NOT_UPDATED;
+        }
+        app.callback.onSubrateChange(address, subrateMode, translateHciCode(status));
     }
 
     void onServerPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
@@ -1109,6 +1116,8 @@ public class GattService extends ProfileService {
             throws RemoteException {
         Log.d(TAG, "onServerSubrateChange() - connId=" + connId + ", status=" + status);
 
+        CompanionManager manager;
+        int subrateMode;
         String address = mServerMap.addressByConnId(connId);
         if (address == null) {
             return;
@@ -1119,7 +1128,15 @@ public class GattService extends ProfileService {
             return;
         }
 
-        app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
+        if (status == BluetoothStatusCodes.SUCCESS) {
+            manager = mAdapterService.getCompanionManager();
+            subrateMode =
+                    manager.verifyGattSubratingPriority(address, subrateFactor, latency, contNum);
+        } else {
+            subrateMode = BluetoothGatt.SUBRATE_MODE_NOT_UPDATED;
+        }
+
+        app.callback.onSubrateChange(address, subrateMode, translateHciCode(status));
     }
 
     void onSearchCompleted(int connId, int status) throws RemoteException {
@@ -2158,7 +2175,6 @@ public class GattService extends ProfileService {
                 this, attributionSource, "GattService connectionParameterUpdate")) {
             return;
         }
-
         int minInterval;
         int maxInterval;
 
@@ -2250,31 +2266,20 @@ public class GattService extends ProfileService {
         // Link supervision timeout is measured in N * 10ms
         int supervisionTimeout = 500; // 5s
 
-        Resources res = getResources();
+        CompanionManager manager = mAdapterService.getCompanionManager();
 
-        switch (subrateMode) {
-            case BluetoothGatt.SUBRATE_REQUEST_MODE_HIGH:
-                subrateMin = res.getInteger(R.integer.subrate_mode_high_priority_min_subrate);
-                subrateMax = res.getInteger(R.integer.subrate_mode_high_priority_max_subrate);
-                maxLatency = res.getInteger(R.integer.subrate_mode_high_priority_latency);
-                contNumber = res.getInteger(R.integer.subrate_mode_high_priority_cont_number);
-                break;
-
-            case BluetoothGatt.SUBRATE_REQUEST_MODE_LOW_POWER:
-                subrateMin = res.getInteger(R.integer.subrate_mode_low_power_min_subrate);
-                subrateMax = res.getInteger(R.integer.subrate_mode_low_power_max_subrate);
-                maxLatency = res.getInteger(R.integer.subrate_mode_low_power_latency);
-                contNumber = res.getInteger(R.integer.subrate_mode_low_power_cont_number);
-                break;
-
-            case BluetoothGatt.SUBRATE_REQUEST_MODE_BALANCED:
-            default:
-                subrateMin = res.getInteger(R.integer.subrate_mode_balanced_min_subrate);
-                subrateMax = res.getInteger(R.integer.subrate_mode_balanced_max_subrate);
-                maxLatency = res.getInteger(R.integer.subrate_mode_balanced_latency);
-                contNumber = res.getInteger(R.integer.subrate_mode_balanced_cont_number);
-                break;
-        }
+        subrateMin =
+                manager.getGattSubratingParameters(
+                        device, CompanionManager.GATT_SUBRATE_MIN_SUBRATE_FACTOR, subrateMode);
+        subrateMax =
+                manager.getGattSubratingParameters(
+                        device, CompanionManager.GATT_SUBRATE_MAX_SUBRATE_FACTOR, subrateMode);
+        maxLatency =
+                manager.getGattSubratingParameters(
+                        device, CompanionManager.GATT_SUBRATE_LATENCY, subrateMode);
+        contNumber =
+                manager.getGattSubratingParameters(
+                        device, CompanionManager.GATT_SUBRATE_CONT_NUM, subrateMode);
 
         Log.d(
                 TAG,
@@ -3087,6 +3092,21 @@ public class GattService extends ProfileService {
         for (Integer handle : handleList) {
             mNativeInterface.gattServerDeleteService(serverIf, handle);
         }
+    }
+
+    private int translateHciCode(int code) {
+        return switch (code) {
+            case 0 -> BluetoothStatusCodes.SUCCESS;
+                // Hardware Failure
+            case 3 -> BluetoothStatusCodes.ERROR_HARDWARE_GENERIC;
+                // Unsupported Command Remote
+            case 26 -> BluetoothStatusCodes.ERROR_REMOTE_OPERATION_NOT_SUPPORTED;
+                // Insufficient Resources
+            case 12, 13, 58 -> BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES;
+                // Invalid Parameters
+            case 17, 18, 30, 32, 48, 59 -> BluetoothStatusCodes.ERROR_BAD_PARAMETERS;
+            default -> BluetoothStatusCodes.ERROR_UNKNOWN;
+        };
     }
 
     void dumpRegisterId(StringBuilder sb) {
