@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c872f35_9385e72f",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:09:27Z",
+      "side": 1,
+      "message": "will this flag only be for HFP ? or do you include leAudio phone call in the scope ?",
+      "range": {
+        "startLine": 123,
+        "startChar": 11,
+        "endLine": 123,
+        "endChar": 38
+      },
+      "revId": "0ed59d71deb5fd8f86f4f1058cb13b29710a6559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
