@@ -22,6 +22,30 @@
       },
       "revId": "3a629007a583139864d3eb81def681afc0190f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18181201_d25b86d2",
+        "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-27T19:18:48Z",
+      "side": 1,
+      "message": "Every time this method is called otherwise mBackoffStage is incremented (line 91). So if we don\u0027t deliver results that\u0027s when the backoff stage is increased since it\u0027s not reset.\n\naosp/3464642 updates the logic to not send empty results to clients, so when there are no results delivered to any client it won\u0027t be reset",
+      "parentUuid": "3d763bc8_b718b355",
+      "range": {
+        "startLine": 94,
+        "startChar": 63,
+        "endLine": 95,
+        "endChar": 59
+      },
+      "revId": "3a629007a583139864d3eb81def681afc0190f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
