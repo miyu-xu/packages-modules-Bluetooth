@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.bluetooth.BluetoothUtils.logRemoteException;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -34,12 +35,23 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.ParcelUuid;
+<<<<<<< HEAD
 import android.os.RemoteException;
 import android.util.Log;
 
 import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
+=======
+import android.os.RemoteException;
+import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+>>>>>>> PATCH
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +161,7 @@ public final class BluetoothGatt implements BluetoothProfile {
      * should only request high priority connection parameters to transfer large amounts of data
      * over LE quickly. Once the transfer is complete, the application should request {@link
      * BluetoothGatt#CONNECTION_PRIORITY_BALANCED} connection parameters to reduce energy use.
+<<<<<<< HEAD
      */
     public static final int CONNECTION_PRIORITY_HIGH = 1;
 
@@ -188,6 +201,32 @@ public final class BluetoothGatt implements BluetoothProfile {
     @Retention(RetentionPolicy.SOURCE)
     @IntDef(
             prefix = {"SUBRATE_REQUEST_MODE"},
+=======
+     */
+    public static final int CONNECTION_PRIORITY_DCK = 3;
+
+    /** Connection subrate mode - Balanced. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_BALANCED = 0;
+
+    /** Connection subrate mode - High. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_HIGH = 1;
+
+    /** Connection Subrate mode - Low */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_LOW = 2;
+
+    /** Connection Subrate mode - System Update. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_SYSTEM = 99;
+
+    /** Connection Subrate mode - No Update. */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+    public static final int SUBRATE_MODE_NOT_UPDATED = 255;
+
+    /** @hide */
+>>>>>>> PATCH
             value = {
                 SUBRATE_REQUEST_MODE_BALANCED,
                 SUBRATE_REQUEST_MODE_HIGH,
@@ -901,12 +940,22 @@ public final class BluetoothGatt implements BluetoothProfile {
                  */
                 @Override
                 public void onConnectionUpdated(
+<<<<<<< HEAD
                         String address, int interval, int latency, int timeout, int status) {
                     if (DBG) {
                         Log.d(
                                 TAG,
                                 "onConnectionUpdated() -"
                                         + (" Device=" + BluetoothUtils.toAnonymizedAddress(address))
+=======
+                 * @hide
+                 */
+                @Override
+                @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+                public void onSubrateChange(String address, int subrateMode, int status) {
+                    Log.d(
+                            TAG,
+>>>>>>> PATCH
                                         + (" interval=" + interval)
                                         + (" latency=" + latency)
                                         + (" timeout=" + timeout)
@@ -2225,8 +2274,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @param subrateMode Request a specific subrate mode.
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
      * @return true, if the request is send to the Bluetooth stack.
-     * @hide
      */
+    @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},

@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -30,6 +31,8 @@ import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -469,12 +472,22 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 /**
                  * Callback invoked when the given connection's subrate parameters are changed
                  *
+<<<<<<< HEAD
                  * @hide
                  */
                 @Override
                 public void onSubrateChange(
                         String address,
                         int subrateFactor,
+=======
+                 * @hide
+                 */
+                @Override
+                @FlaggedApi(Flags.FLAG_LE_SUBRATE_API)
+                public void onSubrateChange(String address, int subrateMode, int status) {
+                    if (DBG) {
+                        Log.d(
+>>>>>>> PATCH
                         int latency,
                         int contNum,
                         int timeout,
