@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed58faa_b2d2e5e5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1685,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T21:53:51Z",
+      "side": 1,
+      "message": "nit: this can be simplified by something like this,\n\nsynchronized (mPendingSourcesToAdd) {\n    mPendingSourcesToAdd.removeIf(pendingSourcesToAdd -\u003e pendingSourcesToAdd.mSink.equals(device));\n}",
+      "revId": "a16226c30566aaa4c898c06f0e05ae3b1489c382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa23cb0_8ccf305d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2540,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-27T21:53:51Z",
+      "side": 1,
+      "message": "Same as above for both mPendingSourcesToAdd and mSinksWaitingForPast,\n\nsynchronized (mSinksWaitingForPast) {\n    mSinksWaitingForPast.entrySet().removeIf(entry -\u003e entry.getValue().first \u003d\u003d broadcastId);\n}",
+      "revId": "a16226c30566aaa4c898c06f0e05ae3b1489c382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
