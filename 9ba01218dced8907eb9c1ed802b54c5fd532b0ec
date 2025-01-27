@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5b40923_baa0d415",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T17:44:50Z",
+      "side": 1,
+      "message": "Should this be done within the runSyncOnAdvertiseThread ?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c2aede8_bb2530e2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T17:44:50Z",
+      "side": 1,
+      "message": "Why do we need `AtFrontOfQueue` ?\n\nAh I guess I see, this is call only during dump, so you want to interrupt everyone to just peek at the data, fair. And also for cleanup, so you need to also interrupt any in progress action.",
+      "range": {
+        "startLine": 644,
+        "startChar": 17,
+        "endLine": 644,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cc38d2cc_b96ff285",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 644,
+                "startChar": 0,
+                "endLine": 645,
+                "endChar": 0
+              },
+              "replacement": "        mHandler.post(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
