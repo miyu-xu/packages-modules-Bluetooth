@@ -22,6 +22,30 @@
       },
       "revId": "989f52a3f25c88520073aa890a2ecd3c84972caf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "774a2555_11202cae",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-01-27T15:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ae6b862_5db2bf54",
+      "range": {
+        "startLine": 1089,
+        "startChar": 0,
+        "endLine": 1089,
+        "endChar": 4
+      },
+      "revId": "989f52a3f25c88520073aa890a2ecd3c84972caf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
