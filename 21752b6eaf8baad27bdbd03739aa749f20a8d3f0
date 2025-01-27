@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b74a2c_429095c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T21:52:18Z",
+      "side": 1,
+      "message": "This seems a bit suspicious....\n\nIs the crash in the app or is the crash in the Bluetooth HAL ?\nCan we have a proper way of cleaning up the component when we detect a crash, and is there anything else to clean ?\n\nOne good argument toward having a clean \"onCrash\" behavior is that during the bluetooth reboot, the component should be marked as disabled and this patch doesn\u0027t address this.\nAnd if the crash happen while turning off, then we will never see that the component is not available.",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
