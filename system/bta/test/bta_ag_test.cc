@@ -43,7 +43,6 @@
 #define TEST_BT com::android::bluetooth::flags
 
 using namespace bluetooth;
-
 namespace {
 
 bool bta_ag_hdl_event(const BT_HDR_RIGID* /*p_msg*/) { return true; }
@@ -393,4 +392,15 @@ TEST_F(BtaAgScoTest, codec_negotiate__aptx_disabled) {
   ASSERT_EQ(0, get_func_call_count("PORT_WriteData"));
   ASSERT_EQ(0, get_func_call_count("alarm_set_on_mloop"));
   ASSERT_FALSE(p_scb->codec_updated);
+}
+
+TEST_F_WITH_FLAGS(BtaAgScoTest, ag_sco_shutdown,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, sco_state_machine_cleanup))) {
+  tBTA_AG_SCB* p_scb = &bta_ag_cb.scb[0];
+  bta_ag_cb.sco.state = BTA_AG_SCO_OPENING_ST;
+  bta_ag_cb.sco.p_curr_scb = p_scb;
+  ASSERT_NE(bta_ag_cb.sco.p_curr_scb, nullptr);
+  bta_ag_sco_shutdown(p_scb, tBTA_AG_DATA::kEmpty);
+  ASSERT_EQ(bta_ag_cb.sco.state, BTA_AG_SCO_SHUTDOWN_ST);
+  ASSERT_EQ(bta_ag_cb.sco.p_curr_scb, nullptr);
 }
