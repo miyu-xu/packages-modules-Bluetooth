@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19f526ce_932094a7",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "@NonNull",
+      "range": {
+        "startLine": 107,
+        "startChar": 46,
+        "endLine": 107,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1078a7b2_1dfffef5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": "import android.support.annotation.NonNull;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStreamHandler.java",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "    public A2dpSinkStreamHandler(@NonNull Context ctx, @NonNull A2dpSinkNativeInterface nativeInterface) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "977e9422_f497cb2b",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "Let\u0027s ditch this capacity no ?",
+      "range": {
+        "startLine": 113,
+        "startChar": 36,
+        "endLine": 113,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b760ee66_679c9a9e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "            new ConcurrentHashMap\u003c\u003e();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159ce5aa_20ee6b44",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "@NonNull",
+      "range": {
+        "startLine": 140,
+        "startChar": 34,
+        "endLine": 140,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fda9cb0d_94af217a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "import android.support.annotation.NonNull;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": "    public AvrcpControllerService(@NonNull AdapterService adapterService) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1287140a_dc9e24f5",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "@NonNull",
+      "range": {
+        "startLine": 146,
+        "startChar": 12,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1c0d148c_de46a020",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "import android.support.annotation.NonNull;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 146,
+                "startChar": 0,
+                "endLine": 147,
+                "endChar": 0
+              },
+              "replacement": "            @NonNull AdapterService adapterService,\n            @NonNull AvrcpControllerNativeInterface nativeInterface) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aa54be8_3e285df6",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "@NonNull",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "975ea11f_73fdd15b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "import android.support.annotation.NonNull;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 192,
+                "startChar": 0,
+                "endLine": 192,
+                "endChar": 0
+              },
+              "replacement": "    @NonNull\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a1f3b6c_e384e6aa",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "Log.e",
+      "range": {
+        "startLine": 325,
+        "startChar": 12,
+        "endLine": 325,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9faa2140_680866b5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+              "range": {
+                "startLine": 325,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "            Log.e(TAG, \"getContents(\" + parentMediaId + \"): Failed to find node\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6390bd25_3e57cdb3",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "Separate non final field ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bc30ff95_ccb120c9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 115,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 131,
+                "startChar": 0,
+                "endLine": 131,
+                "endChar": 0
+              },
+              "replacement": "    private boolean mShouldSendPlayOnFocusRecovery \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac0f304e_c2973f7b",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T19:31:15Z",
+      "side": 1,
+      "message": "RequireNonNull + @NonNull",
+      "range": {
+        "startLine": 156,
+        "startChar": 26,
+        "endLine": 156,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a753f47d_a17c00ce",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "import android.support.annotation.NonNull;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 150,
+                "startChar": 0,
+                "endLine": 154,
+                "endChar": 0
+              },
+              "replacement": "            @NonNull AdapterService adapterService,\n            @NonNull AvrcpControllerService service,\n            @NonNull BluetoothDevice device,\n            @NonNull AvrcpControllerNativeInterface nativeInterface,\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "        mAdapterService \u003d requireNonNull(adapterService);\n        mDevice \u003d requireNonNull(device);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "        mService \u003d requireNonNull(service);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1f22fc9e20ab6d0325701ff38d20cef37e63bb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
