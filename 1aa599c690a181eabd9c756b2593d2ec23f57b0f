@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c56742b3_a8ce6f1f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:23:36Z",
+      "side": 1,
+      "message": "this seems to be an hack to make the code go in the next                                 `if (streamType \u003d\u003d volStream) {`.\n\nWe should consider simply splitting the logic in the switch case:\n\n```\n                    case AudioManager.ACTION_MICROPHONE_MUTE_CHANGED:\n                        doForEachConnectedStateMachine(stateMachine -\u003estateMachine.sendMessage(HeadsetStateMachine.INTENT_SCO_VOLUME_CHANGED, intent));\n                        break;\n                    case AudioManager.ACTION_VOLUME_CHANGED:\n```\n\nBut maybe we should introduce a new INTENT_SCO_VOLUME_MUTED in order to keep path obvious and never re-check the intent ?",
+      "range": {
+        "startLine": 449,
+        "startChar": 1,
+        "endLine": 451,
+        "endChar": 84
+      },
+      "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d5f395a_7ab01ce1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:23:36Z",
+      "side": 1,
+      "message": "What is 15 ? (why not 14 or 16 ?)",
+      "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "641c66c3_33cded5a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2026,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:23:36Z",
+      "side": 1,
+      "message": "Does it matter to call setMicrophoneMute too many time and if so, should we do something like:\n\n```\nboolean updateMute \u003d (mMicVolume !\u003d 0 \u0026\u0026 volume \u003d\u003d 0) || (mMicVolume \u003d\u003d 0 \u0026\u0026 volume !\u003d 0);\nmMicVolume \u003d volume;\nif (Flags.microphoneMuteStatusSync() \u0026\u0026 updateMute) {\n    mSystemInterface.getAudioManager().setMicrophoneMute(mMicVolume \u003d\u003d 0);\n}\n```",
+      "range": {
+        "startLine": 2026,
+        "startChar": 51,
+        "endLine": 2026,
+        "endChar": 68
+      },
+      "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d9f3422_8d62a704",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T19:23:36Z",
+      "side": 1,
+      "message": "can we keep previous test, unmodified, to run it with an `@DisableFlags` ? (we can change the testName to be `foo_old` or anything",
+      "range": {
+        "startLine": 1759,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 58
+      },
+      "revId": "1aa599c690a181eabd9c756b2593d2ec23f57b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
