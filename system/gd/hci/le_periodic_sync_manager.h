@@ -362,6 +362,9 @@ public:
     auto periodic_sync = GetEstablishedSyncFromHandle(sync_handle);
     if (periodic_sync == periodic_syncs_.end()) {
       log::error("[PSync]: index not found for handle {}", sync_handle);
+      le_scanning_interface_->EnqueueCommand(
+              hci::LePeriodicAdvertisingTerminateSyncBuilder::Create(sync_handle),
+              handler_->BindOnce(check_complete<LePeriodicAdvertisingTerminateSyncCompleteView>));
       return;
     }
 
@@ -385,6 +388,9 @@ public:
     auto periodic_sync = GetEstablishedSyncFromHandle(sync_handle);
     if (periodic_sync == periodic_syncs_.end()) {
       log::error("[PSync]: index not found for handle {}", sync_handle);
+      le_scanning_interface_->EnqueueCommand(
+              hci::LePeriodicAdvertisingTerminateSyncBuilder::Create(sync_handle),
+              handler_->BindOnce(check_complete<LePeriodicAdvertisingTerminateSyncCompleteView>));
       return;
     }
     periodic_syncs_.erase(periodic_sync);
@@ -460,6 +466,9 @@ public:
     auto periodic_sync = GetEstablishedSyncFromHandle(sync_handle);
     if (periodic_sync == periodic_syncs_.end()) {
       log::error("[PSync]: index not found for handle {}", sync_handle);
+      le_scanning_interface_->EnqueueCommand(
+              hci::LePeriodicAdvertisingTerminateSyncBuilder::Create(sync_handle),
+              handler_->BindOnce(check_complete<LePeriodicAdvertisingTerminateSyncCompleteView>));
       return;
     }
     log::debug("{}", "[PSync]: invoking callback");
