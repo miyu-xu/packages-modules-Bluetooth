@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a899d38_744cb0de",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-27T19:15:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a9d0a01c_278d475a",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c2aede8_bb2530e2",
@@ -103,6 +127,30 @@
       "side": 1,
       "message": "Exactly. Note that if there is anything running on the thread that will complete first.",
       "parentUuid": "4c2aede8_bb2530e2",
+      "range": {
+        "startLine": 644,
+        "startChar": 17,
+        "endLine": 644,
+        "endChar": 35
+      },
+      "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0da17ee_b2e4f45f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-27T19:15:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3ff145ef_b675a91a",
       "range": {
         "startLine": 644,
         "startChar": 17,
