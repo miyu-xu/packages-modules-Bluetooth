@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9d0a01c_278d475a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-27T18:50:45Z",
+      "side": 1,
+      "message": "Here we want to cancel all pending operations on the thread, so doesn\u0027t matter I think. The rest of the cleanup is done on the advertise thread since there can be an ongoing operation that needs to safely completed.",
+      "parentUuid": "b5b40923_baa0d415",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 50
+      },
+      "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4c2aede8_bb2530e2",
         "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
         "patchSetId": 5
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff145ef_b675a91a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-27T18:50:45Z",
+      "side": 1,
+      "message": "Exactly. Note that if there is anything running on the thread that will complete first.",
+      "parentUuid": "4c2aede8_bb2530e2",
+      "range": {
+        "startLine": 644,
+        "startChar": 17,
+        "endLine": 644,
+        "endChar": 35
+      },
       "revId": "9ba01218dced8907eb9c1ed802b54c5fd532b0ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
