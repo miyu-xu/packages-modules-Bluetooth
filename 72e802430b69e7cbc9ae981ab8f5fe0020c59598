@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d1e5df_2fa12039",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-27T19:40:37Z",
+      "side": 1,
+      "message": "NIT: I wouldn\u0027t mind that being INFO log.",
+      "range": {
+        "startLine": 1042,
+        "startChar": 13,
+        "endLine": 1042,
+        "endChar": 18
+      },
+      "revId": "72e802430b69e7cbc9ae981ab8f5fe0020c59598",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
