@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73550c2e_275da34c",
+        "filename": "system/gd/hci/le_advertising_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-27T22:52:56Z",
+      "side": 0,
+      "message": "Note that the legacy command does not support 32-bit intervals;\nthis change will only be correct if the legacy command is not used.\nThis should be ok as extended advertising is a requirement for new android versions",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "6f61c43dec45c4db9e025bbc331cf54c34927caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
