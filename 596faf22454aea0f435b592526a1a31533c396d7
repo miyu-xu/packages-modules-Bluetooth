@@ -33,6 +33,52 @@
       "message": "Hi Omair, friendly bump to review. Thanks!",
       "revId": "596faf22454aea0f435b592526a1a31533c396d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47f46c13_b324ce31",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T22:01:13Z",
+      "side": 1,
+      "message": "I believe that the osi property tool is no longer used and we should use the GD system properties reader.\n\nOr even better, add an entry into sysprop and use the sysprop reader, like:\n\n```\nandroid::sysprop::bluetooth::le::msft_vendor_opcode().value_or(0);\n```",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2792de8f_6edb0196",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-27T22:01:13Z",
+      "side": 1,
+      "message": "According to CL description, shouldn\u0027t we check the sysprop before checking the hal ?\n```\nif (osi_property_get_int32(\"bluetooth.core.le.msft_vendor_opcode\", 0) \u003d\u003d 0) {\n  return false:\n}\nuint16_t opcode \u003d hal_-\u003egetMsftOpcode();\nif (opcode \u003d\u003d 0) {\n  return false;\n}\n```",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
