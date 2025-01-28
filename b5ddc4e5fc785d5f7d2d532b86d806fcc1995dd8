@@ -16,6 +16,80 @@
       "message": "Tried to merge the ChangeId to app/ChangeId.java but couldn\u0027t solve build errors in the end. Therefore, keeping the ChangeId local an will see if I can address local ChangeIds under `framework` and merge them together. Tests were all checked to be successful with flags on locally.",
       "revId": "b5ddc4e5fc785d5f7d2d532b86d806fcc1995dd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c86ba96_21ff2915",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T00:03:30Z",
+      "side": 1,
+      "message": "@EnableFlags when doing unit tests so the test will set the flag value before being run",
+      "range": {
+        "startLine": 1865,
+        "startChar": 5,
+        "endLine": 1865,
+        "endChar": 25
+      },
+      "revId": "b5ddc4e5fc785d5f7d2d532b86d806fcc1995dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7021ee_d943d3f5",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T00:03:30Z",
+      "side": 1,
+      "message": "Can this be @EnableFlags ? (I am not sure since this is framework test, but I belive it should also works here)",
+      "range": {
+        "startLine": 124,
+        "startChar": 5,
+        "endLine": 124,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6b64396d_5e1b76d4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 26,
+                "endChar": 0
+              },
+              "replacement": "import android.platform.test.annotations.EnableFlags;\n"
+            },
+            {
+              "path": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 125,
+                "endChar": 0
+              },
+              "replacement": "    @EnableFlags(Flags.FLAG_CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b5ddc4e5fc785d5f7d2d532b86d806fcc1995dd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
