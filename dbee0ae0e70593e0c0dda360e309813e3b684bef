@@ -34,6 +34,23 @@
       "parentUuid": "6ec5d3b6_4b7d2a0e",
       "revId": "dbee0ae0e70593e0c0dda360e309813e3b684bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfdce088_01980487",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 3840712
+      },
+      "writtenOn": "2025-01-28T10:50:55Z",
+      "side": 1,
+      "message": "Jakub, ase-\u003emetadata has been assigned through the API       \nSetMetadataToAse(ase, metadata_context_types, ccid_lists); \nThis is required for writing enable operation.\n\nBut this info.metadata \u003d ase-\u003emetadata; not having all info which passed through from AIDL.\n\nIdeally this metada should consists of all info of https://cs.android.com/android/platform/superproject/main/+/main:hardware/interfaces/bluetooth/audio/aidl/android/hardware/bluetooth/audio/MetadataLtv.aidl\n\nThis is missing in updating streamMap info.\n\nCould you please check..?",
+      "revId": "dbee0ae0e70593e0c0dda360e309813e3b684bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
