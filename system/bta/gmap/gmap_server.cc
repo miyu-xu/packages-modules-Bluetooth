@@ -50,9 +50,10 @@ std::unordered_map<uint16_t, GmapCharacteristic> GmapServer::characteristics_ =
         std::unordered_map<uint16_t, GmapCharacteristic>();
 // default role is UGG
 std::bitset<8> GmapServer::role_ = 0b0001;
-// AOSP's LE Audio source support multi-sink on default
+// AOSP's LE Audio source support multi-sink on default (as well as multi-plex)
 std::bitset<8> GmapServer::UGG_feature_ =
-        static_cast<uint8_t>(bluetooth::gmap::UGGFeatureBitMask::MultisinkFeatureSupport);
+        static_cast<uint8_t>(bluetooth::gmap::UGGFeatureBitMask::MultisinkFeatureSupport) |
+        static_cast<uint8_t>(bluetooth::gmap::UGGFeatureBitMask::MultiplexFeatureSupport);
 
 bool GmapServer::IsGmapServerEnabled() {
   // for UGG, both GMAP Server and Client are needed. So server and client share the same flag.
