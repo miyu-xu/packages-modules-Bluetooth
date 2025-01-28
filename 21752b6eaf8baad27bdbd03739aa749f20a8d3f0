@@ -46,6 +46,30 @@
       },
       "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5a15a2_dfecf888",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T02:37:52Z",
+      "side": 1,
+      "message": "\u003e The crash is in btservice.\n\u003e We may not be able to iterate all components onCrash.\n\nWhat is \"btservice\" in this case ?\nFor me btservice would mean within packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/ but I don\u0027t see a crash there\n\nAccording to the bugreport, the crash is in the HAL\n```\nAbort message: \u0027system/gd/hal/hci_backend_aidl.cc:76 operator(): The Bluetooth HAL died.\u0027\n```\n\nWe have all the time we want to properly close Bluetooth here:\n\n```\n    death_recipient_ \u003d\n            ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new([](void* /* cookie*/) {\n              log::error(\"The Bluetooth HAL service died. Dumping logs and crashing in 1 second.\");\n              common::StopWatch::DumpStopWatchLog();\n              // At shutdown, sometimes the HAL service gets killed before Bluetooth.\n              std::this_thread::sleep_for(std::chrono::seconds(1));\n              log::fatal(\"The Bluetooth HAL died.\");\n            }));\n```\n\nBefore calling fatal, we could do a step to notify the java and wait for setting all component as disabled there.\n\n\u003e And yes, turn off BT doesn\u0027t have this problem since each profile will disable itself on stop()\n\nI meant that there is a problem at shutdown. If Bluetooth crash and user shut it down in the same time, the component will be marked as \"available\" while not being available,",
+      "parentUuid": "46d039cb_4b02a566",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
