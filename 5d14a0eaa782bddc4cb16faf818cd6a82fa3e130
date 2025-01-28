@@ -16,6 +16,70 @@
       "message": "Adding DRI as reviewer",
       "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d955401_553304af",
+        "filename": "flags/opp.aconfig",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T00:19:05Z",
+      "side": 1,
+      "message": "flag for api should have is_exported as true",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1ee53f3_6fa0977b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T00:19:05Z",
+      "side": 1,
+      "message": "Why is this needed ? what shoulr be the correct string ? if we were to follow the actionValue recommendation?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "96b9e0f5_0602537c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
