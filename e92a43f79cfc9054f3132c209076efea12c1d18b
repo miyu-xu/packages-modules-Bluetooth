@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "350456e0_6fb9bb03",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T22:01:03Z",
+      "side": 1,
+      "message": "We should probably use `HCI_ERR_AUTH_FAILURE` as the reason",
+      "fixSuggestions": [
+        {
+          "fixId": "a1131876_47880434",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/smp/smp_act.cc",
+              "range": {
+                "startLine": 563,
+                "startChar": 0,
+                "endLine": 564,
+                "endChar": 0
+              },
+              "replacement": "        acl_disconnect_from_handle(p_rec-\u003eble_hci_handle, HCI_ERR_AUTH_FAILURE,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e92a43f79cfc9054f3132c209076efea12c1d18b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
