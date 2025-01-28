@@ -62,6 +62,24 @@
       "parentUuid": "69de978a_f8a93cd8",
       "revId": "2b7a7e2711e6a77e4e44b59d90f75ebf464e6d76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "628fec4d_e115ca4e",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T11:25:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abb92499_2331e8b3",
+      "revId": "2b7a7e2711e6a77e4e44b59d90f75ebf464e6d76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
