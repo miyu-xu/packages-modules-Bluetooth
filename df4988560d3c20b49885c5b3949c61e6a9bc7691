@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8274d995_6354f334",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T19:39:06Z",
+      "side": 1,
+      "message": "Adding Sal as FYI, but I believe this does not impact your workflow (unless you now defined config_hsumBootStrategy",
+      "revId": "df4988560d3c20b49885c5b3949c61e6a9bc7691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
