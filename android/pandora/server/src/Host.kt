@@ -24,6 +24,7 @@ import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.bluetooth.BluetoothDevice.BOND_NONE
 import android.bluetooth.BluetoothDevice.TRANSPORT_BREDR
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
+import android.bluetooth.BluetoothHeadset
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.bluetooth.BluetoothUuid
@@ -114,6 +115,7 @@ class Host(
     private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
     private val bluetoothAdapter = bluetoothManager.adapter
 
+    private val bluetoothHfp = getProfileProxy<BluetoothHeadset>(context, BluetoothProfile.HEADSET)
     private var connectability = ConnectabilityMode.NOT_CONNECTABLE
     private var discoverability = DiscoverabilityMode.NOT_DISCOVERABLE
 
@@ -140,6 +142,7 @@ class Host(
     }
 
     override fun close() {
+        bluetoothAdapter.closeProfileProxy(BluetoothProfile.HEADSET, bluetoothHfp)
         scope.cancel()
     }
 
@@ -268,6 +271,20 @@ class Host(
             .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
             .filter { it == BOND_BONDED }
             .first()
+        // pandora bumble device has fake HFP service in SDP record. and Android initiate auto
+        // connection to HFP
+        // profile . disable HFP profile connection policy to block auto connection
+        Log.i(TAG, "disable HFP connection policy for device=$bluetoothDevice")
+        if (
+            bluetoothDevice.getName().equals("Bumble") &&
+                bluetoothHfp.getConnectionPolicy(bluetoothDevice) !=
+                    BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
+        ) {
+            bluetoothHfp.setConnectionPolicy(
+                bluetoothDevice,
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
+            )
+        }
     }
 
     suspend fun waitIncomingAclConnectedIntent(address: String?, transport: Int): Intent {
