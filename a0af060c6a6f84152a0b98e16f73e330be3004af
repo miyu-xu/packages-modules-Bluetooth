@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c25c59_85df0046",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T10:12:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6943c697_c9ce5b39",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6125160e_9ffb3af1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T10:12:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "157f3972_cd99facb",
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9032cf0_ad2fd79c",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-01-13T21:14:13Z",
       "side": 1,
       "message": "Nit: Please fix typo for \"temporary\".",
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270d6cf2_002dbd88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T10:12:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9032cf0_ad2fd79c",
       "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -89,6 +149,24 @@
           ]
         }
       ],
+      "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dd004e9_c8660468",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T10:12:17Z",
+      "side": 1,
+      "message": "Done\nDuring reconnection agaign authentictaion done , hence BTM_SEC_AUTHENTICATED flag set and temp pairing done.",
+      "parentUuid": "6a9971b1_bfff484d",
       "revId": "a0af060c6a6f84152a0b98e16f73e330be3004af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
