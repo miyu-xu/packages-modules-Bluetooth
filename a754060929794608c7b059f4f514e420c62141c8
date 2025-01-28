@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ca74feb_987dfe52",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2234,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-28T08:44:37Z",
+      "side": 1,
+      "message": "In theory not as we update it before register sync in `handleSelectSourceRequest#updatePeriodicAdvertisementResultMap`.\nIn practice I saw such situation with iterruptionFix (aosp/3466165) before I found and fixed unsyncing (aosp/3464818).\nThis extra check is small and obious as there have to be broadcastId for pending sync handle, but can prevent us from some undefined behaviours of the sync manager.\nIt will not hide potentiall issues as sync will be not established and it will be clear in logs to find that.",
+      "parentUuid": "cb9d0ed3_97791bfa",
+      "range": {
+        "startLine": 2234,
+        "startChar": 48,
+        "endLine": 2234,
+        "endChar": 59
+      },
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "252fba2a_072e9321",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "199f0ce8_da75d8f2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2843,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-28T08:44:37Z",
+      "side": 1,
+      "message": "Major reason is to allow creating isAddedToSync method. updatePeriodicAdvertisementResultMap (I moved updating mSyncHandleToDeviceMap and mSyncHandleToBroadcastIdMap to updatePeriodicAdvertisementResultMap) has to be inside mSourceSyncRequestsQueue synchronization as we check broadcastId for pending/invalid sync handle in isAddedToSync.\n\nA minor reason is that I want to gather as many as possible variables, which depend on syncHandle in one place. This will enable us to make refactor and create a one object for it instead of separate variables.",
+      "parentUuid": "252fba2a_072e9321",
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee7715e7_ff8f0ed3",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -54,6 +96,24 @@
       "writtenOn": "2025-01-27T22:23:20Z",
       "side": 1,
       "message": "isAddedToSync() is not that clear to present the intent.\nCan we consider to rename it to something like isSyncInitiatedByAddingSourceRequest() or ...?",
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b85dcb2a_533f04ea",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3178,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-28T08:44:37Z",
+      "side": 1,
+      "message": "It is because of add select source request. Adding source is only one of the places when it could occur. It checks if this broadcastId is in sync queue/pending.\nChanged.",
+      "parentUuid": "ee7715e7_ff8f0ed3",
       "revId": "a754060929794608c7b059f4f514e420c62141c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
