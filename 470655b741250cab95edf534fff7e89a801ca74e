@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7875f550_919b5a5b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-28T16:25:09Z",
+      "side": 1,
+      "message": "Can we add check for `results.isEmpty()` here?",
+      "fixSuggestions": [
+        {
+          "fixId": "3c9df05a_37222616",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 854,
+                "startChar": 0,
+                "endLine": 855,
+                "endChar": 0
+              },
+              "replacement": "        if (!results.isEmpty()) {\n            sendBatchScanResults(app, client, results);\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d0200cb_dabc25bf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-01-28T16:25:09Z",
+      "side": 1,
+      "message": "nit) remove this",
+      "fixSuggestions": [
+        {
+          "fixId": "a008cce6_a5303839",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 2267,
+                "startChar": 0,
+                "endLine": 2268,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
