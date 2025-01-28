@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76fc9c83_312665cc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/EncryptionChangeTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-28T04:43:28Z",
+      "side": 1,
+      "message": "remove null if you can consider the suggetion given on removeBond()\n```suggestion\n            util.removeBond(mBumbleDevice);\n```",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 44
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c526d891_85b871b1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-28T04:43:28Z",
+      "side": 1,
+      "message": "remove `null` if you can consider the suggetion given on removeBond()\n```suggestion\n            util.removeBond(device);\n        }\n```",
+      "range": {
+        "startLine": 152,
+        "startChar": 11,
+        "endLine": 153,
+        "endChar": 1
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5ca648_b51c078d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/TestUtil.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-01-28T04:43:28Z",
+      "side": 1,
+      "message": "currently we do not have any instance of calling removeBond() without IntentReceiver as null. I think `parentIntentReceiver` param can be removed.\n```suggestion\n IntentReceiver.updateNewIntentActionsInParentReceiver(null,\n            mTargetContext, BluetoothDevice.ACTION_BOND_STATE_CHANGED); \n\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
