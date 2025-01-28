@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52136972_e993430c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T16:36:46Z",
+      "side": 1,
+      "message": "Nit: Second pairing attempt with LEA enable phone fails",
+      "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009f3b2a_46ec49c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T16:36:46Z",
+      "side": 1,
+      "message": "Pakala/Lanai appears to internal codenames which should not be referenced on public forum",
+      "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26653573_c0e25e3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T16:36:46Z",
+      "side": 1,
+      "message": "Devices should pair over BR/EDR transport",
+      "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
