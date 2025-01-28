@@ -22,6 +22,30 @@
       },
       "revId": "6f61c43dec45c4db9e025bbc331cf54c34927caa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ec678f_dfd5ba78",
+        "filename": "system/gd/hci/le_advertising_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T01:57:31Z",
+      "side": 0,
+      "message": "I agree, it happens when calling:\n```\nhci::LeSetAdvertisingParametersBuilder::Create(\n                        config.interval_min, config.interval_max, config.advertising_type,\n                        own_address_type, config.peer_address_type, config.peer_address,\n                        config.channel_map, config.filter_policy),\n```\n\nBut we just moved where this was happening, so I am fine with the change too",
+      "parentUuid": "73550c2e_275da34c",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "6f61c43dec45c4db9e025bbc331cf54c34927caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
