@@ -149,6 +149,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f9b92e_3b941336",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T10:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f21a065_55a232bc",
+      "revId": "254b8e5a0867d31d7bb1912093d7865302439f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d00e5405_1e7b7391",
