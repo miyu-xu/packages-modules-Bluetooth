@@ -166,6 +166,21 @@ class Host(
 
             // remove bond for each device to avoid auto connection if remote resets faster
             for (device in bluetoothAdapter.bondedDevices) {
+                if (device.isConnected()) {
+                    device.disconnect()
+                    Log.i(TAG, "wait for device disconnect to complete : device=$device")
+                    flow
+                        .filter { it.action == BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED }
+                        .filter { it.getBluetoothDeviceExtra() == device }
+                        .map {
+                            it.getIntExtra(
+                                BluetoothAdapter.EXTRA_CONNECTION_STATE,
+                                BluetoothAdapter.ERROR,
+                            )
+                        }
+                        .filter { it == BluetoothAdapter.STATE_DISCONNECTED }
+                        .first()
+                }
                 device.removeBond()
                 Log.i(TAG, "wait for remove bond to complete : device=$device")
                 flow
