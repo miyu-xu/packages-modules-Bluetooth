@@ -366,6 +366,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed8deea1_2c387518",
+        "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T23:43:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c15c8742_471d24ce",
+      "range": {
+        "startLine": 81,
+        "startChar": 21,
+        "endLine": 81,
+        "endChar": 44
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b73a5f5e_11459a5c",
