@@ -23,6 +23,7 @@
 
 #include <cstring>
 
+#include "bta/dm/bta_dm_sec_int.h"
 #include "btif/include/btif_common.h"
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
@@ -548,6 +549,22 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 
   /* erase all keys if it is peripheral proc pairing req */
   if (p_dev_rec && (p_cb->role == HCI_ROLE_PERIPHERAL)) {
+    if (com::android::bluetooth::flags::key_missing_ble_peripheral()) {
+      tBTM_SEC_DEV_REC* p_rec = btm_find_dev(p_cb->pairing_bda);
+      /* If we bonded, but not encrypted, it's a key missing - disconnect.
+       * If we are bonded, its key upgrade and ok to continue.
+       * If we are not bonded, its new device pairing and ok.
+       */
+      if (p_rec != NULL && p_rec->sec_rec.is_le_link_key_known() &&
+          !p_rec->sec_rec.is_le_device_encrypted()) {
+        log::warn("bonded unencrypted central wants to pair {}", p_cb->pairing_bda);
+        bta_dm_remote_key_missing(p_cb->pairing_bda);
+        tSMP_INT_DATA smp_int_data;
+        smp_int_data.status = SMP_PAIR_AUTH_FAIL;
+        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        return;
+      }
+    }
     btm_sec_clear_ble_keys(p_dev_rec);
   }
 
