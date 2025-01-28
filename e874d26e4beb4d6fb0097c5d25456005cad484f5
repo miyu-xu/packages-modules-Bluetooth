@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10486fd5_4a44b08f",
+        "filename": "flags/security.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T21:43:14Z",
+      "side": 1,
+      "message": "SHould this be marked as bugfix ? (according to the bug attached)",
+      "range": {
+        "startLine": 12,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "e874d26e4beb4d6fb0097c5d25456005cad484f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
