@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7d369e1_b856f142",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3605,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-28T09:12:29Z",
+      "side": 1,
+      "message": "Yes\n\u003cwhispering\u003e\nand almost yes as this is a little fix, not only rafactor;)\n\u003c/whispering\u003e\nThis change is needed as after the change that removeSourceInternal does not work on the whole group (this is a little fix), we need to stopBigMonitoring outside this loop here. Without that on first execution we will set HOST_INTENTIONAL in stopBigMonitoring which will broke this check:\n```\nif (!mPausedBroadcastSinks.contains(device)\n        || isSinkUnintentionalPauseType(receiveState.getBroadcastId())) {\n    // Remove device if not paused yet\n    sourcesToRemove.put(device, receiveState.getSourceId());\n}\n```",
+      "parentUuid": "69394b45_57d2f40f",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1b9123_8db80c72",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2025-01-28T08:18:33Z",
       "side": 1,
       "message": "is this change related to the CL ?",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec59c6f2_ac6c85db",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3881,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-28T09:12:29Z",
+      "side": 1,
+      "message": "Yes, this is only refactor without functional change that when you remove source internally, pausedBroadcastId with HOST_INTENTIONAL will remain.\n\nIt can be used for some checks later.",
+      "parentUuid": "5d1b9123_8db80c72",
       "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
