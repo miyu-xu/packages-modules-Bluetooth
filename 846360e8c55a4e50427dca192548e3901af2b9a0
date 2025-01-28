@@ -46,6 +46,30 @@
       },
       "revId": "846360e8c55a4e50427dca192548e3901af2b9a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9084de0c_752541c3",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2025-01-28T09:37:20Z",
+      "side": 1,
+      "message": "As Łukasz mentioned, this Codec Configure operation can be initiated by remote, so we protect undesired stream stop here",
+      "parentUuid": "3b139549_b6886506",
+      "range": {
+        "startLine": 1981,
+        "startChar": 12,
+        "endLine": 1981,
+        "endChar": 22
+      },
+      "revId": "846360e8c55a4e50427dca192548e3901af2b9a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
