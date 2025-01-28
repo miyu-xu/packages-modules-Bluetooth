@@ -16,6 +16,24 @@
       "message": "Just checking `check_cod_phone()` additionally should have worked here",
       "revId": "c350731a0c9ac78974403c4a0de1af68c76eab04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b433cad_c3ccac6c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-28T11:24:44Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2b5de7f9_1d0a0559",
+      "revId": "c350731a0c9ac78974403c4a0de1af68c76eab04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
