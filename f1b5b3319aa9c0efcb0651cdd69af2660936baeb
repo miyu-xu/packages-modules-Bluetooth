@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33706167_d9893e2c",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-28T15:37:31Z",
+      "side": 1,
+      "message": "missing enhancement here I guess",
+      "fixSuggestions": [
+        {
+          "fixId": "a08aa040_be1e5f63",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_int.h",
+              "range": {
+                "startLine": 268,
+                "startChar": 0,
+                "endLine": 268,
+                "endChar": 0
+              },
+              "replacement": "  uint16_t gmas_start_hdl;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f1b5b3319aa9c0efcb0651cdd69af2660936baeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
