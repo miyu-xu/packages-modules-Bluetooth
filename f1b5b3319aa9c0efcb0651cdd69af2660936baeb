@@ -34,6 +34,24 @@
       ],
       "revId": "f1b5b3319aa9c0efcb0651cdd69af2660936baeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1eb27f_13cfa4a0",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-01-28T15:48:31Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "33706167_d9893e2c",
+      "revId": "f1b5b3319aa9c0efcb0651cdd69af2660936baeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
