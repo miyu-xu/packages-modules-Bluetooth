@@ -6876,6 +6876,11 @@ void LeAudioClient::Initialize(
                 bluetooth::gmap::UGGFeatureBitMask::NinetySixKbpsSourceFeatureSupport);
         break;
       }
+      if (capa.codec_frame_blocks_per_sdu > 1) {
+        UGG_feature |=
+                static_cast<uint8_t>(bluetooth::gmap::UGGFeatureBitMask::MultiplexFeatureSupport);
+        break;
+      }
     }
     GmapServer::Initialize(UGG_feature);
   }
