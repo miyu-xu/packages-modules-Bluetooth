@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83701b1_789882cc",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T18:39:20Z",
+      "side": 1,
+      "message": "SMP pairing failure event can remove the bond. Instead we should just disconnect the link.",
+      "revId": "2e4608813f2e400925820ae2f036269bdf280104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
