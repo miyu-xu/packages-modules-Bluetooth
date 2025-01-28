@@ -52,6 +52,24 @@
       "parentUuid": "5164f901_8ad6e01a",
       "revId": "2e4608813f2e400925820ae2f036269bdf280104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c548b3bf_724b33e1",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-28T21:53:57Z",
+      "side": 1,
+      "message": "Indeed, local device was forgetting the bond. When I disconnect, it works all good, bond stays.",
+      "parentUuid": "d8a3af46_569f8620",
+      "revId": "2e4608813f2e400925820ae2f036269bdf280104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
