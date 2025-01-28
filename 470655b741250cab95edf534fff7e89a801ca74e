@@ -112,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3e78b09_005adc9e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d0200cb_dabc25bf",
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f93a3288_281e3f39",
@@ -125,6 +143,30 @@
       "writtenOn": "2025-01-28T19:30:42Z",
       "side": 1,
       "message": "We should maybe add some doc to explain why we are doing this and what we are trying to achieve\n(I know about the design doc but this is not accessible from the code).",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 24
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc2f597_64257efe",
+        "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Added a bunch of comments",
+      "parentUuid": "f93a3288_281e3f39",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -160,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb2479ef_fcc916a0",
+        "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "I\u0027m trying to avoid using another alarm to process the delay of moving to the screen-off intervals - that\u0027s why it\u0027s checked when the trigger interval is calculated (which happens when the last batch alarm fires).",
+      "parentUuid": "cbd6ef18_2c77ca4f",
+      "range": {
+        "startLine": 67,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 9
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "241b6ca9_22af9f86",
         "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
         "patchSetId": 7
@@ -171,6 +237,30 @@
       "writtenOn": "2025-01-28T19:30:42Z",
       "side": 1,
       "message": "Can this be null ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 40
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "987847c1_a9e32b68",
+        "filename": "android/app/src/com/com/android/bluetooth/le_scan/BatchScanThrottler.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "No it can\u0027t",
+      "parentUuid": "241b6ca9_22af9f86",
       "range": {
         "startLine": 79,
         "startChar": 16,
@@ -245,6 +335,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05247e42_4acbd058",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/BatchScanThrottlerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b73a5f5e_11459a5c",
+      "range": {
+        "startLine": 60,
+        "startChar": 24,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f8a374f_0e6b8567",
@@ -268,6 +382,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c69e05b4_9f5a4ac9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/BatchScanThrottlerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f8a374f_0e6b8567",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 21
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17c54ffa_559459b0",
@@ -281,6 +419,30 @@
       "writtenOn": "2025-01-28T19:30:42Z",
       "side": 1,
       "message": "```suggestion\n        long expected \u003d adjustExpectedInterval(\n                                backoffIntervals[backoffIntervals.length - 1],\n                                isFiltered,\n                                isScreenOn);\n        // make sure that following calls does not change the value anymore\n        assertThat(throttler.getBatchTriggerIntervalMillis(clients))\n                .isEqualTo(expected);\n        assertThat(throttler.getBatchTriggerIntervalMillis(clients))\n                .isEqualTo(expected);\n    }\n```",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 99,
+        "endChar": 5
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a722efbd_9b9da993",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/BatchScanThrottlerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17c54ffa_559459b0",
       "range": {
         "startLine": 87,
         "startChar": 6,
@@ -332,6 +494,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e083deb3_b94c3294",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/BatchScanThrottlerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "61fee960_dd0f105d",
+      "range": {
+        "startLine": 126,
+        "startChar": 16,
+        "endLine": 126,
+        "endChar": 33
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67b78e32_107ba8ed",
@@ -345,6 +531,30 @@
       "writtenOn": "2025-01-28T19:30:42Z",
       "side": 1,
       "message": "Can this be a \n```suggestion\n            scanFilterList \u003d List.of(new ScanFilter.Builder().setDeviceName(\"TestName\").build());\n```\n\n? Or does this need to be modified (as List.of create an unmodifiable list)",
+      "range": {
+        "startLine": 203,
+        "startChar": 12,
+        "endLine": 204,
+        "endChar": 91
+      },
+      "revId": "470655b741250cab95edf534fff7e89a801ca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "738a93b5_334cf7af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/BatchScanThrottlerTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-28T22:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67b78e32_107ba8ed",
       "range": {
         "startLine": 203,
         "startChar": 12,
