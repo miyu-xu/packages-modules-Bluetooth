@@ -34,6 +34,24 @@
       "parentUuid": "c83701b1_789882cc",
       "revId": "2e4608813f2e400925820ae2f036269bdf280104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a3af46_569f8620",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T21:08:50Z",
+      "side": 1,
+      "message": "What I meant was this event can generate local pairing failure event. SMP pairing complete event (`SMP_PAIRING_CMPL`) with failure generally results in bond removal.",
+      "parentUuid": "5164f901_8ad6e01a",
+      "revId": "2e4608813f2e400925820ae2f036269bdf280104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
