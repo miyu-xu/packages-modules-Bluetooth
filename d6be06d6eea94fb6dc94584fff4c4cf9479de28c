@@ -33,6 +33,24 @@
       "message": "comment to update",
       "revId": "d6be06d6eea94fb6dc94584fff4c4cf9479de28c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52dae1cd_64603a02",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2647,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-28T08:45:07Z",
+      "side": 1,
+      "message": "It still is cleaned up if syncHandle is null;)\nUpdated",
+      "parentUuid": "12f4d392_2458e58e",
+      "revId": "d6be06d6eea94fb6dc94584fff4c4cf9479de28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
