@@ -22,6 +22,30 @@
       },
       "revId": "89104c514f7fbfa6a7bc81bd2cbaa71234d4059d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8417a433_6561cd39",
+        "filename": "system/stack/a2dp/a2dp_vendor.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-01-28T17:30:36Z",
+      "side": 1,
+      "message": "Will do this in a follow up, it has branching consequences.",
+      "parentUuid": "2a240f87_3e14a289",
+      "range": {
+        "startLine": 489,
+        "startChar": 0,
+        "endLine": 489,
+        "endChar": 4
+      },
+      "revId": "89104c514f7fbfa6a7bc81bd2cbaa71234d4059d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
