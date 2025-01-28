@@ -70,6 +70,30 @@
       },
       "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4feab3d0_09f61fb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-01-28T12:36:30Z",
+      "side": 1,
+      "message": "Thanks for your reply!\n\nYes, the root cause in this bug is crash occurred in BT controller. And a bug has been split to track the firmware crash, this bug is dedicated to tracking crashes that impede voice call recovery.\n\nFor crash that occurred in BT HAL, I agreed that we may handle it in IBinder.DeathRecipient, and interate all components for bluetooth package and stop them.\n\nIf the crash occurs directly within the bt service, recovery of voice call is still not possible. Maybe need to try..catch exception at onCreate() of bt service?\n\nThis patch tries to handle both cases, make sure it recovers after process restart.\n\nAny suggestions?",
+      "parentUuid": "2e5a15a2_dfecf888",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
