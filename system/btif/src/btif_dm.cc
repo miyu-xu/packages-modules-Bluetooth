@@ -153,6 +153,8 @@ const Uuid UUID_A2DP_SINK = Uuid::FromString("110B");
 #define ENCRYPTED_BREDR 2
 #define ENCRYPTED_LE 4
 
+#define PHONE_COD_MAJOR_CLASS_MASK 0x1F00
+
 struct btif_dm_pairing_cb_t {
   bt_bond_state_t state;
   RawAddress static_bdaddr;
@@ -492,6 +494,10 @@ static bool check_cod(const RawAddress* remote_bdaddr, uint32_t cod) {
   return (get_cod(remote_bdaddr) & COD_DEVICE_MASK) == cod;
 }
 
+static bool check_cod_phone(const RawAddress& bd_addr) {
+  return (get_cod(&bd_addr) & PHONE_COD_MAJOR_CLASS_MASK) == (BTM_COD_MAJOR_PHONE << 8);
+}
+
 bool check_cod_hid(const RawAddress& bd_addr) {
   return (get_cod(&bd_addr) & COD_HID_MASK) == COD_HID_MAJOR;
 }
@@ -767,8 +773,9 @@ bool is_le_audio_capable_during_service_discovery(const RawAddress& bd_addr) {
 static void btif_dm_cb_create_bond(const RawAddress bd_addr, tBT_TRANSPORT transport) {
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
 
-  if (transport == BT_TRANSPORT_AUTO && is_device_le_audio_capable(bd_addr)) {
-    log::debug("LE Audio capable, forcing LE transport for Bonding");
+  if (transport == BT_TRANSPORT_AUTO && is_device_le_audio_capable(bd_addr) &&
+      !check_cod_phone(bd_addr)) {
+    log::debug("LE Audio capable,forcing LE transport for Bonding");
     transport = BT_TRANSPORT_LE;
   }
 
