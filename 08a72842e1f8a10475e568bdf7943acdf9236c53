@@ -22,6 +22,30 @@
       },
       "revId": "08a72842e1f8a10475e568bdf7943acdf9236c53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e50a33_94d50d73",
+        "filename": "flags/le_scanning.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-28T19:59:21Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "33e38ed0_3061d4fc",
+      "range": {
+        "startLine": 5,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "08a72842e1f8a10475e568bdf7943acdf9236c53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
