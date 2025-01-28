@@ -46,6 +46,30 @@
       },
       "revId": "d98a801f03c7c4594b4bddae16f4c4dea69c1637",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05327f12_d22775b2",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 8766,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-01-28T08:43:32Z",
+      "side": 1,
+      "message": "Got it. The local metadata is not cleared now and instead it stores the metadata that previously `in_call_metadata_context_types_` was tracking (hence the CCID), but was not being updated by the metadata changes during the call (e.g MEDIA track being removed), which made us going back to an obsolete audio context configuration.",
+      "parentUuid": "cdd766ee_e5489d8b",
+      "range": {
+        "startLine": 8766,
+        "startChar": 31,
+        "endLine": 8766,
+        "endChar": 40
+      },
+      "revId": "d98a801f03c7c4594b4bddae16f4c4dea69c1637",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
