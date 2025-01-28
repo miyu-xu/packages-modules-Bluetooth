@@ -26,7 +26,9 @@ import android.bluetooth.BluetoothDevice.DEVICE_TYPE_LE
 import android.bluetooth.BluetoothDevice.EXTRA_PAIRING_VARIANT
 import android.bluetooth.BluetoothDevice.TRANSPORT_BREDR
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
+import android.bluetooth.BluetoothHeadset
 import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothProfile
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -155,12 +157,33 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
         if (bluetoothDevice.getBondState() == BOND_BONDED) {
             return BOND_BONDED
         }
-        return flow
+        flow
             .filter { it.action == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
             .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
             .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
             .filter { it == BOND_BONDED || it == BOND_NONE }
             .first()
+        if (bluetoothDevice.getBondState() == BOND_BONDED) {
+            // pandora bumble device has fake HFP service in SDP record. and Android initiate auto
+            // connection to HFP
+            // profile . disable HFP profile connection policy to block auto connection
+            Log.i(TAG, "disable HFP connection policy for device=$bluetoothDevice")
+            val bluetoothHfp = getProfileProxy<BluetoothHeadset>(context, BluetoothProfile.HEADSET)
+            if (
+                bluetoothDevice.getName().equals("Bumble") &&
+                    bluetoothHfp.getConnectionPolicy(bluetoothDevice) !=
+                        BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
+            ) {
+                bluetoothHfp.setConnectionPolicy(
+                    bluetoothDevice,
+                    BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
+                )
+            }
+            bluetoothAdapter.closeProfileProxy(BluetoothProfile.HEADSET, bluetoothHfp)
+            return BOND_BONDED
+        } else {
+            return BOND_NONE
+        }
     }
 
     suspend fun waitBREDRSecurityLevel(
