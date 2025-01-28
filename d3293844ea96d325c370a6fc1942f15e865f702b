@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c3c422_7b037f38",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T02:45:58Z",
+      "side": 1,
+      "message": "why the magic number ?",
+      "range": {
+        "startLine": 696,
+        "startChar": 48,
+        "endLine": 696,
+        "endChar": 50
+      },
+      "revId": "d3293844ea96d325c370a6fc1942f15e865f702b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
