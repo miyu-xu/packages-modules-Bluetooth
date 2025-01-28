@@ -34,6 +34,24 @@
       ],
       "revId": "e92a43f79cfc9054f3132c209076efea12c1d18b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cdd6878_48799495",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-28T22:18:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "350456e0_6fb9bb03",
+      "revId": "e92a43f79cfc9054f3132c209076efea12c1d18b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
