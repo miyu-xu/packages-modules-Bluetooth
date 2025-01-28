@@ -812,6 +812,7 @@ public class BassClientServiceTest {
                 .verify(mMethodProxy)
                 .periodicAdvertisingManagerRegisterSync(
                         any(), any(), anyInt(), anyInt(), any(), any());
+        onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
 
         // Stop searching
         mBassClientService.stopSearchingForSources();
@@ -7338,8 +7339,9 @@ public class BassClientServiceTest {
         onSyncEstablished(mSourceDevice, TEST_SYNC_HANDLE);
         BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
         verifyAddSourceForGroup(meta);
-        prepareRemoteSourceState(meta, false, false);
+        prepareRemoteSourceState(meta, true, true);
         mBassClientService.stopSearchingForSources();
+        prepareRemoteSourceState(meta, false, false);
         for (BassClientStateMachine sm : mStateMachines.values()) {
             clearInvocations(sm);
         }
