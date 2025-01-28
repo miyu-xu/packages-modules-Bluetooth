@@ -512,6 +512,106 @@ public class PairingTest {
     }
 
     /**
+     * Test if bonded LE device can reconnect after BT restart
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over LE
+     *   <li>Android pairs with Bumble over LE
+     *   <li>Android restarts
+     *   <li>Bumble is connectable over LE
+     *   <li>Android reconnects to Bumble successfully and re-encrypts the link
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondLe_AutoTransport() {
+        IntentReceiver intentReceiver =
+            IntentReceiver.updateNewIntentActionsInParentReceiver(
+                parentIntentReceiver,
+                sTargetContext,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_PAIRING_REQUEST);
+
+        /*mBumble.gattBlocking()
+                .registerService(
+                        GattProto.RegisterServiceRequest.newBuilder()
+                                .setService(
+                                        GattProto.GattServiceParams.newBuilder()
+                                                .setUuid(BATTERY_UUID.toString())
+                                                .build())
+                                .build());
+        mBumble.gattBlocking()
+                .registerService(
+                        GattProto.RegisterServiceRequest.newBuilder()
+                                .setService(
+                                        GattProto.GattServiceParams.newBuilder()
+                                                .setUuid(HOGP_UUID.toString())
+                                                .build())
+                                .build());*/
+
+        mBumble.hostBlocking()
+                .advertise(
+                        AdvertiseRequest.newBuilder()
+                                .setLegacy(true)
+                                .setConnectable(true)
+                                .setOwnAddressType(ownAddressType)
+                                .build());
+
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+                mBumble.security()
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
+                            TimeUnit.MILLISECONDS)
+                        .onPairing(mPairingEventStreamObserver);
+
+        assertThat(device.createBond(BluetoothDevice.TRANSPORT_AUTO)).isTrue();
+
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                    BluetoothDevice.BOND_BONDING));
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                    BluetoothDevice.TRANSPORT_LE));
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(
+                        BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                        BluetoothDevice.PAIRING_VARIANT_CONSENT));
+
+        // Approve pairing from Android
+        assertThat(device.setPairingConfirmation(true)).isTrue();
+
+        PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent)
+                    .setConfirm(true).build());
+
+        // Ensure that pairing succeeds
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                    BluetoothDevice.BOND_BONDED));
+
+        intentReceiver.close();
+    }
+
+    /**
      * Test if bonded LE device's identity address and type can be read
      *
      * <p>Prerequisites:
