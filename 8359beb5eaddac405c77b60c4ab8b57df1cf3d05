@@ -16,6 +16,64 @@
       "message": "Xxx",
       "revId": "8359beb5eaddac405c77b60c4ab8b57df1cf3d05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfe0097_df494500",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T02:13:53Z",
+      "side": 1,
+      "message": "is this possible to have empty results here ? shouldn\u0027t this be checked earlier in native and not go threw the whole jni thread \u0026 co before being checked ?",
+      "range": {
+        "startLine": 795,
+        "startChar": 12,
+        "endLine": 795,
+        "endChar": 19
+      },
+      "revId": "8359beb5eaddac405c77b60c4ab8b57df1cf3d05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "999c7b75_23ff766a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-28T02:13:53Z",
+      "side": 1,
+      "message": "should we add a return here ?\n```\n            if (permittedResults.isEmpty()) {\n                return;\n            }\n```\n\nbecause `permittedResults` can be empty when `results` is not empty ?",
+      "fixSuggestions": [
+        {
+          "fixId": "d3b859c9_64c66506",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 841,
+                "startChar": 0,
+                "endLine": 841,
+                "endChar": 0
+              },
+              "replacement": "\n        if (permittedResults.isEmpty()) {\n            return;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8359beb5eaddac405c77b60c4ab8b57df1cf3d05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
