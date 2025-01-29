@@ -48,6 +48,7 @@ cc_test {
     test_suites: ["general-tests"],
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     host_supported: true,
@@ -78,10 +79,8 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -97,6 +96,7 @@ cc_fuzz {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
     ],
     cflags: [
         "-Wno-missing-prototypes",
@@ -124,9 +124,7 @@ cc_fuzz {
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbluetooth_log",
-        "libchrome",
         "libcutils",
-        "libevent",
         "liblog",
         "libstatslog_bt",
         "libutils",
