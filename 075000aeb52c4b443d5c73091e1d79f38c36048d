@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c92e83_ac1176d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T21:56:39Z",
+      "side": 1,
+      "message": "If I understand it correctly, we\u0027re introducing this workaround to mitigate a controller race condition issue?\nShould we hold this a bit till we have clearer ideas of the controller problem?",
+      "revId": "075000aeb52c4b443d5c73091e1d79f38c36048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
