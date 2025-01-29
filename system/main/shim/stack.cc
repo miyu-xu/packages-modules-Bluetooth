@@ -68,6 +68,7 @@ namespace shim {
 struct Stack::impl {
   Acl* acl_ = nullptr;
   metrics::CounterMetrics* counter_metrics_ = nullptr;
+  storage::StorageModule* storage_ = nullptr;
 };
 
 Stack::Stack() { pimpl_ = std::make_shared<Stack::impl>(); }
@@ -87,6 +88,7 @@ void Stack::StartEverything() {
   stack_handler_ = new os::Handler(stack_thread_);
 
   pimpl_->counter_metrics_ = new metrics::CounterMetrics(new Handler(stack_thread_));
+  pimpl_->storage_ = new storage::StorageModule(new Handler(stack_thread_));
 
 #if TARGET_FLOSS
   modules.add<sysprops::SyspropsModule>();
@@ -97,7 +99,6 @@ void Stack::StartEverything() {
 #endif
   modules.add<hal::HciHal>();
   modules.add<hci::HciLayer>();
-  modules.add<storage::StorageModule>();
 
   modules.add<hci::Controller>();
   modules.add<hci::acl_manager::AclScheduler>();
@@ -133,7 +134,7 @@ void Stack::StartEverything() {
   is_running_ = true;
 
   // Make sure the leaf modules are started
-  log::assert_that(GetInstance<storage::StorageModule>() != nullptr,
+  log::assert_that(GetInstance<hal::HciHal>() != nullptr,
                    "assert failed: GetInstance<storage::StorageModule>() != nullptr");
   if (IsStarted<hci::Controller>()) {
     pimpl_->acl_ =
@@ -213,6 +214,12 @@ metrics::CounterMetrics* Stack::GetCounterMetrics() const {
   return pimpl_->counter_metrics_;
 }
 
+storage::StorageModule* Stack::GetStorage() const {
+  std::lock_guard<std::recursive_mutex> lock(mutex_);
+  log::assert_that(is_running_, "assert failed: is_running_");
+  return pimpl_->storage_;
+}
+
 os::Handler* Stack::GetHandler() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   log::assert_that(is_running_, "assert failed: is_running_");
@@ -238,6 +245,7 @@ void Stack::Dump(int fd, std::promise<void> promise) const {
 
 void Stack::handle_start_up(ModuleList* modules, std::promise<void> promise) {
   pimpl_->counter_metrics_->Start();
+  pimpl_->storage_->Start();
   registry_.Start(modules, stack_thread_);
   promise.set_value();
 }

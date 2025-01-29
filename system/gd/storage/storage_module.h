@@ -184,6 +184,9 @@ protected:
   std::optional<std::vector<uint8_t>> GetBin(const std::string& section,
                                              const std::string& property) const;
 
+  // Enable testing of internal methods
+  friend class StorageModuleTest;
+
 private:
   struct impl;
   mutable std::recursive_mutex mutex_;
