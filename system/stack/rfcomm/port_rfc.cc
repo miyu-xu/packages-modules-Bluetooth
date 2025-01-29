@@ -446,18 +446,6 @@ void PORT_DlcEstablishInd(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu) {
 
   RFCOMM_DlcEstablishRsp(p_mcb, dlci, p_port->mtu, RFCOMM_SUCCESS);
 
-  /* This is the server side.  If application wants to know when connection */
-  /* is established, thats the place */
-  if (p_port->p_callback && (p_port->ev_mask & PORT_EV_CONNECTED)) {
-    (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
-  }
-
-  if (p_port->p_mgmt_callback) {
-    p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
-    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_IND,
-                        1);
-  }
-
   p_port->state = PORT_CONNECTION_STATE_OPENED;
 }
 
@@ -466,9 +454,8 @@ void PORT_DlcEstablishInd(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu) {
  * Function         PORT_DlcEstablishCnf
  *
  * Description      This function is called from the RFCOMM layer when peer
- *                  acknowledges establish procedure (SABME/UA).  Send reply
- *                  to the user and set state to OPENED if result was
- *                  successful.
+ *                  acknowledges establish procedure (SABME/UA).  Set state to
+ *                  OPENED if result was successful.
  *
  ******************************************************************************/
 void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu, uint16_t result) {
@@ -495,15 +482,6 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu, uint16_t 
   /* If there was an inactivity timer running for MCB stop it */
   rfc_timer_stop(p_mcb);
 
-  if (p_port->p_callback && (p_port->ev_mask & PORT_EV_CONNECTED)) {
-    (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
-  }
-
-  if (p_port->p_mgmt_callback) {
-    p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
-    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
-                        1);
-  }
   p_port->state = PORT_CONNECTION_STATE_OPENED;
 
   /* RPN is required only if we want to tell DTE how the port should be opened
@@ -609,11 +587,6 @@ void PORT_ControlInd(tRFC_MCB* p_mcb, uint8_t dlci, tPORT_CTRL* p_pars) {
   if (!(p_port->port_ctrl & PORT_CTRL_REQ_SENT)) {
     RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
   } else {
-    /* If this is the first time we received control RFCOMM is connected */
-    if (!(p_port->port_ctrl & PORT_CTRL_IND_RECEIVED)) {
-      event |= (PORT_EV_CONNECTED & p_port->ev_mask);
-    }
-
     if (p_port->port_ctrl & PORT_CTRL_REQ_CONFIRMED) {
       event |= port_rfc_send_tx_data(p_port);
     }
@@ -636,6 +609,19 @@ void PORT_ControlInd(tRFC_MCB* p_mcb, uint8_t dlci, tPORT_CTRL* p_pars) {
                (p_port->peer_ctrl.modem_signal & MODEM_SIGNAL_RTSCTS) ? 1 : 0,
                (p_port->peer_ctrl.modem_signal & MODEM_SIGNAL_RI) ? 1 : 0,
                (p_port->peer_ctrl.modem_signal & MODEM_SIGNAL_DCD) ? 1 : 0);
+
+  log::verbose("port_ctrl: 0x{:x}", p_port->port_ctrl);
+  if (p_port->port_ctrl == PORT_CTRL_SETUP_COMPLETED) {
+    if (p_port->p_callback && (p_port->ev_mask & PORT_EV_CONNECTED)) {
+      (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
+    }
+
+    if (p_port->p_mgmt_callback) {
+      p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+      log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_IND,
+                          1);
+    }
+  }
 }
 
 /*******************************************************************************
@@ -658,10 +644,6 @@ void PORT_ControlCnf(tRFC_MCB* p_mcb, uint8_t dlci, tPORT_CTRL* /* p_pars */) {
 
   if (!(p_port->port_ctrl & PORT_CTRL_REQ_CONFIRMED)) {
     p_port->port_ctrl |= PORT_CTRL_REQ_CONFIRMED;
-
-    if (p_port->port_ctrl & PORT_CTRL_IND_RECEIVED) {
-      event = (p_port->ev_mask & PORT_EV_CONNECTED);
-    }
   }
 
   if (p_port->port_ctrl & PORT_CTRL_IND_RECEIVED) {
@@ -672,6 +654,19 @@ void PORT_ControlCnf(tRFC_MCB* p_mcb, uint8_t dlci, tPORT_CTRL* /* p_pars */) {
    */
   if (event && p_port->p_callback) {
     (p_port->p_callback)(event, p_port->handle);
+  }
+
+  log::verbose("port_ctrl: 0x{:x}", p_port->port_ctrl);
+  if (p_port->port_ctrl == PORT_CTRL_SETUP_COMPLETED) {
+    if (p_port->p_callback && (p_port->ev_mask & PORT_EV_CONNECTED)) {
+      (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
+    }
+
+    if (p_port->p_mgmt_callback) {
+      p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+      log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
+                          1);
+    }
   }
 }
 
