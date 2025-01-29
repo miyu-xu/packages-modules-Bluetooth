@@ -56,8 +56,6 @@ import java.util.UUID;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class MediaControlProfileTest {
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
-
     private MediaControlProfile mMediaControlProfile;
 
     private String packageName = "TestPackage";
@@ -84,10 +82,6 @@ public class MediaControlProfileTest {
 
     @Before
     public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
-
         MediaControlProfile.ListCallback listCallback;
 
         TestUtils.setAdapterService(mAdapterService);
@@ -137,10 +131,6 @@ public class MediaControlProfileTest {
         mMediaControlProfile.cleanup();
         mMediaControlProfile = null;
         reset(mMockMediaPlayerList);
-
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
     }
 
     @Test

@@ -216,6 +216,7 @@ public class LeAudioBroadcastServiceTest {
 
         MetricsLogger.setInstanceForTesting(mMetricsLogger);
 
+        android.util.Log.e("WILLIAM", "Set instance with " + mLeAudioBroadcasterNativeInterface);
         LeAudioBroadcasterNativeInterface.setInstance(mLeAudioBroadcasterNativeInterface);
         mockGetSystemService(
                 mAdapterService, Context.AUDIO_SERVICE, AudioManager.class, mAudioManager);

@@ -183,11 +183,8 @@ public class BluetoothMapContentObserverTest {
         // Functions that get called when BluetoothMapContentObserver is created
         when(mUserService.isUserUnlocked()).thenReturn(true);
         when(mContext.getContentResolver()).thenReturn(mMockContentResolver);
-        when(mContext.getSystemService(Context.TELEPHONY_SERVICE)).thenReturn(mTelephonyManager);
-        when(mContext.getSystemServiceName(TelephonyManager.class))
-                .thenReturn(Context.TELEPHONY_SERVICE);
-        when(mContext.getSystemService(Context.USER_SERVICE)).thenReturn(mUserService);
-        when(mContext.getSystemServiceName(UserManager.class)).thenReturn(Context.USER_SERVICE);
+        when(mContext.getSystemService(TelephonyManager.class)).thenReturn(mTelephonyManager);
+        when(mContext.getSystemService(UserManager.class)).thenReturn(mUserService);
         when(mInstance.getMasId()).thenReturn(TEST_ID);
 
         mObserver = new BluetoothMapContentObserver(mContext, mClient, mInstance, null, true);

@@ -1512,6 +1512,7 @@ public class HeadsetService extends ProfileService {
                                     previousActiveDevice,
                                     BluetoothProfileConnectionInfo.createHfpInfo());
                     // Audio Framework will handle audio transition
+                    Log.e("WILLIAM", "setActiveDevice isScoManagedByAudioEnabled return");
                     return true;
                 }
                 broadcastActiveDevice(mActiveDevice);
@@ -1529,6 +1530,7 @@ public class HeadsetService extends ProfileService {
                         mActiveDevice = previousActiveDevice;
                         mNativeInterface.setActiveDevice(previousActiveDevice);
                     }
+                    Log.e("WILLIAM", "setActiveDevice connectAUdio false");
                     return false;
                 }
             } else {
@@ -1544,8 +1546,11 @@ public class HeadsetService extends ProfileService {
                     broadcastActiveDevice(mActiveDevice);
                 }
             }
+            Log.e("WILLIAM", "setActiveDevice will call updateActiveDeviceInBandRingtone");
             if (Flags.updateActiveDeviceInBandRingtone()) {
                 updateInbandRinging(device, true);
+            } else {
+                Log.e("WILLIAM", "setActiveDevice CAN'T the flag is off");
             }
         }
         return true;
@@ -2215,7 +2220,9 @@ public class HeadsetService extends ProfileService {
 
     /** Called from {@link HeadsetClientStateMachine} to update inband ringing status. */
     public void updateInbandRinging(BluetoothDevice device, boolean connected) {
+        Log.e("WILLIAM", "in updateInbandRinging");
         synchronized (mStateMachines) {
+            Log.e("WILLIAM", "in updateInbandRinging synchro");
             final boolean inbandRingingRuntimeDisable = mInbandRingingRuntimeDisable;
 
             if (getConnectedDevices().size() > 1
@@ -2249,10 +2256,15 @@ public class HeadsetService extends ProfileService {
                                     mInbandRingingRuntimeDisable ? 0 : 1);
 
             if (updateAll) {
+                Log.e("WILLIAM", "in updateInbandRinging update all");
                 doForEachConnectedStateMachine(sendBsirTask);
             } else if (connected) {
+                Log.e("WILLIAM", "in updateInbandRinging update connected");
                 // Same Inband ringing status, send +BSIR only to the new connected device
                 doForStateMachine(device, sendBsirTask);
+            } else {
+
+                Log.e("WILLIAM", "in updateInbandRinging update NOBODY");
             }
         }
     }

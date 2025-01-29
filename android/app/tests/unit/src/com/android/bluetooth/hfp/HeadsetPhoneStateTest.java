@@ -53,6 +53,7 @@ public class HeadsetPhoneStateTest {
     @Mock private HeadsetService mHeadsetService;
     @Mock private TelephonyManager mTelephonyManager;
     @Mock private SubscriptionManager mSubscriptionManager;
+
     private HeadsetPhoneState mHeadsetPhoneState;
     private HandlerThread mHandlerThread;
     private boolean testIsRunning;
@@ -78,6 +79,7 @@ public class HeadsetPhoneStateTest {
                 Context.TELEPHONY_SERVICE,
                 TelephonyManager.class,
                 mTelephonyManager);
+
         mHandlerThread = new HandlerThread("HeadsetStateMachineTestHandlerThread");
         mHandlerThread.start();
         when(mHeadsetService.getStateMachinesThreadLooper()).thenReturn(mHandlerThread.getLooper());

@@ -218,7 +218,7 @@ class HeadsetStateMachine extends StateMachine {
         }
 
         // Create phonebook helper
-        mPhonebook = new AtPhonebook(mHeadsetService, mNativeInterface);
+        mPhonebook = new AtPhonebook(mAdapterService, mNativeInterface);
         // Initialize state machine
         addState(mDisconnected);
         addState(mConnecting);
@@ -1775,8 +1775,15 @@ class HeadsetStateMachine extends StateMachine {
     @VisibleForTesting
     public synchronized int getConnectionState() {
         if (mCurrentState == null) {
+            Log.e("WILLIAM", "from getConnectionState returning DISCONNECT for " + mDevice);
             return BluetoothHeadset.STATE_DISCONNECTED;
         }
+        Log.e(
+                "WILLIAM",
+                "from getConnectionState returning real "
+                        + mCurrentState.getConnectionStateInt()
+                        + " for "
+                        + mDevice);
         return mCurrentState.getConnectionStateInt();
     }
 

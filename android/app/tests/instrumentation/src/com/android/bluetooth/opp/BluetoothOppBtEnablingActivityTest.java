@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.opp;
 
-
 import static androidx.lifecycle.Lifecycle.State.DESTROYED;
 
 import static com.google.common.truth.Truth.assertThat;

@@ -1300,7 +1300,7 @@ public class HeadsetServiceTest {
     }
 
     @Test
-    @EnableFlags({Flags.FLAG_UPDATE_ACTIVE_DEVICE_IN_BAND_RINGTONE})
+    @EnableFlags(Flags.FLAG_UPDATE_ACTIVE_DEVICE_IN_BAND_RINGTONE)
     public void testIncomingCallDeviceConnect_InbandRingStatus() {
         when(mDatabaseManager.getProfileConnectionPolicy(
                         any(BluetoothDevice.class), eq(BluetoothProfile.HEADSET)))

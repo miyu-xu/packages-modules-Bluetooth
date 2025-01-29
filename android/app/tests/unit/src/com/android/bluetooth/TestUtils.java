@@ -19,7 +19,8 @@ import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import android.annotation.IntRange;
 import android.bluetooth.BluetoothDevice;
@@ -41,9 +42,13 @@ import androidx.test.uiautomator.UiDevice;
 import com.android.bluetooth.avrcpcontroller.BluetoothMediaBrowserService;
 import com.android.bluetooth.btservice.AdapterService;
 
+import org.junit.rules.MethodRule;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
+import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -94,6 +99,7 @@ public class TestUtils {
             Context ctx, String serviceName, Class<T> serviceClass, T mockService) {
         when(ctx.getSystemService(eq(serviceName))).thenReturn(mockService);
         when(ctx.getSystemServiceName(eq(serviceClass))).thenReturn(serviceName);
+        when(ctx.getSystemService(eq(serviceClass))).thenReturn(mockService);
     }
 
     /** Helper function to mock getSystemService calls */
@@ -279,6 +285,26 @@ public class TestUtils {
         // restore screen_off_timeout
         device.executeShellCommand(
                 "settings put system screen_off_timeout " + sSystemScreenOffTimeout);
+    }
+
+    /** Wrapper around MockitoJUnit.rule() to clear the inline mock at the end. */
+    public static class MockitoRule implements MethodRule {
+        private final org.mockito.junit.MockitoRule mMockitoRule = MockitoJUnit.rule();
+
+        public Statement apply(Statement base, FrameworkMethod method, Object target) {
+            Statement nestedStatement = mMockitoRule.apply(base, method, target);
+
+            return new Statement() {
+                @Override
+                public void evaluate() throws Throwable {
+                    nestedStatement.evaluate();
+
+                    // When using inline mock maker, clean up inline mocks to prevent OutOfMemory
+                    // errors. See https://github.com/mockito/mockito/issues/1614 and b/259280359.
+                    Mockito.framework().clearInlineMocks();
+                }
+            };
+        }
     }
 
     public static class RetryTestRule implements TestRule {
