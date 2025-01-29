@@ -19,6 +19,8 @@ cc_fuzz {
         "libbluetooth_log",
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "libdoubleconversion",
+        "libevent",
         "liblog",
         "libosi",
     ],
