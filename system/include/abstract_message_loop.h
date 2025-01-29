@@ -16,11 +16,6 @@
 
 #pragma once
 
-#if defined(BASE_VER) && BASE_VER > 780000
-/* libchrome version < 780000 still has the old message loop. Android still uses
- * the old libchrome version so use the basic messageloop where that's required.
- * Elsewhere, use the SingleThreadTaskExecutor instead.
- */
 #if BASE_VER >= 822064
 #include <base/task/current_thread.h>
 #else
@@ -28,29 +23,35 @@
 #endif
 #include <base/message_loop/message_pump.h>
 #include <base/task/single_thread_task_executor.h>
-#include <base/task/single_thread_task_runner.h>
 #include <base/test/task_environment.h>
 #include <base/threading/thread.h>
+#if BASE_VER >= 1024993
+#include <base/task/single_thread_task_runner.h>
 #else
-#include <base/message_loop/message_loop.h>
-#include <base/threading/thread.h>
+#include <base/threading/thread_task_runner_handle.h>
 #endif
 
 namespace btbase {
 
-#if defined(BASE_VER) && BASE_VER > 780000
-
 class AbstractMessageLoop : public base::SingleThreadTaskExecutor {
 public:
   static scoped_refptr<base::SingleThreadTaskRunner> current_task_runner() {
+#if BASE_VER >= 1024993
     return base::SingleThreadTaskRunner::GetCurrentDefault();
+#else
+    return base::ThreadTaskRunnerHandle::Get();
+#endif
   }
 };
 
 class AbstractTestMessageLoop : public base::test::TaskEnvironment {
 public:
   static scoped_refptr<base::SingleThreadTaskRunner> current_task_runner() {
+#if BASE_VER >= 1024993
     return base::SingleThreadTaskRunner::GetCurrentDefault();
+#else
+    return base::ThreadTaskRunnerHandle::Get();
+#endif
   }
 };
 
@@ -61,23 +62,5 @@ public:
 inline void set_message_loop_type_IO(base::Thread::Options& options) {
   options.message_pump_type = base::MessagePumpType::IO;
 }
-
-#else
-class AbstractMessageLoop : public base::MessageLoop {
-public:
-  static scoped_refptr<base::SingleThreadTaskRunner> current_task_runner() {
-    return base::MessageLoop::current()->task_runner();
-  }
-};
-
-class AbstractTestMessageLoop : public AbstractMessageLoop {};
-
-#define DEFINE_TEST_TASK_ENV(var) base::AbstractTestMessageLoop* var
-
-inline void set_message_loop_type_IO(base::Thread::Options& options) {
-  options.message_loop_type = base::MessageLoop::TYPE_IO;
-}
-
-#endif
 
 }  // namespace btbase

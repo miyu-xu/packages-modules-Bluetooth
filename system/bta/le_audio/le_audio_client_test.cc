@@ -110,7 +110,7 @@ void osi_property_set_bool(const char* key, bool value);
 extern "C" const char* __asan_default_options() { return "detect_container_overflow=0"; }
 
 std::atomic<int> num_async_tasks;
-static base::MessageLoop* message_loop_;
+static btbase::AbstractMessageLoop* message_loop_;
 bluetooth::common::MessageLoopThread message_loop_thread("test message loop");
 bluetooth::common::MessageLoopThread* get_main_thread() { return &message_loop_thread; }
 
@@ -140,7 +140,7 @@ bt_status_t do_in_main_thread_delayed(base::OnceClosure task, std::chrono::micro
   return do_in_main_thread(std::move(task));
 }
 
-base::MessageLoop* get_main_message_loop() { return message_loop_; }
+btbase::AbstractMessageLoop* get_main_message_loop() { return message_loop_; }
 
 static void init_message_loop_thread() {
   num_async_tasks = 0;
