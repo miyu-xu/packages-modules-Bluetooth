@@ -17,6 +17,7 @@ package {
 // to attach the license to, and including a comment whether the files may be
 // used in the current project.
 // See: http://go/android-license-faq
+
 license {
     name: "system_bt_license",
     visibility: [":__subpackages__"],
