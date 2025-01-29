@@ -22,10 +22,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.IpcDataCache;
 import android.os.Looper;
-import android.os.ServiceManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrengthUpdateRequest;
 import android.telephony.SubscriptionManager;
@@ -35,7 +32,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
-import com.android.internal.telephony.ISub;
 
 import org.junit.After;
 import org.junit.Before;
@@ -46,51 +42,40 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.util.HashMap;
-
 /** Unit test to verify various methods in {@link HeadsetPhoneState} */
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class HeadsetPhoneStateTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock private ISub mISub;
-    @Mock private IBinder mISubBinder;
     @Mock private HeadsetService mHeadsetService;
     @Mock private TelephonyManager mTelephonyManager;
     @Mock private SubscriptionManager mSubscriptionManager;
+
     private HeadsetPhoneState mHeadsetPhoneState;
     private BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
     private HandlerThread mHandlerThread;
-    private HashMap<String, IBinder> mServiceManagerMockedServices = new HashMap<>();
-    private Object mServiceManagerOriginalServices;
 
     @Before
     public void setUp() throws Exception {
         if (Looper.myLooper() == null) {
             Looper.prepare();
         }
-        IpcDataCache.disableForTestMode();
-        SubscriptionManager.disableCaching();
-        TelephonyManager.disableServiceHandleCaching();
-        // Mock SubscriptionManager.getDefaultSubscriptionId() to return a valid value
-        when(mISub.getDefaultSubIdAsUser(anyInt()))
-                .thenReturn(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID);
-        when(mISubBinder.queryLocalInterface(anyString())).thenReturn(mISub);
-        mServiceManagerMockedServices.put("isub", mISubBinder);
-        mServiceManagerOriginalServices =
-                TestUtils.replaceField(
-                        ServiceManager.class, "sCache", null, mServiceManagerMockedServices);
-        // Stub other methods
-        when(mHeadsetService.getSystemService(Context.TELEPHONY_SERVICE))
-                .thenReturn(mTelephonyManager);
-        when(mHeadsetService.getSystemServiceName(TelephonyManager.class))
-                .thenReturn(Context.TELEPHONY_SERVICE);
-        when(mTelephonyManager.createForSubscriptionId(anyInt())).thenReturn(mTelephonyManager);
-        when(mHeadsetService.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE))
-                .thenReturn(mSubscriptionManager);
-        when(mHeadsetService.getSystemServiceName(SubscriptionManager.class))
-                .thenReturn(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+        doReturn(SubscriptionManager.DEFAULT_SUBSCRIPTION_ID)
+                .when(mSubscriptionManager)
+                .getDefaultSubscriptionId();
+        TestUtils.mockGetSystemService(
+                mHeadsetService,
+                Context.TELEPHONY_SUBSCRIPTION_SERVICE,
+                SubscriptionManager.class,
+                mSubscriptionManager);
+        doReturn(mTelephonyManager).when(mTelephonyManager).createForSubscriptionId(anyInt());
+        TestUtils.mockGetSystemService(
+                mHeadsetService,
+                Context.TELEPHONY_SERVICE,
+                TelephonyManager.class,
+                mTelephonyManager);
+
         mHandlerThread = new HandlerThread("HeadsetStateMachineTestHandlerThread");
         mHandlerThread.start();
         when(mHeadsetService.getStateMachinesThreadLooper()).thenReturn(mHandlerThread.getLooper());
@@ -101,12 +86,6 @@ public class HeadsetPhoneStateTest {
     public void tearDown() throws Exception {
         mHeadsetPhoneState.cleanup();
         mHandlerThread.quit();
-        if (mServiceManagerOriginalServices != null) {
-            TestUtils.replaceField(
-                    ServiceManager.class, "sCache", null, mServiceManagerOriginalServices);
-            mServiceManagerOriginalServices = null;
-        }
-        TelephonyManager.enableServiceHandleCaching();
     }
 
     /** Verify that {@link PhoneStateListener#LISTEN_NONE} should result in no subscription */

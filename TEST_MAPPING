@@ -487,6 +487,9 @@
   ],
   "postsubmit": [
     {
+      "name": "BluetoothUnitTestsNonUpdatable"
+    },
+    {
       "name": "bluetooth_le_audio_codec_manager_test"
     },
     {

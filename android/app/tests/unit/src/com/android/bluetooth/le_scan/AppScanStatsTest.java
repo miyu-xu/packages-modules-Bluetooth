@@ -20,8 +20,6 @@ import static com.android.bluetooth.Utils.getSystemClock;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import static org.mockito.Mockito.mock;
-
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
@@ -34,7 +32,6 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.internal.app.IBatteryStats;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -58,18 +55,10 @@ public class AppScanStatsTest {
     @Mock private ScanController mMockScanController;
     @Mock private AdapterService mAdapterService;
 
-    // BatteryStatsManager is final and cannot be mocked with regular mockito, so just mock the
-    // underlying binder calls.
-    final BatteryStatsManager mBatteryStatsManager =
-            new BatteryStatsManager(mock(IBatteryStats.class));
-
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         TestUtils.mockGetSystemService(
-                mAdapterService,
-                Context.BATTERY_STATS_SERVICE,
-                BatteryStatsManager.class,
-                mBatteryStatsManager);
+                mAdapterService, Context.BATTERY_STATS_SERVICE, BatteryStatsManager.class);
     }
 
     @Test

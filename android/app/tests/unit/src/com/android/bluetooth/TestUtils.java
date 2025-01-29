@@ -64,29 +64,6 @@ public class TestUtils {
     private static final String TAG = "BluetoothTestUtils";
 
     /**
-     * Utility method to replace obj.fieldName with newValue where obj is of type c
-     *
-     * @param c type of obj
-     * @param fieldName field name to be replaced
-     * @param obj instance of type c whose fieldName is to be replaced, null for static fields
-     * @param newValue object used to replace fieldName
-     * @return the old value of fieldName that got replaced, caller is responsible for restoring it
-     *     back to obj
-     * @throws NoSuchFieldException when fieldName is not found in type c
-     * @throws IllegalAccessException when fieldName cannot be accessed in type c
-     */
-    public static Object replaceField(
-            final Class c, final String fieldName, final Object obj, final Object newValue)
-            throws NoSuchFieldException, IllegalAccessException {
-        Field field = c.getDeclaredField(fieldName);
-        field.setAccessible(true);
-
-        Object oldValue = field.get(obj);
-        field.set(obj, newValue);
-        return oldValue;
-    }
-
-    /**
      * Set the return value of {@link AdapterService#getAdapterService()} to a test specified value
      *
      * @param adapterService the designated {@link AdapterService} in test, must not be null, can be

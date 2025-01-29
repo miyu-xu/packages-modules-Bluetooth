@@ -8,6 +8,7 @@ java_defaults {
         "bluetooth_errorprone_rules",
         "framework-bluetooth-tests-defaults",
     ],
+    data: [":BluetoothTest"],
 
     min_sdk_version: "Tiramisu",
     target_sdk_version: "current",
@@ -15,6 +16,13 @@ java_defaults {
         "android.test.base.stubs",
         "android.test.mock.stubs",
         "android.test.runner.stubs",
+        "framework-annotations-lib",
+        "framework-configinfrastructure.stubs.module_lib",
+        "framework-connectivity.stubs.module_lib",
+        "framework-location.stubs.module_lib",
+        "framework-mediaprovider.stubs.module_lib",
+        "framework-statsd.stubs.module_lib",
+        "framework-tethering.stubs.module_lib",
         "javax.obex.stubs",
         "libprotobuf-java-micro",
         "telephony-common",
@@ -37,10 +45,17 @@ java_defaults {
         "framework-bluetooth-pre-jarjar",
         "frameworks-base-testutils",
         "gson",
-        "mockito-target",
+        "mmslib",
+        "mockito-target-extended",
         "platform-parametric-runner-lib",
         "platform-test-annotations",
         "truth",
+    ],
+
+    // these are needed for Extended Mockito
+    jni_libs: [
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
     ],
 
     jarjar_rules: ":bluetooth-jarjar-rules",
@@ -61,7 +76,7 @@ java_defaults {
         "mts-bt",
     ],
 
-    instrumentation_for: "Bluetooth",
+    instrumentation_for: "BluetoothTest",
 }
 
 android_test {

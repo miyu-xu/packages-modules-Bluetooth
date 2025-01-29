@@ -266,9 +266,6 @@ public class DataMigrationTest {
                 case "String2":
                     b.putString(key, "42");
                     break;
-                case "null":
-                    b.putObject(key, null);
-                    break;
                 case "Invalid":
                     // Put anything different from Boolean/Long/Integer/String
                     b.putFloat(key, 42f);

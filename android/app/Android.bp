@@ -336,6 +336,142 @@ android_app {
     updatable: true,
 }
 
+android_test_helper_app {
+    name: "BluetoothTest",
+    manifest: "AndroidManifestTest.xml",
+    defaults: ["bluetooth_framework_errorprone_rules"],
+
+    srcs: [
+        ":statslog-bluetooth-java-gen",
+        ":statslog-bt-restricted-java-gen",
+        ":system-messages-proto-src",
+        "proto/keystore.proto",
+        "src/**/*.java",
+        "src/**/*.kt",
+    ],
+    proto: {
+        type: "lite",
+    },
+    aaptflags: [
+        "--custom-package",
+        "com.android.bluetooth",
+    ],
+    certificate: ":com.android.bluetooth.certificate",
+
+    jarjar_rules: ":bluetooth-jarjar-rules",
+
+    jni_uses_platform_apis: true,
+    libs: [
+        "bluetooth_constants_java",
+        "bluetooth_flags_java_lib",
+        "error_prone_annotations",
+        "framework-annotations-lib",
+        "framework-bluetooth-pre-jarjar",
+        "framework-configinfrastructure.stubs.module_lib",
+        "framework-connectivity.stubs.module_lib",
+        "framework-location.stubs.module_lib",
+        "framework-mediaprovider.stubs.module_lib",
+        "framework-statsd.stubs.module_lib",
+        "framework-tethering.stubs.module_lib",
+
+        // Need to link the class at runtime
+        "framework-bluetooth.stubs.module_lib",
+    ],
+    static_libs: [
+        "BluetoothApiShims",
+        "android.hardware.radio-V1.0-java",
+        "android.hardware.radio.sap-V1-java",
+        "android.media.audio-aconfig-exported-java",
+        "android.os.flags-aconfig-java-export",
+        "androidx.annotation_annotation",
+        "androidx.core_core",
+        "androidx.lifecycle_lifecycle-livedata",
+        "androidx.media_media",
+        "androidx.room_room-runtime",
+        "bluetooth-proto-enums-java-gen",
+        "bluetooth-protos-lite",
+        "bluetooth.change-ids",
+        "bluetooth.mapsapi",
+        "com.android.obex",
+        "com.android.vcard",
+        "guava",
+        "libprotobuf-java-lite",
+        "mmslib",
+        "modules-utils-backgroundthread",
+        "modules-utils-bytesmatcher",
+        "modules-utils-statemachine",
+        "net-utils-services-common",
+        "networkstack-client",
+        "sap-api-java-static",
+    ],
+
+    plugins: [
+        "androidx.room_room-compiler-plugin",
+    ],
+
+    // Export schemas to the test directory so that we have an history
+    // to be able to test migrations
+    // The following path is absolute because a relative path doesn't work
+    // TODO(b/147596836): Refactor this
+    javacflags: ["-Aroom.schemaLocation=packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/storage/schemas"],
+
+    lint: {
+        error_checks: [
+            "Autofill",
+            "DefaultLocale",
+            "DuplicateDefinition",
+            // "ExportedContentProvider", // TODO: b/289445022 - enable this check
+            // "ExportedReceiver", // TODO: b/289445022 - enable this check
+            // "ExportedService", // TODO: b/289445022 - enable this check
+            "ExtraText",
+            "ExtraTranslation",
+            "GestureBackNavigation",
+            "GetterSetterNullability",
+            "GuardedLogInvocation",
+            "HandlerLeak",
+            "InflateParams",
+            // "InvalidPermission", // TODO: b/289445022 - enable this check
+            "LabelFor",
+            "MissingClass",
+            // "MissingVersion", // TODO: b/289445022 - enable this check
+            "MonochromeLauncherIcon",
+            "NewApi",
+            "ObsoleteSdkInt",
+            // "QueryAllPackagesPermission", // TODO: b/289445022 - enable this check
+            "Recycle",
+            "RtlHardcoded",
+            "RtlSymmetry",
+            "ScrollViewSize",
+            "SetTextI18n",
+            "SimpleDateFormat",
+            "StaticFieldLeak",
+            "StringFormatCount",
+            "StringFormatInvalid",
+            "TextFields",
+            "TypographyEllipsis",
+            "UseSparseArrays",
+            "UseValueOf",
+            "VectorPath",
+            "VisibleForTests",
+            "Wakelock",
+            "WakelockTimeout",
+        ],
+        extra_check_modules: ["BluetoothLintChecker"],
+        baseline_filename: "lint-baseline.xml",
+    },
+
+    optimize: {
+        enabled: true,
+        shrink: true,
+        optimize: false,
+        proguard_flags_files: ["proguard.flags"],
+    },
+    apex_available: ["com.android.bt"],
+    min_sdk_version: "Tiramisu",
+    sdk_version: "module_current",
+    updatable: true,
+}
+
 java_library {
     name: "bluetooth-proto-enums-java-gen",
     installable: false,
