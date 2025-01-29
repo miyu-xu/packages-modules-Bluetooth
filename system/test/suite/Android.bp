@@ -111,6 +111,7 @@ cc_test {
         "latest_android_media_audio_common_types_ndk_static",
         "mts_defaults",
         "net_test_defaults",
+        "libchrome_defaults",
     ],
     srcs: [
         "adapter/adapter_unittest.cc",
@@ -127,8 +128,6 @@ cc_test {
         "libbt-btu-main-thread",
         "libbt-jni-thread",
         "libbt-platform-protos-lite",
-        "libchrome",
-        "libevent",
         "libflags_rust_cpp_bridge",
         "libprotobuf-cpp-lite",
     ],

@@ -100,6 +100,7 @@ cc_test {
     defaults: [
         "fluoride_osi_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     cflags: [
         "-DLIB_OSI_INTERNAL",
@@ -140,9 +141,7 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "libosi",
         "libprotobuf-cpp-lite",

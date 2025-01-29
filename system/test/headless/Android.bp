@@ -33,6 +33,7 @@ cc_binary {
         "latest_android_hardware_bluetooth_audio_ndk_android_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
     ],
     cflags: [
         "-Wno-date-time",
@@ -104,9 +105,7 @@ cc_binary {
         "libbte",
         "libbtif",
         "libbtif-core",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflags_rust_cpp_bridge",
         "libflatbuffers-cpp",
         "libfmq",

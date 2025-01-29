@@ -190,6 +190,7 @@ cc_library_static {
     name: "libbluetooth_gd",
     defaults: [
         "libbluetooth_gd_defaults",
+        "libchrome_defaults",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -198,7 +199,6 @@ cc_library_static {
     min_sdk_version: "31",
     static_libs: [
         "bluetooth_flags_c_lib",
-        "libchrome",
     ],
 }
 
@@ -206,6 +206,7 @@ cc_library_static {
     name: "libbluetooth_gd_fuzzing",
     defaults: [
         "libbluetooth_gd_defaults",
+        "libchrome_defaults",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -221,7 +222,6 @@ cc_library_static {
         "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbt-common",
-        "libchrome",
         "libosi",
     ],
 }
@@ -230,6 +230,7 @@ cc_library_static {
     name: "libbluetooth_gd_unit_tests",
     defaults: [
         "libbluetooth_gd_defaults",
+        "libchrome_defaults",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -244,7 +245,6 @@ cc_library_static {
         "bluetooth_flags_c_lib_for_test",
         "libbluetooth-types",
         "libbt-common",
-        "libchrome",
         "libosi",
     ],
 }
@@ -255,6 +255,7 @@ cc_test {
     defaults: [
         "gd_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -287,7 +288,6 @@ cc_test {
         "bluetooth_flags_c_lib_for_test",
         "libaconfig_storage_read_api_cc",
         "libbluetooth_log",
-        "libchrome",
         "libgmock",
         "server_configurable_flags",
     ],
@@ -307,6 +307,7 @@ cc_test {
     defaults: [
         "gd_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -428,7 +429,6 @@ cc_test {
         "libbluetooth_smp_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libflagtest",
         "libflatbuffers-cpp",
@@ -496,7 +496,10 @@ cc_test {
 
 cc_defaults {
     name: "gd_fuzz_defaults",
-    defaults: ["gd_defaults"],
+    defaults: [
+        "gd_defaults",
+        "libchrome_defaults",
+    ],
     srcs: [
         ":TestMockMainShimEntry",
         "fuzz/helpers.cc",
@@ -515,7 +518,6 @@ cc_defaults {
         "libbluetooth_gd_fuzzing",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "libgtest",
@@ -603,6 +605,7 @@ cc_benchmark {
     defaults: [
         "aconfig_lib_cc_shared_link.defaults",
         "gd_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     srcs: [
@@ -616,7 +619,6 @@ cc_benchmark {
         "libbase",
         "libbluetooth_gd",
         "libbluetooth_log",
-        "libchrome",
         "liblog",
         "server_configurable_flags",
     ],

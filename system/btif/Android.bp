@@ -46,7 +46,10 @@ cc_library {
 
 cc_library_static {
     name: "libbt-jni-thread",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        "libchrome_defaults",
+    ],
     host_supported: true,
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -58,9 +61,6 @@ cc_library_static {
     static_libs: [
         "libbluetooth_log",
         "libosi",
-    ],
-    shared_libs: [
-        "libchrome",
     ],
     apex_available: ["com.android.bt"],
     min_sdk_version: "Tiramisu",
@@ -261,6 +261,7 @@ cc_test {
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -316,9 +317,7 @@ cc_test {
         "libbtdevice",
         "libbtif",
         "libbtif-core",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflags_rust_cpp_bridge",
         "libflagtest",
         "libflatbuffers-cpp",
@@ -369,6 +368,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     include_dirs: btifCommonIncludes,
@@ -381,7 +381,6 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbluetooth_log",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libosi",
     ],
@@ -397,6 +396,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -413,7 +413,6 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbluetooth_log",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libosi",
     ],
@@ -429,6 +428,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -458,8 +458,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
-        "libevent",
     ],
     target: {
         android: {
@@ -479,6 +477,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     include_dirs: btifCommonIncludes,
@@ -500,7 +499,6 @@ cc_test {
         "libbluetooth_hci_pdl",
         "libbluetooth_log",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
     ],
@@ -515,6 +513,7 @@ cc_test {
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     include_dirs: btifCommonIncludes +
@@ -597,9 +596,7 @@ cc_test {
         "libbtdevice",
         "libbtif",
         "libbtif-core",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "libosi",
         "libprotobuf-cpp-lite",
@@ -635,6 +632,7 @@ cc_test {
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     include_dirs: btifCommonIncludes +
@@ -721,9 +719,7 @@ cc_test {
         "libbtdevice",
         "libbtif",
         "libbtif-core",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "libprotobuf-cpp-lite",

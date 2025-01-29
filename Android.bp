@@ -114,6 +114,15 @@ cc_defaults {
     tidy_checks_as_errors: bluetooth_tidy_checks,
 }
 
+cc_defaults {
+    name: "libchrome_defaults",
+    static_libs: [
+        "libchrome",
+        "libdoubleconversion",
+        "libevent",
+    ],
+}
+
 java_defaults {
     name: "bluetooth_errorprone_rules",
     errorprone: {

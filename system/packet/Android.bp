@@ -29,6 +29,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -78,7 +79,6 @@ cc_test {
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libbluetooth_log",
-        "libchrome",
         "libgmock",
     ],
     target: {

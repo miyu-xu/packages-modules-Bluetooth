@@ -46,6 +46,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     include_dirs: ["packages/modules/Bluetooth/system"],
@@ -62,7 +63,6 @@ cc_test {
         "libbluetooth_log",
         "libbtcore",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libosi",
     ],
@@ -101,6 +101,7 @@ cc_test {
         "libbtcore",
         "libbtdevice",
         "libchrome",
+        "libevent",
         "libgmock",
         "libosi",
     ],

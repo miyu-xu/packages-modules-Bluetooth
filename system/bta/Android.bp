@@ -237,6 +237,7 @@ cc_test {
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -312,9 +313,7 @@ cc_test {
         "libbt-platform-protos-lite",
         "libbtcore",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflagtest",
         "libfmq",
         "libgmock",
@@ -349,6 +348,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -387,7 +387,6 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtcore",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
     ],
@@ -399,6 +398,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -437,7 +437,6 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtcore",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "libosi",
@@ -450,6 +449,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     test_suites: ["general-tests"],
     host_supported: true,
@@ -488,9 +488,7 @@ cc_test {
         "libbt-platform-protos-lite",
         "libbtcore",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
     ],
     sanitize: {
@@ -514,6 +512,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     include_dirs: [
@@ -552,7 +551,6 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
         "libgmock",
@@ -577,6 +575,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     include_dirs: [
@@ -591,7 +590,9 @@ cc_test {
     ],
     shared_libs: [
         "libbase",
+        "libchrome",
         "libcrypto",
+        "libcutils",
         "liblog",
     ],
     static_libs: [
@@ -600,7 +601,6 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "libosi",
@@ -623,6 +623,7 @@ cc_test {
     test_suites: ["general-tests"],
     defaults: [
         "fluoride_bta_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     host_supported: true,
@@ -667,7 +668,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libgmock",
         "server_configurable_flags",
     ],
@@ -757,6 +757,7 @@ cc_test {
         "aconfig_lib_cc_shared_link.defaults",
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     target: {
@@ -819,9 +820,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "libosi",
@@ -840,6 +839,7 @@ cc_test {
     defaults: [
         "fluoride_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     target: {
@@ -930,9 +930,7 @@ cc_test {
         "libbt-audio-asrc",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "libgtest",
@@ -950,6 +948,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
@@ -1020,9 +1019,7 @@ cc_test {
         "libbt-audio-hal-interface",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflagtest",
         "libflatbuffers-cpp",
         "libgmock",
@@ -1073,6 +1070,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     isolated: false,
@@ -1122,9 +1120,7 @@ cc_test {
         "libbt-audio-hal-interface",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflagtest",
         "libflatbuffers-cpp",
         "libgmock",
@@ -1167,6 +1163,7 @@ cc_test {
         "aconfig_lib_cc_shared_link.defaults",
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
@@ -1207,7 +1204,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libflagtest",
         "libflatbuffers-cpp",
         "libgmock",
@@ -1234,6 +1230,7 @@ cc_test {
         "aconfig_lib_cc_shared_link.defaults",
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     include_dirs: [
@@ -1282,8 +1279,6 @@ cc_test {
         "libbt-audio-hal-interface",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
-        "libevent",
         "libflagtest",
         "libflatbuffers-cpp",
         "libgmock",
@@ -1310,6 +1305,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
@@ -1351,7 +1347,6 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libgmock",
         "server_configurable_flags",
     ],
@@ -1373,6 +1368,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
@@ -1424,9 +1420,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "libosi",
     ],
@@ -1448,6 +1442,7 @@ cc_test {
     defaults: [
         "fluoride_bta_defaults",
         "mts_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     isolated: false,
@@ -1493,9 +1488,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "libosi",
     ],
