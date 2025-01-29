@@ -29,8 +29,14 @@ class BassUtils {
 
     static boolean containUuid(List<ScanFilter> filters, ParcelUuid uuid) {
         for (ScanFilter filter : filters) {
-            if (filter.getServiceUuid().equals(uuid)) {
-                return true;
+            if (leaudioBassScanWithInternalScanController()) {
+                if (filter.getServiceDataUuid().equals(uuid)) {
+                    return true;
+                }
+            } else {
+                if (filter.getServiceUuid().equals(uuid)) {
+                    return true;
+                }
             }
         }
         return false;
