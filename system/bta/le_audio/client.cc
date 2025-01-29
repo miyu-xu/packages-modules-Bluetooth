@@ -1368,6 +1368,9 @@ public:
     } else {
       if (configuration_context_type_ == LeAudioContextType::CONVERSATIONAL) {
         log::info("Call is ended, speed up reconfiguration for media");
+        // Preemptively remove inactive conversational context for reconfiguration speed up
+        in_call_metadata_context_types_.sink.unset(LeAudioContextType::CONVERSATIONAL);
+        in_call_metadata_context_types_.source.unset(LeAudioContextType::CONVERSATIONAL);
         local_metadata_context_types_ = in_call_metadata_context_types_;
         log::debug("restored local_metadata_context_types_ sink: {}  source: {}",
                    local_metadata_context_types_.sink.to_string(),
