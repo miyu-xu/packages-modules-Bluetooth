@@ -18,6 +18,8 @@ package com.android.bluetooth.pbapclient;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,7 +28,6 @@ import android.app.BroadcastOptions;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.content.Context;
 import android.content.Intent;
 import android.os.UserManager;
 import android.util.Log;
@@ -69,13 +70,13 @@ public class PbapClientStateMachineOldTest {
 
     @Before
     public void setUp() throws Exception {
+        doCallRealMethod().when(mMockHandler).obtainMessage(anyInt(), any());
+        doCallRealMethod().when(mMockHandler).obtainMessage(anyInt());
 
         // This line must be called to make sure relevant objects are initialized properly
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         // Get a device for testing
         mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
-        when(mMockPbapClientService.getSystemServiceName(UserManager.class))
-                .thenReturn(Context.USER_SERVICE);
         when(mMockPbapClientService.getSystemService(UserManager.class))
                 .thenReturn(mMockUserManager);
         mPbapClientStateMachine =

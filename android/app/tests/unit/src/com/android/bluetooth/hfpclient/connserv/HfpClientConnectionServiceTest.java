@@ -21,6 +21,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
@@ -113,20 +114,14 @@ public class HfpClientConnectionServiceTest {
                 .when(mMockResources)
                 .getBoolean(R.bool.hfp_client_connection_service_support_emergency_call);
 
-        doReturn(Context.TELECOM_SERVICE)
-                .when(mHfpClientConnectionService)
-                .getSystemServiceName(TelecomManager.class);
         doReturn(mMockTelecomManager)
                 .when(mHfpClientConnectionService)
-                .getSystemService(Context.TELECOM_SERVICE);
+                .getSystemService(TelecomManager.class);
         doReturn(getPhoneAccount(TEST_DEVICE)).when(mMockTelecomManager).getPhoneAccount(any());
 
-        doReturn(Context.BLUETOOTH_SERVICE)
-                .when(mHfpClientConnectionService)
-                .getSystemServiceName(BluetoothManager.class);
         doReturn(targetContext.getSystemService(BluetoothManager.class))
                 .when(mHfpClientConnectionService)
-                .getSystemService(Context.BLUETOOTH_SERVICE);
+                .getSystemService(BluetoothManager.class);
     }
 
     @After
@@ -239,8 +234,8 @@ public class HfpClientConnectionServiceTest {
         Bundle extras = new Bundle();
         extras.putParcelable(
                 TelecomManager.EXTRA_INCOMING_CALL_EXTRAS, new ParcelUuid(call.getUUID()));
-        ConnectionRequest connectionRequest =
-                new ConnectionRequest.Builder().setExtras(extras).build();
+        ConnectionRequest connectionRequest = mock(ConnectionRequest.class);
+        doReturn(extras).when(connectionRequest).getExtras();
 
         HfpClientConnectionService.onCallChanged(TEST_DEVICE, call);
 
@@ -273,11 +268,11 @@ public class HfpClientConnectionServiceTest {
         Bundle extras = new Bundle();
         extras.putParcelable(
                 TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, new ParcelUuid(call.getUUID()));
-        ConnectionRequest connectionRequest =
-                new ConnectionRequest.Builder()
-                        .setExtras(extras)
-                        .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
-                        .build();
+        ConnectionRequest connectionRequest = mock(ConnectionRequest.class);
+        doReturn(extras).when(connectionRequest).getExtras();
+        doReturn(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
+                .when(connectionRequest)
+                .getAddress();
 
         Connection connection =
                 mHfpClientConnectionService.onCreateOutgoingConnection(
@@ -306,11 +301,11 @@ public class HfpClientConnectionServiceTest {
         Bundle extras = new Bundle();
         extras.putParcelable(
                 TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, new ParcelUuid(call.getUUID()));
-        ConnectionRequest connectionRequest =
-                new ConnectionRequest.Builder()
-                        .setExtras(extras)
-                        .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
-                        .build();
+        ConnectionRequest connectionRequest = mock(ConnectionRequest.class);
+        doReturn(extras).when(connectionRequest).getExtras();
+        doReturn(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
+                .when(connectionRequest)
+                .getAddress();
 
         HfpClientConnectionService.onCallChanged(TEST_DEVICE, call);
 
@@ -342,8 +337,8 @@ public class HfpClientConnectionServiceTest {
         Bundle extras = new Bundle();
         extras.putParcelable(
                 TelecomManager.EXTRA_INCOMING_CALL_EXTRAS, new ParcelUuid(call.getUUID()));
-        ConnectionRequest connectionRequest =
-                new ConnectionRequest.Builder().setExtras(extras).build();
+        ConnectionRequest connectionRequest = mock(ConnectionRequest.class);
+        doReturn(extras).when(connectionRequest).getExtras();
 
         HfpClientConnectionService.onCallChanged(TEST_DEVICE, call);
 
@@ -375,11 +370,11 @@ public class HfpClientConnectionServiceTest {
         Bundle extras = new Bundle();
         extras.putParcelable(
                 TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, new ParcelUuid(call.getUUID()));
-        ConnectionRequest connectionRequest =
-                new ConnectionRequest.Builder()
-                        .setExtras(extras)
-                        .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
-                        .build();
+        ConnectionRequest connectionRequest = mock(ConnectionRequest.class);
+        doReturn(extras).when(connectionRequest).getExtras();
+        doReturn(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
+                .when(connectionRequest)
+                .getAddress();
 
         Connection connection =
                 mHfpClientConnectionService.onCreateOutgoingConnection(
@@ -407,11 +402,11 @@ public class HfpClientConnectionServiceTest {
         Bundle extras = new Bundle();
         extras.putParcelable(
                 TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, new ParcelUuid(call.getUUID()));
-        ConnectionRequest connectionRequest =
-                new ConnectionRequest.Builder()
-                        .setExtras(extras)
-                        .setAddress(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
-                        .build();
+        ConnectionRequest connectionRequest = mock(ConnectionRequest.class);
+        doReturn(extras).when(connectionRequest).getExtras();
+        doReturn(Uri.fromParts(PhoneAccount.SCHEME_TEL, TEST_NUMBER, null))
+                .when(connectionRequest)
+                .getAddress();
 
         HfpClientConnectionService.onCallChanged(TEST_DEVICE, call);
 

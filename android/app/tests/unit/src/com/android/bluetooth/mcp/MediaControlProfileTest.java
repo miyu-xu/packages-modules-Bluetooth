@@ -57,8 +57,6 @@ import java.util.UUID;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class MediaControlProfileTest {
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
-
     private BluetoothAdapter mAdapter;
     private MediaControlProfile mMediaControlProfile;
 
@@ -86,10 +84,6 @@ public class MediaControlProfileTest {
 
     @Before
     public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
-
         MediaControlProfile.ListCallback listCallback;
 
         TestUtils.setAdapterService(mAdapterService);
@@ -103,9 +97,6 @@ public class MediaControlProfileTest {
         doReturn(mMockMediaPlayerWrapper).when(mMockMediaPlayerList).getActivePlayer();
         doReturn(mMockMcpService).when(mMockMcpService).getApplicationContext();
         doReturn(mMockPackageManager).when(mMockMcpService).getPackageManager();
-        doReturn(getInstrumentation().getTargetContext().getMainThreadHandler())
-                .when(mMockMcpService)
-                .getMainThreadHandler();
         doReturn(packageName).when(mMockMcpService).getPackageName();
         doReturn(name).when(mMockMediaPlayerWrapper).getPackageName();
         doReturn(charSequence).when(mMockApplicationInfo).loadLabel(any(PackageManager.class));
@@ -143,10 +134,6 @@ public class MediaControlProfileTest {
         mMediaControlProfile.cleanup();
         mMediaControlProfile = null;
         reset(mMockMediaPlayerList);
-
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
     }
 
     @Test

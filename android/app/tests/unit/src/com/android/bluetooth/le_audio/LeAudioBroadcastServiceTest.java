@@ -181,6 +181,7 @@ public class LeAudioBroadcastServiceTest {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         MetricsLogger.setInstanceForTesting(mMetricsLogger);
 
+        android.util.Log.e("WILLIAM", "Set instance with " + mLeAudioBroadcasterNativeInterface);
         LeAudioBroadcasterNativeInterface.setInstance(mLeAudioBroadcasterNativeInterface);
         LeAudioNativeInterface.setInstance(mLeAudioNativeInterface);
         startService();

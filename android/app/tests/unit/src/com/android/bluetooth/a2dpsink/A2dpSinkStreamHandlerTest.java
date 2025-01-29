@@ -93,9 +93,7 @@ public class A2dpSinkStreamHandlerTest {
         mHandlerThread = new HandlerThread("A2dpSinkStreamHandlerTest");
         mHandlerThread.start();
 
-        when(mMockA2dpSink.getSystemService(Context.AUDIO_SERVICE)).thenReturn(mMockAudioManager);
-        when(mMockA2dpSink.getSystemServiceName(AudioManager.class))
-                .thenReturn(Context.AUDIO_SERVICE);
+        when(mMockA2dpSink.getSystemService(AudioManager.class)).thenReturn(mMockAudioManager);
         when(mMockA2dpSink.getResources()).thenReturn(mMockResources);
         when(mMockResources.getInteger(anyInt())).thenReturn(DUCK_PERCENT);
         when(mMockAudioManager.requestAudioFocus(any()))
@@ -105,8 +103,8 @@ public class A2dpSinkStreamHandlerTest {
         when(mMockAudioManager.generateAudioSessionId()).thenReturn(0);
         when(mMockA2dpSink.getMainLooper()).thenReturn(mHandlerThread.getLooper());
         when(mMockA2dpSink.getPackageManager()).thenReturn(mMockPackageManager);
-        when(mMockPackageManager.hasSystemFeature(any())).thenReturn(false);
 
+        android.util.Log.e("WILLIAM", "In test constructor " + mMockA2dpSink);
         mStreamHandler = spy(new A2dpSinkStreamHandler(mMockA2dpSink, mMockNativeInterface));
     }
 

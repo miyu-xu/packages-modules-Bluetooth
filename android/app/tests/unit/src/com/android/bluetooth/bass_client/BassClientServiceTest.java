@@ -112,8 +112,6 @@ import java.util.stream.Collectors;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class BassClientServiceTest {
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
-
     private static final int TIMEOUT_MS = 1000;
 
     private static final ParcelUuid[] FAKE_SERVICE_UUIDS = {BluetoothUuid.BASS};
@@ -239,11 +237,7 @@ public class BassClientServiceTest {
     }
 
     @Before
-    public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
-
+    public void setUp() {
         mTargetContext = InstrumentationRegistry.getTargetContext();
         TestUtils.setAdapterService(mAdapterService);
         BassObjectsFactory.setInstanceForTesting(mObjectsFactory);
@@ -294,6 +288,13 @@ public class BassClientServiceTest {
                             doReturn(true).when(stateMachine).isBassStateReady();
                             mStateMachines.put(
                                     (BluetoothDevice) invocation.getArgument(0), stateMachine);
+                            doAnswer(
+                                            inv -> {
+                                                return Message.obtain(
+                                                        (Handler) null, (int) inv.getArgument(0));
+                                            })
+                                    .when(stateMachine)
+                                    .obtainMessage(anyInt());
                             return stateMachine;
                         })
                 .when(mObjectsFactory)
@@ -350,10 +351,6 @@ public class BassClientServiceTest {
         mIntentQueue.clear();
         BassObjectsFactory.setInstanceForTesting(null);
         TestUtils.clearAdapterService(mAdapterService);
-
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
     }
 
     private class BassIntentReceiver extends BroadcastReceiver {

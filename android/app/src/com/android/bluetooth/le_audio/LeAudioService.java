@@ -645,6 +645,7 @@ public class LeAudioService extends ProfileService {
         } else {
             Log.w(TAG, "Le Audio Broadcasts not supported.");
         }
+        Log.e("WILLIAM", "Le Audio broadcaster with " + mLeAudioBroadcasterNativeInterface);
 
         mTmapStarted = registerTmap();
 

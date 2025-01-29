@@ -244,18 +244,6 @@ public class HfpClientConnectionTest {
     }
 
     @Test
-    @Ignore("b/191783947")
-    public void handleCallChanged_activeConference() {
-        mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
-        HfpClientConference mockConference = mock(HfpClientConference.class);
-        mHfpClientConnection.setConference(mockConference);
-        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_ACTIVE);
-        mHfpClientConnection.handleCallChanged();
-
-        verify(mockConference).setActive();
-    }
-
-    @Test
     public void handleCallChanged_heldByResponseAndHold() {
         mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
         mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_HELD_BY_RESPONSE_AND_HOLD);
@@ -265,36 +253,12 @@ public class HfpClientConnectionTest {
     }
 
     @Test
-    @Ignore("b/191783947")
-    public void handleCallChanged_heldByResponseAndHoldConference() {
-        mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
-        HfpClientConference mockConference = mock(HfpClientConference.class);
-        mHfpClientConnection.setConference(mockConference);
-        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_HELD_BY_RESPONSE_AND_HOLD);
-        mHfpClientConnection.handleCallChanged();
-
-        verify(mockConference).setOnHold();
-    }
-
-    @Test
     public void handleCallChanged_held() {
         mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
         mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_HELD);
         mHfpClientConnection.handleCallChanged();
 
         assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_HOLDING);
-    }
-
-    @Test
-    @Ignore("b/191783947")
-    public void handleCallChanged_heldConference() {
-        mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
-        HfpClientConference mockConference = mock(HfpClientConference.class);
-        mHfpClientConnection.setConference(mockConference);
-        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_HELD);
-        mHfpClientConnection.handleCallChanged();
-
-        verify(mockConference).setOnHold();
     }
 
     @Test

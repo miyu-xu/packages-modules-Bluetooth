@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.a2dpsink;
 
+import static java.util.Objects.requireNonNull;
+
 import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.AudioFocusRequest;
@@ -105,7 +107,7 @@ public class A2dpSinkStreamHandler extends Handler {
             A2dpSinkService a2dpSinkService, A2dpSinkNativeInterface nativeInterface) {
         mA2dpSinkService = a2dpSinkService;
         mNativeInterface = nativeInterface;
-        mAudioManager = mA2dpSinkService.getSystemService(AudioManager.class);
+        mAudioManager = requireNonNull(mA2dpSinkService.getSystemService(AudioManager.class));
     }
 
     /** Safely clean up this stream handler object */

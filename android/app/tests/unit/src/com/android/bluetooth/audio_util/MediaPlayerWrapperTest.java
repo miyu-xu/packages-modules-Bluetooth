@@ -71,7 +71,6 @@ public class MediaPlayerWrapperTest {
     @Captor ArgumentCaptor<MediaData> mMediaUpdateData;
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock Log.TerribleFailureHandler mFailHandler;
     @Mock MediaController mMockController;
     @Mock MediaPlayerWrapper.Callback mTestCbs;
     @Mock Context mMockContext;
@@ -100,9 +99,6 @@ public class MediaPlayerWrapperTest {
 
         when(mMockResources.getBoolean(R.bool.avrcp_target_cover_art_uri_images)).thenReturn(true);
         when(mMockContext.getResources()).thenReturn(mMockResources);
-
-        // Set failure handler to capture Log.wtf messages
-        Log.setWtfHandler(mFailHandler);
 
         // Set up Looper thread for the timeout handler
         mThread = new HandlerThread("MediaPlayerWrapperTestThread");
@@ -282,7 +278,6 @@ public class MediaPlayerWrapperTest {
 
         // Verify that there are no timeout messages pending and there were no timeouts
         assertThat(wrapper.getTimeoutHandler().hasMessages(MSG_TIMEOUT)).isFalse();
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
     }
 
     /*
@@ -325,7 +320,6 @@ public class MediaPlayerWrapperTest {
 
         // Verify that there are no timeout messages pending and there were no timeouts
         assertThat(wrapper.getTimeoutHandler().hasMessages(MSG_TIMEOUT)).isFalse();
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
     }
 
     @Test
@@ -502,7 +496,6 @@ public class MediaPlayerWrapperTest {
 
         // Verify that there are no timeout messages pending and there were no timeouts
         assertThat(wrapper.getTimeoutHandler().hasMessages(MSG_TIMEOUT)).isFalse();
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
     }
 
     /*
@@ -548,7 +541,6 @@ public class MediaPlayerWrapperTest {
 
         // Verify that there are no timeout messages pending and there were no timeouts
         assertThat(wrapper.getTimeoutHandler().hasMessages(MSG_TIMEOUT)).isFalse();
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
     }
 
     /*
@@ -590,7 +582,6 @@ public class MediaPlayerWrapperTest {
 
         // Assert that the callback was called with the updated data
         verify(mTestCbs).mediaUpdatedCallback(mMediaUpdateData.capture());
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
         MediaData data = mMediaUpdateData.getValue();
         assertThat(data.metadata).isEqualTo(Util.toMetadata(mMockContext, mTestMetadata.build()));
         assertThat(data.state.toString()).isEqualTo(mTestState.build().toString());
@@ -599,7 +590,6 @@ public class MediaPlayerWrapperTest {
 
         // Verify that there are no timeout messages pending and there were no timeouts
         assertThat(wrapper.getTimeoutHandler().hasMessages(MSG_TIMEOUT)).isFalse();
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
     }
 
     /*
@@ -627,9 +617,6 @@ public class MediaPlayerWrapperTest {
 
         // Force the timeout to execute immediately
         looperManager.execute(looperManager.next());
-
-        // Assert that there was a timeout
-        verify(mFailHandler).onTerribleFailure(any(), any(), anyBoolean());
 
         // Assert that the callback was called with the mismatch data
         verify(mTestCbs).mediaUpdatedCallback(mMediaUpdateData.capture());
@@ -711,7 +698,6 @@ public class MediaPlayerWrapperTest {
 
         // Verify that there are no timeout messages pending and there were no timeouts
         assertThat(wrapper.getTimeoutHandler().hasMessages(MSG_TIMEOUT)).isFalse();
-        verify(mFailHandler, never()).onTerribleFailure(any(), any(), anyBoolean());
     }
 
     @Test

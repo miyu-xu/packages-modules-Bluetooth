@@ -25,7 +25,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAvrcpController;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.AudioManager;
@@ -118,12 +117,7 @@ public class AvrcpControllerStateMachineTest {
         when(mMockResources.getBoolean(R.bool.a2dp_sink_automatically_request_audio_focus))
                 .thenReturn(true);
         doReturn(mMockResources).when(mAvrcpControllerService).getResources();
-        doReturn(mAudioManager)
-                .when(mAvrcpControllerService)
-                .getSystemService(Context.AUDIO_SERVICE);
-        doReturn(Context.AUDIO_SERVICE)
-                .when(mAvrcpControllerService)
-                .getSystemServiceName(AudioManager.class);
+        doReturn(mAudioManager).when(mAvrcpControllerService).getSystemService(AudioManager.class);
         doReturn(mCoverArtManager).when(mAvrcpControllerService).getCoverArtManager();
         mAvrcpControllerService.sBrowseTree = new BrowseTree(null);
         AvrcpControllerService.setAvrcpControllerService(mAvrcpControllerService);

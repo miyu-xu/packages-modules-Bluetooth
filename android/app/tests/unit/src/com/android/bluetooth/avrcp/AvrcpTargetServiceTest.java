@@ -83,13 +83,6 @@ public class AvrcpTargetServiceTest {
         mLooper = new TestLooper();
         mLooper.startAutoDispatch();
 
-        doReturn(mMockAudioManager)
-                .when(mMockAdapterService)
-                .getSystemService(Context.AUDIO_SERVICE);
-        doReturn(Context.AUDIO_SERVICE)
-                .when(mMockAdapterService)
-                .getSystemServiceName(AudioManager.class);
-
         mMediaSessionManager =
                 InstrumentationRegistry.getInstrumentation()
                         .getTargetContext()
@@ -103,6 +96,8 @@ public class AvrcpTargetServiceTest {
         doReturn(mLooper.getNewExecutor()).when(mMockAdapterService).getMainExecutor();
 
         doReturn(mMockAdapterService).when(mMockAdapterService).getApplicationContext();
+        TestUtils.mockGetSystemService(
+                mMockAdapterService, Context.AUDIO_SERVICE, AudioManager.class, mMockAudioManager);
         TestUtils.mockGetSystemService(
                 mMockAdapterService, Context.USER_SERVICE, UserManager.class, mMockUserManager);
         doReturn(mMockResources).when(mMockAdapterService).getResources();
