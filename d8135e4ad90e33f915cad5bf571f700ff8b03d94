@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68c39e56_66d8b933",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3012,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-01-29T22:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "674474d8_024daedb",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9ae002e_979f7602",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "I disagree since you\u0027re passing a lot of other services\u0027 information to battery service. If you really want to move this to battery service, you should pass bools like `are_media_profiles_connected` instead of all the connected media profiles",
       "parentUuid": "0ded5192_2ace0f88",
+      "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28410efc_bdbf32a4",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-01-29T22:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "699475fa_a607463b",
       "revId": "d8135e4ad90e33f915cad5bf571f700ff8b03d94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
