@@ -16,6 +16,23 @@
       "message": "This causes Bluetooth to crash on init\n\n```\n01-29 14:09:11.047 14840 14840 D AndroidRuntime: Shutting down VM\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: FATAL EXCEPTION: main\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: Process: com.google.android.bluetooth, PID: 14840\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: java.lang.ExceptionInInitializerError\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.bluetooth.btservice.Config.\u003cclinit\u003e(Config.java:92)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.bluetooth.btservice.AdapterService.init(AdapterService.java:653)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.bluetooth.btservice.AdapterService.lambda$offToBleOn$9(AdapterService.java:4839)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.bluetooth.btservice.AdapterService.$r8$lambda$FsYrHjgqFgmwT8MSrUs1sUjKT5o(AdapterService.java:0)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.bluetooth.btservice.AdapterService$$ExternalSyntheticLambda10.run(R8$$SyntheticClass:0)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat android.os.Handler.handleCallback(Handler.java:995)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat android.os.Handler.dispatchMessage(Handler.java:103)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat android.os.Looper.loopOnce(Looper.java:239)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat android.os.Looper.loop(Looper.java:328)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat android.app.ActivityThread.main(ActivityThread.java:8952)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat java.lang.reflect.Method.invoke(Native Method)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:911)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: Caused by: java.lang.IllegalArgumentException: duplicate key: com.google.android.apps.adm\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat java.util.ImmutableCollections$MapN.\u003cinit\u003e(ImmutableCollections.java:1203)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat java.util.Map.of(Map.java:1407)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \tat com.android.bluetooth.gatt.GattService.\u003cclinit\u003e(GattService.java:124)\n01-29 14:09:11.048 14840 14840 E AndroidRuntime: \t... 13 more\n01-29 14:09:11.049  1721  1721 D BluetoothAdapter: isLeEnabled(): BLE_TURNING_ON\n01-29 14:09:11.061 14840 14840 I Process : Sending signal. PID: 14840 SIG: 9\n```",
       "revId": "76140ec58bf3772511d4a99ac3e38864d5834150",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4325838c_9bd7e5f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2025-01-29T22:12:58Z",
+      "side": 1,
+      "message": "The map\u0027s keyset can\u0027t contain two of the same key... even though MapOf didn\u0027t catch it....",
+      "revId": "76140ec58bf3772511d4a99ac3e38864d5834150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
