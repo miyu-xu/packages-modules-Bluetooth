@@ -20,18 +20,14 @@ import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
@@ -42,21 +38,16 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Looper;
-import android.os.UserManager;
-import android.platform.test.annotations.DisableFlags;
-import android.platform.test.annotations.EnableFlags;
-import android.platform.test.flag.junit.FlagsParameterization;
-import android.platform.test.flag.junit.SetFlagsRule;
 import android.provider.CallLog;
 import android.test.mock.MockContentProvider;
 import android.test.mock.MockContentResolver;
 
 import androidx.test.filters.MediumTest;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
-import com.android.bluetooth.flags.Flags;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -68,17 +59,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import platform.test.runner.parameterized.ParameterizedAndroidJunit4;
-import platform.test.runner.parameterized.Parameters;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @MediumTest
-@RunWith(ParameterizedAndroidJunit4.class)
+@RunWith(AndroidJUnit4.class)
 public class PbapClientServiceTest {
     private static final String REMOTE_DEVICE_ADDRESS = "00:00:00:00:00:00";
 
@@ -90,8 +76,6 @@ public class PbapClientServiceTest {
 
     // Constant for testing ACL disconnection events with a bad transport
     public static final int TRANSPORT_UNKNOWN = -1;
-
-    @Rule public final SetFlagsRule mSetFlagsRule;
 
     private PbapClientService mService = null;
     private BluetoothAdapter mAdapter = null;
@@ -105,8 +89,6 @@ public class PbapClientServiceTest {
     private MockContentResolver mMockContentResolver;
     private MockCallLogProvider mMockCallLogProvider;
     @Mock private Resources mMockResources;
-    @Mock private UserManager mMockUserManager;
-    @Mock private AccountManager mMockAccountManager;
     @Mock private SdpPseRecord mMockSdpRecord;
 
     // NEW: Objects for new state machine implementation
@@ -115,11 +97,6 @@ public class PbapClientServiceTest {
     private Map<BluetoothDevice, PbapClientStateMachine> mMockDeviceMap =
             new HashMap<BluetoothDevice, PbapClientStateMachine>();
     @Mock private PbapClientStateMachine mMockDeviceStateMachine;
-
-    @Parameters(name = "{0}")
-    public static List<FlagsParameterization> getParams() {
-        return FlagsParameterization.progressionOf(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR);
-    }
 
     public PbapClientServiceTest(FlagsParameterization flags) {
         mSetFlagsRule = new SetFlagsRule(flags);
@@ -147,20 +124,6 @@ public class PbapClientServiceTest {
         mMockContentResolver.addProvider(CallLog.AUTHORITY, mMockCallLogProvider);
         doReturn(mMockContentResolver).when(mMockContext).getContentResolver();
 
-        doReturn(AccountManager.VISIBILITY_VISIBLE)
-                .when(mMockAccountManager)
-                .getAccountVisibility(any(Account.class), anyString());
-        doReturn(new Account[] {})
-                .when(mMockAccountManager)
-                .getAccountsByType(eq(Utils.ACCOUNT_TYPE));
-        TestUtils.mockGetSystemService(
-                mMockContext, Context.ACCOUNT_SERVICE, AccountManager.class, mMockAccountManager);
-
-        doReturn(false).when(mMockUserManager).isUserUnlocked();
-        TestUtils.mockGetSystemService(
-                mMockContext, Context.USER_SERVICE, UserManager.class, mMockUserManager);
-
-        // new for mock storage
         doAnswer(
                         invocation -> {
                             BluetoothDevice device = (BluetoothDevice) invocation.getArgument(0);
@@ -221,10 +184,9 @@ public class PbapClientServiceTest {
     // * Incoming Events
     // *********************************************************************************************
 
-    // NEW: PbapClientStateMachineCallback events from devices
+    // PbapClientStateMachineCallback events from devices
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void onConnectionStateChanged_DisconnectedToConnecting_eventIgnored() {
         doReturn(BluetoothProfile.STATE_CONNECTING)
                 .when(mMockDeviceStateMachine)
@@ -235,7 +197,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void onConnectionStateChanged_ConnectingToConnected_eventIgnored() {
         doReturn(BluetoothProfile.STATE_CONNECTED)
                 .when(mMockDeviceStateMachine)
@@ -246,7 +207,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void onConnectionStateChanged_ConnectingToDisconnected_deviceCleanedUp() {
         doReturn(BluetoothProfile.STATE_DISCONNECTED)
                 .when(mMockDeviceStateMachine)
@@ -257,7 +217,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void onConnectionStateChanged_ConnectedToDisonnecting_eventIgnored() {
         doReturn(BluetoothProfile.STATE_DISCONNECTING)
                 .when(mMockDeviceStateMachine)
@@ -268,7 +227,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void onConnectionStateChanged_DisconnectingToDisonnected_deviceCleanedUp() {
         doReturn(BluetoothProfile.STATE_DISCONNECTED)
                 .when(mMockDeviceStateMachine)
@@ -278,69 +236,9 @@ public class PbapClientServiceTest {
         assertThat(mMockDeviceMap.containsKey(mRemoteDevice)).isFalse();
     }
 
-    // OLD: Account state changes from PbapClientAccountManager
+    // ACL state changes from AdapterService
 
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void onAccountsChanged_fromNulltoEmpty_tryDownloadIfConnectedCalled() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        PbapClientService.PbapClientAccountManagerCallback callback =
-                mService.new PbapClientAccountManagerCallback();
-        callback.onAccountsChanged(null, new ArrayList<Account>());
-
-        verify(sm).tryDownloadIfConnected();
-    }
-
-    @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void onAccountsChanged_fromEmptyToOne_tryDownloadIfConnectedNotCalled() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        PbapClientService.PbapClientAccountManagerCallback callback =
-                mService.new PbapClientAccountManagerCallback();
-        Account acc = mock(Account.class);
-        callback.onAccountsChanged(new ArrayList<Account>(), new ArrayList<>(Arrays.asList(acc)));
-
-        verify(sm, never()).tryDownloadIfConnected();
-    }
-
-    // BOTH: ACL state changes from AdapterService
-
-    // old
-
-    @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void aclDisconnected_withLeTransport_doesNotCallDisconnect() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        when(sm.getConnectionState(mRemoteDevice)).thenReturn(BluetoothProfile.STATE_CONNECTED);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        mService.aclDisconnected(mRemoteDevice, BluetoothDevice.TRANSPORT_LE);
-        TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
-
-        verify(sm, never()).disconnect(mRemoteDevice);
-    }
-
-    @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void aclDisconnected_withBrEdrTransport_callsDisconnect() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        when(sm.getConnectionState(mRemoteDevice)).thenReturn(BluetoothProfile.STATE_CONNECTED);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        mService.aclDisconnected(mRemoteDevice, BluetoothDevice.TRANSPORT_BREDR);
-        TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
-
-        verify(sm).disconnect(mRemoteDevice);
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnBrEdrAclDisconnected_forConnectedDevice_deviceCleanedUp() {
         mService.aclDisconnected(mRemoteDevice, BluetoothDevice.TRANSPORT_BREDR);
         TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
@@ -348,7 +246,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnBrEdrAclDisconnected_forDisconnectedDevice_eventDropped() {
         mMockDeviceMap.clear();
         mService.aclDisconnected(mRemoteDevice, BluetoothDevice.TRANSPORT_BREDR);
@@ -357,7 +254,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnLeAclDisconnected_forConnectedDevice_eventDropped() {
         mService.aclDisconnected(mRemoteDevice, BluetoothDevice.TRANSPORT_LE);
         TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
@@ -365,33 +261,15 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnUnknownAclDisconnected_forConnectedDevice_deviceCleanedUp() {
         mService.aclDisconnected(mRemoteDevice, TRANSPORT_UNKNOWN);
         TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
         verify(mMockDeviceStateMachine, never()).disconnect();
     }
 
-    // BOTH: HFP HF State changes
-
-    // old
+    // HFP HF State changes
 
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void headsetClientConnectionStateChanged_hfpCallLogIsRemoved() {
-        mService.handleHeadsetClientConnectionStateChanged(
-                mRemoteDevice,
-                BluetoothProfile.STATE_CONNECTED,
-                BluetoothProfile.STATE_DISCONNECTED);
-
-        assertThat(mMockCallLogProvider.getMostRecentlyDeletedDevice())
-                .isEqualTo(mRemoteDevice.getAddress());
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnHfpClientDisconnectedForConnectedDevice_callLogsCleanedUp() {
         mService.handleHeadsetClientConnectionStateChanged(
                 mRemoteDevice,
@@ -402,7 +280,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnHfpClientDisconnectedForDisconnectedDevice_callLogsCleanedUp() {
         mMockDeviceMap.clear();
         mService.handleHeadsetClientConnectionStateChanged(
@@ -413,23 +290,9 @@ public class PbapClientServiceTest {
         verify(mMockStorage, times(1)).removeCallHistory(eq(account));
     }
 
-    // OLD: Device state machines cleans up
+    // SDP Events from AdapterService
 
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void cleanUpDevice() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        mService.cleanupDevice(mRemoteDevice);
-
-        assertThat(mService.mPbapClientStateMachineOldMap).doesNotContainKey(mRemoteDevice);
-    }
-
-    // NEW: SDP Events from AdapterService
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnSdpRecordReceived_deviceConnected_eventForwarded() {
         mService.receiveSdpSearchRecord(
                 mRemoteDevice, SDP_SUCCESS, mMockSdpRecord, BluetoothUuid.PBAP_PSE);
@@ -438,7 +301,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnSdpResultReceived_deviceDisconnected_eventDropped() {
         mMockDeviceMap.clear();
         mService.receiveSdpSearchRecord(
@@ -448,7 +310,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnSdpResultReceived_nullRecord_eventDropped() {
         mService.receiveSdpSearchRecord(mRemoteDevice, SDP_SUCCESS, null, BluetoothUuid.PBAP_PSE);
         verify(mMockDeviceStateMachine, never())
@@ -456,7 +317,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnSdpResultReceived_wrongUuid_eventDropped() {
         mService.receiveSdpSearchRecord(
                 mRemoteDevice, SDP_SUCCESS, mMockSdpRecord, /* wrong */ BluetoothUuid.MNS);
@@ -465,7 +325,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnSdpResultReceived_statusFailed_eventForwarded() {
         mService.receiveSdpSearchRecord(
                 mRemoteDevice, SDP_FAILED, mMockSdpRecord, /* wrong */ BluetoothUuid.PBAP_PSE);
@@ -474,7 +333,6 @@ public class PbapClientServiceTest {
     }
 
     @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testOnSdpResultReceived_statusBusy_eventForwarded() {
         mService.receiveSdpSearchRecord(
                 mRemoteDevice, SDP_BUSY, mMockSdpRecord, /* wrong */ BluetoothUuid.PBAP_PSE);
@@ -508,25 +366,7 @@ public class PbapClientServiceTest {
     }
 
     // connect (policy allowed) -> connect/true
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testConnect_onOld_onAllowedAndUnconnectedDevice_deviceCreatedAndIsConnecting() {
-        mService.mPbapClientStateMachineOldMap.clear();
-        assertThat(mService.connect(mRemoteDevice)).isTrue();
-
-        // Clean up and wait for it to complete
-        PbapClientStateMachineOld smOld = mService.mPbapClientStateMachineOldMap.get(mRemoteDevice);
-        assertThat(smOld).isNotNull();
-        smOld.doQuit();
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testConnect_onAllowedAndUnconnectedDevice_deviceCreatedAndIsConnecting() {
         mMockDeviceMap.clear();
         assertThat(mService.connect(mRemoteDevice)).isTrue();
@@ -567,48 +407,14 @@ public class PbapClientServiceTest {
     }
 
     // connect (already connected) -> false
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testConnect_onOld_onAllowedAndConnectedDevice_connectNotCalled() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-        assertThat(mService.connect(mRemoteDevice)).isFalse();
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testConnect_onAllowedAndConnectedDevice_connectNotCalled() {
         // existing/previous connection setup in setUp()
         assertThat(mService.connect(mRemoteDevice)).isFalse();
     }
 
     // connect (at device limit) -> false
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void
-            testConnect_onOld_donAllowedAndUnconnectedDeviceWithTenConnected_connectNotCalled() {
-        // Create 10 connected devices
-        for (int i = 1; i <= 10; i++) {
-            BluetoothDevice remoteDevice = TestUtils.getTestDevice(mAdapter, i);
-            PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-            mService.mPbapClientStateMachineOldMap.put(remoteDevice, sm);
-        }
-
-        assertThat(mService.connect(mRemoteDevice)).isFalse();
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testConnect_onAllowedAndUnconnectedDeviceWithTenConnected_connectNotCalled() {
         // Create 10 connected devices
         for (int i = 1; i <= 10; i++) {
@@ -620,23 +426,7 @@ public class PbapClientServiceTest {
     }
 
     // disconnect (device connected) -> disconnect/true
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testDisconnect_onOld_onConnectedDevice_deviceDisconnectRequested() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        when(sm.getConnectionState()).thenReturn(BluetoothProfile.STATE_CONNECTED);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-        assertThat(mService.disconnect(mRemoteDevice)).isTrue();
-        verify(sm, times(1)).disconnect(eq(mRemoteDevice));
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testDisconnect_onConnectedDevice_deviceDisconnectRequested() {
         assertThat(mService.disconnect(mRemoteDevice)).isTrue();
         verify(mMockDeviceStateMachine, times(1)).disconnect();
@@ -656,23 +446,7 @@ public class PbapClientServiceTest {
     }
 
     // getConnectedDevices (device connected) -> has devices
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testGetConnectedDevices_onOld_oneDeviceConnected_returnsConnectedDevice() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        when(sm.getConnectionState()).thenReturn(BluetoothProfile.STATE_CONNECTED);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        assertThat(mService.getConnectedDevices()).contains(mRemoteDevice);
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testGetConnectedDevices_oneDeviceConnected_returnsConnectedDevice() {
         doReturn(BluetoothProfile.STATE_CONNECTED)
                 .when(mMockDeviceStateMachine)
@@ -691,26 +465,7 @@ public class PbapClientServiceTest {
     }
 
     // getDevicesMatchingConnectionStates (connected, one device connected)
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testGetDevicesMatchingConnectionStates_onOld_connectedWithDevice_returnsDevice() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        when(sm.getConnectionState()).thenReturn(BluetoothProfile.STATE_CONNECTED);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        assertThat(
-                        mService.getDevicesMatchingConnectionStates(
-                                new int[] {BluetoothProfile.STATE_CONNECTED}))
-                .isEqualTo(Arrays.asList(new BluetoothDevice[] {mRemoteDevice}));
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testGetDevicesMatchingConnectionStates_connectedWithDevice_returnsDevice() {
         doReturn(BluetoothProfile.STATE_CONNECTED)
                 .when(mMockDeviceStateMachine)
@@ -734,24 +489,7 @@ public class PbapClientServiceTest {
     }
 
     // getConnectionState (device connected) -> has device
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testGetConnectionState_onOld_onConnectedDevice_returnsConnected() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        when(sm.getConnectionState(eq(mRemoteDevice))).thenReturn(BluetoothProfile.STATE_CONNECTED);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-
-        assertThat(mService.getConnectionState(mRemoteDevice))
-                .isEqualTo(BluetoothProfile.STATE_CONNECTED);
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testGetConnectionState_onConnectedDevice_returnsConnected() {
         doReturn(BluetoothProfile.STATE_CONNECTED)
                 .when(mMockDeviceStateMachine)
@@ -785,25 +523,7 @@ public class PbapClientServiceTest {
     }
 
     // setConnectionPolicy (forbidden -> disconnect) -> discount/true
-
-    // old
-
     @Test
-    @DisableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
-    public void testSetConnectionPolicy_onOld_toForbidden_disconnectIssued() {
-        PbapClientStateMachineOld sm = mock(PbapClientStateMachineOld.class);
-        mService.mPbapClientStateMachineOldMap.put(mRemoteDevice, sm);
-        assertThat(
-                        mService.setConnectionPolicy(
-                                mRemoteDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN))
-                .isTrue();
-        verify(sm, times(1)).disconnect(eq(mRemoteDevice));
-    }
-
-    // new
-
-    @Test
-    @EnableFlags(Flags.FLAG_PBAP_CLIENT_STORAGE_REFACTOR)
     public void testSetConnectionPolicy_toForbidden_disconnectIssued() {
         assertThat(
                         mService.setConnectionPolicy(
