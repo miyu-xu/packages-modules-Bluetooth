@@ -452,13 +452,19 @@ void PORT_DlcEstablishInd(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu) {
     (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
   }
 
+  p_port->state = PORT_CONNECTION_STATE_OPENED;
+
+  if (!(p_port->port_ctrl & PORT_CTRL_REQ_SENT)) {
+    RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
+  } else {
+    log::warn("Control Already sent");
+  }
+
   if (p_port->p_mgmt_callback) {
     p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
     log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_IND,
                         1);
   }
-
-  p_port->state = PORT_CONNECTION_STATE_OPENED;
 }
 
 /*******************************************************************************
@@ -499,11 +505,6 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu, uint16_t 
     (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
   }
 
-  if (p_port->p_mgmt_callback) {
-    p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
-    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
-                        1);
-  }
   p_port->state = PORT_CONNECTION_STATE_OPENED;
 
   /* RPN is required only if we want to tell DTE how the port should be opened
@@ -512,6 +513,12 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu, uint16_t 
     RFCOMM_PortParameterNegotiationRequest(p_port->rfc.p_mcb, p_port->dlci, NULL);
   } else {
     RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
+  }
+
+  if (p_port->p_mgmt_callback) {
+    p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
+                        1);
   }
 }
 
