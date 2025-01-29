@@ -23,7 +23,6 @@
 #include <com_android_bluetooth_flags.h>
 #ifdef __ANDROID__
 #include <cutils/trace.h>
-#include <perfetto/tracing.h>
 #endif  // __ANDROID__
 #include <sys/stat.h>
 
@@ -277,9 +276,6 @@ constexpr uint16_t PROFILE_UUID_PBAP = 0x112f;
 constexpr uint16_t PROFILE_UUID_MAP = 0x1132;
 constexpr uint16_t PROFILE_UUID_HFP_HS = 0x1112;
 constexpr uint16_t PROFILE_UUID_HFP_HF = 0x111f;
-
-// The Perfetto trace flush interval in microseconds.
-constexpr uint64_t TRACE_FLUSH_INTERVAL_MICROS = 100000;
 
 uint64_t htonll(uint64_t ll) {
   if constexpr (isLittleEndian) {
@@ -1439,47 +1435,6 @@ const ModuleFactory SnoopLogger::Factory = ModuleFactory([]() {
 });
 
 #ifdef __ANDROID__
-BundleKey::BundleKey(const HciPacket& packet, uint8_t direction, uint8_t type)
-    : packet_type(type), direction(direction) {
-  switch (type) {
-    case SnoopLogger::PacketType::EVT: {
-      event_code = packet[0];
-
-      if (event_code == static_cast<uint8_t>(hci::EventCode::LE_META_EVENT) ||
-          event_code == static_cast<uint8_t>(hci::EventCode::VENDOR_SPECIFIC)) {
-        subevent_code = packet[2];
-      }
-    } break;
-    case SnoopLogger::PacketType::CMD: {
-      op_code = packet[0] | (packet[1] << 8);
-    } break;
-    case SnoopLogger::PacketType::ACL:
-    case SnoopLogger::PacketType::ISO:
-    case SnoopLogger::PacketType::SCO: {
-      handle = (packet[0] | (packet[1] << 8)) & 0x0fff;
-    } break;
-  }
-}
-
-#define AGG_FIELDS(x) \
-  (x).packet_type, (x).direction, (x).event_code, (x).subevent_code, (x).op_code, (x).handle
-
-bool BundleKey::operator==(const BundleKey& b) const {
-  return std::tie(AGG_FIELDS(*this)) == std::tie(AGG_FIELDS(b));
-}
-
-template <typename T, typename... Rest>
-void HashCombine(std::size_t& seed, const T& val, const Rest&... rest) {
-  seed ^= std::hash<T>()(val) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-  (HashCombine(seed, rest), ...);
-}
-
-std::size_t BundleHash::operator()(const BundleKey& a) const {
-  std::size_t seed = 0;
-  HashCombine(seed, AGG_FIELDS(a));
-  return seed;
-}
-
 void SnoopLogger::LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, Direction direction,
                                 PacketType type) {
   switch (type) {
@@ -1528,28 +1483,7 @@ void SnoopLogger::LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, 
     } break;
   }
 
-  if (SkipTracePoint(packet, type)) {
-    return;
-  }
-
-  BundleKey key(packet, static_cast<uint8_t>(direction), static_cast<uint8_t>(type));
-
-  BundleDetails& bundle = bttrace_bundles_[key];
-  bundle.count++;
-  bundle.total_length += packet.size();
-  bundle.start_ts = std::min(bundle.start_ts, timestamp_us);
-  bundle.end_ts = std::max(bundle.end_ts, timestamp_us);
-
-  if ((timestamp_us - last_bttrace_timestamp_us) < TRACE_FLUSH_INTERVAL_MICROS) {
-    return;
-  }
-
-  for (const auto& [key, value] : bttrace_bundles_) {
-    SnoopLoggerTracing::TracePacket(key, value);
-  }
-
-  bttrace_bundles_.clear();
-  last_bttrace_timestamp_us = timestamp_us;
+  SnoopLoggerTracing::TracePacket(timestamp_us, packet, direction, type);
 }
 #endif  // __ANDROID__
 
