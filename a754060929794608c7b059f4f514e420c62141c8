@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "182119f8_d2a75977",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2234,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "I got the point of checking this to prevent unexpected behavior.\n\nBut that would change the logic flow here, the current is clearly based on status code. If you really worried about this part, it would be better to log a warning and exit earlier instead of mixing those 2 checks, while IMO it\u0027s not that necessary to have this. \nWith your new logic flow, if status is success but broadcast id is invalid, we\u0027re still proceed with using this invalid id and potentially lead to new issues, so that doesn\u0027t bring much benefits.\n\n            if (status \u003d\u003d ERROR_CODE_SUCCESS) {\n                if (broadcastId !\u003d BassConstants.INVALID_BROADCAST_ID) {\n                    // do something.\n                }\n            } else {\n                // failure case\n            }",
+      "parentUuid": "5ca74feb_987dfe52",
+      "range": {
+        "startLine": 2234,
+        "startChar": 48,
+        "endLine": 2234,
+        "endChar": 59
+      },
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "252fba2a_072e9321",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "Major reason is to allow creating isAddedToSync method. updatePeriodicAdvertisementResultMap (I moved updating mSyncHandleToDeviceMap and mSyncHandleToBroadcastIdMap to updatePeriodicAdvertisementResultMap) has to be inside mSourceSyncRequestsQueue synchronization as we check broadcastId for pending/invalid sync handle in isAddedToSync.\n\nA minor reason is that I want to gather as many as possible variables, which depend on syncHandle in one place. This will enable us to make refactor and create a one object for it instead of separate variables.",
       "parentUuid": "252fba2a_072e9321",
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "038b0f1d_c9ad87a7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2843,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "199f0ce8_da75d8f2",
       "revId": "a754060929794608c7b059f4f514e420c62141c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -114,6 +156,24 @@
       "side": 1,
       "message": "It is because of add select source request. Adding source is only one of the places when it could occur. It checks if this broadcastId is in sync queue/pending.\nChanged.",
       "parentUuid": "ee7715e7_ff8f0ed3",
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "874c54b0_8b4bfc31",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3178,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b85dcb2a_533f04ea",
       "revId": "a754060929794608c7b059f4f514e420c62141c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

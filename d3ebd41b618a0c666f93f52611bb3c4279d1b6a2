@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec52d9e_085c4e9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "Have 2 general comments,\nthis CL has some logic changes which I\u0027m a bit worried about. it\u0027s not only for refactoring logics. can we separate those logic changes and put them under some flags?\n\nAlso mSourceSyncRequestsQueue is used to synchronize some big logic blocks which might unnecessarily downgrade the performance. any thoughts we can improve this?",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b36829_0a169788",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "logic change",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ed22c6_ddc3fb6a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "logic change",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebea0fa7_3743950a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2178,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-29T22:36:26Z",
+      "side": 1,
+      "message": "nit, but is this really necessary to put the whole block under mSourceSyncRequestsQueue?",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
