@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a41894_4caa2f10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-01-29T18:03:28Z",
+      "side": 1,
+      "message": "Not sure why this isn\u0027t requiring API review (CC @asapperstein@google.com). I cannot approve this change alone, as APIs are already frozen and SDK is getting finalized. Has the release and SDK team approved this change?",
+      "revId": "731c91d08c5b3fa24aee2749fb349a4d10d14384",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
