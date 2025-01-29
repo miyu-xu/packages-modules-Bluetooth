@@ -188,6 +188,7 @@ struct RfcommCfgInfo {
   uint16_t init_credit;
   bool rx_mtu_present;
   uint16_t rx_mtu;
+  bool hardware_data_path;
 };
 
 namespace std {
