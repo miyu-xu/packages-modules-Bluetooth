@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58e9feb0_2ee12cc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952030
+      },
+      "writtenOn": "2025-01-29T16:30:27Z",
+      "side": 1,
+      "message": "Hi Henri, I\u0027ll be taking over this patch from Cheng. I\u0027ve resolved most comments below.\n\nI think it would be beneficial to move more of the code into the snoop_logger_tracing files as to keep all of the Perfetto tracing code together. I\u0027ve gone head and done that in https://r.android.com/3469408. With the refactor, the addition of tracing is \u003c5 lines in the snoop_logger.cc file.\n\nIf you\u0027re on-board, I can either fold that into this changelist or submit these in sequence.",
+      "revId": "dfff5aa930f3b8724db1e6656cc2738559281cfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
