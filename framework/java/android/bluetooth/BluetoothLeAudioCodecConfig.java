@@ -53,6 +53,9 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
     @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_OPUS_CODEC_TYPE)
     public static final int SOURCE_CODEC_TYPE_OPUS = 1;
 
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_OPUS_CODEC_TYPE)
+    public static final int SOURCE_CODEC_TYPE_OPUS_HI_RES = 2;
+
     public static final int SOURCE_CODEC_TYPE_INVALID = 1000 * 1000;
 
     /** @hide */
