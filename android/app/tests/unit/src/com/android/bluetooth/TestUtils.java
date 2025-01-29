@@ -48,7 +48,6 @@ import org.junit.runners.model.Statement;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
@@ -62,29 +61,6 @@ public class TestUtils {
     private static String sSystemScreenOffTimeout = "10000";
 
     private static final String TAG = "BluetoothTestUtils";
-
-    /**
-     * Utility method to replace obj.fieldName with newValue where obj is of type c
-     *
-     * @param c type of obj
-     * @param fieldName field name to be replaced
-     * @param obj instance of type c whose fieldName is to be replaced, null for static fields
-     * @param newValue object used to replace fieldName
-     * @return the old value of fieldName that got replaced, caller is responsible for restoring it
-     *     back to obj
-     * @throws NoSuchFieldException when fieldName is not found in type c
-     * @throws IllegalAccessException when fieldName cannot be accessed in type c
-     */
-    public static Object replaceField(
-            final Class c, final String fieldName, final Object obj, final Object newValue)
-            throws NoSuchFieldException, IllegalAccessException {
-        Field field = c.getDeclaredField(fieldName);
-        field.setAccessible(true);
-
-        Object oldValue = field.get(obj);
-        field.set(obj, newValue);
-        return oldValue;
-    }
 
     /**
      * Set the return value of {@link AdapterService#getAdapterService()} to a test specified value
@@ -125,6 +101,7 @@ public class TestUtils {
             Context ctx, String serviceName, Class<T> serviceClass, T mockService) {
         when(ctx.getSystemService(eq(serviceName))).thenReturn(mockService);
         when(ctx.getSystemServiceName(eq(serviceClass))).thenReturn(serviceName);
+        when(ctx.getSystemService(eq(serviceClass))).thenReturn(mockService);
     }
 
     /** Helper function to mock getSystemService calls */

@@ -59,24 +59,17 @@ public class MediaPlayerListTest {
     private @Mock MediaController mMockController;
     private @Mock MediaPlayerWrapper mMockPlayerWrapper;
 
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
     private MediaPlayerWrapper.Callback mActivePlayerCallback;
     private MediaSessionManager mMediaSessionManager;
 
     @Before
     public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
-
         if (Looper.myLooper() == null) {
             Looper.prepare();
         }
 
         AudioManager mockAudioManager = mock(AudioManager.class);
-        when(mMockContext.getSystemService(Context.AUDIO_SERVICE)).thenReturn(mockAudioManager);
-        when(mMockContext.getSystemServiceName(AudioManager.class))
-                .thenReturn(Context.AUDIO_SERVICE);
+        when(mMockContext.getSystemService(AudioManager.class)).thenReturn(mockAudioManager);
 
         // MediaSessionManager is final and Bluetooth can't use extended Mockito to mock it. Thus,
         // using this as is risks leaking device state into the tests. To avoid this, the injected
@@ -86,10 +79,8 @@ public class MediaPlayerListTest {
                 InstrumentationRegistry.getTargetContext()
                         .getSystemService(MediaSessionManager.class);
         PackageManager mockPackageManager = mock(PackageManager.class);
-        when(mMockContext.getSystemService(Context.MEDIA_SESSION_SERVICE))
+        when(mMockContext.getSystemService(MediaSessionManager.class))
                 .thenReturn(mMediaSessionManager);
-        when(mMockContext.getSystemServiceName(MediaSessionManager.class))
-                .thenReturn(Context.MEDIA_SESSION_SERVICE);
 
         when(mMockContext.registerReceiver(any(), any())).thenReturn(null);
         when(mMockContext.getApplicationContext()).thenReturn(mMockContext);
@@ -123,9 +114,6 @@ public class MediaPlayerListTest {
         MediaControllerFactory.inject(null);
         MediaPlayerWrapperFactory.inject(null);
         mMediaPlayerList.cleanup();
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
     }
 
     private MediaData prepareMediaData(int playbackState) {

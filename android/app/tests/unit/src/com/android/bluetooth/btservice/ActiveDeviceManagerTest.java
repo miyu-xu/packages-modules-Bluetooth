@@ -38,9 +38,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
-import android.content.Context;
 import android.media.AudioDeviceInfo;
-import android.media.AudioDevicePort;
 import android.media.AudioManager;
 import android.os.test.TestLooper;
 import android.platform.test.annotations.DisableFlags;
@@ -126,9 +124,7 @@ public class ActiveDeviceManagerTest {
 
         mDatabaseManager = new TestDatabaseManager(mAdapterService);
 
-        when(mAdapterService.getSystemService(Context.AUDIO_SERVICE)).thenReturn(mAudioManager);
-        when(mAdapterService.getSystemServiceName(AudioManager.class))
-                .thenReturn(Context.AUDIO_SERVICE);
+        when(mAdapterService.getSystemService(AudioManager.class)).thenReturn(mAudioManager);
         when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
         when(mServiceFactory.getA2dpService()).thenReturn(mA2dpService);
         when(mServiceFactory.getHeadsetService()).thenReturn(mHeadsetService);
@@ -2004,16 +2000,12 @@ public class ActiveDeviceManagerTest {
     }
 
     private AudioDeviceInfo[] createAudioDeviceInfoTestDevices() {
-        AudioDevicePort a2dpPort = mock(AudioDevicePort.class);
-        doReturn(AudioDeviceInfo.TYPE_BLUETOOTH_A2DP).when(a2dpPort).type();
-        doReturn("a2dp").when(a2dpPort).name();
+        AudioDeviceInfo a2dpDevice = mock(AudioDeviceInfo.class);
+        doReturn(AudioDeviceInfo.TYPE_BLUETOOTH_A2DP).when(a2dpDevice).getType();
 
-        AudioDevicePort usbPort = mock(AudioDevicePort.class);
-        doReturn(AudioDeviceInfo.TYPE_USB_HEADSET).when(usbPort).type();
-        doReturn("usb").when(usbPort).name();
+        AudioDeviceInfo usbDevice = mock(AudioDeviceInfo.class);
+        doReturn(AudioDeviceInfo.TYPE_USB_HEADSET).when(usbDevice).getType();
 
-        AudioDeviceInfo a2dpDevice = new AudioDeviceInfo(a2dpPort);
-        AudioDeviceInfo usbDevice = new AudioDeviceInfo(usbPort);
         return new AudioDeviceInfo[] {a2dpDevice, usbDevice};
     }
 

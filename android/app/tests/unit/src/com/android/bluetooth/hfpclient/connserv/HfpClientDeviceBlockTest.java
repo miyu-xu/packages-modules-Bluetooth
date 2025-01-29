@@ -75,9 +75,7 @@ public class HfpClientDeviceBlockTest {
         when(mConnServ.getApplicationContext()).thenReturn(mApplicationContext);
         when(mConnServ.getPackageName()).thenReturn(TEST_PACKAGE);
 
-        when(mConnServ.getSystemService(Context.TELECOM_SERVICE)).thenReturn(mTelecomManager);
-        when(mConnServ.getSystemServiceName(TelecomManager.class))
-                .thenReturn(Context.TELECOM_SERVICE);
+        when(mConnServ.getSystemService(TelecomManager.class)).thenReturn(mTelecomManager);
 
         mBluetoothDevice =
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_DEVICE_ADDRESS);

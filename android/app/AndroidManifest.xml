@@ -5,16 +5,16 @@
   android:sharedUserId="android.uid.bluetooth">
 
     <!-- Allows access to the Bluetooth Share Manager -->
-    <permission android:name="android.permission.ACCESS_BLUETOOTH_SHARE"
-         android:label="@string/permlab_bluetoothShareManager"
-         android:description="@string/permdesc_bluetoothShareManager"
-         android:protectionLevel="signature|privileged"/>
+    <!-- <permission android:name="android.permission.ACCESS_BLUETOOTH_SHARE" -->
+    <!--      android:label="@string/permlab_bluetoothShareManager" -->
+    <!--      android:description="@string/permdesc_bluetoothShareManager" -->
+    <!--      android:protectionLevel="signature|privileged"/> -->
 
-    <!--  Allows temporarily acceptlisting Bluetooth addresses for sharing -->
-    <permission android:name="com.android.permission.ALLOWLIST_BLUETOOTH_DEVICE"
-         android:label="@string/permlab_bluetoothAcceptlist"
-         android:description="@string/permdesc_bluetoothAcceptlist"
-         android:protectionLevel="signature|privileged"/>
+    <!-- <!-1-  Allows temporarily acceptlisting Bluetooth addresses for sharing -1-> -->
+    <!-- <permission android:name="com.android.permission.ALLOWLIST_BLUETOOTH_DEVICE" -->
+    <!--      android:label="@string/permlab_bluetoothAcceptlist" -->
+    <!--      android:description="@string/permdesc_bluetoothAcceptlist" -->
+    <!--      android:protectionLevel="signature|privileged"/> -->
 
     <uses-permission android:name="android.permission.ACCESS_BLUETOOTH_SHARE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -123,13 +123,13 @@
             </intent-filter>
             <meta-data android:name="androidx.car.app.launchable" android:value="true" />
         </service>
-        <provider android:process="@string/process"
-             android:name="com.android.bluetooth.avrcpcontroller.AvrcpCoverArtProvider"
-             android:authorities="com.android.bluetooth.avrcpcontroller.AvrcpCoverArtProvider"
-             android:enabled="false"
-             android:grantUriPermissions="true"
-             android:exported="true">
-        </provider>
+        <!-- <provider android:process="@string/process" -->
+        <!--      android:name="com.android.bluetooth.avrcpcontroller.AvrcpCoverArtProvider" -->
+        <!--      android:authorities="com.android.bluetooth.avrcpcontroller.AvrcpCoverArtProvider" -->
+        <!--      android:enabled="false" -->
+        <!--      android:grantUriPermissions="true" -->
+        <!--      android:exported="true"> -->
+        <!-- </provider> -->
         <activity android:name="com.android.bluetooth.BluetoothPrefs"
              android:exported="true"
              android:enabled="false">
@@ -161,21 +161,21 @@
             </intent-filter>
         </service>
 
-        <provider android:name="com.android.bluetooth.map.MmsFileProvider"
-             android:authorities="com.android.bluetooth.map.MmsFileProvider"
-             android:enabled="false"
-             android:grantUriPermissions="true"
-             android:exported="false">
-        </provider>
+        <!-- <provider android:name="com.android.bluetooth.map.MmsFileProvider" -->
+        <!--      android:authorities="com.android.bluetooth.map.MmsFileProvider" -->
+        <!--      android:enabled="false" -->
+        <!--      android:grantUriPermissions="true" -->
+        <!--      android:exported="false"> -->
+        <!-- </provider> -->
 
-        <provider android:name="com.android.bluetooth.opp.BluetoothOppProvider"
-             android:authorities="com.android.bluetooth.opp"
-             android:enabled="false"
-             android:exported="true"
-             android:process="@string/process">
-            <path-permission android:pathPrefix="/btopp"
-                 android:permission="android.permission.ACCESS_BLUETOOTH_SHARE"/>
-        </provider>
+        <!-- <provider android:name="com.android.bluetooth.opp.BluetoothOppProvider" -->
+        <!--      android:authorities="com.android.bluetooth.opp" -->
+        <!--      android:enabled="false" -->
+        <!--      android:exported="true" -->
+        <!--      android:process="@string/process"> -->
+        <!--     <path-permission android:pathPrefix="/btopp" -->
+        <!--          android:permission="android.permission.ACCESS_BLUETOOTH_SHARE"/> -->
+        <!-- </provider> -->
         <receiver android:process="@string/process"
              android:name="com.android.bluetooth.opp.BluetoothOppReceiver"
              android:exported="true"
