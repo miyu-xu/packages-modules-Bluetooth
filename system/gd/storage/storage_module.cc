@@ -93,8 +93,6 @@ StorageModule::~StorageModule() {
   pimpl_.reset();
 }
 
-const ModuleFactory StorageModule::Factory = ModuleFactory([]() { return new StorageModule(); });
-
 struct StorageModule::impl {
   explicit impl(Handler* handler, ConfigCache cache, size_t in_memory_cache_size_limit)
       : config_save_alarm_(handler),
