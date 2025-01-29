@@ -63,6 +63,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import pandora.GattProto;
+import pandora.BumbleConfigProto;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.ConnectabilityMode;
@@ -73,6 +74,8 @@ import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
 import pandora.SecurityProto.SecureRequest;
 import pandora.SecurityProto.SecureResponse;
+import pandora.BumbleConfigProto.PairingConfig;
+import pandora.BumbleConfigProto.OverrideRequest;
 
 import java.time.Duration;
 import java.util.Set;
@@ -838,6 +841,126 @@ public class PairingTest {
         assertThat(sAdapter.getBondedDevices()).doesNotContain(mBumbleDevice);
 
         intentReceiver.close();
+    }
+
+    /**
+     * Test if bonded LE device can reconnect after BT restart
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over LE
+     *   <li>Android pairs with Bumble over LE
+     *   <li>Android restarts
+     *   <li>Bumble is connectable over LE
+     *   <li>Android reconnects to Bumble successfully and re-encrypts the link
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondBrEdr_AutoTransport() throws Exception {
+        IntentReceiver intentReceiver =
+            new IntentReceiver.Builder(sTargetContext,
+                BluetoothDevice.ACTION_FOUND,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_PAIRING_REQUEST)
+                .setIntentListener(intentListener)
+                .build();
+
+        /*PairingConfig pairingConfig =
+                BumbleConfigProto.PairingConfig.newBuilder()
+                    .setBonding(true)
+                    .setMitm(true)
+                    .setSc(false)
+                    .setIdentityAddressType(HostProto.OwnAddressType.PUBLIC)
+                    .build();*/
+        OverrideRequest overrideRequest =
+                BumbleConfigProto.OverrideRequest.newBuilder()
+                .setClassOfDevice(2360324)//LE audio bit not set
+                .setIoCapabilityValue(3) // No input, No output
+                .setPairingConfig(pairingConfig)
+                .build();
+        mBumble.bumbleConfigBlocking().override(overrideRequest);*/
+
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+            .setDiscoverabilityMode(
+                SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                    .build());
+
+        SetConnectabilityModeRequest request =
+                SetConnectabilityModeRequest.newBuilder()
+                        .setMode(ConnectabilityMode.CONNECTABLE)
+                        .build();
+        mBumble.hostBlocking().setConnectabilityMode(request);
+
+        // Start Discovery
+        mDeviceFound = new CompletableFuture<>();
+        assertThat(sAdapter.startDiscovery()).isTrue();
+        mBumbleDevice =
+                mDeviceFound
+                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_FOUND));
+        assertThat(sAdapter.cancelDiscovery()).isTrue();
+
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+                mBumble.security()
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
+                            TimeUnit.MILLISECONDS)
+                        .onPairing(mPairingEventStreamObserver);
+
+        assertThat(mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_AUTO)).isTrue();
+
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                    BluetoothDevice.BOND_BONDING));
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                    BluetoothDevice.TRANSPORT_BREDR));
+
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(
+                        BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                        BluetoothDevice.PAIRING_VARIANT_CONSENT));
+
+        // Approve pairing from Android
+        assertThat(mBumbleDevice.setPairingConfirmation(true)).isTrue();
+        Log.d(TAG, " after Android setPairingConfirmation");
+
+        PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent)
+                    .setConfirm(true).build());
+        Log.d(TAG, " after commented Bumble setConfirm");
+
+        // Ensure that pairing succeeds
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                    BluetoothDevice.BOND_BONDED));
+
+        Log.d(TAG, " after verify rcvd BOND_BONDED");
+        intentReceiver.close();
+        Log.d(TAG, " after Intent receiver close");
     }
 
     /** Helper/testStep functions goes here */
