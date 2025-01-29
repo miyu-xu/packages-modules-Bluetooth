@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c88a00f3_30dcb23b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-29T18:28:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b0593b3a_db1d287f",
+      "revId": "04f5ae87a9e125841f4158bd1a2739dd1cb3cc59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4a4e4fd7_0fd0a515",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 2
