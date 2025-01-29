@@ -133,6 +133,14 @@ bt_status_t do_in_main_thread_delayed(base::OnceClosure task, std::chrono::micro
   return do_in_main_thread(std::move(task));
 }
 
+<<<<<<< HEAD
+||||||| parent of 7d97636150 (bluetooth: Fixes for libchrome uprev to r780651)
+base::MessageLoop* get_main_message_loop() { return message_loop_; }
+
+=======
+btbase::AbstractMessageLoop* get_main_message_loop() { return message_loop_; }
+
+>>>>>>> 7d97636150 (bluetooth: Fixes for libchrome uprev to r780651)
 static void init_message_loop_thread() {
   num_async_tasks = 0;
   message_loop_thread.StartUp();
