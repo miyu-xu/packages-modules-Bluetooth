@@ -35,17 +35,15 @@ namespace {
 // The Perfetto trace flush interval in microseconds.
 constexpr uint64_t TRACE_FLUSH_INTERVAL_MICROS = 100000;
 
-bool SkipTracePoint(const HciPacket& packet, SnoopLogger::PacketType type) {
+static bool SkipTracePoint(const HciPacket& packet, SnoopLogger::PacketType type) {
   if (type == SnoopLogger::PacketType::EVT) {
     uint8_t evt_code = packet[0];
 
     // Below set of commands does not provide further insight into bluetooth
     // behavior. Skip these to save bluetooth tracing from becoming too large.
-    if (evt_code == static_cast<uint8_t>(hci::EventCode::NUMBER_OF_COMPLETED_PACKETS) ||
-        evt_code == static_cast<uint8_t>(hci::EventCode::COMMAND_COMPLETE) ||
-        evt_code == static_cast<uint8_t>(hci::EventCode::COMMAND_STATUS)) {
-      return true;
-    }
+    return evt_code == static_cast<uint8_t>(hci::EventCode::NUMBER_OF_COMPLETED_PACKETS) ||
+           evt_code == static_cast<uint8_t>(hci::EventCode::COMMAND_COMPLETE) ||
+           evt_code == static_cast<uint8_t>(hci::EventCode::COMMAND_STATUS);
   }
 
   return false;
@@ -93,6 +91,8 @@ std::size_t BundleHash::operator()(const BundleKey& a) const {
   HashCombine(seed, AGG_FIELDS(a));
   return seed;
 }
+
+#undef AGG_FIELDS
 
 void SnoopLoggerTracing::InitializePerfetto() {
   perfetto::TracingInitArgs args;
