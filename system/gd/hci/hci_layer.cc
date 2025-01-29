@@ -457,10 +457,9 @@ struct HciLayer::impl {
                          EventCodeText(event_code), OpCodeText(op_code));
       }
       std::unique_ptr<CommandView> no_waiting_command{nullptr};
-      log_hci_event(no_waiting_command, event, module_.GetDependency<storage::StorageModule>());
+      log_hci_event(no_waiting_command, event, shim::GetStorage());
     } else {
-      log_hci_event(command_queue_.front().command_view, event,
-                    module_.GetDependency<storage::StorageModule>());
+      log_hci_event(command_queue_.front().command_view, event, shim::GetStorage());
     }
     power_telemetry::GetInstance().LogHciEvtDetail();
     EventCode event_code = event.GetEventCode();
@@ -924,7 +923,6 @@ const ModuleFactory HciLayer::Factory = ModuleFactory([]() { return new HciLayer
 
 void HciLayer::ListDependencies(ModuleList* list) const {
   list->add<hal::HciHal>();
-  list->add<storage::StorageModule>();
 }
 
 void HciLayer::Start() {
