@@ -856,8 +856,9 @@ public class MediaPlayerList {
 
     /** Retrieves a list of all packages that both are browsable and play audio */
     List<ResolveInfo> getValidBrowsablePlayersPackages() {
+        return new ArrayList<ResolveInfo>();
 
-        Intent intentPlayer = new Intent(Intent.ACTION_VIEW);
+        /*Intent intentPlayer = new Intent(Intent.ACTION_VIEW);
         Intent intentBrowsable =
                 new Intent(android.service.media.MediaBrowserService.SERVICE_INTERFACE);
 
@@ -886,7 +887,7 @@ public class MediaPlayerList {
                 }
             }
         }
-        return validBrowsablePackagesList;
+        return validBrowsablePackagesList;*/
     }
 
     /** Returns true if {@code packageName} is present in {@link #mMediaPlayerIds}. */
