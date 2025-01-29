@@ -1541,8 +1541,7 @@ static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */,
     return;
   }
   sScanner->SetScanParameters(client_if, /* use active scan */ 0x01, scan_interval_unit,
-                              scan_window_unit, scan_phy,
-                              base::Bind(&set_scan_params_cmpl_cb, client_if));
+                              scan_window_unit, scan_phy);
 }
 
 void scan_filter_param_cb(uint8_t client_if, uint8_t avbl_space, uint8_t action, uint8_t status) {
