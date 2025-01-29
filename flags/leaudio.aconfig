@@ -29,7 +29,7 @@ flag {
     is_exported: true
     namespace: "bluetooth"
     description: "API to set device as inactive audio device upon connection"
-    bug: "322387487"
+    bug: "392953619"
 }
 
 flag {
@@ -457,6 +457,16 @@ flag {
     namespace: "bluetooth"
     description: "Disable broadcast feature for HAP device"
     bug: "391702876"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "leaudio_bass_scan_with_internal_scan_controller"
+    namespace: "bluetooth"
+    description: "Use internal scan controller for BASS service scan"
+    bug: "392953619"
     metadata {
         purpose: PURPOSE_BUGFIX
     }
