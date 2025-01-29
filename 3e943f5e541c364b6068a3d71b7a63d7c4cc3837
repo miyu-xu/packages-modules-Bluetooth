@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a514e7bc_227952f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-29T06:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52136972_e993430c",
+      "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "009f3b2a_46ec49c9",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9747439d_8cf24361",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-29T06:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "009f3b2a_46ec49c9",
+      "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26653573_c0e25e3a",
@@ -48,6 +84,24 @@
       "writtenOn": "2025-01-28T16:36:46Z",
       "side": 1,
       "message": "Devices should pair over BR/EDR transport",
+      "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9bc6a1_51bd97f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-01-29T06:41:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26653573_c0e25e3a",
       "revId": "3e943f5e541c364b6068a3d71b7a63d7c4cc3837",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
