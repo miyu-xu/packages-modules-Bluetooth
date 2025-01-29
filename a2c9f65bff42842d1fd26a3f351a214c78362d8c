@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8187834_a54c75ce",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-29T20:59:28Z",
+      "side": 1,
+      "message": "can not be static, use the hci_layer_ and handler_",
+      "parentUuid": "56a006f4_cbd0750b",
+      "range": {
+        "startLine": 752,
+        "startChar": 7,
+        "endLine": 752,
+        "endChar": 39
+      },
+      "revId": "a2c9f65bff42842d1fd26a3f351a214c78362d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48c450d6_ae07fa6f",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a647163_a4b3bade",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-29T20:59:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48c450d6_ae07fa6f",
+      "revId": "a2c9f65bff42842d1fd26a3f351a214c78362d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "578d0ff1_4d615ab3",
@@ -54,6 +96,30 @@
       "writtenOn": "2025-01-27T19:11:52Z",
       "side": 1,
       "message": "Should be inlined for legibility",
+      "range": {
+        "startLine": 984,
+        "startChar": 32,
+        "endLine": 984,
+        "endChar": 69
+      },
+      "revId": "a2c9f65bff42842d1fd26a3f351a214c78362d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7e37367_8ccc0881",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-01-29T20:59:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "578d0ff1_4d615ab3",
       "range": {
         "startLine": 984,
         "startChar": 32,
