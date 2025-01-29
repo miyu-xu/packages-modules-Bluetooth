@@ -142,6 +142,7 @@ cc_test {
         "libbt-common",
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "libdoubleconversion",
         "libevent",
         "libgmock",
         "libosi",

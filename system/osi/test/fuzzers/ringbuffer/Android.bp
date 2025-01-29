@@ -8,23 +8,20 @@ package {
 }
 
 cc_fuzz {
-    name: "libosi_fuzz_fixed_queue",
+    name: "libosi_fuzz_ringbuffer",
     defaults: ["libosi_fuzz_defaults"],
     host_supported: true,
     srcs: [
-        "fuzz_fixed_queue.cc",
-    ],
-    shared_libs: [
-        "libbase",
-        "libcutils",
-        "liblog",
+        "fuzz_ringbuffer.cc",
     ],
     static_libs: [
+        "libbase",
         "libbluetooth_log",
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libdoubleconversion",
         "libevent",
+        "liblog",
         "libosi",
     ],
 }
