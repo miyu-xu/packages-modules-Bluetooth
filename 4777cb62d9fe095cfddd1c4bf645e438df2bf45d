@@ -34,6 +34,24 @@
       "parentUuid": "1314ff8d_097e395b",
       "revId": "4777cb62d9fe095cfddd1c4bf645e438df2bf45d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd0db74_93e8f477",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2025-01-29T22:54:01Z",
+      "side": 1,
+      "message": "go/android-feature-exception I believe.",
+      "parentUuid": "b1aaf877_3e0cf9ca",
+      "revId": "4777cb62d9fe095cfddd1c4bf645e438df2bf45d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
