@@ -33,6 +33,7 @@
 #include "os/handler.h"
 #include "os/system_properties.h"
 #include "storage/storage_module.h"
+#include "main/shim/entry.h"
 
 namespace bluetooth {
 namespace hci {
@@ -1634,12 +1635,11 @@ void LeScanningManager::ListDependencies(ModuleList* list) const {
   list->add<HciLayer>();
   list->add<Controller>();
   list->add<AclManager>();
-  list->add<storage::StorageModule>();
 }
 
 void LeScanningManager::Start() {
   pimpl_->start(GetHandler(), GetDependency<HciLayer>(), GetDependency<Controller>(),
-                GetDependency<AclManager>(), GetDependency<storage::StorageModule>());
+                GetDependency<AclManager>(), shim::GetStorage());
 }
 
 void LeScanningManager::Stop() {

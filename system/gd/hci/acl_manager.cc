@@ -279,7 +279,7 @@ void AclManager::SetPrivacyPolicyForInitiatorAddress(
         std::chrono::milliseconds minimum_rotation_time,
         std::chrono::milliseconds maximum_rotation_time) {
   Octet16 rotation_irk{};
-  auto irk_prop = GetDependency<storage::StorageModule>()->GetProperty(
+  auto irk_prop = shim::GetStorage()->GetProperty(
           BTIF_STORAGE_SECTION_ADAPTER, BTIF_STORAGE_KEY_LE_LOCAL_KEY_IRK);
   if (irk_prop.has_value()) {
     auto irk = common::ByteArray<16>::FromString(irk_prop.value());
@@ -396,7 +396,6 @@ void AclManager::HACK_SetAclTxPriority(uint8_t handle, bool high_priority) {
 void AclManager::ListDependencies(ModuleList* list) const {
   list->add<HciLayer>();
   list->add<Controller>();
-  list->add<storage::StorageModule>();
   list->add<AclScheduler>();
   list->add<RemoteNameRequestModule>();
 }
