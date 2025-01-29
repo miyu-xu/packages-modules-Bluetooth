@@ -657,7 +657,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr, tBLE_ADDR_TYPE 
                                       tBT_TRANSPORT transport) {
   tBTM_SEC_DEV_REC* p_dev_rec;
   tBTM_STATUS status;
-  log::info("Transport used {}, bd_addr={}", transport, bd_addr);
+  log::error("Google Transport used {}, bd_addr={}, addr_type={}", transport, bd_addr, addr_type);
 
   /* Other security process is in progress */
   if (btm_sec_cb.pairing_state != BTM_PAIR_STATE_IDLE) {
@@ -809,8 +809,11 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr, tBLE_ADDR_TYPE 
  ******************************************************************************/
 tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                         tBT_TRANSPORT transport, tBT_DEVICE_TYPE /* device_type */) {
+  log::info("Google: BTM_SecBond BDA:{} transport:{} addr_type:{}", bd_addr, transport, addr_type);
   if (transport == BT_TRANSPORT_AUTO) {
+    log::info("Google: BTM_SecBond: transport is auto");
     if (addr_type == BLE_ADDR_PUBLIC) {
+      log::info("Google: BTM_SecBond: addr_type is public");
       transport = get_btm_client_interface().ble.BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE
                                                                         : BT_TRANSPORT_BR_EDR;
     } else {
@@ -819,13 +822,14 @@ tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
     }
   }
   tBT_DEVICE_TYPE dev_type;
-
+  log::info("Google: BTM_SecBond: Calling BTM_ReadDevInfo");
   BTM_ReadDevInfo(bd_addr, &dev_type, &addr_type);
   /* LE device, do SMP pairing */
   if ((transport == BT_TRANSPORT_LE && (dev_type & BT_DEVICE_TYPE_BLE) == 0) ||
       (transport == BT_TRANSPORT_BR_EDR && (dev_type & BT_DEVICE_TYPE_BREDR) == 0)) {
     log::warn("Requested transport and supported transport don't match");
   }
+  log::info("Google: BTM_SecBond: Calling btm_sec_bond_by_transport");
   return btm_sec_bond_by_transport(bd_addr, addr_type, transport);
 }
 
