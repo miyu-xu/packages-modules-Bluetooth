@@ -69,10 +69,8 @@ public class AdapterPropertiesTest {
         mHandlerThread.start();
 
         mBluetoothManager = mTargetContext.getSystemService(BluetoothManager.class);
-        when(mAdapterService.getSystemService(Context.BLUETOOTH_SERVICE))
+        when(mAdapterService.getSystemService(BluetoothManager.class))
                 .thenReturn(mBluetoothManager);
-        when(mAdapterService.getSystemServiceName(BluetoothManager.class))
-                .thenReturn(Context.BLUETOOTH_SERVICE);
 
         when(mAdapterService.getIdentityAddress(Utils.getAddressStringFromByte(TEST_BT_ADDR_BYTES)))
                 .thenReturn(Utils.getAddressStringFromByte(TEST_BT_ADDR_BYTES));
@@ -82,7 +80,6 @@ public class AdapterPropertiesTest {
         when(mNativeInterface.removeBond(any(byte[].class))).thenReturn(true);
 
         mRemoteDevices = new RemoteDevices(mAdapterService, mHandlerThread.getLooper());
-        verify(mAdapterService).getSystemService(Context.BLUETOOTH_SERVICE);
         verify(mAdapterService).getSystemService(BluetoothManager.class);
 
         mRemoteDevices.reset();

@@ -110,8 +110,7 @@ public class A2dpServiceTest {
 
     @Parameters(name = "{0}")
     public static List<FlagsParameterization> getParams() {
-        return FlagsParameterization.allCombinationsOf(
-                Flags.FLAG_A2DP_BROADCAST_CONNECTION_STATE_WHEN_TURNED_OFF);
+        return FlagsParameterization.allCombinationsOf();
     }
 
     public A2dpServiceTest(FlagsParameterization flags) {

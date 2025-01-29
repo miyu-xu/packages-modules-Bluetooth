@@ -288,12 +288,7 @@ public class AdapterServiceTest {
         doReturn(false).when(dpm).isCommonCriteriaModeEnabled(any());
         mockGetSystemService(Context.USER_SERVICE, UserManager.class);
 
-        // BatteryStatsManager is final and cannot be mocked with regular mockito, so just return
-        // real implementation
-        mockGetSystemService(
-                Context.BATTERY_STATS_SERVICE,
-                BatteryStatsManager.class,
-                targetContext.getSystemService(BatteryStatsManager.class));
+        mockGetSystemService(Context.BATTERY_STATS_SERVICE, BatteryStatsManager.class);
         mockGetSystemService(Context.BLUETOOTH_SERVICE, BluetoothManager.class, mBluetoothManager);
         mockGetSystemService(
                 Context.COMPANION_DEVICE_SERVICE,

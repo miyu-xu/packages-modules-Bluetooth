@@ -70,6 +70,9 @@ public class BluetoothOppObexClientSessionTest {
 
     @Before
     public void setUp() throws IOException {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity();
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         mClientSession = new BluetoothOppObexClientSession(mTargetContext, mTransport);
 
@@ -85,6 +88,9 @@ public class BluetoothOppObexClientSessionTest {
     @After
     public void tearDown() {
         BluetoothMethodProxy.setInstanceForTesting(null);
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .dropShellPermissionIdentity();
     }
 
     @Test

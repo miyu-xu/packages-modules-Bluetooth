@@ -26,7 +26,6 @@ import android.content.Context;
 import android.os.BatteryStatsManager;
 import android.os.WorkSource;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
@@ -53,19 +52,17 @@ public class AppScanStatsTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private ScannerMap map;
+    @Mock private BatteryStatsManager mBatteryStatsManager;
     @Mock private ScanController mMockScanController;
     @Mock private AdapterService mAdapterService;
 
     @Before
-    public void setUp() throws Exception {
-        // BatteryStatsManager is final and cannot be mocked with regular mockito, so just return
-        // real implementation
+    public void setUp() {
         TestUtils.mockGetSystemService(
                 mAdapterService,
                 Context.BATTERY_STATS_SERVICE,
                 BatteryStatsManager.class,
-                InstrumentationRegistry.getTargetContext()
-                        .getSystemService(BatteryStatsManager.class));
+                mBatteryStatsManager);
     }
 
     @Test
