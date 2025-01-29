@@ -452,13 +452,30 @@ void PORT_DlcEstablishInd(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu) {
     (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
   }
 
-  if (p_port->p_mgmt_callback) {
-    p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
-    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_IND,
-                        1);
-  }
+  // if (!com::android::bluetooth::flags::indicate_rfcomm_connection_complete_after_msc()) {
+  if (false) {
+    if (p_port->p_mgmt_callback) {
+      p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+      log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_IND,
+                          1);
+    }
 
-  p_port->state = PORT_CONNECTION_STATE_OPENED;
+    p_port->state = PORT_CONNECTION_STATE_OPENED;
+  } else {
+    p_port->state = PORT_CONNECTION_STATE_OPENED;
+
+    if (!(p_port->port_ctrl & PORT_CTRL_REQ_SENT)) {
+      RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
+    } else {
+      log::warn("Control Already sent");
+    }
+
+    if (p_port->p_mgmt_callback) {
+      p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+      log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_IND,
+                          1);
+    }
+  }
 }
 
 /*******************************************************************************
@@ -499,19 +516,39 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu, uint16_t 
     (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
   }
 
-  if (p_port->p_mgmt_callback) {
-    p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
-    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
-                        1);
-  }
-  p_port->state = PORT_CONNECTION_STATE_OPENED;
+  if (!com::android::bluetooth::flags::indicate_rfcomm_connection_complete_after_msc()) {
+    if (p_port->p_mgmt_callback) {
+      p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+      log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
+                          1);
+    }
+    p_port->state = PORT_CONNECTION_STATE_OPENED;
 
-  /* RPN is required only if we want to tell DTE how the port should be opened
-   */
-  if ((p_port->uuid == UUID_SERVCLASS_DIALUP_NETWORKING) || (p_port->uuid == UUID_SERVCLASS_FAX)) {
-    RFCOMM_PortParameterNegotiationRequest(p_port->rfc.p_mcb, p_port->dlci, NULL);
+    /* RPN is required only if we want to tell DTE how the port should be opened
+     */
+    if ((p_port->uuid == UUID_SERVCLASS_DIALUP_NETWORKING) ||
+        (p_port->uuid == UUID_SERVCLASS_FAX)) {
+      RFCOMM_PortParameterNegotiationRequest(p_port->rfc.p_mcb, p_port->dlci, NULL);
+    } else {
+      RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
+    }
   } else {
-    RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
+    p_port->state = PORT_CONNECTION_STATE_OPENED;
+
+    /* RPN is required only if we want to tell DTE how the port should be opened
+     */
+    if ((p_port->uuid == UUID_SERVCLASS_DIALUP_NETWORKING) ||
+        (p_port->uuid == UUID_SERVCLASS_FAX)) {
+      RFCOMM_PortParameterNegotiationRequest(p_port->rfc.p_mcb, p_port->dlci, NULL);
+    } else {
+      RFCOMM_ControlReq(p_port->rfc.p_mcb, p_port->dlci, &p_port->local_ctrl);
+    }
+
+    if (p_port->p_mgmt_callback) {
+      p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+      log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS_CNF,
+                          1);
+    }
   }
 }
 
