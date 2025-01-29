@@ -57,6 +57,7 @@ import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
@@ -120,8 +121,12 @@ public class GattService extends ProfileService {
     private static final Map<String, Integer> EARLY_MTU_EXCHANGE_PACKAGES =
             Map.of("com.teslamotors", GATT_MTU_MAX);
 
-    private static final Map<String, String> GATT_CLIENTS_NOTIFY_TO_ADAPTER_PACKAGES =
-            Map.of("com.google.android.gms", "com.google.android.gms.findmydevice");
+    private static final Map<String, List<String>> GATT_CLIENTS_NOTIFY_TO_ADAPTER_PACKAGES =
+            Map.of(
+                    "com.google.android.gms",
+                    List.of("com.google.android.gms.findmydevice"),
+                    "com.google.android.apps.adm",
+                    List.of("", "com.google.android.apps.adm"));
 
     @VisibleForTesting static final int GATT_CLIENT_LIMIT_PER_APP = 32;
 
@@ -1653,14 +1658,38 @@ public class GattService extends ProfileService {
 
         if (transport != BluetoothDevice.TRANSPORT_BREDR && isDirect && !opportunistic) {
             String attributionTag = getLastAttributionTag(attributionSource);
-            if (packageName != null && attributionTag != null) {
-                for (Map.Entry<String, String> entry :
+            Log.d(
+                    TAG,
+                    "clientConnect(): callingPackageName="
+                            + packageName
+                            + ", callingAttributionTag="
+                            + attributionTag);
+            if (!TextUtils.isEmpty(packageName)) {
+                // Iterate each package
+                for (Map.Entry<String, List<String>> entry :
                         GATT_CLIENTS_NOTIFY_TO_ADAPTER_PACKAGES.entrySet()) {
-                    if (packageName.contains(entry.getKey())
-                            && attributionTag.contains(entry.getValue())) {
-                        mAdapterService.notifyDirectLeGattClientConnect(
-                                clientIf, getDevice(address));
-                        break;
+                    if (packageName.equalsIgnoreCase(entry.getKey())) {
+                        // Check each attribution tag for the package
+                        for (String entryAttributionTag : entry.getValue()) {
+                            if (!TextUtils.isEmpty(attributionTag)) {
+                                if (attributionTag.equalsIgnoreCase(entryAttributionTag)) {
+                                    Log.d(TAG, "Matched Package Name and Attribution Tag");
+                                    mAdapterService.notifyDirectLeGattClientConnect(
+                                            clientIf, getDevice(address));
+                                    break;
+                                }
+                            } else {
+                                // Assume null or '' is the same for each case and thus null + '' is
+                                // equal and '' + null is equal.
+                                if (TextUtils.isEmpty(attributionTag)
+                                        && TextUtils.isEmpty(entryAttributionTag)) {
+                                    Log.d(TAG, "Matched Package Name and Attribution Tag");
+                                    mAdapterService.notifyDirectLeGattClientConnect(
+                                            clientIf, getDevice(address));
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
             }
