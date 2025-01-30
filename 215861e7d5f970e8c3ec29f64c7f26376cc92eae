@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f76ea3a3_618188ee",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/EncryptionChangeTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-30T04:49:56Z",
+      "side": 1,
+      "message": "I understand that passing `null` is not required as all instances are passing it and we currently dont have an instance where `removeBond` gets a non-null parentIntentReceiver, but `null` is kept here because of following reasons:\n- `removeBond` is a testStep function and as per the current design every testStep function should have the parent\u0027s intentReceiver where new actions needs to be added (internally replaced).\n- Also, since `removeBond` is creating a new IntentReceiver, it will be confusing later if we want to call it from a valid @Test function where we may miss adding such argument at that time. So its safer to do it and pass `null` so that in future if someone invokes this from a Test function, and they have a parentIntentReceiver or own IntentReceiver, they can just pass it and be mindful of the argument, else they may miss adding another argument to removeBond at that time.",
+      "parentUuid": "76fc9c83_312665cc",
+      "range": {
+        "startLine": 165,
+        "startChar": 13,
+        "endLine": 165,
+        "endChar": 44
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c526d891_85b871b1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f477b7d_85cd7267",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-30T04:49:56Z",
+      "side": 1,
+      "message": "Same response mentioned in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3464101/comment/76fc9c83_312665cc/",
+      "parentUuid": "c526d891_85b871b1",
+      "range": {
+        "startLine": 152,
+        "startChar": 11,
+        "endLine": 153,
+        "endChar": 1
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d5ca648_b51c078d",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-01-28T04:43:28Z",
       "side": 1,
       "message": "currently we do not have any instance of calling removeBond() without IntentReceiver as null. I think `parentIntentReceiver` param can be removed.\n```suggestion\n IntentReceiver.updateNewIntentActionsInParentReceiver(null,\n            mTargetContext, BluetoothDevice.ACTION_BOND_STATE_CHANGED); \n\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f663ea5a_670ae8be",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/TestUtil.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-30T04:49:56Z",
+      "side": 1,
+      "message": "Same response mentioned in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3464101/comment/76fc9c83_312665cc/",
+      "parentUuid": "3d5ca648_b51c078d",
       "range": {
         "startLine": 92,
         "startChar": 3,
