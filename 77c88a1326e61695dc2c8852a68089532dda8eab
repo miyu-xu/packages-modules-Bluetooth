@@ -40,6 +40,30 @@
       ],
       "revId": "77c88a1326e61695dc2c8852a68089532dda8eab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe6c9f17_1b4fe865",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-01-30T04:50:14Z",
+      "side": 1,
+      "message": "Same response mentioned in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3464101/comment/76fc9c83_312665cc/",
+      "parentUuid": "c6327963_ce1843d7",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 41
+      },
+      "revId": "77c88a1326e61695dc2c8852a68089532dda8eab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
