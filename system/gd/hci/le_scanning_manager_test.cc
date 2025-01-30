@@ -436,7 +436,8 @@ TEST_F(LeScanningManagerExtendedTest, is_nonstandard_phy_supported_test) {
   int scan_phy = 2;
 
   start_le_scanning_manager();
-  le_scanning_manager->SetScanParameters(1, LeScanType::ACTIVE, 0x0004, 4800, scan_phy);
+  le_scanning_manager->SetScanParameters(LeScanType::ACTIVE, 1, 0x0004, 4800, 1, 0x0004, 4800,
+                                         scan_phy);
   le_scanning_manager->Scan(true);
 
   auto command_view = LeSetExtendedScanParametersView::Create(
@@ -452,7 +453,8 @@ TEST_F(LeScanningManagerExtendedTest, is_multiple_phy_supported_test) {
   int scan_phy = 3;
 
   start_le_scanning_manager();
-  le_scanning_manager->SetScanParameters(1, LeScanType::ACTIVE, 0x0004, 4800, scan_phy);
+  le_scanning_manager->SetScanParameters(LeScanType::ACTIVE, 1, 0x0004, 4800, 1, 0x0004, 4800,
+                                         scan_phy);
   le_scanning_manager->Scan(true);
 
   auto command_view = LeSetExtendedScanParametersView::Create(
