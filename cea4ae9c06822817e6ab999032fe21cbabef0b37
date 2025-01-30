@@ -62,6 +62,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b4a6559_54c3bfc1",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-30T21:41:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56a27bfb_f841a0b5",
+      "range": {
+        "startLine": 241,
+        "startChar": 2,
+        "endLine": 241,
+        "endChar": 13
+      },
+      "revId": "cea4ae9c06822817e6ab999032fe21cbabef0b37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a6a8d8b_30cd85e4",
@@ -75,6 +99,30 @@
       "writtenOn": "2025-01-30T21:03:09Z",
       "side": 1,
       "message": "same thing, maybe naming should reflect metrics",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 21
+      },
+      "revId": "cea4ae9c06822817e6ab999032fe21cbabef0b37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab019a13_7919d801",
+        "filename": "system/bta/hf_client/bta_hf_client_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-01-30T21:41:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a6a8d8b_30cd85e4",
       "range": {
         "startLine": 152,
         "startChar": 0,
