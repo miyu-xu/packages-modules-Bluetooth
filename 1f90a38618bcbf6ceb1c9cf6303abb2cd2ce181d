@@ -16,6 +16,24 @@
       "message": "please squash it with previous CL as it shall got together",
       "revId": "1f90a38618bcbf6ceb1c9cf6303abb2cd2ce181d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d794725_05191106",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T14:07:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48298492_fb539b22",
+      "revId": "1f90a38618bcbf6ceb1c9cf6303abb2cd2ce181d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
