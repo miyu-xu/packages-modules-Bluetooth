@@ -16,6 +16,24 @@
       "message": "Good catch. The function description of this function is misleading as it was only meant to change only for one device.",
       "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de06f38e_91ba5673",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3270,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c512db0f_c005f609",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

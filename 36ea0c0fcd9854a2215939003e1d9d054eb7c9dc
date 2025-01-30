@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3dd9208_b785a3d2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "No. If we use removeSinkMetadataFromGroupIfWholeUnsynced in connectionStateChanged#STATE_DISCONNECTED (and there are conditions to remove sink metadata from group) then removeSinkMetadataHelper will be called once per each device in group.\nBut, in call removeSinkMetadata we remove metadata directly, but we still need to call removeSinkMetadataFromGroupIfWholeUnsynced to check rest of devices from group. If there are conditions to remove metadata from the whole group, then for this one device it will be called again.\nOf course, we can add some checking if it was already removed, but this is unnecessary operation, exactly the same as you can call remove on any java/c++ container without checking if element exist and this is safe operation.",
+      "parentUuid": "fe59861f_5aea71af",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c08a62ad_a89b0e5b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -376,6 +394,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76b35ab6_c928983a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3000,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "@gkolodziejczyk@google.com Any new comments here?",
+      "parentUuid": "67acf2f4_06c70c55",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61f5aa3e_5f026bac",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -601,6 +637,24 @@
       "side": 1,
       "message": "In general I don\u0027t get what is checked here. But I see that new name in more understandable. Thanks.",
       "parentUuid": "839880b7_fe574047",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc32558_d62cac20",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3034,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "This method is used i.e. in disconnection where we know that this device is already disconnected, but we do not know anything about broadcast from disconnection callback.\n\nSo we have to check all broadcastIds, from all devices from group of this device. If there is broadcastId for which all devices from group are unsynced, then we have to remove sink metadata from whole group for this broadcastId.",
+      "parentUuid": "7941e983_a93bb8bc",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

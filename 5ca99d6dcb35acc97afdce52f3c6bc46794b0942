@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "626d6dd7_609d73cb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "Right now handleDeviceDisconnection is handling only local broadcasts. All stuff to handle external (some of them are for local too) is in connectionStateChanged#STATE_DISCONNECTED so IMHO it is better to have it in one place (better readability and good point to refactor)\n\n*remove Sink Metadata for device if it\u0027s intended disconnection, for not intended check if all devices from \"target group\" are disconnected then remove sink for all of them.*\n- for unintended, we still have to call removeSinkMetadataFromGroupIfWholeUnsynced.\n- for intended, should we remove it? What if we connect it again? As I know for now there is no possibility to disconnect only one device so does not matter.\n- connectionStateChanged is a better place as we have under control order of operation and we not that when we call removeSinkMetadataFromGroupIfWholeUnsynced, the mPausedBroadcastSinks is for sure removed for this device.",
+      "parentUuid": "67f335e5_c8fa4147",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "348e9b6d_6e7b68cb",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -75,6 +93,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec11fd39_3b40af2e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2964,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "There are two types of methods (doubled due to polymorphism) and one helper to avoid code duplication:\n- removeSinkMetadata – Main method to remove sink metadata.\n- removeSinkMetadataFromGroupIfWholeUnsynced – Applies heuristics to clear other sinks from the group.\n- removeSinkMetadataHelper – Equivalent to container removal.\n\nSo not so much.\n\nThe problem is that metadata is used to resume from a device reconnection. We need to keep it, but only if there are other synced sinks. However, if all other sinks become unsynced—regardless of when that happens—we must remove it. This requires adding the check after all removal methods and as a standalone check during device disconnection.",
+      "parentUuid": "348e9b6d_6e7b68cb",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af487209_cd28e683",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -86,6 +122,24 @@
       "writtenOn": "2025-01-30T12:47:37Z",
       "side": 1,
       "message": "So this function name is missleading - what about this case: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3434587/11/android/app/src/com/android/bluetooth/bass_client/BassClientService.java#3028 especially \"and not paused by host\"\n\nWhat part will take care of cleaning sink Metadata of \"host paused\" then ?",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4882065_f69d6f19",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3013,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "It is a third comment about the name, two others:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3434587/comment/d637fe23_e951aea9/\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3434587/comment/c08a62ad_a89b0e5b/\nPlease respond/wrote under one of them.\n\nIf paused by host, we cannot clean it because we want to resume.\nIf all devices will be disconnected, then it will be removed:\n`connectionStateChanged\u003eSTATE_DISCONNECTED\u003eremoveSinkMetadataFromGroupIfWholeUnsynced`\nIf you remove source, it will be removed:\n`removeSource\u003eremoveSinkMetadata`\nIf you switch source, it will be removed:\n`addSource\u003e!hasRoomForBroadcastSourceAddition\u003eremoveSinkMetadata`\nUnfortunately there is even more complicated case that broadcast is paused by host by removeSource and because of that we need to make some more heuristics:\n`Even if there is a room for broadcast, it could happen that...`",
+      "parentUuid": "af487209_cd28e683",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -127,6 +181,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b45bee66_a6aa38bb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3018,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "I used exactly the same check and comment as you... And it was clear for me and probably for you at the moment when you wrote it...",
+      "parentUuid": "47c86b47_4ce3bd29",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09ff3ccd_13c70120",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -162,6 +234,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32b4cbf6_550fa487",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "We as developers, creators of this code;)\nI could write what AI suggest here but hmm for me sense is the same.\n\n*How it\u0027s checked if device is removed*\ngetTargetDeviceList gives devices for whole group no matter of connection state, this is from csip client.",
+      "parentUuid": "09ff3ccd_13c70120",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d637fe23_e951aea9",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -179,6 +269,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bda33e8_5036e547",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3035,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "To not overcomplicate the name. How then it should be, such snake:\nremoveSinkMetadataFromGroupIfWholeUnsyncedAndNoPausedSinksByHost\n??",
+      "parentUuid": "d637fe23_e951aea9",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01c5f91d_4a781829",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -190,6 +298,24 @@
       "writtenOn": "2025-01-30T12:47:37Z",
       "side": 1,
       "message": "where is this check of sync mentioned in this comment ? btw. how device could be on \"Target Device List\" if it\u0027s removed ?",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe5d485b_ad38598d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3057,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "*where is this check of sync mentioned in this comment ?*\nInside for loop of cource. Here I described why I need to check all sinks from group\n\n*btw. how device could be on \"Target Device List\" if it\u0027s removed ?*\ngetGroupDevicesOrdered from csip always gives all devices no matter of connection state.",
+      "parentUuid": "01c5f91d_4a781829",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -231,6 +357,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c7efc76_50e075a7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3064,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "Main intention of this comment is to describe a loop:\n`Check all broadcastIds sync for each sink`\nThat part `and remove metadata if needed` is short to not wrote here whole long name of the method `removeSinkMetadataFromGroupIfWholeUnsynced` which shows exacly what is going on inside.",
+      "parentUuid": "f3e8b102_bfd35a4a",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e585217_565682ae",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -242,6 +386,24 @@
       "writtenOn": "2025-01-30T12:47:37Z",
       "side": 1,
       "message": "another 25 lines added to this huge function.\n\nBut starting one by one:\n- If I understand correctly this part allows to replace paused source with new ?\n- Maybe one function/helper that can do some required job ?\n- Does it matter if this is paused by host or not ?\n  - What if sink lost sync due to its own decision (autonomous change) ?\n  - What if sink lost sync due to host request (modify) ?\n- I see that this add method could have separate handling of \"replace\" and \"add\" where:\n  - \"replace\" do: modify/add on receive state\n  - \"add\" do: add on receive state",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91aa3aab_20c179a8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3278,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T22:54:21Z",
+      "side": 1,
+      "message": "* Not exactly, only to remove old metadata and the old paused broadcastId/Sinks. We don\u0027t have to remove source from the remote device, as it is already removed.\n* It is used only here, so extracting it into a helper would only shorten this method. However, inside the helper, we would still need to retrieve stateMachine and check it again. For now, I left it as is. Maybe we will refactor suspending to avoid removeSource entirely, in which case we could remove this part.\n* This could only happen for the host, and I need this check here to prevent execution from resumeReceiversSourceSynchronization \u003e addSource. Otherwise, it would modify metadata and pausedSinks while iterating over them. In resumeReceiversSourceSynchronization, mPausedBroadcastIds is removed, so this condition will never be fulfilled.\n * Honestly, I don’t know how it behaves in general (e.g., the resync helper), as I’ve never encountered this situation or considered it a valid case.\n * If there is no available room, it will go to the switch statement above. If there is room (e.g., due to multiple available slots), then the condition `(entry.keySet().size() \u003e\u003d stateMachine.getMaximumSourceCapacity())` will be false.\n* This CL is about fixing a regression caused by aosp/3347487, not about refactoring the entire addSource.",
+      "parentUuid": "0e585217_565682ae",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
