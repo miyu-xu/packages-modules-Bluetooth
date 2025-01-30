@@ -742,15 +742,50 @@ void Device::AddressedPlayerNotificationResponse(uint8_t label, bool interim,
 
 void Device::RejectNotification() {
   log::verbose("");
-  Notification* rejectNotification[] = {&play_status_changed_, &track_changed_, &play_pos_changed_,
-                                        &now_playing_changed_};
-  for (int i = 0; i < 4; i++) {
-    uint8_t label = rejectNotification[i]->second;
+
+  if (play_status_changed_.first) {
+    uint8_t label = play_status_changed_.second;
     auto response = RejectBuilder::MakeBuilder(CommandPdu::REGISTER_NOTIFICATION,
                                                Status::ADDRESSED_PLAYER_CHANGED);
     send_message_cb_.Run(label, false, std::move(response));
     active_labels_.erase(label);
-    rejectNotification[i] = new Notification(false, 0);
+    play_status_changed_ = Notification(false, 0);
+  }
+
+  if (track_changed_.first) {
+    uint8_t label = track_changed_.second;
+    auto response = RejectBuilder::MakeBuilder(CommandPdu::REGISTER_NOTIFICATION,
+                                               Status::ADDRESSED_PLAYER_CHANGED);
+    send_message_cb_.Run(label, false, std::move(response));
+    active_labels_.erase(label);
+    track_changed_ = Notification(false, 0);
+  }
+
+  if (play_pos_changed_.first) {
+    uint8_t label = play_pos_changed_.second;
+    auto response = RejectBuilder::MakeBuilder(CommandPdu::REGISTER_NOTIFICATION,
+                                               Status::ADDRESSED_PLAYER_CHANGED);
+    send_message_cb_.Run(label, false, std::move(response));
+    active_labels_.erase(label);
+    play_pos_changed_ = Notification(false, 0);
+  }
+
+  if (now_playing_changed_.first) {
+    uint8_t label = now_playing_changed_.second;
+    auto response = RejectBuilder::MakeBuilder(CommandPdu::REGISTER_NOTIFICATION,
+                                               Status::ADDRESSED_PLAYER_CHANGED);
+    send_message_cb_.Run(label, false, std::move(response));
+    active_labels_.erase(label);
+    now_playing_changed_ = Notification(false, 0);
+  }
+
+  if (player_setting_changed_.first) {
+    uint8_t label = player_setting_changed_.second;
+    auto response = RejectBuilder::MakeBuilder(CommandPdu::REGISTER_NOTIFICATION,
+                                               Status::ADDRESSED_PLAYER_CHANGED);
+    send_message_cb_.Run(label, false, std::move(response));
+    active_labels_.erase(label);
+    player_setting_changed_ = Notification(false, 0);
   }
 }
 
