@@ -1,0 +1,249 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f335e5_c8fa4147",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "What about handling such case in `handleDeviceDisconnection` context ? and e.g. remove Sink Metadata for device if it\u0027s intended disconnection, for not intended check if all devices from \"target group\" are disconnected then remove sink for all of them.\n\nOf cource `handleDeviceDisconnection` would have to be split into part of \"local broadcast\" and \"external broadcast\" sink disconnection handling. What\u0027s more - sink could be a part of local and external broadcast (this is possible).",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348e9b6d_6e7b68cb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2964,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "I have bad feeling that something is weird here - so many functions doing removement of Sink Metadata... all of them seems (from) name that are doing the same things. Maybe we miss some spot in root of this issue that there should be a precise clear of Sink Metadata per device ?",
+      "fixSuggestions": [
+        {
+          "fixId": "6dfbea96_8529ccb3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2964,
+                "startChar": 0,
+                "endLine": 2965,
+                "endChar": 0
+              },
+              "replacement": "    private void removeSinkMetadataFromDevice(BluetoothDevice device, int broadcastId) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2997,
+                "startChar": 0,
+                "endLine": 2998,
+                "endChar": 0
+              },
+              "replacement": "        removeSinkMetadataFromDevice(device, broadcastId);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3043,
+                "startChar": 0,
+                "endLine": 3044,
+                "endChar": 0
+              },
+              "replacement": "                removeSinkMetadataFromDevice(sink, broadcastId);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af487209_cd28e683",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3013,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "So this function name is missleading - what about this case: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3434587/11/android/app/src/com/android/bluetooth/bass_client/BassClientService.java#3028 especially \"and not paused by host\"\n\nWhat part will take care of cleaning sink Metadata of \"host paused\" then ?",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c86b47_4ce3bd29",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3018,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "above check is logical \"OR\" this log points to \"invalid parameters\", this should be clarified to not introduce confustion.",
+      "fixSuggestions": [
+        {
+          "fixId": "89300d59_42b9ac33",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2989,
+                "startChar": 0,
+                "endLine": 2990,
+                "endChar": 0
+              },
+              "replacement": "                    \"Failed to remove Sink Metadata, invalid parameters (device is null or broadcastId\"\n                            + \" is invalid) (device: \"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09ff3ccd_13c70120",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "What means \"we\" in this context - users ? How it\u0027s checked if device is removed ?",
+      "fixSuggestions": [
+        {
+          "fixId": "f5d66ee9_63458d2c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3029,
+                "startChar": 0,
+                "endLine": 3030,
+                "endChar": 0
+              },
+              "replacement": "        // This device is removed or should be removed, so it has to be skipped in that check\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d637fe23_e951aea9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3035,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "This is another not included in method name filtering functionality. Why this \"filter\" is not mentioned in method ?",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01c5f91d_4a781829",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3057,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "where is this check of sync mentioned in this comment ? btw. how device could be on \"Target Device List\" if it\u0027s removed ?",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3e8b102_bfd35a4a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3064,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "What means \"if needed\" here ?",
+      "fixSuggestions": [
+        {
+          "fixId": "48dc64f7_04b3af86",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3064,
+                "startChar": 0,
+                "endLine": 3065,
+                "endChar": 0
+              },
+              "replacement": "            // Check all broadcastIds sync for each sink and remove metadata if all sinks in group\n            // are unsynced and not paused by host\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e585217_565682ae",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3278,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "another 25 lines added to this huge function.\n\nBut starting one by one:\n- If I understand correctly this part allows to replace paused source with new ?\n- Maybe one function/helper that can do some required job ?\n- Does it matter if this is paused by host or not ?\n  - What if sink lost sync due to its own decision (autonomous change) ?\n  - What if sink lost sync due to host request (modify) ?\n- I see that this add method could have separate handling of \"replace\" and \"add\" where:\n  - \"replace\" do: modify/add on receive state\n  - \"add\" do: add on receive state",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

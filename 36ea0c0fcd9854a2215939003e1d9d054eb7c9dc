@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe59861f_5aea71af",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "Isn\u0027t this pointing to some issue in this other place ? shouldn\u0027t the remove be called once without this redundant calls ?",
+      "parentUuid": "ba93c50f_497f6f4c",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c08a62ad_a89b0e5b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -228,6 +246,24 @@
       "side": 1,
       "message": "yes, as described in previous comment",
       "parentUuid": "db17a6f5_b8331598",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af57b52_48718fb4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:47:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "081b63c1_1ff0d4a5",
       "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
