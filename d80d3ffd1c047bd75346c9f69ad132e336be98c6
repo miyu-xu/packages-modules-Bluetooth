@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21afeb0c_acce9756",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-30T00:57:48Z",
+      "side": 1,
+      "message": "Sure, will remove this block",
+      "parentUuid": "12eb158c_d89fb56d",
+      "range": {
+        "startLine": 960,
+        "startChar": 19,
+        "endLine": 960,
+        "endChar": 28
+      },
+      "revId": "d80d3ffd1c047bd75346c9f69ad132e336be98c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f789bc1a_4b2be09c",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cddceaa6_efc233cd",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-30T00:57:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f789bc1a_4b2be09c",
+      "range": {
+        "startLine": 964,
+        "startChar": 16,
+        "endLine": 964,
+        "endChar": 38
+      },
+      "revId": "d80d3ffd1c047bd75346c9f69ad132e336be98c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72acab53_34ff814d",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-01-28T20:05:24Z",
       "side": 1,
       "message": "I am not sure about this part. available() on an L2CAP socket is useful when trying to drop the rest of the packet which isn\u0027t otherwise possible. Usually, a partial read to a SOCK_SEQPACKET or SOCK_DGRAM drops the unread bytes. However, due to the presence of mL2capBuffer, this is not the case for L2CAP sockets.\nIt looks like the javadocs for InputStream#available would allow for an implementation that just does:\n`return mL2capBuffer.remaining()`\n\nThat being said, I don\u0027t know how apps use this API today and whether this wouldn\u0027t break some of them.",
+      "range": {
+        "startLine": 967,
+        "startChar": 0,
+        "endLine": 969,
+        "endChar": 13
+      },
+      "revId": "d80d3ffd1c047bd75346c9f69ad132e336be98c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebf0551a_6ca64607",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 969,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-30T00:57:48Z",
+      "side": 1,
+      "message": "I am not sure if apps are really using this api today or not",
+      "parentUuid": "72acab53_34ff814d",
       "range": {
         "startLine": 967,
         "startChar": 0,
