@@ -587,6 +587,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7941e983_a93bb8bc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3034,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T12:50:33Z",
+      "side": 1,
+      "message": "In general I don\u0027t get what is checked here. But I see that new name in more understandable. Thanks.",
+      "parentUuid": "839880b7_fe574047",
+      "revId": "36ea0c0fcd9854a2215939003e1d9d054eb7c9dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f6e5e0d_4da08eba",
