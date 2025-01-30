@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "923629aa_c737d0a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-30T22:20:59Z",
+      "side": 1,
+      "message": "Okay to me, adding @okamil@google.com here for his vis in scanning area. \nAnd anyways you\u0027d need dr.no for this :p",
+      "revId": "1bb4a7512c9b14fe3ab31048e9e38a465f39389a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
