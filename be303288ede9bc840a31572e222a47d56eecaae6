@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f119ccd8_7c21378d",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-30T00:25:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "686f4d82_7b3448c4",
+      "range": {
+        "startLine": 1527,
+        "startChar": 0,
+        "endLine": 1535,
+        "endChar": 1
+      },
+      "revId": "be303288ede9bc840a31572e222a47d56eecaae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6b5b4c7_960b19c8",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-01-30T00:04:06Z",
       "side": 1,
       "message": "Do we acknowledge that this API is best effort, and might not necessarily succeed ?",
+      "range": {
+        "startLine": 1543,
+        "startChar": 2,
+        "endLine": 1543,
+        "endChar": 29
+      },
+      "revId": "be303288ede9bc840a31572e222a47d56eecaae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8706d592_368ab0bf",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1543,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-01-30T00:25:22Z",
+      "side": 1,
+      "message": "There is a separate callback method here that is invoked with the result - OnSetScannerParameterComplete.\n\nBut that\u0027s only logged and then ignored in the upper layer (https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/ScanController.java;l\u003d1054;drc\u003d2e00ab919ab25f60bc02c3e02780634f6c8f6e06)! Hopefully we\u0027ll get to address that in a separate CL that invokes ScanCallback#onScanFailed (via onScanManagerErrorCallback).",
+      "parentUuid": "d6b5b4c7_960b19c8",
       "range": {
         "startLine": 1543,
         "startChar": 2,
