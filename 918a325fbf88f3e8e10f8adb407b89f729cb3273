@@ -16,6 +16,24 @@
       "message": "Can you please comment how rootcanal is being used by platform_testing exactly ?",
       "revId": "918a325fbf88f3e8e10f8adb407b89f729cb3273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11f7afb2_c27ade54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960090
+      },
+      "writtenOn": "2025-01-30T18:50:49Z",
+      "side": 1,
+      "message": "Sure. It\u0027s [here](https://source.corp.google.com/h/android/platform/superproject/main/+/main:platform_testing/build/tasks/tests/platform_test_list.mk;l\u003d86-88). The modules listed in `platform_test_list.mk` will be added as the deps of the soong-built platform_tests module.",
+      "parentUuid": "d84b48d5_cf70aab9",
+      "revId": "918a325fbf88f3e8e10f8adb407b89f729cb3273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
