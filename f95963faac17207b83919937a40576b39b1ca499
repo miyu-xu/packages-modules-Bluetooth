@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80700f4c_8ce620a2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 3014,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-01-30T15:54:39Z",
+      "side": 1,
+      "message": "nit: the parentheses are redundant",
+      "revId": "f95963faac17207b83919937a40576b39b1ca499",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
