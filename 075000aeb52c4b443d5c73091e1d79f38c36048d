@@ -16,6 +16,24 @@
       "message": "If I understand it correctly, we\u0027re introducing this workaround to mitigate a controller race condition issue?\nShould we hold this a bit till we have clearer ideas of the controller problem?",
       "revId": "075000aeb52c4b443d5c73091e1d79f38c36048d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf27ea2_839ca4ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T08:16:58Z",
+      "side": 1,
+      "message": "Yes and no. This will mitigate the controller issue, but even without that issue we should have such handling. If controller send us anything on unknown handler then only thing which we can do is to unsync it, because if we ignore it as it was, then it will stay in controller with no reason.\n\nIt is even better to merge it, from debugging perspective, as then it will be easy to reproduce that and saw in logs (HCI) where is a problem. Without merging, we cannot merge next CL, and then we will not hit that problem.",
+      "parentUuid": "05c92e83_ac1176d7",
+      "revId": "075000aeb52c4b443d5c73091e1d79f38c36048d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
