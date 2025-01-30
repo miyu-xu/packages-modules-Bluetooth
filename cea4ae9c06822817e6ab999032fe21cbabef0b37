@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a27bfb_f841a0b5",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-30T21:03:09Z",
+      "side": 1,
+      "message": "Should we name this something that would indicate it is used for metrics?  Maybe like tBTA_AG_SDP_METRIC_LOGGER or something like that?",
+      "range": {
+        "startLine": 241,
+        "startChar": 2,
+        "endLine": 241,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9fdd871d_3d0ed1da",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_int.h",
+              "range": {
+                "startLine": 235,
+                "startChar": 0,
+                "endLine": 243,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ag/bta_ag_int.h",
+              "range": {
+                "startLine": 288,
+                "startChar": 0,
+                "endLine": 289,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ag/bta_ag_int.h",
+              "range": {
+                "startLine": 346,
+                "startChar": 0,
+                "endLine": 346,
+                "endChar": 0
+              },
+              "replacement": "  tBTA_JV_STATUS sdp_status;                      /* SDP information for metrics */\n  uint64_t sdp_start_ms;\n  uint64_t sdp_end_ms;\n  bool sdp_initiated;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cea4ae9c06822817e6ab999032fe21cbabef0b37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a6a8d8b_30cd85e4",
+        "filename": "system/bta/hf_client/bta_hf_client_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-01-30T21:03:09Z",
+      "side": 1,
+      "message": "same thing, maybe naming should reflect metrics",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 21
+      },
+      "revId": "cea4ae9c06822817e6ab999032fe21cbabef0b37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
