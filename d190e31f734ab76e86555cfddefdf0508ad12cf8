@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d148aee2_529ace35",
+        "filename": "system/stack/rfcomm/rfc_utils.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-30T18:11:29Z",
+      "side": 1,
+      "message": "when would this open_timestamp will not be ZERO ?",
+      "fixSuggestions": [
+        {
+          "fixId": "33daf04d_9ea7aba1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_utils.cc",
+              "range": {
+                "startLine": 459,
+                "startChar": 0,
+                "endLine": 460,
+                "endChar": 0
+              },
+              "replacement": "  } else if (state \u003d\u003d RFC_STATE_CLOSED) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d190e31f734ab76e86555cfddefdf0508ad12cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
