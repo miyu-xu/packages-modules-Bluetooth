@@ -90,10 +90,10 @@ bool device_iot_config_set_int(const std::string& section, const std::string& ke
 }
 
 bool device_iot_config_int_add_one(const std::string& section, const std::string& key) {
+  std::unique_lock<std::mutex> lock(config_lock);
   log::assert_that(config != NULL, "assert failed: config != NULL");
 
   int result = 0;
-  std::unique_lock<std::mutex> lock(config_lock);
   result = config_get_int(*config, section, key, result);
   if (result >= 0) {
     result += 1;
