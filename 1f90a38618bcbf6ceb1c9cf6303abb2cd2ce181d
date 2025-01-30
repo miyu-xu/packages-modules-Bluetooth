@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48298492_fb539b22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-30T13:45:18Z",
+      "side": 1,
+      "message": "please squash it with previous CL as it shall got together",
+      "revId": "1f90a38618bcbf6ceb1c9cf6303abb2cd2ce181d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
