@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bef972b_2a2e2fb8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-30T13:46:50Z",
+      "side": 1,
+      "message": "why not to return here?",
+      "revId": "aaa07c02e4f5a9a947bbc2408e7f2c2df0220faa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ce46e3_78cbacfc",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-30T13:46:50Z",
+      "side": 1,
+      "message": "why not to return here?",
+      "fixSuggestions": [
+        {
+          "fixId": "9c63e39e_9e7078aa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 1407,
+                "startChar": 0,
+                "endLine": 1407,
+                "endChar": 0
+              },
+              "replacement": "          reconfigure \u003d true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "aaa07c02e4f5a9a947bbc2408e7f2c2df0220faa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
