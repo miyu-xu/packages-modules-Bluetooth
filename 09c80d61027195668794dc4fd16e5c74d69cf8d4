@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02869d58_28ab7682",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1398,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-30T15:15:10Z",
+      "side": 1,
+      "message": "nit: else not needed here",
+      "fixSuggestions": [
+        {
+          "fixId": "1e694c46_6252e0a3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 1398,
+                "startChar": 0,
+                "endLine": 1399,
+                "endChar": 0
+              },
+              "replacement": "        }\n        if (stopStreamIfCurrentContextTypeIsNotAllowed(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "09c80d61027195668794dc4fd16e5c74d69cf8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
