@@ -16,6 +16,24 @@
       "message": "logic change",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d7ae60_351a0b90",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2820,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T11:15:58Z",
+      "side": 0,
+      "message": "There is no need to clear pending sync handle in mPeriodicAdvCallbacksMap here (and in second fail return) as after refactor we update it at the end of synchronize block when we sure that we are ok to registerSync.\n\nSynchronized block is bigger but all operation here are synchronous and based on checking local variables.",
+      "parentUuid": "3b40c4f3_67d85da7",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

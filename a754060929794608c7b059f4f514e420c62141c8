@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bc61e1c_66cd765a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2234,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-01-30T11:15:58Z",
+      "side": 1,
+      "message": "*But that would change the logic flow here, the current is clearly based on status code.*\nWithout that we will add new mPeriodicAdvertisementResultMap without broadcastId which lead to next problems in onPeriodicAdvertisingReport and getBroadcastIdForSyncHandle: `No PA record found` and probably some more *unexpected behaviors* as it will be added to addActiveSyncedSource still without valid broadcastId.\n\n*With your new logic flow, if status is success but broadcast id is invalid, we\u0027re still proceed with using this invalid id and potentially lead to new issues, so that doesn\u0027t bring much benefits.*\nAll things in else (fail scenario) checks the broadcatId, here it will be INVALID so nothing happens. It will add only +1 to mSyncFailureCounter for INVALID broadcast wich will be removed on stopSearching.\n\n*. If you really worried about this part, it would be better to log a warning and exit earlier instead of mixing those 2 checks, while IMO it\u0027s not that necessary to have this.*\nYou have right. If there is no broadcastId that means there is no PENDING_SYNC_HANDLE so we do not have clear anything. We cannot unsync this valid syncHandle too because there is no mPeriodicAdvCallbacksMap for it.",
+      "parentUuid": "182119f8_d2a75977",
+      "range": {
+        "startLine": 2234,
+        "startChar": 48,
+        "endLine": 2234,
+        "endChar": 59
+      },
+      "revId": "a754060929794608c7b059f4f514e420c62141c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "252fba2a_072e9321",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
