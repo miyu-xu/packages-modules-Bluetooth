@@ -16,6 +16,24 @@
       "message": "Is the change fully covered by the new unit tests? If yes, please indicate in the Flag stanza: \"EXEMPT, flag fully covered by unit tests\"",
       "revId": "4513bfe4b4516631d9ebdd33726b5323e592d684",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a5d16d_4e33289c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-01-30T17:02:04Z",
+      "side": 1,
+      "message": "yes, I updated the commit message",
+      "parentUuid": "f0b7ebd3_3f7992cf",
+      "revId": "4513bfe4b4516631d9ebdd33726b5323e592d684",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
