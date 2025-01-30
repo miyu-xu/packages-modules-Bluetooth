@@ -34,6 +34,24 @@
       ],
       "revId": "09c80d61027195668794dc4fd16e5c74d69cf8d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a5a7637_4583fdbb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1398,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-01-30T15:24:11Z",
+      "side": 1,
+      "message": "I think its needed here - if stream would be stopped in \"if\" there is no need to go to this \"else if\". Or am I missing something :) ?",
+      "parentUuid": "02869d58_28ab7682",
+      "revId": "09c80d61027195668794dc4fd16e5c74d69cf8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
