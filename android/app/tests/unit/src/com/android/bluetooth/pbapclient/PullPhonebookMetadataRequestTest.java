@@ -38,13 +38,13 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 @RunWith(AndroidJUnit4.class)
-public class RequestPullPhonebookMetadataTest {
+public class PullPhonebookMetadataRequestTest {
     private static final String PHONEBOOK_NAME = "phonebook";
     private static final short PHONEBOOK_SIZE = 200;
 
     private FakePbapObexServer mServer;
     private ClientSession mSession;
-    private RequestPullPhonebookMetadata mRequest;
+    private PullPhonebookMetadataRequest mRequest;
 
     @Before
     public void setUp() throws IOException {
@@ -57,7 +57,7 @@ public class RequestPullPhonebookMetadataTest {
                         PbapPhonebook.FORMAT_VCARD_30,
                         PbapApplicationParameters.MAX_PHONEBOOK_SIZE,
                         /* startOffset= */ 0);
-        mRequest = new RequestPullPhonebookMetadata(PHONEBOOK_NAME, params);
+        mRequest = new PullPhonebookMetadataRequest(PHONEBOOK_NAME, params);
     }
 
     @Test
