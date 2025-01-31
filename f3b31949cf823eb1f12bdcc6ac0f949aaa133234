@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccdada4f_087b75ec",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1618,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-31T16:53:37Z",
+      "side": 1,
+      "message": "That flag is already in nextfood. We cannot reuse the flag.",
+      "parentUuid": "38453ab4_dc1918d6",
+      "range": {
+        "startLine": 1618,
+        "startChar": 39,
+        "endLine": 1618,
+        "endChar": 73
+      },
+      "revId": "f3b31949cf823eb1f12bdcc6ac0f949aaa133234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc3e150f_775cab3f",
@@ -71,6 +95,30 @@
           ]
         }
       ],
+      "revId": "f3b31949cf823eb1f12bdcc6ac0f949aaa133234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a723a29_e24449f4",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1625,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-01-31T16:53:37Z",
+      "side": 1,
+      "message": "Explained the peripheral and central role scenarios separately in the comment",
+      "parentUuid": "dc3e150f_775cab3f",
+      "range": {
+        "startLine": 1625,
+        "startChar": 2,
+        "endLine": 1625,
+        "endChar": 72
+      },
       "revId": "f3b31949cf823eb1f12bdcc6ac0f949aaa133234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
