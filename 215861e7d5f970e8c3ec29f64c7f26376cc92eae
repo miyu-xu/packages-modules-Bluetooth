@@ -50,6 +50,97 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68472793_0ab1d64d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-31T23:22:07Z",
+      "side": 1,
+      "message": "please keep the consistent naming convention.\nmUtil**\n\nm for all mem variables",
+      "range": {
+        "startLine": 123,
+        "startChar": 21,
+        "endLine": 123,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a0c75f65_6a27c196",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "    private TestUtil mUtil;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 132,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "        mUtil \u003d new TestUtil.Builder(sTargetContext)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": "        mHidService \u003d (BluetoothHidHost) mUtil.getProfileProxy(BluetoothProfile.HID_HOST);\n        mHfpService \u003d (BluetoothHeadset) mUtil.getProfileProxy(BluetoothProfile.HEADSET);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 153,
+                "endChar": 0
+              },
+              "replacement": "            mUtil.removeBond(null, device);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 166,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "            mUtil.removeBond(null, mBumbleDevice);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 169,
+                "startChar": 0,
+                "endLine": 170,
+                "endChar": 0
+              },
+              "replacement": "            mUtil.removeBond(null, mRemoteLeDevice);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c526d891_85b871b1",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
         "patchSetId": 4
