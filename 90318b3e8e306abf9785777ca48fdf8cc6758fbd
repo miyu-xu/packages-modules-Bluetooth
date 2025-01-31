@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dacded3a_6477a3f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": ", which is responsible of removing source from a single sink device.\n\nNote: removeSource() removes source from all the sink devices which belongs to the same CSIS set.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 37
+      },
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46239813_52fe29d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "Please describe on \"why\u0027 we need remove broadcast sink from paused only in removeSource()?",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e446da0b_3c39ee45",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3327,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "This comment shall be changed, as `remoteSource()` remove source from all the devices belonging to the same CSIS set.",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ce20c2_7c2b61c6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3340,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "why this is not called in removeSourceInternal() ?",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94bb3d2f_9abac99e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3359,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "did you consider passing stateMachine and metaData to removeSourceInternal() ?",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8134e09_c5d8c1cd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2448,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "why different Source ID is now needed?",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

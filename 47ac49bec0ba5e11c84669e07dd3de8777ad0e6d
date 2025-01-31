@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b320a0c_cabf0c68",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3605,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "Michal, what about line 3381 ? I see `stopBigMonitoring` over there in removeSourceInternal",
+      "parentUuid": "a7d369e1_b856f142",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1b9123_8db80c72",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes, this is only refactor without functional change that when you remove source internally, pausedBroadcastId with HOST_INTENTIONAL will remain.\n\nIt can be used for some checks later.",
       "parentUuid": "5d1b9123_8db80c72",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f97105fc_6de22ce8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3881,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T13:43:49Z",
+      "side": 1,
+      "message": "this looks like separate CL",
+      "parentUuid": "ec59c6f2_ac6c85db",
       "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
