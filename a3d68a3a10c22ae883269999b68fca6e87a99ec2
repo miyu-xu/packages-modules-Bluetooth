@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e882a0_facd296c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-31T23:00:04Z",
+      "side": 1,
+      "message": "nit: since we return in the if, we should not have an else",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 568,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f5195a81_347fc0cc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 566,
+                "startChar": 0,
+                "endLine": 568,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 569,
+                "startChar": 0,
+                "endLine": 569,
+                "endChar": 0
+              },
+              "replacement": "    bta_dm_discovery_set_state(BTA_DM_DISCOVER_IDLE);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a3d68a3a10c22ae883269999b68fca6e87a99ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
