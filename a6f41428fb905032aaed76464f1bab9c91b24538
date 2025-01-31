@@ -34,6 +34,23 @@
       "parentUuid": "5342ecdd_80a66326",
       "revId": "a6f41428fb905032aaed76464f1bab9c91b24538",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d447f8d9_65178da1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1064003
+      },
+      "writtenOn": "2025-01-31T00:10:29Z",
+      "side": 1,
+      "message": "Adding @girardier@google.com for DrNo (apologies, I would have requested on the BT DrNo chat, but I left the group and can\u0027t seem to find the link to rejoin, feel free to redirect!).",
+      "revId": "a6f41428fb905032aaed76464f1bab9c91b24538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
