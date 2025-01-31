@@ -16,6 +16,23 @@
       "message": "Adding Sal as FYI, but I believe this does not impact your workflow (unless you now defined config_hsumBootStrategy",
       "revId": "df4988560d3c20b49885c5b3949c61e6a9bc7691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c625fcb_20669671",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-01-31T12:31:18Z",
+      "side": 1,
+      "message": "Just got the chance to verified this patch. @wescande@google.com would you like to +2 this patch? Or would you suggest another approver?",
+      "revId": "df4988560d3c20b49885c5b3949c61e6a9bc7691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
