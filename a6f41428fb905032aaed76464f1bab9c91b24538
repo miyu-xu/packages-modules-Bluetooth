@@ -16,6 +16,24 @@
       "message": "I started doing a refactor to use some of the helper scoped primitives, but figure it best to leave semantics/surgery for a later CL, and just patch the missing release calls with a narrower CL.",
       "revId": "a6f41428fb905032aaed76464f1bab9c91b24538",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac5a25c_dc53bb8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-31T00:00:06Z",
+      "side": 1,
+      "message": "I agree that a helper method should be beneficial in the long term but not the imediat priority",
+      "parentUuid": "5342ecdd_80a66326",
+      "revId": "a6f41428fb905032aaed76464f1bab9c91b24538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
