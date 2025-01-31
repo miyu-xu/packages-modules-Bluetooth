@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0cb6a6_dd477601",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-31T22:59:10Z",
+      "side": 1,
+      "message": "nit, this kind of check should be reversed by having early return that avoid nesting",
+      "range": {
+        "startLine": 1499,
+        "startChar": 0,
+        "endLine": 1513,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a181a104_20b13799",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 1484,
+                "startChar": 0,
+                "endLine": 1484,
+                "endChar": 0
+              },
+              "replacement": "  if (base_interval \u003d\u003d 0) {\n    return;\n  }\n\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 1500,
+                "startChar": 0,
+                "endLine": 1502,
+                "endChar": 0
+              },
+              "replacement": "  tL2C_LCB* p_lcb \u003d \u0026l2cb.lcb_pool[0];\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 1503,
+                "startChar": 0,
+                "endLine": 1511,
+                "endChar": 0
+              },
+              "replacement": "  for (int i \u003d 0; i \u003c MAX_L2CAP_LINKS; i++, p_lcb++) {\n    if ((p_lcb-\u003ein_use) \u0026\u0026 p_lcb-\u003etransport \u003d\u003d BT_TRANSPORT_LE) {\n      bool ret \u003d L2CA_UpdateBleConnParams(p_lcb-\u003eremote_bd_addr, p_lcb-\u003emin_interval,\n                                          p_lcb-\u003emax_interval, p_lcb-\u003elatency, p_lcb-\u003etimeout,\n                                          p_lcb-\u003emin_ce_len, p_lcb-\u003emax_ce_len);\n      if (!ret) {\n        log::warn(\"Unable to update BLE connection parameters peer:{}\", p_lcb-\u003eremote_bd_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e37c73266112369219a936889473e1356733a3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
