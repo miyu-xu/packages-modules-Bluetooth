@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38453ab4_dc1918d6",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1618,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-31T08:16:35Z",
+      "side": 1,
+      "message": "This flag introduced all the code in this function, and is planned for 25Q2.\nMaybe instead of introducing new flag, you can just fix the bug below as part of this flag ?",
+      "range": {
+        "startLine": 1618,
+        "startChar": 39,
+        "endLine": 1618,
+        "endChar": 73
+      },
+      "revId": "f3b31949cf823eb1f12bdcc6ac0f949aaa133234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc3e150f_775cab3f",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-31T08:16:35Z",
+      "side": 1,
+      "message": "Having sentence at end that changes meaing of earlier sentences is not easy to read.\nMaybe remove mentions of \"peripheral role\" in whole comment instead, or indicate where it\u0027s role specific ?",
+      "range": {
+        "startLine": 1625,
+        "startChar": 2,
+        "endLine": 1625,
+        "endChar": 72
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f420dccf_e7ab90d9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1621,
+                "startChar": 0,
+                "endLine": 1623,
+                "endChar": 0
+              },
+              "replacement": "  // Encryption request results in SMP Security request. SMP may generate a\n  // SMP_COMPLT_EVT failure event in cases like below:\n"
+            },
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1625,
+                "startChar": 0,
+                "endLine": 1626,
+                "endChar": 0
+              },
+              "replacement": "  // 3) Encryption refresh fails in central role.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f3b31949cf823eb1f12bdcc6ac0f949aaa133234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
