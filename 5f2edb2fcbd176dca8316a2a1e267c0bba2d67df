@@ -22,6 +22,30 @@
       },
       "revId": "5f2edb2fcbd176dca8316a2a1e267c0bba2d67df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "839da66b_7f204d28",
+        "filename": "flags/rfcomm.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-01-31T20:31:37Z",
+      "side": 1,
+      "message": "Thanks for finding it. Done.",
+      "parentUuid": "70e23457_4c383385",
+      "range": {
+        "startLine": 48,
+        "startChar": 10,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "5f2edb2fcbd176dca8316a2a1e267c0bba2d67df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
