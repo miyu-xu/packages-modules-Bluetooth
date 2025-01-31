@@ -60,6 +60,11 @@ public class CompanionManager {
     private final int[] mGattConnLowDefault;
     private final int[] mGattConnDckDefault;
 
+    private final int[] mSubrateHighDefault;
+    private final int[] mSubrateBalanceDefault;
+    private final int[] mSubrateLowDefault;
+    private final int[] mSubrateOffDefault;
+
     @VisibleForTesting static final int COMPANION_TYPE_NONE = 0;
     @VisibleForTesting static final int COMPANION_TYPE_PRIMARY = 1;
     @VisibleForTesting static final int COMPANION_TYPE_SECONDARY = 2;
@@ -67,6 +72,11 @@ public class CompanionManager {
     public static final int GATT_CONN_INTERVAL_MIN = 0;
     public static final int GATT_CONN_INTERVAL_MAX = 1;
     public static final int GATT_CONN_LATENCY = 2;
+
+    public static final int GATT_SUBRATE_MIN_SUBRATE_FACTOR = 0;
+    public static final int GATT_SUBRATE_MAX_SUBRATE_FACTOR = 1;
+    public static final int GATT_SUBRATE_LATENCY = 2;
+    public static final int GATT_SUBRATE_CONT_NUM = 3;
 
     @VisibleForTesting static final String COMPANION_INFO = "bluetooth_companion_info";
     @VisibleForTesting static final String COMPANION_DEVICE_KEY = "companion_device";
@@ -86,6 +96,27 @@ public class CompanionManager {
     static final String PROPERTY_DCK_MIN_INTERVAL = "bluetooth.gatt.dck_priority_min.interval";
     static final String PROPERTY_DCK_MAX_INTERVAL = "bluetooth.gatt.dck_priority_max.interval";
     static final String PROPERTY_DCK_LATENCY = "bluetooth.gatt.dck_priority.latency";
+
+    static final String PROPERTY_HIGH_MIN_SUBRATE_FACTOR =
+            "bluetooth.subrate_mode.high.min_subrate";
+    static final String PROPERTY_HIGH_MAX_SUBRATE_FACTOR =
+            "bluetooth.subrate_mode.high_max.subrate";
+    static final String PROPERTY_HIGH_SUBRATE_LATENCY = "bluetooth.subrate_mode.high.latency";
+    static final String PROPERTY_HIGH_CONT_NUM = "bluetooth.subrate_mode.high.cont_num";
+
+    static final String PROPERTY_BALANCED_MIN_SUBRATE_FACTOR =
+            "bluetooth.subrate_mode.balanced.min_subrate";
+    static final String PROPERTY_BALANCED_MAX_SUBRATE_FACTOR =
+            "bluetooth.subrate_mode.balanced.max_subrate";
+    static final String PROPERTY_BALANCED_SUBRATE_LATENCY =
+            "bluetooth.subrate_mode.balanced.latency";
+    static final String PROPERTY_BALANCED_CONT_NUM = "bluetooth.subrate_mode.balanced.cont_num";
+
+    static final String PROPERTY_LOW_MIN_SUBRATE_FACTOR = "bluetooth.subrate_mode.low_min.subrate";
+    static final String PROPERTY_LOW_MAX_SUBRATE_FACTOR = "bluetooth.subrate_mode.low_max.subrate";
+    static final String PROPERTY_LOW_SUBRATE_LATENCY = "bluetooth.subrate_mode.low.latency";
+    static final String PROPERTY_LOW_CONT_NUM = "bluetooth.subrate_mode.low.cont_num";
+
     static final String PROPERTY_SUFFIX_PRIMARY = ".primary";
     static final String PROPERTY_SUFFIX_SECONDARY = ".secondary";
 
@@ -203,6 +234,46 @@ public class CompanionManager {
                             PROPERTY_LOW_LATENCY + PROPERTY_SUFFIX_SECONDARY,
                             R.integer.gatt_low_power_latency_secondary)
                 };
+
+        mSubrateHighDefault =
+                new int[] {
+                    getGattConfig(
+                            PROPERTY_HIGH_MIN_SUBRATE_FACTOR,
+                            R.integer.subrate_mode_high_min_subrate),
+                    getGattConfig(
+                            PROPERTY_HIGH_MAX_SUBRATE_FACTOR,
+                            R.integer.subrate_mode_high_max_subrate),
+                    getGattConfig(
+                            PROPERTY_HIGH_SUBRATE_LATENCY, R.integer.subrate_mode_high_latency),
+                    getGattConfig(PROPERTY_HIGH_CONT_NUM, R.integer.subrate_mode_high_cont_number),
+                };
+        mSubrateBalanceDefault =
+                new int[] {
+                    getGattConfig(
+                            PROPERTY_BALANCED_MIN_SUBRATE_FACTOR,
+                            R.integer.subrate_mode_balanced_min_subrate),
+                    getGattConfig(
+                            PROPERTY_BALANCED_MAX_SUBRATE_FACTOR,
+                            R.integer.subrate_mode_balanced_max_subrate),
+                    getGattConfig(
+                            PROPERTY_BALANCED_SUBRATE_LATENCY,
+                            R.integer.subrate_mode_balanced_latency),
+                    getGattConfig(
+                            PROPERTY_BALANCED_CONT_NUM,
+                            R.integer.subrate_mode_balanced_cont_number),
+                };
+        mSubrateLowDefault =
+                new int[] {
+                    getGattConfig(
+                            PROPERTY_LOW_MIN_SUBRATE_FACTOR,
+                            R.integer.subrate_mode_low_min_subrate),
+                    getGattConfig(
+                            PROPERTY_LOW_MAX_SUBRATE_FACTOR,
+                            R.integer.subrate_mode_low_max_subrate),
+                    getGattConfig(PROPERTY_LOW_SUBRATE_LATENCY, R.integer.subrate_mode_low_latency),
+                    getGattConfig(PROPERTY_LOW_CONT_NUM, R.integer.subrate_mode_low_cont_number),
+                };
+        mSubrateOffDefault = new int[] {1, 1, 0, 0};
     }
 
     private int getGattConfig(String property, int resId) {
@@ -454,5 +525,73 @@ public class CompanionManager {
                 return mGattConnDckDefault[type];
         }
         return mGattConnBalanceDefault[type];
+    }
+
+    /**
+     * Verifies the GATT connection subrating parameters of the device
+     *
+     * @param address the address of the Bluetooth device
+     * @param subrateFactor for this LE connection.
+     * @param latency Worker latency for this LE connection in number of connection events.
+     * @param contNum Continuation Number for this LE connection.
+     * @return the connection subrating priority in integer
+     */
+    public int verifyGattSubratingMode(
+            String address, int subrateFactor, int latency, int contNum) {
+        return verifyGattSubratingModeDefault(subrateFactor, latency, contNum);
+    }
+
+    private int verifyGattSubratingModeDefault(int subrateFactor, int latency, int contNum) {
+        int returnSubrateMode = BluetoothGatt.SUBRATE_MODE_SYSTEM;
+        if (mSubrateHighDefault[GATT_SUBRATE_MIN_SUBRATE_FACTOR] <= subrateFactor
+                && subrateFactor <= mSubrateHighDefault[GATT_SUBRATE_MAX_SUBRATE_FACTOR]
+                && latency == mSubrateHighDefault[GATT_SUBRATE_LATENCY]
+                && contNum <= mSubrateHighDefault[GATT_SUBRATE_CONT_NUM]) {
+            returnSubrateMode = BluetoothGatt.SUBRATE_MODE_HIGH;
+        }
+
+        if (mSubrateBalanceDefault[GATT_SUBRATE_MIN_SUBRATE_FACTOR] <= subrateFactor
+                && subrateFactor <= mSubrateBalanceDefault[GATT_SUBRATE_MAX_SUBRATE_FACTOR]
+                && latency == mSubrateBalanceDefault[GATT_SUBRATE_LATENCY]
+                && contNum <= mSubrateBalanceDefault[GATT_SUBRATE_CONT_NUM]) {
+            returnSubrateMode = BluetoothGatt.SUBRATE_MODE_BALANCED;
+        }
+        if (mSubrateLowDefault[GATT_SUBRATE_MIN_SUBRATE_FACTOR] <= subrateFactor
+                && subrateFactor <= mSubrateLowDefault[GATT_SUBRATE_MAX_SUBRATE_FACTOR]
+                && latency == mSubrateLowDefault[GATT_SUBRATE_LATENCY]
+                && contNum <= mSubrateLowDefault[GATT_SUBRATE_CONT_NUM]) {
+            returnSubrateMode = BluetoothGatt.SUBRATE_MODE_LOW;
+        }
+        if (mSubrateOffDefault[GATT_SUBRATE_MIN_SUBRATE_FACTOR] == subrateFactor
+                && subrateFactor == mSubrateOffDefault[GATT_SUBRATE_MAX_SUBRATE_FACTOR]
+                && latency == mSubrateOffDefault[GATT_SUBRATE_LATENCY]
+                && contNum == mSubrateOffDefault[GATT_SUBRATE_CONT_NUM]) {
+            returnSubrateMode = BluetoothGatt.SUBRATE_MODE_OFF;
+        }
+        return returnSubrateMode;
+    }
+
+    /**
+     * Gets the GATT connection subrating mode of the device
+     *
+     * @param device Bluetooth device
+     * @param type type of the parameter, can be GATT_SUBRATE_MIN_SUBRATE_FACTOR,
+     *     GATT_SUBRATE_MAX_SUBRATE_FACTOR, GATT_SUBRATE_LATENCY or GATT_SUBRATE_CONT_NUM
+     * @param mode the priority of the connection, can be BluetoothGatt.SUBRATE_MODE_HIGH,
+     *     BluetoothGatt.SUBRATE_MODE_LOW or BluetoothGatt.SUBRATE_MODE_BALANCED
+     * @return the connection parameter in integer
+     */
+    public int getGattSubratingParameters(
+            BluetoothDevice device, int type, @BluetoothGatt.SubrateMode int mode) {
+        return getGattSubratingParameterDefault(type, mode);
+    }
+
+    private int getGattSubratingParameterDefault(int type, int mode) {
+        return switch (mode) {
+            case BluetoothGatt.SUBRATE_MODE_HIGH -> mSubrateHighDefault[type];
+            case BluetoothGatt.SUBRATE_MODE_LOW -> mSubrateLowDefault[type];
+            case BluetoothGatt.SUBRATE_MODE_OFF -> mSubrateOffDefault[type];
+            default -> mSubrateBalanceDefault[type];
+        };
     }
 }
