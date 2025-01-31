@@ -33,6 +33,24 @@
       "message": "Just got the chance to verified this patch. @wescande@google.com would you like to +2 this patch? Or would you suggest another approver?",
       "revId": "df4988560d3c20b49885c5b3949c61e6a9bc7691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fec28bb0_976f2ed2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-01-31T20:44:07Z",
+      "side": 1,
+      "message": "I wanted to have confirmation by someone on your team that this is indeed correct.\n\nBut you just said you test it and worse case you are only breaking your device as this is fine from phone and normal hsum device\nso I believed it\u0027s good. +2 !",
+      "parentUuid": "7c625fcb_20669671",
+      "revId": "df4988560d3c20b49885c5b3949c61e6a9bc7691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
