@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72112b5f_a9b8355e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T14:19:37Z",
+      "side": 1,
+      "message": "could you please elaborate why ?",
+      "revId": "f5cad9814c54000823a706be0f524c36c18fa2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
