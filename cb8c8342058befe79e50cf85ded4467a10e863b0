@@ -22,6 +22,30 @@
       },
       "revId": "cb8c8342058befe79e50cf85ded4467a10e863b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29f18ae2_30ebcfca",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-01-31T20:55:49Z",
+      "side": 1,
+      "message": "to keep change consistent with a commit message I will remove it. It should not be needed actually.",
+      "parentUuid": "2d8a645c_319dc1d6",
+      "range": {
+        "startLine": 618,
+        "startChar": 6,
+        "endLine": 618,
+        "endChar": 41
+      },
+      "revId": "cb8c8342058befe79e50cf85ded4467a10e863b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
