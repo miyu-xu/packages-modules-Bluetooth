@@ -40,6 +40,5 @@ oneway interface IBluetoothGattCallback {
     void onConnectionUpdated(in String address, in int interval, in int latency,
                              in int timeout, in int status);
     void onServiceChanged(in String address);
-    void onSubrateChange(in String address, in int subrateFactor, in int latency,
-                         in int contNum, in int timeout, in int status);
+    void onSubrateChange(in String address, in int subrateMode, in int status);
 }
