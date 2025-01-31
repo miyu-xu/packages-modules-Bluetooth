@@ -30,6 +30,7 @@
         <option name="run-command" value="cmd bluetooth_manager wait-for-state:STATE_ON" />
     </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">
+        <!-- TODO(b/267785204): Import python dependencies -->
         <option name="dep-module" value="grpcio==1.51.1" />
         <option name="dep-module" value="cryptography==35" />
         <option name="dep-module" value="numpy" />
@@ -45,4 +46,9 @@
         <option name="mobly-test-timeout" value="1800000" />
         <option name="test-bed" value="android.bumbles" />
     </test>
+
+    <object type="module_controller" class="com.android.tradefed.testtype.suite.module.MainlineTestModuleController">
+        <option name="mainline-module-package-name" value="com.android.bt" />
+        <option name="mainline-module-package-name" value="com.google.android.bt" />
+    </object>
 </configuration>
