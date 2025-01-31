@@ -16,6 +16,24 @@
       "message": "Is there any test that can be built to repro the bug being fixed? Otherwise, we should likely add a flag",
       "revId": "91ebbeb8a64982261df473e4f6b3a8f032a38485",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a9eb3a7_adce78a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-01-31T23:32:36Z",
+      "side": 1,
+      "message": "this is more of race condition. If you observe the code, Handle seem to be invalidated for BREDR, but somehow missing for LE\n\n```\n if (p_lcb-\u003etransport \u003d\u003d BT_TRANSPORT_LE) {\n        btm_acl_removed(handle);\n        p_lcb-\u003eInvalidateHandle(); /*Change added in this CL*/\n      } else {\n        /* If we are going to re-use the LCB without dropping it, release all\n        fixed channels\n        here */\n        int xx;\n        for (xx \u003d 0; xx \u003c L2CAP_NUM_FIXED_CHNLS; xx++) {\n          if (p_lcb-\u003ep_fixed_ccbs[xx] \u0026\u0026 p_lcb-\u003ep_fixed_ccbs[xx] !\u003d p_lcb-\u003ep_pending_ccb) {\n            l2cu_release_ccb(p_lcb-\u003ep_fixed_ccbs[xx]);\n\n            p_lcb-\u003ep_fixed_ccbs[xx] \u003d NULL;\n            (*l2cb.fixed_reg[xx].pL2CA_FixedConn_Cb)(xx + L2CAP_FIRST_FIXED_CHNL,\n                                                     p_lcb-\u003eremote_bd_addr, false,\n                                                     p_lcb-\u003eDisconnectReason(), p_lcb-\u003etransport);\n          }\n        }\n        /* Cleanup connection state to avoid race conditions because\n         * l2cu_release_lcb won\u0027t be invoked to cleanup */\n        btm_acl_removed(p_lcb-\u003eHandle());\n        p_lcb-\u003eInvalidateHandle(); /*handle invalidation for BREDR acl removal*/\n      }\n```\n\n@quic_vgaraga@quicinc.com, can you consider doing this change under flag?",
+      "parentUuid": "84a7c006_fe93a4e5",
+      "revId": "91ebbeb8a64982261df473e4f6b3a8f032a38485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
