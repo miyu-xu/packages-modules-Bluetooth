@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2606189a_ddd26eb9",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-01-31T08:55:06Z",
+      "side": 1,
+      "message": "Should you check ``fixed_cid \u003d\u003d L2CAP_ATT_CID`` ?\nEven if you do, if there is CoC open, you would disconnect, and you shouldn\u0027t.",
+      "range": {
+        "startLine": 1402,
+        "startChar": 0,
+        "endLine": 1402,
+        "endChar": 87
+      },
+      "revId": "ffa466a8c076b66afc38cef83769695db79ccaf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
