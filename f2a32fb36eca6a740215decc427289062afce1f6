@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a504c245_7483e58b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-01-31T23:19:47Z",
+      "side": 1,
+      "message": "Can you move the COD related macros and functions to bt_dev_class.h file?",
+      "fixSuggestions": [
+        {
+          "fixId": "420d95fc_a41e02fe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 483,
+                "startChar": 0,
+                "endLine": 514,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 663,
+                "startChar": 0,
+                "endLine": 664,
+                "endChar": 0
+              },
+              "replacement": "  uint32_t old_cod \u003d btif_get_cod(\u0026bdaddr);\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 714,
+                "startChar": 0,
+                "endLine": 715,
+                "endChar": 0
+              },
+              "replacement": "  if (!btif_check_cod_le_audio(bd_addr) \u0026\u0026 !BTA_DmCheckLeAudioCapable(bd_addr)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 754,
+                "startChar": 0,
+                "endLine": 755,
+                "endChar": 0
+              },
+              "replacement": "  if (btif_check_cod_le_audio(bd_addr) || metadata_cb.le_audio_cache.contains(bd_addr) ||\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 777,
+                "startChar": 0,
+                "endLine": 778,
+                "endChar": 0
+              },
+              "replacement": "      !btif_check_cod_phone(bd_addr)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 950,
+                "startChar": 0,
+                "endLine": 953,
+                "endChar": 0
+              },
+              "replacement": "    if (btif_check_cod(\u0026bd_addr, COD_AV_HEADSETS) || btif_check_cod(\u0026bd_addr, COD_AV_HEADPHONES) ||\n        btif_check_cod(\u0026bd_addr, COD_AV_PORTABLE_AUDIO) || btif_check_cod(\u0026bd_addr, COD_AV_HIFI_AUDIO) ||\n        btif_check_cod_hid_major(bd_addr, COD_HID_POINTING)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 967,
+                "startChar": 0,
+                "endLine": 969,
+                "endChar": 0
+              },
+              "replacement": "    } else if (btif_check_cod_hid_major(bd_addr, COD_HID_KEYBOARD) ||\n               btif_check_cod_hid_major(bd_addr, COD_HID_COMBO)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1033,
+                "startChar": 0,
+                "endLine": 1034,
+                "endChar": 0
+              },
+              "replacement": "      !(btif_check_cod_hid_major(p_ssp_cfm_req-\u003ebd_addr, COD_HID_POINTING))) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1186,
+                "startChar": 0,
+                "endLine": 1187,
+                "endChar": 0
+              },
+              "replacement": "    if (check_sdp_bl(\u0026bd_addr) \u0026\u0026 btif_check_cod_hid(bd_addr)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1299,
+                "startChar": 0,
+                "endLine": 1300,
+                "endChar": 0
+              },
+              "replacement": "    if (btif_check_cod_hid_major(bd_addr, COD_HID_POINTING)) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1384,
+                "startChar": 0,
+                "endLine": 1385,
+                "endChar": 0
+              },
+              "replacement": "          uint32_t old_cod \u003d btif_get_cod(\u0026bdaddr);\n"
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1883,
+                "startChar": 0,
+                "endLine": 1884,
+                "endChar": 0
+              },
+              "replacement": "  uint32_t cod \u003d btif_get_cod(\u0026bd_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f2a32fb36eca6a740215decc427289062afce1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b61a4d_d1635d2b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-01-31T23:19:47Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "f2a32fb36eca6a740215decc427289062afce1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
