@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20dd1b55_b5a6813a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2121,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T01:14:31Z",
+      "side": 1,
+      "message": "this part is somewhat duplicated with stop scanning logic. can we put them into some method? or divide into sub methods so to make the actions more clear?",
+      "range": {
+        "startLine": 2097,
+        "startChar": 0,
+        "endLine": 2121,
+        "endChar": 21
+      },
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ebb566_3fa4006e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2240,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T01:14:31Z",
+      "side": 1,
+      "message": "are we intended to print twice with 2305?",
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b44bd94_966a9fa5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2243,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T01:14:31Z",
+      "side": 1,
+      "message": "nit: broadcastsToRemainSynced \u003d new HashSet\u003c\u003e();?\n\nalso below comments are a bit confusing with \u0027Remain broadcasts\u0027, can you update together with this rename?",
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c3e83c_a8421eb0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2270,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T01:14:31Z",
+      "side": 1,
+      "message": "nit: // Remove all other broadcasts from sync queue if not in remainBroadcastIds",
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2966b3f4_dfd5b279",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2282,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T01:14:31Z",
+      "side": 1,
+      "message": "can we have some parser method for this?\n\nint parseBroadcastIdFromScanResult(sourceSyncRequest.getScanResult())",
+      "range": {
+        "startLine": 2275,
+        "startChar": 0,
+        "endLine": 2282,
+        "endChar": 36
+      },
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
