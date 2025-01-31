@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f5d4e35_7207a0f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T02:18:12Z",
+      "side": 1,
+      "message": "\"If we merge it without flag, QA will find potential issues much quicker;)\"\n😊 That also means our DFers might notice this earlier than we expected.\n\nWhile by reviewing this change, I agreed this is with low risks and trust your best efforts to verify this. So overall LGTM +1 first.\n\nAdding @siyuanh@google.com for his inputs on dr.no this.",
+      "parentUuid": "2e7590db_d819a823",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06b36829_0a169788",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes, this is needed to properly get device for INVALID_BROADCAST_ID/PENDING_SYNC_HANDLE. In the same matter as getting broadcastId. Without that, there is no possibility to remove mPeriodicAdvertisementResultMap in clearAllDataForSyncHandle.\n\nThis will not break anything, as nowhere else is used getDeviceForSyncHandle(INVALID_BROADCAST_ID/PENDING_SYNC_HANDLE).\n\nAnother thing is that \"I want to gather as many as possible variables, which depend on syncHandle in one place. This will enable us to make refactor and create a one object for it instead of separate variables.\"",
       "parentUuid": "06b36829_0a169788",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4740d27d_c23de495",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T02:18:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ea05fae5_064bf93a",
       "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -106,6 +142,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1641a6_54d5c88b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T02:18:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "783a8b77_17264709",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebea0fa7_3743950a",
@@ -137,6 +191,24 @@
       "side": 1,
       "message": "IMHO yes, all variables depend on syncHandle should be changed at once to be sure that during clearing them (clearAllSyncData/clearAllDataForSyncHandle) new data are not added/updated. We do not hit or does not notice such issue, but it seems to be quite possible.\n\nWe should refactor them to store in one object, then we can control all operation there.",
       "parentUuid": "ebea0fa7_3743950a",
+      "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02e74cb7_9874ca01",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2178,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-01-31T02:18:12Z",
+      "side": 1,
+      "message": "Can we create a follow-up task for this refactor improvement in your mind?",
+      "parentUuid": "914f7559_7a3267ee",
       "revId": "d3ebd41b618a0c666f93f52611bb3c4279d1b6a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
