@@ -60,6 +60,30 @@
       ],
       "revId": "e37c73266112369219a936889473e1356733a3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "118f13e2_085a6f86",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-01T22:52:32Z",
+      "side": 1,
+      "message": "Indeed, I\u0027ll prepare separate patch for that.",
+      "parentUuid": "1f0cb6a6_dd477601",
+      "range": {
+        "startLine": 1499,
+        "startChar": 0,
+        "endLine": 1513,
+        "endChar": 3
+      },
+      "revId": "e37c73266112369219a936889473e1356733a3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
