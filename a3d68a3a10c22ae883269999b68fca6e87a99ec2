@@ -50,6 +50,30 @@
       ],
       "revId": "a3d68a3a10c22ae883269999b68fca6e87a99ec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "118d0a14_9ef3d895",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-01T22:53:34Z",
+      "side": 1,
+      "message": "not related to flag removal, will prepare separate fix with that.",
+      "parentUuid": "a4e882a0_facd296c",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 568,
+        "endChar": 5
+      },
+      "revId": "a3d68a3a10c22ae883269999b68fca6e87a99ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
