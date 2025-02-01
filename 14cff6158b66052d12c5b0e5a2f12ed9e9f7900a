@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a7f384_f4f1b846",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-01T01:40:27Z",
+      "side": 0,
+      "message": "William and I took a look, and this is the logic change - here take() will empty out the registry, allowing the rust module to be started again. So comments/errors in this file stating that the module cannot be started more than once aren\u0027t quite correct. Starting twice without shutting down in between would cause a panic, but start -\u003e stop -\u003e start was possible.",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
