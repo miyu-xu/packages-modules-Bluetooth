@@ -24,6 +24,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.IBluetoothGattCallback;
@@ -51,6 +52,8 @@ public class GattServiceBinderTest {
     @Rule public final MockitoRule mMockitoRule = new MockitoRule();
 
     @Mock private GattService mService;
+
+    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
 
     private AttributionSource mAttributionSource;
 
@@ -381,6 +384,17 @@ public class GattServiceBinderTest {
                         minConnectionEventLen,
                         maxConnectionEventLen,
                         mAttributionSource);
+    }
+
+    @Test
+    public void subrateModeRequest() throws Exception {
+        int clientIf = 1;
+        BluetoothDevice testDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
+        int subrateMode = 0;
+
+        mBinder.subrateModeRequest(clientIf, testDevice, subrateMode, mAttributionSource);
+
+        verify(mService).subrateModeRequest(clientIf, testDevice, subrateMode);
     }
 
     @Test
