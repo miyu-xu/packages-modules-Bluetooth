@@ -42,6 +42,7 @@ import android.content.res.Resources;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Process;
+import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.SetFlagsRule;
 import android.provider.Settings;
 import android.test.mock.MockContentProvider;
@@ -594,6 +595,34 @@ public class GattServiceTest {
 
         mService.configureMTU(clientIf, address, mtu, mAttributionSource);
         verify(mNativeInterface).gattClientConfigureMTU(connId, mtu);
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_LE_SUBRATE_API)
+    public void subrateModeRequest() {
+        int clientIf = 1;
+        BluetoothDevice testDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
+
+        Integer connId = 1;
+        doReturn(connId).when(mClientMap).connIdByAddress(clientIf, testDevice.getAddress());
+
+        mService.subrateModeRequest(clientIf, testDevice, BluetoothGatt.SUBRATE_MODE_OFF);
+
+        mService.subrateModeRequest(clientIf, testDevice, BluetoothGatt.SUBRATE_MODE_LOW);
+
+        mService.subrateModeRequest(clientIf, testDevice, BluetoothGatt.SUBRATE_MODE_BALANCED);
+
+        mService.subrateModeRequest(clientIf, testDevice, BluetoothGatt.SUBRATE_MODE_HIGH);
+
+        verify(mNativeInterface, times(4))
+                .gattSubrateRequest(
+                        eq(connId),
+                        eq(testDevice.getAddress()),
+                        anyInt(),
+                        anyInt(),
+                        anyInt(),
+                        anyInt(),
+                        anyInt());
     }
 
     @Test
