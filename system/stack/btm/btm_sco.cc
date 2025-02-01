@@ -399,6 +399,10 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
 
     if (status != bluetooth::hci::PacketStatusFlag::CORRECTLY_RECEIVED) {
       log::debug("{} packet corrupted with status({})", codec, PacketStatusFlagText(status));
+      if (status == bluetooth::hci::PacketStatusFlag::NO_DATA_RECEIVED) {
+        log::debug("Ignore {} packet", PacketStatusFlagText(status));
+        return;
+      }
     }
     auto enqueue_packet = codec_type == BTM_SCO_CODEC_LC3
                                   ? &bluetooth::audio::sco::swb::enqueue_packet
