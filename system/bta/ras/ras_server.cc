@@ -88,11 +88,16 @@ public:
     uint16_t mtu = kDefaultGattMtu;
   };
 
+  // Test done
   void Initialize() override {
+    log::info("Test coverage check s");
     do_in_main_thread(base::BindOnce(&RasServerImpl::do_initialize, base::Unretained(this)));
+    log::info("Test coverage check e");
   }
 
+  // Test done
   void do_initialize() {
+    log::info("Test coverage check s");
     auto controller = bluetooth::shim::GetController();
     if (controller && !controller->SupportsBleChannelSounding()) {
       log::info("controller does not support channel sounding.");
@@ -109,12 +114,16 @@ public:
               }
             },
             false);
+    log::info("Test coverage check e");
   }
 
+  // Test done
   void RegisterCallbacks(bluetooth::ras::RasServerCallbacks* callbacks) { callbacks_ = callbacks; }
 
+  // Test done
   void SetVendorSpecificCharacteristic(
           const std::vector<VendorSpecificCharacteristic>& vendor_specific_characteristics) {
+    log::info("Test coverage check s");
     vendor_specific_characteristics_ = vendor_specific_characteristics;
   }
 
@@ -203,7 +212,7 @@ public:
   }
 
   void GattsCallback(tBTA_GATTS_EVT event, tBTA_GATTS* p_data) {
-    log::info("event: {}", gatt_server_event_text(event));
+    log::info("CYDBG event: {}", gatt_server_event_text(event));
     switch (event) {
       case BTA_GATTS_CONNECT_EVT: {
         OnGattConnect(p_data);
@@ -234,7 +243,9 @@ public:
     }
   }
 
+  // Test done
   void OnGattConnect(tBTA_GATTS* p_data) {
+    log::info("Test coverage check s");
     auto address = p_data->conn.remote_bda;
     log::info("Address: {}, conn_id:{}", address, p_data->conn.conn_id);
     if (p_data->conn.transport == BT_TRANSPORT_BR_EDR) {
@@ -252,8 +263,10 @@ public:
     btm_random_pseudo_to_identity_addr(&identity_address, &address_type);
     // TODO: optimize, remove this event, initialize the tracker within the GD on demand.
     callbacks_->OnRasServerConnected(identity_address);
+    log::info("Test coverage check e");
   }
 
+  // Test done
   void OnGattMtuChanged(const tBTA_GATTS_REQ& req_data) {
     auto remote_bda = req_data.remote_bda;
     log::info("mtu is changed as {}", req_data.p_data->mtu);
@@ -267,7 +280,9 @@ public:
     }
   }
 
+  // Test done
   void OnGattDisconnect(tBTA_GATTS* p_data) {
+    log::info("Test coverage check s");
     auto remote_bda = p_data->conn.remote_bda;
     log::info("Address: {}, conn_id:{}", remote_bda, p_data->conn.conn_id);
     if (trackers_.find(remote_bda) != trackers_.end()) {
@@ -276,7 +291,9 @@ public:
     }
   }
 
+  // Test done
   void NotifyRasServerDisconnected(const RawAddress& remote_bda) {
+    log::info("Test coverage check s");
     tBLE_BD_ADDR ble_identity_bd_addr;
     ble_identity_bd_addr.bda = remote_bda;
     ble_identity_bd_addr.type = BLE_ADDR_RANDOM;
@@ -285,7 +302,9 @@ public:
     callbacks_->OnRasServerDisconnected(ble_identity_bd_addr.bda);
   }
 
+  // Test done
   void OnGattServerRegister(tBTA_GATTS* p_data) {
+    log::info("CYDBG Test coverage check s");
     tGATT_STATUS status = p_data->reg_oper.status;
     log::info("status: {}", gatt_status_text(p_data->reg_oper.status));
 
@@ -381,6 +400,8 @@ public:
                              instance->OnServiceAdded(status, server_if, service);
                            }
                          }));
+
+    log::info("CYDBG Test coverage check e");
   }
 
   void OnReadCharacteristic(tBTA_GATTS* p_data) {
@@ -714,8 +735,10 @@ public:
     tracker->handling_control_point_command_ = false;
   }
 
+  // Test Done
   void OnServiceAdded(tGATT_STATUS status, int server_if,
                       std::vector<btgatt_db_element_t> service) {
+    log::info("Test coverage check s");
     log::info("status: {}, server_if: {}", gatt_status_text(status), server_if);
     RasCharacteristic* current_characteristic;
     for (uint16_t i = 0; i < service.size(); i++) {
@@ -735,6 +758,7 @@ public:
         }
       }
     }
+    log::info("Test coverage check e");
   }
 
   RasCharacteristic* GetCharacteristic(Uuid uuid) {
