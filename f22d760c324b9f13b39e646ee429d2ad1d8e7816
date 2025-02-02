@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f151ea1c_208bd7d6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-02T17:47:42Z",
+      "side": 1,
+      "message": "why not calling getManager here?\n\nDO we need the details error status ? that seems a bit too much\n\n(I +2\u0027ed so i am fine keeping it, it just feel a bit weird)",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 95
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e7fe3710_1ce7f1d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.kt",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "        val manager: DistanceMeasurementManager \u003d\n            getManager(source, \"stopDistanceMeasurement\") ?: return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED\n        if (manager \u003d\u003d null) {\n            return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.kt",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "        return manager.stopDistanceMeasurement(uuid.uuid, device, method, false)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f22d760c324b9f13b39e646ee429d2ad1d8e7816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
