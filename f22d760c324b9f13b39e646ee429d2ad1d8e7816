@@ -50,6 +50,30 @@
       ],
       "revId": "f22d760c324b9f13b39e646ee429d2ad1d8e7816",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07089e29_48863ac3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-02T19:23:00Z",
+      "side": 1,
+      "message": "Acknowledged, I\u0027ll proceed as is fine and see if I can follow up with something cleaner in a follow-up that preserves the error code but is more idiomatic for rust.",
+      "parentUuid": "f151ea1c_208bd7d6",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 95
+      },
+      "revId": "f22d760c324b9f13b39e646ee429d2ad1d8e7816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
