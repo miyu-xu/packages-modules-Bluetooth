@@ -89,10 +89,13 @@ public:
   };
 
   void Initialize() override {
+    log::info("CYDBG s");
     do_in_main_thread(base::BindOnce(&RasServerImpl::do_initialize, base::Unretained(this)));
+    log::info("CYDBG e");
   }
 
   void do_initialize() {
+    log::info("CYDBG s");
     auto controller = bluetooth::shim::GetController();
     if (controller && !controller->SupportsBleChannelSounding()) {
       log::info("controller does not support channel sounding.");
@@ -109,6 +112,7 @@ public:
               }
             },
             false);
+    log::info("CYDBG e");
   }
 
   void RegisterCallbacks(bluetooth::ras::RasServerCallbacks* callbacks) { callbacks_ = callbacks; }
@@ -203,7 +207,7 @@ public:
   }
 
   void GattsCallback(tBTA_GATTS_EVT event, tBTA_GATTS* p_data) {
-    log::info("event: {}", gatt_server_event_text(event));
+    log::info("CYDBG event: {}", gatt_server_event_text(event));
     switch (event) {
       case BTA_GATTS_CONNECT_EVT: {
         OnGattConnect(p_data);
@@ -287,7 +291,7 @@ public:
 
   void OnGattServerRegister(tBTA_GATTS* p_data) {
     tGATT_STATUS status = p_data->reg_oper.status;
-    log::info("status: {}", gatt_status_text(p_data->reg_oper.status));
+    log::info("CYDBG status: {}", gatt_status_text(p_data->reg_oper.status));
 
     if (status != tGATT_STATUS::GATT_SUCCESS) {
       log::warn("Register Server fail");
@@ -381,6 +385,8 @@ public:
                              instance->OnServiceAdded(status, server_if, service);
                            }
                          }));
+
+    log::info("CYDBG done!!");
   }
 
   void OnReadCharacteristic(tBTA_GATTS* p_data) {
