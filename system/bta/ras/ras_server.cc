@@ -89,10 +89,13 @@ public:
   };
 
   void Initialize() override {
+    log::info("Test coverage check s");
     do_in_main_thread(base::BindOnce(&RasServerImpl::do_initialize, base::Unretained(this)));
+    log::info("Test coverage check e");
   }
 
   void do_initialize() {
+    log::info("Test coverage check s");
     auto controller = bluetooth::shim::GetController();
     if (controller && !controller->SupportsBleChannelSounding()) {
       log::info("controller does not support channel sounding.");
@@ -109,6 +112,7 @@ public:
               }
             },
             false);
+    log::info("Test coverage check e");
   }
 
   void RegisterCallbacks(bluetooth::ras::RasServerCallbacks* callbacks) { callbacks_ = callbacks; }
@@ -203,7 +207,7 @@ public:
   }
 
   void GattsCallback(tBTA_GATTS_EVT event, tBTA_GATTS* p_data) {
-    log::info("event: {}", gatt_server_event_text(event));
+    log::info("CYDBG event: {}", gatt_server_event_text(event));
     switch (event) {
       case BTA_GATTS_CONNECT_EVT: {
         OnGattConnect(p_data);
@@ -235,6 +239,7 @@ public:
   }
 
   void OnGattConnect(tBTA_GATTS* p_data) {
+    log::info("Test coverage check s");
     auto address = p_data->conn.remote_bda;
     log::info("Address: {}, conn_id:{}", address, p_data->conn.conn_id);
     if (p_data->conn.transport == BT_TRANSPORT_BR_EDR) {
@@ -252,6 +257,7 @@ public:
     btm_random_pseudo_to_identity_addr(&identity_address, &address_type);
     // TODO: optimize, remove this event, initialize the tracker within the GD on demand.
     callbacks_->OnRasServerConnected(identity_address);
+    log::info("Test coverage check e");
   }
 
   void OnGattMtuChanged(const tBTA_GATTS_REQ& req_data) {
@@ -286,6 +292,7 @@ public:
   }
 
   void OnGattServerRegister(tBTA_GATTS* p_data) {
+    log::info("CYDBG Test coverage check s");
     tGATT_STATUS status = p_data->reg_oper.status;
     log::info("status: {}", gatt_status_text(p_data->reg_oper.status));
 
@@ -381,6 +388,8 @@ public:
                              instance->OnServiceAdded(status, server_if, service);
                            }
                          }));
+
+    log::info("CYDBG Test coverage check e");
   }
 
   void OnReadCharacteristic(tBTA_GATTS* p_data) {
@@ -716,6 +725,7 @@ public:
 
   void OnServiceAdded(tGATT_STATUS status, int server_if,
                       std::vector<btgatt_db_element_t> service) {
+    log::info("Test coverage check s");
     log::info("status: {}, server_if: {}", gatt_status_text(status), server_if);
     RasCharacteristic* current_characteristic;
     for (uint16_t i = 0; i < service.size(); i++) {
@@ -735,6 +745,7 @@ public:
         }
       }
     }
+    log::info("Test coverage check e");
   }
 
   RasCharacteristic* GetCharacteristic(Uuid uuid) {
