@@ -74,6 +74,30 @@
       },
       "revId": "f22d760c324b9f13b39e646ee429d2ad1d8e7816",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a7d9402_7ac39677",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-02T21:00:59Z",
+      "side": 1,
+      "message": "Kotlin not rust doh!",
+      "parentUuid": "07089e29_48863ac3",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 95
+      },
+      "revId": "f22d760c324b9f13b39e646ee429d2ad1d8e7816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
