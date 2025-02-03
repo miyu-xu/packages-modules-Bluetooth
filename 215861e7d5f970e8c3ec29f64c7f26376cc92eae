@@ -139,6 +139,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "285aaa06_8ccb6850",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-03T03:08:20Z",
+      "side": 1,
+      "message": "Sure, need to add changes to other files as well, will do in next CL.",
+      "parentUuid": "68472793_0ab1d64d",
+      "range": {
+        "startLine": 123,
+        "startChar": 21,
+        "endLine": 123,
+        "endChar": 25
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c526d891_85b871b1",
