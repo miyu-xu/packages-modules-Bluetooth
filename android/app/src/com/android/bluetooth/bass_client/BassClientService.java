@@ -3378,7 +3378,7 @@ public class BassClientService extends ProfileService {
                     validateParametersForSourceOperation(
                             stateMachine, device, updatedMetadata, deviceSourceId);
             if (statusCode != BluetoothStatusCodes.SUCCESS) {
-                mCallbacks.notifySourceModifyFailed(device, sourceId, statusCode);
+                mCallbacks.notifySourceModifyFailed(device, deviceSourceId, statusCode);
                 continue;
             }
             if (stateMachine.hasPendingSourceOperation()) {
@@ -3389,7 +3389,7 @@ public class BassClientService extends ProfileService {
                                 + ", broadcastId: "
                                 + updatedMetadata.getBroadcastId());
                 mCallbacks.notifySourceModifyFailed(
-                        device, sourceId, BluetoothStatusCodes.ERROR_ALREADY_IN_TARGET_STATE);
+                        device, deviceSourceId, BluetoothStatusCodes.ERROR_ALREADY_IN_TARGET_STATE);
                 continue;
             }
 
@@ -3400,7 +3400,7 @@ public class BassClientService extends ProfileService {
                     TAG,
                     "Modify Broadcast Source: "
                             + ("device: " + device)
-                            + ("sourceId: " + sourceId)
+                            + ("sourceId: " + deviceSourceId)
                             + (", updatedBroadcastId: " + updatedMetadata.getBroadcastId())
                             + (", updatedBroadcastName: " + updatedMetadata.getBroadcastName()));
 
@@ -3415,7 +3415,7 @@ public class BassClientService extends ProfileService {
                         TAG,
                         "Set Broadcast Code (Modify Source context): "
                                 + ("device: " + device)
-                                + ("sourceId: " + sourceId)
+                                + ("sourceId: " + deviceSourceId)
                                 + (", updatedBroadcastId: " + updatedMetadata.getBroadcastId())
                                 + (", updatedBroadcastName: "
                                         + updatedMetadata.getBroadcastName()));
