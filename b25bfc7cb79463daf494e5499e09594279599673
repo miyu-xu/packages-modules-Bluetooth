@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a9d369f_a840dc7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-02-03T11:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19e61f9d_e76e96a0",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "b25bfc7cb79463daf494e5499e09594279599673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81862a3c_9bf3eb65",
@@ -141,6 +165,30 @@
           ]
         }
       ],
+      "revId": "b25bfc7cb79463daf494e5499e09594279599673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8476bcd3_8b864851",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-02-03T11:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81862a3c_9bf3eb65",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 29
+      },
       "revId": "b25bfc7cb79463daf494e5499e09594279599673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
