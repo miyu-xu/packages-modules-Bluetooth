@@ -3,6 +3,237 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c056f55_3763979f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "Hi Rongxuan!\n\nhave you thought about separating functionality into methods and callbacks ? Seems that here it\u0027s mixed callbacks with scanner control methods.",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8189ac2d_008a6d69",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "this object has two meanings:\n- status\n- ID\n\nWhat about split this information into two and add simply methods to check status e.g. isInitialized().",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f33a3e1_6fc2f007",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "What about more explicite name as: `isBroadcastAudioAnnouncementScanActive()\"",
+      "fixSuggestions": [
+        {
+          "fixId": "d3100111_1a5d2479",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 264,
+                "startChar": 0,
+                "endLine": 265,
+                "endChar": 0
+              },
+              "replacement": "        boolean isBroadcastAudioAnnouncementScanActive() {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2387,
+                "startChar": 0,
+                "endLine": 2388,
+                "endChar": 0
+              },
+              "replacement": "                return mBassScanCallback.isBroadcastAudioAnnouncementScanActive();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d88300a_f3519e13",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "android.bluetooth.BluetoothStatusCodes.SUCCESS ?",
+      "fixSuggestions": [
+        {
+          "fixId": "f69dab15_e9592f15",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 274,
+                "startChar": 0,
+                "endLine": 275,
+                "endChar": 0
+              },
+              "replacement": "                if (status !\u003d BluetoothStatusCodes.SUCCESS) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20584a28_d8400c77",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "I know this was just moved but it\u0027s not obious at first look what this filter is doing 😊 android.bluetooth.le.ScanFilter.Builder.setServiceData looks like ignores broadcastId",
+      "fixSuggestions": [
+        {
+          "fixId": "91e7f533_0b6d4cb9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "import static com.android.bluetooth.flags.Flags.leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 289,
+                "startChar": 0,
+                "endLine": 289,
+                "endChar": 0
+              },
+              "replacement": "                // Add a filter to match the BAAS UUID with any service data.\n                // This will match any broadcast source that has the BAAS UUID, regardless of the\n                // service data value.\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2276,
+                "startChar": 0,
+                "endLine": 2276,
+                "endChar": 0
+              },
+              "replacement": "                // Add a filter to match the BAAS UUID with any service data.\n                // This will match any broadcast source that has the BAAS UUID, regardless of the\n                // service data value.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a39fda2_df821fad",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "what about: com.android.bluetooth.bass_client.BassUtils.parseBroadcastId ?",
+      "fixSuggestions": [
+        {
+          "fixId": "0951c18a_31f93b16",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 334,
+                "startChar": 0,
+                "endLine": 339,
+                "endChar": 0
+              },
+              "replacement": "            int broadcastId \u003d BassUtils.parseBroadcastId(broadcastIdArray);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2174,
+                "startChar": 0,
+                "endLine": 2179,
+                "endChar": 0
+              },
+              "replacement": "                                    int broadcastId \u003d BassUtils.parseBroadcastId(broadcastIdArray);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12dfa160_34e2af56",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T10:00:23Z",
+      "side": 1,
+      "message": "Is this a moved code from somewhere ? I have problems with understanding a logic behing this.\n\nIf there is a TimeoutHandler started for broadcastId and it\u0027s already cached this part stop and start TimeoutHandler - but for what purpose ?",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f40b696c_6017c09f",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
