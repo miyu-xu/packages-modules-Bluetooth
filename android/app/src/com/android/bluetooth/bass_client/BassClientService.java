@@ -3152,6 +3152,8 @@ public class BassClientService extends ProfileService {
                     BluetoothLeBroadcastMetadata metaData =
                             stateMachine.getCurrentBroadcastMetadata(sourceIdToRemove);
                     if (metaData != null) {
+                        removeSinkMetadata(device, metaData.getBroadcastId());
+
                         // Add host intentional pause if previous broadcast is different than
                         // current
                         if (sourceMetadata.getBroadcastId() != metaData.getBroadcastId()) {
