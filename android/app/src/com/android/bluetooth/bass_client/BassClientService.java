@@ -2997,6 +2997,7 @@ public class BassClientService extends ProfileService {
         }
 
         removeSinkMetadataHelper(device, broadcastId);
+        removeSinkMetadataFromGroupIfWholeUnsynced(device, broadcastId);
     }
 
     private void removeSinkMetadata(BluetoothDevice device) {
@@ -3008,6 +3009,7 @@ public class BassClientService extends ProfileService {
         }
 
         mBroadcastMetadataMap.remove(device);
+        removeSinkMetadataFromGroupIfWholeUnsynced(device);
     }
 
     private void removeSinkMetadataFromGroupIfWholeUnsynced(
