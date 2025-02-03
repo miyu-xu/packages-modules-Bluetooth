@@ -25,6 +25,7 @@
  *
  ******************************************************************************/
 
+#include <array>
 #define LOG_TAG "bt_btif_hh"
 
 #include "btif/include/btif_hh.h"
@@ -1520,8 +1521,6 @@ static void btif_hh_transport_select(tAclLinkSpec& link_spec) {
   bool hogp_available = false;
   bool headtracker_available = false;
   bool le_preferred = false;
-  bluetooth::Uuid remote_uuids[BT_MAX_NUM_UUIDS] = {};
-  bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids), &remote_uuids};
   const RawAddress& bd_addr = link_spec.addrt.bda;
 
   // Find the device type
@@ -1534,23 +1533,21 @@ static void btif_hh_transport_select(tAclLinkSpec& link_spec) {
           get_btm_client_interface().peer.BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_BR_EDR);
   bool le_acl = get_btm_client_interface().peer.BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE);
 
-  // Find which services known to be available
-  if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) == BT_STATUS_SUCCESS) {
-    int count = remote_properties.len / sizeof(remote_uuids[0]);
-    for (int i = 0; i < count; i++) {
-      if (remote_uuids[i].Is16Bit()) {
-        if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
-          hid_available = true;
-        } else if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_LE_HID) {
-          hogp_available = true;
-        }
-      } else if (remote_uuids[i] == ANDROID_HEADTRACKER_SERVICE_UUID) {
-        headtracker_available = true;
+  // Find available services
+  std::vector<bluetooth::Uuid> remote_uuids = btif_storage_get_services(bd_addr);
+  for (auto uuid : remote_uuids) {
+    if (uuid.Is16Bit()) {
+      if (uuid.As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
+        hid_available = true;
+      } else if (uuid.As16Bit() == UUID_SERVCLASS_LE_HID) {
+        hogp_available = true;
       }
+    } else if (uuid == ANDROID_HEADTRACKER_SERVICE_UUID) {
+      headtracker_available = true;
+    }
 
-      if (hid_available && (hogp_available || headtracker_available)) {
-        break;
-      }
+    if (hid_available && (hogp_available || headtracker_available)) {
+      break;
     }
   }
 
