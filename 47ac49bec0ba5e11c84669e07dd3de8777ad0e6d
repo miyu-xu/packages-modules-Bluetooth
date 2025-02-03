@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cb4f520_87e6a92d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3605,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-03T11:58:39Z",
+      "side": 1,
+      "message": "stopBigMonitoring has to be always called in stopSourceReceiver no matter of rest of the logic. removeSourceInternal is called only if device was not paused before or is paused by sink unintentional.\n\nMaybe it could be optimized but this should be part of another analyze and CL and probably under flag.",
+      "parentUuid": "5b320a0c_cabf0c68",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1b9123_8db80c72",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "this looks like separate CL",
       "parentUuid": "ec59c6f2_ac6c85db",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fa17867_f30a55ae",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3881,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-03T11:58:39Z",
+      "side": 1,
+      "message": "Moved to another CL",
+      "parentUuid": "f97105fc_6de22ce8",
       "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
