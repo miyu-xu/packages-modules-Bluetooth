@@ -187,6 +187,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37c5156f_e34fe3b8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-03T04:35:26Z",
+      "side": 1,
+      "message": "Added the changes under: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3472993",
+      "parentUuid": "15ee3c39_ea70bb86",
+      "range": {
+        "startLine": 123,
+        "startChar": 21,
+        "endLine": 123,
+        "endChar": 25
+      },
+      "revId": "215861e7d5f970e8c3ec29f64c7f26376cc92eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c526d891_85b871b1",
