@@ -1402,6 +1402,11 @@ public class BassClientService extends ProfileService {
         }
     }
 
+    private void localNotifySourceAddFailed(
+            BluetoothDevice sink, BluetoothLeBroadcastMetadata source) {
+        removeSinkMetadata(sink, source.getBroadcastId());
+    }
+
     private void setSourceGroupManaged(BluetoothDevice sink, int sourceId, boolean isGroupOp) {
         log("setSourceGroupManaged device: " + sink);
         if (isGroupOp) {
@@ -4776,6 +4781,7 @@ public class BassClientService extends ProfileService {
         void notifySourceAddFailed(
                 BluetoothDevice sink, BluetoothLeBroadcastMetadata source, int reason) {
             sService.checkAndResetGroupAllowedContextMask();
+            sService.localNotifySourceAddFailed(sink, source);
 
             sEventLogger.loge(
                     TAG,
