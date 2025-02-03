@@ -541,6 +541,7 @@ cc_test {
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockBtaPan",
         ":TestMockBtaRas",
+        ":TestMockBtaRfcMetrics",
         ":TestMockBtaScn",
         ":TestMockBtaSdp",
         ":TestMockBtaSys",
