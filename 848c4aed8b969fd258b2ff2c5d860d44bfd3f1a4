@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51e4bbbf_92a294ae",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-03T18:09:25Z",
+      "side": 1,
+      "message": "Since we call `Activate()` in `StateMachine::ConfigureStream()` only if the group is already configured, shouldn\u0027t this be already set by calling to `ConfigureAses()` in the past? I\u0027m struggling to tell which code execution path skips this mechanism?",
+      "range": {
+        "startLine": 237,
+        "startChar": 6,
+        "endLine": 237,
+        "endChar": 50
+      },
+      "revId": "848c4aed8b969fd258b2ff2c5d860d44bfd3f1a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
