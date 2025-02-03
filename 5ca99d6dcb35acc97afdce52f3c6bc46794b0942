@@ -76,6 +76,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ef94c96_3a6ce607",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1672,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "626d6dd7_609d73cb",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "348e9b6d_6e7b68cb",
@@ -149,6 +167,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92b500b1_87a05f8a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2964,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec11fd39_3b40af2e",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af487209_cd28e683",
@@ -180,6 +216,24 @@
       "side": 1,
       "message": "It is a third comment about the name, two others:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3434587/comment/d637fe23_e951aea9/\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3434587/comment/c08a62ad_a89b0e5b/\nPlease respond/wrote under one of them.\n\nIf paused by host, we cannot clean it because we want to resume.\nIf all devices will be disconnected, then it will be removed:\n`connectionStateChanged\u003eSTATE_DISCONNECTED\u003eremoveSinkMetadataFromGroupIfWholeUnsynced`\nIf you remove source, it will be removed:\n`removeSource\u003eremoveSinkMetadata`\nIf you switch source, it will be removed:\n`addSource\u003e!hasRoomForBroadcastSourceAddition\u003eremoveSinkMetadata`\nUnfortunately there is even more complicated case that broadcast is paused by host by removeSource and because of that we need to make some more heuristics:\n`Even if there is a room for broadcast, it could happen that...`",
       "parentUuid": "af487209_cd28e683",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cae3043_ee447501",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3013,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4882065_f69d6f19",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -237,6 +291,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "482aec33_17225f35",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3018,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b45bee66_a6aa38bb",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09ff3ccd_13c70120",
@@ -290,6 +362,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba5c385_2fb6847b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32b4cbf6_550fa487",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d637fe23_e951aea9",
@@ -325,6 +415,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c472147_b5cba0c0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3035,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bda33e8_5036e547",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01c5f91d_4a781829",
@@ -356,6 +464,24 @@
       "side": 1,
       "message": "*where is this check of sync mentioned in this comment ?*\nInside for loop of cource. Here I described why I need to check all sinks from group\n\n*btw. how device could be on \"Target Device List\" if it\u0027s removed ?*\ngetGroupDevicesOrdered from csip always gives all devices no matter of connection state.",
       "parentUuid": "01c5f91d_4a781829",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89a481ef_c1525c0e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3057,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe5d485b_ad38598d",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -413,6 +539,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04ccee8d_5d18dd03",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3064,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c7efc76_50e075a7",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e585217_565682ae",
@@ -444,6 +588,24 @@
       "side": 1,
       "message": "* Not exactly, only to remove old metadata and the old paused broadcastId/Sinks. We don\u0027t have to remove source from the remote device, as it is already removed.\n* It is used only here, so extracting it into a helper would only shorten this method. However, inside the helper, we would still need to retrieve stateMachine and check it again. For now, I left it as is. Maybe we will refactor suspending to avoid removeSource entirely, in which case we could remove this part.\n* This could only happen for the host, and I need this check here to prevent execution from resumeReceiversSourceSynchronization \u003e addSource. Otherwise, it would modify metadata and pausedSinks while iterating over them. In resumeReceiversSourceSynchronization, mPausedBroadcastIds is removed, so this condition will never be fulfilled.\n * Honestly, I don’t know how it behaves in general (e.g., the resync helper), as I’ve never encountered this situation or considered it a valid case.\n * If there is no available room, it will go to the switch statement above. If there is room (e.g., due to multiple available slots), then the condition `(entry.keySet().size() \u003e\u003d stateMachine.getMaximumSourceCapacity())` will be false.\n* This CL is about fixing a regression caused by aosp/3347487, not about refactoring the entire addSource.",
       "parentUuid": "0e585217_565682ae",
+      "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d44587e_357e80f6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3278,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91aa3aab_20c179a8",
       "revId": "5ca99d6dcb35acc97afdce52f3c6bc46794b0942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
