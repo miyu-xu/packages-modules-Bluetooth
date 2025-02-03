@@ -944,6 +944,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16757c94_05e48f4d",
+        "filename": "framework/java/android/bluetooth/BluetoothGattCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-02-03T01:34:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f19649fc_00a285ac",
+      "range": {
+        "startLine": 296,
+        "startChar": 12,
+        "endLine": 296,
+        "endChar": 41
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e561d9e_ced718dc",
@@ -1052,6 +1076,30 @@
       "side": 1,
       "message": "Will follow decision on similar item",
       "parentUuid": "ed8d596c_474456b2",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 58
+      },
+      "revId": "461a2ea7bcf241e31aa795b61242c23eed1a998b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f487658_c1414103",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServerCallback.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-02-03T01:34:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "283bd1e0_7011bdbf",
       "range": {
         "startLine": 236,
         "startChar": 0,
