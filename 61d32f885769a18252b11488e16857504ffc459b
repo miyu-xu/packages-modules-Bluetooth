@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e633ccf7_c51810f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-03T21:47:58Z",
+      "side": 1,
+      "message": "Thank you Rongxuan on update of this CL. In generall it looks ok for now.\n\nI have general question on this. Since this bug origin was that Bluetooth was not able to scan while `Location` was disabled - why there was no UI popup when Bluetooth was enabled that a `Location` permission is required ?",
+      "revId": "61d32f885769a18252b11488e16857504ffc459b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
