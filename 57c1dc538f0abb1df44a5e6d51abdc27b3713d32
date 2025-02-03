@@ -16,6 +16,24 @@
       "message": "Can you please explain in the message why you are doing this change ?",
       "revId": "57c1dc538f0abb1df44a5e6d51abdc27b3713d32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "305cb364_cd9c6a43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-02-03T11:54:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00dc8e0b_d4db9434",
+      "revId": "57c1dc538f0abb1df44a5e6d51abdc27b3713d32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
