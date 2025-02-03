@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fad4e0d_b2ac49fc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "Agreed the naming is a bit confusing, but it\u0027s just consistent with BluetoothLeScanner usages.\n\nMaybe I can rename it to BassScanCallbackWrapper to make it better? Let me know if you have diff thoughts.",
+      "parentUuid": "1c056f55_3763979f",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8189ac2d_008a6d69",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-03T10:00:23Z",
       "side": 1,
       "message": "this object has two meanings:\n- status\n- ID\n\nWhat about split this information into two and add simply methods to check status e.g. isInitialized().",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad6d399b_38aea545",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "IMO using one scanner id with status is fine here and works better to simply the logic and avoid synchronization issues. Also this is consistent with other BluetoothLeScanner.java usages.\n\nBut I got your confusion here, updating the name to improve this.\n        private static final int SCANNER_ID_NOT_INITIALIZED \u003d -2;\n        private static final int SCANNER_ID_INITIALIZING \u003d -1;",
+      "parentUuid": "8189ac2d_008a6d69",
       "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -80,6 +116,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94ee96fc_5da820dc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f33a3e1_6fc2f007",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d88300a_f3519e13",
@@ -111,6 +165,24 @@
           ]
         }
       ],
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e308036d_80f3743c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d88300a_f3519e13",
       "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -170,6 +242,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fff749f_5407fbfc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "I rename it to mBaasUuidFilters if that sounds better.\nBut this CL intended to avoid any logic change if the code was moved from somewhere else. line.2088.",
+      "parentUuid": "20584a28_d8400c77",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a39fda2_df821fad",
@@ -215,6 +305,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4146abf_75bb6412",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a39fda2_df821fad",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12dfa160_34e2af56",
@@ -232,6 +340,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea2faa4_f7949a67",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "yes, this is just simply coped from line.2187, and removed the two released flags.\nSo this is intended no logic change here.",
+      "parentUuid": "12dfa160_34e2af56",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f40b696c_6017c09f",
@@ -245,6 +371,30 @@
       "writtenOn": "2025-02-03T08:09:04Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 2190,
+        "startChar": 0,
+        "endLine": 2190,
+        "endChar": 103
+      },
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee0241d3_5dedd24b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2190,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T18:37:38Z",
+      "side": 1,
+      "message": "not feasible to fix without another refactoring of this logic :p, and I\u0027d like to avoid mixing that here.",
+      "parentUuid": "f40b696c_6017c09f",
       "range": {
         "startLine": 2190,
         "startChar": 0,
