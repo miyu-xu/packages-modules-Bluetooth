@@ -69,6 +69,24 @@
       "parentUuid": "bfdce088_01980487",
       "revId": "dbee0ae0e70593e0c0dda360e309813e3b684bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c127067b_75430323",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-03T16:09:03Z",
+      "side": 1,
+      "message": "Definitely. I\u0027ll add a CL on top.",
+      "parentUuid": "8b5d3142_58a527ba",
+      "revId": "dbee0ae0e70593e0c0dda360e309813e3b684bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
