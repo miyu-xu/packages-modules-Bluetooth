@@ -2430,15 +2430,26 @@ public class BassClientServiceTest {
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
         assertThat(mStateMachines).hasSize(2);
         for (BassClientStateMachine sm : mStateMachines.values()) {
-            BluetoothDevice dev = sm.getDevice();
-            try {
-                verify(mCallback)
-                        .onSourceRemoveFailed(
-                                eq(dev),
-                                eq(TEST_SOURCE_ID),
-                                eq(BluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR));
-            } catch (RemoteException e) {
-                throw e.rethrowFromSystemServer();
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                try {
+                    verify(mCallback)
+                            .onSourceRemoveFailed(
+                                    eq(sm.getDevice()),
+                                    eq(TEST_SOURCE_ID),
+                                    eq(BluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR));
+                } catch (RemoteException e) {
+                    throw e.rethrowFromSystemServer();
+                }
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                try {
+                    verify(mCallback)
+                            .onSourceRemoveFailed(
+                                    eq(sm.getDevice()),
+                                    eq(TEST_SOURCE_ID + 1),
+                                    eq(BluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR));
+                } catch (RemoteException e) {
+                    throw e.rethrowFromSystemServer();
+                }
             }
         }
     }
