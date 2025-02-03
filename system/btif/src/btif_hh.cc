@@ -1538,18 +1538,45 @@ static void btif_hh_transport_select(tAclLinkSpec& link_spec) {
   if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) == BT_STATUS_SUCCESS) {
     int count = remote_properties.len / sizeof(remote_uuids[0]);
     for (int i = 0; i < count; i++) {
-      if (remote_uuids[i].Is16Bit()) {
-        if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
-          hid_available = true;
-        } else if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_LE_HID) {
-          hogp_available = true;
+      const Uuid& uuid = uuids[i];
+      if (!com::android::bluetooth::flags::separate_service_storage()) {
+        if (uuid.Is16Bit()) {
+          if (uuid.As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
+            hid_available = true;
+          } else if (uuid.As16Bit() == UUID_SERVCLASS_LE_HID) {
+            hogp_available = true;
+          }
+        } else if (uuid == ANDROID_HEADTRACKER_SERVICE_UUID) {
+          headtracker_available = true;
         }
-      } else if (remote_uuids[i] == ANDROID_HEADTRACKER_SERVICE_UUID) {
-        headtracker_available = true;
-      }
 
-      if (hid_available && (hogp_available || headtracker_available)) {
-        break;
+        if (hid_available && (hogp_available || headtracker_available)) {
+          break;
+        }
+      } else {
+        if (uuid.Is16Bit() && uuid.As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
+          hid_available = true;
+          break;
+        }
+      }
+    }
+  }
+
+  // when removing separate_service_storage, also look through the loop above
+  if (com::android::bluetooth::flags::separate_service_storage()) {
+    bluetooth::Uuid uuids[BT_MAX_NUM_UUIDS] = {};
+    bt_property_t prop = {BT_PROPERTY_UUIDS_LE, sizeof(uuids), &uuids};
+    if (btif_storage_get_remote_device_property(&bd_addr, &prop) == BT_STATUS_SUCCESS) {
+      int count = prop.len / sizeof(uuids[0]);
+      for (int i = 0; i < count; i++) {
+        const Uuid& uuid = uuids[i];
+        if (uuid.Is16Bit() && uuid.As16Bit() == UUID_SERVCLASS_LE_HID) {
+          hogp_available = true;
+          break;
+        } else if (uuid == ANDROID_HEADTRACKER_SERVICE_UUID) {
+          headtracker_available = true;
+          break;
+        }
       }
     }
   }
