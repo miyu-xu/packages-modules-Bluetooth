@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56aad975_fbbc3e6b",
+        "filename": "android/pandora/test/a2dp/signaling_channel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-03T16:57:45Z",
+      "side": 1,
+      "message": "nit: avoid shorthands in naming\n\n```\naccept_get_all_capabilities\naccept_set_configuration\n```",
+      "range": {
+        "startLine": 211,
+        "startChar": 14,
+        "endLine": 211,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "56d12986_51c7851f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 211,
+                "startChar": 0,
+                "endLine": 212,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_get_all_capabilities(self, service_capabilities: List[ServiceCapability]):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 218,
+                "endChar": 0
+              },
+              "replacement": "    async def accept_set_configuration(self):\n"
+            },
+            {
+              "path": "android/pandora/test/a2dp/signaling_channel.py",
+              "range": {
+                "startLine": 256,
+                "startChar": 0,
+                "endLine": 258,
+                "endChar": 0
+              },
+              "replacement": "        await self.accept_get_all_capabilities(service_capabilities)\n        await self.accept_set_configuration()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "024a19068cc414c22840949535d745b18f9bf3f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
