@@ -16,6 +16,24 @@
       "message": "Thank you Rongxuan on update of this CL. In generall it looks ok for now.\n\nI have general question on this. Since this bug origin was that Bluetooth was not able to scan while `Location` was disabled - why there was no UI popup when Bluetooth was enabled that a `Location` permission is required ?",
       "revId": "61d32f885769a18252b11488e16857504ffc459b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e07e477_23f333ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-03T22:07:51Z",
+      "side": 1,
+      "message": "@gkolodziejczyk@google.com, you got the point, that\u0027s actually the problem with the current flow. BT service(BASS) is going through framework API to start scanning, so the client is BT not UI/App and there is no permission violation detected. \nWhile for this system api and our 1p Settings app, it\u0027s not necessary to check the location permission though.",
+      "parentUuid": "e633ccf7_c51810f1",
+      "revId": "61d32f885769a18252b11488e16857504ffc459b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
