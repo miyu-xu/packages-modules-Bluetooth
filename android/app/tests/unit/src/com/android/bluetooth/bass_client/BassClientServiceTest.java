@@ -2430,15 +2430,26 @@ public class BassClientServiceTest {
         TestUtils.waitForLooperToFinishScheduledTask(mBassClientService.getCallbacks().getLooper());
         assertThat(mStateMachines).hasSize(2);
         for (BassClientStateMachine sm : mStateMachines.values()) {
-            BluetoothDevice dev = sm.getDevice();
-            try {
-                verify(mCallback)
-                        .onSourceRemoveFailed(
-                                eq(dev),
-                                eq(TEST_SOURCE_ID),
-                                eq(BluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR));
-            } catch (RemoteException e) {
-                throw e.rethrowFromSystemServer();
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                try {
+                    verify(mCallback)
+                            .onSourceRemoveFailed(
+                                    eq(sm.getDevice()),
+                                    eq(TEST_SOURCE_ID),
+                                    eq(BluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR));
+                } catch (RemoteException e) {
+                    throw e.rethrowFromSystemServer();
+                }
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                try {
+                    verify(mCallback)
+                            .onSourceRemoveFailed(
+                                    eq(sm.getDevice()),
+                                    eq(TEST_SOURCE_ID + 1),
+                                    eq(BluetoothStatusCodes.ERROR_REMOTE_LINK_ERROR));
+                } catch (RemoteException e) {
+                    throw e.rethrowFromSystemServer();
+                }
             }
         }
     }
@@ -7168,5 +7179,43 @@ public class BassClientServiceTest {
                 0 /* STATUS_LOCAL_STREAM_REQUESTED */);
         injectRemoteSourceStateChanged(meta, false, false);
         checkResumeSynchronizationByHost();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void removeSource_duringSuspend() {
+        prepareSynchronizedPair();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+        checkNoSinkPause();
+        verifyRemoveMessageAndInjectSourceRemoval();
+
+        checkNoResumeSynchronizationByHost();
+    }
+
+    @Test
+    @EnableFlags({
+        Flags.FLAG_LEAUDIO_BROADCAST_RESYNC_HELPER,
+        Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE
+    })
+    public void stopReceivers_duringSuspend() {
+        prepareSynchronizedPair();
+
+        // Suspend receivers, HOST_INTENTIONAL
+        mBassClientService.suspendReceiversSourceSynchronization(TEST_BROADCAST_ID);
+
+        // Remove source, HOST_INTENTIONAL
+        mBassClientService.stopReceiversSourceSynchronization(TEST_BROADCAST_ID);
+        checkNoSinkPause();
+        verifyRemoveMessageAndInjectSourceRemoval();
+
+        checkNoResumeSynchronizationByHost();
     }
 }
