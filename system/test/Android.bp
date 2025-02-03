@@ -220,6 +220,13 @@ filegroup {
 }
 
 filegroup {
+    name: "TestMockGdOsMetrics",
+    srcs: [
+        "mock/mock_gd_os_metrics.cc",
+    ],
+}
+
+filegroup {
     name: "TestMockStackA2dp",
     srcs: [
         "mock/mock_stack_a2dp_*.cc",
