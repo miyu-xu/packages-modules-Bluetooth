@@ -1,0 +1,563 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3ba25c_4ed7af42",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "Create separate CL for this Test file and test infrastucture files",
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eea334f_b33976b2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "2025",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cc6d5941_bfecbf58",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright (C) 2025 The Android Open Source Project\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8edd465_70bc38fe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "android.bluetooth.hfp",
+      "range": {
+        "startLine": 17,
+        "startChar": 10,
+        "endLine": 17,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2c944dd9_3d6b7f03",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 17,
+                "startChar": 0,
+                "endLine": 18,
+                "endChar": 0
+              },
+              "replacement": "package android.bluetooth.hfp;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c267b65e_7ebdf16d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "use .class.getSimpleName();",
+      "range": {
+        "startLine": 87,
+        "startChar": 38,
+        "endLine": 87,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a353a57e_dea7a0ba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    private static final String TAG \u003d HfpTest.class.getSimpleName();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a7e954_428c9415",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "please follow these [instructions](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/pairing/OobPairingTest.java;l\u003d197;bpv\u003d0)",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "681a03bc_11b73cf5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 27,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 59,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "import java.time.Duration;\nimport java.util.Arrays;\nimport java.util.HashMap;\nimport java.util.Map;\nimport java.util.Set;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 79,
+                "startChar": 0,
+                "endLine": 85,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "    // TODO(b/324350190): Refactor intent handler to use a fake BluetoothManager\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d6f94de_ceccf084",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "HFGrpc",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ef5460f5_2dbbb2d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 38,
+                "endChar": 0
+              },
+              "replacement": "import pandora.HFGrpc;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+              "range": {
+                "startLine": 250,
+                "startChar": 0,
+                "endLine": 252,
+                "endChar": 0
+              },
+              "replacement": "    public HFGrpc.HFStub hf() {\n        return HFGrpc.newStub(mChannel);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+              "range": {
+                "startLine": 255,
+                "startChar": 0,
+                "endLine": 257,
+                "endChar": 0
+              },
+              "replacement": "    public HFGrpc.HFBlockingStub hfBlocking() {\n        return HFGrpc.newBlockingStub(mChannel);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9807d103_2d3ffd39",
+        "filename": "framework/tests/bumble/src/bumble_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "HFservice",
+      "range": {
+        "startLine": 31,
+        "startChar": 35,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ae29689b_680d7c83",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/bumble_server.py",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "from bumble_experimental.hf import HFService\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/bumble_server.py",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "from pandora_experimental.hf_grpc_aio import add_HFServicer_to_server\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/bumble_server.py",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": "    bumble_server.register_servicer_hook(lambda bumble, _, server: add_HFServicer_to_server(HFService(bumble.device), server))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7587d12_7c2ea6d3",
+        "filename": "pandora/interfaces/pandora_experimental/hf.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "HF",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2cc79919_898fea30",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hf.proto",
+              "range": {
+                "startLine": 9,
+                "startChar": 0,
+                "endLine": 10,
+                "endChar": 0
+              },
+              "replacement": "service HF {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1eb403b_9188bd70",
+        "filename": "pandora/interfaces/pandora_experimental/hf.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "I think we need input `bd address` for these rpc",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 72
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b846ae28_18df476e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hf.proto",
+              "range": {
+                "startLine": 11,
+                "startChar": 0,
+                "endLine": 13,
+                "endChar": 0
+              },
+              "replacement": "  rpc Connect(ConnectRequest) returns (google.protobuf.Empty);\n  rpc Aclconnect(AclConnectRequest) returns (google.protobuf.Empty);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hf.proto",
+              "range": {
+                "startLine": 15,
+                "startChar": 0,
+                "endLine": 15,
+                "endChar": 0
+              },
+              "replacement": "\nmessage ConnectRequest {\n  string bd_addr \u003d 1;\n}\n\nmessage AclConnectRequest {\n  string bd_addr \u003d 1;\n}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55c3cda8_8ad1e8b4",
+        "filename": "pandora/server/bumble_experimental/hf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "address should not hardcode",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d994bd43_02dde170",
+        "filename": "pandora/server/bumble_experimental/hf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-04T12:12:53Z",
+      "side": 1,
+      "message": "HFService",
+      "range": {
+        "startLine": 102,
+        "startChar": 6,
+        "endLine": 102,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7ce20699_2eb909ac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "from pandora_experimental.hf_grpc_aio import HFServicer\n"
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "class HFService(HFServicer):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
