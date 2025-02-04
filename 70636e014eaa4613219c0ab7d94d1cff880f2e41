@@ -1,0 +1,494 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce45879_b6fc62e6",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-04T02:57:29Z",
+      "side": 1,
+      "message": "APPEARANCE_TO_COD_PHONE",
+      "fixSuggestions": [
+        {
+          "fixId": "2e630554_2a4cab8c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": " *  new macro to the appropriate APPEARANCE_TO_COD_CATEGORY_XXXX macro, and then\n *  add this APPEARANCE_TO_COD_CATEGORY_XXXX macro to the APPEARANCE_TO_COD macro\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0000(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0001(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0002(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0003(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0005(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0006(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0007(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000A(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000B(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 112,
+                "startChar": 0,
+                "endLine": 113,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000C(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000D(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000E(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000F(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0010(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0011(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 402,
+                "startChar": 0,
+                "endLine": 403,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0025(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 467,
+                "startChar": 0,
+                "endLine": 468,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0031(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 476,
+                "startChar": 0,
+                "endLine": 477,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0032(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 536,
+                "startChar": 0,
+                "endLine": 554,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0001(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0002(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0003(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0005(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0006(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0007(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000A(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000B(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000C(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000D(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000E(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000F(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0010(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0011(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0025(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0031(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0032(X)\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 556,
+                "startChar": 0,
+                "endLine": 557,
+                "endChar": 0
+              },
+              "replacement": "#define GENERATE_BLE_APPEARANCE_DEFINITION(appearance, value, service, major, minor) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 560,
+                "startChar": 0,
+                "endLine": 561,
+                "endChar": 0
+              },
+              "replacement": "APPEARANCE_TO_COD(GENERATE_BLE_APPEARANCE_DEFINITION)\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 562,
+                "startChar": 0,
+                "endLine": 563,
+                "endChar": 0
+              },
+              "replacement": "#undef GENERATE_BLE_APPEARANCE_DEFINITION\n"
+            }
+          ]
+        }
+      ],
+      "revId": "70636e014eaa4613219c0ab7d94d1cff880f2e41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc9d89a_1b6a3928",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-04T02:57:29Z",
+      "side": 1,
+      "message": "#define APPEARANCE_MASK(_CATEGORY) (_CATEGORY \u003c\u003c 6)\n\n#define APPEARANCE_CATEGORY_PHONE 0x001\n#define APPEARANCE_TO_COD_PHONE(_X) \\\n  _X(\u003cNAME\u003e, APPEARANCE_MASK(APPEARANCE_CATEGORY_PHONE), \u003cCOD_SERVICE\u003e, \u003cCOD_MAJOR\u003e, \u003cCOD_MINOR\u003e)\n\n#define APPEARANCE_TO_COD_CATEGORY(_X) \\\n  APPEARANCE_TO_COD_PHONE(_X)",
+      "fixSuggestions": [
+        {
+          "fixId": "d03c5106_3bcf4eb4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": " *  new macro to the appropriate APPEARANCE_TO_COD_CATEGORY_XXXX macro, and then\n *  add this APPEARANCE_TO_COD_CATEGORY_XXXX macro to the APPEARANCE_TO_COD macro\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0000(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0001(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0002(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0003(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0005(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0006(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0007(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000A(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000B(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 112,
+                "startChar": 0,
+                "endLine": 113,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000C(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000D(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000E(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_000F(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0010(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0011(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 402,
+                "startChar": 0,
+                "endLine": 403,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0025(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 467,
+                "startChar": 0,
+                "endLine": 468,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0031(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 476,
+                "startChar": 0,
+                "endLine": 477,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD_CATEGORY_0032(X) \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 536,
+                "startChar": 0,
+                "endLine": 554,
+                "endChar": 0
+              },
+              "replacement": "#define APPEARANCE_TO_COD(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0000(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0001(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0002(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0003(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0005(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0006(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0007(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000A(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000B(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000C(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000D(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000E(X) \\\n  APPEARANCE_TO_COD_CATEGORY_000F(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0010(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0011(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0025(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0031(X) \\\n  APPEARANCE_TO_COD_CATEGORY_0032(X)\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 560,
+                "startChar": 0,
+                "endLine": 561,
+                "endChar": 0
+              },
+              "replacement": "APPEARANCE_TO_COD(generateBLEAppearanceDefinition)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "70636e014eaa4613219c0ab7d94d1cff880f2e41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
