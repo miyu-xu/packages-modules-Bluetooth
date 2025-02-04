@@ -34,6 +34,7 @@ import pandora.BumbleConfigGrpc;
 import pandora.DckGrpc;
 import pandora.GATTGrpc;
 import pandora.HIDGrpc;
+import pandora.HFGrpc;
 import pandora.HostGrpc;
 import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
@@ -243,5 +244,14 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora L2CAP blocking service */
     public L2CAPGrpc.L2CAPBlockingStub l2capBlocking() {
         return L2CAPGrpc.newBlockingStub(mChannel);
+    }
+    /** Get Pandora HFP service */
+    public HFGrpc.HFStub hf() {
+        return HFGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora HFP blocking service */
+    public HFGrpc.HFBlockingStub hfBlocking() {
+        return HFGrpc.newBlockingStub(mChannel);
     }
 }

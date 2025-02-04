@@ -28,6 +28,8 @@ from bumble_experimental.gatt import GATTService
 from bumble_experimental.hid import HIDService
 from bumble_experimental.oob import OOBService
 from bumble_experimental.rfcomm import RFCOMMService
+from bumble_experimental.hf import HFService
+
 from pandora_experimental.asha_grpc_aio import add_AshaServicer_to_server
 from pandora_experimental.avrcp_grpc_aio import add_AVRCPServicer_to_server
 from pandora_experimental.bumble_config_grpc_aio import \
@@ -37,6 +39,7 @@ from pandora_experimental.gatt_grpc_aio import add_GATTServicer_to_server
 from pandora_experimental.hid_grpc_aio import add_HIDServicer_to_server
 from pandora_experimental.oob_grpc_aio import add_OOBServicer_to_server
 from pandora_experimental.rfcomm_grpc_aio import add_RFCOMMServicer_to_server
+from pandora_experimental.hf_grpc_aio import add_HFServicer_to_server
 
 BUMBLE_SERVER_GRPC_PORT = 7999
 ROOTCANAL_PORT_CUTTLEFISH = 7300
@@ -91,7 +94,7 @@ def register_experimental_services() -> None:
         lambda bumble, _, server: add_OOBServicer_to_server(OOBService(bumble.device), server))
     bumble_server.register_servicer_hook(
         lambda bumble, config, server: add_BumbleConfigServicer_to_server(BumbleConfigService(bumble.device, config), server))
-
+    bumble_server.register_servicer_hook(lambda bumble, _, server: add_HFServicer_to_server(HFService(bumble.device), server))
 
 def retrieve_config(config: str) -> Dict[str, Any]:
     if not config:
