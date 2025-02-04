@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "688a523a_72e86be0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547664
+      },
+      "writtenOn": "2025-02-04T12:47:23Z",
+      "side": 1,
+      "message": "It seems there are merge conflicts, @Venkata could you rebase and update the patch for review?",
+      "revId": "16e6f60d48aa71e2b455f2e8cb4bfee2d0203de4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
