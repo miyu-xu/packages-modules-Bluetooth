@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f98cf4_e912bb17",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3153,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-04T01:22:44Z",
+      "side": 1,
+      "message": "Isn\u0027t storeSinkMetadata all invoked after this? In which case, we will have this stored before this line?",
+      "revId": "e0a666202a5999e13d74fa2212a61ccfe8d2f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
