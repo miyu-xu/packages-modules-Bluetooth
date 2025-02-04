@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9049a7d8_f41e0f64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-04T11:16:08Z",
+      "side": 1,
+      "message": "Yes, We have merged this unit test CL in the same code CL : https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3433718",
+      "parentUuid": "3c5bb9bf_31cebc8d",
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924a896c_7c298eeb",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
         "patchSetId": 4
@@ -61,6 +79,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af0114e0_6ce40430",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-04T11:16:08Z",
+      "side": 1,
+      "message": "Thanks,\nUpdated.",
+      "parentUuid": "924a896c_7c298eeb",
+      "range": {
+        "startLine": 884,
+        "startChar": 51,
+        "endLine": 884,
+        "endChar": 76
+      },
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e47b157_1d07d5c6",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
         "patchSetId": 4
@@ -72,6 +114,30 @@
       "writtenOn": "2025-01-27T19:49:41Z",
       "side": 1,
       "message": "by using InOrder, you can simply check that the intent is not sent.\n\nsomething like\n\n```\nmInOrder.verify(mAdapterService, never()).sendBroadcast(any(), eq(BLUETOOTH_CONNECT), any(Bundle.class));\n```",
+      "range": {
+        "startLine": 937,
+        "startChar": 7,
+        "endLine": 940,
+        "endChar": 76
+      },
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6021713_abc1d16c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-04T11:16:08Z",
+      "side": 1,
+      "message": "Thanks,\nUpdated.",
+      "parentUuid": "0e47b157_1d07d5c6",
       "range": {
         "startLine": 937,
         "startChar": 7,

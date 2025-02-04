@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f54691_465b6bc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-04T11:16:08Z",
+      "side": 1,
+      "message": "We have incorporated the review comments and merged with the code CL.\nPlease check : https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3433718 and let us know.",
+      "revId": "040566fda64d8530a50d9da0dfa2bad21d704b98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
