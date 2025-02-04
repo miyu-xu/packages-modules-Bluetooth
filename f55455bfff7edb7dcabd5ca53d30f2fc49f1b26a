@@ -70,6 +70,30 @@
       },
       "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae9369cf_1c7c91be",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-04T23:03:39Z",
+      "side": 1,
+      "message": "Last we discussed you mentionned it was a request that was missing, not the response ..",
+      "parentUuid": "c308166e_944a5715",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 5
+      },
+      "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
