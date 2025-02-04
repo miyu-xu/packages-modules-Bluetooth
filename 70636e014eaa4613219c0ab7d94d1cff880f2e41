@@ -256,6 +256,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e039a00_10f219a9",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-04T08:54:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fce45879_b6fc62e6",
+      "revId": "70636e014eaa4613219c0ab7d94d1cff880f2e41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdc9d89a_1b6a3928",
@@ -487,6 +505,24 @@
           ]
         }
       ],
+      "revId": "70636e014eaa4613219c0ab7d94d1cff880f2e41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83e34027_a9664e05",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-04T08:54:14Z",
+      "side": 1,
+      "message": "Tried doing this, but this will cause inconsistency in the #defines appearances (which doesnt have mapping) and the one that does, in terms of the value visible to the user, so adding new ones, or updating the mapping may be confusing.\nHence keeping this as is, if required we can do this way later when we are done with all the mappings for the currently defined appearances.",
+      "parentUuid": "bdc9d89a_1b6a3928",
       "revId": "70636e014eaa4613219c0ab7d94d1cff880f2e41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
