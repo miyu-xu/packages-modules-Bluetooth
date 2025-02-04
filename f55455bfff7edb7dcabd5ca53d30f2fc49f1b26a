@@ -22,6 +22,30 @@
       },
       "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e370e7_cb237ca6",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-04T17:54:58Z",
+      "side": 1,
+      "message": "I see. It was failed in DEVA/RFC/BV-05-C before. Let me check it could pass on the latest build.",
+      "parentUuid": "d7d5e840_098da0ab",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 5
+      },
+      "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
