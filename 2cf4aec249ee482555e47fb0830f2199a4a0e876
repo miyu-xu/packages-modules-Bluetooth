@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a65bb7_f778eaba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3861988
+      },
+      "writtenOn": "2025-02-04T08:29:46Z",
+      "side": 1,
+      "message": "Why I\u0027m I not receiving any notifications on my device? I don\u0027t use USB device. Please do not restrict any traffic on my device. I want all incoming messages to my apps",
+      "revId": "2cf4aec249ee482555e47fb0830f2199a4a0e876",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
