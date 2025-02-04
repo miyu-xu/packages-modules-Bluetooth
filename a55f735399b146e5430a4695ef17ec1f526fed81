@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d6bb500_106830e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T01:16:48Z",
+      "side": 1,
+      "message": "Please move change id to the last line",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "a55f735399b146e5430a4695ef17ec1f526fed81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fcd60a9_a19b38b1",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T01:16:48Z",
+      "side": 1,
+      "message": "nit: is this unintentional? sorted below?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "a55f735399b146e5430a4695ef17ec1f526fed81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37197dac_95810585",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1537,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T01:16:48Z",
+      "side": 1,
+      "message": "since you are doing this, do you want to convert this in an `unordered_set` and check for `contains` instead for 3 boolean results?",
+      "range": {
+        "startLine": 1537,
+        "startChar": 2,
+        "endLine": 1537,
+        "endChar": 31
+      },
+      "revId": "a55f735399b146e5430a4695ef17ec1f526fed81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52b8b69a_ad406440",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T01:16:48Z",
+      "side": 1,
+      "message": "Should we allow the for-loop to run through the end so that `hid_available`, `hogp_available`, and `headtracker_available` can all be populated?\n\nOtherwise, if `headtracker_available` is put in front of `hogp_available`, you will break early and not updating `hogp_available` to its correct value\n\nAnd if `headtracker_available` and `hogp_available` are always or\u0027ed together in subsequent code, then it is ok to return early, but you should create a new variable like \"le_hid_available \u003d hogp_available || headtracker_available` and use that in follow-up code instead\n\nIMO, letting that for-loop runnign through the end is eaasier.",
+      "range": {
+        "startLine": 1549,
+        "startChar": 0,
+        "endLine": 1551,
+        "endChar": 5
+      },
+      "revId": "a55f735399b146e5430a4695ef17ec1f526fed81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
