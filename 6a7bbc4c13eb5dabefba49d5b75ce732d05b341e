@@ -22,6 +22,30 @@
       },
       "revId": "6a7bbc4c13eb5dabefba49d5b75ce732d05b341e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2c4c852_32cd379e",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-02-04T17:55:28Z",
+      "side": 1,
+      "message": "It is one of critical parameters for subrating along with: \n-Subrate Factor\n-Latency\n\nContinuation Number is the number of BLE events the link will operate at the Connection Interval,  before falling back to the Idle Interval to save power (SubrateFactor x Connection Interval)",
+      "parentUuid": "1e721139_96bab1ba",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 60
+      },
+      "revId": "6a7bbc4c13eb5dabefba49d5b75ce732d05b341e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
