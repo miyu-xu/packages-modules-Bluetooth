@@ -1454,20 +1454,39 @@ void btif_storage_remove_gatt_cl_db_hash(const RawAddress& bd_addr) {
           bd_addr));
 }
 
-std::vector<bluetooth::Uuid> btif_storage_get_services(const RawAddress& bd_addr) {
+std::vector<bluetooth::Uuid> btif_storage_get_services(const RawAddress& bd_addr,
+                                                       tBT_TRANSPORT transport) {
+  if (!com::android::bluetooth::flags::separate_service_storage()) {
+    transport = BT_TRANSPORT_BR_EDR;
+  }
+
+  bool get_bredr_services = false;
+  bool get_le_services = false;
+  if (transport == BT_TRANSPORT_BR_EDR) {
+    get_bredr_services = true;
+  } else if (transport == BT_TRANSPORT_LE) {
+    get_le_services = true;
+  } else {
+    get_bredr_services = true;
+    get_le_services = true;
+  }
+
   uint8_t count = 0;
   std::array<bluetooth::Uuid, BT_MAX_NUM_UUIDS> uuids = {};
 
   // Get BR/EDR services from storage
-  bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(uuids), &uuids};
-  if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) == BT_STATUS_SUCCESS) {
-    count = remote_properties.len / sizeof(uuids[0]);
+  if (get_bredr_services) {
+    bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(uuids), &uuids};
+    if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) ==
+        BT_STATUS_SUCCESS) {
+      count = remote_properties.len / sizeof(uuids[0]);
+    }
   }
 
   // Get LE services from storage
-  if (com::android::bluetooth::flags::separate_service_storage()) {
+  if (get_le_services) {
     int size = (uuids.size() - count) * sizeof(uuids[0]);
-    remote_properties = {BT_PROPERTY_UUIDS_LE, size, &uuids[count]};
+    bt_property_t remote_properties = {BT_PROPERTY_UUIDS_LE, size, &uuids[count]};
     if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) ==
         BT_STATUS_SUCCESS) {
       count += remote_properties.len / sizeof(uuids[0]);
