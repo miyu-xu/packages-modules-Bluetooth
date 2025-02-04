@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "HFProto";
+
+import "google/protobuf/empty.proto";
+
+service HF {
+    // Profile Connect
+    rpc Connect(HfConnectRequest) returns (google.protobuf.Empty);
+    rpc Disconnect(HfDisconnectRequest) returns (google.protobuf.Empty);
+}
+
+message HfConnectRequest {
+    string address = 1;
+}
+
+message HfDisconnectRequest {
+    string address = 1;
+}
+
