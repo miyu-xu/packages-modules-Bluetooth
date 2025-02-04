@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0162f622_6e8bacf5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1730,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-04T23:15:40Z",
+      "side": 1,
+      "message": "Device will never be null here right ? it is coming from HeadsetStateMachine that is created on top of an existing device...\n\nArgh, but I see that everywhere. Ok then to match current implementation but we could look into that to make it better uin follow-up",
+      "range": {
+        "startLine": 1727,
+        "startChar": 0,
+        "endLine": 1730,
+        "endChar": 9
+      },
+      "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a70c17b0_30fd86bb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-04T23:15:40Z",
+      "side": 1,
+      "message": "this was check with inOrder before, and  here it is not.\n\nWe should keep inorder for al the check.\n\nAlso, to validate the intent, please look into the intent matcher (hasAction, hasExtra) You\u0027ll find some example in hap tests.",
+      "range": {
+        "startLine": 938,
+        "startChar": 17,
+        "endLine": 938,
+        "endChar": 30
+      },
+      "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
