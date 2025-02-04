@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ae675ed_fe00c544",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2121,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T11:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20dd1b55_b5a6813a",
+      "range": {
+        "startLine": 2097,
+        "startChar": 0,
+        "endLine": 2121,
+        "endChar": 21
+      },
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04ebb566_3fa4006e",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-01-31T01:14:31Z",
       "side": 1,
       "message": "are we intended to print twice with 2305?",
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd2bb750_78584389",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2240,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T11:11:08Z",
+      "side": 1,
+      "message": "Yes, as it is good to see what was in variables before clearing and how it was done. \nI use verbose severity as there could be a lot of logs especially under cancelActiveSync.",
+      "parentUuid": "04ebb566_3fa4006e",
       "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d555be0e_dd27e8a4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2243,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T11:11:08Z",
+      "side": 1,
+      "message": "yep, thanks, fixed",
+      "parentUuid": "4b44bd94_966a9fa5",
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48c3e83c_a8421eb0",
@@ -75,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d623f1b4_3af8b980",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2270,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T11:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48c3e83c_a8421eb0",
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2966b3f4_dfd5b279",
@@ -88,6 +166,30 @@
       "writtenOn": "2025-01-31T01:14:31Z",
       "side": 1,
       "message": "can we have some parser method for this?\n\nint parseBroadcastIdFromScanResult(sourceSyncRequest.getScanResult())",
+      "range": {
+        "startLine": 2275,
+        "startChar": 0,
+        "endLine": 2282,
+        "endChar": 36
+      },
+      "revId": "4f3110cbb8b6f1d32e4fbab934375224f4b554a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31ee8add_0de1a79a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2282,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T11:11:08Z",
+      "side": 1,
+      "message": "thanks, added in new (previous) CL aosp/3473463",
+      "parentUuid": "2966b3f4_dfd5b279",
       "range": {
         "startLine": 2275,
         "startChar": 0,
