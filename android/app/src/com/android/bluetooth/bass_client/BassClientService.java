@@ -44,8 +44,6 @@ import android.bluetooth.BluetoothLeBroadcastReceiveState;
 import android.bluetooth.BluetoothLeBroadcastSubgroup;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
-import android.bluetooth.BluetoothUtils;
-import android.bluetooth.BluetoothUtils.TypeValueEntry;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothLeBroadcastAssistant;
 import android.bluetooth.IBluetoothLeBroadcastAssistantCallback;
@@ -82,7 +80,6 @@ import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -2018,30 +2015,16 @@ public class BassClientService extends ProfileService {
                                     Log.e(TAG, "LE Scan has already started");
                                     return;
                                 }
-                                ScanRecord scanRecord = result.getScanRecord();
-                                if (scanRecord == null) {
-                                    Log.e(TAG, "Null scan record");
+                                Integer broadcastId = BassUtils.getBroadcastId(result);
+                                if (broadcastId == BassConstants.INVALID_BROADCAST_ID) {
                                     return;
                                 }
-                                Map<ParcelUuid, byte[]> listOfUuids = scanRecord.getServiceData();
-                                if (listOfUuids == null) {
-                                    Log.e(TAG, "Service data is null");
-                                    return;
-                                }
-                                if (!listOfUuids.containsKey(BassConstants.BAAS_UUID)) {
-                                    return;
-                                }
-                                log("Broadcast Source Found:" + result.getDevice());
-                                byte[] broadcastIdArray = listOfUuids.get(BassConstants.BAAS_UUID);
-                                int broadcastId = BassUtils.parseBroadcastId(broadcastIdArray);
 
+                                log("Broadcast Source Found:" + result.getDevice());
                                 sEventLogger.logd(
                                         TAG,
                                         "Broadcast Source Found: Broadcast ID: " + broadcastId);
 
-                                if (broadcastId == BassConstants.INVALID_BROADCAST_ID) {
-                                    return;
-                                }
                                 if (!mCachedBroadcasts.containsKey(broadcastId)) {
                                     log("selectBroadcastSource: broadcastId " + broadcastId);
                                     mCachedBroadcasts.put(broadcastId, result);
@@ -2761,32 +2744,6 @@ public class BassClientService extends ProfileService {
         return false;
     }
 
-    private String checkAndParseBroadcastName(ScanRecord record) {
-        log("checkAndParseBroadcastName");
-        byte[] rawBytes = record.getBytes();
-        List<TypeValueEntry> entries = BluetoothUtils.parseLengthTypeValueBytes(rawBytes);
-        if (rawBytes.length > 0 && rawBytes[0] > 0 && entries.isEmpty()) {
-            Log.e(TAG, "Invalid LTV entries in Scan record");
-            return null;
-        }
-
-        String broadcastName = null;
-        for (TypeValueEntry entry : entries) {
-            // Only use the first value of each type
-            if (broadcastName == null && entry.getType() == BassConstants.BCAST_NAME_AD_TYPE) {
-                byte[] bytes = entry.getValue();
-                int len = bytes.length;
-                if (len < BassConstants.BCAST_NAME_LEN_MIN
-                        || len > BassConstants.BCAST_NAME_LEN_MAX) {
-                    Log.e(TAG, "Invalid broadcast name length in Scan record" + len);
-                    return null;
-                }
-                broadcastName = new String(bytes, StandardCharsets.UTF_8);
-            }
-        }
-        return broadcastName;
-    }
-
     void addSelectSourceRequest(int broadcastId, boolean hasPriority) {
         sEventLogger.logd(
                 TAG,
@@ -2840,20 +2797,7 @@ public class BassClientService extends ProfileService {
 
             sEventLogger.logd(TAG, "Select Broadcast Source, result: " + scanRes);
 
-            // updating mainly for Address type and PA Interval here
-            // extract BroadcastId from ScanResult
-            Map<ParcelUuid, byte[]> listOfUuids = scanRecord.getServiceData();
-            if (listOfUuids != null) {
-                if (listOfUuids.containsKey(BassConstants.BAAS_UUID)) {
-                    byte[] bId = listOfUuids.get(BassConstants.BAAS_UUID);
-                    broadcastId = BassUtils.parseBroadcastId(bId);
-                }
-                if (listOfUuids.containsKey(BassConstants.PUBLIC_BROADCAST_UUID)) {
-                    byte[] pbAnnouncement = listOfUuids.get(BassConstants.PUBLIC_BROADCAST_UUID);
-                    pbData = PublicBroadcastData.parsePublicBroadcastData(pbAnnouncement);
-                }
-            }
-
+            broadcastId = BassUtils.getBroadcastId(scanRecord);
             if (broadcastId == BassConstants.INVALID_BROADCAST_ID) {
                 Log.e(TAG, "Invalid broadcast ID");
                 handleSelectSourceRequest();
@@ -2868,10 +2812,8 @@ public class BassClientService extends ProfileService {
                 return;
             }
 
-            // Check if broadcast name present in scan record and parse
-            // null if no name present
-            broadcastName = checkAndParseBroadcastName(scanRecord);
-
+            pbData = BassUtils.getPublicBroadcastData(scanRecord);
+            broadcastName = BassUtils.getBroadcastName(scanRecord);
             paCb = new PACallback();
             // put PENDING_SYNC_HANDLE and update it in onSyncEstablished
             mPeriodicAdvCallbacksMap.put(BassConstants.PENDING_SYNC_HANDLE, paCb);
@@ -3142,17 +3084,8 @@ public class BassClientService extends ProfileService {
             }
 
             for (SourceSyncRequest sourceSyncRequest : mSourceSyncRequestsQueue) {
-                ScanRecord scanRecord = sourceSyncRequest.getScanResult().getScanRecord();
-                boolean hasPriority = sourceSyncRequest.hasPriority();
-                Map<ParcelUuid, byte[]> listOfUuids = scanRecord.getServiceData();
-                if (listOfUuids != null) {
-                    if (listOfUuids.containsKey(BassConstants.BAAS_UUID)) {
-                        byte[] bId = listOfUuids.get(BassConstants.BAAS_UUID);
-                        int queuedBroadcastId = BassUtils.parseBroadcastId(bId);
-                        if (queuedBroadcastId == broadcastId) {
-                            return !priorityImportant || hasPriority;
-                        }
-                    }
+                if (BassUtils.getBroadcastId(sourceSyncRequest.getScanResult()) == broadcastId) {
+                    return !priorityImportant || sourceSyncRequest.hasPriority();
                 }
             }
         }
