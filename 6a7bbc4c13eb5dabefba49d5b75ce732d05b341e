@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e721139_96bab1ba",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 16
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-04T04:11:41Z",
+      "side": 1,
+      "message": "What is the continuation number ?\n\nMy understanding of such thing would be to help when reconsolidating packet and that has nothing to do with any mode.\nBut I am not \"spec friendly\" with this feature so I may be completly wrong",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 60
+      },
+      "revId": "6a7bbc4c13eb5dabefba49d5b75ce732d05b341e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
