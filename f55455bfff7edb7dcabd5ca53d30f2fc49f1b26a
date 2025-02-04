@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d5e840_098da0ab",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-04T17:17:25Z",
+      "side": 1,
+      "message": "I thought that you meant to report the connection complete after the PORT_CTRL_REQ response is received. Are you missing a return somewhere ?",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 5
+      },
+      "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
