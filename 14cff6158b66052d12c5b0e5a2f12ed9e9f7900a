@@ -70,6 +70,30 @@
       },
       "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b5f2e72_d5d26c31",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-04T03:02:50Z",
+      "side": 0,
+      "message": "I can confirm the above command works/fails as expected.\n\nWithout this change, all tests pass. With this change, test `GattTest#GattServerRegister` fails with:\n\n\u003e No test results.\n\u003e thread \u0027\u003cunnamed\u003e\u0027 panicked at packages/modules/Bluetooth/system/rust/src/lib.rs:84:17:\n\u003e Bluetooth Rust modules: Can\u0027t start, finishing",
+      "parentUuid": "97d83a40_5d807735",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
