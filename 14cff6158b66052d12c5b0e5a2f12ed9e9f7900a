@@ -46,6 +46,30 @@
       },
       "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d83a40_5d807735",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-04T02:39:10Z",
+      "side": 0,
+      "message": "When this CL was merged, the tests failing were reported in b/393481018.\n\nI believe thoses tests can be run with `atest net_test_bluetooth`.",
+      "parentUuid": "899a4f4e_44eece0a",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
