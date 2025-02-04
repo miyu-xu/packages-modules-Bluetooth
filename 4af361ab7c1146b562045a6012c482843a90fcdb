@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e29fc1d_b303bf73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-04T00:00:15Z",
+      "side": 1,
+      "message": "+2, but we should update the min_sdk_version to 36 as this is our new min_sdk_version requirement.",
+      "revId": "4af361ab7c1146b562045a6012c482843a90fcdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
