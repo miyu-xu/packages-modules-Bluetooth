@@ -94,6 +94,30 @@
       },
       "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d172b93_ca3b0346",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3487936
+      },
+      "writtenOn": "2025-02-04T03:46:23Z",
+      "side": 0,
+      "message": "SG. I\u0027ll patch in the `fn start()` change I suggested in my comment above and run `net_test_bluetooth` to see if changing that part of the code would fix the test failure issue.",
+      "parentUuid": "9b5f2e72_d5d26c31",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
