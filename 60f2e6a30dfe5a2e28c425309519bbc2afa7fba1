@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e835fa03_8c35ec1a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3239,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-04T22:29:29Z",
+      "side": 1,
+      "message": "Just wanna confirm, is the reason of moving this to support isGroupOp\u003dtrue case?",
+      "revId": "60f2e6a30dfe5a2e28c425309519bbc2afa7fba1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
