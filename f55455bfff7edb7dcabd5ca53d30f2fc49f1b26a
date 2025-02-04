@@ -46,6 +46,30 @@
       },
       "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c308166e_944a5715",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-04T22:49:30Z",
+      "side": 1,
+      "message": "PTS still doesn\u0027t send PORT_CTRL_REQ response properly. Do we want to fix PTS or take the change in patch set 11?",
+      "parentUuid": "94e370e7_cb237ca6",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 5
+      },
+      "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
