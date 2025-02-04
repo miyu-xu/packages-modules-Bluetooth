@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "786f0c1c_bfe5d91e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-04T19:13:12Z",
+      "side": 1,
+      "message": "This is actually a bug.\nIf you look at the only usage here, https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;l\u003d2084?q\u003d%22BassUtils.containUuid%22\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main\n\nWe set UUID by setServiceData() to filter and to avoid duplicated filter we check UUID in getServiceUuid there. this won\u0027t work to avoid duplication since uuid only exists in ServiceData.",
+      "parentUuid": "ec015ec1_2e6dc5a8",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 13
+      },
+      "revId": "61d32f885769a18252b11488e16857504ffc459b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ed126875_fefb7687",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
         "patchSetId": 8
@@ -72,6 +96,30 @@
       "writtenOn": "2025-02-04T07:48:53Z",
       "side": 1,
       "message": "What is the purpose of that? Until now there was no clearing on mMethodProxy as numbe of registerSync/unregisterSync is easy to validate. If there is no need we shouldn\u0027t clear invocations as after sinkUnintentionalWithoutScanning could be some additional checks.",
+      "range": {
+        "startLine": 5774,
+        "startChar": 0,
+        "endLine": 5774,
+        "endChar": 39
+      },
+      "revId": "61d32f885769a18252b11488e16857504ffc459b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a7b7075_502652a0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 5774,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-04T19:13:12Z",
+      "side": 1,
+      "message": "you\u0027re right, this was some leftover from prev version. removed.",
+      "parentUuid": "ed126875_fefb7687",
       "range": {
         "startLine": 5774,
         "startChar": 0,
