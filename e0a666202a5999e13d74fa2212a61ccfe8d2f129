@@ -16,6 +16,24 @@
       "message": "Isn\u0027t storeSinkMetadata all invoked after this? In which case, we will have this stored before this line?",
       "revId": "e0a666202a5999e13d74fa2212a61ccfe8d2f129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc0b432_7fc62f7d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3153,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T06:45:56Z",
+      "side": 1,
+      "message": "I do not get your point.\nThis is only for switch operation.\nHere L:3153 we remove metadata for previous broadcast.\nIn line L:3184 we store metadata for new broadcast.\n\nFor normal add operation, we store data in L:3212, but it will not be called during switch.\n\nThere will be another metadata removing for switch in next CL but in suspend scenario.",
+      "parentUuid": "76f98cf4_e912bb17",
+      "revId": "e0a666202a5999e13d74fa2212a61ccfe8d2f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
