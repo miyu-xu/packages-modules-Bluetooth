@@ -110,6 +110,30 @@
       },
       "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44ce96c7_22bc7fed",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-02-04T05:08:32Z",
+      "side": 1,
+      "message": "Followed the guildelines in go/nonsdk/dev/compat-framework#testing-your-gated-change to make sure changeId is correctly set during a test!",
+      "parentUuid": "63e9ed61_1b72960d",
+      "range": {
+        "startLine": 123,
+        "startChar": 10,
+        "endLine": 123,
+        "endChar": 99
+      },
+      "revId": "aae37fb73dcb34291acd5a964e1bd5df96c135fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

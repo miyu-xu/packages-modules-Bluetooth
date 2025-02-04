@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0efd9a5a_6aba7071",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-02-04T05:08:32Z",
+      "side": 1,
+      "message": "Resolved comments and fixed tests to follow SDK/flag guarding guidelines. Added tests as well to test both when Change/Flag is enabled/disabled.",
+      "revId": "07e5282b3c7c93261185ff0948c673cbd3f50789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
