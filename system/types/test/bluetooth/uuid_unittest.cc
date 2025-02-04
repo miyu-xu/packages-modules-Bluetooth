@@ -19,6 +19,7 @@
 #include "types/bluetooth/uuid.h"
 
 #include <gtest/gtest.h>
+#include <cstdint>
 
 using bluetooth::Uuid;
 
@@ -37,6 +38,18 @@ constexpr Uuid kBase =
 TEST(UuidTest, IsEmpty) {
   EXPECT_TRUE(Uuid::kEmpty.IsEmpty());
   EXPECT_FALSE(kBase.IsEmpty());
+}
+
+TEST(UuidTest, IsSerializable) {
+  EXPECT_TRUE(std::is_pod<Uuid>());
+  EXPECT_TRUE(std::is_pod<Uuid::UUID128Bit>());
+  EXPECT_EQ(sizeof(Uuid), Uuid::kNumBytes128);
+  EXPECT_EQ(sizeof(Uuid::UUID128Bit), Uuid::kNumBytes128);
+  const Uuid::UUID128Bit& ones_bytes = ONES.To128BitBE();
+  uint8_t* p_ONES = (uint8_t*)&ONES;
+  uint8_t* p_ones_bytes = (uint8_t*)&ones_bytes;
+  EXPECT_EQ(p_ONES, p_ones_bytes);
+  EXPECT_EQ(0, memcmp(p_ONES, p_ones_bytes, sizeof(Uuid)));
 }
 
 TEST(UuidTest, GetShortestRepresentationSize) {
