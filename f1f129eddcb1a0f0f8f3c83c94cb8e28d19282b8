@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd35360c_53e1f438",
+        "filename": "system/types/test/bluetooth/uuid_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T22:05:52Z",
+      "side": 1,
+      "message": "having the test is good, but we can also have static assert in types/bluetooth/uuid.h",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 35
+      },
+      "revId": "f1f129eddcb1a0f0f8f3c83c94cb8e28d19282b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
