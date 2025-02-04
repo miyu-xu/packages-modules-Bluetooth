@@ -16,6 +16,23 @@
       "message": "Bypass lint since this is a no-op.",
       "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d311c3e_e51f4d7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-04T23:45:52Z",
+      "side": 1,
+      "message": "+2, but I wonder what would happen if we simply remove the proguard file.\n\nWouldn\u0027t it strip and optimize away the code on it\u0027s own ?\nThe entry point are BluetoothService.kt and BluetoothBinder.java, I believe proguard could do its magic from this point.\n\nIf I do a follow-up change to remove the proguard file, can I remove the compatibility line altogether ?",
+      "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
