@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "499a2cf7_cf6672b6",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T22:03:56Z",
+      "side": 1,
+      "message": "```\n// Use this for BT_TRANSPORT_BR_EDR and BT_TRANSPORT_AUTO\nbool get_bredr_services \u003d transport !\u003d BT_TRANSPORT_LE;\n\n// Use this for BT_TRANSPORT_LE and BT_TRANSPORT_AUTO\nbool get_le_services \u003d transport !\u003d BT_TRANSPORT_BR_EDR;\n```",
+      "range": {
+        "startLine": 1463,
+        "startChar": 0,
+        "endLine": 1472,
+        "endChar": 3
+      },
+      "revId": "0336e6d26fac6e5d821abe1d41c52cfbb287b975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfccfb58_406f8e5b",
+        "filename": "system/test/mock/mock_btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-04T22:03:56Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 102
+      },
+      "revId": "0336e6d26fac6e5d821abe1d41c52cfbb287b975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
