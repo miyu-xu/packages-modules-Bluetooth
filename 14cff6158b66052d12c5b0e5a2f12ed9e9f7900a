@@ -22,6 +22,30 @@
       },
       "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899a4f4e_44eece0a",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3487936
+      },
+      "writtenOn": "2025-02-04T02:17:43Z",
+      "side": 0,
+      "message": "In that case, I believe in `fn start()`, if we made both `Self::Ended { result }` and `Self::NotStarted` cases not return an error, it should produce the same behaviour as before. Is there a test that tests this behaviour that we can run before we submit this CL?",
+      "parentUuid": "a3a7f384_f4f1b846",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
