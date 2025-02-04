@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c956bb_f072177c",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-04T05:56:54Z",
+      "side": 1,
+      "message": "After PV test, restore it back.",
+      "range": {
+        "startLine": 455,
+        "startChar": 2,
+        "endLine": 455,
+        "endChar": 92
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a4a415bb_3fb3be58",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_rfc.cc",
+              "range": {
+                "startLine": 455,
+                "startChar": 0,
+                "endLine": 457,
+                "endChar": 0
+              },
+              "replacement": "  if (!com::android::bluetooth::flags::indicate_rfcomm_connection_complete_after_msc()) {\n"
+            },
+            {
+              "path": "system/stack/rfcomm/port_rfc.cc",
+              "range": {
+                "startLine": 519,
+                "startChar": 0,
+                "endLine": 521,
+                "endChar": 0
+              },
+              "replacement": "  if (!com::android::bluetooth::flags::indicate_rfcomm_connection_complete_after_msc()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a3f31f30c7f01e0b3395495d52dfe10ba91c913a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce6c4f2_bebcfa96",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-04T05:56:54Z",
+      "side": 1,
+      "message": "After PV test, restore it back.",
+      "range": {
+        "startLine": 519,
+        "startChar": 0,
+        "endLine": 519,
+        "endChar": 92
+      },
+      "revId": "a3f31f30c7f01e0b3395495d52dfe10ba91c913a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
