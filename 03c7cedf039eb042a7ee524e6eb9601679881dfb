@@ -358,6 +358,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe5d0660_5ebebcd0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T07:48:53Z",
+      "side": 1,
+      "message": "*TimeoutHandler - but for what purpose ?*\nto reset timer. When the timer starts, it indicates that synchronization has been lost. However, if a scanResult is received within sSyncLostTimeout, it means the broadcast is still in the air. If no result is received, the timer will trigger, notifying the user that the broadcast has been lost.\n\nFor more details, refer to aosp/3300876.",
+      "parentUuid": "3ea2faa4_f7949a67",
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f40b696c_6017c09f",
@@ -395,6 +413,30 @@
       "side": 1,
       "message": "not feasible to fix without another refactoring of this logic :p, and I\u0027d like to avoid mixing that here.",
       "parentUuid": "f40b696c_6017c09f",
+      "range": {
+        "startLine": 2190,
+        "startChar": 0,
+        "endLine": 2190,
+        "endChar": 103
+      },
+      "revId": "03c7cedf039eb042a7ee524e6eb9601679881dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da2bc2cb_00e30a20",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2190,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-04T07:48:53Z",
+      "side": 1,
+      "message": "leaudioBroadcastExtractPeriodicScannerFromStateMachine will be removed in 25Q2 if I found a time so problem will be solved:)",
+      "parentUuid": "ee0241d3_5dedd24b",
       "range": {
         "startLine": 2190,
         "startChar": 0,
