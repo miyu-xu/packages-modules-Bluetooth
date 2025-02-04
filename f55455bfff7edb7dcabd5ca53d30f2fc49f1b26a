@@ -94,6 +94,30 @@
       },
       "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46e9aab0_c7063ac7",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-04T23:55:20Z",
+      "side": 1,
+      "message": "Proactively sending request is already a part of current patch but PTS didn\u0027t send response properly. So, we can\u0027t generate connection complete if we expect to receive the response from PTS.\n\n```\nPORT_DlcEstablishInd\n\u003d\u003d snip \u003d\u003d\n  if (!(p_port-\u003eport_ctrl \u0026 PORT_CTRL_REQ_SENT)) {\n    RFCOMM_ControlReq(p_port-\u003erfc.p_mcb, p_port-\u003edlci, \u0026p_port-\u003elocal_ctrl);\n  } else {\n    log::warn(\"Control Already sent\");\n  }\n```\n\nBest we can do is to generate connection complete event after sending MSC request like patch set 11.",
+      "parentUuid": "ae9369cf_1c7c91be",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 5
+      },
+      "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
