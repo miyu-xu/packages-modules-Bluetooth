@@ -34,6 +34,24 @@
       "parentUuid": "76f98cf4_e912bb17",
       "revId": "e0a666202a5999e13d74fa2212a61ccfe8d2f129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b9843b_b9b87c4d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3153,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-04T21:25:54Z",
+      "side": 1,
+      "message": "I was thinking metaData is the new metadata to add. But got your point now, metaData is the older metadata to remove.",
+      "parentUuid": "dfc0b432_7fc62f7d",
+      "revId": "e0a666202a5999e13d74fa2212a61ccfe8d2f129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
