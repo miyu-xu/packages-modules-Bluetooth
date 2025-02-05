@@ -437,46 +437,15 @@ public class MediaPlayerList {
     /** Returns a list valid browsable players. */
     public List<PlayerInfo> getMediaPlayerList() {
         List<PlayerInfo> ret = new ArrayList<PlayerInfo>();
-        if (Flags.browsingRefactor()) {
-            // Add actual browsable players
-            for (MediaBrowserWrapper browser : mMediaBrowserWrappers.values()) {
-                Log.i(
-                        TAG,
-                        "getMediaPlayerList: Added browsable player: " + browser.getPackageName());
-                PlayerInfo info = new PlayerInfo();
-                info.id = mMediaPlayerIds.get(browser.getPackageName());
-                info.name = Util.getDisplayName(mContext, browser.getPackageName());
-                info.browsable = true;
-                ret.add(info);
-            }
-            Log.i(TAG, "getMediaPlayerList: number of mediaplayers: " + mMediaPlayers.size());
-            // Also list non-browsable players, they can be selected if controller supports it.
-            for (MediaPlayerWrapper mediaPlayer : mMediaPlayers.values()) {
-                // Skip player if already added as browsable
-                if (haveMediaBrowser(mMediaPlayerIds.get(mediaPlayer.getPackageName()))) {
-                    continue;
-                }
-                Log.i(
-                        TAG,
-                        "getMediaPlayerList: Added non browsable player: "
-                                + mediaPlayer.getPackageName());
-                PlayerInfo info = new PlayerInfo();
-                info.id = mMediaPlayerIds.get(mediaPlayer.getPackageName());
-                info.name = Util.getDisplayName(mContext, mediaPlayer.getPackageName());
-                info.browsable = false;
-                ret.add(info);
-            }
-        } else {
-            PlayerInfo info = new PlayerInfo();
-            info.id = BLUETOOTH_PLAYER_ID;
-            info.name = BLUETOOTH_PLAYER_NAME;
-            info.browsable = true;
-            if (mBrowsablePlayers.size() == 0) {
-                // Set Bluetooth Player as non-browable if there is not browsable player exist.
-                info.browsable = false;
-            }
-            ret.add(info);
+        PlayerInfo info = new PlayerInfo();
+        info.id = BLUETOOTH_PLAYER_ID;
+        info.name = BLUETOOTH_PLAYER_NAME;
+        info.browsable = true;
+        if (mMediaBrowserWrappers.size() == 0) {
+            // Set Bluetooth Player as non-browable if there is not browsable player exist.
+            info.browsable = false;
         }
+        ret.add(info);
         return ret;
     }
 
