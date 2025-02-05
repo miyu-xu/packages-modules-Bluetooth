@@ -592,7 +592,8 @@ int ParseSinglePac(std::vector<struct acs_ac_record>& pac_recs, uint16_t len,
   }
 
   if (!rec.metadata.Parse(value, metadata_len)) {
-    return -1;
+    log::error("Skip the corrupted LTV formatted data in PAC record metadata: {}",
+               base::HexEncode(value, metadata_len));
   }
   value += metadata_len;
   len -= metadata_len;

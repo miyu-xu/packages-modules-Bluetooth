@@ -326,6 +326,40 @@ TEST(LeAudioClientParserTest, testParsePacsInvalidMetaLength) {
   ASSERT_FALSE(ParsePacs(pac_recs, sizeof(value), value));
 }
 
+TEST(LeAudioClientParserTest, testParsePacsInvalidMetaLtvFormat) {
+  std::vector<struct types::acs_ac_record> pac_recs;
+
+  const uint8_t value[] = {
+          // Num records
+          0x01,
+          // Codec_ID
+          0x01, 0x03, 0x02, 0x05, 0x04,
+          // Codec Spec. Caps. Len
+          0x07,
+          // Codec Spec. Caps.
+          0x02,  // [0].length
+          0x02,  // [0].type
+          0x03,  // [0].value[0]
+          0x03,  // [1].length
+          0x03,  // [1].type
+          0x04,  // [1].value[0]
+          0x05,  // [1].value[1]
+                 // Metadata Length
+          0x03,  // Valid metadata length
+          // Metadata with invalid LTV entry
+          0x03,  // Invalid [0].length
+          0x02,  // [0].type
+          0x01,  // [0].value[0]
+  };
+
+  ASSERT_TRUE(ParsePacs(pac_recs, sizeof(value), value));
+  ASSERT_NE(pac_recs.size(), 0lu);
+  // Codec specific capabilities are parsed correctly...
+  ASSERT_NE(pac_recs.at(0).codec_spec_caps_raw.size(), 0lu);
+  // ...only the metadata was not parsed due invalid format
+  ASSERT_EQ(pac_recs.at(0).metadata.Size(), 0lu);
+}
+
 TEST(LeAudioClientParserTest, testParsePacsValidMeta) {
   std::vector<struct types::acs_ac_record> pac_recs;
 
