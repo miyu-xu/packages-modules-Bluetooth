@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a3f33aa_c09f95c6",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:18:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b713272_92b71eab",
+      "range": {
+        "startLine": 135,
+        "startChar": 73,
+        "endLine": 135,
+        "endChar": 81
+      },
+      "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a7a0d41_c0966fed",
@@ -113,6 +137,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1f89a4b_32655073",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:18:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a7a0d41_c0966fed",
+      "range": {
+        "startLine": 153,
+        "startChar": 3,
+        "endLine": 153,
+        "endChar": 35
+      },
+      "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49842192_8bbc57b9",
@@ -150,6 +198,30 @@
           ]
         }
       ],
+      "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e07f2baf_9e9f3b23",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:18:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49842192_8bbc57b9",
+      "range": {
+        "startLine": 163,
+        "startChar": 34,
+        "endLine": 163,
+        "endChar": 43
+      },
       "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -195,6 +267,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9196f407_cf40c820",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:18:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c17ae1_f3ae5fca",
+      "range": {
+        "startLine": 199,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 32
+      },
+      "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4ee91a8_de073153",
@@ -218,6 +314,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a626f1_dc268785",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:18:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4ee91a8_de073153",
+      "range": {
+        "startLine": 201,
+        "startChar": 34,
+        "endLine": 201,
+        "endChar": 69
+      },
+      "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "043eafb4_731599a6",
@@ -231,6 +351,30 @@
       "writtenOn": "2025-01-27T19:50:58Z",
       "side": 1,
       "message": "mHandlerThread.start()",
+      "range": {
+        "startLine": 202,
+        "startChar": 7,
+        "endLine": 202,
+        "endChar": 39
+      },
+      "revId": "3d1139c2d7eec2a5576ee1b0e504ba132cd718da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1070115f_a8f60d35",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:18:14Z",
+      "side": 1,
+      "message": "Can\u0027t, it\u0027s the way the test are written. I should inject the looper but I am lazy",
+      "parentUuid": "043eafb4_731599a6",
       "range": {
         "startLine": 202,
         "startChar": 7,
