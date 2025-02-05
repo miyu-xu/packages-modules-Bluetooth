@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c0558e_85b265f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:41:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73be8560_9a71f48c",
+      "revId": "6304e3c10ff32a79db60c333fa00f1486b06694c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e1f6f81_b931eccd",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-05T17:11:32Z",
       "side": 1,
       "message": "nit: why not just call here removeSinkMetadata ?",
+      "revId": "6304e3c10ff32a79db60c333fa00f1486b06694c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70f4a818_e06b5b3a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 4588,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:41:54Z",
+      "side": 1,
+      "message": "I follow the same as in notifySourceAdded and notifyReceiveStateChanged.",
+      "parentUuid": "5e1f6f81_b931eccd",
       "revId": "6304e3c10ff32a79db60c333fa00f1486b06694c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
