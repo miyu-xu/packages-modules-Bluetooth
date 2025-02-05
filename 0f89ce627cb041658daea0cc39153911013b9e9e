@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c8b9899_db28605e",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T19:31:03Z",
+      "side": 1,
+      "message": "We are mixing early-return with legacy one, I believe we should use early return all along with something like\n\n```suggestion\n\n  if (!p_scb-\u003ep_ccb) {\n    avdt_scb_rej_not_in_use(p_scb, p_data);\n    return;\n  }\n  \n  avdt_msg_send_rsp(p_scb-\u003ep_ccb, AVDT_SIG_DELAY_RPT, \u0026p_data-\u003emsg);\n\n  if (!com::android::bluetooth::flags::avdt_wait_for_initial_delay_report_as_initiator()) {\n  return;\n  }\n  if (!alarm_is_scheduled(p_scb-\u003einit_delay_report_timer)) {\n    log::verbose(\"init_delay_report_timer alarm not scheduled\");\n    return;\n  }\n\n  if (!(p_scb-\u003ecurr_cfg.psc_mask \u0026 AVDT_PSC_DELAY_RPT)) {\n    log::verbose(\"delay report not supported\");\n    return;\n  }\n\n  if (p_scb-\u003estate !\u003d AVDT_SCB_CONF_ST) {\n    log::verbose(\"not initial delay report\");\n    return;\n  }\n\n  alarm_cancel(p_scb-\u003einit_delay_report_timer);\n\n  log::verbose(\"initiate open after receiving initial delay report\");\n  tAVDT_EVT_HDR single \u003d {.seid \u003d  p_scb-\u003epeer_seid;};           // init here with brace to memzero the struct\n  tAVDT_SCB_EVT avdt_scb_evt \u003d {.msg \u003d {.single \u003d single}}; // idem\n  avdt_scb_event(p_scb, AVDT_SCB_API_OPEN_REQ_EVT, \u0026avdt_scb_evt);\n```",
+      "range": {
+        "startLine": 846,
+        "startChar": 0,
+        "endLine": 876,
+        "endChar": 3
+      },
+      "revId": "0f89ce627cb041658daea0cc39153911013b9e9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
