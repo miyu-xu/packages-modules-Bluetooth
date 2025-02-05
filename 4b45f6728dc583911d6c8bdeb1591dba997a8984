@@ -33,6 +33,23 @@
       "message": "+1, adding @asapperstein@google.com for API +2",
       "revId": "4b45f6728dc583911d6c8bdeb1591dba997a8984",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489bddaf_f05661cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2025-02-05T21:26:16Z",
+      "side": 1,
+      "message": "Please see the previous context from Jayden on the prior review.\n\nIn this case, IIUC, the flag is for the signature change on the permission, not for the overall API itself.",
+      "revId": "4b45f6728dc583911d6c8bdeb1591dba997a8984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
