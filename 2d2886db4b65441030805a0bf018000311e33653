@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de31370_fdc579e4",
+        "filename": "pandora/interfaces/pandora_experimental/hf.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-05T11:23:49Z",
+      "side": 1,
+      "message": "As rpc are related HFP.`Aclconnect()` is not needed . Can you remove this rpc and move this ACL connection logic inside Connect rpc",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 70
+      },
+      "revId": "2d2886db4b65441030805a0bf018000311e33653",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4668db1_0cafddb2",
+        "filename": "pandora/interfaces/pandora_experimental/hf.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-05T11:23:49Z",
+      "side": 1,
+      "message": "for mulptiple device connection scenorio , how do you disconnect one which is not required ? I think we should have paramater specify this (either bd address or connection handle)",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "2d2886db4b65441030805a0bf018000311e33653",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e0fbfd_5690df12",
+        "filename": "pandora/server/bumble_experimental/hf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-05T11:23:49Z",
+      "side": 1,
+      "message": "remove if it is not used",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "45c503f0_30d4ad38",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 40,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "    global active_connection\n"
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "pandora/server/bumble_experimental/hf.py",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 131,
+                "endChar": 0
+              },
+              "replacement": "        global active_connection\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2d2886db4b65441030805a0bf018000311e33653",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d7ca28c_8f7b1544",
+        "filename": "pandora/server/bumble_experimental/hf.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-05T11:23:49Z",
+      "side": 1,
+      "message": "`active_connection` really need? I think this also needs to remove",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "2d2886db4b65441030805a0bf018000311e33653",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
