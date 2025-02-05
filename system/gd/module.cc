@@ -18,11 +18,14 @@
 #include "module.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
 
 namespace bluetooth {
+
+static std::mutex started_modules_guard;
 
 constexpr std::chrono::milliseconds kModuleStopTimeout = std::chrono::milliseconds(2000);
 
@@ -46,6 +49,11 @@ Module* Module::GetDependency(const ModuleFactory* module) const {
 }
 
 Module* ModuleRegistry::Get(const ModuleFactory* module) const {
+  std::unique_lock<std::mutex> lock(started_modules_guard, std::defer_lock);
+  if (com::android::bluetooth::flags::fix_started_module_race()) {
+    lock.lock();
+  }
+
   auto instance = started_modules_.find(module);
   log::assert_that(instance != started_modules_.end(),
                    "Request for module not started up, maybe not in Start(ModuleList)?");
@@ -53,6 +61,10 @@ Module* ModuleRegistry::Get(const ModuleFactory* module) const {
 }
 
 bool ModuleRegistry::IsStarted(const ModuleFactory* module) const {
+  std::unique_lock<std::mutex> lock(started_modules_guard, std::defer_lock);
+  if (com::android::bluetooth::flags::fix_started_module_race()) {
+    lock.lock();
+  }
   return started_modules_.find(module) != started_modules_.end();
 }
 
@@ -68,9 +80,15 @@ void ModuleRegistry::set_registry_and_handler(Module* instance, Thread* thread) 
 }
 
 Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
-  auto started_instance = started_modules_.find(module);
-  if (started_instance != started_modules_.end()) {
-    return started_instance->second;
+  {
+    std::unique_lock<std::mutex> lock(started_modules_guard, std::defer_lock);
+    if (com::android::bluetooth::flags::fix_started_module_race()) {
+      lock.lock();
+    }
+    auto started_instance = started_modules_.find(module);
+    if (started_instance != started_modules_.end()) {
+      return started_instance->second;
+    }
   }
 
   log::info("Constructing next module");
@@ -86,12 +104,22 @@ Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
   last_instance_ = "starting " + instance->ToString();
   instance->Start();
   start_order_.push_back(module);
-  started_modules_[module] = instance;
+  {
+    std::unique_lock<std::mutex> lock(started_modules_guard, std::defer_lock);
+    if (com::android::bluetooth::flags::fix_started_module_race()) {
+      lock.lock();
+    }
+    started_modules_[module] = instance;
+  }
   log::info("Started {}", instance->ToString());
   return instance;
 }
 
 void ModuleRegistry::StopAll() {
+  std::unique_lock<std::mutex> lock(started_modules_guard, std::defer_lock);
+  if (com::android::bluetooth::flags::fix_started_module_race()) {
+    lock.lock();
+  }
   // Since modules were brought up in dependency order, it is safe to tear down by going in reverse
   // order.
   for (auto it = start_order_.rbegin(); it != start_order_.rend(); it++) {
@@ -121,6 +149,10 @@ void ModuleRegistry::StopAll() {
 }
 
 os::Handler* ModuleRegistry::GetModuleHandler(const ModuleFactory* module) const {
+  std::unique_lock<std::mutex> lock(started_modules_guard, std::defer_lock);
+  if (com::android::bluetooth::flags::fix_started_module_race()) {
+    lock.lock();
+  }
   auto started_instance = started_modules_.find(module);
   if (started_instance != started_modules_.end()) {
     return started_instance->second->GetHandler();
