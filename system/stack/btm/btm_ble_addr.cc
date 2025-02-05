@@ -118,10 +118,16 @@ bool btm_ble_addr_resolvable(const RawAddress& rpa, tBTM_SEC_DEV_REC* p_dev_rec)
 static bool btm_ble_match_random_bda(void* data, void* context) {
   tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
   RawAddress* random_bda = static_cast<RawAddress*>(context);
+  Octet16 all_zero_irk = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
   if (!(p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) ||
       !(p_dev_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PID)) {
     // Match fails preconditions
+    return true;
+  }
+
+  if (memcmp(p_dev_rec->sec_rec.ble_keys.irk.data(), all_zero_irk.data(), 16) == 0) {
+    log::info("%s IRK is all zero, skip!", __func__);
     return true;
   }
 
