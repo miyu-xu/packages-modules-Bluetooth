@@ -207,6 +207,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85ecfc07_4ec12f37",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3340,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:41:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb70d956_6458c81c",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94bb3d2f_9abac99e",
@@ -291,6 +309,24 @@
       "side": 1,
       "message": "that should be separate CL / Test only",
       "parentUuid": "3bd7bdb3_b9c298fd",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebf19910_f19116bb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2448,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:41:34Z",
+      "side": 1,
+      "message": "Done aosp/3477378",
+      "parentUuid": "f01ae7f4_4e6ed4e3",
       "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

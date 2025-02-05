@@ -33,6 +33,24 @@
       "message": "is this intended here?  This loos like we are doing some Group operation here, but as per function description I would not expect that.",
       "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "878baf40_8d7d308d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:41:34Z",
+      "side": 1,
+      "message": "I followed the original code, where it was always called for devices.entrySet(), which contained at least one device.\n\nThe only difference is that previously, it was always called regardless of whether removeSource succeeded or resulted in notifySourceRemoveFailed. I modified it to be called only on success, which I believe is the correct approach. I asked @rongxuan@google.com to review it since he recently made a change with checkForPendingGroupOpRequest, so he might have a better perspective on this.",
+      "parentUuid": "c6d716a4_e138bc1e",
+      "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
