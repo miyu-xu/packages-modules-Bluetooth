@@ -128,6 +128,30 @@
       },
       "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47ad8684_b9e71eba",
+        "filename": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T20:26:14Z",
+      "side": 1,
+      "message": "I see, we are therefor loosing the devicepicker string.\n\nshould we do \n```\nString EXTRA_DEVICE_PICKER_ORIGINAL_SEND_INTENT \u003d \"android.bluetooth.extra.EXTRA_DEVICE_PICKER_ORIGINAL_SEND_INTENT\";\n```\n\nTo reconciliate both world ?",
+      "parentUuid": "13899d28_ad0e4c70",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
