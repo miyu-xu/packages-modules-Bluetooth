@@ -4136,16 +4136,16 @@ public:
     }
 
     le_audio_source_hal_client_->UpdateRemoteDelay(remote_delay_ms);
-    ConfirmLocalAudioSourceStreamingRequest();
 
-    if (!LeAudioHalVerifier::SupportsStreamActiveApi()) {
-      /* We update the target audio allocation before streamStarted so that the
-       * CodecManager would know how to configure the encoder. */
-      CodecManager::GetInstance()->UpdateActiveAudioConfig(
-              group->stream_conf.stream_params,
-              std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                        std::placeholders::_1, std::placeholders::_2));
-    }
+    /* We update the target audio allocation before streamStarted so that the CodecManager would
+     * already know how to configure the encoder once we confirm the streaming request. */
+    CodecManager::GetInstance()->UpdateActiveAudioConfig(
+            group->stream_conf.stream_params,
+            std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
+                      std::placeholders::_1, std::placeholders::_2),
+            bluetooth::le_audio::types::kLeAudioDirectionSink);
+
+    ConfirmLocalAudioSourceStreamingRequest();
   }
 
   const struct bluetooth::le_audio::stream_configuration* GetStreamSourceConfiguration(
@@ -4200,17 +4200,18 @@ public:
         return;
       }
     }
-    le_audio_sink_hal_client_->UpdateRemoteDelay(remote_delay_ms);
-    ConfirmLocalAudioSinkStreamingRequest();
 
-    if (!LeAudioHalVerifier::SupportsStreamActiveApi()) {
-      /* We update the target audio allocation before streamStarted so that the
-       * CodecManager would know how to configure the encoder. */
-      CodecManager::GetInstance()->UpdateActiveAudioConfig(
-              group->stream_conf.stream_params,
-              std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                        std::placeholders::_1, std::placeholders::_2));
-    }
+    le_audio_sink_hal_client_->UpdateRemoteDelay(remote_delay_ms);
+
+    /* We update the target audio allocation before streamStarted so that the CodecManager would
+     * already know how to configure the encoder once we confirm the streaming request. */
+    CodecManager::GetInstance()->UpdateActiveAudioConfig(
+            group->stream_conf.stream_params,
+            std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
+                      std::placeholders::_1, std::placeholders::_2),
+            bluetooth::le_audio::types::kLeAudioDirectionSource);
+
+    ConfirmLocalAudioSinkStreamingRequest();
   }
 
   void SuspendAudio(void) {
@@ -6118,17 +6119,24 @@ public:
           return;
         }
 
-        CodecManager::GetInstance()->UpdateActiveAudioConfig(
-                group->stream_conf.stream_params,
-                std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                          std::placeholders::_1, std::placeholders::_2));
-
         if (audio_sender_state_ == AudioState::READY_TO_START) {
           StartSendingAudio(group_id);
+        } else if (audio_sender_state_ != AudioState::IDLE) {
+          CodecManager::GetInstance()->UpdateActiveAudioConfig(
+                  group->stream_conf.stream_params,
+                  std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
+                            std::placeholders::_1, std::placeholders::_2),
+                  ::bluetooth::le_audio::types::kLeAudioDirectionSink);
         }
 
         if (audio_receiver_state_ == AudioState::READY_TO_START) {
           StartReceivingAudio(group_id);
+        } else if (audio_receiver_state_ != AudioState::IDLE) {
+          CodecManager::GetInstance()->UpdateActiveAudioConfig(
+                  group->stream_conf.stream_params,
+                  std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
+                            std::placeholders::_1, std::placeholders::_2),
+                  ::bluetooth::le_audio::types::kLeAudioDirectionSource);
         }
 
         speed_stop_setup(group_id);
