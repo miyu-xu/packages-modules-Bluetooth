@@ -8388,19 +8388,23 @@ TEST_F(UnicastTest, UpdateActiveAudioConfigForLocalSinkSource) {
   LeAudioClient::Get()->GroupSetActive(group_id);
   Mock::VerifyAndClearExpectations(mock_le_audio_source_hal_client_);
 
-  // Start streaming
+  // Start streaming - expect HAL being notified by both directions config change
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, UpdateAudioConfigToHal(_)).Times(1);
   EXPECT_CALL(*mock_le_audio_source_hal_client_, UpdateAudioConfigToHal(_)).Times(1);
-  EXPECT_CALL(*mock_codec_manager_, UpdateActiveAudioConfig(_, _))
-          .Times(1)
-          .WillOnce([](const types::BidirectionalPair<stream_parameters>& stream_params,
-                       std::function<void(const stream_config& config, uint8_t direction)>
-                               update_receiver) {
+
+  /* Expect one update per direction - 2 in total for voice communication usage */
+  EXPECT_CALL(*mock_codec_manager_, UpdateActiveAudioConfig(_, _, _))
+          .WillRepeatedly([&](const types::BidirectionalPair<stream_parameters>& stream_params,
+                              std::function<void(const stream_config& config, uint8_t direction)>
+                                      update_receiver,
+                              uint8_t directions_to_update) {
             bluetooth::le_audio::stream_config unicast_cfg;
-            if (stream_params.sink.stream_config.peer_delay_ms != 0) {
+            if ((directions_to_update & bluetooth::le_audio::types::kLeAudioDirectionSink) &&
+                stream_params.sink.stream_config.peer_delay_ms != 0) {
               update_receiver(unicast_cfg, bluetooth::le_audio::types::kLeAudioDirectionSink);
             }
-            if (stream_params.source.stream_config.peer_delay_ms != 0) {
+            if ((directions_to_update & bluetooth::le_audio::types::kLeAudioDirectionSource) &&
+                stream_params.source.stream_config.peer_delay_ms != 0) {
               update_receiver(unicast_cfg, bluetooth::le_audio::types::kLeAudioDirectionSource);
             }
           });
@@ -8452,16 +8456,19 @@ TEST_F(UnicastTest, UpdateActiveAudioConfigForLocalSource) {
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, UpdateAudioConfigToHal(_)).Times(1);
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, UpdateAudioConfigToHal(_)).Times(0);
-  EXPECT_CALL(*mock_codec_manager_, UpdateActiveAudioConfig(_, _))
+  EXPECT_CALL(*mock_codec_manager_, UpdateActiveAudioConfig(_, _, _))
           .Times(1)
           .WillOnce([](const types::BidirectionalPair<stream_parameters>& stream_params,
                        std::function<void(const stream_config& config, uint8_t direction)>
-                               update_receiver) {
+                               update_receiver,
+                       uint8_t directions_to_update) {
             bluetooth::le_audio::stream_config unicast_cfg;
-            if (stream_params.sink.stream_config.peer_delay_ms != 0) {
+            if ((directions_to_update & bluetooth::le_audio::types::kLeAudioDirectionSink) &&
+                stream_params.sink.stream_config.peer_delay_ms != 0) {
               update_receiver(unicast_cfg, bluetooth::le_audio::types::kLeAudioDirectionSink);
             }
-            if (stream_params.source.stream_config.peer_delay_ms != 0) {
+            if ((directions_to_update & bluetooth::le_audio::types::kLeAudioDirectionSource) &&
+                stream_params.source.stream_config.peer_delay_ms != 0) {
               update_receiver(unicast_cfg, bluetooth::le_audio::types::kLeAudioDirectionSource);
             }
           });
@@ -13263,7 +13270,10 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
           .WillByDefault(
                   Invoke([&](const types::BidirectionalPair<stream_parameters>& stream_params,
                              std::function<void(const stream_config& config, uint8_t direction)>
-                             /*updater*/) { codec_manager_stream_params = stream_params; }));
+                             /*updater*/,
+                             uint8_t /*directions_to_update*/) {
+                    codec_manager_stream_params = stream_params;
+                  }));
 
   const RawAddress test_address0 = GetTestAddress(0);
   int group_id = bluetooth::groups::kGroupUnknown;
