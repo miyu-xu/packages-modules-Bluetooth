@@ -127,6 +127,30 @@
       },
       "revId": "596faf22454aea0f435b592526a1a31533c396d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecc0c68f_8a219100",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:29:58Z",
+      "side": 1,
+      "message": "Mmmm.... wait a second.\n\nMy understanding that we didn\u0027t want to activate the feature if the sysprop was not enabled. But you are saying that the sysprop can contains the op code that helps to communicate with the msft extensiosn ?\n\nThis seems like an hack. I understand this can be done for testing purposes but here we are talking about puting that on device.\nI don\u0027t really know what to think about this...\n\nIf some devices doesn\u0027t return the proper opcode when the HAL is called, these devices need to fix their HAL first. We can\u0027t have an interop for this.",
+      "parentUuid": "50722259_568fab11",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
