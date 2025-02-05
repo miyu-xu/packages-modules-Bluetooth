@@ -51,6 +51,24 @@
       "parentUuid": "7d311c3e_e51f4d7b",
       "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a00c1ec_0cab499e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T19:53:26Z",
+      "side": 1,
+      "message": "Ack.\n\nDoes that mean I should use @Keep on the symbol that matters ? to be compatible with R8 ? do you have a doc for this ?",
+      "parentUuid": "e532ba1b_4a62cf79",
+      "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

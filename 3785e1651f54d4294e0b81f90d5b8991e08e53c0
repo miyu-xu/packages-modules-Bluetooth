@@ -34,6 +34,24 @@
       "parentUuid": "5e08adaf_dce20bee",
       "revId": "3785e1651f54d4294e0b81f90d5b8991e08e53c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a082122_2cc0c903",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T19:53:26Z",
+      "side": 1,
+      "message": "I asked the DrNo on the appropriate channel.\n\nIt requre DrNo since it\u0027s not flagged (but doesn\u0027t need a flag so exemption is correct here)",
+      "parentUuid": "5e08adaf_dce20bee",
+      "revId": "3785e1651f54d4294e0b81f90d5b8991e08e53c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
