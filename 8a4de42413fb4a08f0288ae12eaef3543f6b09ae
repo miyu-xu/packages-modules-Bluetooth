@@ -16,6 +16,23 @@
       "message": "Hey Jakub, this seems to be a good improvement however it would be nice to break parsing PACs after invalid one.",
       "revId": "8a4de42413fb4a08f0288ae12eaef3543f6b09ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d03a5e5_f3e035e6",
+        "filename": "system/bta/le_audio/client_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T22:58:40Z",
+      "side": 1,
+      "message": "I have shared some thoughts in the bug. Can you keep the log and still return -1 here? so we just log this case instread of introducing a workaround.\nAnd let\u0027s keep and update the unit test accordingly for this invalid format.",
+      "revId": "8a4de42413fb4a08f0288ae12eaef3543f6b09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
