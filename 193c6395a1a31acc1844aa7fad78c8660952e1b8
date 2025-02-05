@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed505198_bd49a3b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:43:18Z",
+      "side": 1,
+      "message": "added here and similar explanation to next CL too.",
+      "parentUuid": "4aef443d_2d220ee1",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d4173d4_dbac8cfb",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-05T17:37:13Z",
       "side": 1,
       "message": "passed \"device\" is used only to find the group of devices.\n\nmaybe this function could be named `removeSinkMetadataFromOtherGroupMembersIfUnsyced` ?",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abcee4f1_dc4432fb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3011,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:43:18Z",
+      "side": 1,
+      "message": "It will work as you described only in situation that device was removed before so if this method is called from removeSinkMetadata.\n\nThis particular device has to be removed too in disconnection case (STATE_DISCONNECTED) together with others, if whole group is unsynced.\n\nSo IMO name is fine, this method will remove sink metadata from whole group if whole group is unsynced.",
+      "parentUuid": "4d4173d4_dbac8cfb",
       "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aa03eea_8cbe185f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:43:18Z",
+      "side": 1,
+      "message": "We cannot remove it here, as in disconnection case (STATE_DISCONNECTED) we do not know if we should remove it or not. We will remove it only if all others group members are unsync. If not, then we have to keep this sink in case of reconnection.",
+      "parentUuid": "42a20807_d8a7b172",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98e47eb6_486bf4b0",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-02-05T17:37:13Z",
       "side": 1,
       "message": "here we don\u0027t skip \"device\", is this intended?",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc382010_3c4acf8d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3041,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:43:18Z",
+      "side": 1,
+      "message": "yes, as in disconnection case (STATE_DISCONNECTED) it is not removed before calling this method.",
+      "parentUuid": "98e47eb6_486bf4b0",
       "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
