@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c07d0d7_550bfc2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T18:51:15Z",
+      "side": 1,
+      "message": "@girardier@google.com This api exist for a decade, it has been wrongly added under FlaggedApi when doing the socket offload.\n\nI believe we can remove the flaggedApi safely",
+      "revId": "4b45f6728dc583911d6c8bdeb1591dba997a8984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
