@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34aa512f_1c8620a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-02-05T23:36:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e749cbb9_365f85ac",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c25d396_0e6af96b",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-12-27T19:38:33Z",
       "side": 1,
       "message": "This isn\u0027t an `unsafe` comnent, but have you considered `tracing::instrument` instead? It provides a much more fully featured version of what you\u0027re doing with `log_args`, including the ability to selectively skip unformattable or large areguments, more efficient formatting (e.g. this formats even if the receiver for the formatting won\u0027t end up printing it), and ability to request that returns get printed.",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "644dc948_6377d58c",
+        "filename": "system/gd/rust/topshim/macros/src/lib.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-02-05T23:36:24Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I took a look, and spent a large chunk of time trying to get this to work, but considering (1) these logs are already working, (2) this is a legacy system that is now in maintenance mode, and (3) I was unable to get `tracing::instrument` to work with our current logging mechanism, I decided it was best to avoid `tracing::instrument` for the time being.",
+      "parentUuid": "7c25d396_0e6af96b",
       "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +102,24 @@
       "side": 1,
       "message": "Andrew\u0027s correct, I missed this function in the rest of the changes because it was in between all the `#[log_args]` additions.",
       "parentUuid": "76028921_46df67f4",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b514771_888d8cd0",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1505,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-02-05T23:36:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cefc962d_1b5a8670",
       "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
