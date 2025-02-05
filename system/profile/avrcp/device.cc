@@ -1364,7 +1364,8 @@ void Device::GetMediaPlayerListResponse(uint8_t label, std::shared_ptr<GetFolder
                                         std::vector<MediaPlayerInfo> players) {
   log::verbose("");
 
-  if (players.size() == 0) {
+  if (true) {
+    log::warn("Force return range out of bounds");
     auto no_items_rsp = GetFolderItemsResponseBuilder::MakePlayerListBuilder(
             Status::RANGE_OUT_OF_BOUNDS, 0x0000, browse_mtu_);
     send_message(label, true, std::move(no_items_rsp));
