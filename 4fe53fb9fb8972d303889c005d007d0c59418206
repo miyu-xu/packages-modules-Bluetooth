@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54344bf9_c449aed4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b73c8ce_37f1de17",
+      "range": {
+        "startLine": 228,
+        "startChar": 13,
+        "endLine": 228,
+        "endChar": 30
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b99f2bbb_0bb67edc",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-05T19:41:59Z",
       "side": 1,
       "message": "nit: `stopScanAndUnregister` to reflect what this method actually does",
+      "range": {
+        "startLine": 250,
+        "startChar": 13,
+        "endLine": 250,
+        "endChar": 21
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e9831c_e7aa0860",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b99f2bbb_0bb67edc",
       "range": {
         "startLine": 250,
         "startChar": 13,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d03ab11b_98a3da3f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a0095a5_a91c7dec",
+      "range": {
+        "startLine": 254,
+        "startChar": 42,
+        "endLine": 254,
+        "endChar": 49
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef97a2e7_5545fae2",
@@ -101,6 +173,30 @@
       "writtenOn": "2025-02-05T19:41:59Z",
       "side": 1,
       "message": "Could this be moved to `startScan` where the filter is accepted? So that if we need to validate the filter, we can do it synchronously later.",
+      "range": {
+        "startLine": 289,
+        "startChar": 16,
+        "endLine": 299,
+        "endChar": 0
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6a21df_371af8b5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef97a2e7_5545fae2",
       "range": {
         "startLine": 289,
         "startChar": 16,
@@ -152,6 +248,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d7ed33_baa3f53f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e2b749a_4ccafcd5",
+      "range": {
+        "startLine": 302,
+        "startChar": 53,
+        "endLine": 302,
+        "endChar": 60
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1da0fa2c_270b5f07",
@@ -175,6 +295,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de167cfd_3ebbf2e3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "sure, adding this for the error logs. \nfor the other 2 debug logs, i\u0027ll just prefer a cleaner logging without onScanResult: prefix, considering they\u0027re more specific for the logging intent.",
+      "parentUuid": "1da0fa2c_270b5f07",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 67
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e76105ce_05ed54e4",
@@ -188,6 +332,30 @@
       "writtenOn": "2025-02-05T19:41:59Z",
       "side": 1,
       "message": "logs like this should be `Log.w`\n\nGenerally, if\n\n- a local error that has to be fixed: Log.e()\n- a remote error or data result error that should be noticed: Log.w()\n- normal exception or event: Log.i()",
+      "range": {
+        "startLine": 323,
+        "startChar": 16,
+        "endLine": 323,
+        "endChar": 47
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9b0711d_813627ad",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "thanks, makes sense.",
+      "parentUuid": "e76105ce_05ed54e4",
       "range": {
         "startLine": 323,
         "startChar": 16,
@@ -223,6 +391,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38815329_d0895492",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "log() -\u003e Log.d(), we\u0027d need to do some cleanup in this file to unify those later.\nsEventLogger.logd() -\u003e yes, dumpsys.",
+      "parentUuid": "1a855c56_6481093e",
+      "range": {
+        "startLine": 336,
+        "startChar": 11,
+        "endLine": 336,
+        "endChar": 29
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79482790_66b867f3",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -234,6 +426,30 @@
       "writtenOn": "2025-02-05T19:41:59Z",
       "side": 1,
       "message": "Do we want to add a debug or info log for this?",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 13
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46055ef0_70ab3e9d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "good point, added.",
+      "parentUuid": "79482790_66b867f3",
       "range": {
         "startLine": 338,
         "startChar": 0,
@@ -267,6 +483,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "378e7d7c_8d0ffe29",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Normally we should not reach here. This is for DELIVERY_MODE_ON_FOUND_LOST. My intent is to log this anyways, but agreed better to reset the id for scanner error -\u003e stop.",
+      "parentUuid": "52c9992d_ea8e4bf3",
+      "range": {
+        "startLine": 361,
+        "startChar": 20,
+        "endLine": 361,
+        "endChar": 46
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f08367c_56760ce0",
@@ -280,6 +520,30 @@
       "writtenOn": "2025-02-05T19:41:59Z",
       "side": 1,
       "message": "add some context before logging as Java doesn\u0027t print function name by default",
+      "range": {
+        "startLine": 2325,
+        "startChar": 35,
+        "endLine": 2325,
+        "endChar": 36
+      },
+      "revId": "4fe53fb9fb8972d303889c005d007d0c59418206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28fb120_8075c290",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2325,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T21:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f08367c_56760ce0",
       "range": {
         "startLine": 2325,
         "startChar": 35,
