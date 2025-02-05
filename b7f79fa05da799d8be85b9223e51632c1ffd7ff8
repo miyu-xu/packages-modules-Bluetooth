@@ -1,0 +1,121 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3e3c257_ed2b1430",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-05T04:26:01Z",
+      "side": 1,
+      "message": "bond_retry_timer",
+      "fixSuggestions": [
+        {
+          "fixId": "a1863d49_2c5dc96d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_int.h",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "#ifndef BTA_DM_BOND_RETRY_TIMER_MS\n#define BTA_DM_BOND_RETRY_TIMER_MS 100\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_int.h",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 241,
+                "endChar": 0
+              },
+              "replacement": "  alarm_t* bond_retry_timer;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca71b1d_6bb46b4f",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1023,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-05T04:26:01Z",
+      "side": 1,
+      "message": "retry",
+      "fixSuggestions": [
+        {
+          "fixId": "90c91a79_74f2f5b6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_sec.cc",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "static void bta_dm_bond_retry_cback(void* data);\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_sec.cc",
+              "range": {
+                "startLine": 150,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": "      alarm_set_on_mloop(bta_dm_cb.bond_retry_timer, BTA_DM_BOND_TIMER_RETRIAL_MS,\n                         bta_dm_bond_retry_cback, p_msg);\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_sec.cc",
+              "range": {
+                "startLine": 1023,
+                "startChar": 0,
+                "endLine": 1024,
+                "endChar": 0
+              },
+              "replacement": "static void bta_dm_bond_retry_cback(void* data) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51642e7e_234b5561",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-05T04:26:01Z",
+      "side": 1,
+      "message": "Retrying just once after 100 ms may not be enough.\nThis issue primarily happens when a RNR procedure is going on. That is unlikely to conclude within 100 ms.",
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
