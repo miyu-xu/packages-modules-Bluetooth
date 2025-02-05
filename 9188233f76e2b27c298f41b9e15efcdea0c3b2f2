@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47cfc42c_a7f5ab0b",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T20:07:44Z",
+      "side": 1,
+      "message": "There is a missing return here since it\u0027s now early returns",
+      "range": {
+        "startLine": 846,
+        "startChar": 4,
+        "endLine": 846,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b821b93c_444681ab",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avdt/avdt_scb_act.cc",
+              "range": {
+                "startLine": 847,
+                "startChar": 0,
+                "endLine": 847,
+                "endChar": 0
+              },
+              "replacement": "    return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9188233f76e2b27c298f41b9e15efcdea0c3b2f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
