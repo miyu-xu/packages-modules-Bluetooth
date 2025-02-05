@@ -151,6 +151,30 @@
       },
       "revId": "596faf22454aea0f435b592526a1a31533c396d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51efa537_692ef688",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-05T16:18:21Z",
+      "side": 1,
+      "message": "I can give a little more context about the reason for this change. On CrOS, since we were using BlueZ, which has a lot of the stack in the kernel space, we asked vendors to put their vendor-specfic opcode for MSFT in a kernel var when the FW is loaded. On Floss, we access this kernel var via a MGMT socket with a CHROMIUM-only kernel patch. As we were deciding which kernel patches to migrate to AL, we decided that continuning to have the vendor-specific opcode in the kernel doesn\u0027t make sense since MGMT is so BlueZ-centric. Sysprops sounded like the right solution since many of them are vendor specific.\n\nSaying the opcode is read from the HAL is actually a misnomer since right now it\u0027s actually communicating with the kernel.\n\nI wanted to leave checking the kernel first since this is how we will continue to do it for Floss. Only AL devices will probably be using the sysprop since we aren\u0027t going to carry forward the kernel patch.",
+      "parentUuid": "ecc0c68f_8a219100",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
