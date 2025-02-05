@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "923540b7_10a2360f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-05T16:57:58Z",
+      "side": 1,
+      "message": "Hey Jakub, this seems to be a good improvement however it would be nice to break parsing PACs after invalid one.",
+      "revId": "8a4de42413fb4a08f0288ae12eaef3543f6b09ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
