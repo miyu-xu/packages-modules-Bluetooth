@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aa43032_62980ac7",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:23:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92b7c59d_d74ec6c0",
+      "range": {
+        "startLine": 139,
+        "startChar": 25,
+        "endLine": 139,
+        "endChar": 38
+      },
+      "revId": "3fe8f2277e51cc54b6dad7c30ca621d3949cf18b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a28dbce9_bb569b22",
@@ -94,6 +118,30 @@
           ]
         }
       ],
+      "revId": "3fe8f2277e51cc54b6dad7c30ca621d3949cf18b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c2032a_a3681e56",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-05T00:23:09Z",
+      "side": 1,
+      "message": "This is not an common pattern in the app",
+      "parentUuid": "a28dbce9_bb569b22",
+      "range": {
+        "startLine": 159,
+        "startChar": 31,
+        "endLine": 159,
+        "endChar": 45
+      },
       "revId": "3fe8f2277e51cc54b6dad7c30ca621d3949cf18b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
