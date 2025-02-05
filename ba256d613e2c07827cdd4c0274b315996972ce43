@@ -64,6 +64,30 @@
       },
       "revId": "ba256d613e2c07827cdd4c0274b315996972ce43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e69d415_5a1c3910",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3092,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-05T19:04:37Z",
+      "side": 1,
+      "message": "2nd priorityImportant is not necessary... my proposed change is the same as your original logic.\n\nThe checking part after || always has priorityImportant - true",
+      "parentUuid": "288ecbc1_4f54e3a2",
+      "range": {
+        "startLine": 3086,
+        "startChar": 0,
+        "endLine": 3092,
+        "endChar": 32
+      },
+      "revId": "ba256d613e2c07827cdd4c0274b315996972ce43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
