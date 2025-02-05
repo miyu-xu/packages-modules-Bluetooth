@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "509c7ca4_7d78ddc1",
+        "filename": "flags/opp.aconfig",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2013495
+      },
+      "writtenOn": "2025-02-05T08:59:54Z",
+      "side": 1,
+      "message": "Updated.",
+      "parentUuid": "6d955401_553304af",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 5
+      },
+      "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1ee53f3_6fa0977b",
@@ -78,6 +102,30 @@
           ]
         }
       ],
+      "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13899d28_ad0e4c70",
+        "filename": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2013495
+      },
+      "writtenOn": "2025-02-05T08:59:54Z",
+      "side": 1,
+      "message": "I added it to make the string format consistent with other strings in this file. The actionValue recommendation is `android.bluetooth.extra.ORIGINAL_SEND_INTENT`. \nI\u0027ve updated the value now, PTAL, thanks!",
+      "parentUuid": "d1ee53f3_6fa0977b",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 32
+      },
       "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
