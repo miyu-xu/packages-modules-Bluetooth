@@ -864,12 +864,13 @@ public class PairingTest {
 
     private void testStep_BondBredr(IntentReceiver parentIntentReceiver) {
         IntentReceiver intentReceiver =
-            IntentReceiver.updateNewIntentActionsInParentReceiver(
+            IntentReceiver.registerBuilder(
                 parentIntentReceiver,
-                sTargetContext,
-                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
-                BluetoothDevice.ACTION_ACL_CONNECTED,
-                BluetoothDevice.ACTION_PAIRING_REQUEST);
+                new IntentReceiver.Builder(
+                    sTargetContext,
+                    BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                    BluetoothDevice.ACTION_ACL_CONNECTED,
+                    BluetoothDevice.ACTION_PAIRING_REQUEST));
 
         StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
                 mBumble.security()
@@ -928,13 +929,14 @@ public class PairingTest {
                 IntentReceiver parentIntentReceiver) {
         // Register new actions specific to this helper function
         IntentReceiver intentReceiver =
-            IntentReceiver.updateNewIntentActionsInParentReceiver(
+            IntentReceiver.registerBuilder(
                 parentIntentReceiver,
-                sTargetContext,
-                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
-                BluetoothDevice.ACTION_PAIRING_REQUEST,
-                BluetoothDevice.ACTION_UUID,
-                BluetoothDevice.ACTION_ACL_CONNECTED);
+                new IntentReceiver.Builder(
+                    sTargetContext,
+                    BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                    BluetoothDevice.ACTION_PAIRING_REQUEST,
+                    BluetoothDevice.ACTION_UUID,
+                    BluetoothDevice.ACTION_ACL_CONNECTED));
 
         // Register lots of interesting GATT services on Bumble
         for (int i = 0; i < 40; i++) {
@@ -1023,12 +1025,13 @@ public class PairingTest {
     private void testStep_BondLe(IntentReceiver parentIntentReceiver,
         BluetoothDevice device, OwnAddressType ownAddressType) {
         IntentReceiver intentReceiver =
-            IntentReceiver.updateNewIntentActionsInParentReceiver(
+            IntentReceiver.registerBuilder(
                 parentIntentReceiver,
-                sTargetContext,
-                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
-                BluetoothDevice.ACTION_ACL_CONNECTED,
-                BluetoothDevice.ACTION_PAIRING_REQUEST);
+                new IntentReceiver.Builder(
+                    sTargetContext,
+                    BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                    BluetoothDevice.ACTION_ACL_CONNECTED,
+                    BluetoothDevice.ACTION_PAIRING_REQUEST));
 
         mBumble.gattBlocking()
                 .registerService(
