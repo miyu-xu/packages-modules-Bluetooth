@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3bc0c27_55282cce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3011,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:53:43Z",
+      "side": 1,
+      "message": "P.S. I know that in STATE_DISCONNECTED, the version with only one argument is called, but it invokes this one. Another thing is that both should have the same name since they overload the same functionality.",
+      "parentUuid": "abcee4f1_dc4432fb",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42a20807_d8a7b172",
