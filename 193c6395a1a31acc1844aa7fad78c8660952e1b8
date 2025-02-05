@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aef443d_2d220ee1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T17:37:13Z",
+      "side": 1,
+      "message": "could you put here some explanation on why we need to remove sink metadata from other group members?",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d4173d4_dbac8cfb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3011,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T17:37:13Z",
+      "side": 1,
+      "message": "passed \"device\" is used only to find the group of devices.\n\nmaybe this function could be named `removeSinkMetadataFromOtherGroupMembersIfUnsyced` ?",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a20807_d8a7b172",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T17:37:13Z",
+      "side": 1,
+      "message": "maybe instead of this skip. device could be removed from the `sinks` above with the comment explaining why we are doing this.\n\nThis also fix line 3041 comment.",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e47eb6_486bf4b0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3041,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T17:37:13Z",
+      "side": 1,
+      "message": "here we don\u0027t skip \"device\", is this intended?",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
