@@ -199,6 +199,30 @@
       },
       "revId": "596faf22454aea0f435b592526a1a31533c396d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7687837_7ecb3e8f",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-05T19:30:21Z",
+      "side": 1,
+      "message": "Yes, BlueZ specifics are already left out and are currently retrived via `hal_-\u003egetMsftOpcode()`. Once this lands, we can actually remove aosp/3303220 since we will no longer need MGMT to retrive the opcode",
+      "parentUuid": "945b5529_c15b9864",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
