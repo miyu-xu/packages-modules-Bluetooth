@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9efa921_db9962dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "887cd726_c56cbeb1",
+      "revId": "edd9a9f86a690f4b58c6ee3cfe31ce6bfbdcdffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7e56bf9_c5855cb4",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-05T17:39:23Z",
       "side": 1,
       "message": "deviceSourceId",
+      "range": {
+        "startLine": 3403,
+        "startChar": 32,
+        "endLine": 3403,
+        "endChar": 40
+      },
+      "revId": "edd9a9f86a690f4b58c6ee3cfe31ce6bfbdcdffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd38bfb_c8fa95ce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3403,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T21:43:40Z",
+      "side": 1,
+      "message": "sourceId is preferred as it is commonly used in similar logs. Here, deviceSourceId is used because this log pertains to a specific device, rather than the argument passed to the method.",
+      "parentUuid": "d7e56bf9_c5855cb4",
       "range": {
         "startLine": 3403,
         "startChar": 32,
