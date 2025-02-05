@@ -1094,7 +1094,7 @@ package android.bluetooth {
 
   public final class BluetoothSocket implements java.io.Closeable {
     method public void close() throws java.io.IOException;
-    method @FlaggedApi("com.android.bluetooth.flags.socket_settings_api") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}, conditional=true) public void connect() throws java.io.IOException;
+    method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}, conditional=true) public void connect() throws java.io.IOException;
     method public int getConnectionType();
     method public java.io.InputStream getInputStream() throws java.io.IOException;
     method public int getMaxReceivePacketSize();
