@@ -22,6 +22,30 @@
       },
       "revId": "0f89ce627cb041658daea0cc39153911013b9e9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5674f7_1bfb7052",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-02-05T20:06:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c8b9899_db28605e",
+      "range": {
+        "startLine": 846,
+        "startChar": 0,
+        "endLine": 876,
+        "endChar": 3
+      },
+      "revId": "0f89ce627cb041658daea0cc39153911013b9e9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
