@@ -42,6 +42,7 @@ import android.bluetooth.BluetoothA2dpSink;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAvrcpController;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothHapClient;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothHeadsetClient;
 import android.bluetooth.BluetoothHearingAid;
@@ -60,6 +61,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
@@ -88,6 +90,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -102,6 +108,11 @@ public class MetricsLogger {
     public static final String BLOOMFILTER_FULL_PATH = BLOOMFILTER_PATH + BLOOMFILTER_FILE;
     public static final String MEDICAL_DEVICE_BLOOMFILTER_FULL_PATH =
             BLOOMFILTER_PATH + MEDICAL_DEVICE_BLOOMFILTER_FILE;
+    private static final String HEARING_DEVICE_ACTIVE_HISTORY_PREFERENCE_FILE =
+            "hearing_device_active_history";
+    private static final String KEY_HEARING_DEVICE_LAST_ACTIVE_DAY = "last_active_day";
+    private static final String KEY_HEARING_DEVICE_LAST_ACTIVE_WEEK = "last_active_week";
+    private static final String KEY_HEARING_DEVICE_LAST_ACTIVE_MONTH = "last_active_month";
 
     // 6 hours timeout for counter metrics
     private static final long BLUETOOTH_COUNTER_METRICS_ACTION_DURATION_MILLIS = 6L * 3600L * 1000L;
@@ -273,6 +284,7 @@ public class MetricsLogger {
         filter.addAction(BluetoothPbap.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothPbapClient.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothSap.ACTION_CONNECTION_STATE_CHANGED);
+        filter.addAction(BluetoothHapClient.ACTION_HAP_CONNECTION_STATE_CHANGED);
         mAdapterService.registerReceiver(mReceiver, filter);
     }
 
@@ -285,9 +297,16 @@ public class MetricsLogger {
                         Log.w(TAG, "Received intent with null action");
                         return;
                     }
+                    BluetoothDevice device =
+                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    int state = intent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1);
                     switch (action) {
                         case BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.A2DP, intent);
+                            if (state == BluetoothProfile.STATE_CONNECTED
+                                    && isMedicalDevice(device)) {
+                                updateHearingDeviceActiveTime(device, BluetoothProfile.A2DP);
+                            }
                             break;
                         case BluetoothA2dpSink.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.A2DP_SINK, intent);
@@ -297,12 +316,19 @@ public class MetricsLogger {
                             break;
                         case BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.HEADSET, intent);
+                            if (state == BluetoothProfile.STATE_CONNECTED
+                                    && isMedicalDevice(device)) {
+                                updateHearingDeviceActiveTime(device, BluetoothProfile.HEADSET);
+                            }
                             break;
                         case BluetoothHeadsetClient.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.HEADSET_CLIENT, intent);
                             break;
                         case BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.HEARING_AID, intent);
+                            if (state == BluetoothProfile.STATE_CONNECTED) {
+                                updateHearingDeviceActiveTime(device, BluetoothProfile.HEARING_AID);
+                            }
                             break;
                         case BluetoothHidDevice.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.HID_DEVICE, intent);
@@ -330,6 +356,11 @@ public class MetricsLogger {
                             break;
                         case BluetoothSap.ACTION_CONNECTION_STATE_CHANGED:
                             logConnectionStateChanges(BluetoothProfile.SAP, intent);
+                            break;
+                        case BluetoothHapClient.ACTION_HAP_CONNECTION_STATE_CHANGED:
+                            if (state == BluetoothProfile.STATE_CONNECTED) {
+                                updateHearingDeviceActiveTime(device, BluetoothProfile.HAP_CLIENT);
+                            }
                             break;
                         default:
                             Log.w(TAG, "Received unknown intent " + intent);
@@ -932,5 +963,87 @@ public class MetricsLogger {
                 latencyBisSyncMs,
                 syncStatus,
                 getRemoteDeviceInfoProto(device, false));
+    }
+
+    private void logHearingDeviceActiveEvent(BluetoothDevice device, int type, int timePeriod) {
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED,
+                type,
+                timePeriod,
+                getRemoteDeviceInfoProto(device, true));
+    }
+
+    private boolean isMedicalDevice(BluetoothDevice device) {
+        final String deviceName = mAdapterService.getRemoteName(device);
+        final List<String> wordBreakdownList = getWordBreakdownList(deviceName);
+        return !getMatchedStringForMedicalDevice(wordBreakdownList).isEmpty();
+    }
+
+    void updateHearingDeviceActiveTime(BluetoothDevice device, int profile) {
+        int type = -1;
+        if (profile == BluetoothProfile.A2DP || profile == BluetoothProfile.HEADSET) {
+            type = BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED__DEVICE_TYPE__CLASSIC;
+        } else if (profile == BluetoothProfile.HEARING_AID) {
+            type = BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED__DEVICE_TYPE__ASHA;
+        } else if (profile == BluetoothProfile.HAP_CLIENT) {
+            type = BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED__DEVICE_TYPE__LE_AUDIO;
+        }
+        if (type == -1) {
+            return;
+        }
+
+        LocalDate lastActiveDay = getLastActiveDate(KEY_HEARING_DEVICE_LAST_ACTIVE_DAY);
+        LocalDate lastActiveWeek = getLastActiveDate(KEY_HEARING_DEVICE_LAST_ACTIVE_WEEK);
+        LocalDate lastActiveMonth = getLastActiveDate(KEY_HEARING_DEVICE_LAST_ACTIVE_MONTH);
+        long currentTime = System.currentTimeMillis();
+        String currentTimeString = Long.toString(currentTime);
+        LocalDate today = getDate(currentTime);
+
+        SharedPreferences.Editor editor =
+                mAdapterService
+                        .getSharedPreferences(
+                                HEARING_DEVICE_ACTIVE_HISTORY_PREFERENCE_FILE, Context.MODE_PRIVATE)
+                        .edit();
+        if (lastActiveDay == null || Math.abs(ChronoUnit.DAYS.between(lastActiveDay, today)) > 0) {
+            editor.putString(KEY_HEARING_DEVICE_LAST_ACTIVE_DAY, currentTimeString);
+            logHearingDeviceActiveEvent(
+                    device,
+                    type,
+                    BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED__TIME_PERIOD__DAY);
+        }
+        if (lastActiveWeek == null
+                || Math.abs(ChronoUnit.WEEKS.between(lastActiveWeek, today)) > 0) {
+            editor.putString(KEY_HEARING_DEVICE_LAST_ACTIVE_WEEK, currentTimeString);
+            logHearingDeviceActiveEvent(
+                    device,
+                    type,
+                    BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED__TIME_PERIOD__WEEK);
+        }
+        if (lastActiveMonth == null
+                || Math.abs(ChronoUnit.MONTHS.between(lastActiveMonth, today)) > 0) {
+            editor.putString(KEY_HEARING_DEVICE_LAST_ACTIVE_MONTH, currentTimeString);
+            logHearingDeviceActiveEvent(
+                    device,
+                    type,
+                    BluetoothStatsLog.HEARING_DEVICE_ACTIVE_EVENT_REPORTED__TIME_PERIOD__MONTH);
+        }
+        editor.apply();
+    }
+
+    private LocalDate getLastActiveDate(String key) {
+        SharedPreferences sharedPreferences =
+                mAdapterService.getSharedPreferences(
+                        HEARING_DEVICE_ACTIVE_HISTORY_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        String timestampString = sharedPreferences.getString(key, "");
+        if (timestampString != null && timestampString.isEmpty()) {
+            return null;
+        }
+        long timestamp = Long.parseLong(timestampString);
+        return getDate(timestamp);
+    }
+
+    private static LocalDate getDate(long timestamp) {
+        ZoneId zoneId = ZoneId.systemDefault();
+        return Instant.ofEpochMilli(timestamp).atZone(zoneId).toLocalDate();
     }
 }
