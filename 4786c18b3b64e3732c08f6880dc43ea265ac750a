@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2f12e3_98830fcd",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-05T19:34:18Z",
+      "side": 0,
+      "message": "It was suggested from the Andorid API review. Please refer the comments in \n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3349374/comment/37838a07_88ad6a77/",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 643,
+        "endChar": 47
+      },
+      "revId": "4786c18b3b64e3732c08f6880dc43ea265ac750a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
