@@ -33,6 +33,24 @@
       "message": "+2, but I wonder what would happen if we simply remove the proguard file.\n\nWouldn\u0027t it strip and optimize away the code on it\u0027s own ?\nThe entry point are BluetoothService.kt and BluetoothBinder.java, I believe proguard could do its magic from this point.\n\nIf I do a follow-up change to remove the proguard file, can I remove the compatibility line altogether ?",
       "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e532ba1b_4a62cf79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327199
+      },
+      "writtenOn": "2025-02-05T07:58:39Z",
+      "side": 1,
+      "message": "That would be great to pursue. You can change it to `proguard_compatibility: false` along with that change. If you run into issues or have questions feel free to ping me or open a bug in the R8 issue tracker.\n\nFor this type of build, the default of `proguard_compatibility` is currently `true`. We are working on changing that to be `false` (hence this change). After the default value has been changed, we will attempt to remove all uses of `proguard_compatibility: true` one-by-one.",
+      "parentUuid": "7d311c3e_e51f4d7b",
+      "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
