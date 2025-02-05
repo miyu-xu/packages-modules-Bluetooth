@@ -89,6 +89,11 @@ public class TestUtil {
   public void removeBond(IntentReceiver parentIntentReceiver,
       BluetoothDevice device) {
     IntentReceiver intentReceiver =
+        IntentReceiver.registerBuilder(parentIntentReceiver,
+            new IntentReceiver.Builder(
+                mTargetContext,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED));
+
         IntentReceiver.updateNewIntentActionsInParentReceiver(parentIntentReceiver,
             mTargetContext, BluetoothDevice.ACTION_BOND_STATE_CHANGED);
 
