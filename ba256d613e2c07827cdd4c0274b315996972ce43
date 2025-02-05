@@ -40,6 +40,30 @@
       ],
       "revId": "ba256d613e2c07827cdd4c0274b315996972ce43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "288ecbc1_4f54e3a2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3092,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T08:05:18Z",
+      "side": 1,
+      "message": "```\nreturn !priorityImportant || sourceSyncRequest.hasPriority();\n```\n\nis not the same as:\n```\nif (priorityImportant) {\n  if (sourceSyncRequest.hasPriority()) {\n    return true;\n  }\n  return false;\n}\nreturn true;\n```\nif so it should be:\n```\nreturn !priorityImportant || (priorityImportant \u0026\u0026 sourceSyncRequest.hasPriority();)\n```\nFixed in aosp/3466153",
+      "parentUuid": "2aa4d862_33af10af",
+      "range": {
+        "startLine": 3086,
+        "startChar": 0,
+        "endLine": 3092,
+        "endChar": 32
+      },
+      "revId": "ba256d613e2c07827cdd4c0274b315996972ce43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
