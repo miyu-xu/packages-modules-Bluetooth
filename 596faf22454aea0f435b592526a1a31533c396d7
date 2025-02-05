@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a882bac_71201a9f",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-05T00:05:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47f46c13_b324ce31",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 36
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2792de8f_6edb0196",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-01-27T22:01:13Z",
       "side": 1,
       "message": "According to CL description, shouldn\u0027t we check the sysprop before checking the hal ?\n```\nif (osi_property_get_int32(\"bluetooth.core.le.msft_vendor_opcode\", 0) \u003d\u003d 0) {\n  return false:\n}\nuint16_t opcode \u003d hal_-\u003egetMsftOpcode();\nif (opcode \u003d\u003d 0) {\n  return false;\n}\n```",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50722259_568fab11",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-05T00:05:27Z",
+      "side": 1,
+      "message": "I\u0027d rather check the HAL first since I want the sysprop to be a fallback in case we can\u0027t read from HAL",
+      "parentUuid": "2792de8f_6edb0196",
       "range": {
         "startLine": 129,
         "startChar": 0,
