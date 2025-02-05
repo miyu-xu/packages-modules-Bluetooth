@@ -885,6 +885,8 @@ bool btm_get_local_div(const RawAddress& bd_addr, uint16_t* p_div) {
 void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
                          tBTM_LE_KEY_VALUE* p_keys, bool pass_to_application) {
   tBTM_SEC_DEV_REC* p_rec;
+  Octet16 all_zero_irk = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
   log::verbose("key_type=0x{:x} pass_to_application={}", key_type, pass_to_application);
   /* Store the updated key in the device database */
@@ -915,7 +917,11 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
         p_rec->sec_rec.ble_keys.irk = p_keys->pid_key.irk;
         p_rec->ble.identity_address_with_type.bda = p_keys->pid_key.identity_addr;
         p_rec->ble.identity_address_with_type.type = p_keys->pid_key.identity_addr_type;
-        p_rec->sec_rec.ble_keys.key_type |= BTM_LE_KEY_PID;
+        if (memcmp(p_keys->pid_key.irk.data(), all_zero_irk.data(), 16) == 0) {
+          log::info("%s IRK is all zero.", __func__);
+        } else {
+          p_rec->sec_rec.ble_keys.key_type |= BTM_LE_KEY_PID;
+        }
         log::verbose(
                 "BTM_LE_KEY_PID key_type=0x{:x} save peer IRK, change bd_addr={} "
                 "to id_addr={} id_addr_type=0x{:x}",
