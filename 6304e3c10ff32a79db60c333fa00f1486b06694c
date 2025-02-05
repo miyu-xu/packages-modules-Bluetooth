@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73be8560_9a71f48c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T17:11:32Z",
+      "side": 1,
+      "message": "Could you elaborate here on \"Why\" we need to remote it?",
+      "revId": "6304e3c10ff32a79db60c333fa00f1486b06694c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1f6f81_b931eccd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 4588,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T17:11:32Z",
+      "side": 1,
+      "message": "nit: why not just call here removeSinkMetadata ?",
+      "revId": "6304e3c10ff32a79db60c333fa00f1486b06694c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
