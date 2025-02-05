@@ -154,6 +154,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e080bf0_e8698476",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3327,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T16:57:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "664341a6_455c6fb0",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58ce20c2_7c2b61c6",
@@ -255,6 +273,24 @@
       "side": 1,
       "message": "That was a bug in the previous code/test. When removing a source from a group, each sink could have a different source ID. In the previous code, we always use the the same ID passed to the method, which was incorrect.",
       "parentUuid": "c8134e09_c5d8c1cd",
+      "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f01ae7f4_4e6ed4e3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2448,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T16:57:35Z",
+      "side": 1,
+      "message": "that should be separate CL / Test only",
+      "parentUuid": "3bd7bdb3_b9c298fd",
       "revId": "90318b3e8e306abf9785777ca48fdf8cc6758fbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

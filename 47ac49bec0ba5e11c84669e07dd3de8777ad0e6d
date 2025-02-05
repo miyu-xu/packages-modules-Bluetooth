@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cc063fe_d5b38469",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3605,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-05T16:57:35Z",
+      "side": 1,
+      "message": "please create issue to track it",
+      "parentUuid": "5cb4f520_87e6a92d",
+      "revId": "47ac49bec0ba5e11c84669e07dd3de8777ad0e6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d1b9123_8db80c72",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
