@@ -20,7 +20,17 @@ import static com.android.bluetooth.TestUtils.getTestDevice;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
@@ -40,12 +50,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /** Unit tests for {@link MetricsLogger} */
 @MediumTest
@@ -291,6 +303,58 @@ public class MetricsLoggerTest {
     public void uploadEmptyDeviceName() throws IOException {
         initTestingBloomfilter();
         assertThat(mTestableMetricsLogger.logAllowlistedDeviceNameHash(1, "")).isEmpty();
+    }
+
+    @Test
+    public void testUpdateHearingDeviceActiveTime() {
+        SharedPreferences mockSharedPref = mock(SharedPreferences.class);
+        SharedPreferences.Editor mockSharedPrefEditor = mock(SharedPreferences.Editor.class);
+        when(mAdapterService.getSharedPreferences(
+                        "hearing_device_active_history", Context.MODE_PRIVATE))
+                .thenReturn(mockSharedPref);
+        when(mockSharedPref.edit()).thenReturn(mockSharedPrefEditor);
+        BluetoothDevice bluetoothDevice = getTestDevice(0);
+
+        // not hearing device related profile, should not update any last active time
+        mTestableMetricsLogger.updateHearingDeviceActiveTime(bluetoothDevice, BluetoothProfile.PAN);
+
+        verify(mockSharedPrefEditor, never()).putString(eq("last_active_day"), anyString());
+        verify(mockSharedPrefEditor, never()).putString(eq("last_active_week"), anyString());
+        verify(mockSharedPrefEditor, never()).putString(eq("last_active_month"), anyString());
+
+        // last active time is 2 days ago, should update last active day
+        Mockito.reset(mockSharedPrefEditor);
+        Long currentTimeMillis = System.currentTimeMillis();
+        String testTimeMillis = Long.toString(currentTimeMillis - TimeUnit.DAYS.toMillis(2));
+        when(mockSharedPref.getString(anyString(), anyString())).thenReturn(testTimeMillis);
+        mTestableMetricsLogger.updateHearingDeviceActiveTime(
+                bluetoothDevice, BluetoothProfile.HEARING_AID);
+
+        verify(mockSharedPrefEditor).putString(eq("last_active_day"), anyString());
+        verify(mockSharedPrefEditor, never()).putString(eq("last_active_week"), anyString());
+        verify(mockSharedPrefEditor, never()).putString(eq("last_active_month"), anyString());
+
+        // last active time is 8 days ago, should update last active day and week
+        Mockito.reset(mockSharedPrefEditor);
+        testTimeMillis = Long.toString(currentTimeMillis - TimeUnit.DAYS.toMillis(8));
+        when(mockSharedPref.getString(anyString(), anyString())).thenReturn(testTimeMillis);
+        mTestableMetricsLogger.updateHearingDeviceActiveTime(
+                bluetoothDevice, BluetoothProfile.HEARING_AID);
+
+        verify(mockSharedPrefEditor).putString(eq("last_active_day"), anyString());
+        verify(mockSharedPrefEditor).putString(eq("last_active_week"), anyString());
+        verify(mockSharedPrefEditor, never()).putString(eq("last_active_month"), anyString());
+
+        // last active time is 60 days ago, should update last active day, week and month
+        Mockito.reset(mockSharedPrefEditor);
+        testTimeMillis = Long.toString(currentTimeMillis - TimeUnit.DAYS.toMillis(60));
+        when(mockSharedPref.getString(anyString(), anyString())).thenReturn(testTimeMillis);
+        mTestableMetricsLogger.updateHearingDeviceActiveTime(
+                bluetoothDevice, BluetoothProfile.HEARING_AID);
+
+        verify(mockSharedPrefEditor).putString(eq("last_active_day"), anyString());
+        verify(mockSharedPrefEditor).putString(eq("last_active_week"), anyString());
+        verify(mockSharedPrefEditor).putString(eq("last_active_month"), anyString());
     }
 
     private void initTestingBloomfilter() throws IOException {
