@@ -16,6 +16,24 @@
       "message": "Just wanna confirm, is the reason of moving this to support isGroupOp\u003dtrue case?",
       "revId": "60f2e6a30dfe5a2e28c425309519bbc2afa7fba1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b82bd98d_6aab59b5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3239,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-05T08:15:34Z",
+      "side": 1,
+      "message": "Yes. I want to remve mPendingSourcesToAdd for sink on device disconnection so I have to add it for each sink.\n\nUnfortunatelly beacuse we have to keep groupOp value to properly update enqueueSourceGroupOp, that I had to make additional logic in onSyncEstablished to remove one pendingSourceToAdd for sink from group if there is another and both has isGroupOp true.",
+      "parentUuid": "e835fa03_8c35ec1a",
+      "revId": "60f2e6a30dfe5a2e28c425309519bbc2afa7fba1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
