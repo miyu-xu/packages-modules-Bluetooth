@@ -640,7 +640,6 @@ public final class BluetoothSocket implements Closeable {
      * @throws BluetoothSocketException in case of failure, with the corresponding error code.
      * @throws IOException for other errors (eg: InputStream read failures etc.).
      */
-    @FlaggedApi(Flags.FLAG_SOCKET_SETTINGS_API)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
