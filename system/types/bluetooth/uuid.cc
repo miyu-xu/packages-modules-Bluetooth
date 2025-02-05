@@ -28,7 +28,12 @@
 
 namespace bluetooth {
 
-static_assert(sizeof(Uuid) == 16, "Uuid must be 16 bytes long!");
+static_assert(std::is_pod<Uuid>(), "Uuid must be a POD!");
+static_assert(std::is_pod<Uuid::UUID128Bit>(), "Uuid::UUID128Bit must be a POD!");
+static_assert(Uuid::kNumBytes128 == 16, "Uuid must be 16 bytes long!");
+static_assert(sizeof(Uuid) == Uuid::kNumBytes128, "Uuid must be 16 bytes long!");
+static_assert(sizeof(Uuid::UUID128Bit) == Uuid::kNumBytes128,
+              "Uuid::UUID128Bit must be 16 bytes long!");
 
 using UUID128Bit = Uuid::UUID128Bit;
 
