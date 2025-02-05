@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5a80908_a1c0f00c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-05T04:26:09Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3e3c257_ed2b1430",
         "filename": "system/bta/dm/bta_dm_int.h",
         "patchSetId": 3
