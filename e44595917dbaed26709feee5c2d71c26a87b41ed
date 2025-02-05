@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a9772f_c4b4ad85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-05T08:13:36Z",
+      "side": 1,
+      "message": "Hi Henri,\n\nThis is found in Floss but I think it\u0027s possible on Android device as well. A sample crash can be found in this [link](https://crash.corp.google.com/browse?q\u003dproduct_name%3D%22ChromeOS%22+AND+NOT+EXISTS+%28SELECT+1+FROM+UNNEST%28productdata%29+WHERE+Key%3D%22hwtest_suite_run%22+AND+Value%3D%22true%22%29+AND+EXISTS%28%0A++++SELECT+parts%0A++++FROM+%28SELECT+split%28Value%2C+%27+%27%29+AS+parts+FROM+UNNEST%28productdata%29+WHERE+Key+%3D+%27hwclass%27%29%0A++++WHERE%0A++++++ARRAY_LENGTH%28parts%29+%3E%3D+2%0A++++++AND+NOT+%28ARRAY_LENGTH%28parts%29+%3D+3+AND+parts%5B1%5D+%3D+%27TEST%27%29%0A++++++AND+NOT+%28ARRAY_LENGTH%28parts%29+%3D+2+AND+STARTS_WITH%28parts%5B1%5D%2C+%27B2B-B2B-B2B-B2B-B2B-B%27%29%29%0A++%29+AND+EXISTS+%28SELECT+1+FROM+UNNEST%28productdata%29+WHERE+Key%3D%22exec_name%22+AND+Value%3D%22btadapterd%22%29+AND+expanded_custom_data.ChromeCrashProto.magic_signature_1.name%3D%22bluetooth%3A%3AModuleRegistry%3A%3AGet%22+AND+EXISTS+%28SELECT+1+FROM+UNNEST%28productdata%29+WHERE+Key%3D%27cros_milestone%27+AND+Value%3D%27133%27%29+AND+NOT+EXISTS+%28SELECT+1+FROM+UNNEST%28CrashedStackTrace.StackFrame%29+WHERE+FunctionName%3D%27bluetooth%3A%3Ahci%3A%3AHciLayer%3A%3Aimpl%3A%3Aon_hci_timeout%28bluetooth%3A%3Ahci%3A%3AOpCode%29%27%29+AND+EXISTS+%28SELECT+1+FROM+UNNEST%28CrashedStackTrace.StackFrame%29+WHERE+FunctionName%3D%27bluetooth%3A%3Ahci%3A%3AHciLayer%3A%3Aimpl%3A%3Aon_hci_event%28bluetooth%3A%3Ahci%3A%3AEventView%29%27%29\u0026stbtiq\u003d\u0026reportid\u003d3dfbdf0ac3e0eb9b\u0026index\u003d1#7). Please take a look, thanks!",
+      "revId": "e44595917dbaed26709feee5c2d71c26a87b41ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
