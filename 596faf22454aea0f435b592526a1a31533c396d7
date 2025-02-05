@@ -247,6 +247,30 @@
       },
       "revId": "596faf22454aea0f435b592526a1a31533c396d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2565a541_6add909c",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-05T19:42:04Z",
+      "side": 1,
+      "message": "Yeah, I think that\u0027s fair. I\u0027ll work on a new CL for that. Thanks",
+      "parentUuid": "a89d8455_00adb42d",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 5
+      },
+      "revId": "596faf22454aea0f435b592526a1a31533c396d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
