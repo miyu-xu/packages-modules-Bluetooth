@@ -146,6 +146,7 @@ public:
   };
 
   void Initialize() override {
+    // CYDBG for test coverage
     do_in_main_thread(base::BindOnce(&RasClientImpl::do_initialize, base::Unretained(this)));
   }
 
