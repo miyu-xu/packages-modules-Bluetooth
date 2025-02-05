@@ -935,24 +935,32 @@ public:
     }
   }
 
-  bool isPendingVolumeControlOperation(const RawAddress& addr) {
+  bool isDifferentLastAbsoluteVolumeOperationPending(const RawAddress& addr,
+                                                     const std::vector<uint8_t>& arg) {
     if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
       return false;
     }
 
-    if (std::find_if(ongoing_operations_.begin(), ongoing_operations_.end(),
-                     [&addr](const VolumeOperation& op) {
-                       auto it = find(op.devices_.begin(), op.devices_.end(), addr);
-                       if (it != op.devices_.end()) {
-                         bluetooth::log::debug(
-                                 "There is a pending volume operation {} for device {}",
-                                 op.operation_id_, addr);
-                         return true;
-                       }
-                       return false;
-                     }) != ongoing_operations_.end()) {
-      return true;
+    for (auto op = ongoing_operations_.rbegin(); op != ongoing_operations_.rend(); ++op) {
+      auto device = std::find(op->devices_.begin(), op->devices_.end(), addr);
+      if (device == op->devices_.end()) {
+        continue;
+      }
+
+      if (op->opcode_ == kControlPointOpcodeSetAbsoluteVolume) {
+        if (std::equal(op->arguments_.begin(), op->arguments_.end(), arg.begin())) {
+          // Last operation has the same arguemtns
+          return false;
+        } else {
+          bluetooth::log::debug(
+                  "There is a pending absolute volume operation {} for device {} with different "
+                  "arguments",
+                  op->operation_id_, addr);
+          return true;
+        }
+      }
     }
+
     return false;
   }
 
@@ -1088,6 +1096,7 @@ public:
                                 devices.end());
                   return devices.empty();
                 }) == ongoing_operations_.end()) {
+      bluetooth::log::debug("New operation id {} added", latest_operation_id_);
       ongoing_operations_.emplace_back(latest_operation_id_++, group_id, is_autonomous, opcode,
                                        arguments, devices);
     }
@@ -1178,8 +1187,8 @@ public:
               volume_control_devices_.FindByAddress(std::get<RawAddress>(addr_or_group_id));
       if (dev != nullptr) {
         bluetooth::log::debug("Address: {}: isReady: {}", dev->address, dev->IsReady());
-        if (dev->IsReady() &&
-            ((dev->volume != volume) || isPendingVolumeControlOperation(dev->address))) {
+        if (dev->IsReady() && ((dev->volume != volume) ||
+                               isDifferentLastAbsoluteVolumeOperationPending(dev->address, arg))) {
           std::vector<RawAddress> devices = {dev->address};
           RemovePendingVolumeControlOperations(devices, bluetooth::groups::kGroupUnknown);
           PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown, false, opcode,
@@ -1212,7 +1221,8 @@ public:
           continue;
         }
 
-        if (!dev->IsReady() || ((dev->volume == volume) && !isPendingVolumeControlOperation(*it))) {
+        if (!dev->IsReady() ||
+            ((dev->volume == volume) && !isDifferentLastAbsoluteVolumeOperationPending(*it, arg))) {
           it = devices.erase(it);
           volumeNotChanged = volumeNotChanged ? volumeNotChanged : (dev->volume == volume);
           deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
