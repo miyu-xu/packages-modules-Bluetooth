@@ -55,7 +55,9 @@ import java.util.regex.Pattern;
 
 /**
  * This class is directly responsible of maintaining the list of Browsable Players as well as the
- * list of Addressable Players.
+ * list of Addressable Players. A default player that does not support browsing is added at ID 0 and
+ * is not linked with any Media Framework player in order to keep a default player in case all the
+ * Media Players have been removed from the device.
  */
 public class MediaPlayerList {
     private static final String TAG = MediaPlayerList.class.getSimpleName();
@@ -424,7 +426,7 @@ public class MediaPlayerList {
         if (!Flags.setAddressedPlayer()) {
             return BLUETOOTH_PLAYER_ID;
         }
-        if (mMediaPlayerIds.containsValue(playerId)) {
+        if (mMediaPlayerIds.containsValue(playerId) || playerId == BLUETOOTH_PLAYER_ID) {
             mAddressedPlayerId = playerId;
             sendFolderUpdate(false, true, false);
             Log.d(TAG, "setAddressedPlayer to: " + mAddressedPlayerId);
@@ -438,34 +440,13 @@ public class MediaPlayerList {
     public List<PlayerInfo> getMediaPlayerList() {
         List<PlayerInfo> ret = new ArrayList<PlayerInfo>();
         if (Flags.browsingRefactor()) {
-            // Add actual browsable players
-            for (MediaBrowserWrapper browser : mMediaBrowserWrappers.values()) {
-                Log.i(
-                        TAG,
-                        "getMediaPlayerList: Added browsable player: " + browser.getPackageName());
-                PlayerInfo info = new PlayerInfo();
-                info.id = mMediaPlayerIds.get(browser.getPackageName());
-                info.name = Util.getDisplayName(mContext, browser.getPackageName());
-                info.browsable = true;
-                ret.add(info);
-            }
-            Log.i(TAG, "getMediaPlayerList: number of mediaplayers: " + mMediaPlayers.size());
-            // Also list non-browsable players, they can be selected if controller supports it.
-            for (MediaPlayerWrapper mediaPlayer : mMediaPlayers.values()) {
-                // Skip player if already added as browsable
-                if (haveMediaBrowser(mMediaPlayerIds.get(mediaPlayer.getPackageName()))) {
-                    continue;
-                }
-                Log.i(
-                        TAG,
-                        "getMediaPlayerList: Added non browsable player: "
-                                + mediaPlayer.getPackageName());
-                PlayerInfo info = new PlayerInfo();
-                info.id = mMediaPlayerIds.get(mediaPlayer.getPackageName());
-                info.name = Util.getDisplayName(mContext, mediaPlayer.getPackageName());
-                info.browsable = false;
-                ret.add(info);
-            }
+            Log.w(TAG, "getMediaPlayerList: Added only default Bluetooth player at ID 1");
+            // Add default unused Bluetooth player
+            PlayerInfo info_default = new PlayerInfo();
+            info_default.id = BLUETOOTH_PLAYER_ID + 1;
+            info_default.name = BLUETOOTH_PLAYER_NAME;
+            info_default.browsable = true;
+            ret.add(info_default);
         } else {
             PlayerInfo info = new PlayerInfo();
             info.id = BLUETOOTH_PLAYER_ID;
