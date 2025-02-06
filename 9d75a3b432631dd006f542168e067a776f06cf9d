@@ -140,6 +140,24 @@
       "parentUuid": "0b514771_888d8cd0",
       "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "867e738b_c2a14dbd",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1505,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2025-02-06T18:40:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81893409_dca1ec52",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
