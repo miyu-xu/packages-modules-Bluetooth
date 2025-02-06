@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e5d608_b0f16248",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-06T11:57:19Z",
+      "side": 1,
+      "message": "We should not have PID key type marked as avaliable if it was all zero.\n\nI\u0027m guessing it\u0027s used in more places. We should fix setting it\u0027s value during pairing when the IRK is all zeros.",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
