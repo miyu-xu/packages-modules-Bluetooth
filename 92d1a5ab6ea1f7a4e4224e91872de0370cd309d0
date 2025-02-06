@@ -51,6 +51,24 @@
       "parentUuid": "c6d716a4_e138bc1e",
       "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4093532_502901ec",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-06T16:08:38Z",
+      "side": 1,
+      "message": "I leave it to @rongxuan@google.com to judge.\nMy feeling is that it should be outside this function.",
+      "parentUuid": "878baf40_8d7d308d",
+      "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
