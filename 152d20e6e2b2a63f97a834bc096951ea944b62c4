@@ -16,6 +16,24 @@
       "message": "@rghanti@google.com just a query, shouldnt we update the `METADATA_MAX_KEY` to `METADATA_HEAD_UNIT_SOFTWARE_VERSION` to indicate the udpated MAX ?",
       "revId": "152d20e6e2b2a63f97a834bc096951ea944b62c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e65a3e08_6ab08265",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-06T06:44:19Z",
+      "side": 1,
+      "message": "Yes we should. not doing this actually prevent this to work for external caller\n\nThis only indicate that there are no user of the metadata added here :/",
+      "parentUuid": "6c3664cb_67af0886",
+      "revId": "152d20e6e2b2a63f97a834bc096951ea944b62c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
