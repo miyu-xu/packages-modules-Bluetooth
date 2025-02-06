@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7d1a1b0_0dbf31cc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-06T20:13:12Z",
+      "side": 1,
+      "message": "Added confirmed offline Doxygen comment.\nThe complexity of this method suggests that the logic surrounding sink metadata (mBroadcastMetadataMap) is being overused. It is utilized both to resume sources from pause and to resume broadcasts after reconnection, provided they were synced beforehand and other broadcasts are still synced. This logic should be refactored to separate these two concerns. It could be done together with making one object for sink data b/393495675.\n\nAre you ok for now with the current version?",
+      "parentUuid": "6fe60c38_c6230e54",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98e47eb6_486bf4b0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
@@ -191,6 +209,24 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "cc382010_3c4acf8d",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "435aa7da_175dc22a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3041,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-06T20:13:12Z",
+      "side": 1,
+      "message": "let\u0027s discuss this above",
+      "parentUuid": "a7cc129c_9f2a1c21",
       "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
