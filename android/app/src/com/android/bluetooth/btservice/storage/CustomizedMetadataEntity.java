@@ -50,6 +50,11 @@ class CustomizedMetadataEntity {
     public byte[] gmcs_cccd;
     public byte[] gtbs_cccd;
     public byte[] exclusive_manager;
+    /*
+     * Indicates the state transition to either ACTION_KEY_MISSING(1) \
+     *  or ACTION_ENCRYPTION_CHANGE (0)
+     */
+    public byte[] is_bond_lost;
 
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -113,6 +118,8 @@ class CustomizedMetadataEntity {
                 .append(metadataToString(gtbs_cccd))
                 .append("|exclusive_manager=")
                 .append(metadataToString(exclusive_manager));
+                .append("|bond_transition_state=")
+                .append(metadataToString(bond_transition_state));
 
         return builder.toString();
     }
