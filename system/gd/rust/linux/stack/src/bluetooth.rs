@@ -2223,6 +2223,8 @@ impl IBluetooth for Bluetooth {
 
     fn disable(&mut self) -> bool {
         self.disabling = true;
+        // If abort, don't bother to set the controller state because the
+        // libbluetooth or controller might already be in a bad state.
         if !self.set_discoverable(BtDiscMode::NonDiscoverable, 0) {
             warn!("set_discoverable failed on disabling");
         }

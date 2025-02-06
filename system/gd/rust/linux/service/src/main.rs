@@ -148,8 +148,14 @@ fn main() -> Result<(), Box<dyn Error>> {
             signal::SaFlags::empty(),
             signal::SigSet::empty(),
         );
+        let sig_action_usr1 = signal::SigAction::new(
+            signal::SigHandler::Handler(handle_sigusr1),
+            signal::SaFlags::empty(),
+            signal::SigSet::empty(),
+        );
         unsafe {
             signal::sigaction(signal::SIGTERM, &sig_action_term).unwrap();
+            signal::sigaction(signal::SIGUSR1, &sig_action_usr1).unwrap();
         }
 
         // Construct btstack profiles.
@@ -267,23 +273,34 @@ fn main() -> Result<(), Box<dyn Error>> {
 /// Data needed for signal handling.
 static SIG_DATA: Mutex<Option<(Sender<Message>, Arc<SigData>)>> = Mutex::new(None);
 
-extern "C" fn handle_sigterm(_signum: i32) {
-    let guard = SIG_DATA.lock().unwrap();
-    if let Some((tx, notifier)) = guard.as_ref() {
-        log::debug!("Handling SIGTERM by disabling the adapter!");
+/// Try to cleanup the whole stack. Returns whether to clean up.
+extern "C" fn try_cleanup_stack(abort: bool) -> bool {
+    let lock = SIG_DATA.try_lock();
+
+    // If SIG_DATA is locked, it is likely the cleanup procedure is ongoing. No
+    // need to do anything here.
+    if lock.is_err() {
+        return false;
+    }
+
+    if let Some((tx, notifier)) = lock.unwrap().as_ref() {
+        log::info!("Cleanup stack: disabling the adapter!");
         let txl = tx.clone();
         topstack::get_runtime().spawn(async move {
             // Send the shutdown message here.
-            let _ = txl.send(Message::InterfaceShutdown).await;
+            let _ = txl.send(Message::InterfaceShutdown(abort)).await;
         });
 
         let guard = notifier.enabled.lock().unwrap();
         if *guard {
-            log::debug!("Waiting for stack to turn off for {:?}", STACK_TURN_OFF_TIMEOUT_MS);
+            log::info!(
+                "Cleanup stack: Waiting for stack to turn off for {:?}",
+                STACK_TURN_OFF_TIMEOUT_MS
+            );
             let _ = notifier.enabled_notify.wait_timeout(guard, STACK_TURN_OFF_TIMEOUT_MS);
         }
 
-        log::debug!("SIGTERM cleaning up the stack.");
+        log::info!("Cleanup stack: cleaning up libbluetooth stack.");
         let txl = tx.clone();
         topstack::get_runtime().spawn(async move {
             // Clean up the profiles first as some of them might require main thread to clean up.
@@ -297,7 +314,10 @@ extern "C" fn handle_sigterm(_signum: i32) {
 
         let guard = notifier.thread_attached.lock().unwrap();
         if *guard {
-            log::debug!("Waiting for stack to clean up for {:?}", STACK_CLEANUP_TIMEOUT_MS);
+            log::info!(
+                "Cleanup stack: Waiting for libbluetooth stack to clean up for {:?}",
+                STACK_CLEANUP_TIMEOUT_MS
+            );
             let _ = notifier.thread_notify.wait_timeout(guard, STACK_CLEANUP_TIMEOUT_MS);
         }
 
@@ -305,7 +325,26 @@ extern "C" fn handle_sigterm(_signum: i32) {
         // finishing btif cleanup.
         std::thread::sleep(EXTRA_WAIT_BEFORE_KILL_MS);
     }
+    return true;
+}
 
-    log::debug!("Sigterm completed");
+extern "C" fn handle_sigterm(_signum: i32) {
+    log::info!("SIGTERM received");
+    if !try_cleanup_stack(false) {
+        log::info!("Skipped to handle SIGTERM");
+        return;
+    }
+    log::info!("SIGTERM completed");
+    std::process::exit(0);
+}
+
+/// Used to indicate controller needs reset
+extern "C" fn handle_sigusr1(_signum: i32) {
+    log::info!("SIGUSR1 received");
+    if !try_cleanup_stack(true) {
+        log::info!("Skipped to handle SIGUSR1");
+        return;
+    }
+    log::info!("SIGUSR1 completed");
     std::process::exit(0);
 }

@@ -69,7 +69,7 @@ use bt_topshim::{
 /// Message types that are sent to the stack main dispatch loop.
 pub enum Message {
     /// Remove the DBus API. Call it before other AdapterShutdown.
-    InterfaceShutdown,
+    InterfaceShutdown(bool),
     /// Disable the adapter by calling btif disable.
     AdapterShutdown,
     /// Clean up the adapter by calling btif cleanup.
@@ -239,7 +239,7 @@ pub enum APIMessage {
     /// Indicates a subcomponent is ready to receive DBus messages.
     IsReady(BluetoothAPI),
     /// Indicates bluetooth is shutting down, so we remove all DBus endpoints.
-    ShutDown,
+    ShutDown(bool),
 }
 
 /// Represents suspend mode of a module.
@@ -289,10 +289,10 @@ impl Stack {
             }
 
             match m.unwrap() {
-                Message::InterfaceShutdown => {
+                Message::InterfaceShutdown(abort) => {
                     let txl = api_tx.clone();
                     tokio::spawn(async move {
-                        let _ = txl.send(APIMessage::ShutDown).await;
+                        let _ = txl.send(APIMessage::ShutDown(abort)).await;
                     });
                 }
 
