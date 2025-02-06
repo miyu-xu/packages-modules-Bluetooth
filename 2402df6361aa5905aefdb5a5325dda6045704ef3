@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f54f91_30b2ab12",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-06T04:42:28Z",
+      "side": 1,
+      "message": "what magic do you do here? Is this just to \"inject a device from test\" ?",
+      "range": {
+        "startLine": 2298,
+        "startChar": 24,
+        "endLine": 2299,
+        "endChar": 80
+      },
+      "revId": "2402df6361aa5905aefdb5a5325dda6045704ef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
