@@ -342,6 +342,15 @@ public class Metadata {
             case BluetoothDevice.METADATA_EXCLUSIVE_MANAGER:
                 publicMetadata.exclusive_manager = value;
                 break;
+            case 35:
+                /*
+                 * `35` is chosen as the next available key in BluetoothDevice \
+                 *  as 34 is last used and is allocated to \
+                 * `METADATA_HEAD_UNIT_SOFTWARE_VERSION`.
+                 * TODO: Add the key to BluetoothDevice
+                 */
+                publicMetadata.is_bond_lost = value;
+                break;
         }
     }
 
@@ -437,6 +446,15 @@ public class Metadata {
                 break;
             case BluetoothDevice.METADATA_EXCLUSIVE_MANAGER:
                 value = publicMetadata.exclusive_manager;
+                break;
+            case 35:
+                /*
+                 * `35` is chosen as the next available key in BluetoothDevice \
+                 *  as 34 is last used and is allocated to \
+                 * `METADATA_HEAD_UNIT_SOFTWARE_VERSION`.
+                 * TODO: Add the key to BluetoothDevice
+                 */
+                value = publicMetadata.is_bond_lost;
                 break;
         }
         return value;

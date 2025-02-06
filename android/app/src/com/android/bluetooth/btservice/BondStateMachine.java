@@ -596,6 +596,23 @@ final class BondStateMachine extends StateMachine {
                 UserHandle.ALL,
                 BLUETOOTH_CONNECT,
                 Utils.getTempBroadcastOptions().toBundle());
+
+
+        /*
+         * `newState` can only have 3 values BOND_NONE, BOND_BONDING, BOND_BONDED.
+         * If the state is BOND_NONE, and the metadata indicates
+         * ACTION_KEY_MISSING, log the transition.
+         *
+         * TODO: Remove the literal 35 and add metadata to BluetoothDevice.
+         */
+        if(newState == BluetoothDevice.BOND_NONE) {
+            byte[] isBondLostMetdadata = mAdapterService.getMetadata(device, 35);
+            if (isBondLostMetdadata != null && isBondLostMetdadata[0] == 1) {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.ACTION_KEY_MISSING_TO_BOND_NONE, 1);
+            }
+        }
+
         infoLog(
                 "Bond State Change Intent:"
                         + device
