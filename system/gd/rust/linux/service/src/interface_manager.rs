@@ -242,10 +242,14 @@ impl InterfaceManager {
                     }
                 },
 
-                APIMessage::ShutDown => {
+                APIMessage::ShutDown(abort) => {
                     // To shut down the connection, call _handle.abort() and drop the connection.
                     conn_join_handle.abort();
                     drop(conn);
+
+                    if abort {
+                        break;
+                    }
 
                     let tx = tx.clone();
                     tokio::spawn(async move {
