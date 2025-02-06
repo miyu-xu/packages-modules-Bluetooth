@@ -1374,18 +1374,7 @@ void Device::GetMediaPlayerListResponse(uint8_t label, std::shared_ptr<GetFolder
   auto builder = GetFolderItemsResponseBuilder::MakePlayerListBuilder(Status::NO_ERROR, 0x0000,
                                                                       browse_mtu_);
 
-  // Move the current player to the first slot due to some carkits always
-  // connecting to the first listed player rather than using the ID
-  // returned by Addressed Player Changed
-  for (auto it = players.begin(); it != players.end(); it++) {
-    if (it->id == curr_player) {
-      log::verbose("Adding player to first spot: {}", it->name);
-      auto temp_player = *it;
-      players.erase(it);
-      players.insert(players.begin(), temp_player);
-      break;
-    }
-  }
+  curr_player = 0;
 
   for (size_t i = pkt->GetStartItem(); i <= pkt->GetEndItem() && i < players.size(); i++) {
     MediaPlayerItem item(players[i].id, players[i].name, players[i].browsing_supported);
