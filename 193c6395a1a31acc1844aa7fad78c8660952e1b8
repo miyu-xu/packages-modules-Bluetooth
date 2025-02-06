@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fe60c38_c6230e54",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3029,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-06T17:43:09Z",
+      "side": 1,
+      "message": "This looks complicated then. At least please improve comments about this function.\ni.e what it really does for sinks in different states.\nAlso comment about this \"skip\" seems to not match to your comment above.",
+      "parentUuid": "2aa03eea_8cbe185f",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98e47eb6_486bf4b0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
@@ -155,6 +173,24 @@
       "side": 1,
       "message": "yes, as in disconnection case (STATE_DISCONNECTED) it is not removed before calling this method.",
       "parentUuid": "98e47eb6_486bf4b0",
+      "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cc129c_9f2a1c21",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3041,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-06T17:43:09Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "cc382010_3c4acf8d",
       "revId": "193c6395a1a31acc1844aa7fad78c8660952e1b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
