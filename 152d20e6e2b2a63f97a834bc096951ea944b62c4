@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3664cb_67af0886",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-06T04:54:41Z",
+      "side": 1,
+      "message": "@rghanti@google.com just a query, shouldnt we update the `METADATA_MAX_KEY` to `METADATA_HEAD_UNIT_SOFTWARE_VERSION` to indicate the udpated MAX ?",
+      "revId": "152d20e6e2b2a63f97a834bc096951ea944b62c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
