@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2ff8e1_12077214",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-06T04:07:56Z",
+      "side": 1,
+      "message": "Sure, but the size of the logs are too large which can\u0027t be pasted directly. I put it into gpaste.\n\nStack trace: https://paste.googleplex.com/6478019617882112\nsyslogs: https://paste.googleplex.com/5253605005983744\n\nBased on the stack trace, the requested module was Storage Module, which should have been started based on the syslogs. The only possiblity I could think of is because of such race.",
+      "parentUuid": "652b1ff1_79cff2a9",
+      "revId": "e44595917dbaed26709feee5c2d71c26a87b41ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb9d289a_cc1a01bb",
