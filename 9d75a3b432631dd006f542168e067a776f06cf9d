@@ -122,6 +122,24 @@
       "parentUuid": "cefc962d_1b5a8670",
       "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81893409_dca1ec52",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1505,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2025-02-06T00:44:59Z",
+      "side": 1,
+      "message": "This is not done, you still don\u0027t have safety documentation on the `send_response` function, and the two blocks calling it don\u0027t have safetydocs explaining how they know it\u0027s safe.",
+      "parentUuid": "0b514771_888d8cd0",
+      "revId": "9d75a3b432631dd006f542168e067a776f06cf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
