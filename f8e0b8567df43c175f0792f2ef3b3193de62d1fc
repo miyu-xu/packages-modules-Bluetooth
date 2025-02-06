@@ -69,6 +69,24 @@
       "parentUuid": "e532ba1b_4a62cf79",
       "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73effea6_302bc19d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1327199
+      },
+      "writtenOn": "2025-02-06T08:27:17Z",
+      "side": 1,
+      "message": "Aapt should automatically generate rules for the AndroidManifest.xml and layout entries, so in principle this may not even be necessary. Unless some of these entry points are not declared in the manifest.\n\nIf some classes/fields/methods are accessed by reflection then you should add either @com.android.tools.r8.keepanno.annotations.UsesReflection or @com.android.tools.r8.keepanno.annotations.UsedByReflection (preferably the former).\n\nYou should be able to find examples of these in cs.android.com. The annotations are supported in godbolt.org.\n\nSee also https://storage.googleapis.com/r8-releases/raw/main/docs/keepanno/javadoc/com/android/tools/r8/keepanno/annotations/package-summary.html.",
+      "parentUuid": "2a00c1ec_0cab499e",
+      "revId": "f8e0b8567df43c175f0792f2ef3b3193de62d1fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
