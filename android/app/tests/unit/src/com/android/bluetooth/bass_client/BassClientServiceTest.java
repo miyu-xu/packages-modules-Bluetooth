@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.bass_client;
 
+import static com.android.bluetooth.TestUtils.getTestDevice;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -47,6 +49,7 @@ import android.bluetooth.BluetoothLeBroadcastChannel;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastReceiveState;
 import android.bluetooth.BluetoothLeBroadcastSubgroup;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUuid;
@@ -70,8 +73,8 @@ import android.platform.test.annotations.DisableFlags;
 import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
@@ -244,7 +247,7 @@ public class BassClientServiceTest {
             System.setProperty("dexmaker.share_classloader", "true");
         }
 
-        mTargetContext = InstrumentationRegistry.getTargetContext();
+        mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         TestUtils.setAdapterService(mAdapterService);
         BassObjectsFactory.setInstanceForTesting(mObjectsFactory);
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
@@ -260,7 +263,11 @@ public class BassClientServiceTest {
                 .when(mAdapterService)
                 .getRemoteUuids(any(BluetoothDevice.class));
         // This line must be called to make sure relevant objects are initialized properly
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mBluetoothAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
 
         // Mock methods in AdapterService
         doReturn(FAKE_SERVICE_UUIDS)
@@ -377,7 +384,7 @@ public class BassClientServiceTest {
     public void testGetBassClientService() {
         assertThat(mBassClientService).isEqualTo(BassClientService.getBassClientService());
         // Verify default connection and audio states
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice = getTestDevice(0);
         assertThat(mBassClientService.getConnectionState(mCurrentDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
     }
@@ -403,7 +410,7 @@ public class BassClientServiceTest {
                         any(BluetoothDevice.class),
                         eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice = getTestDevice(0);
 
         assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
         verify(mObjectsFactory)
@@ -436,7 +443,7 @@ public class BassClientServiceTest {
                         any(BluetoothDevice.class),
                         eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice = getTestDevice(0);
         assertThat(mCurrentDevice).isNotNull();
 
         assertThat(mBassClientService.connect(mCurrentDevice)).isFalse();
@@ -482,8 +489,8 @@ public class BassClientServiceTest {
                         any(BluetoothDevice.class),
                         eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
-        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+        mCurrentDevice = getTestDevice(0);
+        mCurrentDevice1 = getTestDevice(1);
 
         // Mock the CSIP group
         List<BluetoothDevice> groupDevices = new ArrayList<>();
@@ -4441,7 +4448,7 @@ public class BassClientServiceTest {
 
         // Update receiver state with PA sync
         injectRemoteSourceStateChanged(meta, true, false);
-        BluetoothDevice invalidDevice = TestUtils.getTestDevice(mBluetoothAdapter, 2);
+        BluetoothDevice invalidDevice = getTestDevice(2);
         // Verify isAnyReceiverActive returns false if invalid device
         expect.that(mBassClientService.isAnyReceiverActive(List.of(invalidDevice))).isFalse();
         // Verify isAnyReceiverActive returns true if PA synced

@@ -15,11 +15,12 @@
  */
 package com.android.bluetooth.hid;
 
+import static com.android.bluetooth.TestUtils.getTestDevice;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.os.Looper;
@@ -27,7 +28,6 @@ import android.os.Looper;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
@@ -46,7 +46,6 @@ import org.mockito.junit.MockitoRule;
 public class HidHostServiceTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
 
     private HidHostService mService;
     private BluetoothDevice mTestDevice;
@@ -69,7 +68,7 @@ public class HidHostServiceTest {
         mService.setAvailable(true);
 
         // Get a device for testing
-        mTestDevice = TestUtils.getTestDevice(mAdapter, 0);
+        mTestDevice = getTestDevice(0);
     }
 
     @After
