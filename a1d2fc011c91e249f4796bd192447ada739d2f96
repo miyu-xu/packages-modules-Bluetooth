@@ -1,0 +1,105 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c73d0ad_bb43172a",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-06T17:26:22Z",
+      "side": 1,
+      "message": "This should be a member of ModuleRegistry",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "05ddfd96_29cbc077",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_lock\u003cstd::mutex\u003e lock(started_modules_guard_, std::defer_lock);\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_lock\u003cstd::mutex\u003e lock(started_modules_guard_, std::defer_lock);\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 84,
+                "startChar": 0,
+                "endLine": 85,
+                "endChar": 0
+              },
+              "replacement": "    std::unique_lock\u003cstd::mutex\u003e lock(started_modules_guard_, std::defer_lock);\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "    std::unique_lock\u003cstd::mutex\u003e lock(started_modules_guard_, std::defer_lock);\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_lock\u003cstd::mutex\u003e lock(started_modules_guard_, std::defer_lock);\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 153,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_lock\u003cstd::mutex\u003e lock(started_modules_guard_, std::defer_lock);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a1d2fc011c91e249f4796bd192447ada739d2f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
