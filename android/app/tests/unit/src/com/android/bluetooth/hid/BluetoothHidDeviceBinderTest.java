@@ -22,13 +22,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHidDeviceAppQosSettings;
 import android.bluetooth.BluetoothHidDeviceAppSdpSettings;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothHidDeviceCallback;
 import android.content.AttributionSource;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -53,7 +55,12 @@ public class BluetoothHidDeviceBinderTest {
         when(mService.isAvailable()).thenReturn(true);
         mBinder = new HidDeviceService.BluetoothHidDeviceBinder(mService);
         mAttributionSource = new AttributionSource.Builder(1).build();
-        mTestDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_DEVICE_ADDRESS);
+        mTestDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_DEVICE_ADDRESS);
     }
 
     @Test

@@ -22,8 +22,8 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +32,7 @@ import android.os.Looper;
 import android.os.UserHandle;
 
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
@@ -72,7 +73,12 @@ public class SilenceDeviceManagerTest {
         when(mServiceFactory.getHeadsetService()).thenReturn(mHeadsetService);
 
         // Get devices for testing
-        mTestDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR);
+        mTestDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_BT_ADDR);
 
         mHandlerThread = new HandlerThread("SilenceManagerTestHandlerThread");
         mHandlerThread.start();

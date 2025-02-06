@@ -69,7 +69,12 @@ public class RemoteDevicesTest {
     public void setUp() {
         mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        mDevice1 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR_1);
+        mDevice1 =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_BT_ADDR_1);
         mHandlerThread = new HandlerThread("RemoteDevicesTestHandlerThread");
         mHandlerThread.start();
         mTestLooperManager =

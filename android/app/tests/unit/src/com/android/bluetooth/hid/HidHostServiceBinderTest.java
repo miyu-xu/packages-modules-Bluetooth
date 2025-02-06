@@ -18,15 +18,14 @@ package com.android.bluetooth.hid;
 
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
-
-import com.android.bluetooth.flags.Flags;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -52,7 +51,12 @@ public class HidHostServiceBinderTest {
 
     @Before
     public void setUp() throws Exception {
-        mRemoteDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
+        mRemoteDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(REMOTE_DEVICE_ADDRESS);
         mBinder = new HidHostService.BluetoothHidHostBinder(mService);
     }
 

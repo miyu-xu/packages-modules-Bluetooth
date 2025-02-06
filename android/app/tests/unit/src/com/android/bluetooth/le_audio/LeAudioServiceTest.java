@@ -17,6 +17,8 @@
 
 package com.android.bluetooth.le_audio;
 
+import static com.android.bluetooth.TestUtils.getTestDevice;
+
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
@@ -269,10 +271,10 @@ public class LeAudioServiceTest {
                 .getBondedDevices();
 
         // Get a device for testing
-        mLeftDevice = TestUtils.getTestDevice(mAdapter, 0);
-        mRightDevice = TestUtils.getTestDevice(mAdapter, 1);
-        mSingleDevice = TestUtils.getTestDevice(mAdapter, 2);
-        mSingleDevice_2 = TestUtils.getTestDevice(mAdapter, 3);
+        mLeftDevice = getTestDevice(0);
+        mRightDevice = getTestDevice(1);
+        mSingleDevice = getTestDevice(2);
+        mSingleDevice_2 = getTestDevice(3);
         mDeviceQueueMap = new HashMap<>();
         mDeviceQueueMap.put(mLeftDevice, new LinkedBlockingQueue<>());
         mDeviceQueueMap.put(mRightDevice, new LinkedBlockingQueue<>());
@@ -2646,7 +2648,7 @@ public class LeAudioServiceTest {
 
     @Test
     public void testHandleGroupIdleDuringCall() {
-        BluetoothDevice headsetDevice = TestUtils.getTestDevice(mAdapter, 5);
+        BluetoothDevice headsetDevice = getTestDevice(5);
         HeadsetService headsetService = Mockito.mock(HeadsetService.class);
         when(mServiceFactory.getHeadsetService()).thenReturn(headsetService);
 

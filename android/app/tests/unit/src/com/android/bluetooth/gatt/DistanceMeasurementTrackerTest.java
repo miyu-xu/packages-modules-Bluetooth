@@ -22,14 +22,15 @@ import static org.mockito.Mockito.after;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.os.HandlerThread;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -64,7 +65,12 @@ public class DistanceMeasurementTrackerTest {
     @Before
     public void setUp() throws Exception {
         mUuid = UUID.randomUUID();
-        mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(IDENTITY_ADDRESS);
+        mDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(IDENTITY_ADDRESS);
         mParams =
                 new DistanceMeasurementParams.Builder(mDevice)
                         .setDurationSeconds(TIMEOUT_S)

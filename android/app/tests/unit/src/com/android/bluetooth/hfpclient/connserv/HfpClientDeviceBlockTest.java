@@ -20,8 +20,8 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -29,6 +29,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
@@ -80,7 +81,11 @@ public class HfpClientDeviceBlockTest {
                 .thenReturn(Context.TELECOM_SERVICE);
 
         mBluetoothDevice =
-                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_DEVICE_ADDRESS);
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_DEVICE_ADDRESS);
 
         when(mHeadsetClientService.isAvailable()).thenReturn(true);
         HeadsetClientService.setHeadsetClientService(mHeadsetClientService);

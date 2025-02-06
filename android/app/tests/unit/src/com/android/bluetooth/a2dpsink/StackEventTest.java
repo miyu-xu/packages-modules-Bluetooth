@@ -19,8 +19,10 @@ import static com.google.common.truth.Truth.assertThat;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -36,7 +38,11 @@ public class StackEventTest {
 
     @Before
     public void setUp() throws Exception {
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
         assertThat(mAdapter).isNotNull();
         mDevice = mAdapter.getRemoteDevice(TEST_ADDRESS);
     }

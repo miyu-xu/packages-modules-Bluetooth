@@ -32,14 +32,15 @@ import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
@@ -71,14 +72,18 @@ public class BluetoothMapServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        Context targetContext = InstrumentationRegistry.getTargetContext();
+        Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         mService = new BluetoothMapService(targetContext);
         mService.start();
         mService.setAvailable(true);
         // Try getting the Bluetooth adapter
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
         assertThat(mAdapter).isNotNull();
         mRemoteDevice = mAdapter.getRemoteDevice(REMOTE_DEVICE_ADDRESS);
     }

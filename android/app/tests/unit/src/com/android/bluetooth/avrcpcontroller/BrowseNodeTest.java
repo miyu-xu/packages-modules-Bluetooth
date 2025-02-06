@@ -21,10 +21,12 @@ import static com.google.common.truth.Truth.assertThat;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.avrcpcontroller.BrowseTree.BrowseNode;
@@ -55,7 +57,11 @@ public class BrowseNodeTest {
 
     @Before
     public void setUp() {
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
         mTestDevice = mAdapter.getRemoteDevice(mTestAddress);
         mBrowseTree = new BrowseTree(null);
         mRootNode = mBrowseTree.mRootNode;

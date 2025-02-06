@@ -26,12 +26,14 @@ import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.HandlerThread;
 import android.os.Looper;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
@@ -80,7 +82,11 @@ public class PbapClientConnectionHandlerTest {
             Looper.prepare();
         }
 
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
 
         mThread = new HandlerThread("test_handler_thread");
         mThread.start();

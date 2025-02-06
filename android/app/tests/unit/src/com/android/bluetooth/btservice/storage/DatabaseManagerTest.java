@@ -31,6 +31,7 @@ import static org.mockito.Mockito.when;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothStatusCodes;
@@ -111,11 +112,36 @@ public final class DatabaseManagerTest {
     public void setUp() throws Exception {
         TestUtils.setAdapterService(mAdapterService);
 
-        mTestDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR);
-        mTestDevice2 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR2);
-        mTestDevice3 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_BT_ADDR3);
-        mTestDevice4 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(OTHER_BT_ADDR1);
-        mTestDevice5 = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(OTHER_BT_ADDR2);
+        mTestDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_BT_ADDR);
+        mTestDevice2 =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_BT_ADDR2);
+        mTestDevice3 =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_BT_ADDR3);
+        mTestDevice4 =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(OTHER_BT_ADDR1);
+        mTestDevice5 =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(OTHER_BT_ADDR2);
 
         // Create a memory database for DatabaseManager instead of use a real database.
         mDatabase =

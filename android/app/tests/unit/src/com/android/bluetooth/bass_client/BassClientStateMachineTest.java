@@ -24,6 +24,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasFlag;
 
+import static com.android.bluetooth.TestUtils.getTestDevice;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.ADD_BCAST_SOURCE;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.CANCEL_PENDING_SOURCE_OPERATION;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.CONNECT;
@@ -97,8 +98,8 @@ import android.platform.test.annotations.DisableFlags;
 import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
@@ -164,7 +165,7 @@ public class BassClientStateMachineTest {
 
     @Before
     public void setUp() throws Exception {
-        mTargetContext = InstrumentationRegistry.getTargetContext();
+        mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         BluetoothManager manager = mTargetContext.getSystemService(BluetoothManager.class);
         assertThat(manager).isNotNull();
         mAdapter = manager.getAdapter();
@@ -181,8 +182,8 @@ public class BassClientStateMachineTest {
         MetricsLogger.setInstanceForTesting(mMetricsLogger);
 
         // Get a device for testing
-        mTestDevice = TestUtils.getTestDevice(mAdapter, 0);
-        mSourceTestDevice = TestUtils.getTestDevice(mAdapter, 1);
+        mTestDevice = getTestDevice(0);
+        mSourceTestDevice = getTestDevice(1);
 
         doReturn(mEmptyTestDevice)
                 .when(mAdapterService)
@@ -1585,8 +1586,7 @@ public class BassClientStateMachineTest {
         initToConnectingState();
 
         Message timeoutWithDifferentDevice =
-                mBassClientStateMachine.obtainMessage(
-                        CONNECT_TIMEOUT, mAdapter.getRemoteDevice("00:00:00:00:00:00"));
+                mBassClientStateMachine.obtainMessage(CONNECT_TIMEOUT, getTestDevice(230));
         mBassClientStateMachine.sendMessage(timeoutWithDifferentDevice);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         verify(mBassClientService, never()).sendBroadcast(any(Intent.class), anyString(), any());

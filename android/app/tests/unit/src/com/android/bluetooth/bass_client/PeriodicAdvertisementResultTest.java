@@ -18,11 +18,12 @@ package com.android.bluetooth.bass_client;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
+import android.bluetooth.BluetoothManager;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
@@ -39,7 +40,12 @@ public class PeriodicAdvertisementResultTest {
 
     @Before
     public void setUp() {
-        mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
+        mDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(REMOTE_DEVICE_ADDRESS);
     }
 
     @Test

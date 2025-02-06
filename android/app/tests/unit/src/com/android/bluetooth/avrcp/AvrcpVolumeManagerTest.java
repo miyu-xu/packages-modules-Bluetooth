@@ -28,8 +28,8 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.media.AudioManager;
 
@@ -76,7 +76,12 @@ public class AvrcpVolumeManagerTest {
                                 testName.getMethodName() + "TmpPref", Context.MODE_PRIVATE))
                 .when(mAdapterService)
                 .getSharedPreferences(anyString(), anyInt());
-        mRemoteDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
+        mRemoteDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(REMOTE_DEVICE_ADDRESS);
         mAvrcpVolumeManager =
                 new AvrcpVolumeManager(mAdapterService, mAudioManager, mNativeInterface);
     }

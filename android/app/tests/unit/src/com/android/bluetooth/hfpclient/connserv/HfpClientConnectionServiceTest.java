@@ -35,8 +35,8 @@ import android.telecom.PhoneAccount;
 import android.telecom.PhoneAccountHandle;
 import android.telecom.TelecomManager;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.R;
@@ -61,7 +61,8 @@ public class HfpClientConnectionServiceTest {
     private static final String TEST_DEVICE_ADDRESS = "00:11:22:33:44:55";
     private static final BluetoothDevice TEST_DEVICE =
             ((BluetoothManager)
-                            InstrumentationRegistry.getTargetContext()
+                            InstrumentationRegistry.getInstrumentation()
+                                    .getTargetContext()
                                     .getSystemService(Context.BLUETOOTH_SERVICE))
                     .getAdapter()
                     .getRemoteDevice(TEST_DEVICE_ADDRESS);
@@ -80,7 +81,7 @@ public class HfpClientConnectionServiceTest {
     @Before
     public void setUp() {
 
-        Context targetContext = InstrumentationRegistry.getTargetContext();
+        Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         TestUtils.setAdapterService(mAdapterService);
         // Setup a mock TelecomManager so our calls don't start a real instance of this service

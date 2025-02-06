@@ -19,12 +19,14 @@ package com.android.bluetooth.csip;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothCsipSetCoordinatorLockCallback;
 import android.content.AttributionSource;
 import android.os.ParcelUuid;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -49,7 +51,12 @@ public class BluetoothCsisBinderTest {
     public void setUp() throws Exception {
         mBinder = new CsipSetCoordinatorService.BluetoothCsisBinder(mService);
         mAttributionSource = new AttributionSource.Builder(1).build();
-        mTestDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_DEVICE_ADDRESS);
+        mTestDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_DEVICE_ADDRESS);
     }
 
     @Test

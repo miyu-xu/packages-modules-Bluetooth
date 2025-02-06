@@ -17,12 +17,13 @@ package com.android.bluetooth.mapclient;
 
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.net.Uri;
 
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
@@ -48,7 +49,12 @@ public class MapClientServiceBinderTest {
 
     @Before
     public void setUp() throws Exception {
-        mRemoteDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
+        mRemoteDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(REMOTE_DEVICE_ADDRESS);
         mBinder = new MapClientService.Binder(mService);
     }
 

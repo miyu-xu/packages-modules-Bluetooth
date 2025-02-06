@@ -22,8 +22,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.net.Uri;
 import android.telecom.Connection;
@@ -32,6 +32,7 @@ import android.telecom.PhoneAccount;
 import android.telecom.TelecomManager;
 
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -68,7 +69,11 @@ public class HfpClientConnectionTest {
     @Before
     public void setUp() {
         mBluetoothDevice =
-                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(TEST_DEVICE_ADDRESS);
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(TEST_DEVICE_ADDRESS);
         mCall =
                 new HfpClientCall(
                         mBluetoothDevice,

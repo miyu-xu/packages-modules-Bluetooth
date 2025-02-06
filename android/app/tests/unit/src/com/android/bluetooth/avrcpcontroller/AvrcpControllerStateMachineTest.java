@@ -24,6 +24,7 @@ import static org.mockito.Mockito.*;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAvrcpController;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
@@ -41,6 +42,7 @@ import android.util.SparseArray;
 
 import androidx.test.filters.FlakyTest;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -88,7 +90,11 @@ public class AvrcpControllerStateMachineTest {
     private static final int UUID_START = 0;
     private static final int UUID_LENGTH = 25;
 
-    private final BluetoothAdapter mAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final BluetoothAdapter mAdapter =
+            InstrumentationRegistry.getInstrumentation()
+                    .getTargetContext()
+                    .getSystemService(BluetoothManager.class)
+                    .getAdapter();
     private final byte[] mTestAddress = new byte[] {01, 01, 01, 01, 01, 01};
     private final BluetoothDevice mTestDevice = mAdapter.getRemoteDevice(mTestAddress);
 

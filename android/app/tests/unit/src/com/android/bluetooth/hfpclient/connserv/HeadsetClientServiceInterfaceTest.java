@@ -26,7 +26,7 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.test.InstrumentationRegistry;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -46,7 +46,8 @@ public class HeadsetClientServiceInterfaceTest {
     private static final String TEST_DEVICE_ADDRESS = "00:11:22:33:44:55";
     private static final BluetoothDevice TEST_DEVICE =
             ((BluetoothManager)
-                            InstrumentationRegistry.getTargetContext()
+                            InstrumentationRegistry.getInstrumentation()
+                                    .getTargetContext()
                                     .getSystemService(Context.BLUETOOTH_SERVICE))
                     .getAdapter()
                     .getRemoteDevice(TEST_DEVICE_ADDRESS);

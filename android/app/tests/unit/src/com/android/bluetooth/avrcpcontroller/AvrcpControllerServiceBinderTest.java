@@ -18,11 +18,12 @@ package com.android.bluetooth.avrcpcontroller;
 
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
@@ -48,7 +49,12 @@ public class AvrcpControllerServiceBinderTest {
 
     @Before
     public void setUp() throws Exception {
-        mRemoteDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
+        mRemoteDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(REMOTE_DEVICE_ADDRESS);
         mBinder = new AvrcpControllerService.AvrcpControllerServiceBinder(mService);
     }
 

@@ -19,6 +19,7 @@ package com.android.bluetooth.le_audio;
 
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
+import static com.android.bluetooth.TestUtils.getTestDevice;
 import static com.android.bluetooth.bass_client.BassConstants.INVALID_BROADCAST_ID;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -28,6 +29,7 @@ import static org.mockito.Mockito.*;
 
 import android.annotation.Nullable;
 import android.bluetooth.*;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -178,7 +180,11 @@ public class LeAudioBroadcastServiceTest {
                 .getSupportedProfilesBitMask();
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
 
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
         MetricsLogger.setInstanceForTesting(mMetricsLogger);
 
         LeAudioBroadcasterNativeInterface.setInstance(mLeAudioBroadcasterNativeInterface);
@@ -197,9 +203,9 @@ public class LeAudioBroadcastServiceTest {
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED);
         mTargetContext.registerReceiver(mLeAudioIntentReceiver, filter);
 
-        mDevice = TestUtils.getTestDevice(mAdapter, 0);
-        mDevice2 = TestUtils.getTestDevice(mAdapter, 1);
-        mBroadcastDevice = TestUtils.getTestDevice(mAdapter, 1);
+        mDevice = getTestDevice(0);
+        mDevice2 = getTestDevice(1);
+        mBroadcastDevice = getTestDevice(1);
         when(mAdapterService.getDeviceFromByte(Utils.getBytesFromAddress("FF:FF:FF:FF:FF:FF")))
                 .thenReturn(mBroadcastDevice);
 

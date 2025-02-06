@@ -25,8 +25,8 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
@@ -36,6 +36,7 @@ import android.content.pm.PackageManager;
 import android.os.RemoteException;
 
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
@@ -80,7 +81,12 @@ public class DistanceMeasurementManagerTest {
         DistanceMeasurementNativeInterface.setInstance(mDistanceMeasurementNativeInterface);
         mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
         mUuid = UUID.randomUUID();
-        mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(IDENTITY_ADDRESS);
+        mDevice =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(IDENTITY_ADDRESS);
     }
 
     @After

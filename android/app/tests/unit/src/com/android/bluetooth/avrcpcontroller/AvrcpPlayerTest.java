@@ -22,8 +22,11 @@ import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.net.Uri;
 import android.support.v4.media.session.PlaybackStateCompat;
+
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -50,7 +53,11 @@ public class AvrcpPlayerTest {
 
     @Before
     public void setUp() {
-        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mAdapter =
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
+                        .getSystemService(BluetoothManager.class)
+                        .getAdapter();
         mTestDevice = mAdapter.getRemoteDevice(mTestAddress);
     }
 
