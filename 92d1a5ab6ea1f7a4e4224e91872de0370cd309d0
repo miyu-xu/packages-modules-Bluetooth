@@ -69,6 +69,24 @@
       "parentUuid": "878baf40_8d7d308d",
       "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22bd8c2b_e8098ddc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-06T20:27:00Z",
+      "side": 1,
+      "message": "Yes, that could be another improvement, as it would no longer be called in removeSourceInternal. Previously, we likely lost group information when suspending via removeSource. But let\u0027s wait for Rongxuan\u0027s opinion. If that\u0027s the case, then maybe it should be a separate CL, as it would require some tests. Thank you both!",
+      "parentUuid": "a4093532_502901ec",
+      "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
