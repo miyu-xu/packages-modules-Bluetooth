@@ -34,6 +34,29 @@
       "parentUuid": "309f0c83_b391bb64",
       "revId": "ade91dc8d60b0317998e0a1ffa86abc48f7afcb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e251d8a6_96afbaac",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3698,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-06T04:16:39Z",
+      "side": 1,
+      "message": "Why did we do that ?\n\nThis is a huge hack to provide ui some information.\n\nThis MUST be replaced by a real API. to call LeAudioService\nCurrent implementation is not guaranteed to work in the futur",
+      "range": {
+        "startLine": 3695,
+        "startChar": 9,
+        "endLine": 3698,
+        "endChar": 29
+      },
+      "revId": "ade91dc8d60b0317998e0a1ffa86abc48f7afcb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
