@@ -87,6 +87,24 @@
       "parentUuid": "a4093532_502901ec",
       "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b277f57_a74afc26",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-06T22:55:31Z",
+      "side": 1,
+      "message": "As we offline talked about, I\u0027m also more aligned with Lukasz\u0027s idea.\nIdeally better to let removeSource() handle the group related operations. And internal func only do the work for this target device.\n\nSo let\u0027s plan some follow-up for this. Okay to me we\u0027re doing this in another CL.",
+      "parentUuid": "22bd8c2b_e8098ddc",
+      "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
