@@ -246,11 +246,6 @@ impl InterfaceManager {
                     // To shut down the connection, call _handle.abort() and drop the connection.
                     conn_join_handle.abort();
                     drop(conn);
-
-                    let tx = tx.clone();
-                    tokio::spawn(async move {
-                        let _ = tx.send(Message::AdapterShutdown).await;
-                    });
                     break;
                 }
             }
