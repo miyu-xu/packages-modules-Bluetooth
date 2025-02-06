@@ -224,7 +224,7 @@ public final class DistanceMeasurementParams implements Parcelable {
     public static final class Builder {
         private BluetoothDevice mDevice = null;
         private int mDuration = REPORT_DURATION_DEFAULT;
-        private int mFrequency = REPORT_FREQUENCY_LOW;
+        private int mFrequency = REPORT_FREQUENCY_MEDIUM;
         private int mMethodId = DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI;
         private ChannelSoundingParams mChannelSoundingParams = null;
 
