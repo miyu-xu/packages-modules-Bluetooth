@@ -86,6 +86,7 @@ static constexpr uint16_t kDefaultRasMtu = 247;      // Section 3.1.2 of RAP 1.0
 static constexpr uint8_t kAttHeaderSize = 5;         // Section 3.2.2.1 of RAS 1.0
 static constexpr uint8_t kRasSegmentHeaderSize = 1;
 static constexpr uint16_t kEnableSecurityTimeoutMs = 10000;  // 10s
+static constexpr uint8_t kProcedureScheduleBufferMs = 50;    // 50ms
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsProcedureData {
@@ -389,7 +390,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   }
 
   bool init_cs_requester_tracker(const Address& cs_remote_address, uint16_t connection_handle,
-                                 hci::Role local_hci_role, uint16_t interval,
+                                 hci::Role local_hci_role, uint16_t interval_ms,
                                  bool* has_updated_procedure_params) {
     *has_updated_procedure_params = false;
     auto it = cs_requester_trackers_.find(connection_handle);
@@ -420,19 +421,17 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     }
 
     it->second.state = CsTrackerState::INIT;
-    // If the interval is less than 1 second, update it to 1 second and increase the
-    // max_procedure_count
-    uint16_t max_procedure_count = 1;
-    if (interval < 1000) {
-      max_procedure_count = 1000 / interval;
-      interval = 1000;
-    }
-    if (max_procedure_count != it->second.max_procedure_count) {
-      log::info("Update interval to 1s and max_procedure_count to {}", max_procedure_count);
+
+    if (interval_ms != it->second.interval_ms) {
+      log::info("Update interval to {}", interval_ms);
+      uint16_t max_procedure_count = 1;
+      if (interval_ms < 1000) {
+        max_procedure_count = 5;
+      }
       it->second.max_procedure_count = max_procedure_count;
       *has_updated_procedure_params = true;
     }
-    it->second.interval_ms = interval;
+    it->second.interval_ms = interval_ms;
     it->second.local_start = true;
     it->second.measurement_ongoing = true;
     it->second.waiting_for_start_callback = true;
@@ -474,10 +473,6 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
               cs_requester_trackers_[connection_handle].remote_num_antennas_supported_);
     } else {
       send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);
-      cs_requester_trackers_[connection_handle].repeating_alarm->Schedule(
-              common::Bind(&impl::send_le_cs_procedure_enable, common::Unretained(this),
-                           connection_handle, Enable::ENABLED),
-              std::chrono::milliseconds(cs_requester_trackers_[connection_handle].interval_ms));
     }
   }
 
@@ -820,10 +815,25 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
             (preferred_peer_antenna_value >> 2) & 0x01;
     preferred_peer_antenna.use_fourth_ordered_antenna_element_ =
             (preferred_peer_antenna_value >> 3) & 0x01;
+
+    uint16_t max_procedure_len = kMaxProcedureLen;
+    uint16_t min_procedure_interval = kMinProcedureInterval;
+    uint16_t max_procedure_interval = kMaxProcedureInterval;
+    if (cs_requester_trackers_[connection_handle].max_procedure_count != 1) {
+      uint16_t measurement_interval_ms = cs_requester_trackers_[connection_handle].interval_ms;
+      min_procedure_interval = static_cast<uint16_t>(
+              std::round((double)measurement_interval_ms /
+                         cs_requester_trackers_[connection_handle].conn_interval_));
+      max_procedure_interval = min_procedure_interval * 2;
+      // duration of max_procedure_len < duration of min_procedure_interval
+      max_procedure_len = static_cast<uint16_t>(
+              min_procedure_interval * cs_requester_trackers_[connection_handle].conn_interval_ /
+              0.625);
+    }
     hci_layer_->EnqueueCommand(
             LeCsSetProcedureParametersBuilder::Create(
-                    connection_handle, config_id, kMaxProcedureLen, kMinProcedureInterval,
-                    kMaxProcedureInterval,
+                    connection_handle, config_id, max_procedure_len, min_procedure_interval,
+                    max_procedure_interval,
                     cs_requester_trackers_[connection_handle].max_procedure_count, kMinSubeventLen,
                     kMaxSubeventLen, tone_antenna_config_selection, CsPhy::LE_1M_PHY, kTxPwrDelta,
                     preferred_peer_antenna, CsSnrControl::NOT_APPLIED, CsSnrControl::NOT_APPLIED),
@@ -868,6 +878,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         }
         return;
       }
+
       it->second.state = CsTrackerState::WAIT_FOR_PROCEDURE_ENABLED;
     } else {  // Enable::DISABLE
       if (it->second.state != CsTrackerState::WAIT_FOR_PROCEDURE_ENABLED &&
@@ -1169,10 +1180,6 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       log::info("enable cs procedure regularly with interval: {} ms", it->second.interval_ms);
       it->second.repeating_alarm->Cancel();
       send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);
-      it->second.repeating_alarm->Schedule(
-              common::Bind(&impl::send_le_cs_procedure_enable, common::Unretained(this),
-                           connection_handle, Enable::ENABLED),
-              std::chrono::milliseconds(it->second.interval_ms));
     }
   }
 
@@ -1280,6 +1287,21 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       live_tracker->selected_tx_power = event_view.GetSelectedTxPower();
       live_tracker->n_procedure_count = event_view.GetProcedureCount();
       live_tracker->retry_counter_for_cs_enable = 0;
+
+      if (live_tracker->local_start && live_tracker->n_procedure_count >= 1) {
+        uint16_t periodic_schedule_interval = live_tracker->interval_ms;
+        if (live_tracker->n_procedure_count > 1) {
+          periodic_schedule_interval = live_tracker->n_procedure_count *
+                                               event_view.GetProcedureInterval() *
+                                               live_tracker->conn_interval_ +
+                                       kProcedureScheduleBufferMs;
+        }
+        log::info("schedule next procedure enable after {} ms", periodic_schedule_interval);
+        cs_requester_trackers_[connection_handle].repeating_alarm->Schedule(
+                common::Bind(&impl::send_le_cs_procedure_enable, common::Unretained(this),
+                             connection_handle, Enable::ENABLED),
+                std::chrono::milliseconds(periodic_schedule_interval));
+      }
 
       if (live_tracker->local_start && live_tracker->waiting_for_start_callback) {
         live_tracker->waiting_for_start_callback = false;
@@ -1530,7 +1552,9 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       log::warn("can't find tracker for 0x{:04x}", connection_handle);
       return;
     }
-    if (cs_requester_trackers_[connection_handle].state != CsTrackerState::STARTED) {
+    if (cs_requester_trackers_[connection_handle].state != CsTrackerState::STARTED &&
+        cs_requester_trackers_[connection_handle].state !=
+                CsTrackerState::WAIT_FOR_PROCEDURE_ENABLED) {
       log::warn("The measurement for {} is stopped, ignore the remote data.", connection_handle);
       return;
     }
