@@ -81,6 +81,8 @@ public class ServiceDiscoveryTest {
     private static final ParcelUuid BATTERY_UUID =
             ParcelUuid.fromString("0000180F-0000-1000-8000-00805F9B34FB");
 
+    private static final ParcelUuid HOGP_UUID =
+            ParcelUuid.fromString("00001812-0000-1000-8000-00805f9b34fb");
     private static final Context sTargetContext =
             InstrumentationRegistry.getInstrumentation().getTargetContext();
     private static final BluetoothAdapter sAdapter =
@@ -149,6 +151,13 @@ public class ServiceDiscoveryTest {
                 .onReceive(any(), any());
 
         mInOrder = inOrder(mReceiver);
+
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
+        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        filter.addAction(BluetoothDevice.ACTION_UUID);
+        sTargetContext.registerReceiver(mReceiver, filter);
 
         mBumbleDevice = mBumble.getRemoteDevice();
         Set<BluetoothDevice> bondedDevices = sAdapter.getBondedDevices();
@@ -321,6 +330,111 @@ public class ServiceDiscoveryTest {
                 BluetoothDevice.ACTION_UUID,
                 BluetoothDevice.ACTION_ACL_CONNECTED,
                 BluetoothDevice.ACTION_ACL_DISCONNECTED);
+    }
+
+    @Test
+    public void testServiceDiscoveryUuids_LE_BREDR() {
+        Parcelable[] uuidsRaw;
+        // Setup intent filters
+        registerIntentActions(BluetoothDevice.ACTION_UUID);
+
+        Log.d(TAG, "Flags.separateServiceStorage() : " + Flags.separateServiceStorage());
+
+        // Register some services on Bumble
+        mBumble.gattBlocking()
+                .registerService(
+                        GattProto.RegisterServiceRequest.newBuilder()
+                                .setService(
+                                        GattProto.GattServiceParams.newBuilder()
+                                                .setUuid(BATTERY_UUID.toString())
+                                                .build())
+                                .build());
+        mBumble.gattBlocking()
+                .registerService(
+                        GattProto.RegisterServiceRequest.newBuilder()
+                                .setService(
+                                        GattProto.GattServiceParams.newBuilder()
+                                                .setUuid(HOGP_UUID.toString())
+                                                .build())
+                                .build());
+
+        // Make Bumble connectable
+        mBumble.hostBlocking()
+                .advertise(
+                        AdvertiseRequest.newBuilder()
+                                .setLegacy(true)
+                                .setConnectable(true)
+                                .setOwnAddressType(OwnAddressType.PUBLIC)
+                                .build());
+
+        // Create a bond with BREDR
+        assertThat(mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_BREDR)).isTrue();
+
+        // Wait for Pairing Request
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice));
+
+        // Approve pairing from Android
+        assertThat(mBumbleDevice.setPairingConfirmation(true)).isTrue();
+
+        // Wait for ACTION UUID
+        verifyIntentReceived(hasAction(BluetoothDevice.ACTION_UUID));
+
+        // Check if any UUIDs are present
+        uuidsRaw = mBumbleDevice.getUuids();
+
+        // verify that no UUIDs are present before fetching
+        assertThat(uuidsRaw).isNotEqualTo(null);
+
+        // Print Fetched UUIDs
+        Log.d(
+                TAG,
+                "UUIDs retrived from mBumbleDevice.getUuids(), UUID =" + Arrays.toString(uuidsRaw));
+
+        // verify all th euuids
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.HOGP)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.BATTERY)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.HFP)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.A2DP_SOURCE)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.A2DP_SINK)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.AVRCP)))
+                .isTrue();
+
+        // Start GATT service discovery, this will establish BR/EDR
+        assertThat(mBumbleDevice.fetchUuidsWithSdp(BluetoothDevice.TRANSPORT_BREDR)).isTrue();
+
+        // Wait for service discovery to complete on Android
+        verifyIntentReceived(hasAction(BluetoothDevice.ACTION_UUID));
+
+        // Get all the local cached copy of the service UUIDs
+        uuidsRaw = mBumbleDevice.getUuids();
+
+        // Print Fetched UUIDs
+        Log.d(
+                TAG,
+                "UUIDs retrived from mBumbleDevice.getUuids(), UUID =" + Arrays.toString(uuidsRaw));
+
+        // Verify that cached UUID is having desired UUIDs (LE + Classic )
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.HOGP)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.BATTERY)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.HFP)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.A2DP_SOURCE)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.A2DP_SINK)))
+                .isTrue();
+        assertThat(Arrays.stream(uuidsRaw).anyMatch(item -> item.equals(BluetoothUuid.AVRCP)))
+                .isTrue();
+
+        unregisterIntentActions(BluetoothDevice.ACTION_UUID);
     }
 
     private void removeBond(BluetoothDevice device) {
