@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9029a864_3ab16ed4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-06T20:25:14Z",
+      "side": 1,
+      "message": "Adding Kihong as a reviewer, as he is an scanning expert : )",
+      "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7965a0ed_6a094b12",
