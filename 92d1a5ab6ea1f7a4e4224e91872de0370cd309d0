@@ -105,6 +105,24 @@
       "parentUuid": "22bd8c2b_e8098ddc",
       "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7fe1a66_b2c63dfa",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-06T23:15:23Z",
+      "side": 1,
+      "message": "To sum up:\n* Originally, it was always called regardless of success or failure, even if it was removed due to suspension.\n* In my change, it is now called only on success. However, to maintain consistency with the original code, it is still invoked in the internal version.\n* We can modify it later to trigger only from an external call.\n\nb/394933314",
+      "parentUuid": "9b277f57_a74afc26",
+      "revId": "92d1a5ab6ea1f7a4e4224e91872de0370cd309d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
