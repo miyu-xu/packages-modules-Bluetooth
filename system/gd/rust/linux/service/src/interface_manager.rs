@@ -50,7 +50,6 @@ impl InterfaceManager {
     #[allow(clippy::too_many_arguments)]
     pub async fn dispatch(
         mut rx: Receiver<APIMessage>,
-        tx: Sender<Message>,
         virt_index: i32,
         conn: Arc<SyncConnection>,
         conn_join_handle: tokio::task::JoinHandle<()>,
@@ -246,11 +245,6 @@ impl InterfaceManager {
                     // To shut down the connection, call _handle.abort() and drop the connection.
                     conn_join_handle.abort();
                     drop(conn);
-
-                    let tx = tx.clone();
-                    tokio::spawn(async move {
-                        let _ = tx.send(Message::AdapterShutdown).await;
-                    });
                     break;
                 }
             }
