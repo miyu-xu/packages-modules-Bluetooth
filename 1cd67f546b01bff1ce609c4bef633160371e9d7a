@@ -16,6 +16,24 @@
       "message": "@gkolodziejczyk@google.com should have better context here.\n\nWe should still use isPrimaryGroup || isBroadcastReadyToBeReActivated here, so that we proceed enable inband for this primary group even not in handover state.\n\nIs this intended behavior change?",
       "revId": "1cd67f546b01bff1ce609c4bef633160371e9d7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93f9257c_fe182f42",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3145,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-06T09:47:19Z",
+      "side": 1,
+      "message": "I think for now, since we handle Fallback/Primary group for broadcast-\u003eunicast-\u003ebroadcast handover a check for `isPrimaryGroup(groupId)` would be enough here.\n\ne.g.\n```\n            boolean isRingtoneEnabled \u003d\n                    ringtoneContextAvailable\n                            \u0026\u0026 (groupDescriptor.isActive()\n                                    || isPrimaryGroup(groupId));\n```\n\n`isPrimaryGroup` means that this is a group set via `com.android.bluetooth.le_audio.LeAudioService.updateFallbackUnicastGroupIdForBroadcast`.",
+      "parentUuid": "ae830233_084ecc98",
+      "revId": "1cd67f546b01bff1ce609c4bef633160371e9d7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
