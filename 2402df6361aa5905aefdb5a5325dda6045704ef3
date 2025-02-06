@@ -22,6 +22,30 @@
       },
       "revId": "2402df6361aa5905aefdb5a5325dda6045704ef3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d89d92_a1ae67f3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-06T04:49:26Z",
+      "side": 1,
+      "message": "I see that you are setting this as the current active device, just below, but that seems a bit dangerous to do",
+      "parentUuid": "c4f54f91_30b2ab12",
+      "range": {
+        "startLine": 2298,
+        "startChar": 24,
+        "endLine": 2299,
+        "endChar": 80
+      },
+      "revId": "2402df6361aa5905aefdb5a5325dda6045704ef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
