@@ -152,6 +152,30 @@
       },
       "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ddc5eee_e22a3648",
+        "filename": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2013495
+      },
+      "writtenOn": "2025-02-06T04:52:12Z",
+      "side": 1,
+      "message": "Make sense, updated.",
+      "parentUuid": "47ad8684_b9e71eba",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "5d14a0eaa782bddc4cb16faf818cd6a82fa3e130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
