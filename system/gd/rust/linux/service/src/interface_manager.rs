@@ -7,10 +7,10 @@ use tokio::sync::mpsc::{channel, Receiver, Sender};
 
 use btstack::{
     battery_manager::BatteryManager, battery_provider_manager::BatteryProviderManager,
-    bluetooth::Bluetooth, bluetooth_admin::BluetoothAdmin, bluetooth_gatt::BluetoothGatt,
-    bluetooth_logging::BluetoothLogging, bluetooth_media::BluetoothMedia,
-    bluetooth_qa::BluetoothQA, socket_manager::BluetoothSocketManager, suspend::Suspend,
-    APIMessage, BluetoothAPI, Message,
+    bluetooth::Bluetooth, bluetooth::SigData, bluetooth_admin::BluetoothAdmin,
+    bluetooth_gatt::BluetoothGatt, bluetooth_logging::BluetoothLogging,
+    bluetooth_media::BluetoothMedia, bluetooth_qa::BluetoothQA,
+    socket_manager::BluetoothSocketManager, suspend::Suspend, APIMessage, BluetoothAPI,
 };
 
 use crate::iface_battery_manager;
@@ -50,11 +50,11 @@ impl InterfaceManager {
     #[allow(clippy::too_many_arguments)]
     pub async fn dispatch(
         mut rx: Receiver<APIMessage>,
-        tx: Sender<Message>,
         virt_index: i32,
         conn: Arc<SyncConnection>,
         conn_join_handle: tokio::task::JoinHandle<()>,
         disconnect_watcher: Arc<Mutex<DisconnectWatcher>>,
+        sig_notifier: Arc<SigData>,
         bluetooth: Arc<Mutex<Box<Bluetooth>>>,
         bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
         bluetooth_gatt: Arc<Mutex<Box<BluetoothGatt>>>,
@@ -92,6 +92,9 @@ impl InterfaceManager {
                 true
             }),
         );
+
+        *sig_notifier.api_enabled.lock().unwrap() = true;
+        sig_notifier.api_notify.notify_all();
 
         // Register D-Bus method handlers of IBluetooth.
         let adapter_iface = iface_bluetooth::export_bluetooth_dbus_intf(
@@ -246,11 +249,8 @@ impl InterfaceManager {
                     // To shut down the connection, call _handle.abort() and drop the connection.
                     conn_join_handle.abort();
                     drop(conn);
-
-                    let tx = tx.clone();
-                    tokio::spawn(async move {
-                        let _ = tx.send(Message::AdapterShutdown).await;
-                    });
+                    *sig_notifier.api_enabled.lock().unwrap() = false;
+                    sig_notifier.api_notify.notify_all();
                     break;
                 }
             }
