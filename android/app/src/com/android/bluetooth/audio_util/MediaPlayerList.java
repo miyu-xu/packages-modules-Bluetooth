@@ -55,7 +55,9 @@ import java.util.regex.Pattern;
 
 /**
  * This class is directly responsible of maintaining the list of Browsable Players as well as the
- * list of Addressable Players.
+ * list of Addressable Players. A default player that does not support browsing is added at ID 0 and
+ * is not linked with any Media Framework player in order to keep a default player in case all the
+ * Media Players have been removed from the device.
  */
 public class MediaPlayerList {
     private static final String TAG = MediaPlayerList.class.getSimpleName();
@@ -426,7 +428,9 @@ public class MediaPlayerList {
         }
         if (mMediaPlayerIds.containsValue(playerId)) {
             mAddressedPlayerId = playerId;
-            sendFolderUpdate(false, true, false);
+            if (playerId != BLUETOOTH_PLAYER_ID) {
+                sendFolderUpdate(false, true, false);
+            }
             Log.d(TAG, "setAddressedPlayer to: " + mAddressedPlayerId);
         } else {
             Log.d(TAG, "setAddressedPlayer not updated: " + mAddressedPlayerId);
@@ -438,6 +442,13 @@ public class MediaPlayerList {
     public List<PlayerInfo> getMediaPlayerList() {
         List<PlayerInfo> ret = new ArrayList<PlayerInfo>();
         if (Flags.browsingRefactor()) {
+            Log.i(TAG, "getMediaPlayerList: Added default Bluetooth player");
+            // Add default unused Bluetooth player
+            PlayerInfo info_default = new PlayerInfo();
+            info_default.id = BLUETOOTH_PLAYER_ID;
+            info_default.name = BLUETOOTH_PLAYER_NAME;
+            info_default.browsable = true;
+            ret.add(info_default);
             // Add actual browsable players
             for (MediaBrowserWrapper browser : mMediaBrowserWrappers.values()) {
                 Log.i(
