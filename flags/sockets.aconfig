@@ -82,3 +82,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "rfcomm_socket_closed_by_bredr_disabled"
+    namespace: "bluetooth"
+    description: "Fix RFCOMM socket still open even BREDR is disabled"
+    bug: "391263869"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
