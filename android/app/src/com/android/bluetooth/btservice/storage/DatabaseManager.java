@@ -233,7 +233,9 @@ public class DatabaseManager {
     }
 
     boolean isValidMetaKey(int key) {
-        if (key >= 0 && key <= BluetoothDevice.getMaxMetadataKey()) {
+        // TODO: remove the literal 35 check when the key is added to BluetoothDevice
+        if ((key >= 0 && key <= BluetoothDevice.getMaxMetadataKey())
+                || key == 35) {
             return true;
         }
         Log.w(TAG, "Invalid metadata key " + key);
