@@ -1107,7 +1107,7 @@ public class BluetoothMapService extends ProfileService {
                 Log.d(TAG, "USER_CONFIRM_TIMEOUT ACTION Received.");
                 sendConnectTimeoutMessage();
             } else if (action.equals(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY)) {
-
+                BluetoothDevice remoteDevice = mRemoteDevice;
                 int requestType =
                         intent.getIntExtra(
                                 BluetoothDevice.EXTRA_ACCESS_REQUEST_TYPE,
@@ -1121,6 +1121,9 @@ public class BluetoothMapService extends ProfileService {
                                 + mIsWaitingAuthorization);
                 if ((!mIsWaitingAuthorization)
                         || (requestType != BluetoothDevice.REQUEST_TYPE_MESSAGE_ACCESS)) {
+                    return;
+                }
+                if (remoteDevice == null) {
                     return;
                 }
 
@@ -1139,13 +1142,13 @@ public class BluetoothMapService extends ProfileService {
                     mPermission = BluetoothDevice.ACCESS_ALLOWED;
                     if (intent.getBooleanExtra(BluetoothDevice.EXTRA_ALWAYS_ALLOWED, false)) {
                         boolean result =
-                                mRemoteDevice.setMessageAccessPermission(
+                                remoteDevice.setMessageAccessPermission(
                                         BluetoothDevice.ACCESS_ALLOWED);
                         Log.d(TAG, "setMessageAccessPermission(ACCESS_ALLOWED) result=" + result);
                     }
 
                     mAdapterService.sdpSearch(
-                            mRemoteDevice, BluetoothMnsObexClient.BLUETOOTH_UUID_OBEX_MNS);
+                            remoteDevice, BluetoothMnsObexClient.BLUETOOTH_UUID_OBEX_MNS);
                     mSdpSearchInitiated = true;
                 } else {
                     // Auth. declined by user, serverSession should not be running, but
@@ -1153,7 +1156,7 @@ public class BluetoothMapService extends ProfileService {
                     mPermission = BluetoothDevice.ACCESS_REJECTED;
                     if (intent.getBooleanExtra(BluetoothDevice.EXTRA_ALWAYS_ALLOWED, false)) {
                         boolean result =
-                                mRemoteDevice.setMessageAccessPermission(
+                                remoteDevice.setMessageAccessPermission(
                                         BluetoothDevice.ACCESS_REJECTED);
                         Log.d(TAG, "setMessageAccessPermission(ACCESS_REJECTED) result=" + result);
                     }
