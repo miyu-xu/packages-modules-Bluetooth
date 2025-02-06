@@ -16,6 +16,24 @@
       "message": "sorry I did not point it out before, but you could add  to the function `throws RemoteException { ` and in this way, test framework will catch it.\n\nIt is ok to do so cleaning in followup CLs as I see many places in this file doing the same.",
       "revId": "f2f71562008a67f8ca0b39e8f9fa524532289de4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80986fd_9412d92b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 7247,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-06T16:26:15Z",
+      "side": 1,
+      "message": "sure, add to backlog b/394837044, thakns",
+      "parentUuid": "17bf1cdf_36c72ca5",
+      "revId": "f2f71562008a67f8ca0b39e8f9fa524532289de4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
