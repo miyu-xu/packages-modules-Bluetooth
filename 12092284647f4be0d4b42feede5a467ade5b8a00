@@ -16,6 +16,24 @@
       "message": "Topic seems to not match.",
       "revId": "12092284647f4be0d4b42feede5a467ade5b8a00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b6d1c48_c5aa74ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-06T17:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "711e128d_ca5aa425",
+      "revId": "12092284647f4be0d4b42feede5a467ade5b8a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
