@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7965a0ed_6a094b12",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-06T20:24:31Z",
+      "side": 1,
+      "message": "Q) Why is this needed?",
+      "range": {
+        "startLine": 457,
+        "startChar": 12,
+        "endLine": 457,
+        "endChar": 23
+      },
+      "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cada16f_c7ebff1e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-06T20:24:31Z",
+      "side": 1,
+      "message": "nit) (phys_in_use \u0026 k1mPhyMask) \u003d\u003d 0",
+      "range": {
+        "startLine": 495,
+        "startChar": 12,
+        "endLine": 495,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dad2126b_3cb3118c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/le_scanning_manager.cc",
+              "range": {
+                "startLine": 495,
+                "startChar": 0,
+                "endLine": 496,
+                "endChar": 0
+              },
+              "replacement": "        if ((phys_in_use \u0026 k1mPhyMask) \u003d\u003d 0) {\n"
+            },
+            {
+              "path": "system/gd/hci/le_scanning_manager.cc",
+              "range": {
+                "startLine": 506,
+                "startChar": 0,
+                "endLine": 507,
+                "endChar": 0
+              },
+              "replacement": "        if ((phys_in_use \u0026 k1mPhyMask) \u003d\u003d 0) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251a99c4_fc45acaf",
+        "filename": "system/gd/hci/le_scanning_manager_mock.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-06T20:24:31Z",
+      "side": 1,
+      "message": "nit) ScannerId?",
+      "range": {
+        "startLine": 57,
+        "startChar": 58,
+        "endLine": 57,
+        "endChar": 65
+      },
+      "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db2a3343_ebd5837a",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1469,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-06T20:24:31Z",
+      "side": 1,
+      "message": "Q) Should we consider emplace_back?",
+      "range": {
+        "startLine": 1469,
+        "startChar": 15,
+        "endLine": 1469,
+        "endChar": 24
+      },
+      "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
