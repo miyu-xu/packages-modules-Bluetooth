@@ -2357,6 +2357,19 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void bredrDisable() {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "bredrDisable")) {
+                return;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+
+            service.bredrDisable();
+        }
+
+        @Override
         public String getAddress(AttributionSource source) {
             AdapterService service = getService();
             if (service == null
@@ -4850,6 +4863,15 @@ public class AdapterService extends Service {
     void onToBleOn() {
         Log.d(TAG, "onToBleOn() called with mRunningProfiles.size() = " + mRunningProfiles.size());
         mAdapterStateMachine.sendMessage(AdapterState.USER_TURN_OFF);
+    }
+
+    void bredrDisable() {
+        Log.d(TAG, "bredrDisable()");
+        if (mAdapterProperties == null) {
+            return;
+        }
+
+        mNativeInterface.disconnectAllAcls()
     }
 
     public String getName() {
