@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f08cb5d0_54770819",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:34:52Z",
+      "side": 1,
+      "message": "can we somehow factorize this ?\n\nby having a method per version like\n```\nprivate void insert_102_data(ContentValue device) {\n  insert_101_data(device)\n  device.put(\"foofrom102\", foo)\n  ....\n}\n```\n\nThe +778 lines hurts ^^",
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
