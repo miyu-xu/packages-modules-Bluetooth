@@ -81,6 +81,30 @@
       },
       "revId": "ade91dc8d60b0317998e0a1ffa86abc48f7afcb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50fe263_ea23e705",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3698,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-07T17:14:31Z",
+      "side": 1,
+      "message": "Shared more context offline, temp solution to be removed once Q2 new API is integrated to audio sharing flow @yiyishen@google.com working on this.\nTaking this offline if future question, not commenting internal plan here.",
+      "parentUuid": "5f3d6342_923899f0",
+      "range": {
+        "startLine": 3695,
+        "startChar": 9,
+        "endLine": 3698,
+        "endChar": 29
+      },
+      "revId": "ade91dc8d60b0317998e0a1ffa86abc48f7afcb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
