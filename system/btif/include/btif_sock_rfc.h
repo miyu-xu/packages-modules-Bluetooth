@@ -51,4 +51,6 @@ bool btsock_rfc_in_use(uint64_t socket_id);
 void on_btsocket_rfc_opened_complete(uint64_t socket_id, bool success);
 void on_btsocket_rfc_close(uint64_t socket_id);
 
+bt_status_t btsock_rfc_disconnect_all(void);
+
 #endif

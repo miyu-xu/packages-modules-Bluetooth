@@ -932,6 +932,13 @@ static void dumpMetrics(std::string* output) {
   bluetooth::common::BluetoothMetricsLogger::GetInstance()->WriteString(output);
 }
 
+static int bredr_disable(void) {
+  // disconnect all bredr related sockets
+  btif_bredr_socket_disconnect_all();
+
+  return BT_STATUS_SUCCESS;
+}
+
 static int get_remote_pbap_pce_version(const RawAddress* bd_addr) {
   // Read and restore the PCE version from local storage
   uint16_t pce_version = 0;
@@ -1315,6 +1322,7 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
         .interop_database_add_remove_name = interop_database_add_remove_name,
         .get_remote_pbap_pce_version = get_remote_pbap_pce_version,
         .pbap_pse_dynamic_version_upgrade_is_enabled = pbap_pse_dynamic_version_upgrade_is_enabled,
+        .bredr_disable = bredr_disable,
 };
 
 // callback reporting helpers
