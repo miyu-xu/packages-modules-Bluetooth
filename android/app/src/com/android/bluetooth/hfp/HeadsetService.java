@@ -1573,6 +1573,18 @@ public class HeadsetService extends ProfileService {
                 Log.w(TAG, "connectAudio: profile not connected");
                 return BluetoothStatusCodes.ERROR_PROFILE_NOT_CONNECTED;
             }
+            if (Utils.isDualModeAudioEnabled()) {
+                Bundle preferredAudioProfiles =
+                   mAdapterService.getPreferredAudioProfiles(device);
+                private static final String KEY_AUDIO_MODE_DUPLEX = "audio_mode_duplex";
+                if (preferredAudioProfiles != null && !preferredAudioProfiles.isEmpty()
+                    && preferredAudioProfiles.getInt(KEY_AUDIO_MODE_DUPLEX) ==
+                                                     BluetoothProfile.LE_AUDIO) {
+                    Log.w(TAG, "connectAudio: rejected SCO for device=" + device
+                                 + " due to LE being" + "preferred profile in DM");
+                    return BluetoothStatusCodes.NOT_ALLOWED;
+                }
+            }
             if (stateMachine.getAudioState() != BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {
                 logD("connectAudio: audio is not idle for device " + device);
                 logScoSessionMetric(
