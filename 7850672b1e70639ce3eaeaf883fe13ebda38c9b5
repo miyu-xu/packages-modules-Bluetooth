@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1041791_f0ca9b07",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 4209,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-07T12:50:42Z",
+      "side": 1,
+      "message": "It was moved here from aosp/3473469 as it is needed for this CL.\naosp/3473469 was moved above this CL as it needs removeSinkMetadataFromGroupIfWholeUnsynced logic.\n\nIt was messed up during splitting\n```\nFollow up on \"Add support for multiple sources per sink device\"\n```\nAnd did not catch by tests as a bunch of CLs were tested at once.",
+      "range": {
+        "startLine": 4204,
+        "startChar": 0,
+        "endLine": 4209,
+        "endChar": 17
+      },
+      "revId": "7850672b1e70639ce3eaeaf883fe13ebda38c9b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
