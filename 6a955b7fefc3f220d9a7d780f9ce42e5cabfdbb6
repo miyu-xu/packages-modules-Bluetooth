@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2b74bfd_28623075",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 14
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "531eec28_18a35ed0",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "819842fc_e8df7203",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-07T07:14:56Z",
       "side": 1,
       "message": "this method is not needed any more",
+      "range": {
+        "startLine": 2359,
+        "startChar": 0,
+        "endLine": 2370,
+        "endChar": 9
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "202b209f_c0c7a921",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2370,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "819842fc_e8df7203",
       "range": {
         "startLine": 2359,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e85d030_f58b8380",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 4875,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:59:50Z",
+      "side": 1,
+      "message": "Yes, agree, thanks Jack.",
+      "parentUuid": "50c7df73_82f11583",
+      "range": {
+        "startLine": 4868,
+        "startChar": 0,
+        "endLine": 4875,
+        "endChar": 5
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bf059e07_b802c45e",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-02-07T07:14:56Z",
       "side": 1,
       "message": "Note: this is when all profile services are turned off, hence onBrEdrDisabled() will disconnect remaining ACLs",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 349,
+        "endChar": 13
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f18ad7ff_47aefa81",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:59:50Z",
+      "side": 1,
+      "message": "Got it",
+      "parentUuid": "bf059e07_b802c45e",
       "range": {
         "startLine": 345,
         "startChar": 12,
@@ -130,6 +226,30 @@
           ]
         }
       ],
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7a832f4_5f58da1a",
+        "filename": "service/src/AdapterBinder.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a9b4b99_5c6f547f",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
       "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
