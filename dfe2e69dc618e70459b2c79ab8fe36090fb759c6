@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eb6f275_543d082b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfb58d4f_9e76b173",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c98eebb8_36a3fb06",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "Yes, i will, thannks",
       "parentUuid": "c98eebb8_36a3fb06",
+      "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38935e9f_24224069",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68118af3_fcd25424",
       "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +162,30 @@
       "side": 1,
       "message": "Yes, Jack, i got the information(new API) from you and of course i am conside how to do better. This patch just cherry pick from internal one, and i have already reach-out will Pomai and will sync new solution(disconnect all ACLs using the new API) with Pomai and William if they provide more details.\n\nAny other suggesstions please let me know. I\u0027m so grateful and i will try to over-write after my New-Year vacation.",
       "parentUuid": "eca92df8_14048868",
+      "range": {
+        "startLine": 935,
+        "startChar": 0,
+        "endLine": 940,
+        "endChar": 1
+      },
+      "revId": "dfe2e69dc618e70459b2c79ab8fe36090fb759c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d602a2e9_3c643aff",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "903bad4f_03f20425",
       "range": {
         "startLine": 935,
         "startChar": 0,

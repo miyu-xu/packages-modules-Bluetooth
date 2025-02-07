@@ -16,6 +16,24 @@
       "message": "This is a behavior change and it should be flagged. \n\nMoreover, I think it is reasonable to disconnect all ACL links when entering BLE_ON mode instead just disconnecting the RFCOMM sockets. \n\nPlease get the CL reviewed by bhaktha@ who is the RFCOMM area owner",
       "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "049c2eb1_242224da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T07:07:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63b635af_c81ff5dc",
+      "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
