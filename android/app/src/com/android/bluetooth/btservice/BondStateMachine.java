@@ -596,6 +596,7 @@ final class BondStateMachine extends StateMachine {
                 UserHandle.ALL,
                 BLUETOOTH_CONNECT,
                 Utils.getTempBroadcastOptions().toBundle());
+
         infoLog(
                 "Bond State Change Intent:"
                         + device
