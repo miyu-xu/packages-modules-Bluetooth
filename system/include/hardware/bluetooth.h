@@ -1019,6 +1019,9 @@ typedef struct {
 
   /** check if pbap pse dynamic version upgrade is enable */
   bool (*pbap_pse_dynamic_version_upgrade_is_enabled)();
+
+  /** Bluetooth BREDR only disabled*/
+  int (*bredr_disable)(void);
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"
