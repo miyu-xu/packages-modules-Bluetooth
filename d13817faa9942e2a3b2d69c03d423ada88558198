@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bcf1705_41e975da",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T17:35:30Z",
+      "side": 1,
+      "message": "unnecessary line",
+      "fixSuggestions": [
+        {
+          "fixId": "188b8d2a_4f9c2b9d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 605,
+                "startChar": 0,
+                "endLine": 606,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
