@@ -118,6 +118,30 @@
       },
       "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "769bed10_3bfdd4fe",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-07T02:27:39Z",
+      "side": 1,
+      "message": "As we discussed, the poposed change is applied only for offloaded socket. Connection completed signal is generated after MSC signaling is done.",
+      "parentUuid": "46e9aab0_c7063ac7",
+      "range": {
+        "startLine": 471,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 5
+      },
+      "revId": "f55455bfff7edb7dcabd5ca53d30f2fc49f1b26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
