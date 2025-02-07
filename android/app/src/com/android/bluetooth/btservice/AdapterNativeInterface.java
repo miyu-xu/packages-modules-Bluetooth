@@ -332,6 +332,10 @@ public class AdapterNativeInterface {
         return restoreFilterAcceptListNative();
     }
 
+    boolean bredrDisable() {
+        return bredrDisableNative();
+    }
+
     /**********************************************************************************************/
     /*********************************** callbacks from native ************************************/
     /**********************************************************************************************/
@@ -476,4 +480,6 @@ public class AdapterNativeInterface {
     private native boolean allowWakeByHidNative();
 
     private native boolean restoreFilterAcceptListNative();
+
+    private native boolean bredrDisableNative();
 }
