@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e432c30b_f6725768",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:40:44Z",
+      "side": 1,
+      "message": "nit, I belive that the official stanza is `Flag: TEST_ONLY`\nas per go/android-flags-guidelines#exceptions-anchor\n\nBut I don\u0027t know if this matter a lot or not",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f08cb5d0_54770819",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -14,6 +37,52 @@
       "writtenOn": "2025-02-07T19:34:52Z",
       "side": 1,
       "message": "can we somehow factorize this ?\n\nby having a method per version like\n```\nprivate void insert_102_data(ContentValue device) {\n  insert_101_data(device)\n  device.put(\"foofrom102\", foo)\n  ....\n}\n```\n\nThe +778 lines hurts ^^",
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7b41571_65f81e76",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:40:44Z",
+      "side": 1,
+      "message": "how can these be both passing ?",
+      "range": {
+        "startLine": 895,
+        "startChar": 8,
+        "endLine": 915,
+        "endChar": 66
+      },
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76fc12c0_e3fc3030",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:40:44Z",
+      "side": 1,
+      "message": "why not using the new assertColumnStringData here ?",
+      "range": {
+        "startLine": 1080,
+        "startChar": 12,
+        "endLine": 1080,
+        "endChar": 32
+      },
       "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
