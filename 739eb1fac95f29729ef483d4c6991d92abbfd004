@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81cbebc9_2aa6a9bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T08:41:03Z",
+      "side": 1,
+      "message": "forgot the bracket? \n\ndisconnectAclsByBredrDisabled()\n\nit won\u0027t compile otherwise, have you tested the change locally?",
+      "range": {
+        "startLine": 345,
+        "startChar": 22,
+        "endLine": 345,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a706628e_09517a7d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+              "range": {
+                "startLine": 345,
+                "startChar": 0,
+                "endLine": 346,
+                "endChar": 0
+              },
+              "replacement": "            if (Flags.disconnectAclsByBredrDisabled()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "739eb1fac95f29729ef483d4c6991d92abbfd004",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
