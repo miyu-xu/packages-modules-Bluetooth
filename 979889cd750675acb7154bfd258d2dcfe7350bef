@@ -1,0 +1,418 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b29bbf_377cf2db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Break it into separate Test tags",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b230fa8_7822d438",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Split this cl into two separate cls. First to add metadata. Second to add metrics.",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ecc5c3_2dafcc48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Just define this as a static final in the class and add the Todo comment there",
+      "fixSuggestions": [
+        {
+          "fixId": "8b7d9e0b_bcdf7d31",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 94,
+                "endChar": 0
+              },
+              "replacement": "    public static final int METADATA_KEY_BOND_LOST \u003d 35;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 606,
+                "startChar": 0,
+                "endLine": 607,
+                "endChar": 0
+              },
+              "replacement": "         * TODO(BT): Remove the literal 35 and add metadata to BluetoothDevice.\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 609,
+                "startChar": 0,
+                "endLine": 610,
+                "endChar": 0
+              },
+              "replacement": "            byte[] isBondLostMetdadata \u003d mAdapterService.getMetadata(device, METADATA_KEY_BOND_LOST);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee0b95a2_61145a57",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Raise a bug to make this key part of public API in 25Q4",
+      "fixSuggestions": [
+        {
+          "fixId": "c6701c3c_6c3a307e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 606,
+                "startChar": 0,
+                "endLine": 607,
+                "endChar": 0
+              },
+              "replacement": "         * TODO(b/308881103): Remove the literal 35 and add metadata to BluetoothDevice.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c1ac977_d7dd27b9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Add space after \"if\"",
+      "fixSuggestions": [
+        {
+          "fixId": "75f16cc4_ce78870b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 608,
+                "startChar": 0,
+                "endLine": 609,
+                "endChar": 0
+              },
+              "replacement": "        if (newState \u003d\u003d BluetoothDevice.BOND_NONE) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6aa5db_b78c0b31",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "@ahujapalash@google.com Can we reuse existing metric for BOND_NONE for bond loss user journey?",
+      "fixSuggestions": [
+        {
+          "fixId": "32c25a96_aadb0d5f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 592,
+                "startChar": 0,
+                "endLine": 592,
+                "endChar": 0
+              },
+              "replacement": "            /*\n             * `newState` can only have 3 values BOND_NONE, BOND_BONDING, BOND_BONDED.\n             * If the state is BOND_NONE, and the metadata indicates\n             * ACTION_KEY_MISSING, log the transition.\n             *\n             * TODO: Remove the literal 35 and add metadata to BluetoothDevice.\n             */\n            byte[] isBondLostMetdadata \u003d mAdapterService.getMetadata(device, 35);\n            if (isBondLostMetdadata !\u003d null \u0026\u0026 isBondLostMetdadata[0] \u003d\u003d 1) {\n                MetricsLogger.getInstance()\n                        .cacheCount(BluetoothProtoEnums.ACTION_KEY_MISSING_TO_BOND_NONE, 1);\n            }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 599,
+                "startChar": 0,
+                "endLine": 615,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff22a8a_db060b61",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "We have to get the metadata value first. Then log and update it only if it was not set previoulsy.",
+      "fixSuggestions": [
+        {
+          "fixId": "df3a921f_7d58a901",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1540,
+                "startChar": 0,
+                "endLine": 1545,
+                "endChar": 0
+              },
+              "replacement": "            // Log the transition to ACTION_KEY_MISSING in the metadata#35 only if it was not set\n            // previously.\n            byte[] isKeyMissingMetadata \u003d mAdapterService.getMetadata(bluetoothDevice, 35);\n            if (isKeyMissingMetadata \u003d\u003d null || isKeyMissingMetadata[0] !\u003d 1) {\n                mAdapterService.setMetadata(\n                        bluetoothDevice,\n                        35,\n                        new byte[] { 1 }); // 1 indicates ACTION_KEY_MISSING\n            }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1652,
+                "startChar": 0,
+                "endLine": 1657,
+                "endChar": 0
+              },
+              "replacement": "            // Log the transition to ACTION_ENCRYPTION_CHANGE in the metadata#35 only if it was not\n            // set previously.\n            byte[] isEncryptionChangeMetadata \u003d mAdapterService.getMetadata(bluetoothDevice, 35);\n            if (isEncryptionChangeMetadata \u003d\u003d null || isEncryptionChangeMetadata[0] !\u003d 0) {\n                mAdapterService.setMetadata(\n                        bluetoothDevice,\n                        35,\n                        new byte[] { 0 }); // 0 indicates ACTION_ENCRYPTION_CHANGE\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0928c1b7_88b08c57",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1640,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Reset metadata only if it was set previously",
+      "fixSuggestions": [
+        {
+          "fixId": "25b0f0e9_abaa6b30",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1641,
+                "startChar": 0,
+                "endLine": 1651,
+                "endChar": 0
+              },
+              "replacement": "            if (Flags.encryptionChangeBroadcastResetMetadata()) {\n                // TODO: remove literal 35 when key is added to BluetoothDevice\n                byte[] isBondLostMetdadata \u003d mAdapterService.getMetadata(bluetoothDevice, 35);\n                if (isBondLostMetdadata !\u003d null \u0026\u0026 isBondLostMetdadata[0] \u003d\u003d 1) {\n                    // If the metadata#35 is 1, it indicates ACTION_KEY_MISSING.\n                    // We need to log the transition to ACTION_ENCRYPTION_CHANGE.\n                    MetricsLogger.getInstance()\n                            .cacheCount(\n                                    BluetoothProtoEnums.ACTION_KEY_MISSING_TO_ACTION_ENCRYPTION_CHANGE,\n                                    1);\n                }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1652,
+                "startChar": 0,
+                "endLine": 1657,
+                "endChar": 0
+              },
+              "replacement": "                // Log the transition to ACTION_ENCRYPTION_CHANGE in the metadata#35.\n                mAdapterService.setMetadata(\n                        bluetoothDevice,\n                        35,\n                        new byte[] { 0 }); // 0 indicates ACTION_ENCRYPTION_CHANGE\n            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3cd6f9_353c439f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "I would prefer to collect this event irrespective of the metadata state. We should probably collect the fields of the intent as well.\n@ahujapalash@google.com Can we do that here?",
+      "fixSuggestions": [
+        {
+          "fixId": "29fb5875_d3dc446c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.SuppressLint;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1641,
+                "startChar": 0,
+                "endLine": 1657,
+                "endChar": 0
+              },
+              "replacement": "            // Log the transition to ACTION_ENCRYPTION_CHANGE.\n            MetricsLogger.getInstance()\n                    .cacheCount(\n                            BluetoothProtoEnums.ACTION_KEY_MISSING_TO_ACTION_ENCRYPTION_CHANGE, 1);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b99666d9_d14902f5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-07T02:58:12Z",
+      "side": 1,
+      "message": "Lets add exception in a separate if block. Add a bit more explanation here.",
+      "fixSuggestions": [
+        {
+          "fixId": "d20936bd_bc55122a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+              "range": {
+                "startLine": 236,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "        if (key \u003e\u003d 0 \u0026\u0026 key \u003c\u003d BluetoothDevice.getMaxMetadataKey()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+              "range": {
+                "startLine": 241,
+                "startChar": 0,
+                "endLine": 241,
+                "endChar": 0
+              },
+              "replacement": "        // TODO: remove the literal 35 check when the key is added to BluetoothDevice.\n        // Key 35 is a temporary key used for testing purposes.\n        if (key \u003d\u003d 35) {\n            return true;\n        }\n        if (key \u003c 0 || key \u003e BluetoothDevice.getMaxMetadataKey()) {\n            Log.w(TAG, \"Invalid metadata key \" + key);\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
