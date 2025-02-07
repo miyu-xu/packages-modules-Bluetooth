@@ -1,0 +1,254 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba201f4b_dad16941",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T18:41:34Z",
+      "side": 1,
+      "message": "Do we need to remmber the count how many times BOND_LOST happened? that way We know if it ever happened.\n\nIf I understand correctly, if user ignores and repairs \u0026 we clear this information on encryption on. This is needed only if we need to know the history, just a suggestion",
+      "fixSuggestions": [
+        {
+          "fixId": "fca1dea4_4d47854b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.SuppressLint;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 60,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    private static final String LOG_SOURCE_ENCRYPTION \u003d \"ENCRYPTION\";\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 347,
+                "startChar": 0,
+                "endLine": 347,
+                "endChar": 0
+              },
+              "replacement": "        private int mKeyMissingCount;\n        private int mEncryptionChangeCount;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 842,
+                "startChar": 0,
+                "endLine": 842,
+                "endChar": 0
+              },
+              "replacement": "\n        /**\n         * @return the mKeyMissingCount\n         */\n        int getKeyMissingCount() {\n            synchronized (mObject) {\n                return mKeyMissingCount;\n            }\n        }\n\n        /**\n         * @param keyMissingCount the mKeyMissingCount to set\n         */\n        void setKeyMissingCount(int keyMissingCount) {\n            synchronized (mObject) {\n                this.mKeyMissingCount \u003d keyMissingCount;\n            }\n        }\n\n        /**\n         * @return the mEncryptionChangeCount\n         */\n        int getEncryptionChangeCount() {\n            synchronized (mObject) {\n                return mEncryptionChangeCount;\n            }\n        }\n\n        /**\n         * @param encryptionChangeCount the mEncryptionChangeCount to set\n         */\n        void setEncryptionChangeCount(int encryptionChangeCount) {\n            synchronized (mObject) {\n                this.mEncryptionChangeCount \u003d encryptionChangeCount;\n            }\n        }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1181,
+                "startChar": 0,
+                "endLine": 1181,
+                "endChar": 0
+              },
+              "replacement": "                    case AbstractionLayer.BT_PROPERTY_REMOTE_KEY_MISSING_COUNT:\n                        deviceProperties.setKeyMissingCount(Utils.byteArrayToInt(val));\n                        break;\n                    case AbstractionLayer.BT_PROPERTY_REMOTE_ENCRYPTION_CHANGE_COUNT:\n                        deviceProperties.setEncryptionChangeCount(Utils.byteArrayToInt(val));\n                        break;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1545,
+                "startChar": 0,
+                "endLine": 1545,
+                "endChar": 0
+              },
+              "replacement": "            deviceProperties.setKeyMissingCount(deviceProperties.getKeyMissingCount() + 1);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1638,
+                "startChar": 0,
+                "endLine": 1638,
+                "endChar": 0
+              },
+              "replacement": "            deviceProperties.setEncryptionChangeCount(deviceProperties.getEncryptionChangeCount() + 1);\n\n            BluetoothStatsLog.write(\n                    BluetoothStatsLog.BLUETOOTH_DEVICE_INFO_REPORTED,\n                    mAdapterService.obfuscateAddress(bluetoothDevice),\n                    BluetoothProtoEnums.DEVICE_INFO_INTERNAL,\n                    LOG_SOURCE_ENCRYPTION,\n                    null,\n                    null,\n                    null,\n                    null,\n                    bluetoothDevice.getAddressType(),\n                    0,\n                    0,\n                    0);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db22d11_92a3133b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T18:41:34Z",
+      "side": 1,
+      "message": "nit: can define constant for this ACTION_KEY_MISSING and ENCRYPTION_ON",
+      "fixSuggestions": [
+        {
+          "fixId": "bd8a1ebc_6f94ef51",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    private static final byte ACTION_KEY_MISSING \u003d 1;\n    private static final byte ACTION_ENCRYPTION_CHANGE \u003d 0;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1544,
+                "startChar": 0,
+                "endLine": 1545,
+                "endChar": 0
+              },
+              "replacement": "                    new byte[] {ACTION_KEY_MISSING});\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1637,
+                "startChar": 0,
+                "endLine": 1638,
+                "endChar": 0
+              },
+              "replacement": "                    new byte[] {ACTION_ENCRYPTION_CHANGE});\n"
+            }
+          ]
+        }
+      ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af66834_61985812",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T18:41:34Z",
+      "side": 1,
+      "message": "we may need to clear this based on encryption status?",
+      "fixSuggestions": [
+        {
+          "fixId": "8efb91c4_f1603e39",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1632,
+                "startChar": 0,
+                "endLine": 1638,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b34bd70_263eb150",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T18:41:34Z",
+      "side": 1,
+      "message": "lets restore this back",
+      "fixSuggestions": [
+        {
+          "fixId": "ac8bc8cb_4177fedd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 34,
+                "endChar": 0
+              },
+              "replacement": "/**\n * This class represents the metadata of a Bluetooth device.\n */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
