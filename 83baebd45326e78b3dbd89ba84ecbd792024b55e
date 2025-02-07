@@ -45,6 +45,30 @@
       },
       "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5d25ea2_d4a341af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-07T14:29:58Z",
+      "side": 1,
+      "message": "Thanks for the comment.\nWe reviewed internally and made related updates by removing the redundant statements. With these updates testcase is working as expected.",
+      "parentUuid": "a70c17b0_30fd86bb",
+      "range": {
+        "startLine": 938,
+        "startChar": 17,
+        "endLine": 938,
+        "endChar": 30
+      },
+      "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
