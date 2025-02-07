@@ -1,0 +1,137 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531eec28_18a35ed0",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 14
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T07:14:56Z",
+      "side": 1,
+      "message": "no need to change this file since this is all within one process",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819842fc_e8df7203",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2370,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T07:14:56Z",
+      "side": 1,
+      "message": "this method is not needed any more",
+      "range": {
+        "startLine": 2359,
+        "startChar": 0,
+        "endLine": 2370,
+        "endChar": 9
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c7df73_82f11583",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 4875,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T07:14:56Z",
+      "side": 1,
+      "message": "since the only thing this function does is to disconnect all ACLs, you can rename it to \n\n```\nvoid disconnectAllAcls()\n```\n\nand just call `mNativeInterface` method\n\nOtherwise, `bredrDisable()` sounds confusing as people may think this is the method to disable BR/EDR (which it is not)",
+      "range": {
+        "startLine": 4868,
+        "startChar": 0,
+        "endLine": 4875,
+        "endChar": 5
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf059e07_b802c45e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T07:14:56Z",
+      "side": 1,
+      "message": "Note: this is when all profile services are turned off, hence onBrEdrDisabled() will disconnect remaining ACLs",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 349,
+        "endChar": 13
+      },
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a9b4b99_5c6f547f",
+        "filename": "service/src/AdapterBinder.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T07:14:56Z",
+      "side": 1,
+      "message": "not needed any more",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9bd61efa_058956d6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "service/src/AdapterBinder.kt",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6a955b7fefc3f220d9a7d780f9ce42e5cabfdbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
