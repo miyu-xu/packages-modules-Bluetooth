@@ -342,6 +342,9 @@ final class AdapterState extends StateMachine {
         @Override
         public void exit() {
             removeMessages(BREDR_STOP_TIMEOUT);
+            if (mAdapterService != null) {
+                mAdapterService.bredrDisable();
+            }
             super.exit();
         }
 
