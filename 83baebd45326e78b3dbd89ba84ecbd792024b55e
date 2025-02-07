@@ -69,6 +69,29 @@
       },
       "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61ec5d7_31e1a670",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:15:00Z",
+      "side": 1,
+      "message": "Why don\u0027t we need to check this intent anymore ?",
+      "range": {
+        "startLine": 990,
+        "startChar": 4,
+        "endLine": 994,
+        "endChar": 0
+      },
+      "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
