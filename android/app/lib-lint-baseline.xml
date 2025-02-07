@@ -426,7 +426,7 @@
         errorLine2="        ^">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="824"
+            line="807"
             column="9"/>
     </issue>
 
@@ -437,7 +437,7 @@
         errorLine2="        ^">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="824"
+            line="807"
             column="9"/>
     </issue>
 
@@ -448,7 +448,7 @@
         errorLine2="        ^">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="824"
+            line="807"
             column="9"/>
     </issue>
 
@@ -459,7 +459,7 @@
         errorLine2="        ^">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="824"
+            line="807"
             column="9"/>
     </issue>
 
@@ -2483,7 +2483,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="196"
+            line="204"
             column="5"/>
     </issue>
 
@@ -2494,41 +2494,8 @@
         errorLine2="                            ~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="540"
+            line="593"
             column="29"/>
-    </issue>
-
-    <issue
-        id="VisibleForTests"
-        message="This method should only be accessed from tests or within private scope"
-        errorLine1="                LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;"
-        errorLine2="                                      ~~~~~~~~~~~~~~~~~">
-        <location
-            file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="633"
-            column="39"/>
-    </issue>
-
-    <issue
-        id="VisibleForTests"
-        message="This method should only be accessed from tests or within private scope"
-        errorLine1="                LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;"
-        errorLine2="                                                                                ~~~~~~~~~~~~~~~~~~">
-        <location
-            file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="633"
-            column="81"/>
-    </issue>
-
-    <issue
-        id="VisibleForTests"
-        message="This method should only be accessed from tests or within private scope"
-        errorLine1="            mTmapRoleMask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_BMS;"
-        errorLine2="                                                   ~~~~~~~~~~~~~~~~~~">
-        <location
-            file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="646"
-            column="52"/>
     </issue>
 
     <issue
@@ -2538,7 +2505,7 @@
         errorLine2="                            ~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="706"
+            line="682"
             column="29"/>
     </issue>
 
@@ -2549,7 +2516,7 @@
         errorLine2="                                                   ~~~~~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="2808"
+            line="2779"
             column="52"/>
     </issue>
 
@@ -2560,7 +2527,7 @@
         errorLine2="                                                   ~~~~~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="3541"
+            line="3512"
             column="52"/>
     </issue>
 
@@ -2571,7 +2538,7 @@
         errorLine2="                            ~~~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java"
-            line="4790"
+            line="4761"
             column="29"/>
     </issue>
 
@@ -2758,7 +2725,7 @@
         errorLine2="                                  ~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="429"
+            line="467"
             column="35"/>
     </issue>
 
@@ -2813,7 +2780,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="235"
+            line="273"
             column="13"/>
     </issue>
 
@@ -2824,7 +2791,7 @@
         errorLine2="                        ~~~~~~~~~~~~~~~~~~~">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/map/BluetoothMapService.java"
-            line="418"
+            line="456"
             column="25"/>
     </issue>
 
@@ -3022,7 +2989,7 @@
         errorLine2="            ^">
         <location
             file="packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hid/HidHostService.java"
-            line="348"
+            line="339"
             column="13"/>
     </issue>
 
