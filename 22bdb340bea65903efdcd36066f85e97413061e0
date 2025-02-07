@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2126b82d_0ad132f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4883,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-07T03:40:20Z",
+      "side": 1,
+      "message": "just call disconnectAllAcls()",
+      "range": {
+        "startLine": 4873,
+        "startChar": 8,
+        "endLine": 4883,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0412ae57_ad5fc876",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 4873,
+                "startChar": 0,
+                "endLine": 4884,
+                "endChar": 0
+              },
+              "replacement": "        mAdapterProperties.getBondedDevices().stream()\n                .filter(device -\u003e isConnected(device) \u0026\u0026 device.getTransportType() \u003d\u003d BluetoothDevice.TRANSPORT_BREDR)\n                .forEach(device -\u003e mNativeInterface.disconnectAcl(device, BluetoothDevice.TRANSPORT_BREDR));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "22bdb340bea65903efdcd36066f85e97413061e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
