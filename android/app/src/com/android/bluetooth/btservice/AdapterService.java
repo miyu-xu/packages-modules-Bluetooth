@@ -2456,6 +2456,14 @@ public class AdapterService extends Service {
                 return false;
             }
 
+            if (Flag.emptyNamesAreInvalid()) {
+                requireNonNull(name);
+                name = name.trim();
+                if (name.isEmpty()) {
+                    throw IllegalArgumentException("Empty names are not valid");
+                }
+            }
+
             Log.d(TAG, "AdapterServiceBinder.setName(" + name + ")");
             return service.mAdapterProperties.setName(name);
         }
