@@ -1577,6 +1577,8 @@ class BluetoothManagerService {
                 case MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED:
                     Log.e(TAG, "MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED");
 
+                    disableBluetoothComponents();
+
                     if (!resetAdapter()) {
                         break;
                     }
@@ -2451,5 +2453,92 @@ class BluetoothManagerService {
         PackageManager pm = context.getPackageManager();
         return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+    }
+
+    private void disableBluetoothComponents() {
+        PackageManager pm = mContext.getPackageManager();
+        int userId = UserHandle.myUserId();
+
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(
+                    BLUETOOTH_PACKAGE_NAME,
+                    PackageManager.GET_ACTIVITIES |
+                            PackageManager.GET_RECEIVERS |
+                            PackageManager.GET_SERVICES |
+                            PackageManager.GET_PROVIDERS |
+                            PackageManager.GET_DISABLED_COMPONENTS, // Still get all
+                    userId);
+
+            // Disable activities
+            if (packageInfo.activities != null) {
+                for (android.content.pm.ActivityInfo activityInfo : packageInfo.activities) {
+                    ComponentName componentName = new ComponentName(
+                            BLUETOOTH_PACKAGE_NAME, activityInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName) !=
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                                componentName,
+                                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                                PackageManager.DONT_KILL_APP, // Consider policy
+                                userId);
+                        Log.i(TAG, "Disabled component: " + activityInfo.name);
+                    }
+                }
+            }
+            // Disable services
+            if (packageInfo.services != null) {
+                for (android.content.pm.ServiceInfo serviceInfo : packageInfo.services) {
+                    ComponentName componentName = new ComponentName(
+                            BLUETOOTH_PACKAGE_NAME, serviceInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName) !=
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                                componentName,
+                                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                                PackageManager.DONT_KILL_APP, // Consider policy
+                                userId);
+                        Log.i(TAG, "Disabled component: " + serviceInfo.name);
+                    }
+                }
+            }
+            // Disable receivers
+            if (packageInfo.receivers != null) {
+                for (android.content.pm.ActivityInfo receiverInfo : packageInfo.receivers) {
+                    ComponentName componentName = new ComponentName(
+                            BLUETOOTH_PACKAGE_NAME, receiverInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName) !=
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                                componentName,
+                                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                                PackageManager.DONT_KILL_APP, // Consider policy
+                                userId);
+                        Log.i(TAG, "Disabled component: " + receiverInfo.name);
+                    }
+                }
+            }
+
+            // Disable providers
+            if (packageInfo.providers != null) {
+                for (android.content.pm.ProviderInfo providerInfo : packageInfo.providers) {
+                    ComponentName componentName = new ComponentName(
+                            BLUETOOTH_PACKAGE_NAME, providerInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName) !=
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                                componentName,
+                                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                                PackageManager.DONT_KILL_APP, // Consider policy
+                                userId);
+                        Log.i(TAG, "Disabled component: " + providerInfo.name);
+                    }
+                }
+            }
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Failed to get package info for " + BLUETOOTH_PACKAGE_NAME, e);
+        } catch (SecurityException e) {
+            Log.e(TAG, "disableBluetoothComponents failed." + e);
+        }
     }
 }
