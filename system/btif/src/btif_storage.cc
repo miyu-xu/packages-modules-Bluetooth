@@ -266,7 +266,7 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
         ret = btif_config_get_str(BTIF_STORAGE_SECTION_ADAPTER, BTIF_STORAGE_KEY_NAME,
                                   reinterpret_cast<char*>(prop->val), &len);
       }
-      if (ret && len && len <= prop->len) {
+      if (ret && len > 1 && len <= prop->len) {  // len of 1 mean an empty name
         prop->len = len - 1;
       } else {
         prop->len = 0;
@@ -1368,20 +1368,22 @@ void btif_storage_prune_devices() {
 
 // Get the name of a device from btif for interop database matching.
 bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr, char* name) {
-  bt_property_t property;
-  property.type = BT_PROPERTY_BDNAME;
-  property.len = BD_NAME_LEN;
-  property.val = name;
+  bt_property_t property{
+          .type = BT_PROPERTY_BDNAME,
+          .len = BD_NAME_LEN,
+          .val = name,
+  };
 
   return btif_storage_get_remote_device_property(&bd_addr, &property) == BT_STATUS_SUCCESS;
 }
 
 // Get the Class of Device.
 bool btif_storage_get_cod(const RawAddress& bd_addr, uint32_t* cod) {
-  bt_property_t property;
-  property.type = BT_PROPERTY_CLASS_OF_DEVICE;
-  property.len = sizeof(*cod);
-  property.val = cod;
+  bt_property_t property{
+          .type = BT_PROPERTY_CLASS_OF_DEVICE,
+          .len = sizeof(*cod),
+          .val = cod,
+  };
 
   return btif_storage_get_remote_device_property(&bd_addr, &property) == BT_STATUS_SUCCESS;
 }

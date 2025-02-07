@@ -245,7 +245,6 @@ static bool btif_dm_inquiry_in_progress = false;
 /*******************************************************************************
  *  Static variables
  ******************************************************************************/
-static char btif_default_local_name[DEFAULT_LOCAL_NAME_MAX + 1] = {'\0'};
 static uid_set_t* uid_set = NULL;
 
 /* A circular array to keep track of the most recent bond events */
@@ -1356,7 +1355,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
         if (cod != 0) {
           /* Use the existing class of device when the one reported from inquiry
              is unclassified. Inquiry results coming from BLE can have an
-             inferred device class based on the service uuids or appearence. We
+             inferred device class based on the service uuids or appearance. We
              don't want this to replace the existing value below when we call
              btif_storage_add_remote_device */
           uint32_t old_cod = get_cod(&bdaddr);
@@ -1943,13 +1942,13 @@ void BTIF_dm_enable() {
   }
 
   BD_NAME bdname;
-  bt_status_t status;
-  bt_property_t prop;
-  prop.type = BT_PROPERTY_BDNAME;
-  prop.len = BD_NAME_LEN;
-  prop.val = (void*)bdname;
+  bt_property_t prop{
+          .type = BT_PROPERTY_BDNAME,
+          .len = BD_NAME_LEN,
+          .val = (void*)bdname,
+  };
 
-  status = btif_storage_get_adapter_property(&prop);
+  bt_status_t status = btif_storage_get_adapter_property(&prop);
   if (status == BT_STATUS_SUCCESS) {
     /* A name exists in the storage. Make this the device name */
     BTA_DmSetDeviceName((const char*)prop.val);
@@ -3753,22 +3752,22 @@ void btif_dm_on_disable() {
 void btif_dm_read_energy_info() { BTA_DmBleGetEnergyInfo(bta_energy_info_cb); }
 
 static const char* btif_get_default_local_name() {
-  if (btif_default_local_name[0] == '\0') {
-    int max_len = sizeof(btif_default_local_name) - 1;
+  using bluetooth::common::StringTrim;
+  static std::string default_name = "";
 
-    char prop_name[PROPERTY_VALUE_MAX];
-    osi_property_get(PROPERTY_DEFAULT_DEVICE_NAME, prop_name, "");
-    strncpy(btif_default_local_name, prop_name, max_len);
-
-    // If no value was placed in the btif_default_local_name then use model name
-    if (btif_default_local_name[0] == '\0') {
-      char prop_model[PROPERTY_VALUE_MAX];
-      osi_property_get(PROPERTY_PRODUCT_MODEL, prop_model, "");
-      strncpy(btif_default_local_name, prop_model, max_len);
-    }
-    btif_default_local_name[max_len] = '\0';
+  if (default_name.empty()) {
+    default_name = StringTrim(os::GetSystemProperty(PROPERTY_DEFAULT_DEVICE_NAME).value_or(""));
   }
-  return btif_default_local_name;
+
+  if (default_name.empty()) {
+    default_name = StringTrim(os::GetSystemProperty(PROPERTY_PRODUCT_MODEL).value_or(""));
+  }
+
+  if (default_name.empty()) {
+    default_name = "Android";
+  }
+
+  return default_name.c_str();
 }
 
 static void btif_stats_add_bond_event(const RawAddress& bd_addr, bt_bond_function_t function,

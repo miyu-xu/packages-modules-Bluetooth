@@ -2448,12 +2448,18 @@ public class AdapterService extends Service {
 
         @Override
         public boolean setName(String name, AttributionSource source) {
+            requireNonNull(name);
             AdapterService service = getService();
             if (service == null
                     || !callerIsSystemOrActiveOrManagedUser(service, TAG, "setName")
                     || !Utils.checkConnectPermissionForDataDelivery(
                             service, source, "AdapterService setName")) {
                 return false;
+            }
+
+            name = name.trim();
+            if (name.isEmpty()) {
+                throw IllegalArgumentException("Empty name is not valid");
             }
 
             Log.d(TAG, "AdapterServiceBinder.setName(" + name + ")");
