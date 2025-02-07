@@ -445,9 +445,18 @@ cc_fuzz {
     ],
 }
 
-cc_fuzz {
-    name: "rfcomm-fuzzer",
-    team: "trendy_team_attack_tools",
+filegroup {
+    name: "RfcommSources",
+    srcs: [
+        "fuzzers/rfcomm_fuzzer.cc",
+        "rfcomm/*.cc",
+        "test/common/stack_test_packet_utils.cc",
+        "test/rfcomm/stack_rfcomm_test_utils.cc",
+    ],
+}
+
+cc_defaults {
+    name: "rfcomm_fuzzer_default",
     defaults: [
         "btstack_fuzzer_default",
         "fluoride_defaults",
@@ -461,6 +470,7 @@ cc_fuzz {
     ],
     srcs: [
         ":BluetoothPacketSources",
+        ":RfcommSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeOsi",
@@ -476,10 +486,6 @@ cc_fuzz {
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
         ":TestMockStackSdp",
-        "fuzzers/rfcomm_fuzzer.cc",
-        "rfcomm/*.cc",
-        "test/common/stack_test_packet_utils.cc",
-        "test/rfcomm/stack_rfcomm_test_utils.cc",
     ],
     shared_libs: [
         "server_configurable_flags",
@@ -496,6 +502,14 @@ cc_fuzz {
         "libbluetooth_smp_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
+    ],
+}
+
+cc_fuzz {
+    name: "rfcomm-fuzzer",
+    team: "trendy_team_attack_tools",
+    defaults: [
+        "rfcomm_fuzzer_default",
     ],
 }
 
