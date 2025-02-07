@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b88ca3bd_d10a73ca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-07T00:15:09Z",
+      "side": 1,
+      "message": "Can we test this? Do `m statsd_testdrive \u0026\u0026 statsd_testdrive -terse 390`",
+      "fixSuggestions": [
+        {
+          "fixId": "3bd27567_9132385f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 608,
+                "startChar": 0,
+                "endLine": 609,
+                "endChar": 0
+              },
+              "replacement": "        if (newState \u003d\u003d BluetoothDevice.BOND_NONE) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "316b81c72de1e3622f385ff0e5a6ee3227ccf9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
