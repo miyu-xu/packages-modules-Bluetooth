@@ -19,6 +19,7 @@ source_set("BluetoothCommonSources") {
     "audit_log.cc",
     "metric_id_manager.cc",
     "stop_watch.cc",
+    "component_disabler.cc",
     "strings.cc",
   ]
 
