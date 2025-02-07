@@ -34,6 +34,24 @@
       "parentUuid": "63b635af_c81ff5dc",
       "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b0b563_f9e9ce2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T20:37:18Z",
+      "side": 1,
+      "message": "@siyuanh@google.com\n\nI think disconnectAllAclLinks() would remove both bredr and acl links? - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/main/shim/acl.cc;drc\u003dd29f6d68b2671468332981ca1075c956d375db0a;l\u003d1618\n\nIs this desired behavior for BLE_ON based priviliged apps? these apps may want to keep the LE ACL if they want gatt to be operational right?",
+      "parentUuid": "049c2eb1_242224da",
+      "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
