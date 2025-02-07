@@ -141,7 +141,7 @@ public class BassClientService extends ProfileService {
     private static final Duration sBigMonitorTimeout = Duration.ofMinutes(30);
 
     // 5 minutes timeout for monitoring broadcaster
-    private static final Duration sBroadcasterMonitorTimeout = Duration.ofMinutes(5);
+    private static final Duration sBroadcasterMonitorTimeout = Duration.ofSeconds(3);
 
     // 5 seconds timeout for sync Lost notification
     private static final Duration sSyncLostTimeout = Duration.ofSeconds(5);
@@ -1334,6 +1334,9 @@ public class BassClientService extends ProfileService {
                     mTimeoutHandler.start(
                             broadcastId, MESSAGE_BIG_MONITOR_TIMEOUT, sBigMonitorTimeout);
                     addSelectSourceRequest(broadcastId, true);
+                    // Cannot sync to broadcaster and sink is not synced so remove sources
+                } else {
+                    stopSourceReceivers(broadcastId);
                 }
             }
             // If paused by host then stop active sync, it could be not stopped, if during previous
@@ -3055,16 +3058,18 @@ public class BassClientService extends ProfileService {
                 return;
             }
 
-            synchronized (mSourceSyncRequestsQueue) {
-                if (!mSyncFailureCounter.containsKey(broadcastId)) {
-                    mSyncFailureCounter.put(broadcastId, 0);
+            if (!isAddedToSelectSourceRequest(broadcastId, hasPriority)) {
+                synchronized (mSourceSyncRequestsQueue) {
+                    if (!mSyncFailureCounter.containsKey(broadcastId)) {
+                        mSyncFailureCounter.put(broadcastId, 0);
+                    }
+                    mSourceSyncRequestsQueue.add(
+                            new SourceSyncRequest(
+                                    scanRes, hasPriority, mSyncFailureCounter.get(broadcastId)));
                 }
-                mSourceSyncRequestsQueue.add(
-                        new SourceSyncRequest(
-                                scanRes, hasPriority, mSyncFailureCounter.get(broadcastId)));
-            }
 
-            handleSelectSourceRequest();
+                handleSelectSourceRequest();
+            }
         } else {
             log("addSelectSourceRequest: ScanResult empty");
         }
