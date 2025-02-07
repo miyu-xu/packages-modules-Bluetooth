@@ -21,6 +21,7 @@
 #include <bluetooth/log.h>
 
 #include "common/stop_watch.h"
+#include "common/component_disabler.h"
 #include "hal/hci_backend.h"
 
 namespace bluetooth::hal {
@@ -71,6 +72,7 @@ public:
             ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new([](void* /* cookie*/) {
               log::error("The Bluetooth HAL service died. Dumping logs and crashing in 1 second.");
               common::StopWatch::DumpStopWatchLog();
+              common::ComponentDisabler::DisableComponents();
               // At shutdown, sometimes the HAL service gets killed before Bluetooth.
               std::this_thread::sleep_for(std::chrono::seconds(1));
               log::fatal("The Bluetooth HAL died.");

@@ -11,6 +11,7 @@ filegroup {
     name: "BluetoothCommonSources",
     srcs: [
         "audit_log.cc",
+        "component_disabler.cc",
         "metric_id_manager.cc",
         "stop_watch.cc",
         "strings.cc",
