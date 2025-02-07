@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4187f1a7_e0316de2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T19:09:00Z",
+      "side": 1,
+      "message": "I see the freq counter in next CL.",
+      "parentUuid": "ba201f4b_dad16941",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5db22d11_92a3133b",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 9
