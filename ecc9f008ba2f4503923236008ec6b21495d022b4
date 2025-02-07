@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "024e0ecf_88fe0b08",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T00:38:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eee3bee8_f9163fa9",
+      "range": {
+        "startLine": 186,
+        "startChar": 22,
+        "endLine": 186,
+        "endChar": 35
+      },
+      "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a053037_422dec98",
@@ -116,6 +140,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1c1c741_41cc4c05",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T00:38:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "956db21e_a38602cb",
+      "range": {
+        "startLine": 187,
+        "startChar": 54,
+        "endLine": 187,
+        "endChar": 88
+      },
+      "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fecceac1_0c38ef69",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T00:38:30Z",
+      "side": 1,
+      "message": "I change it whenever I see really optional like value. I did that for PhonePolicy.\n\nHere it seems like broadcast/ not broadcast is defined by this value being set or not. If it\u0027s just a nullable value, it can be missed.\nBy making it an Optional, the type serve as documentation",
+      "parentUuid": "5a053037_422dec98",
+      "range": {
+        "startLine": 187,
+        "startChar": 19,
+        "endLine": 187,
+        "endChar": 52
+      },
+      "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a8d2965_dd1474a1",
@@ -167,6 +239,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78c9de41_dd85f90a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T00:38:30Z",
+      "side": 1,
+      "message": "This would be needed once the LeAudioNativeInterface static method is removed to only a package private constructor.\nRoom for improvement here.",
+      "parentUuid": "6a8d2965_dd1474a1",
+      "range": {
+        "startLine": 247,
+        "startChar": 27,
+        "endLine": 247,
+        "endChar": 41
+      },
+      "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5656f479_fc460efc",
@@ -180,6 +276,30 @@
       "writtenOn": "2025-02-06T22:39:22Z",
       "side": 1,
       "message": "Should it be a parameter of the constructor ?",
+      "range": {
+        "startLine": 261,
+        "startChar": 46,
+        "endLine": 261,
+        "endChar": 70
+      },
+      "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78bcc997_a1e46830",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T00:38:30Z",
+      "side": 1,
+      "message": "This require in-depth rework. Not my intention here at the moment",
+      "parentUuid": "5656f479_fc460efc",
       "range": {
         "startLine": 261,
         "startChar": 46,
@@ -227,6 +347,30 @@
           ]
         }
       ],
+      "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d89f87_5f000386",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T00:38:30Z",
+      "side": 1,
+      "message": "There is no \"nullable\" instance in the cleanup. The optional is only related to the architecture of this file. I prefer not",
+      "parentUuid": "f1cd1f34_c4b6d8e8",
+      "range": {
+        "startLine": 758,
+        "startChar": 53,
+        "endLine": 758,
+        "endChar": 70
+      },
       "revId": "ecc9f008ba2f4503923236008ec6b21495d022b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
