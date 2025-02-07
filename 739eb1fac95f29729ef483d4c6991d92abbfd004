@@ -40,6 +40,30 @@
       ],
       "revId": "739eb1fac95f29729ef483d4c6991d92abbfd004",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "043b9d8c_d1b8cab3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T08:51:15Z",
+      "side": 1,
+      "message": "Sorry for that, already fix. I just merged the flag and didn\u0027t start compile because of waiting for the flag effective and yes i will build a new APEX to check the ACL(RFCOMM Socket) exist issues.",
+      "parentUuid": "81cbebc9_2aa6a9bd",
+      "range": {
+        "startLine": 345,
+        "startChar": 22,
+        "endLine": 345,
+        "endChar": 51
+      },
+      "revId": "739eb1fac95f29729ef483d4c6991d92abbfd004",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
