@@ -16,6 +16,29 @@
       "message": "we",
       "revId": "e657853c181354d45b18b37d2815985ee5a01c9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a066eff_441b89ea",
+        "filename": "system/bta/vc/devices_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:05:48Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the test be deleted entirely ?\n\nIf you really want to keep it, please create a bug and add the bug number in the todo to keep track of the TODO.\nSame for others",
+      "range": {
+        "startLine": 651,
+        "startChar": 0,
+        "endLine": 651,
+        "endChar": 75
+      },
+      "revId": "e657853c181354d45b18b37d2815985ee5a01c9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
