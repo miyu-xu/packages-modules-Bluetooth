@@ -1538,10 +1538,21 @@ public class RemoteDevices {
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
 
-            mAdapterService.setMetadata(
-                    bluetoothDevice,
-                    Metadata.METADATA_BOND_LOST,
-                    new byte[] {1}); // 1 indicates ACTION_KEY_MISSING
+            byte[] isBondLostMetdadata =
+                    mAdapterService.getMetadata(bluetoothDevice, Metadata.METADATA_BOND_LOST);
+            if (isBondLostMetdadata != null && isBondLostMetdadata[0] == 0) {
+                /*
+                 * Increment the frequency counter for the transition to
+                 *  ACTION_KEY_MISSING, from BOND_BONDED.
+                 */
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.BOND_BONDED_TO_ACTION_KEY_MISSING, 1);
+
+                mAdapterService.setMetadata(
+                        bluetoothDevice,
+                        Metadata.METADATA_BOND_LOST,
+                        new byte[] {1}); // 1 indicates ACTION_KEY_MISSING
+            }
 
             if (Flags.keyMissingPublic()) {
                 mAdapterService.sendOrderedBroadcast(
@@ -1629,6 +1640,17 @@ public class RemoteDevices {
 
         if (com.android.bluetooth.flags.Flags.encryptionChangeBroadcast()) {
             mAdapterService.sendBroadcast(intent, BLUETOOTH_CONNECT);
+
+            byte[] isBondLostMetdadata =
+                    mAdapterService.getMetadata(bluetoothDevice, Metadata.METADATA_BOND_LOST);
+            if (isBondLostMetdadata != null && isBondLostMetdadata[0] == 1) {
+                // If the METADATA_BOND_LOST[0] is 1, it indicates ACTION_KEY_MISSING.
+                // We need to log the transition to ACTION_ENCRYPTION_CHANGE.
+                MetricsLogger.getInstance()
+                        .cacheCount(
+                                BluetoothProtoEnums.ACTION_KEY_MISSING_TO_ACTION_ENCRYPTION_CHANGE,
+                                1);
+            }
 
             // Log the transition to ACTION_ENCRYPTION_CHANGE.
             mAdapterService.setMetadata(

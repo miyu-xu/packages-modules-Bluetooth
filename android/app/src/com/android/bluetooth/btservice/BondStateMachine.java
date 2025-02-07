@@ -49,6 +49,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
 
+import com.google.android.exoplayer2.metadata.Metadata;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
@@ -596,6 +597,22 @@ final class BondStateMachine extends StateMachine {
                 UserHandle.ALL,
                 BLUETOOTH_CONNECT,
                 Utils.getTempBroadcastOptions().toBundle());
+
+        /*
+         * `newState` can only have 3 values BOND_NONE, BOND_BONDING, BOND_BONDED.
+         * If the state is BOND_NONE, and the metadata indicates
+         * ACTION_KEY_MISSING(1), log the transition.
+         *
+         */
+        if (newState == BluetoothDevice.BOND_NONE) {
+            byte[] isBondLostMetdadata =
+                    mAdapterService.getMetadata(device, Metadata.METADATA_BOND_LOST);
+            if (isBondLostMetdadata != null && isBondLostMetdadata[0] == 1) {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.ACTION_KEY_MISSING_TO_BOND_NONE, 1);
+            }
+        }
+
         infoLog(
                 "Bond State Change Intent:"
                         + device
