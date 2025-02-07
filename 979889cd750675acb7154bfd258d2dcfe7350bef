@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f321a63_49a6b6a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "56b29bbf_377cf2db",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b230fa8_7822d438",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-07T02:58:12Z",
       "side": 1,
       "message": "Split this cl into two separate cls. First to add metadata. Second to add metrics.",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08377ffb_b18f6ecf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "8b230fa8_7822d438",
       "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -125,6 +161,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a095c0_42b16243",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "Added in Metadata",
+      "parentUuid": "a5ecc5c3_2dafcc48",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8eda499_2f232dcd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "Sure, raised a bug b/395030709",
+      "parentUuid": "ee0b95a2_61145a57",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c1ac977_d7dd27b9",
@@ -156,6 +228,24 @@
           ]
         }
       ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12513042_d5872c0c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "metric code changes removed, will be added in next cL.",
+      "parentUuid": "1c1ac977_d7dd27b9",
       "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -250,6 +340,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a1bc5b_b9660f9f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "Sure, we need that for metric logging majorly, so will add this in the next CL.\nFor this CL, added the metric as is because setMetadata will take care of the duplicate setting and log as well.",
+      "parentUuid": "7ff22a8a_db060b61",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0928c1b7_88b08c57",
@@ -291,6 +399,24 @@
           ]
         }
       ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb63231_2dd7a0b3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1640,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "setMetadata call takes care of it, it wont put repeated value and logs it as well.",
+      "parentUuid": "0928c1b7_88b08c57",
       "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -372,6 +498,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8552a5d4_0dd064a1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "This can be done in the next CL for metric calculation.\n@rwt@google.com Do we need to not collect the KEY_MISSING to ENCRYPTION_CHANGE anymore ? or we need additional for all kinds of ENCRYPTION_CHANGE state logging ?",
+      "parentUuid": "6c3cd6f9_353c439f",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b99666d9_d14902f5",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
         "patchSetId": 5
@@ -411,6 +555,24 @@
           ]
         }
       ],
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2fe5c07_d5937bbf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T10:04:48Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "b99666d9_d14902f5",
       "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
