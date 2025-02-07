@@ -297,6 +297,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a07cf2ed_98eac095",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-07T18:41:12Z",
+      "side": 1,
+      "message": "We\u0027re currently logging the BOND_NONE event regardless of what happened before. I\u0027m not clear on how that\u0027s helpful in this situation.",
+      "parentUuid": "da6aa5db_b78c0b31",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ff22a8a_db060b61",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 5
@@ -510,6 +528,24 @@
       "side": 1,
       "message": "This can be done in the next CL for metric calculation.\n@rwt@google.com Do we need to not collect the KEY_MISSING to ENCRYPTION_CHANGE anymore ? or we need additional for all kinds of ENCRYPTION_CHANGE state logging ?",
       "parentUuid": "6c3cd6f9_353c439f",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd8f5b6_7e316ece",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-07T18:41:12Z",
+      "side": 1,
+      "message": "@rwt@google.com Logging the intent fields needs its own thing.  Just to double-check, you want to log the ACTION_ENCRYPTION_CHANGE event no matter what the previous state was, right?  Also, which fields are we planning to log?",
+      "parentUuid": "8552a5d4_0dd064a1",
       "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
