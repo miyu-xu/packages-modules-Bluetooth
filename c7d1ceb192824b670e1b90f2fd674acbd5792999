@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36f0c1b2_dcf6f282",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3584,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-07T00:56:28Z",
+      "side": 1,
+      "message": "I have some thoughts regarding this, if it failed due to bad parameter, we should only invoke callback for the client passed device. \n\nAll operation for other device we got from getGroupManagedDeviceSources are considerred as \u0027internal operation\u0027 and we don\u0027t and shouldn\u0027t invoke callback for this.\n\nSince it\u0027s the problem with the existing code, your refactor work is fine here. Something we can think about to improve.",
+      "revId": "c7d1ceb192824b670e1b90f2fd674acbd5792999",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
