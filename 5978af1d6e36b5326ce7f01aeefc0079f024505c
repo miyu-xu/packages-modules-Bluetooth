@@ -16,6 +16,24 @@
       "message": "I assume the next CL\u0027s new unit tests covered this?",
       "revId": "5978af1d6e36b5326ce7f01aeefc0079f024505c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40912ff_c8fcf9aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-07T08:26:17Z",
+      "side": 1,
+      "message": "This CL is a 100% refactor, so the existing tests already cover it.",
+      "parentUuid": "90bfee96_4f8895e1",
+      "revId": "5978af1d6e36b5326ce7f01aeefc0079f024505c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
