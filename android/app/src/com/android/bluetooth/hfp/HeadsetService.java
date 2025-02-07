@@ -126,6 +126,7 @@ public class HeadsetService extends ProfileService {
             "persist.bluetooth.disableinbandringing";
     private static final String REJECT_SCO_IF_HFPC_CONNECTED_PROPERTY =
             "bluetooth.hfp.reject_sco_if_hfpc_connected";
+    private static final String KEY_AUDIO_MODE_DUPLEX = "audio_mode_duplex";
     private static final ParcelUuid[] HEADSET_UUIDS = {BluetoothUuid.HSP, BluetoothUuid.HFP};
     private static final int[] CONNECTING_CONNECTED_STATES = {STATE_CONNECTING, STATE_CONNECTED};
     private static final int DIALING_OUT_TIMEOUT_MS = 10000;
@@ -1572,6 +1573,17 @@ public class HeadsetService extends ProfileService {
             if (stateMachine.getConnectionState() != STATE_CONNECTED) {
                 Log.w(TAG, "connectAudio: profile not connected");
                 return BluetoothStatusCodes.ERROR_PROFILE_NOT_CONNECTED;
+            }
+            if (Utils.isDualModeAudioEnabled()) {
+                Bundle preferredAudioProfiles =
+                   mAdapterService.getPreferredAudioProfiles(device);
+                if (preferredAudioProfiles != null && !preferredAudioProfiles.isEmpty()
+                    && preferredAudioProfiles.getInt(KEY_AUDIO_MODE_DUPLEX) ==
+                                                     BluetoothProfile.LE_AUDIO) {
+                    Log.w(TAG, "connectAudio: rejected SCO for device=" + device
+                                 + " due to LE being" + "preferred profile in DM");
+                    return BluetoothStatusCodes.NOT_ALLOWED;
+                }
             }
             if (stateMachine.getAudioState() != BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {
                 logD("connectAudio: audio is not idle for device " + device);
