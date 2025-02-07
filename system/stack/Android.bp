@@ -444,9 +444,8 @@ cc_fuzz {
     ],
 }
 
-cc_fuzz {
-    name: "rfcomm-fuzzer",
-    team: "trendy_team_attack_tools",
+cc_defaults {
+    name: "rfcomm_fuzzer_default",
     defaults: [
         "btstack_fuzzer_default",
         "fluoride_defaults",
@@ -497,6 +496,58 @@ cc_fuzz {
         "libbt-common",
         "libbt-platform-protos-lite",
     ],
+}
+
+cc_fuzz {
+    name: "rfcomm-fuzzer",
+    team: "trendy_team_attack_tools",
+    defaults: [
+        "rfcomm_fuzzer_default",
+    ],
+}
+
+filegroup {
+    name: "rfcomm-fuzzer-corpus",
+    srcs: ["fuzzers/test/rfcomm/corpus/*"],
+}
+
+cc_test {
+    name: "rfcomm-fuzzer-validation-test",
+    defaults: [
+        "rfcomm_fuzzer_default",
+    ],
+    test_suites: ["general-tests"],
+    host_supported: true,
+    local_include_dirs: [
+        "fuzzers/test/include",
+    ],
+    data: [":rfcomm-fuzzer-corpus"],
+    srcs: [
+        "fuzzers/test/*.cc",
+        "fuzzers/test/rfcomm/rfcomm_fuzzer_validation_test.cc",
+    ],
+    strip: {
+        none: true,
+    },
+    target: {
+        host: {
+            sanitize: {
+                address: true,
+                all_undefined: true,
+                integer_overflow: true,
+                scs: true,
+                diag: {
+                    undefined: true,
+                },
+            },
+        },
+        android: {
+            sanitize: {
+                hwaddress: true,
+                all_undefined: true,
+            },
+        },
+    },
 }
 
 cc_fuzz {
