@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eaea0fd0_2c6aa13b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T05:01:06Z",
+      "side": 1,
+      "message": "Yes, i will",
+      "parentUuid": "56872781_19380216",
+      "revId": "439b3697921427d32bb93ff321fba39fe84e1228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5adbdb7b_4be77a7e",
         "filename": "system/btif/src/btif_sock.cc",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2025-01-23T19:02:48Z",
       "side": 1,
       "message": "is there a reason why you chose not to use `btsock_rfc_cleanup`?",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 29
+      },
+      "revId": "439b3697921427d32bb93ff321fba39fe84e1228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ec4b757_e2abb5d0",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-07T05:01:06Z",
+      "side": 1,
+      "message": "Hi Pomai, that because btsock_rfc_cleanup will end the socket thread that if we enable BT just from BLE ON state, we also should add new action to init socket. Maybe that will be more complicated.",
+      "parentUuid": "5adbdb7b_4be77a7e",
       "range": {
         "startLine": 158,
         "startChar": 4,
