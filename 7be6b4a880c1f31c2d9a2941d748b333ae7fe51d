@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06104c5e_df125664",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T04:23:49Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "e013f3cb_d15935ca",
+      "revId": "7be6b4a880c1f31c2d9a2941d748b333ae7fe51d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f72c0f9_2f2df451",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-07T03:02:44Z",
       "side": 1,
       "message": "Typo in the bug number",
+      "revId": "7be6b4a880c1f31c2d9a2941d748b333ae7fe51d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e310d1_46b8e38c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T04:23:49Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "6f72c0f9_2f2df451",
       "revId": "7be6b4a880c1f31c2d9a2941d748b333ae7fe51d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
