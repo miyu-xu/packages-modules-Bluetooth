@@ -166,6 +166,8 @@ cc_defaults {
     include_dirs: [
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/stack/include",
+        "system/libbinderwrapper/include",
+        "system/tools/aidl/libbinder_ndk/include",
     ],
 }
 
