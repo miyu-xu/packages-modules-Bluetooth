@@ -34,6 +34,24 @@
       ],
       "revId": "316b81c72de1e3622f385ff0e5a6ee3227ccf9f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2304d1b_73ab0e6b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-07T00:35:07Z",
+      "side": 1,
+      "message": "Are you referring to update `Test` to below ?\n`Test: m com.android.btservices \u0026\u0026 statsd_testdrive \u0026\u0026 statsd_testdrive -terse 390`",
+      "parentUuid": "b88ca3bd_d10a73ca",
+      "revId": "316b81c72de1e3622f385ff0e5a6ee3227ccf9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
