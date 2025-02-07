@@ -232,6 +232,30 @@
       },
       "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f81e72de_aedf7f61",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1469,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-07T03:19:41Z",
+      "side": 1,
+      "message": "Though it\u0027s okay to use push_back here since the structure size is small, it actually copies a local variable into the instance in the vector.",
+      "parentUuid": "ef750d1c_fed4e0e1",
+      "range": {
+        "startLine": 1469,
+        "startChar": 15,
+        "endLine": 1469,
+        "endChar": 24
+      },
+      "revId": "b1049af93304c0d4f1ae27aedacd58f156fc0106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
