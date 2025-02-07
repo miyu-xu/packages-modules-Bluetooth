@@ -123,6 +123,30 @@
       },
       "revId": "439b3697921427d32bb93ff321fba39fe84e1228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7ba9237_365bbd23",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-07T19:56:19Z",
+      "side": 1,
+      "message": "@poahlo@google.com can you look into moving the start and stop of rfcomm thread only when going ON and not BLE_ON ?",
+      "parentUuid": "667dbefd_6cf2a721",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 29
+      },
+      "revId": "439b3697921427d32bb93ff321fba39fe84e1228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
