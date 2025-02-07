@@ -176,6 +176,8 @@ cc_library_static {
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
+        "system/libbinderwrapper/include",
+        "system/tools/aidl/libbinder_ndk/include",
     ],
     apex_available: ["com.android.bt"],
     min_sdk_version: "31",
@@ -192,6 +194,8 @@ cc_library_static {
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
+        "system/libbinderwrapper/include",
+        "system/tools/aidl/libbinder_ndk/include",
     ],
     srcs: [
         ":BluetoothOsSources_fake_timer",
@@ -216,6 +220,8 @@ cc_library_static {
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
+        "system/libbinderwrapper/include",
+        "system/tools/aidl/libbinder_ndk/include",
     ],
     srcs: [
         ":BluetoothOsSources_fake_timer",
