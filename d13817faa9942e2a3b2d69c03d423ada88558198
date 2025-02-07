@@ -34,6 +34,81 @@
       ],
       "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37dc52c_85ad4f41",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-07T19:10:19Z",
+      "side": 1,
+      "message": "please check if we need to accomadate encryption status here",
+      "fixSuggestions": [
+        {
+          "fixId": "a19334e3_c7c394e0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.SuppressLint;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 60,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1641,
+                "startChar": 0,
+                "endLine": 1642,
+                "endChar": 0
+              },
+              "replacement": "        if (com.android.bluetooth.flags.Flags.encryptionChangeBroadcast()\n                \u0026\u0026 status \u003d\u003d AbstractionLayer.BT_STATUS_SUCCESS) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
