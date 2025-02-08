@@ -148,6 +148,53 @@
       },
       "revId": "a1d2fc011c91e249f4796bd192447ada739d2f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3f66d74_bf635b46",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-08T08:29:28Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "44391a17_72d56461",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 40
+      },
+      "revId": "a1d2fc011c91e249f4796bd192447ada739d2f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f7be77_db99dc7e",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-08T08:29:28Z",
+      "side": 1,
+      "message": "FYI, I also found that we can\u0027t lock in the whole function otherwise if the below instance-\u003esecond-\u003eStop() use ModuleRegistry::Get, we will have deadlock. HciLayer::Stop() is an example.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 76
+      },
+      "revId": "a1d2fc011c91e249f4796bd192447ada739d2f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
