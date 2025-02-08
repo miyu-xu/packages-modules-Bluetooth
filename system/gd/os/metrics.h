@@ -260,11 +260,21 @@ void LogMetricSdpAttribute(const hci::Address& address, uint16_t protocol_uuid,
  *        by |server_port|
  * @param socket_role role of this socket, server or connection
  * @param uid socket owner's uid
+ * @param is_hardware_offload whether this is a offload socket
+ * @param socket_name descriptive socket name
+ * @param hub_id id of the hub to which the end point belongs
+ * @param endpoint_id id of the hub end point
+ * @param connection_duration_ms duration of socket connection in milliseconds
+ * @param error_code error code of socket failures
  */
 void LogMetricSocketConnectionState(const hci::Address& address, int port, int type,
                                     android::bluetooth::SocketConnectionstateEnum connection_state,
                                     int64_t tx_bytes, int64_t rx_bytes, int uid, int server_port,
-                                    android::bluetooth::SocketRoleEnum socket_role);
+                                    android::bluetooth::SocketRoleEnum socket_role,
+                                    bool is_hardware_offload, const char* socket_name,
+                                    uint64_t hub_id, uint64_t endpoint_id,
+                                    uint64_t connection_duration_ms,
+                                    android::bluetooth::SocketErrorEnum error_code);
 
 /**
  * Logs when a Bluetooth device's manufacturer information is learnt
