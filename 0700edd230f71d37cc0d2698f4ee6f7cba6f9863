@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc60379d_07f1651f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-08T04:35:48Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "0700edd230f71d37cc0d2698f4ee6f7cba6f9863",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b62c17b1_0e109383",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-08T04:35:48Z",
+      "side": 1,
+      "message": "size",
+      "range": {
+        "startLine": 363,
+        "startChar": 18,
+        "endLine": 363,
+        "endChar": 61
+      },
+      "revId": "0700edd230f71d37cc0d2698f4ee6f7cba6f9863",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
