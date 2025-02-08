@@ -1,0 +1,177 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de181d7_f573576d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "errors",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f32f0ca_6c3b42fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "discarded",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 16
+      },
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce089071_4cee9f8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "spaces",
+      "range": {
+        "startLine": 13,
+        "startChar": 39,
+        "endLine": 13,
+        "endChar": 44
+      },
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a7423de_379ba897",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "work",
+      "range": {
+        "startLine": 13,
+        "startChar": 56,
+        "endLine": 13,
+        "endChar": 61
+      },
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4177c60b_02ad679b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "restarts",
+      "range": {
+        "startLine": 14,
+        "startChar": 28,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af0a7a6b_2ca0e1bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "of things",
+      "range": {
+        "startLine": 17,
+        "startChar": 22,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d70f9f4d_10e9ee22",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3772,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-08T01:08:50Z",
+      "side": 1,
+      "message": "nit: add newline here",
+      "fixSuggestions": [
+        {
+          "fixId": "1d4c2cd4_f4dd8987",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3772,
+                "startChar": 0,
+                "endLine": 3772,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e94673b16845eb03070a2bf26f534f71c6f367d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
