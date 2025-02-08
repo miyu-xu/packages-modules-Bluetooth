@@ -348,18 +348,29 @@ bt_status_t btif_storage_remove_hid_info(const tAclLinkSpec& link_spec) {
 
 // Check if a given profile is supported.
 static bool btif_device_supports_profile(const std::string& device, const Uuid& profile) {
-  int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
-  char uuid_str[size];
-  if (btif_config_get_str(device, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
-    Uuid p_uuid[BT_MAX_NUM_UUIDS];
-    size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
-    for (size_t i = 0; i < num_uuids; i++) {
-      if (p_uuid[i] == profile) {
-        return true;
+  if (com::android::bluetooth::flags::separate_service_storage()) {
+    RawAddress bd_addr;
+    if (RawAddress::FromString(device, bd_addr)) {
+      std::vector<bluetooth::Uuid> remote_uuids = btif_storage_get_services(bd_addr);
+      for (const auto& uuid : remote_uuids) {
+        if (uuid == profile) {
+          return true;
+        }
+      }
+    }
+  } else {
+    int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
+    char uuid_str[STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS];
+    if (btif_config_get_str(device, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
+      Uuid p_uuid[BT_MAX_NUM_UUIDS];
+      size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
+      for (size_t i = 0; i < num_uuids; i++) {
+        if (p_uuid[i] == profile) {
+          return true;
+        }
       }
     }
   }
-
   return false;
 }
 
@@ -369,6 +380,14 @@ static bool btif_device_supports_hogp(const std::string& device) {
 
 static bool btif_device_supports_classic_hid(const std::string& device) {
   return btif_device_supports_profile(device, Uuid::From16Bit(UUID_SERVCLASS_HUMAN_INTERFACE));
+}
+
+static bool btif_device_supports_hearing_aid(const std::string& device) {
+  return btif_device_supports_profile(device, Uuid::FromString("FDF0"));
+}
+
+static bool btif_device_supports_le_audio(const std::string& device) {
+  return btif_device_supports_profile(device, Uuid::FromString("184E"));
 }
 
 /*******************************************************************************
@@ -458,20 +477,7 @@ void btif_storage_load_bonded_hearing_aids() {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     const std::string& name = bd_addr.ToString();
 
-    int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
-    char uuid_str[size];
-    bool isHearingaidDevice = false;
-    if (btif_config_get_str(name, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
-      Uuid p_uuid[BT_MAX_NUM_UUIDS];
-      size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
-      for (size_t i = 0; i < num_uuids; i++) {
-        if (p_uuid[i] == Uuid::FromString("FDF0")) {
-          isHearingaidDevice = true;
-          break;
-        }
-      }
-    }
-    if (!isHearingaidDevice) {
+    if (!btif_device_supports_hearing_aid(name)) {
       continue;
     }
 
@@ -738,20 +744,7 @@ void btif_storage_load_bonded_leaudio() {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
-    char uuid_str[size];
-    bool isLeAudioDevice = false;
-    if (btif_config_get_str(name, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
-      Uuid p_uuid[BT_MAX_NUM_UUIDS];
-      size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
-      for (size_t i = 0; i < num_uuids; i++) {
-        if (p_uuid[i] == Uuid::FromString("184E")) {
-          isLeAudioDevice = true;
-          break;
-        }
-      }
-    }
-    if (!isLeAudioDevice) {
+    if (!btif_device_supports_le_audio(name)) {
       continue;
     }
 
