@@ -332,21 +332,29 @@ void LogMetricSdpAttribute(const Address& address, uint16_t protocol_uuid, uint1
 void LogMetricSocketConnectionState(const Address& address, int port, int type,
                                     android::bluetooth::SocketConnectionstateEnum connection_state,
                                     int64_t tx_bytes, int64_t rx_bytes, int uid, int server_port,
-                                    android::bluetooth::SocketRoleEnum socket_role) {
+                                    android::bluetooth::SocketRoleEnum socket_role,
+                                    bool is_hardware_offload, const char* socket_name,
+                                    uint64_t hub_id, uint64_t endpoint_id,
+                                    uint64_t connection_duration_ms, int error_code) {
   int metric_id = 0;
   if (!address.IsEmpty()) {
     metric_id = MetricIdManager::GetInstance().AllocateId(address);
   }
+
   int ret = stats_write(BLUETOOTH_SOCKET_CONNECTION_STATE_CHANGED, byteField, port, type,
                         connection_state, tx_bytes, rx_bytes, uid, server_port, socket_role,
-                        metric_id);
+                        metric_id, is_hardware_offload, socket_name, hub_id, endpoint_id,
+                        connection_duration_ms, error_code);
+
   if (ret < 0) {
     log::warn(
             "Failed for {}, port {}, type {}, state {}, tx_bytes {}, rx_bytes {}, uid {}, "
             "server_port "
-            "{}, socket_role {}, error {}",
+            "{}, socket_role {}, is_hardware_offload {}, socket_name {}, hub_id {}, endpoint_id "
+            "{}, connection_duration_ms {}, socket_error_code {}, error {}",
             address, port, type, connection_state, tx_bytes, rx_bytes, uid, server_port,
-            socket_role, ret);
+            socket_role, is_hardware_offload, socket_name, hub_id, endpoint_id,
+            connection_duration_ms, error_code, ret);
   }
 }
 

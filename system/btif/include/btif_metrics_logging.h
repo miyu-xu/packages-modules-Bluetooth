@@ -52,7 +52,10 @@ void log_counter_metrics_btif(android::bluetooth::CodePathCounterKeyEnum key, in
 void log_socket_connection_state(const RawAddress& address, int port, int type,
                                  android::bluetooth::SocketConnectionstateEnum connection_state,
                                  int64_t tx_bytes, int64_t rx_bytes, int uid, int server_port,
-                                 android::bluetooth::SocketRoleEnum socket_role);
+                                 android::bluetooth::SocketRoleEnum socket_role,
+                                 bool is_hardware_offload, const char* socket_name, uint64_t hub_id,
+                                 uint64_t endpoint_id, uint64_t connection_duration_ms,
+                                 int error_code);
 
 bool init_metric_id_allocator(const std::unordered_map<RawAddress, int>& paired_device_map,
                               bluetooth::shim::CallbackLegacy save_id_callback,

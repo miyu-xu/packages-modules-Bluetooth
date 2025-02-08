@@ -175,12 +175,14 @@ void bluetooth::shim::LogMetricSdpAttribute(const RawAddress& raw_address, uint1
 void bluetooth::shim::LogMetricSocketConnectionState(
         const RawAddress& raw_address, int port, int type,
         android::bluetooth::SocketConnectionstateEnum connection_state, int64_t tx_bytes,
-        int64_t rx_bytes, int uid, int server_port,
-        android::bluetooth::SocketRoleEnum socket_role) {
+        int64_t rx_bytes, int uid, int server_port, android::bluetooth::SocketRoleEnum socket_role,
+        bool is_hardware_offload, const char* socket_name, uint64_t hub_id, uint64_t endpoint_id,
+        uint64_t connection_duration_ms, int error_code) {
   inc_func_call_count(__func__);
   test::mock::main_shim_metrics_api::LogMetricSocketConnectionState(
           raw_address, port, type, connection_state, tx_bytes, rx_bytes, uid, server_port,
-          socket_role);
+          socket_role, is_hardware_offload, socket_name, hub_id, endpoint_id,
+          connection_duration_ms, error_code);
 }
 void bluetooth::shim::LogMetricManufacturerInfo(
         const RawAddress& raw_address, android::bluetooth::AddressTypeEnum address_type,
