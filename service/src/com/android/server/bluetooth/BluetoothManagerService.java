@@ -1344,7 +1344,9 @@ class BluetoothManagerService {
                 Log.e(TAG, "Unknown service disconnected: " + name);
                 return;
             }
-            mHandler.sendEmptyMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+            Message msg = mHandler.obtainMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+            msg.obj = componentName.getPackageName();
+            mHandler.sendMessage(msg);
         }
     }
 
@@ -1576,6 +1578,13 @@ class BluetoothManagerService {
 
                 case MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED:
                     Log.e(TAG, "MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED");
+
+                    String packageName = (String) msg.obj;
+                    if (packageName != null && !packageName.isEmpty()) {
+                        disableBluetoothComponents(packageName);
+                    } else {
+                        Log.i(TAG, "Invalid package name received: " + packageName);
+                    }
 
                     if (!resetAdapter()) {
                         break;
@@ -2451,5 +2460,91 @@ class BluetoothManagerService {
         PackageManager pm = context.getPackageManager();
         return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+    }
+
+    private void disableBluetoothComponents(String packageName) {
+        PackageManager pm = mContext.getPackageManager();
+
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_ACTIVITIES |
+                            PackageManager.GET_RECEIVERS |
+                            PackageManager.GET_SERVICES |
+                            PackageManager.GET_PROVIDERS |
+                            PackageManager.GET_DISABLED_COMPONENTS);
+
+            if (packageInfo == null) {
+                Log.i(TAG, "Failed to get package info for " + packageName);
+                return;
+            }
+
+            // Disable activities
+            if (packageInfo.activities != null) {
+                for (android.content.pm.ActivityInfo activityInfo : packageInfo.activities) {
+                     ComponentName componentName = new ComponentName(
+                            packageName, activityInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                       pm.setComponentEnabledSetting(
+                            componentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                        Log.i(TAG, "Disabled component: " + activityInfo.name);
+                    }
+                }
+            }
+            // Disable services
+            if (packageInfo.services != null) {
+                for (android.content.pm.ServiceInfo serviceInfo : packageInfo.services) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, serviceInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                            componentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                        Log.i(TAG, "Disabled component: " + serviceInfo.name);
+                    }
+
+                }
+            }
+            // Disable receivers
+            if (packageInfo.receivers != null) {
+                for (android.content.pm.ActivityInfo receiverInfo : packageInfo.receivers) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, receiverInfo.name);  // Use packageName
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                            componentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                        Log.i(TAG, "Disabled component: " + receiverInfo.name);
+                    }
+                }
+            }
+
+            // Disable providers
+            if (packageInfo.providers != null) {
+                for (android.content.pm.ProviderInfo providerInfo : packageInfo.providers) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, providerInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        pm.setComponentEnabledSetting(
+                            componentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                        Log.i(TAG, "Disabled component: " + providerInfo.name);
+                    }
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Package not found: " + packageName, e);
+        } catch (SecurityException e) {
+            Log.e(TAG, "disableBluetoothComponents failed." + e);
+        }
     }
 }
