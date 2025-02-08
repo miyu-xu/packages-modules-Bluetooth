@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc19382_8e2c6391",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-08T01:27:47Z",
+      "side": 1,
+      "message": "can we crash with an assert here, as it would mean a deeper architectural issue and I prefer early signal value",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 3
+      },
+      "revId": "adc52d5b1b5f0777aa36dc67616790e4e44e4403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37d05d26_c5a871b0",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-08T01:27:47Z",
+      "side": 1,
+      "message": "Should these be stop somewher ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 45
+      },
+      "revId": "adc52d5b1b5f0777aa36dc67616790e4e44e4403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b7518f_0bbc1de0",
+        "filename": "system/test/mock/mock_main_shim_entry.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-08T01:27:47Z",
+      "side": 1,
+      "message": "Please fix this INFO reported by Tip Prediction: AI Readability\n\nAnalyzer Description: Runs go/tip-prediction tool on the commit.\nOwner: peeps-genai-team@google.com\n\nAI Readability\n\nReview [go/totw/151](http://go/totw/151) - it may improve this code:\n\n* Fully qualify (e.g. `::foo::Type`) in using declarations, type or namespace aliases.\n* In other code, don\u0027t fully qualify (e.g. `foo::Type`) for well-known namespaces like `std` or `absl`.\n* For all other namespaces, avoid fully qualifying unless you must to make the code compile.\n\nWas this tip helpful? [Yes 👍](http://go/gerrit-tip-prediction-thumbs-up?title\u003d[Yes%20👍]%20https%3A%2F%2Fandroid%2Fc%2Fplatform%2Fpackages%2Fmodules%2FBluetooth%2F%2B%2F3469531%2F7) / [No 👎](http://go/gerrit-tip-prediction-thumbs-down?title\u003d[No%20👎]%20https%3A%2F%2Fandroid%2Fc%2Fplatform%2Fpackages%2Fmodules%2FBluetooth%2F%2B%2F3469531%2F7)\nWould you like to provide additional [feedback](http://go/gerrit-tip-prediction-feedback?title\u003d[Feedback]%20https%3A%2F%2Fandroid%2Fc%2Fplatform%2Fpackages%2Fmodules%2FBluetooth%2F%2B%2F3469531%2F7)?\nWant to opt out of Tip Predictions completely? [Opt out](http://go/gerrit-tip-prediction-optout)\nOther questions? Check out the [FAQs](http://go/gerrit-tip-prediction-faqs).",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 38,
+        "endChar": 58
+      },
+      "revId": "adc52d5b1b5f0777aa36dc67616790e4e44e4403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
