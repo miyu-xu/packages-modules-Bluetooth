@@ -1,5 +1,24 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97a437c5_4775bcbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3861988
+      },
+      "writtenOn": "2025-02-08T07:04:28Z",
+      "side": 1,
+      "message": "Why is my email address yet included in this platform? I\u0027m not receiving messages in the third party apps such as Grindr and jacks. Please do no restrict any server or traffic to my phone. I want all notifications\n\nOn Wed, Feb 5, 2025, 7:30 PM Jack He (Gerrit) \u003cnoreply-gerritcodereview-eZ6RzExdPK01Xiai7xO8IQ\u003d\u003d@\u003e wrote:",
+      "tag": "mailMessageId\u003d\u003cCAEjFcb1h477Pk1M4+uQAQj7syzi_aK2SOTu3H0N39EE+0vU\u003dhw@mail.gmail.com\u003e",
+      "revId": "c69d45fcb522af2c06cb21801efc2b48fccac859",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
