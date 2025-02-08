@@ -25,6 +25,7 @@
 
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_sock.h"
+#include "common/time_util.h"
 #include "types/raw_address.h"
 
 #define SOCK_LOGGER_SIZE_MAX 16
@@ -50,10 +51,14 @@ static SockConnectionEvent connection_logger[SOCK_LOGGER_SIZE_MAX];
 
 static android::bluetooth::SocketConnectionstateEnum toConnectionStateEnum(int state);
 static android::bluetooth::SocketRoleEnum toSocketRoleEnum(int role);
+static android::bluetooth::SocketErrorEnum toSocketErrorEnum(int error_code);
+static uint64_t getConnectionDuration(uint64_t start_time_ms);
 
 void btif_sock_connection_logger(const RawAddress& address, int port, int type, int state, int role,
                                  int uid, int server_port, int64_t tx_bytes, int64_t rx_bytes,
-                                 const char* server_name) {
+                                 const char* server_name, btsock_data_path_t data_path,
+                                 const char* socket_name, uint64_t hub_id, uint64_t endpoint_id,
+                                 uint64_t connection_start_time_ms, int error_code) {
   log::verbose("bd_addr: {}, port: {}, role: {}, state: {}", address, port, role, state);
 
   uint8_t index = logger_index++ % SOCK_LOGGER_SIZE_MAX;
@@ -75,7 +80,9 @@ void btif_sock_connection_logger(const RawAddress& address, int port, int type, 
 
   clock_gettime(CLOCK_REALTIME, &connection_logger[index].timestamp);
   log_socket_connection_state(address, port, type, toConnectionStateEnum(state), tx_bytes, rx_bytes,
-                              uid, server_port, toSocketRoleEnum(role));
+                              uid, server_port, toSocketRoleEnum(role), data_path, socket_name,
+                              hub_id, endpoint_id, getConnectionDuration(connection_start_time_ms),
+                              toSocketErrorEnum(error_code));
 }
 
 void btif_sock_dump(int fd) {
@@ -191,4 +198,58 @@ static android::bluetooth::SocketRoleEnum toSocketRoleEnum(int role) {
       return android::bluetooth::SOCKET_ROLE_CONNECTION;
   }
   return android::bluetooth::SOCKET_ROLE_UNKNOWN;
+}
+
+static android::bluetooth::SocketErrorEnum toSocketErrorEnum(int error_code) {
+  switch (error_code) {
+    case BTSOCK_ERROR_UNKNOWN:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_UNKNOWN;
+    case BTSOCK_ERROR_NONE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_NONE;
+    case BTSOCK_ERROR_SERVER_START_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_SERVER_START_FAILURE;
+    case BTSOCK_ERROR_CLIENT_INIT_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_CLIENT_INIT_FAILURE;
+    case BTSOCK_ERROR_LISTEN_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_LISTEN_FAILURE;
+    case BTSOCK_ERROR_CONNECTION_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_CONNECTION_FAILURE;
+    case BTSOCK_ERROR_OPEN_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_OPEN_FAILURE;
+    case BTSOCK_ERROR_OFFLOAD_SERVER_NOT_ACCEPTING:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_OFFLOAD_SERVER_NOT_ACCEPTING;
+    case BTSOCK_ERROR_OFFLOAD_HAL_OPEN_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_OFFLOAD_HAL_OPEN_FAILURE;
+    case BTSOCK_ERROR_SEND_TO_APP_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_SEND_TO_APP_FAILURE;
+    case BTSOCK_ERROR_RECEIVE_DATA_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_RECEIVE_DATA_FAILURE;
+    case BTSOCK_ERROR_READ_SIGNALED_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_READ_SIGNALED_FAILURE;
+    case BTSOCK_ERROR_WRITE_SIGNALED_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_WRITE_SIGNALED_FAILURE;
+    case BTSOCK_ERROR_SEND_SCN_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_SEND_SCN_FAILURE;
+    case BTSOCK_ERROR_SCN_ALLOCATION_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_SCN_ALLOCATION_FAILURE;
+    case BTSOCK_ERROR_ADD_SDP_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_ADD_SDP_FAILURE;
+    case BTSOCK_ERROR_SDP_DISCOVERY_FAILURE:
+      return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_SDP_DISCOVERY_FAILURE;
+  }
+  return android::bluetooth::SocketErrorEnum::SOCKET_ERROR_UNKNOWN;
+}
+
+static uint64_t getConnectionDuration(uint64_t start_time_ms) {
+  uint64_t current_time_ms = common::time_gettimeofday_us() / 1000;
+  uint64_t duration_ms = current_time_ms - start_time_ms;
+  // start time is 0 before the connection state, use 0 for duration
+  if (start_time_ms == 0) {
+    return 0;
+  }
+  if ((duration_ms) < 0) {
+    log::warn("Socket connection duration is smaller than 0, logging 0 ms instead");
+    return 0;
+  }
+  return duration_ms;
 }
