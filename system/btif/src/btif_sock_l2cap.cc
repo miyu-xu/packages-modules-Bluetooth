@@ -35,6 +35,7 @@
 #include "btif/include/btif_sock_thread.h"
 #include "btif/include/btif_sock_util.h"
 #include "btif/include/btif_uid.h"
+#include "common/time_util.h"
 #include "gd/os/rand.h"
 #include "include/hardware/bluetooth.h"
 #include "internal_include/bt_target.h"
@@ -92,6 +93,8 @@ typedef struct l2cap_socket {
   uint64_t hub_id;               // ID of the hub to which the end point belongs
   uint64_t endpoint_id;          // ID of the hub end point
   bool is_accepting;             // is app accepting on server socket?
+  uint64_t connection_start_time_ms;      // Timestamp when the connection state started
+  btsock_error_code_t socket_error_code;  // Error code of the socket
 } l2cap_socket;
 
 static void btsock_l2cap_server_listen(l2cap_socket* sock);
@@ -258,7 +261,8 @@ static void btsock_l2cap_free_l(l2cap_socket* sock) {
           sock->addr, sock->id, sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
           SOCKET_CONNECTION_STATE_DISCONNECTED,
           sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->app_uid, sock->channel,
-          sock->tx_bytes, sock->rx_bytes, sock->name);
+          sock->tx_bytes, sock->rx_bytes, sock->name, sock->data_path, sock->socket_name,
+          sock->hub_id, sock->endpoint_id, sock->connection_start_time_ms, sock->socket_error_code);
   if (com::android::bluetooth::flags::socket_settings_api()) {
     if (sock->data_path == BTSOCK_DATA_PATH_HARDWARE_OFFLOAD && !sock->server &&
         sock->socket_id != 0) {
@@ -359,6 +363,8 @@ static l2cap_socket* btsock_l2cap_alloc_l(const char* name, const RawAddress* ad
   sock->hub_id = 0;
   sock->endpoint_id = 0;
   sock->is_accepting = false;
+  sock->connection_start_time_ms = 0;
+  sock->socket_error_code = BTSOCK_ERROR_NONE;
 
   if (name) {
     strncpy(sock->name, name, sizeof(sock->name) - 1);
@@ -500,6 +506,7 @@ static void on_srv_l2cap_listen_started(tBTA_JV_L2CAP_START* p_start, uint32_t i
 
   if (p_start->status != tBTA_JV_STATUS::SUCCESS) {
     log::error("Unable to start l2cap server socket_id:{}", sock->id);
+    sock->socket_error_code = BTSOCK_ERROR_SERVER_START_FAILURE;
     btsock_l2cap_free_l(sock);
     return;
   }
@@ -510,16 +517,18 @@ static void on_srv_l2cap_listen_started(tBTA_JV_L2CAP_START* p_start, uint32_t i
           "Listening for L2CAP connection for device: {}, channel: {}, app_uid: "
           "{}, id: {}, is_le: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc);
-  btif_sock_connection_logger(sock->addr, sock->id,
-                              sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
-                              SOCKET_CONNECTION_STATE_LISTENING,
-                              sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                              sock->app_uid, sock->channel, 0, 0, sock->name);
+  btif_sock_connection_logger(
+          sock->addr, sock->id, sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
+          SOCKET_CONNECTION_STATE_LISTENING,
+          sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->app_uid, sock->channel,
+          0, 0, sock->name, sock->data_path, sock->socket_name, sock->hub_id, sock->endpoint_id, 0,
+          BTSOCK_ERROR_NONE);
 
   if (!sock->server_psm_sent) {
     if (!send_app_psm_or_chan_l(sock)) {
       // closed
       log::info("Unable to send socket to application socket_id:{}", sock->id);
+      sock->socket_error_code = BTSOCK_ERROR_SEND_TO_APP_FAILURE;
       btsock_l2cap_free_l(sock);
     } else {
       sock->server_psm_sent = true;
@@ -539,6 +548,7 @@ static void on_cl_l2cap_init(tBTA_JV_L2CAP_CL_INIT* p_init, uint32_t id) {
 
   if (p_init->status != tBTA_JV_STATUS::SUCCESS) {
     log::error("Initialization status failed socket_id:{}", id);
+    sock->socket_error_code = BTSOCK_ERROR_CLIENT_INIT_FAILURE;
     btsock_l2cap_free_l(sock);
     return;
   }
@@ -589,11 +599,13 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket*
           "id: {}, is_le: {}, socket_id: {}, rx_mtu: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc, accept_rs->socket_id,
           accept_rs->rx_mtu);
-  btif_sock_connection_logger(accept_rs->addr, accept_rs->id,
-                              accept_rs->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
-                              SOCKET_CONNECTION_STATE_CONNECTED,
-                              accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                              accept_rs->app_uid, accept_rs->channel, 0, 0, accept_rs->name);
+  btif_sock_connection_logger(
+          accept_rs->addr, accept_rs->id, accept_rs->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
+          SOCKET_CONNECTION_STATE_CONNECTED,
+          accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, accept_rs->app_uid,
+          accept_rs->channel, 0, 0, accept_rs->name, accept_rs->data_path, accept_rs->socket_name,
+          accept_rs->hub_id, accept_rs->endpoint_id, 0, BTSOCK_ERROR_NONE);
+  accept_rs->connection_start_time_ms = common::time_gettimeofday_us() / 1000;
 
   // start monitor the socket
   btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_EXCEPTION, sock->id);
@@ -638,11 +650,13 @@ static void on_cl_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_socket* 
           "id: {}, is_le: {}, socket_id: {}, rx_mtu: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc, sock->socket_id,
           sock->rx_mtu);
-  btif_sock_connection_logger(sock->addr, sock->id,
-                              sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
-                              SOCKET_CONNECTION_STATE_CONNECTED,
-                              sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                              sock->app_uid, sock->channel, 0, 0, sock->name);
+  btif_sock_connection_logger(
+          sock->addr, sock->id, sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
+          SOCKET_CONNECTION_STATE_CONNECTED,
+          sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->app_uid, sock->channel,
+          0, 0, sock->name, sock->data_path, sock->socket_name, sock->hub_id, sock->endpoint_id, 0,
+          BTSOCK_ERROR_NONE);
+  sock->connection_start_time_ms = common::time_gettimeofday_us() / 1000;
 
   // start monitoring the socketpair to get call back when app writing data
   btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_RD, sock->id);
@@ -679,6 +693,7 @@ static void on_l2cap_connect(tBTA_JV* p_data, uint32_t id) {
     }
   } else {
     log::error("Unable to open socket after receiving connection socket_id:{}", sock->id);
+    sock->socket_error_code = BTSOCK_ERROR_OPEN_FAILURE;
     btsock_l2cap_free_l(sock);
   }
 }
@@ -697,11 +712,12 @@ static void on_l2cap_close(tBTA_JV_L2CAP_CLOSE* p_close, uint32_t id) {
           "Disconnecting from L2CAP connection for device: {}, channel: {}, "
           "app_uid: {}, id: {}, is_le: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc);
-  btif_sock_connection_logger(sock->addr, sock->id,
-                              sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
-                              SOCKET_CONNECTION_STATE_DISCONNECTING,
-                              sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                              sock->app_uid, sock->channel, 0, 0, sock->name);
+  btif_sock_connection_logger(
+          sock->addr, sock->id, sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
+          SOCKET_CONNECTION_STATE_DISCONNECTING,
+          sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->app_uid, sock->channel,
+          0, 0, sock->name, sock->data_path, sock->socket_name, sock->hub_id, sock->endpoint_id, 0,
+          BTSOCK_ERROR_NONE);
   if (com::android::bluetooth::flags::donot_push_error_code_to_app_when_connected()) {
     if (!sock->connected) {
       if (!send_app_err_code(sock, p_close->reason)) {
@@ -785,6 +801,7 @@ static void on_l2cap_data_ind(tBTA_JV* /* evt */, uint32_t id) {
         btsock_thread_add_fd(pth, sock->our_fd, BTSOCK_L2CAP, SOCK_THREAD_FD_WR, sock->id);
       } else {  // connection must be dropped
         log::warn("Closing socket as unable to push data to socket socket_id:{}", sock->id);
+        sock->socket_error_code = BTSOCK_ERROR_RECEIVE_DATA_FAILURE;
         BTA_JvL2capClose(sock->handle);
         btsock_l2cap_free_l(sock);
         return;
@@ -1163,11 +1180,13 @@ static void btsock_l2cap_signaled_flagged(int fd, int flags, uint32_t user_id) {
     if (!sock->server) {
       // app sending data on connection socket
       if (!btsock_l2cap_read_signaled_on_connected_socket(fd, flags, user_id, sock)) {
+        sock->socket_error_code = BTSOCK_ERROR_READ_SIGNALED_FAILURE;
         drop_it = true;
       }
     } else {
       // app sending signal on listen socket
       if (!btsock_l2cap_read_signaled_on_listen_socket(fd, flags, user_id, sock)) {
+        sock->socket_error_code = BTSOCK_ERROR_READ_SIGNALED_FAILURE;
         drop_it = true;
       }
     }
@@ -1238,6 +1257,7 @@ void btsock_l2cap_signaled(int fd, int flags, uint32_t user_id) {
         BTA_JvL2capWrite(sock->handle, PTR_TO_UINT(buffer), buffer, user_id);
       }
     } else {
+      sock->socket_error_code = BTSOCK_ERROR_READ_SIGNALED_FAILURE;
       drop_it = true;
     }
   }
@@ -1343,6 +1363,7 @@ void on_btsocket_l2cap_opened_complete(uint64_t socket_id, bool success) {
   }
   if (!success) {
     log::error("L2CAP opened complete failed with socket_id:{}", socket_id);
+    sock->socket_error_code = BTSOCK_ERROR_OPEN_FAILURE;
     btsock_l2cap_free_l(sock);
     return;
   }
@@ -1372,7 +1393,9 @@ void on_btsocket_l2cap_opened_complete(uint64_t socket_id, bool success) {
                                 sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
                                 SOCKET_CONNECTION_STATE_CONNECTED,
                                 sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                                sock->app_uid, sock->channel, 0, 0, sock->name);
+                                sock->app_uid, sock->channel, 0, 0, sock->name, sock->data_path,
+                                sock->name, sock->hub_id, sock->endpoint_id, 0, BTSOCK_ERROR_NONE);
+    sock->connection_start_time_ms = common::time_gettimeofday_us() / 1000;
 
     log::info("Connected l2cap socket socket_id:{}", sock->id);
     sock->connected = true;
@@ -1407,11 +1430,13 @@ static void on_cl_l2cap_psm_connect_offload_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_
           "id: {}, is_le: {}, socket_id: {}, rx_mtu: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc, sock->socket_id,
           sock->rx_mtu);
-  btif_sock_connection_logger(sock->addr, sock->id,
-                              sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
-                              SOCKET_CONNECTION_STATE_CONNECTED,
-                              sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                              sock->app_uid, sock->channel, 0, 0, sock->name);
+  btif_sock_connection_logger(
+          sock->addr, sock->id, sock->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
+          SOCKET_CONNECTION_STATE_CONNECTED,
+          sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->app_uid, sock->channel,
+          0, 0, sock->name, sock->data_path, sock->socket_name, sock->hub_id, sock->endpoint_id, 0,
+          BTSOCK_ERROR_NONE);
+  sock->connection_start_time_ms = common::time_gettimeofday_us() / 1000;
 
   bluetooth::hal::SocketContext socket_context = {
           .socket_id = sock->socket_id,
@@ -1426,6 +1451,7 @@ static void on_cl_l2cap_psm_connect_offload_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap_
   };
   if (!bluetooth::shim::GetLppOffloadManager()->SocketOpened(socket_context)) {
     log::warn("L2CAP socket opened failed. Disconnect the incoming connection.");
+    sock->socket_error_code = BTSOCK_ERROR_OFFLOAD_HAL_OPEN_FAILURE;
     btsock_l2cap_free_l(sock);
   } else {
     log::info(
@@ -1470,11 +1496,13 @@ static void on_srv_l2cap_psm_connect_offload_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap
           "id: {}, is_le: {}, socket_id: {}, rx_mtu: {}",
           sock->addr, sock->channel, sock->app_uid, sock->id, sock->is_le_coc, accept_rs->socket_id,
           accept_rs->rx_mtu);
-  btif_sock_connection_logger(accept_rs->addr, accept_rs->id,
-                              accept_rs->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
-                              SOCKET_CONNECTION_STATE_CONNECTED,
-                              accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-                              accept_rs->app_uid, accept_rs->channel, 0, 0, accept_rs->name);
+  btif_sock_connection_logger(
+          accept_rs->addr, accept_rs->id, accept_rs->is_le_coc ? BTSOCK_L2CAP_LE : BTSOCK_L2CAP,
+          SOCKET_CONNECTION_STATE_CONNECTED,
+          accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, accept_rs->app_uid,
+          accept_rs->channel, 0, 0, accept_rs->name, accept_rs->data_path, accept_rs->socket_name,
+          accept_rs->hub_id, accept_rs->endpoint_id, 0, BTSOCK_ERROR_NONE);
+  accept_rs->connection_start_time_ms = common::time_gettimeofday_us() / 1000;
 
   bluetooth::hal::SocketContext socket_context = {
           .socket_id = accept_rs->socket_id,
@@ -1489,9 +1517,11 @@ static void on_srv_l2cap_psm_connect_offload_l(tBTA_JV_L2CAP_OPEN* p_open, l2cap
   };
   if (!sock->is_accepting) {
     log::warn("Server socket is not accepting. Disconnect the incoming connection.");
+    sock->socket_error_code = BTSOCK_ERROR_OFFLOAD_SERVER_NOT_ACCEPTING;
     btsock_l2cap_free_l(accept_rs);
   } else if (!bluetooth::shim::GetLppOffloadManager()->SocketOpened(socket_context)) {
     log::warn("L2CAP socket opened failed. Disconnect the incoming connection.");
+    sock->socket_error_code = BTSOCK_ERROR_OFFLOAD_HAL_OPEN_FAILURE;
     btsock_l2cap_free_l(accept_rs);
   } else {
     log::info("L2CAP socket opened successful. Will send connect signal in async callback.");
