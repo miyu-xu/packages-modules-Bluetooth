@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d86b2a_3a1c53fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-08T04:33:44Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "e432c30b_f6725768",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f08cb5d0_54770819",
@@ -37,6 +61,24 @@
       "writtenOn": "2025-02-07T19:34:52Z",
       "side": 1,
       "message": "can we somehow factorize this ?\n\nby having a method per version like\n```\nprivate void insert_102_data(ContentValue device) {\n  insert_101_data(device)\n  device.put(\"foofrom102\", foo)\n  ....\n}\n```\n\nThe +778 lines hurts ^^",
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "993c557a_1c0cf250",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-08T04:33:44Z",
+      "side": 1,
+      "message": "I was thinking of that but was not sure if it\u0027ll be needed; guess it was :)\n\nDone! Thank you. \n\nI decided to inline the creation of ContentValues via `contentValuesDevice_1XX()`. PTAL and let me know if you think the readibility is not good / clear.\n\nDelta went from -172 +778 \u003d 606 down to -270 +361 \u003d 91 new lines (including a new test `testDatabaseMigration_110_111`.",
+      "parentUuid": "f08cb5d0_54770819",
       "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4212214f_fcca3432",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-08T04:33:44Z",
+      "side": 1,
+      "message": "Notice the extra `h` after `t` in `unthe...` old names. The columns were renamed in the version migration 101-\u003e102; aka typos fixed.",
+      "parentUuid": "a7b41571_65f81e76",
+      "range": {
+        "startLine": 895,
+        "startChar": 8,
+        "endLine": 915,
+        "endChar": 66
+      },
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76fc12c0_e3fc3030",
@@ -77,6 +143,30 @@
       "writtenOn": "2025-02-07T19:40:44Z",
       "side": 1,
       "message": "why not using the new assertColumnStringData here ?",
+      "range": {
+        "startLine": 1080,
+        "startChar": 12,
+        "endLine": 1080,
+        "endChar": 32
+      },
+      "revId": "2eb27ceba3ab4488d653fb7250e171be6a48f05a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6545cd51_f7e7b00d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-08T04:33:44Z",
+      "side": 1,
+      "message": "Almost all columns field types(affinity) are marked as `BLOB` for this `manufacturer_name`, `model_name` and many others.\n\nThe only field marked as `TEXT` is `address` which can be seen in https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/storage/schemas/com.android.bluetooth.btservice.storage.MetadataDatabase/121.json;l\u003d14",
+      "parentUuid": "76fc12c0_e3fc3030",
       "range": {
         "startLine": 1080,
         "startChar": 12,
