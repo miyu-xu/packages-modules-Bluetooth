@@ -261,9 +261,6 @@ public:
 
   void sendHciCommand(HciPacket command) override {
     std::lock_guard<std::mutex> lock(api_mutex_);
-    if (controller_broken_) {
-      return;
-    }
     log::assert_that(sock_fd_ != INVALID_FD, "assert failed: sock_fd_ != INVALID_FD");
     std::vector<uint8_t> packet = std::move(command);
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
@@ -274,9 +271,6 @@ public:
 
   void sendAclData(HciPacket data) override {
     std::lock_guard<std::mutex> lock(api_mutex_);
-    if (controller_broken_) {
-      return;
-    }
     log::assert_that(sock_fd_ != INVALID_FD, "assert failed: sock_fd_ != INVALID_FD");
     std::vector<uint8_t> packet = std::move(data);
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
@@ -287,10 +281,6 @@ public:
 
   void sendScoData(HciPacket data) override {
     std::lock_guard<std::mutex> lock(api_mutex_);
-    if (controller_broken_) {
-      return;
-    }
-
     log::assert_that(sock_fd_ != INVALID_FD, "assert failed: sock_fd_ != INVALID_FD");
     std::vector<uint8_t> packet = std::move(data);
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
@@ -301,9 +291,6 @@ public:
 
   void sendIsoData(HciPacket data) override {
     std::lock_guard<std::mutex> lock(api_mutex_);
-    if (controller_broken_) {
-      return;
-    }
     log::assert_that(sock_fd_ != INVALID_FD, "assert failed: sock_fd_ != INVALID_FD");
     std::vector<uint8_t> packet = std::move(data);
     btsnoop_logger_->Capture(packet, SnoopLogger::Direction::OUTGOING,
@@ -314,15 +301,6 @@ public:
 
   uint16_t getMsftOpcode() override {
     return os::Management::getInstance().getVendorSpecificCode(MGMT_VS_OPCODE_MSFT);
-  }
-
-  void markControllerBroken() override {
-    std::lock_guard<std::mutex> lock(api_mutex_);
-    if (controller_broken_) {
-      log::error("Controller already marked as broken!");
-      return;
-    }
-    controller_broken_ = true;
   }
 
 protected:
@@ -339,8 +317,7 @@ protected:
     // We don't want to crash when the chipset is broken.
     if (sock_fd_ == INVALID_FD) {
       log::error("Failed to connect to HCI socket. Aborting HAL initialization process.");
-      controller_broken_ = true;
-      kill(getpid(), SIGTERM);
+      incoming_packet_callback_->ControllerNeedsReset();
       return;
     }
 
@@ -394,7 +371,6 @@ private:
   std::queue<std::vector<uint8_t>> hci_outgoing_queue_;
   SnoopLogger* btsnoop_logger_ = nullptr;
   LinkClocker* link_clocker_ = nullptr;
-  bool controller_broken_ = false;
 
   void write_to_fd(HciPacket packet) {
     // TODO(chromeos-bt-team@): replace this with new queue when it's ready
@@ -416,8 +392,7 @@ private:
     hci_outgoing_queue_.pop();
     if (bytes_written == -1) {
       log::error("Can't write to socket: {}", strerror(errno));
-      markControllerBroken();
-      kill(getpid(), SIGTERM);
+      incoming_packet_callback_->ControllerNeedsReset();
     }
     if (hci_outgoing_queue_.empty()) {
       hci_incoming_thread_.GetReactor()->ModifyRegistration(reactable_,
@@ -441,15 +416,13 @@ private:
     // we don't want crash when the chipset is broken.
     if (received_size == -1) {
       log::error("Can't receive from socket: {}", strerror(errno));
-      markControllerBroken();
-      kill(getpid(), SIGTERM);
+      incoming_packet_callback_->ControllerNeedsReset();
       return;
     }
 
     if (received_size == 0) {
       log::warn("Can't read H4 header. EOF received");
-      markControllerBroken();
-      kill(getpid(), SIGTERM);
+      incoming_packet_callback_->ControllerNeedsReset();
       return;
     }
 
