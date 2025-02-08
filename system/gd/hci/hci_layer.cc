@@ -152,6 +152,7 @@ struct HciLayer::impl {
     incoming_sco_buffer_.Clear();
     incoming_iso_buffer_.Clear();
     if (hci_timeout_alarm_ != nullptr) {
+      hci_timeout_alarm_->Cancel();
       delete hci_timeout_alarm_;
     }
     if (hci_abort_alarm_ != nullptr) {
