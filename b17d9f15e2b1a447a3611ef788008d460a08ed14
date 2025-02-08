@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1560cea7_8118f400",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-08T04:25:02Z",
+      "side": 1,
+      "message": "This is needed for L2cap Server socket with encryption only",
+      "revId": "b17d9f15e2b1a447a3611ef788008d460a08ed14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
