@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95c396e4_96236e2e",
+        "filename": "system/gd/rust/linux/service/src/interface_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-08T12:02:33Z",
+      "side": 1,
+      "message": "Looking into its handler, `bluetooth_gatt.lock().unwrap().enable(false)` call is necessary to avoid other crashes.\n\nAlso, without the `self.intf.lock().unwrap().disable()` call I\u0027m afraid of the LibBluetooth threads would be aborted in an unexpected point and cause other crashes (something like throw_system_error from recursive_mutex).\n\nI think we should only skip the discoverable/connectable calls. Perhaps we could even decouple `APIMessage::ShutDown` and `Message::AdapterShutdown`, that is, sending `Message::AdapterShutdown` from the signal handler rather than here.",
+      "range": {
+        "startLine": 256,
+        "startChar": 40,
+        "endLine": 256,
+        "endChar": 64
+      },
+      "revId": "7c122a7e5b83fa8c4168032fad50dad351af7b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9febb1d_450f97dd",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-08T12:02:33Z",
+      "side": 1,
+      "message": "Please add a comment for this parameter",
+      "range": {
+        "startLine": 72,
+        "startChar": 22,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "7c122a7e5b83fa8c4168032fad50dad351af7b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9882750_54a2c82f",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-08T12:02:33Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 242,
+        "startChar": 13,
+        "endLine": 242,
+        "endChar": 17
+      },
+      "revId": "7c122a7e5b83fa8c4168032fad50dad351af7b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
