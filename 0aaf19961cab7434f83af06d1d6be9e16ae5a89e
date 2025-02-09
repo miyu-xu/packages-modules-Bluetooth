@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c139fd_79e5998e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1660,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-09T07:26:03Z",
+      "side": 1,
+      "message": "Why some doesn\u0027t add anything ? What happen then ?",
+      "range": {
+        "startLine": 1658,
+        "startChar": 3,
+        "endLine": 1660,
+        "endChar": 5
+      },
+      "revId": "0aaf19961cab7434f83af06d1d6be9e16ae5a89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
