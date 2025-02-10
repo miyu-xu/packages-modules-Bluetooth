@@ -1,0 +1,66 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eef4243_40a65c97",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T16:57:07Z",
+      "side": 1,
+      "message": "Nit: Implementation in `btif_storage_get_services()` already guards against the `separate_service_storage` flag. So we don\u0027t really need to use the flag again.",
+      "fixSuggestions": [
+        {
+          "fixId": "cea3849f_907246b8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_profile_storage.cc",
+              "range": {
+                "startLine": 353,
+                "startChar": 0,
+                "endLine": 373,
+                "endChar": 0
+              },
+              "replacement": "  RawAddress bd_addr;\n  if (RawAddress::FromString(device, bd_addr)) {\n    std::vector\u003cbluetooth::Uuid\u003e remote_uuids \u003d btif_storage_get_services(bd_addr);\n    for (const auto\u0026 uuid : remote_uuids) {\n      if (uuid \u003d\u003d profile) {\n        return true;\n"
+            },
+            {
+              "path": "system/btif/src/btif_profile_storage.cc",
+              "range": {
+                "startLine": 376,
+                "startChar": 0,
+                "endLine": 376,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e5c11bb8b4eff1d78dd01888c8e129ad77d8b5b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa032b7_0778e544",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T16:57:07Z",
+      "side": 1,
+      "message": "Nit: We are unncessarily coverting the RawAddress into string and back into RawAddress in these functions. This probably be fixed in a separate cl but I would be fine if you decide to clean this up here as well.",
+      "revId": "e5c11bb8b4eff1d78dd01888c8e129ad77d8b5b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
