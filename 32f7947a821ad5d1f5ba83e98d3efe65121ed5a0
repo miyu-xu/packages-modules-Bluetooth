@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "017764f0_f287b2e6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-10T19:03:49Z",
+      "side": 1,
+      "message": "Applying in follow-up",
+      "parentUuid": "d16f3432_1ced6d0e",
+      "revId": "32f7947a821ad5d1f5ba83e98d3efe65121ed5a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ff65d40_173b2c68",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-10T19:02:58Z",
       "side": 1,
       "message": "As follow up: mActiveSourceMap is private final and cannot be null.\nThe same applies to a lot of other members.",
+      "range": {
+        "startLine": 933,
+        "startChar": 16,
+        "endLine": 933,
+        "endChar": 32
+      },
+      "revId": "32f7947a821ad5d1f5ba83e98d3efe65121ed5a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69e8723a_4b290800",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-10T19:03:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2ff65d40_173b2c68",
       "range": {
         "startLine": 933,
         "startChar": 16,
