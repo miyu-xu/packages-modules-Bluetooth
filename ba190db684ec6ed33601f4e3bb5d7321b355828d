@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbe2402_f1c81c7e",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-10T23:46:46Z",
+      "side": 1,
+      "message": "This log is not very meaningful, I would just remove it.",
+      "range": {
+        "startLine": 664,
+        "startChar": 6,
+        "endLine": 664,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9108cd56_ba74d450",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_rfc.cc",
+              "range": {
+                "startLine": 664,
+                "startChar": 0,
+                "endLine": 665,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/rfcomm/port_rfc.cc",
+              "range": {
+                "startLine": 713,
+                "startChar": 0,
+                "endLine": 714,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ba190db684ec6ed33601f4e3bb5d7321b355828d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
