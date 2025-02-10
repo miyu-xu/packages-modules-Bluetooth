@@ -57,6 +57,7 @@
 #include "stack/include/btm_status.h"
 #include "stack/include/gatt_api.h"
 #include "stack/include/l2cap_security_interface.h"
+#include "stack/include/main_thread.h"
 #include "stack/include/smp_api.h"
 #include "stack/include/smp_api_types.h"
 #include "types/raw_address.h"
@@ -1185,6 +1186,23 @@ tBTM_STATUS btm_ble_set_encryption(const RawAddress& bd_addr, tBTM_BLE_SEC_ACT s
   return cmd;
 }
 
+static void btm_ble_ltk_request_retry(uint16_t handle, BT_OCTET8 rand, uint16_t ediv) {
+  tBTM_SEC_CB* p_cb = &btm_sec_cb;
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev_by_handle(handle);
+
+  p_cb->ediv = ediv;
+  memcpy(p_cb->enc_rand, rand, BT_OCTET8_LEN);
+
+  if (p_dev_rec == NULL) {
+    log::warn("no security record for handle, even on retry: 0x{:x}", handle);
+    return;
+  }
+
+  if (!smp_proc_ltk_request(p_dev_rec->bd_addr)) {
+    btm_ble_ltk_request_reply(p_dev_rec->bd_addr, false, Octet16{0});
+  }
+}
+
 /*******************************************************************************
  *
  * Function         btm_ble_ltk_request
@@ -1206,10 +1224,15 @@ void btm_ble_ltk_request(uint16_t handle, BT_OCTET8 rand, uint16_t ediv) {
 
   memcpy(p_cb->enc_rand, rand, BT_OCTET8_LEN);
 
-  if (p_dev_rec != NULL) {
-    if (!smp_proc_ltk_request(p_dev_rec->bd_addr)) {
-      btm_ble_ltk_request_reply(p_dev_rec->bd_addr, false, Octet16{0});
-    }
+  if (p_dev_rec == NULL) {
+    log::warn("no security record for handle: 0x{:x}", handle);
+    do_in_main_thread_delayed(base::BindOnce(btm_ble_ltk_request_retry, handle, rand, ediv),
+                              std::chrono::milliseconds(50));
+    return;
+  }
+
+  if (!smp_proc_ltk_request(p_dev_rec->bd_addr)) {
+    btm_ble_ltk_request_reply(p_dev_rec->bd_addr, false, Octet16{0});
   }
 }
 
