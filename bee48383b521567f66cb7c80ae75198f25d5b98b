@@ -44,6 +44,24 @@
       ],
       "revId": "bee48383b521567f66cb7c80ae75198f25d5b98b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "020efc2b_cd3b0d58",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T07:06:18Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4bede22d_cdecc1dd",
+      "revId": "bee48383b521567f66cb7c80ae75198f25d5b98b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
