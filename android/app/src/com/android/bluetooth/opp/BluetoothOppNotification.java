@@ -51,6 +51,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.flags.Flags;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -630,6 +631,10 @@ class BluetoothOppNotification {
                             .setLocalOnly(true);
 
             mNotificationMgr.notify(NOTIFICATION_ID_COMPLETE_SUMMARY, b.build());
+        }
+
+        if (Flags.oppRemoveEmptyGroupNotification() && inboundNum == 0 && outboundNum == 0) {
+            mNotificationMgr.cancel(NOTIFICATION_ID_COMPLETE_SUMMARY);
         }
     }
 
