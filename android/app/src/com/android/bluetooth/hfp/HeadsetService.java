@@ -1503,6 +1503,9 @@ public class HeadsetService extends ProfileService {
                 } else {
                     broadcastActiveDevice(mActiveDevice);
                 }
+                if (Flags.updateActiveDeviceInBandRingtone()) {
+                    updateInbandRinging(device, true);
+                }
             } else if (shouldPersistAudio()) {
                 if (Utils.isScoManagedByAudioEnabled()) {
                     // tell Audio Framework that active device changed
@@ -1544,9 +1547,9 @@ public class HeadsetService extends ProfileService {
                 } else {
                     broadcastActiveDevice(mActiveDevice);
                 }
-            }
-            if (Flags.updateActiveDeviceInBandRingtone()) {
-                updateInbandRinging(device, true);
+                if (Flags.updateActiveDeviceInBandRingtone()) {
+                    updateInbandRinging(device, true);
+                }
             }
         }
         return true;
