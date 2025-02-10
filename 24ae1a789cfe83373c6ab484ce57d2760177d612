@@ -22,6 +22,30 @@
       },
       "revId": "24ae1a789cfe83373c6ab484ce57d2760177d612",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a911f6_a0189514",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-10T06:38:34Z",
+      "side": 1,
+      "message": "My understanding was that packets are inserted to a queue in HciLayer, and will be consumed in send_next_command and sent to HalHost. This reminds me even if we block  the enqueue, it might still be possible to send HCI command to hal after HciLayer is notified to reset controller.",
+      "parentUuid": "c7abd84a_be30b327",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "24ae1a789cfe83373c6ab484ce57d2760177d612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
