@@ -144,6 +144,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52671b2c_ca2d6732",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:29:39Z",
+      "side": 1,
+      "message": "Yes, actually this metadata addiiton as per the settings app requirement, they want to know this info on what is the current state, and they can get to know whether is duplicate or not by checking the freq update.",
+      "parentUuid": "4187f1a7_e0316de2",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5db22d11_92a3133b",
@@ -199,6 +217,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0dc5e43_a3fde7e0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:29:39Z",
+      "side": 1,
+      "message": "Sure, that makes more sense.",
+      "parentUuid": "5db22d11_92a3133b",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2af66834_61985812",
@@ -236,6 +272,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36744f65_8f7af180",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:29:39Z",
+      "side": 1,
+      "message": "AFAIK, this is just an indicator majorly for the bond_lost, and not for the bond_status. This is required for the user to know whether the bond is lost (\u003d\u003d1) or not.\n@rwt@google.com could you please confirm on this ?",
+      "parentUuid": "2af66834_61985812",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b34bd70_263eb150",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
         "patchSetId": 9
@@ -265,6 +319,24 @@
           ]
         }
       ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af62ea10_d00f37df",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:29:39Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "4b34bd70_263eb150",
       "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
