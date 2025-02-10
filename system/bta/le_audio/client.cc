@@ -5478,6 +5478,8 @@ public:
                is_releasing_for_reconfiguration_other_direction ? "True" : "False");
     log::debug("is_ongoing_call_on_other_direction={}",
                is_ongoing_call_on_other_direction ? "True" : "False");
+    log::debug("configuration_context_type_= {}.",
+                              ToString(configuration_context_type_));
 
     /* If the other direction is a bidir scenario we might want to take it into the account, but
      * not always. Look below for details.
