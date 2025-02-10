@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f146c4_2f40b496",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-10T18:17:46Z",
+      "side": 1,
+      "message": "I am not a fan of waiting forever, because that mean we may simply not raise any error never, just deadlock at some point.\n\nCould we instead crash the stack when this happen ? (and increase the time to 2000 if we are worried about this happening to often).\n\nSimply because having a crash is clear and give information, while having a bluetooth stuck can lead to a very hard to debug situation.\n\n@okamil@google.com, please let me know what you think here too",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
