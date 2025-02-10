@@ -631,6 +631,10 @@ class BluetoothOppNotification {
 
             mNotificationMgr.notify(NOTIFICATION_ID_COMPLETE_SUMMARY, b.build());
         }
+
+        if (inboundNum == 0 && outboundNum == 0) {
+            mNotificationMgr.cancel(NOTIFICATION_ID_COMPLETE_SUMMARY);
+        }
     }
 
     @VisibleForTesting
