@@ -88,6 +88,24 @@
       "parentUuid": "3577ebbe_1f3f1d65",
       "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed12e1bd_3e7e0256",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-10T09:19:48Z",
+      "side": 1,
+      "message": "Hi @siyuanh@google.com, @bhaktha@google.com, @wescande@google.com and @okamil@google.com, or how about:\n```c\nvoid disconnectAllBrEdrAcls() {\n        if (mAdapterProperties \u003d\u003d null) {\n            return;\n        }\n\n        BluetoothDevice[] bondedDevices \u003d mAdapterProperties.getBondedDevices();\n        for (BluetoothDevice device : bondedDevices) {\n            if (isConnected(device)) {\n                mNativeInterface.disconnectAcl(device, TRANSPORT_BREDR);\n            }\n        }\n    }\n```",
+      "parentUuid": "8f2f5ac5_be021e76",
+      "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
