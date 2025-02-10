@@ -57,6 +57,7 @@ std::string dump_rc_opcode(uint8_t opcode);
 std::string dump_rc_event(uint8_t event);
 std::string dump_rc_notification_event_id(uint8_t event_id);
 std::string dump_rc_pdu(uint8_t pdu);
+std::string dump_bt_error_code(tHCI_ERROR_CODE error_code);
 
 uint32_t devclass2uint(const DEV_CLASS dev_class);
 DEV_CLASS uint2devclass(uint32_t dev);
