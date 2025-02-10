@@ -550,6 +550,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "173b3b6f_bb5a23ac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T17:14:15Z",
+      "side": 1,
+      "message": "I think we should log device, transport, key size and algorithm in success cases.\nDevice and transport in the failure cases.\nI guess, we can take it up later as a separate metrics work.",
+      "parentUuid": "edd8f5b6_7e316ece",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b99666d9_d14902f5",

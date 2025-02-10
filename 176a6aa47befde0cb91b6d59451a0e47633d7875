@@ -290,6 +290,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78ba91d0_c22c939a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T17:14:15Z",
+      "side": 1,
+      "message": "Metadata state should be reset only on successful encryption.",
+      "parentUuid": "36744f65_8f7af180",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b34bd70_263eb150",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
         "patchSetId": 9
