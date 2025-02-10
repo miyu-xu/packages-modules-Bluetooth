@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d8f8193_c05b1571",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:39:05Z",
+      "side": 1,
+      "message": "This is corrected as per https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3478068/comment/4b34bd70_263eb150/",
+      "fixSuggestions": [
+        {
+          "fixId": "192e8dcc_4859c36b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "03c81b4aa5676d67ed2c5598dcbc393d4f68b3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
