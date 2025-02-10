@@ -118,6 +118,30 @@
       },
       "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c8bdcc_5a28a21b",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-10T05:55:20Z",
+      "side": 0,
+      "message": "https://r.android.com/3482672 is the reland.",
+      "parentUuid": "1d172b93_ca3b0346",
+      "range": {
+        "startLine": 109,
+        "startChar": 47,
+        "endLine": 109,
+        "endChar": 51
+      },
+      "revId": "14cff6158b66052d12c5b0e5a2f12ed9e9f7900a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
