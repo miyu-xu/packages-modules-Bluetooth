@@ -1,0 +1,94 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6575f9ec_456672a3",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1808,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T17:10:28Z",
+      "side": 1,
+      "message": "Nit: use \"_\" as prefix/postfix in the macro argument names to avoid accidental matching with other identifiers in the scope.",
+      "fixSuggestions": [
+        {
+          "fixId": "55638d6d_19036cad",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 1808,
+                "startChar": 0,
+                "endLine": 1813,
+                "endChar": 0
+              },
+              "replacement": "#define ADD_APPEARANCE_TO_COD_CASE(_appearance, _value, _service, _major, _minor) \\\n  case _appearance:                                                           \\\n    dev_class[0] \u003d _service;                                                  \\\n    dev_class[1] \u003d _major;                                                    \\\n    dev_class[2] \u003d _minor;                                                    \\\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8409eeec8d308760c4a9f58849239748561042a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0435cf92_95fa6406",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T17:10:28Z",
+      "side": 1,
+      "message": "Don\u0027t assume the name of the DEV_CLASS variable.\nAnother way could be to just return the value in every case\ncase (appearance): return DEV_CLASS{service, major, minor};",
+      "fixSuggestions": [
+        {
+          "fixId": "f5c8cd98_c2b329b8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 1806,
+                "startChar": 0,
+                "endLine": 1815,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 1816,
+                "startChar": 0,
+                "endLine": 1817,
+                "endChar": 0
+              },
+              "replacement": "    APPEARANCE_TO_COD(return DEV_CLASS{service, major, minor});\n"
+            },
+            {
+              "path": "system/stack/btm/btm_ble_gap.cc",
+              "range": {
+                "startLine": 1820,
+                "startChar": 0,
+                "endLine": 1822,
+                "endChar": 0
+              },
+              "replacement": "  return kDevClassEmpty;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8409eeec8d308760c4a9f58849239748561042a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
