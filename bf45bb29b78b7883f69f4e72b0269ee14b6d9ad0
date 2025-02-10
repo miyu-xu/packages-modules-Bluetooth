@@ -94,6 +94,30 @@
       },
       "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "723b9ef1_cfb5f411",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-10T23:45:19Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think it\u0027s Rust that\u0027s taking so long\n\nAgree. It looks more like there is another task blocking the \"management_thread\".\nMaybe another timer is firing after 4 sec and allow to recover ?\nDo you have a bugreport with this scenario I could have a look into ?",
+      "parentUuid": "490d811b_b49934db",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
