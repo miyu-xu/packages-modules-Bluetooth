@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6191c9e7_f7e35ca1",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-10T22:11:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8f7f854a_e64642cb",
+      "range": {
+        "startLine": 19,
+        "startChar": 16,
+        "endLine": 19,
+        "endChar": 20
+      },
+      "revId": "8387a41d3e28bf7faa700ed57c910cad57bf832f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eab1e0f2_14992ad1",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-10T21:46:08Z",
       "side": 1,
       "message": "Running atest net_test_bluetooth against cuttlefish on my cloudtop fails with this error:\n\nx86_64 net_test_bluetooth\n-------------------------\nnet_test_bluetooth (10 Tests)\n[1/10] BluetoothTest#AdapterEnableDisable: FAILED (79ms)\n\nSTACKTRACE:\nNo test results.\nthread \u0027\u003cunnamed\u003e\u0027 panicked at packages/modules/Bluetooth/system/rust/src/lib.rs:88:33:\nAlready not running\n\nRUNNER ERROR: Test run incomplete. Expected 10 tests, received 0",
+      "range": {
+        "startLine": 88,
+        "startChar": 12,
+        "endLine": 88,
+        "endChar": 62
+      },
+      "revId": "8387a41d3e28bf7faa700ed57c910cad57bf832f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03cc8b2e_dc037b1e",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-10T22:11:52Z",
+      "side": 1,
+      "message": "Ok, I\u0027ve changed it back to a warning. The currently checked in code doesn\u0027t panic if stop is called when already stopped.",
+      "parentUuid": "eab1e0f2_14992ad1",
       "range": {
         "startLine": 88,
         "startChar": 12,
