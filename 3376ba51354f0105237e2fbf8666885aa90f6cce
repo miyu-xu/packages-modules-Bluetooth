@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63c65a1d_22ab2310",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppUtility.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-10T11:00:21Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we check nullness?",
+      "range": {
+        "startLine": 580,
+        "startChar": 15,
+        "endLine": 580,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8e7fed70_f4ebdf84",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/opp/BluetoothOppUtility.java",
+              "range": {
+                "startLine": 581,
+                "startChar": 0,
+                "endLine": 581,
+                "endChar": 0
+              },
+              "replacement": "        if (packageName \u003d\u003d null) {\n            return;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3376ba51354f0105237e2fbf8666885aa90f6cce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
