@@ -4506,6 +4506,9 @@ public:
       case AudioState::IDLE:
         if (audio_receiver_state_ == AudioState::READY_TO_RELEASE) {
           OnAudioSuspend();
+        } else {
+          log::info("calling source ConfirmSuspendRequest in audio_sender_state_ idle");
+          le_audio_source_hal_client_->ConfirmSuspendRequest();
         }
         return;
       case AudioState::READY_TO_RELEASE:
@@ -4517,6 +4520,13 @@ public:
         (audio_receiver_state_ == AudioState::READY_TO_RELEASE)) {
       OnAudioSuspend();
       bluetooth::le_audio::MetricsCollector::Get()->OnStreamEnded(active_group_id_);
+    } else {
+      //In VBC and Call streaming cases, send immediate ack
+      //for the first initiate suspsend.
+      if (le_audio_source_hal_client_) {
+        log::info("calling source ConfirmSuspendRequest");
+        le_audio_source_hal_client_->ConfirmSuspendRequest();
+      }
     }
 
     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
@@ -4741,6 +4751,9 @@ public:
       case AudioState::IDLE:
         if (audio_sender_state_ == AudioState::READY_TO_RELEASE) {
           OnAudioSuspend();
+        } else {
+          log::info("calling sink ConfirmSuspendRequest in audio_receiver_state_ IDLE");
+          le_audio_sink_hal_client_->ConfirmSuspendRequest();
         }
         return;
       case AudioState::READY_TO_RELEASE:
@@ -4751,6 +4764,13 @@ public:
     if ((audio_sender_state_ == AudioState::IDLE) ||
         (audio_sender_state_ == AudioState::READY_TO_RELEASE)) {
       OnAudioSuspend();
+    } else {
+      //In VBC and Call streaming cases, send immediate ack
+      //for the first initiate suspsend.
+      if (le_audio_sink_hal_client_) {
+        log::info("calling sink ConfirmSuspendRequest");
+        le_audio_sink_hal_client_->ConfirmSuspendRequest();
+      }
     }
 
     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
@@ -6330,6 +6350,16 @@ public:
               log::info("Clear pending configuration flag for group {}", group->group_id_);
               group->ClearPendingConfiguration();
               reconfigurationComplete();
+            }
+
+            if (le_audio_source_hal_client_) {
+              log::info("calling source ConfirmSuspendRequest");
+              le_audio_source_hal_client_->ConfirmSuspendRequest();
+            }
+
+            if (le_audio_sink_hal_client_) {
+              log::info("calling sink ConfirmSuspendRequest");
+              le_audio_sink_hal_client_->ConfirmSuspendRequest();
             }
           }
         }
