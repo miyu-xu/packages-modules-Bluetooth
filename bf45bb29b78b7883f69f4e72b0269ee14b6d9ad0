@@ -46,6 +46,30 @@
       },
       "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "633d5582_a22353cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-10T21:06:47Z",
+      "side": 1,
+      "message": "4 seconds... what takes so long !?! \n\nFYI the overall timeout to start the Bluetooth is expected to take 4 seconds ([link](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterState.java;l\u003d255;drc\u003de53a42a1dd57ec252ffe1ed14113f5329ffe44f9) / a bit more on slow devices). So if just the rust init take that much time, there is probably something off.\n\nBut you are making a good point. A failure here could just block the whole stack and be investigated as any other lock contention in the stack, without the need to make another timeout.",
+      "parentUuid": "a4afa31d_f4ab7269",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
