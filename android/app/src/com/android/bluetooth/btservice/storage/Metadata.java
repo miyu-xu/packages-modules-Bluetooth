@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "metadata")
+
 public class Metadata {
     @PrimaryKey @NonNull private String address;
 
@@ -83,6 +84,8 @@ public class Metadata {
      * <p>TODO: b/395030709 - Remove the literal 35 and add metadata to BluetoothDevice in 25Q4.
      */
     public static final int METADATA_BOND_LOST = 35;
+    public statis final int METADATA_BOND_LOST_VALUE_KEY_MISSING = 1;
+    public static final int METADATA_BOND_LOST_VALUE_ENCRYPTION_CHANGE = 0;
 
     Metadata(String address) {
         this(address, false, false);
