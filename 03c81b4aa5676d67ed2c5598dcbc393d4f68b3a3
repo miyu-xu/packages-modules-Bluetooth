@@ -34,6 +34,41 @@
       ],
       "revId": "03c81b4aa5676d67ed2c5598dcbc393d4f68b3a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b23302b_f6bb5468",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:39:45Z",
+      "side": 1,
+      "message": "These are added as per: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3478068/comment/5db22d11_92a3133b/",
+      "fixSuggestions": [
+        {
+          "fixId": "87e4fbf7_9ac8460d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "    public static final int METADATA_BOND_LOST_VALUE_KEY_MISSING \u003d 1;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "03c81b4aa5676d67ed2c5598dcbc393d4f68b3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
