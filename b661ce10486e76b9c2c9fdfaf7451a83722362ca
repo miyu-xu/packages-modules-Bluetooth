@@ -1,0 +1,115 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63647b87_a7970bbb",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-10T10:32:44Z",
+      "side": 1,
+      "message": "NIT: is it safe to assume CIS handle would be properly set, and referring existing CIS stack is aware of ?",
+      "range": {
+        "startLine": 264,
+        "startChar": 6,
+        "endLine": 264,
+        "endChar": 85
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c3192cc8_ccc1600c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 264,
+                "startChar": 0,
+                "endLine": 265,
+                "endChar": 0
+              },
+              "replacement": "      if (cis \u003d\u003d nullptr) {\n        log::warn(\"No such cis: {}\", cis_param.cis_conn_handle);\n        continue;\n      }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 290,
+                "startChar": 0,
+                "endLine": 291,
+                "endChar": 0
+              },
+              "replacement": "      if (cis \u003d\u003d nullptr) {\n        log::warn(\"No such cis: {}\", el.cis_conn_handle);\n        continue;\n      }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 315,
+                "startChar": 0,
+                "endLine": 316,
+                "endChar": 0
+              },
+              "replacement": "    if (cis \u003d\u003d nullptr) {\n      log::warn(\"No such cis: {}\", cis_handle);\n      return;\n    }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 377,
+                "startChar": 0,
+                "endLine": 378,
+                "endChar": 0
+              },
+              "replacement": "    if (iso \u003d\u003d nullptr) {\n      log::warn(\"No such iso connection: {}\", conn_handle);\n      return;\n    }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 434,
+                "startChar": 0,
+                "endLine": 435,
+                "endChar": 0
+              },
+              "replacement": "    if (iso \u003d\u003d nullptr) {\n      log::warn(\"No such iso connection: 0x{:x}\", iso_handle);\n      return;\n    }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 499,
+                "startChar": 0,
+                "endLine": 500,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"No such iso connection: 0x{:x}\", iso_handle);\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 531,
+                "startChar": 0,
+                "endLine": 532,
+                "endChar": 0
+              },
+              "replacement": "    if (iso \u003d\u003d nullptr) {\n      log::warn(\"No such iso connection handle: 0x{:x}\", iso_handle);\n      return;\n    }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_iso_impl.h",
+              "range": {
+                "startLine": 581,
+                "startChar": 0,
+                "endLine": 582,
+                "endChar": 0
+              },
+              "replacement": "    if (cis \u003d\u003d nullptr) {\n      log::warn(\"No such cis: {}\", evt.cis_conn_hdl);\n      return;\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b661ce10486e76b9c2c9fdfaf7451a83722362ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
