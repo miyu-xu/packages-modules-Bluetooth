@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51afdff9_9ddf04f0",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-10T19:08:58Z",
+      "side": 1,
+      "message": "Should we panic ?\n\nEven if we could silently recover here, I believe this would be a symptome of a way bigger architectural problem and we would want to detect it as early as possible.",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "4574c7d4b4a5cdedd23c59bb1c4e227220850c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
