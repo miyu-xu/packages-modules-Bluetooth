@@ -281,6 +281,13 @@ void LogMetricLeDeviceInAcceptList(hci::Address address, bool is_connect);
  */
 void LogMetricLeConnectionLifecycle(hci::Address address, bool is_connect, bool is_direct);
 
+/**
+ * Logs GATT connecting status
+ * @param address Address of the device
+ * @param is_extended indicates LE extended or legacy connection
+ */
+void LogMetricLeConnectingStatus(hci::Address address, bool is_extended);
+
 bool CountCounterMetrics(int32_t key, int64_t count);
 
 }  // namespace shim

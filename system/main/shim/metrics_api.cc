@@ -182,6 +182,13 @@ void LogMetricLeConnectionLifecycle(hci::Address address, bool is_connect, bool 
   }
 }
 
+void LogMetricLeConnectingStatus(hci::Address address, bool is_extended) {
+    bluetooth::os::LogMetricBluetoothEvent(address,
+                                           android::bluetooth::EventType::GATT_CONNECTING_NATIVE,
+                                           is_extended ? android::bluetooth::State::LE_EXTENDED_CREATE_CONN:
+                                           android::bluetooth::State::LE_CREATE_CONN);
+}
+
 bool CountCounterMetrics(int32_t key, int64_t count) {
   auto counter_metrics = GetCounterMetrics();
   if (counter_metrics == nullptr) {
