@@ -70,6 +70,30 @@
       },
       "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "490d811b_b49934db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-10T22:17:43Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s Rust that\u0027s taking so long. I believe the management thread just wasn\u0027t scheduled. See the bug and the log messages. (I had the wrong bug linked to this which I\u0027ve now fixed.)",
+      "parentUuid": "633d5582_a22353cc",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
