@@ -27,10 +27,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
-import android.bluetooth.BluetoothStatusCodes;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.database.Cursor;
 import android.media.AudioManager;
 import android.net.Uri;
@@ -58,10 +56,8 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
-import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.RemoteDevices;
-import com.android.bluetooth.btservice.SilenceDeviceManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
 
@@ -103,8 +99,7 @@ public class HeadsetStateMachineTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private AdapterService mAdapterService;
-    @Mock private ActiveDeviceManager mActiveDeviceManager;
-    @Mock private SilenceDeviceManager mSilenceDeviceManager;
+
     @Mock private DatabaseManager mDatabaseManager;
     @Mock private HeadsetService mHeadsetService;
     @Mock private HeadsetSystemInterface mSystemInterface;
@@ -113,7 +108,10 @@ public class HeadsetStateMachineTest {
     @Mock private Intent mIntent;
     private MockContentResolver mMockContentResolver;
     @Mock private HeadsetNativeInterface mNativeInterface;
-    @Mock private RemoteDevices mRemoteDevices;
+
+    @SuppressWarnings("unused")
+    @Mock
+    private RemoteDevices mRemoteDevices;
 
     @Before
     public void setUp() throws Exception {
@@ -129,10 +127,6 @@ public class HeadsetStateMachineTest {
         // Get a database
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true).when(mDatabaseManager).setAudioPolicyMetadata(anyObject(), anyObject());
-        // Get an active device manager
-        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
-        // Get a silence device manager
-        doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
         doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
         doReturn(true).when(mNativeInterface).connectHfp(mTestDevice);
         doReturn(true).when(mNativeInterface).disconnectHfp(mTestDevice);
@@ -141,22 +135,10 @@ public class HeadsetStateMachineTest {
         // Stub headset service
         mMockContentResolver = new MockContentResolver();
         when(mHeadsetService.getContentResolver()).thenReturn(mMockContentResolver);
-        doReturn(BluetoothDevice.BOND_BONDED)
-                .when(mAdapterService)
-                .getBondState(any(BluetoothDevice.class));
-        when(mHeadsetService.bindService(any(Intent.class), any(ServiceConnection.class), anyInt()))
-                .thenReturn(true);
         when(mHeadsetService.getResources())
                 .thenReturn(InstrumentationRegistry.getTargetContext().getResources());
-        when(mHeadsetService.getPackageManager())
-                .thenReturn(InstrumentationRegistry.getContext().getPackageManager());
-        when(mHeadsetService.getConnectionPolicy(any(BluetoothDevice.class)))
-                .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        when(mHeadsetService.getForceScoAudio()).thenReturn(true);
         when(mHeadsetService.okToAcceptConnection(any(BluetoothDevice.class), anyBoolean()))
                 .thenReturn(true);
-        when(mHeadsetService.isScoAcceptable(any(BluetoothDevice.class)))
-                .thenReturn(BluetoothStatusCodes.SUCCESS);
         // Setup thread and looper
         mHandlerThread = new HandlerThread("HeadsetStateMachineTestHandlerThread");
         mHandlerThread.start();
