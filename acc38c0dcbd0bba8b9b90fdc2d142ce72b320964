@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53cfcc2_6f54d61c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/service_discovery/ServiceDiscoveryTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-10T10:46:34Z",
+      "side": 1,
+      "message": "remove from here",
+      "range": {
+        "startLine": 155,
+        "startChar": 2,
+        "endLine": 160,
+        "endChar": 18
+      },
+      "revId": "acc38c0dcbd0bba8b9b90fdc2d142ce72b320964",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
