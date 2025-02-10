@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "287eefeb_20cec66b",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T20:38:35Z",
+      "side": 1,
+      "message": "Nit: It may be simpler to use std::find()",
+      "fixSuggestions": [
+        {
+          "fixId": "e97b5cfe_49b0f02e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_profile_storage.cc",
+              "range": {
+                "startLine": 352,
+                "startChar": 0,
+                "endLine": 358,
+                "endChar": 0
+              },
+              "replacement": "  return std::find(remote_uuids.begin(), remote_uuids.end(), profile) !\u003d remote_uuids.end();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5f21885baacba0cb05b63530ae2d773b008d15ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
