@@ -70,6 +70,30 @@
       },
       "revId": "4574c7d4b4a5cdedd23c59bb1c4e227220850c76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6afee60_6155532e",
+        "filename": "system/rust/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-10T20:47:08Z",
+      "side": 1,
+      "message": "it\u0027s my experience that the panic messages don\u0027t actually show up in the logs in Android bugreports, so in the past I\u0027ve also logged as well since logs definitely do.  if your experience is different that is also fine.",
+      "parentUuid": "cbac5528_8337f373",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "4574c7d4b4a5cdedd23c59bb1c4e227220850c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
