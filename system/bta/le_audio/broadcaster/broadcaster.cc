@@ -1378,6 +1378,7 @@ private:
       }
 
       instance->audio_state_ = AudioState::SUSPENDED;
+      instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
       if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
         instance->UpdateAudioActiveStateInPublicAnnouncement();
         instance->setBroadcastTimers();
