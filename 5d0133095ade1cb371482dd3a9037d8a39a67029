@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d422a5d1_e36e972f",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T20:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8a51fcd_6fb61d5f",
+      "range": {
+        "startLine": 191,
+        "startChar": 1,
+        "endLine": 191,
+        "endChar": 26
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "536dedf4_b0e87ca9",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-02-10T17:27:28Z",
       "side": 1,
       "message": "Please collapse into a single conditional",
+      "range": {
+        "startLine": 456,
+        "startChar": 4,
+        "endLine": 457,
+        "endChar": 36
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d14536_e7b995ca",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T20:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "536dedf4_b0e87ca9",
       "range": {
         "startLine": 456,
         "startChar": 4,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f97644e_9f31e649",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T20:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61b0927f_b31a1492",
+      "range": {
+        "startLine": 513,
+        "startChar": 4,
+        "endLine": 514,
+        "endChar": 36
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a8f61e8_a3ad3b41",
@@ -111,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd0b45b1_689321cb",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T20:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a8f61e8_a3ad3b41",
+      "range": {
+        "startLine": 662,
+        "startChar": 4,
+        "endLine": 665,
+        "endChar": 38
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d820279_9ff0e4a8",
@@ -124,6 +220,30 @@
       "writtenOn": "2025-02-10T17:27:28Z",
       "side": 1,
       "message": "Please collapse into a single conditional",
+      "range": {
+        "startLine": 712,
+        "startChar": 4,
+        "endLine": 715,
+        "endChar": 38
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "604e25ba_410f98bb",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T20:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d820279_9ff0e4a8",
       "range": {
         "startLine": 712,
         "startChar": 4,
