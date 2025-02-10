@@ -64,3 +64,5 @@ void log_le_connection_status(bluetooth::hci::Address address, bool is_connect,
 void log_le_device_in_accept_list(bluetooth::hci::Address address, bool is_add);
 
 void log_le_connection_lifecycle(bluetooth::hci::Address address, bool is_connect, bool is_direct);
+
+void log_le_connecting_status(bluetooth::hci::Address address, bool is_extended);

@@ -906,6 +906,9 @@ public:
       own_address_type = OwnAddressType::RESOLVABLE_OR_RANDOM_ADDRESS;
     }
 
+    bool is_extended = controller_->IsSupported(OpCode::LE_EXTENDED_CREATE_CONNECTION);
+    log_le_connecting_status(address, is_extended);
+
     if (controller_->IsSupported(OpCode::LE_EXTENDED_CREATE_CONNECTION)) {
       bool only_init_1m_phy =
               os::GetSystemPropertyBool(kPropertyEnableBleOnlyInit1mPhy, kEnableBleOnlyInit1mPhy);
