@@ -22,6 +22,30 @@
       },
       "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4afa31d_f4ab7269",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-10T20:35:58Z",
+      "side": 1,
+      "message": "We could increase the timeout, but in the bug, there appeared to be a 4 second delay before the thread ran, so the timeout would need to be more than that, and so the question would be: how long do you need to make it?\n\nHowever, I don\u0027t understand what is special about this path that means a timeout is warranted. Why is this more likely to stall forever as compared with any other part of the Bluetooth stack? I don\u0027t see anything special about the code path this follows: it\u0027s just a small amount of initiasation as far as I can tell (but the code is new to me so I might be missing something).\n\nIf nothing distinguishes this code path from other similar code paths that don\u0027t have a timeout, then I don\u0027t believe a timeout is warranted here. With or without a timer here, a bug would still need to be fixed if there were an issue here.",
+      "parentUuid": "b8f146c4_2f40b496",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "bf45bb29b78b7883f69f4e72b0269ee14b6d9ad0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
