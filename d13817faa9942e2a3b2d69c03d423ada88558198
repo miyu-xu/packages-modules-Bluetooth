@@ -163,6 +163,24 @@
       "parentUuid": "f37dc52c_85ad4f41",
       "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1be11b4_96f2f28c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T17:16:18Z",
+      "side": 1,
+      "message": "Broadcast should not be stopped based on the status. However, we don\u0027t need to reset the metadata or collect metric if the encryption failed.",
+      "parentUuid": "0ae16e27_17853edb",
+      "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
