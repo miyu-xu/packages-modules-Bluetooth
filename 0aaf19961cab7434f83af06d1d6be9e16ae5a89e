@@ -22,6 +22,30 @@
       },
       "revId": "0aaf19961cab7434f83af06d1d6be9e16ae5a89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d0a6f5_09087d9f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1660,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-10T01:44:49Z",
+      "side": 1,
+      "message": "Good question. Looking at it more detailed, some of the table alterations just add *nullable* new columns https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java. These do not need to be added to the ContentValues device object and are usually checked only for the columns existence with a null value such as:\n\u003e `assertColumnBlobData(cursor, \"spatial_audio\", null);`\n\nCompared to the other fields such `active_audio_device_policy` which are marked `NOT NULL` and must be filed in for the test to pass.\n\nI thought of reusing `contentValuesDevice_116()` for both `testDatabaseMigration_116_117()` and `testDatabaseMigration_117_118()` but to keep a convention of 1 test with 1 contentValues function, I decided to keep the 1:1 ratio with these single line functions. PLMK if you think it\u0027s better to reuse if there are no changes in the ContentValues device object.",
+      "parentUuid": "d8c139fd_79e5998e",
+      "range": {
+        "startLine": 1658,
+        "startChar": 3,
+        "endLine": 1660,
+        "endChar": 5
+      },
+      "revId": "0aaf19961cab7434f83af06d1d6be9e16ae5a89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
