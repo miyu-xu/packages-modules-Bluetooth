@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34985b82_ca362e63",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-10T10:44:13Z",
+      "side": 1,
+      "message": "Remove from here . required intent registeration to be done in start of test case and unregister on end of test case . follow [pairingtest](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java;l\u003d175;bpv\u003d0;bpt\u003d0) examples",
+      "range": {
+        "startLine": 220,
+        "startChar": 5,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "1bf015e24663f5b36410de10189ecd84c3171849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
