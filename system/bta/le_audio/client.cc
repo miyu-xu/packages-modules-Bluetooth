@@ -5404,6 +5404,8 @@ public:
                is_releasing_for_reconfiguration_other_direction ? "True" : "False");
     log::debug("is_ongoing_call_on_other_direction={}",
                is_ongoing_call_on_other_direction ? "True" : "False");
+    log::debug("configuration_context_type_= {}.",
+                              ToString(configuration_context_type_));
 
     if (remote_metadata.get(remote_other_direction).test_any(all_bidirectional_contexts) &&
         !(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction)) {
