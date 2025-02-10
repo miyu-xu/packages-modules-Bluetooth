@@ -226,6 +226,7 @@ typedef struct {
   bt_bond_function_t function;
   bt_bond_state_t state;
   struct timespec timestamp;
+  bt_status_t status;
   tHCI_ERROR_CODE fail_reason;
 } btif_bond_event_t;
 
@@ -282,7 +283,8 @@ static void btif_dm_ble_sc_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type);
 static const char* btif_get_default_local_name();
 
 static void btif_stats_add_bond_event(const RawAddress& bd_addr, bt_bond_function_t function,
-                                      bt_bond_state_t state, tHCI_ERROR_CODE fail_reason);
+                                      bt_bond_state_t state, bt_status_t status,
+                                      tHCI_ERROR_CODE fail_reason);
 
 static void btif_on_name_read(RawAddress bd_addr, tHCI_ERROR_CODE hci_status, const BD_NAME bd_name,
                               bool during_device_search);
@@ -544,7 +546,7 @@ static bool check_sdp_bl(const RawAddress* remote_bdaddr) {
 
 static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
                                bt_bond_state_t state) {
-  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_BOND_STATE_CHANGED, state,
+  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_BOND_STATE_CHANGED, state, status,
                             (tHCI_ERROR_CODE)pairing_cb.fail_reason);
 
   if ((pairing_cb.state == state) && (state == BT_BOND_STATE_BONDING)) {
@@ -2393,7 +2395,7 @@ void btif_dm_create_bond(const RawAddress bd_addr, tBT_TRANSPORT transport) {
   BTM_LogHistory(kBtmLogTag, bd_addr, "Create bond",
                  std::format("transport:{}", bt_transport_text(transport)));
 
-  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND, pairing_cb.state,
+  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND, pairing_cb.state, BT_STATUS_NA,
                             (tHCI_ERROR_CODE)pairing_cb.fail_reason);
 
   pairing_cb.timeout_retries = NUM_TIMEOUT_RETRIES;
@@ -2416,7 +2418,7 @@ void btif_dm_create_bond_le(const RawAddress bd_addr, tBLE_ADDR_TYPE addr_type) 
   BTM_LogHistory(kBtmLogTag, ble_bd_addr, "Create bond",
                  std::format("transport:{}", bt_transport_text(BT_TRANSPORT_LE)));
 
-  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND, pairing_cb.state,
+  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND, pairing_cb.state, BT_STATUS_NA,
                             (tHCI_ERROR_CODE)pairing_cb.fail_reason);
 
   pairing_cb.timeout_retries = NUM_TIMEOUT_RETRIES;
@@ -2538,7 +2540,7 @@ void btif_dm_cancel_bond(const RawAddress bd_addr) {
 
   BTM_LogHistory(kBtmLogTag, bd_addr, "Cancel bond");
 
-  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CANCEL_BOND, pairing_cb.state,
+  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CANCEL_BOND, pairing_cb.state, BT_STATUS_NA,
                             (tHCI_ERROR_CODE)pairing_cb.fail_reason);
 
   /* TODO:
@@ -2605,7 +2607,7 @@ void btif_dm_remove_bond(const RawAddress bd_addr) {
 
   BTM_LogHistory(kBtmLogTag, bd_addr, "Remove bond");
 
-  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_REMOVE_BOND, pairing_cb.state,
+  btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_REMOVE_BOND, pairing_cb.state, BT_STATUS_NA,
                             (tHCI_ERROR_CODE)pairing_cb.fail_reason);
 
   // special handling for HID devices
@@ -3778,13 +3780,15 @@ static const char* btif_get_default_local_name() {
 }
 
 static void btif_stats_add_bond_event(const RawAddress& bd_addr, bt_bond_function_t function,
-                                      bt_bond_state_t state, tHCI_ERROR_CODE fail_reason) {
+                                      bt_bond_state_t state, bt_status_t status,
+                                      tHCI_ERROR_CODE fail_reason) {
   std::unique_lock<std::mutex> lock(bond_event_lock);
 
   btif_bond_event_t* event = &btif_dm_bond_events[btif_events_end_index];
   event->bd_addr = bd_addr;
   event->function = function;
   event->state = state;
+  event->status = status;
   event->fail_reason = fail_reason;
   clock_gettime(CLOCK_REALTIME, &event->timestamp);
 
@@ -3857,7 +3861,8 @@ void btif_debug_bond_event_dump(int fd) {
         break;
     }
 
-    // TODO: Replace the complete switch with CASE_RETURN_TEXT
+    /* TODO: Replace the complete switch with CASE_RETURN_STRING, and create a separate function to
+     * dump the bond state */
     const char* bond_state;
     switch (event->state) {
       case BT_BOND_STATE_NONE:
@@ -3874,9 +3879,9 @@ void btif_debug_bond_event_dump(int fd) {
         break;
     }
 
-    dprintf(fd, "  %s  %s  %s  %s %s \n", eventtime,
+    dprintf(fd, "  %s  %s  %s  %s  %s  %s\n", eventtime,
             event->bd_addr.ToRedactedStringForLogging().c_str(), func_name, bond_state,
-            dump_bt_error_code(event->fail_reason).c_str());
+            dump_bt_status(event->status).c_str(), dump_bt_error_code(event->fail_reason).c_str());
   }
 }
 

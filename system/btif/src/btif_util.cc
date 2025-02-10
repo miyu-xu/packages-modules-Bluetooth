@@ -44,9 +44,9 @@
 #include "bta_av_api.h"
 #include "bta_hd_api.h"
 #include "bta_hf_client_api.h"
+#include "hardware/bluetooth.h"
 #include "include/macros.h"
 #include "stack/include/hci_error_code.h"
-
 /*******************************************************************************
  *  Constants & Macros
  ******************************************************************************/
@@ -295,6 +295,19 @@ std::string dump_bt_status(bt_status_t status) {
     CASE_RETURN_STRING(BT_STATUS_NOMEM);
     CASE_RETURN_STRING(BT_STATUS_BUSY);
     CASE_RETURN_STRING(BT_STATUS_UNSUPPORTED);
+    CASE_RETURN_STRING(BT_STATUS_PARM_INVALID);
+    CASE_RETURN_STRING(BT_STATUS_UNHANDLED);
+    CASE_RETURN_STRING(BT_STATUS_AUTH_FAILURE);
+    CASE_RETURN_STRING(BT_STATUS_RMT_DEV_DOWN);
+    CASE_RETURN_STRING(BT_STATUS_AUTH_REJECTED);
+    CASE_RETURN_STRING(BT_STATUS_JNI_ENVIRONMENT_ERROR);
+    CASE_RETURN_STRING(BT_STATUS_JNI_THREAD_ATTACH_ERROR);
+    CASE_RETURN_STRING(BT_STATUS_WAKELOCK_ERROR);
+    CASE_RETURN_STRING(BT_STATUS_TIMEOUT);
+    CASE_RETURN_STRING(BT_STATUS_DEVICE_NOT_FOUND);
+    CASE_RETURN_STRING(BT_STATUS_UNEXPECTED_STATE);
+    CASE_RETURN_STRING(BT_STATUS_SOCKET_ERROR);
+    CASE_RETURN_STRING(BT_STATUS_NA);
     default:
       RETURN_UNKNOWN_TYPE_STRING(bt_status_t, status);
   }

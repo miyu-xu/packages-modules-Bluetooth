@@ -111,7 +111,8 @@ typedef enum {
   BT_STATUS_TIMEOUT,
   BT_STATUS_DEVICE_NOT_FOUND,
   BT_STATUS_UNEXPECTED_STATE,
-  BT_STATUS_SOCKET_ERROR
+  BT_STATUS_SOCKET_ERROR,
+  BT_STATUS_NA
 } bt_status_t;
 
 inline std::string bt_status_text(const bt_status_t& status) {
