@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50167443_ddc91879",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-10T17:05:18Z",
+      "side": 1,
+      "message": "Check this.",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "032b20eb27843e1de565db1a56a81285af2f6a4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7e53649_edc86c16",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-10T17:05:18Z",
+      "side": 1,
+      "message": "This must be done in L537 or L613. Am I missing some logic here?",
+      "range": {
+        "startLine": 636,
+        "startChar": 33,
+        "endLine": 636,
+        "endChar": 39
+      },
+      "revId": "032b20eb27843e1de565db1a56a81285af2f6a4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
