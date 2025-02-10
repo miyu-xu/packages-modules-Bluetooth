@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3265e7fd_970a6e27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2025-02-10T19:44:23Z",
+      "side": 1,
+      "message": "Seems fine assuming you add the unsafe block + comment where I marked.",
+      "revId": "78c1ab0c24da1e21a7dcc9eb2757c66c9d0b611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f32aa644_76c21042",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2025-02-10T19:44:23Z",
+      "side": 1,
+      "message": "In theory, with `#[deny(unsafe_op_in_unsafe_fn)]` which should be on for all Android code but has been disabled here, you\u0027d need an unsafe block here.\n\n*This* unsafe block is where you\u0027d mention that `handle` and `btgatt_value_t` both support all byte sequences as valid values, because otherwise, just initializing the union wouldn\u0027t be enough.",
+      "revId": "78c1ab0c24da1e21a7dcc9eb2757c66c9d0b611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a95080ae_3d84fc6b",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2025-02-10T19:44:23Z",
+      "side": 1,
+      "message": "This is likely not what you want to do - `response.handle` and `response.attr_value` are in a union, which means *only one* of them is likely valid at a time. Rust does not have a notion of an \"active field\", so this is not UB because the two fields both have all bit patterns valid, but what you *print* will not be meaningful.",
+      "revId": "78c1ab0c24da1e21a7dcc9eb2757c66c9d0b611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
