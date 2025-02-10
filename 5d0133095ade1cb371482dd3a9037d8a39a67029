@@ -209,6 +209,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92284e78_aefb5bc7",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-10T21:42:45Z",
+      "side": 1,
+      "message": "Not done",
+      "parentUuid": "dd0b45b1_689321cb",
+      "range": {
+        "startLine": 662,
+        "startChar": 4,
+        "endLine": 665,
+        "endChar": 38
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d820279_9ff0e4a8",
         "filename": "system/stack/rfcomm/port_rfc.cc",
         "patchSetId": 16
@@ -244,6 +268,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "8d820279_9ff0e4a8",
+      "range": {
+        "startLine": 712,
+        "startChar": 4,
+        "endLine": 715,
+        "endChar": 38
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ae175e_0f89c93d",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-10T21:42:45Z",
+      "side": 1,
+      "message": "Not done",
+      "parentUuid": "604e25ba_410f98bb",
       "range": {
         "startLine": 712,
         "startChar": 4,
