@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e3f5c53_fc9795ce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:34:11Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "1bcf1705_41e975da",
+      "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f37dc52c_85ad4f41",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 3
@@ -107,6 +125,24 @@
           ]
         }
       ],
+      "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ae16e27_17853edb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-10T03:34:11Z",
+      "side": 1,
+      "message": "I agree, it should be checked before sending out the broadcast.\n@rwt@google.com could you please confirm if there was some reason behind not doing this ?",
+      "parentUuid": "f37dc52c_85ad4f41",
       "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
