@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c9743d5_9d6891fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-10T18:09:20Z",
+      "side": 1,
+      "message": "BTM updates the LE connection state to connected after actual ACL connection when any of the following conditions are met:\n1. Remote features and versions are retrived.\n2. ACL packets are received\n\nIMO it would be better to immediately get into connected state if controller requests LTK similar to #2.",
+      "revId": "0f03e6489473bd5d128dfbffe0d74035147d3740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
