@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e33197_c6d6a6a7",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-10T07:08:25Z",
+      "side": 1,
+      "message": "I think we need a mechanism similar to the `enabled_notify`/`thread_notify` below so that we can be sure that DBus interface is shut down before we send `Message::AdapterShutdown`.\n\nIf you feel this is an overkill, feel free to follow the original approach in patch set 2 (calling `Message::AdapterShutdown` inside `APIMessage::ShutDown`)",
+      "range": {
+        "startLine": 290,
+        "startChar": 29,
+        "endLine": 290,
+        "endChar": 55
+      },
+      "revId": "4ed0495cb14e86abf96d7b42b1d90479f1b25d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
