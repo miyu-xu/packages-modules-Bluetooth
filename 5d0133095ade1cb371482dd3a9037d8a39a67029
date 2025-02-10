@@ -231,6 +231,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ff59744_7c6d390c",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T23:13:05Z",
+      "side": 1,
+      "message": "Thanks. I missed the second condition. Done.",
+      "parentUuid": "92284e78_aefb5bc7",
+      "range": {
+        "startLine": 662,
+        "startChar": 4,
+        "endLine": 665,
+        "endChar": 38
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d820279_9ff0e4a8",
@@ -292,6 +316,30 @@
       "side": 1,
       "message": "Not done",
       "parentUuid": "604e25ba_410f98bb",
+      "range": {
+        "startLine": 712,
+        "startChar": 4,
+        "endLine": 715,
+        "endChar": 38
+      },
+      "revId": "5d0133095ade1cb371482dd3a9037d8a39a67029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "791d7c5e_3602895f",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T23:13:05Z",
+      "side": 1,
+      "message": "Thanks. I missed the second condition. Done.",
+      "parentUuid": "59ae175e_0f89c93d",
       "range": {
         "startLine": 712,
         "startChar": 4,

@@ -22,6 +22,30 @@
       },
       "revId": "ff90c32aa32c9f45f4335e7a8b2622142f35f1b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a126da74_f90e4b38",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 1079,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-10T23:13:05Z",
+      "side": 1,
+      "message": "There are several places using empty initialization {} of RfcommCfgInfo.\n\nif BTSOCK_DATA_PATH_NO_OFFLOAD is zero in btsock_data_path_t, can we just skip the default value but keep using empty initialization {}?\n```\ntypedef enum {\n  BTSOCK_DATA_PATH_NO_OFFLOAD \u003d 0,\n  BTSOCK_DATA_PATH_HARDWARE_OFFLOAD \u003d 1,\n} btsock_data_path_t;\n```",
+      "parentUuid": "2ed54e42_1e795f65",
+      "range": {
+        "startLine": 1079,
+        "startChar": 21,
+        "endLine": 1079,
+        "endChar": 29
+      },
+      "revId": "ff90c32aa32c9f45f4335e7a8b2622142f35f1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
