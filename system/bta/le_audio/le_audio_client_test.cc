@@ -291,6 +291,7 @@ public:
               (override));
   MOCK_METHOD((void), Stop, (), (override));
   MOCK_METHOD((size_t), SendData, (uint8_t* data, uint16_t size), (override));
+  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
@@ -311,6 +312,7 @@ public:
                LeAudioSourceAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes),
               (override));
   MOCK_METHOD((void), Stop, (), (override));
+  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
