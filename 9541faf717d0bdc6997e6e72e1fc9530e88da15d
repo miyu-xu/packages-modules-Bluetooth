@@ -70,6 +70,24 @@
       "parentUuid": "b1b0b563_f9e9ce2b",
       "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2f5ac5_be021e76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-10T08:40:34Z",
+      "side": 1,
+      "message": "Hi bhaktha@, thanks for your information.\n1. It is not the desired behavior for BLE_ON based priviliged apps.\n2. Base on this cls, these apps **can not** want to keep the LE ACL because disconnectAllAclLinks() will disconnect all ACL link what ever BLE or BREDR.\n\nBackground：\n1. To fix the issue of persistent BREDR ACLs due to RFCOMM socket disconnections when BT is disabled but BLE mode is on (Patchset 5).\n2. Unified handling for BREDR disabling: disconnect all ACLs (BREDR or BLE) based on Jack and William\u0027s advice (Patchset 22).\n3. I agreed that disconnecting ACLs instead of RFCOMM sockets is more reasonable.\n\nDear siyuanh@， bhaktha@ and wescande@, first of all, thank you so much for your useful comments. Considering Bhakthavatsala\u0027s comment, is disconnecting all ACLs unreasonable? Or can i adding an API(disconnect_all_acl(int transport)) to just disconnect all BREDR ACL links. Thoughts? Thanks again 😊",
+      "parentUuid": "3577ebbe_1f3f1d65",
+      "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
