@@ -22,6 +22,30 @@
       },
       "revId": "f58e5385308445058db4ca5d2db0734b4949e58b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26cb1d96_768282e3",
+        "filename": "sysprop/ble.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-11T18:53:26Z",
+      "side": 1,
+      "message": "I had actually already submitted the sysprop name as `bluetooth.core.le.msft_vendor_opcode` here: aosp/3466025",
+      "parentUuid": "366276ea_6ee7df70",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "f58e5385308445058db4ca5d2db0734b4949e58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
