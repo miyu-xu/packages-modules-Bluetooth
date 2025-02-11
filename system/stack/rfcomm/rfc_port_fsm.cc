@@ -244,10 +244,24 @@ void rfc_port_sm_sabme_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event, void* p_dat
       return;
 
     case RFC_PORT_EVENT_DM:
+<<<<<<< PATCH SET (8644a4 Set RFC is_disc_initiator to false after DM.)
+      RFCOMM_TRACE_WARNING("%s, RFC_EVENT_DM, index=%d", __func__,
+                           p_port->handle);
+      p_port->rfc.p_mcb->is_disc_initiator = false;
+      PORT_DlcEstablishCnf(p_port->rfc.p_mcb, p_port->dlci,
+                           p_port->rfc.p_mcb->peer_l2cap_mtu, RFCOMM_ERROR);
+||||||| BASE
+      RFCOMM_TRACE_WARNING("%s, RFC_EVENT_DM, index=%d", __func__,
+                           p_port->handle);
+      p_port->rfc.p_mcb->is_disc_initiator = true;
+      PORT_DlcEstablishCnf(p_port->rfc.p_mcb, p_port->dlci,
+                           p_port->rfc.p_mcb->peer_l2cap_mtu, RFCOMM_ERROR);
+=======
       log::warn("RFC_EVENT_DM, handle:{}", p_port->handle);
       p_port->rfc.p_mcb->is_disc_initiator = true;
       PORT_DlcEstablishCnf(p_port->rfc.p_mcb, p_port->dlci, p_port->rfc.p_mcb->peer_l2cap_mtu,
                            RFCOMM_ERROR);
+>>>>>>> BASE      (29b082 Merge "Stop calling non-covered method" into main)
       rfc_port_closed(p_port);
       return;
 
