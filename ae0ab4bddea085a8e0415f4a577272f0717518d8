@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54caf5de_5492964f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-11T21:44:41Z",
+      "side": 1,
+      "message": "LE Audio metadata should have been part of device properties. That way we would not need to separetely wipe it after bond removal.\n\nEven if we continue with this LRU cache approach, it should be wiped when device gets removed, not after the pairing.",
+      "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
