@@ -259,7 +259,7 @@ void rfc_port_sm_sabme_wait_ua(tPORT* p_port, tRFC_PORT_EVENT event,
     case RFC_PORT_EVENT_DM:
       RFCOMM_TRACE_WARNING("%s, RFC_EVENT_DM, index=%d", __func__,
                            p_port->handle);
-      p_port->rfc.p_mcb->is_disc_initiator = true;
+      p_port->rfc.p_mcb->is_disc_initiator = false;
       PORT_DlcEstablishCnf(p_port->rfc.p_mcb, p_port->dlci,
                            p_port->rfc.p_mcb->peer_l2cap_mtu, RFCOMM_ERROR);
       rfc_port_closed(p_port);
