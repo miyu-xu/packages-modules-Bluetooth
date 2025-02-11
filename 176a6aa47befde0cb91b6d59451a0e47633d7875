@@ -326,6 +326,59 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26009786_9c93e233",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-11T17:15:32Z",
+      "side": 1,
+      "message": "Not addressed yet",
+      "parentUuid": "d8d367e8_ca8dbeee",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61296d5f_d965b65e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-11T17:15:32Z",
+      "side": 1,
+      "message": "Add b/395030709 in the todo",
+      "fixSuggestions": [
+        {
+          "fixId": "5535366e_f0160de8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+              "range": {
+                "startLine": 239,
+                "startChar": 0,
+                "endLine": 240,
+                "endChar": 0
+              },
+              "replacement": "            // TODO(b/395030709): Special case to handle METADATA_BOND_LOST until its added to\n            // BluetoothDevice.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b34bd70_263eb150",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
         "patchSetId": 9
