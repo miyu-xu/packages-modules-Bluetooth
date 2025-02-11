@@ -56,6 +56,30 @@
       },
       "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1c3aca_23fadda5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-11T07:58:41Z",
+      "side": 1,
+      "message": "There is already a log in the AdapterService, I don\u0027t think we should have it twice, no?",
+      "parentUuid": "a94d361a_b47319b0",
+      "range": {
+        "startLine": 347,
+        "startChar": 14,
+        "endLine": 348,
+        "endChar": 52
+      },
+      "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
