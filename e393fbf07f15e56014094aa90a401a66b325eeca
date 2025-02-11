@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a32c6868_4b85c853",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3430,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-11T21:55:27Z",
+      "side": 1,
+      "message": "Could you explain the relation between `sourceId` and `deviceSourceId`? \n\nThe API documentation for `removeSource` says the callback will be invoked on the same `sourceId` that is used for the API calls. \n\nIf we switch from `sourceId` to `deviceSourceId` wouldn\u0027t this break the API contract?",
+      "range": {
+        "startLine": 3430,
+        "startChar": 60,
+        "endLine": 3430,
+        "endChar": 67
+      },
+      "revId": "e393fbf07f15e56014094aa90a401a66b325eeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
