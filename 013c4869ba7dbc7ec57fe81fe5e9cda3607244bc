@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe1312e2_e6165ba7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-11T07:53:52Z",
+      "side": 1,
+      "message": "Consider adding a unit test in `packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java` to verify that we do call `disconnectAcl()` when transitioning out of `OnState`",
+      "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b090ff5_028162aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 4856,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-11T07:53:52Z",
+      "side": 1,
+      "message": "`Log.i()` should be fine",
+      "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a94d361a_b47319b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-11T07:53:52Z",
+      "side": 1,
+      "message": "Please add a `Log.i()` to indicate you are calling `disconnectAllAcls` because we are exiting the `OnState`",
+      "range": {
+        "startLine": 347,
+        "startChar": 14,
+        "endLine": 348,
+        "endChar": 52
+      },
+      "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
