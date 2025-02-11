@@ -935,6 +935,31 @@ public:
     }
   }
 
+  bool IsMuteOrUnmuteRequired(VolumeControlDevice* dev, bool mute) {
+    if (!dev->IsReady()) {
+      return false;
+    }
+
+    if (dev->mute != mute) {
+      return true;
+    }
+
+    const auto op = &ongoing_operations_.front();
+    if (!op->IsStarted()) {
+      return false;
+    }
+
+    uint8_t oppositeOpcode = mute ? kControlPointOpcodeUnmute : kControlPointOpcodeMute;
+    if (op->opcode_ == oppositeOpcode) {
+      auto device = std::find(op->devices_.begin(), op->devices_.end(), dev->address);
+      if (device != op->devices_.end()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   bool IsSetAbsoluteVolumeRequired(VolumeControlDevice* dev, uint8_t volume) {
     if (!dev->IsReady()) {
       return false;
@@ -1111,10 +1136,19 @@ public:
               volume_control_devices_.FindByAddress(std::get<RawAddress>(addr_or_group_id));
       if (dev != nullptr) {
         bluetooth::log::debug("Address: {}: isReady: {}", dev->address, dev->IsReady());
-        if (dev->IsReady() && (dev->mute != mute)) {
-          std::vector<RawAddress> devices = {dev->address};
-          PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown, false, opcode,
-                                        arg);
+        std::vector<RawAddress> devices = {dev->address};
+        if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
+          if (dev->IsReady() && (dev->mute != mute)) {
+            PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown, false, opcode,
+                                          arg);
+          }
+        } else {
+          RemoveNotStartedPendingOperations(devices, bluetooth::groups::kGroupUnknown,
+                                            {kControlPointOpcodeMute, kControlPointOpcodeUnmute});
+          if (IsMuteOrUnmuteRequired(dev, mute)) {
+            PrepareVolumeControlOperation(devices, bluetooth::groups::kGroupUnknown, false, opcode,
+                                          arg);
+          }
         }
       }
     } else {
@@ -1133,6 +1167,11 @@ public:
         return;
       }
 
+      if (com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
+        RemoveNotStartedPendingOperations(devices, bluetooth::groups::kGroupUnknown,
+                                          {kControlPointOpcodeMute, kControlPointOpcodeUnmute});
+      }
+
       bool muteNotChanged = false;
       bool deviceNotReady = false;
 
@@ -1143,11 +1182,20 @@ public:
           continue;
         }
 
-        if (!dev->IsReady() || (dev->mute == mute)) {
-          it = devices.erase(it);
-          muteNotChanged = muteNotChanged ? muteNotChanged : (dev->mute == mute);
-          deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
-          continue;
+        if (!com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {
+          if (!dev->IsReady() || (dev->mute == mute)) {
+            it = devices.erase(it);
+            muteNotChanged = muteNotChanged ? muteNotChanged : (dev->mute == mute);
+            deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
+            continue;
+          }
+        } else {
+          if (!IsMuteOrUnmuteRequired(dev, mute)) {
+            it = devices.erase(it);
+            muteNotChanged = muteNotChanged ? muteNotChanged : (dev->mute == mute);
+            deviceNotReady = deviceNotReady ? deviceNotReady : !dev->IsReady();
+            continue;
+          }
         }
         it++;
       }
