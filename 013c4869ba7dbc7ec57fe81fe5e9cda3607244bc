@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a987c5_ccd8fcb1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 4856,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-11T11:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b090ff5_028162aa",
+      "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a94d361a_b47319b0",
@@ -96,6 +114,30 @@
       "side": 1,
       "message": "Or just add a info level log to in case that someone else also call disconnectAllAcls in the further?",
       "parentUuid": "2e1c3aca_23fadda5",
+      "range": {
+        "startLine": 347,
+        "startChar": 14,
+        "endLine": 348,
+        "endChar": 52
+      },
+      "revId": "013c4869ba7dbc7ec57fe81fe5e9cda3607244bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89cc8377_c6e3c0fe",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterState.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-11T11:02:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdb3411e_c3f8ebce",
       "range": {
         "startLine": 347,
         "startChar": 14,
