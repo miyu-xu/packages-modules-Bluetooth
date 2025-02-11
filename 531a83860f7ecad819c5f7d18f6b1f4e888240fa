@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc527d1b_04845259",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-11T21:09:12Z",
+      "side": 1,
+      "message": "\"dead code removal\" would make it more clear this is a no-op",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "531a83860f7ecad819c5f7d18f6b1f4e888240fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
