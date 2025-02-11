@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b73a51cb_f1d7b2a4",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-11T23:20:35Z",
+      "side": 1,
+      "message": "you just deleted that  no ?",
+      "range": {
+        "startLine": 518,
+        "startChar": 44,
+        "endLine": 518,
+        "endChar": 58
+      },
+      "revId": "356cfc9e454baa6c09b6ed39c3331a04033b56f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
