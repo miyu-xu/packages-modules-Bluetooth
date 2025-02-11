@@ -313,6 +313,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa5a1d50_dd9f896f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-11T05:12:01Z",
+      "side": 1,
+      "message": "As per discussion with Himanshu, we need a separate one for this transition.",
+      "parentUuid": "a07cf2ed_98eac095",
+      "revId": "979889cd750675acb7154bfd258d2dcfe7350bef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ff22a8a_db060b61",
