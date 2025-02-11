@@ -1098,6 +1098,12 @@ struct hdl_pair {
   uint16_t ccc_hdl = 0;
 };
 
+template <typename T>
+struct hdl_pair_wrapper {
+  hdl_pair handles;
+  T value;
+};
+
 struct AseQosConfiguration {
   uint32_t presentation_delay = 0;
   uint32_t sdu_interval = 0;
