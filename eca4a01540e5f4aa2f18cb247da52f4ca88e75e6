@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9029b79_a41159d7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2494,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-11T02:00:20Z",
+      "side": 1,
+      "message": "You shouldn\u0027t catch this at all in tests. Let it throw directly",
+      "range": {
+        "startLine": 2492,
+        "startChar": 16,
+        "endLine": 2494,
+        "endChar": 17
+      },
+      "revId": "eca4a01540e5f4aa2f18cb247da52f4ca88e75e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
