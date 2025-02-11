@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b317df5a_81ad7c42",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 7277,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-11T02:02:13Z",
+      "side": 1,
+      "message": "don\u0027t catch in test, let the method throw directly",
+      "range": {
+        "startLine": 7255,
+        "startChar": 5,
+        "endLine": 7277,
+        "endChar": 9
+      },
+      "revId": "7ae99e0ca8623a90923fa6507ada54fffbca2a0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
