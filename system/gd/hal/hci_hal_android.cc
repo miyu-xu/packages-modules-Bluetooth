@@ -25,6 +25,7 @@
 #include "hal/hci_hal.h"
 #include "hal/link_clocker.h"
 #include "hal/snoop_logger.h"
+#include "main/shim/entry.h"
 #include "os/mgmt.h"
 
 namespace bluetooth::hal {
@@ -163,10 +164,7 @@ public:
   }
 
 protected:
-  void ListDependencies(ModuleList* list) const override {
-    list->add<LinkClocker>();
-    list->add<SnoopLogger>();
-  }
+  void ListDependencies(ModuleList* list) const override { list->add<LinkClocker>(); }
 
   void Start() override {
     common::StopWatch stop_watch(__func__);
@@ -174,7 +172,7 @@ protected:
                      "Start can't be called more than once before Stop is called.");
 
     link_clocker_ = GetDependency<LinkClocker>();
-    btsnoop_logger_ = GetDependency<SnoopLogger>();
+    btsnoop_logger_ = shim::GetSnoopLogger();
 
     backend_ = HciBackend::CreateAidl();
     if (!backend_) {
