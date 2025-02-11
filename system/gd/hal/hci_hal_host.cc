@@ -326,10 +326,7 @@ public:
   }
 
 protected:
-  void ListDependencies(ModuleList* list) const {
-    list->add<LinkClocker>();
-    list->add<SnoopLogger>();
-  }
+  void ListDependencies(ModuleList* list) const { list->add<LinkClocker>(); }
 
   void Start() override {
     std::lock_guard<std::mutex> lock(api_mutex_);
@@ -350,7 +347,7 @@ protected:
     hci_incoming_thread_.GetReactor()->ModifyRegistration(reactable_,
                                                           os::Reactor::REACT_ON_READ_ONLY);
     link_clocker_ = GetDependency<LinkClocker>();
-    btsnoop_logger_ = GetDependency<SnoopLogger>();
+    btsnoop_logger_ = shim::GetSnoopLogger();
     log::info("HAL opened successfully");
   }
 
