@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff4ce03_add5c465",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-11T19:44:42Z",
+      "side": 1,
+      "message": "Can SMART WATCH entry be added like Generic and Sports watch through APPEARANCE_TO_COD_WATCH(X)?",
+      "range": {
+        "startLine": 76,
+        "startChar": 57,
+        "endLine": 76,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9fd85664_61073ad7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 72,
+                "startChar": 0,
+                "endLine": 73,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "    COD_MAJOR_WEARABLE_MINOR_WRIST_WATCH)                                     \\\n  X(BLE_APPEARANCE_SMART_WATCH, 0x00C2, COD_SERVICE_NA, COD_MAJOR_WEARABLE,  \\\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1ab2c4208f6413019af5bef170f409f81b31044a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1d7f746_0aac7cb4",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-11T19:44:42Z",
+      "side": 1,
+      "message": "Can you change COD_MAJOR_HEALTH_MINOR_STEP_COUNTER to BTM_COD_MINOR_WEARABLE_HEADSET?",
+      "range": {
+        "startLine": 407,
+        "startChar": 4,
+        "endLine": 407,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bf137750_5b83adf0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 407,
+                "startChar": 0,
+                "endLine": 408,
+                "endChar": 0
+              },
+              "replacement": "    BTM_COD_MINOR_WEARABLE_HEADSET)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 410,
+                "startChar": 0,
+                "endLine": 411,
+                "endChar": 0
+              },
+              "replacement": "    BTM_COD_MINOR_WEARABLE_HEADSET)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 413,
+                "startChar": 0,
+                "endLine": 414,
+                "endChar": 0
+              },
+              "replacement": "    BTM_COD_MINOR_WEARABLE_HEADSET)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 416,
+                "startChar": 0,
+                "endLine": 417,
+                "endChar": 0
+              },
+              "replacement": "    BTM_COD_MINOR_WEARABLE_HEADSET)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 419,
+                "startChar": 0,
+                "endLine": 420,
+                "endChar": 0
+              },
+              "replacement": "    BTM_COD_MINOR_WEARABLE_HEADSET)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1ab2c4208f6413019af5bef170f409f81b31044a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8e6fb4d_993ebd87",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-11T19:44:42Z",
+      "side": 1,
+      "message": "Can you change COD_MAJOR_HEALTH_MINOR_STEP_COUNTER to BTM_COD_MINOR_WEARABLE_HEADSET?",
+      "range": {
+        "startLine": 410,
+        "startChar": 4,
+        "endLine": 410,
+        "endChar": 39
+      },
+      "revId": "1ab2c4208f6413019af5bef170f409f81b31044a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ffa2e78_2e3fe159",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-11T19:44:42Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "fixSuggestions": [
+        {
+          "fixId": "0867a481_fee980c4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 407,
+                "startChar": 0,
+                "endLine": 408,
+                "endChar": 0
+              },
+              "replacement": "    COD_MAJOR_AUDIO_MINOR_UNCATEGORIZED)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 410,
+                "startChar": 0,
+                "endLine": 411,
+                "endChar": 0
+              },
+              "replacement": "    COD_MAJOR_AUDIO_MINOR_UNCATEGORIZED)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 413,
+                "startChar": 0,
+                "endLine": 414,
+                "endChar": 0
+              },
+              "replacement": "    COD_MAJOR_AUDIO_MINOR_UNCATEGORIZED)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 416,
+                "startChar": 0,
+                "endLine": 417,
+                "endChar": 0
+              },
+              "replacement": "    COD_MAJOR_AUDIO_MINOR_UNCATEGORIZED)                                                        \\\n"
+            },
+            {
+              "path": "system/stack/include/ble_appearance.h",
+              "range": {
+                "startLine": 419,
+                "startChar": 0,
+                "endLine": 420,
+                "endChar": 0
+              },
+              "replacement": "    COD_MAJOR_AUDIO_MINOR_UNCATEGORIZED)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1ab2c4208f6413019af5bef170f409f81b31044a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5a7597_3c8e8507",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-11T19:44:42Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "revId": "1ab2c4208f6413019af5bef170f409f81b31044a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e3828ab_818d04fd",
+        "filename": "system/stack/include/ble_appearance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-11T19:44:42Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "revId": "1ab2c4208f6413019af5bef170f409f81b31044a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
