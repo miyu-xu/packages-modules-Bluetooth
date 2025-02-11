@@ -1,5 +1,88 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7312831a_f1986289",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-11T15:40:51Z",
+      "side": 1,
+      "message": "From16Bit(UUID_HEARING_AID)",
+      "range": {
+        "startLine": 364,
+        "startChar": 53,
+        "endLine": 364,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0fe4d674_53c303df",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_profile_storage.cc",
+              "range": {
+                "startLine": 364,
+                "startChar": 0,
+                "endLine": 365,
+                "endChar": 0
+              },
+              "replacement": "  return btif_device_supports_profile(bd_addr, Uuid::From16Bit(UUID_HEARING_AID));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "eaea0fbf1fd3a323d075cbbd755903431f434e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08de1f0d_905f8be3",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-11T15:40:51Z",
+      "side": 1,
+      "message": "From16Bit(UUID_LE_AUDIO)",
+      "range": {
+        "startLine": 368,
+        "startChar": 53,
+        "endLine": 368,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d8bcb455_be6ef190",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_profile_storage.cc",
+              "range": {
+                "startLine": 368,
+                "startChar": 0,
+                "endLine": 369,
+                "endChar": 0
+              },
+              "replacement": "  return btif_device_supports_profile(bd_addr, Uuid::From16Bit(UUID_LE_AUDIO));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "eaea0fbf1fd3a323d075cbbd755903431f434e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
