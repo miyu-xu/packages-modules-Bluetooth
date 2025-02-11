@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80fab40_1cf51a88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-11T17:48:31Z",
+      "side": 1,
+      "message": "A CL was submitted in aosp/3464891 to address this issue.  This CL can be abandoned.",
+      "revId": "39e904370bb336ccf6c1ff1d8e5523b5aec65e4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffb7dafa_ee7a4f16",
