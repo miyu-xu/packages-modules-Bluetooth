@@ -22,6 +22,30 @@
       },
       "revId": "e393fbf07f15e56014094aa90a401a66b325eeca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9beacf6a_cbbd39f6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3430,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-11T22:36:51Z",
+      "side": 1,
+      "message": "Talked to Rongxuan offline. Ideally, `sourceId` of each device in a CSIP group should be the same. However, in rare cases, where they are not the same, we should use device specific source IDs. Here, at least one source ID would match the source ID used for the `removeSource` API.",
+      "parentUuid": "a32c6868_4b85c853",
+      "range": {
+        "startLine": 3430,
+        "startChar": 60,
+        "endLine": 3430,
+        "endChar": 67
+      },
+      "revId": "e393fbf07f15e56014094aa90a401a66b325eeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
