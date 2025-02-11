@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "228cda59_c60ca41b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-11T02:32:35Z",
+      "side": 1,
+      "message": "It does not seem recognize the flag for DrNo. Maybe put it in the end.",
+      "revId": "d6c95277f75d0218e16780c4a15e8e91f1879179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
