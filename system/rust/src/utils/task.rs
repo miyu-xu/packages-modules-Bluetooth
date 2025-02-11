@@ -6,7 +6,6 @@ use std::{
     time::Duration,
 };
 
-use bt_common::init_logging;
 use tokio::{
     runtime::Builder,
     select,
