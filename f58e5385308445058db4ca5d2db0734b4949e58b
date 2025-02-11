@@ -70,6 +70,30 @@
       },
       "revId": "f58e5385308445058db4ca5d2db0734b4949e58b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8671fabb_7eb1862b",
+        "filename": "sysprop/ble.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-11T22:01:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53b8a3cc_b89733fd",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 52
+      },
+      "revId": "f58e5385308445058db4ca5d2db0734b4949e58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
