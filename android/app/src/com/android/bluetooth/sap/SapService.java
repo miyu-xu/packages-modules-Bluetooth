@@ -122,7 +122,11 @@ public class SapService extends ProfileService implements AdapterService.Bluetoo
     public SapService(AdapterService adapterService) {
         super(requireNonNull(adapterService));
         mAdapterService = adapterService;
-        BluetoothSap.invalidateBluetoothGetConnectionStateCache();
+
+        // Test is not authorized to invalidate app cache
+        if (!Utils.isInstrumentationTestMode()) {
+            BluetoothSap.invalidateBluetoothGetConnectionStateCache();
+        }
 
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);

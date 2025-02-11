@@ -18,6 +18,8 @@ package com.android.bluetooth.a2dp;
 
 import static android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.doReturn;
@@ -33,46 +35,43 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.platform.test.flag.junit.SetFlagsRule;
 
-import com.android.bluetooth.TestUtils;
-import com.android.bluetooth.flags.Flags;
+import androidx.test.filters.SmallTest;
+import androidx.test.runner.AndroidJUnit4;
 
-import org.junit.After;
+import com.android.bluetooth.TestUtils;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.util.concurrent.CompletableFuture;
-
+@SmallTest
+@RunWith(AndroidJUnit4.class)
 public class A2dpServiceBinderTest {
-    private static final AttributionSource sSource = new AttributionSource.Builder(0).build();
-    private static final BluetoothAdapter sAdapter = BluetoothAdapter.getDefaultAdapter();
-    private static final BluetoothDevice sDevice = TestUtils.getTestDevice(sAdapter, 0);
-
     @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
-
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private A2dpService mA2dpService;
     @Mock private PackageManager mPackageManager;
 
+    private static final AttributionSource sSource = new AttributionSource.Builder(0).build();
+    private static final BluetoothAdapter sAdapter = BluetoothAdapter.getDefaultAdapter();
+    private static final BluetoothDevice sDevice = TestUtils.getTestDevice(sAdapter, 0);
+
     private A2dpService.BluetoothA2dpBinder mBinder;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws PackageManager.NameNotFoundException {
         doReturn(mPackageManager).when(mA2dpService).getPackageManager();
         ApplicationInfo appInfo = new ApplicationInfo();
         appInfo.targetSdkVersion = android.os.Build.VERSION_CODES.CUR_DEVELOPMENT;
         doReturn(appInfo).when(mPackageManager).getApplicationInfo(any(), anyInt());
 
         mBinder = new A2dpService.BluetoothA2dpBinder(mA2dpService);
-    }
-
-    @After
-    public void cleanUp() {
-        mBinder.cleanup();
     }
 
     @Test
@@ -95,6 +94,7 @@ public class A2dpServiceBinderTest {
 
     @Test
     public void getDevicesMatchingConnectionStates() {
+        assertThat(Mockito.mockingDetails(mA2dpService).isMock()).isTrue();
         int[] states = new int[] {BluetoothProfile.STATE_CONNECTED};
 
         mBinder.getDevicesMatchingConnectionStates(states, sSource);
@@ -169,14 +169,12 @@ public class A2dpServiceBinderTest {
 
     @Test
     public void enableOptionalCodecs() {
-
         mBinder.enableOptionalCodecs(sDevice, sSource);
         verify(mA2dpService).enableOptionalCodecs(sDevice);
     }
 
     @Test
     public void disableOptionalCodecs() {
-
         mBinder.disableOptionalCodecs(sDevice, sSource);
         verify(mA2dpService).disableOptionalCodecs(sDevice);
     }

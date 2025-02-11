@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.avrcp;
 
+import static android.Manifest.permission.MEDIA_CONTENT_CONTROL;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.anyInt;
@@ -157,6 +159,9 @@ public class AvrcpTargetServiceTest {
 
     @Test
     public void testServiceInstance() {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity(MEDIA_CONTENT_CONTROL);
         AvrcpVolumeManager volumeManager =
                 new AvrcpVolumeManager(
                         mMockAdapterService, mMockAudioManager, mMockNativeInterface);

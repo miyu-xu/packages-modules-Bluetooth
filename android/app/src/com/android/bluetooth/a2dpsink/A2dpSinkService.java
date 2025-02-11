@@ -159,7 +159,8 @@ public class A2dpSinkService extends ProfileService {
         }
     }
 
-    boolean isA2dpPlaying(BluetoothDevice device) {
+    @VisibleForTesting
+    public boolean isA2dpPlaying(BluetoothDevice device) {
         synchronized (mStreamHandlerLock) {
             return mA2dpSinkStreamHandler.isPlaying();
         }
@@ -369,7 +370,8 @@ public class A2dpSinkService extends ProfileService {
      *
      * <p>Visible for testing so it can be mocked and verified on.
      */
-    void removeStateMachine(A2dpSinkStateMachine stateMachine) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void removeStateMachine(A2dpSinkStateMachine stateMachine) {
         if (stateMachine == null) {
             return;
         }
@@ -402,7 +404,8 @@ public class A2dpSinkService extends ProfileService {
         }
     }
 
-    List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
+    @VisibleForTesting
+    public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         Log.d(TAG, "getDevicesMatchingConnectionStates(states=" + Arrays.toString(states) + ")");
         List<BluetoothDevice> deviceList = new ArrayList<>();
         BluetoothDevice[] bondedDevices = mAdapterService.getBondedDevices();
@@ -499,7 +502,8 @@ public class A2dpSinkService extends ProfileService {
         }
     }
 
-    BluetoothAudioConfig getAudioConfig(BluetoothDevice device) {
+    @VisibleForTesting
+    public BluetoothAudioConfig getAudioConfig(BluetoothDevice device) {
         if (device == null) return null;
         A2dpSinkStateMachine stateMachine;
         synchronized (mDeviceStateMap) {
@@ -561,7 +565,8 @@ public class A2dpSinkService extends ProfileService {
         stateMachine.onStackEvent(event);
     }
 
-    void connectionStateChanged(BluetoothDevice device, int fromState, int toState) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void connectionStateChanged(BluetoothDevice device, int fromState, int toState) {
         mAdapterService.notifyProfileConnectionStateChangeToGatt(
                 BluetoothProfile.A2DP_SINK, fromState, toState);
         mAdapterService.updateProfileConnectionAdapterProperties(

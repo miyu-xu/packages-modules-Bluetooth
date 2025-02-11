@@ -74,9 +74,8 @@ import java.util.Arrays;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class A2dpStateMachineTest {
-    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-
     @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private A2dpService mService;
     @Mock private A2dpNativeInterface mNativeInterface;

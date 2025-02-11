@@ -1704,7 +1704,8 @@ public class BassClientService extends ProfileService {
         return BluetoothStatusCodes.SUCCESS;
     }
 
-    void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
         mHandler.post(() -> connectionStateChanged(device, fromState, toState));
     }
 

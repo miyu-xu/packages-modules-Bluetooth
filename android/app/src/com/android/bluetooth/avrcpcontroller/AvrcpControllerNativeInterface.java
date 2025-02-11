@@ -55,12 +55,14 @@ public class AvrcpControllerNativeInterface {
         }
     }
 
-    void init(AvrcpControllerService controller) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void init(AvrcpControllerService controller) {
         mAvrcpController = controller;
         initNative();
     }
 
-    void cleanup() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void cleanup() {
         cleanupNative();
     }
 

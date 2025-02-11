@@ -201,6 +201,7 @@ cc_library {
 
 android_library {
     name: "BluetoothLib",
+    manifest: "LibAndroidManifest.xml",
     defaults: ["bluetooth_framework_errorprone_rules"],
 
     srcs: [

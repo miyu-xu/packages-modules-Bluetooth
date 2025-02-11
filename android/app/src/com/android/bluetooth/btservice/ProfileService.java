@@ -25,6 +25,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothMetricsProto;
+import com.android.bluetooth.Utils;
 
 /** Base class for a background service that runs a Bluetooth profile */
 public abstract class ProfileService extends ContextWrapper {
@@ -101,7 +102,12 @@ public abstract class ProfileService extends ContextWrapper {
      * @param enable True to enable the component, False to disable it
      */
     protected void setComponentAvailable(String className, boolean enable) {
-        Log.d(mName, "setComponentAvailable(className=" + className + ", enable=" + enable + ")");
+        // Test does not set components available
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(mName, "Skip call to setComponentAvailable(" + className + ", " + enable + ")");
+            return;
+        }
+        Log.d(mName, "setComponentAvailable(" + className + ", " + enable + ")");
         if (className == null) {
             return;
         }

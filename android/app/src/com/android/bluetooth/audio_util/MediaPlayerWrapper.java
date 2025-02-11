@@ -101,7 +101,8 @@ public class MediaPlayerWrapper {
         mCurrentData.state = getPlaybackState();
     }
 
-    void cleanup() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void cleanup() {
         unregisterCallback();
 
         mMediaController = null;
@@ -124,7 +125,8 @@ public class MediaPlayerWrapper {
         return mMediaController.getMetadata();
     }
 
-    Metadata getCurrentMetadata() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public Metadata getCurrentMetadata() {
         return Util.toMetadata(mContext, getMetadata());
     }
 
@@ -149,7 +151,7 @@ public class MediaPlayerWrapper {
         if (mediaPlayingMetadata != null) {
             for (Metadata metadata : mCurrentData.queue) {
                 if (metadata.title == null || metadata.artist == null || metadata.album == null) {
-                    // if one of the informations is missing we can't assume it is the same media.
+                    // if one of the information is missing we can't assume it is the same media.
                     continue;
                 }
                 if (metadata.title.equals(mediaPlayingMetadata.title)
@@ -164,7 +166,8 @@ public class MediaPlayerWrapper {
     }
 
     // We don't return the cached info here in order to always provide the freshest data.
-    MediaData getCurrentMediaData() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public MediaData getCurrentMediaData() {
         MediaData data = new MediaData(getCurrentMetadata(), getPlaybackState(), getCurrentQueue());
         return data;
     }
@@ -251,7 +254,8 @@ public class MediaPlayerWrapper {
     void toggleRepeat(boolean on) {}
 
     /** Return whether the queue, metadata, and queueID are all in sync. */
-    boolean isMetadataSynced() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public boolean isMetadataSynced() {
         List<MediaSession.QueueItem> queue = getQueue();
         if (queue != null && getActiveQueueID() != -1) {
             // Check if currentPlayingQueueId is in the current Queue
@@ -291,7 +295,8 @@ public class MediaPlayerWrapper {
      * Register a callback which gets called when media updates happen. The callbacks are called on
      * the same Looper that was passed in to create this object.
      */
-    void registerCallback(Callback callback) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void registerCallback(Callback callback) {
         if (callback == null) {
             e("Cannot register null callbacks for " + mPackageName);
             return;
@@ -315,7 +320,8 @@ public class MediaPlayerWrapper {
     }
 
     /** Unregisters from updates. Note, this doesn't require the looper to be shut down. */
-    void unregisterCallback() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void unregisterCallback() {
         // Prevent a race condition where a callback could be called while shutting down
         synchronized (mCallbackLock) {
             mRegisteredCallback = null;
@@ -573,7 +579,7 @@ public class MediaPlayerWrapper {
     }
 
     /**
-     * Checks wheter the core information of two PlaybackStates match. This function allows a
+     * Checks whether the core information of two PlaybackStates match. This function allows a
      * certain amount of deviation between the position fields of the PlaybackStates. This is to
      * prevent matches from failing when updates happen in quick succession.
      *

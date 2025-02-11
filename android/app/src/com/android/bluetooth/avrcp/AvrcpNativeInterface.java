@@ -72,7 +72,8 @@ public class AvrcpNativeInterface {
         }
     }
 
-    void init(AvrcpTargetService service) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void init(AvrcpTargetService service) {
         d("Init AvrcpNativeInterface");
         mAvrcpService = service;
         initNative();
@@ -278,7 +279,8 @@ public class AvrcpNativeInterface {
         mAvrcpService.deviceDisconnected(device);
     }
 
-    void sendVolumeChanged(BluetoothDevice device, int volume) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void sendVolumeChanged(BluetoothDevice device, int volume) {
         d("sendVolumeChanged: volume=" + volume);
         String identityAddress =
                 Flags.identityAddressNullIfNotKnown()
@@ -369,7 +371,8 @@ public class AvrcpNativeInterface {
         setPlayerSettingsResponseNative(success);
     }
 
-    void sendPlayerSettings(int repeatMode, int shuffleMode) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void sendPlayerSettings(int repeatMode, int shuffleMode) {
         byte[] settingsArray = new byte[2];
         byte[] valuesArray = new byte[2];
         settingsArray[0] = (byte) PlayerSettingsValues.SETTING_REPEAT;

@@ -210,7 +210,8 @@ public class BatteryService extends ProfileService {
      * Check whether it can connect to a peer device. The check considers a number of factors during
      * the evaluation.
      */
-    boolean canConnect(BluetoothDevice device) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public boolean canConnect(BluetoothDevice device) {
         // Check connectionPolicy and accept or reject the connection.
         int connectionPolicy = getConnectionPolicy(device);
         int bondState = mAdapterService.getBondState(device);

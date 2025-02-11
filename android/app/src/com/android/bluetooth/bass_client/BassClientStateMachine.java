@@ -86,7 +86,8 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
-class BassClientStateMachine extends StateMachine {
+@VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+public class BassClientStateMachine extends StateMachine {
     private static final String TAG = "BassClientStateMachine";
     @VisibleForTesting static final byte[] REMOTE_SCAN_STOP = {00};
     @VisibleForTesting static final byte[] REMOTE_SCAN_START = {01};
@@ -456,7 +457,7 @@ class BassClientStateMachine extends StateMachine {
             mService.updateBase(syncHandle, base);
             base.print();
             if (mAutoTriggered) {
-                // successful auto periodic synchrnization with source
+                // successful auto periodic synchronization with source
                 log("auto triggered assist");
                 mAutoTriggered = false;
                 // perform PAST with this device
@@ -2899,7 +2900,8 @@ class BassClientStateMachine extends StateMachine {
         return mCurrentMetadata.getOrDefault(sourceId, null);
     }
 
-    BluetoothDevice getDevice() {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public BluetoothDevice getDevice() {
         return mDevice;
     }
 

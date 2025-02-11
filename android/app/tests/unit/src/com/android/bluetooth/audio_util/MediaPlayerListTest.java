@@ -16,6 +16,9 @@
 
 package com.android.bluetooth.audio_util;
 
+import static android.Manifest.permission.MEDIA_CONTENT_CONTROL;
+import static android.Manifest.permission.MODIFY_PHONE_STATE;
+
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.*;
@@ -28,8 +31,8 @@ import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
 import android.os.Looper;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.SmallTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -48,26 +51,25 @@ import java.util.ArrayList;
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class MediaPlayerListTest {
-    private MediaPlayerList mMediaPlayerList;
-
-    private @Captor ArgumentCaptor<MediaPlayerWrapper.Callback> mPlayerWrapperCb;
-    private @Captor ArgumentCaptor<MediaData> mMediaUpdateData;
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    private @Mock Context mMockContext;
-    private @Mock MediaPlayerList.MediaUpdateCallback mMediaUpdateCallback;
-    private @Mock MediaController mMockController;
-    private @Mock MediaPlayerWrapper mMockPlayerWrapper;
+    @Mock private Context mMockContext;
+    @Mock private MediaPlayerList.MediaUpdateCallback mMediaUpdateCallback;
+    @Mock private MediaController mMockController;
+    @Mock private MediaPlayerWrapper mMockPlayerWrapper;
 
-    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
+    @Captor private ArgumentCaptor<MediaPlayerWrapper.Callback> mPlayerWrapperCb;
+    @Captor private ArgumentCaptor<MediaData> mMediaUpdateData;
+
     private MediaPlayerWrapper.Callback mActivePlayerCallback;
     private MediaSessionManager mMediaSessionManager;
+    private MediaPlayerList mMediaPlayerList;
 
     @Before
     public void setUp() throws Exception {
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", "true");
-        }
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity(MEDIA_CONTENT_CONTROL, MODIFY_PHONE_STATE);
 
         if (Looper.myLooper() == null) {
             Looper.prepare();
@@ -83,7 +85,8 @@ public class MediaPlayerListTest {
         // controller and player below in the factory pattern will essentially replace each found
         // player with the *same* mock, giving us only one player in the end-- "testPlayer"
         mMediaSessionManager =
-                InstrumentationRegistry.getTargetContext()
+                InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext()
                         .getSystemService(MediaSessionManager.class);
         PackageManager mockPackageManager = mock(PackageManager.class);
         when(mMockContext.getSystemService(Context.MEDIA_SESSION_SERVICE))
@@ -103,12 +106,14 @@ public class MediaPlayerListTest {
         MediaPlayerWrapperFactory.inject(mMockPlayerWrapper);
 
         doReturn("testPlayer").when(mMockController).getPackageName();
-        when(mMockPlayerWrapper.isMetadataSynced()).thenReturn(false);
+        doReturn(false).when(mMockPlayerWrapper).isMetadataSynced();
 
         // Be sure to do this setup last, after factor injections, or you risk leaking device state
         // into the tests
         mMediaPlayerList =
-                new MediaPlayerList(Looper.myLooper(), InstrumentationRegistry.getTargetContext());
+                new MediaPlayerList(
+                        Looper.myLooper(),
+                        InstrumentationRegistry.getInstrumentation().getTargetContext());
         mMediaPlayerList.init(mMediaUpdateCallback);
         mMediaPlayerList.setActivePlayer(mMediaPlayerList.addMediaPlayer(mMockController));
 
@@ -123,9 +128,9 @@ public class MediaPlayerListTest {
         MediaControllerFactory.inject(null);
         MediaPlayerWrapperFactory.inject(null);
         mMediaPlayerList.cleanup();
-        if (!mFlagDexmarker.equals("true")) {
-            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
-        }
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .dropShellPermissionIdentity();
     }
 
     private MediaData prepareMediaData(int playbackState) {
@@ -203,7 +208,7 @@ public class MediaPlayerListTest {
         // Create MediaSession with GLOBAL_PRIORITY flag.
         MediaSession session =
                 new MediaSession(
-                        InstrumentationRegistry.getTargetContext(),
+                        InstrumentationRegistry.getInstrumentation().getTargetContext(),
                         MediaPlayerListTest.class.getSimpleName());
         session.setFlags(
                 MediaSession.FLAG_EXCLUSIVE_GLOBAL_PRIORITY

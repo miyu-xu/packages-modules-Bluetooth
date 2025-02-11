@@ -25,7 +25,6 @@ import android.content.AttributionSource;
 
 import com.android.bluetooth.TestUtils;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -37,6 +36,7 @@ public class A2dpSinkServiceBinderTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private A2dpSinkService mService;
+
     private A2dpSinkService.A2dpSinkServiceBinder mBinder;
     private BluetoothAdapter mAdapter;
 
@@ -44,11 +44,6 @@ public class A2dpSinkServiceBinderTest {
     public void setUp() throws Exception {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mBinder = new A2dpSinkService.A2dpSinkServiceBinder(mService);
-    }
-
-    @After
-    public void cleaUp() {
-        mBinder.cleanup();
     }
 
     @Test

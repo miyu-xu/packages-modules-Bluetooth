@@ -7,6 +7,10 @@ java_defaults {
     defaults: [
         "bluetooth_errorprone_rules",
     ],
+    aaptflags: [
+        "--custom-package com.android.bluetooth.tests",
+        "--extra-packages com.android.bluetooth",
+    ],
 
     sdk_version: "module_current",
     min_sdk_version: "Tiramisu",
@@ -26,8 +30,10 @@ java_defaults {
     ],
 
     static_libs: [
+        "BluetoothLib",
         "PlatformProperties",
         "TestParameterInjector",
+        "android.hardware.radio.sap-V1-java",
         "android.media.audio-aconfig-exported-java",
         "androidx.media_media",
         "androidx.room_room-migration",
@@ -66,8 +72,6 @@ java_defaults {
         "mts-bluetooth",
         "mts-bt",
     ],
-
-    instrumentation_for: "Bluetooth",
 }
 
 android_test {

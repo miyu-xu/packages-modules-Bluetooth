@@ -764,7 +764,8 @@ public class AvrcpControllerService extends ProfileService {
         return mCoverArtManager;
     }
 
-    List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         Log.d(TAG, "getDevicesMatchingConnectionStates(states=" + Arrays.toString(states) + ")");
         List<BluetoothDevice> deviceList = new ArrayList<>();
         BluetoothDevice[] bondedDevices = mAdapterService.getBondedDevices();
@@ -786,7 +787,8 @@ public class AvrcpControllerService extends ProfileService {
         return deviceList;
     }
 
-    synchronized int getConnectionState(BluetoothDevice device) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public synchronized int getConnectionState(BluetoothDevice device) {
         AvrcpControllerStateMachine stateMachine = mDeviceStateMap.get(device);
         return (stateMachine == null)
                 ? BluetoothProfile.STATE_DISCONNECTED

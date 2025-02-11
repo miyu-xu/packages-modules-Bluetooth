@@ -34,7 +34,7 @@ class GPMWrapper extends MediaPlayerWrapper {
     }
 
     @Override
-    boolean isMetadataSynced() {
+    public boolean isMetadataSynced() {
         if (getQueue() == null) {
             return false;
         }

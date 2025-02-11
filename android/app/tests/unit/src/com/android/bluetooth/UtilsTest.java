@@ -156,17 +156,13 @@ public class UtilsTest {
     }
 
     @Test
-    public void checkPermissionMethod_doesNotCrash() {
+    public void checkPermissionMethod_doesNotCrash() throws SecurityException {
         Context context = InstrumentationRegistry.getTargetContext();
-        try {
-            Utils.checkAdvertisePermissionForDataDelivery(context, null, "message");
-            Utils.checkAdvertisePermissionForPreflight(context);
-            Utils.checkCallerHasWriteSmsPermission(context);
-            Utils.checkScanPermissionForPreflight(context);
-            Utils.checkConnectPermissionForPreflight(context);
-        } catch (SecurityException e) {
-            // SecurityException could happen.
-        }
+        Utils.checkAdvertisePermissionForDataDelivery(context, null, "message");
+        Utils.checkAdvertisePermissionForPreflight(context);
+        Utils.checkCallerHasWriteSmsPermission(context);
+        Utils.checkScanPermissionForPreflight(context);
+        Utils.checkConnectPermissionForPreflight(context);
     }
 
     @Test

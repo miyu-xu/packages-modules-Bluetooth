@@ -54,7 +54,8 @@ import java.util.Set;
  * Provides Bluetooth AVRCP Controller State Machine responsible for all remote control connections
  * and interactions with a remote controllable device.
  */
-class AvrcpControllerStateMachine extends StateMachine {
+@VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+public class AvrcpControllerStateMachine extends StateMachine {
     static final String TAG = AvrcpControllerStateMachine.class.getSimpleName();
 
     // 0->99 Events from Outside
