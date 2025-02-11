@@ -46,6 +46,30 @@
       },
       "revId": "eca4a01540e5f4aa2f18cb247da52f4ca88e75e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b228e22a_346b72a0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2494,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-11T06:22:23Z",
+      "side": 1,
+      "message": "ohh I can see that you refactor that already... Ok. I will change that and rebase.",
+      "parentUuid": "63912644_08de4d21",
+      "range": {
+        "startLine": 2492,
+        "startChar": 16,
+        "endLine": 2494,
+        "endChar": 17
+      },
+      "revId": "eca4a01540e5f4aa2f18cb247da52f4ca88e75e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
