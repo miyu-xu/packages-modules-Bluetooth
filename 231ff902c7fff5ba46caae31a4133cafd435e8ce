@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55b49a62_161aa4ea",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-11T00:42:56Z",
+      "side": 1,
+      "message": "That is outside the scope of this CL, but I can do that as follow up.",
+      "parentUuid": "b65fc3ae_c81f33b9",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 27
+      },
+      "revId": "231ff902c7fff5ba46caae31a4133cafd435e8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3d57547_152a2b06",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-11T00:34:59Z",
       "side": 1,
       "message": "See b/393449774#comment17, we should try to use the same handler for all GD modules in the future",
+      "range": {
+        "startLine": 92,
+        "startChar": 50,
+        "endLine": 92,
+        "endChar": 76
+      },
+      "revId": "231ff902c7fff5ba46caae31a4133cafd435e8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4354c980_1486cf5b",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-11T00:42:56Z",
+      "side": 1,
+      "message": "That is also outside the scope of this CL, but that is also something that I have considered doing. This is not a no logical change, I will apply it after proper testing.",
+      "parentUuid": "a3d57547_152a2b06",
       "range": {
         "startLine": 92,
         "startChar": 50,
