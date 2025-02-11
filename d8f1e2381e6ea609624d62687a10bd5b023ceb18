@@ -46,6 +46,30 @@
       },
       "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "275d55db_3f66bc35",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-11T15:06:26Z",
+      "side": 1,
+      "message": "Yes, that\u0027s correct.",
+      "parentUuid": "daaf66ef_84defc7f",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
