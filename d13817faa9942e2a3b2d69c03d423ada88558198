@@ -181,6 +181,24 @@
       "parentUuid": "0ae16e27_17853edb",
       "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9341d395_1f1b60ce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-11T05:11:26Z",
+      "side": 1,
+      "message": "Sure, that makes sense too, as the broadcast contains the EXTRA encryption_status which gives away the status for the receivers, so intent should be sent anyways.\nUpdated the metadata and metrics collection.",
+      "parentUuid": "a1be11b4_96f2f28c",
+      "revId": "d13817faa9942e2a3b2d69c03d423ada88558198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
