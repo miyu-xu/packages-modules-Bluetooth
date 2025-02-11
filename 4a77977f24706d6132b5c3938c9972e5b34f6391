@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fdfb8a7_04ab69c6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4148,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-11T12:26:06Z",
+      "side": 1,
+      "message": "We are changing here order of messages going to Audio Hal, is this expected ?",
+      "revId": "4a77977f24706d6132b5c3938c9972e5b34f6391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
