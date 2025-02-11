@@ -165,7 +165,6 @@ public:
 protected:
   void ListDependencies(ModuleList* list) const override {
     list->add<LinkClocker>();
-    list->add<SnoopLogger>();
   }
 
   void Start() override {
@@ -174,7 +173,7 @@ protected:
                      "Start can't be called more than once before Stop is called.");
 
     link_clocker_ = GetDependency<LinkClocker>();
-    btsnoop_logger_ = GetDependency<SnoopLogger>();
+    btsnoop_logger_ = shim::GetSnoopLogger();
 
     backend_ = HciBackend::CreateAidl();
     if (!backend_) {

@@ -328,7 +328,6 @@ public:
 protected:
   void ListDependencies(ModuleList* list) const {
     list->add<LinkClocker>();
-    list->add<SnoopLogger>();
   }
 
   void Start() override {
@@ -350,7 +349,7 @@ protected:
     hci_incoming_thread_.GetReactor()->ModifyRegistration(reactable_,
                                                           os::Reactor::REACT_ON_READ_ONLY);
     link_clocker_ = GetDependency<LinkClocker>();
-    btsnoop_logger_ = GetDependency<SnoopLogger>();
+    btsnoop_logger_ = shim::GetSnoopLogger();
     log::info("HAL opened successfully");
   }
 

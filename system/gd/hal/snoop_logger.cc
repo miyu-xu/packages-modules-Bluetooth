@@ -489,13 +489,21 @@ const size_t SnoopLogger::PACKET_TYPE_LENGTH = 1;
 const size_t SnoopLogger::MAX_HCI_ACL_LEN = 14;
 const uint32_t SnoopLogger::L2CAP_HEADER_SIZE = 8;
 
-SnoopLogger::SnoopLogger(std::string snoop_log_path, std::string snooz_log_path,
+SnoopLogger::SnoopLogger(os::Handler* handler)
+  :  SnoopLogger(handler, os::ParameterProvider::SnoopLogFilePath(),
+                         os::ParameterProvider::SnoozLogFilePath(), GetMaxPacketsPerFile(),
+                         GetMaxPacketsPerBuffer(), GetBtSnoopMode(), IsQualcommDebugLogEnabled(),
+                         kBtSnoozLogLifeTime, kBtSnoozLogDeleteRepeatingAlarmInterval,
+                         IsBtSnoopLogPersisted()) {}
+
+SnoopLogger::SnoopLogger(os::Handler* handler, std::string snoop_log_path, std::string snooz_log_path,
                          size_t max_packets_per_file, size_t max_packets_per_buffer,
                          const std::string& btsnoop_mode, bool qualcomm_debug_log_enabled,
                          const std::chrono::milliseconds snooz_log_life_time,
                          const std::chrono::milliseconds snooz_log_delete_alarm_interval,
                          bool snoop_log_persists)
-    : btsnoop_mode_(btsnoop_mode),
+    : Module(handler),
+      btsnoop_mode_(btsnoop_mode),
       snoop_log_path_(std::move(snoop_log_path)),
       snooz_log_path_(std::move(snooz_log_path)),
       max_packets_per_file_(max_packets_per_file),
@@ -1289,10 +1297,6 @@ void SnoopLogger::DumpSnoozLogToFile() {
   }
 }
 
-void SnoopLogger::ListDependencies(ModuleList* /* list */) const {
-  // We have no dependencies
-}
-
 void SnoopLogger::Start() {
   std::lock_guard<std::recursive_mutex> lock(file_mutex_);
   if (btsnoop_mode_ != kBtSnoopLogModeDisabled && btsnoop_mode_ != kBtSnoopLogModeKernel) {
@@ -1417,14 +1421,6 @@ bool SnoopLogger::IsQualcommDebugLogEnabled() {
   }
   return qualcomm_debug_log_enabled;
 }
-
-const ModuleFactory SnoopLogger::Factory = ModuleFactory([]() {
-  return new SnoopLogger(os::ParameterProvider::SnoopLogFilePath(),
-                         os::ParameterProvider::SnoozLogFilePath(), GetMaxPacketsPerFile(),
-                         GetMaxPacketsPerBuffer(), GetBtSnoopMode(), IsQualcommDebugLogEnabled(),
-                         kBtSnoozLogLifeTime, kBtSnoozLogDeleteRepeatingAlarmInterval,
-                         IsBtSnoopLogPersisted());
-});
 
 #ifdef __ANDROID__
 void SnoopLogger::LogTracePoint(const HciPacket& packet, Direction direction, PacketType type) {

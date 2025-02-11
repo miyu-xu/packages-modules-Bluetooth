@@ -193,6 +193,8 @@ public:
     uint16_t remote_cid;
   };
 
+  SnoopLogger(os::Handler* handler);
+
   // Returns the maximum number of packets per file
   // Changes to this value is only effective after restarting Bluetooth
   static size_t GetMaxPacketsPerFile();
@@ -276,16 +278,17 @@ protected:
   // Max packet data size when headersfiltered option enabled
   static const size_t MAX_HCI_ACL_LEN;
 
-  void ListDependencies(ModuleList* list) const override;
+  void ListDependencies(ModuleList* list) const override {}
   void Start() override;
   void Stop() override;
   std::string ToString() const override { return std::string("SnoopLogger"); }
 
-  SnoopLogger(std::string snoop_log_path, std::string snooz_log_path, size_t max_packets_per_file,
+  SnoopLogger(os::Handler* handler, std::string snoop_log_path, std::string snooz_log_path, size_t max_packets_per_file,
               size_t max_packets_per_buffer, const std::string& btsnoop_mode,
               bool qualcomm_debug_log_enabled, const std::chrono::milliseconds snooz_log_life_time,
               const std::chrono::milliseconds snooz_log_delete_alarm_interval,
               bool snoop_log_persists);
+
   void CloseCurrentSnoopLogFile();
   void OpenNextSnoopLogFile();
   // Enable filters according to their sysprops
