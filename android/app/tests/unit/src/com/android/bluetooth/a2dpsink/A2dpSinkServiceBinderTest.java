@@ -47,7 +47,7 @@ public class A2dpSinkServiceBinderTest {
     }
 
     @After
-    public void cleaUp() {
+    public void cleanUp() {
         mBinder.cleanup();
     }
 

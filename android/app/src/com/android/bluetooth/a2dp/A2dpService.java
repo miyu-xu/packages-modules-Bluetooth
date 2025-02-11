@@ -375,7 +375,8 @@ public class A2dpService extends ProfileService {
         return true;
     }
 
-    List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PRIVATE)
+    public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         List<BluetoothDevice> devices = new ArrayList<>();
         if (states == null) {
             return devices;
@@ -657,7 +658,8 @@ public class A2dpService extends ProfileService {
         }
     }
 
-    boolean isA2dpPlaying(BluetoothDevice device) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PRIVATE)
+    public boolean isA2dpPlaying(BluetoothDevice device) {
         Log.d(TAG, "isA2dpPlaying(" + device + ")");
         synchronized (mStateMachines) {
             A2dpStateMachine sm = mStateMachines.get(device);
@@ -1275,7 +1277,8 @@ public class A2dpService extends ProfileService {
         }
     }
 
-    void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PRIVATE)
+    public void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
         mHandler.post(() -> connectionStateChanged(device, fromState, toState));
     }
 
