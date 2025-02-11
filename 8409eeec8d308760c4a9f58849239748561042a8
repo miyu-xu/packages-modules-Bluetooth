@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f2e9b8d_c4d564ec",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1808,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-11T04:24:16Z",
+      "side": 1,
+      "message": "Sure, done.",
+      "parentUuid": "6575f9ec_456672a3",
+      "revId": "8409eeec8d308760c4a9f58849239748561042a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0435cf92_95fa6406",
@@ -87,6 +105,24 @@
           ]
         }
       ],
+      "revId": "8409eeec8d308760c4a9f58849239748561042a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67cd7c9_546e1a66",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-11T04:24:16Z",
+      "side": 1,
+      "message": "Sure, done with other changes.",
+      "parentUuid": "0435cf92_95fa6406",
       "revId": "8409eeec8d308760c4a9f58849239748561042a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
