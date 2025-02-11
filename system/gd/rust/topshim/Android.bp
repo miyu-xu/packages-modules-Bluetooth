@@ -9,8 +9,8 @@ package {
 
 rust_library_host_rlib {
     name: "libbt_topshim",
-    defaults: ["gd_rust_defaults"],
     crate_name: "bt_topshim",
+    host_supported: true,
     srcs: [
         "src/lib.rs",
 
@@ -18,7 +18,6 @@ rust_library_host_rlib {
     ],
     rustlibs: [
         "libbitflags",
-        "libbt_common",
         "libcxx",
         "libfutures",
         "libgrpcio",
