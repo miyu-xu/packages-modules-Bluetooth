@@ -12,6 +12,11 @@
     {
       "name": "ServiceBluetoothTests"
     },
+    // Device only tests
+    // Broken
+    //{
+    //  "name": "bluetooth-test-audio-hal-interface"
+    //},
     {
       "name": "net_test_audio_hearing_aid_hw"
     },
@@ -19,13 +24,7 @@
       "name": "net_test_bluetooth"
     },
     {
-      "name": "net_test_bta"
-    },
-    {
       "name": "net_test_bta_security"
-    },
-    {
-      "name": "net_test_btif"
     },
     {
       "name": "net_test_btif_hf_client_service"
@@ -34,16 +33,10 @@
       "name": "net_test_btif_profile_queue"
     },
     {
-      "name": "net_test_btif_avrcp_audio_track"
-    },
-    {
       "name": "net_test_device"
     },
     {
       "name": "net_test_device_iot_config"
-    },
-    {
-      "name": "net_test_conn_multiplexing"
     },
     {
       "name": "net_test_hci"
@@ -52,11 +45,12 @@
       "name": "net_test_stack"
     },
     {
-      "name": "net_test_stack_a2dp_codecs_native"
-    },
-    {
       "name": "net_test_stack_ad_parser"
     },
+    // go/a-unit-tests tests (host_supported: true)
+    // Thoses test run on the host in the CI automatically.
+    // Run the one that are available on the device on the
+    // device as well
     {
       "name": "bluetooth_csis_test"
     },
@@ -76,6 +70,9 @@
       "name": "bluetooth_le_audio_client_test"
     },
     {
+      "name": "bluetooth_le_audio_codec_manager_test"
+    },
+    {
       "name": "bluetooth_le_audio_test"
     },
     {
@@ -83,6 +80,9 @@
     },
     {
       "name": "bluetooth_packet_parser_test"
+    },
+    {
+      "name": "bluetooth-test-audio-hal-a2dp-provider-info"
     },
     {
       "name": "bluetooth_test_broadcaster"
@@ -109,6 +109,18 @@
       "name": "net_test_btcore"
     },
     {
+      "name": "net_test_bta"
+    },
+    {
+      "name": "net_test_bta_jv"
+    },
+    {
+      "name": "net_test_btif"
+    },
+    {
+      "name": "net_test_btif_avrcp_audio_track"
+    },
+    {
       "name": "net_test_btif_hh"
     },
     {
@@ -124,6 +136,9 @@
       "name": "net_test_btpackets"
     },
     {
+      "name": "net_test_conn_multiplexing"
+    },
+    {
       "name": "net_test_eatt"
     },
     {
@@ -137,6 +152,12 @@
     },
     {
       "name": "net_test_stack_acl"
+    },
+    {
+      "name": "net_test_stack_a2dp_codecs_native"
+    },
+    {
+      "name": "net_test_stack_avctp"
     },
     {
       "name": "net_test_stack_avdtp"
@@ -199,7 +220,7 @@
     {
       "name": "ServiceBluetoothTests"
     },
-    // device only tests
+    // Device only tests
     // Broken
     //{
     //  "name": "bluetooth-test-audio-hal-interface"
@@ -211,13 +232,7 @@
       "name": "net_test_bluetooth"
     },
     {
-      "name": "net_test_bta"
-    },
-    {
       "name": "net_test_bta_security"
-    },
-    {
-      "name": "net_test_btif"
     },
     {
       "name": "net_test_btif_hf_client_service"
@@ -226,16 +241,10 @@
       "name": "net_test_btif_profile_queue"
     },
     {
-      "name": "net_test_btif_avrcp_audio_track"
-    },
-    {
       "name": "net_test_device"
     },
     {
       "name": "net_test_device_iot_config"
-    },
-    {
-      "name": "net_test_conn_multiplexing"
     },
     {
       "name": "net_test_hci"
@@ -244,12 +253,9 @@
       "name": "net_test_stack"
     },
     {
-      "name": "net_test_stack_a2dp_codecs_native"
-    },
-    {
       "name": "net_test_stack_ad_parser"
     },
-    // go/a-unit-tests tests (unit_test: true)
+    // go/a-unit-tests tests (host_supported: true)
     // Thoses test run on the host in the CI automatically.
     // Run the one that are available on the device on the
     // device as well
@@ -272,6 +278,9 @@
       "name": "bluetooth_le_audio_client_test"
     },
     {
+      "name": "bluetooth_le_audio_codec_manager_test"
+    },
+    {
       "name": "bluetooth_le_audio_test"
     },
     {
@@ -279,6 +288,9 @@
     },
     {
       "name": "bluetooth_packet_parser_test"
+    },
+    {
+      "name": "bluetooth-test-audio-hal-a2dp-provider-info"
     },
     {
       "name": "bluetooth_test_broadcaster"
@@ -305,6 +317,18 @@
       "name": "net_test_btcore"
     },
     {
+      "name": "net_test_bta"
+    },
+    {
+      "name": "net_test_bta_jv"
+    },
+    {
+      "name": "net_test_btif"
+    },
+    {
+      "name": "net_test_btif_avrcp_audio_track"
+    },
+    {
       "name": "net_test_btif_hh"
     },
     {
@@ -320,6 +344,9 @@
       "name": "net_test_btpackets"
     },
     {
+      "name": "net_test_conn_multiplexing"
+    },
+    {
       "name": "net_test_eatt"
     },
     {
@@ -333,6 +360,12 @@
     },
     {
       "name": "net_test_stack_acl"
+    },
+    {
+      "name": "net_test_stack_a2dp_codecs_native"
+    },
+    {
+      "name": "net_test_stack_avctp"
     },
     {
       "name": "net_test_stack_avdtp"
@@ -481,19 +514,34 @@
   ],
   "postsubmit": [
     {
-      "name": "bluetooth_le_audio_codec_manager_test"
-    },
-    {
-      "name": "bluetooth-test-audio-hal-a2dp-provider-info"
-    },
-    {
-      "name": "net_test_bta_jv"
-    },
-    {
-      "name": "net_test_stack_avctp"
-    },
-    {
       "name": "asrc_resampler_test"
+    },
+    {
+      "name": "bluetooth_test_with_timerfd"
+    },
+    {
+      "name": "BluetoothLintCheckerTest"
+    },
+    {
+      "name": "bt_host_test_bta_scn"
+    },
+    {
+      "name": "libbluetooth_core_rs_test"
+    },
+    {
+      "name": "libbluetooth_log_test"
+    },
+    {
+      "name": "libbluetooth_offload_hci_test"
+    },
+    {
+      "name": "libbluetooth_offload_leaudio_hci_test"
+    },
+    {
+      "name": "net_test_bta_gatt"
+    },
+    {
+      "name": "net_test_stack_rnr"
     }
   ]
 }
