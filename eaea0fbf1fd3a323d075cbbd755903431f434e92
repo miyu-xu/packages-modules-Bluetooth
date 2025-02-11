@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1d4e766_2b2e1b1a",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-11T17:13:12Z",
+      "side": 1,
+      "message": "Do we stil need From16Bit? `const Uuid UUID_HEARING_AID \u003d Uuid::FromString(\"FDF0\");` should give 128bit already?",
+      "parentUuid": "7312831a_f1986289",
+      "range": {
+        "startLine": 364,
+        "startChar": 53,
+        "endLine": 364,
+        "endChar": 71
+      },
+      "revId": "eaea0fbf1fd3a323d075cbbd755903431f434e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08de1f0d_905f8be3",
         "filename": "system/btif/src/btif_profile_storage.cc",
         "patchSetId": 6
