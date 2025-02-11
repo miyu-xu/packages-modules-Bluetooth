@@ -92,6 +92,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0fffa6a_ffadb873",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-11T17:41:22Z",
+      "side": 1,
+      "message": "When you do From16Bit you provide uint16_t value, and don\u0027t do any string parsing.",
+      "parentUuid": "796a1ac6_90b3cd01",
+      "range": {
+        "startLine": 364,
+        "startChar": 53,
+        "endLine": 364,
+        "endChar": 71
+      },
+      "revId": "eaea0fbf1fd3a323d075cbbd755903431f434e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08de1f0d_905f8be3",
         "filename": "system/btif/src/btif_profile_storage.cc",
         "patchSetId": 6
