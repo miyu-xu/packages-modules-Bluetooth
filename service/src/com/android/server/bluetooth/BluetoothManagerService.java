@@ -565,6 +565,14 @@ class BluetoothManagerService {
                         } else if (mState.oneOf(STATE_ON)) {
                             onToBleOn();
                         }
+                    } else if (action.equals(Intent.ACTION_PACKAGE_CHANGED)) {
+                        String changedPackage = intent.getData().getSchemeSpecificPart();
+                        if (changedPackage.equals("com.android.bluetooth")) {
+                            Log.i(TAG, "Package changed: com.android.bluetooth");
+                            peekBluetoothComponents("com.android.bluetooth");
+                        } else {
+                            Log.i(TAG, "Package changed: " + changedPackage);
+                        }
                     }
                 }
             };
@@ -611,6 +619,7 @@ class BluetoothManagerService {
         }
         filter.addAction(Intent.ACTION_SETTING_RESTORED);
         filter.addAction(Intent.ACTION_SHUTDOWN);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         mContext.registerReceiver(mReceiver, filter, null, mHandler);
 
@@ -1344,7 +1353,9 @@ class BluetoothManagerService {
                 Log.e(TAG, "Unknown service disconnected: " + name);
                 return;
             }
-            mHandler.sendEmptyMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+            Message msg = mHandler.obtainMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+            msg.obj = componentName.getPackageName();
+            mHandler.sendMessage(msg);
         }
     }
 
@@ -1501,6 +1512,8 @@ class BluetoothManagerService {
                     IBinder service = (IBinder) msg.obj;
                     Log.d(TAG, "MESSAGE_BLUETOOTH_SERVICE_CONNECTED: service=" + service);
 
+                    peekBluetoothComponents("com.android.bluetooth");
+
                     // Remove timeout
                     mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
 
@@ -1541,6 +1554,7 @@ class BluetoothManagerService {
                             "MESSAGE_BLUETOOTH_STATE_CHANGE:"
                                     + (" prevState=" + nameForState(prevState))
                                     + (" newState=" + nameForState(newState)));
+                    peekBluetoothComponents("com.android.bluetooth");
                     if (mAdapter == null) {
                         Log.e(TAG, "State change received after bluetooth has crashed");
                         break;
@@ -1576,6 +1590,13 @@ class BluetoothManagerService {
 
                 case MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED:
                     Log.e(TAG, "MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED");
+
+                    String packageName = (String) msg.obj;
+                    if (packageName != null && !packageName.isEmpty()) {
+                        disableBluetoothComponents(packageName);
+                    } else {
+                        Log.i(TAG, "Invalid package name received: " + packageName);
+                    }
 
                     if (!resetAdapter()) {
                         break;
@@ -2451,5 +2472,151 @@ class BluetoothManagerService {
         PackageManager pm = context.getPackageManager();
         return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+    }
+
+    private void disableBluetoothComponents(String packageName) {
+        PackageManager pm = mContext.getPackageManager();
+
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_SERVICES |
+                            PackageManager.MATCH_DISABLED_COMPONENTS);
+
+            if (packageInfo == null) {
+                Log.i(TAG, "Failed to get package info for " + packageName);
+                return;
+            }
+
+            // Disable services
+            if (packageInfo.services != null) {
+                for (android.content.pm.ServiceInfo serviceInfo : packageInfo.services) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, serviceInfo.name);
+                    /*if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED &&
+                            !serviceInfo.isEnabled()) {
+                        pm.setComponentEnabledSetting(
+                            componentName,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                            PackageManager.DONT_KILL_APP);
+                        Log.i(TAG, "Disabled component: " + serviceInfo.name);
+                    }*/
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        if (serviceInfo.isEnabled()) {
+                            Log.e(TAG, "disable manifest enabled component: " + serviceInfo.name);
+                        } else {
+                            Log.e(TAG, "disable dynamical component: " + serviceInfo.name);
+                        }
+                    }
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Package not found: " + packageName, e);
+        } catch (SecurityException e) {
+            Log.e(TAG, "disableBluetoothComponents failed." + e);
+        }
+    }
+
+    private void peekBluetoothComponents(String packageName) {
+        PackageManager pm = mContext.getPackageManager();
+        Log.i(TAG, "peekBluetoothComponents" + packageName);
+
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_SERVICES |
+                        PackageManager.GET_ACTIVITIES |
+                        PackageManager.GET_RECEIVERS |
+                        PackageManager.GET_PROVIDERS |
+                            PackageManager.MATCH_DISABLED_COMPONENTS);
+
+            if (packageInfo == null) {
+                Log.i(TAG, "Failed to get package info for " + packageName);
+                return;
+            }
+
+            // Disable services
+            if (packageInfo.services != null) {
+                for (android.content.pm.ServiceInfo serviceInfo : packageInfo.services) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, serviceInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        if (serviceInfo.isEnabled()) {
+                            Log.e(TAG, "peekBluetoothComponents: manifest enabled service: " + serviceInfo.name);
+                        } else {
+                            Log.e(TAG, "peekBluetoothComponents: dynamical service: " + serviceInfo.name);
+                        }
+                    } else {
+                        Log.e(TAG, "peekBluetoothComponents: disabled service: " + serviceInfo.name);
+                    }
+                }
+            } else {
+                Log.e(TAG, "peekBluetoothComponents: services is null");
+            }
+
+            if (packageInfo.activities != null) {
+                for (android.content.pm.ActivityInfo activityInfo : packageInfo.activities) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, activityInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        if (activityInfo.isEnabled()) {
+                            Log.e(TAG, "peekBluetoothComponents: manifest enabled activity: " + activityInfo.name);
+                        } else {
+                            Log.e(TAG, "peekBluetoothComponents: dynamical activity: " + activityInfo.name);
+                        }
+                    } else {
+                        Log.e(TAG, "peekBluetoothComponents: disabled activity: " + activityInfo.name);
+                    }
+                }
+            } else {
+                Log.e(TAG, "peekBluetoothComponents: activities is null");
+            }
+
+              if (packageInfo.receivers != null) {
+                for (android.content.pm.ActivityInfo receiverInfo : packageInfo.receivers) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, receiverInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        if (receiverInfo.isEnabled()) {
+                            Log.e(TAG, "peekBluetoothComponents: manifest enabled receiver: " + receiverInfo.name);
+                        } else {
+                            Log.e(TAG, "peekBluetoothComponents: dynamical receiver: " + receiverInfo.name);
+                        }
+                    } else {
+                        Log.e(TAG, "peekBluetoothComponents: disabled receiver: " + receiverInfo.name);
+                    }
+                }
+            } else {
+                Log.e(TAG, "peekBluetoothComponents: receivers is null");
+            }
+
+              if (packageInfo.providers != null) {
+                for (android.content.pm.ProviderInfo providerInfo : packageInfo.providers) {
+                    ComponentName componentName = new ComponentName(
+                            packageName, providerInfo.name);
+                    if (pm.getComponentEnabledSetting(componentName)
+                            != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                        if (providerInfo.isEnabled()) {
+                            Log.e(TAG, "peekBluetoothComponents: manifest enabled provider: " + providerInfo.name);
+                        } else {
+                            Log.e(TAG, "peekBluetoothComponents: dynamical provider: " + providerInfo.name);
+                        }
+                    } else {
+                        Log.e(TAG, "peekBluetoothComponents: disabled provider: " + providerInfo.name);
+                    }
+                }
+            } else {
+                Log.e(TAG, "peekBluetoothComponents: providers is null");
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Package not found: " + packageName, e);
+        } catch (SecurityException e) {
+            Log.e(TAG, "disableBluetoothComponents failed." + e);
+        }
     }
 }
