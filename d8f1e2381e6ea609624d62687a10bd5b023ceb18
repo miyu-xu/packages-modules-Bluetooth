@@ -22,6 +22,30 @@
       },
       "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daaf66ef_84defc7f",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 3371405
+      },
+      "writtenOn": "2025-02-11T08:28:05Z",
+      "side": 1,
+      "message": "Do you mean that during the pairing process, if the PIRK is all zeros, we should not set BTM_LE_KEY_PID to ble_keys.key_type? \nThis way, we wouldn\u0027t need to add this check in btm_ble_match_random_bda. \nIs my understanding correct? \nThank you.",
+      "parentUuid": "c6e5d608_b0f16248",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
