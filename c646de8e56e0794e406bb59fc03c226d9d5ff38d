@@ -16,6 +16,24 @@
       "message": "I don\u0027t think it is necessary to cancel the alarm here; the destructor already destroys the associated timerfd : \n\n```\nAlarm::~Alarm() {\n  handler_-\u003ethread_-\u003eGetReactor()-\u003eUnregister(token_);\n\n  int close_status;\n  RUN_NO_INTR(close_status \u003d TIMERFD_CLOSE(fd_));\n  log::assert_that(close_status !\u003d -1, \"assert failed: close_status !\u003d -1\");\n}\n```",
       "revId": "c646de8e56e0794e406bb59fc03c226d9d5ff38d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06cf7ca6_f683213b",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-11T05:36:01Z",
+      "side": 1,
+      "message": "Got it. In my local test there is no issue if we don\u0027t cancel here. I started this CL because we did some cancel before delete in |on_hci_timeout| and |handle_root_inflammation| but I guess we can drop this.\n\nThanks!",
+      "parentUuid": "d0ea34ef_0c290e0c",
+      "revId": "c646de8e56e0794e406bb59fc03c226d9d5ff38d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
