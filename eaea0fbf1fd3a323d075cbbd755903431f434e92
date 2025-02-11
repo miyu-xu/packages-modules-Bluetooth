@@ -68,6 +68,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "796a1ac6_90b3cd01",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-11T17:31:16Z",
+      "side": 1,
+      "message": "I don\u0027t like that individual modules are creating these Uuid objects. I have created b/395883587 to expose them from a single place.",
+      "parentUuid": "c1d4e766_2b2e1b1a",
+      "range": {
+        "startLine": 364,
+        "startChar": 53,
+        "endLine": 364,
+        "endChar": 71
+      },
+      "revId": "eaea0fbf1fd3a323d075cbbd755903431f434e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08de1f0d_905f8be3",
         "filename": "system/btif/src/btif_profile_storage.cc",
         "patchSetId": 6
