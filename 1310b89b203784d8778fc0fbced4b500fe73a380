@@ -46,6 +46,30 @@
       },
       "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c179809_d9c93a65",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-12T06:01:34Z",
+      "side": 0,
+      "message": "Oh, didn\u0027t notice the thread is created outside. Thanks for the info 😊",
+      "parentUuid": "2130b3b4_77770d6a",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
