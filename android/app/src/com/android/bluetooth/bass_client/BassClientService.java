@@ -654,7 +654,7 @@ public class BassClientService extends ProfileService {
                         mCallbacks.notifySourceLost(oldBroadcastId);
                         clearAllDataForSyncHandle(syncHandle);
                         mCachedBroadcasts.remove(oldBroadcastId);
-                            }
+                    }
                 } else {
                     for (Map.Entry<Integer, PeriodicAdvertisementResult> entry :
                             paResMap.entrySet()) {
@@ -2281,7 +2281,7 @@ public class BassClientService extends ProfileService {
                     // Keep broadcasts waiting for adding source (could be by resume too)
                     broadcastsToKeepSynced.addAll(getBroadcastIdsWaitingForAddSource());
 
-                    // Keep broadcast UNINTENTIONALly paused
+                    // Keep broadcast unintentionally paused
                     broadcastsToKeepSynced.addAll(getUnintentionallyPausedBroadcastIds());
 
                     log("Broadcasts to keep on stop: " + broadcastsToKeepSynced);
@@ -2451,6 +2451,9 @@ public class BassClientService extends ProfileService {
                     int failsCounter = mSyncFailureCounter.getOrDefault(broadcastId, 0) + 1;
                     mSyncFailureCounter.put(broadcastId, failsCounter);
                 }
+
+                clearAllDataForSyncHandle(BassConstants.PENDING_SYNC_HANDLE);
+
                 if (isSinkUnintentionalPauseType(broadcastId)) {
                     if (!mTimeoutHandler.isStarted(
                             broadcastId, MESSAGE_BROADCAST_MONITOR_TIMEOUT)) {
@@ -2468,7 +2471,7 @@ public class BassClientService extends ProfileService {
                         }
                     }
                 }
-                clearAllDataForSyncHandle(BassConstants.PENDING_SYNC_HANDLE);
+
                 handleSelectSourceRequest();
                 return;
             }
@@ -2940,28 +2943,35 @@ public class BassClientService extends ProfileService {
                         + broadcastId
                         + ", hasPriority: "
                         + hasPriority);
-        mTimeoutHandler.stop(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT);
-        ScanResult scanRes = getCachedBroadcast(broadcastId);
-        if (scanRes != null) {
-            ScanRecord scanRecord = scanRes.getScanRecord();
-            if (scanRecord == null) {
-                log("addSelectSourceRequest: ScanRecord empty");
-                return;
-            }
 
-            synchronized (mSourceSyncRequestsQueue) {
-                if (!mSyncFailureCounter.containsKey(broadcastId)) {
-                    mSyncFailureCounter.put(broadcastId, 0);
-                }
-                mSourceSyncRequestsQueue.add(
-                        new SourceSyncRequest(
-                                scanRes, hasPriority, mSyncFailureCounter.get(broadcastId)));
-            }
-
-            handleSelectSourceRequest();
-        } else {
-            log("addSelectSourceRequest: ScanResult empty");
+        if (isAddedToSelectSourceRequest(broadcastId, /* priorityImportant */ hasPriority)) {
+            log("addSelectSourceRequest: Already added");
+            return;
         }
+
+        ScanResult scanRes = getCachedBroadcast(broadcastId);
+        if (scanRes == null) {
+            log("addSelectSourceRequest: ScanResult empty");
+            return;
+        }
+
+        ScanRecord scanRecord = scanRes.getScanRecord();
+        if (scanRecord == null) {
+            log("addSelectSourceRequest: ScanRecord empty");
+            return;
+        }
+
+        mTimeoutHandler.stop(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT);
+        synchronized (mSourceSyncRequestsQueue) {
+            if (!mSyncFailureCounter.containsKey(broadcastId)) {
+                mSyncFailureCounter.put(broadcastId, 0);
+            }
+            mSourceSyncRequestsQueue.add(
+                    new SourceSyncRequest(
+                            scanRes, hasPriority, mSyncFailureCounter.get(broadcastId)));
+        }
+
+        handleSelectSourceRequest();
     }
 
     @SuppressLint("AndroidFrameworkRequiresPermission") // TODO: b/350563786 - Fix BASS annotation
@@ -3380,7 +3390,8 @@ public class BassClientService extends ProfileService {
                     int broadcastId = sourceMetadata.getBroadcastId();
                     if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
                         // Check if not added already
-                        if (isAddedToSelectSourceRequest(broadcastId, true)) {
+                        if (isAddedToSelectSourceRequest(
+                                broadcastId, /* priorityImportant */ true)) {
                             mPendingSourcesToAdd.add(
                                     new AddSourceData(device, sourceMetadata, isGroupOp));
                             // If the source has been synced before, try to re-sync
