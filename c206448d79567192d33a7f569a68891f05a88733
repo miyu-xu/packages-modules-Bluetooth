@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "573a552f_512e70bf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T14:37:02Z",
+      "side": 1,
+      "message": "This is added in `encryptionEnable` check under the 2nd CL.",
+      "parentUuid": "c8563c1d_53e1c95d",
+      "revId": "c206448d79567192d33a7f569a68891f05a88733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "702da3d4_240c1c7b",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-12T01:36:57Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 239,
+        "endChar": 110
+      },
+      "revId": "c206448d79567192d33a7f569a68891f05a88733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c547de5e_3765c0f8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T14:37:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "702da3d4_240c1c7b",
       "range": {
         "startLine": 239,
         "startChar": 0,
