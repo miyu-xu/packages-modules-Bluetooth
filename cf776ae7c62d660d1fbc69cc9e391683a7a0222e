@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59746f10_3fc6169a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 6121,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-12T13:10:26Z",
+      "side": 0,
+      "message": "I think this part is also important whe device is connecting/disconnecting so the offloader has latest status of connected CISes.\n\nPreviously you had this calle in the `} else { ` block belows. Don\u0027t we need it?",
+      "revId": "cf776ae7c62d660d1fbc69cc9e391683a7a0222e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
