@@ -19,6 +19,8 @@ package com.android.bluetooth.gatt;
 import static com.android.bluetooth.TestUtils.MockitoRule;
 import static com.android.bluetooth.TestUtils.getTestDevice;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,6 +31,7 @@ import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.content.AttributionSource;
+import android.os.HandlerThread;
 import android.os.ParcelUuid;
 
 import androidx.test.filters.SmallTest;
@@ -36,7 +39,9 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.Flags;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -62,13 +67,39 @@ public class DistanceMeasurementBinderTest {
                     .getAdapter()
                     .getAttributionSource();
 
+    private HandlerThread mHandlerThread;
+
     private DistanceMeasurementBinder mBinder;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Throwable {
+        mHandlerThread = new HandlerThread("DistanceMeasurementBinderTest");
+        mHandlerThread.start();
+
         mBinder = new DistanceMeasurementBinder(mAdapterService, mDistanceMeasurementManager);
         when(mDistanceMeasurementManager.getSupportedDistanceMeasurementMethods())
                 .thenReturn(Collections.emptyList());
+        if (Flags.advertiseThread()) {
+            when(mDistanceMeasurementManager.runOnDistanceMeasurementThreadAndWaitForResult(any()))
+                    .thenAnswer(
+                            invocationOnMock -> {
+                                DistanceMeasurementManager.GetResultTask task =
+                                        invocationOnMock.getArgument(0);
+                                return task.getResult();
+                            });
+            doAnswer(
+                            invocation -> {
+                                ((Runnable) (invocation.getArgument(0))).run();
+                                return null;
+                            })
+                    .when(mDistanceMeasurementManager)
+                    .runOnDistanceMeasurementThread(any());
+        }
+    }
+
+    @After
+    public void tearDown() {
+        mHandlerThread.quit();
     }
 
     @Test
