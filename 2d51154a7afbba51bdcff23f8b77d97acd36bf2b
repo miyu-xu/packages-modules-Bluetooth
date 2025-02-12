@@ -22,6 +22,30 @@
       },
       "revId": "2d51154a7afbba51bdcff23f8b77d97acd36bf2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e987cd66_bdcccdbd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3238,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:16:54Z",
+      "side": 1,
+      "message": "I do not get where is memory leak? Without that change it was not cleaned.",
+      "parentUuid": "3d7b79bd_22b699a0",
+      "range": {
+        "startLine": 3238,
+        "startChar": 0,
+        "endLine": 3238,
+        "endChar": 78
+      },
+      "revId": "2d51154a7afbba51bdcff23f8b77d97acd36bf2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
