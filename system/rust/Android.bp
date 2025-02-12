@@ -93,7 +93,10 @@ rust_test {
     name: "libbluetooth_core_rs_test",
     host_supported: true,
     test_suites: ["general-tests"],
-    defaults: ["libbluetooth_core_rs_defaults"],
+    defaults: [
+        "libbluetooth_core_rs_defaults",
+        "mts_defaults",
+    ],
     rustlibs: [
         "libbluetooth_aconfig_flags_rust",
         "libtokio_for_test",
