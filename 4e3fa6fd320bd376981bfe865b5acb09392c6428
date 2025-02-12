@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2572ad25_60238617",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3180,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:57:08Z",
+      "side": 1,
+      "message": "Oh yes, this one. It\u0027s the second in entry, and there\u0027s no need to break since we can call it directly within the loop and return. Originally, it was inside another method, which is why returning wasn\u0027t possible.\n\nMaybe I can do this as a follow-up CL? The rest looks fine (I hope), so we can merge them without needing to rebase.",
+      "parentUuid": "06c32201_2730b00b",
+      "range": {
+        "startLine": 3180,
+        "startChar": 8,
+        "endLine": 3180,
+        "endChar": 53
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ec44c84_d2a1e6c6",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 12
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-12T20:03:17Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 3182,
+        "startChar": 12,
+        "endLine": 3182,
+        "endChar": 32
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34d1ea8d_135aacfb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3182,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:57:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0ec44c84_d2a1e6c6",
       "range": {
         "startLine": 3182,
         "startChar": 12,
@@ -60,6 +108,30 @@
       "writtenOn": "2025-02-12T20:03:17Z",
       "side": 1,
       "message": "add java comment `/* name of variable */ false` for all boolean parameters",
+      "range": {
+        "startLine": 3196,
+        "startChar": 55,
+        "endLine": 3196,
+        "endChar": 60
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421e5d5c_3a7d34d2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3196,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:57:08Z",
+      "side": 1,
+      "message": "Ok, but as a separate CL to keep the commits distinct.\nI added task to backlog b/396177852",
+      "parentUuid": "32c84642_453d3e16",
       "range": {
         "startLine": 3196,
         "startChar": 55,
