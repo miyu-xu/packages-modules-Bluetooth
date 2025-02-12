@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3be04b0_1a486ce6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3083,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:15:50Z",
+      "side": 1,
+      "message": "This is only helper function to not duplicate a code. it is used in two methods.",
+      "parentUuid": "834064cc_11cf856a",
+      "range": {
+        "startLine": 3049,
+        "startChar": 4,
+        "endLine": 3083,
+        "endChar": 0
+      },
+      "revId": "6fe3b986d913f19617197092d0a4935a12d10ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9202872_1fe1abdd",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 13
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-12T20:00:38Z",
       "side": 1,
       "message": "is there anyway to avoid a double for-loop in this method and the internal method?",
+      "range": {
+        "startLine": 3170,
+        "startChar": 16,
+        "endLine": 3170,
+        "endChar": 80
+      },
+      "revId": "6fe3b986d913f19617197092d0a4935a12d10ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df77b2e_aa75fed4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3170,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:15:50Z",
+      "side": 1,
+      "message": "Unfortunately, no, due to the scenario described in the commit message and the method description.\n\nmBroadcastMetadataMap serves a dual purpose, which causes issues. I\u0027ve added a refactoring task to the backlog (b/393495675), so we might be able to address this later—but definitely not for 25Q2.",
+      "parentUuid": "e9202872_1fe1abdd",
       "range": {
         "startLine": 3170,
         "startChar": 16,
