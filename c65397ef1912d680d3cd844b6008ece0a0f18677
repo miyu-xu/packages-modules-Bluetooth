@@ -48,6 +48,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de3f3f5_0704fc98",
+        "filename": "system/rust/src/gatt/server/indication_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-12T21:40:49Z",
+      "side": 1,
+      "message": "Can you please keep the previous `use` declaration format, or at least move these changes to a different patchset ?\n\nThis is generating a lot of changes unrelated to the main topic of this CL.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 40
+      },
+      "revId": "c65397ef1912d680d3cd844b6008ece0a0f18677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "10e2d4f8_8865829c",
