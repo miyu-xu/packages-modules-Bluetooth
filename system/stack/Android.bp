@@ -317,6 +317,8 @@ cc_library_static {
         "cxx-bridge-header",
     ],
     cflags: [
+        "-D_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS",
+        "-Wthread-safety",
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
         "-fvisibility=default",
     ],

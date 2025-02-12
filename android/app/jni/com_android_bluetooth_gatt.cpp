@@ -36,6 +36,7 @@
 #include <utility>
 #include <vector>
 
+#include "bta/include/bta_ras_api.h"
 #include "com_android_bluetooth.h"
 #include "com_android_bluetooth_flags.h"
 #include "hardware/ble_advertiser.h"
@@ -234,6 +235,11 @@ static jmethodID method_onDistanceMeasurementResult;
  * Static variables
  */
 static const btgatt_interface_t* sGattIf = NULL;
+
+// Whilst sGattIf is initialized (with the callbacks we use below), sPrivateGattServerManager *must*
+// be initialised because the callbacks make use of sPrivateGattServerManager.
+static bluetooth::gatt::PrivateGattServerManager* sPrivateGattServerManager = NULL;
+
 /** Pointer to the LE scanner interface methods.*/
 static BleScannerInterface* sScanner = NULL;
 static jobject mCallbacksObj = NULL;
@@ -586,7 +592,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
  */
 
 void btgatts_register_app_cb(int status, int server_if, const Uuid& uuid) {
-  bluetooth::gatt::open_server(server_if);
+  sPrivateGattServerManager->OpenServer(server_if);
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
   if (!sCallbackEnv.valid() || !mCallbacksObj) {
@@ -620,7 +626,7 @@ void btgatts_service_added_cb(int status, int server_if, const btgatt_db_element
               curr_service.attribute_handle, curr_service.properties,
               curr_service.extended_properties, curr_service.permissions});
     }
-    bluetooth::gatt::add_service(server_if, std::move(service_records));
+    sPrivateGattServerManager->AddService(server_if, std::move(service_records));
   }
 
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
@@ -642,7 +648,7 @@ void btgatts_service_added_cb(int status, int server_if, const btgatt_db_element
 }
 
 void btgatts_service_stopped_cb(int status, int server_if, int srvc_handle) {
-  bluetooth::gatt::remove_service(server_if, srvc_handle);
+  sPrivateGattServerManager->RemoveService(server_if, srvc_handle);
 
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
@@ -654,7 +660,7 @@ void btgatts_service_stopped_cb(int status, int server_if, int srvc_handle) {
 }
 
 void btgatts_service_deleted_cb(int status, int server_if, int srvc_handle) {
-  bluetooth::gatt::remove_service(server_if, srvc_handle);
+  sPrivateGattServerManager->RemoveService(server_if, srvc_handle);
 
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
@@ -1204,6 +1210,10 @@ static void initializeNative(JNIEnv* env, jobject object) {
     log::warn("Cleaning up Bluetooth GATT Interface before initializing...");
     sGattIf->cleanup();
     sGattIf = NULL;
+
+    // Drop sPrivateGattServerManager
+    rust::Box<bluetooth::gatt::PrivateGattServerManager>::from_raw(sPrivateGattServerManager);
+    sPrivateGattServerManager = NULL;
   }
 
   if (mCallbacksObj != NULL) {
@@ -1225,10 +1235,16 @@ static void initializeNative(JNIEnv* env, jobject object) {
     return;
   }
 
-  if (com::android::bluetooth::flags::scan_manager_refactor()) {
-    log::info("Starting rust module");
-    btIf->start_rust_module();
-  }
+  // NewPrivateGattServerManager returns an object that we own, but it has a non-trivial destructor
+  // so we cannot store it in a static variable.  It will be cleaned up in cleanupNative.
+  sPrivateGattServerManager =
+          bluetooth::gatt::NewPrivateGattServerManager(
+                  std::make_unique<bluetooth::gatt::GattServerCallbacks>(sGattServerCallbacks),
+                  bluetooth::shim::arbiter::GetArbiter())
+                  .into_raw();
+
+  bluetooth::ras::GetRasServer()->Initialize();
+  bluetooth::ras::GetRasClient()->Initialize();
 
   sGattIf->advertiser->RegisterCallbacks(JniAdvertisingCallbacks::GetInstance());
   sGattIf->distance_measurement_manager->RegisterDistanceMeasurementCallbacks(
@@ -1244,14 +1260,13 @@ static void cleanupNative(JNIEnv* env, jobject /* object */) {
     return;
   }
 
-  if (com::android::bluetooth::flags::scan_manager_refactor()) {
-    log::info("Stopping rust module");
-    btIf->stop_rust_module();
-  }
-
   if (sGattIf != NULL) {
     sGattIf->cleanup();
     sGattIf = NULL;
+
+    // Drop sPrivateGattServerManager
+    rust::Box<bluetooth::gatt::PrivateGattServerManager>::from_raw(sPrivateGattServerManager);
+    sPrivateGattServerManager = NULL;
   }
 
   if (mCallbacksObj != NULL) {
@@ -1305,7 +1320,7 @@ static void registerScannerNative(JNIEnv* /* env */, jobject /* object */, jlong
   }
 
   Uuid uuid = from_java_uuid(app_uuid_msb, app_uuid_lsb);
-  sScanner->RegisterScanner(uuid, base::Bind(&btgattc_register_scanner_cb, uuid));
+  sScanner->RegisterScanner(uuid, ::base::Bind(&btgattc_register_scanner_cb, uuid));
 }
 
 static void unregisterScannerNative(JNIEnv* /* env */, jobject /* object */, jint scanner_id) {
@@ -1373,7 +1388,7 @@ static void gattClientReadPhyNative(JNIEnv* env, jobject /* object */, jint clie
   }
 
   RawAddress bda = str2addr(env, address);
-  sGattIf->client->read_phy(bda, base::Bind(&readClientPhyCb, clientIf, bda));
+  sGattIf->client->read_phy(bda, ::base::Bind(&readClientPhyCb, clientIf, bda));
 }
 
 static void gattClientRefreshNative(JNIEnv* env, jobject /* object */, jint clientIf,
@@ -1594,7 +1609,7 @@ static void gattClientScanFilterParamAddNative(JNIEnv* env, jobject /* object */
 
   sScanner->ScanFilterParamSetup(client_if, add_scan_filter_params_action, filt_index,
                                  std::move(filt_params),
-                                 base::Bind(&scan_filter_param_cb, client_if));
+                                 ::base::Bind(&scan_filter_param_cb, client_if));
 }
 
 static void gattClientScanFilterParamDeleteNative(JNIEnv* /* env */, jobject /* object */,
@@ -1604,7 +1619,7 @@ static void gattClientScanFilterParamDeleteNative(JNIEnv* /* env */, jobject /* 
   }
   const int delete_scan_filter_params_action = 1;
   sScanner->ScanFilterParamSetup(client_if, delete_scan_filter_params_action, filt_index, nullptr,
-                                 base::Bind(&scan_filter_param_cb, client_if));
+                                 ::base::Bind(&scan_filter_param_cb, client_if));
 }
 
 static void gattClientScanFilterParamClearAllNative(JNIEnv* /* env */, jobject /* object */,
@@ -1614,7 +1629,7 @@ static void gattClientScanFilterParamClearAllNative(JNIEnv* /* env */, jobject /
   }
   const int clear_scan_filter_params_action = 2;
   sScanner->ScanFilterParamSetup(client_if, clear_scan_filter_params_action, 0 /* index, unused */,
-                                 nullptr, base::Bind(&scan_filter_param_cb, client_if));
+                                 nullptr, ::base::Bind(&scan_filter_param_cb, client_if));
 }
 
 static void scan_filter_cfg_cb(uint8_t client_if, uint8_t filt_type, uint8_t avbl_space,
@@ -1648,7 +1663,7 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject /* object */, jin
   int numFilters = env->GetArrayLength(filters);
   if (numFilters == 0) {
     sScanner->ScanFilterAdd(filter_index, std::move(native_filters),
-                            base::Bind(&scan_filter_cfg_cb, client_if));
+                            ::base::Bind(&scan_filter_cfg_cb, client_if));
     return;
   }
 
@@ -1777,7 +1792,7 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject /* object */, jin
   }
 
   sScanner->ScanFilterAdd(filter_index, std::move(native_filters),
-                          base::Bind(&scan_filter_cfg_cb, client_if));
+                          ::base::Bind(&scan_filter_cfg_cb, client_if));
 }
 
 static void gattClientScanFilterClearNative(JNIEnv* /* env */, jobject /* object */, jint client_if,
@@ -1785,7 +1800,7 @@ static void gattClientScanFilterClearNative(JNIEnv* /* env */, jobject /* object
   if (!sScanner) {
     return;
   }
-  sScanner->ScanFilterClear(filt_index, base::Bind(&scan_filter_cfg_cb, client_if));
+  sScanner->ScanFilterClear(filt_index, ::base::Bind(&scan_filter_cfg_cb, client_if));
 }
 
 void scan_enable_cb(uint8_t client_if, uint8_t action, uint8_t status) {
@@ -1803,7 +1818,7 @@ static void gattClientScanFilterEnableNative(JNIEnv* /* env */, jobject /* objec
   if (!sScanner) {
     return;
   }
-  sScanner->ScanFilterEnable(enable, base::Bind(&scan_enable_cb, client_if));
+  sScanner->ScanFilterEnable(enable, ::base::Bind(&scan_enable_cb, client_if));
 }
 
 void msft_monitor_add_cb(int filter_index, uint8_t monitor_handle, uint8_t status) {
@@ -1884,7 +1899,7 @@ static void gattClientMsftAdvMonitorAddNative(JNIEnv* env, jobject /* object*/,
   int numPatterns = env->GetArrayLength(msft_adv_monitor_patterns);
   if (numPatterns == 0) {
     sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor),
-                                base::Bind(&msft_monitor_add_cb, filter_index));
+                                ::base::Bind(&msft_monitor_add_cb, filter_index));
     return;
   }
 
@@ -1924,7 +1939,7 @@ static void gattClientMsftAdvMonitorAddNative(JNIEnv* env, jobject /* object*/,
   native_msft_adv_monitor.patterns = patterns;
 
   sScanner->MsftAdvMonitorAdd(std::move(native_msft_adv_monitor),
-                              base::Bind(&msft_monitor_add_cb, filter_index));
+                              ::base::Bind(&msft_monitor_add_cb, filter_index));
 }
 
 static void gattClientMsftAdvMonitorRemoveNative(JNIEnv* /* env */, jobject /* object */,
@@ -1932,7 +1947,8 @@ static void gattClientMsftAdvMonitorRemoveNative(JNIEnv* /* env */, jobject /* o
   if (!sScanner) {
     return;
   }
-  sScanner->MsftAdvMonitorRemove(monitor_handle, base::Bind(&msft_monitor_remove_cb, filter_index));
+  sScanner->MsftAdvMonitorRemove(monitor_handle,
+                                 ::base::Bind(&msft_monitor_remove_cb, filter_index));
 }
 
 static void gattClientMsftAdvMonitorEnableNative(JNIEnv* /* env */, jobject /* object */,
@@ -1940,7 +1956,7 @@ static void gattClientMsftAdvMonitorEnableNative(JNIEnv* /* env */, jobject /* o
   if (!sScanner) {
     return;
   }
-  sScanner->MsftAdvMonitorEnable(enable, base::Bind(&msft_monitor_enable_cb));
+  sScanner->MsftAdvMonitorEnable(enable, ::base::Bind(&msft_monitor_enable_cb));
 }
 
 static void gattClientConfigureMTUNative(JNIEnv* /* env */, jobject /* object */, jint conn_id,
@@ -1994,7 +2010,7 @@ static void gattClientConfigBatchScanStorageNative(JNIEnv* /* env */, jobject /*
   }
   sScanner->BatchscanConfigStorage(client_if, max_full_reports_percent, max_trunc_reports_percent,
                                    notify_threshold_level_percent,
-                                   base::Bind(&batchscan_cfg_storage_cb, client_if));
+                                   ::base::Bind(&batchscan_cfg_storage_cb, client_if));
 }
 
 void batchscan_enable_cb(uint8_t client_if, uint8_t status) {
@@ -2015,14 +2031,14 @@ static void gattClientStartBatchScanNative(JNIEnv* /* env */, jobject /* object 
     return;
   }
   sScanner->BatchscanEnable(scan_mode, scan_interval_unit, scan_window_unit, addr_type,
-                            discard_rule, base::Bind(&batchscan_enable_cb, client_if));
+                            discard_rule, ::base::Bind(&batchscan_enable_cb, client_if));
 }
 
 static void gattClientStopBatchScanNative(JNIEnv* /* env */, jobject /* object */, jint client_if) {
   if (!sScanner) {
     return;
   }
-  sScanner->BatchscanDisable(base::Bind(&batchscan_enable_cb, client_if));
+  sScanner->BatchscanDisable(::base::Bind(&batchscan_enable_cb, client_if));
 }
 
 static void gattClientReadScanReportsNative(JNIEnv* /* env */, jobject /* object */, jint client_if,
@@ -2050,7 +2066,7 @@ static void gattServerUnregisterAppNative(JNIEnv* /* env */, jobject /* object *
   if (!sGattIf) {
     return;
   }
-  bluetooth::gatt::close_server(serverIf);
+  sPrivateGattServerManager->CloseServer(serverIf);
   sGattIf->server->unregister_server(serverIf);
 }
 
@@ -2104,7 +2120,7 @@ static void gattServerReadPhyNative(JNIEnv* env, jobject /* object */, jint serv
   }
 
   RawAddress bda = str2addr(env, address);
-  sGattIf->server->read_phy(bda, base::Bind(&readServerPhyCb, serverIf, bda));
+  sGattIf->server->read_phy(bda, ::base::Bind(&readServerPhyCb, serverIf, bda));
 }
 
 static void gattServerAddServiceNative(JNIEnv* env, jobject /* object */, jint server_if,
@@ -2205,9 +2221,9 @@ static void gattServerSendIndicationNative(JNIEnv* env, jobject /* object */, ji
   jbyte* array = env->GetByteArrayElements(val, 0);
   int val_len = env->GetArrayLength(val);
 
-  if (bluetooth::gatt::is_connection_isolated(conn_id)) {
+  if (sPrivateGattServerManager->IsConnectionIsolated(conn_id)) {
     auto data = ::rust::Slice<const uint8_t>((uint8_t*)array, val_len);
-    bluetooth::gatt::send_indication(server_if, attr_handle, conn_id, data);
+    sPrivateGattServerManager->SendIndication(server_if, attr_handle, conn_id, data);
   } else {
     sGattIf->server->send_indication(server_if, attr_handle, conn_id,
                                      /*confirm*/ 1, (uint8_t*)array, val_len);
@@ -2260,9 +2276,9 @@ static void gattServerSendResponseNative(JNIEnv* env, jobject /* object */, jint
     env->ReleaseByteArrayElements(val, array, JNI_ABORT);
   }
 
-  if (bluetooth::gatt::is_connection_isolated(conn_id)) {
+  if (sPrivateGattServerManager->IsConnectionIsolated(conn_id)) {
     auto data = ::rust::Slice<const uint8_t>(response.attr_value.value, response.attr_value.len);
-    bluetooth::gatt::send_response(server_if, conn_id, trans_id, status, data);
+    sPrivateGattServerManager->SendResponse(server_if, conn_id, trans_id, status, data);
   } else {
     sGattIf->server->send_response(conn_id, trans_id, status, response);
   }
@@ -2408,7 +2424,7 @@ static void ble_advertising_set_started_cb(int reg_id, int server_if, uint8_t ad
 
   // tie advertiser ID to server_if, once the advertisement has started
   if (status == 0 /* AdvertisingCallback::AdvertisingStatus::SUCCESS */ && server_if != 0) {
-    bluetooth::gatt::associate_server_with_advertiser(server_if, advertiser_id);
+    sPrivateGattServerManager->AssociateServerWithAdvertiser(server_if, advertiser_id);
   }
 
   sCallbackEnv->CallVoidMethod(mAdvertiseCallbacksObj, method_onAdvertisingSetStarted, reg_id,
@@ -2455,9 +2471,9 @@ static void startAdvertisingSetNative(JNIEnv* env, jobject /* object */, jobject
 
   sGattIf->advertiser->StartAdvertisingSet(
           kAdvertiserClientIdJni, reg_id,
-          base::Bind(&ble_advertising_set_started_cb, reg_id, server_if), params, data_vec,
+          ::base::Bind(&ble_advertising_set_started_cb, reg_id, server_if), params, data_vec,
           scan_resp_vec, periodicParams, periodic_data_vec, duration, maxExtAdvEvents,
-          base::Bind(ble_advertising_set_timeout_cb));
+          ::base::Bind(ble_advertising_set_timeout_cb));
 }
 
 static void stopAdvertisingSetNative(JNIEnv* /* env */, jobject /* object */, jint advertiser_id) {
@@ -2465,7 +2481,7 @@ static void stopAdvertisingSetNative(JNIEnv* /* env */, jobject /* object */, ji
     return;
   }
 
-  bluetooth::gatt::clear_advertiser(advertiser_id);
+  sPrivateGattServerManager->ClearAdvertiser(advertiser_id);
 
   sGattIf->advertiser->Unregister(advertiser_id);
 }
@@ -2486,7 +2502,7 @@ static void getOwnAddressNative(JNIEnv* /* env */, jobject /* object */, jint ad
   if (!sGattIf) {
     return;
   }
-  sGattIf->advertiser->GetOwnAddress(advertiser_id, base::Bind(&getOwnAddressCb, advertiser_id));
+  sGattIf->advertiser->GetOwnAddress(advertiser_id, ::base::Bind(&getOwnAddressCb, advertiser_id));
 }
 
 static void callJniCallback(jmethodID method, uint8_t advertiser_id, uint8_t status) {
@@ -2515,8 +2531,8 @@ static void enableAdvertisingSetNative(JNIEnv* /* env */, jobject /* object */, 
   }
 
   sGattIf->advertiser->Enable(advertiser_id, enable,
-                              base::Bind(&enableSetCb, advertiser_id, enable), duration,
-                              maxExtAdvEvents, base::Bind(&enableSetCb, advertiser_id, false));
+                              ::base::Bind(&enableSetCb, advertiser_id, enable), duration,
+                              maxExtAdvEvents, ::base::Bind(&enableSetCb, advertiser_id, false));
 }
 
 static void setAdvertisingDataNative(JNIEnv* env, jobject /* object */, jint advertiser_id,
@@ -2527,7 +2543,7 @@ static void setAdvertisingDataNative(JNIEnv* env, jobject /* object */, jint adv
 
   sGattIf->advertiser->SetData(
           advertiser_id, false, toVector(env, data),
-          base::Bind(&callJniCallback, method_onAdvertisingDataSet, advertiser_id));
+          ::base::Bind(&callJniCallback, method_onAdvertisingDataSet, advertiser_id));
 }
 
 static void setScanResponseDataNative(JNIEnv* env, jobject /* object */, jint advertiser_id,
@@ -2538,7 +2554,7 @@ static void setScanResponseDataNative(JNIEnv* env, jobject /* object */, jint ad
 
   sGattIf->advertiser->SetData(
           advertiser_id, true, toVector(env, data),
-          base::Bind(&callJniCallback, method_onScanResponseDataSet, advertiser_id));
+          ::base::Bind(&callJniCallback, method_onScanResponseDataSet, advertiser_id));
 }
 
 static void setAdvertisingParametersNativeCb(uint8_t advertiser_id, uint8_t status,
@@ -2559,8 +2575,8 @@ static void setAdvertisingParametersNative(JNIEnv* env, jobject /* object */, ji
   }
 
   AdvertiseParameters params = parseParams(env, parameters);
-  sGattIf->advertiser->SetParameters(advertiser_id, params,
-                                     base::Bind(&setAdvertisingParametersNativeCb, advertiser_id));
+  sGattIf->advertiser->SetParameters(
+          advertiser_id, params, ::base::Bind(&setAdvertisingParametersNativeCb, advertiser_id));
 }
 
 static void setPeriodicAdvertisingParametersNative(JNIEnv* env, jobject /* object */,
@@ -2573,8 +2589,8 @@ static void setPeriodicAdvertisingParametersNative(JNIEnv* env, jobject /* objec
   PeriodicAdvertisingParameters periodicParams = parsePeriodicParams(env, periodic_parameters);
   sGattIf->advertiser->SetPeriodicAdvertisingParameters(
           advertiser_id, periodicParams,
-          base::Bind(&callJniCallback, method_onPeriodicAdvertisingParametersUpdated,
-                     advertiser_id));
+          ::base::Bind(&callJniCallback, method_onPeriodicAdvertisingParametersUpdated,
+                       advertiser_id));
 }
 
 static void setPeriodicAdvertisingDataNative(JNIEnv* env, jobject /* object */, jint advertiser_id,
@@ -2585,7 +2601,7 @@ static void setPeriodicAdvertisingDataNative(JNIEnv* env, jobject /* object */, 
 
   sGattIf->advertiser->SetPeriodicAdvertisingData(
           advertiser_id, toVector(env, data),
-          base::Bind(&callJniCallback, method_onPeriodicAdvertisingDataSet, advertiser_id));
+          ::base::Bind(&callJniCallback, method_onPeriodicAdvertisingDataSet, advertiser_id));
 }
 
 static void enablePeriodicSetCb(uint8_t advertiser_id, bool enable, uint8_t status) {
@@ -2606,7 +2622,7 @@ static void setPeriodicAdvertisingEnableNative(JNIEnv* /* env */, jobject /* obj
 
   sGattIf->advertiser->SetPeriodicAdvertisingEnable(
           advertiser_id, enable, true /*include_adi*/,
-          base::Bind(&enablePeriodicSetCb, advertiser_id, enable));
+          ::base::Bind(&enablePeriodicSetCb, advertiser_id, enable));
 }
 
 static void periodicScanInitializeNative(JNIEnv* env, jobject object) {
