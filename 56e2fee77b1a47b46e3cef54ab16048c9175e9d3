@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "893e18bb_b59be401",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-12T08:04:27Z",
+      "side": 1,
+      "message": "nit: pending but not started.\n\nYou could also elaborate why we need that. e.g\n\n\"Whenever new abs volume is requested by the user, and native stack has pending request which were not yet executed (it can be max 1 request type per device), there is no reason to keep this pending request but just replace it to avoid latency and additional traffic.\nAlso, if requested value is same as already executing request, it can be skipped to also avoid unnecessary traffic.\"",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 25
+      },
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "375f1f27_4524e8e1",
         "filename": "system/bta/vc/vc_test.cc",
         "patchSetId": 4
