@@ -22,6 +22,30 @@
       },
       "revId": "221505bc5e0f02e7b2bd97564d3d38d14a5ef42b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90d0c26_54dec413",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6798,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-12T05:56:24Z",
+      "side": 1,
+      "message": "Good call. I did not consider the different thread issue.\nDone. Thank you!",
+      "parentUuid": "c9e8ea27_c0481038",
+      "range": {
+        "startLine": 6798,
+        "startChar": 43,
+        "endLine": 6798,
+        "endChar": 58
+      },
+      "revId": "221505bc5e0f02e7b2bd97564d3d38d14a5ef42b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
