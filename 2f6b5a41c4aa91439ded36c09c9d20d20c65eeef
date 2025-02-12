@@ -22,6 +22,30 @@
       },
       "revId": "2f6b5a41c4aa91439ded36c09c9d20d20c65eeef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73090cc4_98b4c1aa",
+        "filename": "system/audio_bluetooth_hw/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-12T05:46:54Z",
+      "side": 1,
+      "message": "You looked at it just at the moment when I rebased x)",
+      "parentUuid": "90191078_fc1c1493",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 0
+      },
+      "revId": "2f6b5a41c4aa91439ded36c09c9d20d20c65eeef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
