@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06c32201_2730b00b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3180,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T20:03:17Z",
+      "side": 1,
+      "message": "nit: \n\n```\nif (!mPausedBroadcastSinks.contains(device)) {\n  return;\n}\n```\n\nreturn early to avoid extra nesting",
+      "range": {
+        "startLine": 3180,
+        "startChar": 8,
+        "endLine": 3180,
+        "endChar": 53
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ec44c84_d2a1e6c6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3182,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T20:03:17Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 3182,
+        "startChar": 12,
+        "endLine": 3182,
+        "endChar": 32
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c84642_453d3e16",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3196,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T20:03:17Z",
+      "side": 1,
+      "message": "add java comment `/* name of variable */ false` for all boolean parameters",
+      "range": {
+        "startLine": 3196,
+        "startChar": 55,
+        "endLine": 3196,
+        "endChar": 60
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
