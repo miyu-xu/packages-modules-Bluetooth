@@ -6795,6 +6795,10 @@ public class AdapterService extends Service {
         for (ProfileService profile : mRegisteredProfiles) {
             profile.dump(sb);
         }
+        if (Flags.scanManagerRefactor() && mScanController != null) {
+            mScanController.dumpRegisterId(sb);
+            mScanController.dump(sb);
+        }
         mSilenceDeviceManager.dump(fd, writer, args);
         mDatabaseManager.dump(writer);
 
@@ -6833,6 +6837,9 @@ public class AdapterService extends Service {
         MetricsLogger.dumpProto(metricsBuilder);
         for (ProfileService profile : mRegisteredProfiles) {
             profile.dumpProto(metricsBuilder);
+        }
+        if (Flags.scanManagerRefactor() && mScanController != null) {
+            mScanController.dumpProto(metricsBuilder);
         }
         byte[] metricsBytes = Base64.encode(metricsBuilder.build().toByteArray(), Base64.DEFAULT);
         Log.d(TAG, "dumpMetrics: combined metrics size is " + metricsBytes.length);
