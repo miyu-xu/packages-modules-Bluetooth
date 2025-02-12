@@ -94,6 +94,30 @@
       },
       "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "585ff67c_9f6fb98a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-12T07:13:46Z",
+      "side": 1,
+      "message": "Hi @wescande@google.com, \nThe new solution disables Bluetooth components upon receiving MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED in BluetoothManagerService. Please review.",
+      "parentUuid": "4feab3d0_09f61fb5",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
