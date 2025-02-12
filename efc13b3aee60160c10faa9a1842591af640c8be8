@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f878468_f1d52f3b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-12T10:58:16Z",
+      "side": 1,
+      "message": "Q) Is this intended behavior when the identityAddrss is null?",
+      "range": {
+        "startLine": 418,
+        "startChar": 12,
+        "endLine": 418,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4b5b9651_b3f3839f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 411,
+                "startChar": 0,
+                "endLine": 412,
+                "endChar": 0
+              },
+              "replacement": "        if (identityAddress !\u003d null \u0026\u0026 !address.equals(identityAddress)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "efc13b3aee60160c10faa9a1842591af640c8be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
