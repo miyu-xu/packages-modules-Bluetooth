@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5820aa18_9a072ccb",
+        "filename": "OWNERS_channel_sounding",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-02-12T17:17:59Z",
+      "side": 1,
+      "message": "update",
+      "revId": "564edb956c4e921db4257e75365bd34923cfd221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
