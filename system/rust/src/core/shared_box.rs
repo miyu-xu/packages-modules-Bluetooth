@@ -5,10 +5,8 @@
 //! not be held across async points. This reduces the risk of accidental
 //! lifetime extension.
 
-use std::{
-    ops::Deref,
-    rc::{Rc, Weak},
-};
+use std::ops::Deref;
+use std::rc::{Rc, Weak};
 
 /// A Box<> where static "weak" references to the contents can be taken,
 /// and fallibly upgraded at a later point. Unlike Rc<>, weak references
@@ -21,12 +19,6 @@ impl<T> SharedBox<T> {
     /// Constructor
     pub fn new(t: T) -> Self {
         Self(t.into())
-    }
-
-    /// Constructs a new SharedBox<T> while giving you a WeakBox<T> to the allocation,
-    /// to allow you to construct a T which holds a weak pointer to itself.
-    pub fn new_cyclic(f: impl FnOnce(WeakBox<T>) -> T) -> Self {
-        Self(Rc::new_cyclic(|weak| f(WeakBox(weak.clone()))))
     }
 
     /// Produce a weak reference to the contents

@@ -62,7 +62,6 @@
 #include "device/include/interop.h"
 #include "internal_include/stack_config.h"
 #include "os/system_properties.h"
-#include "rust/src/core/ffi/module.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/include/ais_api.h"
 #include "stack/include/smp_api.h"
@@ -122,8 +121,6 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
                                  ProfileStopCallback stopProfiles);
 static void event_shut_down_stack(ProfileStopCallback stopProfiles);
 static void event_clean_up_stack(std::promise<void> promise, ProfileStopCallback stopProfiles);
-static void event_start_up_rust_module(std::promise<void> promise);
-static void event_shut_down_rust_module();
 
 static void event_signal_stack_up(void* context);
 static void event_signal_stack_down(void* context);
@@ -180,15 +177,6 @@ static void clean_up_stack(ProfileStopCallback stopProfiles) {
   }
 }
 
-static void start_up_rust_module_async(std::promise<void> promise) {
-  management_thread.DoInThread(FROM_HERE,
-                               base::BindOnce(event_start_up_rust_module, std::move(promise)));
-}
-
-static void shut_down_rust_module_async() {
-  management_thread.DoInThread(FROM_HERE, base::BindOnce(event_shut_down_rust_module));
-}
-
 static bool get_stack_is_running() { return stack_is_running; }
 
 // Internal functions
@@ -197,7 +185,6 @@ extern const module_t btif_config_module;
 extern const module_t gd_shim_module;
 extern const module_t interop_module;
 extern const module_t osi_module;
-extern const module_t rust_module;
 extern const module_t stack_config_module;
 extern const module_t device_iot_config_module;
 
@@ -211,7 +198,6 @@ const struct module_lookup module_table[] = {
         {GD_SHIM_MODULE, &gd_shim_module},
         {INTEROP_MODULE, &interop_module},
         {OSI_MODULE, &osi_module},
-        {RUST_MODULE, &rust_module},
         {STACK_CONFIG_MODULE, &stack_config_module},
         {DEVICE_IOT_CONFIG_MODULE, &device_iot_config_module},
         {NULL, NULL},
@@ -324,13 +310,9 @@ static void event_start_up_stack(bluetooth::core::CoreInterface* interface,
     return;
   }
 
-  if (!com::android::bluetooth::flags::scan_manager_refactor()) {
-    info("Starting rust module");
-    module_start_up(get_local_module(RUST_MODULE));
-    if (com::android::bluetooth::flags::channel_sounding_in_stack()) {
-      bluetooth::ras::GetRasServer()->Initialize();
-      bluetooth::ras::GetRasClient()->Initialize();
-    }
+  if (com::android::bluetooth::flags::channel_sounding_in_stack()) {
+    bluetooth::ras::GetRasServer()->Initialize();
+    bluetooth::ras::GetRasClient()->Initialize();
   }
 
   stack_is_running = true;
@@ -349,11 +331,6 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   future_t* local_hack_future = future_new();
   hack_future = local_hack_future;
   stack_is_running = false;
-
-  if (!com::android::bluetooth::flags::scan_manager_refactor()) {
-    info("Stopping rust module");
-    module_shut_down(get_local_module(RUST_MODULE));
-  }
 
   do_in_main_thread(base::BindOnce(&btm_ble_scanner_cleanup));
 
@@ -386,24 +363,6 @@ static void event_shut_down_stack(ProfileStopCallback stopProfiles) {
   hack_future = future_new();
   do_in_jni_thread(base::BindOnce(event_signal_stack_down, nullptr));
   future_await(hack_future);
-  info("finished");
-}
-
-static void event_start_up_rust_module(std::promise<void> promise) {
-  info("is bringing up the Rust module");
-  module_start_up(get_local_module(RUST_MODULE));
-  if (com::android::bluetooth::flags::channel_sounding_in_stack()) {
-    // GATT server requires the rust module to be running
-    bluetooth::ras::GetRasServer()->Initialize();
-    bluetooth::ras::GetRasClient()->Initialize();
-  }
-  promise.set_value();
-  info("finished");
-}
-
-static void event_shut_down_rust_module() {
-  info("is bringing down the Rust module");
-  module_shut_down(get_local_module(RUST_MODULE));
   info("finished");
 }
 
@@ -474,8 +433,7 @@ static void ensure_manager_initialized() {
 
 static const stack_manager_t interface = {
         init_stack,          start_up_stack_async,       shut_down_stack_async,
-        clean_up_stack,      start_up_rust_module_async, shut_down_rust_module_async,
-        get_stack_is_running};
+        clean_up_stack,      get_stack_is_running};
 
 const stack_manager_t* stack_manager_get_interface() {
   ensure_manager_initialized();

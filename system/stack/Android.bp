@@ -319,11 +319,14 @@ cc_library_static {
     cflags: [
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
         "-fvisibility=default",
+        "-D_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS",
+        "-Wthread-safety",
     ],
     static_libs: [
         "bluetooth_flags_c_lib",
         "libaconfig_storage_read_api_cc",
         "libbluetooth_core_rs",
+        "libbluetooth_core_rs_bridge",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
         "libbluetooth_hci_pdl",
