@@ -1,6 +1,6 @@
 //! Mocked implementation of GattDatastore for use in test
 
-use crate::gatt::callbacks::{GattWriteRequestType, RawGattDatastore, TransactionDecision};
+use crate::gatt::callbacks::{GattWriteRequestType, RawGattDatastore};
 use crate::gatt::ffi::AttributeBackingType;
 use crate::gatt::ids::{AttHandle, TransportIndex};
 use crate::packets::att::AttErrorCode;
@@ -25,6 +25,7 @@ impl MockRawDatastore {
 pub enum MockRawDatastoreEvents {
     /// A characteristic was read on a given handle. The oneshot is used to
     /// return the value read.
+    #[allow(dead_code)]
     Read(
         TransportIndex,
         AttHandle,
@@ -34,6 +35,7 @@ pub enum MockRawDatastoreEvents {
     ),
     /// A characteristic was written to on a given handle. The oneshot is used
     /// to return whether the write succeeded.
+    #[allow(dead_code)]
     Write(
         TransportIndex,
         AttHandle,
