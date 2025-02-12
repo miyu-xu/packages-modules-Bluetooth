@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "994dbaa5_77a33267",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T13:33:25Z",
+      "side": 1,
+      "message": "Sure, that makes sense, added above.",
+      "parentUuid": "89dd0da0_52a34bfb",
+      "revId": "e2cebc8d5170a6cf56ab95ee7c509eb948d6cdea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb275471_2d7a5524",
@@ -77,6 +95,24 @@
           ]
         }
       ],
+      "revId": "e2cebc8d5170a6cf56ab95ee7c509eb948d6cdea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d945cd85_a157478a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1647,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T13:33:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb275471_2d7a5524",
       "revId": "e2cebc8d5170a6cf56ab95ee7c509eb948d6cdea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
