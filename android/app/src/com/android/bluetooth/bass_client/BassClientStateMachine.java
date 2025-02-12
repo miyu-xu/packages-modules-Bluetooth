@@ -1488,7 +1488,7 @@ class BassClientStateMachine extends StateMachine {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             boolean isStateChanged = false;
-            log("onConnectionStateChange : Status=" + status + "newState" + newState);
+            log("onConnectionStateChange : Status=" + status + ", newState=" + newState);
             if (newState == BluetoothProfile.STATE_CONNECTED
                     && getConnectionState() != BluetoothProfile.STATE_CONNECTED) {
                 isStateChanged = true;

@@ -331,7 +331,7 @@ public class BassClientService extends ProfileService {
                 if (!mCachedBroadcasts.containsKey(broadcastId)) {
                     log("selectBroadcastSource: broadcastId " + broadcastId);
                     mCachedBroadcasts.put(broadcastId, result);
-                    addSelectSourceRequest(broadcastId, false);
+                    addSelectSourceRequest(broadcastId, false, false);
                 } else if (mTimeoutHandler.isStarted(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT)) {
                     mTimeoutHandler.stop(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT);
                     mTimeoutHandler.start(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT, sSyncLostTimeout);
@@ -654,7 +654,7 @@ public class BassClientService extends ProfileService {
                         mCallbacks.notifySourceLost(oldBroadcastId);
                         clearAllDataForSyncHandle(syncHandle);
                         mCachedBroadcasts.remove(oldBroadcastId);
-                            }
+                    }
                 } else {
                     for (Map.Entry<Integer, PeriodicAdvertisementResult> entry :
                             paResMap.entrySet()) {
@@ -1199,7 +1199,7 @@ public class BassClientService extends ProfileService {
         synchronized (mSinksWaitingForPast) {
             mSinksWaitingForPast.put(sink, new Pair<Integer, Integer>(broadcastId, sourceId));
         }
-        addSelectSourceRequest(broadcastId, true);
+        addSelectSourceRequest(broadcastId, true, false);
     }
 
     private void localNotifyReceiveStateChanged(
@@ -1233,7 +1233,7 @@ public class BassClientService extends ProfileService {
                     mTimeoutHandler.stop(broadcastId, MESSAGE_BIG_MONITOR_TIMEOUT);
                     mTimeoutHandler.start(
                             broadcastId, MESSAGE_BIG_MONITOR_TIMEOUT, sBigMonitorTimeout);
-                    addSelectSourceRequest(broadcastId, true);
+                    addSelectSourceRequest(broadcastId, true, false);
                 }
             }
             // If paused by host then stop active sync, it could be not stopped, if during previous
@@ -2080,7 +2080,7 @@ public class BassClientService extends ProfileService {
                                         log("selectBroadcastSource: broadcastId " + broadcastId);
                                         mCachedBroadcasts.put(broadcastId, result);
                                         if (leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
-                                            addSelectSourceRequest(broadcastId, false);
+                                            addSelectSourceRequest(broadcastId, false, false);
                                         } else {
                                             synchronized (mStateMachines) {
                                                 for (BassClientStateMachine sm :
@@ -2141,7 +2141,7 @@ public class BassClientService extends ProfileService {
 
                     // Add broadcsts to sync queue
                     for (int broadcastId : broadcastsToSync) {
-                        addSelectSourceRequest(broadcastId, true);
+                        addSelectSourceRequest(broadcastId, true, false);
                     }
 
                     // When starting scan, clear the previously cached broadcast scan results,
@@ -2153,7 +2153,7 @@ public class BassClientService extends ProfileService {
                     // Sync to the broadcasts already synced with sinks
                     Set<Integer> syncedBroadcasts = getExternalBroadcastsActiveOnSinks();
                     for (int syncedBroadcast : syncedBroadcasts) {
-                        addSelectSourceRequest(syncedBroadcast, true);
+                        addSelectSourceRequest(syncedBroadcast, true, false);
                     }
                     // when starting scan, clear the previously cached broadcast scan results
                     mCachedBroadcasts
@@ -2280,7 +2280,7 @@ public class BassClientService extends ProfileService {
                     // Keep broadcasts waiting for adding source (could be by resume too)
                     broadcastsToKeepSynced.addAll(getBroadcastIdsWaitingForAddSource());
 
-                    // Keep broadcast UNINTENTIONALly paused
+                    // Keep broadcast UNINTENTIONALLy paused
                     broadcastsToKeepSynced.addAll(getUnintentionallyPausedBroadcastIds());
 
                     log("Broadcasts to keep on stop: " + broadcastsToKeepSynced);
@@ -2326,7 +2326,7 @@ public class BassClientService extends ProfileService {
                         Integer broadcastId = entry.getKey();
                         PauseType pauseType = entry.getValue();
                         if (pauseType != PauseType.HOST_INTENTIONAL) {
-                            addSelectSourceRequest(broadcastId, true);
+                            addSelectSourceRequest(broadcastId, true, false);
                         }
                     }
                 }
@@ -2559,7 +2559,7 @@ public class BassClientService extends ProfileService {
                                 MESSAGE_BROADCAST_MONITOR_TIMEOUT,
                                 sBroadcasterMonitorTimeout);
                     }
-                    addSelectSourceRequest(broadcastId, true);
+                    addSelectSourceRequest(broadcastId, true, true);
                 } else {
                     // Clear from cache to make possible sync again (only during active searching)
                     synchronized (mSearchScanCallbackLock) {
@@ -2645,7 +2645,7 @@ public class BassClientService extends ProfileService {
                                 MESSAGE_BROADCAST_MONITOR_TIMEOUT,
                                 sBroadcasterMonitorTimeout);
                     }
-                    addSelectSourceRequest(broadcastId, true);
+                    addSelectSourceRequest(broadcastId, true, false);
                 } else {
                     if (leaudioBroadcastResyncHelper()) {
                         mTimeoutHandler.start(
@@ -2928,34 +2928,38 @@ public class BassClientService extends ProfileService {
         return false;
     }
 
-    void addSelectSourceRequest(int broadcastId, boolean hasPriority) {
+    void addSelectSourceRequest(int broadcastId, boolean hasPriority, boolean allowDuplicates) {
         sEventLogger.logd(
                 TAG,
                 "Add Select Broadcast Source, broadcastId: "
                         + broadcastId
                         + ", hasPriority: "
                         + hasPriority);
-        mTimeoutHandler.stop(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT);
-        ScanResult scanRes = getCachedBroadcast(broadcastId);
-        if (scanRes != null) {
-            ScanRecord scanRecord = scanRes.getScanRecord();
-            if (scanRecord == null) {
-                log("addSelectSourceRequest: ScanRecord empty");
-                return;
-            }
-
-            synchronized (mSourceSyncRequestsQueue) {
-                if (!mSyncFailureCounter.containsKey(broadcastId)) {
-                    mSyncFailureCounter.put(broadcastId, 0);
+        if (allowDuplicates || !isAddedToSelectSourceRequest(broadcastId, hasPriority)) {
+            mTimeoutHandler.stop(broadcastId, MESSAGE_SYNC_LOST_TIMEOUT);
+            ScanResult scanRes = getCachedBroadcast(broadcastId);
+            if (scanRes != null) {
+                ScanRecord scanRecord = scanRes.getScanRecord();
+                if (scanRecord == null) {
+                    log("addSelectSourceRequest: ScanRecord empty");
+                    return;
                 }
-                mSourceSyncRequestsQueue.add(
-                        new SourceSyncRequest(
-                                scanRes, hasPriority, mSyncFailureCounter.get(broadcastId)));
-            }
 
-            handleSelectSourceRequest();
+                synchronized (mSourceSyncRequestsQueue) {
+                    if (!mSyncFailureCounter.containsKey(broadcastId)) {
+                        mSyncFailureCounter.put(broadcastId, 0);
+                    }
+                    mSourceSyncRequestsQueue.add(
+                            new SourceSyncRequest(
+                                    scanRes, hasPriority, mSyncFailureCounter.get(broadcastId)));
+                }
+
+                handleSelectSourceRequest();
+            } else {
+                log("addSelectSourceRequest: ScanResult empty");
+            }
         } else {
-            log("addSelectSourceRequest: ScanResult empty");
+            log("addSelectSourceRequest: Already added");
         }
     }
 
@@ -3385,7 +3389,7 @@ public class BassClientService extends ProfileService {
                         } else if (getCachedBroadcast(broadcastId) != null) {
                             mPendingSourcesToAdd.add(
                                     new AddSourceData(device, sourceMetadata, isGroupOp));
-                            addSelectSourceRequest(broadcastId, true);
+                            addSelectSourceRequest(broadcastId, true, false);
                         } else {
                             Log.w(
                                     TAG,
