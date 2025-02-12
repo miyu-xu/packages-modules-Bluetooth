@@ -16,6 +16,24 @@
       "message": "can we also add unittests for this?",
       "revId": "3525882b08a26f1f52faf27283ef42832911b9f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c39c03d_1e0debb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-12T13:12:07Z",
+      "side": 1,
+      "message": "make it unresolved",
+      "parentUuid": "6b59bbd5_52a05710",
+      "revId": "3525882b08a26f1f52faf27283ef42832911b9f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
