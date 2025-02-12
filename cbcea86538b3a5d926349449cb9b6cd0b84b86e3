@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62967e34_c4c83e66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-12T10:52:10Z",
+      "side": 1,
+      "message": "If I understand it correctly, this mechanism only works for forcing the LC3 codec and it would not work when other codec is selected. Is that intentional?",
+      "revId": "cbcea86538b3a5d926349449cb9b6cd0b84b86e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b91127b_99263463",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 4764,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-12T10:52:10Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 4764,
+        "startChar": 34,
+        "endLine": 4764,
+        "endChar": 40
+      },
+      "revId": "cbcea86538b3a5d926349449cb9b6cd0b84b86e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
