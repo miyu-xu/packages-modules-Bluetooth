@@ -22,6 +22,30 @@
       },
       "revId": "1bf015e24663f5b36410de10189ecd84c3171849",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac426e30_0f74bf8c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:47Z",
+      "side": 1,
+      "message": "Only needed intensts are kept in the setup method",
+      "parentUuid": "34985b82_ca362e63",
+      "range": {
+        "startLine": 220,
+        "startChar": 5,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "1bf015e24663f5b36410de10189ecd84c3171849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
