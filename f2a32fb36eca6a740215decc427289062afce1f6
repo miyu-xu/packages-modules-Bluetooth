@@ -156,6 +156,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87655172_2d0243ef",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T09:25:23Z",
+      "side": 1,
+      "message": "Done\nPHONE_COD_MAJOR_CLASS_MASK moved bt_dev_class.h\n\nbut funcstion we can\u0027t move as they have depedency with btif storage APIs",
+      "parentUuid": "a504c245_7483e58b",
+      "revId": "f2a32fb36eca6a740215decc427289062afce1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16b61a4d_d1635d2b",
@@ -169,6 +187,24 @@
       "writtenOn": "2025-01-31T23:19:47Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "f2a32fb36eca6a740215decc427289062afce1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b145f9a_7c809929",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T09:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16b61a4d_d1635d2b",
       "revId": "f2a32fb36eca6a740215decc427289062afce1f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
