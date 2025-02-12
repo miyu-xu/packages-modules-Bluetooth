@@ -42,6 +42,9 @@
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
 #include "internal_include/bt_target.h"
+#include "main/shim/helpers.h"
+#include "metrics/bluetooth_event.h"
+#include "os/metrics.h"
 #include "osi/include/allocator.h"
 #include "sdp_callback.h"
 #include "sdp_status.h"
@@ -58,6 +61,7 @@
 
 using namespace bluetooth::legacy::stack::sdp;
 using namespace bluetooth;
+using android::bluetooth::EventType;
 using bluetooth::Uuid;
 
 /* Number of protocol elements in protocol element list. */
@@ -386,6 +390,10 @@ bool bta_ag_sdp_find_attr(tBTA_AG_SCB* p_scb, tBTA_SERVICE_MASK service) {
       log::warn("Get peer_version failed, using default 0x{:04x}", p_scb->peer_version);
       peer_version = p_scb->peer_version;
     }
+
+    bluetooth::os::LogMetricBluetoothEvent(
+            ToGdAddress(p_scb->peer_addr), EventType::HFP_HF_VERSION,
+            bluetooth::metrics::MapHfpVersionToState(p_scb->peer_version));
 
     if (service & BTA_HFP_SERVICE_MASK) {
       /* Update cached peer version if the new one is different */
