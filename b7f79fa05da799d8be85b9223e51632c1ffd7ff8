@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a0f79b2_c1330df9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T08:40:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5a80908_a1c0f00c",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3e3c257_ed2b1430",
@@ -65,6 +89,24 @@
           ]
         }
       ],
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34007cce_d3e42bbf",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T08:40:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3e3c257_ed2b1430",
       "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -124,6 +166,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f88cff_41922ff8",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1023,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T08:40:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ca71b1d_6bb46b4f",
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51642e7e_234b5561",
@@ -137,6 +197,24 @@
       "writtenOn": "2025-02-05T04:26:01Z",
       "side": 1,
       "message": "Retrying just once after 100 ms may not be enough.\nThis issue primarily happens when a RNR procedure is going on. That is unlikely to conclude within 100 ms.",
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183bb095_bbf1c48a",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T08:40:44Z",
+      "side": 1,
+      "message": "i think 500ms is good enough here.updated to 500ms",
+      "parentUuid": "51642e7e_234b5561",
       "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
