@@ -16,6 +16,24 @@
       "message": "We are changing here order of messages going to Audio Hal, is this expected ?",
       "revId": "4a77977f24706d6132b5c3938c9972e5b34f6391",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85100def_105e138b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4148,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-12T11:51:30Z",
+      "side": 1,
+      "message": "That\u0027s because I removed the initial call to \u0027UpdateActiveAudioConfig\u0027 in `OnStateMachineStatusReportCb`, and the initial call has to be before we confirm. \n\nLet me unwind that, and fix the non Stream Active API case which got broken with this approach.",
+      "parentUuid": "0fdfb8a7_04ab69c6",
+      "revId": "4a77977f24706d6132b5c3938c9972e5b34f6391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
