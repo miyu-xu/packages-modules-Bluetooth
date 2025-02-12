@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a417d8c4_d515ecb7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T14:02:55Z",
+      "side": 1,
+      "message": "Thanks for pointing that out! Updated.",
+      "parentUuid": "893e18bb_b59be401",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 25
+      },
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "375f1f27_4524e8e1",
         "filename": "system/bta/vc/vc_test.cc",
         "patchSetId": 4
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0d0e3a0_43e6c549",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1763,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T14:02:55Z",
+      "side": 1,
+      "message": "Comment above inform about that. Same comment is i.e. in test_set_volume_stress_2",
+      "parentUuid": "375f1f27_4524e8e1",
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a11cfcc_8ea33af8",
         "filename": "system/bta/vc/vc_test.cc",
         "patchSetId": 4
@@ -54,6 +96,24 @@
       "writtenOn": "2025-02-12T07:54:08Z",
       "side": 1,
       "message": "shouldn\u0027t this be .Times(1)? I thought this one will be queued.\n\nAh no, it will not be queued becuase same value is set as it is already set.\n\ncomment in 1747 is missleading. Please put there maybe some more details about the expected scenario.",
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf2afc7_4d753a1c",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1783,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T14:02:55Z",
+      "side": 1,
+      "message": "Added comments to each expect call",
+      "parentUuid": "6a11cfcc_8ea33af8",
       "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
