@@ -34,6 +34,24 @@
       "parentUuid": "59746f10_3fc6169a",
       "revId": "cf776ae7c62d660d1fbc69cc9e391683a7a0222e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91ebb609_9b8f9568",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 6121,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-12T14:38:01Z",
+      "side": 0,
+      "message": "`} else {` alone would cause to many updates if the sender gets activated after the group goes to STREAMING. We need to limit this update only when the sender is already activated (in other cases StartSendingAudio will do the needed updates anyway). Same goes for the receiver.",
+      "parentUuid": "59746f10_3fc6169a",
+      "revId": "cf776ae7c62d660d1fbc69cc9e391683a7a0222e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
