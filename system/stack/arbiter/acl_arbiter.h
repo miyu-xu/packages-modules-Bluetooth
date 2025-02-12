@@ -22,11 +22,21 @@
 
 #pragma once
 
+#include <android-base/thread_annotations.h>
+
 #include "rust/cxx.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 
 namespace bluetooth {
+
+namespace gatt {
+
+// Forward declaration to avoid cyclic dependency.
+struct Arbiter;
+
+}  // namespace gatt
+
 namespace shim {
 namespace arbiter {
 
@@ -38,7 +48,14 @@ enum class InterceptAction {
 };
 
 class AclArbiter {
-public:
+ public:
+  // Sets the backing arbiter. If arbiter == nullptr, the arbiter will default to forwarding
+  // packets.
+  void set_arbiter(const bluetooth::gatt::Arbiter* arbiter) const {
+    std::lock_guard lock(mutex_);
+    arbiter_ = arbiter;
+  }
+
   void OnLeConnect(uint8_t tcb_idx, uint16_t advertiser_id);
   void OnLeDisconnect(uint8_t tcb_idx);
   InterceptAction InterceptAttPacket(uint8_t tcb_idx, const BT_HDR* packet);
@@ -49,19 +66,12 @@ public:
 
   void SendPacketToPeer(uint8_t tcb_idx, ::rust::Vec<uint8_t> buffer);
 
-  AclArbiter() = default;
-  AclArbiter(AclArbiter&& other) = default;
-  AclArbiter& operator=(AclArbiter&& other) = default;
-  ~AclArbiter() = default;
+ private:
+  // NOTE: These are `mutable` because `set_arbiter` above is `const` which helps when referencing
+  // from within Rust.
+  mutable std::mutex mutex_;
+  mutable const bluetooth::gatt::Arbiter* arbiter_ GUARDED_BY(mutex_) = nullptr;
 };
-
-void StoreCallbacksFromRust(
-        ::rust::Fn<void(uint8_t tcb_idx, uint8_t advertiser)> on_le_connect,
-        ::rust::Fn<void(uint8_t tcb_idx)> on_le_disconnect,
-        ::rust::Fn<InterceptAction(uint8_t tcb_idx, ::rust::Vec<uint8_t> buffer)> intercept_packet,
-        ::rust::Fn<void(uint8_t tcb_idx)> on_outgoing_mtu_req,
-        ::rust::Fn<void(uint8_t tcb_idx, size_t mtu)> on_incoming_mtu_resp,
-        ::rust::Fn<void(uint8_t tcb_idx, size_t mtu)> on_incoming_mtu_req);
 
 void SendPacketToPeer(uint8_t tcb_idx, ::rust::Vec<uint8_t> buffer);
 
