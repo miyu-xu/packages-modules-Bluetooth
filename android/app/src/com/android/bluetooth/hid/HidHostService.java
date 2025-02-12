@@ -477,7 +477,7 @@ public class HidHostService extends ProfileService {
 
         updateConnectionState(device, getTransport(device), BluetoothProfile.STATE_DISCONNECTED);
         mInputDevices.remove(device);
-
+        setConnectionPolicy(device, CONNECTION_POLICY_UNKNOWN);
         int status = msg.arg2;
         broadcastVirtualUnplugStatus(device, status);
     }
