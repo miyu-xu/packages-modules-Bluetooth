@@ -342,6 +342,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "496c5a9d_039e5ef0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T01:07:08Z",
+      "side": 1,
+      "message": "Actually due to last revision, my new changes went to the latest CL, hence pushed these changes as well to that.\nThese are done here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3481455/comment/45e6fc1f_a8dd07a6/",
+      "parentUuid": "26009786_9c93e233",
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61296d5f_d965b65e",
@@ -373,6 +391,24 @@
           ]
         }
       ],
+      "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab7bfcee_6b56bd19",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T01:07:08Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "61296d5f_d965b65e",
       "revId": "176a6aa47befde0cb91b6d59451a0e47633d7875",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
