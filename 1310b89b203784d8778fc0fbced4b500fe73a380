@@ -94,6 +94,30 @@
       },
       "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e42746_adf5dd78",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-12T06:44:15Z",
+      "side": 0,
+      "message": "Acked. Thank you 😊",
+      "parentUuid": "a9ce918c_d04932ca",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
