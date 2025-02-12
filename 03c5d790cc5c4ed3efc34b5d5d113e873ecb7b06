@@ -22,6 +22,30 @@
       },
       "revId": "03c5d790cc5c4ed3efc34b5d5d113e873ecb7b06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e85000a2_0d546fdd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-12T21:29:51Z",
+      "side": 1,
+      "message": "Acknowledged. Confirmed is due to an unchangeable, auto-generated value that surpasses the 100-character limit",
+      "parentUuid": "edb2d646_bd55fdea",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 105
+      },
+      "revId": "03c5d790cc5c4ed3efc34b5d5d113e873ecb7b06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
