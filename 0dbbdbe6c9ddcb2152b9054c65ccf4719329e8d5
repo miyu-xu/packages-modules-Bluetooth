@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45e6fc1f_a8dd07a6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1647,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-12T01:04:42Z",
+      "side": 1,
+      "message": "Encryption success check added as per comment here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3478068/comment/2af66834_61985812/",
+      "revId": "0dbbdbe6c9ddcb2152b9054c65ccf4719329e8d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
