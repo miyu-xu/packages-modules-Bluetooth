@@ -57,8 +57,17 @@ cc_library_shared {
 
 cc_test {
     name: "audio_bluetooth_hw_test",
+<<<<<<< PATCH SET (cdb3c9 Add missing tests to MTS)
+    defaults: [
+        "audio_bluetooth_hw_defaults",
+        "mts_defaults",
+    ],
+||||||| BASE
+    defaults: ["audio_bluetooth_hw_defaults"],
+=======
     test_suites: ["general-tests"],
     defaults: ["audio_bluetooth_hw_defaults"],
+>>>>>>> BASE      (9dab75 TEST_MAPPING: Add Bluetooth unit tests to TEST_MAPPING)
     srcs: [
         "utils.cc",
         "utils_unittest.cc",
