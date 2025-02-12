@@ -582,6 +582,14 @@ class HeadsetStateMachine extends StateMachine {
                 case CONNECT:
                     BluetoothDevice device = (BluetoothDevice) message.obj;
                     stateLogD("Connecting to " + device);
+                    MetricsLogger.getInstance()
+                            .logBluetoothEvent(
+                                    device,
+                                    BluetoothStatsLog
+                                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__HFP_SESSION,
+                                    BluetoothStatsLog
+                                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__START,
+                                    0);
                     if (!mDevice.equals(device)) {
                         stateLogE(
                                 "CONNECT failed, device=" + device + ", currentDevice=" + mDevice);
@@ -590,6 +598,14 @@ class HeadsetStateMachine extends StateMachine {
                     if (!mNativeInterface.connectHfp(device)) {
                         stateLogE("CONNECT failed for connectHfp(" + device + ")");
                         // No state transition is involved, fire broadcast immediately
+                        MetricsLogger.getInstance()
+                                .logBluetoothEvent(
+                                        device,
+                                        BluetoothStatsLog
+                                                .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__HFP_SESSION,
+                                        BluetoothStatsLog
+                                                .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECT_FAIL,
+                                        0);
                         broadcastConnectionState(
                                 device,
                                 BluetoothProfile.STATE_DISCONNECTED,
@@ -604,6 +620,14 @@ class HeadsetStateMachine extends StateMachine {
                                 MetricsLogger.getInstance().getRemoteDeviceInfoProto(mDevice));
                         break;
                     }
+                    MetricsLogger.getInstance()
+                            .logBluetoothEvent(
+                                    device,
+                                    BluetoothStatsLog
+                                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__HFP_SESSION,
+                                    BluetoothStatsLog
+                                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECTED,
+                                    0);
                     transitionTo(mConnecting);
                     break;
                 case DISCONNECT:
