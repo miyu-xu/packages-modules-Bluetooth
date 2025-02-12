@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4852aa70_956a634c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c3ba25c_4ed7af42",
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7eea334f_b33976b2",
@@ -55,6 +73,30 @@
           ]
         }
       ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9141d81e_7fab185e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7eea334f_b33976b2",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 21
+      },
       "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -100,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8667874_12cdbf30",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8edd465_70bc38fe",
+      "range": {
+        "startLine": 17,
+        "startChar": 10,
+        "endLine": 17,
+        "endChar": 19
+      },
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c267b65e_7ebdf16d",
@@ -137,6 +203,30 @@
           ]
         }
       ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6435aaef_2bdb6db3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c267b65e_7ebdf16d",
+      "range": {
+        "startLine": 87,
+        "startChar": 38,
+        "endLine": 87,
+        "endChar": 48
+      },
       "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -272,6 +362,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89399e58_546d43a3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HfpTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a7e954_428c9415",
+      "range": {
+        "startLine": 120,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d6f94de_ceccf084",
@@ -329,6 +443,30 @@
           ]
         }
       ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52daf27a_50db481d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d6f94de_ceccf084",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 37,
+        "endChar": 22
+      },
       "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -394,6 +532,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fb70a15_f81e641c",
+        "filename": "framework/tests/bumble/src/bumble_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9807d103_2d3ffd39",
+      "range": {
+        "startLine": 31,
+        "startChar": 35,
+        "endLine": 31,
+        "endChar": 44
+      },
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7587d12_7c2ea6d3",
@@ -431,6 +593,30 @@
           ]
         }
       ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e1fe9f9_ffda3a3a",
+        "filename": "pandora/interfaces/pandora_experimental/hf.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7587d12_7c2ea6d3",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 10
+      },
       "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -486,6 +672,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78748409_52b7fc68",
+        "filename": "pandora/interfaces/pandora_experimental/hf.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "As per the methods in pandora/server/bumble_experimental/hf.py , address is needed only for Aclconnect.",
+      "parentUuid": "b1eb403b_9188bd70",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 72
+      },
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55c3cda8_8ad1e8b4",
@@ -499,6 +709,30 @@
       "writtenOn": "2025-02-04T12:12:53Z",
       "side": 1,
       "message": "address should not hardcode",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d6ae05_295ff171",
+        "filename": "pandora/server/bumble_experimental/hf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55c3cda8_8ad1e8b4",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -556,6 +790,30 @@
           ]
         }
       ],
+      "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1403b212_a99d1579",
+        "filename": "pandora/server/bumble_experimental/hf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-02-12T06:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d994bd43_02dde170",
+      "range": {
+        "startLine": 102,
+        "startChar": 6,
+        "endLine": 102,
+        "endChar": 15
+      },
       "revId": "bfd927e27cf14ff2c0101e4d35a5bcf98620518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
