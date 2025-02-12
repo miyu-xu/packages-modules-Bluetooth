@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13caaf4b_cbecf9c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:15:00Z",
+      "side": 1,
+      "message": "Please add flagging bug b/382015666 so that you get Dr. No automatically",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "95a29e8cf16325825eea5b87e2f17b927bcf44c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
