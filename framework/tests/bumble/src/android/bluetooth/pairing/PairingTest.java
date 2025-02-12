@@ -845,6 +845,54 @@ public class PairingTest {
         intentReceiver.close();
     }
 
+    /**
+     * Test BR/EDR temporary bonding
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over BR/EDR
+     *   <li>Android creates Insecure RFCOMM socket with Bumble over BR/EDR
+     *   <li>Android disconnects the ACL link with Bumble
+     *   <li>Bumble is connectable over BR/EDR
+     *   <li>Android successfully creates bond with Bumble Over BR/EDR
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondBredr_TempBonding() {
+        IntentReceiver intentReceiver = new IntentReceiver.Builder(sTargetContext,
+                BluetoothDevice.ACTION_ACL_CONNECTED)
+                .build();
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+            .setDiscoverabilityMode(
+                SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                    .build());
+
+        SetConnectabilityModeRequest request =
+                SetConnectabilityModeRequest.newBuilder()
+                        .setMode(ConnectabilityMode.CONNECTABLE)
+                        .build();
+        mBumble.hostBlocking().setConnectabilityMode(request);
+
+        //Create RFCOMM insecure socket to Bumble
+        //device.createInsecureRfcommSocketToServiceRecord(UUID.fromString(uuid));
+
+        //disconnect the BR/EDR ACL link
+        //TODO add API to disconnect the BR/EDR ACL link
+
+        //Create Bond with Bumble using BR/EDR transport
+        testStep_BondBredr(intentReceiver);
+    }
+
     /** Helper/testStep functions goes here */
 
     /**
