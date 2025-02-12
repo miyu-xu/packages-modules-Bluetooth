@@ -132,6 +132,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24cfd6ff_c5dacc6c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3655,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T21:44:50Z",
+      "side": 1,
+      "message": "Please rename the method below to something more approporate",
+      "parentUuid": "c081c9cf_11027dd8",
+      "range": {
+        "startLine": 3655,
+        "startChar": 17,
+        "endLine": 3655,
+        "endChar": 36
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d46ea2d_dbfd1acc",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -214,6 +238,30 @@
       "side": 1,
       "message": "This is outside the scope of this commit. I hope that once the leaudioBroadcastAssistantPeripheralEntrustment flag is removed, we can clean it up.\n\nAfter its removal\n```\nprivate void stopSourceReceivers(int broadcastId, boolean store) {\n```\nwill always be used with store \u003d true. At that point, we can rename it to suspendSourceReceivers to make it clearer—one method for stopping receivers and another for removing them.",
       "parentUuid": "c2cd58f7_1bac9c27",
+      "range": {
+        "startLine": 3671,
+        "startChar": 54,
+        "endLine": 3671,
+        "endChar": 67
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54dc36a1_d072b5a5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3671,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T21:44:50Z",
+      "side": 1,
+      "message": "so `stopSourceReceivers` should be `suspendSourceReceivers` instead? \n\nOtherwise it is not clear what is the difference between this method and the previous method",
+      "parentUuid": "09085e67_be9f7015",
       "range": {
         "startLine": 3671,
         "startChar": 54,
