@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fa10323_10a7697c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 4865,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T18:03:56Z",
+      "side": 1,
+      "message": "Would the apps receive disconnect callback after this call and BT is turning off?",
+      "range": {
+        "startLine": 4865,
+        "startChar": 0,
+        "endLine": 4865,
+        "endChar": 45
+      },
+      "revId": "e40b20db8853519828d2604af715bb4685d94d45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
