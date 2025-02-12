@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27208d6e_76b4b538",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-12T23:39:49Z",
+      "side": 1,
+      "message": "can we cover this behavior change by unit tests?",
+      "revId": "d28d3aa140848429947a2314be03a87c3a5f42bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a50f31_eb35cffe",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-12T23:39:49Z",
+      "side": 1,
+      "message": "why did we changed group_id -\u003e unknown?",
+      "revId": "d28d3aa140848429947a2314be03a87c3a5f42bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
