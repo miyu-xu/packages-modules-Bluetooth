@@ -131,7 +131,7 @@ public class MediaBrowser {
      * A function that allows Mockito to capture the constructor arguments when using
      * MediaBrowserFactory.make()
      */
-    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    @VisibleForTesting
     public void testInit(
             Context context,
             ComponentName serviceComponent,
