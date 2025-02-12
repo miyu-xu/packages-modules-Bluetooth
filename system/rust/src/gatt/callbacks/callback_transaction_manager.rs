@@ -8,14 +8,11 @@ use log::{trace, warn};
 use tokio::sync::oneshot;
 use tokio::time::timeout;
 
+use crate::gatt::callbacks::GattCallbacks;
 use crate::gatt::ids::{AttHandle, ConnectionId, ServerId, TransactionId, TransportIndex};
-use crate::gatt::GattCallbacks;
 use crate::packets::att::AttErrorCode;
 
-use super::{
-    AttributeBackingType, GattWriteRequestType, GattWriteType, RawGattDatastore,
-    TransactionDecision,
-};
+use super::{AttributeBackingType, GattWriteRequestType, GattWriteType, RawGattDatastore};
 
 struct PendingTransaction {
     response: oneshot::Sender<Result<Vec<u8>, AttErrorCode>>,
@@ -212,25 +209,5 @@ impl RawGattDatastore for GattDatastoreImpl {
             GattWriteType::Command,
             data,
         );
-    }
-
-    async fn execute(
-        &self,
-        tcb_idx: TransportIndex,
-        decision: TransactionDecision,
-    ) -> Result<(), AttErrorCode> {
-        let conn_id = ConnectionId::new(tcb_idx, self.server_id);
-
-        let pending_transaction = self
-            .callback_transaction_manager
-            .pending_transactions
-            .borrow_mut()
-            .start_new_transaction(conn_id);
-        let trans_id = pending_transaction.trans_id;
-
-        self.callback_transaction_manager.callbacks.on_execute(conn_id, trans_id, decision);
-
-        // the data passed back is irrelevant for execute requests
-        pending_transaction.wait(&self.callback_transaction_manager).await.map(|_| ())
     }
 }
