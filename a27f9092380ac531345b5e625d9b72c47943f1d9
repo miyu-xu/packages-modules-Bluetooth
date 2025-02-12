@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd467c0f_14bcdb2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 1,
+      "message": "This is a bug fix based on the commit message and the related bug number. We need to split it to handle internal and external calls separately.",
+      "parentUuid": "7a6ac188_d5e9d779",
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d73bbd19_7fdac837",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-12T19:50:23Z",
       "side": 1,
       "message": "nit: this looks like a bug fix",
+      "range": {
+        "startLine": 3428,
+        "startChar": 12,
+        "endLine": 3428,
+        "endChar": 49
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9488921_993b40ab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3428,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 1,
+      "message": "yes, this is bug fix according to the commit message.\nIt is described in method description too.",
+      "parentUuid": "d73bbd19_7fdac837",
       "range": {
         "startLine": 3428,
         "startChar": 12,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c081c9cf_11027dd8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3655,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 1,
+      "message": "tldr because of leaudioBroadcastAssistantPeripheralEntrustment.\nLook at suspendReceiversSourceSynchronization, suspendAllReceiversSourceSynchronization and stopReceiversSourceSynchronization.\nI hope that once the leaudioBroadcastAssistantPeripheralEntrustment flag is removed, we can clean it up.",
+      "parentUuid": "af7d4659_cd0f339d",
+      "range": {
+        "startLine": 3655,
+        "startChar": 17,
+        "endLine": 3655,
+        "endChar": 36
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d46ea2d_dbfd1acc",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -77,6 +143,30 @@
       "writtenOn": "2025-02-12T19:50:23Z",
       "side": 1,
       "message": "should this be `removeSourceInternal` ?",
+      "range": {
+        "startLine": 3662,
+        "startChar": 12,
+        "endLine": 3662,
+        "endChar": 24
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce0c0c4_5edb9098",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3662,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 1,
+      "message": "No, as this\n```\nprivate void stopSourceReceivers(int broadcastId) {\n```\nis used by stopReceiversSourceSynchronization which is used by LeAudioService so this is external call. We want to trully remove source, not only suspend it.",
+      "parentUuid": "1d46ea2d_dbfd1acc",
       "range": {
         "startLine": 3662,
         "startChar": 12,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "09085e67_be9f7015",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3671,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 1,
+      "message": "This is outside the scope of this commit. I hope that once the leaudioBroadcastAssistantPeripheralEntrustment flag is removed, we can clean it up.\n\nAfter its removal\n```\nprivate void stopSourceReceivers(int broadcastId, boolean store) {\n```\nwill always be used with store \u003d true. At that point, we can rename it to suspendSourceReceivers to make it clearer—one method for stopping receivers and another for removing them.",
+      "parentUuid": "c2cd58f7_1bac9c27",
+      "range": {
+        "startLine": 3671,
+        "startChar": 54,
+        "endLine": 3671,
+        "endChar": 67
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0b1d941a_74e60f41",
@@ -123,6 +237,30 @@
       "writtenOn": "2025-02-12T19:50:23Z",
       "side": 1,
       "message": "why moving this out of the for-loop? it seems the logic is the same?\n\nA: seems stopBigMonitoring() is clearing `mPausedBroadcastSinks`",
+      "range": {
+        "startLine": 3727,
+        "startChar": 0,
+        "endLine": 3729,
+        "endChar": 9
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0ee03ac_b68538cf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3729,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 1,
+      "message": "Exactly!",
+      "parentUuid": "0b1d941a_74e60f41",
       "range": {
         "startLine": 3727,
         "startChar": 0,

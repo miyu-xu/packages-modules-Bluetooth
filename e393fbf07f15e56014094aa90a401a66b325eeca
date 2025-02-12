@@ -22,6 +22,30 @@
       },
       "revId": "e393fbf07f15e56014094aa90a401a66b325eeca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "897247b4_3cd99adb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3636,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-12T20:35:11Z",
+      "side": 0,
+      "message": "Since we now call removeSource (the external version), mPausedBroadcastSinks.remove(device) is handled there, confirming the user’s intent to remove it. Additionally, stopBigMonitoring is in removeSourceInternal, ensuring that, regardless of whether the source is truly removed or just suspended, we stop BIG monitoring and set pausedByHost.",
+      "parentUuid": "47906cf4_ec253f75",
+      "range": {
+        "startLine": 3633,
+        "startChar": 0,
+        "endLine": 3636,
+        "endChar": 13
+      },
+      "revId": "e393fbf07f15e56014094aa90a401a66b325eeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
