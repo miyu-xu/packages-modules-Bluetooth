@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27d5aa95_7b312756",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3083,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T21:41:53Z",
+      "side": 1,
+      "message": "IMO the helper method is not strictly needed, but I respect your decision to have it as it doesn\u0027t harm the code base.",
+      "parentUuid": "b3be04b0_1a486ce6",
+      "range": {
+        "startLine": 3049,
+        "startChar": 4,
+        "endLine": 3083,
+        "endChar": 0
+      },
+      "revId": "6fe3b986d913f19617197092d0a4935a12d10ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9202872_1fe1abdd",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Unfortunately, no, due to the scenario described in the commit message and the method description.\n\nmBroadcastMetadataMap serves a dual purpose, which causes issues. I\u0027ve added a refactoring task to the backlog (b/393495675), so we might be able to address this later—but definitely not for 25Q2.",
       "parentUuid": "e9202872_1fe1abdd",
+      "range": {
+        "startLine": 3170,
+        "startChar": 16,
+        "endLine": 3170,
+        "endChar": 80
+      },
+      "revId": "6fe3b986d913f19617197092d0a4935a12d10ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0db54b61_95ee4353",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3170,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T21:41:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5df77b2e_aa75fed4",
       "range": {
         "startLine": 3170,
         "startChar": 16,
