@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4bbac23_daeecc7d",
+        "filename": "OWNERS_channel_sounding",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-12T16:26:13Z",
+      "side": 1,
+      "message": "`OWNERS` file should only include Eng DRIs directly contributing to the implementation and capable of reviewing and approving changes. Considering this is a cross-team effort, my recommendation would be to only keep:\n\nPixel DRIS:\naliceykuo@google.com\nchienyuanhuang@google.com\n\nBluetooth DRI:\nhenrichataing@google.com\n\nRanging DRI:\nsteveliu@google.com",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "cb06c40dad38dd2b7f80080aacd3bcfd64df9b78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
