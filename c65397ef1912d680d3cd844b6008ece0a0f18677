@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ee6ad0_0c97ae77",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-12T19:38:47Z",
+      "side": 1,
+      "message": "Yes, this was something I had a note to come back and check on. I found this confusing. Whilst this needs GATT, it doesn\u0027t need the Rust module. I think that this needs to have the check on scan_manager_refactor() and then we need to initialize this in com_android_bluetooth_gatt.cpp if scan_manager_refactor is true.",
+      "parentUuid": "d93385e0_ea4e4a68",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 3
+      },
+      "revId": "c65397ef1912d680d3cd844b6008ece0a0f18677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "10e2d4f8_8865829c",
