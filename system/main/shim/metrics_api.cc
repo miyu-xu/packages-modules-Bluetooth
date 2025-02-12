@@ -215,5 +215,35 @@ bool CountCounterMetrics(int32_t key, int64_t count) {
   return counter_metrics->Count(key, count);
 }
 
+void LogMetricHfpAgVersion(hci::Address address, uint16_t version) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::HFP_AG_VERSION,
+                                         bluetooth::metrics::MapHfpVersionToState(version));
+}
+
+void LogMetricHfpHfVersion(hci::Address address, uint16_t version) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::HFP_HF_VERSION,
+                                         bluetooth::metrics::MapHfpVersionToState(version));
+}
+
+void LogMetricHfpRfcommChannelFail(hci::Address address) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::HFP_SESSION,
+                                         State::HFP_RFCOMM_CHANNEL_FAIL);
+}
+
+void LogMetricHfpRfcommCollisionFail(hci::Address address) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::HFP_SESSION,
+                                         State::HFP_RFCOMM_COLLISION_FAIL);
+}
+
+void LogMetricHfpRfcommAgOpenFail(hci::Address address) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::HFP_SESSION,
+                                         State::HFP_RFCOMM_AG_OPEN_FAIL);
+}
+
+void LogMetricHfpSlcFail(hci::Address address) {
+  bluetooth::os::LogMetricBluetoothEvent(address, EventType::HFP_SESSION,
+                                         State::HFP_SLC_FAIL_CONNECTION);
+}
+
 }  // namespace shim
 }  // namespace bluetooth
