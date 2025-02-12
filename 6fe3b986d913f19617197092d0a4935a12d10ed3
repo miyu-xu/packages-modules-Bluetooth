@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "834064cc_11cf856a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3083,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T20:00:38Z",
+      "side": 1,
+      "message": "no need to fork this out since checking the conditions is fine even if it is no-op, everyone can just call `removeSinkMetadata` instead of `removeSinkMetadataHelper`",
+      "range": {
+        "startLine": 3049,
+        "startChar": 4,
+        "endLine": 3083,
+        "endChar": 0
+      },
+      "revId": "6fe3b986d913f19617197092d0a4935a12d10ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9202872_1fe1abdd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3170,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T20:00:38Z",
+      "side": 1,
+      "message": "is there anyway to avoid a double for-loop in this method and the internal method?",
+      "range": {
+        "startLine": 3170,
+        "startChar": 16,
+        "endLine": 3170,
+        "endChar": 80
+      },
+      "revId": "6fe3b986d913f19617197092d0a4935a12d10ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
