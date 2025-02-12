@@ -217,6 +217,24 @@
       "parentUuid": "51642e7e_234b5561",
       "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f92b1c11_56cbe64a",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-12T08:41:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "183bb095_bbf1c48a",
+      "revId": "b7f79fa05da799d8be85b9223e51632c1ffd7ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
