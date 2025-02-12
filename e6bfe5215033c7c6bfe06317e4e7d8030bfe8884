@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9630bbb7_21a98383",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-12T23:30:34Z",
+      "side": 1,
+      "message": "https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_ble_sec.cc;drc\u003d8e4267a6a410a1cdd218fc5f731577851428cd03;l\u003d754\n\nNeed to remove this check as well",
+      "revId": "e6bfe5215033c7c6bfe06317e4e7d8030bfe8884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
