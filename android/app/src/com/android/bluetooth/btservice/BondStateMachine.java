@@ -37,6 +37,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
+import com.android.bluetooth.btservice.storage.Metadata;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hfp.HeadsetService;
@@ -589,13 +590,27 @@ final class BondStateMachine extends StateMachine {
         intent.putExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, oldState);
         if (newState == BluetoothDevice.BOND_NONE) {
             intent.putExtra(BluetoothDevice.EXTRA_UNBOND_REASON, reason);
+
+            /*
+            * `newState` can only have 3 values BOND_NONE, BOND_BONDING, BOND_BONDED.
+            * If the state is BOND_NONE, and the metadata indicates
+            * ACTION_KEY_MISSING(1), log the transition.
+            */
+            byte[] isBondLostMetdadata =
+                    mAdapterService.getMetadata(device, Metadata.METADATA_BOND_LOST);
+            if (isBondLostMetdadata != null && isBondLostMetdadata[0] == 1) {
+                MetricsLogger.getInstance()
+                        .cacheCount(BluetoothProtoEnums.ACTION_KEY_MISSING_TO_BOND_NONE, 1);
+            }
         }
+
         mAdapterService.onBondStateChanged(device, newState);
         mAdapterService.sendBroadcastAsUser(
                 intent,
                 UserHandle.ALL,
                 BLUETOOTH_CONNECT,
                 Utils.getTempBroadcastOptions().toBundle());
+
         infoLog(
                 "Bond State Change Intent:"
                         + device
