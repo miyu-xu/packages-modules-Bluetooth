@@ -40,3 +40,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "rfcomm_no_disc_initiator_on_receiving_dm_when_sabm_wait_ua"
+    namespace: "bluetooth"
+    description: "NOT be the DISC initiator when rejected by the remote device in the SABM_WAIT_UA state"
+    bug: "395805532"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
