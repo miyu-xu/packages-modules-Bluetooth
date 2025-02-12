@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d93385e0_ea4e4a68",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-12T18:55:42Z",
+      "side": 1,
+      "message": "I believe that if the flag is off, we want to skip channel sounding as it need gatt, no ?",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 3
+      },
+      "revId": "c65397ef1912d680d3cd844b6008ece0a0f18677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10e2d4f8_8865829c",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-12T18:55:42Z",
+      "side": 1,
+      "message": "we probably want this for the whole native stack at some point. Nice",
+      "range": {
+        "startLine": 320,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 26
+      },
+      "revId": "c65397ef1912d680d3cd844b6008ece0a0f18677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
