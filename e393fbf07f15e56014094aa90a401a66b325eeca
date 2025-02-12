@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47906cf4_ec253f75",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3636,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 0,
+      "message": "how come this can be removed here? the same logic is needed in `stopSourceReceivers(broadcastId, store)`",
+      "range": {
+        "startLine": 3633,
+        "startChar": 0,
+        "endLine": 3636,
+        "endChar": 13
+      },
+      "revId": "e393fbf07f15e56014094aa90a401a66b325eeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6ac188_d5e9d779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 1,
+      "message": "Try to reduce the scope of the CL to just the refactor part",
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d73bbd19_7fdac837",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3428,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 1,
+      "message": "nit: this looks like a bug fix",
+      "range": {
+        "startLine": 3428,
+        "startChar": 12,
+        "endLine": 3428,
+        "endChar": 49
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af7d4659_cd0f339d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3655,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 1,
+      "message": "what is the differene between this method and `stopSourceReceivers(int broadcastId, boolean store)`",
+      "range": {
+        "startLine": 3655,
+        "startChar": 17,
+        "endLine": 3655,
+        "endChar": 36
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d46ea2d_dbfd1acc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3662,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 1,
+      "message": "should this be `removeSourceInternal` ?",
+      "range": {
+        "startLine": 3662,
+        "startChar": 12,
+        "endLine": 3662,
+        "endChar": 24
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2cd58f7_1bac9c27",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3671,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 1,
+      "message": "nit: add a comment explaining the meaning of this boolean",
+      "range": {
+        "startLine": 3671,
+        "startChar": 54,
+        "endLine": 3671,
+        "endChar": 67
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1d941a_74e60f41",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3729,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-12T19:50:23Z",
+      "side": 1,
+      "message": "why moving this out of the for-loop? it seems the logic is the same?\n\nA: seems stopBigMonitoring() is clearing `mPausedBroadcastSinks`",
+      "range": {
+        "startLine": 3727,
+        "startChar": 0,
+        "endLine": 3729,
+        "endChar": 9
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
