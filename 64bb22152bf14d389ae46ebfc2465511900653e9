@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06c487d3_97d2294b",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1591,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-12T10:20:40Z",
+      "side": 1,
+      "message": "Did you consider passign the codec ID as part of the `CodecManager::UnicastConfigurationRequirements::DeviceDirectionRequirements`? \n\nIt seems to me that the CodecId could be set by the `LeAudioDeviceGroup::GetAudioSetConfigurationRequirements()` based on the preferred_config_, and eventually would end up here as part of the `direction_req` parameter, eliminating the need for extending `IsAseConfigMatchedWithPreferredRequirements()` with an additional function parameter.\n\nThat seem like a more unified solution that also fits nicely with the offloader mode and the configuration provider behind the AIDL interface, after the missing AIDL format translation piece is added to `GetAidlLeAudioUnicastConfigurationRequirementsFromStackFormat()`.",
+      "range": {
+        "startLine": 1591,
+        "startChar": 18,
+        "endLine": 1591,
+        "endChar": 62
+      },
+      "revId": "64bb22152bf14d389ae46ebfc2465511900653e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09156395_3b4943b2",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-12T10:20:40Z",
+      "side": 1,
+      "message": "Are we relaxing the preferences to not require the octets_per_code_frame parameter? Did I read it right? @shihchienc@google.com Are we ok with this?",
+      "range": {
+        "startLine": 682,
+        "startChar": 0,
+        "endLine": 683,
+        "endChar": 21
+      },
+      "revId": "64bb22152bf14d389ae46ebfc2465511900653e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
