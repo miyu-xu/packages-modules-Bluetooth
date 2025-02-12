@@ -26,14 +26,25 @@ import android.bluetooth.le.DistanceMeasurementParams
 import android.bluetooth.le.IDistanceMeasurementCallback
 import android.content.AttributionSource
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.os.ParcelUuid
+import android.util.Log
 import com.android.bluetooth.Utils
+import com.android.bluetooth.flags.Flags
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import kotlin.concurrent.Volatile
 
 class DistanceMeasurementBinder(
     private val mContext: Context,
     private val mDistanceMeasurementManager: DistanceMeasurementManager,
+    private val mLooper: Looper,
 ) : IDistanceMeasurement.Stub() {
+
+    private val WAIT_TIMEOUT_MS = 100L
+
+    private val mHandler = Handler(mLooper)
 
     @Volatile private var mIsAvailable = true
 
@@ -69,7 +80,20 @@ class DistanceMeasurementBinder(
     ): List<DistanceMeasurementMethod> {
         val manager: DistanceMeasurementManager =
             getManager(source, "getSupportedDistanceMeasurementMethods") ?: return emptyList()
-        return manager.getSupportedDistanceMeasurementMethods()
+
+        if (Flags.advertiseThread() && !mLooper.isCurrentThread()) {
+            val latch = CountDownLatch(1)
+            var result: List<DistanceMeasurementMethod> = ArrayList()
+
+            mHandler.post {
+                result = manager.getSupportedDistanceMeasurementMethods()
+                latch.countDown()
+            }
+            latch.await(WAIT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            return result
+        } else {
+            return manager.getSupportedDistanceMeasurementMethods()
+        }
     }
 
     override fun startDistanceMeasurement(
@@ -80,7 +104,14 @@ class DistanceMeasurementBinder(
     ) {
         val manager: DistanceMeasurementManager =
             getManager(source, "startDistanceMeasurement") ?: return
-        manager.startDistanceMeasurement(uuid.uuid, distanceMeasurementParams, callback)
+
+        if (Flags.advertiseThread() && !mLooper.isCurrentThread()) {
+            mHandler.post {
+                manager.startDistanceMeasurement(uuid.uuid, distanceMeasurementParams, callback)
+            }
+        } else {
+            manager.startDistanceMeasurement(uuid.uuid, distanceMeasurementParams, callback)
+        }
     }
 
     override fun stopDistanceMeasurement(
@@ -105,7 +136,31 @@ class DistanceMeasurementBinder(
             return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION
         }
         mContext.enforceCallingOrSelfPermission(Manifest.permission.BLUETOOTH_PRIVILEGED, null)
-        return mDistanceMeasurementManager.stopDistanceMeasurement(uuid.uuid, device, method, false)
+
+        if (Flags.advertiseThread() && !mLooper.isCurrentThread()) {
+            val latch = CountDownLatch(1)
+            var result: Int = BluetoothStatusCodes.ERROR_UNKNOWN
+
+            mHandler.post {
+                result =
+                    mDistanceMeasurementManager.stopDistanceMeasurement(
+                        uuid.uuid,
+                        device,
+                        method,
+                        false,
+                    )
+                latch.countDown()
+            }
+            latch.await(WAIT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            return result
+        } else {
+            return mDistanceMeasurementManager.stopDistanceMeasurement(
+                uuid.uuid,
+                device,
+                method,
+                false,
+            )
+        }
     }
 
     override fun getChannelSoundingMaxSupportedSecurityLevel(
@@ -115,25 +170,73 @@ class DistanceMeasurementBinder(
         val manager: DistanceMeasurementManager =
             getManager(source, "getChannelSoundingMaxSupportedSecurityLevel")
                 ?: return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
-        return manager.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice)
+
+        if (Flags.advertiseThread() && !mLooper.isCurrentThread()) {
+            val latch = CountDownLatch(1)
+            var result: Int = ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
+
+            mHandler.post {
+                result = manager.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice)
+                latch.countDown()
+            }
+            try {
+                latch.await(WAIT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            } catch (e: InterruptedException) {
+                Log.w(TAG, "InterruptedException happened", e)
+            }
+            return result
+        } else {
+            return manager.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice)
+        }
     }
 
     override fun getLocalChannelSoundingMaxSupportedSecurityLevel(source: AttributionSource): Int {
         val manager: DistanceMeasurementManager =
             getManager(source, "getLocalChannelSoundingMaxSupportedSecurityLevel")
                 ?: return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
-        return manager.getLocalChannelSoundingMaxSupportedSecurityLevel()
+
+        if (Flags.advertiseThread() && !mLooper.isCurrentThread()) {
+            val latch = CountDownLatch(1)
+            var result: Int = ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
+
+            mHandler.post {
+                result = manager.getLocalChannelSoundingMaxSupportedSecurityLevel()
+                latch.countDown()
+            }
+            try {
+                latch.await(WAIT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            } catch (e: InterruptedException) {
+                Log.w(TAG, "InterruptedException happened", e)
+            }
+            return result
+        } else {
+            return manager.getLocalChannelSoundingMaxSupportedSecurityLevel()
+        }
     }
 
     override fun getChannelSoundingSupportedSecurityLevels(source: AttributionSource): IntArray {
         val manager: DistanceMeasurementManager =
             getManager(source, "getChannelSoundingSupportedSecurityLevels") ?: return IntArray(0)
 
-        return manager
-            .getChannelSoundingSupportedSecurityLevels()
-            .stream()
-            .mapToInt { i -> i }
-            .toArray()
+        var channelSoundSecurityLevels: Set<Int> = HashSet()
+
+        if (Flags.advertiseThread() && !mLooper.isCurrentThread()) {
+            val latch = CountDownLatch(1)
+
+            mHandler.post {
+                channelSoundSecurityLevels = manager.getChannelSoundingSupportedSecurityLevels()
+                latch.countDown()
+            }
+            try {
+                latch.await(WAIT_TIMEOUT_MS, TimeUnit.MILLISECONDS)
+            } catch (e: InterruptedException) {
+                Log.w(TAG, "InterruptedException happened", e)
+            }
+        } else {
+            channelSoundSecurityLevels = manager.getChannelSoundingSupportedSecurityLevels()
+        }
+
+        return channelSoundSecurityLevels.stream().mapToInt { i -> i }.toArray()
     }
 
     companion object {

@@ -33,6 +33,7 @@ import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.DistanceMeasurementResult;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.content.pm.PackageManager;
+import android.os.HandlerThread;
 import android.os.RemoteException;
 
 import androidx.test.filters.SmallTest;
@@ -65,6 +66,7 @@ public class DistanceMeasurementManagerTest {
     private DistanceMeasurementManager mDistanceMeasurementManager;
     private UUID mUuid;
     private BluetoothDevice mDevice;
+    private HandlerThread mHandlerThread;
 
     private static final String IDENTITY_ADDRESS = "00:01:02:03:04:05";
     private static final int RSSI_FREQUENCY_LOW = 3000;
@@ -78,7 +80,12 @@ public class DistanceMeasurementManagerTest {
         doReturn(IDENTITY_ADDRESS).when(mAdapterService).getIdentityAddress(IDENTITY_ADDRESS);
         doReturn(true).when(mAdapterService).isConnected(any());
         DistanceMeasurementNativeInterface.setInstance(mDistanceMeasurementNativeInterface);
-        mDistanceMeasurementManager = new DistanceMeasurementManager(mAdapterService);
+
+        mHandlerThread = new HandlerThread("DistanceMeasurementManagerTest");
+        mHandlerThread.start();
+
+        mDistanceMeasurementManager =
+                new DistanceMeasurementManager(mAdapterService, mHandlerThread.getLooper());
         mUuid = UUID.randomUUID();
         mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(IDENTITY_ADDRESS);
     }
@@ -87,6 +94,7 @@ public class DistanceMeasurementManagerTest {
     public void tearDown() throws Exception {
         mDistanceMeasurementManager.cleanup();
         DistanceMeasurementNativeInterface.setInstance(null);
+        mHandlerThread.quit();
     }
 
     @Test

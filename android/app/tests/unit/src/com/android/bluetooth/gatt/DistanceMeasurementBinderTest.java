@@ -17,6 +17,7 @@
 package com.android.bluetooth.gatt;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,6 +27,7 @@ import android.bluetooth.le.DistanceMeasurementMethod;
 import android.bluetooth.le.DistanceMeasurementParams;
 import android.bluetooth.le.IDistanceMeasurementCallback;
 import android.content.AttributionSource;
+import android.os.HandlerThread;
 import android.os.ParcelUuid;
 
 import androidx.test.filters.SmallTest;
@@ -33,6 +35,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,13 +59,25 @@ public class DistanceMeasurementBinderTest {
     private final AttributionSource mAttributionSource =
             BluetoothAdapter.getDefaultAdapter().getAttributionSource();
 
+    private HandlerThread mHandlerThread;
+
     private DistanceMeasurementBinder mBinder;
 
     @Before
     public void setUp() {
-        mBinder = new DistanceMeasurementBinder(mAdapterService, mDistanceMeasurementManager);
+        mHandlerThread = new HandlerThread("DistanceMeasurementBinderTest");
+        mHandlerThread.start();
+
+        mBinder =
+                new DistanceMeasurementBinder(
+                        mAdapterService, mDistanceMeasurementManager, mHandlerThread.getLooper());
         when(mDistanceMeasurementManager.getSupportedDistanceMeasurementMethods())
                 .thenReturn(Collections.emptyList());
+    }
+
+    @After
+    public void tearDown() {
+        mHandlerThread.quit();
     }
 
     @Test
@@ -84,7 +99,8 @@ public class DistanceMeasurementBinderTest {
         IDistanceMeasurementCallback callback = mock(IDistanceMeasurementCallback.class);
         mBinder.startDistanceMeasurement(
                 new ParcelUuid(uuid), params, callback, mAttributionSource);
-        verify(mDistanceMeasurementManager).startDistanceMeasurement(uuid, params, callback);
+        verify(mDistanceMeasurementManager, timeout(100))
+                .startDistanceMeasurement(uuid, params, callback);
     }
 
     @Test
@@ -94,6 +110,7 @@ public class DistanceMeasurementBinderTest {
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:01:02:03:04:05");
         int method = DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI;
         mBinder.stopDistanceMeasurement(new ParcelUuid(uuid), device, method, mAttributionSource);
-        verify(mDistanceMeasurementManager).stopDistanceMeasurement(uuid, device, method, false);
+        verify(mDistanceMeasurementManager, timeout(100))
+                .stopDistanceMeasurement(uuid, device, method, false);
     }
 }
