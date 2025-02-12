@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0289db0_d4be39d8",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-12T10:55:48Z",
+      "side": 1,
+      "message": "Q) What does happen if we call `BluetoothDevice remoteDevice \u003d mRemoteDevice;` right before this null check? Is it better?",
+      "range": {
+        "startLine": 1126,
+        "startChar": 16,
+        "endLine": 1128,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f56dc835_6e0fea21",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+              "range": {
+                "startLine": 1110,
+                "startChar": 0,
+                "endLine": 1111,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+              "range": {
+                "startLine": 1126,
+                "startChar": 0,
+                "endLine": 1126,
+                "endChar": 0
+              },
+              "replacement": "                BluetoothDevice remoteDevice \u003d mRemoteDevice;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0c656ebf2586b17611d42e6157ecca7a8eee7e00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
