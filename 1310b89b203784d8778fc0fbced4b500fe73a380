@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40510e46_7545112c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-12T02:55:06Z",
+      "side": 0,
+      "message": "Since this HandlerThread is removed, the threading logic is no longer same as before even without the flag is off. Is this intended?",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
