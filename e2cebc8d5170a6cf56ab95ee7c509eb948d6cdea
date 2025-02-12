@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89dd0da0_52a34bfb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-12T02:21:54Z",
+      "side": 1,
+      "message": "We may not have any metadata by the time we reach here. Move this block up. Before any other module is informed of bond state change.",
+      "fixSuggestions": [
+        {
+          "fixId": "337958f9_71638dce",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 515,
+                "startChar": 0,
+                "endLine": 515,
+                "endChar": 0
+              },
+              "replacement": "\n        /*\n         * `newState` can only have 3 values BOND_NONE, BOND_BONDING, BOND_BONDED.\n         * If the state is BOND_NONE, and the metadata indicates\n         * ACTION_KEY_MISSING(1), log the transition.\n         */\n        if (newState \u003d\u003d BluetoothDevice.BOND_NONE) {\n            byte[] isBondLostMetdadata \u003d\n                    mAdapterService.getMetadata(device, Metadata.METADATA_BOND_LOST);\n            if (isBondLostMetdadata !\u003d null \u0026\u0026 isBondLostMetdadata[0] \u003d\u003d 1) {\n                MetricsLogger.getInstance()\n                        .cacheCount(BluetoothProtoEnums.ACTION_KEY_MISSING_TO_BOND_NONE, 1);\n            }\n        }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+              "range": {
+                "startLine": 600,
+                "startChar": 0,
+                "endLine": 614,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "e2cebc8d5170a6cf56ab95ee7c509eb948d6cdea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb275471_2d7a5524",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1647,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-12T02:21:54Z",
+      "side": 1,
+      "message": "`encryptionEnable` is more definitive check.",
+      "fixSuggestions": [
+        {
+          "fixId": "c072d056_d7a8e657",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1646,
+                "startChar": 0,
+                "endLine": 1648,
+                "endChar": 0
+              },
+              "replacement": "            // if encryption is enabled, then only change metadata and collect metrics.\n            if (encryptionEnable) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e2cebc8d5170a6cf56ab95ee7c509eb948d6cdea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
