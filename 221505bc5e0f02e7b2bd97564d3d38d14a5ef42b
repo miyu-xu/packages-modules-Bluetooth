@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e8ea27_c0481038",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6798,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-12T05:27:30Z",
+      "side": 1,
+      "message": "technically, mScanController can be null anytime.\n\nSo this:\n\n```\nif (mScanController !\u003d null) {\n  mScanController.foo();\n}\n```\ncan lead to a null pointer exception as dump is run on a different thread tha the thread turning on and off the bt.\n\n\nI agree that this is unlikely to happen, but per sake of the murphy law, I would use a temp variable like this:\n```\nScanController scanController \u003d mScanController;\nif (scanController !\u003d null) {\n  scanController.foo();\n}\n```\n\nThis is not fixing the inner method of the ScanController (I haven\u0027t look at this) but it will prevent race cleaning the class variable",
+      "range": {
+        "startLine": 6798,
+        "startChar": 43,
+        "endLine": 6798,
+        "endChar": 58
+      },
+      "revId": "221505bc5e0f02e7b2bd97564d3d38d14a5ef42b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
