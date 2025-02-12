@@ -92,7 +92,10 @@ rust_ffi_static {
 rust_test {
     name: "libbluetooth_core_rs_test",
     host_supported: true,
-    test_suites: ["general-tests"],
+    test_suites: [
+        "general-tests",
+        "mts-bt",
+    ],
     defaults: ["libbluetooth_core_rs_defaults"],
     rustlibs: [
         "libbluetooth_aconfig_flags_rust",
