@@ -22,6 +22,30 @@
       },
       "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2130b3b4_77770d6a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-12T05:51:22Z",
+      "side": 0,
+      "message": "The thread creation has just been move outside of this file, but I believe the thread logic remain the same.\n\nDo you have something specific in mind ?",
+      "parentUuid": "40510e46_7545112c",
+      "range": {
+        "startLine": 75,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 23
+      },
+      "revId": "1310b89b203784d8778fc0fbced4b500fe73a380",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
