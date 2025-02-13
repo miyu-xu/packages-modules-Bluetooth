@@ -142,6 +142,30 @@
       },
       "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "662a8212_1be930bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T12:40:40Z",
+      "side": 1,
+      "message": "make sense. If we don\u0027t have any features that are still running when the UI shows it to be off.",
+      "parentUuid": "2579cae9_bd94a045",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
