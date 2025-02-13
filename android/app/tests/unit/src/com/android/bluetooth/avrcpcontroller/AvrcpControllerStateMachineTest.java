@@ -28,7 +28,6 @@ import static org.mockito.Mockito.*;
 import android.bluetooth.BluetoothAvrcpController;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.AudioManager;
@@ -113,12 +112,7 @@ public class AvrcpControllerStateMachineTest {
         doReturn(mMockResources).when(mAvrcpControllerService).getResources();
         doReturn(mBrowseTree).when(mAvrcpControllerService).getBrowseTree();
 
-        doReturn(mAudioManager)
-                .when(mAvrcpControllerService)
-                .getSystemService(Context.AUDIO_SERVICE);
-        doReturn(Context.AUDIO_SERVICE)
-                .when(mAvrcpControllerService)
-                .getSystemServiceName(AudioManager.class);
+        doReturn(mAudioManager).when(mAvrcpControllerService).getSystemService(AudioManager.class);
         doReturn(mCoverArtManager).when(mAvrcpControllerService).getCoverArtManager();
         if (Looper.myLooper() == null) {
             Looper.prepare();

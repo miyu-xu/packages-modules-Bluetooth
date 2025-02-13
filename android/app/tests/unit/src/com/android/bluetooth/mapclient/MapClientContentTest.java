@@ -111,10 +111,8 @@ public class MapClientContentTest {
         mMockContentResolver.addProvider("mms-sms", mMockThreadContentProvider);
 
         when(mMockContext.getContentResolver()).thenReturn(mMockContentResolver);
-        when(mMockContext.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE))
+        when(mMockContext.getSystemService(SubscriptionManager.class))
                 .thenReturn(mMockSubscriptionManager);
-        when(mMockContext.getSystemServiceName(SubscriptionManager.class))
-                .thenReturn(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
 
         when(mMockSubscriptionManager.getActiveSubscriptionInfoList())
                 .thenReturn(Arrays.asList(mMockSubscription));

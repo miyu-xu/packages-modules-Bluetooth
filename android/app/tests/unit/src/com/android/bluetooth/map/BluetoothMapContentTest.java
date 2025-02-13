@@ -26,7 +26,6 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
 import android.content.ContentResolver;
@@ -377,9 +376,7 @@ public class BluetoothMapContentTest {
 
     @Test
     public void setFilterInfo() {
-        when(mContext.getSystemService(Context.TELEPHONY_SERVICE)).thenReturn(mTelephonyManager);
-        when(mContext.getSystemServiceName(TelephonyManager.class))
-                .thenReturn(Context.TELEPHONY_SERVICE);
+        when(mContext.getSystemService(TelephonyManager.class)).thenReturn(mTelephonyManager);
         when(mTelephonyManager.getPhoneType()).thenReturn(TelephonyManager.PHONE_TYPE_GSM);
 
         mContent.setFilterInfo(mInfo);
@@ -807,8 +804,7 @@ public class BluetoothMapContentTest {
 
     @Test
     public void setters_withConvoList() {
-        BluetoothMapMasInstance instance = spy(BluetoothMapMasInstance.class);
-        BluetoothMapContent content = new BluetoothMapContent(mContext, mAccountItem, instance);
+        BluetoothMapContent content = new BluetoothMapContent(mContext, mAccountItem, mMasInstance);
         HashMap<Long, BluetoothMapConvoListingElement> emailMap =
                 new HashMap<Long, BluetoothMapConvoListingElement>();
         HashMap<Long, BluetoothMapConvoListingElement> smsMap =

@@ -29,7 +29,6 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothDevice;
@@ -37,7 +36,6 @@ import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothUuid;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -46,7 +44,6 @@ import android.os.Message;
 import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.MediumTest;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
@@ -71,6 +68,7 @@ public class BluetoothOppTransferTest {
 
     @Mock BluetoothOppObexSession mSession;
     @Mock BluetoothMethodProxy mCallProxy;
+    @Mock Context mContext;
 
     private final Uri mUri = Uri.parse("file://Idontknow/Justmadeitup");
     private final String mHintString = "this is a object that take 4 bytes";
@@ -86,7 +84,6 @@ public class BluetoothOppTransferTest {
     private final int mTimestamp = 123456789;
     private final boolean mMediaScanned = false;
 
-    Context mContext;
     BluetoothOppBatch mBluetoothOppBatch;
     BluetoothOppTransfer mTransfer;
     BluetoothOppTransfer.EventHandler mEventHandler;
@@ -127,11 +124,7 @@ public class BluetoothOppTransferTest {
                         mCurrentBytes,
                         mTimestamp,
                         mMediaScanned);
-        mContext =
-                spy(
-                        new ContextWrapper(
-                                InstrumentationRegistry.getInstrumentation().getTargetContext()));
-        mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
+        mBluetoothOppBatch = new BluetoothOppBatch(mContext, mInitShareInfo);
         mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
         mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
     }
@@ -253,11 +246,7 @@ public class BluetoothOppTransferTest {
                         mCurrentBytes,
                         mTimestamp,
                         mMediaScanned);
-        mContext =
-                spy(
-                        new ContextWrapper(
-                                InstrumentationRegistry.getInstrumentation().getTargetContext()));
-        mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
+        mBluetoothOppBatch = new BluetoothOppBatch(mContext, mInitShareInfo);
         mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
         mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
         mEventHandler.handleMessage(message);
@@ -305,7 +294,7 @@ public class BluetoothOppTransferTest {
                         mCurrentBytes,
                         mTimestamp,
                         mMediaScanned);
-        mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
+        mBluetoothOppBatch = new BluetoothOppBatch(mContext, mInitShareInfo);
         mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
         mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
 

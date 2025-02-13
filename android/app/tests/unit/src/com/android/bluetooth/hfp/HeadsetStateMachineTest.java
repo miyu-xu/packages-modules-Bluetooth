@@ -17,6 +17,7 @@
 package com.android.bluetooth.hfp;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE;
 import static android.media.audio.Flags.FLAG_DEPRECATE_STREAM_BT_SCO;
 
 import static com.android.bluetooth.TestUtils.MockitoRule;
@@ -116,26 +117,23 @@ public class HeadsetStateMachineTest {
 
     @Before
     public void setUp() throws Exception {
-        // Setup mocks and test assets
-        TestUtils.setAdapterService(mAdapterService);
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity(READ_PRIVILEGED_PHONE_STATE);
         // Stub system interface
         doReturn(mPhoneState).when(mSystemInterface).getHeadsetPhoneState();
         doReturn(mAudioManager).when(mSystemInterface).getAudioManager();
-        // Get a database
-        doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true).when(mDatabaseManager).setAudioPolicyMetadata(anyObject(), anyObject());
-        // Get an active device manager
-        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
-        // Get a silence device manager
-        doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
-        doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
         doReturn(true).when(mNativeInterface).connectHfp(mDevice);
         doReturn(true).when(mNativeInterface).disconnectHfp(mDevice);
         doReturn(true).when(mNativeInterface).connectAudio(mDevice);
         doReturn(true).when(mNativeInterface).disconnectAudio(mDevice);
-        // Stub headset service
+        doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
+        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
+        doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
+        doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
         mMockContentResolver = new MockContentResolver();
-        when(mHeadsetService.getContentResolver()).thenReturn(mMockContentResolver);
+        doReturn(mMockContentResolver).when(mAdapterService).getContentResolver();
         doReturn(BluetoothDevice.BOND_BONDED)
                 .when(mAdapterService)
                 .getBondState(any(BluetoothDevice.class));
@@ -178,7 +176,9 @@ public class HeadsetStateMachineTest {
     public void tearDown() throws Exception {
         HeadsetObjectsFactory.getInstance().destroyStateMachine(mHeadsetStateMachine);
         mHandlerThread.quit();
-        TestUtils.clearAdapterService(mAdapterService);
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .dropShellPermissionIdentity();
     }
 
     /** Test that default state is Disconnected */

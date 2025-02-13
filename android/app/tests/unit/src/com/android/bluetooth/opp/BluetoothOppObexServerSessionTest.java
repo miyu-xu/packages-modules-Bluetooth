@@ -21,6 +21,7 @@ import static com.android.bluetooth.TestUtils.MockitoRule;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -281,6 +282,7 @@ public class BluetoothOppObexServerSessionTest {
         mServerSession.unblock();
         mServerSession.mAccepted = BluetoothShare.USER_CONFIRMATION_CONFIRMED;
         Handler handler = mock(Handler.class);
+        doCallRealMethod().when(handler).obtainMessage(anyInt());
         doAnswer(
                         arg -> {
                             mServerSession.unblock();
@@ -289,7 +291,7 @@ public class BluetoothOppObexServerSessionTest {
                             return true;
                         })
                 .when(handler)
-                .sendMessageAtTime(
+                .sendMessageDelayed(
                         argThat(arg -> arg.what == BluetoothOppObexSession.MSG_CONNECT_TIMEOUT),
                         anyLong());
         mServerSession.start(handler, 0);

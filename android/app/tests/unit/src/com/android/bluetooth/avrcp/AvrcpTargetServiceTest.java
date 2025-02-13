@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.avrcp;
 
+import static android.Manifest.permission.MEDIA_CONTENT_CONTROL;
+
 import static com.android.bluetooth.TestUtils.MockitoRule;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -80,15 +82,11 @@ public class AvrcpTargetServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity(MEDIA_CONTENT_CONTROL);
         mLooper = new TestLooper();
         mLooper.startAutoDispatch();
-
-        doReturn(mMockAudioManager)
-                .when(mMockAdapterService)
-                .getSystemService(Context.AUDIO_SERVICE);
-        doReturn(Context.AUDIO_SERVICE)
-                .when(mMockAdapterService)
-                .getSystemServiceName(AudioManager.class);
 
         mMediaSessionManager =
                 InstrumentationRegistry.getInstrumentation()
@@ -104,6 +102,8 @@ public class AvrcpTargetServiceTest {
 
         doReturn(mMockAdapterService).when(mMockAdapterService).getApplicationContext();
         TestUtils.mockGetSystemService(
+                mMockAdapterService, Context.AUDIO_SERVICE, AudioManager.class, mMockAudioManager);
+        TestUtils.mockGetSystemService(
                 mMockAdapterService, Context.USER_SERVICE, UserManager.class, mMockUserManager);
         doReturn(mMockResources).when(mMockAdapterService).getResources();
 
@@ -116,6 +116,9 @@ public class AvrcpTargetServiceTest {
     @After
     public void tearDown() throws Exception {
         mLooper.stopAutoDispatchAndIgnoreExceptions();
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .dropShellPermissionIdentity();
     }
 
     @Test

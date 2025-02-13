@@ -91,10 +91,8 @@ public class BondStateMachineTest {
         mHandlerThread.start();
 
         mBluetoothManager = mTargetContext.getSystemService(BluetoothManager.class);
-        when(mAdapterService.getSystemService(Context.BLUETOOTH_SERVICE))
+        when(mAdapterService.getSystemService(BluetoothManager.class))
                 .thenReturn(mBluetoothManager);
-        when(mAdapterService.getSystemServiceName(BluetoothManager.class))
-                .thenReturn(Context.BLUETOOTH_SERVICE);
 
         mRemoteDevices = new RemoteDevices(mAdapterService, mHandlerThread.getLooper());
         mRemoteDevices.reset();
