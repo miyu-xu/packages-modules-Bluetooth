@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4fea801_1c84a3f0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2947,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T23:52:54Z",
+      "side": 1,
+      "message": "nit: for such var pass, you don\u0027t need /* priorityImportant */.",
+      "revId": "f1d7e657aaa5299170be3c1e427f892b0952745d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

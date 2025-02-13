@@ -167,6 +167,24 @@
       "parentUuid": "148564bd_166cb236",
       "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "071a348d_a37bab30",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2938,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T23:52:54Z",
+      "side": 1,
+      "message": "Acknowledged.\n\nCan you add some in the commit message for moving clearAllDataForSyncHandle?",
+      "parentUuid": "d852b6ba_084add65",
+      "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
