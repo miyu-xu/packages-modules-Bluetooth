@@ -333,6 +333,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c881fe93_4c6075de",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T11:21:57Z",
+      "side": 1,
+      "message": "It\u0027s a suggested flag, let me check if it works w/o it.",
+      "parentUuid": "a68e331a_964b5611",
+      "range": {
+        "startLine": 2479,
+        "startChar": 43,
+        "endLine": 2479,
+        "endChar": 68
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4bc34c6_7e6a9170",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 41

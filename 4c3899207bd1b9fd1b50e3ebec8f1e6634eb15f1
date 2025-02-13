@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d6039e_2ac36139",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T11:21:57Z",
+      "side": 1,
+      "message": "Here I didn\u0027t mean to disable all, only for services. And yes, you are right there are a bunch of stuff in activity/profider/receiver also.",
+      "parentUuid": "c5b02ef5_7e5d31f8",
+      "range": {
+        "startLine": 2479,
+        "startChar": 35,
+        "endLine": 2479,
+        "endChar": 47
+      },
+      "revId": "4c3899207bd1b9fd1b50e3ebec8f1e6634eb15f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a99b8442_24157b5e",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-02-13T10:21:42Z",
       "side": 1,
       "message": "Do we need both check ? or is this redundant ?\nWorse case we set as disabled an already disabled component, so no real arm  done ?\n\nbut serviceInfor.isEnabled is very easier to read than the rest",
+      "range": {
+        "startLine": 2496,
+        "startChar": 18,
+        "endLine": 2498,
+        "endChar": 49
+      },
+      "revId": "4c3899207bd1b9fd1b50e3ebec8f1e6634eb15f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3464949a_898e9d19",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2498,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T11:21:57Z",
+      "side": 1,
+      "message": "serviceInfor.isEnabled() is to filter out manifest enabled components, here we would only disable componenets dynamic enabled.",
+      "parentUuid": "102b924b_37954d86",
       "range": {
         "startLine": 2496,
         "startChar": 18,
