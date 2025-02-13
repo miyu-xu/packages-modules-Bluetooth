@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c61c2500_5dd8e0bf",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-13T17:20:34Z",
+      "side": 1,
+      "message": "We can compare it with all_zero_irk directly since both are of Octet16 type",
+      "fixSuggestions": [
+        {
+          "fixId": "4529f312_d9aa7261",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 920,
+                "startChar": 0,
+                "endLine": 921,
+                "endChar": 0
+              },
+              "replacement": "        if (p_keys-\u003epid_key.irk \u003d\u003d all_zero_irk) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e76552a79ae8a7717c1c305de686831a9f685ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc980e8_ef136066",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-13T17:20:34Z",
+      "side": 1,
+      "message": "This should be a warning. Function name is already logged. We should log the device address.",
+      "fixSuggestions": [
+        {
+          "fixId": "82b83644_f39d71e1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 921,
+                "startChar": 0,
+                "endLine": 922,
+                "endChar": 0
+              },
+              "replacement": "          log::warn(\"IRK is all zero for device {}\", bd_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e76552a79ae8a7717c1c305de686831a9f685ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
