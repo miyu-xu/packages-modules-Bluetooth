@@ -80,6 +80,30 @@
       ],
       "revId": "dde57303809ab7e6acb40cdcb459728f5808710c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07b92f4a_1b3cc084",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-13T18:12:24Z",
+      "side": 1,
+      "message": "(disregard the suggested fix, I forgot to turn that off)",
+      "parentUuid": "e3529587_4b545043",
+      "range": {
+        "startLine": 161,
+        "startChar": 20,
+        "endLine": 162,
+        "endChar": 42
+      },
+      "revId": "dde57303809ab7e6acb40cdcb459728f5808710c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
