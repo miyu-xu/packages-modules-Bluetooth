@@ -1,6 +1,105 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9522f08a_afc2851b",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-13T19:20:22Z",
+      "side": 1,
+      "message": "Should be static",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "84d48e57_82bd456c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger_tracing.cc",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "static bool SkipTracePoint(const HciPacket\u0026 packet, SnoopLogger::PacketType type) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a19052_e4580c26",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-13T19:20:22Z",
+      "side": 1,
+      "message": "```suggestion\n    return (evt_code \u003d\u003d static_cast\u003cuint8_t\u003e(hci::EventCode::NUMBER_OF_COMPLETED_PACKETS) ||\n        evt_code \u003d\u003d static_cast\u003cuint8_t\u003e(hci::EventCode::COMMAND_COMPLETE) ||\n        evt_code \u003d\u003d static_cast\u003cuint8_t\u003e(hci::EventCode::COMMAND_STATUS));\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8130e49_34bddbc8",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-13T19:20:22Z",
+      "side": 1,
+      "message": "#undef AGG_FIELDS",
+      "fixSuggestions": [
+        {
+          "fixId": "410a1d64_c2697bb1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger_tracing.cc",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "#undef AGG_FIELDS\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7297b13c_789f9794",
@@ -14,6 +113,30 @@
       "writtenOn": "2025-01-29T18:08:16Z",
       "side": 1,
       "message": "Note: this is changed from (timestamp - last_flush) \u003e interval as to avoid subtraction of unsigned integers.",
+      "range": {
+        "startLine": 167,
+        "startChar": 6,
+        "endLine": 167,
+        "endChar": 66
+      },
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c72cbdd2_d6ded5d1",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-13T19:20:22Z",
+      "side": 1,
+      "message": "\u003e Note: this is changed from (timestamp - last_flush) \u003e interval as to avoid subtraction of unsigned integers.\n\nFYI Both have well defined overflow semantic in C/C++",
+      "parentUuid": "7297b13c_789f9794",
       "range": {
         "startLine": 167,
         "startChar": 6,
