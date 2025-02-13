@@ -16,6 +16,24 @@
       "message": "This is the only logic change in this CL, if this is only for flagged new changes, can we do this? \nIf not, can you help to point to me how this is being covered? test_set_volume_stress_3 doesn\u0027t validate any op there.\n\n      if (com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {\n          RemoveNotStartedPendingOperations(devices, bluetooth::groups::kGroupUnknown, {});\n      } else {\n          RemoveNotStartedPendingOperations(\n                  devices, bluetooth::groups::kGroupUnknown,\n                  {kControlPointOpcodeVolumeDown, kControlPointOpcodeVolumeUp,\n                   kControlPointOpcodeSetAbsoluteVolume});\n      }",
       "revId": "201662403f950e962c8904b8d0289a824678b8f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6753c63e_58318f92",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T20:48:46Z",
+      "side": 1,
+      "message": "Understood. In my previous comment, I mentioned the test_set_volume_stress_3 test because it covers RemoveNotStartedPendingOperations, although it\u0027s called from a different method.  You\u0027re right; this issue is likely outside the scope of testing here.\n\nHowever, in my opinion, if the ClearDeviceInformationAndStartSearch method is called due to a GATT_DATABASE_OUT_OF_SYNC situation, it should clear all pending messages, including mute/unmute operations. @rlukasz@google.com what do you think?\n\nLogically, this behavior is untestable in the sense that while we could write a test to confirm that ClearDeviceInformationAndStartSearch clears all pending messages, such a test wouldn\u0027t tell us if that\u0027s the correct behavior. It would only confirm that it happens, not that it should.",
+      "parentUuid": "2efa8077_64c54b5b",
+      "revId": "201662403f950e962c8904b8d0289a824678b8f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
