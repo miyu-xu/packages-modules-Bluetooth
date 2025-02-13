@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6d6f1f8_de0ffff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-13T16:49:23Z",
+      "side": 1,
+      "message": "We should remove all bonded devices before requesting factory reset. It should be done in every setup and teardown function as well.",
+      "revId": "369e829ce19c6e63fb99d52c5f2aaec25a597035",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "366dd743_e6c8147f",
         "filename": "android/pandora/server/src/Security.kt",
         "patchSetId": 8
