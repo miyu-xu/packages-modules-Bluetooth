@@ -22,6 +22,30 @@
       },
       "revId": "21a7f26e006589d703011ae9be546e8c218c8a8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1881e1f2_a78d504b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-13T05:58:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6bcb7075_539e61de",
+      "range": {
+        "startLine": 938,
+        "startChar": 0,
+        "endLine": 938,
+        "endChar": 104
+      },
+      "revId": "21a7f26e006589d703011ae9be546e8c218c8a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
