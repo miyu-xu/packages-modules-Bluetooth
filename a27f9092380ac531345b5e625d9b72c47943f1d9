@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dae02b99_a9952709",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:26:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cd467c0f_14bcdb2e",
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d73bbd19_7fdac837",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 11
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "yes, this is bug fix according to the commit message.\nIt is described in method description too.",
       "parentUuid": "d73bbd19_7fdac837",
+      "range": {
+        "startLine": 3428,
+        "startChar": 12,
+        "endLine": 3428,
+        "endChar": 49
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ea1ceb4_00b1af55",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3428,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:26:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f9488921_993b40ab",
       "range": {
         "startLine": 3428,
         "startChar": 12,
@@ -154,6 +196,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e4c6de4_f1b80ee3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3655,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:26:38Z",
+      "side": 1,
+      "message": "fixed aosp/3494091",
+      "parentUuid": "24cfd6ff_c5dacc6c",
+      "range": {
+        "startLine": 3655,
+        "startChar": 17,
+        "endLine": 3655,
+        "endChar": 36
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d46ea2d_dbfd1acc",
@@ -191,6 +257,30 @@
       "side": 1,
       "message": "No, as this\n```\nprivate void stopSourceReceivers(int broadcastId) {\n```\nis used by stopReceiversSourceSynchronization which is used by LeAudioService so this is external call. We want to trully remove source, not only suspend it.",
       "parentUuid": "1d46ea2d_dbfd1acc",
+      "range": {
+        "startLine": 3662,
+        "startChar": 12,
+        "endLine": 3662,
+        "endChar": 24
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ddd1a2_83ba5d9d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3662,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:26:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ce0c0c4_5edb9098",
       "range": {
         "startLine": 3662,
         "startChar": 12,
@@ -262,6 +352,30 @@
       "side": 1,
       "message": "so `stopSourceReceivers` should be `suspendSourceReceivers` instead? \n\nOtherwise it is not clear what is the difference between this method and the previous method",
       "parentUuid": "09085e67_be9f7015",
+      "range": {
+        "startLine": 3671,
+        "startChar": 54,
+        "endLine": 3671,
+        "endChar": 67
+      },
+      "revId": "a27f9092380ac531345b5e625d9b72c47943f1d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af1b19d8_11348078",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 3671,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:26:38Z",
+      "side": 1,
+      "message": "fixed aosp/3494091",
+      "parentUuid": "54dc36a1_d072b5a5",
       "range": {
         "startLine": 3671,
         "startChar": 54,
