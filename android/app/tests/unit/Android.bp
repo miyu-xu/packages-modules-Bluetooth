@@ -26,6 +26,7 @@ java_defaults {
     ],
 
     static_libs: [
+        "BluetoothLib",
         "PlatformProperties",
         "TestParameterInjector",
         "android.media.audio-aconfig-exported-java",
@@ -43,11 +44,17 @@ java_defaults {
         "framework-bluetooth-pre-jarjar",
         "gson",
         "mmslib",
-        "mockito-target",
+        "mockito-target-extended",
         "modules-utils-handlerexecutor",
         "platform-parametric-runner-lib",
         "platform-test-annotations",
         "truth",
+    ],
+
+    // these are needed for Extended Mockito
+    jni_libs: [
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
     ],
 
     jarjar_rules: ":bluetooth-jarjar-rules",
@@ -78,6 +85,4 @@ android_test {
 android_test {
     name: "GoogleBluetoothInstrumentationTests",
     defaults: ["BluetoothInstrumentationTestsDefaults"],
-    test_config: "GoogleAndroidTest.xml",
-    instrumentation_target_package: "com.google.android.bluetooth",
 }
