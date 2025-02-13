@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d58d16db_792b104c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2025-02-13T00:39:15Z",
+      "side": 1,
+      "message": "please run unit tests and added test cases if needed.",
+      "revId": "64bb22152bf14d389ae46ebfc2465511900653e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06c487d3_97d2294b",
         "filename": "system/bta/le_audio/device_groups.cc",
         "patchSetId": 7
@@ -37,6 +54,30 @@
       "writtenOn": "2025-02-12T10:20:40Z",
       "side": 1,
       "message": "Are we relaxing the preferences to not require the octets_per_code_frame parameter? Did I read it right? @shihchienc@google.com Are we ok with this?",
+      "range": {
+        "startLine": 682,
+        "startChar": 0,
+        "endLine": 683,
+        "endChar": 21
+      },
+      "revId": "64bb22152bf14d389ae46ebfc2465511900653e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc64c03_83824f70",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2025-02-13T00:39:15Z",
+      "side": 1,
+      "message": "May I know why we just skip the check for octests per codec frame?",
+      "parentUuid": "09156395_3b4943b2",
       "range": {
         "startLine": 682,
         "startChar": 0,
