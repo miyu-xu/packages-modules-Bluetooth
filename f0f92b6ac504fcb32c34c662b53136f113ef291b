@@ -16,6 +16,24 @@
       "message": "Seems like Avatar is failing with this change",
       "revId": "f0f92b6ac504fcb32c34c662b53136f113ef291b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5efaeec8_b8bb4ab8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-13T09:10:31Z",
+      "side": 1,
+      "message": "passing with latest patch",
+      "parentUuid": "07aa6b6b_ccf25a4d",
+      "revId": "f0f92b6ac504fcb32c34c662b53136f113ef291b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
