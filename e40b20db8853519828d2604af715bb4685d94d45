@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "159c0c84_ea5e0b81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-13T09:41:48Z",
+      "side": 1,
+      "message": "I will add some tests for this change:\n1. I will add BumbleBluetootTest to confirm: RFCOMM connected-\u003e disable BT -\u003e ACL should disconnected\n2. I have already wrote a RFCOMM socket APP, and without this patch, the ACL can not be disconnected when Bluetooth disabled, but ACL disconnected if i take the patch.\n3. I will also do some Artificial Testing to check if Influence the normal user scenarios.\n\nUpdate more information when i finish these test items. And any test suggesstions please feel free to let me know, thanks.",
+      "parentUuid": "6649226a_dbb448a9",
+      "revId": "e40b20db8853519828d2604af715bb4685d94d45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fa10323_10a7697c",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 25
