@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d072d857_bad566d8",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1952030
+      },
+      "writtenOn": "2025-02-13T22:26:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9522f08a_afc2851b",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55a19052_e4580c26",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-02-13T19:20:22Z",
       "side": 1,
       "message": "```suggestion\n    return (evt_code \u003d\u003d static_cast\u003cuint8_t\u003e(hci::EventCode::NUMBER_OF_COMPLETED_PACKETS) ||\n        evt_code \u003d\u003d static_cast\u003cuint8_t\u003e(hci::EventCode::COMMAND_COMPLETE) ||\n        evt_code \u003d\u003d static_cast\u003cuint8_t\u003e(hci::EventCode::COMMAND_STATUS));\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea70492_8bb00ab0",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1952030
+      },
+      "writtenOn": "2025-02-13T22:26:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55a19052_e4580c26",
       "range": {
         "startLine": 44,
         "startChar": 4,
@@ -102,6 +150,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "35be277d_647e6331",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1952030
+      },
+      "writtenOn": "2025-02-13T22:26:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8130e49_34bddbc8",
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7297b13c_789f9794",
         "filename": "system/gd/hal/snoop_logger_tracing.cc",
         "patchSetId": 21
@@ -137,6 +203,30 @@
       "side": 1,
       "message": "\u003e Note: this is changed from (timestamp - last_flush) \u003e interval as to avoid subtraction of unsigned integers.\n\nFYI Both have well defined overflow semantic in C/C++",
       "parentUuid": "7297b13c_789f9794",
+      "range": {
+        "startLine": 167,
+        "startChar": 6,
+        "endLine": 167,
+        "endChar": 66
+      },
+      "revId": "d12592fd1d01338457853741c0db219044eb090e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10104cd1_e1854f31",
+        "filename": "system/gd/hal/snoop_logger_tracing.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1952030
+      },
+      "writtenOn": "2025-02-13T22:26:35Z",
+      "side": 1,
+      "message": "Yeah, both have issues, this seemed marginally better. The addition overflows when the time is nearly at uint64_t max, vs the subtraction which underflows if last_flush \u003e timestamp. The latter seems slightly more likely, e.g. with timestamps and writes from different threads.",
+      "parentUuid": "c72cbdd2_d6ded5d1",
       "range": {
         "startLine": 167,
         "startChar": 6,
