@@ -1344,7 +1344,15 @@ class BluetoothManagerService {
                 Log.e(TAG, "Unknown service disconnected: " + name);
                 return;
             }
-            mHandler.sendEmptyMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+
+            if (Flags.setComponentAvailableFix()) {
+                mHandler
+                    .obtainMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED,
+                        componentName.getPackageName())
+                    .sendToTarget();
+            } else {
+                mHandler.sendEmptyMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+            }
         }
     }
 
@@ -1576,6 +1584,10 @@ class BluetoothManagerService {
 
                 case MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED:
                     Log.e(TAG, "MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED");
+
+                    if (Flags.setComponentAvailableFix()) {
+                        disableBluetoothComponents((String) msg.obj);
+                    }
 
                     if (!resetAdapter()) {
                         break;
@@ -2451,5 +2463,46 @@ class BluetoothManagerService {
         PackageManager pm = context.getPackageManager();
         return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+    }
+
+    /**
+     * In case of a Bluetooth crash, mark it's enabled components as non longer available to
+     * trigger the PACKAGE_CHANGED intent. This should not be needed in a normal shutdown as the
+     * Bluetooth clean its components on its own
+     */
+    private void disableBluetoothComponents(String packageName) {
+        PackageManager pm = mContext.getPackageManager();
+
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_SERVICES |
+                            PackageManager.MATCH_DISABLED_COMPONENTS);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Package not found: " + packageName, e);
+            return;
+        }
+
+        if (packageInfo == null) {
+            Log.i(TAG, "Failed to get package info for " + packageName);
+            return;
+        }
+
+        // Disable services
+        if (packageInfo.services != null) {
+            for (android.content.pm.ServiceInfo serviceInfo : packageInfo.services) {
+                ComponentName componentName = new ComponentName(
+                        packageName, serviceInfo.name);
+                if (pm.getComponentEnabledSetting(componentName)
+                        != PackageManager.COMPONENT_ENABLED_STATE_DISABLED &&
+                        !serviceInfo.isEnabled()) {
+                    pm.setComponentEnabledSetting(
+                        componentName,
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
+                    Log.i(TAG, "Disabled component: " + serviceInfo.name);
+                }
+            }
+        }
     }
 }
