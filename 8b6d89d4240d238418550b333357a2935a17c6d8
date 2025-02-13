@@ -16,6 +16,24 @@
       "message": "move \u0027value \u003d new byte[] {};\u0027 after log so you can log the length?",
       "revId": "8b6d89d4240d238418550b333357a2935a17c6d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d923267c_34d7d677",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1287,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-13T23:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "647ce4d6_64b3bf03",
+      "revId": "8b6d89d4240d238418550b333357a2935a17c6d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
