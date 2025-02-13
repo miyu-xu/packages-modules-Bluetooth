@@ -16,6 +16,24 @@
       "message": "LE Audio metadata should have been part of device properties. That way we would not need to separetely wipe it after bond removal.\n\nEven if we continue with this LRU cache approach, it should be wiped when device gets removed, not after the pairing.",
       "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1654cce_3db26bcb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-13T14:16:28Z",
+      "side": 1,
+      "message": "\"LE_AUDIO\" metadata is useful only in the navive layer.\n\nIt is important only for the time of pairing and service discovery, and should be removed right after that.\n\nYou might stay bonded to a device, and have the bond removed from the remote. Remote might then rotate it\u0027s IRK, but keep its Identity Address.\n\nThen, when you receive the pairing request, you would wrongly match it to existing record, as this metadata is set for identity address.",
+      "parentUuid": "54caf5de_5492964f",
+      "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
