@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae925f9_ad01420e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T00:04:38Z",
+      "side": 1,
+      "message": "also in general for such method with mutiple flags, would be great to add comments for readability.\naddSelectSourceRequest(broadcastId, /**/ false, false);",
+      "fixSuggestions": [
+        {
+          "fixId": "27dffd19_ea48a7e2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 334,
+                "startChar": 0,
+                "endLine": 335,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(\n                            broadcastId,\n                            /** hasPriority\u003d */ false,\n                            /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 1202,
+                "startChar": 0,
+                "endLine": 1203,
+                "endChar": 0
+              },
+              "replacement": "        addSelectSourceRequest(broadcastId, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 1236,
+                "startChar": 0,
+                "endLine": 1237,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(\n                            broadcastId, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2083,
+                "startChar": 0,
+                "endLine": 2084,
+                "endChar": 0
+              },
+              "replacement": "                                            addSelectSourceRequest(\n                                                    broadcastId,\n                                                    /** hasPriority\u003d */ false,\n                                                    /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2144,
+                "startChar": 0,
+                "endLine": 2145,
+                "endChar": 0
+              },
+              "replacement": "                        addSelectSourceRequest(\n                                broadcastId, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2156,
+                "startChar": 0,
+                "endLine": 2157,
+                "endChar": 0
+              },
+              "replacement": "                        addSelectSourceRequest(\n                                syncedBroadcast, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2329,
+                "startChar": 0,
+                "endLine": 2330,
+                "endChar": 0
+              },
+              "replacement": "                            addSelectSourceRequest(\n                                    broadcastId, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2562,
+                "startChar": 0,
+                "endLine": 2563,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(\n                            broadcastId, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2648,
+                "startChar": 0,
+                "endLine": 2649,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(\n                            broadcastId, /** hasPriority\u003d */ true, /** allowDuplicates\u003d */ false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "148564bd_166cb236",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2938,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T00:04:38Z",
+      "side": 1,
+      "message": "I didn\u0027t get why do we need allowDuplicates by reading the commit message.\nCan you clarify more and why will this is needed for sync failing case?\n\n\nAlso to reduce indentation,\nif (!allowDuplicates \u0026\u0026 isAddedToSelectSourceRequest(broadcastId, hasPriority)) {\n    log(\"addSelectSourceRequest: Already added\");\n    return;\n}",
+      "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
