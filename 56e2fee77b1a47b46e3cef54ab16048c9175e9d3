@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61352742_eac486dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-13T09:38:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a417d8c4_d515ecb7",
+      "range": {
+        "startLine": 12,
+        "startChar": 18,
+        "endLine": 12,
+        "endChar": 25
+      },
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "375f1f27_4524e8e1",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "Comment above inform about that. Same comment is i.e. in test_set_volume_stress_2",
       "parentUuid": "375f1f27_4524e8e1",
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc2d541b_69de41b8",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1763,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-13T09:38:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c0d0e3a0_43e6c549",
       "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -131,6 +173,24 @@
       "writtenOn": "2025-02-12T07:54:08Z",
       "side": 1,
       "message": "same comment as above.",
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aece33c_b3e4d026",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-13T09:38:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "60e1b619_032d2cf5",
       "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
