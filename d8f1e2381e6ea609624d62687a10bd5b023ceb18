@@ -94,6 +94,30 @@
       },
       "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16110996_bfc6f576",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 3371405
+      },
+      "writtenOn": "2025-02-13T07:43:32Z",
+      "side": 1,
+      "message": "I have updated a new patch:\nWhen the IRK is all zeros, the PID key type will not be marked as available.\n\nHowever, since the original judgment in Add Resolving List only checked whether the PID key was valid, this caused the address not to be added to the Resolving List if the PIRK was all zeros but LIRK was valid.\nThis would result in reconnection failures because reconnection requires the use of LIRK.\nTherefore, I modified the judgment so that the address will not be added to the Resolving List only when both the PID key and LID key are invalid.",
+      "parentUuid": "c33e45b6_a9de1790",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "d8f1e2381e6ea609624d62687a10bd5b023ceb18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
