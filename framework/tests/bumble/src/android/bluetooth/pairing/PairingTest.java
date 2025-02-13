@@ -34,6 +34,7 @@ import android.bluetooth.BluetoothHidHost;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
+import android.bluetooth.BluetoothSocket;
 import android.bluetooth.PandoraDevice;
 import android.bluetooth.StreamObserverSpliterator;
 import android.bluetooth.Utils;
@@ -41,7 +42,11 @@ import android.bluetooth.test_utils.BlockingBluetoothAdapter;
 import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.bluetooth.pairing.utils.IntentReceiver;
 import android.bluetooth.pairing.utils.TestUtil;
+import pandora.HostProto.DiscoverabilityMode;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.ParcelUuid;
 import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.CheckFlagsRule;
@@ -79,23 +84,42 @@ import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
 import pandora.SecurityProto.SecureRequest;
 import pandora.SecurityProto.SecureResponse;
+import pandora.BumbleConfigProto;
+import pandora.HostProto;
+import pandora.RfcommProto;
+import pandora.RfcommProto.StartServerRequest;
+import pandora.RfcommProto.StartServerResponse;
+import pandora.RfcommProto.AcceptConnectionResponse;
+import pandora.RfcommProto.ServerId;
+
 
 import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.UUID;
+import java.io.IOException;
 
 @RunWith(TestParameterInjector.class)
 public class PairingTest {
     private static final String TAG = "PairingTest";
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int TEST_DELAY_MS = 1000;
+    private static final String BUMBLE_DEVICE_NAME = "Bumble";
+    private CompletableFuture<BluetoothDevice> mDeviceFound;
+    private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
+    private static final Duration GRPC_TIMEOUT = Duration.ofSeconds(10);
 
     private static final ParcelUuid BATTERY_UUID =
             ParcelUuid.fromString("0000180F-0000-1000-8000-00805F9B34FB");
 
     private static final ParcelUuid HOGP_UUID =
             ParcelUuid.fromString("00001812-0000-1000-8000-00805F9B34FB");
+
+    private static final String SERIAL_PORT_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+
+    private static final String TEST_UUID = "2ac5d8f1-f58d-48ac-a16b-cdeba0892d65";
+    private static final String TEST_SERVER_NAME = "RFCOMM Server";
 
     private static final Context sTargetContext =
             InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -125,6 +149,35 @@ public class PairingTest {
     private BluetoothDevice mRemoteLeDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
+
+    /**
+     * IntentListener for the received intents
+     */
+    private IntentReceiver.IntentListener intentListener = new IntentReceiver.IntentListener() {
+        @Override
+        public void onReceive(Intent intent) {
+            String action = intent.getAction();
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device =
+                        intent.getParcelableExtra(
+                                BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                String deviceName =
+                        String.valueOf(
+                                intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                Log.i(
+                        TAG,
+                        "Discovered device: "
+                                + device
+                                + " with name: "
+                                + deviceName);
+                if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
+                    mDeviceFound.complete(device);
+                }
+            } else {
+                Log.i(TAG, "onReceive(): unknown intent action " + action);
+            }
+        }
+    };
 
     @Before
     public void setUp() throws Exception {
@@ -843,6 +896,87 @@ public class PairingTest {
         assertThat(sAdapter.getBondedDevices()).doesNotContain(mBumbleDevice);
 
         intentReceiver.close();
+    }
+
+    /**
+     * Test BR/EDR temporary bonding
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over BR/EDR
+     *   <li>Android creates Insecure RFCOMM socket with Bumble over BR/EDR
+     *   <li>Android disconnects the ACL link with Bumble
+     *   <li>Bumble is connectable over BR/EDR
+     *   <li>Android successfully creates bond with Bumble Over BR/EDR
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondBredr_TempBonding() {
+        IntentReceiver intentReceiver = new IntentReceiver.Builder(sTargetContext,
+                BluetoothDevice.ACTION_ACL_CONNECTED)
+                .setIntentListener(intentListener)
+                .build();
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+            .setDiscoverabilityMode(
+                SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                    .build());
+
+        SetConnectabilityModeRequest request =
+                SetConnectabilityModeRequest.newBuilder()
+                        .setMode(ConnectabilityMode.CONNECTABLE)
+                        .build();
+        mBumble.hostBlocking().setConnectabilityMode(request);
+
+        // Start Discovery
+        mDeviceFound = new CompletableFuture<>();
+        assertThat(sAdapter.startDiscovery()).isTrue();
+        //BluetoothDevice mDev =
+        mBumbleDevice =
+                mDeviceFound
+                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+        assertThat(sAdapter.cancelDiscovery()).isTrue();
+
+        StartServerRequest startServerRequest =
+                RfcommProto.StartServerRequest.newBuilder().setName(TEST_SERVER_NAME).setUuid(SERIAL_PORT_UUID).build();
+        StartServerResponse response = mBumble.rfcommBlocking().startServer(startServerRequest);
+
+        AcceptConnectionResponse connectionResponse =
+            mBumble
+                  .rfcommBlocking()
+                 .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                 .acceptConnection(
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(response.getServer()).build());
+
+        try {
+            //Create RFCOMM insecure socket to Bumble
+            BluetoothSocket socket = mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(SERIAL_PORT_UUID));
+            socket.connect();
+        } catch (IOException e) {
+            Log.i(TAG, "Expect socket connection failure: "+e);
+        }
+
+        //disconnect the BR/EDR ACL link
+        mBumbleDevice.disconnect();
+
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_ACL_DISCONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                    BluetoothDevice.TRANSPORT_BREDR));
+
+        //Create Bond with Bumble using BR/EDR transport
+        testStep_BondBredr(intentReceiver);
     }
 
     /** Helper/testStep functions goes here */
