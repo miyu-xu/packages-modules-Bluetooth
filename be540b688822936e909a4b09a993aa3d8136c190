@@ -33,6 +33,24 @@
       "message": "What is the motivation for this change ?\n\nThe method to anonymze doesn\u0027t really need to check the pattern. Valid or invalid mac address, it will obfuscate it.\n\nI do agree that your change make sense if we are looking to validate the mac address, I am just not sure we need it.\nAnother argument to not make this change is that \"toAnonymizedAddress\" is mostly call for log purposes and there may be quite a lot call to it. checking a length is almost 0 cost, but matching a pattern will be more (I don\u0027t know how much more so that may not be significatif but still).",
       "revId": "be540b688822936e909a4b09a993aa3d8136c190",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a199f03_e571a82f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3601933
+      },
+      "writtenOn": "2025-02-13T04:44:54Z",
+      "side": 1,
+      "message": "I see, I understand what you mean. Thank you.",
+      "parentUuid": "77272ea1_3cb9bf41",
+      "revId": "be540b688822936e909a4b09a993aa3d8136c190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
