@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9902116e_d0b73a1b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3180,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:19:37Z",
+      "side": 1,
+      "message": "fixed here aosp/3494090, thanks",
+      "parentUuid": "2572ad25_60238617",
+      "range": {
+        "startLine": 3180,
+        "startChar": 8,
+        "endLine": 3180,
+        "endChar": 53
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ec44c84_d2a1e6c6",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Ok, but as a separate CL to keep the commits distinct.\nI added task to backlog b/396177852",
       "parentUuid": "32c84642_453d3e16",
+      "range": {
+        "startLine": 3196,
+        "startChar": 55,
+        "endLine": 3196,
+        "endChar": 60
+      },
+      "revId": "4e3fa6fd320bd376981bfe865b5acb09392c6428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a3dfbc0_3cfdaf3b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 3196,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T07:19:37Z",
+      "side": 1,
+      "message": "fixed here aosp/3494091, thanks",
+      "parentUuid": "421e5d5c_3a7d34d2",
       "range": {
         "startLine": 3196,
         "startChar": 55,
