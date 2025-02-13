@@ -1,0 +1,185 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d3a7b6_b332508d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-13T17:30:56Z",
+      "side": 1,
+      "message": "nit: typically this is added without the \"\u003d\" symbol, just like /* hostInitiated */ so that it is easier to search",
+      "range": {
+        "startLine": 1224,
+        "startChar": 54,
+        "endLine": 1224,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "035bad6c_019ad5a2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 334,
+                "startChar": 0,
+                "endLine": 335,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(broadcastId, /* hasPriority */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 1202,
+                "startChar": 0,
+                "endLine": 1203,
+                "endChar": 0
+              },
+              "replacement": "        addSelectSourceRequest(broadcastId, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 1224,
+                "startChar": 0,
+                "endLine": 1225,
+                "endChar": 0
+              },
+              "replacement": "                    stopBigMonitoring(broadcastId, /* hostInitiated */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 1236,
+                "startChar": 0,
+                "endLine": 1237,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(broadcastId, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 1350,
+                "startChar": 0,
+                "endLine": 1351,
+                "endChar": 0
+              },
+              "replacement": "                for (BluetoothDevice device : getTargetDeviceList(sink, /* isGroupOp */ true)) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2084,
+                "startChar": 0,
+                "endLine": 2085,
+                "endChar": 0
+              },
+              "replacement": "                                                    broadcastId, /* hasPriority */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2145,
+                "startChar": 0,
+                "endLine": 2146,
+                "endChar": 0
+              },
+              "replacement": "                        addSelectSourceRequest(broadcastId, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2157,
+                "startChar": 0,
+                "endLine": 2158,
+                "endChar": 0
+              },
+              "replacement": "                        addSelectSourceRequest(syncedBroadcast, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2330,
+                "startChar": 0,
+                "endLine": 2331,
+                "endChar": 0
+              },
+              "replacement": "                            addSelectSourceRequest(broadcastId, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2462,
+                "startChar": 0,
+                "endLine": 2463,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(broadcastId, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 2653,
+                "startChar": 0,
+                "endLine": 2654,
+                "endChar": 0
+              },
+              "replacement": "                    addSelectSourceRequest(broadcastId, /* hasPriority */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3207,
+                "startChar": 0,
+                "endLine": 3208,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cBluetoothDevice\u003e sinks \u003d getTargetDeviceList(device, /* isGroupOp */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3246,
+                "startChar": 0,
+                "endLine": 3247,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cBluetoothDevice\u003e sinks \u003d getTargetDeviceList(device, /* isGroupOp */ true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3278,
+                "startChar": 0,
+                "endLine": 3279,
+                "endChar": 0
+              },
+              "replacement": "                    stopBigMonitoring(broadcastId, /* hostInitiated */ false);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+              "range": {
+                "startLine": 3318,
+                "startChar": 0,
+                "endLine": 3319,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cBluetoothDevice\u003e devices \u003d getTargetDeviceList(sink, /* isGroupOp */ isGroupOp);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0deda454c00cdb772ff2320dafa9c23518ba54a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
