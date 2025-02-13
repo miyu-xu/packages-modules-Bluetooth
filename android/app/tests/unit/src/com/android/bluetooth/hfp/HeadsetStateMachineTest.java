@@ -121,21 +121,19 @@ public class HeadsetStateMachineTest {
         // Stub system interface
         doReturn(mPhoneState).when(mSystemInterface).getHeadsetPhoneState();
         doReturn(mAudioManager).when(mSystemInterface).getAudioManager();
-        // Get a database
-        doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true).when(mDatabaseManager).setAudioPolicyMetadata(anyObject(), anyObject());
-        // Get an active device manager
-        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
-        // Get a silence device manager
-        doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
-        doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
         doReturn(true).when(mNativeInterface).connectHfp(mDevice);
         doReturn(true).when(mNativeInterface).disconnectHfp(mDevice);
         doReturn(true).when(mNativeInterface).connectAudio(mDevice);
         doReturn(true).when(mNativeInterface).disconnectAudio(mDevice);
+        doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
+        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
+        doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
+        doReturn(mRemoteDevices).when(mAdapterService).getRemoteDevices();
         // Stub headset service
         mMockContentResolver = new MockContentResolver();
-        when(mHeadsetService.getContentResolver()).thenReturn(mMockContentResolver);
+        doReturn(mMockContentResolver).when(mAdapterService).getContentResolver();
+        doReturn("").when(mAdapterService).getString(anyInt());
         doReturn(BluetoothDevice.BOND_BONDED)
                 .when(mAdapterService)
                 .getBondState(any(BluetoothDevice.class));
