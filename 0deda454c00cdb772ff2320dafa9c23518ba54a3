@@ -228,6 +228,30 @@
       },
       "revId": "0deda454c00cdb772ff2320dafa9c23518ba54a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0696fb30_45a247b5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T21:14:35Z",
+      "side": 1,
+      "message": "I will fix it here to not mismatch the commits, in this next commit I added one missing only but fix all of them will be too much:)",
+      "parentUuid": "843b0da6_e7de883b",
+      "range": {
+        "startLine": 1224,
+        "startChar": 54,
+        "endLine": 1224,
+        "endChar": 68
+      },
+      "revId": "0deda454c00cdb772ff2320dafa9c23518ba54a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
