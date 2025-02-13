@@ -34,6 +34,24 @@
       "parentUuid": "2efa8077_64c54b5b",
       "revId": "201662403f950e962c8904b8d0289a824678b8f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6b512c_5a17b498",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-13T21:33:52Z",
+      "side": 1,
+      "message": "this change is quite obvious and good.\nWe do clear here all the pending operations list which is internal thing\n\nTo unit test this we would have to put multiple pending messages and then simulate databas out of sync and then verify that messages will not go to GATT - seems bit overkill.",
+      "parentUuid": "6753c63e_58318f92",
+      "revId": "201662403f950e962c8904b8d0289a824678b8f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
