@@ -309,6 +309,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a68e331a_964b5611",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-13T10:21:42Z",
+      "side": 1,
+      "message": "I still don\u0027t understand something.\n\nThis change is to recover when Bluetooth crash.\nBluetooth make some compoenent available, but can\u0027t disable them since it is dead.\nHere we are making the cleanup of all remaining enabled component, and we are disabling them.\n\nIf we are only disabling the \"still enabled\" one, why do we want packageInfo to match the already disabled components ?\nIs there some failure on the packageinfo if we don\u0027t do that ? does checking on our side is better ?",
+      "parentUuid": "5f2abdf4_bb5011ab",
+      "range": {
+        "startLine": 2479,
+        "startChar": 43,
+        "endLine": 2479,
+        "endChar": 68
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4bc34c6_7e6a9170",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 41
