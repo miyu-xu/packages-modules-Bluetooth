@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f7acb57_226842b9",
+        "filename": "offload/hci/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-13T09:01:37Z",
+      "side": 1,
+      "message": "do you know why / if this is needed ?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 6
+      },
+      "revId": "21e6e0367e42d7569608a1cc9f3b5d7bd9fe2785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
