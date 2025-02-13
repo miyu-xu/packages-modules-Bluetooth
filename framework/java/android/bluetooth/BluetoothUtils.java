@@ -33,6 +33,7 @@ import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 /** @hide */
 public final class BluetoothUtils {
@@ -201,7 +202,8 @@ public final class BluetoothUtils {
      * @return Loggable mac address
      */
     public static String toAnonymizedAddress(String address) {
-        if (address == null || address.length() != 17) {
+        String macPattern = "^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$";
+        if (address == null || !Pattern.matches(macPattern, address)) {
             return null;
         }
         return "XX:XX:XX:XX" + address.substring(11);
