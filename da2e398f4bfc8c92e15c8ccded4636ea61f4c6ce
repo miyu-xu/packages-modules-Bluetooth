@@ -130,6 +130,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c7dd91b_c9f6faa7",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T10:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28da9cbe_6433d5cc",
+      "range": {
+        "startLine": 1589,
+        "startChar": 24,
+        "endLine": 1589,
+        "endChar": 74
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbf92fd_5a2135fe",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T10:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28da9cbe_6433d5cc",
+      "range": {
+        "startLine": 1589,
+        "startChar": 24,
+        "endLine": 1589,
+        "endChar": 74
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40e1b2d1_14a11240",
@@ -143,6 +191,24 @@
       "writtenOn": "2025-02-13T09:15:59Z",
       "side": 1,
       "message": "Can we add a small doc to justify this method, something like: (please re-edit as you like)\n\nIn case of a Bluetooth crash, mark it\u0027s published (?) component as non longer available to trigger the PACKAGE_CHANGED intent.\nThis should not be needed in a normal shutdown as the Bluetooth clean its component on its own",
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea731d3a_a654c1e0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2472,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T10:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40e1b2d1_14a11240",
       "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -212,6 +278,30 @@
         "startChar": 43,
         "endLine": 2479,
         "endChar": 68
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc3550c0_f4903d2f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T10:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d0ec4a6_027f2812",
+      "range": {
+        "startLine": 2474,
+        "startChar": 0,
+        "endLine": 2479,
+        "endChar": 70
       },
       "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
