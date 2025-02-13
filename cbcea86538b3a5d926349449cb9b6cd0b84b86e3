@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7264376_4d089770",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2025-02-13T02:29:52Z",
+      "side": 1,
+      "message": "Hi Jakub,\nYes, it is. Currently, this patch was designed for it only had two LE codes(LC3 and non-LC3(like APTX_LE) ). By default, we used APTX_LE as default LE codec. When user selected LC3 codec for LE and reboot BT. It will set LC3 back after BT turns on.\n\nExactly, it works for forcing LC3 codec when user selects LC3 before reboot BT. We need to keep same codec as before rebooting BT.",
+      "parentUuid": "62967e34_c4c83e66",
+      "revId": "cbcea86538b3a5d926349449cb9b6cd0b84b86e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b91127b_99263463",
