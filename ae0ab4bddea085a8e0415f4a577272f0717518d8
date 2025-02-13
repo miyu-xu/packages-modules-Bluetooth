@@ -123,6 +123,24 @@
       "parentUuid": "71f833b0_e8a6e387",
       "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76707ad8_f6527592",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-13T18:49:19Z",
+      "side": 1,
+      "message": "25Q1 is long done (it was freeze in December). And there is still time to rollout a flag for 25Q2. When no test is provided, flagging should be mandatory.\n\nBut if an exception needs to be made here, I\u0027ll leave it to @siyuanh@google.com",
+      "parentUuid": "9c8d58a4_aa30e3b7",
+      "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
