@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a845e9ff_10aa6c01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3601933
+      },
+      "writtenOn": "2025-02-13T03:36:40Z",
+      "side": 1,
+      "message": "Only more standardized regular expressions are used to determine a reasonable Bluetooth MAC, and no changes to the principle level are involved.",
+      "revId": "be540b688822936e909a4b09a993aa3d8136c190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
