@@ -16,6 +16,23 @@
       "message": "Formatting change is ok for me, waiting for more approvals",
       "revId": "5395d25d4287a208a3ab1a9ce6a11f3447ffd1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9020d13f_de3a2d65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-13T23:27:00Z",
+      "side": 1,
+      "message": "@okamil@google.com for DrNo.",
+      "revId": "5395d25d4287a208a3ab1a9ce6a11f3447ffd1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
