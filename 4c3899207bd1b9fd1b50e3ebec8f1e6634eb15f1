@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7968dee9_20ce5cc7",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-13T19:02:28Z",
+      "side": 1,
+      "message": "Why only services ? Is there a specific intent sent just for the services ? or this just happens to be the case you were looking at ?\n\nIs it doable to do that for all component (filtering out the one that are set for opp independently)",
+      "parentUuid": "63d6039e_2ac36139",
+      "range": {
+        "startLine": 2479,
+        "startChar": 35,
+        "endLine": 2479,
+        "endChar": 47
+      },
+      "revId": "4c3899207bd1b9fd1b50e3ebec8f1e6634eb15f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a99b8442_24157b5e",
