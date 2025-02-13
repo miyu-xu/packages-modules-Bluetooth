@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2efa8077_64c54b5b",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T17:29:31Z",
+      "side": 1,
+      "message": "This is the only logic change in this CL, if this is only for flagged new changes, can we do this? \nIf not, can you help to point to me how this is being covered? test_set_volume_stress_3 doesn\u0027t validate any op there.\n\n      if (com::android::bluetooth::flags::vcp_allow_set_same_volume_if_pending()) {\n          RemoveNotStartedPendingOperations(devices, bluetooth::groups::kGroupUnknown, {});\n      } else {\n          RemoveNotStartedPendingOperations(\n                  devices, bluetooth::groups::kGroupUnknown,\n                  {kControlPointOpcodeVolumeDown, kControlPointOpcodeVolumeUp,\n                   kControlPointOpcodeSetAbsoluteVolume});\n      }",
+      "revId": "201662403f950e962c8904b8d0289a824678b8f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

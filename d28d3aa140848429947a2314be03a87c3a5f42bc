@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "438918d9_82fc1382",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T17:29:31Z",
+      "side": 1,
+      "message": "let me make this more specific with another comment.",
+      "parentUuid": "d3b2643e_ace80ca8",
+      "revId": "d28d3aa140848429947a2314be03a87c3a5f42bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89a50f31_eb35cffe",
