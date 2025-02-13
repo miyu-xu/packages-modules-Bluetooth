@@ -105,6 +105,24 @@
       "parentUuid": "9157b6b7_900b56f9",
       "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8d58a4_aa30e3b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-13T18:46:41Z",
+      "side": 1,
+      "message": "IMHO this is too small to flag, also potential for regression is very small.\n\nThis was discussed internally and with Fast Pair Team. Manual testing was performed verifying all is good after this change, and green light was given on it in b/379807136#comment18\n\n\nAdditionally, FP Team would love to have that in 25Q1 or 25Q2. So if it\u0027s a small fix without a flag, we might squeze it in. If it\u0027s a flag, I\u0027m quite sure we won\u0027t have enough time to ramp it up.",
+      "parentUuid": "71f833b0_e8a6e387",
+      "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
