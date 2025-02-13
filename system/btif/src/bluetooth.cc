@@ -365,6 +365,10 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
 
           // AVRCP
           .AVRC_GetProfileVersion = AVRC_GetProfileVersion,
+
+          // A2DP
+          .btif_av_peer_is_connected_sink = btif_av_peer_is_connected_sink,
+          .btif_av_peer_is_connected_source = btif_av_peer_is_connected_source,
   };
 
   static auto configInterface = ConfigInterfaceImpl();
