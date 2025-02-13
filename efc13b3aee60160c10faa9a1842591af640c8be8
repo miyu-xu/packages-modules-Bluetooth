@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2578d42f_900815af",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-13T00:19:32Z",
+      "side": 1,
+      "message": "This flag already rolled out. It should be cleaned up rather than being used again.",
+      "range": {
+        "startLine": 407,
+        "startChar": 22,
+        "endLine": 407,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bd13b7e7_4075f7ad",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 70,
+                "startChar": 0,
+                "endLine": 71,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+              "range": {
+                "startLine": 407,
+                "startChar": 0,
+                "endLine": 410,
+                "endChar": 0
+              },
+              "replacement": "                Utils.getBrEdrAddress(address, mAdapterService);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "efc13b3aee60160c10faa9a1842591af640c8be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f878468_f1d52f3b",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
         "patchSetId": 1
