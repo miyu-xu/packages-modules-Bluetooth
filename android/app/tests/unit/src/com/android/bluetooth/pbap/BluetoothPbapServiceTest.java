@@ -24,6 +24,8 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assume.assumeNotNull;
 import static org.junit.Assume.assumeTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -200,6 +202,7 @@ public class BluetoothPbapServiceTest {
         intent.putExtra(BluetoothPbapService.EXTRA_SESSION_KEY, sessionKey);
         intent.putExtra(BluetoothPbapService.EXTRA_DEVICE, mRemoteDevice);
         PbapStateMachine sm = mock(PbapStateMachine.class);
+        doCallRealMethod().when(sm).obtainMessage(anyInt(), any());
         mService.mPbapStateMachineMap.put(mRemoteDevice, sm);
 
         mService.mPbapReceiver.onReceive(null, intent);

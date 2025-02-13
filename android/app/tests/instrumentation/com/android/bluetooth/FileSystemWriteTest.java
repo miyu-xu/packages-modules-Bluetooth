@@ -32,22 +32,22 @@ import java.io.IOException;
 public class FileSystemWriteTest {
     @Test
     public void testBluetoothDirWrite() throws IOException {
-            File file = new File("/data/misc/bluetooth/test.file");
+        File file = new File("/data/misc/bluetooth/test.file");
         assertThat(file.createNewFile()).isTrue();
-            file.delete();
+        file.delete();
     }
 
     @Test
     public void testBluedroidDirWrite() throws IOException {
-            File file = new File("/data/misc/bluedroid/test.file");
+        File file = new File("/data/misc/bluedroid/test.file");
         assertThat(file.createNewFile()).isTrue();
-            file.delete();
+        file.delete();
     }
 
     @Test
     public void testBluetoothLogsDirWrite() throws IOException {
-            File file = new File("/data/misc/bluetooth/logs/test.file");
+        File file = new File("/data/misc/bluetooth/logs/test.file");
         assertThat(file.createNewFile()).isTrue();
-            file.delete();
+        file.delete();
     }
 }

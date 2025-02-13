@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.telephony;
 
+import static android.Manifest.permission.MODIFY_PHONE_STATE;
+
 import static com.android.bluetooth.TestUtils.MockitoRule;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -47,6 +49,7 @@ import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
@@ -54,6 +57,7 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.BluetoothHeadsetProxy;
 import com.android.bluetooth.tbs.BluetoothLeCallControlProxy;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -106,6 +110,9 @@ public class BluetoothInCallServiceTest {
 
     @Before
     public void setUp() {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .adoptShellPermissionIdentity(MODIFY_PHONE_STATE);
         doReturn(true).when(mMockCallInfo).isNullCall(null);
         doReturn(false).when(mMockCallInfo).isNullCall(notNull());
 
@@ -118,6 +125,13 @@ public class BluetoothInCallServiceTest {
                 new BluetoothInCallService(
                         spiedContext, mMockCallInfo, mMockBluetoothHeadset, mLeCallControl);
         mBluetoothInCallService.onCreate();
+    }
+
+    @After
+    public void cleanUp() {
+        InstrumentationRegistry.getInstrumentation()
+                .getUiAutomation()
+                .dropShellPermissionIdentity();
     }
 
     @Test
