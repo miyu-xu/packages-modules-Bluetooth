@@ -1538,10 +1538,27 @@ public class RemoteDevices {
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
 
-            mAdapterService.setMetadata(
-                    bluetoothDevice,
-                    Metadata.METADATA_BOND_LOST,
-                    new byte[] {1}); // 1 indicates ACTION_KEY_MISSING
+            byte[] isBondLostMetdadata =
+                    mAdapterService.getMetadata(bluetoothDevice, Metadata.METADATA_BOND_LOST);
+            if (isBondLostMetdadata != null
+                    && isBondLostMetdadata[0]
+                            == Metadata.METADATA_BOND_LOST_VALUE_ENCRYPTION_CHANGE) {
+                /*
+                 * Increment the frequency counter for the transition to
+                 *  ACTION_KEY_MISSING, from BOND_BONDED.
+                 */
+                MetricsLogger.getInstance()
+                        .logBluetoothEvent(
+                                bluetoothDevice,
+                                BluetoothStatsLog.TRANSITION_BOND_BONDED_TO_ACTION_KEY_MISSING,
+                                BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__FAIL,
+                                0);
+
+                mAdapterService.setMetadata(
+                        bluetoothDevice,
+                        Metadata.METADATA_BOND_LOST,
+                        new byte[] {Metadata.METADATA_BOND_LOST_VALUE_KEY_MISSING});
+            }
 
             if (Flags.keyMissingPublic()) {
                 mAdapterService.sendOrderedBroadcast(
@@ -1617,11 +1634,28 @@ public class RemoteDevices {
                 algorithm = BluetoothDevice.ENCRYPTION_ALGORITHM_E0;
             }
 
-            // Log the transition to ACTION_ENCRYPTION_CHANGE.
-            mAdapterService.setMetadata(
-                    bluetoothDevice,
-                    Metadata.METADATA_BOND_LOST,
-                    new byte[] {0}); // 0 indicates ACTION_ENCRYPTION_CHANGE
+            byte[] isBondLostMetdadata =
+                    mAdapterService.getMetadata(bluetoothDevice, Metadata.METADATA_BOND_LOST);
+            if (isBondLostMetdadata != null
+                    && isBondLostMetdadata[0] == Metadata.METADATA_BOND_LOST_VALUE_KEY_MISSING) {
+                /* If the METADATA_BOND_LOST[0] is ACTION_KEY_MISSING.
+                 * We need to log the transition to ACTION_ENCRYPTION_CHANGE
+                 */
+                MetricsLogger.getInstance()
+                        .logBluetoothEvent(
+                                bluetoothDevice,
+                                BluetoothStatsLog
+                                        .TRANSITION_ACTION_KEY_MISSING_TO_ACTION_ENCRYPTION_CHANGE,
+                                BluetoothStatsLog
+                                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SUCCESS,
+                                0);
+
+                // Log the transition to ACTION_ENCRYPTION_CHANGE.
+                mAdapterService.setMetadata(
+                        bluetoothDevice,
+                        Metadata.METADATA_BOND_LOST,
+                        new byte[] {Metadata.METADATA_BOND_LOST_VALUE_ENCRYPTION_CHANGE});
+            }
         }
 
         Intent intent =
