@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3b2643e_ace80ca8",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T09:53:27Z",
+      "side": 1,
+      "message": "This is covered by test_set_volume_stress_3 and more tests around this method will be added in the next two CLs.",
+      "parentUuid": "27208d6e_76b4b538",
+      "revId": "d28d3aa140848429947a2314be03a87c3a5f42bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89a50f31_eb35cffe",
         "filename": "system/bta/vc/vc.cc",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-12T23:39:49Z",
       "side": 1,
       "message": "why did we changed group_id -\u003e unknown?",
+      "revId": "d28d3aa140848429947a2314be03a87c3a5f42bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "439f3bb3_818e211d",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T09:53:27Z",
+      "side": 1,
+      "message": "Good catch, thank you!",
+      "parentUuid": "89a50f31_eb35cffe",
       "revId": "d28d3aa140848429947a2314be03a87c3a5f42bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
