@@ -141,6 +141,24 @@
       "parentUuid": "9c8d58a4_aa30e3b7",
       "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "026781e4_296c3f38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-13T18:51:21Z",
+      "side": 1,
+      "message": "`metadata_cb.le_audio_cache` is only used when the `LE_AUDIO` metadata is set and hence does not have a broader effect on the overall health of the stack. Therefore, I think for this CL, it is ok for it get in without flagging.\n\nHowever, we do need to have a plan to eventually move `metadata_cb.le_audio_cache` to a better location so that we don\u0027t need a special function wipe its data after pairing is done. \n\nAnd yes, 25Q1 is long gone, if anyone asks about this, please let them know that the next release is 25Q2 @jpawlowski@google.com",
+      "parentUuid": "76707ad8_f6527592",
+      "revId": "ae0ab4bddea085a8e0415f4a577272f0717518d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
