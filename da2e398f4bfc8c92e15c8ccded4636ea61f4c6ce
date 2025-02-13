@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5a33c2_3050e531",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T09:38:39Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "6cb74c2e_30495eb1",
+      "range": {
+        "startLine": 1349,
+        "startChar": 15,
+        "endLine": 1351,
+        "endChar": 42
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26ce0cd3_7d3d07ad",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-02-13T09:15:59Z",
       "side": 1,
       "message": "I would not check for those, getPackageName is guaranteed to return a NonNull string, and the empty should not be an issue since this will be catch by the package not found in the worst case",
+      "range": {
+        "startLine": 1589,
+        "startChar": 24,
+        "endLine": 1589,
+        "endChar": 74
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28da9cbe_6433d5cc",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 1589,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T09:38:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "26ce0cd3_7d3d07ad",
       "range": {
         "startLine": 1589,
         "startChar": 24,
@@ -129,6 +177,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f2abdf4_bb5011ab",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T09:38:39Z",
+      "side": 1,
+      "message": "it might not be necessary here, but what I think is to move the check more closer to the disable routine, aka, query for all and check right before we would like to disable it to make the logic more robust.",
+      "parentUuid": "ac9f12f9_d570ebf2",
+      "range": {
+        "startLine": 2479,
+        "startChar": 43,
+        "endLine": 2479,
+        "endChar": 68
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4bc34c6_7e6a9170",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 41
@@ -140,6 +212,30 @@
       "writtenOn": "2025-02-13T09:15:59Z",
       "side": 1,
       "message": "NameNotFoundException can only be thrown by getPackageInfo, can we reduce the scope of the try catch ?",
+      "range": {
+        "startLine": 2502,
+        "startChar": 32,
+        "endLine": 2502,
+        "endChar": 53
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a2798b5_9ba90876",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2502,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T09:38:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b4bc34c6_7e6a9170",
       "range": {
         "startLine": 2502,
         "startChar": 32,
@@ -163,6 +259,30 @@
       "writtenOn": "2025-02-13T09:15:59Z",
       "side": 1,
       "message": "we are the system server, we should not have this happening, if it happen, I want to crash as this would be the signal of something way worse",
+      "range": {
+        "startLine": 2504,
+        "startChar": 4,
+        "endLine": 2506,
+        "endChar": 9
+      },
+      "revId": "da2e398f4bfc8c92e15c8ccded4636ea61f4c6ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad9799d_a1d1504f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 41
+      },
+      "lineNbr": 2506,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-13T09:38:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8caf7673_f04c4512",
       "range": {
         "startLine": 2504,
         "startChar": 4,
