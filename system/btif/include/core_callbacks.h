@@ -114,6 +114,10 @@ struct HACK_ProfileInterface {
   // AVRCP hacks
   uint16_t (*AVRC_GetProfileVersion)();
 
+  // A2DP hacks
+  bool (*btif_av_peer_is_connected_sink)(const RawAddress& peer_address);
+  bool (*btif_av_peer_is_connected_source)(const RawAddress& peer_address);
+
   HACK_ProfileInterface& operator=(const HACK_ProfileInterface&) = delete;
 };
 
