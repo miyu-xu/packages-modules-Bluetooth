@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5b0d26a_5153c316",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-13T08:21:46Z",
+      "side": 1,
+      "message": "Hi Venkata,\n\nThere is a similar RNR + Pairing issue that was fixed by CL aosp/3037832 and aosp/3272317.\nCould you check whether that resolves your issue?\n\nOtherwise, could you attach logs in the bug page so we get a clearer understanding why the patches above doesn\u0027t fix your issue so this patch is needed?\n\nThanks!",
+      "revId": "ad214e8c266b3b0d5ac06fa0e5bbd02e918aff8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
