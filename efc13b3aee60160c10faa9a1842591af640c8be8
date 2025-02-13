@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c18df528_0e0bd6ef",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-02-13T04:55:55Z",
+      "side": 1,
+      "message": "Got it. Omitted the flag since it is already rolled out. Will clean up the flag in future CLs.",
+      "parentUuid": "2578d42f_900815af",
+      "range": {
+        "startLine": 407,
+        "startChar": 22,
+        "endLine": 407,
+        "endChar": 51
+      },
+      "revId": "efc13b3aee60160c10faa9a1842591af640c8be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f878468_f1d52f3b",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "efc13b3aee60160c10faa9a1842591af640c8be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b250c2a4_5dbb7791",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-02-13T04:55:55Z",
+      "side": 1,
+      "message": "So the original logic was: `AdapterService.getIdentityAddress(address)` returned bluetoothAddress when identity address is null. Now the function is changed to return null when identity address is null.\n\nTherefore we\u0027re using the `Utils.getBrEdrAddress` above to retain the original behavior and return bluetoothAddress when `AdapterService.getIdentityAddress(address)` returns null. So to answer the question, this is intended behavior when we retain the original behavior, which is what the change above does.",
+      "parentUuid": "6f878468_f1d52f3b",
+      "range": {
+        "startLine": 418,
+        "startChar": 12,
+        "endLine": 418,
+        "endChar": 46
+      },
       "revId": "efc13b3aee60160c10faa9a1842591af640c8be8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
