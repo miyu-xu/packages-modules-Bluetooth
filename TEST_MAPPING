@@ -103,6 +103,9 @@
       "name": "libaptxhd_enc_tests"
     },
     {
+      "name": "libbluetooth_log_test"
+    },
+    {
       "name": "net_test_avrcp"
     },
     {
@@ -297,6 +300,9 @@
     },
     {
       "name": "libaptxhd_enc_tests"
+    },
+    {
+      "name": "libbluetooth_log_test"
     },
     {
       "name": "net_test_avrcp"
