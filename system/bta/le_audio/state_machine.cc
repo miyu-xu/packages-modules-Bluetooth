@@ -1376,6 +1376,8 @@ private:
     params.stream_config.stream_map.emplace_back(ase->cis_conn_hdl, ase_audio_channel_allocation,
                                                  true);
 
+    params.stream_config.bits_per_sample = ase->codec_config.GetBitsPerSample();
+
     auto core_config = ase->codec_config.params.GetAsCoreCodecConfig();
     if (params.stream_config.sampling_frequency_hz == 0) {
       params.stream_config.sampling_frequency_hz = core_config.GetSamplingFrequencyHz();

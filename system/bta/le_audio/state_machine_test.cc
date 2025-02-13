@@ -5211,6 +5211,23 @@ TEST_F(StateMachineTestAdsp, testConfigureDataPathForAdsp) {
           group, context_type,
           {.sink = types::AudioContexts(context_type),
            .source = types::AudioContexts(context_type)}));
+
+  // Verify that group stream params are all set
+  for (auto dir : std::array<uint8_t, 2>{{bluetooth::le_audio::types::kLeAudioDirectionSink,
+                                          bluetooth::le_audio::types::kLeAudioDirectionSink}}) {
+    auto const& params = group->stream_conf.stream_params.get(dir);
+    ASSERT_NE(params.audio_channel_allocation, 0u);
+    ASSERT_NE(params.num_of_channels, 0u);
+    ASSERT_NE(params.num_of_devices, 0);
+
+    ASSERT_NE(params.stream_config.stream_map.size(), 0lu);
+    ASSERT_NE(params.stream_config.bits_per_sample, 0u);
+    ASSERT_NE(params.stream_config.sampling_frequency_hz, 0u);
+    ASSERT_NE(params.stream_config.frame_duration_us, 0u);
+    ASSERT_NE(params.stream_config.octets_per_codec_frame, 0u);
+    ASSERT_NE(params.stream_config.codec_frames_blocks_per_sdu, 0u);
+    ASSERT_NE(params.stream_config.peer_delay_ms, 0u);
+  }
 }
 
 TEST_F(StateMachineTestAdsp, testStreamConfigurationAdspDownMix) {
