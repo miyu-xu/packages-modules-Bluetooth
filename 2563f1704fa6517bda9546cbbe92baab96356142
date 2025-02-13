@@ -221,6 +221,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f28c2288_fb822069",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-13T05:33:16Z",
+      "side": 1,
+      "message": "This issue not replicate on latest builds.\n\nattached working logs in Bug",
+      "parentUuid": "b18d5bc6_c31cd68d",
+      "revId": "2563f1704fa6517bda9546cbbe92baab96356142",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f331594b_7e0cef4e",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
