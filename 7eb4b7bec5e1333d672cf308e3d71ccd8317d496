@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da218ed_ada50432",
+        "filename": "framework/tests/bumble/src/android/bluetooth/service_discovery/ServiceDiscoveryTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-13T08:12:10Z",
+      "side": 1,
+      "message": "This is registering service on both LE and Classic transport.\nFor this test, you need to add it just on LE transport.",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 347,
+        "endChar": 42
+      },
+      "revId": "7eb4b7bec5e1333d672cf308e3d71ccd8317d496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc24e8a8_c9981259",
+        "filename": "framework/tests/bumble/src/android/bluetooth/service_discovery/ServiceDiscoveryTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-13T08:12:10Z",
+      "side": 1,
+      "message": "SDP",
+      "range": {
+        "startLine": 406,
+        "startChar": 17,
+        "endLine": 406,
+        "endChar": 29
+      },
+      "revId": "7eb4b7bec5e1333d672cf308e3d71ccd8317d496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
