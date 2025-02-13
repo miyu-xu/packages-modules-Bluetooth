@@ -116,6 +116,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88236941_9cc9a86f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T08:39:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ae925f9_ad01420e",
+      "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "148564bd_166cb236",
@@ -129,6 +147,24 @@
       "writtenOn": "2025-02-13T00:04:38Z",
       "side": 1,
       "message": "I didn\u0027t get why do we need allowDuplicates by reading the commit message.\nCan you clarify more and why will this is needed for sync failing case?\n\n\nAlso to reduce indentation,\nif (!allowDuplicates \u0026\u0026 isAddedToSelectSourceRequest(broadcastId, hasPriority)) {\n    log(\"addSelectSourceRequest: Already added\");\n    return;\n}",
+      "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d852b6ba_084add65",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2938,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T08:39:32Z",
+      "side": 1,
+      "message": "If we attempt to add a selected source during a failure before calling:\n```\nclearAllDataForSyncHandle(BassConstants.PENDING_SYNC_HANDLE); \n```\nit will result in a duplicate entry.\n\nHowever, if we change the order by first clearing the data and then adding the selected source, there is a risk that a broadcast found during searching could be added before this one.\n\nSince, in the next CL, we will no longer add this during searching, we can change the order and eliminate the duplicate argument.",
+      "parentUuid": "148564bd_166cb236",
       "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
