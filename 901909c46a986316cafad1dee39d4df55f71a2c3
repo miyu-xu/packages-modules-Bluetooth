@@ -16,6 +16,24 @@
       "message": "no logging for those early return cases?\n\nif that\u0027s intended, should we group some checks? like \n    if (!dev-\u003eIsReady() || !op-\u003eIsStarted() || op-\u003eopcode_ !\u003d kControlPointOpcodeSetAbsoluteVolume)) {\n      return false;\n    }\n    \notherwise, there is no benefits from separting them.",
       "revId": "901909c46a986316cafad1dee39d4df55f71a2c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6c8f0a_ee1acef8",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-13T09:54:54Z",
+      "side": 1,
+      "message": "Logging is placed outside as it applies to the entire group.\n\nThe last two checks can be combined, but not the first one, since the remote volume check (dev-\u003evolume !\u003d volume) has higher priority than the pending volume check.\n\nI can even combine whole method in one If but clarity is poor then imo:\n```\n  bool IsSetAbsoluteVolumeRequired(VolumeControlDevice* dev, uint8_t volume) {\n    const auto op \u003d \u0026ongoing_operations_.front();\n    std::vector\u003cuint8_t\u003e arg({volume});\n    if (dev-\u003eIsReady() \u0026\u0026\n        ((dev-\u003evolume !\u003d volume) ||\n         (op-\u003eIsStarted() \u0026\u0026 (op-\u003eopcode_ \u003d\u003d kControlPointOpcodeSetAbsoluteVolume) \u0026\u0026\n          !std::equal(op-\u003earguments_.begin(), op-\u003earguments_.end(), arg.begin()) \u0026\u0026\n          (std::find(op-\u003edevices_.begin(), op-\u003edevices_.end(), dev-\u003eaddress) !\u003d\n           op-\u003edevices_.end())))) {\n      return true;\n    }\n\n    return false;\n  }\n```\n\nI made it somewhere between:)",
+      "parentUuid": "197b1aeb_a4fde8f8",
+      "revId": "901909c46a986316cafad1dee39d4df55f71a2c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
