@@ -32,9 +32,16 @@ license {
 }
 
 filegroup {
-    name: "BluetoothTestConfigTemplate",
+    name: "BluetoothGTestConfigTemplate",
     srcs: [
-        "AndroidTestTemplate.xml",
+        "BluetoothGTestTemplate.xml",
+    ],
+}
+
+filegroup {
+    name: "BluetoothRustTestConfigTemplate",
+    srcs: [
+        "BluetoothRustTestTemplate.xml",
     ],
 }
 
@@ -220,5 +227,15 @@ java_defaults {
             // Does not look pertinent in our situation
             "-Xep:AndroidFrameworkEfficientXml:OFF",
         ],
+    },
+}
+
+rust_defaults {
+    name: "mts_rust_defaults",
+    target: {
+        android: {
+            test_config_template: ":BluetoothRustTestConfigTemplate",
+            test_suites: ["mts-bt"],
+        },
     },
 }
