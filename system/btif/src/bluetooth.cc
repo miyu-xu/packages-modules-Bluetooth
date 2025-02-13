@@ -363,8 +363,12 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
           // LE Audio
           .IsLeAudioClientRunning = LeAudioClient::IsLeAudioClientRunning,
 
-          // AVRCP
+          // A2DP
           .AVRC_GetProfileVersion = AVRC_GetProfileVersion,
+
+          // AVRCP
+          .btif_av_peer_is_connected_sink = btif_av_peer_is_connected_sink,
+          .btif_av_peer_is_connected_source = btif_av_peer_is_connected_source,
   };
 
   static auto configInterface = ConfigInterfaceImpl();
