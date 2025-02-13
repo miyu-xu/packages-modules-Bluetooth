@@ -160,6 +160,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6aa742a_45500641",
+        "filename": "system/bta/vc/vc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1783,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-13T09:38:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1cf2afc7_4d753a1c",
+      "revId": "56e2fee77b1a47b46e3cef54ab16048c9175e9d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60e1b619_032d2cf5",
