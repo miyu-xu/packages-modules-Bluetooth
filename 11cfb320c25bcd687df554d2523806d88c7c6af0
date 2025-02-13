@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28810485_5c7c1733",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4631,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T23:21:13Z",
+      "side": 1,
+      "message": "just curious why, are we seeing this log too many in some case?",
+      "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
