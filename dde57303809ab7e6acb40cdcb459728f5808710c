@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3529587_4b545043",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-13T17:57:47Z",
+      "side": 1,
+      "message": "Does bumble return any response when it hosts the server?  I\u0027m wondering if there\u0027s something that\u0027s triggered that we can use instead of waiting some arbitrary amount of time.",
+      "range": {
+        "startLine": 161,
+        "startChar": 20,
+        "endLine": 162,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6441f9eb_b846a04e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": "import kotlinx.coroutines.flow.take\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "            val waitFlow \u003d flow { emit(waitConnection(dckSpsm, remoteDevice)) }.take(1)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 161,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 298,
+                "startChar": 0,
+                "endLine": 299,
+                "endChar": 0
+              },
+              "replacement": "            val waitFlow \u003d flow { emit(waitConnection(dckSpsm, remoteDevice)) }.take(1)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+              "range": {
+                "startLine": 301,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "dde57303809ab7e6acb40cdcb459728f5808710c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
