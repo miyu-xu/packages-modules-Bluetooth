@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366dd743_e6c8147f",
+        "filename": "android/pandora/server/src/Security.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-13T15:45:21Z",
+      "side": 1,
+      "message": "Why is it a problem? Should we instead make sure that this service is not fake?",
+      "range": {
+        "startLine": 167,
+        "startChar": 15,
+        "endLine": 167,
+        "endChar": 57
+      },
+      "revId": "369e829ce19c6e63fb99d52c5f2aaec25a597035",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
