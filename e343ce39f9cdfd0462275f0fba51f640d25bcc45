@@ -16,6 +16,40 @@
       "message": "Need to fix/add unit tests",
       "revId": "e343ce39f9cdfd0462275f0fba51f640d25bcc45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f331c0_aa22e79d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T00:17:38Z",
+      "side": 1,
+      "message": "From offline chat, you expressed concerns that if we gave equal prority to all scan result, our resuming might get blocked.\n\nBut your solution to set all results with priority, so essentially isn\u0027t it the same as setting all without priority? how would this help to unblock the resuming activity?",
+      "revId": "e343ce39f9cdfd0462275f0fba51f640d25bcc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de09f665_f2dc6cc8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2317,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T00:17:38Z",
+      "side": 1,
+      "message": "we\u0027re stopping the scan here, why do we need to keep sync request onScanResult?",
+      "revId": "e343ce39f9cdfd0462275f0fba51f640d25bcc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
