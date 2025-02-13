@@ -118,6 +118,30 @@
       },
       "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2579cae9_bd94a045",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-13T09:15:59Z",
+      "side": 1,
+      "message": "I didn\u0027t know it could be done like this, and I feel this make a lot of sense to do it.\nWe want to recover from a crash, so we should do it here.\n\nThere is another thing that we could do in the system server... let me know what you think:\nI wonder if we also want to enforce that no component are left available when we are turning it down normally. to be clear, I don\u0027t want the system server to fix the mistake of the app not properly cleaning up on a normal shutdown, but I want the phone to crash hard if this happen, to make sure we don\u0027t let the app not cleaning up",
+      "parentUuid": "585ff67c_9f6fb98a",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "21752b6eaf8baad27bdbd03739aa749f20a8d3f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
