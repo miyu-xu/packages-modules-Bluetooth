@@ -51,5 +51,8 @@ rust_test {
     name: "libbluetooth_offload_hci_test",
     host_supported: true,
     test_suites: ["general-tests"],
-    defaults: ["bluetooth_offload_hci_defaults"],
+    defaults: [
+        "bluetooth_offload_hci_defaults",
+        "mts_rust_defaults",
+    ],
 }
