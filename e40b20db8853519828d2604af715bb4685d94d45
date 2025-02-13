@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6649226a_dbb448a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-13T09:27:00Z",
+      "side": 1,
+      "message": "I don\u0027t think we have any test that would make sense here.\n\nEither it\u0027s a native test but there is no native modification.\nEIther it\u0027s a java test, but it will mock the native so we are not testing anything.\n\nThis should be a end-to-end test that enable the bluetooth connect to device, make a rfcomm socket and disconnect before the rfcomm is closed and ideally while a file / data is being transfered",
+      "parentUuid": "4395a23d_70ccbc8e",
+      "revId": "e40b20db8853519828d2604af715bb4685d94d45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8fa10323_10a7697c",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 25
