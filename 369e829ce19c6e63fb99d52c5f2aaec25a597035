@@ -63,6 +63,30 @@
       },
       "revId": "369e829ce19c6e63fb99d52c5f2aaec25a597035",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca765ef_12de0dd2",
+        "filename": "android/pandora/server/src/Security.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-13T17:28:10Z",
+      "side": 1,
+      "message": "+1 Bumble has a headset client implementation ready for use.\n\nThis change in Host.kt is just as likely to cause headaches in the future for new tests implemented for HFP-AG.",
+      "parentUuid": "cb026123_7dcbd7b2",
+      "range": {
+        "startLine": 167,
+        "startChar": 15,
+        "endLine": 167,
+        "endChar": 57
+      },
+      "revId": "369e829ce19c6e63fb99d52c5f2aaec25a597035",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
