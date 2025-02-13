@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197b1aeb_a4fde8f8",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T00:49:36Z",
+      "side": 1,
+      "message": "no logging for those early return cases?\n\nif that\u0027s intended, should we group some checks? like \n    if (!dev-\u003eIsReady() || !op-\u003eIsStarted() || op-\u003eopcode_ !\u003d kControlPointOpcodeSetAbsoluteVolume)) {\n      return false;\n    }\n    \notherwise, there is no benefits from separting them.",
+      "revId": "901909c46a986316cafad1dee39d4df55f71a2c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
