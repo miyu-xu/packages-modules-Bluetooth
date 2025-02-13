@@ -25,17 +25,16 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 
+import android.app.NotificationManager;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.PowerManager;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
@@ -63,23 +62,23 @@ public class BluetoothOppObexServerSessionTest {
     @Rule public final MockitoRule mMockitoRule = new MockitoRule();
 
     @Mock BluetoothMethodProxy mMethodProxy;
-
-    Context mTargetContext;
     @Mock BluetoothObexTransport mTransport;
-
     @Mock BluetoothOppService mBluetoothOppService;
+    @Mock NotificationManager mNotificationManager;
     @Mock Operation mOperation;
+    @Mock Context mContext;
+
+    private final Context mTargetContext =
+            InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private final PowerManager mPowerManager = mTargetContext.getSystemService(PowerManager.class);
 
     BluetoothOppObexServerSession mServerSession;
 
     @Before
     public void setUp() throws IOException {
-        mTargetContext =
-                spy(
-                        new ContextWrapper(
-                                InstrumentationRegistry.getInstrumentation().getTargetContext()));
-        mServerSession =
-                new BluetoothOppObexServerSession(mTargetContext, mTransport, mBluetoothOppService);
+        doReturn(mNotificationManager).when(mContext).getSystemService(NotificationManager.class);
+        doReturn(mPowerManager).when(mContext).getSystemService(PowerManager.class);
+        doReturn(mTargetContext.getContentResolver()).when(mContext).getContentResolver();
 
         // to control the mServerSession.mSession
         InputStream input = mock(InputStream.class);
@@ -89,20 +88,14 @@ public class BluetoothOppObexServerSessionTest {
         doReturn(output).when(mTransport).openOutputStream();
 
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
+
+        mServerSession =
+                new BluetoothOppObexServerSession(mContext, mTransport, mBluetoothOppService);
     }
 
     @After
     public void tearDown() {
         BluetoothMethodProxy.setInstanceForTesting(null);
-    }
-
-    @Test
-    public void constructor_createInstanceCorrectly() {
-        mServerSession =
-                new BluetoothOppObexServerSession(mTargetContext, mTransport, mBluetoothOppService);
-        assertThat(mServerSession.mBluetoothOppService).isEqualTo(mBluetoothOppService);
-        assertThat(mServerSession.mTransport).isEqualTo(mTransport);
-        assertThat(mServerSession.mContext).isEqualTo(mTargetContext);
     }
 
     @Test
@@ -327,13 +320,9 @@ public class BluetoothOppObexServerSessionTest {
         HeaderSet request = new HeaderSet();
         HeaderSet reply = new HeaderSet();
         request.setHeader(HeaderSet.TARGET, null);
-        BluetoothOppManager bluetoothOppManager =
-                spy(BluetoothOppManager.getInstance(mTargetContext));
+        BluetoothOppManager bluetoothOppManager = mock(BluetoothOppManager.class);
         BluetoothOppManager.setInstance(bluetoothOppManager);
         doReturn(true).when(bluetoothOppManager).isAcceptlisted(any());
-        doNothing()
-                .when(mTargetContext)
-                .sendBroadcast(any(), eq(Constants.HANDOVER_STATUS_PERMISSION), any());
 
         assertThat(mServerSession.onConnect(request, reply)).isEqualTo(ResponseCodes.OBEX_HTTP_OK);
         BluetoothOppManager.setInstance(null);
