@@ -407,15 +407,18 @@ void AvrcpService::Init(MediaInterface* media_interface, VolumeInterface* volume
                                               0};
   avrcp_sdp_service->AddRecord(target_add_record_request, target_sdp_request_id_);
   log::verbose("Target request id {}", target_sdp_request_id_);
-  AvrcpSdpRecord control_add_record_request = {UUID_SERVCLASS_AV_REMOTE_CONTROL,
-                                               "AV Remote Control",
-                                               "",
-                                               AVRCP_SUPF_TG_CT,
-                                               false,
-                                               avrcp_interface_.GetAvrcpControlVersion(),
-                                               0};
-  avrcp_sdp_service->AddRecord(control_add_record_request, control_sdp_request_id_);
-  log::verbose("Control request id {}", control_sdp_request_id_);
+  if (!btif_av_src_sink_coexist_enabled() ||
+      (btif_av_src_sink_coexist_enabled() && !btif_av_is_sink_enabled())) {
+    AvrcpSdpRecord control_add_record_request = {UUID_SERVCLASS_AV_REMOTE_CONTROL,
+                                                "AV Remote Control",
+                                                "",
+                                                AVRCP_SUPF_TG_CT,
+                                                false,
+                                                avrcp_interface_.GetAvrcpControlVersion(),
+                                                0};
+    avrcp_sdp_service->AddRecord(control_add_record_request, control_sdp_request_id_);
+    log::verbose("Control request id {}", control_sdp_request_id_);
+  }
 
   media_interface_ = new MediaInterfaceWrapper(media_interface);
   media_interface->RegisterUpdateCallback(instance_);

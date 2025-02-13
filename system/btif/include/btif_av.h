@@ -348,6 +348,7 @@ bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
 bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
 bool btif_av_peer_is_sink(const RawAddress& peer_address);
 bool btif_av_peer_is_source(const RawAddress& peer_address);
+bool btif_av_src_is_connected(void);
 const RawAddress& btif_av_find_by_handle(tBTA_AV_HNDL bta_handle);
 
 #endif /* BTIF_AV_H */
