@@ -204,6 +204,30 @@
       },
       "revId": "0deda454c00cdb772ff2320dafa9c23518ba54a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "843b0da6_e7de883b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-13T17:49:50Z",
+      "side": 1,
+      "message": "+1,\n@belusiak@google.com, you can consider to align this in aosp/3492250, similar to what you did for addSelectSourceRequest.",
+      "parentUuid": "5c40325d_08a94731",
+      "range": {
+        "startLine": 1224,
+        "startChar": 54,
+        "endLine": 1224,
+        "endChar": 68
+      },
+      "revId": "0deda454c00cdb772ff2320dafa9c23518ba54a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
