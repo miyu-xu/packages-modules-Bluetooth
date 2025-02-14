@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82cb178_375bd9f0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2492,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:13:17Z",
+      "side": 1,
+      "message": "Apparently this is not possible as the getPackageInfo API return a NonNull value.\n\nI assume that the exception will be thrown if the packageInfo cannot be found",
+      "range": {
+        "startLine": 2489,
+        "startChar": 2,
+        "endLine": 2492,
+        "endChar": 9
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "395e4706_96a58a7a",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2494,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:13:17Z",
+      "side": 1,
+      "message": "The command is not correct, as sometimes these activities are disabled.\nBut having a comment here is nice as reader may not be aware of the context.\nI would simply refer to the other method so people can see what lead to the activity being on or off",
+      "range": {
+        "startLine": 2494,
+        "startChar": 37,
+        "endLine": 2494,
+        "endChar": 65
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "689ef6e7_86c395c1",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2503,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:13:17Z",
+      "side": 1,
+      "message": "not needed ?",
+      "range": {
+        "startLine": 2503,
+        "startChar": 0,
+        "endLine": 2503,
+        "endChar": 45
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d34f8f_eeb52399",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2521,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:13:17Z",
+      "side": 1,
+      "message": "That\u0027s nice smart",
+      "range": {
+        "startLine": 2521,
+        "startChar": 25,
+        "endLine": 2521,
+        "endChar": 52
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
