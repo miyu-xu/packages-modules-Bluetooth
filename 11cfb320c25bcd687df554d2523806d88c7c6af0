@@ -34,6 +34,24 @@
       "parentUuid": "28810485_5c7c1733",
       "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf38a41f_dcc92fd4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4631,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-14T17:33:27Z",
+      "side": 1,
+      "message": "It\u0027s weird to hear that remote connectionless device is affecting our stack logging. \nIf this is because Apps are using this API in a wrong way(why try to get group if not even connected?), they should fix this from their side. \n\n@rlukasz@google.com don\u0027t we needd this logging for other normal unicast CUJs?",
+      "parentUuid": "0431a696_9920fcd7",
+      "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
