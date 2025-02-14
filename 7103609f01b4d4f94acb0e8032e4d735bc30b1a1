@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acba8ce1_0f595725",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-14T11:01:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9049a7d8_f41e0f64",
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "924a896c_7c298eeb",
@@ -101,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbdb55cc_4a4ceff4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-14T11:01:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af0114e0_6ce40430",
+      "range": {
+        "startLine": 884,
+        "startChar": 51,
+        "endLine": 884,
+        "endChar": 76
+      },
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e47b157_1d07d5c6",
@@ -138,6 +180,30 @@
       "side": 1,
       "message": "Thanks,\nUpdated.",
       "parentUuid": "0e47b157_1d07d5c6",
+      "range": {
+        "startLine": 937,
+        "startChar": 7,
+        "endLine": 940,
+        "endChar": 76
+      },
+      "revId": "7103609f01b4d4f94acb0e8032e4d735bc30b1a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ffabe69_ca3fd89d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-14T11:01:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6021713_abc1d16c",
       "range": {
         "startLine": 937,
         "startChar": 7,
