@@ -37,6 +37,8 @@
 #include "packet/avrcp/set_player_application_setting_value.h"
 #include "types/raw_address.h"
 
+extern bool btif_av_is_connected_addr(const RawAddress& peer_address, const A2dpType local_a2dp_type);
+
 template <>
 struct std::formatter<bluetooth::avrcp::PlayState> : enum_formatter<bluetooth::avrcp::PlayState> {};
 
@@ -382,6 +384,14 @@ void Device::HandleGetCapabilities(uint8_t label,
         response->AddEvent(Event::ADDRESSED_PLAYER_CHANGED);
         response->AddEvent(Event::UIDS_CHANGED);
         response->AddEvent(Event::NOW_PLAYING_CONTENT_CHANGED);
+      }
+
+      /* if a2dp is not connected, the avrcp msg would be handled by new and
+      legacy avrcp, so here just add legacy avk supportd events */
+      if(btif_av_src_sink_coexist_enabled() && btif_av_both_enable() &&
+          !btif_av_is_connected_addr(address_, A2dpType::kUnknown)) {
+        if (avrcp_absolute_volume_is_enabled())
+          response->AddEvent(Event::VOLUME_CHANGED);
       }
 
       send_message(label, false, std::move(response));
