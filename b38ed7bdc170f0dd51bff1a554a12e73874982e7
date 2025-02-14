@@ -51,6 +51,24 @@
       "message": "Can a test be built to cover this scenario?",
       "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7251444b_1738268e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T19:05:25Z",
+      "side": 1,
+      "message": "Bumble doesn\u0027t have API where I could request test device to be Public addres, but claim it have IRK, and then return empty IRK.\n\nSo adding a test would be hard.",
+      "parentUuid": "d646c70a_1464f5bf",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
