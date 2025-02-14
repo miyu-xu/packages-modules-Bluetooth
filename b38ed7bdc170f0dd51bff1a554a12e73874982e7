@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5265de6_148b0b4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T12:43:23Z",
+      "side": 1,
+      "message": "After further reviewing the spec, your 1st patch was better than the 2nd version.\n\nBoth IRK and Identity Address are exchanged when \"IdKey\" bit is set in key distribution, and then they are stored as one key together. There is no clean way to mark device as having just Identity Address, but not IRK.\n\nAlso, there are some scenarios where upplr layers can inject IRK for filtering scan results, and these can\u0027t be accounted for when the filtering/checking happens around key storage.\n\nSo I reverted your patch to V1, made some small fixes, and now it should be good.",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
