@@ -22,6 +22,29 @@
       },
       "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "703056b8_e951788b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:45:36Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be an INTEGER ?\n\nI see that this is a blob to match a customized key in the database.\nTHese key are usually settable by external caller.\nI wonder if this is really what we want here.",
+      "range": {
+        "startLine": 705,
+        "startChar": 92,
+        "endLine": 705,
+        "endChar": 96
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
