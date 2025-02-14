@@ -22,6 +22,30 @@
       },
       "revId": "6317cf258baa2a5279f2f792b9a39799cff110e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b4c390a_a40b5374",
+        "filename": "system/stack/connection_manager/connection_manager.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T17:59:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bca992a1_51afefad",
+      "range": {
+        "startLine": 56,
+        "startChar": 5,
+        "endLine": 56,
+        "endChar": 25
+      },
+      "revId": "6317cf258baa2a5279f2f792b9a39799cff110e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
