@@ -1,0 +1,66 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12237acb_ef07e1b5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-14T22:02:18Z",
+      "side": 1,
+      "message": "This should be the `app_uid` of the app. Please check the reference here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;drc\u003dfae76517f082376eae6d1dd1596ffb3b4d8b0d3f;l\u003d2939",
+      "fixSuggestions": [
+        {
+          "fixId": "f3b71c95_624ab848",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 49,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "import android.os.Binder;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 943,
+                "startChar": 0,
+                "endLine": 944,
+                "endChar": 0
+              },
+              "replacement": "                        MetricsLogger.getInstance().getRemoteDeviceInfoProto(device),\n                        Binder.getCallingUid());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "03dd00373949c8660a21a2212067076239153fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d84b71_68757c3a",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-14T22:02:18Z",
+      "side": 1,
+      "message": "Do we want to log the version of AG - which is an integer?",
+      "revId": "03dd00373949c8660a21a2212067076239153fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
