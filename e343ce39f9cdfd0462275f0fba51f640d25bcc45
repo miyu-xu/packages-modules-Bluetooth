@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f70af66_0081cf1b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-14T00:04:37Z",
+      "side": 1,
+      "message": "okay, got what you\u0027re trying to achieve here. so it\u0027s actually impacting more on the orginal montinoring to resume flow, let\u0027s do some sanity tests to ensure nothing broken there, like OOR case.\nthe overall ideas look good.",
+      "parentUuid": "3c20f060_c778e3b5",
+      "revId": "e343ce39f9cdfd0462275f0fba51f640d25bcc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de09f665_f2dc6cc8",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "An unintentionally paused broadcast needs to be monitored.\n\nBefore this CL, it was continuously monitored in a loop, even during scanning. We had to keep it to monitor after stop searching.\n\nNow, if we don’t add it to sync but instead monitor it in onScanResult, we must explicitly add it to the scan when searching stops.",
       "parentUuid": "de09f665_f2dc6cc8",
+      "revId": "e343ce39f9cdfd0462275f0fba51f640d25bcc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "872bd272_9c4fe946",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2317,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-14T00:04:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "324e3ad2_867c1693",
       "revId": "e343ce39f9cdfd0462275f0fba51f640d25bcc45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
