@@ -16,6 +16,24 @@
       "message": "just curious why, are we seeing this log too many in some case?",
       "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0431a696_9920fcd7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4631,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-14T12:19:43Z",
+      "side": 1,
+      "message": "I assume that this is because of nearby discovery. onScanResult gives result from devices which are not paired and this cause:\n```\nLog.e(TAG, \"getGroupId: No valid descriptor for device: \" + device);\n```\nfrom getGroupId.\n\nI had such situation in the office and 3 different devices gives such error log every 2 seconds each.\n\nMaybe there is some other reason for that but still there is a risk that some unknown device will flood us with error logs.",
+      "parentUuid": "28810485_5c7c1733",
+      "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
