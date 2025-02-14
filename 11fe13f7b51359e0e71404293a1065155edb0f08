@@ -185,6 +185,24 @@
       "parentUuid": "d852b6ba_084add65",
       "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da279eb_cf880b69",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2938,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-14T00:14:36Z",
+      "side": 1,
+      "message": "also you might want to rebase this to detach from the chain.",
+      "parentUuid": "071a348d_a37bab30",
+      "revId": "11fe13f7b51359e0e71404293a1065155edb0f08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
