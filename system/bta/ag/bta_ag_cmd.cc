@@ -45,6 +45,7 @@
 #endif
 
 #include "bta/include/bta_hfp_api.h"
+#include "btif/include/btif_storage.h"
 #include "device/include/interop.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/helpers.h"
@@ -1346,6 +1347,11 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
       }
 
       bta_ag_send_ok(p_scb);
+      if (interop_match_addr_or_name(INTEROP_HFP_INITIATE_CODEC_NEGOTIATION,
+        &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+        log::info("Initiating codec negotiation");
+        p_scb->codec_updated = true;
+      }
       bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
       break;
     }
