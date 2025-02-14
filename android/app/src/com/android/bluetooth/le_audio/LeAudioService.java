@@ -3885,6 +3885,7 @@ public class LeAudioService extends ProfileService {
                         INVALID_BROADCAST_ID,
                         BluetoothStatsLog
                                 .BROADCAST_AUDIO_SESSION_REPORTED__SESSION_SETUP_STATUS__SETUP_STATUS_CREATE_FAILED);
+                transitionFromBroadcastToUnicast();
             }
 
             if (leaudioBigDependsOnAudioState()) {
