@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5df2d729_1753859b",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3371405
+      },
+      "writtenOn": "2025-02-14T06:37:10Z",
+      "side": 1,
+      "message": "This is related. \nAs I explained in Patchset 1 on February 13th: \n\"However, since the original judgment in Add Resolving List only checked whether the PID key was valid, this caused the address not to be added to the Resolving List if the PIRK was all zeros but LIRK was valid. \nThis would result in reconnection failures because reconnection requires the use of LIRK. \nTherefore, I modified the judgment so that the address will not be added to the Resolving List only when both the PID key and LID key are invalid.\"\n \nFor the reasons mentioned above, if only the PID key check is retained, then in the case where PIRK is all zeros, reconnection failures will occur.",
+      "parentUuid": "af5863f3_5d6304c3",
+      "range": {
+        "startLine": 571,
+        "startChar": 7,
+        "endLine": 571,
+        "endChar": 34
+      },
+      "revId": "e76552a79ae8a7717c1c305de686831a9f685ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c61c2500_5dd8e0bf",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 2
