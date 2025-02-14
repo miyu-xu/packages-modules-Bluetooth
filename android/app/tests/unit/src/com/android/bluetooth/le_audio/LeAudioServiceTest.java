@@ -3212,4 +3212,63 @@ public class LeAudioServiceTest {
                 .sendBroadcastAsUser(
                         MockitoHamcrest.argThat(AllOf.allOf(matchers)), any(), any(), any());
     }
+
+    /** Test device disconnected during active device groups switching */
+    @Test
+    public void testDeviceDisconnectedDuringActiveDeviceGroupsSwitching() {
+        int groupId_1 = 1;
+        int groupId_2 = 2;
+
+        /* AUDIO_DIRECTION_OUTPUT_BIT = 0x01 */
+        int direction = 1;
+        int availableContexts = 5 + BluetoothLeAudio.CONTEXT_TYPE_RINGTONE;
+
+        // Not connected device
+        assertThat(mService.setActiveDevice(mSingleDevice)).isFalse();
+
+        // Define some return values needed in test
+        doReturn(-1).when(mVolumeControlService).getAudioDeviceGroupVolume(anyInt());
+
+        // Connect both
+        connectTestDevice(mSingleDevice, groupId_1);
+        connectTestDevice(mSingleDevice_2, groupId_2);
+
+        // Add location support
+        injectAudioConfChanged(mSingleDevice, groupId_1, availableContexts, direction);
+        injectAudioConfChanged(mSingleDevice, groupId_2, availableContexts, direction);
+
+        assertThat(mService.setActiveDevice(mSingleDevice)).isTrue();
+        verify(mNativeInterface).groupSetActive(groupId_1);
+
+        // Set group and device as active
+        LeAudioStackEvent groupStatusChangedEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_STATUS_CHANGED);
+        groupStatusChangedEvent.valueInt1 = groupId_1;
+        groupStatusChangedEvent.valueInt2 = LeAudioStackEvent.GROUP_STATUS_ACTIVE;
+        mService.messageFromNative(groupStatusChangedEvent);
+
+        // mSingleDevice is current active device
+        assertThat(mService.getActiveDevices().contains(mSingleDevice)).isTrue();
+        reset(mNativeInterface);
+
+        // Switch active device from mSingleDevice to mSingleDevice_2
+        assertThat(mService.setActiveDevice(mSingleDevice_2)).isTrue();
+        verify(mNativeInterface).groupSetActive(groupId_2);
+
+        // mSingleDevice get disconnected during switching active device
+        injectAndVerifyDeviceDisconnected(mSingleDevice);
+
+        // Not remove active device during switching active device
+        verify(mNativeInterface, never()).groupSetActive(-1);
+
+        // Active Status for groupId_2
+        LeAudioStackEvent activeGroupState =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_STATUS_CHANGED);
+        activeGroupState.valueInt1 = groupId_2;
+        activeGroupState.valueInt2 = LeAudioStackEvent.GROUP_STATUS_ACTIVE;
+        mService.messageFromNative(activeGroupState);
+
+        // mSingleDevice2 is current active device
+        assertThat(mService.getActiveDevices().contains(mSingleDevice_2)).isTrue();
+    }
 }

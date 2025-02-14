@@ -4319,6 +4319,14 @@ public class LeAudioService extends ProfileService {
                 descriptor.mAutoActiveModeEnabled = true;
                 descriptor.mAvailableContexts = Flags.leaudioUnicastNoAvailableContexts() ? null : 0;
                 if (descriptor.isActive()) {
+                    Integer gettingActiveGroupId = getFirstGroupIdInGettingActiveState();
+                    if (gettingActiveGroupId != LE_AUDIO_GROUP_ID_INVALID) {
+                        Log.w(TAG, "deviceDisconnected: other device group "
+                            + "(groupId: " + gettingActiveGroupId + ")"
+                            + " is in getting active");
+                        return;
+                    }
+
                     /* Notify Native layer */
                     removeActiveDevice(hasFallbackDevice);
                     descriptor.setActiveState(ACTIVE_STATE_INACTIVE);
