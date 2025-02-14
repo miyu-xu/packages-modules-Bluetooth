@@ -70,6 +70,24 @@
       "parentUuid": "2e6b512c_5a17b498",
       "revId": "201662403f950e962c8904b8d0289a824678b8f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "234aed81_e6025d1a",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-14T12:07:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5dbbc8d_42edc07a",
+      "revId": "201662403f950e962c8904b8d0289a824678b8f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
