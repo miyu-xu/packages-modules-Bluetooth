@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dbae906c_c6e46135",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-14T20:22:06Z",
+      "side": 1,
+      "message": "@jpawlowski@google.com ran manual tests with this at his local development setup. \n\npairing, re-pairing, forcing disconnect, re-connecting one or both buds, all work good",
+      "revId": "e8a3d5b3fbf6b60ae7a396bdcba33e58112fc66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b14a71b8_dfddbb0a",
         "filename": "system/stack/connection_manager/connection_manager.cc",
         "patchSetId": 20
