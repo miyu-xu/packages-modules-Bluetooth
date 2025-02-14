@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c7da41_8fe49595",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-14T17:21:05Z",
+      "side": 1,
+      "message": "nit: it\u0027s actually format only.",
+      "revId": "c171933d8f673a5100a8fd853f2cd8fd3e1fb577",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
