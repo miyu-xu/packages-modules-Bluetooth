@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca92a49_0b720271",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 48
+      },
+      "lineNbr": 2564,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T03:21:19Z",
+      "side": 1,
+      "message": "I believe that packageInfo.providers / receivers / activities / services all are a ComponentInfo\n\nWe can have a method that take the array and iter (independently of the type of it) to reduce code duplicate ? even it that imply checking the opp activities for every of them, I think it\u0027s fine since this code is not supposed to run that often\n\n```\n\n[...]\n    disableBluetoothComponents(packageName, packageInfo.services);\n    disableBluetoothComponents(packageName, packageInfo.receivers);\n    disableBluetoothComponents(packageName, packageInfo.providers);\n}\n\nprivate disableBluetoothComponents(String packageName, ComponentInfo[] componentInfos) {\n    if (componentInfos \u003d\u003d null) {\n        return;\n    }\n    Arrays.stream(componentInfos)\n        .filter(ComponentInfo::isEnabled)\n        .map(componentInfo -\u003e new ComponentName(packageName, componentInfo.name))\n        .filter(c -\u003e !baseBluetoothOppActivities.contains(c.getClassName()))\n        .forEach(componentName -\u003e {\n            pm.setComponentEnabledSetting(\n                componentName,\n                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,\n                PackageManager.DONT_KILL_APP);\n            Log.i(TAG, \"Disabled component: \" + componentName.getClassName());\n        });\n}\n```",
+      "range": {
+        "startLine": 2551,
+        "startChar": 5,
+        "endLine": 2564,
+        "endChar": 9
+      },
+      "revId": "57ec0bebc38f25e1ea89be9f189216164d428898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

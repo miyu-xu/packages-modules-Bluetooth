@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3c27b8b_8f5a9d22",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T03:21:19Z",
+      "side": 1,
+      "message": "\u003e For the opp stuff, do you mean to hard code filter out:\n\nYeah, I think this is the easiest approach.\n\n\u003e What about set them enabled by default in AndroidManifest?\n\nThey can be disabled/enabled depending on some restriction on the user. I do not know what would be the implication of changing the default value and if that would go in the way of the restriction or not.",
+      "parentUuid": "1eb2e8be_470b2a39",
+      "range": {
+        "startLine": 2479,
+        "startChar": 35,
+        "endLine": 2479,
+        "endChar": 47
+      },
+      "revId": "4c3899207bd1b9fd1b50e3ebec8f1e6634eb15f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a99b8442_24157b5e",
