@@ -656,6 +656,12 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                     setHearingAidActiveDevice(null, true);
                 }
                 updateLeAudioActiveDeviceIfDualMode(mA2dpActiveDevice, device);
+            } else {
+                if (Utils.isDualModeAudioEnabled()
+                     && !mAdapterService.isProfileSupported(device, BluetoothProfile.LE_AUDIO)) {
+                    Log.d(TAG, " set LE Audio in-active as new classic device become active ");
+                    setLeAudioActiveDevice(null, true);
+                }
             }
 
             // Just assign locally the new value
@@ -726,6 +732,12 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                     synchronized (mLock) {
                         setFallbackDeviceActiveLocked(mHfpActiveDevice /* recentlyRemovedDevice */);
                     }
+                }
+            } else {
+                if (Utils.isDualModeAudioEnabled()
+                     && !mAdapterService.isProfileSupported(device, BluetoothProfile.LE_AUDIO)) {
+                    Log.d(TAG, " set LE Audio in-active as new classic device become active ");
+                    setLeAudioActiveDevice(null, true);
                 }
             }
 
