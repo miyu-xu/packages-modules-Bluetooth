@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af5863f3_5d6304c3",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T06:25:08Z",
+      "side": 1,
+      "message": "I would just leave it as it was, this is not related to change you make in the other file that is important.",
+      "parentUuid": "dc5df720_a01fe091",
+      "range": {
+        "startLine": 571,
+        "startChar": 7,
+        "endLine": 571,
+        "endChar": 34
+      },
+      "revId": "e76552a79ae8a7717c1c305de686831a9f685ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c61c2500_5dd8e0bf",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 2
