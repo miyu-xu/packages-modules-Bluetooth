@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049cc56e_a76532b8",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T02:22:43Z",
+      "side": 0,
+      "message": "What about here ?\n\nif we receive a play while the remote is not yet connected",
+      "range": {
+        "startLine": 821,
+        "startChar": 0,
+        "endLine": 821,
+        "endChar": 36
+      },
+      "revId": "a78b323d80ddefcab138802af460088d18bebec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
