@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd10bb6a_e9c37aa2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-14T11:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55f7d14c_6ad2430f",
+      "range": {
+        "startLine": 938,
+        "startChar": 17,
+        "endLine": 938,
+        "endChar": 30
+      },
+      "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e61ec5d7_31e1a670",
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "Without looking at the code, this seems wrong. When the battery is updated (via vendor command or non-vendor), and intent should be sent every time.\n\nBy checking the code we can find this:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/RemoteDevices.java;l\u003d1758;drc\u003dbe877d62284125ccb62441ccd63e968da069599b",
       "parentUuid": "07597450_f453ce62",
+      "range": {
+        "startLine": 990,
+        "startChar": 4,
+        "endLine": 994,
+        "endChar": 0
+      },
+      "revId": "83baebd45326e78b3dbd89ba84ecbd792024b55e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88015b06_7d82a792",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/RemoteDevicesTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-14T11:05:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8ea23bd_6f1ec030",
       "range": {
         "startLine": 990,
         "startChar": 4,
