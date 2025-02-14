@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "108c4f16_19c69b18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-14T12:12:09Z",
+      "side": 1,
+      "message": "I will rebase this once all CLs in the following link get merged\n\nhttps://android-review.git.corp.google.com/q/hashtag:%22merge-stop-into-cleanup%22+(status:open%20OR%20status:merged)",
+      "revId": "25bc12ae5f3d6647f7290e8ddc8ef0ee63527118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
