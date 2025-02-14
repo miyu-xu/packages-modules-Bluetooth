@@ -104,6 +104,30 @@
       },
       "revId": "dde57303809ab7e6acb40cdcb459728f5808710c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac571e1e_afbc8e97",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckL2capTest.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-14T05:39:28Z",
+      "side": 1,
+      "message": "Currently Bumble dont have way to inform this to upper layer. We can consider this for long term.\nI have reduced the delay 200 ms, we should be good go with this I think based on my discussion",
+      "parentUuid": "07b92f4a_1b3cc084",
+      "range": {
+        "startLine": 161,
+        "startChar": 20,
+        "endLine": 162,
+        "endChar": 42
+      },
+      "revId": "dde57303809ab7e6acb40cdcb459728f5808710c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
