@@ -61,7 +61,6 @@ public abstract class ProfileService extends ContextWrapper {
      */
     protected abstract IProfileServiceBinder initBinder();
 
-    /** Stop service */
     public abstract void stop();
 
     /** Called when this object is completely discarded */
