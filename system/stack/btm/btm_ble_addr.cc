@@ -102,13 +102,18 @@ bool btm_ble_addr_resolvable(const RawAddress& rpa, tBTM_SEC_DEV_REC* p_dev_rec)
     return false;
   }
 
-  if ((p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) &&
-      (p_dev_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PID)) {
-    if (rpa_matches_irk(rpa, p_dev_rec->sec_rec.ble_keys.irk)) {
-      btm_ble_init_pseudo_addr(p_dev_rec, rpa);
-      return true;
-    }
+  if (!(p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) ||
+      !(p_dev_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PID) ||
+      p_dev_rec->sec_rec.ble_keys.irk == ALL_ZEROS_16_OCTETS) {
+    // Match fails preconditions
+    return false;
   }
+
+  if (rpa_matches_irk(rpa, p_dev_rec->sec_rec.ble_keys.irk)) {
+    btm_ble_init_pseudo_addr(p_dev_rec, rpa);
+    return true;
+  }
+
   return false;
 }
 
@@ -120,7 +125,8 @@ static bool btm_ble_match_random_bda(void* data, void* context) {
   RawAddress* random_bda = static_cast<RawAddress*>(context);
 
   if (!(p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) ||
-      !(p_dev_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PID)) {
+      !(p_dev_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PID) ||
+      p_dev_rec->sec_rec.ble_keys.irk == ALL_ZEROS_16_OCTETS) {
     // Match fails preconditions
     return true;
   }
