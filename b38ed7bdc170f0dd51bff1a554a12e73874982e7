@@ -69,6 +69,24 @@
       "parentUuid": "d646c70a_1464f5bf",
       "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76d92c04_cfe00708",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-14T19:19:59Z",
+      "side": 1,
+      "message": "This change is a Mediatek conversion CL and it only affects remote device that uses public address, but declares itself has an IRK, except the IRK is all zero.\n\nThe scope is limited and so far Bumble cannot behave like this without modifying something deep in the implementation.",
+      "parentUuid": "7251444b_1738268e",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
