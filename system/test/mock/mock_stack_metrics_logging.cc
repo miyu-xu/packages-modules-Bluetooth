@@ -152,4 +152,11 @@ void log_le_connection_lifecycle(bluetooth::hci::Address address, bool is_connec
   inc_func_call_count(__func__);
   test::mock::stack_metrics_logging::log_le_connection_lifecycle(address, is_connect, is_direct);
 }
+
+void log_le_connection_completion(bluetooth::hci::Address address, bluetooth::hci::ErrorCode reason,
+                                  bool is_locally_initiated) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_le_connection_completion(address, reason,
+                                                                  is_locally_initiated);
+}
 // END mockcify generation
