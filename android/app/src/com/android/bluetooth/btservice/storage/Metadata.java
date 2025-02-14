@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "metadata")
-
 public class Metadata {
     @PrimaryKey @NonNull private String address;
 
@@ -73,6 +72,21 @@ public class Metadata {
 
     /** This is used to indicate whether device's microphone prefer to use during calls */
     public boolean is_preferred_microphone_for_calls;
+
+    /**
+     * This is used as a counter to number of KEY_MISSING intent broadcasted. The number of times
+     * the device has lost its bond. This is used to determine whether to display the bond loss
+     * notification.
+     *
+     * <p>The default value should be 0 which indicates bond is not lost (or bond success). Any
+     * value > 0 indicates how many times the ACTION_KEY_MISSING intent is sent/received. `35` is
+     * chosen as the next available key in BluetoothDevice as 34 is last used and is allocated to
+     * `METADATA_HEAD_UNIT_SOFTWARE_VERSION`.
+     *
+     * <p>TODO: b/395030709 - Remove the literal 35 and add metadata to BluetoothDevice in 25Q4.
+     * Also, flag this change once its updated in BluetoothDevice.
+     */
+    public static final int METADATA_BOND_LOSS_COUNT = 35;
 
     Metadata(String address) {
         this(address, false, false);
@@ -342,6 +356,9 @@ public class Metadata {
             case BluetoothDevice.METADATA_EXCLUSIVE_MANAGER:
                 publicMetadata.exclusive_manager = value;
                 break;
+            case METADATA_BOND_LOSS_COUNT:
+                publicMetadata.bond_loss_count = value;
+                break;
         }
     }
 
@@ -437,6 +454,9 @@ public class Metadata {
                 break;
             case BluetoothDevice.METADATA_EXCLUSIVE_MANAGER:
                 value = publicMetadata.exclusive_manager;
+                break;
+            case METADATA_BOND_LOSS_COUNT:
+                value = publicMetaData.bond_loss_count;
                 break;
         }
         return value;
