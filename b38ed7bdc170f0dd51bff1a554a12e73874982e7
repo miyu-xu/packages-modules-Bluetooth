@@ -34,6 +34,23 @@
       "parentUuid": "c5265de6_148b0b4c",
       "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d646c70a_1464f5bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-14T18:39:30Z",
+      "side": 1,
+      "message": "Can a test be built to cover this scenario?",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
