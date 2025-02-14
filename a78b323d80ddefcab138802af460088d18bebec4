@@ -22,6 +22,30 @@
       },
       "revId": "a78b323d80ddefcab138802af460088d18bebec4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83b7c246_80c5848c",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T02:23:28Z",
+      "side": 0,
+      "message": "Ah no ^^ the `handle_rc_passthrough_cmd` is only called when rc_pending_play is already true\n\nGot it",
+      "parentUuid": "049cc56e_a76532b8",
+      "range": {
+        "startLine": 821,
+        "startChar": 0,
+        "endLine": 821,
+        "endChar": 36
+      },
+      "revId": "a78b323d80ddefcab138802af460088d18bebec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
