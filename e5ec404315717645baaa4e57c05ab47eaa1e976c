@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7d674a_c8eac1ce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:39:41Z",
+      "side": 1,
+      "message": "Why can\u0027t we already do that now ?\n\n(same with the value from getMaxMetadataKey)",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
