@@ -33,11 +33,15 @@ import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.PandoraDevice;
 import android.bluetooth.StreamObserverSpliterator;
 import android.bluetooth.Utils;
+import android.bluetooth.BluetoothSocket;
+import android.bluetooth.test_utils.BlockingBluetoothAdapter;
+import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.bluetooth.pairing.utils.IntentReceiver;
 import android.bluetooth.pairing.utils.TestUtil;
 import android.bluetooth.test_utils.BlockingBluetoothAdapter;
 import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.content.Context;
+import android.content.Intent;
 import android.os.ParcelUuid;
 import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.CheckFlagsRule;
@@ -50,6 +54,7 @@ import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
 import com.google.testing.junit.testparameterinjector.TestParameter;
 import com.google.testing.junit.testparameterinjector.TestParameterInjector;
+import com.google.protobuf.ByteString;
 
 import io.grpc.stub.StreamObserver;
 
@@ -63,21 +68,43 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import pandora.GattProto;
+import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.ConnectabilityMode;
 import pandora.HostProto.OwnAddressType;
 import pandora.HostProto.SetConnectabilityModeRequest;
+import pandora.HostProto.WaitConnectionRequest;
+import pandora.HostProto.WaitConnectionResponse;
+import pandora.HostProto.WaitConnectionRequest;
+import pandora.SecurityProto.SecurityLevel;
 import pandora.SecurityProto.LESecurityLevel;
 import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
 import pandora.SecurityProto.SecureRequest;
 import pandora.SecurityProto.SecureResponse;
+import pandora.HostProto.WaitConnectionResponse;
+import pandora.HostProto.WaitConnectionRequest;
+import com.google.protobuf.ByteString;
+import pandora.SecurityProto.SecurityLevel;
+import pandora.HostProto.DiscoverabilityMode;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
+import pandora.BumbleConfigProto;
+
+import pandora.RfcommProto;
+import pandora.RfcommProto.StartServerRequest;
+import pandora.RfcommProto.StartServerResponse;
+import pandora.RfcommProto.AcceptConnectionResponse;
+import pandora.RfcommProto.ServerId;
+import pandora.BumbleConfigProto.PairingConfig;
+import pandora.BumbleConfigProto.OverrideRequest;
 
 import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.UUID;
+import java.io.IOException;
 
 @RunWith(TestParameterInjector.class)
 public class PairingTest {
@@ -85,12 +112,17 @@ public class PairingTest {
 
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int TEST_DELAY_MS = 1000;
+    private static final Duration GRPC_TIMEOUT = Duration.ofSeconds(10);
 
     private static final ParcelUuid BATTERY_UUID =
             ParcelUuid.fromString("0000180F-0000-1000-8000-00805F9B34FB");
 
     private static final ParcelUuid HOGP_UUID =
             ParcelUuid.fromString("00001812-0000-1000-8000-00805F9B34FB");
+
+    private static final String SERIAL_PORT_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+
+    private static final String TEST_SERVER_NAME = "RFCOMM Server";
 
     private static final Context sTargetContext =
             InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -120,6 +152,8 @@ public class PairingTest {
     private BluetoothDevice mRemoteLeDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
+
+    private BluetoothSocket socket;
 
     @Before
     public void setUp() throws Exception {
@@ -838,6 +872,239 @@ public class PairingTest {
         assertThat(sAdapter.getBondedDevices()).doesNotContain(mBumbleDevice);
 
         intentReceiver.close();
+    }
+
+    /**
+     * Test BR/EDR temporary bonding
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over BR/EDR
+     *   <li>Android creates Insecure RFCOMM socket with Bumble over BR/EDR
+     *   <li>Android disconnects the ACL link with Bumble
+     *   <li>Bumble is connectable over BR/EDR
+     *   <li>Android successfully creates bond with Bumble Over BR/EDR
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondBredr_RemoteInitiatedBonding() {
+        IntentReceiver intentReceiver = new IntentReceiver.Builder(sTargetContext,
+            BluetoothDevice.ACTION_ACL_CONNECTED,
+            BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+            BluetoothDevice.ACTION_PAIRING_REQUEST)
+            //BluetoothDevice.ACTION_ACL_DISCONNECTED)
+            //.setIntentListener(intentListener)
+            .build();
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding start:");
+
+        //Set Bumble device to not support bonding, mitm and sc.
+        PairingConfig pairingConfig =
+            BumbleConfigProto.PairingConfig.newBuilder()
+                .setBonding(false)
+                .setMitm(false)
+                .setSc(true)
+                .setIdentityAddressType(HostProto.OwnAddressType.PUBLIC)
+                .build();
+        OverrideRequest overrideRequest =
+            BumbleConfigProto.OverrideRequest.newBuilder().setPairingConfig(pairingConfig).build();
+        mBumble.bumbleConfigBlocking().override(overrideRequest);
+
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+            .setDiscoverabilityMode(
+                SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                    .build());
+
+        SetConnectabilityModeRequest request =
+            SetConnectabilityModeRequest.newBuilder()
+                .setMode(ConnectabilityMode.CONNECTABLE)
+                .build();
+        mBumble.hostBlocking().setConnectabilityMode(request);
+
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding Discovery done and Starting Server Request:");
+
+        StartServerRequest startServerRequest =
+            RfcommProto.StartServerRequest.newBuilder().setName(TEST_SERVER_NAME).setUuid(SERIAL_PORT_UUID).build();
+        /*Truth.assertThat(startServerRequest).isNotNull();
+        Truth.assertThat(startServerRequest.uuid).isNotNull();
+        Truth.assertThat(startServerRequest.uuid).isNotEmpty();*/
+        StartServerResponse response = mBumble.rfcommBlocking().startServer(startServerRequest);
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding startServer done:");
+
+        String remoteAddrStr = sAdapter.getAddress();
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding starting Remote: Remote address:"+remoteAddrStr);
+        ByteString remoteDevAddr = ByteString.copyFrom(bdAddressToByteArray(remoteAddrStr));
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding starting Remote: printinh ByteString addr:"+remoteDevAddr);
+
+        /*WaitConnectionRequest waitConnectionRequest =
+            WaitConnectionRequest.newBuilder()
+                .setAddress(remoteDevAddr)
+                .build();
+
+        Log.d(TAG, "testBondBredr_TempBonding starting Remote: calling WaitConnection API:");
+        WaitConnectionResponse waitConnResp = mBumble.hostBlocking().waitConnection(waitConnectionRequest);*/
+
+        try {
+            Log.d(TAG, "testBondBredr_RemoteInitiatedBonding CreateInsecure socket");
+            //Create RFCOMM insecure socket to Bumble
+            socket = mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(SERIAL_PORT_UUID));
+            Log.d(TAG, "testBondBredr_RemoteInitiatedBonding socket connect");
+            socket.connect();
+            Log.d(TAG, "testBondBredr_RemoteInitiatedBonding verify intents received for bonding after socket connect");
+
+            intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                    BluetoothDevice.TRANSPORT_BREDR));
+
+            intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+
+            /*intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(
+                    BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                    BluetoothDevice.PAIRING_VARIANT_CONSENT));
+            Log.d(TAG, "testBondBredr_TempBonding Calling setPairingConfirmation");
+            mBumbleDevice.setPairingConfirmation(true);
+
+            Log.d(TAG, "testBondBredr_TempBonding NOTTT SetConfirm on Bumble side");
+            PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+            assertThat(pairingEvent.hasJustWorks()).isTrue();
+            pairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());*/
+        } catch (IOException e) {
+            Log.i(TAG, "Expect socket connection failure: "+e);
+        }
+
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding AcceptConnectionResponse start:");
+        AcceptConnectionResponse connectionResponse =
+            mBumble
+                .rfcommBlocking()
+                .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .acceptConnection(
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(response.getServer()).build());
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding AcceptConnection done:");
+
+        WaitConnectionRequest waitConnectionRequest =
+            WaitConnectionRequest.newBuilder()
+                .setAddress(remoteDevAddr)
+                .build();
+
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding starting Remote: calling WaitConnection API:");
+        WaitConnectionResponse waitConnResp = mBumble.hostBlocking().waitConnection(waitConnectionRequest);
+
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding starting Remote Bumble initiated bonding for BREDR:");
+        // Start pairing from Bumble
+        /*PairingConfig pairingConfig1 =
+            BumbleConfigProto.PairingConfig.newBuilder()
+                .setBonding(true)
+                .setMitm(true)
+                .setSc(true)
+                .setIdentityAddressType(HostProto.OwnAddressType.PUBLIC)
+                .build();
+        OverrideRequest overrideRequest1 =
+            BumbleConfigProto.OverrideRequest.newBuilder().setPairingConfig(pairingConfig1).build();
+        mBumble.bumbleConfigBlocking().override(overrideRequest1);*/
+
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+            mBumble.security()
+                .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
+                    TimeUnit.MILLISECONDS)
+                .onPairing(mPairingEventStreamObserver);
+
+        StreamObserverSpliterator<SecureResponse> responseObserver =
+            new StreamObserverSpliterator<>();
+        mBumble.security()
+            .secure(
+                SecureRequest.newBuilder()
+                    .setConnection(waitConnResp.getConnection())
+                    .setClassic(SecurityLevel.LEVEL4)
+                    .build(),
+                responseObserver);
+
+        /*intentReceiver.verifyReceivedOrdered(
+            hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                BluetoothDevice.TRANSPORT_BREDR));*/
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding Rcvd ACL Connected intent:");
+        intentReceiver.verifyReceived(
+            hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                BluetoothDevice.BOND_BONDING));
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding Rcvd ACTION_BOND_STATE_CHANGED intent, Bonding");
+
+        intentReceiver.verifyReceived(
+            hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(
+                BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                BluetoothDevice.PAIRING_VARIANT_CONSENT));
+
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding Rcvd ACTION_PAIRING_REQUEST intent:");
+
+        // Approve pairing from Android
+        assertThat(mBumbleDevice.setPairingConfirmation(true)).isTrue();
+
+        /*PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+            PairingEventAnswer.newBuilder().setEvent(pairingEvent)
+                .setConfirm(true).build());*/
+
+        // Ensure that pairing succeeds
+        intentReceiver.verifyReceivedOrdered(
+            hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                BluetoothDevice.BOND_BONDED));
+
+        Log.d(TAG, "testBondBredr_RemoteInitiatedBonding Rcvd ACTION_BOND_STATE_CHANGED intent:,Bonded");
+
+
+        /*intentReceiver.verifyReceivedOrdered(
+            hasAction(BluetoothDevice.ACTION_ACL_DISCONNECTED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                BluetoothDevice.TRANSPORT_BREDR));*/
+        intentReceiver.close();
+    }
+
+    public static byte[] bdAddressToByteArray(String bdAddress) {
+        // Remove colons and convert to uppercase
+        String modifiedAddress = bdAddress.replace(":", "").toUpperCase();
+
+        // Ensure the address has 12 characters (6 bytes * 2 hex chars)
+        if (modifiedAddress.length() != 12) {
+            throw new IllegalArgumentException("Invalid BD address format. Address must contain 12 hex characters.");
+        }
+
+        byte[] byteArray = new byte[6];
+        for (int i = 0; i < 6; i++) {
+            String byteString = modifiedAddress.substring(i * 2, i * 2 + 2);
+            byteArray[i] = (byte) Integer.parseInt(byteString, 16);
+        }
+        Log.d(TAG, "TempBonding byteArray contents");
+        for (int i=0; i<6; i++) {
+            Log.d(TAG, " tempBonding byte array value:"+ String.format("%02x", byteArray[i]));
+        }
+
+        return byteArray;
     }
 
     /** Helper/testStep functions goes here */
