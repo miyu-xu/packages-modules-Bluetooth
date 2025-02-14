@@ -1556,6 +1556,7 @@ public class LeAudioService extends ProfileService {
     public List<BluetoothLeBroadcastMetadata> getAllBroadcastMetadata() {
         return mBroadcastDescriptors.values().stream()
                 .map(s -> s.mMetadata)
+                .filter(s -> s != null)
                 .collect(Collectors.toList());
     }
 
