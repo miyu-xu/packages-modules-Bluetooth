@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00a529d7_ccd48c79",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-14T18:03:50Z",
+      "side": 1,
+      "message": "it seems like these method can only be run on the local handler (since all callers are post on the handler) and thus, I am not sure the synchronized is needed.\nI would remove it.\n\nIf you think it is needed, then the mHfpBatteryIndicator should be annotated with a guardedBy to prevent wrong nusage",
+      "range": {
+        "startLine": 750,
+        "startChar": 4,
+        "endLine": 764,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b93c5433_8d4a6b24",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 751,
+                "startChar": 0,
+                "endLine": 754,
+                "endChar": 0
+              },
+              "replacement": "            this.mHfpBatteryIndicator \u003d hfpBatteryIndicator;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 760,
+                "startChar": 0,
+                "endLine": 763,
+                "endChar": 0
+              },
+              "replacement": "            return mHfpBatteryIndicator;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4465f781dcac7dff68bfef306028c79dcde47e16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
