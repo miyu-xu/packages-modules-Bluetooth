@@ -45,7 +45,7 @@ use crate::bluetooth_gatt::{
 use crate::bluetooth_media::{BluetoothMedia, IBluetoothMedia, MediaActions};
 use crate::dis::{DeviceInformation, ServiceCallbacks};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
-use crate::suspend::Suspend;
+use crate::suspend::{Suspend, SuspendActions};
 use bt_topshim::{
     btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, DisplayAddress, RawAddress, Uuid},
     profiles::{
@@ -121,11 +121,7 @@ pub enum Message {
     ),
 
     // Suspend related
-    SuspendCallbackRegistered(u32),
-    SuspendCallbackDisconnected(u32),
-    SuspendReady(i32),
-    ResumeReady(i32),
-    AudioReconnectOnResumeComplete,
+    SuspendActions(SuspendActions),
 
     // Scanner related
     ScannerCallbackDisconnected(u32),
@@ -461,24 +457,8 @@ impl Stack {
                     }
                 }
 
-                Message::SuspendCallbackRegistered(id) => {
-                    suspend.lock().unwrap().callback_registered(id);
-                }
-
-                Message::SuspendCallbackDisconnected(id) => {
-                    suspend.lock().unwrap().remove_callback(id);
-                }
-
-                Message::SuspendReady(suspend_id) => {
-                    suspend.lock().unwrap().suspend_ready(suspend_id);
-                }
-
-                Message::ResumeReady(suspend_id) => {
-                    suspend.lock().unwrap().resume_ready(suspend_id);
-                }
-
-                Message::AudioReconnectOnResumeComplete => {
-                    suspend.lock().unwrap().audio_reconnect_complete();
+                Message::SuspendActions(action) => {
+                    suspend.lock().unwrap().handle_action(action);
                 }
 
                 Message::ScannerCallbackDisconnected(id) => {
