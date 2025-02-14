@@ -1110,6 +1110,8 @@ public:
     } else {
       remove_device_from_accept_list(address_with_type);
     }
+    log_le_connection_status(address_with_type.GetAddress(), true /* is connect */,
+                             ErrorCode::CONNECTION_ACCEPT_TIMEOUT);
     le_client_handler_->Post(common::BindOnce(
             &LeConnectionCallbacks::OnLeConnectFail, common::Unretained(le_client_callbacks_),
             address_with_type, ErrorCode::CONNECTION_ACCEPT_TIMEOUT));
