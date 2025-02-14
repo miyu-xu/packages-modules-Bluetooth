@@ -3877,11 +3877,12 @@ public class LeAudioService extends ProfileService {
                  */
                 if ((mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID)
                         && mCreateBroadcastQueue.isEmpty()
-                        && (!Objects.equals(device, mActiveBroadcastAudioDevice))) {
+                        && (!Objects.equals(null, mActiveBroadcastAudioDevice))) {
                     if (!leaudioBigDependsOnAudioState()) {
                         clearCreateBroadcastTimeoutCallback();
                     }
                     updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
+                    transitionFromBroadcastToUnicast();
                 }
 
                 mHandler.post(() -> notifyBroadcastStartFailed(BluetoothStatusCodes.ERROR_UNKNOWN));
