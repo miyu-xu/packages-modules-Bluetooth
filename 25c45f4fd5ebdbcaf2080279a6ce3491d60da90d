@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19e8d68_f624cfbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-14T08:37:52Z",
+      "side": 1,
+      "message": "Moving to Generics for simpler code",
+      "revId": "25c45f4fd5ebdbcaf2080279a6ce3491d60da90d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
