@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb2e8be_470b2a39",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2479,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-14T02:52:16Z",
+      "side": 1,
+      "message": "Yes, the case for me is BluetoothInCallService.\n\nFor the opp stuff, do you mean to hard code filter out:\n\nList\u003cString\u003e baseBluetoothOppActivities \u003d\n                    List.of(\n                            // Base sharing activity\n                            \"com.android.bluetooth.opp.BluetoothOppLauncherActivity\",\n                            // BT enable activities\n                            \"com.android.bluetooth.opp.BluetoothOppBtEnableActivity\",\n                            \"com.android.bluetooth.opp.BluetoothOppBtEnablingActivity\",\n                            \"com.android.bluetooth.opp.BluetoothOppBtErrorActivity\");\n                            \nWhat about set them enabled by default in AndroidManifest?",
+      "parentUuid": "7968dee9_20ce5cc7",
+      "range": {
+        "startLine": 2479,
+        "startChar": 35,
+        "endLine": 2479,
+        "endChar": 47
+      },
+      "revId": "4c3899207bd1b9fd1b50e3ebec8f1e6634eb15f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a99b8442_24157b5e",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "serviceInfor.isEnabled() is to filter out manifest enabled components, here we would only disable componenets dynamic enabled.",
       "parentUuid": "102b924b_37954d86",
+      "range": {
+        "startLine": 2496,
+        "startChar": 18,
+        "endLine": 2498,
+        "endChar": 49
+      },
+      "revId": "4c3899207bd1b9fd1b50e3ebec8f1e6634eb15f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27693c90_f8183736",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 44
+      },
+      "lineNbr": 2498,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-14T02:52:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3464949a_898e9d19",
       "range": {
         "startLine": 2496,
         "startChar": 18,
