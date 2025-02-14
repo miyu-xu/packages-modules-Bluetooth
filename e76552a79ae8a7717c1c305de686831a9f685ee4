@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc5df720_a01fe091",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3371405
+      },
+      "writtenOn": "2025-02-14T02:36:25Z",
+      "side": 1,
+      "message": "Thank you for the reminder. \nDo you mean that the local key is always valid on Android, right? \nIf so, I think we can also remove the check for the peer key, because even if the peer key is invalid, as long as the local key is valid, we should add this address to the Resolving list. \nDo you agree?",
+      "parentUuid": "19b841af_ac27237b",
+      "range": {
+        "startLine": 571,
+        "startChar": 7,
+        "endLine": 571,
+        "endChar": 34
+      },
+      "revId": "e76552a79ae8a7717c1c305de686831a9f685ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c61c2500_5dd8e0bf",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 2
