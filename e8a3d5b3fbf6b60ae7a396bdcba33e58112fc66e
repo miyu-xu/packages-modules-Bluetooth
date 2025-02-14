@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c93ba22_1d715329",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T18:58:13Z",
+      "side": 1,
+      "message": "I discussed this with Łukasz some time ago, on disconenctions LE AUdio  re-add device to TA, so we are safe.",
+      "parentUuid": "c831c50c_d8861a80",
+      "range": {
+        "startLine": 603,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 3
+      },
+      "revId": "e8a3d5b3fbf6b60ae7a396bdcba33e58112fc66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9732dc7b_0deb3ede",
@@ -60,6 +84,30 @@
       "writtenOn": "2025-02-14T18:27:01Z",
       "side": 1,
       "message": "Please double check if we should still keep the device on bgconn_dev list so that we can continue doing targeted annoucements.",
+      "range": {
+        "startLine": 280,
+        "startChar": 24,
+        "endLine": 280,
+        "endChar": 44
+      },
+      "revId": "e8a3d5b3fbf6b60ae7a396bdcba33e58112fc66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6012a7a_1e830cc6",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T18:58:13Z",
+      "side": 1,
+      "message": "I discussed this with Łukasz some time ago, on disconenctions LE AUdio  re-add device to TA, so we are safe.",
+      "parentUuid": "9732dc7b_0deb3ede",
       "range": {
         "startLine": 280,
         "startChar": 24,

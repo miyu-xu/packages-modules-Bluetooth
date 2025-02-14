@@ -22,6 +22,30 @@
       },
       "revId": "47773b0fd4a95aa8defced6e7c8c754b953cb068",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deccccaa_ef2e92c1",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-14T18:58:13Z",
+      "side": 0,
+      "message": "I discussed this with Łukasz some time ago, on disconenctions LE AUdio  re-add device to TA, so we are safe.",
+      "parentUuid": "94f132f7_5f817eab",
+      "range": {
+        "startLine": 187,
+        "startChar": 19,
+        "endLine": 187,
+        "endChar": 45
+      },
+      "revId": "47773b0fd4a95aa8defced6e7c8c754b953cb068",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
