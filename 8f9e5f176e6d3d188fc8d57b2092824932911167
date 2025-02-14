@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c78a470_5285985e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-14T16:17:47Z",
+      "side": 1,
+      "message": "Not sure I understand why this is required",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 37
+      },
+      "revId": "8f9e5f176e6d3d188fc8d57b2092824932911167",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
