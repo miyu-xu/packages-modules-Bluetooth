@@ -5410,8 +5410,7 @@ public:
     log::debug("is_ongoing_call_on_other_direction={}",
                is_ongoing_call_on_other_direction ? "True" : "False");
 
-    if (remote_metadata.get(remote_other_direction).test_any(all_bidirectional_contexts) &&
-        !(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction)) {
+    if (!(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction)) {
       log::debug("The other direction is not streaming bidirectional, ignore that context.");
       remote_metadata.get(remote_other_direction).clear();
     }
