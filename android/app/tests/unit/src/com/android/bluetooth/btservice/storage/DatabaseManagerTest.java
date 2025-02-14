@@ -53,6 +53,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.storage.Metadata;
 import com.android.bluetooth.flags.Flags;
 
 import org.junit.After;
@@ -443,6 +444,7 @@ public final class DatabaseManagerTest {
         testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_GTBS_CCCD, value, true);
         testSetGetCustomMetaCase(false, badKey, value, false);
         testSetGetCustomMetaCase(false, BluetoothDevice.METADATA_EXCLUSIVE_MANAGER, value, true);
+        testSetGetCustomMetaCase(false, Metadata.METADATA_BOND_LOSS_COUNT, value, true);
 
         // Device is in database
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_MANUFACTURER_NAME, value, true);
@@ -487,6 +489,7 @@ public final class DatabaseManagerTest {
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_GMCS_CCCD, value, true);
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_GTBS_CCCD, value, true);
         testSetGetCustomMetaCase(true, BluetoothDevice.METADATA_EXCLUSIVE_MANAGER, value, true);
+        testSetGetCustomMetaCase(true, Metadata.METADATA_BOND_LOSS_COUNT, value, true);
     }
 
     @Test
@@ -1431,6 +1434,28 @@ public final class DatabaseManagerTest {
         }
     }
 
+    @Test
+    public void testDatabaseMigration_121_122() throws IOException {
+        // Create a database with version 121
+        SupportSQLiteDatabase db = testHelper.createDatabase(DB_NAME, 121);
+
+        // insert a device to the database
+        ContentValues device = contentValuesDevice_121();
+        assertThat(db.insert("metadata", SQLiteDatabase.CONFLICT_IGNORE, device)).isNotEqualTo(-1);
+
+        // Migrate database from 121 to 122
+        db.close();
+        db =
+                testHelper.runMigrationsAndValidate(
+                        DB_NAME, 122, true, MetadataDatabase.MIGRATION_121_122);
+        Cursor cursor = db.query("SELECT * FROM metadata");
+        assertHasColumn(cursor, "bond_loss_count", true);
+        while (cursor.moveToNext()) {
+            // Check the new column was added with default value
+            assertColumnBlobData(cursor, "bond_loss_count", null);
+        }
+    }
+
     private ContentValues createContentValuesDeviceCommon() {
         ContentValues device = new ContentValues();
         device.put("address", mDevice.getAddress());
@@ -1612,6 +1637,12 @@ public final class DatabaseManagerTest {
     private ContentValues contentValuesDevice_120() {
         ContentValues device = contentValuesDevice_119();
         device.put("active_audio_device_policy", 0);
+        return device;
+    }
+
+    private ContentValues contentValuesDevice_121() {
+        ContentValues device = contentValuesDevice_120();
+        device.put("is_preferred_microphone_for_calls", 1); // default is true
         return device;
     }
 
