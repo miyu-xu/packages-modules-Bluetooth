@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b14a71b8_dfddbb0a",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-14T18:27:01Z",
+      "side": 1,
+      "message": "When count is 0, this will trigger the warning \n\n`packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h`\n\n```\nlog::warn(\"Device not in acceptlist and cannot be removed: {}\", address_with_type);\n```",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 83
+      },
+      "revId": "e8a3d5b3fbf6b60ae7a396bdcba33e58112fc66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c831c50c_d8861a80",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-14T18:27:01Z",
+      "side": 1,
+      "message": "Here, if we are using targeted annoucements, we don\u0027t erase it from `bgconn_dev`, but only mark it as not in the accept list",
+      "range": {
+        "startLine": 603,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 3
+      },
+      "revId": "e8a3d5b3fbf6b60ae7a396bdcba33e58112fc66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9732dc7b_0deb3ede",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-14T18:27:01Z",
+      "side": 1,
+      "message": "Please double check if we should still keep the device on bgconn_dev list so that we can continue doing targeted annoucements.",
+      "range": {
+        "startLine": 280,
+        "startChar": 24,
+        "endLine": 280,
+        "endChar": 44
+      },
+      "revId": "e8a3d5b3fbf6b60ae7a396bdcba33e58112fc66e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

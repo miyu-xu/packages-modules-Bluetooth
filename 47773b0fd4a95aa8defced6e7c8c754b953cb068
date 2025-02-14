@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f132f7_5f817eab",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-14T18:27:01Z",
+      "side": 0,
+      "message": "with this version, you don\u0027t remove it from `bgconn_dev`, for TA devices, `bgconn_dev` is handling TA scanning\n\nSince you are removing the bond, most likely you are fine",
+      "range": {
+        "startLine": 187,
+        "startChar": 19,
+        "endLine": 187,
+        "endChar": 45
+      },
+      "revId": "47773b0fd4a95aa8defced6e7c8c754b953cb068",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
