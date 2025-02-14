@@ -34,6 +34,24 @@
       "parentUuid": "197b1aeb_a4fde8f8",
       "revId": "901909c46a986316cafad1dee39d4df55f71a2c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8213207c_99044b95",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-14T00:39:58Z",
+      "side": 1,
+      "message": "ack, was confusing about multiple checks without logging.",
+      "parentUuid": "8a6c8f0a_ee1acef8",
+      "revId": "901909c46a986316cafad1dee39d4df55f71a2c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
