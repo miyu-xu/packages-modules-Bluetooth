@@ -52,6 +52,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.bas.BatteryService;
+import com.android.bluetooth.btservice.storage.Metadata;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
@@ -1536,6 +1537,21 @@ public class RemoteDevices {
                             .addFlags(
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+            /*
+             * Update the bond loss count metadata, when transitioning from BOND_BONDED to
+             * KEY_MISSING
+             */
+            byte[] bondLossCountMetadata =
+                    mAdapterService.getMetadata(bluetoothDevice, Metadata.METADATA_BOND_LOSS_COUNT);
+            if (bondLossCountMetadata != null && bondLossCountMetadata[0] < Byte.MAX_VALUE) {
+                bondLossCountMetadata[0] = (byte) (bondLossCountMetadata[0] + 1);
+
+                mAdapterService.setMetadata(
+                        bluetoothDevice,
+                        Metadata.METADATA_BOND_LOSS_COUNT,
+                        bondLossCountMetadata);
+            }
+
             if (Flags.keyMissingPublic()) {
                 mAdapterService.sendOrderedBroadcast(
                         intent,
@@ -1609,6 +1625,10 @@ public class RemoteDevices {
                 /* Classic link using non-secure connections mode */
                 algorithm = BluetoothDevice.ENCRYPTION_ALGORITHM_E0;
             }
+
+            // Reset the bond loss count metadata when we have a successful bond.
+            mAdapterService.setMetadata(
+                    bluetoothDevice, Metadata.METADATA_BOND_LOSS_COUNT, new byte[] {0});
         }
 
         Intent intent =
