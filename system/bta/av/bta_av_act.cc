@@ -378,9 +378,8 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, tAVCT_ROLE role, uint8_t shdl, uint8_
           .company_id = p_bta_av_cfg->company_id,
           .conn = role,
           // note: BTA_AV_FEAT_RCTG = AVRC_CT_TARGET, BTA_AV_FEAT_RCCT = AVRC_CT_CONTROL
-          .control =
-                  static_cast<uint8_t>(p_cb->features & (BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT |
-                                                         BTA_AV_FEAT_METADATA | AVRC_CT_PASSIVE)),
+          .control = static_cast<uint8_t>(p_cb->features &
+                      (BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT | BTA_AV_FEAT_METADATA)),
   };
 
   if (AVRC_Open(&rc_handle, &ccb, bda) != AVRC_SUCCESS) {
@@ -2186,11 +2185,12 @@ static void bta_av_rc_disc_done_all(tBTA_AV_DATA* /* p_data */) {
        * we still need to send RC feature event. So we need to get BD
        * from Message.  Note that lidx is 1 based not 0 based
        */
-      if (p_cb->rcb[rc_handle].lidx > 0) {
-        peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx - 1].addr;
-      } else {
-        peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx].addr;
+      if (!((p_cb->rcb[rc_handle].lidx - 1) >= 0 &&
+          (p_cb->rcb[rc_handle].lidx - 1) < (BTA_AV_NUM_LINKS + 1))) {
+        log::warn("lidx({}) Invalid", p_cb->rcb[rc_handle].lidx);
+        return;
       }
+      peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx - 1].addr;
     } else {
       peer_addr = p_scb->PeerAddress();
     }
@@ -2375,6 +2375,11 @@ void bta_av_rc_disc_done(tBTA_AV_DATA* p_data) {
        * we still need to send RC feature event. So we need to get BD
        * from Message.  Note that lidx is 1 based not 0 based
        */
+      if (!((p_cb->rcb[rc_handle].lidx - 1) >= 0 &&
+          (p_cb->rcb[rc_handle].lidx - 1) < (BTA_AV_NUM_LINKS + 1))) {
+        log::warn("lidx({}) invalid", p_cb->rcb[rc_handle].lidx);
+        return;
+      }
       rc_feat.peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx - 1].addr;
     } else {
       rc_feat.peer_addr = p_scb->PeerAddress();
@@ -2473,6 +2478,17 @@ void bta_av_rc_closed(tBTA_AV_DATA* p_data) {
         log::info("rc_only closed bd_addr: {}", p_msg->peer_addr);
         p_lcb->conn_msk = 0;
         p_lcb->lidx = 0;
+      } else {
+        if (btif_av_src_sink_coexist_enabled()) {
+          tBTA_AV_LCB *lcb = bta_av_find_lcb(p_msg->peer_addr, BTA_AV_LCB_FIND);
+          if (lcb && p_rcb->lidx == lcb->lidx) {
+            p_lcb = &p_cb->lcb[BTA_AV_NUM_LINKS];
+            rc_close.peer_addr = p_msg->peer_addr;
+            log::info("a2dp not connect rc_only closed bd_addr: {}", p_msg->peer_addr);
+            p_lcb->conn_msk = 0;
+            p_lcb->lidx = 0;
+          }
+        }
       }
       p_rcb->lidx = 0;
 
