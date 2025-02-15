@@ -120,12 +120,33 @@ using ::aidl::android::hardware::bluetooth::audio::SessionType;
 
 class BluetoothAudioPortAidl : public BluetoothAudioPort {
 public:
+<<<<<<< HEAD
   BluetoothAudioPortAidl();
   virtual ~BluetoothAudioPortAidl() = default;
 
   bool SetUp(audio_devices_t devices) override;
 
   void TearDown() override;
+=======
+    return 0;
+  };
+  virtual size_t ReadData(void* buffer, size_t bytes) const { return 0; };
+
+  virtual bool SetLatencyMode(audio_latency_mode_t mode) { return false; }
+
+  virtual int GetRecommendedLatencyModes(audio_latency_mode_t* modes,
+                                         size_t* num_modes) {
+    return -ENOSYS;
+  };
+
+  virtual int SetLatencyModeCallback(stream_latency_mode_callback_t callback,
+                                     void* cookie) {
+    return -ENOSYS;
+  };
+};
+
+namespace aidl {
+>>>>>>> PATCH
 
   void ForcePcmStereoToMono(bool force) override { is_stereo_to_mono_ = force; }
 
@@ -171,19 +192,48 @@ protected:
   // WR to support Mono: True if fetching Stereo and mixing into Mono
   bool is_stereo_to_mono_ = false;
   virtual bool in_use() const;
+<<<<<<< HEAD
 
 private:
   mutable std::mutex cv_mutex_;
   std::condition_variable internal_cv_;
 
   // Check and initialize session type for |devices| If failed, this
+=======
+
+  bool GetPreferredDataIntervalUs(size_t* interval_us) const override;
+
+  bool SetLatencyMode(audio_latency_mode_t mode) override;
+
+  int GetRecommendedLatencyModes(audio_latency_mode_t* modes,
+                                 size_t* num_modes) override;
+
+  int SetLatencyModeCallback(stream_latency_mode_callback_t callback,
+                             void* cookie) override;
+
+<<<<<<< HEAD
+ protected:
+  uint16_t cookie_;
+  BluetoothStreamState state_;
+>>>>>>> PATCH
   // BluetoothAudioPortAidl is not initialized and must be deleted.
   bool init_session_type(audio_devices_t device);
+=======
+ private:
+  mutable std::mutex cv_mutex_;
+  std::condition_variable internal_cv_;
+  stream_latency_mode_callback_t latency_mode_callback_;
+  void* latency_mode_callback_cookie_;
+
+  // Check and initialize session type for |devices| If failed, this
+  // BluetoothAudioPortAidl is not initialized and must be deleted.
+>>>>>>> PATCH
 
   bool CondwaitState(BluetoothStreamState state);
 
   void ControlResultHandler(const BluetoothAudioStatus& status);
   void SessionChangedHandler();
+  void LowLatencyAllowedHander(bool allowed);
 };
 
 class BluetoothAudioPortAidlOut : public BluetoothAudioPortAidl {

@@ -714,12 +714,44 @@ int adev_open_output_stream(struct audio_hw_device* dev, audio_io_handle_t /*han
   LOG(VERBOSE) << __func__ << ": device=" << StringPrintf("%#x", devices);
 
   out->stream_out_.common.get_sample_rate = out_get_sample_rate;
+<<<<<<< HEAD
   out->stream_out_.common.set_sample_rate = out_set_sample_rate;
   out->stream_out_.common.get_buffer_size = out_get_buffer_size;
   out->stream_out_.common.get_channels = out_get_channels;
   out->stream_out_.common.get_format = out_get_format;
   out->stream_out_.common.set_format = out_set_format;
   out->stream_out_.common.standby = out_standby;
+=======
+  out->bluetooth_output_->UpdateSourceMetadata(source_metadata);
+}
+
+static int out_set_latency_mode(struct audio_stream_out* stream,
+                                audio_latency_mode_t mode) {
+  auto* out = reinterpret_cast<BluetoothStreamOut*>(stream);
+
+  return out->bluetooth_output_->SetLatencyMode(mode) ? 0 : -ENOSYS;
+}
+
+static int out_get_recommended_latency_modes(struct audio_stream_out* stream,
+                                             audio_latency_mode_t* modes,
+                                             size_t* num_modes) {
+  auto* out = reinterpret_cast<BluetoothStreamOut*>(stream);
+
+  return out->bluetooth_output_->GetRecommendedLatencyModes(modes, num_modes);
+}
+
+static int out_set_latency_mode_callback(
+    struct audio_stream_out* stream, stream_latency_mode_callback_t callback,
+    void* cookie) {
+  auto* out = reinterpret_cast<BluetoothStreamOut*>(stream);
+
+  return out->bluetooth_output_->SetLatencyModeCallback(callback, cookie);
+}
+
+int adev_open_output_stream(struct audio_hw_device* dev,
+                            audio_io_handle_t handle, audio_devices_t devices,
+                            audio_output_flags_t flags,
+>>>>>>> PATCH
   out->stream_out_.common.dump = out_dump;
   out->stream_out_.common.set_parameters = out_set_parameters;
   out->stream_out_.common.get_parameters = out_get_parameters;
@@ -751,12 +783,26 @@ int adev_open_output_stream(struct audio_hw_device* dev, audio_io_handle_t /*han
   }
   out->sample_rate_ = config->sample_rate;
   out->channel_mask_ = config->channel_mask;
+<<<<<<< HEAD
   out->format_ = config->format;
   // frame is number of samples per channel
 
   size_t preferred_data_interval_us = kBluetoothDefaultOutputBufferMs * 1000;
   if (out->bluetooth_output_->GetPreferredDataIntervalUs(&preferred_data_interval_us) &&
       preferred_data_interval_us != 0) {
+=======
+  out->stream_out_.resume = out_resume;
+  out->stream_out_.get_presentation_position = out_get_presentation_position;
+  out->stream_out_.update_source_metadata = out_update_source_metadata;
+  out->stream_out_.set_latency_mode = out_set_latency_mode;
+  out->stream_out_.get_recommended_latency_modes =
+      out_get_recommended_latency_modes;
+  out->stream_out_.set_latency_mode_callback = out_set_latency_mode_callback;
+
+  /** Fix Coverity Scan Issue @{ */
+  out->channel_mask_ = AUDIO_CHANNEL_NONE;
+  /** @} */
+>>>>>>> PATCH
     out->preferred_data_interval_us = preferred_data_interval_us;
   } else {
     out->preferred_data_interval_us = kBluetoothDefaultOutputBufferMs * 1000;
