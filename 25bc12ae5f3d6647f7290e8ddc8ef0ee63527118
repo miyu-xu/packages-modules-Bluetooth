@@ -57,6 +57,30 @@
       },
       "revId": "25bc12ae5f3d6647f7290e8ddc8ef0ee63527118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e8173c_949fb9f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-15T03:18:25Z",
+      "side": 1,
+      "message": "PTAL. Thank you!",
+      "parentUuid": "d8ff41a8_624ad6cd",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 25
+      },
+      "revId": "25bc12ae5f3d6647f7290e8ddc8ef0ee63527118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
