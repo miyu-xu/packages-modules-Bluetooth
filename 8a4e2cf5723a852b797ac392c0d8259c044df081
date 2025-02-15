@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "118c50c2_da71c353",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2492,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-15T00:48:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a82cb178_375bd9f0",
+      "range": {
+        "startLine": 2489,
+        "startChar": 2,
+        "endLine": 2492,
+        "endChar": 9
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "395e4706_96a58a7a",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ae149e_69ae01c0",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2494,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-15T00:48:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "395e4706_96a58a7a",
+      "range": {
+        "startLine": 2494,
+        "startChar": 37,
+        "endLine": 2494,
+        "endChar": 65
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "689ef6e7_86c395c1",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-02-14T18:13:17Z",
       "side": 1,
       "message": "not needed ?",
+      "range": {
+        "startLine": 2503,
+        "startChar": 0,
+        "endLine": 2503,
+        "endChar": 45
+      },
+      "revId": "8a4e2cf5723a852b797ac392c0d8259c044df081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1f94b55_69211f45",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 57
+      },
+      "lineNbr": 2503,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-02-15T00:48:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "689ef6e7_86c395c1",
       "range": {
         "startLine": 2503,
         "startChar": 0,
