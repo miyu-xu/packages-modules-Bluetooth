@@ -101,6 +101,7 @@ public class MapClientServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        mService.stop();
         mService.cleanup();
         assertThat(MapClientService.getMapClientService()).isNull();
     }
