@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d502624_52a72a0d",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-15T00:19:50Z",
+      "side": 1,
+      "message": "We should be adding MITM check in its place. Also MITM protection should mean that the link is already encrypted.",
+      "revId": "f898245346dd4a1e278952f91d62cfd4518bb944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
