@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6499a35b_eeb563fa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-15T03:09:31Z",
+      "side": 1,
+      "message": "not everything in BluetoothDevice is an API.\nIt;s only if it is:\npublic and not @hide\npublic and @hide but annotated with @systemAPI\n\nSo this is not an API: \n```\n    /**\n     * The metadata of the audio spatial data. Data type should be {@link Byte} array.\n     *\n     * @hide\n     */\n    public static final int METADATA_SPATIAL_AUDIO \u003d 24;\n```\n\nthis is a systemApi\n```\n    /**\n     * The metadata of the Fast Pair for LE Audio capable devices. Data type should be {@link Byte}\n     * array.\n     *\n     * @hide\n     */\n    @SystemApi public static final int METADATA_LE_AUDIO \u003d 26;\n```\nand this is a public API\n```\n    /** Bluetooth device type, Unknown */\n    public static final int DEVICE_TYPE_UNKNOWN \u003d 0;\n```\n\n\n\n-----\n\n\nBut this comment become obsolet if we do the proper API as suggested in the other comment",
+      "parentUuid": "7db595c5_17665d7d",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "703056b8_e951788b",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
         "patchSetId": 7
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Yes, actuall we can do it in Metadata itself such as `active_audio_device_policy`, but this is added specifically for apps to access (settings apps specifically). Hence kept it as externally usable just like other metadata.",
       "parentUuid": "703056b8_e951788b",
+      "range": {
+        "startLine": 705,
+        "startChar": 92,
+        "endLine": 705,
+        "endChar": 96
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca10bc0_c14dc292",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-15T03:09:31Z",
+      "side": 1,
+      "message": "My understanding of the custom metadata is that they are customizable by the app. device icon, threshold for battery, data from fastpair, device characteristiques set by companion app\n\nHere we want to store something related to the device but internal to the stack, and let the setting knows.\nThe customMetadata seems to be not adequat and I would do a proper field in the database that can only be read by external app with the correct API.",
+      "parentUuid": "5d1f2088_1c00ddb8",
       "range": {
         "startLine": 705,
         "startChar": 92,
