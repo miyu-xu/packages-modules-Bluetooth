@@ -938,12 +938,12 @@ void btif_hh_disconnected(const RawAddress& addr, tBT_TRANSPORT transport) {
  ******************************************************************************/
 void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
   BTHH_LOG_LINK(link_spec);
-  bool announce_vup = false;
+  bool connection_removed = false;
 
   for (int i = 0; i < BTIF_HH_MAX_ADDED_DEV; i++) {
     btif_hh_added_device_t* p_added_dev = &btif_hh_cb.added_devices[i];
     if (p_added_dev->link_spec == link_spec) {
-      announce_vup = true;
+      connection_removed = true;
       BTA_HhRemoveDev(p_added_dev->dev_handle);
       btif_storage_remove_hid_info(p_added_dev->link_spec);
       p_added_dev->link_spec = {};
@@ -960,7 +960,7 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
    * used, btif_hh_find_dev_by_link_spec() finds both HID and HOGP instances */
   btif_hh_device_t* p_dev;
   while ((p_dev = btif_hh_find_dev_by_link_spec(link_spec)) != nullptr) {
-    announce_vup = true;
+    connection_removed = true;
     // Notify upper layers of disconnection to avoid getting states out of sync
     do_in_jni_thread(base::Bind(
             [](tAclLinkSpec link_spec) {
@@ -986,7 +986,12 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
     }
   }
 
-  if (!announce_vup) {
+  // Remove pending connection if address matches
+  size_t pending_connections = btif_hh_cb.new_connection_requests.remove_if(
+          [link_spec](auto ls) { return ls.addrt.bda == link_spec.addrt.bda; });
+
+  if (!connection_removed && pending_connections == 0) {
+    log::info("Device {} not found", link_spec);
     return;
   }
   do_in_jni_thread(base::Bind(
@@ -1031,10 +1036,6 @@ bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec) {
   // Remove the connecting or added device
   if (btif_hh_find_dev_by_link_spec(link_spec) != nullptr ||
       btif_hh_find_added_dev(link_spec) != nullptr) {
-    // Remove pending connection if address matches
-    btif_hh_cb.new_connection_requests.remove_if(
-            [link_spec](auto ls) { return ls.addrt.bda == link_spec.addrt.bda; });
-
     btif_hh_remove_device(link_spec);
     BTA_DmRemoveDevice(link_spec.addrt.bda);
     return BT_STATUS_SUCCESS;
