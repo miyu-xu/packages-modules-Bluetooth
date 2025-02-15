@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa343c1b_5866c1b3",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 1113,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-15T00:02:20Z",
+      "side": 1,
+      "message": "This is local timeout for the connection attempt, not the HCI timeout. We should probably use a separate event for this.",
+      "revId": "1ae54b9582f27fe51f44b70062e98887e0785730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
