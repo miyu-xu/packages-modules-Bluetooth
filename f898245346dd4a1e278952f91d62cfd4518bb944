@@ -16,6 +16,24 @@
       "message": "We should be adding MITM check in its place. Also MITM protection should mean that the link is already encrypted.",
       "revId": "f898245346dd4a1e278952f91d62cfd4518bb944",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30c7d2fb_0b0e71ca",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-15T01:08:54Z",
+      "side": 1,
+      "message": "Actually that flag name is not reflecting the right intention. I created for something \u0026 then resulted here.\n\nBasically, this change is not needed as It is checking against a flag BTM_SEC_IN_AUTHENTICATE (which not meant for MITM)\n\nFor the actual MITM requirements, It further goes down and BTM_SEC_IN_MITM flag \u0026 fail if it doesnt meet the requirement.\n\nThis check is preventing Encrypt only socket incoming connection. sec requirement fails as It thinks MITM as requirement (due to this old flag) and fails as It is encryption only link.\n\nThere is test failing without this change - aosp/3390379\nTest basically does this,\n1) Create Just works pairing between Phone \u0026 Bumble\n2) Create Listening \u0027Encrypt Only\u0027 socket on Phone\n3) Create \u0027Encrypt Only\u0027 client socket \u0026 Trigger connection to Listening socket on phone\n\nSocket connection fails due to this check.\n\nI have some log references \u0026 comparisions of Incoming \u0026 outgoing connections in bug. please check",
+      "parentUuid": "2d502624_52a72a0d",
+      "revId": "f898245346dd4a1e278952f91d62cfd4518bb944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
