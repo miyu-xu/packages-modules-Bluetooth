@@ -16,6 +16,24 @@
       "message": "Will this change ensure if codec_selectable_capability_ is also modified correctly with current codec_type \u0026 config? As I percive selectable capability is intersection of local capability \u0026 peer_capability left for end user to display \u0026 make choice for user selection.",
       "revId": "49d3c8775cf5894eb560246c44f1ec246dd54f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa88bf67_e7271f40",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-15T03:45:06Z",
+      "side": 1,
+      "message": "No; that is a partial fix only, for one issue which I had identified.\nI will continue checking the implementation next week.",
+      "parentUuid": "d87794d2_4b88d4d0",
+      "revId": "49d3c8775cf5894eb560246c44f1ec246dd54f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
