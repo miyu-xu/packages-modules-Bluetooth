@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "574e41dc_46b7eaf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042638
+      },
+      "writtenOn": "2025-02-15T01:41:59Z",
+      "side": 1,
+      "message": "CP of ag/27272061 with conflicts resolution and automatic formatting.",
+      "revId": "a7fd53c0133bff45df77d73ef3ea343eb3b692fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
