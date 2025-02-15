@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7db595c5_17665d7d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-15T02:18:19Z",
+      "side": 1,
+      "message": "As per info I received, we cannot make API changes as of now, hence cannot add anything in BluetoothDevice. Thats why added here with a TODO.",
+      "parentUuid": "2f7d674a_c8eac1ce",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "703056b8_e951788b",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-14T18:45:36Z",
       "side": 1,
       "message": "Shouldn\u0027t this be an INTEGER ?\n\nI see that this is a blob to match a customized key in the database.\nTHese key are usually settable by external caller.\nI wonder if this is really what we want here.",
+      "range": {
+        "startLine": 705,
+        "startChar": 92,
+        "endLine": 705,
+        "endChar": 96
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d1f2088_1c00ddb8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-15T02:18:19Z",
+      "side": 1,
+      "message": "Yes, actuall we can do it in Metadata itself such as `active_audio_device_policy`, but this is added specifically for apps to access (settings apps specifically). Hence kept it as externally usable just like other metadata.",
+      "parentUuid": "703056b8_e951788b",
       "range": {
         "startLine": 705,
         "startChar": 92,
