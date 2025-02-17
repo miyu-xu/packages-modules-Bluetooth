@@ -249,7 +249,6 @@ public final class BluetoothHidDevice implements BluetoothProfile {
      * during app registration.
      */
     public abstract static class Callback {
-
         private static final String TAG = "BluetoothHidDevCallback";
 
         /**
