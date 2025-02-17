@@ -44,7 +44,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Public API for the Bluetooth GATT Profile.
@@ -98,7 +97,7 @@ public final class BluetoothGatt implements BluetoothProfile {
     // Max length of an attribute value, defined in gatt_api.h
     private static final int GATT_MAX_ATTR_LEN = 512;
 
-    private CopyOnWriteArrayList<BluetoothGattService> mServices;
+    private List<BluetoothGattService> mServices;
 
     /** A GATT operation completed successfully */
     public static final int GATT_SUCCESS = 0;
@@ -1023,7 +1022,7 @@ public final class BluetoothGatt implements BluetoothProfile {
         mPhy = phy;
         mOpportunistic = opportunistic;
         mAttributionSource = attributionSource;
-        mServices = new CopyOnWriteArrayList<>();
+        mServices = new ArrayList<BluetoothGattService>();
 
         mConnState = CONN_STATE_IDLE;
         mAuthRetryState = AUTH_RETRY_STATE_IDLE;
