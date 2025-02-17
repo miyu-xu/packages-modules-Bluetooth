@@ -166,6 +166,7 @@ filegroup {
     name: "libbluetooth_core_rs_ffi",
     srcs: [
         "src/core/ffi.rs",
+        "src/gatt/arbiter.rs",
         "src/gatt/ffi.rs",
     ],
 }
