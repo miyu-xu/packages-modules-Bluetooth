@@ -871,8 +871,24 @@ public:
 
     uint16_t conn_interval_min;
     uint16_t conn_interval_max;
+    bool prefer_default_connection_interval = false;
+    remove_old_devices_from_default_connection_interval_map();
+    if (com::android::bluetooth::flags::channel_sounding_in_stack()) {
+      for (const auto& address_with_type : accept_list) {
+        bluetooth::hci::Address address = address_with_type.GetAddress();
+        if (default_connection_interval_devices_map_.count(address) > 0) {
+          log::info(
+                  "Found device {} in accept list that prefers using the default connection "
+                  "interval",
+                  address);
+          prefer_default_connection_interval = true;
+          break;
+        }
+      }
+    }
 
-    if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+    if (com::android::bluetooth::flags::initial_conn_params_p1() &&
+        !prefer_default_connection_interval) {
       size_t num_classic_acl_connections = classic_impl_->get_connection_count();
       size_t num_acl_connections = connections.size();
 
@@ -1301,6 +1317,28 @@ public:
 
   void set_system_suspend_state(bool suspended) { system_suspend_ = suspended; }
 
+  void add_device_to_default_connection_interval_list(const Address address) {
+    default_connection_interval_devices_map_[address] = std::chrono::system_clock::now();
+  }
+
+  void remove_old_devices_from_default_connection_interval_map() {
+    auto now = std::chrono::system_clock::now();
+    auto one_day_ago = now - std::chrono::hours(24);
+
+    for (auto it = default_connection_interval_devices_map_.begin();
+         it != default_connection_interval_devices_map_.end();) {
+      auto difference = now - it->second;
+      auto seconds = std::chrono::duration_cast<std::chrono::seconds>(difference).count();
+
+      if (it->second < one_day_ago) {
+        log::info("Device {} removed", it->first);
+        it = default_connection_interval_devices_map_.erase(it);
+      } else {
+        ++it;
+      }
+    }
+  }
+
   HciLayer* hci_layer_ = nullptr;
   Controller* controller_ = nullptr;
   os::Handler* handler_ = nullptr;
@@ -1327,6 +1365,9 @@ public:
   bool system_suspend_ = false;
   ConnectabilityState connectability_state_{ConnectabilityState::DISARMED};
   std::map<AddressWithType, os::Alarm> create_connection_timeout_alarms_{};
+  // Map of devices that should use the default connection intervals.
+  // The key is the device address, and the value is the time point when the device was added.
+  std::map<Address, std::chrono::system_clock::time_point> default_connection_interval_devices_map_;
 };
 
 }  // namespace acl_manager
