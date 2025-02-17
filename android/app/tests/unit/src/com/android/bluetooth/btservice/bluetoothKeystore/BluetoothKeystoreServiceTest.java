@@ -24,6 +24,8 @@ import android.os.Binder;
 import android.os.Process;
 import android.util.Log;
 
+import com.android.bluetooth.TestUtils.MockitoRule;
+
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
@@ -45,6 +47,7 @@ import java.util.Map;
 @RunWith(JUnit4.class)
 public final class BluetoothKeystoreServiceTest {
     private static final String TAG = "BluetoothKeystoreServiceTest";
+
     private BluetoothKeystoreService mBluetoothKeystoreService;
 
     @Rule public final MockitoRule mMockitoRule = new MockitoRule();

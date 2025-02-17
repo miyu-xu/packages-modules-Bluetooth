@@ -40,6 +40,7 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.FakeObexServer;
 import com.android.bluetooth.ObexAppParameters;
 import com.android.bluetooth.TestLooper;
+import com.android.bluetooth.TestUtils.MockitoRule;
 import com.android.obex.ApplicationParameter;
 import com.android.obex.HeaderSet;
 import com.android.obex.ObexTransport;
@@ -502,6 +503,7 @@ public class PbapClientObexClientTest {
 
     private static class FakePbapObexServer extends FakeObexServer {
         private static final String TAG = FakePbapObexServer.class.getSimpleName();
+
         private static final String TYPE_GET_PHONEBOOK = "x-bt/phonebook";
         private static final byte SIZE_BYTES = 2;
         private static final byte DATABASE_IDENTIFIER_BYTES = 4;
