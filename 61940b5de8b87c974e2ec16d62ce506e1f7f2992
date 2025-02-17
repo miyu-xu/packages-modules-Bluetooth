@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f01b51e_e2819a48",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-17T02:57:59Z",
+      "side": 1,
+      "message": "I would also remove the string if we go in this direction.\n\nWhen the data is null, we have the corresponding line reported in the crash report and it is helpful enough.",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 89
+      },
+      "revId": "61940b5de8b87c974e2ec16d62ce506e1f7f2992",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
