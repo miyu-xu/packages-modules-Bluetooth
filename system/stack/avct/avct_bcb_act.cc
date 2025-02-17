@@ -193,8 +193,9 @@ void avct_bcb_open_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
       p_ccb_bind = p_ccb;
       p_ccb->cc.p_ctrl_cback(avct_ccb_to_idx(p_ccb), AVCT_BROWSE_CONN_CFM_EVT, 0,
                              &p_ccb->p_lcb->peer_addr);
-    } else if ((p_ccb->p_bcb == NULL) && is_valid_role_check(p_ccb) && (p_ccb->p_lcb != NULL) &&
-               p_bcb->peer_addr == p_ccb->p_lcb->peer_addr) {
+    } else if ((btif_av_src_sink_coexist_enabled() || is_valid_role_check(p_ccb)) &&
+              (p_ccb->p_bcb == NULL) && (p_ccb->p_lcb != NULL) &&
+              p_bcb->peer_addr == p_ccb->p_lcb->peer_addr) {
       /* if unbound acceptor and lcb allocated and bd_addr are the same for bcb
          and lcb */
       /* bind bcb to ccb and send connect ind event */
@@ -568,7 +569,6 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
   bool bind = false;
   if (btif_av_src_sink_coexist_enabled()) {
     bind = avct_msg_ind_for_src_sink_coexist(p_lcb, p_data, label, cr_ipid, pid);
-    osi_free_and_reset((void**)&p_data->p_buf);
     if (bind) {
       return;
     }
