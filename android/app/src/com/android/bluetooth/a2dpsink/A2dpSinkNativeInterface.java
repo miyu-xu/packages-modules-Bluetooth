@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.a2dpsink;
 
+import static java.util.Objects.requireNonNull;
+
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
@@ -24,8 +26,6 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
-
-import java.util.Objects;
 
 /** A2DP Sink Native Interface to/from JNI. */
 public class A2dpSinkNativeInterface {
@@ -39,7 +39,7 @@ public class A2dpSinkNativeInterface {
 
     private A2dpSinkNativeInterface() {
         mAdapterService =
-                Objects.requireNonNull(
+                requireNonNull(
                         AdapterService.getAdapterService(),
                         "AdapterService cannot be null when A2dpSinkNativeInterface init");
     }

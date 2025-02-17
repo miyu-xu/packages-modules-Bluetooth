@@ -16,6 +16,8 @@
 
 package android.bluetooth;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
@@ -264,7 +266,7 @@ public final class BluetoothLeBroadcastSubgroup implements Parcelable {
         @NonNull
         public Builder setCodecSpecificConfig(
                 @NonNull BluetoothLeAudioCodecConfigMetadata codecSpecificConfig) {
-            Objects.requireNonNull(codecSpecificConfig, "codecSpecificConfig cannot be null");
+            requireNonNull(codecSpecificConfig, "codecSpecificConfig cannot be null");
             mCodecSpecificConfig = codecSpecificConfig;
             return this;
         }
@@ -281,7 +283,7 @@ public final class BluetoothLeBroadcastSubgroup implements Parcelable {
         @NonNull
         public Builder setContentMetadata(
                 @NonNull BluetoothLeAudioContentMetadata contentMetadata) {
-            Objects.requireNonNull(contentMetadata, "contentMetadata cannot be null");
+            requireNonNull(contentMetadata, "contentMetadata cannot be null");
             mContentMetadata = contentMetadata;
             return this;
         }
@@ -300,7 +302,7 @@ public final class BluetoothLeBroadcastSubgroup implements Parcelable {
          */
         @SystemApi
         public @NonNull Builder addChannel(@NonNull BluetoothLeBroadcastChannel channel) {
-            Objects.requireNonNull(channel, "channel cannot be null");
+            requireNonNull(channel, "channel cannot be null");
             mChannels.add(channel);
             return this;
         }
@@ -328,8 +330,8 @@ public final class BluetoothLeBroadcastSubgroup implements Parcelable {
          */
         @SystemApi
         public @NonNull BluetoothLeBroadcastSubgroup build() {
-            Objects.requireNonNull(mCodecSpecificConfig, "CodecSpecificConfig is null");
-            Objects.requireNonNull(mContentMetadata, "ContentMetadata is null");
+            requireNonNull(mCodecSpecificConfig, "CodecSpecificConfig is null");
+            requireNonNull(mContentMetadata, "ContentMetadata is null");
             if (mChannels.isEmpty()) {
                 throw new IllegalArgumentException("Must have at least one channel");
             }
