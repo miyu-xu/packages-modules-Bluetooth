@@ -30,6 +30,7 @@ import android.bluetooth.BluetoothHidHost;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
+import android.bluetooth.BluetoothSocket;
 import android.bluetooth.PandoraDevice;
 import android.bluetooth.StreamObserverSpliterator;
 import android.bluetooth.Utils;
@@ -38,10 +39,12 @@ import android.bluetooth.pairing.utils.TestUtil;
 import android.bluetooth.test_utils.BlockingBluetoothAdapter;
 import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.content.Context;
+import android.content.Intent;
 import android.os.ParcelUuid;
 import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.CheckFlagsRule;
 import android.platform.test.flag.junit.DeviceFlagsValueProvider;
+import android.util.Log;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -63,8 +66,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import pandora.GattProto;
+import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
+import pandora.HostProto.DiscoverabilityMode;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
 import pandora.HostProto.ConnectabilityMode;
 import pandora.HostProto.OwnAddressType;
 import pandora.HostProto.SetConnectabilityModeRequest;
@@ -73,11 +79,22 @@ import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
 import pandora.SecurityProto.SecureRequest;
 import pandora.SecurityProto.SecureResponse;
+import pandora.BumbleConfigProto;
+
+import pandora.RfcommProto;
+import pandora.RfcommProto.StartServerRequest;
+import pandora.RfcommProto.StartServerResponse;
+import pandora.RfcommProto.AcceptConnectionResponse;
+import pandora.RfcommProto.ServerId;
+import pandora.BumbleConfigProto.PairingConfig;
+import pandora.BumbleConfigProto.OverrideRequest;
 
 import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.UUID;
+import java.io.IOException;
 
 @RunWith(TestParameterInjector.class)
 public class PairingTest {
@@ -86,11 +103,17 @@ public class PairingTest {
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int TEST_DELAY_MS = 1000;
 
+    private static final Duration GRPC_TIMEOUT = Duration.ofSeconds(10);
+
     private static final ParcelUuid BATTERY_UUID =
             ParcelUuid.fromString("0000180F-0000-1000-8000-00805F9B34FB");
 
     private static final ParcelUuid HOGP_UUID =
             ParcelUuid.fromString("00001812-0000-1000-8000-00805F9B34FB");
+
+    private static final String SERIAL_PORT_UUID = "00001101-0000-1000-8000-00805F9B34FB";
+
+    private static final String TEST_SERVER_NAME = "RFCOMM Server";
 
     private static final Context sTargetContext =
             InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -837,6 +860,166 @@ public class PairingTest {
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
         assertThat(sAdapter.getBondedDevices()).doesNotContain(mBumbleDevice);
 
+        intentReceiver.close();
+    }
+
+    /**
+     * Test BR/EDR temporary bonding
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over BR/EDR
+     *   <li>Android creates Insecure RFCOMM socket with Bumble over BR/EDR
+     *   <li>Android disconnects the ACL link with Bumble
+     *   <li>Bumble is connectable over BR/EDR
+     *   <li>Android successfully creates bond with Bumble Over BR/EDR
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondBredr_TempBonding() {
+        IntentReceiver intentReceiver = new IntentReceiver.Builder(sTargetContext,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_PAIRING_REQUEST)
+                //.setIntentListener(intentListener)
+                .build();
+        Log.d(TAG, "testBondBredr_TempBonding start:");
+
+        //Set Bumble device to not support bonding, mitm and sc.
+        PairingConfig pairingConfig =
+            BumbleConfigProto.PairingConfig.newBuilder()
+                .setBonding(false)
+                .setMitm(false)
+                .setSc(true)
+                .setIdentityAddressType(HostProto.OwnAddressType.PUBLIC)
+                .build();
+        OverrideRequest overrideRequest =
+            BumbleConfigProto.OverrideRequest.newBuilder().setPairingConfig(pairingConfig).build();
+        mBumble.bumbleConfigBlocking().override(overrideRequest);
+
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+            .setDiscoverabilityMode(
+                SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                    .build());
+
+        SetConnectabilityModeRequest request =
+                SetConnectabilityModeRequest.newBuilder()
+                        .setMode(ConnectabilityMode.CONNECTABLE)
+                        .build();
+        mBumble.hostBlocking().setConnectabilityMode(request);
+
+        Log.d(TAG, "testBondBredr_TempBonding Discovery done and Starting Server Request:");
+
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+            mBumble.security()
+                .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
+                    TimeUnit.MILLISECONDS)
+                .onPairing(mPairingEventStreamObserver);
+
+        StartServerRequest startServerRequest =
+            RfcommProto.StartServerRequest.newBuilder().setName(TEST_SERVER_NAME).setUuid(SERIAL_PORT_UUID).build();
+        /*Truth.assertThat(startServerRequest).isNotNull();
+        Truth.assertThat(startServerRequest.uuid).isNotNull();
+        Truth.assertThat(startServerRequest.uuid).isNotEmpty();*/
+        StartServerResponse response = mBumble.rfcommBlocking().startServer(startServerRequest);
+        Log.d(TAG, "testBondBredr_TempBonding startServer done:");
+
+        /*StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+            mBumble.security()
+                .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .onPairing(mPairingEventStreamObserver);*/
+
+        try {
+            Log.d(TAG, "testBondBredr_TempBonding CreateInsecure socket");
+            //Create RFCOMM insecure socket to Bumble
+            BluetoothSocket socket = mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(SERIAL_PORT_UUID));
+            Log.d(TAG, "testBondBredr_TempBonding socket connect");
+            socket.connect();
+            Log.d(TAG, "testBondBredr_TempBonding verify intents received for bonding after socket connect");
+        } catch (IOException e) {
+            Log.i(TAG, "Expect socket connection failure: "+e);
+        }
+
+        Log.d(TAG, "testBondBredr_TempBonding AcceptConnectionResponse start:");
+
+        AcceptConnectionResponse connectionResponse =
+            mBumble
+                .rfcommBlocking()
+                .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .acceptConnection(
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(response.getServer()).build());
+        Log.d(TAG, "testBondBredr_TempBonding AcceptConnection done and verify intents rcvd:");
+
+        intentReceiver.verifyReceived(
+            hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                BluetoothDevice.TRANSPORT_BREDR));
+
+        intentReceiver.verifyReceived(
+            hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+
+        intentReceiver.verifyReceivedOrdered(
+            hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
+
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: Calling createBond:");
+        assertThat(mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_BREDR)).
+            isTrue();
+
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: createBond called:");
+        intentReceiver.verifyReceived(
+            hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                BluetoothDevice.BOND_BONDING));
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: Verify Not ACL Connected intent rcvd:");
+        /*intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                    BluetoothDevice.TRANSPORT_BREDR));*/
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: Not Verify Pairing Request intent rcvd:");
+        intentReceiver.verifyReceived(
+            hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(
+                BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                BluetoothDevice.PAIRING_VARIANT_CONSENT));
+
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: Not Approve pairing:");
+        // Approve pairing from Android
+        assertThat(mBumbleDevice.setPairingConfirmation(true)).isTrue();
+
+        /*PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+            PairingEventAnswer.newBuilder().setEvent(pairingEvent)
+                .setConfirm(true).build());*/
+
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: Verify BONDED state intent rcvd:");
+        // Ensure that pairing succeeds
+        intentReceiver.verifyReceivedOrdered(
+            hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+            hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+            hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                BluetoothDevice.BOND_BONDED));
+
+        Log.d(TAG, "testBondBredr_TempBonding testStep_BondBredr: intentReceiver close:");
+        /* Unregisters all intent actions registered in this function */
         intentReceiver.close();
     }
 
