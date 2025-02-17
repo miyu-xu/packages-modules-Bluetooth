@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "768c4bec_256e548d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-17T03:17:19Z",
+      "side": 1,
+      "message": "I understand now, let me check if we can do that (if the field addition direction is not taken).",
+      "parentUuid": "6499a35b_eeb563fa",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "703056b8_e951788b",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
         "patchSetId": 7
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "My understanding of the custom metadata is that they are customizable by the app. device icon, threshold for battery, data from fastpair, device characteristiques set by companion app\n\nHere we want to store something related to the device but internal to the stack, and let the setting knows.\nThe customMetadata seems to be not adequat and I would do a proper field in the database that can only be read by external app with the correct API.",
       "parentUuid": "5d1f2088_1c00ddb8",
+      "range": {
+        "startLine": 705,
+        "startChar": 92,
+        "endLine": 705,
+        "endChar": 96
+      },
+      "revId": "e5ec404315717645baaa4e57c05ab47eaa1e976c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1db363d0_84553a41",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-17T03:17:19Z",
+      "side": 1,
+      "message": "Understood, then I guess doing a field change makes more sense. Let me check with @rwt@google.com based on their old discussion, will make the change.\nThanks for the suggestion.",
+      "parentUuid": "3ca10bc0_c14dc292",
       "range": {
         "startLine": 705,
         "startChar": 92,
