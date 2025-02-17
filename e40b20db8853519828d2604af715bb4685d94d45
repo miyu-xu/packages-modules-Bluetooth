@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b7f1038_9b99fe25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-17T07:11:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4f75a19_d5b3ea0b",
+      "revId": "e40b20db8853519828d2604af715bb4685d94d45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fa10323_10a7697c",
@@ -109,6 +127,30 @@
       "side": 1,
       "message": "Confirmed that No Rfcomm Socket disconnected or ACL disconnected callback could be received in APP layer, because of Bluetooth Adapter disabled.",
       "parentUuid": "8fa10323_10a7697c",
+      "range": {
+        "startLine": 4865,
+        "startChar": 0,
+        "endLine": 4865,
+        "endChar": 45
+      },
+      "revId": "e40b20db8853519828d2604af715bb4685d94d45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8335e621_4144452c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 4865,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-17T07:11:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "854f6fea_739627d6",
       "range": {
         "startLine": 4865,
         "startChar": 0,
