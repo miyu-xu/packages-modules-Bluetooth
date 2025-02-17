@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "619c43a4_0804f06d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-17T13:51:20Z",
+      "side": 1,
+      "message": "The CS module is protected by the channel_sounding_in_stack flag. The channel_sounding_devices list only adds devices when this flag is true. Nevertheless, we can also add a check for this CL.\nThanks!",
+      "parentUuid": "35745231_31fb7eec",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 59
+      },
+      "revId": "5ad5ca556eaf019a0401c569be1a98989f2f24e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6e0efb6_5d6eb8b7",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "5ad5ca556eaf019a0401c569be1a98989f2f24e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1616a515_2e193dad",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-17T13:51:20Z",
+      "side": 1,
+      "message": "Currently, channel sounding only works on bonded devices, so this set shouldn\u0027t grow too large. It will be cleared when Bluetooth is turned off, but you\u0027re right, a removal mechanism would be beneficial. I\u0027ve added a maximum size to the set, limiting it to only record recently used devices. Thanks!",
+      "parentUuid": "b6e0efb6_5d6eb8b7",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 680,
+        "endChar": 36
+      },
       "revId": "5ad5ca556eaf019a0401c569be1a98989f2f24e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
