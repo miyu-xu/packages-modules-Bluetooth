@@ -85,6 +85,18 @@ static void avrc_sdp_cback(const RawAddress& bd_addr, tSDP_STATUS status) {
     log::warn("Received SDP callback with NULL callback peer:{} status:{}", bd_addr,
               sdp_status_text(status));
   }
+
+  if (!avrc_cb.sdp_req_qu.empty()) {
+    std::unique_lock<std::mutex> lock(avrc_cb.mutex);
+    tAVRC_SDP_REQ req = std::move(avrc_cb.sdp_req_qu.front());
+    avrc_cb.sdp_req_qu.erase(avrc_cb.sdp_req_qu.begin());
+    req.db.p_attrs = &req.attrs[0];
+    log::warn("do next avrc sdp");
+    AVRC_FindService(req.uuid, req.addr, &req.db, req.cb);
+  }else {
+    log::warn("avrc sdp queue empty");
+  }
+
 }
 
 /******************************************************************************
@@ -140,7 +152,22 @@ uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
   /* check if it is busy */
   if (avrc_cb.service_uuid == UUID_SERVCLASS_AV_REM_CTRL_TARGET ||
       avrc_cb.service_uuid == UUID_SERVCLASS_AV_REMOTE_CONTROL) {
-    return AVRC_NO_RESOURCES;
+    /* add sdp handle to the queue */
+    std::unique_lock<std::mutex> lock(avrc_cb.mutex);
+    tAVRC_SDP_REQ sdp_req;
+    sdp_req.cb = std::move(find_cback);
+    sdp_req.db.p_db= p_db->p_db;
+    sdp_req.db.db_len = p_db->db_len;
+    sdp_req.db.num_attr = p_db->num_attr >= MAX_AVRC_SDP_ATTR_LEN ?
+                        MAX_AVRC_SDP_ATTR_LEN : p_db->num_attr;
+    for (int i = 0; i < sdp_req.db.num_attr; i++) {
+      sdp_req.attrs[i] = p_db->p_attrs[i];
+    }
+    sdp_req.uuid = service_uuid;
+    sdp_req.addr = bd_addr;
+    avrc_cb.sdp_req_qu.push_back(std::move(sdp_req));
+    log::warn("avrc sdp busy, put in queue");
+    return AVRC_SUCCESS;
   }
 
   if (p_db->p_attrs == NULL || p_db->num_attr == 0) {
