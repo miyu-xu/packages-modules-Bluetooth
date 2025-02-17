@@ -1509,6 +1509,10 @@ public class LeAudioService extends ProfileService {
             mNativeInterface.setUnicastMonitorMode(LeAudioStackEvent.DIRECTION_SINK, false);
         }
 
+        if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()
+                && mBroadcastIdDeactivatedForUnicastTransition.get().equals(broadcastId)) {
+            mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
+        }
         mLeAudioBroadcasterNativeInterface.get().destroyBroadcast(broadcastId);
     }
 
