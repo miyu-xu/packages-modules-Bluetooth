@@ -23,6 +23,7 @@
 #include <initializer_list>
 #include <optional>
 #include <ostream>
+#include <ranges>
 #include <string>
 
 #include "packet/custom_field_fixed_size_interface.h"
@@ -61,7 +62,7 @@ public:
   static std::optional<Address> FromLegacyConfigString(const std::string& str);
 
   bool operator<(const Address& rhs) const { return address < rhs.address; }
-  bool operator==(const Address& rhs) const { return address == rhs.address; }
+  bool operator==(const Address& rhs) const { return std::ranges::equal(address, rhs.address); }
   bool operator>(const Address& rhs) const { return rhs < *this; }
   bool operator<=(const Address& rhs) const { return !(*this > rhs); }
   bool operator>=(const Address& rhs) const { return !(*this < rhs); }

@@ -27,9 +27,11 @@
 #include <memory>
 #include <set>
 
+#include "gd/hci/acl_manager.h"
 #include "gd/hci/controller_interface.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
+#include "main/shim/helpers.h"
 #include "main/shim/le_scanning_manager.h"
 #include "osi/include/alarm.h"
 #include "stack/btm/btm_dev.h"
@@ -72,6 +74,21 @@ static void alarm_set_closure(const base::Location& posted_from, alarm_t* alarm,
 }
 
 using unique_alarm_ptr = std::unique_ptr<alarm_t, decltype(&alarm_free)>;
+
+namespace {
+static void ACL_AcceptLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type,
+                                       bool is_direct) {
+  BTM_LogHistory(kBtmLogTag, legacy_address_with_type, "Allow connection from", "Le");
+  bluetooth::shim::GetAclManager()->CreateLeConnection(
+          bluetooth::ToAddressWithTypeFromLegacy(legacy_address_with_type), is_direct);
+}
+
+static void ACL_IgnoreLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type) {
+  BTM_LogHistory(kBtmLogTag, legacy_address_with_type, "Ignore connection from", "Le");
+  bluetooth::shim::GetAclManager()->CancelLeConnect(
+          bluetooth::ToAddressWithTypeFromLegacy(legacy_address_with_type));
+}
+}  // namespace
 
 namespace connection_manager {
 
@@ -258,7 +275,7 @@ bool background_connect_targeted_announcement_add(tAPP_ID app_id, const RawAddre
   }
 
   if (disable_accept_list) {
-    bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
+    ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
     bgconn_dev[address].is_in_accept_list = false;
   }
 
@@ -310,7 +327,8 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
         return false;
       }
 
-      bluetooth::shim::ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address), false);
+      ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address), false);
+
       bgconn_dev[address].is_in_accept_list = true;
     }
   }
@@ -330,7 +348,7 @@ bool remove_unconditional(const RawAddress& address) {
     log::info("address {} is not found", address);
   }
 
-  bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
+  ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
   return count > 0;
 }
 
@@ -371,7 +389,7 @@ bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
         /* Keep using filtering */
         log::debug("Keep using target announcement filtering");
       } else if (!it->second.doing_bg_conn.empty()) {
-        bluetooth::shim::ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address), false);
+        ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address), false);
         bgconn_dev[address].is_in_accept_list = true;
       }
     }
@@ -382,7 +400,7 @@ bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
 
   // no more apps interested - remove from accept list and delete record
   if (accept_list_enabled) {
-    bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
+    ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
     return true;
   }
 
@@ -418,7 +436,7 @@ void on_app_deregistered(uint8_t app_id) {
       continue;
     }
 
-    bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(it->first));
+    ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(it->first));
     it = bgconn_dev.erase(it);
   }
 }
@@ -530,12 +548,12 @@ bool direct_connect_add(uint8_t app_id, const RawAddress& address, tBLE_ADDR_TYP
       return false;
     }
 
-    bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type, true /* is_direct */);
+    ACL_AcceptLeConnectionFrom(address_with_type, true /* is_direct */);
     bgconn_dev[address].is_in_accept_list = true;
   } else {
     // if already in accept list, we should just bump parameters up for direct
     // connection. There is no API for that yet, so use API that's adding to accept list.
-    bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type, true /* is_direct */);
+    ACL_AcceptLeConnectionFrom(address_with_type, true /* is_direct */);
   }
 
   // Setup a timer
@@ -576,14 +594,13 @@ bool direct_connect_remove(uint8_t app_id, const RawAddress& address, bool conne
       /* In such case we need to add device back to allow list because, when connection timeout
        * out, the lower layer removes device from the allow list.
        */
-      bluetooth::shim::ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address),
-                                                  false /* is_direct */);
+      ACL_AcceptLeConnectionFrom(BTM_Sec_GetAddressWithType(address), false /* is_direct */);
     }
     return true;
   }
 
   // no more apps interested - remove from acceptlist
-  bluetooth::shim::ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
+  ACL_IgnoreLeConnectionFrom(BTM_Sec_GetAddressWithType(address));
 
   if (!is_targeted_announcement_enabled) {
     bgconn_dev.erase(it);
