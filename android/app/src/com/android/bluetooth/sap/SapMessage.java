@@ -34,8 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>For incoming messages
  */
 public class SapMessage {
-
-    public static final String TAG = "SapMessage";
+    private static final String TAG = "SapMessage";
     public static final boolean TEST = false;
 
     /* Message IDs - SAP specification */

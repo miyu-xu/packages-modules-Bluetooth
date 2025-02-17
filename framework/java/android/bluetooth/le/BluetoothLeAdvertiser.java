@@ -56,7 +56,6 @@ import java.util.Objects;
  * @see AdvertiseData
  */
 public final class BluetoothLeAdvertiser {
-
     private static final String TAG = "BluetoothLeAdvertiser";
 
     private static final int MAX_LEGACY_ADVERTISING_DATA_BYTES = 31;
