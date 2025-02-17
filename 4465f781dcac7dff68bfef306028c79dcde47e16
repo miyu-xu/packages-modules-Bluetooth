@@ -50,6 +50,30 @@
       ],
       "revId": "4465f781dcac7dff68bfef306028c79dcde47e16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05748149_2231bb36",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2025-02-17T16:44:31Z",
+      "side": 1,
+      "message": "Yes, it runs on the local handler. \nRemoved now. \nThank you.",
+      "parentUuid": "00a529d7_ccd48c79",
+      "range": {
+        "startLine": 750,
+        "startChar": 4,
+        "endLine": 764,
+        "endChar": 0
+      },
+      "revId": "4465f781dcac7dff68bfef306028c79dcde47e16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
