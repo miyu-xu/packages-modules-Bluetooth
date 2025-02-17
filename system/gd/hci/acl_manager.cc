@@ -389,6 +389,10 @@ Address AclManager::HACK_GetLeAddress(uint16_t connection_handle) {
   return pimpl_->le_impl_->HACK_get_address(connection_handle);
 }
 
+void AclManager::HACK_AddChannelSoundingDevice(const Address address) {
+  return pimpl_->le_impl_->HACK_add_channel_sounding_device(address);
+}
+
 void AclManager::HACK_SetAclTxPriority(uint8_t handle, bool high_priority) {
   CallOn(pimpl_->round_robin_scheduler_, &RoundRobinScheduler::SetLinkPriority, handle,
          high_priority);
