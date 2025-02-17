@@ -142,6 +142,24 @@
       "parentUuid": "8c93a569_a4fd3753",
       "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d385372a_e8e04451",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-17T07:02:37Z",
+      "side": 1,
+      "message": "Hi @bhaktha@google.com, could you please check and confirm about these comments?",
+      "parentUuid": "9bbe1e03_549f9cd7",
+      "revId": "9541faf717d0bdc6997e6e72e1fc9530e88da15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
