@@ -70,6 +70,7 @@ constexpr uint8_t PHY_LE_2M = 0x02;
 constexpr uint8_t PHY_LE_CODED = 0x04;
 constexpr bool kEnableBlePrivacy = true;
 constexpr bool kEnableBleOnlyInit1mPhy = false;
+constexpr size_t kMaxChannelSoundingDeviceRecords = 10;
 
 static const std::string kPropertyMinConnInterval = "bluetooth.core.le.min_connection_interval";
 static const std::string kPropertyMaxConnInterval = "bluetooth.core.le.max_connection_interval";
@@ -676,6 +677,18 @@ public:
     return connections.getAddressWithType(connection_handle).GetAddress();
   }
 
+  void HACK_add_channel_sounding_device(const Address address) {
+    if (channel_sounding_devices_.contains(address)) {
+      return;
+    }
+    if (channel_sounding_devices_.size() >= kMaxChannelSoundingDeviceRecords) {
+      channel_sounding_devices_.erase(channel_sounding_devices_queue_.front());
+      channel_sounding_devices_queue_.pop();
+    }
+    channel_sounding_devices_.insert(address);
+    channel_sounding_devices_queue_.push(address);
+  }
+
   void OnAdvertisingSetTerminated(uint16_t conn_handle, uint8_t adv_set_id,
                                   hci::AddressWithType adv_set_address, bool is_discoverable) {
     auto connection = connections.record_peripheral_data_and_extract_pending_connection(
@@ -871,8 +884,20 @@ public:
 
     uint16_t conn_interval_min;
     uint16_t conn_interval_max;
+    bool channel_sounding_device_in_accept_list = false;
+    if (com::android::bluetooth::flags::channel_sounding_in_stack()) {
+      for (const auto& address_with_type : accept_list) {
+        bluetooth::hci::Address address = address_with_type.GetAddress();
+        if (channel_sounding_devices_.find(address) != channel_sounding_devices_.end()) {
+          log::info("Found channel sounding device {} in accept list", address);
+          channel_sounding_device_in_accept_list = true;
+          break;
+        }
+      }
+    }
 
-    if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+    if (com::android::bluetooth::flags::initial_conn_params_p1() &&
+        !channel_sounding_device_in_accept_list) {
       size_t num_classic_acl_connections = classic_impl_->get_connection_count();
       size_t num_acl_connections = connections.size();
 
@@ -1324,6 +1349,11 @@ public:
   bool system_suspend_ = false;
   ConnectabilityState connectability_state_{ConnectabilityState::DISARMED};
   std::map<AddressWithType, os::Alarm> create_connection_timeout_alarms_{};
+  std::unordered_set<bluetooth::hci::Address>
+          channel_sounding_devices_;  // Set of devices that have recently used channel sounding
+  std::queue<bluetooth::hci::Address>
+          channel_sounding_devices_queue_;  // Queue of devices that have recently used channel
+                                            // sounding
 };
 
 }  // namespace acl_manager
