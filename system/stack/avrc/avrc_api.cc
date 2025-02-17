@@ -90,6 +90,8 @@ static const uint8_t avrc_ctrl_event_map[] = {
 #define AVRC_MSG_MASK_IS_CONTINUATION_RSP 0x02
 
 static void avrc_start_cmd_timer(uint8_t handle, uint8_t label, uint8_t msg_mask);
+extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
+extern bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
 
 /******************************************************************************
  *
@@ -1077,6 +1079,17 @@ uint16_t AVRC_GetProfileVersion() {
  *
  *****************************************************************************/
 uint16_t AVRC_Open(uint8_t* p_handle, tAVRC_CONN_CB* p_ccb, const RawAddress& peer_addr) {
+  log::debug("role: {}, control::0x{:x}", avct_role_text(p_ccb->conn), p_ccb->control);
+  /*if DUT is CT, the connection role should be non-passive, which means avrcp connection shall be outgoing;
+       if DUT is TG, the connection role should be passive, which means avrcp connection shall be incoming */
+  if (btif_av_peer_is_connected_sink(peer_addr)) {
+    p_ccb->control |= AVCT_PASSIVE;
+  } else if (btif_av_peer_is_connected_source(peer_addr)) {
+    p_ccb->control = p_ccb->control & (~AVCT_PASSIVE);
+    } else {
+    log::debug("A2dp not connected yet! ");
+  }
+
   tAVCT_CC cc = {
           .p_ctrl_cback = avrc_ctrl_cback,         /* Control callback */
           .p_msg_cback = avrc_msg_cback,           /* Message callback */
@@ -1458,8 +1471,10 @@ void AVRC_SaveControllerVersion(const RawAddress& bdaddr, uint16_t new_version) 
 
 void AVRC_UpdateCcb(RawAddress* addr, uint32_t company_id) {
   for (uint8_t i = 0; i < AVCT_NUM_CONN; i++) {
-    log::info("handle:{}, update cback:0x{:0x}", i, company_id);
-    if (avrc_cb.ccb[i].company_id == company_id) {
+    RawAddress peer_addr = RawAddress::kEmpty;
+    AVCT_GetAddrByHandle(i, peer_addr);
+    log::info("handle:{}, update cback:0x{:0x}, peer_addr:{}", i, company_id, peer_addr);
+    if (avrc_cb.ccb[i].company_id == company_id && *addr == peer_addr) {
       avrc_cb.ccb[i].ctrl_cback.Run(i, AVRC_CLOSE_IND_EVT, 0, addr);
     }
   }
