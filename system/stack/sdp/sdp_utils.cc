@@ -1583,6 +1583,13 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr, const RawAddress
     return;
   }
 
+  // if peer src CT is 1.3, we will update TG to 1.3 which will influence abs
+  // when peer src connected, don't update avrcp version
+  if (GetInterfaceToProfiles()->profileSpecific_HACK->btif_av_peer_is_connected_source(*bdaddr)) {
+    log::info("src connected, not update avrc version");
+    return;
+  }
+
   // Read the remote device's AVRC Controller version from local storage
   uint16_t cached_version = 0;
   size_t version_value_size =
