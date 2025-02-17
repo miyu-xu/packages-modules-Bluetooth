@@ -1469,6 +1469,7 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
+        mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
         Log.d(TAG, "stopBroadcast");
 
         // log group size before stop

@@ -1809,4 +1809,82 @@ public class LeAudioBroadcastServiceTest {
                 .sendBroadcastAsUser(
                         MockitoHamcrest.argThat(AllOf.allOf(matchers)), any(), any(), any());
     }
+
+    @Test
+    public void testStopBroadcastDuringAudioModeDrivenBroadcastSwitch() throws RemoteException {
+        int groupId = 1;
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+
+        prepareHandoverStreamingBroadcast(groupId, broadcastId, code);
+
+        /* Expect clear of Inband Ringtone Support when device is changing to inactive and there is
+         * no unicast to broadcast fallback device set
+         */
+        verify(mTbsService, times(1)).clearInbandRingtoneSupport(eq(mDevice));
+
+        /* Imitate setting device in call */
+        mService.handleAudioModeChange(AudioManager.MODE_IN_CALL);
+
+        assertThat(mService.mBroadcastIdDeactivatedForUnicastTransition.isPresent()).isTrue();
+
+        /* Check if broadcast is paused by AudioMode handling */
+        verify(mLeAudioBroadcasterNativeInterface).pauseBroadcast(eq(broadcastId));
+
+        LeAudioStackEvent state_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_PAUSED;
+        mService.messageFromNative(state_event);
+
+        LeAudioStackEvent create_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_STATUS_CHANGED);
+        create_event.valueInt1 = groupId;
+        create_event.valueInt2 = LeAudioStackEvent.GROUP_STATUS_ACTIVE;
+        mService.messageFromNative(create_event);
+
+        if (Flags.leaudioUseAudioRecordingListener()) {
+            verify(mAudioManager, times(2))
+                    .handleBluetoothActiveDeviceChanged(
+                            eq(mDevice), eq(null), any(BluetoothProfileConnectionInfo.class));
+        } else {
+            /* Only one Unicast device should become inactive due to Sink monitor mode */
+            verify(mAudioManager)
+                    .handleBluetoothActiveDeviceChanged(
+                            eq(mDevice), eq(null), any(BluetoothProfileConnectionInfo.class));
+        }
+        verify(mAudioManager)
+                .handleBluetoothActiveDeviceChanged(
+                        eq(null), eq(mBroadcastDevice), any(BluetoothProfileConnectionInfo.class));
+
+        /* Active group should become the one that was active before broadcasting */
+        int activeGroup = mService.getActiveGroupId();
+        assertThat(activeGroup).isEqualTo(groupId);
+
+        /* Broadcast Stopped during Audio mode driven Broadcast switch*/
+        verifyBroadcastStopped(broadcastId);
+
+        /* mBroadcastIdDeactivatedForUnicastTransition should be cleared after stop broadcast */
+        assertThat(mService.mBroadcastIdDeactivatedForUnicastTransition.isPresent()).isFalse();
+
+        /* Imitate group change request by Bluetooth Sink HAL suspend request */
+        create_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS);
+        create_event.valueInt1 = LeAudioStackEvent.DIRECTION_SINK;
+        create_event.valueInt2 = LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED;
+        mService.messageFromNative(create_event);
+
+        /* Device should not be inactivated if in IN_CALL audio mode */
+        verify(mLeAudioNativeInterface).groupSetActive(eq(LE_AUDIO_GROUP_ID_INVALID));
+
+        /* Imitate setting device not in call */
+        mService.handleAudioModeChange(AudioManager.MODE_NORMAL);
+
+        /* Device should not be inactivated if broadcast is stopped previously */
+        verify(mLeAudioNativeInterface).groupSetActive(eq(LE_AUDIO_GROUP_ID_INVALID));
+
+        /* Active group should keep same with the one that was active before broadcasting */
+        int activeGroup2 = mService.getActiveGroupId();
+        assertThat(activeGroup2).isEqualTo(groupId);
+    }
 }
