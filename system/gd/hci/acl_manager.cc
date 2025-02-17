@@ -373,6 +373,10 @@ void AclManager::SetSystemSuspendState(bool suspended) {
   CallOn(pimpl_->le_impl_, &le_impl::set_system_suspend_state, suspended);
 }
 
+void AclManager::AddChannelSoundingDevice(const Address address) {
+  CallOn(pimpl_->le_impl_, &le_impl::add_channel_sounding_device, address);
+}
+
 LeAddressManager* AclManager::GetLeAddressManager() {
   return pimpl_->le_impl_->le_address_manager_;
 }
