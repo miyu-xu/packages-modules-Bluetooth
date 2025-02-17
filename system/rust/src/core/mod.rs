@@ -29,3 +29,7 @@ fn start(
 fn stop() {
     RustModuleRunner::stop();
 }
+
+fn set_disabled_in_test() {
+    RustModuleRunner::set_disabled_in_test();
+}
