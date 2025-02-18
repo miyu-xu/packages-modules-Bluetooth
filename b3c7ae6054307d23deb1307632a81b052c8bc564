@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7286d58b_95f283d0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T19:28:24Z",
+      "side": 0,
+      "message": "Oh, I see what you mean.\nNo, Not really, but this no-op.\n\nAnyway, I am working toward removing the line entirely in follow-up",
+      "parentUuid": "c7503673_a907ceda",
+      "range": {
+        "startLine": 2179,
+        "startChar": 5,
+        "endLine": 2179,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3172d16_8ce27b83",
