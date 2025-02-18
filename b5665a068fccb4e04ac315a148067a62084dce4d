@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39de68bc_aea961b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-18T05:23:53Z",
+      "side": 1,
+      "message": "If the BT controller support CS and device porperty enabled the device will support CS. We don\u0027t have use-case to turned it off now. Thanks!",
+      "parentUuid": "39d8bf47_50929ef3",
+      "revId": "b5665a068fccb4e04ac315a148067a62084dce4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0992d09_bb7aca42",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-18T03:12:42Z",
       "side": 1,
       "message": "Instead of usign two data structures, how about just using `std::list`?\n\nYou can use `pop_front` to remove the first-added element, and `std::find` to find an element.\n\nWith just 10 devices, deleting/searching in list won\u0027t take much time.",
+      "range": {
+        "startLine": 1352,
+        "startChar": 3,
+        "endLine": 1356,
+        "endChar": 55
+      },
+      "revId": "b5665a068fccb4e04ac315a148067a62084dce4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad2cac7b_19eea2ba",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-18T05:23:53Z",
+      "side": 1,
+      "message": "Done, thanks for the suggestion!",
+      "parentUuid": "b0992d09_bb7aca42",
       "range": {
         "startLine": 1352,
         "startChar": 3,
