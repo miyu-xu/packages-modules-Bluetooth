@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "228ab32e_a9b1d235",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T17:55:52Z",
+      "side": 1,
+      "message": "I am still unclear about what does the define does compare to the warning, but can we add it in the bluetooth_cflags default that is applied globally ?",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 53
+      },
+      "revId": "b5e1db348e1439528c66a362471267b35c6b0521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29939b04_11fab882",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T17:55:52Z",
+      "side": 1,
+      "message": "not needed since https://r.android.com/3495123",
+      "range": {
+        "startLine": 321,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 26
+      },
+      "revId": "b5e1db348e1439528c66a362471267b35c6b0521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
