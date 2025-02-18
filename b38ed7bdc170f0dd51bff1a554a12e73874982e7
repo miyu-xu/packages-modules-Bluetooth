@@ -122,6 +122,24 @@
       "message": "Thank you for your confirmation and the patch modification. \nI applied this patch and confirmed that the issue did not recur. \nHowever, it has led to another problem: after the platform is rebooted, the originally paired LE device cannot reconnect. \n\nIn btm_ble_resolving_list_load_dev, is_peer_identity_key_valid is called to check if the PIRK is valid. \nDue to this patch, a PIRK with all zeros is considered invalid. \nThis results in the device\u0027s address and LIRK not being added to the Resolving list. \nSince the reconnect requires the use of LIRK and LIRK is not in the Resolving list, this causes the reconnect to fail.",
       "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4cc2044_c66f772c",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-18T21:27:31Z",
+      "side": 1,
+      "message": "what remote device is used when doing the above test?",
+      "parentUuid": "505e7527_d2310dfb",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
