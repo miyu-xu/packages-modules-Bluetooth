@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1a34e6d_db2b74df",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-02-18T06:56:03Z",
+      "side": 1,
+      "message": "nit) remove this line",
+      "revId": "4750c97f0087e24ed1de7da3ac77777e8e64654c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
