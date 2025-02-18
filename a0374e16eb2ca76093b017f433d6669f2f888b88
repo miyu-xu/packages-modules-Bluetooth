@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbb2730a_a79db8b2",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-18T16:55:58Z",
+      "side": 1,
+      "message": "I am not sure how this change is linked to what is expressed in the commit message:\n\n```\nDisable Initial Connection Parameter Optimization for Channel Sounding\n```\n\nI would like to avoid adding this hack, is there another way to track CS devices for the ACL manager ?",
+      "range": {
+        "startLine": 392,
+        "startChar": 17,
+        "endLine": 392,
+        "endChar": 46
+      },
+      "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
