@@ -5382,6 +5382,24 @@ public:
     auto all_bidirectional_contexts = group->GetAllSupportedBidirectionalContextTypes();
     log::debug("all_bidirectional_contexts {}", ToString(all_bidirectional_contexts));
 
+    /*
+     * Detect the gaming scenario and mirror the context to the other direction.
+     * Thanks to this, we will be able to configure even Microphone only devices, for the GAME
+     * audio context detected on the local audio source, which never gets resumed for such devices.
+     */
+    if (remote_metadata.sink.test(LeAudioContextType::GAME)) {
+      auto ctxs = group->GetSupportedContexts(bluetooth::le_audio::types::kLeAudioDirectionSource) &
+                  AudioContexts(LeAudioContextType::GAME) &
+                  bluetooth::le_audio::types::kLeAudioContextAllBidir;
+      if (ctxs.any()) {
+        log::debug(
+                "Gaming scenario detected. Use this audio context for the other direction if "
+                "supported");
+        remote_metadata.source.clear();
+        remote_metadata.source.set_all(ctxs);
+      }
+    }
+
     /* Make sure we have CONVERSATIONAL when in a call and it is not mixed
      * with any other bidirectional context
      */
@@ -5421,8 +5439,12 @@ public:
     log::debug("is_ongoing_call_on_other_direction={}",
                is_ongoing_call_on_other_direction ? "True" : "False");
 
+    // The not-resumed direction metadata is still a valid scenario indicator
+    const auto unconditional_metadata_tracking = true;
+
     if (remote_metadata.get(remote_other_direction).test_any(all_bidirectional_contexts) &&
-        !(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction)) {
+        !(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction) &&
+        !unconditional_metadata_tracking) {
       log::debug("The other direction is not streaming bidirectional, ignore that context.");
       remote_metadata.get(remote_other_direction).clear();
     }
@@ -5449,7 +5471,8 @@ public:
         remote_metadata.get(remote_direction).unset_all(all_bidirectional_contexts);
         remote_metadata.get(remote_direction).set(LeAudioContextType::CONVERSATIONAL);
       } else {
-        if (!(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction)) {
+        if (!(is_streaming_other_direction || is_releasing_for_reconfiguration_other_direction) &&
+            !unconditional_metadata_tracking) {
           // Do not take the obsolete metadata
           remote_metadata.get(remote_other_direction).clear();
         } else {
