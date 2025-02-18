@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "234e7b5d_88ced4ae",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-18T20:02:02Z",
+      "side": 1,
+      "message": "Mapped according to `hci_packets.pdl` - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/pdl/hci/hci_packets.pdl?q\u003dpackages%2Fmodules%2FBluetooth%2Fsystem%2Fpdl%2Fhci%2Fhci_packets.pdl",
+      "revId": "c18d452dc714f69224fc20973c9b222f670558c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
