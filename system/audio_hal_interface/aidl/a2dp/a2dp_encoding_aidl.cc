@@ -28,27 +28,6 @@
 #include "codec_status_aidl.h"
 #include "transport_instance.h"
 
-typedef enum {
-  A2DP_CTRL_CMD_NONE,
-  A2DP_CTRL_CMD_CHECK_READY,
-  A2DP_CTRL_CMD_START,
-  A2DP_CTRL_CMD_STOP,
-  A2DP_CTRL_CMD_SUSPEND,
-  A2DP_CTRL_GET_INPUT_AUDIO_CONFIG,
-  A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG,
-  A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG,
-  A2DP_CTRL_GET_PRESENTATION_POSITION,
-} tA2DP_CTRL_CMD;
-
-namespace std {
-template <>
-struct formatter<tA2DP_CTRL_CMD> : enum_formatter<tA2DP_CTRL_CMD> {};
-template <>
-struct formatter<audio_usage_t> : enum_formatter<audio_usage_t> {};
-template <>
-struct formatter<audio_content_type_t> : enum_formatter<audio_content_type_t> {};
-}  // namespace std
-
 namespace bluetooth {
 namespace audio {
 namespace aidl {

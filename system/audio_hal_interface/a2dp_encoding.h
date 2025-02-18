@@ -51,7 +51,7 @@ enum class Status {
 /// The callbacks are always invoked from one of the binder threads.
 class StreamCallbacks {
 public:
-  virtual ~StreamCallbacks() {}
+  virtual ~StreamCallbacks() = default;
   virtual Status StartStream(bool /*low_latency*/) const { return Status::FAILURE; }
   virtual Status SuspendStream() const { return Status::FAILURE; }
   virtual Status StopStream() const { return SuspendStream(); }
@@ -70,7 +70,7 @@ bool is_hal_offloading();
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* message_loop,
-          StreamCallbacks const* strean_callbacks, bool offload_enabled);
+          StreamCallbacks const* stream_callbacks, bool offload_enabled);
 
 // Clean up BluetoothAudio HAL
 void cleanup();
