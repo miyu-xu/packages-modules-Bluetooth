@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d78d24e6_dc644e36",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-18T11:54:47Z",
+      "side": 1,
+      "message": "Hi William, actually, i use BlockingBluetoothAdapter.enableBLE(true) not just for enable BLE, what i want to do is allowing the scan to be perform while Bluetooth is OFF with param \"true\". But mAdapter.enableBLE() can not do that.\nOr i can use: Settings.Global.putInt(context.contentResolver, BLE_SCAN_ALWAYS_AVAILABLE, 1) instead of BlockingBluetoothAdapter.enableBLE(true) directly, but need to add more action to check the bluetooth state because here we have no Bluetooth State machine manager.",
+      "parentUuid": "be3167c0_7c9a9021",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 41
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "faaffe25_6554064f",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-18T08:19:11Z",
       "side": 1,
       "message": "This will block until there is a timeout fired in the BlockingBluetoothAdapter.\nWe are relying on a side effect of the method to run the test. That does\u0027t seems ok to me.\nWe should call the `mAdapter.disable()` and eventually, we could modify the BlockingBluetoothAdapter to expose `waitForStateWithTimeout`",
+      "range": {
+        "startLine": 644,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 46
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59275c4c_ee050369",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-18T11:54:47Z",
+      "side": 1,
+      "message": "Hi @wescande@google.com, I\u0027m sorry I\u0027m not quite sure what you mean here. I need to confirm with you: Do you mean to use mAdapter.disable() + withTimeout(TIMEOUT) with continuously listen for broadcast status changes directly?\n\nOr if mAdapter.disable() + Thread.sleep(3000) is ok? \n\nOr you mean i can implemente waitForStateWithTimeout way here directly?",
+      "parentUuid": "faaffe25_6554064f",
       "range": {
         "startLine": 644,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4783cbb4_b92bf434",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-18T11:54:47Z",
+      "side": 1,
+      "message": "Yes， for pass situation, socketOs.write(data) should be excepted because the Bluetooth is OFF.\n\nFor failed situation, even Bluetooth is OFF, but Rfcomm socket still can send data successful. that is not make sense.",
+      "parentUuid": "8f9bb752_02639d6f",
+      "range": {
+        "startLine": 652,
+        "startChar": 11,
+        "endLine": 664,
+        "endChar": 13
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50d5f4d1_0f1f4f43",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 4
@@ -83,6 +155,30 @@
       "writtenOn": "2025-02-18T08:19:11Z",
       "side": 1,
       "message": "as a mirror of my first comment I would just call `mAdapter.disableBLE` here",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 45
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db35347_f20e63ed",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-18T11:54:47Z",
+      "side": 1,
+      "message": "Yes, here is better to use mAdapter.disableBLE.",
+      "parentUuid": "50d5f4d1_0f1f4f43",
       "range": {
         "startLine": 667,
         "startChar": 0,
