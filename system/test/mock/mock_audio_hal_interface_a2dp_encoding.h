@@ -168,16 +168,6 @@ struct is_hal_offloading {
 };
 extern struct is_hal_offloading is_hal_offloading;
 
-// Name: is_opus_supported
-// Params:
-// Return: bool
-struct is_opus_supported {
-  static bool return_value;
-  std::function<bool()> body{[]() { return return_value; }};
-  bool operator()() { return body(); }
-};
-extern struct is_opus_supported is_opus_supported;
-
 // Name: parse_a2dp_configuration
 // Params: btav_a2dp_codec_index_t codec_index, const uint8_t* codec_info,
 // btav_a2dp_codec_config_t* codec_parameters, std::vector<uint8_t>*

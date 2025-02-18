@@ -43,6 +43,10 @@
 #include <vector>
 
 #include "audio_hal_interface/a2dp_encoding.h"
+#include "audio_hal_interface/aidl/a2dp/a2dp_provider_info.h"
+#include "audio_hal_interface/aidl/a2dp/codec_status_aidl.h"
+#include "audio_hal_interface/hal_version_manager.h"
+#include "audio_hal_interface/hidl/codec_status_hidl.h"
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_api_data_types.h"
 #include "bta/include/bta_av_api.h"
@@ -515,6 +519,8 @@ public:
   bool SetActivePeer(const RawAddress& peer_address, std::promise<void> peer_ready_promise) {
     log::info("peer={} active_peer={}", peer_address, active_peer_);
 
+    std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info;
+
     if (active_peer_ == peer_address) {
       peer_ready_promise.set_value();
       return true;  // Nothing has changed
@@ -545,8 +551,18 @@ public:
       return false;
     }
 
-    if (!btif_a2dp_source_restart_session(active_peer_, peer_address,
-                                          std::move(peer_ready_promise))) {
+    bool is_offload_enabled = btif_av_is_a2dp_offload_enabled();
+    if (is_offload_enabled) {
+      tBTM_BLE_VSC_CB vsc_cb = {};
+      BTM_BleGetVendorCapabilities(&vsc_cb);
+      bool supports_a2dp_hw_offload_v2 =
+              vsc_cb.version_supported >= 0x0104 && vsc_cb.a2dp_offload_v2_support;
+      provider_info = ::bluetooth::audio::aidl::a2dp::ProviderInfo::GetProviderInfo(
+              supports_a2dp_hw_offload_v2);
+    }
+
+    if (!btif_a2dp_source_restart_session(active_peer_, peer_address, std::move(peer_ready_promise),
+                                          is_offload_enabled, std::move(provider_info))) {
       // cannot set promise but need to be handled within restart_session
       return false;
     }
@@ -1127,6 +1143,7 @@ void BtifAvSource::Init(btav_source_callbacks_t* callbacks, int max_connected_au
                         const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
                         std::vector<btav_a2dp_codec_info_t>* supported_codecs,
                         std::promise<bt_status_t> complete_promise) {
+  std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info;
   callbacks_ = callbacks;
   max_connected_peers_ = max_connected_audio_devices;
   log::info("max_connected_audio_devices={}", max_connected_audio_devices);
@@ -1142,13 +1159,20 @@ void BtifAvSource::Init(btav_source_callbacks_t* callbacks, int max_connected_au
     BTM_BleGetVendorCapabilities(&vsc_cb);
     bool supports_a2dp_hw_offload_v2 =
             vsc_cb.version_supported >= 0x0104 && vsc_cb.a2dp_offload_v2_support;
-    bluetooth::audio::a2dp::update_codec_offloading_capabilities(offloading_preference,
-                                                                 supports_a2dp_hw_offload_v2);
+    provider_info = ::bluetooth::audio::aidl::a2dp::ProviderInfo::GetProviderInfo(
+            supports_a2dp_hw_offload_v2);
+    if (bluetooth::audio::HalVersionManager::GetHalTransport() ==
+        bluetooth::audio::BluetoothAudioHalTransport::HIDL) {
+      ::bluetooth::audio::hidl::codec::UpdateOffloadingCapabilities(offloading_preference);
+    } else if (bluetooth::audio::HalVersionManager::GetHalTransport() ==
+               bluetooth::audio::BluetoothAudioHalTransport::AIDL) {
+      ::bluetooth::audio::aidl::a2dp::codec::UpdateOffloadingCapabilities(offloading_preference);
+    }
   }
 
   bta_av_co_init(codec_priorities, supported_codecs);
 
-  if (!btif_a2dp_source_init()) {
+  if (!btif_a2dp_source_init(a2dp_offload_enabled_, std::move(provider_info))) {
     complete_promise.set_value(BT_STATUS_FAIL);
     return;
   }
