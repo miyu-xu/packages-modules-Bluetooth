@@ -615,6 +615,58 @@ class RfcommTest {
         }
     }
 
+    /*
+     Test Steps:
+       1. Create an Rfcomm insecure socket
+       2. Verify that Rfcomm socket is connected
+       3. Disable Bluetooth to BLE_ON mode
+       4. Verify remote devices disconnected based on successful data transmission
+    */
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_DISCONNECT_ACLS_BY_BREDR_DISABLED)
+    fun clientRfcommDeviceDisconnectedOnBleOnMode() {
+        // Enable BLE_ON mode if disable Bluetooth
+        Log.i(TAG, "Setup before test: enable STATE_BLE_ON mode")
+        BlockingBluetoothAdapter.disable()
+        BlockingBluetoothAdapter.enableBLE(true)
+        Truth.assertThat(mAdapter.leState).isEqualTo(BluetoothAdapter.STATE_BLE_ON)
+        BlockingBluetoothAdapter.enable()
+
+        updateSecurityConfig()
+
+        startServer { serverId ->
+            val (insecureSocket, connection) = createConnectAcceptSocketUsingSettings(serverId)
+
+            // Verify that Rfcomm Socket is connected
+            Truth.assertThat(insecureSocket.isConnected).isTrue()
+
+            // disable Bluetooth to BLE_ON mode
+            BlockingBluetoothAdapter.disable()
+            Truth.assertThat(mAdapter.leState).isEqualTo(BluetoothAdapter.STATE_BLE_ON)
+
+            // 1. In Bluetooth disabled state, under BLE_ON mode, it's impossible to determine the device's connection status.
+            // 2. Determine whether the Rfcomm Socket or ACL link has been disconnected based on successful data transmission.
+            val data: ByteArray =
+                "Test data for clientRfcommDeviceDisconnectedOnBleOnMode".toByteArray()
+            val socketOs = insecureSocket.outputStream
+            try {
+                socketOs.write(data)
+                Log.i(TAG, "socket write data successful")
+                val rxResponseDisconnected: RfcommProto.RxResponse =
+                    mBumble
+                        .rfcommBlocking()
+                        .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                        .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+                // Not make sense if data transmited successful with BLE_ON mode
+                Truth.assertThat(rxResponseDisconnected.data).isNotEqualTo(ByteString.copyFrom(data))
+            } catch (e: IOException) {
+                Log.i(TAG, "Expect socket write")
+            }
+        }
+
+        BlockingBluetoothAdapter.disableBLE()
+    }
+
     // helper to update the security config for remote bumble device
     private fun updateSecurityConfig(
         isEncrypted: Boolean = false,
