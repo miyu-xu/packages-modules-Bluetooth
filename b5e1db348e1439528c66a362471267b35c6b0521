@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4075bb5_7cefcb05",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-18T23:34:59Z",
+      "side": 1,
+      "message": "I just copied something I saw elsewhere in the tree. It seems to work without this, so I\u0027ve removed it.",
+      "parentUuid": "228ab32e_a9b1d235",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 53
+      },
+      "revId": "b5e1db348e1439528c66a362471267b35c6b0521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29939b04_11fab882",
@@ -54,6 +78,30 @@
       "writtenOn": "2025-02-18T17:55:52Z",
       "side": 1,
       "message": "not needed since https://r.android.com/3495123",
+      "range": {
+        "startLine": 321,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 26
+      },
+      "revId": "b5e1db348e1439528c66a362471267b35c6b0521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f0703f_11154963",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-18T23:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29939b04_11fab882",
       "range": {
         "startLine": 321,
         "startChar": 8,
