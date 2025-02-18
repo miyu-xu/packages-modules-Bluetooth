@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7e4733_1d914291",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-18T02:54:45Z",
+      "side": 0,
+      "message": "Did you mean to remove this?",
+      "range": {
+        "startLine": 2179,
+        "startChar": 5,
+        "endLine": 2179,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3172d16_8ce27b83",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-18T02:54:45Z",
+      "side": 0,
+      "message": "why is this not removed too?",
+      "range": {
+        "startLine": 556,
+        "startChar": 4,
+        "endLine": 556,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce2233c7_d62e0dfc",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-18T02:54:45Z",
+      "side": 0,
+      "message": "Why is this not removed too?",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
