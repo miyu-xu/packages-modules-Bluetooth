@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a856cdf4_6ad85928",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1978766
+      },
+      "writtenOn": "2025-02-18T18:04:00Z",
+      "side": 1,
+      "message": "Thanks! I\u0027ll abandon my CL then.",
+      "revId": "5864f9b8ffea340b930f5f8932b2b10f14354c59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
