@@ -16,6 +16,24 @@
       "message": "Hi, can you add a [flag](https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md?cl\u003dhead)?",
       "revId": "5899c9b2e286d871028037874458983d01bf387a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2edfe85c_9ee0003a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2025-02-18T11:35:13Z",
+      "side": 1,
+      "message": "Sure, add the flag fix_unhandled_bqr_subevent",
+      "parentUuid": "7b4f6416_49777366",
+      "revId": "5899c9b2e286d871028037874458983d01bf387a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
