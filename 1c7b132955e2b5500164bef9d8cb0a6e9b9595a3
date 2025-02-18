@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26be27c4_3dffd555",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-18T18:22:34Z",
+      "side": 1,
+      "message": "Can you please comment newly enabled tests here, and updated the list of passed tests in the pts bot test config ?",
+      "revId": "1c7b132955e2b5500164bef9d8cb0a6e9b9595a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
