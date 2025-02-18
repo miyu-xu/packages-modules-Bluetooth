@@ -1887,4 +1887,63 @@ public class LeAudioBroadcastServiceTest {
         int activeGroup2 = mService.getActiveGroupId();
         assertThat(activeGroup2).isEqualTo(groupId);
     }
+
+    @Test
+    @DisableFlags(Flags.FLAG_LEAUDIO_BIG_DEPENDS_ON_AUDIO_STATE)
+    public void testStopPendingBroadcast() {
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+
+        BluetoothLeAudioContentMetadata meta =
+                new BluetoothLeAudioContentMetadata.Builder()
+                        .setLanguage("ENG")
+                        .setProgramInfo("Public broadcast info")
+                        .build();
+        mService.createBroadcast(buildBroadcastSettingsFromMetadata(meta, code, 1));
+
+        LeAudioStackEvent create_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED);
+        create_event.valueInt1 = broadcastId;
+        create_event.valueBool1 = true;
+        mService.messageFromNative(create_event);
+
+        verify(mLeAudioBroadcasterNativeInterface).startBroadcast(eq(broadcastId));
+
+		// Stop Broadcast while start broadcast is ongoing (creating BIG)
+        mService.stopBroadcast(broadcastId);
+
+		// Verify if stop broadcast request is pending before previous start broadcast is ongoing
+        verify(mLeAudioBroadcasterNativeInterface, never()).stopBroadcast(eq(broadcastId));
+        assertThat(mService.mBroadcastIdPendingStop.isPresent()).isTrue();
+
+        // Notify initial paused state
+        LeAudioStackEvent state_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_PAUSED;
+        mService.messageFromNative(state_event);
+
+        // Switch to active streaming
+        state_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_STREAMING;
+        mService.messageFromNative(state_event);
+
+		// Verify if pending stop broadcast request is invoked after previous start broadcast complete
+        verify(mLeAudioBroadcasterNativeInterface).stopBroadcast(eq(broadcastId));
+
+        state_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_STOPPED;
+        mService.messageFromNative(state_event);
+
+        verify(mLeAudioBroadcasterNativeInterface).destroyBroadcast(eq(broadcastId));
+
+        state_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_DESTROYED);
+        state_event.valueInt1 = broadcastId;
+        mService.messageFromNative(state_event);
+
+        // Verify if mBroadcastIdPendingStop is cleared
+        assertThat(mService.mBroadcastIdPendingStop.isPresent()).isFalse();
+    }
 }
