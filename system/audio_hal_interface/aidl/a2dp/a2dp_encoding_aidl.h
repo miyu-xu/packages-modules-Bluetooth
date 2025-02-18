@@ -20,11 +20,26 @@
 
 #include "a2dp_constants.h"
 #include "a2dp_encoding.h"
-#include "a2dp_sbc_constants.h"
 #include "common/message_loop_thread.h"
 #include "hardware/bt_av.h"
-#include "osi/include/properties.h"
 #include "types/raw_address.h"
+
+typedef enum {
+  A2DP_CTRL_CMD_NONE,
+  A2DP_CTRL_CMD_CHECK_READY,
+  A2DP_CTRL_CMD_START,
+  A2DP_CTRL_CMD_STOP,
+  A2DP_CTRL_CMD_SUSPEND,
+  A2DP_CTRL_GET_INPUT_AUDIO_CONFIG,
+  A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG,
+  A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG,
+  A2DP_CTRL_GET_PRESENTATION_POSITION,
+} tA2DP_CTRL_CMD;
+
+namespace std {
+template <>
+struct formatter<tA2DP_CTRL_CMD> : enum_formatter<tA2DP_CTRL_CMD> {};
+}  // namespace std
 
 namespace bluetooth {
 namespace audio {
