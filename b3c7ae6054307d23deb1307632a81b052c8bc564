@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0e651f2_47429982",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:05:42Z",
+      "side": 0,
+      "message": "Yes.\n\nThis internal method does no longer enforce the permission with this CL",
+      "parentUuid": "0e7e4733_1d914291",
+      "range": {
+        "startLine": 2179,
+        "startChar": 5,
+        "endLine": 2179,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3172d16_8ce27b83",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c47503_f505a7b4",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:05:42Z",
+      "side": 0,
+      "message": "Because `sendListOfCalls` requires the permission.\n\nIt would be nice in a second step to remove this too, but this require a in depth refactor as currently this internal service is uside the Bluetooth framework like if it was a 3p app.\nInstead, we should properly make the internal call and bypass the Bluetooth framework, which as a free consequence, will no longer require any permission.\n\nFYI, the need for this annotation is enforce at build time thanks to errorprone enforcement unless explicitly suppressed. Since there is no suppression here, all the permission enforced or removed are annotated properly",
+      "parentUuid": "e3172d16_8ce27b83",
+      "range": {
+        "startLine": 556,
+        "startChar": 4,
+        "endLine": 556,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce2233c7_d62e0dfc",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-02-18T02:54:45Z",
       "side": 0,
       "message": "Why is this not removed too?",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "827f2628_f36952a8",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:05:42Z",
+      "side": 0,
+      "message": "Because `updateHeadsetWithCallState` requires the permission.",
+      "parentUuid": "ce2233c7_d62e0dfc",
       "range": {
         "startLine": 574,
         "startChar": 0,
