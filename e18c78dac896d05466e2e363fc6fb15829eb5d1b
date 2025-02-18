@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e4741d5_55c76338",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T19:52:48Z",
+      "side": 1,
+      "message": "Can you re-upload the change using repo upload ? this will ensure the formatter are being run",
+      "revId": "e18c78dac896d05466e2e363fc6fb15829eb5d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afa196cd_90562129",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T19:52:48Z",
+      "side": 1,
+      "message": "Unrelated to this change directly but I wonder:\nwhy is this done outside of the mutex (and of the valid check) ?\n\nShould this be moved after (in a different CL)",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 51
+      },
+      "revId": "e18c78dac896d05466e2e363fc6fb15829eb5d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4defa44_a0e6ec29",
         "filename": "system/rust/src/gatt/ffi.rs",
         "patchSetId": 12
