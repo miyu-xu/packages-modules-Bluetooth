@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "BTAudioA2dpHIDL"
+#define LOG_TAG "bluetooth-a2dp-ahal-hidl"
 
 #include "a2dp_encoding_hidl.h"
 
@@ -21,53 +21,24 @@
 
 #include <vector>
 
-#include "a2dp_sbc_constants.h"
+#include "a2dp_encoding_hidl_transport.h"
 #include "client_interface_hidl.h"
 #include "codec_status_hidl.h"
 #include "osi/include/properties.h"
 #include "types/raw_address.h"
-
-typedef enum {
-  A2DP_CTRL_CMD_NONE,
-  A2DP_CTRL_CMD_CHECK_READY,
-  A2DP_CTRL_CMD_START,
-  A2DP_CTRL_CMD_STOP,
-  A2DP_CTRL_CMD_SUSPEND,
-  A2DP_CTRL_GET_INPUT_AUDIO_CONFIG,
-  A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG,
-  A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG,
-  A2DP_CTRL_GET_PRESENTATION_POSITION,
-} tA2DP_CTRL_CMD;
-
-namespace std {
-template <>
-struct formatter<tA2DP_CTRL_CMD> : enum_formatter<tA2DP_CTRL_CMD> {};
-template <>
-struct formatter<audio_usage_t> : enum_formatter<audio_usage_t> {};
-template <>
-struct formatter<audio_content_type_t> : enum_formatter<audio_content_type_t> {};
-}  // namespace std
 
 namespace bluetooth {
 namespace audio {
 namespace hidl {
 namespace a2dp {
 
-static bluetooth::audio::a2dp::StreamCallbacks null_stream_callbacks;
-static bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks_ = &null_stream_callbacks;
-
-namespace {
-
-using ::bluetooth::audio::hidl::AudioCapabilities;
 using ::bluetooth::audio::hidl::AudioConfiguration;
 using ::bluetooth::audio::hidl::BitsPerSample;
-using ::bluetooth::audio::hidl::BluetoothAudioCtrlAck;
 using ::bluetooth::audio::hidl::ChannelMode;
 using ::bluetooth::audio::hidl::PcmParameters;
 using ::bluetooth::audio::hidl::SampleRate;
 using ::bluetooth::audio::hidl::SessionType;
 
-using ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface;
 using ::bluetooth::audio::hidl::codec::A2dpAacToHalConfig;
 using ::bluetooth::audio::hidl::codec::A2dpAptxToHalConfig;
 using ::bluetooth::audio::hidl::codec::A2dpCodecToHalBitsPerSample;
@@ -78,142 +49,7 @@ using ::bluetooth::audio::hidl::codec::A2dpSbcToHalConfig;
 using ::bluetooth::audio::hidl::codec::CodecConfiguration;
 
 using ::bluetooth::audio::a2dp::Status;
-
-static BluetoothAudioCtrlAck a2dp_ack_to_bt_audio_ctrl_ack(Status ack) {
-  switch (ack) {
-    case Status::SUCCESS:
-      return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
-    case Status::PENDING:
-      return BluetoothAudioCtrlAck::PENDING;
-    case Status::UNSUPPORTED_CODEC_CONFIGURATION:
-      return BluetoothAudioCtrlAck::FAILURE_UNSUPPORTED;
-    case Status::UNKNOWN:
-    case Status::FAILURE:
-    default:
-      return BluetoothAudioCtrlAck::FAILURE;
-  }
-}
-
-// Provide call-in APIs for the Bluetooth Audio HAL
-class A2dpTransport : public ::bluetooth::audio::hidl::IBluetoothSinkTransportInstance {
-public:
-  A2dpTransport(SessionType sessionType)
-      : IBluetoothSinkTransportInstance(sessionType, (AudioConfiguration){}),
-        total_bytes_read_(0),
-        data_position_({}) {
-    a2dp_pending_cmd_ = A2DP_CTRL_CMD_NONE;
-    remote_delay_report_ = 0;
-  }
-
-  BluetoothAudioCtrlAck StartRequest() override {
-    // Check if a previous Start request is ongoing.
-    if (a2dp_pending_cmd_ == A2DP_CTRL_CMD_START) {
-      log::warn("unable to start stream: already pending");
-      return BluetoothAudioCtrlAck::PENDING;
-    }
-
-    // Check if a different request is ongoing.
-    if (a2dp_pending_cmd_ != A2DP_CTRL_CMD_NONE) {
-      log::warn("unable to start stream: busy with pending command {}", a2dp_pending_cmd_);
-      return BluetoothAudioCtrlAck::FAILURE;
-    }
-
-    log::info("");
-
-    auto status = stream_callbacks_->StartStream(false);
-    a2dp_pending_cmd_ = status == Status::PENDING ? A2DP_CTRL_CMD_START : A2DP_CTRL_CMD_NONE;
-
-    return a2dp_ack_to_bt_audio_ctrl_ack(status);
-  }
-
-  BluetoothAudioCtrlAck SuspendRequest() override {
-    // Check if a previous Suspend request is ongoing.
-    if (a2dp_pending_cmd_ == A2DP_CTRL_CMD_SUSPEND) {
-      log::warn("unable to suspend stream: already pending");
-      return BluetoothAudioCtrlAck::PENDING;
-    }
-
-    // Check if a different request is ongoing.
-    if (a2dp_pending_cmd_ != A2DP_CTRL_CMD_NONE) {
-      log::warn("unable to suspend stream: busy with pending command {}", a2dp_pending_cmd_);
-      return BluetoothAudioCtrlAck::FAILURE;
-    }
-
-    log::info("");
-
-    auto status = stream_callbacks_->SuspendStream();
-    a2dp_pending_cmd_ = status == Status::PENDING ? A2DP_CTRL_CMD_SUSPEND : A2DP_CTRL_CMD_NONE;
-
-    return a2dp_ack_to_bt_audio_ctrl_ack(status);
-  }
-
-  void StopRequest() override {
-    log::info("");
-
-    auto status = stream_callbacks_->SuspendStream();
-    a2dp_pending_cmd_ = status == Status::PENDING ? A2DP_CTRL_CMD_STOP : A2DP_CTRL_CMD_NONE;
-  }
-
-  bool GetPresentationPosition(uint64_t* remote_delay_report_ns, uint64_t* total_bytes_read,
-                               timespec* data_position) override {
-    *remote_delay_report_ns = remote_delay_report_ * 100000u;
-    *total_bytes_read = total_bytes_read_;
-    *data_position = data_position_;
-    log::verbose("delay={}/10ms, data={} byte(s), timestamp={}.{}s", remote_delay_report_,
-                 total_bytes_read_, data_position_.tv_sec, data_position_.tv_nsec);
-    return true;
-  }
-
-  void MetadataChanged(const source_metadata_t& source_metadata) override {
-    auto track_count = source_metadata.track_count;
-    auto tracks = source_metadata.tracks;
-    log::verbose("{} track(s) received", track_count);
-    while (track_count) {
-      log::verbose("usage={}, content_type={}, gain={}", tracks->usage, tracks->content_type,
-                   tracks->gain);
-      --track_count;
-      ++tracks;
-    }
-  }
-
-  tA2DP_CTRL_CMD GetPendingCmd() const { return a2dp_pending_cmd_; }
-
-  void ResetPendingCmd() { a2dp_pending_cmd_ = A2DP_CTRL_CMD_NONE; }
-
-  void ResetPresentationPosition() override {
-    remote_delay_report_ = 0;
-    total_bytes_read_ = 0;
-    data_position_ = {};
-  }
-
-  void LogBytesRead(size_t bytes_read) override {
-    if (bytes_read != 0) {
-      total_bytes_read_ += bytes_read;
-      clock_gettime(CLOCK_MONOTONIC, &data_position_);
-    }
-  }
-
-  // delay reports from AVDTP is based on 1/10 ms (100us)
-  void SetRemoteDelay(uint16_t delay_report) { remote_delay_report_ = delay_report; }
-
-private:
-  static tA2DP_CTRL_CMD a2dp_pending_cmd_;
-  static uint16_t remote_delay_report_;
-  uint64_t total_bytes_read_;
-  timespec data_position_;
-};
-
-tA2DP_CTRL_CMD A2dpTransport::a2dp_pending_cmd_ = A2DP_CTRL_CMD_NONE;
-uint16_t A2dpTransport::remote_delay_report_ = 0;
-
-// Common interface to call-out into Bluetooth Audio HAL
-BluetoothAudioSinkClientInterface* software_hal_interface = nullptr;
-BluetoothAudioSinkClientInterface* offloading_hal_interface = nullptr;
-BluetoothAudioSinkClientInterface* active_hal_interface = nullptr;
-
-// Save the value if the remote reports its delay before this interface is
-// initialized
-uint16_t remote_delay = 0;
+using ::bluetooth::audio::a2dp::StreamCallbacks;
 
 static bool a2dp_get_selected_hal_codec_config(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
                                                CodecConfiguration* codec_config) {
@@ -277,221 +113,253 @@ static bool a2dp_get_selected_hal_pcm_config(A2dpCodecConfig* a2dp_codec_configs
          pcm_config->channelMode != ChannelMode::UNKNOWN;
 }
 
-}  // namespace
-
-bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference) {
-  return ::bluetooth::audio::hidl::codec::UpdateOffloadingCapabilities(framework_preference);
+static A2dpTransport* get_a2dp_transport(
+        ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* interface) {
+  return static_cast<A2dpTransport*>(interface->GetTransportInstance());
 }
 
-// Checking if new bluetooth_audio is enabled
-bool is_hal_2_0_enabled() { return active_hal_interface != nullptr; }
+//=============================================================================
+// SoftwareEncoding : HIDL
+//=============================================================================
 
-// Check if new bluetooth_audio is running with offloading encoders
-bool is_hal_2_0_offloading() {
-  if (!is_hal_2_0_enabled()) {
-    return false;
+SoftwareEncoding::SoftwareEncoding(
+        ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* audio_interface)
+    : interface_(audio_interface) {}
+
+SoftwareEncoding::~SoftwareEncoding() {
+  if (interface_) {
+    log::verbose("Removing transport and HAL interface");
+    auto transport = get_a2dp_transport(interface_);
+    delete transport;
+    delete interface_;
   }
-  return active_hal_interface->GetTransportInstance()->GetSessionType() ==
-         SessionType::A2DP_HARDWARE_OFFLOAD_DATAPATH;
 }
 
-// Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* message_loop,
-          bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled) {
+void SoftwareEncoding::StopSession() {
   log::info("");
-  log::assert_that(stream_callbacks != nullptr, "stream_callbacks != nullptr");
-
-  auto a2dp_sink = new A2dpTransport(SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH);
-  software_hal_interface = new BluetoothAudioSinkClientInterface(a2dp_sink, message_loop);
-  if (!software_hal_interface->IsValid()) {
-    log::warn("BluetoothAudio HAL for A2DP is invalid?!");
-    delete software_hal_interface;
-    software_hal_interface = nullptr;
-    delete a2dp_sink;
-    return false;
-  }
-
-  if (offload_enabled) {
-    a2dp_sink = new A2dpTransport(SessionType::A2DP_HARDWARE_OFFLOAD_DATAPATH);
-    offloading_hal_interface = new BluetoothAudioSinkClientInterface(a2dp_sink, message_loop);
-    if (!offloading_hal_interface->IsValid()) {
-      log::fatal("BluetoothAudio HAL for A2DP offloading is invalid?!");
-      delete offloading_hal_interface;
-      offloading_hal_interface = nullptr;
-      delete a2dp_sink;
-      a2dp_sink = static_cast<A2dpTransport*>(software_hal_interface->GetTransportInstance());
-      delete software_hal_interface;
-      software_hal_interface = nullptr;
-      delete a2dp_sink;
-      return false;
-    }
-  }
-
-  stream_callbacks_ = stream_callbacks;
-  active_hal_interface =
-          (offloading_hal_interface != nullptr ? offloading_hal_interface : software_hal_interface);
-
-  if (remote_delay != 0) {
-    log::info("restore DELAY {} ms", static_cast<float>(remote_delay / 10.0));
-    static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())
-            ->SetRemoteDelay(remote_delay);
-    remote_delay = 0;
-  }
-  return true;
-}
-
-// Clean up BluetoothAudio HAL
-void cleanup() {
-  if (!is_hal_2_0_enabled()) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
     return;
   }
-  end_session();
-
-  auto a2dp_sink = active_hal_interface->GetTransportInstance();
-  static_cast<A2dpTransport*>(a2dp_sink)->ResetPendingCmd();
-  static_cast<A2dpTransport*>(a2dp_sink)->ResetPresentationPosition();
-  active_hal_interface = nullptr;
-
-  a2dp_sink = software_hal_interface->GetTransportInstance();
-  delete software_hal_interface;
-  software_hal_interface = nullptr;
-  delete a2dp_sink;
-  if (offloading_hal_interface != nullptr) {
-    a2dp_sink = offloading_hal_interface->GetTransportInstance();
-    delete offloading_hal_interface;
-    offloading_hal_interface = nullptr;
-    delete a2dp_sink;
-  }
-
-  stream_callbacks_ = &null_stream_callbacks;
-  remote_delay = 0;
+  interface_->EndSession();
+  get_a2dp_transport(interface_)->ResetPendingCmd();
+  get_a2dp_transport(interface_)->ResetPresentationPosition();
 }
 
-// Set up the codec into BluetoothAudio HAL
-bool setup_codec(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
-                 int /*preferred_encoding_interval_us*/) {
-  log::assert_that(a2dp_config != nullptr, "received invalid codec configuration");
+void SoftwareEncoding::StartSession() {
+  log::info("");
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  interface_->StartSession();
+}
 
-  if (!is_hal_2_0_enabled()) {
+void SoftwareEncoding::ConfirmStreamStarted(Status status) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  log::info("status={}", status);
+  auto pending_cmd = get_a2dp_transport(interface_)->GetPendingCmd();
+  if (pending_cmd == A2DP_CTRL_CMD_START) {
+    interface_->StreamStarted(a2dp_ack_to_bt_audio_ctrl_ack(status));
+  } else {
+    log::warn("pending={} ignore status={}", pending_cmd, status);
+    return;
+  }
+  if (status != Status::PENDING) {
+    get_a2dp_transport(interface_)->ResetPendingCmd();
+  }
+}
+
+void SoftwareEncoding::ConfirmStreamSuspended(Status status) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  log::info("status={}", status);
+  auto pending_cmd = get_a2dp_transport(interface_)->GetPendingCmd();
+  if (pending_cmd == A2DP_CTRL_CMD_SUSPEND) {
+    interface_->StreamSuspended(a2dp_ack_to_bt_audio_ctrl_ack(status));
+  } else if (pending_cmd == A2DP_CTRL_CMD_STOP) {
+    log::info("A2DP_CTRL_CMD_STOP status={}", status);
+  } else {
+    log::warn("pending={} ignore status={}", pending_cmd, status);
+    return;
+  }
+  if (status != Status::PENDING) {
+    get_a2dp_transport(interface_)->ResetPendingCmd();
+  }
+}
+
+void SoftwareEncoding::SetRemoteDelay(uint16_t delay_report) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  log::verbose("Delay: {} ms", static_cast<float>(delay_report / 10.0));
+  get_a2dp_transport(interface_)->SetRemoteDelay(delay_report);
+}
+
+size_t SoftwareEncoding::Read(uint8_t* p_buf, uint32_t len) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return 0;
+  }
+  return interface_->ReadAudioData(p_buf, len);
+}
+
+bool SoftwareEncoding::UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
+                                              [[maybe_unused]] int preferred_encoding_interval_us) {
+  log::assert_that(a2dp_config != nullptr, "received invalid codec configuration");
+  if (interface_ == nullptr) {
     log::error("BluetoothAudio HAL is not enabled");
     return false;
   }
+
+  // Fallback to legacy offloading path.
   CodecConfiguration codec_config{};
   if (!a2dp_get_selected_hal_codec_config(a2dp_config, peer_mtu, &codec_config)) {
     log::error("Failed to get CodecConfiguration");
     return false;
   }
-  bool should_codec_offloading =
-          bluetooth::audio::hidl::codec::IsCodecOffloadingEnabled(codec_config);
-  if (should_codec_offloading && !is_hal_2_0_offloading()) {
-    log::warn("Switching BluetoothAudio HAL to Hardware");
-    end_session();
-    active_hal_interface = offloading_hal_interface;
-  } else if (!should_codec_offloading && is_hal_2_0_offloading()) {
-    log::warn("Switching BluetoothAudio HAL to Software");
-    end_session();
-    active_hal_interface = software_hal_interface;
+
+  AudioConfiguration audio_config{};
+  PcmParameters pcm_config{};
+  if (!a2dp_get_selected_hal_pcm_config(a2dp_config, &pcm_config)) {
+    log::error("Failed to get PcmConfiguration");
+    return false;
+  }
+  audio_config.pcmConfig(pcm_config);
+  log::info("");
+  return interface_->UpdateAudioConfig(audio_config);
+}
+
+bool SoftwareEncoding::IsCodecSupportedByHardwareOffload(A2dpCodecConfig* a2dp_config,
+                                                         uint16_t peer_mtu) {
+  CodecConfiguration codec_config{};
+  if (!a2dp_get_selected_hal_codec_config(a2dp_config, peer_mtu, &codec_config)) {
+    log::error("Failed to get CodecConfiguration");
+    return false;
+  }
+  return bluetooth::audio::hidl::codec::IsCodecOffloadingEnabled(codec_config);
+}
+
+//=============================================================================
+// HardwareOffloadEncoding : HIDL
+//=============================================================================
+
+HardwareOffloadEncoding::HardwareOffloadEncoding(
+        ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* audio_interface)
+    : interface_(audio_interface) {}
+
+HardwareOffloadEncoding::~HardwareOffloadEncoding() {
+  if (interface_) {
+    log::verbose("Removing transport and HAL interface");
+    auto transport = get_a2dp_transport(interface_);
+    delete transport;
+    delete interface_;
+  }
+}
+
+void HardwareOffloadEncoding::StopSession() {
+  log::info("");
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  interface_->EndSession();
+  get_a2dp_transport(interface_)->ResetPendingCmd();
+  get_a2dp_transport(interface_)->ResetPresentationPosition();
+}
+
+void HardwareOffloadEncoding::StartSession() {
+  log::info("");
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  interface_->StartSession();
+}
+
+void HardwareOffloadEncoding::ConfirmStreamStarted(Status status) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  log::info("status={}", status);
+  auto pending_cmd = get_a2dp_transport(interface_)->GetPendingCmd();
+  if (pending_cmd == A2DP_CTRL_CMD_START) {
+    interface_->StreamStarted(a2dp_ack_to_bt_audio_ctrl_ack(status));
+  } else {
+    log::warn("pending={} ignore status={}", pending_cmd, status);
+    return;
+  }
+  if (status != Status::PENDING) {
+    get_a2dp_transport(interface_)->ResetPendingCmd();
+  }
+}
+
+void HardwareOffloadEncoding::ConfirmStreamSuspended(Status status) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  log::info("status={}", status);
+  auto pending_cmd = get_a2dp_transport(interface_)->GetPendingCmd();
+  if (pending_cmd == A2DP_CTRL_CMD_SUSPEND) {
+    interface_->StreamSuspended(a2dp_ack_to_bt_audio_ctrl_ack(status));
+  } else if (pending_cmd == A2DP_CTRL_CMD_STOP) {
+    log::info("A2DP_CTRL_CMD_STOP status={}", status);
+  } else {
+    log::warn("pending={} ignore status={}", pending_cmd, status);
+    return;
+  }
+  if (status != Status::PENDING) {
+    get_a2dp_transport(interface_)->ResetPendingCmd();
+  }
+}
+
+void HardwareOffloadEncoding::SetRemoteDelay(uint16_t delay_report) {
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return;
+  }
+  log::verbose("Delay: {} ms", static_cast<float>(delay_report / 10.0));
+  get_a2dp_transport(interface_)->SetRemoteDelay(delay_report);
+}
+
+bool HardwareOffloadEncoding::UpdateAudioConfigToHal(
+        A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
+        [[maybe_unused]] int preferred_encoding_interval_us) {
+  log::assert_that(a2dp_config != nullptr, "received invalid codec configuration");
+  if (interface_ == nullptr) {
+    log::error("BluetoothAudio HAL is not enabled");
+    return false;
+  }
+
+  // Fallback to legacy offloading path.
+  CodecConfiguration codec_config{};
+  if (!a2dp_get_selected_hal_codec_config(a2dp_config, peer_mtu, &codec_config)) {
+    log::error("Failed to get CodecConfiguration");
+    return false;
   }
 
   AudioConfiguration audio_config{};
-  if (active_hal_interface->GetTransportInstance()->GetSessionType() ==
-      SessionType::A2DP_HARDWARE_OFFLOAD_DATAPATH) {
-    audio_config.codecConfig(codec_config);
-  } else {
-    PcmParameters pcm_config{};
-    if (!a2dp_get_selected_hal_pcm_config(a2dp_config, &pcm_config)) {
-      log::error("Failed to get PcmConfiguration");
-      return false;
-    }
-    audio_config.pcmConfig(pcm_config);
-  }
-  return active_hal_interface->UpdateAudioConfig(audio_config);
+  audio_config.codecConfig(codec_config);
+  log::info("");
+  return interface_->UpdateAudioConfig(audio_config);
 }
 
-void start_session() {
-  if (!is_hal_2_0_enabled()) {
-    log::error("BluetoothAudio HAL is not enabled");
-    return;
+bool HardwareOffloadEncoding::IsCodecSupportedByHardwareOffload(A2dpCodecConfig* a2dp_config,
+                                                                uint16_t peer_mtu) {
+  CodecConfiguration codec_config{};
+  if (!a2dp_get_selected_hal_codec_config(a2dp_config, peer_mtu, &codec_config)) {
+    log::error("Failed to get CodecConfiguration");
+    return false;
   }
-  active_hal_interface->StartSession();
-}
-
-void end_session() {
-  if (!is_hal_2_0_enabled()) {
-    log::error("BluetoothAudio HAL is not enabled");
-    return;
-  }
-  active_hal_interface->EndSession();
-  static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())->ResetPendingCmd();
-  static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())
-          ->ResetPresentationPosition();
-}
-
-void ack_stream_started(Status ack) {
-  if (!is_hal_2_0_enabled()) {
-    log::error("BluetoothAudio HAL is not enabled");
-    return;
-  }
-  log::info("result={}", ack);
-  auto a2dp_sink = static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance());
-  auto pending_cmd = a2dp_sink->GetPendingCmd();
-  if (pending_cmd == A2DP_CTRL_CMD_START) {
-    active_hal_interface->StreamStarted(a2dp_ack_to_bt_audio_ctrl_ack(ack));
-  } else {
-    log::warn("pending={} ignore result={}", pending_cmd, ack);
-    return;
-  }
-  if (ack != Status::PENDING) {
-    a2dp_sink->ResetPendingCmd();
-  }
-}
-
-void ack_stream_suspended(Status ack) {
-  if (!is_hal_2_0_enabled()) {
-    log::error("BluetoothAudio HAL is not enabled");
-    return;
-  }
-  log::info("result={}", ack);
-  auto a2dp_sink = static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance());
-  auto pending_cmd = a2dp_sink->GetPendingCmd();
-  if (pending_cmd == A2DP_CTRL_CMD_SUSPEND) {
-    active_hal_interface->StreamSuspended(a2dp_ack_to_bt_audio_ctrl_ack(ack));
-  } else if (pending_cmd == A2DP_CTRL_CMD_STOP) {
-    log::info("A2DP_CTRL_CMD_STOP result={}", ack);
-  } else {
-    log::warn("pending={} ignore result={}", pending_cmd, ack);
-    return;
-  }
-  if (ack != Status::PENDING) {
-    a2dp_sink->ResetPendingCmd();
-  }
-}
-
-// Read from the FMQ of BluetoothAudio HAL
-size_t read(uint8_t* p_buf, uint32_t len) {
-  if (!is_hal_2_0_enabled()) {
-    log::error("BluetoothAudio HAL is not enabled");
-    return 0;
-  }
-  if (is_hal_2_0_offloading()) {
-    log::error("session_type={} is not A2DP_SOFTWARE_ENCODING_DATAPATH",
-               toString(active_hal_interface->GetTransportInstance()->GetSessionType()));
-    return 0;
-  }
-  return active_hal_interface->ReadAudioData(p_buf, len);
-}
-
-// Update A2DP delay report to BluetoothAudio HAL
-void set_remote_delay(uint16_t delay_report) {
-  if (!is_hal_2_0_enabled()) {
-    log::info("not ready for DelayReport {} ms", static_cast<float>(delay_report / 10.0));
-    remote_delay = delay_report;
-    return;
-  }
-  log::verbose("DELAY {} ms", static_cast<float>(delay_report / 10.0));
-  static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())
-          ->SetRemoteDelay(delay_report);
+  return bluetooth::audio::hidl::codec::IsCodecOffloadingEnabled(codec_config);
 }
 
 }  // namespace a2dp

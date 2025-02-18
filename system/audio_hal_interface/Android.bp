@@ -42,6 +42,7 @@ cc_library_static {
             srcs: [
                 "a2dp_encoding.cc",
                 "aidl/a2dp/a2dp_encoding_aidl.cc",
+                "aidl/a2dp/a2dp_encoding_aidl_transport.cc",
                 "aidl/a2dp/a2dp_provider_info.cc",
                 "aidl/a2dp/bluetooth_audio_port_impl.cc",
                 "aidl/a2dp/client_interface_aidl.cc",
@@ -57,6 +58,7 @@ cc_library_static {
                 "hearing_aid_software_encoding.cc",
                 "hfp_client_interface.cc",
                 "hidl/a2dp_encoding_hidl.cc",
+                "hidl/a2dp_encoding_hidl_transport.cc",
                 "hidl/client_interface_hidl.cc",
                 "hidl/codec_status_hidl.cc",
                 "hidl/hearing_aid_software_encoding_hidl.cc",

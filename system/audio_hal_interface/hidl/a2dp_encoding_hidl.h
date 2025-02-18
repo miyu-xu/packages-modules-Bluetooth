@@ -18,7 +18,9 @@
 
 #include <vector>
 
+#include "a2dp_common_encoding_interface.h"
 #include "a2dp_encoding.h"
+#include "client_interface_hidl.h"
 #include "common/message_loop_thread.h"
 #include "hardware/bt_av.h"
 
@@ -27,38 +29,43 @@ namespace audio {
 namespace hidl {
 namespace a2dp {
 
-bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference);
+using ::bluetooth::audio::a2dp::Status;
 
-// Check if new bluetooth_audio is enabled
-bool is_hal_2_0_enabled();
+class SoftwareEncoding : public ::bluetooth::audio::a2dp::IA2dpEncoding {
+public:
+  SoftwareEncoding(::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* audio_interface);
+  ~SoftwareEncoding() override;
+  void SetRemoteDelay(uint16_t delay_report) override;
+  void StartSession() override;
+  void StopSession() override;
+  void ConfirmStreamStarted(Status status) override;
+  void ConfirmStreamSuspended(Status status) override;
+  bool UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
+                              [[maybe_unused]] int preferred_encoding_interval_us) override;
+  bool IsCodecSupportedByHardwareOffload(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu) override;
+  size_t Read(uint8_t* p_buf, uint32_t len) override;
 
-// Check if new bluetooth_audio is running with offloading encoders
-bool is_hal_2_0_offloading();
+private:
+  ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* interface_ = nullptr;
+};
 
-// Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* message_loop,
-          bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled);
+class HardwareOffloadEncoding : public ::bluetooth::audio::a2dp::IA2dpEncoding {
+public:
+  HardwareOffloadEncoding(
+          ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* audio_interface);
+  ~HardwareOffloadEncoding() override;
+  void SetRemoteDelay(uint16_t delay_report) override;
+  void StartSession() override;
+  void StopSession() override;
+  void ConfirmStreamStarted(Status status) override;
+  void ConfirmStreamSuspended(Status status) override;
+  bool UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
+                              [[maybe_unused]] int preferred_encoding_interval_us) override;
+  bool IsCodecSupportedByHardwareOffload(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu) override;
 
-// Clean up BluetoothAudio HAL
-void cleanup();
-
-// Set up the codec into BluetoothAudio HAL
-bool setup_codec(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
-                 int preferred_encoding_interval_us);
-
-// Send command to the BluetoothAudio HAL: StartSession, EndSession,
-// StreamStarted, StreamSuspended
-void start_session();
-void end_session();
-void ack_stream_started(::bluetooth::audio::a2dp::Status status);
-void ack_stream_suspended(::bluetooth::audio::a2dp::Status status);
-
-// Read from the FMQ of BluetoothAudio HAL
-size_t read(uint8_t* p_buf, uint32_t len);
-
-// Update A2DP delay report to BluetoothAudio HAL
-void set_remote_delay(uint16_t delay_report);
+private:
+  ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface* interface_ = nullptr;
+};
 
 }  // namespace a2dp
 }  // namespace hidl

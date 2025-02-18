@@ -20,7 +20,11 @@
 #include <bluetooth/log.h>
 
 #include <cstdint>
+#include <iomanip>
 #include <optional>
+
+#include "avdt_api.h"
+#include "hardware/bt_av.h"
 
 /* Profile supported features */
 #define A2DP_SUPF_PLAYER 0x0001
@@ -166,6 +170,77 @@ enum tA2DP_STATUS : uint8_t {
   A2DP_INVALID_CODEC_PARAMETER = 0xE2,
   A2DP_NOT_SUPPORTED_CODEC_PARAMETER = 0xE3,
 };
+
+namespace bluetooth {
+namespace audio {
+namespace a2dp {
+
+/// Loosely copied after the definition from the Bluetooth Audio interface:
+/// audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
+enum class Status {
+  SUCCESS = 0,
+  UNKNOWN,
+  UNSUPPORTED_CODEC_CONFIGURATION,
+  FAILURE,
+  PENDING,
+  RECONFIGURATION,
+};
+
+namespace provider {
+
+struct a2dp_configuration {
+  int remote_seid;
+  uint8_t codec_config[AVDT_CODEC_SIZE];
+  btav_a2dp_codec_config_t codec_parameters;
+  std::vector<uint8_t> vendor_specific_parameters;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpConfiguration{";
+    os << "remote_seid: " << remote_seid;
+    os << ", codec_index: " << codec_parameters.codec_type;
+    os << ", codec_config: {";
+    for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
+      os << "0x" << std::hex << std::setw(2) << std::setfill('0')
+         << static_cast<int>(codec_config[i]);
+      if (i != AVDT_CODEC_SIZE - 1) {
+        os << ",";
+      }
+    }
+    os << "}";
+    os << "}";
+    return os.str();
+  }
+};
+
+struct a2dp_remote_capabilities {
+  int seid;
+  uint8_t const* capabilities;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpRemoteCapabilities{";
+    os << "seid: " << seid;
+    os << ", capabilities: {";
+    if (capabilities != nullptr) {
+      for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
+        os << "0x" << std::hex << std::setw(2) << std::setfill('0')
+           << static_cast<int>(capabilities[i]);
+        if (i != AVDT_CODEC_SIZE - 1) {
+          os << ",";
+        }
+      }
+    }
+    os << "}";
+    os << "}";
+    return os.str();
+  }
+};
+
+}  // namespace provider
+}  // namespace a2dp
+}  // namespace audio
+}  // namespace bluetooth
 
 namespace std {
 template <>
