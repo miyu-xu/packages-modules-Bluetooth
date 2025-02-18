@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789a53e9_5297b02d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4353,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-18T21:14:05Z",
+      "side": 1,
+      "message": "have some thoughts on this, should we do an improvement like this? Basically the good pratice is to avoid logics before iterator.remove();\n\nHashset\u003cBluetoothDevice\u003e sinksToBeRemoved \u003d ...;\n\n        while (iterator.hasNext()) {\n            // add remove to hashset\n            sinksToBeRemoved.add();\n        }\n\nmPausedBroadcastSinks.removeAll(sinksToBeRemoved);",
+      "revId": "da5de06a5479feb7a128a8dba7970c2e0c1e7037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
