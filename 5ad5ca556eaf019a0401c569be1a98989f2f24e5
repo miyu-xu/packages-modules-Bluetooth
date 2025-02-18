@@ -135,6 +135,30 @@
       },
       "revId": "5ad5ca556eaf019a0401c569be1a98989f2f24e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82584bc2_d3905040",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-18T02:22:32Z",
+      "side": 1,
+      "message": "You are right, I need a queue to make sure FIFO.\nI updated the code on newest patchset, thanks!",
+      "parentUuid": "784ca164_7cc6fd3f",
+      "range": {
+        "startLine": 680,
+        "startChar": 4,
+        "endLine": 680,
+        "endChar": 36
+      },
+      "revId": "5ad5ca556eaf019a0401c569be1a98989f2f24e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
