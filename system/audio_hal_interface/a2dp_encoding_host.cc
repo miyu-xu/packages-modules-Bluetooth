@@ -231,7 +231,7 @@ static StreamCallbacks const* stream_callbacks_ = &null_stream_callbacks_;
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
-          StreamCallbacks const* strean_callbacks, bool /*offload_enabled*/) {
+          StreamCallbacks const* stream_callbacks, bool /*offload_enabled*/) {
   if (a2dp_uipc != nullptr) {
     log::warn("Re-init-ing UIPC that is already running");
     cleanup();
@@ -240,7 +240,7 @@ bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
   total_bytes_read_ = 0;
   data_position_ = {};
   remote_delay_report_ = 0;
-  stream_callbacks_ = strean_callbacks;
+  stream_callbacks_ = stream_callbacks;
 
   return true;
 }

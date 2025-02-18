@@ -70,7 +70,7 @@ bool is_hal_offloading();
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* message_loop,
-          StreamCallbacks const* strean_callbacks, bool offload_enabled);
+          StreamCallbacks const* stream_callbacks, bool offload_enabled);
 
 // Clean up BluetoothAudio HAL
 void cleanup();
