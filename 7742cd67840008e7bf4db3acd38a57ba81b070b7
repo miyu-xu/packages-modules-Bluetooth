@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be3167c0_7c9a9021",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:19:11Z",
+      "side": 1,
+      "message": "While I agree that `BlockingBluetoothAdapter.enable()` could be used here since indee we want to enable and wait for it to be enabled, we don\u0027t want to use the BlockingBluetoothAdapter for disable nor enableBLE, we just want to call enableBLE so there is a binder registered into the system server to keep bt in BLE_ON\n\nI would do the following instead of this whole block\n\n```\n        BlockingBluetoothAdapter.enable()\n        mAdapter.enableBLE()\n```",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 41
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faaffe25_6554064f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:19:11Z",
+      "side": 1,
+      "message": "This will block until there is a timeout fired in the BlockingBluetoothAdapter.\nWe are relying on a side effect of the method to run the test. That does\u0027t seems ok to me.\nWe should call the `mAdapter.disable()` and eventually, we could modify the BlockingBluetoothAdapter to expose `waitForStateWithTimeout`",
+      "range": {
+        "startLine": 644,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 46
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9bb752_02639d6f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:19:11Z",
+      "side": 1,
+      "message": "should this be an assertThrows ? which line is supposed to throw the exception ? the first socketOs.write ?",
+      "range": {
+        "startLine": 652,
+        "startChar": 11,
+        "endLine": 664,
+        "endChar": 13
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50d5f4d1_0f1f4f43",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T08:19:11Z",
+      "side": 1,
+      "message": "as a mirror of my first comment I would just call `mAdapter.disableBLE` here",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 45
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
