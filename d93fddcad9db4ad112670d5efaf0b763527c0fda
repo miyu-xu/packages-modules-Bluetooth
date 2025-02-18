@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d961e4c_51fcc2d6",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T17:36:10Z",
+      "side": 1,
+      "message": "Can you create a flag tracking bug ?\n(https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md#create-a-aconfig-flag)",
+      "range": {
+        "startLine": 115,
+        "startChar": 10,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "d93fddcad9db4ad112670d5efaf0b763527c0fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
