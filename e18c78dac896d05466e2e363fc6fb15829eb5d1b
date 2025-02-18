@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4defa44_a0e6ec29",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2025-02-18T19:39:45Z",
+      "side": 1,
+      "message": "Unsafe Rust review: sorry to nitpick, but the safety comment here says the same as `unsafe impl Send for GattServerCallbacks` 😊\n\nThat is, it doesn\u0027t explain _why_ this holds. From browsing the CL, it\u0027s not clear to me what the type contains?",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 63
+      },
+      "revId": "e18c78dac896d05466e2e363fc6fb15829eb5d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
