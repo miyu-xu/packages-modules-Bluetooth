@@ -111,7 +111,7 @@ public class OobPairingTest {
     @Rule(order = 3)
     public final EnableBluetoothRule enableBluetoothRule = new EnableBluetoothRule(false, true);
 
-    private TestUtil mUtil;
+    private TestUtil util;
      /**
      * IntentListener for the received intents
      * Note: This is added as a default listener for all the IntentReceiver
@@ -177,7 +177,7 @@ public class OobPairingTest {
 
     @Before
     public void setUp() throws Exception {
-        mUtil = new TestUtil.Builder(mContext).build();
+        util = new TestUtil.Builder(mContext).build();
         mDevice =
                 mAdapter.getRemoteLeDevice(
                         Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
@@ -186,7 +186,7 @@ public class OobPairingTest {
     @After
     public void tearDown() throws Exception {
         if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
-            mUtil.removeBond(null, mDevice);
+            util.removeBond(null, mDevice);
         }
         mDevice = null;
     }
