@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7503673_a907ceda",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-18T19:23:30Z",
+      "side": 0,
+      "message": "Oh i meant, did you also want to remove this.  It looks like it was moved to another line instead?",
+      "parentUuid": "e0e651f2_47429982",
+      "range": {
+        "startLine": 2179,
+        "startChar": 5,
+        "endLine": 2179,
+        "endChar": 72
+      },
+      "revId": "b3c7ae6054307d23deb1307632a81b052c8bc564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3172d16_8ce27b83",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 1
