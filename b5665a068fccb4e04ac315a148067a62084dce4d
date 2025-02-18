@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39d8bf47_50929ef3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-18T03:12:42Z",
+      "side": 1,
+      "message": "Can the channel sounding be turned off for a device? If that\u0027s possible use-case, then we should make a way to go back to aggressive connection parameters.",
+      "revId": "b5665a068fccb4e04ac315a148067a62084dce4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0992d09_bb7aca42",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1356,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-18T03:12:42Z",
+      "side": 1,
+      "message": "Instead of usign two data structures, how about just using `std::list`?\n\nYou can use `pop_front` to remove the first-added element, and `std::find` to find an element.\n\nWith just 10 devices, deleting/searching in list won\u0027t take much time.",
+      "range": {
+        "startLine": 1352,
+        "startChar": 3,
+        "endLine": 1356,
+        "endChar": 55
+      },
+      "revId": "b5665a068fccb4e04ac315a148067a62084dce4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
