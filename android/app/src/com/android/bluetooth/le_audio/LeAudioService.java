@@ -210,6 +210,7 @@ public class LeAudioService extends ProfileService {
     boolean mCurrentRecordingMode = false;
     Optional<Integer> mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
     Optional<Boolean> mQueuedInCallValue = Optional.empty();
+    Optional<Integer> mBroadcastIdPendingStop = Optional.empty();
     boolean mTmapStarted = false;
     private boolean mAwaitingBroadcastCreateResponse = false;
     boolean mIsSourceStreamMonitorModeEnabled = false;
@@ -752,6 +753,7 @@ public class LeAudioService extends ProfileService {
         mActiveAudioOutDevice = null;
         mActiveAudioInDevice = null;
         mExposedActiveDevice = null;
+        mBroadcastIdPendingStop = Optional.empty();
 
         // Set the service and BLE devices as inactive
         setLeAudioService(null);
@@ -1470,6 +1472,16 @@ public class LeAudioService extends ProfileService {
         }
 
         mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
+
+        if (!leaudioBigDependsOnAudioState()) {
+            if (mCreateBroadcastTimeoutEvent != null &&
+                    mCreateBroadcastTimeoutEvent.mBroadcastId.equals(broadcastId)) {
+                Log.w(TAG, "stopBroadcast: pending stopBrodcast while start Broadcast is ongoing: "
+                        + broadcastId);
+                mBroadcastIdPendingStop = Optional.of(broadcastId);
+                return;
+            }
+        }
         Log.d(TAG, "stopBroadcast");
 
         // log group size before stop
@@ -4033,6 +4045,14 @@ public class LeAudioService extends ProfileService {
                             updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
                         }
                     }
+
+                    if (!leaudioBigDependsOnAudioState()) {
+                        if (mBroadcastIdPendingStop.isPresent()) {
+                            Log.d(TAG, "mBroadcastIdPendingStop exist, Stop pending broadcast");
+                            stopBroadcast(mBroadcastIdPendingStop.get());
+                            mBroadcastIdPendingStop = Optional.empty();
+                        }
+                    }
                     break;
                 default:
                     Log.e(TAG, "Invalid state of broadcast: " + descriptor.mState);
@@ -5665,6 +5685,7 @@ public class LeAudioService extends ProfileService {
                 Log.w(TAG, "Failed to start Broadcast in time: " + mBroadcastId);
 
                 mCreateBroadcastTimeoutEvent = null;
+                mBroadcastIdPendingStop = Optional.empty();
 
                 if (getLeAudioService() == null) {
                     Log.e(TAG, "CreateBroadcastTimeoutEvent: No LE Audio service");
