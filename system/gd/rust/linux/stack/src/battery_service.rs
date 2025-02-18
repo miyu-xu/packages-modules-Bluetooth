@@ -3,12 +3,11 @@ use crate::battery_provider_manager::{
     BatteryProviderManager, IBatteryProviderCallback, IBatteryProviderManager,
 };
 use crate::bluetooth_gatt::{
-    BluetoothGatt, BluetoothGattService, IBluetoothGatt, IBluetoothGattCallback,
+    BluetoothGatt, BluetoothGattCharacteristic, BluetoothGattService, IBluetoothGatt,
+    IBluetoothGattCallback,
 };
 use crate::callbacks::Callbacks;
-use crate::Message;
-use crate::RPCProxy;
-use crate::{uuid, APIMessage, BluetoothAPI};
+use crate::{uuid, APIMessage, BluetoothAPI, Message, RPCProxy};
 use bt_topshim::btif::{BtTransport, DisplayAddress, RawAddress, Uuid};
 use bt_topshim::profiles::gatt::{GattStatus, LePhy};
 use log::{debug, info};
@@ -170,8 +169,9 @@ impl BatteryService {
                     self.drop_device(addr);
                     return;
                 }
-                let handle = match self.get_battery_level_handle(addr, services) {
-                    Ok(battery_level_handle) => battery_level_handle,
+
+                let battery_level_char = match self.get_battery_level_char(addr, services) {
+                    Ok(battery_level_char) => battery_level_char,
                     Err(status) => {
                         if let Some(BatteryServiceStatus::BatteryServiceNotSupported) = status {
                             self.callbacks.for_all_callbacks(|callback| {
@@ -182,7 +182,7 @@ impl BatteryService {
                             });
                         }
                         info!(
-                            "BAS: Failed to get handle from {}: status={:?}",
+                            "BAS: Failed to get battery level char from {}: status={:?}",
                             DisplayAddress(&addr),
                             status
                         );
@@ -190,7 +190,7 @@ impl BatteryService {
                         return;
                     }
                 };
-                info!("BAS: Found handle from {}", DisplayAddress(&addr));
+                info!("BAS: Found battery level char from {}", DisplayAddress(&addr));
                 let client_id = match self.client_id {
                     Some(id) => id,
                     None => {
@@ -198,8 +198,39 @@ impl BatteryService {
                         return;
                     }
                 };
+
+                let handle = battery_level_char.instance_id;
                 self.handles.insert(addr, handle);
+
+                // Try to register the battery level characteristic notification if the
+                // remote server supports the CCCD.
+                let cccd_uuid = Uuid::from_string(uuid::CCCD_UUID).expect("BAS: unwarp cccd uuid");
+                match battery_level_char
+                    .descriptors
+                    .iter()
+                    .find(|descriptor| descriptor.uuid == cccd_uuid)
+                {
+                    Some(battery_level_char_cccd) => {
+                        info!("BAS: Found battery level char CCCD from {}", DisplayAddress(&addr));
+                        let config_notification = vec![1, 0];
+                        self.gatt.lock().unwrap().write_descriptor(
+                            client_id,
+                            addr,
+                            battery_level_char_cccd.instance_id,
+                            0,
+                            config_notification,
+                        );
+                    }
+                    None => {
+                        debug!(
+                            "BAS: Device {} has no BatteryLevel characteristic CCCD",
+                            DisplayAddress(&addr)
+                        );
+                    }
+                };
+
                 self.gatt.lock().unwrap().register_for_notification(client_id, addr, handle, true);
+
                 if self.battery_sets.get(&addr).is_none() {
                     self.gatt.lock().unwrap().read_characteristic(client_id, addr, handle, 0);
                 }
@@ -239,14 +270,26 @@ impl BatteryService {
         let level: Vec<_> = value.iter().cloned().chain(iter::repeat(0_u8)).take(4).collect();
         let level = u32::from_le_bytes(level.try_into().unwrap());
         debug!("BAS received battery level for {}: {}", DisplayAddress(remote_address), level);
-        let battery_set = self.battery_sets.entry(*remote_address).or_insert_with(|| {
-            BatterySet::new(
-                *remote_address,
-                uuid::BAS.to_string(),
-                "BAS".to_string(),
-                vec![Battery { percentage: level, variant: "".to_string() }],
-            )
-        });
+
+        let battery_set = self
+            .battery_sets
+            .entry(*remote_address)
+            .and_modify(|e: &mut BatterySet| {
+                *e = BatterySet::new(
+                    *remote_address,
+                    uuid::BAS.to_string(),
+                    "BAS".to_string(),
+                    vec![Battery { percentage: level, variant: "".to_string() }],
+                )
+            })
+            .or_insert_with(|| {
+                BatterySet::new(
+                    *remote_address,
+                    uuid::BAS.to_string(),
+                    "BAS".to_string(),
+                    vec![Battery { percentage: level, variant: "".to_string() }],
+                )
+            });
         self.battery_provider_manager
             .lock()
             .unwrap()
@@ -288,11 +331,11 @@ impl BatteryService {
         }
     }
 
-    fn get_battery_level_handle(
+    fn get_battery_level_char(
         &mut self,
         remote_address: RawAddress,
         services: Vec<BluetoothGattService>,
-    ) -> Result<i32, Option<BatteryServiceStatus>> {
+    ) -> Result<BluetoothGattCharacteristic, Option<BatteryServiceStatus>> {
         let (bas_uuid, battery_level_uuid) =
             match (Uuid::from_string(uuid::BAS), Uuid::from_string(CHARACTERISTIC_BATTERY_LEVEL)) {
                 (Some(bas_uuid), Some(battery_level_uuid)) => (bas_uuid, battery_level_uuid),
@@ -310,7 +353,7 @@ impl BatteryService {
             .iter()
             .find(|characteristic| characteristic.uuid == battery_level_uuid)
         {
-            Some(battery_level) => battery_level,
+            Some(battery_level) => battery_level.clone(),
             None => {
                 debug!(
                     "Device {} has no BatteryLevel characteristic",
@@ -319,7 +362,7 @@ impl BatteryService {
                 return Err(None);
             }
         };
-        Ok(battery_level.instance_id)
+        return Ok(battery_level);
     }
 
     /// Perform an explicit read on all devices BAS knows about.
