@@ -348,6 +348,9 @@ bool btif_a2dp_source_init(void) {
 }
 
 class A2dpStreamCallbacks : public bluetooth::audio::a2dp::StreamCallbacks {
+public:
+  virtual ~A2dpStreamCallbacks() = default;
+
   Status StartStream(bool low_latency) const override {
     // Check if a phone call is currently active.
     if (!bluetooth::headset::IsCallIdle()) {
