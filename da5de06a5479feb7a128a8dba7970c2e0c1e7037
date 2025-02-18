@@ -34,6 +34,24 @@
       "parentUuid": "789a53e9_5297b02d",
       "revId": "da5de06a5479feb7a128a8dba7970c2e0c1e7037",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e74c1783_40bb8922",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4353,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-18T22:08:03Z",
+      "side": 1,
+      "message": "addressed offline, the unit tests confirmed this resolved the exception. And we can think about this more in the future for a follow-up.",
+      "parentUuid": "058e6eed_8120d252",
+      "revId": "da5de06a5479feb7a128a8dba7970c2e0c1e7037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
