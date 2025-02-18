@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef8510ea_00e99f25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-18T05:34:08Z",
+      "side": 1,
+      "message": "Looks good. Only one minor comment",
+      "revId": "4a1709bef6eb9a135fe78e7e0d72ac5d0d45d286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db7a0890_f7bd29b9",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-18T05:34:08Z",
+      "side": 1,
+      "message": "Please move this comment above the line of this variable.",
+      "range": {
+        "startLine": 1354,
+        "startChar": 43,
+        "endLine": 1355,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a3fc3504_7a84e3c4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1353,
+                "startChar": 0,
+                "endLine": 1356,
+                "endChar": 0
+              },
+              "replacement": "  // List of devices that have recently used channel sounding\n  std::list\u003cbluetooth::hci::Address\u003e channel_sounding_devices_list_;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4a1709bef6eb9a135fe78e7e0d72ac5d0d45d286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
