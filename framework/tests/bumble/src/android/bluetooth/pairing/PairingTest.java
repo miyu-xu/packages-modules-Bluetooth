@@ -41,6 +41,8 @@ import android.bluetooth.test_utils.BlockingBluetoothAdapter;
 import android.bluetooth.test_utils.EnableBluetoothRule;
 import android.bluetooth.pairing.utils.IntentReceiver;
 import android.bluetooth.pairing.utils.TestUtil;
+import pandora.HostProto.DiscoverabilityMode;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
 import android.content.Context;
 import android.os.ParcelUuid;
 import android.platform.test.annotations.RequiresFlagsEnabled;
@@ -69,6 +71,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import pandora.GattProto;
+import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.ConnectabilityMode;
@@ -102,6 +105,8 @@ public class PairingTest {
     private static final BluetoothAdapter sAdapter =
             sTargetContext.getSystemService(BluetoothManager.class).getAdapter();
 
+    private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
+
     @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
 
@@ -125,6 +130,40 @@ public class PairingTest {
     private BluetoothDevice mRemoteLeDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
+
+    private CompletableFuture<BluetoothDevice> mDeviceFound;
+
+    /**
+     * IntentListener for the received intents
+     */
+    private IntentReceiver.IntentListener intentListener = new IntentReceiver.IntentListener() {
+        @Override
+        public void onReceive(Intent intent) {
+            String action = intent.getAction();
+            Log.d(
+                TAG,
+                "onReceivePairingTest: action: "+ action);
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device =
+                        intent.getParcelableExtra(
+                                BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                String deviceName =
+                        String.valueOf(
+                                intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                Log.i(
+                        TAG,
+                        "Discovered device: "
+                                + device
+                                + " with name: "
+                                + deviceName);
+                if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
+                    mDeviceFound.complete(device);
+                }
+            } else {
+                Log.i(TAG, "onReceive(): unknown intent action " + action);
+            }
+        }
+    };
 
     @Before
     public void setUp() throws Exception {
@@ -515,6 +554,110 @@ public class PairingTest {
                 hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
                 hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice));
+
+        intentReceiver.close();
+    }
+
+    /**
+     * Test if bonded LE device can reconnect after BT restart
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is discoverable and connectable over LE
+     *   <li>Android pairs with Bumble over LE
+     *   <li>Android restarts
+     *   <li>Bumble is connectable over LE
+     *   <li>Android reconnects to Bumble successfully and re-encrypts the link
+     * </ol>
+     *
+     * <p>Expectation: Pairing succeeds
+     */
+    @Test
+    public void testBondLe_AutoTransport() throws Exception {
+        IntentReceiver intentReceiver =
+            new IntentReceiver.Builder(sTargetContext,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
+                BluetoothDevice.ACTION_ACL_CONNECTED,
+                BluetoothDevice.ACTION_PAIRING_REQUEST)
+                .setIntentListener(intentListener).
+                .build();
+
+        // Make Bumble discoverable over BR/EDR
+        mBumble.hostBlocking()
+            .setDiscoverabilityMode(
+                SetDiscoverabilityModeRequest.newBuilder()
+                    .setMode(DiscoverabilityMode.NOT_DISCOVERABLE)
+                    .build());
+
+        AdvertiseRequest.Builder requestBuilder =
+            AdvertiseRequest.newBuilder().setLegacy(true)
+            .setConnectable(true)
+            .setOwnAddressType(OwnAddressType.PUBLIC);
+
+        HostProto.DataTypes.Builder dataTypeBuilder = HostProto.DataTypes.newBuilder();
+        dataTypeBuilder.setLeDiscoverabilityModeValue(2);// LE General discoverable
+        requestBuilder.setData(dataTypeBuilder.build());
+
+        StreamObserverSpliterator<AdvertiseResponse> responseObserver =
+            new StreamObserverSpliterator<>();
+        mBumble.host().advertise(requestBuilder.build(), responseObserver);
+
+        // Start Discovery
+        mDeviceFound = new CompletableFuture<>();
+        assertThat(sAdapter.startDiscovery()).isTrue();
+        mBumbleDevice =
+                mDeviceFound
+                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+        assertThat(sAdapter.cancelDiscovery()).isTrue();
+
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+                mBumble.security()
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
+                            TimeUnit.MILLISECONDS)
+                        .onPairing(mPairingEventStreamObserver);
+
+        assertThat(mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_AUTO)).isTrue();
+
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                    BluetoothDevice.BOND_BONDING));
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT,
+                    BluetoothDevice.TRANSPORT_LE));
+        intentReceiver.verifyReceived(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(
+                        BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                        BluetoothDevice.PAIRING_VARIANT_CONSENT));
+
+        // Approve pairing from Android
+        assertThat(mBumbleDevice.setPairingConfirmation(true)).isTrue();
+
+        PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent)
+                    .setConfirm(true).build());
+
+        // Ensure that pairing succeeds
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE,
+                    BluetoothDevice.BOND_BONDED));
 
         intentReceiver.close();
     }
