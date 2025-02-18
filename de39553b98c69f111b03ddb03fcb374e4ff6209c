@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da64f4c4_3ea672fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-18T17:56:33Z",
+      "side": 1,
+      "message": "William marged change aosp/3468588 which added this flag to the BassClientStateMachineTest but very quickly he reverted it aosp/3499253 but it is not propageted yet.\n\nMy change should be verified soon.\n\nYou can review it but please do not submit as tommorow I will make some sanity test with it.",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
