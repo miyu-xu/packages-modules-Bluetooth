@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8bcf2cc_7ab36361",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-02-18T01:56:48Z",
+      "side": 1,
+      "message": "Overall looks good to me, but Hyundo was the implementer for the change and will let him decide on the final +2 :)",
+      "revId": "297cff3c726e0d5c8ff7578c1b7cb241ad4a2730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
