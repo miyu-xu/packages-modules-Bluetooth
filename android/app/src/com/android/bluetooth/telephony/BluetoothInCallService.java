@@ -438,13 +438,9 @@ public class BluetoothInCallService extends InCallService {
                     && conferenceCall.getState() == Call.STATE_HOLDING) {
                 Log.i(TAG, "BT - hanging up active call other than conference call");
                 /* Find active call other than conference */
-                for (BluetoothCall btCall : mCallInfo.getBluetoothCalls()) {
-                    if (!btCall.isConference()
-                            && btCall.getState() == Call.STATE_ACTIVE
-                            && btCall.getParentId() == null) {
-                        call = btCall;
-                        break;
-                    }
+                call = getNonConferenceActiveCall();
+                if (call == null) {
+                    return false;
                 }
             }
             if (call.getState() == Call.STATE_RINGING) {
@@ -1216,6 +1212,16 @@ public class BluetoothInCallService extends InCallService {
                     activeCall.mergeConference();
                     return true;
                 } else {
+                    if (Flags.mergeCallWithHeldConference()) {
+                        // Find the conferenceable active call if there is conference call
+                        if (!mCallInfo.isNullCall(getBluetoothCallById(activeCall.getParentId()))) {
+                            Log.i(TAG, "Find active call other than conference call to merge");
+                            activeCall = getNonConferenceActiveCall();
+                            if (activeCall == null) {
+                                return false;
+                            }
+                        }
+                    }
                     List<BluetoothCall> conferenceable =
                             getBluetoothCallsByIds(activeCall.getConferenceableCalls());
                     if (!conferenceable.isEmpty()) {
@@ -1415,6 +1421,18 @@ public class BluetoothInCallService extends InCallService {
             }
             default -> CallState.IDLE;
         };
+    }
+
+    /** Returns the active Bluetooth call which is not part of the conference call */
+    private BluetoothCall getNonConferenceActiveCall() {
+        return mCallInfo.getBluetoothCalls().stream()
+                .filter(
+                        btCall ->
+                                !btCall.isConference()
+                                        && btCall.getState() == Call.STATE_ACTIVE
+                                        && btCall.getParentId() == null)
+                .findFirst()
+                .orElse(null);
     }
 
     @VisibleForTesting
