@@ -32,7 +32,7 @@
 // Initialize the A2DP Source module.
 // This function should be called by the BTIF state machine prior to using the
 // module.
-bool btif_a2dp_source_init(void);
+bool btif_a2dp_source_init(bool a2dp_offload_enabled);
 
 // Start the A2DP Source session.
 // This function should be called by the BTIF state machine after

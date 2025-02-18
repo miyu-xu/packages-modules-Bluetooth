@@ -196,6 +196,7 @@ public:
         sw_audio_is_encoding(false),
         encoder_interface(nullptr),
         encoder_interval_ms(0),
+        offload_enabled(false),
         state_(kStateOff) {}
 
   void Reset() {
@@ -235,6 +236,7 @@ public:
   uint64_t encoder_interval_ms; /* Local copy of the encoder interval */
   BtifMediaStats stats;
   BtifMediaStats accumulated_stats;
+  bool offload_enabled;
 
 private:
   BtifA2dpSource::RunState state_;
@@ -337,8 +339,9 @@ static bluetooth::common::MessageLoopThread* local_thread() {
                                                                      : &btif_a2dp_source_thread;
 }
 
-bool btif_a2dp_source_init(void) {
+bool btif_a2dp_source_init(bool a2dp_offload_enabled) {
   log::info("");
+  btif_a2dp_source_cb.offload_enabled = a2dp_offload_enabled;
 
   // Start A2DP Source media task
   btif_a2dp_source_thread.StartUp();
@@ -428,7 +431,7 @@ static void btif_a2dp_source_init_delayed(void) {
   // get_a2dp_configuration and parse_a2dp_configuration can be
   // invoked before the stream is started.
   bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks,
-                               btif_av_is_a2dp_offload_enabled());
+                               btif_a2dp_source_cb.offload_enabled);
 }
 
 static bool btif_a2dp_source_startup(void) {
@@ -457,7 +460,7 @@ static void btif_a2dp_source_startup_delayed() {
 #endif
   }
   if (!bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks,
-                                    btif_av_is_a2dp_offload_enabled())) {
+                                    btif_a2dp_source_cb.offload_enabled)) {
     log::warn("Failed to setup the bluetooth audio HAL");
   }
   btif_a2dp_source_cb.SetState(BtifA2dpSource::kStateRunning);
@@ -599,6 +602,7 @@ static void btif_a2dp_source_shutdown_delayed(std::promise<void> shutdown_comple
   btif_a2dp_source_cb.media_alarm.CancelAndWait();
   wakelock_release();
 
+  btif_a2dp_source_cb.offload_enabled = false;
   bluetooth::audio::a2dp::cleanup();
 
   fixed_queue_free(btif_a2dp_source_cb.tx_audio_queue, nullptr);

@@ -1148,7 +1148,7 @@ void BtifAvSource::Init(btav_source_callbacks_t* callbacks, int max_connected_au
 
   bta_av_co_init(codec_priorities, supported_codecs);
 
-  if (!btif_a2dp_source_init()) {
+  if (!btif_a2dp_source_init(a2dp_offload_enabled_)) {
     complete_promise.set_value(BT_STATUS_FAIL);
     return;
   }
@@ -4056,15 +4056,11 @@ uint16_t btif_av_get_audio_delay(const A2dpType local_a2dp_type) {
   return 0;
 }
 
-bool btif_av_is_a2dp_offload_enabled() { return btif_av_source.A2dpOffloadEnabled(); }
-
 bool btif_av_is_a2dp_offload_running() {
-  if (!btif_av_is_a2dp_offload_enabled()) {
+  if (!btif_av_source.A2dpOffloadEnabled()) {
     return false;
   }
-  if (!bluetooth::audio::a2dp::is_hal_enabled()) {
-    return false;
-  }
+
   return bluetooth::audio::a2dp::is_hal_offloading();
 }
 
