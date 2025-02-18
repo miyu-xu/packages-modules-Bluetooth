@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36da8a12_9fdcfb22",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T17:46:32Z",
+      "side": 1,
+      "message": "I see,\n\nThen I would directly do `Settings.Global.putInt(context.contentResolver, BLE_SCAN_ALWAYS_AVAILABLE, 1)` and put a try {} finally {} to put it back to 0 when the test end (or that may even be better in the teardown of the test)",
+      "parentUuid": "d78d24e6_dc644e36",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 41
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "faaffe25_6554064f",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 4
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Hi @wescande@google.com, I\u0027m sorry I\u0027m not quite sure what you mean here. I need to confirm with you: Do you mean to use mAdapter.disable() + withTimeout(TIMEOUT) with continuously listen for broadcast status changes directly?\n\nOr if mAdapter.disable() + Thread.sleep(3000) is ok? \n\nOr you mean i can implemente waitForStateWithTimeout way here directly?",
       "parentUuid": "faaffe25_6554064f",
+      "range": {
+        "startLine": 644,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 46
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57270330_aa31a599",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-18T17:46:32Z",
+      "side": 1,
+      "message": "I would modify the BlockingBluetoothAdapter to do something like this:\n```\nobject BlockingBluetoothAdapter {\n[...]\n    /** Wait Bluetooth to reach the specified mode. Caller is responsible to initiate the transition */\n    @JvmStatic\n    fun waitForStateWithTimeout(timeout: Duration, state: Int): Boolean \u003d runBlocking {\n        return state.waitForStateWithTimeout(timeout, state)\n    }\n```\n\nYou may also add a method that take a Java Duration and transform it into a kotlin duration (see packages/modules/Bluetooth/service/src/AdapterState.kt for an example of that).\n\nAnd then, do\n```\nmAdapter.disable()\nBlockingBluetoothAdapter.waitForStateWithTimeout(Duration.ofSeconds(4), BluetoothAdapter.STATE_BLE_ON)\n```",
+      "parentUuid": "59275c4c_ee050369",
       "range": {
         "startLine": 644,
         "startChar": 0,
