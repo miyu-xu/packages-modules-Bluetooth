@@ -86,7 +86,10 @@ genrule {
 
 cc_library_static {
     name: "libbtif",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        "latest_android_hardware_bluetooth_audio_ndk_android_shared",
+    ],
     include_dirs: btifCommonIncludes,
     srcs: [
         // AVRCP Target Service
@@ -139,6 +142,7 @@ cc_library_static {
     },
     static_libs: [
         "aics",
+        "android.hardware.bluetooth.audio@2.1",
         "avrcp-target-service",
         "bluetooth_flags_c_lib",
         "lib-bt-packets",

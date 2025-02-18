@@ -22,6 +22,7 @@
 
 #include "a2dp_codec_api.h"
 #include "a2dp_constants.h"
+#include "aidl/a2dp/a2dp_provider_info.h"
 #include "avdt_api.h"
 #include "common/message_loop_thread.h"
 #include "hardware/bt_av.h"
@@ -51,7 +52,7 @@ enum class Status {
 /// The callbacks are always invoked from one of the binder threads.
 class StreamCallbacks {
 public:
-  virtual ~StreamCallbacks() {}
+  virtual ~StreamCallbacks() = default;
   virtual Status StartStream(bool /*low_latency*/) const { return Status::FAILURE; }
   virtual Status SuspendStream() const { return Status::FAILURE; }
   virtual Status StopStream() const { return SuspendStream(); }
@@ -59,8 +60,7 @@ public:
 };
 
 bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference,
-        bool supports_a2dp_hw_offload_v2);
+        const std::vector<btav_a2dp_codec_config_t>& framework_preference);
 
 // Check if new bluetooth_audio is enabled
 bool is_hal_enabled();
@@ -70,7 +70,8 @@ bool is_hal_offloading();
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* message_loop,
-          StreamCallbacks const* strean_callbacks, bool offload_enabled);
+          StreamCallbacks const* stream_callbacks, bool offload_enabled,
+          std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
 
 // Clean up BluetoothAudio HAL
 void cleanup();
@@ -94,9 +95,6 @@ size_t read(uint8_t* p_buf, uint32_t len);
 
 // Update A2DP delay report to BluetoothAudio HAL
 void set_remote_delay(uint16_t delay_report);
-
-// Check whether OPUS is supported
-bool is_opus_supported();
 
 // Definitions for A2DP hardware offload codec extensibility.
 namespace provider {
