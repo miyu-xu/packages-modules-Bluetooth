@@ -41,7 +41,8 @@ cc_library_static {
             ],
             srcs: [
                 "a2dp_encoding.cc",
-                "aidl/a2dp/a2dp_encoding_aidl.cc",
+                "aidl/a2dp/a2dp_encoding_aidl_controller.cc",
+                "aidl/a2dp/a2dp_encoding_aidl_transport.cc",
                 "aidl/a2dp/a2dp_provider_info.cc",
                 "aidl/a2dp/bluetooth_audio_port_impl.cc",
                 "aidl/a2dp/client_interface_aidl.cc",
