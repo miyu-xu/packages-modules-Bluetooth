@@ -16,6 +16,193 @@
       "message": "Gentle ping, please help review, thanks!",
       "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "581dab96_7028ecea",
+        "filename": "system/gd/hal/hci_hal.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T21:49:07Z",
+      "side": 1,
+      "message": "return statement is not needed",
+      "range": {
+        "startLine": 57,
+        "startChar": 40,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fd79256f_0b83643f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/hci_hal.h",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "  virtual void ControllerNeedsReset() {}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd031907_35c61b4c",
+        "filename": "system/gd/hal/hci_hal.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T21:49:07Z",
+      "side": 1,
+      "message": "nit: casing in this class mandates `controllerNeedsReset`",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "15e7a29c_cfe7df9e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/hci_hal.h",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "  virtual void controllerNeedsReset() { return; }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a84777ce_0e75f82c",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T21:49:07Z",
+      "side": 1,
+      "message": "You may call `module_.Stop()` instead",
+      "range": {
+        "startLine": 313,
+        "startChar": 12,
+        "endLine": 313,
+        "endChar": 25
+      },
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee082232_b7895336",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T21:49:07Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be necessary, life_cycle_stopped is checked before `send_next_command` is called",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 353,
+        "endChar": 6
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "660f7e5e_82c9f2f6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/hci_layer.cc",
+              "range": {
+                "startLine": 348,
+                "startChar": 0,
+                "endLine": 355,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a484cbd5_e80e2a99",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T21:49:07Z",
+      "side": 1,
+      "message": "life_cycle_guard_ probably should be locked while all of this is executed",
+      "range": {
+        "startLine": 989,
+        "startChar": 0,
+        "endLine": 996,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "71d82073_485c73fb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/hci_layer.cc",
+              "range": {
+                "startLine": 989,
+                "startChar": 0,
+                "endLine": 989,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_lock\u003cstd::recursive_mutex\u003e lock(life_cycle_guard);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
