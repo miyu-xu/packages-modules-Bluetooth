@@ -90,6 +90,24 @@ class A2DPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
+    def TSC_AVDTP_mmi_iut_initiate_connect(self, test: str, pts_addr: bytes, **kwargs):
+        """
+        Create an AVDTP signaling channel.
+
+        Action: Create an audio or video
+        connection with PTS.
+        """
+
+        if "SRC" in test:
+            self.connection = self.host.WaitConnection(address=pts_addr).connection
+            self.source = self.a2dp.OpenSource(connection=self.connection).source
+        else:
+            self.connection = self.host.WaitConnection(address=pts_addr).connection
+            self.sink = self.a2dp.OpenSink(connection=self.connection).source
+
+        return "OK"
+
+    @assert_description
     def TSC_AVDTP_mmi_iut_accept_disconnect(self, **kwargs):
         """
         If necessary, take action to accept the AVDTP Signaling Channnel
