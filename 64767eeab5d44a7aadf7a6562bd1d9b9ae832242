@@ -285,6 +285,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f6412bf_f19ac47a",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-19T08:37:31Z",
+      "side": 1,
+      "message": "What\u0027s the value if the key exists? Is it different from the one inserted below?",
+      "parentUuid": "156e4928_d45038f8",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 284,
+        "endChar": 14
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "548fa2ed_9cb2c45c",
         "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
         "patchSetId": 1
