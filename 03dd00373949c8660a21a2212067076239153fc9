@@ -46,6 +46,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d725b8_9ecb8500",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-19T08:28:12Z",
+      "side": 1,
+      "message": "As discussed offline, an app uid is not available in the state machine so we will use 0 but if available, will use this.",
+      "parentUuid": "12237acb_ef07e1b5",
+      "revId": "03dd00373949c8660a21a2212067076239153fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4d84b71_68757c3a",
