@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf3a43c2_e6046786",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T01:45:35Z",
+      "side": 1,
+      "message": "It is still not right.\n\nWhy aren\u0027t you using `repo upload` ? This is the more the strongly recommended way to work on AOSP.\n\n\n```\ndiff --git a/android/app/jni/com_android_bluetooth_gatt.cpp b/android/app/jni/com_android_bluetooth_gatt.cpp\nindex 77a7e72b94..ae33741d2b 100644\n--- a/android/app/jni/com_android_bluetooth_gatt.cpp\n+++ b/android/app/jni/com_android_bluetooth_gatt.cpp\n@@ -1947,8 +1947,7 @@ static void gattClientMsftAdvMonitorRemoveNative(JNIEnv* /* env */, jobject /* o\n   if (!sScanner) {\n     return;\n   }\n-  sScanner-\u003eMsftAdvMonitorRemove(monitor_handle,\n-                                 base::Bind(\u0026msft_monitor_remove_cb, filter_index));\n+  sScanner-\u003eMsftAdvMonitorRemove(monitor_handle, base::Bind(\u0026msft_monitor_remove_cb, filter_index));\n }\n \n static void gattClientMsftAdvMonitorEnableNative(JNIEnv* /* env */, jobject /* object */,\n@@ -2575,8 +2574,8 @@ static void setAdvertisingParametersNative(JNIEnv* env, jobject /* object */, ji\n   }\n \n   AdvertiseParameters params \u003d parseParams(env, parameters);\n-  sGattIf-\u003eadvertiser-\u003eSetParameters(\n-          advertiser_id, params, base::Bind(\u0026setAdvertisingParametersNativeCb, advertiser_id));\n+  sGattIf-\u003eadvertiser-\u003eSetParameters(advertiser_id, params,\n+                                     base::Bind(\u0026setAdvertisingParametersNativeCb, advertiser_id));\n }\n \n static void setPeriodicAdvertisingParametersNative(JNIEnv* env, jobject /* object */,\n@@ -2590,7 +2589,7 @@ static void setPeriodicAdvertisingParametersNative(JNIEnv* env, jobject /* objec\n   sGattIf-\u003eadvertiser-\u003eSetPeriodicAdvertisingParameters(\n           advertiser_id, periodicParams,\n           base::Bind(\u0026callJniCallback, method_onPeriodicAdvertisingParametersUpdated,\n-                       advertiser_id));\n+                     advertiser_id));\n }\n \n static void setPeriodicAdvertisingDataNative(JNIEnv* env, jobject /* object */, jint advertiser_id,\n```",
+      "parentUuid": "64fc3d9d_0553f593",
+      "revId": "e18c78dac896d05466e2e363fc6fb15829eb5d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "afa196cd_90562129",
         "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
         "patchSetId": 12
