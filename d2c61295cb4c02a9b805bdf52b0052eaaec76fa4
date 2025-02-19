@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594adba6_8d1882ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-02-19T18:55:37Z",
+      "side": 1,
+      "message": "Apologies, reviewers. There was a merge conflict, and I had to update the Android.bp file",
+      "revId": "d2c61295cb4c02a9b805bdf52b0052eaaec76fa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
