@@ -52,6 +52,24 @@
       "parentUuid": "9ed2479e_035e570d",
       "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236eb707_5fe37c9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-19T16:29:21Z",
+      "side": 1,
+      "message": "If it was other way around, that is the remote device does not respond, SMP would have generated the same error. In that case, spec mandates that the SMP cannot be used in the same bearer again. But here we were initiating SMP pairing over the same ACL instance again.\nOther way to look at it is that the pairing was intiated because there was atleast one stackholder interested in a secured link. Failure to provide that secure link should also warrant disconnection.",
+      "parentUuid": "21fd32d6_493603ff",
+      "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
