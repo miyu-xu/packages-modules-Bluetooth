@@ -4822,6 +4822,8 @@ void LinkLayerController::IncomingPagePacket(model::packets::LinkLayerPacketView
 
   // Cannot establish two BR-EDR connections with the same peer.
   if (connections_.GetAclConnectionHandle(bd_addr).has_value()) {
+    WARNING(id_, "ignoring connection request from {} because the connection already exists",
+            bd_addr);
     return;
   }
 
