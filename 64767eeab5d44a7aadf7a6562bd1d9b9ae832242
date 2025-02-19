@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "827c6e60_0155d7a2",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2c02208_40fea7d2",
+      "range": {
+        "startLine": 207,
+        "startChar": 80,
+        "endLine": 207,
+        "endChar": 86
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e61a89dd_2115572b",
@@ -70,6 +94,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22d0f6b9_84bd4122",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f5f3e0_ed187f66",
+      "range": {
+        "startLine": 214,
+        "startChar": 36,
+        "endLine": 214,
+        "endChar": 72
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd97d953_917f0a53",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e61a89dd_2115572b",
+      "range": {
+        "startLine": 214,
+        "startChar": 24,
+        "endLine": 214,
+        "endChar": 28
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bcf8bd9_cde62b64",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-02-19T02:48:04Z",
       "side": 1,
       "message": "please add a comment to explain what does this config mean",
+      "range": {
+        "startLine": 215,
+        "startChar": 28,
+        "endLine": 215,
+        "endChar": 47
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49347f95_3477fc68",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bcf8bd9_cde62b64",
       "range": {
         "startLine": 215,
         "startChar": 28,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5709b30_de104c4a",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf96f2ce_bbc66fda",
+      "range": {
+        "startLine": 220,
+        "startChar": 28,
+        "endLine": 220,
+        "endChar": 29
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2e735bc_1356e519",
@@ -129,6 +249,30 @@
       "writtenOn": "2025-02-19T02:48:04Z",
       "side": 1,
       "message": "could you explain why this is needed?",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 284,
+        "endChar": 14
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "156e4928_d45038f8",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "or_insert_with inserts a value when a key-value pair does not exist in the hashmap. When the required key exists in the hashmap, it does nothing and simply returns the existing value. \n\nand_modify returns a mutable reference to the value if it exists.\n\nWithout and_modify, each time we call set_battery_info, this function won\u0027t change the value of battery_set if it already exists.",
+      "parentUuid": "b2e735bc_1356e519",
       "range": {
         "startLine": 277,
         "startChar": 13,
@@ -175,6 +319,30 @@
       "writtenOn": "2025-02-19T02:48:04Z",
       "side": 1,
       "message": "I think CCCD is descriptor?",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3290c985_a757a455",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T08:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d697965d_bea07600",
       "range": {
         "startLine": 43,
         "startChar": 11,
