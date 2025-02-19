@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0281720_dcc870a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-19T03:57:12Z",
+      "side": 1,
+      "message": "SMP cannot be used again on the same bearer after SMP response timeout. However, here the remote would percieve the SMP response timeout, not the local implementation.\nHowever, a case can be made to avoid pairing again on the same bearer. I wonder if a simpler fix would have been to just disconnect right away as the SMP generated the timeout error.",
+      "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
