@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c80a34f_708d2d91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952030
+      },
+      "writtenOn": "2025-02-19T17:15:18Z",
+      "side": 1,
+      "message": "Rebased on top of https://r.android.com/3490319. I had to move the srcs and merge two target scoped static_lib decls with ones that got added in that patch.",
+      "revId": "d6dddec27bc707c816cb426a327005678e0a7ee9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
