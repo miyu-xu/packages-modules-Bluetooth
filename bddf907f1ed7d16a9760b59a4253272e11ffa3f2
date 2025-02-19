@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27281ca2_519ca42d",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-19T19:45:20Z",
+      "side": 1,
+      "message": "is it ok to log metric_id as ZERO incase address is empty?",
+      "revId": "bddf907f1ed7d16a9760b59a4253272e11ffa3f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
