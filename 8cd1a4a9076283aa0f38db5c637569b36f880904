@@ -70,6 +70,24 @@
       "parentUuid": "21fd32d6_493603ff",
       "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5007af_ad908f42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-19T19:23:06Z",
+      "side": 1,
+      "message": "BT spec mandates that a new physical link needs to be established during SMP timeout scenario. Snippet from BT spec regarding SMP timeout is below. \n\"If the Security Manager Timer reaches 30 seconds, the procedure shall be considered to have failed, and the local higher layer shall be notified. No further SMP commands shall be sent over the L2CAP Security Manager Channel. A new Pairing process shall only be performed when a new physical link has been established.\"",
+      "parentUuid": "236eb707_5fe37c9e",
+      "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
