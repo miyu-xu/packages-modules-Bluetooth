@@ -16,6 +16,24 @@
       "message": "is it ok to log metric_id as ZERO incase address is empty?",
       "revId": "bddf907f1ed7d16a9760b59a4253272e11ffa3f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f1b9d13_201b50d9",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-19T22:56:01Z",
+      "side": 1,
+      "message": "Checked with Palash - no, we shouldn\u0027t be logging any metric ids of 0.\n\nAdjusted to print error log and return early if address.IsEmpty()",
+      "parentUuid": "27281ca2_519ca42d",
+      "revId": "bddf907f1ed7d16a9760b59a4253272e11ffa3f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
