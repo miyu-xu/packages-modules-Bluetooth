@@ -46,6 +46,30 @@
       },
       "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5e6c192_c59f8b49",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-19T22:52:07Z",
+      "side": 1,
+      "message": "Using the session initiation source (remote/local) directly in the HFP_SESSION event would be much clearer (`HFP_SESSION_REMOTE` and `HFP_SESSION_INITIATOR`)\n\nLogging \u00271\u0027 in the \u0027uid\u0027 doesn\u0027t tell us if the connection was local or remote initiated",
+      "parentUuid": "ae13ed02_6bf7e22f",
+      "range": {
+        "startLine": 679,
+        "startChar": 49,
+        "endLine": 679,
+        "endChar": 99
+      },
+      "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
