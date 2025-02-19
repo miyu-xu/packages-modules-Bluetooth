@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05bab541_9323dad6",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-19T14:06:20Z",
+      "side": 1,
+      "message": "I wonder whether we should call this after devices are all disconnected. This also means some traffics could happen after disconnected (e.g. add accept list). I will verify this tomorrow.",
+      "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
