@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d727fb5e_08aeb503",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/BipDatetimeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T22:27:23Z",
+      "side": 1,
+      "message": "The test name is no longer accurate",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 43
+      },
+      "revId": "a990dc55e04ab507269489fbaeb03c4609b05ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d3164a_df5f0dac",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/MsgTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T22:27:23Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be a separate equality group ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 59,
+        "endLine": 69,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "64185a0f_f8da0d14",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/map/MsgTest.java",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "                .addEqualityGroup(msg, msg, msgWithSameId)\n                .addEqualityGroup(null)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a990dc55e04ab507269489fbaeb03c4609b05ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
