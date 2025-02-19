@@ -20,6 +20,7 @@
 #include "stack/btm/btm_sec_cb.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -173,8 +174,36 @@ bool tBTM_SEC_CB::IsDeviceAuthenticated(const RawAddress bd_addr, tBT_TRANSPORT 
 
 bool tBTM_SEC_CB::IsDeviceBonded(const RawAddress bd_addr, tBT_TRANSPORT transport) {
   tBTM_SEC_REC* sec_rec = getSecRec(bd_addr);
+<<<<<<< PATCH SET (9e0c1a Native bond status interfaces should check persistency as we)
+  if (sec_rec != nullptr) {
+    // Check BR/EDR bond status if requested transport is BT_TRANSPORT_BR_EDR or BT_TRANSPORT_AUTO
+    if (transport != BT_TRANSPORT_LE) {
+      if (com::android::bluetooth::flags::temporary_pairing_tracking()) {
+        bonded = sec_rec->is_bond_type_persistent() && sec_rec->is_link_key_known();
+      } else {
+        bonded = sec_rec->is_link_key_known();
+      }
+    }
+
+    // Check LE bond status if requested transport is BT_TRANSPORT_LE or BT_TRANSPORT_AUTO
+    if (transport != BT_TRANSPORT_BR_EDR) {
+      bonded |= (sec_rec->ble_keys.key_type != BTM_LE_KEY_NONE && sec_rec->is_le_link_key_known());
+    }
+||||||| BASE
+  if (sec_rec != nullptr) {
+    // Check BR/EDR bond status if requested transport is BT_TRANSPORT_BR_EDR or BT_TRANSPORT_AUTO
+    if (transport != BT_TRANSPORT_LE) {
+      bonded = sec_rec->is_link_key_known();
+    }
+
+    // Check LE bond status if requested transport is BT_TRANSPORT_LE or BT_TRANSPORT_AUTO
+    if (transport != BT_TRANSPORT_BR_EDR) {
+      bonded |= (sec_rec->ble_keys.key_type != BTM_LE_KEY_NONE && sec_rec->is_le_link_key_known());
+    }
+=======
   if (sec_rec == nullptr) {
     return false;
+>>>>>>> BASE      (3f46f6 Replace BTM_BleIsLinkKeyKnown with BTM_IsBonded)
   }
 
   bool bonded = false;
