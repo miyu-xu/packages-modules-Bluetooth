@@ -40,7 +40,7 @@ java_defaults {
         ":Bluetooth-binder-aidl",
         ":framework-bluetooth-sources",
     ],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
 }
 
 // bluetooth-service needs pre-jarjared version of framework-bluetooth so it can reference copied utility

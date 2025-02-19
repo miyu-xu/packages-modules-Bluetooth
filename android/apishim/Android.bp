@@ -24,7 +24,7 @@ java_defaults {
         "modules-utils-build",
     ],
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
 }
 
 // Common shim code. This includes the shim interface definitions themselves.
@@ -45,7 +45,7 @@ java_library {
     defaults: ["BluetoothShimsDefaults"],
     srcs: ["33/**/*.java"],
     libs: ["BluetoothShimsCommon"],
-    sdk_version: "module_33",
+    sdk_version: "module_35",
     visibility: ["//visibility:private"],
 }
 
@@ -57,7 +57,7 @@ java_library {
         "BluetoothApi33Shims",
         "BluetoothShimsCommon",
     ],
-    sdk_version: "module_34",
+    sdk_version: "module_35",
     visibility: ["//visibility:private"],
 }
 
@@ -70,5 +70,5 @@ java_library {
         "BluetoothShimsCommon",
     ],
     visibility: ["//packages/modules/Bluetooth/android/app"],
-    sdk_version: "module_33",
+    sdk_version: "module_35",
 }

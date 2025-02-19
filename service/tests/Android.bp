@@ -61,5 +61,5 @@ android_test {
         "mts-bt",
     ],
 
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
 }

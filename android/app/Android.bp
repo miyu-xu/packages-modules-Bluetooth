@@ -33,7 +33,7 @@ java_library {
 
     srcs: ["lib/mapapi/**/*.java"],
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
     sdk_version: "module_current",
     lint: {
         baseline_filename: "lint-baseline.xml",
@@ -46,7 +46,7 @@ java_library {
     srcs: [":framework-mms-shared-srcs"],
     libs: ["unsupportedappusage"],
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
     sdk_version: "module_current",
     lint: {
         baseline_filename: "lint-baseline.xml",
@@ -161,7 +161,7 @@ cc_library_shared {
         scs: true,
     },
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
 }
 
 cc_library {
@@ -196,7 +196,7 @@ cc_library {
     },
     apex_available: ["com.android.bt"],
     host_supported: true,
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
 }
 
 android_library {
@@ -319,7 +319,7 @@ android_library {
 
     installable: false,
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
     sdk_version: "module_current",
 }
 
@@ -330,7 +330,7 @@ android_app {
     static_libs: ["BluetoothLib"],
 
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
     sdk_version: "module_current",
     updatable: true,
     jarjar_rules: ":bluetooth-jarjar-rules",
@@ -401,7 +401,7 @@ java_library {
         ":srcs_bluetooth_protos",
     ],
     apex_available: ["com.android.bt"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "36",
     sdk_version: "module_current",
 }
 
