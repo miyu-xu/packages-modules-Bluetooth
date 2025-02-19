@@ -34,6 +34,23 @@
       "parentUuid": "55b51f7f_3681cde7",
       "revId": "5e855237837b14b7e50cb87682e22e3f7d3c0582",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214ce6e1_02206608",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-19T15:12:36Z",
+      "side": 1,
+      "message": "Bug fix is not a valid flag exemption. Can you provide a test for this?",
+      "revId": "5e855237837b14b7e50cb87682e22e3f7d3c0582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
