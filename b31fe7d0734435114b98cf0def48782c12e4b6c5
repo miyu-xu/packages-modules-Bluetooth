@@ -34,6 +34,24 @@
       ],
       "revId": "b31fe7d0734435114b98cf0def48782c12e4b6c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee0a4f34_de97f228",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-19T08:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9c1e191_227a73f9",
+      "revId": "b31fe7d0734435114b98cf0def48782c12e4b6c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
