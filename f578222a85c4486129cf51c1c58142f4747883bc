@@ -128,6 +128,30 @@
       },
       "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1275f01c_39b2335c",
+        "filename": "system/rust/src/core/ffi/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-19T02:29:44Z",
+      "side": 1,
+      "message": "`Start` cannot be called twice without an intervening `Stop` so the state will never be `Running` here. Would it help if we only change to this new state if the current state is `NotRunning` (which should always be the case anyway, but I can make that change if it makes you feel more comfortable)?",
+      "parentUuid": "ab31e19f_c20b41d2",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
