@@ -1996,6 +1996,12 @@ public class LeAudioService extends ProfileService {
 
         mAdapterService.handleActiveDeviceChange(BluetoothProfile.LE_AUDIO, device);
         notifyVolumeControlServiceAboutActiveGroup(device);
+
+        if (mExposedActiveDevice != null
+                && device != null
+                && !mExposedActiveDevice.equals(device)) {
+            sendActiveDeviceChangeIntent(null);
+        }
         sendActiveDeviceChangeIntent(device);
     }
 
