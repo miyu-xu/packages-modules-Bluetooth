@@ -238,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eb7bab8_8985bec6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-19T14:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4783cbb4_b92bf434",
+      "range": {
+        "startLine": 652,
+        "startChar": 11,
+        "endLine": 664,
+        "endChar": 13
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50d5f4d1_0f1f4f43",
@@ -275,6 +299,30 @@
       "side": 1,
       "message": "Yes, here is better to use mAdapter.disableBLE.",
       "parentUuid": "50d5f4d1_0f1f4f43",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 45
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11b5c6d7_e57f6e4a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-19T14:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5db35347_f20e63ed",
       "range": {
         "startLine": 667,
         "startChar": 0,
