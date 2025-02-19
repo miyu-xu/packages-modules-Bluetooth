@@ -60,19 +60,6 @@ void bluetooth::shim::ACL_CancelClassicConnection(const RawAddress& raw_address)
   Stack::GetInstance()->GetAcl()->CancelClassicConnection(address);
 }
 
-void bluetooth::shim::ACL_AcceptLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type,
-                                                 bool is_direct) {
-  BTM_LogHistory(kBtmLogTag, legacy_address_with_type, "Allow connection from", "Le");
-  bluetooth::shim::GetAclManager()->CreateLeConnection(
-          ToAddressWithTypeFromLegacy(legacy_address_with_type), is_direct);
-}
-
-void bluetooth::shim::ACL_IgnoreLeConnectionFrom(const tBLE_BD_ADDR& legacy_address_with_type) {
-  BTM_LogHistory(kBtmLogTag, legacy_address_with_type, "Ignore connection from", "Le");
-  bluetooth::shim::GetAclManager()->CancelLeConnect(
-          ToAddressWithTypeFromLegacy(legacy_address_with_type));
-}
-
 void bluetooth::shim::ACL_WriteData(uint16_t handle, BT_HDR* p_buf) {
   std::unique_ptr<bluetooth::packet::RawBuilder> packet =
           MakeUniquePacket(p_buf->data + p_buf->offset + HCI_DATA_PREAMBLE_SIZE,
