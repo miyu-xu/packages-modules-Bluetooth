@@ -1134,11 +1134,7 @@ public final class BluetoothHeadset implements BluetoothProfile {
      */
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(
-            allOf = {
-                BLUETOOTH_CONNECT,
-                MODIFY_PHONE_STATE,
-            })
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, MODIFY_PHONE_STATE})
     public void phoneStateChanged(
             int numActive, int numHeld, int callState, String number, int type, String name) {
         final IBluetoothHeadset service = getService();

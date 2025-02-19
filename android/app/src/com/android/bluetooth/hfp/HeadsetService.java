@@ -840,7 +840,8 @@ public class HeadsetService extends ProfileService {
         return sHeadsetService;
     }
 
-    private static synchronized void setHeadsetService(HeadsetService instance) {
+    @VisibleForTesting
+    public static synchronized void setHeadsetService(HeadsetService instance) {
         logD("setHeadsetService(): set to: " + instance);
         sHeadsetService = instance;
     }
@@ -1955,8 +1956,7 @@ public class HeadsetService extends ProfileService {
         }
     }
 
-    @VisibleForTesting
-    void phoneStateChanged(
+    public void phoneStateChanged(
             int numActive,
             int numHeld,
             int callState,
