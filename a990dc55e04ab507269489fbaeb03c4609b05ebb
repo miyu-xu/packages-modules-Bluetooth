@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b29d6c6a_1c2c3295",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/BipDatetimeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T22:49:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d727fb5e_08aeb503",
+      "range": {
+        "startLine": 215,
+        "startChar": 16,
+        "endLine": 215,
+        "endChar": 43
+      },
+      "revId": "a990dc55e04ab507269489fbaeb03c4609b05ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81d3164a_df5f0dac",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "a990dc55e04ab507269489fbaeb03c4609b05ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52e96cbf_8396586a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/MsgTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T22:49:43Z",
+      "side": 1,
+      "message": "I thouth that `equals_withNull` that I am deleting was never implemented and wanted to do that, but yes according to the source code of BluetoothMapContentObserver.\n\nUpdating",
+      "parentUuid": "81d3164a_df5f0dac",
+      "range": {
+        "startLine": 69,
+        "startChar": 59,
+        "endLine": 69,
+        "endChar": 63
+      },
       "revId": "a990dc55e04ab507269489fbaeb03c4609b05ebb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
