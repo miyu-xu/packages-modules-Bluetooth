@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d68497c3_4c10a851",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-19T03:34:21Z",
+      "side": 1,
+      "message": "Set the bond type when pairing is successful.",
+      "fixSuggestions": [
+        {
+          "fixId": "cbbb02ec_d1e4092e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1094,
+                "startChar": 0,
+                "endLine": 1096,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1157,
+                "startChar": 0,
+                "endLine": 1157,
+                "endChar": 0
+              },
+              "replacement": "    btm_set_bond_type_dev(bd_addr, pairing_cb.bond_type);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "79dc10b53767824384ec30b880e80f5643efafbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

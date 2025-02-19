@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f667d14_ba4519b3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3541,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-19T03:34:21Z",
+      "side": 0,
+      "message": "Not applicable for LE transport",
+      "revId": "50a8f5888559da0d43fd97b75098520c5fe423d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84b0c65d_ec87a0cc",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-19T03:34:21Z",
+      "side": 0,
+      "message": "This is set again at :144",
+      "revId": "50a8f5888559da0d43fd97b75098520c5fe423d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
