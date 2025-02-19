@@ -22,6 +22,30 @@
       },
       "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa4146bb_b66f49d9",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-19T07:20:18Z",
+      "side": 1,
+      "message": "Latency of Channel Sounding was increased by the `Initial Connection Parameter Optimization` feature, which controlled by the `initial_conn_params_p1 flag`. This patch resolves the issue by ignore the feature for Channel Sounding device connections. The commit message has been updated to `Use default initial connection interval for channel sounding devices` to accurately describe the fix.\n\nI also update the `HACK_` function to regualer function.\nThanks!",
+      "parentUuid": "dbb2730a_a79db8b2",
+      "range": {
+        "startLine": 392,
+        "startChar": 17,
+        "endLine": 392,
+        "endChar": 46
+      },
+      "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
