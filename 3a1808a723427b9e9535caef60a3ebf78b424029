@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bbf4da5_2b8e911e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-19T23:29:12Z",
+      "side": 1,
+      "message": "The advertise_thread flag is already advanced out of development/staging, so I think it\u0027s more appropriate to define a new flag.",
+      "revId": "3a1808a723427b9e9535caef60a3ebf78b424029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
