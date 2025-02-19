@@ -140,6 +140,24 @@
       "parentUuid": "505e7527_d2310dfb",
       "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "626561e7_c4676b66",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-19T08:19:59Z",
+      "side": 1,
+      "message": "Any device using public address, that doesn\u0027t have IRK.",
+      "parentUuid": "e4cc2044_c66f772c",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
