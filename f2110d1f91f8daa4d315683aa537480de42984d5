@@ -70,6 +70,30 @@
       },
       "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebc4e51_6887104a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-19T23:43:32Z",
+      "side": 1,
+      "message": "I created separate start states and updated it.",
+      "parentUuid": "c5e6c192_c59f8b49",
+      "range": {
+        "startLine": 679,
+        "startChar": 49,
+        "endLine": 679,
+        "endChar": 99
+      },
+      "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
