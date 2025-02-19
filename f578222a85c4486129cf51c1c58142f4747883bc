@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8974999b_ad8f3a9f",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-19T02:53:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cbfa1c4_ac81095d",
+      "range": {
+        "startLine": 592,
+        "startChar": 65,
+        "endLine": 592,
+        "endChar": 67
+      },
+      "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04c218b4_ea8d1f50",
@@ -216,6 +240,30 @@
       "side": 1,
       "message": "\u003e I understand that your use, but I don\u0027t like adding an unsafe function like this.\n\nI don\u0027t understand this. Why is this function unsafe? The only possible way for there to be a change in behaviour here is if \"Start()\" had been called twice, and on the second call, for some reason the callbacks are null. I don\u0027t believe that is possible (and I\u0027d think we\u0027d want to know about it anyway).\n\nI specifically want to know if this path has been taken, so it\u0027s not clear to me how your suggestion will help there. With your suggestion, if we hit the \"Rust call failed\" panic, we\u0027d see the state as \"Init\", but that doesn\u0027t tell us that this path was followed because \"Start()\" might never have been called.\n\nMaybe we should chat over GVC to resolve this?",
       "parentUuid": "9efbb975_446d99cc",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb3f2b5_d171cc5c",
+        "filename": "system/rust/src/core/ffi/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-19T02:53:48Z",
+      "side": 1,
+      "message": "\u003e Should we just crash abort fatal in this if ? as it \"only happen in test\" but even there it doesn\u0027t seems like it should be happening.\n\nMy following CLs eliminate this completely. I would prefer to just get this submitted ASAP with no functional change so that, hopefully, it can help us diagnose the cause of the bug.",
+      "parentUuid": "a91073cb_9c2aff4a",
       "range": {
         "startLine": 63,
         "startChar": 4,
