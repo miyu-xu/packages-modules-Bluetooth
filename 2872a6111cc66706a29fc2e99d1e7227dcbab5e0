@@ -16,6 +16,24 @@
       "message": "I upload https://r.android.com/3499371 to fix this error, please let me know if this work as expected for your need.\n\n(I would like not to add exemption to this list. We can enforce more stuff, but I don\u0027t want to bypass any)",
       "revId": "2872a6111cc66706a29fc2e99d1e7227dcbab5e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06fde1ec_2d003a45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1978766
+      },
+      "writtenOn": "2025-02-19T14:14:41Z",
+      "side": 1,
+      "message": "sounds good. thanks.",
+      "parentUuid": "b085d7fc_56ed5367",
+      "revId": "2872a6111cc66706a29fc2e99d1e7227dcbab5e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
