@@ -34,6 +34,24 @@
       "parentUuid": "d0281720_dcc870a4",
       "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21fd32d6_493603ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2025-02-19T09:36:43Z",
+      "side": 1,
+      "message": "I think, we should disconnect link for only specific case(eg. HOGP device), where no other gatt app is holding the link.\n\nIn below usecase , link should not be disconnected. it may lead usecase failure\nPrecondition\nDevice A\nAPP1(Service1) does not have any encrypted attribute\nAPP2(Service2 has encrypted atrributesScenario2(A \u0026 B) devices has been connected without pairing,remote(one client app) has enabled notification for APP1(service1). remote(second client app) want to read encrypted attributes. For that device need to be paired. user did not accept pairing pop up or some other reason SMP RSP timeout happens.",
+      "parentUuid": "9ed2479e_035e570d",
+      "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
