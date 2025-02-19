@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc64fcd0_26999ab1",
+        "filename": "system/bta/hf_client/bta_hf_client_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-19T19:45:12Z",
+      "side": 1,
+      "message": "do we need to find out who is the user of RFCOMM?\n\nIn this case It is HF client and there is AG",
+      "fixSuggestions": [
+        {
+          "fixId": "d6a5bae9_f2ff5262",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hf_client/bta_hf_client_rfc.cc",
+              "range": {
+                "startLine": 199,
+                "startChar": 0,
+                "endLine": 202,
+                "endChar": 0
+              },
+              "replacement": "    bta_collect_rfc_metrics_after_port_fail(\n        static_cast\u003ctPORT_RESULT\u003e(port_status), false,\n        tBTA_JV_STATUS::SUCCESS, RawAddress::kAny, 0,\n        BTA_SEC_AUTHENTICATE | BTA_SEC_ENCRYPT, true, 0,\n        tBTA_RFCOMM_CLIENT_TYPE::HF_CLIENT);\n"
+            },
+            {
+              "path": "system/bta/hf_client/bta_hf_client_rfc.cc",
+              "range": {
+                "startLine": 260,
+                "startChar": 0,
+                "endLine": 261,
+                "endChar": 0
+              },
+              "replacement": "            (client_cb-\u003esdp_metrics.sdp_start_ms - client_cb-\u003esdp_metrics.sdp_end_ms),\n            tBTA_RFCOMM_CLIENT_TYPE::HF_CLIENT);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8e16dbe776135fac9ce089b0edf2d9126caa6a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
