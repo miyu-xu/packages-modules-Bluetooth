@@ -66,6 +66,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ed08252_103a3e01",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-19T18:53:56Z",
+      "side": 1,
+      "message": "For most cases, we are connected by the remote device when it turns on and pages Android\n\nThis is tracking connection initiated by Android\n\nWe also need to track connection initated by remote",
+      "range": {
+        "startLine": 937,
+        "startChar": 7,
+        "endLine": 944,
+        "endChar": 20
+      },
+      "revId": "03dd00373949c8660a21a2212067076239153fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4d84b71_68757c3a",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 2

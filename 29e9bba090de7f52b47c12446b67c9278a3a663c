@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebb46ded_575ae154",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-19T18:53:56Z",
+      "side": 1,
+      "message": "What if the connection is initiated by the remote device without going through the CONNECT message?",
+      "range": {
+        "startLine": 677,
+        "startChar": 16,
+        "endLine": 678,
+        "endChar": 69
+      },
+      "revId": "29e9bba090de7f52b47c12446b67c9278a3a663c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
