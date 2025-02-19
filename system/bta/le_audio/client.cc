@@ -6179,38 +6179,43 @@ public:
           handleAsymmetricPhyForUnicast(group);
           UpdateLocationsAndContextsAvailability(group);
           if (group->IsPendingConfiguration()) {
-            log::debug(
-                    "Pending configuration for group_id: {} pre_configuration_context_type_ : {} "
-                    "-> "
-                    "configuration_context_type_ {}",
-                    group->group_id_, ToString(pre_configuration_context_type_),
-                    ToString(configuration_context_type_));
-            auto remote_direction = kLeAudioContextAllRemoteSource.test(configuration_context_type_)
-                                            ? bluetooth::le_audio::types::kLeAudioDirectionSource
-                                            : bluetooth::le_audio::types::kLeAudioDirectionSink;
-
-            /* Reconfiguration to non requiring source scenario */
-            if (sink_monitor_mode_ &&
-                (remote_direction == bluetooth::le_audio::types::kLeAudioDirectionSink)) {
-              notifyAudioLocalSink(UnicastMonitorModeStatus::STREAMING_SUSPENDED);
-            }
-
-            auto remote_contexts = DirectionalRealignMetadataAudioContexts(group, remote_direction);
-            ApplyRemoteMetadataAudioContextPolicy(group, remote_contexts, remote_direction);
-            log::verbose(
-                    "Pending configuration 2 pre_configuration_context_type_ : {} -> "
-                    "configuration_context_type_ {}",
-                    ToString(pre_configuration_context_type_),
-                    ToString(configuration_context_type_));
-            if ((configuration_context_type_ != pre_configuration_context_type_) &&
-                GroupStream(group->group_id_, configuration_context_type_, remote_contexts)) {
-              /* If configuration succeed wait for new status. */
-              return;
-            }
-            log::info("Clear pending configuration flag for group {}", group->group_id_);
-            group->ClearPendingConfiguration();
             if (is_active_group_operation) {
+              log::debug(
+                      "Pending configuration for group_id: {} pre_configuration_context_type_ : {} "
+                      "-> "
+                      "configuration_context_type_ {}",
+                      group->group_id_, ToString(pre_configuration_context_type_),
+                      ToString(configuration_context_type_));
+              auto remote_direction =
+                      kLeAudioContextAllRemoteSource.test(configuration_context_type_)
+                              ? bluetooth::le_audio::types::kLeAudioDirectionSource
+                              : bluetooth::le_audio::types::kLeAudioDirectionSink;
+
+              /* Reconfiguration to non requiring source scenario */
+              if (sink_monitor_mode_ &&
+                  (remote_direction == bluetooth::le_audio::types::kLeAudioDirectionSink)) {
+                notifyAudioLocalSink(UnicastMonitorModeStatus::STREAMING_SUSPENDED);
+              }
+
+              auto remote_contexts =
+                      DirectionalRealignMetadataAudioContexts(group, remote_direction);
+              ApplyRemoteMetadataAudioContextPolicy(group, remote_contexts, remote_direction);
+              log::verbose(
+                      "Pending configuration 2 pre_configuration_context_type_ : {} -> "
+                      "configuration_context_type_ {}",
+                      ToString(pre_configuration_context_type_),
+                      ToString(configuration_context_type_));
+              if ((configuration_context_type_ != pre_configuration_context_type_) &&
+                  GroupStream(group->group_id_, configuration_context_type_, remote_contexts)) {
+                /* If configuration succeed wait for new status. */
+                return;
+              }
+              log::info("Clear pending configuration flag for group {}", group->group_id_);
+              group->ClearPendingConfiguration();
               reconfigurationComplete();
+            } else {
+              log::info("Clear pending configuration flag for group {}", group->group_id_);
+              group->ClearPendingConfiguration();
             }
           } else if (is_active_group_operation) {
             if (sink_monitor_mode_) {
