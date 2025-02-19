@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b36d56a5_41b3dbf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-19T17:45:06Z",
+      "side": 1,
+      "message": "Does this only happen to the audio device or the HID device as well.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71000691_2ce20499",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
