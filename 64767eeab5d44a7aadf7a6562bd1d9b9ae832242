@@ -309,6 +309,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05ae1855_993e5c39",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T10:25:49Z",
+      "side": 1,
+      "message": "Yes, we will update the battery level through this function.\n\nThe first time this function is called, or_insert_with will insert the key-value pair into the hashmap. In subsequent calls, and_modify will modify the value to the desired one.",
+      "parentUuid": "6f6412bf_f19ac47a",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 284,
+        "endChar": 14
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "832882d4_11a179c9",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-02-19T10:25:49Z",
+      "side": 1,
+      "message": "Yes, \n\nThe first time this function is called, or_insert_with will insert the key-value pair into the hashmap. In subsequent calls, and_modify will modify the value to the desired one.",
+      "parentUuid": "156e4928_d45038f8",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 284,
+        "endChar": 14
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "548fa2ed_9cb2c45c",
         "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
         "patchSetId": 1
