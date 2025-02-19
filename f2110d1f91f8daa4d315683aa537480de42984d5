@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1f5c2b2_9fa84dda",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-19T21:20:01Z",
+      "side": 1,
+      "message": "do you want to differentiate between connection initated by remote vs by local API calls?",
+      "range": {
+        "startLine": 679,
+        "startChar": 49,
+        "endLine": 679,
+        "endChar": 99
+      },
+      "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
