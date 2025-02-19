@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79b075c0_3c9bc3a0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-19T06:52:55Z",
+      "side": 1,
+      "message": "Maybe like this?\n```\nif (vup_for_pending_connection()) {\n  if (btif_hh_cb.new_connection_requests.remove_if(...)) {\n    commenction_removed \u003d true;\n  }\n}\n```\n\nthen we can keep the original L989-998.",
+      "range": {
+        "startLine": 989,
+        "startChar": 0,
+        "endLine": 995,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3ea4c8e3_efe6b5ed",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hh.cc",
+              "range": {
+                "startLine": 989,
+                "startChar": 0,
+                "endLine": 995,
+                "endChar": 0
+              },
+              "replacement": "  if (com::android::bluetooth::flags::vup_for_pending_connection()) {\n    // Remove pending connection if address matches\n    if (btif_hh_cb.new_connection_requests.remove_if(\n            [link_spec](auto ls) { return ls.addrt.bda \u003d\u003d link_spec.addrt.bda; })) {\n      connection_removed \u003d true;\n    }\n  }\n"
+            },
+            {
+              "path": "system/btif/src/btif_hh.cc",
+              "range": {
+                "startLine": 996,
+                "startChar": 0,
+                "endLine": 997,
+                "endChar": 0
+              },
+              "replacement": "  if (connection_removed) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2540005_f0c8ac01",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-19T06:52:55Z",
+      "side": 1,
+      "message": "first",
+      "range": {
+        "startLine": 1012,
+        "startChar": 28,
+        "endLine": 1012,
+        "endChar": 33
+      },
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9525ff0_417f317f",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-19T06:52:55Z",
+      "side": 1,
+      "message": "Why is this remove_if sequence different than the one above? Is it to ensure that BTHH_STATE_UPDATE is sent for each transport? \n\nIf that\u0027s the case should the same be done on L965? And also L1060 below?",
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebad696e_f10ef1b3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-19T06:52:55Z",
+      "side": 1,
+      "message": "nit: put inside the if block",
+      "range": {
+        "startLine": 1100,
+        "startChar": 4,
+        "endLine": 1100,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2775e168_2f10abe7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hh.cc",
+              "range": {
+                "startLine": 1100,
+                "startChar": 0,
+                "endLine": 1101,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_hh.cc",
+              "range": {
+                "startLine": 1102,
+                "startChar": 0,
+                "endLine": 1102,
+                "endChar": 0
+              },
+              "replacement": "      // Remove pending connection if address matches\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
