@@ -22,6 +22,30 @@
       },
       "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae13ed02_6bf7e22f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-19T21:34:18Z",
+      "side": 1,
+      "message": "I think the start point has to be the same.  @ahujapalash@google.com can comment.  I however, did switch the UID to be 1 if it\u0027s called from the remote vs 0 with the ag",
+      "parentUuid": "c1f5c2b2_9fa84dda",
+      "range": {
+        "startLine": 679,
+        "startChar": 49,
+        "endLine": 679,
+        "endChar": 99
+      },
+      "revId": "f2110d1f91f8daa4d315683aa537480de42984d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
