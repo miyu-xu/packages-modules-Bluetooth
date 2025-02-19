@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42556776_5d4a27ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-19T11:42:18Z",
+      "side": 1,
+      "message": "Sorry @wescande@google.com for the re-review. I found a few more to fix before proceeding to the follow up CL of fixing TAGS from `\"Foo\"` to `Foo.class.getSimpleName`",
+      "revId": "3327d7fd2cb71c70f555fe37b92f3af99287baaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
