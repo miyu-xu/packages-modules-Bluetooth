@@ -73,7 +73,7 @@ public class CallInfoTest {
                 TestUtils.mockGetSystemService(
                         spiedContext, Context.TELECOM_SERVICE, TelecomManager.class);
 
-        mBluetoothInCallService = new BluetoothInCallService(spiedContext, null, null, null);
+        mBluetoothInCallService = new BluetoothInCallService(spiedContext, null, null);
         mBluetoothInCallService.onCreate();
 
         mMockCallInfo = spy(mBluetoothInCallService.new CallInfo());
