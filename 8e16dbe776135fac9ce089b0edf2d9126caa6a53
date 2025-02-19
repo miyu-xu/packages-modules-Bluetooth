@@ -44,6 +44,24 @@
       ],
       "revId": "8e16dbe776135fac9ce089b0edf2d9126caa6a53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81c74d7f_3cf1fa70",
+        "filename": "system/bta/hf_client/bta_hf_client_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-19T19:57:30Z",
+      "side": 1,
+      "message": "Wouldn\u0027t we be able to tell with the is_server field- true for AG and false for hf_client?",
+      "parentUuid": "bc64fcd0_26999ab1",
+      "revId": "8e16dbe776135fac9ce089b0edf2d9126caa6a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
