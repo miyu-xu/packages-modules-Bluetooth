@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "737c3f16_dd42148c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T17:54:50Z",
+      "side": 1,
+      "message": "we don\u0027t need this",
+      "range": {
+        "startLine": 637,
+        "startChar": 7,
+        "endLine": 639,
+        "endChar": 59
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f307e4_88a94c88",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T17:54:50Z",
+      "side": 1,
+      "message": "Is this needed ? I wonder if BT is not supposed to be already on when the test start",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 654,
+        "endChar": 58
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cbdf08f_bff05321",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T17:54:50Z",
+      "side": 1,
+      "message": "There is still something not clear about this try catch block.\n\nIf nothing throw, the test pass.\nIf anything throw the test pass.\n\nWhich one is correct ?",
+      "range": {
+        "startLine": 674,
+        "startChar": 7,
+        "endLine": 686,
+        "endChar": 13
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba81e3ca_904fe050",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T17:54:50Z",
+      "side": 1,
+      "message": "Typo, should be waiting with only one T i believe",
+      "range": {
+        "startLine": 691,
+        "startChar": 16,
+        "endLine": 691,
+        "endChar": 39
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "189595a7_97b141aa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T17:54:50Z",
+      "side": 1,
+      "message": "test should failed if the timeout fire.",
+      "range": {
+        "startLine": 693,
+        "startChar": 24,
+        "endLine": 693,
+        "endChar": 44
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a20d8f4_8989b6f8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-19T17:54:50Z",
+      "side": 1,
+      "message": "I think you want ACTION_BLE_STATE_CHANGED in order to be able to wait for ble states too.\n\nThat way, line 666 you can call             `waittingBluetoothStates(BluetoothAdapter.STATE_BLE_ON)` and remove `            Truth.assertThat(mAdapter.leState).isEqualTo(BluetoothAdapter.STATE_BLE_ON)`",
+      "range": {
+        "startLine": 698,
+        "startChar": 64,
+        "endLine": 698,
+        "endChar": 84
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
