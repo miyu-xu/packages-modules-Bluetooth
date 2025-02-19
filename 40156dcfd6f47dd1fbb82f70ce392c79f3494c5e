@@ -50,6 +50,24 @@
       "message": "I\u0027m wondering would we\u0027re losing space we could be using to encode the value by encoding the length here.\n\nFrom the spec, it appears like only values that have a known fixed size can be read using this request, with the exception of the last value. The spec also says a client should not use this request for attributes when the Set Of Values parameter could be (ATT_MTU-1) as it will not be possible to determine if the last attribute value is complete, or if it overflowed.\n\nBased on my understanding of the spec, it looks like the length for each value won\u0027t be included in the ATT_READ_MULTIPLE_RSP packet. Would it be possible to remove it here? What do you think?",
       "revId": "40156dcfd6f47dd1fbb82f70ce392c79f3494c5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88e88f11_c800cdac",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-02-19T23:44:01Z",
+      "side": 1,
+      "message": "Are you confusing the READ MULTIPLE request with the READ MULTIPLE VARIABLE request?",
+      "parentUuid": "695c4fb7_ee35a2a9",
+      "revId": "40156dcfd6f47dd1fbb82f70ce392c79f3494c5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
