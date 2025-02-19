@@ -152,6 +152,30 @@
       },
       "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9efbb975_446d99cc",
+        "filename": "system/rust/src/core/ffi/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T02:39:30Z",
+      "side": 1,
+      "message": "I understand that your use, but I don\u0027t like adding an unsafe function like this.\nLet me propose a different change: introduce a initial state instead, which we never transition back to:\n\n- Init (default) -start()-\u003e Running\n- NotRunning -start()-\u003e Running\n- Running -stop()-\u003e NotRunning\n\nWould that still help for your debugging ?",
+      "parentUuid": "1275f01c_39b2335c",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
