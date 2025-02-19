@@ -20,6 +20,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cbfa1c4_ac81095d",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T02:25:58Z",
+      "side": 1,
+      "message": "We are using std::format, so `{}`",
+      "range": {
+        "startLine": 592,
+        "startChar": 65,
+        "endLine": 592,
+        "endChar": 67
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "58812a70_0db18e13",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 592,
+                "startChar": 0,
+                "endLine": 593,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Rust module isn\u0027t started! scan_manager_refactor\u003d{}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04c218b4_ea8d1f50",
         "filename": "system/rust/src/core/ffi/module.cc",
         "patchSetId": 4
@@ -55,6 +96,30 @@
       "side": 1,
       "message": "If you follow it through, you will see that all it does is set a new state rather than NotRunning. The only consequence of which is that we get a different log message if this path has been followed and we hit the \"Rust call failed\" assert. So, unless I\u0027m missing something, I believe this to be no functional change. Have I missed something?",
       "parentUuid": "04c218b4_ea8d1f50",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 49
+      },
+      "revId": "f578222a85c4486129cf51c1c58142f4747883bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab31e19f_c20b41d2",
+        "filename": "system/rust/src/core/ffi/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-19T02:25:58Z",
+      "side": 1,
+      "message": "Sorry for the lack of clarity.\nMy issue is that it introduces a new state which has a different transition behavior from `Running` compared to the existing `NotRunning`. This is not a change that I think is safe to keep.",
+      "parentUuid": "be615592_e978f887",
       "range": {
         "startLine": 63,
         "startChar": 4,
