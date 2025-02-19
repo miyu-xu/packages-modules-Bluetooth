@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include <hardware/bluetooth.h>
 #include <stdint.h>
 
 #include <array>

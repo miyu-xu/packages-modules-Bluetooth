@@ -142,7 +142,7 @@ static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     bdstr = remote_bd_addr->ToString();
   }
 
-  char value[1024];
+  char value[BT_PROPERTY_VAL_SIZE_MAX];
   if (prop->len <= 0 || prop->len > static_cast<int>(sizeof(value)) - 1) {
     log::warn(
             "Unable to save property to configuration file type:{},  len:{} is "
@@ -315,7 +315,7 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
       break;
     case BT_PROPERTY_UUIDS:
     case BT_PROPERTY_UUIDS_LE: {
-      char value[1280];
+      char value[BT_PROPERTY_VAL_SIZE_MAX] = {};
       int size = sizeof(value);
 
       std::string key = (prop->type == BT_PROPERTY_UUIDS_LE) ? BTIF_STORAGE_KEY_REMOTE_SERVICE_LE
@@ -323,7 +323,8 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
 
       if (btif_config_get_str(bdstr, key, value, &size)) {
         Uuid* p_uuid = reinterpret_cast<Uuid*>(prop->val);
-        size_t num_uuids = btif_split_uuids_string(value, p_uuid, BT_MAX_NUM_UUIDS);
+        size_t num_uuids = std::min(prop->len / sizeof(Uuid), (size_t)BT_MAX_NUM_UUIDS);
+        num_uuids = btif_split_uuids_string(value, p_uuid, num_uuids);
         prop->len = num_uuids * sizeof(Uuid);
         ret = true;
       } else {

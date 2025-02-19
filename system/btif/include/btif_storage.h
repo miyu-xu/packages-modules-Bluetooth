@@ -49,6 +49,9 @@
 
 #define STORAGE_KEY_TYPE_MAX (10)
 
+// Max number of UUIDs that can be stored in a single property
+constexpr size_t BT_MAX_NUM_UUIDS = BT_PROPERTY_VAL_SIZE_MAX / bluetooth::Uuid::kString128BitLen;
+
 /*******************************************************************************
  *  Functions
  ******************************************************************************/

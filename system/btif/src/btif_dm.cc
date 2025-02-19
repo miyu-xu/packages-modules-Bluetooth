@@ -38,6 +38,8 @@
 #include <hardware/bt_hearing_aid.h>
 #include <hardware/bt_le_audio.h>
 #include <hardware/bt_vc.h>
+
+#include <cstdint>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
@@ -236,7 +238,7 @@ typedef struct {
 
 #define MAX_NUM_DEVICES_IN_EIR_UUID_CACHE 128
 
-static bluetooth::common::LruCache<RawAddress, std::set<Uuid>> eir_uuids_cache(
+static bluetooth::common::LruCache<RawAddress, std::vector<Uuid>> eir_uuids_cache(
         MAX_NUM_DEVICES_IN_EIR_UUID_CACHE);
 
 static skip_sdp_entry_t sdp_rejectlist[] = {{76}};  // Apple Mouse and Keyboard
@@ -1179,12 +1181,8 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
       bond_state_changed(status, bd_addr, state);
 
       log::warn("Incoming HID Connection");
-      bt_property_t prop;
       Uuid uuid = Uuid::From16Bit(UUID_SERVCLASS_HUMAN_INTERFACE);
-
-      prop.type = BT_PROPERTY_UUIDS;
-      prop.val = &uuid;
-      prop.len = Uuid::kNumBytes128;
+      bt_property_t prop = {BT_PROPERTY_UUIDS, sizeof(uuid), &uuid};
 
       GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(BT_STATUS_SUCCESS,
                                                                            bd_addr, 1, &prop);
@@ -1318,8 +1316,8 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
       /* inquiry result */
       bt_bdname_t bdname;
       uint8_t remote_name_len = 0;
-      uint8_t num_uuids = 0, max_num_uuid = 32;
-      uint8_t uuid_list[32 * Uuid::kNumBytes16];
+      uint8_t num_uuids = 0;
+      uint16_t uuid16_list[BT_MAX_NUM_UUIDS];
 
       if (p_search_data->inq_res.inq_result_type != BT_DEVICE_TYPE_BLE) {
         p_search_data->inq_res.remt_name_not_required =
@@ -1338,7 +1336,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
       if (p_search_data->inq_res.p_eir) {
         if (!get_btm_client_interface().eir.BTM_GetEirUuidList(
                     p_search_data->inq_res.p_eir, p_search_data->inq_res.eir_len, Uuid::kNumBytes16,
-                    &num_uuids, uuid_list, max_num_uuid)) {
+                    &num_uuids, (uint8_t*)&uuid16_list, BT_MAX_NUM_UUIDS)) {
           log::debug("Unable to find service uuids in EIR peer:{}", bdaddr);
         }
       }
@@ -1428,44 +1426,34 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH*
         bt_properties.push_back(bt_property_t{BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID,
                                               sizeof(uint32_t), &asha_truncated_hi_sync_id});
 
-        // Floss expects that EIR uuids are immediately reported when the
-        // device is found and doesn't wait for the pairing intent.
-        //
-        // If a subsequent SDP is completed, the new UUIDs should replace
-        // the existing UUIDs.
-#if TARGET_FLOSS
-        bool report_eir_uuids = true;
-#else
-        bool report_eir_uuids = false;
-#endif
-        // Scope needs to persist until `invoke_device_found_cb` below.
-        std::vector<uint8_t> property_value;
-        /* Cache EIR queried services */
+        /* Update the EIR UUIDs cache */
         if (num_uuids > 0) {
-          uint16_t* p_uuid16 = (uint16_t*)uuid_list;
           auto uuid_iter = eir_uuids_cache.find(bdaddr);
+
+          // Create a new entry if not found
           if (uuid_iter == eir_uuids_cache.end()) {
-            auto triple = eir_uuids_cache.try_emplace(bdaddr, std::set<Uuid>{});
+            auto triple = eir_uuids_cache.try_emplace(bdaddr, std::vector<Uuid>{});
             uuid_iter = std::get<0>(triple);
           }
-          log::info("EIR UUIDs for {}:", bdaddr);
+
+          // Insert new UUIDs into the cache
+          auto& cached_uuids = uuid_iter->second;
+          log::verbose("New EIR UUIDs for {}:", bdaddr);
           for (int i = 0; i < num_uuids; ++i) {
-            Uuid uuid = Uuid::From16Bit(p_uuid16[i]);
-            log::info("{}", uuid.ToString());
-            uuid_iter->second.insert(uuid);
-          }
-
-          if (report_eir_uuids) {
-            for (auto uuid : uuid_iter->second) {
-              auto uuid_128bit = uuid.To128BitBE();
-              property_value.insert(property_value.end(), uuid_128bit.begin(), uuid_128bit.end());
+            Uuid uuid = Uuid::From16Bit(uuid16_list[i]);
+            if (std::find(cached_uuids.begin(), cached_uuids.end(), uuid) == cached_uuids.end()) {
+              log::verbose("{}", uuid);
+              cached_uuids.push_back(uuid);
             }
-
-            bt_properties.push_back(
-                    bt_property_t{BT_PROPERTY_UUIDS,
-                                  static_cast<int>(uuid_iter->second.size() * Uuid::kNumBytes128),
-                                  (void*)property_value.data()});
           }
+
+#if TARGET_FLOSS
+          // Floss expects that EIR uuids are immediately reported when the device is found and
+          // doesn't wait for the pairing intent. If a subsequent SDP is completed, the new UUIDs
+          // should replace the existing UUIDs.
+          bt_properties.push_back(bt_property_t{
+                  BT_PROPERTY_UUIDS, static_cast<int>(cached_uuids.size()), cached_uuids.data()});
+#endif
         }
 
         // Floss needs appearance for metrics purposes
@@ -1548,7 +1536,6 @@ static void btif_merge_existing_uuids(const RawAddress& addr, std::set<Uuid>* uu
 static void btif_on_service_discovery_results(RawAddress bd_addr,
                                               const std::vector<bluetooth::Uuid>& uuids_param,
                                               tBTA_STATUS result) {
-  std::set<Uuid> uuids;
   bool a2dp_sink_capable = false;
 
   bool results_for_bonding_device =
@@ -1575,8 +1562,8 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
     pairing_cb.sdp_over_classic = btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
   }
 
-  std::vector<uint8_t> bredr_property_value;
-  std::vector<uint8_t> le_property_value;
+  std::vector<Uuid> bredr_uuids = {};
+  std::vector<Uuid> le_uuids = {};
   bt_property_t uuid_props[2] = {};
   bt_property_t& bredr_prop = uuid_props[0];
   bt_property_t& le_prop = uuid_props[1];
@@ -1588,14 +1575,14 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
         continue;
       }
       log::info("uuid:{}", uuid.ToString());
-      uuids.insert(uuid);
+      bredr_uuids.push_back(uuid);
     }
 
     if (results_for_bonding_device) {
-      btif_merge_existing_uuids(pairing_cb.static_bdaddr, &uuids);
-      btif_merge_existing_uuids(pairing_cb.bd_addr, &uuids);
+      btif_merge_existing_uuids(pairing_cb.static_bdaddr, &bredr_uuids);
+      btif_merge_existing_uuids(pairing_cb.bd_addr, &bredr_uuids);
     } else {
-      btif_merge_existing_uuids(bd_addr, &uuids);
+      btif_merge_existing_uuids(bd_addr, &bredr_uuids);
     }
 
     for (auto& uuid : uuids) {
@@ -1657,7 +1644,8 @@ static void btif_on_service_discovery_results(RawAddress bd_addr,
     if (result != BTA_SUCCESS) {
       auto uuids_iter = eir_uuids_cache.find(bd_addr);
       if (uuids_iter != eir_uuids_cache.end()) {
-        num_eir_uuids = uuids_iter->second.size();
+        auto& eir_uuids = uuids_iter->second;
+        num_eir_uuids = eir_uuids.size();
         log::info("SDP failed, send {} EIR UUIDs to unblock bonding {}", num_eir_uuids, bd_addr);
         for (auto eir_uuid : uuids_iter->second) {
           auto uuid_128bit = eir_uuid.To128BitBE();

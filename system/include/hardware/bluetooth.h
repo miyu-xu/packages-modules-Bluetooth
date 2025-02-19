@@ -437,6 +437,8 @@ typedef enum {
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
 
+#define BT_PROPERTY_VAL_SIZE_MAX 1024
+
 /** Bluetooth Adapter Property data structure */
 typedef struct {
   bt_property_type_t type;
@@ -504,8 +506,6 @@ typedef struct {
   tBT_TRANSPORT transport;
   bool secure_connections;
 } bt_encryption_change_evt;
-
-#define BT_MAX_NUM_UUIDS 32
 
 /** Bluetooth Interface callbacks */
 
