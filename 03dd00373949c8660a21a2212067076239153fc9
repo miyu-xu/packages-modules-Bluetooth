@@ -61,6 +61,24 @@
       "message": "Do we want to log the version of AG - which is an integer?",
       "revId": "03dd00373949c8660a21a2212067076239153fc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4269a54b_7ddceecd",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-19T08:27:00Z",
+      "side": 1,
+      "message": "thanks, yes, fixed it",
+      "parentUuid": "a4d84b71_68757c3a",
+      "revId": "03dd00373949c8660a21a2212067076239153fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
