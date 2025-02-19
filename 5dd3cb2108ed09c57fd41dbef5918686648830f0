@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71000691_2ce20499",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-19T17:07:43Z",
+      "side": 1,
+      "message": "If this is an issue that also happens on Android desktop, we should find a solution that can be applied on both sides.",
+      "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05bab541_9323dad6",
         "filename": "system/gd/rust/linux/stack/src/suspend.rs",
         "patchSetId": 2
