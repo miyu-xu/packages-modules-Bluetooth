@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29085c8_1d219389",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-20T19:47:57Z",
+      "side": 1,
+      "message": "if the user confirmation fails, are we going to reset this?\n\nIn general need to understand how bond_type is cleared,\n- on failure paths\n- Bond removal path (guess this is fine as the whole sec record is removed?)",
+      "fixSuggestions": [
+        {
+          "fixId": "6a8ead92_e97ab825",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 928,
+                "startChar": 0,
+                "endLine": 929,
+                "endChar": 0
+              },
+              "replacement": "  if (com::android::bluetooth::flags::temporary_pairing_tracking() \u0026\u0026\n      pairing_cb.bond_type \u003d\u003d BOND_TYPE_TEMPORARY) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1fee85e271210fd0ad6695c141b8491c55abf1e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
