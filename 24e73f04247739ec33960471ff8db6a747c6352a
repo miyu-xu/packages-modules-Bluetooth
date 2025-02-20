@@ -34,6 +34,24 @@
       "parentUuid": "90cc9685_e873926a",
       "revId": "24e73f04247739ec33960471ff8db6a747c6352a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ec52e47_e9414052",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestLooper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2025-02-20T19:40:24Z",
+      "side": 1,
+      "message": "How about ag/31850091?",
+      "parentUuid": "184c3937_f423d9f9",
+      "revId": "24e73f04247739ec33960471ff8db6a747c6352a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
