@@ -158,6 +158,24 @@
       "parentUuid": "01fb18cb_b0c2c1ab",
       "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d037cf3_0f755cfa",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2581,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T09:33:37Z",
+      "side": 1,
+      "message": "it will not hurt as this is a dead code, exact same code is in bassClientStateMachine and this will be called as sync transfer is used only there. I do not see any reason to keep the dead code.",
+      "parentUuid": "44b675ec_aeab7367",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
