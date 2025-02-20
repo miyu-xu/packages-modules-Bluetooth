@@ -94,6 +94,30 @@
       },
       "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b0bc333_f23c7137",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2229,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2025-02-20T21:52:25Z",
+      "side": 0,
+      "message": "I don\u0027t know the details of the implementation in LEAudioService but whatever we do, we must not trigger calls to AudioManager.handleBluetoothActiveDeviceChange() as a result of receiving either of those audio manager callabcks.",
+      "parentUuid": "6c6cf998_68164c0c",
+      "range": {
+        "startLine": 2229,
+        "startChar": 12,
+        "endLine": 2229,
+        "endChar": 40
+      },
+      "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
