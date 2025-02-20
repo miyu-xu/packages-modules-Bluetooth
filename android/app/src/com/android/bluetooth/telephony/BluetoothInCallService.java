@@ -1327,9 +1327,8 @@ public class BluetoothInCallService extends InCallService {
         // If the BluetoothCall is transitioning into the alerting state, send DIALING first.
         // Some devices expect to see a DIALING state prior to seeing an ALERTING state
         // so we need to send it first.
-        if (mBluetoothCallState != bluetoothCallState
-                && bluetoothCallState == CALL_STATE_ALERTING) {
-            phoneStateChanged(headsetService, CALL_STATE_DIALING, ringingName);
+        if (mBluetoothCallState != bluetoothCallState && bluetoothCallState == CallState.ALERTING) {
+            phoneStateChanged(headsetService, CallState.DIALING, ringingName);
         }
 
         phoneStateChanged(headsetService, bluetoothCallState, ringingName);
