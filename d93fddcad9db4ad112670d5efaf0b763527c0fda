@@ -22,6 +22,30 @@
       },
       "revId": "d93fddcad9db4ad112670d5efaf0b763527c0fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20976dd5_212499b7",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2025-02-20T08:24:10Z",
+      "side": 1,
+      "message": "Sure, create the flag tracking bug b/397854116 and update the related information",
+      "parentUuid": "1d961e4c_51fcc2d6",
+      "range": {
+        "startLine": 115,
+        "startChar": 10,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "d93fddcad9db4ad112670d5efaf0b763527c0fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
