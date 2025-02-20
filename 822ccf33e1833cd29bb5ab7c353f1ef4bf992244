@@ -22,6 +22,30 @@
       },
       "revId": "822ccf33e1833cd29bb5ab7c353f1ef4bf992244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59853538_ffe3eca6",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-20T23:48:56Z",
+      "side": 1,
+      "message": "You can check the power log. It may interrupt the suspend, but then powerd retried. Or it may cause dark resume, then device goes to sleep again. Need to check the logs to tell.",
+      "parentUuid": "ccd76362_b881e1ed",
+      "range": {
+        "startLine": 409,
+        "startChar": 29,
+        "endLine": 409,
+        "endChar": 56
+      },
+      "revId": "822ccf33e1833cd29bb5ab7c353f1ef4bf992244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
