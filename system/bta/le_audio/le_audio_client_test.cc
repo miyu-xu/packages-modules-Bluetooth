@@ -8651,7 +8651,7 @@ TEST_F(UnicastTest, TwoEarbudsStopConversational_StartStreamSonification) {
 }
 
 TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
-  // TODO(b/352686917). Remove the test when flag will be removing
+  // TODO(b/352686917) Remove the test when flag will be removing
   com::android::bluetooth::flags::provider_->leaudio_speed_up_reconfiguration_between_call(false);
 
   uint8_t group_size = 2;
@@ -10550,7 +10550,7 @@ TEST_F(UnicastTest, SwitchBetweenMicrophoneAndSoundEffectScenario) {
  * use case).
  */
 TEST_F(UnicastTest, UpdateNotSupportedContextTypeUnspecifiedAvailable) {
-  // TODO(b/352686917). Remove the test when flag will be removing
+  // TODO(b/352686917) Remove the test when flag will be removing
   com::android::bluetooth::flags::provider_->leaudio_speed_up_reconfiguration_between_call(false);
 
   const RawAddress test_address0 = GetTestAddress(0);
@@ -10693,7 +10693,7 @@ TEST_F(UnicastTest, UpdateNotSupportedContextTypeUnspecifiedAvailable_SpeedUpRec
  * is not confused about our intentions.
  */
 TEST_F(UnicastTest, UpdateMultipleBidirContextTypes) {
-  // TODO(b/352686917). Remove the test when flag will be removing
+  // TODO(b/352686917) Remove the test when flag will be removing
   com::android::bluetooth::flags::provider_->leaudio_speed_up_reconfiguration_between_call(false);
 
   const RawAddress test_address0 = GetTestAddress(0);
@@ -11056,7 +11056,7 @@ TEST_F(UnicastTest, UpdateDisableLocalAudioSinkOnGame) {
 
 /* Start music when in a call, end the call, continue with music only */
 TEST_F(UnicastTest, MusicDuringCallContextTypes) {
-  // TODO(b/352686917). Remove the test when flag will be removing
+  // TODO(b/352686917) Remove the test when flag will be removing
   com::android::bluetooth::flags::provider_->leaudio_speed_up_reconfiguration_between_call(false);
 
   const RawAddress test_address0 = GetTestAddress(0);
