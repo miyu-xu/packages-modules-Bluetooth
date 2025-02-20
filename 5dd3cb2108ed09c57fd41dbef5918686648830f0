@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ea8a6e_35a517fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-20T04:46:08Z",
+      "side": 1,
+      "message": "So far we only found the issue with SCO. But I would still not recommend `OnLe/ClassicSuspendInitiatedDisconnect` as it break some assumption in BTM (some functions expect themselves to be called when the ACL is really disconected).",
+      "parentUuid": "b36d56a5_41b3dbf1",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71000691_2ce20499",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84e1147_565e3a8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-20T04:46:08Z",
+      "side": 1,
+      "message": "As we discussed in the meeting, it\u0027s hard to be handled in LibBluetooth and the Java/Rust layer should wait for the disconnected event.",
+      "parentUuid": "71000691_2ce20499",
+      "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05bab541_9323dad6",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-02-19T14:06:20Z",
       "side": 1,
       "message": "I wonder whether we should call this after devices are all disconnected. This also means some traffics could happen after disconnected (e.g. add accept list). I will verify this tomorrow.",
+      "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fcd61f6_d9dee621",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-20T04:46:08Z",
+      "side": 1,
+      "message": "Yes I just reproduce the race. LibBluetooth would modify the accept list after disconnection, and it may cause the device resume.",
+      "parentUuid": "05bab541_9323dad6",
       "revId": "5dd3cb2108ed09c57fd41dbef5918686648830f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
