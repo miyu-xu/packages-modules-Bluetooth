@@ -87,6 +87,24 @@
       "parentUuid": "152fb70c_9b0a9b8e",
       "revId": "5e855237837b14b7e50cb87682e22e3f7d3c0582",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "724b52f8_864fbc66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-20T15:29:30Z",
+      "side": 1,
+      "message": "Hi Ted, can you provide a test? As I was mentioning, bug fix are not typically exempted from flagging.",
+      "parentUuid": "357e621c_8f82474f",
+      "revId": "5e855237837b14b7e50cb87682e22e3f7d3c0582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
