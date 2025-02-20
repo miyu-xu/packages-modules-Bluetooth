@@ -52,6 +52,24 @@
       "parentUuid": "3e1e27fe_cb7a651e",
       "revId": "76707d7709822859f824d81bc6af45fee948aa31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40389ea7_4c36b577",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2966,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-20T16:50:38Z",
+      "side": 1,
+      "message": "yes, my point is the message did\u0027t represent what we\u0027re doing here. I understand adding new unit tests don\u0027t make that sense in some cases. And I\u0027m totally fine with it. We\u0027d need to clarify the reason why this can be exempted.",
+      "parentUuid": "80c7a7f9_5867bac7",
+      "revId": "76707d7709822859f824d81bc6af45fee948aa31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
