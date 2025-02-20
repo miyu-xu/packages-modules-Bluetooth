@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f4a5dc3_de5bd9ec",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2229,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-20T15:36:15Z",
+      "side": 0,
+      "message": "Shouldn\u0027t this one line be left here since it reflects the actual audio manager state? Otherwise we seem to make a big assumption about the other modules behavior.",
+      "range": {
+        "startLine": 2229,
+        "startChar": 12,
+        "endLine": 2229,
+        "endChar": 40
+      },
+      "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
