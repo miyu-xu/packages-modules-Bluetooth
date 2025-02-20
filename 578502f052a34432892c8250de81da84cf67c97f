@@ -16,6 +16,24 @@
       "message": "Err, hey Bluetooth module folks, why am I getting compile errors?\n```\n            Message message \u003d mTestLooperManager.poll();\n                                                ^\n  symbol:   method poll()\n  location: variable mTestLooperManager of type TestLooperManager\n```\n\nIs this because the `BluetoothInstrumentationTestsDefaults` target sets `sdk_version: \"module_current\"`?",
       "revId": "578502f052a34432892c8250de81da84cf67c97f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bdd7923_cc0fced8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestLooper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2025-02-20T07:26:10Z",
+      "side": 1,
+      "message": "For context, `TestLooperManager#poll` is an SDK 36 API. It\u0027s annotated as `@FlaggedApi(android.os.Flags.FLAG_MESSAGE_QUEUE_TESTABILITY)`. I suspect maybe that\u0027s a problem?",
+      "parentUuid": "93de7228_380d1c52",
+      "revId": "578502f052a34432892c8250de81da84cf67c97f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
