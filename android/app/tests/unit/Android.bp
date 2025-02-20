@@ -29,6 +29,7 @@ java_defaults {
         "PlatformProperties",
         "TestParameterInjector",
         "android.media.audio-aconfig-exported-java",
+        "android.os.flags-aconfig-java-export",
         "androidx.media_media",
         "androidx.room_room-migration",
         "androidx.room_room-runtime",
