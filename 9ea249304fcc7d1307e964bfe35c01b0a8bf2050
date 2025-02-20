@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "788d7765_54399145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-20T22:09:35Z",
+      "side": 1,
+      "message": "We do not revert bluetooth CL du to failure on risc V build anymore",
+      "revId": "9ea249304fcc7d1307e964bfe35c01b0a8bf2050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
