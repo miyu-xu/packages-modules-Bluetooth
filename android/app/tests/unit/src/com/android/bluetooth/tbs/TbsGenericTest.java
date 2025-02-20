@@ -388,7 +388,7 @@ public class TbsGenericTest {
         }
         assertThat(callUuidCaptor.getValue().getUuid()).isEqualTo(callUuid);
         // Active device should be changed
-        verify(leAudioService).setActiveDevice(mDevice);
+        verify(leAudioService).setActiveDeviceFromGtbs(mDevice);
 
         // Respond with requestComplete...
         mTbsGeneric.requestResult(
@@ -594,7 +594,7 @@ public class TbsGenericTest {
         }
 
         // Active device should be changed
-        verify(leAudioService).setActiveDevice(mDevice);
+        verify(leAudioService).setActiveDeviceFromGtbs(mDevice);
 
         // Respond with requestComplete...
         mTbsGeneric.requestResult(
@@ -726,7 +726,7 @@ public class TbsGenericTest {
                         mDevice, TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT, args);
 
         // Active device should not be changed
-        verify(leAudioService, never()).setActiveDevice(mDevice);
+        verify(leAudioService, never()).setActiveDeviceFromGtbs(mDevice);
         // Verify if GTBS control point is updated to notify the peer about the result
         verify(mTbsGatt)
                 .setCallControlPointResult(
