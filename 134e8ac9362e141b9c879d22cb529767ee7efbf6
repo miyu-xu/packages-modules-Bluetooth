@@ -34,6 +34,24 @@
       "parentUuid": "a337fc28_51cc57bf",
       "revId": "134e8ac9362e141b9c879d22cb529767ee7efbf6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d329dad_53ce21f5",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-20T11:29:45Z",
+      "side": 1,
+      "message": "@dhavan@google.com Marking it as resolved",
+      "parentUuid": "4b180782_40625d0e",
+      "revId": "134e8ac9362e141b9c879d22cb529767ee7efbf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
