@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47022dcd_63a26834",
+        "filename": "system/stack/connection_manager/connection_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-20T17:52:53Z",
+      "side": 1,
+      "message": "nit: no need namespace if you have static or vice versa",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 6
+      },
+      "revId": "9b1a30c9c0264c516307a82956bb22fcecca46e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
