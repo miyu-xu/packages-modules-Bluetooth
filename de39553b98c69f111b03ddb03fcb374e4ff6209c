@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6c34695_fe8a12e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T08:06:45Z",
+      "side": 1,
+      "message": "I made sanity tests, I wrote this on my first comment.\nAdded information to commit message abut this and dead code.\nThanks.",
+      "parentUuid": "4ebe25c1_65c1a359",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd49b878_7cceb0d4",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
@@ -102,6 +120,24 @@
       "writtenOn": "2025-02-20T02:47:36Z",
       "side": 1,
       "message": "why did we remove this onSyncTransferred? this doesn\u0027t seem like related to the flag removing work.",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01fb18cb_b0c2c1ab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2581,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T08:06:45Z",
+      "side": 1,
+      "message": "This is dead code caused by flag. It was not marked with:\n```\nif (leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {\n    throw new RuntimeException(\n            \"Should never be executed with\"\n                    + \" leaudioBroadcastExtractPeriodicScannerFromStateMachine flag\");\n}\n```\nbut it should as onSyncTransferred is used only by BassClientStateMachine and there is separete PACallback for it.",
+      "parentUuid": "dd49b878_7cceb0d4",
       "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
