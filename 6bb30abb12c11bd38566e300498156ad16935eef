@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ffdb51_3f7083cb",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-20T06:28:57Z",
+      "side": 1,
+      "message": "yeah makes sense, created a new state for this",
+      "parentUuid": "46ed59ba_14cc81f8",
+      "range": {
+        "startLine": 711,
+        "startChar": 49,
+        "endLine": 711,
+        "endChar": 110
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d49aedf_b19c855e",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-20T01:32:38Z",
       "side": 1,
       "message": "This is a SLC connection falure only after we received `HeadsetHalConstants.CONNECTION_STATE_CONNECTED`, otherwise, this is normal ACL connection failure",
+      "range": {
+        "startLine": 791,
+        "startChar": 49,
+        "endLine": 791,
+        "endChar": 125
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55021b15_99822f74",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-20T06:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d49aedf_b19c855e",
       "range": {
         "startLine": 791,
         "startChar": 49,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b04fa87b_ef3d830e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-20T06:28:57Z",
+      "side": 1,
+      "message": "I thought about it and I have no strong argument for either case.  My thought putting it here was that the SLC connected signifies it is connected.  It might be easier to understand though in the Connected enter state so I\u0027ll move it.",
+      "parentUuid": "094d0f9b_47ef99c2",
+      "range": {
+        "startLine": 926,
+        "startChar": 20,
+        "endLine": 926,
+        "endChar": 45
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e8c496a_2940c5d4",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-02-20T01:32:38Z",
       "side": 1,
       "message": "this is the same reason code as the one earlier, do we want to distinguish them?\n\nand is this necessary timeout or just generic SLC failure? \n\nWe need to be a bit more careful on the wording when it comes to failure reasons",
+      "range": {
+        "startLine": 515,
+        "startChar": 54,
+        "endLine": 515,
+        "endChar": 85
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35324761_889606c4",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-20T06:28:57Z",
+      "side": 1,
+      "message": "modified enum to not include timeout",
+      "parentUuid": "9e8c496a_2940c5d4",
       "range": {
         "startLine": 515,
         "startChar": 54,
