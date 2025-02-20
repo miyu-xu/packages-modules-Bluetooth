@@ -187,6 +187,12 @@ void LogMetricLeConnectionCompletion(hci::Address address, hci::ErrorCode reason
   bluetooth::metrics::LogLeAclCompletionEvent(address, reason, is_locally_initiated);
 }
 
+void LogMetricLeConnectionRejected(hci::Address address) {
+  bluetooth::os::LogMetricBluetoothEvent(address,
+                                         android::bluetooth::EventType::LE_CONNECTION_REJECTED,
+                                         android::bluetooth::State::ATTEMPT_IN_PROGRESS);
+}
+
 bool CountCounterMetrics(int32_t key, int64_t count) {
   auto counter_metrics = GetCounterMetrics();
   if (counter_metrics == nullptr) {
