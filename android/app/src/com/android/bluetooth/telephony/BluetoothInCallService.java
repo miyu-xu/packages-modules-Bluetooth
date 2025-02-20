@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.telephony;
 
-
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElseGet;
 
@@ -25,6 +24,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothLeCall;
 import android.bluetooth.BluetoothLeCallControl;
 import android.bluetooth.BluetoothManager;
+import com.android.bluetooth.tbs.TbsService;
 import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -261,8 +261,9 @@ public class BluetoothInCallService extends InCallService {
             }
 
             Integer tbsCallState = getTbsCallState(call);
-            if (mBluetoothLeCallControl != null && tbsCallState != null) {
-                mBluetoothLeCallControl.onCallStateChanged(call.getTbsCallId(), tbsCallState);
+            TbsService tbsService = TbsService.getTbsService();
+            if (tbsService != null && tbsCallState != null) {
+                tbsService.callStateChanged(call.getTbsCallId(), tbsCallState);
             }
 
             // If a BluetoothCall is being put on hold because of a new connecting call, ignore the
@@ -301,14 +302,14 @@ public class BluetoothInCallService extends InCallService {
 
         @VisibleForTesting
         void onDetailsChanged(
-                HeadsetService headsetService, BluetoothCall call, Call.Details details) {
+                HeadsetService headsetService, TbsService tbsService, BluetoothCall call, Call.Details details) {
             if (mCallInfo.isNullCall(call)) {
                 return;
             }
             if (call.isExternalCall()) {
-                onCallRemoved(headsetService, call, false /* forceRemoveCallback */);
+                onCallRemoved(headsetService, tbsService, call, false /* forceRemoveCallback */);
             } else {
-                onCallAdded(headsetService, call);
+                onCallAdded(headsetService, tbsService, call);
             }
         }
 
@@ -317,6 +318,7 @@ public class BluetoothInCallService extends InCallService {
             super.onDetailsChanged(call, details);
             onDetailsChanged(
                     HeadsetService.getHeadsetService(),
+                    TbsService.getTbsService(),
                     getBluetoothCallById(System.identityHashCode(call)),
                     details);
         }
@@ -628,31 +630,31 @@ public class BluetoothInCallService extends InCallService {
     }
 
     @VisibleForTesting
-    void onCallAdded(HeadsetService headsetService, BluetoothCall call) {
+    void onCallAdded(HeadsetService headsetService, TbsService tbsService, BluetoothCall call) {
         synchronized (LOCK) {
             if (call.isExternalCall()) {
                 Log.d(TAG, "onCallAdded: external call");
                 return;
             }
-            if (!mBluetoothCallHashMap.containsKey(call.getId())) {
-                Log.i(TAG, "onCallAdded");
-                CallStateCallback callback = new CallStateCallback(call.getState());
-                mCallbacks.put(call.getId(), callback);
-                call.registerCallback(callback);
-
-                mBluetoothCallHashMap.put(call.getId(), call);
-                if (!call.isConference()) {
-                    mMaxNumberOfCalls =
-                            Integer.max(mMaxNumberOfCalls, mBluetoothCallHashMap.size());
-                }
-                updateHeadsetWithCallState(headsetService, false /* force */);
-
-                BluetoothLeCall tbsCall = createTbsCall(call);
-                if (mBluetoothLeCallControl != null && tbsCall != null) {
-                    mBluetoothLeCallControl.onCallAdded(tbsCall);
-                }
-            } else {
+            if (mBluetoothCallHashMap.containsKey(call.getId())) {
                 Log.i(TAG, "onCallAdded: call already exists");
+                return;
+            }
+            Log.i(TAG, "onCallAdded");
+            CallStateCallback callback = new CallStateCallback(call.getState());
+            mCallbacks.put(call.getId(), callback);
+            call.registerCallback(callback);
+
+            mBluetoothCallHashMap.put(call.getId(), call);
+            if (!call.isConference()) {
+                mMaxNumberOfCalls =
+                        Integer.max(mMaxNumberOfCalls, mBluetoothCallHashMap.size());
+            }
+            updateHeadsetWithCallState(headsetService, false /* force */);
+
+            BluetoothLeCall tbsCall = createTbsCall(call);
+            if (tbsService != null && tbsCall != null) {
+                tbsService.callAdded(tbsCall);
             }
         }
     }
@@ -687,7 +689,7 @@ public class BluetoothInCallService extends InCallService {
     @Override
     public void onCallAdded(Call call) {
         super.onCallAdded(call);
-        onCallAdded(HeadsetService.getHeadsetService(), new BluetoothCall(call));
+        onCallAdded(HeadsetService.getHeadsetService(), TbsService.getTbsService(), new BluetoothCall(call));
     }
 
     /**
@@ -700,7 +702,7 @@ public class BluetoothInCallService extends InCallService {
      *     no longer external.
      */
     public void onCallRemoved(
-            HeadsetService headsetService, BluetoothCall call, boolean forceRemoveCallback) {
+            HeadsetService headsetService, TbsService tbsService, BluetoothCall call, boolean forceRemoveCallback) {
         synchronized (LOCK) {
             Log.i(TAG, "onCallRemoved, forceRemoveCallback=" + forceRemoveCallback);
             CallStateCallback callback = getCallback(call);
@@ -757,8 +759,8 @@ public class BluetoothInCallService extends InCallService {
                 }
             }
 
-            if (mBluetoothLeCallControl != null) {
-                mBluetoothLeCallControl.onCallRemoved(
+            if (tbsService != null) {
+                tbsService.callRemoved(
                         call.getTbsCallId(), getTbsTerminationReason(call));
             }
         }
@@ -773,7 +775,7 @@ public class BluetoothInCallService extends InCallService {
             return;
         }
         onCallRemoved(
-                HeadsetService.getHeadsetService(), bluetoothCall, true /* forceRemoveCallback */);
+                HeadsetService.getHeadsetService(), TbsService.getTbsService(), bluetoothCall, true /* forceRemoveCallback */);
     }
 
     @Override
