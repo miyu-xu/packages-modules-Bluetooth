@@ -26,9 +26,14 @@
 #include "common/message_loop_thread.h"
 #include "hardware/bt_av.h"
 
+#include "a2dp/a2dp_encoding_aidl.h"
+
+
 namespace bluetooth {
 namespace audio {
 namespace a2dp {
+
+using bluetooth::audio::aidl::a2dp::BluetoothAudioClientInterface;
 
 /// Loosely copied after the definition from the Bluetooth Audio interface:
 /// audio/aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.aidl
@@ -58,12 +63,85 @@ public:
   virtual Status SetLatencyMode(bool /*low_latency*/) const { return Status::FAILURE; }
 };
 
+class A2dpClientInterface {
+private:
+  class IClientInterfaceEndpoint {
+  public:
+    virtual ~IClientInterfaceEndpoint() = default;
+    virtual void Cleanup() = 0;
+    virtual void SetRemoteDelay(uint16_t delay_report_ms) = 0;
+    virtual void StartSession() = 0;
+    virtual void StopSession() = 0;
+    virtual void ConfirmStreamStartRequest(::bluetooth::audio::a2dp::Status status) = 0;
+    virtual void ConfirmStreamSuspendRequest(::bluetooth::audio::a2dp::Status status) = 0;
+    virtual bool UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
+                 int preferred_encoding_interval_us) = 0;
+    virtual void SetLowLatencyMode(bool allowed) = 0;
+  };
+
+public:
+  class Encode : public IClientInterfaceEndpoint {
+  public:
+    virtual ~Encode() = default;
+    void Cleanup() override;
+    void SetRemoteDelay(uint16_t delay_report) override;
+    void StartSession() override;
+    void StopSession() override;
+    void ConfirmStreamStartRequest(::bluetooth::audio::a2dp::Status status) override;
+    void ConfirmStreamSuspendRequest(::bluetooth::audio::a2dp::Status status) override;
+    bool UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
+                 int preferred_encoding_interval_us) override;
+    void SetLowLatencyMode(bool allowed) override;
+    size_t Read(uint8_t* p_buf, uint32_t len);
+  };
+
+  class Provider {
+  public:
+    std::optional<btav_a2dp_codec_index_t> SinkCodecIndex(const uint8_t* p_codec_info);
+    std::optional<btav_a2dp_codec_index_t> SourceCodecIndex(const uint8_t* p_codec_info);
+    std::optional<const char*> CodecIndexStr(btav_a2dp_codec_index_t codec_index);
+    bool CodecInfo(btav_a2dp_codec_index_t codec_index, bluetooth::a2dp::CodecId* codec_id, uint8_t* codec_info, btav_a2dp_codec_config_t* codec_config);
+    std::optional<::bluetooth::audio::a2dp::provider::a2dp_configuration> GetA2dpConfiguration(RawAddress peer_address, std::vector<::bluetooth::audio::a2dp::provider::a2dp_remote_capabilities> const& remote_seps, btav_a2dp_codec_config_t const& user_preferences);
+    tA2DP_STATUS ParseA2dpConfiguration(btav_a2dp_codec_index_t codec_index, const uint8_t* codec_info, btav_a2dp_codec_config_t* codec_parameters, std::vector<uint8_t>* vendor_specific_parameters);
+  };
+
+  Encode* GetEncoder(std::shared_ptr<StreamCallbacks> stream_callbacks,
+                     bluetooth::common::MessageLoopThread* message_loop,
+                     std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info,
+                     bool offload_enabled);
+  void ReleaseEncode();
+
+  Provider* GetProvider();
+  void ReleaseProvider();
+
+  static A2dpClientInterface* Get();
+
+private:
+  BluetoothAudioClientInterface* NewHalInterface(SessionType session_type, std::shared_ptr<StreamCallbacks> stream_callbacks);
+  void DeleteHalInterface(BluetoothAudioClientInterface* hal_interface);
+
+  static A2dpClientInterface* interface;
+  Encode* encode_ = nullptr;
+  Provider* provider_ = nullptr;
+
+  BluetoothAudioClientInterface* software_hal_interface = nullptr;
+  BluetoothAudioClientInterface* offloading_hal_interface = nullptr;
+  BluetoothAudioClientInterface* active_hal_interface = nullptr;
+  uint16_t remote_delay;
+  bool is_low_latency_mode_allowed;
+  // ProviderInfo for A2DP hardware offload encoding and decoding data paths,
+  // if supported by the HAL and enabled. nullptr if not supported
+  // or disabled.
+  std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info_;
+}
+
+
 bool update_codec_offloading_capabilities(
         const std::vector<btav_a2dp_codec_config_t>& framework_preference,
         bool supports_a2dp_hw_offload_v2);
 
-// // Check if new bluetooth_audio is enabled
-// bool is_hal_enabled();
+// Check if new bluetooth_audio is enabled
+bool is_hal_enabled();
 
 // Check if new bluetooth_audio is running with offloading encoders
 bool is_hal_offloading();
