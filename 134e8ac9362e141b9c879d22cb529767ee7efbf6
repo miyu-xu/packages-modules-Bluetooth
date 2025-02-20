@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a337fc28_51cc57bf",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1959955
+      },
+      "writtenOn": "2025-02-20T02:56:16Z",
+      "side": 1,
+      "message": "Is the code logic change here intentional? In the previous logic, if we get call \u003d\u003d null or if the loop does not succeed to get any call from the list, it falls through to perform the reject logic - with the \"call \u003d mCallInfo.getForegroundCall()\" as it is is initialsed to same.",
+      "revId": "134e8ac9362e141b9c879d22cb529767ee7efbf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
