@@ -28,7 +28,6 @@
 #include "aidl/le_audio_software_aidl.h"
 #include "audio_hal_interface/hal_version_manager.h"
 #include "bta/le_audio/mock_codec_manager.h"
-#include "gmock/gmock.h"
 #include "hidl/le_audio_software_hidl.h"
 
 #pragma GCC diagnostic ignored "-Wunused-private-field"
