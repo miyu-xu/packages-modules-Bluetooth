@@ -347,25 +347,28 @@ bt_status_t btif_storage_remove_hid_info(const tAclLinkSpec& link_spec) {
 }
 
 // Check if a given profile is supported.
-static bool btif_device_supports_profile(const RawAddress& bd_addr, const Uuid& profile) {
-  std::vector<bluetooth::Uuid> remote_uuids = btif_storage_get_services(bd_addr);
-  return std::find(remote_uuids.begin(), remote_uuids.end(), profile) != remote_uuids.end();
+static bool btif_device_supports_profile(const std::string& device, const Uuid& profile) {
+  int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
+  char uuid_str[size];
+  if (btif_config_get_str(device, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
+    Uuid p_uuid[BT_MAX_NUM_UUIDS];
+    size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
+    for (size_t i = 0; i < num_uuids; i++) {
+      if (p_uuid[i] == profile) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
-static bool btif_device_supports_hogp(const RawAddress& bd_addr) {
-  return btif_device_supports_profile(bd_addr, Uuid::From16Bit(UUID_SERVCLASS_LE_HID));
+static bool btif_device_supports_hogp(const std::string& device) {
+  return btif_device_supports_profile(device, Uuid::From16Bit(UUID_SERVCLASS_LE_HID));
 }
 
-static bool btif_device_supports_classic_hid(const RawAddress& bd_addr) {
-  return btif_device_supports_profile(bd_addr, Uuid::From16Bit(UUID_SERVCLASS_HUMAN_INTERFACE));
-}
-
-static bool btif_device_supports_hearing_aid(const RawAddress& bd_addr) {
-  return btif_device_supports_profile(bd_addr, Uuid::FromString("FDF0"));
-}
-
-static bool btif_device_supports_le_audio(const RawAddress& bd_addr) {
-  return btif_device_supports_profile(bd_addr, Uuid::FromString("184E"));
+static bool btif_device_supports_classic_hid(const std::string& device) {
+  return btif_device_supports_profile(device, Uuid::From16Bit(UUID_SERVCLASS_HUMAN_INTERFACE));
 }
 
 /*******************************************************************************
@@ -381,7 +384,8 @@ static bool btif_device_supports_le_audio(const RawAddress& bd_addr) {
 std::vector<std::pair<RawAddress, uint8_t>> btif_storage_get_le_hid_devices(void) {
   std::vector<std::pair<RawAddress, uint8_t>> hid_addresses;
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    if (btif_device_supports_hogp(bd_addr)) {
+    auto name = bd_addr.ToString();
+    if (btif_device_supports_hogp(name)) {
       tBLE_ADDR_TYPE type = BLE_ADDR_PUBLIC;
       btif_get_address_type(bd_addr, &type);
 
@@ -396,7 +400,8 @@ std::vector<std::pair<RawAddress, uint8_t>> btif_storage_get_le_hid_devices(void
 std::vector<RawAddress> btif_storage_get_wake_capable_classic_hid_devices(void) {
   std::vector<RawAddress> hid_addresses;
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    if (btif_device_supports_classic_hid(bd_addr)) {
+    auto name = bd_addr.ToString();
+    if (btif_device_supports_classic_hid(name)) {
       // Filter out devices that aren't keyboards or pointing devices.
       // 0x500 = HID Major
       // 0x080 = Pointing device
@@ -404,7 +409,7 @@ std::vector<RawAddress> btif_storage_get_wake_capable_classic_hid_devices(void) 
       constexpr int kHidMask = COD_HID_MAJOR;
       constexpr int kKeyboardMouseMask = COD_HID_COMBO & ~COD_HID_MAJOR;
       int cod_value;
-      if (!btif_config_get_int(bd_addr.ToString(), BTIF_STORAGE_KEY_DEV_CLASS, &cod_value) ||
+      if (!btif_config_get_int(name, BTIF_STORAGE_KEY_DEV_CLASS, &cod_value) ||
           (cod_value & kHidMask) != kHidMask || (cod_value & kKeyboardMouseMask) == 0) {
         continue;
       }
@@ -451,10 +456,24 @@ void btif_storage_add_hearing_aid(const HearingDevice& dev_info) {
 /** Loads information about bonded hearing aid devices */
 void btif_storage_load_bonded_hearing_aids() {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    if (!btif_device_supports_hearing_aid(bd_addr)) {
+    const std::string& name = bd_addr.ToString();
+
+    int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
+    char uuid_str[size];
+    bool isHearingaidDevice = false;
+    if (btif_config_get_str(name, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
+      Uuid p_uuid[BT_MAX_NUM_UUIDS];
+      size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
+      for (size_t i = 0; i < num_uuids; i++) {
+        if (p_uuid[i] == Uuid::FromString("FDF0")) {
+          isHearingaidDevice = true;
+          break;
+        }
+      }
+    }
+    if (!isHearingaidDevice) {
       continue;
     }
-    const std::string& name = bd_addr.ToString();
 
     log::verbose("Remote device:{}", bd_addr);
 
@@ -717,10 +736,24 @@ void btif_storage_set_leaudio_supported_context_types(const RawAddress& addr,
 /** Loads information about bonded Le Audio devices */
 void btif_storage_load_bonded_leaudio() {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    if (!btif_device_supports_le_audio(bd_addr)) {
+    auto name = bd_addr.ToString();
+
+    int size = STORAGE_UUID_STRING_SIZE * BT_MAX_NUM_UUIDS;
+    char uuid_str[size];
+    bool isLeAudioDevice = false;
+    if (btif_config_get_str(name, BTIF_STORAGE_KEY_REMOTE_SERVICE, uuid_str, &size)) {
+      Uuid p_uuid[BT_MAX_NUM_UUIDS];
+      size_t num_uuids = btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
+      for (size_t i = 0; i < num_uuids; i++) {
+        if (p_uuid[i] == Uuid::FromString("184E")) {
+          isLeAudioDevice = true;
+          break;
+        }
+      }
+    }
+    if (!isLeAudioDevice) {
       continue;
     }
-    auto name = bd_addr.ToString();
 
     log::verbose("Remote device:{}", bd_addr);
 
@@ -972,7 +1005,8 @@ void btif_storage_load_bonded_groups(void) {
 /** Loads information about bonded group devices */
 void btif_storage_load_bonded_volume_control_devices(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
-    if (btif_device_supports_profile(bd_addr,
+    auto device = bd_addr.ToString();
+    if (btif_device_supports_profile(device,
                                      Uuid::From16Bit(UUID_SERVCLASS_VOLUME_CONTROL_SERVER))) {
       do_in_main_thread(Bind(&VolumeControl::AddFromStorage, bd_addr));
     }
