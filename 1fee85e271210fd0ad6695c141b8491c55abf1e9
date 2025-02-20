@@ -34,6 +34,24 @@
       ],
       "revId": "1fee85e271210fd0ad6695c141b8491c55abf1e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624ae455_df0f7a72",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:54:53Z",
+      "side": 1,
+      "message": "It gets reset along with the whole `pairing_cb` at the end of pairing.\nNew pairing can start only if the `pairing_cb` is not in a busy state. That means only one pairing can happen at a time.\nIf `pairing_cb` is not reset when pairing gets concluded, we would be in a bigger trouble. We used to have issues like that earlier.\n\nBR/EDR bond status in `sec_record` is now updated at the end of pairing. If pairing fails, the bond status would remain \"UNKNOWN\", i.e. not bonded.",
+      "parentUuid": "a29085c8_1d219389",
+      "revId": "1fee85e271210fd0ad6695c141b8491c55abf1e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
