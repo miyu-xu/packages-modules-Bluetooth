@@ -52,6 +52,40 @@
       "parentUuid": "b2e2a478_19e216e3",
       "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "745555e1_faa7f539",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-20T02:47:36Z",
+      "side": 1,
+      "message": "I see we\u0027re also removing some dead code with the flag. \nCan you help to do some sanity tests and update the commit message to indicate the manual tests?",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd49b878_7cceb0d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2581,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-20T02:47:36Z",
+      "side": 1,
+      "message": "why did we remove this onSyncTransferred? this doesn\u0027t seem like related to the flag removing work.",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
