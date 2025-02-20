@@ -57,6 +57,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Binder;
 import android.os.ParcelUuid;
+import android.os.test.TestLooper;
 import android.platform.test.annotations.DisableFlags;
 import android.platform.test.annotations.EnableFlags;
 import android.platform.test.flag.junit.SetFlagsRule;
@@ -64,7 +65,6 @@ import android.platform.test.flag.junit.SetFlagsRule;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.TestLooper;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.bass_client.BassClientService;
 import com.android.bluetooth.btservice.AdapterService;

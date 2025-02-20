@@ -36,6 +36,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Message;
 import android.os.UserManager;
+import android.os.test.TestLooper;
 import android.test.mock.MockContentResolver;
 
 import androidx.test.InstrumentationRegistry;
@@ -43,7 +44,6 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
-import com.android.bluetooth.TestLooper;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
