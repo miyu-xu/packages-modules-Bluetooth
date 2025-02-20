@@ -357,6 +357,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26999460_c71fd2c8",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-20T04:22:46Z",
+      "side": 1,
+      "message": "Is the value different because of the level? It looks the same in the insert and modify.\n\nIf that is the case, can we get a mut entry here, keeping the insert, and update the level?",
+      "parentUuid": "832882d4_11a179c9",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 284,
+        "endChar": 14
+      },
+      "revId": "64767eeab5d44a7aadf7a6562bd1d9b9ae832242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "548fa2ed_9cb2c45c",
         "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
         "patchSetId": 1

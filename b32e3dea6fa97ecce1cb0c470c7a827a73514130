@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef58541d_0f144291",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-20T04:22:46Z",
+      "side": 1,
+      "message": "no return here as well :)",
+      "range": {
+        "startLine": 369,
+        "startChar": 16,
+        "endLine": 369,
+        "endChar": 23
+      },
+      "revId": "b32e3dea6fa97ecce1cb0c470c7a827a73514130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
