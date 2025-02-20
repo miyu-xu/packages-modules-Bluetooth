@@ -1,0 +1,340 @@
+From 99a50bf47331f99a7d7947f73181cc6d241960ed Mon Sep 17 00:00:00 2001
+From: Satheesh Kumar Pallemoni <quic_spallemo@quicinc.com>
+Date: Thu, 13 Jun 2024 14:16:21 +0530
+Subject: [PATCH] Le-Audio: Bring back ConfirmSuspendRequest() API to handle SHOs
+
+- Bring back ConfirmSuspendRequest() API to handle SHOs
+
+CRs-Fixed: 3840408
+Change-Id: I530a9e53b2f65da67a34455ab7d1f291d3b24090
+---
+
+diff --git a/system/audio_hal_interface/le_audio_software.cc b/system/audio_hal_interface/le_audio_software.cc
+index 5484549..fb2987f 100644
+--- a/system/audio_hal_interface/le_audio_software.cc
++++ b/system/audio_hal_interface/le_audio_software.cc
+@@ -223,6 +223,15 @@
+   }
+ }
+ 
++void LeAudioClientInterface::Sink::ConfirmSuspendRequest() {
++  LOG(INFO) << __func__;
++  if (HalVersionManager::GetHalTransport() ==
++      BluetoothAudioHalTransport::AIDL) {
++    get_aidl_client_interface(is_broadcaster_)
++        ->StreamSuspended(aidl::BluetoothAudioCtrlAck::SUCCESS_FINISHED);
++  }
++}
++
+ void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {
+   if (HalVersionManager::GetHalTransport() ==
+       BluetoothAudioHalTransport::HIDL) {
+@@ -652,6 +661,15 @@
+   }
+ }
+ 
++void LeAudioClientInterface::Source::ConfirmSuspendRequest() {
++  LOG(INFO) << __func__;
++  if (HalVersionManager::GetHalTransport() ==
++      BluetoothAudioHalTransport::AIDL) {
++    aidl::le_audio::LeAudioSourceTransport::interface->StreamSuspended(
++         aidl::BluetoothAudioCtrlAck::SUCCESS_FINISHED);
++  }
++}
++
+ void LeAudioClientInterface::Source::ConfirmStreamingRequest() {
+   if (HalVersionManager::GetHalTransport() ==
+       BluetoothAudioHalTransport::HIDL) {
+diff --git a/system/audio_hal_interface/le_audio_software.h b/system/audio_hal_interface/le_audio_software.h
+index c7edbf4..350f263 100644
+--- a/system/audio_hal_interface/le_audio_software.h
++++ b/system/audio_hal_interface/le_audio_software.h
+@@ -95,6 +95,7 @@
+     virtual void SetRemoteDelay(uint16_t delay_report_ms) = 0;
+     virtual void StartSession() = 0;
+     virtual void StopSession() = 0;
++    virtual void ConfirmSuspendRequest() = 0;
+     virtual void ConfirmStreamingRequest() = 0;
+     virtual void CancelStreamingRequest() = 0;
+     virtual void ConfirmStreamingRequestV2() = 0;
+@@ -116,6 +117,7 @@
+     void SetRemoteDelay(uint16_t delay_report_ms) override;
+     void StartSession() override;
+     void StopSession() override;
++    void ConfirmSuspendRequest() override;
+     void ConfirmStreamingRequest() override;
+     void CancelStreamingRequest() override;
+     void ConfirmStreamingRequestV2() override;
+@@ -154,6 +156,7 @@
+     void SetRemoteDelay(uint16_t delay_report_ms) override;
+     void StartSession() override;
+     void StopSession() override;
++    void ConfirmSuspendRequest() override;
+     void ConfirmStreamingRequest() override;
+     void CancelStreamingRequest() override;
+     void ConfirmStreamingRequestV2() override;
+diff --git a/system/audio_hal_interface/le_audio_software_host.cc b/system/audio_hal_interface/le_audio_software_host.cc
+index 74f9b22..4d80225 100644
+--- a/system/audio_hal_interface/le_audio_software_host.cc
++++ b/system/audio_hal_interface/le_audio_software_host.cc
+@@ -256,6 +256,11 @@
+       btle_stream_started_status::IDLE;
+ }
+ 
++void LeAudioClientInterface::Sink::ConfirmSuspendRequest() {
++  log::info("");
++  // TODO
++}
++
+ void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {
+   if (!host::le_audio::LeAudioSinkTransport::instance) {
+     log::warn("instance is null");
+@@ -423,6 +428,11 @@
+       btle_stream_started_status::IDLE;
+ }
+ 
++void LeAudioClientInterface::Source::ConfirmSuspendRequest() {
++  log::info("");
++  // TODO
++}
++
+ void LeAudioClientInterface::Source::ConfirmStreamingRequest() {
+   if (!host::le_audio::LeAudioSourceTransport::instance) {
+     log::warn("instance is null");
+diff --git a/system/bta/le_audio/audio_hal_client/audio_hal_client.h b/system/bta/le_audio/audio_hal_client/audio_hal_client.h
+index 0eb24ee..4e83aae 100644
+--- a/system/bta/le_audio/audio_hal_client/audio_hal_client.h
++++ b/system/bta/le_audio/audio_hal_client/audio_hal_client.h
+@@ -165,6 +165,7 @@
+   virtual void Stop() = 0;
+   virtual size_t SendData(uint8_t* data, uint16_t size) = 0;
+ 
++  virtual void ConfirmSuspendRequest() = 0;
+   virtual void ConfirmStreamingRequest() = 0;
+   virtual void CancelStreamingRequest() = 0;
+ 
+@@ -206,6 +207,7 @@
+                      DsaModes dsa_modes = {DsaMode::DISABLED}) = 0;
+   virtual void Stop() = 0;
+   virtual size_t SendData(uint8_t* data, uint16_t size) { return 0; }
++  virtual void ConfirmSuspendRequest() = 0;
+   virtual void ConfirmStreamingRequest() = 0;
+   virtual void CancelStreamingRequest() = 0;
+   virtual void UpdateRemoteDelay(uint16_t remote_delay_ms) = 0;
+diff --git a/system/bta/le_audio/audio_hal_client/audio_hal_client_test.cc b/system/bta/le_audio/audio_hal_client/audio_hal_client_test.cc
+index 49de31f..5e6b220 100644
+--- a/system/bta/le_audio/audio_hal_client/audio_hal_client_test.cc
++++ b/system/bta/le_audio/audio_hal_client/audio_hal_client_test.cc
+@@ -191,6 +191,7 @@
+ void LeAudioClientInterface::Sink::SetRemoteDelay(uint16_t delay_report_ms) {}
+ void LeAudioClientInterface::Sink::StartSession() {}
+ void LeAudioClientInterface::Sink::StopSession() {}
++void LeAudioClientInterface::Sink::ConfirmSuspendRequest(){};
+ void LeAudioClientInterface::Sink::ConfirmStreamingRequest(){};
+ void LeAudioClientInterface::Sink::CancelStreamingRequest(){};
+ void LeAudioClientInterface::Sink::ConfirmStreamingRequestV2(){};
+@@ -222,6 +223,7 @@
+ void LeAudioClientInterface::Source::SetRemoteDelay(uint16_t delay_report_ms) {}
+ void LeAudioClientInterface::Source::StartSession() {}
+ void LeAudioClientInterface::Source::StopSession() {}
++void LeAudioClientInterface::Source::ConfirmSuspendRequest(){};
+ void LeAudioClientInterface::Source::ConfirmStreamingRequest(){};
+ void LeAudioClientInterface::Source::CancelStreamingRequest(){};
+ void LeAudioClientInterface::Source::ConfirmStreamingRequestV2(){};
+diff --git a/system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc b/system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc
+index b69cc0d..e0b6cbf 100644
+--- a/system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc
++++ b/system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc
+@@ -45,6 +45,7 @@
+              DsaModes dsa_modes) override;
+   void Stop();
+   size_t SendData(uint8_t* data, uint16_t size) override;
++  void ConfirmSuspendRequest() override;
+   void ConfirmStreamingRequest() override;
+   void CancelStreamingRequest() override;
+   void UpdateRemoteDelay(uint16_t remote_delay_ms) override;
+@@ -258,6 +259,16 @@
+   return bytes_written;
+ }
+ 
++void SinkImpl::ConfirmSuspendRequest() {
++  if ((halSourceInterface_ == nullptr) ||
++      (le_audio_source_hal_state != HAL_STARTED)) {
++    log::error("Audio HAL Audio source was not started!");
++    return;
++  }
++
++  halSourceInterface_->ConfirmSuspendRequest();
++}
++
+ void SinkImpl::ConfirmStreamingRequest() {
+   if ((halSourceInterface_ == nullptr) ||
+       (le_audio_source_hal_state != HAL_STARTED)) {
+diff --git a/system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc b/system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc
+index 48bcce9..c357b81 100644
+--- a/system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc
++++ b/system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc
+@@ -63,6 +63,7 @@
+              LeAudioSourceAudioHalClient::Callbacks* audioReceiver,
+              DsaModes dsa_modes) override;
+   void Stop() override;
++  void ConfirmSuspendRequest() override;
+   void ConfirmStreamingRequest() override;
+   void CancelStreamingRequest() override;
+   void UpdateRemoteDelay(uint16_t remote_delay_ms) override;
+@@ -410,6 +411,16 @@
+   audioSourceCallbacks_ = nullptr;
+ }
+ 
++void SourceImpl::ConfirmSuspendRequest() {
++  if ((halSinkInterface_ == nullptr) ||
++      (le_audio_sink_hal_state_ != HAL_STARTED)) {
++    log::error("Audio HAL Audio sink was not started!");
++    return;
++  }
++
++  halSinkInterface_->ConfirmSuspendRequest();
++}
++
+ void SourceImpl::ConfirmStreamingRequest() {
+   if ((halSinkInterface_ == nullptr) ||
+       (le_audio_sink_hal_state_ != HAL_STARTED)) {
+diff --git a/system/bta/le_audio/broadcaster/broadcaster.cc b/system/bta/le_audio/broadcaster/broadcaster.cc
+index c5b6025..87c99dc 100644
+--- a/system/bta/le_audio/broadcaster/broadcaster.cc
++++ b/system/bta/le_audio/broadcaster/broadcaster.cc
+@@ -1246,6 +1246,7 @@
+       /* TODO: Should we suspend all broadcasts - remove BIGs? */
+       if (instance) {
+         instance->audio_data_path_state_ = AudioDataPathState::SUSPENDED;
++        instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
+       }
+     }
+ 
+diff --git a/system/bta/le_audio/broadcaster/broadcaster_test.cc b/system/bta/le_audio/broadcaster/broadcaster_test.cc
+index 1c592ee..5338fb4 100644
+--- a/system/bta/le_audio/broadcaster/broadcaster_test.cc
++++ b/system/bta/le_audio/broadcaster/broadcaster_test.cc
+@@ -240,6 +240,7 @@
+                ::bluetooth::le_audio::DsaModes dsa_modes),
+               (override));
+   MOCK_METHOD((void), Stop, (), (override));
++  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
+   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
+   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
+diff --git a/system/bta/le_audio/client.cc b/system/bta/le_audio/client.cc
+index 5a2e9a9..4ee6746 100644
+--- a/system/bta/le_audio/client.cc
++++ b/system/bta/le_audio/client.cc
+@@ -4323,6 +4323,9 @@
+         if (audio_receiver_state_ == AudioState::READY_TO_RELEASE) {
+           defer_source_suspend_ack_until_stop_ = true;
+           OnAudioSuspend();
++        } else {
++          log::info("calling source ConfirmSuspendRequest in audio_sender_state_ idle");
++          le_audio_source_hal_client_->ConfirmSuspendRequest();
+         }
+         return;
+       case AudioState::READY_TO_RELEASE:
+@@ -4336,6 +4339,13 @@
+       OnAudioSuspend();
+       bluetooth::le_audio::MetricsCollector::Get()->OnStreamEnded(
+           active_group_id_);
++    } else {
++      //In VBC and Call streaming cases, send immediate ack
++      //for the first initiate suspsend.
++      if (le_audio_source_hal_client_) {
++        log::info("calling source ConfirmSuspendRequest");
++        le_audio_source_hal_client_->ConfirmSuspendRequest();
++      }
+     }
+ 
+     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
+@@ -4578,6 +4588,9 @@
+         if (audio_sender_state_ == AudioState::READY_TO_RELEASE) {
+           defer_sink_suspend_ack_until_stop_ = true;
+           OnAudioSuspend();
++        } else {
++          log::info("calling sink ConfirmSuspendRequest in audio_receiver_state_ IDLE");
++          le_audio_sink_hal_client_->ConfirmSuspendRequest();
+         }
+         return;
+       case AudioState::READY_TO_RELEASE:
+@@ -4589,6 +4602,13 @@
+         (audio_sender_state_ == AudioState::READY_TO_RELEASE)) {
+       defer_sink_suspend_ack_until_stop_ = true;
+       OnAudioSuspend();
++    } else {
++      //In VBC and Call streaming cases, send immediate ack
++      //for the first initiate suspsend.
++      if (le_audio_sink_hal_client_) {
++        log::info("calling sink ConfirmSuspendRequest");
++        le_audio_sink_hal_client_->ConfirmSuspendRequest();
++      }
+     }
+ 
+     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
+@@ -6107,6 +6127,22 @@
+                   UnicastMonitorModeStatus::STREAMING_SUSPENDED);
+             }
+ 
++            if (defer_source_suspend_ack_until_stop_) {
++              if (le_audio_source_hal_client_) {
++                defer_source_suspend_ack_until_stop_ = false;
++                log::info("calling source ConfirmSuspendRequest");
++                le_audio_source_hal_client_->ConfirmSuspendRequest();
++              }
++            }
++
++            if (defer_sink_suspend_ack_until_stop_) {
++              if (le_audio_sink_hal_client_) {
++                defer_sink_suspend_ack_until_stop_ = false;
++                log::info("calling sink ConfirmSuspendRequest");
++                le_audio_sink_hal_client_->ConfirmSuspendRequest();
++              }
++            }
++
+             log::info("active_group_id_: {}", active_group_id_);
+             if (defer_notify_active_until_stop_ && defer_notify_inactive_until_stop_) {
+               CheckAndNotifyGroupInactive(group_id);
+diff --git a/system/bta/le_audio/codec_manager_test.cc b/system/bta/le_audio/codec_manager_test.cc
+index ee6900f..6a26d81 100644
+--- a/system/bta/le_audio/codec_manager_test.cc
++++ b/system/bta/le_audio/codec_manager_test.cc
+@@ -179,6 +179,7 @@
+               (override));
+   MOCK_METHOD((void), Stop, (), (override));
+   MOCK_METHOD((size_t), SendData, (uint8_t * data, uint16_t size), (override));
++  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
+   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
+   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
+@@ -218,6 +219,7 @@
+                DsaModes dsa_modes),
+               (override));
+   MOCK_METHOD((void), Stop, (), (override));
++  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
+   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
+   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
+diff --git a/system/bta/le_audio/le_audio_client_test.cc b/system/bta/le_audio/le_audio_client_test.cc
+index 5f3a08f..8ce36e6 100644
+--- a/system/bta/le_audio/le_audio_client_test.cc
++++ b/system/bta/le_audio/le_audio_client_test.cc
+@@ -328,6 +328,7 @@
+               (override));
+   MOCK_METHOD((void), Stop, (), (override));
+   MOCK_METHOD((size_t), SendData, (uint8_t * data, uint16_t size), (override));
++  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
+   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
+   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
+@@ -349,6 +350,7 @@
+                DsaModes dsa_modes),
+               (override));
+   MOCK_METHOD((void), Stop, (), (override));
++  MOCK_METHOD((void), ConfirmSuspendRequest, (), (override));
+   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
+   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+   MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay), (override));
