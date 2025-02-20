@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8395ede5_bb9bc807",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-20T03:40:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bace5e27_14883872",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 41
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faaffe25_6554064f",
@@ -181,6 +205,30 @@
       "side": 1,
       "message": "I see, it does seem better, so I\u0027ve removed all uses of BlockingBluetoothAdapter and defined ```waittingBluetoothStates``` with ```flow``` action check because of it\u0027s an already implemented in RfcommTest class",
       "parentUuid": "57270330_aa31a599",
+      "range": {
+        "startLine": 644,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 46
+      },
+      "revId": "7742cd67840008e7bf4db3acd38a57ba81b070b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c40efb6e_b0432c9c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-20T03:40:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d36bf17a_c5d1ffa8",
       "range": {
         "startLine": 644,
         "startChar": 0,

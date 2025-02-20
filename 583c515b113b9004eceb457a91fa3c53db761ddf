@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c96d1a30_225e58ce",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-20T03:40:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "267f8cbc_7d67c8f3",
+      "range": {
+        "startLine": 637,
+        "startChar": 7,
+        "endLine": 639,
+        "endChar": 59
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0f307e4_88a94c88",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Removed.",
       "parentUuid": "b0f307e4_88a94c88",
+      "range": {
+        "startLine": 652,
+        "startChar": 0,
+        "endLine": 654,
+        "endChar": 58
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78788ca7_d5466847",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-20T03:40:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6bd8a95_76551bf5",
       "range": {
         "startLine": 652,
         "startChar": 0,
@@ -226,6 +274,30 @@
       "side": 1,
       "message": "Yes, but we do not need to add anything for that, if timeout, test will failed:\n```\n11:34:53 \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d Result Summary \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nResults summary for test-tag \u0027local_atest\u0027: 1 Tests [0 Passed 1 Failed] \n11:34:53 local_atest: android.bluetooth.RfcommTest#clientRfcommDeviceDisconnectedOnBleOnMode: FAILURE (12147ms)\n  stack\u003d\n    kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 7000 ms\n    \tat kotlinx.coroutines.TimeoutKt.TimeoutCancellationException(Timeout.kt:188)\n    \tat kotlinx.coroutines.TimeoutCoroutine.run(Timeout.kt:156)\n    \tat kotlinx.coroutines.EventLoopImplBase$DelayedRunnableTask.run(EventLoop.common.kt:505)\n    \tat kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)\n    \tat kotlinx.coroutines.DefaultExecutor.run(DefaultExecutor.kt:105)\n    \tat java.lang.Thread.run(Thread.java:1119)\n```",
       "parentUuid": "189595a7_97b141aa",
+      "range": {
+        "startLine": 693,
+        "startChar": 24,
+        "endLine": 693,
+        "endChar": 44
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12f625f1_fc85232d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-20T03:40:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4ba48d5_e4adaa10",
       "range": {
         "startLine": 693,
         "startChar": 24,
