@@ -215,4 +215,10 @@ void bluetooth::shim::LogMetricLeConnectionCompletion(bluetooth::hci::Address ad
   test::mock::main_shim_metrics_api::LogMetricLeConnectionCompletion(address, reason,
                                                                      is_locally_initiated);
 }
+
+void bluetooth::shim::LogMetricLeConnectionRejected(bluetooth::hci::Address) {
+  inc_func_call_count(__func__);
+  test::mock::main_shim_metrics_api::LogMetricLeConnectionRejected(address);
+}
+
 // END mockcify generation
