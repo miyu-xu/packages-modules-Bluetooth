@@ -43,6 +43,8 @@
 #include <vector>
 
 #include "audio_hal_interface/a2dp_encoding.h"
+#include "audio_hal_interface/aidl/codec_status_aidl.h"
+#include "audio_hal_interface/aidl/a2dp_provider_info.h"
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_api_data_types.h"
 #include "bta/include/bta_av_api.h"
@@ -1127,6 +1129,8 @@ void BtifAvSource::Init(btav_source_callbacks_t* callbacks, int max_connected_au
                         const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
                         std::vector<btav_a2dp_codec_info_t>* supported_codecs,
                         std::promise<bt_status_t> complete_promise) {
+  bool supports_a2dp_hw_offload_v2 = false;
+  std::unique_ptr<bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info_;
   callbacks_ = callbacks;
   max_connected_peers_ = max_connected_audio_devices;
   log::info("max_connected_audio_devices={}", max_connected_audio_devices);
@@ -1140,15 +1144,19 @@ void BtifAvSource::Init(btav_source_callbacks_t* callbacks, int max_connected_au
   if (a2dp_offload_enabled_) {
     tBTM_BLE_VSC_CB vsc_cb = {};
     BTM_BleGetVendorCapabilities(&vsc_cb);
-    bool supports_a2dp_hw_offload_v2 =
+    supports_a2dp_hw_offload_v2 =
             vsc_cb.version_supported >= 0x0104 && vsc_cb.a2dp_offload_v2_support;
-    bluetooth::audio::a2dp::update_codec_offloading_capabilities(offloading_preference,
-                                                                 supports_a2dp_hw_offload_v2);
+    provider_info_ = bluetooth::audio::aidl::a2dp::ProviderInfo::GetProviderInfo(
+        supports_a2dp_hw_offload_v2);
+    bluetooth::audio::aidl::a2dp::codec::UpdateOffloadingCapabilities(offloading_preference);
+
+    // bluetooth::audio::a2dp::update_codec_offloading_capabilities(offloading_preference,
+    //                                                              supports_a2dp_hw_offload_v2);
   }
 
   bta_av_co_init(codec_priorities, supported_codecs);
 
-  if (!btif_a2dp_source_init(a2dp_offload_enabled_)) {
+  if (!btif_a2dp_source_init(a2dp_offload_enabled_, std::move(provider_info_))) {
     complete_promise.set_value(BT_STATUS_FAIL);
     return;
   }

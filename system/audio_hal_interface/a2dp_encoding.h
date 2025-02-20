@@ -62,8 +62,8 @@ bool update_codec_offloading_capabilities(
         const std::vector<btav_a2dp_codec_config_t>& framework_preference,
         bool supports_a2dp_hw_offload_v2);
 
-// Check if new bluetooth_audio is enabled
-bool is_hal_enabled();
+// // Check if new bluetooth_audio is enabled
+// bool is_hal_enabled();
 
 // Check if new bluetooth_audio is running with offloading encoders
 bool is_hal_offloading();

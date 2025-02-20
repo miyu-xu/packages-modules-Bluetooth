@@ -422,15 +422,19 @@ public:
   }
 };
 
-static const A2dpStreamCallbacks a2dp_stream_callbacks;
+// static const A2dpStreamCallbacks a2dp_stream_callbacks;
 
 static void btif_a2dp_source_init_delayed(void) {
   log::info("");
+
+  std::unique_ptr<bluetooth::audio::a2dp::StreamCallbacks> a2dp_stream_callbacks =
+    std::make_unique<A2dpStreamCallbacks>();
+
   // When codec extensibility is enabled in the audio HAL interface,
   // the provider needs to be initialized earlier in order to ensure
   // get_a2dp_configuration and parse_a2dp_configuration can be
   // invoked before the stream is started.
-  bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks,
+  bluetooth::audio::a2dp::init(local_thread(), std::move(a2dp_stream_callbacks),
                                btif_a2dp_source_cb.offload_enabled);
 }
 
@@ -496,15 +500,10 @@ static void btif_a2dp_source_start_session_delayed(const RawAddress& peer_addres
     return;
   }
 
-  if (bluetooth::audio::a2dp::is_hal_enabled()) {
-    bluetooth::audio::a2dp::start_session();
-    bluetooth::audio::a2dp::set_remote_delay(btif_av_get_audio_delay(A2dpType::kSource));
-    BluetoothMetricsLogger::GetInstance()->LogBluetoothSessionStart(
-            bluetooth::common::CONNECTION_TECHNOLOGY_TYPE_BREDR, 0);
-  } else {
-    BluetoothMetricsLogger::GetInstance()->LogBluetoothSessionStart(
-            bluetooth::common::CONNECTION_TECHNOLOGY_TYPE_BREDR, 0);
-  }
+  btif_a2dp_source_cb.audio_hal_encoder_interface->start_session();
+  bluetooth::audio::a2dp::set_remote_delay(btif_av_get_audio_delay(A2dpType::kSource));
+  BluetoothMetricsLogger::GetInstance()->LogBluetoothSessionStart(
+          bluetooth::common::CONNECTION_TECHNOLOGY_TYPE_BREDR, 0);
 
   peer_ready_promise.set_value();
 }

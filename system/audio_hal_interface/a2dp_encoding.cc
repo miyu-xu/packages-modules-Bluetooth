@@ -37,12 +37,12 @@ bool update_codec_offloading_capabilities(
 }
 
 // Check if new bluetooth_audio is enabled
-bool is_hal_enabled() {
-  if (HalVersionManager::GetHalTransport() == BluetoothAudioHalTransport::HIDL) {
-    return hidl::a2dp::is_hal_2_0_enabled();
-  }
-  return aidl::a2dp::is_hal_enabled();
-}
+// bool is_hal_enabled() {
+//   if (HalVersionManager::GetHalTransport() == BluetoothAudioHalTransport::HIDL) {
+//     return hidl::a2dp::is_hal_2_0_enabled();
+//   }
+//   return aidl::a2dp::is_hal_enabled();
+// }
 
 // Check if new bluetooth_audio is running with offloading encoders
 bool is_hal_offloading() {
