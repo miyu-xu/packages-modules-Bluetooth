@@ -388,7 +388,7 @@ public class TbsGenericTest {
         }
         assertThat(callUuidCaptor.getValue().getUuid()).isEqualTo(callUuid);
         // Active device should be changed
-        verify(leAudioService).setActiveDevice(mDevice);
+        verify(leAudioService).setActiveDeviceFromGtbs(mDevice);
 
         // Respond with requestComplete...
         mTbsGeneric.requestResult(
