@@ -86,6 +86,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0796732_ad22525e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3269,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing. But this is needed to correctly report bond status to Java stack after pairing concludes.",
+      "parentUuid": "4b74c719_e59fd900",
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7da0b12_500c5378",
@@ -167,6 +185,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4e6a3c_f3e1e122",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3553,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing. But this is needed to correctly report bond status to Java stack after pairing concludes.",
+      "parentUuid": "e7da0b12_500c5378",
+      "range": {
+        "startLine": 3553,
+        "startChar": 24,
+        "endLine": 3553,
+        "endChar": 25
+      },
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b74dc7da_899a19c7",
@@ -198,6 +240,24 @@
           ]
         }
       ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d3b8c3b_dba31729",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3558,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing",
+      "parentUuid": "b74dc7da_899a19c7",
       "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -237,6 +297,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a940e69f_1d167a5a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3593,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing. But this is needed to correctly report bond status to Java stack after pairing concludes.",
+      "parentUuid": "fbedeb79_a8de277d",
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78be5b50_f7b56e3d",
@@ -268,6 +346,24 @@
           ]
         }
       ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d8e40d6_f697af49",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3619,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing. But this is needed to correctly report bond status to Java stack after pairing concludes.",
+      "parentUuid": "78be5b50_f7b56e3d",
       "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -307,6 +403,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3c9ce7_1b3d3847",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3655,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing. But this is needed to correctly report bond status to Java stack after pairing concludes.",
+      "parentUuid": "922a5d3d_f5eb9651",
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88a160ee_ca856adc",
@@ -320,6 +434,24 @@
       "writtenOn": "2025-02-20T19:04:36Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d15029d_8344095a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3711,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-20T19:10:49Z",
+      "side": 1,
+      "message": "Not applicable for LE pairing since we don\u0027t support temporary LE pairing. But this is needed to correctly report bond status to Java stack after pairing concludes.",
+      "parentUuid": "88a160ee_ca856adc",
       "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
