@@ -16,6 +16,24 @@
       "message": "I don\u0027t see any test in this CL? Which tests are covering the associated bug?",
       "revId": "27d2a542ed4c3af71a81f3e0d2c2454a60d6d0e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a2f5781_a4fd9f05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T20:16:51Z",
+      "side": 1,
+      "message": "Adding to queue and syncing is a base thing in bassClientService so it is tested in almost all tests.\n\nThere is no possibility to write test for this improvement as checking already synced broadcast was done before too. But to do this broadcast was needed to add to the queue, retrieve and there was a check. I add another check before adding to the queue. There is no option to make a test for that, as between one and second check there is no operation which could be checked.\n\nIt has to be in both places as handling queue sometimes is called, not directly after adding to the queue.",
+      "parentUuid": "90c68384_3037c79a",
+      "revId": "27d2a542ed4c3af71a81f3e0d2c2454a60d6d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
