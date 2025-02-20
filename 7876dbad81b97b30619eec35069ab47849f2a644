@@ -104,6 +104,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aca7516c_a8cc0f3f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3269,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:21:36Z",
+      "side": 1,
+      "message": "If this is only needed to report correct bond status to Java, can we modify the check to send BOND_NONE status to Java (for Temporary bonding) only for BR/EDR transport?",
+      "parentUuid": "a0796732_ad22525e",
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7da0b12_500c5378",
