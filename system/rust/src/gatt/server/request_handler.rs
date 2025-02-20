@@ -2,6 +2,7 @@ use log::warn;
 use pdl_runtime::{DecodeError, EncodeError};
 
 use crate::gatt::ids::AttHandle;
+use crate::gatt::opcode_types::OperationType;
 use crate::packets::att::{self, AttErrorCode};
 
 use super::att_database::AttDatabase;
@@ -45,10 +46,16 @@ impl<Db: AttDatabase> AttRequestHandler<Db> {
         Self { db }
     }
 
-    // Runs a task to process an incoming packet. Takes an exclusive reference to
-    // ensure that only one request is outstanding at a time (notifications +
-    // commands should take a different path)
+    // Runs a task to process an incoming *request* packet. There should be only one instance of
+    // AttRequestHandler per client to ensure that only one request is outstanding at a time
+    // (notifications + commands should take a different path).
+    //
+    // # Panics
+    //
+    // This will panic if the packet is not a "request"; other kinds of packets should be handled by
+    // the caller.
     pub async fn process_packet(&mut self, packet: att::Att, mtu: usize) -> att::Att {
+        assert_eq!(packet.opcode.operation_type(), OperationType::Request);
         match self.try_parse_and_process_packet(&packet, mtu).await {
             Ok(result) => result,
             Err(_) => {
@@ -493,16 +500,30 @@ mod test {
     #[test]
     fn test_unsupported_request() {
         // arrange
-        let db = TestAttDatabase::new(vec![(
-            AttAttribute {
-                handle: AttHandle(3),
-                type_: Uuid::new(0x1234),
-                permissions: AttPermissions::READABLE,
-            },
-            vec![1, 2, 3],
-        )]);
+        let db = TestAttDatabase::new(vec![
+            (
+                AttAttribute {
+                    handle: AttHandle(3),
+                    type_: Uuid::new(0x1234),
+                    permissions: AttPermissions::READABLE,
+                },
+                vec![1, 2, 3],
+            ),
+            (
+                AttAttribute {
+                    handle: AttHandle(4),
+                    type_: Uuid::new(0x5678),
+                    permissions: AttPermissions::READABLE,
+                },
+                vec![1, 2, 3],
+            ),
+        ]);
         let mut handler = AttRequestHandler { db };
-        let att_view = att::AttWriteResponse {}.try_into().unwrap();
+        let att_view = att::AttReadMultipleRequest {
+            attribute_handles: vec![AttHandle(3).into(), AttHandle(4).into()],
+        }
+        .try_into()
+        .unwrap();
 
         // act
         let response = tokio_test::block_on(handler.process_packet(att_view, 31));
@@ -511,7 +532,7 @@ mod test {
         assert_eq!(
             Ok(response),
             att::AttErrorResponse {
-                opcode_in_error: att::AttOpcode::WriteResponse,
+                opcode_in_error: att::AttOpcode::ReadMultipleRequest,
                 handle_in_error: AttHandle(0).into(),
                 error_code: AttErrorCode::RequestNotSupported
             }
