@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd76362_b881e1ed",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-20T10:29:21Z",
+      "side": 1,
+      "message": "@jiangzp@google.com I would like to verify this with you. In my local testing it seems the traffics after a lid-close (NoWakesAllowed) suspend won\u0027t wake the system. Is that true and why?",
+      "range": {
+        "startLine": 409,
+        "startChar": 29,
+        "endLine": 409,
+        "endChar": 56
+      },
+      "revId": "822ccf33e1833cd29bb5ab7c353f1ef4bf992244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
