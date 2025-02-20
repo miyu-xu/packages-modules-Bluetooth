@@ -50,8 +50,10 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "btif/include/btif_storage.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
+#include "stack/include/acl_api.h"
 
 using namespace bluetooth;
 using namespace bluetooth::shim;
@@ -585,6 +587,8 @@ void bta_ag_send_call_inds(tBTA_AG_SCB* p_scb, tBTA_AG_RES result) {
   /* set new call and callsetup values based on BTA_AgResult */
   size_t callsetup = bta_ag_indicator_by_result_code(result);
 
+  bool is_denylisted = interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_DURING_CALL,
+                                                   &p_scb->peer_addr, &btif_storage_get_remote_device_property);
   if (result == BTA_AG_END_CALL_RES) {
     call = BTA_AG_CALL_INACTIVE;
   } else if (result == BTA_AG_IN_CALL_CONN_RES || result == BTA_AG_OUT_CALL_CONN_RES ||
@@ -594,9 +598,34 @@ void bta_ag_send_call_inds(tBTA_AG_SCB* p_scb, tBTA_AG_RES result) {
     call = p_scb->call_ind;
   }
 
+  if (result == BTA_AG_IN_CALL_CONN_RES || result == BTA_AG_OUT_CALL_CONN_RES)
+    log::verbose("{}, call {}, callsetup {}, call held {}, p_scb->callsetup_ind {}",
+     bta_ag_result_text(result), call, callsetup, p_scb->callheld_ind, p_scb->callsetup_ind );
+
+  if (is_denylisted) {
+    if (result == BTA_AG_IN_CALL_RES ||
+        result == BTA_AG_CALL_WAIT_RES ||
+        result == BTA_AG_OUT_CALL_ORIG_RES ||
+        result == BTA_AG_OUT_CALL_ALERT_RES ||
+        result == BTA_AG_OUT_CALL_CONN_RES ) {
+        log::verbose("block sniff during call for the device: {}",
+                        p_scb->peer_addr);
+        bta_sys_busy(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
+        BTM_block_sniff_mode_for(p_scb->peer_addr);
+     }
+  }
   /* Send indicator function tracks if the values have actually changed */
   bta_ag_send_ind(p_scb, BTA_AG_IND_CALL, call, false);
   bta_ag_send_ind(p_scb, BTA_AG_IND_CALLSETUP, callsetup, false);
+
+  if (is_denylisted) {
+    if ((result == BTA_AG_END_CALL_RES ||
+         result == BTA_AG_CALL_CANCEL_RES) && p_scb) {
+         log::verbose("Enable sniff mode for device: {}",
+                     p_scb->peer_addr);
+         BTM_unblock_sniff_mode_for(p_scb->peer_addr);
+    }
+  }
 }
 
 /*******************************************************************************
@@ -2005,4 +2034,30 @@ void bta_ag_send_qac(tBTA_AG_SCB* p_scb) {
   if (p_scb->sco_codec == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) {
     p_scb->is_aptx_swb_codec = true;
   }
+}
+
+bool bta_ag_is_call_present(const RawAddress* peer_addr) {
+  uint16_t handle;
+  tBTA_AG_SCB* p_scb;
+
+  if (peer_addr == NULL) {
+    log::warn("peer address is null");
+    return false;
+  }
+
+  handle = bta_ag_idx_by_bdaddr(peer_addr);
+  p_scb = bta_ag_scb_by_idx(handle);
+
+  if (p_scb == NULL) {
+    log::warn("p_scb is null for peer dev {}", *peer_addr);
+    return false;
+  }
+
+  if (p_scb->call_ind || p_scb->callsetup_ind || p_scb->callheld_ind) {
+    log::verbose("call is present for peer dev {}", p_scb->peer_addr);
+    return true;
+  }
+
+  log::verbose("call is not present for peer dev {}", p_scb->peer_addr);
+  return false;
 }
