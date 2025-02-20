@@ -46,6 +46,30 @@
       },
       "revId": "94e196f4bbfdec248eee20f07284b31a8ae44409",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5436f5_d60a37ef",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-20T21:26:45Z",
+      "side": 1,
+      "message": "My thoughts on this are that the ACL and SLC failures are already logged their own layers.  So we should be able to connect it directly to this.  This also prevents us from just adding another variable for just this case and keeping code readable.\n\nI did change the state to be CONNECTION_TIMEOUT though.",
+      "parentUuid": "1dd0602f_057b5d24",
+      "range": {
+        "startLine": 791,
+        "startChar": 49,
+        "endLine": 791,
+        "endChar": 114
+      },
+      "revId": "94e196f4bbfdec248eee20f07284b31a8ae44409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
