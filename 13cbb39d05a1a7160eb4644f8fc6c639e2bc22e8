@@ -46,6 +46,30 @@
       },
       "revId": "13cbb39d05a1a7160eb4644f8fc6c639e2bc22e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f647c66_0766934b",
+        "filename": "android/pandora/test/hap_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-20T23:46:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "90f73ff7_f0171c9b",
+      "range": {
+        "startLine": 150,
+        "startChar": 52,
+        "endLine": 150,
+        "endChar": 67
+      },
+      "revId": "13cbb39d05a1a7160eb4644f8fc6c639e2bc22e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
