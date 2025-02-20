@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93de7228_380d1c52",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestLooper.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2025-02-20T07:08:53Z",
+      "side": 1,
+      "message": "Err, hey Bluetooth module folks, why am I getting compile errors?\n```\n            Message message \u003d mTestLooperManager.poll();\n                                                ^\n  symbol:   method poll()\n  location: variable mTestLooperManager of type TestLooperManager\n```\n\nIs this because the `BluetoothInstrumentationTestsDefaults` target sets `sdk_version: \"module_current\"`?",
+      "revId": "578502f052a34432892c8250de81da84cf67c97f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
