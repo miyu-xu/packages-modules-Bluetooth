@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c82a0f_7bb1771d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-20T19:07:03Z",
+      "side": 1,
+      "message": "Lint +2 as \"warning\" are in fact error due to the next CL in chain. (will be fix before submitting it)",
+      "revId": "8465b027a51ca09c415ef86595d892020498379a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
