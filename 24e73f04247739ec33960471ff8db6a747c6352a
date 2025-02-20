@@ -16,6 +16,24 @@
       "message": "This made me very sad. 😭\n\nWould it be possible to solve this problem with jarjar rather than copying source code?",
       "revId": "24e73f04247739ec33960471ff8db6a747c6352a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184c3937_f423d9f9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/TestLooper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-20T19:35:04Z",
+      "side": 1,
+      "message": "Yeah, I understand. Me too to be honest.\n\nThe solution to me should be aosp/3475152 (or something similar).\n\nBut jarjar would not work as frameworks-base-testutils is not available for `module_current`\n\nMy 2 cents: ideally the TestLooper code code should move into `frameworks/libs/modules-utils/`\n\nIf we can remove the Bluetooth source copy, I will 100% approve the change",
+      "parentUuid": "90cc9685_e873926a",
+      "revId": "24e73f04247739ec33960471ff8db6a747c6352a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
