@@ -16,6 +16,24 @@
       "message": "unit test covered?\n\nI understand this is the only small change, but if you mentioned \u0027Flag: EXEMPT, day-to-day bugfix covered by unit tests\u0027, people will expect you have unit tests added for any logic change.",
       "revId": "76707d7709822859f824d81bc6af45fee948aa31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e1e27fe_cb7a651e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2966,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T07:56:06Z",
+      "side": 1,
+      "message": "You have right but I did not know how to reword this:) There is no possibility to add tests for this change as duplicates was removed without this CL too but inside handleSelectSourceRequest. I wrote covered by unit tests as if this would break adding broadcasts to queue, then old tests would fail. Maybe I will add covered by existing unit tests?",
+      "parentUuid": "ea51aa70_e950c0f6",
+      "revId": "76707d7709822859f824d81bc6af45fee948aa31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
