@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a615aded_9d9c0770",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T12:45:38Z",
+      "side": 1,
+      "message": "Backlog task for that: b/394933314",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 0
+      },
+      "revId": "f3d652d18e7e5e8c194f83cf1a7ecf4fb3062c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42b8c33_07464cec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-02-20T12:45:38Z",
+      "side": 1,
+      "message": "New unit test will throw ConcurrentModificationException without source change.",
+      "range": {
+        "startLine": 19,
+        "startChar": 14,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "f3d652d18e7e5e8c194f83cf1a7ecf4fb3062c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
