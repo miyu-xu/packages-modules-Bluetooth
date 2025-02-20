@@ -52,6 +52,24 @@
       "parentUuid": "0431a696_9920fcd7",
       "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c181b032_84cf4d05",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4631,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-20T09:18:53Z",
+      "side": 1,
+      "message": "THis is Targeted ANnouncement around - we talked about improving it by using controller filter also based on MAC. So far we don\u0027t have it. So it works as expected,",
+      "parentUuid": "bf38a41f_dcc92fd4",
+      "revId": "11cfb320c25bcd687df554d2523806d88c7c6af0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
