@@ -367,6 +367,13 @@ struct LogMetricLeConnectionCompletion {
 };
 extern struct LogMetricLeConnectionCompletion LogMetricLeConnectionCompletion;
 
+// Name: LogMetricLeConnectionRejected
+struct LogMetricLeConnectionRejected {
+  std::function<void(bluetooth::hci::Address addreess)> body{
+          [](bluetooth::hci::Address /* address */) {}};
+  void operator()(bluetooth::hci::Address address) { body(address); }
+};
+extern struct LogMetricLeConnectionRejected LogMetricLeConnectionRejected;
 }  // namespace main_shim_metrics_api
 }  // namespace mock
 }  // namespace test

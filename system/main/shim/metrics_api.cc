@@ -20,6 +20,7 @@
 #include "main/shim/helpers.h"
 #include "metrics/bluetooth_event.h"
 #include "metrics/counter_metrics.h"
+#include "metrics_api.h"
 #include "os/metrics.h"
 #include "types/raw_address.h"
 
@@ -185,6 +186,12 @@ void LogMetricLeConnectionLifecycle(hci::Address address, bool is_connect, bool 
 void LogMetricLeConnectionCompletion(hci::Address address, hci::ErrorCode reason,
                                      bool is_locally_initiated) {
   bluetooth::metrics::LogLeAclCompletionEvent(address, reason, is_locally_initiated);
+}
+
+void LogMetricLeConnectionRejected(hci::Address address) {
+  bluetooth::os::LogMetricBluetoothEvent(address,
+                                         android::bluetooth::EventType::LE_CONNECTION_REJECTED,
+                                         android::bluetooth::State::ATTEMPT_IN_PROGRESS);
 }
 
 bool CountCounterMetrics(int32_t key, int64_t count) {
