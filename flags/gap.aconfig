@@ -304,3 +304,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "scan_controller_thread"
+    namespace: "bluetooth"
+    description: "Makes scan opreations run on one thread."
+    bug: "397863857"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
