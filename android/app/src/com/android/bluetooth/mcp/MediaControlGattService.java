@@ -238,15 +238,14 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                 Operation operation,
                 int requestId,
                 BluetoothGattCharacteristic characteristic,
-                BluetoothGattDescriptor descriptor,
-                int offset) {
+                BluetoothGattDescriptor descriptor) {
             mOperation = operation;
             mRequestId = requestId;
             mCharacteristic = characteristic;
             mDescriptor = descriptor;
             mPreparedWrite = false;
             mResponseNeeded = false;
-            mOffset = offset;
+            mOffset = 0;
             mValue = null;
         }
 
@@ -694,24 +693,17 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                             Arrays.copyOfRange(bb.array(), op.mOffset, Integer.BYTES));
                     return;
                 }
-                byte[] readRespValue = op.mCharacteristic.getValue();
-                if (readRespValue != null) {
-                    if (readRespValue.length >= op.mOffset) {
-                        status = BluetoothGatt.GATT_SUCCESS;
-                        readRespValue =
-                                Arrays.copyOfRange(readRespValue, op.mOffset, readRespValue.length);
-                    } else {
-                        Log.e(
-                                TAG,
-                                ("Wrong offset read for: " + op.mCharacteristic.getUuid())
-                                        + (": offset " + op.mOffset)
-                                        + (", total len: " + readRespValue.length));
-                        status = BluetoothGatt.GATT_INVALID_OFFSET;
-                        readRespValue = new byte[] {};
-                    }
 
+                if (op.mCharacteristic.getValue() != null) {
                     mBluetoothGattServer.sendResponse(
-                            device, op.mRequestId, status, op.mOffset, readRespValue);
+                            device,
+                            op.mRequestId,
+                            BluetoothGatt.GATT_SUCCESS,
+                            op.mOffset,
+                            Arrays.copyOfRange(
+                                    op.mCharacteristic.getValue(),
+                                    op.mOffset,
+                                    op.mCharacteristic.getValue().length));
                 } else {
                     Log.e(
                             TAG,
@@ -989,8 +981,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                                     GattOpContext.Operation.READ_CHARACTERISTIC,
                                     requestId,
                                     characteristic,
-                                    null,
-                                    offset);
+                                    null);
                     switch (getDeviceAuthorization(device)) {
                         case BluetoothDevice.ACCESS_REJECTED:
                             onRejectedAuthorizationGattOperation(device, op);
@@ -1082,8 +1073,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                                     GattOpContext.Operation.READ_DESCRIPTOR,
                                     requestId,
                                     null,
-                                    descriptor,
-                                    offset);
+                                    descriptor);
                     switch (getDeviceAuthorization(device)) {
                         case BluetoothDevice.ACCESS_REJECTED:
                             onRejectedAuthorizationGattOperation(device, op);
