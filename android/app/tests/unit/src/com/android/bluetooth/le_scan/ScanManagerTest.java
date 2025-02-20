@@ -1281,6 +1281,7 @@ public class ScanManagerTest {
                             0,
                             0,
                             true,
+                            false,
                             false);
 
             advanceTime(scanTestDuration);
@@ -1305,6 +1306,7 @@ public class ScanManagerTest {
                             eq(scanTestDuration),
                             eq(0),
                             eq(true),
+                            eq(false),
                             eq(false));
         }
     }
@@ -1373,7 +1375,8 @@ public class ScanManagerTest {
                         eq((long) ScanManager.SCAN_MODE_LOW_POWER_INTERVAL_MS),
                         eq((long) ScanManager.SCAN_MODE_LOW_POWER_WINDOW_MS),
                         eq(true),
-                        eq(scanTestDuration));
+                        eq(scanTestDuration),
+                        eq(false));
         advanceTime(scanTestDuration);
 
         // Create workSource for the third app
@@ -1410,7 +1413,8 @@ public class ScanManagerTest {
                         eq((long) ScanManager.SCAN_MODE_BALANCED_INTERVAL_MS),
                         eq((long) ScanManager.SCAN_MODE_BALANCED_WINDOW_MS),
                         eq(true),
-                        eq(scanTestDuration));
+                        eq(scanTestDuration),
+                        eq(false));
         advanceTime(scanTestDuration);
 
         // Create workSource for the fourth app
@@ -1444,7 +1448,8 @@ public class ScanManagerTest {
                         anyLong(),
                         anyLong(),
                         anyBoolean(),
-                        anyLong());
+                        anyLong(),
+                        anyBoolean());
         advanceTime(scanTestDuration);
 
         // Set as background app
@@ -1468,7 +1473,8 @@ public class ScanManagerTest {
                         eq((long) ScanManager.SCAN_MODE_LOW_LATENCY_INTERVAL_MS),
                         eq((long) ScanManager.SCAN_MODE_LOW_LATENCY_WINDOW_MS),
                         eq(true),
-                        eq(scanTestDuration * 2));
+                        eq(scanTestDuration * 2),
+                        eq(false));
         advanceTime(scanTestDuration);
 
         // Get the most aggressive scan client when screen is off
@@ -1496,7 +1502,8 @@ public class ScanManagerTest {
                         eq((long) SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS),
                         eq((long) SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS),
                         eq(false),
-                        eq(scanTestDuration));
+                        eq(scanTestDuration),
+                        eq(false));
         advanceTime(scanTestDuration);
 
         // Stop scan for the fourth app
@@ -1512,7 +1519,8 @@ public class ScanManagerTest {
                         anyLong(),
                         anyLong(),
                         anyBoolean(),
-                        anyLong());
+                        anyLong(),
+                        anyBoolean());
         advanceTime(scanTestDuration);
 
         // Stop scan for the third app
@@ -1531,7 +1539,8 @@ public class ScanManagerTest {
                         eq((long) ScanManager.SCAN_MODE_LOW_LATENCY_INTERVAL_MS),
                         eq((long) ScanManager.SCAN_MODE_LOW_LATENCY_WINDOW_MS),
                         eq(true),
-                        eq(scanTestDuration * 2));
+                        eq(scanTestDuration * 2),
+                        eq(true));
         advanceTime(scanTestDuration);
 
         // Stop scan for the second app
@@ -1550,7 +1559,8 @@ public class ScanManagerTest {
                         eq((long) ScanManager.SCAN_MODE_BALANCED_INTERVAL_MS),
                         eq((long) ScanManager.SCAN_MODE_BALANCED_WINDOW_MS),
                         eq(true),
-                        eq(scanTestDuration));
+                        eq(scanTestDuration),
+                        eq(true));
         advanceTime(scanTestDuration);
 
         // Stop scan for the first app
@@ -1569,7 +1579,8 @@ public class ScanManagerTest {
                         eq((long) ScanManager.SCAN_MODE_LOW_POWER_INTERVAL_MS),
                         eq((long) ScanManager.SCAN_MODE_LOW_POWER_WINDOW_MS),
                         eq(true),
-                        eq(scanTestDuration));
+                        eq(scanTestDuration),
+                        eq(true));
     }
 
     @Test

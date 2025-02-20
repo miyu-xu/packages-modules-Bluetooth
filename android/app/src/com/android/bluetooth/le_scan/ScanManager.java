@@ -321,6 +321,27 @@ public class ScanManager {
         }
     }
 
+    void fetchAppForegroundState(ScanClient client) {
+        PackageManager packageManager = mAdapterService.getPackageManager();
+        if (mActivityManager == null || packageManager == null) {
+            return;
+        }
+        String[] packages = packageManager.getPackagesForUid(client.appUid);
+        if (packages == null || packages.length == 0) {
+            return;
+        }
+        int importance = ActivityManager.RunningAppProcessInfo.IMPORTANCE_CACHED;
+        for (String packageName : packages) {
+            importance = Math.min(importance, mActivityManager.getPackageImportance(packageName));
+        }
+        boolean isForeground =
+                importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
+        mIsUidForegroundMap.put(client.appUid, isForeground);
+        if (client.stats != null) {
+            client.stats.isAppForeground = isForeground;
+        }
+    }
+
     // Handler class that handles BLE scan operations.
     @VisibleForTesting
     class ClientHandler extends Handler {
@@ -721,26 +742,6 @@ public class ScanManager {
          */
         private boolean isAppForeground(ScanClient client) {
             return mIsUidForegroundMap.get(client.appUid, DEFAULT_UID_IS_FOREGROUND);
-        }
-
-        private void fetchAppForegroundState(ScanClient client) {
-            PackageManager packageManager = mAdapterService.getPackageManager();
-            if (mActivityManager == null || packageManager == null) {
-                return;
-            }
-            String[] packages = packageManager.getPackagesForUid(client.appUid);
-            if (packages == null || packages.length == 0) {
-                return;
-            }
-            int importance = ActivityManager.RunningAppProcessInfo.IMPORTANCE_CACHED;
-            for (String packageName : packages) {
-                importance =
-                        Math.min(importance, mActivityManager.getPackageImportance(packageName));
-            }
-            boolean isForeground =
-                    importance
-                            <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
-            mIsUidForegroundMap.put(client.appUid, isForeground);
         }
 
         private boolean updateScanModeBeforeStart(ScanClient client) {
@@ -2224,6 +2225,9 @@ public class ScanManager {
         for (ScanClient client : mRegularScanClients) {
             if (client.appUid != uid || mScanNative.isOpportunisticScanClient(client)) {
                 continue;
+            }
+            if (client.stats != null) {
+                client.stats.isAppForeground = isForeground;
             }
             if (isForeground) {
                 int scanMode = client.scanModeApp;

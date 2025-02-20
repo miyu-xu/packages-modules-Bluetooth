@@ -78,9 +78,11 @@ class AppAdvertiseStats {
         public Instant stopTime = null;
         public int duration = 0;
         public int maxExtendedAdvertisingEvents = 0;
+        public boolean isAppForegroundOnStart = false;
 
-        AppAdvertiserRecord(Instant startTime) {
+        AppAdvertiserRecord(Instant startTime, boolean isAppForegroundOnStart) {
             this.startTime = startTime;
+            this.isAppForegroundOnStart = isAppForegroundOnStart;
         }
     }
 
@@ -103,6 +105,7 @@ class AppAdvertiseStats {
     @Nullable private AppAdvertiserData mPeriodicAdvertisingData = null;
     private boolean mPeriodicIncludeTxPower = false;
     private int mPeriodicInterval = 0;
+    public boolean isAppForeground = false;
     public ArrayList<AppAdvertiserRecord> mAdvertiserRecords = new ArrayList<AppAdvertiserRecord>();
 
     AppAdvertiseStats(int appUid, int id, String name, AttributionSource attrSource) {
@@ -122,7 +125,7 @@ class AppAdvertiseStats {
             int maxExtAdvEvents,
             int instanceCount) {
         mAdvertisingEnabled = true;
-        AppAdvertiserRecord record = new AppAdvertiserRecord(Instant.now());
+        AppAdvertiserRecord record = new AppAdvertiserRecord(Instant.now(), isAppForeground);
         record.duration = duration;
         record.maxExtendedAdvertisingEvents = maxExtAdvEvents;
         mAdvertiserRecords.add(record);
@@ -419,7 +422,8 @@ class AppAdvertiseStats {
                             mScanResponseData != null && mScannable /* hasScanResponse */,
                             !mLegacy /* isExtendedAdv */,
                             instanceCount,
-                            durationMs);
+                            durationMs,
+                            isAppForeground);
         }
         if (enable) {
             MetricsLogger.getInstance().cacheCount(BluetoothProtoEnums.LE_ADV_COUNT_ENABLE, 1);
@@ -583,6 +587,8 @@ class AppAdvertiseStats {
                     .append(record.duration);
             sb.append("\n        └Maximum number of extended advertising events  : ")
                     .append(record.maxExtendedAdvertisingEvents);
+            sb.append("\n        └App in Foreground                              : ")
+                    .append(record.isAppForegroundOnStart);
         }
 
         dumpAppAdvertiseStats(sb, stats);
