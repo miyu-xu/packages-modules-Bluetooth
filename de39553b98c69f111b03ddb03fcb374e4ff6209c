@@ -140,6 +140,24 @@
       "parentUuid": "dd49b878_7cceb0d4",
       "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b675ec_aeab7367",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2581,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-20T09:27:17Z",
+      "side": 1,
+      "message": "on the other side, having this callback, which just print status of sync transferred should not hurt, or ?",
+      "parentUuid": "01fb18cb_b0c2c1ab",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
