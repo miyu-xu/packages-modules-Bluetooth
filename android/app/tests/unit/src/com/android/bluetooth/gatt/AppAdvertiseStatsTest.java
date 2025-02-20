@@ -351,7 +351,8 @@ public class AppAdvertiseStatsTest {
                         false,
                         true,
                         instanceCount,
-                        0);
+                        0,
+                        false);
         Mockito.clearInvocations(mMetricsLogger);
 
         // Wait for adv test duration
@@ -384,7 +385,8 @@ public class AppAdvertiseStatsTest {
                         eq(false),
                         eq(true),
                         eq(instanceCount),
-                        mAdvDurationCaptor.capture());
+                        mAdvDurationCaptor.capture(),
+                        eq(false));
         long capturedAppScanDuration = mAdvDurationCaptor.getValue();
         Log.d(TAG, "capturedDuration: " + capturedAppScanDuration);
         assertThat(capturedAppScanDuration).isAtLeast(advTestDuration);

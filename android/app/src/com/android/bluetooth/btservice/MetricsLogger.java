@@ -675,7 +675,8 @@ public class MetricsLogger {
             long scanDurationMillis,
             int numOngoingScan,
             boolean isScreenOn,
-            boolean isAppDead) {
+            boolean isAppDead,
+            boolean isAppForeground) {
         BluetoothStatsLog.write(
                 BluetoothStatsLog.LE_APP_SCAN_STATE_CHANGED,
                 uids,
@@ -690,7 +691,8 @@ public class MetricsLogger {
                 scanDurationMillis,
                 numOngoingScan,
                 isScreenOn,
-                isAppDead);
+                isAppDead,
+                isAppForeground);
     }
 
     /** Logs the radio scan stats with app attribution when the radio scan stopped. */
@@ -702,7 +704,8 @@ public class MetricsLogger {
             long scanIntervalMillis,
             long scanWindowMillis,
             boolean isScreenOn,
-            long scanDurationMillis) {
+            long scanDurationMillis,
+            boolean isAppForeground) {
         BluetoothStatsLog.write(
                 BluetoothStatsLog.LE_RADIO_SCAN_STOPPED,
                 uids,
@@ -712,7 +715,8 @@ public class MetricsLogger {
                 scanIntervalMillis,
                 scanWindowMillis,
                 isScreenOn,
-                scanDurationMillis);
+                scanDurationMillis,
+                isAppForeground);
     }
 
     /** Logs the advertise stats with app attribution when the advertise state changed. */
@@ -727,7 +731,8 @@ public class MetricsLogger {
             boolean hasScanResponse,
             boolean isExtendedAdv,
             int instanceCount,
-            long advDurationMs) {
+            long advDurationMs,
+            boolean isAppForeground) {
         BluetoothStatsLog.write(
                 BluetoothStatsLog.LE_ADV_STATE_CHANGED,
                 uids,
@@ -740,7 +745,8 @@ public class MetricsLogger {
                 hasScanResponse,
                 isExtendedAdv,
                 instanceCount,
-                advDurationMs);
+                advDurationMs,
+                isAppForeground);
     }
 
     protected String getAllowlistedDeviceNameHash(

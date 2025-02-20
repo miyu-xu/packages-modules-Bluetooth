@@ -20,8 +20,8 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 import static android.Manifest.permission.UPDATE_DEVICE_STATS;
 
-import static com.android.bluetooth.flags.Flags.leaudioBassScanWithInternalScanController;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
+import static com.android.bluetooth.flags.Flags.leaudioBassScanWithInternalScanController;
 
 import static java.util.Objects.requireNonNull;
 
@@ -1282,6 +1282,7 @@ public class ScanController {
         AppScanStats app = mScannerMap.getAppScanStatsById(scannerId);
         if (app != null) {
             scanClient.stats = app;
+            mScanManager.fetchAppForegroundState(scanClient);
             boolean isFilteredScan = (filters != null) && !filters.isEmpty();
             boolean isCallbackScan = false;
 
@@ -1402,6 +1403,7 @@ public class ScanController {
         AppScanStats scanStats = mScannerMap.getAppScanStatsById(scannerId);
         if (scanStats != null) {
             scanClient.stats = scanStats;
+            mScanManager.fetchAppForegroundState(scanClient);
             boolean isFilteredScan = (piInfo.filters != null) && !piInfo.filters.isEmpty();
             scanStats.recordScanStart(
                     piInfo.settings,

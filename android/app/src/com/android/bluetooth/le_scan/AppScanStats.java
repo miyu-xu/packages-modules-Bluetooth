@@ -86,6 +86,7 @@ public class AppScanStats {
     static int sRadioScanIntervalMs;
     static boolean sIsRadioStarted = false;
     static boolean sIsScreenOn = false;
+    static boolean sIsRadioScanAppForeground = false;
 
     static class LastScan {
         public long duration;
@@ -108,6 +109,7 @@ public class AppScanStats {
         public int scanCallbackType;
         public StringBuilder filterString;
         @Nullable public String attributionTag;
+        public boolean isAppForegroundOnStart;
 
         LastScan(
                 long timestamp,
@@ -117,7 +119,8 @@ public class AppScanStats {
                 int scannerId,
                 int scanMode,
                 int scanCallbackType,
-                @Nullable String attributionTag) {
+                @Nullable String attributionTag,
+                boolean isAppForegroundOnStart) {
             this.duration = 0;
             this.timestamp = timestamp;
             this.reportDelayMillis = reportDelayMillis;
@@ -137,6 +140,7 @@ public class AppScanStats {
             this.suspendDuration = 0;
             this.suspendStartTime = 0;
             this.isSuspended = false;
+            this.isAppForegroundOnStart = isAppForegroundOnStart;
             this.filterString = new StringBuilder();
         }
     }
@@ -167,6 +171,7 @@ public class AppScanStats {
     private long stopTime = 0;
     private int results = 0;
     public boolean isAppDead = false;
+    public boolean isAppForeground = false;
 
     public AppScanStats(
             String name,
@@ -265,7 +270,8 @@ public class AppScanStats {
                         scannerId,
                         settings.getScanMode(),
                         settings.getCallbackType(),
-                        attributionTag);
+                        attributionTag,
+                        isAppForeground);
         if (settings != null) {
             scan.isOpportunisticScan = scan.scanMode == ScanSettings.SCAN_MODE_OPPORTUNISTIC;
             scan.isBackgroundScan =
@@ -423,7 +429,8 @@ public class AppScanStats {
                     0 /* app_scan_duration_ms */,
                     mOngoingScans.size(),
                     sIsScreenOn,
-                    isAppDead);
+                    isAppDead,
+                    isAppForeground);
         }
         if (scan.isAutoBatchScan) {
             logger.cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_AUTO_BATCH_ENABLE, 1);
@@ -455,7 +462,8 @@ public class AppScanStats {
                     scan.duration,
                     mOngoingScans.size(),
                     sIsScreenOn,
-                    isAppDead);
+                    isAppDead,
+                    isAppForeground);
         }
         if (scan.isAutoBatchScan) {
             logger.cacheCount(BluetoothProtoEnums.LE_SCAN_COUNT_AUTO_BATCH_DISABLE, 1);
@@ -603,6 +611,7 @@ public class AppScanStats {
             sRadioScanWindowMs = scanWindowMs;
             sRadioScanIntervalMs = scanIntervalMs;
             sIsRadioStarted = true;
+            sIsRadioScanAppForeground = stats.isAppForeground;
         }
         return true;
     }
@@ -641,7 +650,8 @@ public class AppScanStats {
                     sRadioScanIntervalMs,
                     sRadioScanWindowMs,
                     sIsScreenOn,
-                    radioScanDuration);
+                    radioScanDuration,
+                    sIsRadioScanAppForeground);
             sRadioStartTime = 0;
             sIsRadioStarted = false;
         }
@@ -1094,6 +1104,11 @@ public class AppScanStats {
                     sb.append("Auto Batch Scan");
                 } else {
                     sb.append("Regular Scan");
+                }
+                if (scan.isAppForegroundOnStart) {
+                    sb.append(" App in Foreground");
+                } else {
+                    sb.append(" App not in Foreground");
                 }
                 if (scan.suspendDuration != 0) {
                     activeDuration = scan.duration - scan.suspendDuration;
