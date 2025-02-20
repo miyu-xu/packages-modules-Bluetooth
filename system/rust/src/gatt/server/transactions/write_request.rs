@@ -19,6 +19,10 @@ pub async fn handle_write_request<T: AttDatabase>(
     }
 }
 
+pub async fn handle_write_command<T: AttDatabase>(request: att::AttWriteCommand, db: &T) {
+    db.write_no_response_attribute(request.handle.into(), &request.value);
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
