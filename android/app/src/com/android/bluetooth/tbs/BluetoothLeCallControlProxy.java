@@ -77,14 +77,6 @@ public class BluetoothLeCallControlProxy {
         mBluetoothLeCallControl.requestResult(requestId, result);
     }
 
-    public void onCallAdded(BluetoothLeCall call) {
-        mBluetoothLeCallControl.onCallAdded(call);
-    }
-
-    public void onCallRemoved(UUID callId, int reason) {
-        mBluetoothLeCallControl.onCallRemoved(callId, reason);
-    }
-
     public void onCallStateChanged(UUID callId, int state) {
         mBluetoothLeCallControl.onCallStateChanged(callId, state);
     }
