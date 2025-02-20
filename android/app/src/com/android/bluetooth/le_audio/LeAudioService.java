@@ -1973,7 +1973,7 @@ public class LeAudioService extends ProfileService {
      * LeAudio device is added or removed.
      */
     @VisibleForTesting
-    void notifyActiveDeviceChanged(BluetoothDevice device) {
+    synchronized void notifyActiveDeviceChanged(BluetoothDevice device) {
         Log.d(
                 TAG,
                 "Notify Active device changed."
@@ -2317,7 +2317,7 @@ public class LeAudioService extends ProfileService {
      *     inactive devices (if new out device would be null device).
      * @return true if group is active after change false otherwise.
      */
-    private boolean updateActiveDevices(
+    private synchronized boolean updateActiveDevices(
             Integer groupId,
             Integer oldSupportedAudioDirections,
             Integer newSupportedAudioDirections,
