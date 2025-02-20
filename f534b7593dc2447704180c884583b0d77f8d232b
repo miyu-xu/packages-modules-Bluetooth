@@ -22,6 +22,30 @@
       },
       "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eed438eb_5ea55801",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2229,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-20T15:50:55Z",
+      "side": 0,
+      "message": "If I undertand AudioFramework recommandation, they will just restore Active Device and we shall do nothing here. Otherwise, we would have to take actions on onAudioDevicesAdded and send intents and other stuff again - which I believe is not a intention as only AF is restarting.\n\n@elaurent@google.com can you confirm?",
+      "parentUuid": "9f4a5dc3_de5bd9ec",
+      "range": {
+        "startLine": 2229,
+        "startChar": 12,
+        "endLine": 2229,
+        "endChar": 40
+      },
+      "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
