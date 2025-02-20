@@ -46,6 +46,30 @@
       },
       "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2758123_afe22176",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2229,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2025-02-20T20:24:43Z",
+      "side": 0,
+      "message": "I think it is OK to reset mExposedActiveDevice here because it will be set again when handleAudioDeviceAdded() is called later.\nWhat is important is to not call setActiveDevice(null)",
+      "parentUuid": "eed438eb_5ea55801",
+      "range": {
+        "startLine": 2229,
+        "startChar": 12,
+        "endLine": 2229,
+        "endChar": 40
+      },
+      "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
