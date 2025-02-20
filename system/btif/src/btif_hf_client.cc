@@ -188,8 +188,6 @@ static bool is_connected(const btif_hf_client_cb_t* cb) {
       (cb->state == BTHF_CLIENT_CONNECTION_STATE_SLC_CONNECTED)) {
     return true;
   }
-
-  log::error("not connected!");
   return false;
 }
 
@@ -281,6 +279,7 @@ static bt_status_t connect_int(RawAddress* bd_addr, uint16_t /*uuid*/) {
 
   cb->peer_bda = *bd_addr;
   if (is_connected(cb)) {
+    log::warn("Peer is already connected remote:{}", *bd_addr);
     return BT_STATUS_BUSY;
   }
 
@@ -333,6 +332,7 @@ static bt_status_t disconnect(const RawAddress* bd_addr) {
 static bt_status_t connect_audio(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -364,6 +364,7 @@ static bt_status_t connect_audio(const RawAddress* bd_addr) {
 static bt_status_t disconnect_audio(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -385,6 +386,7 @@ static bt_status_t disconnect_audio(const RawAddress* bd_addr) {
 static bt_status_t start_voice_recognition(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -409,6 +411,7 @@ static bt_status_t start_voice_recognition(const RawAddress* bd_addr) {
 static bt_status_t stop_voice_recognition(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -434,6 +437,7 @@ static bt_status_t volume_control(const RawAddress* bd_addr, bthf_client_volume_
                                   int volume) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -465,6 +469,7 @@ static bt_status_t volume_control(const RawAddress* bd_addr, bthf_client_volume_
 static bt_status_t dial(const RawAddress* bd_addr, const char* number) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -490,6 +495,7 @@ static bt_status_t dial(const RawAddress* bd_addr, const char* number) {
 static bt_status_t dial_memory(const RawAddress* bd_addr, int location) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -512,6 +518,7 @@ static bt_status_t handle_call_action(const RawAddress* bd_addr, bthf_client_cal
                                       int idx) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -602,6 +609,7 @@ static bt_status_t handle_call_action(const RawAddress* bd_addr, bthf_client_cal
 static bt_status_t query_current_calls(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -627,6 +635,7 @@ static bt_status_t query_current_calls(const RawAddress* bd_addr) {
 static bt_status_t query_current_operator_name(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -648,6 +657,7 @@ static bt_status_t query_current_operator_name(const RawAddress* bd_addr) {
 static bt_status_t retrieve_subscriber_info(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -669,6 +679,7 @@ static bt_status_t retrieve_subscriber_info(const RawAddress* bd_addr) {
 static bt_status_t send_dtmf(const RawAddress* bd_addr, char code) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -690,6 +701,7 @@ static bt_status_t send_dtmf(const RawAddress* bd_addr, char code) {
 static bt_status_t request_last_voice_tag_number(const RawAddress* bd_addr) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -734,6 +746,7 @@ static bt_status_t send_at_cmd(const RawAddress* bd_addr, int cmd, int val1, int
                                const char* arg) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -757,6 +770,7 @@ static bt_status_t send_at_cmd(const RawAddress* bd_addr, int cmd, int val1, int
 static bt_status_t send_android_at(const RawAddress* bd_addr, const char* arg) {
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(*bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", *bd_addr);
     return BT_STATUS_DEVICE_NOT_FOUND;
   }
 
@@ -796,6 +810,7 @@ static void process_ind_evt(tBTA_HF_CLIENT_IND* ind) {
 
   btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(ind->bd_addr);
   if (cb == NULL || !is_connected(cb)) {
+    log::warn("Peer not connected remote:{}", ind->bd_addr);
     return;
   }
 
