@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ed59ba_14cc81f8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-20T01:32:38Z",
+      "side": 1,
+      "message": "this is more like connection rejection instead of failure, do we want to distinguish this?",
+      "range": {
+        "startLine": 711,
+        "startChar": 49,
+        "endLine": 711,
+        "endChar": 110
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d49aedf_b19c855e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-20T01:32:38Z",
+      "side": 1,
+      "message": "This is a SLC connection falure only after we received `HeadsetHalConstants.CONNECTION_STATE_CONNECTED`, otherwise, this is normal ACL connection failure",
+      "range": {
+        "startLine": 791,
+        "startChar": 49,
+        "endLine": 791,
+        "endChar": 125
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094d0f9b_47ef99c2",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-20T01:32:38Z",
+      "side": 1,
+      "message": "do you want to just do this in the enter method of the `mConnected` state?",
+      "range": {
+        "startLine": 926,
+        "startChar": 20,
+        "endLine": 926,
+        "endChar": 45
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8c496a_2940c5d4",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-20T01:32:38Z",
+      "side": 1,
+      "message": "this is the same reason code as the one earlier, do we want to distinguish them?\n\nand is this necessary timeout or just generic SLC failure? \n\nWe need to be a bit more careful on the wording when it comes to failure reasons",
+      "range": {
+        "startLine": 515,
+        "startChar": 54,
+        "endLine": 515,
+        "endChar": 85
+      },
+      "revId": "6bb30abb12c11bd38566e300498156ad16935eef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
