@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eaca9fc1_eb7f7a0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-20T16:45:44Z",
+      "side": 1,
+      "message": "don\u0027t want to nitpick here, marking this as resolved.\nfor manual test, addding some details like \u0027santity tests with private/public broadcast\u0027 would be really helpful here.",
+      "parentUuid": "f6c34695_fe8a12e4",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd49b878_7cceb0d4",
@@ -192,6 +210,24 @@
       "side": 1,
       "message": "fine by me.",
       "parentUuid": "5d037cf3_0f755cfa",
+      "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9edfe712_d24cce28",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2581,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-20T16:45:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d2d3216c_22145721",
       "revId": "de39553b98c69f111b03ddb03fcb374e4ff6209c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
