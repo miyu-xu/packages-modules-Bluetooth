@@ -83,8 +83,10 @@ import java.util.concurrent.TimeUnit;
 public class PairingTest {
     private static final String TAG = "PairingTest";
 
+    private static final String BUMBLE_DEVICE_NAME = "Bumble";
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int TEST_DELAY_MS = 1000;
+    private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
 
     private static final ParcelUuid BATTERY_UUID =
             ParcelUuid.fromString("0000180F-0000-1000-8000-00805F9B34FB");
@@ -120,6 +122,38 @@ public class PairingTest {
     private BluetoothDevice mRemoteLeDevice;
     private BluetoothHidHost mHidService;
     private BluetoothHeadset mHfpService;
+
+    private CompletableFuture<BluetoothDevice> mDeviceFound;
+
+    /**
+     * IntentListener for the received intents
+     */
+    private IntentReceiver.IntentListener intentListener = new IntentReceiver.IntentListener() {
+        @Override
+        public void onReceive(Intent intent) {
+            String action = intent.getAction();
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device =
+                        intent.getParcelableExtra(
+                                BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
+                String deviceName =
+                        String.valueOf(
+                                intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                Log.d(
+                        TAG,
+                        "Discovered device: "
+                                + device
+                                + " with name: "
+                                + deviceName);
+                if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName)) {
+                    mDeviceFound.complete(device);
+                }
+            } else {
+                Log.d(TAG, "onReceive(): unknown intent action " + action);
+            }
+        }
+    };
+
 
     @Before
     public void setUp() throws Exception {
