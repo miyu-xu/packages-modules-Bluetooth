@@ -22,6 +22,30 @@
       },
       "revId": "94e196f4bbfdec248eee20f07284b31a8ae44409",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dd0602f_057b5d24",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-20T19:39:50Z",
+      "side": 1,
+      "message": "Also maybe be explicit about the failure is a `timeout`",
+      "parentUuid": "a25f3f88_f40ed836",
+      "range": {
+        "startLine": 791,
+        "startChar": 49,
+        "endLine": 791,
+        "endChar": 114
+      },
+      "revId": "94e196f4bbfdec248eee20f07284b31a8ae44409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
