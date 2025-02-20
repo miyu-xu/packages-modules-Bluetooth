@@ -271,31 +271,6 @@ public class TbsService extends ProfileService {
         }
 
         @Override
-        public void callAdded(int ccid, BluetoothLeCall call, AttributionSource source) {
-            TbsService service = getService(source);
-            if (service != null) {
-                service.callAdded(ccid, call);
-            }
-        }
-
-        @Override
-        public void callRemoved(int ccid, ParcelUuid callId, int reason, AttributionSource source) {
-            TbsService service = getService(source);
-            if (service != null) {
-                service.callRemoved(ccid, callId.getUuid(), reason);
-            }
-        }
-
-        @Override
-        public void callStateChanged(
-                int ccid, ParcelUuid callId, int state, AttributionSource source) {
-            TbsService service = getService(source);
-            if (service != null) {
-                service.callStateChanged(ccid, callId.getUuid(), state);
-            }
-        }
-
-        @Override
         public void currentCallsList(
                 int ccid, List<BluetoothLeCall> calls, AttributionSource source) {
             TbsService service = getService(source);
@@ -350,22 +325,19 @@ public class TbsService extends ProfileService {
         mTbsGeneric.requestResult(ccid, requestId, result);
     }
 
-    @VisibleForTesting
-    void callAdded(int ccid, BluetoothLeCall call) {
+    public void callAdded(int ccid, BluetoothLeCall call) {
         Log.d(TAG, "callAdded: ccid=" + ccid + " call=" + call);
 
         mTbsGeneric.callAdded(ccid, call);
     }
 
-    @VisibleForTesting
-    void callRemoved(int ccid, UUID callId, int reason) {
+    public void callRemoved(int ccid, UUID callId, int reason) {
         Log.d(TAG, "callRemoved: ccid=" + ccid + " callId=" + callId + " reason=" + reason);
 
         mTbsGeneric.callRemoved(ccid, callId, reason);
     }
 
-    @VisibleForTesting
-    void callStateChanged(int ccid, UUID callId, int state) {
+    public void callStateChanged(int ccid, UUID callId, int state) {
         Log.d(TAG, "callStateChanged: ccid=" + ccid + " callId=" + callId + " state=" + state);
 
         mTbsGeneric.callStateChanged(ccid, callId, state);
