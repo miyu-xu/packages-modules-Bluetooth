@@ -1,0 +1,327 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b74c719_e59fd900",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3269,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Do we need to set bond type for BLE?",
+      "fixSuggestions": [
+        {
+          "fixId": "c5bc1fcd_c9ab8c4b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3269,
+                "startChar": 0,
+                "endLine": 3272,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3557,
+                "startChar": 0,
+                "endLine": 3560,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3592,
+                "startChar": 0,
+                "endLine": 3595,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3618,
+                "startChar": 0,
+                "endLine": 3621,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3654,
+                "startChar": 0,
+                "endLine": 3657,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3709,
+                "startChar": 0,
+                "endLine": 3712,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7da0b12_500c5378",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3553,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Do we need to set bond type as persistent for BLE also?",
+      "range": {
+        "startLine": 3553,
+        "startChar": 24,
+        "endLine": 3553,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "800a0fc6_d050698d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3553,
+                "startChar": 0,
+                "endLine": 3554,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3592,
+                "startChar": 0,
+                "endLine": 3595,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3618,
+                "startChar": 0,
+                "endLine": 3621,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3654,
+                "startChar": 0,
+                "endLine": 3657,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3709,
+                "startChar": 0,
+                "endLine": 3712,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b74dc7da_899a19c7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3558,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Same comment as above",
+      "fixSuggestions": [
+        {
+          "fixId": "614d61a2_15a906c2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3557,
+                "startChar": 0,
+                "endLine": 3560,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbedeb79_a8de277d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3593,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Need bond type for BLE?",
+      "fixSuggestions": [
+        {
+          "fixId": "0deb9b7f_235f1f41",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 1984,
+                "startChar": 0,
+                "endLine": 1985,
+                "endChar": 0
+              },
+              "replacement": "  if (com::android::bluetooth::flags::temporary_pairing_tracking()) {\n    pairing_cb.bond_type \u003d BOND_TYPE_PERSISTENT;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78be5b50_f7b56e3d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3619,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "fixSuggestions": [
+        {
+          "fixId": "01652837_aae44e32",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3618,
+                "startChar": 0,
+                "endLine": 3621,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "922a5d3d_f5eb9651",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3655,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Need bond type for BLE?",
+      "fixSuggestions": [
+        {
+          "fixId": "71ccbadd_cc77ecd7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_dm.cc",
+              "range": {
+                "startLine": 3655,
+                "startChar": 0,
+                "endLine": 3656,
+                "endChar": 0
+              },
+              "replacement": "    pairing_cb.bond_type \u003d BOND_TYPE_BOND;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a160ee_ca856adc",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3711,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-20T19:04:36Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "7876dbad81b97b30619eec35069ab47849f2a644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
