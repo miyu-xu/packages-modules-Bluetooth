@@ -1245,7 +1245,8 @@ public class LeAudioServiceTest {
         // AudioManager removes audio device
         injectAudioDeviceRemoved(
                 mSingleDevice, AudioDeviceInfo.TYPE_BLE_HEADSET, true, false, true);
-        verify(mNativeInterface, times(1)).groupSetActive(-1);
+        // We just ignore it as AudioManager is going to restart and re-add devices
+        verify(mNativeInterface, never()).groupSetActive(-1);
     }
 
     /** Test setting active device group without Ringtone context */
