@@ -151,29 +151,30 @@ impl<T: AttDatabase + Clone + 'static> WeakBoxRef<'_, AttServerBearer<T>> {
                 let opcode = packet.opcode;
                 let task = spawn_local(async move {
                     trace!("starting ATT transaction");
-                    let reply = request_handler.process_packet(packet, mtu).await;
-                    this.with(|this| {
-                        this.map(|this| {
-                            match this.send_packet(reply) {
-                                Ok(_) => {
-                                    trace!("reply packet sent")
-                                }
-                                Err(err) => {
-                                    error!("serializer failure {err:?}, dropping packet and sending failed reply");
-                                    // if this also fails, we're stuck
-                                    if let Err(err) = this.send_packet(att::AttErrorResponse {
-                                        opcode_in_error: opcode,
-                                        handle_in_error: AttHandle(0).into(),
-                                        error_code: AttErrorCode::UnlikelyError,
-                                    }.try_into().unwrap()) {
-                                        panic!("unexpected serialize error for known-good packet {err:?}")
+                    if let Some(reply) = request_handler.process_packet(packet, mtu).await {
+                        this.with(|this| {
+                            this.map(|this| {
+                                match this.send_packet(reply) {
+                                    Ok(_) => {
+                                        trace!("reply packet sent")
                                     }
-                                }
-                            };
-                            // ready for next transaction
-                            this.curr_request.replace(AttRequestState::Idle(request_handler));
-                        })
-                    });
+                                    Err(err) => {
+                                        error!("serializer failure {err:?}, dropping packet and sending failed reply");
+                                        // if this also fails, we're stuck
+                                        if let Err(err) = this.send_packet(att::AttErrorResponse {
+                                            opcode_in_error: opcode,
+                                            handle_in_error: AttHandle(0).into(),
+                                            error_code: AttErrorCode::UnlikelyError,
+                                        }.try_into().unwrap()) {
+                                            panic!("unexpected serialize error for known-good packet {err:?}")
+                                        }
+                                    }
+                                };
+                                // ready for next transaction
+                                this.curr_request.replace(AttRequestState::Idle(request_handler));
+                            })
+                        });
+                    }
                 });
                 AttRequestState::Pending { _task: task.into() }
             }
