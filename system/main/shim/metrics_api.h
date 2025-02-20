@@ -290,6 +290,11 @@ void LogMetricLeConnectionLifecycle(hci::Address address, bool is_connect, bool 
  */
 void LogMetricLeConnectionCompletion(hci::Address address, hci::ErrorCode reason,
                                      bool is_locally_initiated);
+/**
+ * Log LE Connection Rejected Event
+ * @param address Address of the device
+ */
+void LogMetricLeConnectionRejected(hci::Address address);
 
 bool CountCounterMetrics(int32_t key, int64_t count);
 
