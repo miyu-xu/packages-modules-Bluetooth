@@ -42,6 +42,7 @@ java_defaults {
         "flag-junit",
         "framework-bluetooth-pre-jarjar",
         "gson",
+        "guava-android",
         "mmslib",
         "mockito-target",
         "modules-utils-handlerexecutor",
