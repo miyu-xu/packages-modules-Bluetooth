@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f180a307_2c95e9ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-20T15:18:49Z",
+      "side": 1,
+      "message": "Needed if Telecom needs that.",
+      "revId": "8abda39c67bddd7b23ee11d3f9ecea4dc6f3efe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
