@@ -702,47 +702,6 @@ public class TbsGeneric {
         }
     }
 
-    public synchronized void networkStateChanged(int ccid, String providerName, int technology) {
-        Log.d(
-                TAG,
-                "networkStateChanged: ccid="
-                        + ccid
-                        + " providerName="
-                        + providerName
-                        + " technology="
-                        + technology);
-
-        if (!mIsInitialized) {
-            Log.w(TAG, "networkStateChanged called while not initialized.");
-            return;
-        }
-
-        Bearer bearer = getBearerByCcid(ccid);
-        if (bearer == null) {
-            return;
-        }
-
-        boolean providerChanged = !bearer.providerName.equals(providerName);
-        if (providerChanged) {
-            bearer.providerName = providerName;
-        }
-
-        boolean technologyChanged = bearer.technology != technology;
-        if (technologyChanged) {
-            bearer.technology = technology;
-        }
-
-        if (bearer == mForegroundBearer) {
-            if (providerChanged) {
-                mTbsGatt.setBearerProviderName(bearer.providerName);
-            }
-
-            if (technologyChanged) {
-                mTbsGatt.setBearerTechnology(bearer.technology);
-            }
-        }
-    }
-
     private synchronized int processOriginateCall(BluetoothDevice device, String uri) {
         if (uri.startsWith("tel")) {
             /*
