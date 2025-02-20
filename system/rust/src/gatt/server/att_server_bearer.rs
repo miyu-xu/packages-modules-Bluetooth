@@ -14,7 +14,7 @@ use crate::core::shared_box::{WeakBox, WeakBoxRef};
 use crate::core::shared_mutex::SharedMutex;
 use crate::gatt::ids::AttHandle;
 use crate::gatt::mtu::{AttMtu, MtuEvent};
-use crate::gatt::opcode_types::{classify_opcode, OperationType};
+use crate::gatt::opcode_types::OperationType;
 use crate::packets::att::{self, AttErrorCode};
 use crate::utils::owned_handle::OwnedHandle;
 
@@ -85,7 +85,7 @@ impl<T: AttDatabase + Clone + 'static> WeakBoxRef<'_, AttServerBearer<T>> {
     /// Handle an incoming packet, and send outgoing packets as appropriate
     /// using the owned ATT channel.
     pub fn handle_packet(&self, packet: att::Att) {
-        match classify_opcode(packet.opcode) {
+        match packet.opcode.operation_type() {
             OperationType::Command => {
                 self.command_handler.process_packet(packet);
             }

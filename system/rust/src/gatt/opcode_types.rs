@@ -4,6 +4,7 @@ use crate::packets::att::AttOpcode;
 
 /// The type of ATT operation performed by the packet
 /// (see Core Spec 5.3 Vol 3F 3.3 Attribute PDU for details)
+#[derive(Debug, Eq, PartialEq)]
 pub enum OperationType {
     /// Client -> server, no response expected
     Command,
@@ -19,44 +20,46 @@ pub enum OperationType {
     Confirmation,
 }
 
-/// Classify an opcode by its operation type. Note that this could be done using
-/// bitmasking, but is done explicitly for clarity.
-pub fn classify_opcode(opcode: AttOpcode) -> OperationType {
-    match opcode {
-        AttOpcode::ErrorResponse => OperationType::Response,
-        AttOpcode::ExchangeMtuResponse => OperationType::Response,
-        AttOpcode::FindInformationResponse => OperationType::Response,
-        AttOpcode::FindByTypeValueResponse => OperationType::Response,
-        AttOpcode::ReadByTypeResponse => OperationType::Response,
-        AttOpcode::ReadResponse => OperationType::Response,
-        AttOpcode::ReadBlobResponse => OperationType::Response,
-        AttOpcode::ReadMultipleResponse => OperationType::Response,
-        AttOpcode::ReadByGroupTypeResponse => OperationType::Response,
-        AttOpcode::WriteResponse => OperationType::Response,
-        AttOpcode::PrepareWriteResponse => OperationType::Response,
-        AttOpcode::ExecuteWriteResponse => OperationType::Response,
-        AttOpcode::ReadMultipleVariableResponse => OperationType::Response,
+/// Classify an opcode by its operation type. Note that this could be done using bitmasking, but is
+/// done explicitly for clarity.
+impl AttOpcode {
+    pub fn operation_type(&self) -> OperationType {
+        match self {
+            AttOpcode::ErrorResponse => OperationType::Response,
+            AttOpcode::ExchangeMtuResponse => OperationType::Response,
+            AttOpcode::FindInformationResponse => OperationType::Response,
+            AttOpcode::FindByTypeValueResponse => OperationType::Response,
+            AttOpcode::ReadByTypeResponse => OperationType::Response,
+            AttOpcode::ReadResponse => OperationType::Response,
+            AttOpcode::ReadBlobResponse => OperationType::Response,
+            AttOpcode::ReadMultipleResponse => OperationType::Response,
+            AttOpcode::ReadByGroupTypeResponse => OperationType::Response,
+            AttOpcode::WriteResponse => OperationType::Response,
+            AttOpcode::PrepareWriteResponse => OperationType::Response,
+            AttOpcode::ExecuteWriteResponse => OperationType::Response,
+            AttOpcode::ReadMultipleVariableResponse => OperationType::Response,
 
-        AttOpcode::ExchangeMtuRequest => OperationType::Request,
-        AttOpcode::FindInformationRequest => OperationType::Request,
-        AttOpcode::FindByTypeValueRequest => OperationType::Request,
-        AttOpcode::ReadByTypeRequest => OperationType::Request,
-        AttOpcode::ReadRequest => OperationType::Request,
-        AttOpcode::ReadBlobRequest => OperationType::Request,
-        AttOpcode::ReadMultipleRequest => OperationType::Request,
-        AttOpcode::ReadByGroupTypeRequest => OperationType::Request,
-        AttOpcode::WriteRequest => OperationType::Request,
-        AttOpcode::PrepareWriteRequest => OperationType::Request,
-        AttOpcode::ExecuteWriteRequest => OperationType::Request,
-        AttOpcode::ReadMultipleVariableRequest => OperationType::Request,
+            AttOpcode::ExchangeMtuRequest => OperationType::Request,
+            AttOpcode::FindInformationRequest => OperationType::Request,
+            AttOpcode::FindByTypeValueRequest => OperationType::Request,
+            AttOpcode::ReadByTypeRequest => OperationType::Request,
+            AttOpcode::ReadRequest => OperationType::Request,
+            AttOpcode::ReadBlobRequest => OperationType::Request,
+            AttOpcode::ReadMultipleRequest => OperationType::Request,
+            AttOpcode::ReadByGroupTypeRequest => OperationType::Request,
+            AttOpcode::WriteRequest => OperationType::Request,
+            AttOpcode::PrepareWriteRequest => OperationType::Request,
+            AttOpcode::ExecuteWriteRequest => OperationType::Request,
+            AttOpcode::ReadMultipleVariableRequest => OperationType::Request,
 
-        AttOpcode::WriteCommand => OperationType::Command,
-        AttOpcode::SignedWriteCommand => OperationType::Command,
+            AttOpcode::WriteCommand => OperationType::Command,
+            AttOpcode::SignedWriteCommand => OperationType::Command,
 
-        AttOpcode::HandleValueNotification => OperationType::Notification,
+            AttOpcode::HandleValueNotification => OperationType::Notification,
 
-        AttOpcode::HandleValueIndication => OperationType::Indication,
+            AttOpcode::HandleValueIndication => OperationType::Indication,
 
-        AttOpcode::HandleValueConfirmation => OperationType::Confirmation,
+            AttOpcode::HandleValueConfirmation => OperationType::Confirmation,
+        }
     }
 }
