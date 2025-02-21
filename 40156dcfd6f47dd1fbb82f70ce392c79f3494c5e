@@ -104,6 +104,24 @@
       "parentUuid": "695c4fb7_ee35a2a9",
       "revId": "40156dcfd6f47dd1fbb82f70ce392c79f3494c5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80c988a1_66c6acc6",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 3487936
+      },
+      "writtenOn": "2025-02-21T22:22:46Z",
+      "side": 1,
+      "message": "I\u0027m sorry - you\u0027re right. I was confusing READ MULTIPLE with READ MULTIPLE VARIABLE request. This struct LGTM!",
+      "parentUuid": "88e88f11_c800cdac",
+      "revId": "40156dcfd6f47dd1fbb82f70ce392c79f3494c5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
