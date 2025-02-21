@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "156fc602_6e450d55",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpItem.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-21T02:41:34Z",
+      "side": 1,
+      "message": "I\u0027ve added `+ \".\" +` here and in other subclass TAG concatenations for consistency. Thank you.",
+      "parentUuid": "36433f20_cdbea93e",
+      "range": {
+        "startLine": 302,
+        "startChar": 56,
+        "endLine": 302,
+        "endChar": 57
+      },
+      "revId": "149a16a114d4386b509a405e2ee44f6e424072d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55f96084_9d86dce7",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41587ebe_cb10f5fb",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-21T02:41:34Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "55f96084_9d86dce7",
+      "range": {
+        "startLine": 228,
+        "startChar": 16,
+        "endLine": 228,
+        "endChar": 41
+      },
+      "revId": "149a16a114d4386b509a405e2ee44f6e424072d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e48f957c_1f6acbf2",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-02-20T23:57:26Z",
       "side": 1,
       "message": "we will miss the separation here and on other in this file. Should we keep it ?",
+      "range": {
+        "startLine": 745,
+        "startChar": 43,
+        "endLine": 745,
+        "endChar": 45
+      },
+      "revId": "149a16a114d4386b509a405e2ee44f6e424072d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2446a493_cedf7b87",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-21T02:41:34Z",
+      "side": 1,
+      "message": "I\u0027ve added the ` + \".\" + ` and everywhere else that belonged. Thank you.",
+      "parentUuid": "e48f957c_1f6acbf2",
       "range": {
         "startLine": 745,
         "startChar": 43,
