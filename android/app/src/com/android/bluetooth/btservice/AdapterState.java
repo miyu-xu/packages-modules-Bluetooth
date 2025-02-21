@@ -90,7 +90,7 @@ final class AdapterState extends StateMachine {
         start();
     }
 
-    private String messageString(int message) {
+    private static String messageString(int message) {
         switch (message) {
             case BLE_TURN_ON:
                 return "BLE_TURN_ON";

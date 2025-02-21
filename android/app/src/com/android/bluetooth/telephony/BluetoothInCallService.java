@@ -1419,7 +1419,7 @@ public class BluetoothInCallService extends InCallService {
         return bluetoothCallState;
     }
 
-    private int getBtCallState(BluetoothCall call, boolean isForeground) {
+    private static int getBtCallState(BluetoothCall call, boolean isForeground) {
         switch (call.getState()) {
             case Call.STATE_NEW:
             case Call.STATE_DISCONNECTED:
@@ -1635,7 +1635,7 @@ public class BluetoothInCallService extends InCallService {
         }
     }
 
-    private Integer getTbsCallState(BluetoothCall call) {
+    private static Integer getTbsCallState(BluetoothCall call) {
         switch (call.getState()) {
             case Call.STATE_ACTIVE:
                 return BluetoothLeCall.STATE_ACTIVE;
