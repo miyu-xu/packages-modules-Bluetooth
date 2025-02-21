@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51415d80_7e7412e0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-21T23:59:38Z",
+      "side": 1,
+      "message": "are we tracking callback ID? It will be replaced when advertising started successfully on onAdvertisingSetStarted by setAdvertiserIdByRegId().",
+      "range": {
+        "startLine": 322,
+        "startChar": 36,
+        "endLine": 322,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "11d500c1_aeceb6db",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 240,
+                "startChar": 0,
+                "endLine": 241,
+                "endChar": 0
+              },
+              "replacement": "    private void fetchAppForegroundState(int regId) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 256,
+                "startChar": 0,
+                "endLine": 257,
+                "endChar": 0
+              },
+              "replacement": "        AppAdvertiseStats stats \u003d mAdvertiserMap.getAppAdvertiseStatsById(regId);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 322,
+                "startChar": 0,
+                "endLine": 323,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 343,
+                "startChar": 0,
+                "endLine": 343,
+                "endChar": 0
+              },
+              "replacement": "            fetchAppForegroundState(cbId);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
