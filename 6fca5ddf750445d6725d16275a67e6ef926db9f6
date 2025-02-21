@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a20e02_e4cc36c7",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-21T06:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79b075c0_3c9bc3a0",
+      "range": {
+        "startLine": 989,
+        "startChar": 0,
+        "endLine": 995,
+        "endChar": 0
+      },
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2540005_f0c8ac01",
@@ -75,6 +99,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "903a0f42_32061ba7",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-21T06:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2540005_f0c8ac01",
+      "range": {
+        "startLine": 1012,
+        "startChar": 28,
+        "endLine": 1012,
+        "endChar": 33
+      },
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9525ff0_417f317f",
@@ -88,6 +136,24 @@
       "writtenOn": "2025-02-19T06:52:55Z",
       "side": 1,
       "message": "Why is this remove_if sequence different than the one above? Is it to ensure that BTHH_STATE_UPDATE is sent for each transport? \n\nIf that\u0027s the case should the same be done on L965? And also L1060 below?",
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b749dcee_3404fd89",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-21T06:25:49Z",
+      "side": 1,
+      "message": "Connection state is separate for each transport but VUP event is common.",
+      "parentUuid": "f9525ff0_417f317f",
       "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -139,6 +205,30 @@
           ]
         }
       ],
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af4502df_e40e73b8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-21T06:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebad696e_f10ef1b3",
+      "range": {
+        "startLine": 1100,
+        "startChar": 4,
+        "endLine": 1100,
+        "endChar": 51
+      },
       "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
