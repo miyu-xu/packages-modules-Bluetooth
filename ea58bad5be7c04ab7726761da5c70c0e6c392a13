@@ -39,6 +39,30 @@
       },
       "revId": "ea58bad5be7c04ab7726761da5c70c0e6c392a13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "493a5c5a_95d9ed0b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-21T20:29:19Z",
+      "side": 1,
+      "message": "As discussed earlier, this CL will have infrastructure support for BT device discovery where these variables will be used in the subsequent test cases. I have also uploaded related test case CL in the chain.",
+      "parentUuid": "3fa4920b_1a82ad7b",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 67
+      },
+      "revId": "ea58bad5be7c04ab7726761da5c70c0e6c392a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
