@@ -135,6 +135,30 @@
       },
       "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec57d99b_6c888492",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-21T22:56:27Z",
+      "side": 1,
+      "message": "I edited the CL directly but I realize I shouldn\u0027t have done that as it prevented your submission :/",
+      "parentUuid": "5c1783db_a08fc44a",
+      "range": {
+        "startLine": 56,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
