@@ -63,6 +63,30 @@
       },
       "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a479eb0_34f74441",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1787007
+      },
+      "writtenOn": "2025-02-21T20:41:59Z",
+      "side": 1,
+      "message": "My experiment result says that we need to include the other CL. Using codename doesn\u0027t seem to work. I mentioned this in the bug you shared. Happy to wait for the other CL to go in first (but this might be blocking stuff, so we might need to go ahead with this)",
+      "parentUuid": "e7c778a2_9a4ec8e8",
+      "range": {
+        "startLine": 56,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
