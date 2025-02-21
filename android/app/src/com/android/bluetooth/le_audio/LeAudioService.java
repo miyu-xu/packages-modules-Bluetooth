@@ -317,7 +317,7 @@ public class LeAudioService extends ProfileService {
             mAutoActiveModeEnabled = true;
         }
 
-        Integer mGroupId;
+        final Integer mGroupId;
         Boolean mIsConnected;
         Boolean mHasFallbackDeviceWhenGettingInactive;
         Integer mDirection;
@@ -442,8 +442,8 @@ public class LeAudioService extends ProfileService {
     }
 
     private static class LeAudioBroadcastSessionStats {
-        private int[] mAudioQuality;
-        private long mSessionRequestTime;
+        private final int[] mAudioQuality;
+        private final long mSessionRequestTime;
         private long mSessionCreatedTime;
         private long mSessionStreamingTime;
         private int mSessionGroupSize;
@@ -565,7 +565,7 @@ public class LeAudioService extends ProfileService {
     private final Map<Integer, LeAudioBroadcastSessionStats> mBroadcastSessionStats =
             new LinkedHashMap<>();
 
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
     private final AudioModeChangeListener mAudioModeChangeListener = new AudioModeChangeListener();
@@ -633,7 +633,7 @@ public class LeAudioService extends ProfileService {
         }
     }
 
-    private AudioManager.AudioRecordingCallback mAudioRecordingCallback =
+    private final AudioManager.AudioRecordingCallback mAudioRecordingCallback =
             new AudioManager.AudioRecordingCallback() {
                 /* Audio Framework uses this callback to notify listeners of recording configuration
                  * changes. When a recording scenario starts or its configuration changes, this

@@ -80,9 +80,9 @@ public class AtPhonebook {
         public int nameColumn;
     }
 
-    private Context mContext;
-    private ContentResolver mContentResolver;
-    private HeadsetNativeInterface mNativeInterface;
+    private final Context mContext;
+    private final ContentResolver mContentResolver;
+    private final HeadsetNativeInterface mNativeInterface;
     @VisibleForTesting String mCurrentPhonebook;
     @VisibleForTesting String mCharacterSet = "UTF-8";
 

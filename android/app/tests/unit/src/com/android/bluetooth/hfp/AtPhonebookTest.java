@@ -58,7 +58,7 @@ import org.mockito.Spy;
 public class AtPhonebookTest {
     private static final String INVALID_COMMAND = "invalid_command";
     private Context mTargetContext;
-    private BluetoothDevice mDevice = getTestDevice(198);
+    private final BluetoothDevice mDevice = getTestDevice(198);
 
     @Rule public final MockitoRule mMockitoRule = new MockitoRule();
 

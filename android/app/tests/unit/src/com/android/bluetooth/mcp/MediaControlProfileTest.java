@@ -59,10 +59,6 @@ public class MediaControlProfileTest {
 
     private MediaControlProfile mMediaControlProfile;
 
-    private String packageName = "TestPackage";
-
-    private String name = "TestPlayer";
-    private CharSequence charSequence = "TestPlayer";
     private MediaControlServiceCallbacks mMcpServiceCallbacks;
 
     @Rule public final MockitoRule mMockitoRule = new MockitoRule();
@@ -99,9 +95,10 @@ public class MediaControlProfileTest {
         doReturn(mMockMediaPlayerWrapper).when(mMockMediaPlayerList).getActivePlayer();
         doReturn(mMockMcpService).when(mMockMcpService).getApplicationContext();
         doReturn(mMockPackageManager).when(mMockMcpService).getPackageManager();
+        String packageName = "TestPackage";
         doReturn(packageName).when(mMockMcpService).getPackageName();
-        doReturn(name).when(mMockMediaPlayerWrapper).getPackageName();
-        doReturn(charSequence).when(mMockApplicationInfo).loadLabel(any(PackageManager.class));
+        doReturn("TestPlayer").when(mMockMediaPlayerWrapper).getPackageName();
+        doReturn("TestPlayer").when(mMockApplicationInfo).loadLabel(any(PackageManager.class));
         doReturn(mMockApplicationInfo)
                 .when(mMockPackageManager)
                 .getApplicationInfo(anyString(), anyInt());

@@ -56,7 +56,7 @@ public class BluetoothMnsObexClient {
     private ClientSession mClientSession;
     private boolean mConnected = false;
     BluetoothDevice mRemoteDevice;
-    private SparseBooleanArray mRegisteredMasIds = new SparseBooleanArray(1);
+    private final SparseBooleanArray mRegisteredMasIds = new SparseBooleanArray(1);
 
     private HeaderSet mHsConnect = null;
     private Handler mCallback = null;

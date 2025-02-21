@@ -39,7 +39,7 @@ import java.util.Locale;
 /** Class to contain a single folder element representation. */
 // Next tag value for ContentProfileErrorReportUtils.report(): 3
 public class BluetoothMapFolderElement implements Comparable<BluetoothMapFolderElement> {
-    private String mName;
+    private final String mName;
     private BluetoothMapFolderElement mParent = null;
     private long mFolderId = -1;
     private boolean mHasSmsMmsContent = false;
@@ -48,7 +48,7 @@ public class BluetoothMapFolderElement implements Comparable<BluetoothMapFolderE
 
     private boolean mIgnore = false;
 
-    private HashMap<String, BluetoothMapFolderElement> mSubFolders;
+    private final HashMap<String, BluetoothMapFolderElement> mSubFolders;
 
     private static final String TAG = "BluetoothMapFolderElement";
 
