@@ -164,7 +164,6 @@ class AppScanStats {
     private List<LastScan> mLastScans = new ArrayList<LastScan>();
     private HashMap<Integer, LastScan> mOngoingScans = new HashMap<Integer, LastScan>();
     private long startTime = 0;
-    private long stopTime = 0;
     private int results = 0;
     public boolean isAppDead = false;
 
@@ -337,7 +336,7 @@ class AppScanStats {
             return;
         }
         this.mScansStopped++;
-        stopTime = mTimeProvider.elapsedRealtime();
+        long stopTime = mTimeProvider.elapsedRealtime();
         long scanDuration = stopTime - scan.timestamp;
         scan.duration = scanDuration;
         if (scan.isSuspended) {
@@ -784,7 +783,7 @@ class AppScanStats {
             return;
         }
         scan.isSuspended = false;
-        stopTime = mTimeProvider.elapsedRealtime();
+        long stopTime = mTimeProvider.elapsedRealtime();
         long suspendDuration = stopTime - scan.suspendStartTime;
         scan.suspendDuration += suspendDuration;
         mTotalSuspendTime += suspendDuration;
