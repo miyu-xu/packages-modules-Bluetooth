@@ -16,6 +16,57 @@
       "message": "leaudio.aconfig flag to be removed.",
       "revId": "d4658651260215b6a92f5f7ed7ca2af5388e652c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a96a06b9_39257b20",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3720,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-21T23:41:10Z",
+      "side": 1,
+      "message": "I got that we\u0027re removing those dead code with the flag, no use of store\u003dfalse.\nCan we add some details in the commit message to clarify this?",
+      "revId": "d4658651260215b6a92f5f7ed7ca2af5388e652c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2185e6_96d9e134",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 4109,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-21T23:41:10Z",
+      "side": 1,
+      "message": "There are more leaudio_broadcast_assistant_peripheral_entrustment in this file",
+      "revId": "d4658651260215b6a92f5f7ed7ca2af5388e652c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "055bb247_3a0e96ad",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6743,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-21T23:41:10Z",
+      "side": 1,
+      "message": "Also more leaudioBroadcastAssistantPeripheralEntrustment to be removed in this file.",
+      "revId": "d4658651260215b6a92f5f7ed7ca2af5388e652c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
