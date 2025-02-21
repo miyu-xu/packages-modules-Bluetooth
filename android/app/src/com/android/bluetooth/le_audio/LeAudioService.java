@@ -4784,11 +4784,6 @@ public class LeAudioService extends ProfileService {
         List<BluetoothDevice> activeBroadcastSinks = new ArrayList<>();
 
         if (currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID) {
-            if (!Flags.leaudioBroadcastVolumeControlWithSetVolume()) {
-                Log.e(TAG, "There is no active group ");
-                return;
-            }
-
             BassClientService bassClientService = getBassClientService();
             if (bassClientService != null) {
                 activeBroadcastSinks = bassClientService.getSyncedBroadcastSinks();
@@ -4802,8 +4797,7 @@ public class LeAudioService extends ProfileService {
 
         VolumeControlService volumeControlService = getVolumeControlService();
         if (volumeControlService != null) {
-            if (Flags.leaudioBroadcastVolumeControlWithSetVolume()
-                    && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
+            if (currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
                     && !activeBroadcastSinks.isEmpty()) {
                 if (Flags.leaudioBroadcastVolumeControlPrimaryGroupOnly()) {
                     if (activeBroadcastSinks.stream()
