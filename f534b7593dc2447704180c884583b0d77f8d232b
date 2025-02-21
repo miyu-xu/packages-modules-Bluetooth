@@ -118,6 +118,30 @@
       },
       "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e4aaa2_59837c20",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2229,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-21T08:10:53Z",
+      "side": 0,
+      "message": "Not calling `AudioManager.handleBluetoothActiveDeviceChange() ` is clear.\n\nI preffer to keep it silent otherwise, we will need to notify Telecom/ActiveDeviceManager about device being Inactivated and then Activated which might trigger actions to switch to another Conneected device and this is not our intention.\n\nIf we just clear mExposedActiveDevice, that would trigger additional notifications to ActiveDeviceManager and Telecom which might be confusing.\n\nI would keep it as it is and trust in AudioManager to do what is shall to do.\n \n@jakub.tyszkowski@codecoup.pl do you agree?",
+      "parentUuid": "2b0bc333_f23c7137",
+      "range": {
+        "startLine": 2229,
+        "startChar": 12,
+        "endLine": 2229,
+        "endChar": 40
+      },
+      "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
