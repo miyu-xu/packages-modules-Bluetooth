@@ -777,7 +777,7 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
         mAdapter.closeProfileProxy(this);
     }
 
-    private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
+    private static BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
             BluetoothLeAudioContentMetadata contentMetadata, @Nullable byte[] broadcastCode) {
         BluetoothLeBroadcastSubgroupSettings.Builder subgroupBuilder =
                 new BluetoothLeBroadcastSubgroupSettings.Builder()

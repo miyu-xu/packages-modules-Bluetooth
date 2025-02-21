@@ -197,7 +197,7 @@ public class BassClientStateMachineTest {
         mBassClientStateMachine.start();
     }
 
-    private int classTypeToConnectionState(Class type) {
+    private static int classTypeToConnectionState(Class type) {
         if (type == BassClientStateMachine.Disconnected.class) {
             return BluetoothProfile.STATE_DISCONNECTED;
         } else if (type == BassClientStateMachine.Connecting.class) {
@@ -3280,7 +3280,7 @@ public class BassClientStateMachineTest {
         Mockito.clearInvocations(mBassClientService);
     }
 
-    private boolean isConnectionIntentExpected(Class currentType, Class nextType) {
+    private static boolean isConnectionIntentExpected(Class currentType, Class nextType) {
         if (currentType == nextType) {
             return false; // Same state, no intent expected
         }
@@ -3349,7 +3349,8 @@ public class BassClientStateMachineTest {
         return builder.build();
     }
 
-    private byte[] convertMetadataToUpdateSourceByteArray(BluetoothLeBroadcastMetadata metaData) {
+    private static byte[] convertMetadataToUpdateSourceByteArray(
+            BluetoothLeBroadcastMetadata metaData) {
         int numSubGroups = metaData.getSubgroups().size();
 
         byte[] res = new byte[UPDATE_SOURCE_FIXED_LENGTH + numSubGroups * 5];
@@ -3388,7 +3389,7 @@ public class BassClientStateMachineTest {
         return res;
     }
 
-    private BluetoothLeBroadcastMetadata getMetadataToPauseStream(
+    private static BluetoothLeBroadcastMetadata getMetadataToPauseStream(
             BluetoothLeBroadcastMetadata metadata) {
         BluetoothLeBroadcastMetadata.Builder metadataToUpdateBuilder =
                 new BluetoothLeBroadcastMetadata.Builder(metadata);
@@ -3545,7 +3546,7 @@ public class BassClientStateMachineTest {
                 .isEqualTo(Bytes.concat(metadataHeader, metadataPayload));
     }
 
-    private BluetoothLeBroadcastSubgroup createBroadcastSubgroup() {
+    private static BluetoothLeBroadcastSubgroup createBroadcastSubgroup() {
         final long testAudioLocationFrontLeft = 0x01;
         final long testAudioLocationFrontRight = 0x02;
         // For BluetoothLeAudioContentMetadata

@@ -71,7 +71,7 @@ public class BluetoothQualityReportNativeInterface {
     }
 
     /** Callback from the native stack back into the Java framework. */
-    private void bqrDeliver(
+    private static void bqrDeliver(
             byte[] remoteAddr, int lmpVer, int lmpSubVer, int manufacturerId, byte[] bqrRawData) {
         String remoteAddress = Utils.getAddressStringFromByte(remoteAddr);
 

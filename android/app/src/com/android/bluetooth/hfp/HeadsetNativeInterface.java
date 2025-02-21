@@ -71,7 +71,7 @@ public class HeadsetNativeInterface {
         }
     }
 
-    private void sendMessageToService(HeadsetStackEvent event) {
+    private static void sendMessageToService(HeadsetStackEvent event) {
         HeadsetService service = HeadsetService.getHeadsetService();
         if (service != null) {
             service.messageFromNative(event);
