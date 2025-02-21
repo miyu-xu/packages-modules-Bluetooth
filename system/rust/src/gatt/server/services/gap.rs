@@ -91,7 +91,6 @@ pub fn register_gap_service(database: &mut GattDatabase) -> Result<()> {
 mod test {
     use super::*;
 
-    use crate::core::shared_box::SharedBox;
     use crate::gatt::server::att_database::AttDatabase;
     use crate::gatt::server::gatt_database::{
         GattDatabase, CHARACTERISTIC_UUID, PRIMARY_SERVICE_DECLARATION_UUID,
@@ -100,10 +99,10 @@ mod test {
 
     const TCB_IDX: TransportIndex = TransportIndex(1);
 
-    fn init_dbs() -> (SharedBox<GattDatabase>, impl AttDatabase) {
+    fn init_dbs() -> (Rc<GattDatabase>, impl AttDatabase) {
         let mut gatt_database = GattDatabase::new();
         register_gap_service(&mut gatt_database).unwrap();
-        let gatt_database = SharedBox::new(gatt_database);
+        let gatt_database = Rc::new(gatt_database);
         let att_database = gatt_database.get_att_database(TCB_IDX);
         (gatt_database, att_database)
     }

@@ -1,8 +1,8 @@
 //! Mocked implementation of GattDatabaseCallbacks for use in test
 
 use std::ops::RangeInclusive;
+use std::rc::{Rc, Weak};
 
-use crate::core::shared_box::{WeakBox, WeakBoxRef};
 use crate::gatt::ids::{AttHandle, TransportIndex};
 use crate::gatt::server::att_server_bearer::AttServerBearer;
 use crate::gatt::server::gatt_database::{AttDatabaseImpl, GattDatabaseCallbacks};
@@ -24,7 +24,7 @@ impl MockCallbacks {
 pub enum MockCallbackEvents {
     /// GattDatabaseCallbacks#on_le_connect invoked
     #[allow(dead_code)]
-    OnLeConnect(TransportIndex, WeakBox<AttServerBearer<AttDatabaseImpl>>),
+    OnLeConnect(TransportIndex, Weak<AttServerBearer<AttDatabaseImpl>>),
     /// GattDatabaseCallbacks#on_le_disconnect invoked
     OnLeDisconnect(TransportIndex),
     /// GattDatabaseCallbacks#on_service_change invoked
@@ -35,9 +35,9 @@ impl GattDatabaseCallbacks for MockCallbacks {
     fn on_le_connect(
         &self,
         tcb_idx: TransportIndex,
-        bearer: WeakBoxRef<AttServerBearer<AttDatabaseImpl>>,
+        bearer: &Rc<AttServerBearer<AttDatabaseImpl>>,
     ) {
-        self.0.send(MockCallbackEvents::OnLeConnect(tcb_idx, bearer.downgrade())).ok().unwrap();
+        self.0.send(MockCallbackEvents::OnLeConnect(tcb_idx, Rc::downgrade(bearer))).ok().unwrap();
     }
 
     fn on_le_disconnect(&self, tcb_idx: TransportIndex) {

@@ -4,14 +4,13 @@ use pdl_runtime::Packet;
 use std::cell::RefCell;
 use std::collections::HashMap;
 use std::ops::RangeInclusive;
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 
 use anyhow::Result;
 use async_trait::async_trait;
 use log::{error, warn};
 use tokio::task::spawn_local;
 
-use crate::core::shared_box::{WeakBox, WeakBoxRef};
 use crate::core::uuid::Uuid;
 use crate::gatt::callbacks::GattDatastore;
 use crate::gatt::ffi::AttributeBackingType;
@@ -30,7 +29,7 @@ struct GattService {
 
 #[derive(Clone)]
 struct ClientState {
-    bearer: WeakBox<AttServerBearer<AttDatabaseImpl>>,
+    bearer: Weak<AttServerBearer<AttDatabaseImpl>>,
     registered_for_service_change: bool,
 }
 
@@ -103,12 +102,12 @@ impl GattDatabaseCallbacks for GattService {
     fn on_le_connect(
         &self,
         tcb_idx: TransportIndex,
-        bearer: WeakBoxRef<AttServerBearer<AttDatabaseImpl>>,
+        bearer: &Rc<AttServerBearer<AttDatabaseImpl>>,
     ) {
         // TODO(aryarahul): registered_for_service_change may not be false for bonded devices
         self.clients.borrow_mut().insert(
             tcb_idx,
-            ClientState { bearer: bearer.downgrade(), registered_for_service_change: false },
+            ClientState { bearer: Rc::downgrade(bearer), registered_for_service_change: false },
         );
     }
 
@@ -119,7 +118,7 @@ impl GattDatabaseCallbacks for GattService {
     fn on_service_change(&self, range: RangeInclusive<AttHandle>) {
         for (conn_id, client) in self.clients.borrow().clone() {
             if client.registered_for_service_change {
-                client.bearer.with(|bearer| match bearer {
+                match client.bearer.upgrade() {
                     Some(bearer) => {
                         spawn_local(
                             bearer.send_indication(
@@ -136,7 +135,7 @@ impl GattDatabaseCallbacks for GattService {
                     None => {
                         error!("Registered client's bearer has been destructed ({conn_id:?})")
                     }
-                });
+                };
             }
         }
     }
@@ -173,7 +172,6 @@ mod test {
 
     use super::*;
 
-    use crate::core::shared_box::SharedBox;
     use crate::gatt::mocks::mock_datastore::MockDatastore;
     use crate::gatt::server::att_database::AttDatabase;
     use crate::gatt::server::gatt_database::{
@@ -187,24 +185,23 @@ mod test {
     const SERVICE_TYPE: Uuid = Uuid::new(0x1234);
     const CHARACTERISTIC_TYPE: Uuid = Uuid::new(0x5678);
 
-    fn init_gatt_db() -> SharedBox<GattDatabase> {
+    fn init_gatt_db() -> Rc<GattDatabase> {
         let mut gatt_database = GattDatabase::new();
         register_gatt_service(&mut gatt_database).unwrap();
-        SharedBox::new(gatt_database)
+        Rc::new(gatt_database)
     }
 
     fn add_connection(
-        gatt_database: &SharedBox<GattDatabase>,
+        gatt_database: &Rc<GattDatabase>,
         tcb_idx: TransportIndex,
-    ) -> (AttDatabaseImpl, SharedBox<AttServerBearer<AttDatabaseImpl>>, UnboundedReceiver<att::Att>)
-    {
+    ) -> (AttDatabaseImpl, Rc<AttServerBearer<AttDatabaseImpl>>, UnboundedReceiver<att::Att>) {
         let att_database = gatt_database.get_att_database(tcb_idx);
         let (tx, rx) = unbounded_channel();
-        let bearer = SharedBox::new(AttServerBearer::new(att_database.clone(), move |packet| {
+        let bearer = Rc::new(AttServerBearer::new(att_database.clone(), move |packet| {
             tx.send(packet).unwrap();
             Ok(())
         }));
-        gatt_database.on_bearer_ready(tcb_idx, bearer.as_ref());
+        gatt_database.on_bearer_ready(tcb_idx, &bearer);
         (att_database, bearer, rx)
     }
 

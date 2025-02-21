@@ -15,10 +15,9 @@ pub mod isolation_manager;
 mod test;
 
 use std::collections::HashMap;
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 use std::sync::{Arc, Mutex, MutexGuard};
 
-use crate::core::shared_box::{SharedBox, WeakBox, WeakBoxRef};
 use crate::gatt::server::gatt_database::GattDatabase;
 
 use self::super::ids::ServerId;
@@ -38,7 +37,7 @@ pub use indication_handler::IndicationError;
 #[allow(missing_docs)]
 pub struct GattModule {
     connections: HashMap<TransportIndex, GattConnection>,
-    databases: HashMap<ServerId, SharedBox<GattDatabase>>,
+    databases: HashMap<ServerId, Rc<GattDatabase>>,
     transport: Rc<dyn AttTransport>,
     // NOTE: this is logically owned by the GattModule. We share it behind a Mutex just so we
     // can use it as part of the Arbiter. Once the Arbiter is removed, this should be owned
@@ -47,8 +46,8 @@ pub struct GattModule {
 }
 
 struct GattConnection {
-    bearer: SharedBox<AttServerBearer<AttDatabaseImpl>>,
-    database: WeakBox<GattDatabase>,
+    bearer: Rc<AttServerBearer<AttDatabaseImpl>>,
+    database: Weak<GattDatabase>,
 }
 
 impl GattModule {
@@ -83,12 +82,13 @@ impl GattModule {
         };
 
         let transport = self.transport.clone();
-        let bearer = SharedBox::new(AttServerBearer::new(
-            database.get_att_database(tcb_idx),
-            move |packet| transport.send_packet(tcb_idx, packet),
-        ));
-        database.on_bearer_ready(tcb_idx, bearer.as_ref());
-        self.connections.insert(tcb_idx, GattConnection { bearer, database: database.downgrade() });
+        let bearer =
+            Rc::new(AttServerBearer::new(database.get_att_database(tcb_idx), move |packet| {
+                transport.send_packet(tcb_idx, packet)
+            }));
+        database.on_bearer_ready(tcb_idx, &bearer);
+        self.connections
+            .insert(tcb_idx, GattConnection { bearer, database: Rc::downgrade(database) });
         Ok(())
     }
 
@@ -101,7 +101,9 @@ impl GattModule {
             bail!("got disconnection from {tcb_idx:?} but bearer does not exist");
         };
         drop(connection.bearer);
-        connection.database.with(|db| db.map(|db| db.on_bearer_dropped(tcb_idx)));
+        if let Some(db) = connection.database.upgrade() {
+            db.on_bearer_dropped(tcb_idx);
+        }
         Ok(())
     }
 
@@ -160,8 +162,8 @@ impl GattModule {
     pub fn get_bearer(
         &self,
         tcb_idx: TransportIndex,
-    ) -> Option<WeakBoxRef<AttServerBearer<AttDatabaseImpl>>> {
-        self.connections.get(&tcb_idx).map(|x| x.bearer.as_ref())
+    ) -> Option<&Rc<AttServerBearer<AttDatabaseImpl>>> {
+        self.connections.get(&tcb_idx).map(|x| &x.bearer)
     }
 
     /// Get the IsolationManager to manage associations between servers + advertisers
