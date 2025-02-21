@@ -16,6 +16,23 @@
       "message": "William has more authority to review this kind of change",
       "revId": "f6df3a3ec406f5d6a789ab71e7184667ad96473a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "681e033f_968ee0b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-21T06:55:09Z",
+      "side": 1,
+      "message": "Thanks for votes!",
+      "revId": "f6df3a3ec406f5d6a789ab71e7184667ad96473a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
