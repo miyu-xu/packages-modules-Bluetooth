@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "691a8a4c_e55c762d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 32
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3302247
+      },
+      "writtenOn": "2025-02-21T18:32:54Z",
+      "side": 1,
+      "message": "On related note, would suggest an API should be provide to give updates to clients if data length is changed. Otherwise L2capCoc clients may be optimizing their packet payload sizes to the wrong size. This could happen in later bug/cl.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "d2f2d100125c2ccff30369435248967ab3118e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
