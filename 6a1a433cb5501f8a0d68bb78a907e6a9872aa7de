@@ -51,6 +51,24 @@
       "message": "It seems like we should insert:\n\n```\n init_delay_report_timer(nullptr),\n```\n\nhere to assure we never use this field uninitialized.  Note this is what we\u0027ve done with the similar `transport_channel_timer` field.",
       "revId": "6a1a433cb5501f8a0d68bb78a907e6a9872aa7de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "061a8551_ebee50e1",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-02-21T16:05:35Z",
+      "side": 1,
+      "message": "You\u0027re right! I\u0027ll push a fix with that, thank you ; )",
+      "parentUuid": "c35259e7_856f6372",
+      "revId": "6a1a433cb5501f8a0d68bb78a907e6a9872aa7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
