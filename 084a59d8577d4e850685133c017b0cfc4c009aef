@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbab3914_dc3ef899",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-21T23:24:57Z",
+      "side": 1,
+      "message": "should this test be removed? it\u0027s disableFlags.",
+      "revId": "084a59d8577d4e850685133c017b0cfc4c009aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
