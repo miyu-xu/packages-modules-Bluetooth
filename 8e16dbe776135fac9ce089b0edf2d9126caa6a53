@@ -62,6 +62,24 @@
       "parentUuid": "bc64fcd0_26999ab1",
       "revId": "8e16dbe776135fac9ce089b0edf2d9126caa6a53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfdae3ad_08122a51",
+        "filename": "system/bta/hf_client/bta_hf_client_rfc.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-21T01:17:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "81c74d7f_3cf1fa70",
+      "revId": "8e16dbe776135fac9ce089b0edf2d9126caa6a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
