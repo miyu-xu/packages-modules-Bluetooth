@@ -20,8 +20,10 @@
 
 #include "a2dp_constants.h"
 #include "a2dp_encoding.h"
+#include "client_interface_aidl.h"
 #include "common/message_loop_thread.h"
 #include "hardware/bt_av.h"
+#include "transport_instance.h"
 #include "types/raw_address.h"
 
 typedef enum {
@@ -46,121 +48,77 @@ namespace audio {
 namespace aidl {
 namespace a2dp {
 
-bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference,
-        bool supports_a2dp_hw_offload_v2);
+using ::bluetooth::audio::a2dp::Status;
+using ::bluetooth::audio::aidl::a2dp::LatencyMode;
 
-/***
- * Check if new bluetooth_audio is enabled
- ***/
-bool is_hal_enabled();
+// Provide call-in APIs for the Bluetooth Audio HAL
+class A2dpTransport {
+public:
+  A2dpTransport(bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks);
 
-/***
- * Check if new bluetooth_audio is running with offloading encoders
- ***/
-bool is_hal_offloading();
+  Status StartRequest(bool is_low_latency);
 
-/***
- * Initialize BluetoothAudio HAL: openProvider
- ***/
-bool init(bluetooth::common::MessageLoopThread* message_loop,
-          bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled);
+  Status SuspendRequest();
 
-/***
- * Clean up BluetoothAudio HAL
- ***/
-void cleanup();
+  void StopRequest();
 
-/***
- * Set up the codec into BluetoothAudio HAL
- ***/
-bool setup_codec(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
-                 int preferred_encoding_interval_us);
+  void SetLatencyMode(LatencyMode latency_mode);
 
-/***
- * Send command to the BluetoothAudio HAL: StartSession, EndSession,
- * StreamStarted, StreamSuspended
- ***/
-void start_session();
-void end_session();
-void ack_stream_started(::bluetooth::audio::a2dp::Status status);
-void ack_stream_suspended(::bluetooth::audio::a2dp::Status status);
+  bool GetPresentationPosition(uint64_t* remote_delay_report_ns, uint64_t* total_bytes_read,
+                               timespec* data_position);
 
-/***
- * Read from the FMQ of BluetoothAudio HAL
- ***/
-size_t read(uint8_t* p_buf, uint32_t len);
+  tA2DP_CTRL_CMD GetPendingCmd() const;
 
-/***
- * Update A2DP delay report to BluetoothAudio HAL
- ***/
-void set_remote_delay(uint16_t delay_report);
+  void ResetPendingCmd();
 
-/***
- * Set low latency buffer mode allowed or disallowed
- ***/
-void set_low_latency_mode_allowed(bool allowed);
+  void ResetPresentationPosition();
 
-namespace provider {
+  void LogBytesRead(size_t bytes_read);
 
-/***
- * Lookup the codec info in the list of supported offloaded sink codecs.
- * Should not be called before update_codec_offloading_capabilities.
- ***/
-std::optional<btav_a2dp_codec_index_t> sink_codec_index(const uint8_t* p_codec_info);
+  // delay reports from AVDTP is based on 1/10 ms (100us)
+  void SetRemoteDelay(uint16_t delay_report);
 
-/***
- * Lookup the codec info in the list of supported offloaded source codecs.
- * Should not be called before update_codec_offloading_capabilities.
- ***/
-std::optional<btav_a2dp_codec_index_t> source_codec_index(const uint8_t* p_codec_info);
+private:
+  tA2DP_CTRL_CMD a2dp_pending_cmd_;
+  uint16_t remote_delay_report_;
+  uint64_t total_bytes_read_;
+  timespec data_position_;
+  ::bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks_;
+};
 
-/***
- * Return the name of the codec which is assigned to the input index.
- * The codec index must be in the ranges
- * BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX or
- * BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
- * Returns nullopt if the codec_index is not assigned or codec extensibility
- * is not supported or enabled.
- * Should not be called before update_codec_offloading_capabilities.
- ***/
-std::optional<const char*> codec_index_str(btav_a2dp_codec_index_t codec_index);
+class A2dpEncodingTransport : public ::bluetooth::audio::aidl::a2dp::IBluetoothTransportInstance {
+public:
+  A2dpEncodingTransport(SessionType sessionType,
+                        bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks);
 
-/***
- * Return true if the codec is supported for the session type
- * A2DP_HARDWARE_ENCODING_DATAPATH or A2DP_HARDWARE_DECODING_DATAPATH.
- ***/
-bool supports_codec(btav_a2dp_codec_index_t codec_index);
+  ~A2dpEncodingTransport();
 
-/***
- * Return the A2DP capabilities for the selected codec.
- ***/
-bool codec_info(btav_a2dp_codec_index_t codec_index, bluetooth::a2dp::CodecId* codec_id,
-                uint8_t* codec_info, btav_a2dp_codec_config_t* codec_config);
+  Status StartRequest(bool is_low_latency) override;
 
-/***
- * Query the codec selection fromt the audio HAL.
- * The HAL is expected to pick the best audio configuration based on the
- * discovered remote SEPs.
- ***/
-std::optional<::bluetooth::audio::a2dp::provider::a2dp_configuration> get_a2dp_configuration(
-        RawAddress peer_address,
-        std::vector<::bluetooth::audio::a2dp::provider::a2dp_remote_capabilities> const&
-                remote_seps,
-        btav_a2dp_codec_config_t const& user_preferences);
+  Status SuspendRequest() override;
 
-/***
- * Query the codec parameters from the audio HAL.
- * The HAL is expected to parse the codec configuration
- * received from the peer and decide whether accept
- * the it or not.
- ***/
-tA2DP_STATUS parse_a2dp_configuration(btav_a2dp_codec_index_t codec_index,
-                                      const uint8_t* codec_info,
-                                      btav_a2dp_codec_config_t* codec_parameters,
-                                      std::vector<uint8_t>* vendor_specific_parameters);
+  void StopRequest() override;
 
-}  // namespace provider
+  void SetLatencyMode(LatencyMode latency_mode) override;
+
+  bool GetPresentationPosition(uint64_t* remote_delay_report_ns, uint64_t* total_bytes_read,
+                               timespec* data_position) override;
+
+  tA2DP_CTRL_CMD GetPendingCmd() const;
+
+  void ResetPendingCmd();
+
+  void ResetPresentationPosition();
+
+  void LogBytesRead(size_t bytes_read) override;
+
+  // delay reports from AVDTP is based on 1/10 ms (100us)
+  void SetRemoteDelay(uint16_t delay_report);
+
+private:
+  A2dpTransport* transport_;
+};
+
 }  // namespace a2dp
 }  // namespace aidl
 }  // namespace audio
