@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a26db2_f47782ae",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-21T23:31:59Z",
+      "side": 1,
+      "message": "You could have a unique method that does:\n```\nvoid logHfpEvent(int event) {\n                MetricsLogger.getInstance()\n                        .logBluetoothEvent(\n                                mDevice,\n                                BluetoothStatsLog\n                                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__HFP_SESSION,\n                                event,\n                                0);\n}\n```\n\nand just call\n`logHfpEvent(BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECT_FAIL)`\nwhenever you need it.\n\nThe added metric will feel less like a burden everywhere in the code.\n\nYou can also do one more step by importing statically the event and do:\n```\nimport static com.android.bluetooth.BluetoothStatsLog.BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECT_FAIL;\n[...]\n\nlogHfpEvent(BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECT_FAIL);\n```",
+      "revId": "1545c400d22358f494f8546542f8278d530c97a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6013bd49_4eb7ec27",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-21T23:31:59Z",
+      "side": 1,
+      "message": "This is not being executed from a binder call, the value you are getting here may not be relevant.",
+      "range": {
+        "startLine": 585,
+        "startChar": 32,
+        "endLine": 585,
+        "endChar": 54
+      },
+      "revId": "1545c400d22358f494f8546542f8278d530c97a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
