@@ -72,20 +72,6 @@ public class BluetoothOppTransferTest {
     @Mock BluetoothOppObexSession mSession;
     @Mock BluetoothMethodProxy mCallProxy;
 
-    private final Uri mUri = Uri.parse("file://Idontknow/Justmadeitup");
-    private final String mHintString = "this is a object that take 4 bytes";
-    private final String mFilename = "random.jpg";
-    private final String mMimetype = "image/jpeg";
-    private final int mDirection = BluetoothShare.DIRECTION_INBOUND;
-    private final String mDestination = "01:23:45:67:89:AB";
-    private final int mVisibility = BluetoothShare.VISIBILITY_VISIBLE;
-    private final int mConfirm = BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED;
-    private final int mStatus = BluetoothShare.STATUS_PENDING;
-    private final int mTotalBytes = 1023;
-    private final int mCurrentBytes = 42;
-    private final int mTimestamp = 123456789;
-    private final boolean mMediaScanned = false;
-
     Context mContext;
     BluetoothOppBatch mBluetoothOppBatch;
     BluetoothOppTransfer mTransfer;
@@ -114,19 +100,19 @@ public class BluetoothOppTransferTest {
         mInitShareInfo =
                 new BluetoothOppShareInfo(
                         8765,
-                        mUri,
-                        mHintString,
-                        mFilename,
-                        mMimetype,
-                        mDirection,
-                        mDestination,
-                        mVisibility,
-                        mConfirm,
-                        mStatus,
-                        mTotalBytes,
-                        mCurrentBytes,
-                        mTimestamp,
-                        mMediaScanned);
+                        Uri.parse("file://Idontknow/Justmadeitup"),
+                        "this is a object that take 4 bytes",
+                        "random.jpg",
+                        "image/jpeg",
+                        BluetoothShare.DIRECTION_INBOUND,
+                        "01:23:45:67:89:AB",
+                        BluetoothShare.VISIBILITY_VISIBLE,
+                        BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED,
+                        BluetoothShare.STATUS_PENDING,
+                        1023,
+                        42,
+                        123456789,
+                        false);
         mContext =
                 spy(
                         new ContextWrapper(
@@ -146,19 +132,19 @@ public class BluetoothOppTransferTest {
         BluetoothOppShareInfo newShareInfo =
                 new BluetoothOppShareInfo(
                         1,
-                        mUri,
-                        mHintString,
-                        mFilename,
-                        mMimetype,
+                        Uri.parse("file://Idontknow/Justmadeitup"),
+                        "this is a object that take 4 bytes",
+                        "random.jpg",
+                        "image/jpeg",
                         BluetoothShare.DIRECTION_INBOUND,
-                        mDestination,
-                        mVisibility,
+                        "01:23:45:67:89:AB",
+                        BluetoothShare.VISIBILITY_VISIBLE,
                         BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED,
-                        mStatus,
-                        mTotalBytes,
-                        mCurrentBytes,
-                        mTimestamp,
-                        mMediaScanned);
+                        BluetoothShare.STATUS_PENDING,
+                        1023,
+                        42,
+                        123456789,
+                        false);
 
         doAnswer(
                         invocation -> {
@@ -240,19 +226,19 @@ public class BluetoothOppTransferTest {
         mInitShareInfo =
                 new BluetoothOppShareInfo(
                         123,
-                        mUri,
-                        mHintString,
-                        mFilename,
-                        mMimetype,
+                        Uri.parse("file://Idontknow/Justmadeitup"),
+                        "this is a object that take 4 bytes",
+                        "random.jpg",
+                        "image/jpeg",
                         BluetoothShare.DIRECTION_OUTBOUND,
-                        mDestination,
-                        mVisibility,
-                        mConfirm,
-                        mStatus,
-                        mTotalBytes,
-                        mCurrentBytes,
-                        mTimestamp,
-                        mMediaScanned);
+                        "01:23:45:67:89:AB",
+                        BluetoothShare.VISIBILITY_VISIBLE,
+                        BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED,
+                        BluetoothShare.STATUS_PENDING,
+                        1023,
+                        42,
+                        123456789,
+                        false);
         mContext =
                 spy(
                         new ContextWrapper(
@@ -292,19 +278,19 @@ public class BluetoothOppTransferTest {
         mInitShareInfo =
                 new BluetoothOppShareInfo(
                         123,
-                        mUri,
-                        mHintString,
-                        mFilename,
-                        mMimetype,
+                        Uri.parse("file://Idontknow/Justmadeitup"),
+                        "this is a object that take 4 bytes",
+                        "random.jpg",
+                        "image/jpeg",
                         BluetoothShare.DIRECTION_OUTBOUND,
-                        mDestination,
-                        mVisibility,
-                        mConfirm,
-                        mStatus,
-                        mTotalBytes,
-                        mCurrentBytes,
-                        mTimestamp,
-                        mMediaScanned);
+                        "01:23:45:67:89:AB",
+                        BluetoothShare.VISIBILITY_VISIBLE,
+                        BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED,
+                        BluetoothShare.STATUS_PENDING,
+                        1023,
+                        42,
+                        123456789,
+                        false);
         mBluetoothOppBatch = spy(new BluetoothOppBatch(mContext, mInitShareInfo));
         mTransfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch, mSession);
         mEventHandler = mTransfer.new EventHandler(Looper.getMainLooper());
@@ -324,19 +310,19 @@ public class BluetoothOppTransferTest {
         BluetoothOppShareInfo newInfo =
                 new BluetoothOppShareInfo(
                         321,
-                        mUri,
-                        mHintString,
-                        mFilename,
-                        mMimetype,
-                        mDirection,
-                        mDestination,
-                        mVisibility,
-                        mConfirm,
-                        mStatus,
-                        mTotalBytes,
-                        mCurrentBytes,
-                        mTimestamp,
-                        mMediaScanned);
+                        Uri.parse("file://Idontknow/Justmadeitup"),
+                        "this is a object that take 4 bytes",
+                        "random.jpg",
+                        "image/jpeg",
+                        BluetoothShare.DIRECTION_INBOUND,
+                        "01:23:45:67:89:AB",
+                        BluetoothShare.VISIBILITY_VISIBLE,
+                        BluetoothShare.USER_CONFIRMATION_AUTO_CONFIRMED,
+                        BluetoothShare.STATUS_PENDING,
+                        1023,
+                        42,
+                        123456789,
+                        false);
         // Adding new info will assign value to mCurrentShare
         mBluetoothOppBatch.addShare(newInfo);
         mEventHandler.handleMessage(message);
@@ -391,7 +377,7 @@ public class BluetoothOppTransferTest {
         BluetoothDevice device =
                 (mContext.getSystemService(BluetoothManager.class))
                         .getAdapter()
-                        .getRemoteDevice(mDestination);
+                        .getRemoteDevice("01:23:45:67:89:AB");
         BluetoothOppTransfer transfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch);
         transfer.mCurrentShare = mInitShareInfo;
         transfer.mCurrentShare.mConfirm = BluetoothShare.USER_CONFIRMATION_PENDING;
@@ -412,7 +398,7 @@ public class BluetoothOppTransferTest {
         BluetoothDevice device =
                 (mContext.getSystemService(BluetoothManager.class))
                         .getAdapter()
-                        .getRemoteDevice(mDestination);
+                        .getRemoteDevice("01:23:45:67:89:AB");
 
         BluetoothOppTransfer transfer = new BluetoothOppTransfer(mContext, mBluetoothOppBatch);
         transfer.mCurrentShare = mInitShareInfo;
