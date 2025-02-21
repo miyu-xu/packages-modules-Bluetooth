@@ -111,6 +111,30 @@
       },
       "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1783db_a08fc44a",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1787007
+      },
+      "writtenOn": "2025-02-21T22:52:44Z",
+      "side": 1,
+      "message": "By the way, the other CL was submitted so this can probably go ahead by removing the lines. Happy to do this either way. Me or someone will look into this next week.",
+      "parentUuid": "c083faed_ee4aef2c",
+      "range": {
+        "startLine": 56,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
