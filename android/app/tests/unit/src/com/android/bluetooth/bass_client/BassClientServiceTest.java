@@ -3312,9 +3312,6 @@ public class BassClientServiceTest {
     }
 
     @Test
-    @EnableFlags({
-        Flags.FLAG_LEAUDIO_BROADCAST_ASSISTANT_PERIPHERAL_ENTRUSTMENT
-    })
     public void testAddSourceForExternalBroadcast_triggerSetContextMask() {
         final int testGroupId = 1;
         prepareConnectedDeviceGroup();
