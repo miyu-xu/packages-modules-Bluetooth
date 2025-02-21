@@ -176,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1834e56e_ff68d692",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-21T16:55:26Z",
+      "side": 1,
+      "message": "You are right. I have replaced it with `p_dev-\u003elink_spec` now.",
+      "parentUuid": "f4752ebe_04d34a14",
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebad696e_f10ef1b3",
