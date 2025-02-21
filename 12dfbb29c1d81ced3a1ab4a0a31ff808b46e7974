@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09dd373a_ebb7a49b",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-21T01:29:48Z",
+      "side": 1,
+      "message": "mutating getter, nice",
+      "range": {
+        "startLine": 1633,
+        "startChar": 16,
+        "endLine": 1634,
+        "endChar": 50
+      },
+      "revId": "12dfbb29c1d81ced3a1ab4a0a31ff808b46e7974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e49c203_d01d160c",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1745,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-21T01:29:48Z",
+      "side": 1,
+      "message": "Not very happy with this refactor as it is making the function more error prone:\nexit points are duplicated and `mBluetoothLeCallControl.requestResult` must be invoked at each exit point.",
+      "range": {
+        "startLine": 1738,
+        "startChar": 0,
+        "endLine": 1745,
+        "endChar": 89
+      },
+      "revId": "12dfbb29c1d81ced3a1ab4a0a31ff808b46e7974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
