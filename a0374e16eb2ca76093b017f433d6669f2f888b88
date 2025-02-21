@@ -46,6 +46,30 @@
       },
       "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd531b3_01647317",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-21T01:12:00Z",
+      "side": 1,
+      "message": "Can you please add more information in the commit message as to the observed latency regression ? I won\u0027t approve this change in this state either; the Acl Manager should not have to know about channel sounding",
+      "parentUuid": "fa4146bb_b66f49d9",
+      "range": {
+        "startLine": 392,
+        "startChar": 17,
+        "endLine": 392,
+        "endChar": 46
+      },
+      "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
