@@ -70,6 +70,30 @@
       },
       "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "767f1831_1ac9699c",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-21T13:29:53Z",
+      "side": 1,
+      "message": "Update more information in the commit message. Thanks!",
+      "parentUuid": "dbd531b3_01647317",
+      "range": {
+        "startLine": 392,
+        "startChar": 17,
+        "endLine": 392,
+        "endChar": 46
+      },
+      "revId": "a0374e16eb2ca76093b017f433d6669f2f888b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
