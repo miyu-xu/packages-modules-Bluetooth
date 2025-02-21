@@ -34,6 +34,24 @@
       "parentUuid": "a5b0d26a_5153c316",
       "revId": "ad214e8c266b3b0d5ac06fa0e5bbd02e918aff8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cab1f53e_125e4ffa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-21T08:39:32Z",
+      "side": 1,
+      "message": "Thanks for the update. I think we can close the bug and abandon this CL.",
+      "parentUuid": "cd16b4d3_66568670",
+      "revId": "ad214e8c266b3b0d5ac06fa0e5bbd02e918aff8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
