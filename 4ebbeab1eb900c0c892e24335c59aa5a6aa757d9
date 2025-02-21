@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeef2b45_2b7008ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1787007
+      },
+      "writtenOn": "2025-02-21T20:10:56Z",
+      "side": 1,
+      "message": "Presubmit seems to have failed... Although I\u0027m not sure why. Will try to investigate or will handover to @oyalcin@google.com to look at next week (I\u0027m back on Tuesday)",
+      "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "421dd08c_5de30c73",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-02-21T19:12:41Z",
       "side": 1,
       "message": "can we just delete this 2 lines ? `min_sdk_version` is set by the default `b-launched-apex-module`\n\nFollow-up question, is b/356727632 fixed ? Or should the `b-launched-apex-module` be updated to target 36 and not Baklava ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7c778a2_9a4ec8e8",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1787007
+      },
+      "writtenOn": "2025-02-21T20:10:56Z",
+      "side": 1,
+      "message": "I am verifying if we can delete it. I suspect we need aosp/3500404 (which sets it to 36 rather than Baklava)",
+      "parentUuid": "421dd08c_5de30c73",
       "range": {
         "startLine": 56,
         "startChar": 1,
