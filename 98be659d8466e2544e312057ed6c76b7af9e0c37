@@ -104,6 +104,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a682d69d_f099ceb1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-21T23:58:23Z",
+      "side": 1,
+      "message": "Verified it works and I can see it on the event log",
+      "parentUuid": "7811adf0_9a175578",
+      "revId": "98be659d8466e2544e312057ed6c76b7af9e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5226ce4_31d961f1",
