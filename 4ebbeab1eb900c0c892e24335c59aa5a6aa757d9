@@ -87,6 +87,30 @@
       },
       "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c083faed_ee4aef2c",
+        "filename": "apex/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-21T21:29:42Z",
+      "side": 1,
+      "message": "Let\u0027s merge this one for now, we can still remove the override later.\n\nI like the codename and I believe we use that a lot for Tiramisu, but that\u0027s not something I can have a say on.",
+      "parentUuid": "3a479eb0_34f74441",
+      "range": {
+        "startLine": 56,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 26
+      },
+      "revId": "4ebbeab1eb900c0c892e24335c59aa5a6aa757d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
