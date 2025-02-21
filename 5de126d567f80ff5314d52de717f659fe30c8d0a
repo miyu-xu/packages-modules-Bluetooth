@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b244631a_c3e57412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-21T07:09:06Z",
+      "side": 1,
+      "message": "Patch set #4 removed the le_rand_cb wait since we anyway have a 100ms wait.",
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -46,6 +46,30 @@
       },
       "revId": "822ccf33e1833cd29bb5ab7c353f1ef4bf992244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0284afa2_0760a46d",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-21T07:09:06Z",
+      "side": 1,
+      "message": "I guess the USB interrupt is blocked when lib closed. I tried allow the HID connection and the HCI event comes after resume.",
+      "parentUuid": "59853538_ffe3eca6",
+      "range": {
+        "startLine": 409,
+        "startChar": 29,
+        "endLine": 409,
+        "endChar": 56
+      },
+      "revId": "822ccf33e1833cd29bb5ab7c353f1ef4bf992244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
