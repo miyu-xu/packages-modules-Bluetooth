@@ -1551,7 +1551,7 @@ public class ScanController {
      */
     class ScannerDeathRecipient implements IBinder.DeathRecipient {
         int mScannerId;
-        private String mPackageName;
+        private final String mPackageName;
 
         ScannerDeathRecipient(int scannerId, String packageName) {
             mScannerId = scannerId;
