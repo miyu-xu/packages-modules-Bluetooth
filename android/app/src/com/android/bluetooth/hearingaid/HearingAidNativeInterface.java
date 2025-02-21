@@ -33,7 +33,7 @@ import com.android.internal.annotations.VisibleForTesting;
 public class HearingAidNativeInterface {
     private static final String TAG = "HearingAidNativeInterface";
 
-    private BluetoothAdapter mAdapter;
+    private final BluetoothAdapter mAdapter;
 
     @GuardedBy("INSTANCE_LOCK")
     private static HearingAidNativeInterface sInstance;

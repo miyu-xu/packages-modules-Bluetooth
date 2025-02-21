@@ -37,7 +37,7 @@ import java.util.List;
  */
 public class BluetoothHeadsetProxy {
 
-    private BluetoothHeadset mBluetoothHeadset;
+    private final BluetoothHeadset mBluetoothHeadset;
 
     public BluetoothHeadsetProxy(BluetoothHeadset headset) {
         mBluetoothHeadset = headset;

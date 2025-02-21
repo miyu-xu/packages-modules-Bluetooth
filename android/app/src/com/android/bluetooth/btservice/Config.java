@@ -67,7 +67,7 @@ public class Config {
 
     private static class ProfileConfig {
         boolean mSupported;
-        int mProfileId;
+        final int mProfileId;
 
         ProfileConfig(boolean supported, int profileId) {
             mSupported = supported;

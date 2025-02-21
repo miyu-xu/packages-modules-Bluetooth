@@ -492,7 +492,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     public static final String ACTION_CONNECTION_STATE_CHANGED =
             "android.bluetooth.action.CONNECTION_STATE_CHANGED";
 
-    private CloseGuard mCloseGuard;
+    private final CloseGuard mCloseGuard;
     private final BluetoothAdapter mBluetoothAdapter;
     private final AttributionSource mAttributionSource;
 

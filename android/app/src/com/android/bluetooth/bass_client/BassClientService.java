@@ -221,7 +221,7 @@ public class BassClientService extends ProfileService {
         private static final int SCANNER_ID_NOT_INITIALIZED = -2;
         private static final int SCANNER_ID_INITIALIZING = -1;
 
-        private List<ScanFilter> mBaasUuidFilters = new ArrayList<ScanFilter>();
+        private final List<ScanFilter> mBaasUuidFilters = new ArrayList<ScanFilter>();
         private int mScannerId = SCANNER_ID_NOT_INITIALIZED;
 
         void registerAndStartScan(List<ScanFilter> filters) {
@@ -583,9 +583,9 @@ public class BassClientService extends ProfileService {
             };
 
     private static class AddSourceData {
-        BluetoothDevice mSink;
-        BluetoothLeBroadcastMetadata mSourceMetadata;
-        boolean mIsGroupOp;
+        final BluetoothDevice mSink;
+        final BluetoothLeBroadcastMetadata mSourceMetadata;
+        final boolean mIsGroupOp;
 
         AddSourceData(
                 BluetoothDevice sink,
@@ -4664,8 +4664,8 @@ public class BassClientService extends ProfileService {
         }
 
         private static class ObjParams {
-            Object mObj1;
-            Object mObj2;
+            final Object mObj1;
+            final Object mObj2;
 
             ObjParams(Object o1, Object o2) {
                 mObj1 = o1;

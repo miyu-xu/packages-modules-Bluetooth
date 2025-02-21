@@ -45,7 +45,7 @@ import java.io.IOException;
 public class MmsFileProvider extends ContentProvider {
     private static final String TAG = "BluetoothMmsFileProvider";
 
-    private PipeWriter mPipeWriter = new PipeWriter();
+    private final PipeWriter mPipeWriter = new PipeWriter();
 
     /*package*/
     static final Uri CONTENT_URI = Uri.parse("content://com.android.bluetooth.map.MmsFileProvider");

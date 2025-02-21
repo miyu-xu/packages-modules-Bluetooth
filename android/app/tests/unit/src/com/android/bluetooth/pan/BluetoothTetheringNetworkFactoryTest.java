@@ -49,7 +49,7 @@ public class BluetoothTetheringNetworkFactoryTest {
 
     @Mock private PanService mPanService;
 
-    private Context mContext = ApplicationProvider.getApplicationContext();
+    private final Context mContext = ApplicationProvider.getApplicationContext();
 
     @Test
     public void networkStartReverseTetherEmptyIface() {
