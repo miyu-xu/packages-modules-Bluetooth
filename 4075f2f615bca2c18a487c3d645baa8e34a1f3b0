@@ -306,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35fc2768_87f0a0f8",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-21T02:13:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bbe1dab_486c352c",
+      "range": {
+        "startLine": 363,
+        "startChar": 7,
+        "endLine": 363,
+        "endChar": 35
+      },
+      "revId": "4075f2f615bca2c18a487c3d645baa8e34a1f3b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fde40570_bf4d1556",
