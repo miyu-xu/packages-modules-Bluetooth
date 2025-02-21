@@ -16,6 +16,24 @@
       "message": "I don\u0027t understand the presubmit failures. I wonder if we were unlucky. It worked without problems in other modules.",
       "revId": "b878e994399b730a34a6b0f3ae5c644f0aa14eca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1cdee5_620f4626",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-21T22:40:56Z",
+      "side": 1,
+      "message": "cvd has some issues since 2-3 days and we may have been unfortunate here. The new attempt may be luckier",
+      "parentUuid": "92f0ad4b_c0d94e36",
+      "revId": "b878e994399b730a34a6b0f3ae5c644f0aa14eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
