@@ -127,18 +127,18 @@ public class ScanManager {
     private final AdapterService mAdapterService;
     private final TimeProvider mTimeProvider;
     @VisibleForTesting ScanNative mScanNative;
-    private BluetoothAdapterProxy mBluetoothAdapterProxy;
+    private final BluetoothAdapterProxy mBluetoothAdapterProxy;
     @VisibleForTesting final ClientHandler mHandler;
 
-    private Set<ScanClient> mRegularScanClients;
-    private Set<ScanClient> mBatchClients;
-    private Set<ScanClient> mSuspendedScanClients;
-    private SparseIntArray mPriorityMap = new SparseIntArray();
+    private final Set<ScanClient> mRegularScanClients;
+    private final Set<ScanClient> mBatchClients;
+    private final Set<ScanClient> mSuspendedScanClients;
+    private final SparseIntArray mPriorityMap = new SparseIntArray();
 
-    private DisplayManager mDisplayManager;
+    private final DisplayManager mDisplayManager;
 
-    private ActivityManager mActivityManager;
-    private LocationManager mLocationManager;
+    private final ActivityManager mActivityManager;
+    private final LocationManager mLocationManager;
     private static final int FOREGROUND_IMPORTANCE_CUTOFF =
             ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
     private static final boolean DEFAULT_UID_IS_FOREGROUND = true;
@@ -2191,7 +2191,7 @@ public class ScanManager {
                 }
             };
 
-    private ActivityManager.OnUidImportanceListener mUidImportanceListener =
+    private final ActivityManager.OnUidImportanceListener mUidImportanceListener =
             new ActivityManager.OnUidImportanceListener() {
                 @Override
                 public void onUidImportance(final int uid, final int importance) {
@@ -2204,7 +2204,7 @@ public class ScanManager {
                 }
             };
 
-    private BroadcastReceiver mLocationReceiver =
+    private final BroadcastReceiver mLocationReceiver =
             new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {

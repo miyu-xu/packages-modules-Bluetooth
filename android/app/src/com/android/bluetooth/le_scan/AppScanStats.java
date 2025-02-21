@@ -74,7 +74,7 @@ class AppScanStats {
     private final AdapterService mAdapterService;
     private final TimeProvider mTimeProvider;
 
-    private static Object sLock = new Object();
+    private static final Object sLock = new Object();
 
     @GuardedBy("sLock")
     static long sRadioStartTime = 0;
@@ -92,22 +92,22 @@ class AppScanStats {
         public long suspendDuration;
         public long suspendStartTime;
         public boolean isSuspended;
-        public long timestamp;
-        public long reportDelayMillis;
+        public final long timestamp;
+        public final long reportDelayMillis;
         public boolean isOpportunisticScan;
         public boolean isTimeout;
         public boolean isDowngraded;
         public boolean isBackgroundScan;
-        public boolean isFilterScan;
-        public boolean isCallbackScan;
+        public final boolean isFilterScan;
+        public final boolean isCallbackScan;
         public boolean isBatchScan;
         public boolean isAutoBatchScan;
         public int results;
-        public int scannerId;
-        public int scanMode;
-        public int scanCallbackType;
-        public StringBuilder filterString;
-        @Nullable public String attributionTag;
+        public final int scannerId;
+        public final int scanMode;
+        public final int scanCallbackType;
+        public final StringBuilder filterString;
+        public final @Nullable String attributionTag;
 
         LastScan(
                 long timestamp,
@@ -142,7 +142,7 @@ class AppScanStats {
     }
 
     String mAppName;
-    private WorkSource mWorkSource; // Used for BatteryStatsManager
+    private final WorkSource mWorkSource; // Used for BatteryStatsManager
     private final WorkSourceUtil mWorkSourceUtil; // Used for BluetoothStatsLog
     private int mScansStarted = 0;
     private int mScansStopped = 0;
@@ -161,8 +161,8 @@ class AppScanStats {
     private int mBalancedScan = 0;
     private int mLowLatencyScan = 0;
     private int mAmbientDiscoveryScan = 0;
-    private List<LastScan> mLastScans = new ArrayList<LastScan>();
-    private HashMap<Integer, LastScan> mOngoingScans = new HashMap<Integer, LastScan>();
+    private final List<LastScan> mLastScans = new ArrayList<LastScan>();
+    private final HashMap<Integer, LastScan> mOngoingScans = new HashMap<Integer, LastScan>();
     private long startTime = 0;
     private int results = 0;
     public boolean isAppDead = false;

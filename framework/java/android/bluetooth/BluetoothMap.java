@@ -53,7 +53,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     private static final boolean DBG = true;
     private static final boolean VDBG = false;
 
-    private CloseGuard mCloseGuard;
+    private final CloseGuard mCloseGuard;
 
     /** @hide */
     @SuppressLint("ActionValue")
