@@ -102,6 +102,29 @@
       "parentUuid": "e327977c_705e1fde",
       "revId": "98be659d8466e2544e312057ed6c76b7af9e0c37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5226ce4_31d961f1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-21T19:25:10Z",
+      "side": 1,
+      "message": "this is another point for connection failure, this is when the lower layer failed to connect",
+      "range": {
+        "startLine": 909,
+        "startChar": 16,
+        "endLine": 911,
+        "endChar": 48
+      },
+      "revId": "98be659d8466e2544e312057ed6c76b7af9e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
