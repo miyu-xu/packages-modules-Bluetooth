@@ -495,7 +495,7 @@ public class BassClientService extends ProfileService {
         }
 
         @SuppressLint("NewApi") // Api is protected by flag check and the lint is wrong
-        private boolean hasAnyMessagesOrCallbacks(Handler handler) {
+        private static boolean hasAnyMessagesOrCallbacks(Handler handler) {
             if (android.os.Flags.mainlineVcnPlatformApi()) {
                 return handler.hasMessagesOrCallbacks();
             } else {
@@ -886,7 +886,7 @@ public class BassClientService extends ProfileService {
                 });
     }
 
-    private boolean isSuccess(int status) {
+    private static boolean isSuccess(int status) {
         boolean ret = false;
         switch (status) {
             case BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST:
@@ -980,13 +980,13 @@ public class BassClientService extends ProfileService {
         }
     }
 
-    private boolean removeMatchingOperation(
+    private static boolean removeMatchingOperation(
             List<Pair<Integer, Object>> operations, int reqMsg, Object obj) {
         return operations.removeIf(
                 m -> m.first.equals(reqMsg) && isMatchingOperation(m.second, obj));
     }
 
-    private boolean isMatchingOperation(Object operationData, Object obj) {
+    private static boolean isMatchingOperation(Object operationData, Object obj) {
         if (obj instanceof BluetoothLeBroadcastReceiveState) {
             return ((BluetoothLeBroadcastMetadata) operationData).getBroadcastId()
                     == ((BluetoothLeBroadcastReceiveState) obj).getBroadcastId();
@@ -1009,7 +1009,7 @@ public class BassClientService extends ProfileService {
                 && (leAudioService.getActiveDevices().contains(device));
     }
 
-    private boolean isEmptyBluetoothDevice(BluetoothDevice device) {
+    private static boolean isEmptyBluetoothDevice(BluetoothDevice device) {
         if (device == null) {
             Log.e(TAG, "Device is null!");
             return true;
@@ -4395,7 +4395,7 @@ public class BassClientService extends ProfileService {
         return false;
     }
 
-    private boolean isReceiverActive(BluetoothLeBroadcastReceiveState receiveState) {
+    private static boolean isReceiverActive(BluetoothLeBroadcastReceiveState receiveState) {
         if (receiveState.getPaSyncState()
                 == BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_SYNCHRONIZED) {
             return true;
@@ -4451,7 +4451,9 @@ public class BassClientService extends ProfileService {
                         .anyMatch(
                                 receiveState ->
                                         (receiveState.getBisSyncState().stream()
-                                                .anyMatch(this::isSyncedToBroadcastStream)))) {
+                                                .anyMatch(
+                                                        BassClientService
+                                                                ::isSyncedToBroadcastStream)))) {
                     activeSinks.add(device);
                 }
             }
@@ -4469,7 +4471,7 @@ public class BassClientService extends ProfileService {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    private boolean isSyncedToBroadcastStream(Long syncState) {
+    private static boolean isSyncedToBroadcastStream(Long syncState) {
         return syncState != BassConstants.BCAST_RCVR_STATE_BIS_SYNC_NOT_SYNC_TO_BIS
                 && syncState != BassConstants.BCAST_RCVR_STATE_BIS_SYNC_FAILED_SYNC_TO_BIG;
     }
@@ -4581,7 +4583,7 @@ public class BassClientService extends ProfileService {
             }
         }
 
-        private void checkForPendingGroupOpRequest(Message msg) {
+        private static void checkForPendingGroupOpRequest(Message msg) {
             if (sService == null) {
                 Log.e(TAG, "Service is null");
                 return;
@@ -4612,7 +4614,7 @@ public class BassClientService extends ProfileService {
             }
         }
 
-        private boolean handleServiceInternalMessage(Message msg) {
+        private static boolean handleServiceInternalMessage(Message msg) {
             boolean isMsgHandled = false;
             if (sService == null) {
                 Log.e(TAG, "Service is null");
@@ -4671,7 +4673,8 @@ public class BassClientService extends ProfileService {
             }
         }
 
-        private void invokeCallback(IBluetoothLeBroadcastAssistantCallback callback, Message msg)
+        private static void invokeCallback(
+                IBluetoothLeBroadcastAssistantCallback callback, Message msg)
                 throws RemoteException {
             final int reason = msg.arg1;
             final int sourceId = msg.arg2;

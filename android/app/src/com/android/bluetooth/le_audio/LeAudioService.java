@@ -533,7 +533,7 @@ public class LeAudioService extends ProfileService {
                             mSessionStatus);
         }
 
-        private int convertToStatsAudioQuality(int audioQuality) {
+        private static int convertToStatsAudioQuality(int audioQuality) {
             switch (audioQuality) {
                 case BluetoothLeBroadcastSubgroupSettings.QUALITY_STANDARD:
                     return BluetoothStatsLog
@@ -5336,7 +5336,8 @@ public class LeAudioService extends ProfileService {
         }
     }
 
-    private boolean isAudioModeChangedFromCommunicationToNormal(int previousMode, int currentMode) {
+    private static boolean isAudioModeChangedFromCommunicationToNormal(
+            int previousMode, int currentMode) {
         switch (previousMode) {
             case AudioManager.MODE_RINGTONE:
             case AudioManager.MODE_IN_CALL:
