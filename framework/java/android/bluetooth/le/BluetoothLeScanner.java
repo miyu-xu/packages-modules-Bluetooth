@@ -386,8 +386,8 @@ public final class BluetoothLeScanner {
         private final ScanCallback mScanCallback;
         private final List<ScanFilter> mFilters;
         private final WorkSource mWorkSource;
-        private ScanSettings mSettings;
-        private IBluetoothScan mBluetoothScan;
+        private final ScanSettings mSettings;
+        private final IBluetoothScan mBluetoothScan;
 
         // mLeHandle 0: not registered
         // -2: registration failed because app is scanning to frequently
