@@ -16,6 +16,24 @@
       "message": "Hi Venkata,\n\nThere is a similar RNR + Pairing issue that was fixed by CL aosp/3037832 and aosp/3272317.\nCould you check whether that resolves your issue?\n\nOtherwise, could you attach logs in the bug page so we get a clearer understanding why the patches above doesn\u0027t fix your issue so this patch is needed?\n\nThanks!",
       "revId": "ad214e8c266b3b0d5ac06fa0e5bbd02e918aff8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd16b4d3_66568670",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-02-21T08:37:27Z",
+      "side": 1,
+      "message": "Issue not repro with CL aosp/3037832 and aosp/3272317\n\nAttched logs in bug",
+      "parentUuid": "a5b0d26a_5153c316",
+      "revId": "ad214e8c266b3b0d5ac06fa0e5bbd02e918aff8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
