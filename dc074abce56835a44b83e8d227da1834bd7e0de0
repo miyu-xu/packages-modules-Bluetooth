@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a9e66ca_aecc3953",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-21T23:49:01Z",
+      "side": 1,
+      "message": "The difference between medium and high intervals seems very small... are you certain that you have the correct values ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 65
+      },
+      "revId": "dc074abce56835a44b83e8d227da1834bd7e0de0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
