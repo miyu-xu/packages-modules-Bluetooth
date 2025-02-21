@@ -67,7 +67,7 @@ import java.util.UUID;
         public byte[] meta_data;
     }
 
-    private Set<Entry> mEntries = new HashSet<Entry>();
+    private final Set<Entry> mEntries = new HashSet<Entry>();
 
     void addDeviceAddress(String address, byte type, byte[] irk) {
         Entry entry = new Entry();

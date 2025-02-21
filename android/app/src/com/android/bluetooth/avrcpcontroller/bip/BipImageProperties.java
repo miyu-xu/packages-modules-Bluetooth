@@ -66,7 +66,7 @@ public class BipImageProperties {
 
     /** A Builder for a BipImageProperties object */
     public static class Builder {
-        private BipImageProperties mProperties = new BipImageProperties();
+        private final BipImageProperties mProperties = new BipImageProperties();
 
         /**
          * Set the image handle field for the object you're building
@@ -148,10 +148,10 @@ public class BipImageProperties {
     private boolean mHasThumbnailFormat = false;
 
     /** The various sets of available formats. */
-    private List<BipImageFormat> mNativeFormats;
+    private final List<BipImageFormat> mNativeFormats;
 
-    private List<BipImageFormat> mVariantFormats;
-    private List<BipAttachmentFormat> mAttachments;
+    private final List<BipImageFormat> mVariantFormats;
+    private final List<BipAttachmentFormat> mAttachments;
 
     private BipImageProperties() {
         mVersion = sVersion;

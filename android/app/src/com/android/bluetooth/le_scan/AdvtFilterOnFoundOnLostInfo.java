@@ -20,24 +20,24 @@ import android.annotation.Nullable;
 import android.bluetooth.BluetoothDevice;
 
 class AdvtFilterOnFoundOnLostInfo {
-    private int mClientIf;
+    private final int mClientIf;
 
-    private int mAdvPktLen;
-    @Nullable private byte[] mAdvPkt;
+    private final int mAdvPktLen;
+    private final @Nullable byte[] mAdvPkt;
 
-    private int mScanRspLen;
+    private final int mScanRspLen;
 
-    @Nullable private byte[] mScanRsp;
+    private final @Nullable byte[] mScanRsp;
 
-    private int mFiltIndex;
-    private int mAdvState;
-    private int mAdvInfoPresent;
-    private String mAddress;
+    private final int mFiltIndex;
+    private final int mAdvState;
+    private final int mAdvInfoPresent;
+    private final String mAddress;
 
-    private int mAddrType;
-    private int mTxPower;
-    private int mRssiValue;
-    private int mTimeStamp;
+    private final int mAddrType;
+    private final int mTxPower;
+    private final int mRssiValue;
+    private final int mTimeStamp;
 
     AdvtFilterOnFoundOnLostInfo(
             int clientIf,
