@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd73d7ce_b5b1a150",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-21T01:51:26Z",
+      "side": 0,
+      "message": "Is this call moved to a different place ?",
+      "range": {
+        "startLine": 166,
+        "startChar": 28,
+        "endLine": 166,
+        "endChar": 73
+      },
+      "revId": "803ca021f414ded6e4e74cf3c5aa0b9f86fa4d8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
