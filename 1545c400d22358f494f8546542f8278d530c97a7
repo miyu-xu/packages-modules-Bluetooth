@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a277d04e_3b968bd0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-21T23:49:33Z",
+      "side": 1,
+      "message": "much cleaner, done!",
+      "parentUuid": "e3a26db2_f47782ae",
+      "revId": "1545c400d22358f494f8546542f8278d530c97a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6013bd49_4eb7ec27",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-21T23:31:59Z",
       "side": 1,
       "message": "This is not being executed from a binder call, the value you are getting here may not be relevant.",
+      "range": {
+        "startLine": 585,
+        "startChar": 32,
+        "endLine": 585,
+        "endChar": 54
+      },
+      "revId": "1545c400d22358f494f8546542f8278d530c97a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2adc7736_61d4cfb4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-21T23:49:33Z",
+      "side": 1,
+      "message": "got it, will default to 0 then since it\u0027s not useful",
+      "parentUuid": "6013bd49_4eb7ec27",
       "range": {
         "startLine": 585,
         "startChar": 32,
