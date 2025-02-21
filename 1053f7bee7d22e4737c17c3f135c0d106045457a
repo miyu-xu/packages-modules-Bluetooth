@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7b722e9_0751a61c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-02-21T16:53:55Z",
+      "side": 1,
+      "message": "Hi Henri, can you please check commit msg now and provide necessary approvals?",
+      "revId": "1053f7bee7d22e4737c17c3f135c0d106045457a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
