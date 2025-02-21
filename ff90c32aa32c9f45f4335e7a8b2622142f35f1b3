@@ -70,6 +70,30 @@
       },
       "revId": "ff90c32aa32c9f45f4335e7a8b2622142f35f1b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e1a7fa_5113ef8f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 1079,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-21T05:45:38Z",
+      "side": 1,
+      "message": "thanks. Used Default member initialization in `RfcommCfgInfo`",
+      "parentUuid": "a321a908_3b46cdb9",
+      "range": {
+        "startLine": 1079,
+        "startChar": 21,
+        "endLine": 1079,
+        "endChar": 29
+      },
+      "revId": "ff90c32aa32c9f45f4335e7a8b2622142f35f1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
