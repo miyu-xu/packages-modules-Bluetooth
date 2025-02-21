@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad1c8c9b_9bbc9a3d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-21T06:48:37Z",
+      "side": 1,
+      "message": "remove, this is checked on L581",
+      "range": {
+        "startLine": 579,
+        "startChar": 8,
+        "endLine": 579,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "04a2ee87_5025276b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hh.cc",
+              "range": {
+                "startLine": 579,
+                "startChar": 0,
+                "endLine": 580,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "2af13f256bc7b4b0df841e550f9c115e7adde7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
