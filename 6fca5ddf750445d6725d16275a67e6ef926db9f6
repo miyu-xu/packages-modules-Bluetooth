@@ -160,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4752ebe_04d34a14",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-21T07:01:02Z",
+      "side": 1,
+      "message": "What about L965? Should we pass `p_dev-\u003elink_spec` instead of just `link_spec`? Otherwise we might send transport\u003dAUTO instead of BREDR and LE there.\n\nIf that is OK, perhaps we can also send transport\u003dAUTO here to avoid having a different remove_if sequence?",
+      "parentUuid": "b749dcee_3404fd89",
+      "revId": "6fca5ddf750445d6725d16275a67e6ef926db9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ebad696e_f10ef1b3",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 5
