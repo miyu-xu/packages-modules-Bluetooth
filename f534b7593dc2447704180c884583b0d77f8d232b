@@ -142,6 +142,30 @@
       },
       "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a52373_6e031eea",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2229,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-21T08:29:45Z",
+      "side": 0,
+      "message": "Ok, I think I get it now. mExposedActiveDevice represents the last audio device exposure state that the LeAudioService has triggered, so that once handleAudioDeviceAdded calls back, we just cross check it with our exposure state to confirm we are already good instead of calling `notifyActiveDeviceChanged()` again.",
+      "parentUuid": "23e4aaa2_59837c20",
+      "range": {
+        "startLine": 2229,
+        "startChar": 12,
+        "endLine": 2229,
+        "endChar": 40
+      },
+      "revId": "f534b7593dc2447704180c884583b0d77f8d232b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
