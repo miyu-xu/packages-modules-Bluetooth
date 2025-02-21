@@ -100,6 +100,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "750f36cc_fcbe9fa3",
+        "filename": "system/gd/hal/hci_hal.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-21T07:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd031907_35c61b4c",
+      "range": {
+        "startLine": 57,
+        "startChar": 15,
+        "endLine": 57,
+        "endChar": 35
+      },
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffca1eff_59ccfb02",
+        "filename": "system/gd/hal/hci_hal.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-21T07:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "581dab96_7028ecea",
+      "range": {
+        "startLine": 57,
+        "startChar": 40,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a84777ce_0e75f82c",
@@ -113,6 +161,30 @@
       "writtenOn": "2025-02-19T21:49:07Z",
       "side": 1,
       "message": "You may call `module_.Stop()` instead",
+      "range": {
+        "startLine": 313,
+        "startChar": 12,
+        "endLine": 313,
+        "endChar": 25
+      },
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "511314c8_25aa7fee",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-21T07:01:16Z",
+      "side": 1,
+      "message": "Call Stop() here actually cause other crashes. It is because that Stop also deletes the |impl_| but we only unregister the DownEnd but not UpEnd. I also tried to unregister the UpEnd on Stop but it causes further crashes and then I gave up this approach.",
+      "parentUuid": "a84777ce_0e75f82c",
       "range": {
         "startLine": 313,
         "startChar": 12,
@@ -164,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5673ab7b_47da7848",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-21T07:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee082232_b7895336",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 353,
+        "endChar": 6
+      },
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a484cbd5_e80e2a99",
@@ -201,6 +297,30 @@
           ]
         }
       ],
+      "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9693ea3_c2a64c71",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-02-21T07:01:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a484cbd5_e80e2a99",
+      "range": {
+        "startLine": 989,
+        "startChar": 0,
+        "endLine": 996,
+        "endChar": 15
+      },
       "revId": "488c22bd029e97cbdb2afba70b3713ff11d3ecd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
