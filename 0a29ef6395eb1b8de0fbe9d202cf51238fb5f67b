@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "428f8e53_901c6b64",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-22T02:25:22Z",
+      "side": 1,
+      "message": "How about we log below enum instead of if app\u0027s importance is equal to or larger than foreground service (i.e. isAppForeground)? Then use `appImportance` instead of `isAppForeground` for the atoms/metrics/dumpsys.\n\n```\nenum AppImportance {\n  APP_IMPORTANCE_UNKNOWN \u003d 0;\n  APP_IMPORTANCE_OTHERS \u003d 1;\n  APP_IMPORTANCE_FOREGROUND \u003d 2;\n  APP_IMPORTANCE_FOREGROUND_SREVICE \u003d 3;\n}\n```\n\nThere are many other importance levels in [ActivityManager.java](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/core/java/android/app/ActivityManager.java;drc\u003d5f98d5294608467b64c86c731e8ba6e68c7ab001;l\u003d3822) and I think we can simplify as above. Please let me know.",
+      "parentUuid": "d3a6a568_b13e4feb",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 98
+      },
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51415d80_7e7412e0",
         "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
         "patchSetId": 2
