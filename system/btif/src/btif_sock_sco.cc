@@ -18,6 +18,8 @@
 
 #define LOG_TAG "bt_btif_sock_sco"
 
+#include "btif_sock_sco.h"
+
 #include <bluetooth/log.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -53,9 +55,6 @@
 //   connect_completed_cb()    - connection successfully established
 //   socket_read_ready_cb()    - local host closed SCO socket
 //   disconnect_completed_cb() - connection terminated
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using namespace bluetooth;
 
