@@ -2558,6 +2558,7 @@ public class BassClientStateMachineTest {
     }
 
     @Test
+    @EnableFlags(Flags.FLAG_LEAUDIO_BROADCAST_EXTRACT_PERIODIC_SCANNER_FROM_STATE_MACHINE)
     public void updateBroadcastSource_withMetadataChanged() {
         prepareInitialReceiveStateForGatt();
 
