@@ -796,9 +796,17 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr, tBLE_ADDR_TYPE 
 tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                         tBT_TRANSPORT transport, tBT_DEVICE_TYPE /* device_type */) {
   if (transport == BT_TRANSPORT_AUTO) {
+    uint8_t inq_result_type = 0;
+    bool is_ble_discoverable_only = false;
+
     if (addr_type == BLE_ADDR_PUBLIC) {
-      transport = get_btm_client_interface().ble.BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE
-                                                                        : BT_TRANSPORT_BR_EDR;
+      tBTM_INQ_INFO* p_inq_info = BTM_InqDbRead(bd_addr);
+      if ((p_inq_info != nullptr) && com::android::bluetooth::flags::auto_transport_pairing()) {
+        inq_result_type = p_inq_info->results.inq_result_type;
+        is_ble_discoverable_only = (inq_result_type == BT_DEVICE_TYPE_BLE);
+      }
+      transport = (get_btm_client_interface().ble.BTM_UseLeLink(bd_addr) ||
+                   is_ble_discoverable_only) ? BT_TRANSPORT_LE: BT_TRANSPORT_BR_EDR;
     } else {
       log::info("Forcing transport LE (was auto) because of the address type");
       transport = BT_TRANSPORT_LE;
