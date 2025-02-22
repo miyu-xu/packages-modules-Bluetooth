@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb5ba1d_eefe1149",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 969,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-22T03:09:19Z",
+      "side": 1,
+      "message": "flag this?\n\n```\ncom::android::bluetooth::flags::vup_for_pending_connection() ? p_dev-\u003elink_spec : link_spec\n```",
+      "range": {
+        "startLine": 969,
+        "startChar": 12,
+        "endLine": 969,
+        "endChar": 28
+      },
+      "revId": "884ba78636060fd0b754c328f0687415fb559cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d4f6752_7f83652b",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-22T03:09:19Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 1035,
+        "startChar": 30,
+        "endLine": 1035,
+        "endChar": 39
+      },
+      "revId": "884ba78636060fd0b754c328f0687415fb559cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb65adb_b7a830ea",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-22T03:09:19Z",
+      "side": 1,
+      "message": "nit: kudos to do this in a `remove_if` predicate, but this is not normally how such predicate is written, as they normally do not have side effects. \n\nhowever, agree that this simplifies the code",
+      "range": {
+        "startLine": 1047,
+        "startChar": 6,
+        "endLine": 1049,
+        "endChar": 0
+      },
+      "revId": "884ba78636060fd0b754c328f0687415fb559cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028ac5c9_e3b68ee2",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-22T03:09:19Z",
+      "side": 1,
+      "message": "suggest rename this to `ls` to avoid reading confusion",
+      "range": {
+        "startLine": 1058,
+        "startChar": 28,
+        "endLine": 1058,
+        "endChar": 37
+      },
+      "revId": "884ba78636060fd0b754c328f0687415fb559cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
