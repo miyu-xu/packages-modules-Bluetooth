@@ -3,6 +3,77 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3a6a568_b13e4feb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-22T00:47:32Z",
+      "side": 1,
+      "message": "Can we confirm if we\u0027re interested in recording if app is using foreground service or app\u0027s importance is equal to or larger than foreground service?",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 98
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e414c1a0_588c4e61",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 250,
+                "startChar": 0,
+                "endLine": 251,
+                "endChar": 0
+              },
+              "replacement": "        int importance \u003d ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 252,
+                "startChar": 0,
+                "endLine": 253,
+                "endChar": 0
+              },
+              "replacement": "            int packageImportance \u003d mActivityManager.getPackageImportance(packageName);\n            if (packageImportance \u003c importance) {\n                importance \u003d packageImportance;\n            }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 254,
+                "startChar": 0,
+                "endLine": 256,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+              "range": {
+                "startLine": 258,
+                "startChar": 0,
+                "endLine": 259,
+                "endChar": 0
+              },
+              "replacement": "            stats.isAppForeground \u003d importance \u003e\u003d ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51415d80_7e7412e0",
         "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
         "patchSetId": 2
@@ -86,6 +157,30 @@
       "side": 1,
       "message": "Thanks for the heads up. The callback ID is used to update the foreground state in the stats before the advertiser ID is set. IIUC when `setAdvertiserIdByRegId()` is called, it will update the id-stats mapping, and the foreground state in the stats will retain. So this should not impact the metrics logging or dumpsys results.",
       "parentUuid": "51415d80_7e7412e0",
+      "range": {
+        "startLine": 322,
+        "startChar": 36,
+        "endLine": 322,
+        "endChar": 40
+      },
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f32022f_55bf494b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-22T00:47:32Z",
+      "side": 1,
+      "message": "I got the point that metrics and dumpsys logging happes in `AppAdvertiseStats`.",
+      "parentUuid": "f8dacc80_38e004a2",
       "range": {
         "startLine": 322,
         "startChar": 36,
