@@ -22,6 +22,30 @@
       },
       "revId": "4e96d5e823aa9b1808f1c998763c1e6acf9b5f91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a70672_72a74956",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-22T00:06:43Z",
+      "side": 1,
+      "message": "PORT_EV_CONNECTED is also used in DLCI establishment (`PORT_DlcEstablishInd` and `PORT_DlcEstablishCnf`) and is not suitable for our purpose, so we did not use it.",
+      "parentUuid": "46aed6b9_2ca46e06",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 99
+      },
+      "revId": "4e96d5e823aa9b1808f1c998763c1e6acf9b5f91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
