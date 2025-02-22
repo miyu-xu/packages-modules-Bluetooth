@@ -70,6 +70,30 @@
       ],
       "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8dacc80_38e004a2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-22T00:17:13Z",
+      "side": 1,
+      "message": "Thanks for the heads up. The callback ID is used to update the foreground state in the stats before the advertiser ID is set. IIUC when `setAdvertiserIdByRegId()` is called, it will update the id-stats mapping, and the foreground state in the stats will retain. So this should not impact the metrics logging or dumpsys results.",
+      "parentUuid": "51415d80_7e7412e0",
+      "range": {
+        "startLine": 322,
+        "startChar": 36,
+        "endLine": 322,
+        "endChar": 40
+      },
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
