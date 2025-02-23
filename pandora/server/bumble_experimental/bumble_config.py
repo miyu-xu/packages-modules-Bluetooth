@@ -72,5 +72,7 @@ class BumbleConfigService(BumbleConfigServicer):
             return pairing_config
 
         self.device.pairing_config_factory = pairing_config_factory
+        if request.class_of_device is not None:
+            self.device.class_of_device = request.class_of_device
 
         return Empty()

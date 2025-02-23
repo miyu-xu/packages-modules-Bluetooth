@@ -57,4 +57,5 @@ message OverrideRequest {
     PairingConfig pairing_config = 2;
     KeyDistribution initiator_key_distribution = 3;
     KeyDistribution responder_key_distribution = 4;
+    int32 class_of_device = 5;
 }
