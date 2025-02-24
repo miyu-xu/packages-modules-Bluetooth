@@ -1,0 +1,197 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aea517a_5c856a25",
+        "filename": "system/gd/hci/acl_manager.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-24T23:36:28Z",
+      "side": 1,
+      "message": "I\u0027d prefer something more generic in case the stack needs to do this for other types of devices",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e15faafe_9e3793a4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager.h",
+              "range": {
+                "startLine": 139,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": "  virtual void AddDeviceToActiveList(const Address address);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c9cf9f6_658a777f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-24T23:36:28Z",
+      "side": 1,
+      "message": "If properly cleaned up we don\u0027t need this. Also this is larger than the number of concurrent LE connections supported (by default) on a device",
+      "range": {
+        "startLine": 73,
+        "startChar": 52,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5901a309_fbc3895a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 887,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 888,
+                "startChar": 0,
+                "endLine": 890,
+                "endChar": 0
+              },
+              "replacement": "    if (com::android::bluetooth::flags::initial_conn_params_p1()) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1314,
+                "startChar": 0,
+                "endLine": 1326,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1353,
+                "startChar": 0,
+                "endLine": 1355,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a73c9730_c51c4b5c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-24T23:36:28Z",
+      "side": 1,
+      "message": "When will it be removed? It seems pretty hacky to have a maximum number of records and then let it fall out of the list when that\u0027s hit. Instead it should be properly cleaned up at some point in time.",
+      "range": {
+        "startLine": 1315,
+        "startChar": 7,
+        "endLine": 1315,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9cb704ff_3779d598",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": "constexpr std::chrono::milliseconds kChannelSoundingDeviceTimeout \u003d std::chrono::seconds(10);\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 879,
+                "startChar": 0,
+                "endLine": 881,
+                "endChar": 0
+              },
+              "replacement": "        auto it \u003d channel_sounding_devices_map_.find(address);\n        if (it !\u003d channel_sounding_devices_map_.end() \u0026\u0026\n                (std::chrono::steady_clock::now() - it-\u003esecond) \u003c kChannelSoundingDeviceTimeout) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1315,
+                "startChar": 0,
+                "endLine": 1325,
+                "endChar": 0
+              },
+              "replacement": "  void add_channel_sounding_device(const Address address, std::chrono::milliseconds timestamp) {\n    channel_sounding_devices_map_[address] \u003d timestamp;\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1353,
+                "startChar": 0,
+                "endLine": 1355,
+                "endChar": 0
+              },
+              "replacement": "  // Map of devices that have recently used channel sounding and their timestamps\n  std::map\u003cbluetooth::hci::Address, std::chrono::milliseconds\u003e channel_sounding_devices_map_;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
