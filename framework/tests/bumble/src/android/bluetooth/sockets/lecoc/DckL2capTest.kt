@@ -51,6 +51,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -188,6 +189,30 @@ public class DckL2capTest() : Closeable {
 
     @Test
     @VirtualOnly
+    @Ignore
+    /**
+     * Test:
+     * - Create L2CAP server on Bumble (DCK L2cap Server)
+     * - create insecure Client Bluetooth Socket & initiate connection on phone
+     * - Ensure socket is connected
+     * - Initiate disconnection from Bumble side
+     */
+    fun testConnectInsecureClientRemoteDisconnect() {
+        Log.d(TAG, "testConnectInsecureClientRemoteDisconnect")
+        val (bluetoothSocket, channel) = clientSocketConnectUtil(false)
+
+        assertThat((bluetoothSocket).isConnected()).isTrue()
+        Log.d(TAG, "testConnectInsecureClientRemoteDisconnect: close/disconnect")
+        disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel, true)
+
+        // currently there is no way Java layer get to know if the socket disconnected
+        // from remote side. Hence Socket state doesn't show as disconnected
+        assertThat((bluetoothSocket).isConnected()).isFalse()
+        Log.d(TAG, "testConnectInsecureClientRemoteDisconnect: done")
+    }
+
+    @Test
+    @VirtualOnly
     /**
      * Test:
      * - Create insecure L2CAP Socket server on Phone
@@ -222,6 +247,53 @@ public class DckL2capTest() : Closeable {
         Log.d(TAG, "testAcceptInsecureLocalDisconnect: close/disconnect")
         disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel)
         assertThat((bluetoothSocket)?.isConnected()).isFalse()
+        Log.d(TAG, "testAcceptInsecureLocalDisconnect: done")
+    }
+
+    @Test
+    @VirtualOnly
+    @Ignore
+    /**
+     * Test:
+     * - Create insecure L2CAP Socket server on Phone
+     * - Use Bumble as client nd trigger connection to L2cap server on Phone
+     * - Ensure connection is established
+     * - trigger disconnection by closing the socket handle from Bumble/Remote side
+     * - Ensure L2cap connection is disconnected
+     */
+    fun testAcceptInsecureRemoteDisconnect() {
+        Log.d(TAG, "testAcceptInsecureLocalDisconnect: Connect L2CAP")
+        val (l2capServer, bluetoothSocket, channel) =
+            l2capServerOnPhoneAndConnectionFromBumbleUtil(false)
+        Log.d(TAG, "testAcceptInsecureLocalDisconnect: close/disconnect from remote")
+        disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel, true)
+        assertThat((bluetoothSocket)?.isConnected()).isFalse()
+
+        l2capServer.close()
+        Log.d(TAG, "testAcceptInsecureLocalDisconnect: done")
+    }
+
+    @Test
+    @VirtualOnly
+    @Ignore
+    /**
+     * Test:
+     * - Create insecure L2CAP Socket server on Phone
+     * - Use Bumble as client nd trigger connection to L2cap server on Phone
+     * - Ensure connection is established
+     * - trigger disconnection by closing the socket handle from Bumble/Remote side
+     * - Teardown the Server socket on Phone side
+     * - Ensure L2cap connection is disconnected
+     */
+    fun testAcceptInsecureLocalServerTearDown() {
+        Log.d(TAG, "testAcceptInsecureLocalDisconnect: Connect L2CAP")
+        val (l2capServer, bluetoothSocket, channel) =
+            l2capServerOnPhoneAndConnectionFromBumbleUtil(false)
+        Log.d(TAG, "testAcceptInsecureLocalDisconnect: close/disconnect from remote")
+        tearDownServerSocketAndWaitForDisconnectUtil(l2capServer, channel)
+        assertThat((bluetoothSocket)?.isConnected()).isFalse()
+
+        bluetoothSocket.close()
         Log.d(TAG, "testAcceptInsecureLocalDisconnect: done")
     }
 
