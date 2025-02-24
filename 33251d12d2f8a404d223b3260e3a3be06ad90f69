@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7be5019_900d74ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-24T22:20:59Z",
+      "side": 1,
+      "message": "Not needed",
+      "revId": "33251d12d2f8a404d223b3260e3a3be06ad90f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bce58d3_0c49a9f2",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-24T22:20:59Z",
+      "side": 1,
+      "message": "This should be a bug fix flag",
+      "revId": "33251d12d2f8a404d223b3260e3a3be06ad90f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
