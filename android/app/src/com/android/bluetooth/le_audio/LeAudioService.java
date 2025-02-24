@@ -2504,7 +2504,7 @@ public class LeAudioService extends ProfileService {
 
             // If broadcast is ongoing and need to update unicast fallback active group
             // we need to update the cached group id and skip changing the active device
-            updateFallbackUnicastGroupIdForBroadcast(groupId);
+            updateInbandRingtoneAndBroadcastToUnicastFallbackGroup(groupId);
 
             if (!leaudioUseAudioRecordingListener()) {
                 if (fallbackGroupDescriptor != null) {
@@ -2963,6 +2963,11 @@ public class LeAudioService extends ProfileService {
                 if (!device.equals(mActiveBroadcastAudioDevice)) {
                     updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
                 }
+
+                /* After group de-activation a fallback broadcast to unicast device would be
+                 * potential ringtone streaming device.
+                 */
+                updateInbandRingtoneForTheGroup(mUnicastGroupIdDeactivatedForBroadcastTransition);
             }
 
             updateActiveDevices(
@@ -3124,6 +3129,27 @@ public class LeAudioService extends ProfileService {
         mHfpHandoverDevice = null;
     }
 
+    /* Return true if Fallback Unicast Group For Broadcast is the given groupId and broadcast is
+     * active or ready to be activated.
+     */
+    boolean wouldUseFallbackUnicastGroupForBroadcast(int groupId) {
+        return (groupId != IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID)
+                && (groupId == mUnicastGroupIdDeactivatedForBroadcastTransition)
+                && (isBroadcastActive() || isBroadcastReadyToBeReActivated());
+    }
+
+    void updateInbandRingtoneAndBroadcastToUnicastFallbackGroup(int groupId) {
+        int oldBroadcastToUnicastFallbackGroup = mUnicastGroupIdDeactivatedForBroadcastTransition;
+        updateFallbackUnicastGroupIdForBroadcast(groupId);
+
+        if (mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID) {
+            updateInbandRingtoneForTheGroup(oldBroadcastToUnicastFallbackGroup);
+        }
+        if (groupId != LE_AUDIO_GROUP_ID_INVALID) {
+            updateInbandRingtoneForTheGroup(groupId);
+        }
+    }
+
     void updateInbandRingtoneForTheGroup(int groupId) {
         if (!mLeAudioInbandRingtoneSupportedByPlatform) {
             Log.d(TAG, "Platform does not support inband ringtone");
@@ -3151,7 +3177,7 @@ public class LeAudioService extends ProfileService {
             }
 
             /* Enables in-band ringtone only for the currently active device or
-             * primary device in broadcast scenarios.
+             * fallback broadcast to unicast device in broadcast scenarios.
              * Devices are notified of its state over GTBS.
              * When enabled, remote devices will not generate an internal ringtone upon
              * receiving a GTBS incoming call notification. Instead, they will wait for a
@@ -3165,15 +3191,14 @@ public class LeAudioService extends ProfileService {
             boolean isRingtoneEnabled =
                     ringtoneContextAvailable
                             && (groupDescriptor.isActive()
-                                    || isPrimaryGroup(groupId)
-                                    || isBroadcastReadyToBeReActivated());
-
+                                    || wouldUseFallbackUnicastGroupForBroadcast(groupId));
             Log.i(
                     TAG,
                     "updateInbandRingtoneForTheGroup groupId: "
                             + (groupId + ", active state: " + groupDescriptor.mActiveState)
                             + (", ringtone supported: " + ringtoneContextAvailable)
-                            + (", is primary group: " + isPrimaryGroup(groupId))
+                            + (", would use fallback unicast group for broadcast: "
+                                    + wouldUseFallbackUnicastGroupForBroadcast(groupId))
                             + (", isBroadcastReadyToBeReActivated: "
                                     + isBroadcastReadyToBeReActivated())
                             + (", state change: "
@@ -3256,6 +3281,11 @@ public class LeAudioService extends ProfileService {
                         + mUnicastGroupIdDeactivatedForBroadcastTransition
                         + ", with device: "
                         + unicastDevice);
+
+        /* After group activation a fallback broadcast to unicast device should be no longer
+         * potential ringtone streaming device.
+         */
+        updateInbandRingtoneForTheGroup(mUnicastGroupIdDeactivatedForBroadcastTransition);
 
         if (!Flags.leaudioBroadcastPrimaryGroupSelection()) {
             updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
@@ -5469,7 +5499,7 @@ public class LeAudioService extends ProfileService {
             mGroupReadLock.unlock();
         }
 
-        updateFallbackUnicastGroupIdForBroadcast(groupId);
+        updateInbandRingtoneAndBroadcastToUnicastFallbackGroup(groupId);
     }
 
     int getBroadcastToUnicastFallbackGroup() {
