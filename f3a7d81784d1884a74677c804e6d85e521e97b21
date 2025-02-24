@@ -22,6 +22,30 @@
       },
       "revId": "f3a7d81784d1884a74677c804e6d85e521e97b21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03c59df_175f14cb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-24T18:22:10Z",
+      "side": 1,
+      "message": "intentListener is created here as per the instructions in https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java;drc\u003de747e491009cd85efdde7c9cf8da1b73e2d42b91;l\u003d61",
+      "parentUuid": "e43a8096_701bb754",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 56
+      },
+      "revId": "f3a7d81784d1884a74677c804e6d85e521e97b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
