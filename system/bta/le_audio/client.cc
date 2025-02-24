@@ -843,7 +843,6 @@ public:
   void UpdateLocationsAndContextsAvailability(LeAudioDeviceGroup* group, bool force = false) {
     bool group_conf_changed = group->ReloadAudioLocations();
     group_conf_changed |= group->ReloadAudioDirections();
-    group_conf_changed |= group->UpdateAudioContextAvailability();
     if (group_conf_changed || force) {
       /* All the configurations should be recalculated for the new conditions */
       group->InvalidateCachedConfigurations();
@@ -2387,6 +2386,12 @@ public:
         return;
       }
 
+      AudioContexts current_group_contexts;
+
+      if (group) {
+        current_group_contexts = group->GetAvailableContexts();
+      }
+
       leAudioDevice->SetAvailableContexts(contexts);
 
       if (!group) {
@@ -2405,11 +2410,13 @@ public:
         return;
       }
 
+      /* Whenever context type change, update user about that.
+       * Note: GetAvailableContexts() add streaming context as well
+       */
+      UpdateLocationsAndContextsAvailability(
+              group, current_group_contexts != group->GetAvailableContexts());
+
       if (!group->IsStreaming()) {
-        /* Group is not streaming. Device does not have to be attach to the
-         * stream, and we can update context availability for the group
-         */
-        UpdateLocationsAndContextsAvailability(group);
         return;
       }
 
