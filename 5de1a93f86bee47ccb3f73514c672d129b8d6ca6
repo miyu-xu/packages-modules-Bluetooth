@@ -1,0 +1,224 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce60a29c_de551b03",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:53Z",
+      "side": 1,
+      "message": "ALready specified in the aidl, should be removed here",
+      "range": {
+        "startLine": 4439,
+        "startChar": 1,
+        "endLine": 4443,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5a0c3c8a_54eef00d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 4439,
+                "startChar": 0,
+                "endLine": 4444,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+              "range": {
+                "startLine": 4467,
+                "startChar": 0,
+                "endLine": 4472,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfbf98a_34fba8ba",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:53Z",
+      "side": 1,
+      "message": "idem",
+      "range": {
+        "startLine": 4467,
+        "startChar": 0,
+        "endLine": 4471,
+        "endChar": 18
+      },
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "714d6bb5_171b2079",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:53Z",
+      "side": 1,
+      "message": "This is not an API, API are located in the Framework code",
+      "range": {
+        "startLine": 1595,
+        "startChar": 15,
+        "endLine": 1595,
+        "endChar": 18
+      },
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df5a337_8a26e569",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1600,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:53Z",
+      "side": 1,
+      "message": "there is no @hide annotation necessary in the bluetooth app",
+      "range": {
+        "startLine": 1600,
+        "startChar": 0,
+        "endLine": 1600,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6fd009fc_624021ac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+              "range": {
+                "startLine": 1600,
+                "startChar": 0,
+                "endLine": 1601,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e78ce99e_18a814ea",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:53Z",
+      "side": 1,
+      "message": "Should we return -1 to indicate an error in this case ?",
+      "range": {
+        "startLine": 1629,
+        "startChar": 23,
+        "endLine": 1629,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3d3408fa_fd97490e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+              "range": {
+                "startLine": 1629,
+                "startChar": 0,
+                "endLine": 1630,
+                "endChar": 0
+              },
+              "replacement": "                return -1;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08fae346_65147f50",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3819,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:53Z",
+      "side": 1,
+      "message": "Why do we want to expose the setter too ?\nIsn\u0027t bluetooth the source of truth for this ?",
+      "range": {
+        "startLine": 3792,
+        "startChar": 0,
+        "endLine": 3819,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b84b0b81_994ed11a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 3792,
+                "startChar": 0,
+                "endLine": 3820,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
