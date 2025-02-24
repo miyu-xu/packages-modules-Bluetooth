@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5363639a_2d4ae05d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T22:14:21Z",
+      "side": 1,
+      "message": "I Believe that this CL should now be deprecated in favor of the others one",
+      "revId": "11856611dfd13350d298dc5031a67cca76db0a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
