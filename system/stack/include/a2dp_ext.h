@@ -47,7 +47,6 @@ public:
                       uint8_t const codec_config[AVDT_CODEC_SIZE],
                       std::vector<uint8_t> const& vendor_specific_parameters) {
     codec_config_ = codec_parameters;
-    codec_capability_ = codec_parameters;
     memcpy(ota_codec_config_, codec_config, sizeof(ota_codec_config_));
     vendor_specific_parameters_ = vendor_specific_parameters;
   }
