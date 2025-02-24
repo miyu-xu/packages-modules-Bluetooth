@@ -190,6 +190,28 @@ public class DckL2capTest() : Closeable {
     @VirtualOnly
     /**
      * Test:
+     * - Create L2CAP server on Bumble (DCK L2cap Server)
+     * - create insecure Client Bluetooth Socket & initiate connection on phone
+     * - Ensure socket is connected
+     * - Initiate disconnection from Bumble side
+     */
+    fun testConnectInsecureClientRemoteDisconnect() {
+        Log.d(TAG, "testConnectInsecureClientRemoteDisconnect")
+        val (bluetoothSocket, channel) = clientSocketConnectUtil(false)
+
+        assertThat((bluetoothSocket).isConnected()).isTrue()
+        Log.d(TAG, "testConnectInsecureClientRemoteDisconnect: close/disconnect")
+        disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel, true)
+
+        // Todo: b/401106684
+        // assertThat((bluetoothSocket).isConnected()).isFalse()
+        Log.d(TAG, "testConnectInsecureClientRemoteDisconnect: done")
+    }
+
+    @Test
+    @VirtualOnly
+    /**
+     * Test:
      * - Create insecure L2CAP Socket server on Phone
      * - Use Bumble as client and trigger connection to L2cap server on Phone
      * - Ensure connection is established
@@ -223,6 +245,30 @@ public class DckL2capTest() : Closeable {
         disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel)
         assertThat((bluetoothSocket)?.isConnected()).isFalse()
         Log.d(TAG, "testAcceptInsecureLocalDisconnect: done")
+    }
+
+    @Test
+    @VirtualOnly
+    /**
+     * Test:
+     * - Create insecure L2CAP Socket server on Phone
+     * - Use Bumble as client nd trigger connection to L2cap server on Phone
+     * - Ensure connection is established
+     * - trigger disconnection by closing the socket handle from Bumble/Remote side
+     * - Ensure L2cap connection is disconnected
+     */
+    fun testAcceptInsecureRemoteDisconnect() {
+        Log.d(TAG, "testAcceptInsecureRemoteDisconnect: Connect L2CAP")
+        val (l2capServer, bluetoothSocket, channel) =
+            l2capServerOnPhoneAndConnectionFromBumbleUtil(false)
+        Log.d(TAG, "testAcceptInsecureRemoteDisconnect: close/disconnect from remote")
+        disconnectSocketAndWaitForDisconnectUtil(bluetoothSocket, channel, true)
+
+        // Todo: b/401106684
+        // assertThat((bluetoothSocket)?.isConnected()).isFalse()
+
+        l2capServer.close()
+        Log.d(TAG, "testAcceptInsecureRemoteDisconnect: done")
     }
 
     @Test
