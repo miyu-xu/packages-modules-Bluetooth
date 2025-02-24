@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2d1264e_988754f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-24T17:58:17Z",
+      "side": 1,
+      "message": "this should be `com.android.bt`",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 30
+      },
+      "revId": "4e96d5e823aa9b1808f1c998763c1e6acf9b5f91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46aed6b9_2ca46e06",
         "filename": "system/stack/rfcomm/port_int.h",
         "patchSetId": 20
