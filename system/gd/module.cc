@@ -19,6 +19,7 @@
 
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
+#include "main/shim/stack.h"
 
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
@@ -77,6 +78,11 @@ void ModuleRegistry::set_registry_and_handler(Module* instance, Thread* thread) 
   instance->handler_ = new Handler(thread);
 }
 
+void ModuleRegistry::set_registry_and_handler(Module* instance, Handler* handler) const {
+  instance->registry_ = this;
+  instance->handler_ = handler;
+}
+
 Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
   {
     std::unique_lock<std::mutex> lock(started_modules_guard_, std::defer_lock);
@@ -91,7 +97,13 @@ Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
 
   log::info("Constructing next module");
   Module* instance = module->ctor_();
-  set_registry_and_handler(instance, thread);
+  if (com::android::bluetooth::flags::same_handler_for_all_modules()) {
+    // Use same handler for all modules initialization.
+    set_registry_and_handler(instance, shim::Stack::GetInstance()->GetHandler());
+  }
+  else {
+    set_registry_and_handler(instance, thread);
+  }
 
   log::info("Starting dependencies of {}", instance->ToString());
   instance->ListDependencies(&instance->dependencies_);
