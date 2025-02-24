@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c01649a_4405d98b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-24T17:45:57Z",
+      "side": 1,
+      "message": "Should the OWNERS be in `sockets/` instead of `sockets/lecoc`?",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "f46953313e5f1c1e8c9b5d9cd71291f4bed2cd3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
