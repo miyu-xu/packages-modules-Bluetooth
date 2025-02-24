@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe9755ac_9a28b270",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-24T19:21:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf1419c7_632aa839",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "f46953313e5f1c1e8c9b5d9cd71291f4bed2cd3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c01649a_4405d98b",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-24T17:45:57Z",
       "side": 1,
       "message": "Should the OWNERS be in `sockets/` instead of `sockets/lecoc`?",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "f46953313e5f1c1e8c9b5d9cd71291f4bed2cd3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4083e52_e63ba029",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-24T19:21:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c01649a_4405d98b",
       "range": {
         "startLine": 1,
         "startChar": 10,
