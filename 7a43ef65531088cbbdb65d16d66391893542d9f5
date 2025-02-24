@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5221146_1fffa814",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1310,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:29:33Z",
+      "side": 1,
+      "message": "remove, this will simply never be done",
+      "range": {
+        "startLine": 1308,
+        "startChar": 66,
+        "endLine": 1310,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cc304d5c_80aea4ad",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1309,
+                "startChar": 0,
+                "endLine": 1311,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7a43ef65531088cbbdb65d16d66391893542d9f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
