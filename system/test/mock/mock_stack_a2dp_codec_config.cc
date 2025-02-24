@@ -200,11 +200,6 @@ btav_a2dp_codec_config_t A2dpCodecConfig::getCodecAudioConfig() {
   btav_a2dp_codec_config_t config;
   return config;
 }
-btav_a2dp_codec_config_t A2dpCodecConfig::getCodecCapability() {
-  inc_func_call_count(__func__);
-  btav_a2dp_codec_config_t config;
-  return config;
-}
 btav_a2dp_codec_config_t A2dpCodecConfig::getCodecConfig() {
   inc_func_call_count(__func__);
   btav_a2dp_codec_config_t config;
