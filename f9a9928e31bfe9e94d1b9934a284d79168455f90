@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52173d1_b3c6c24f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-24T20:07:07Z",
+      "side": 1,
+      "message": "fyi @wescande@google.com, I reversed the logic as you asked in aosp/3501608.\nThis rebased ver carried your +2, and I\u0027m assuming you\u0027re okay with this.",
+      "revId": "f9a9928e31bfe9e94d1b9934a284d79168455f90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
