@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b292f3c_ed2a2f57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T20:07:19Z",
+      "side": 1,
+      "message": "This looks like a hacks.\nWhy are we doing this ?\n\nIf we want to gave more information about the active transition from `null -\u003e device` vs `deviceA -\u003e deviceB` vs `device -\u003e null`, wouldn\u0027t it be preferabile to only send one intent with two extra ? like we are doing for connection_state_changed",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "62789a932517013c62dc4e5455022cf39098a357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
