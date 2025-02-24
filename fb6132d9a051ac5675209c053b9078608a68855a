@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83927cf8_029f9a53",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-02-24T09:01:26Z",
+      "side": 1,
+      "message": "Context is on the public getter 😊",
+      "parentUuid": "1f8e0c4f_7cb7953d",
+      "range": {
+        "startLine": 46,
+        "startChar": 19,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "fb6132d9a051ac5675209c053b9078608a68855a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0df56ee_3ccfe83d",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-21T18:34:32Z",
       "side": 1,
       "message": "should we put true here to default adoption and only let people disable it ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 83,
+        "endLine": 47,
+        "endChar": 88
+      },
+      "revId": "fb6132d9a051ac5675209c053b9078608a68855a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e93c39dc_b878228c",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-02-24T09:01:26Z",
+      "side": 1,
+      "message": "No, we don\u0027t know which devices don\u0027t support it. We can\u0027t ask users to individually set a system property if their phone suddenly stops working with their car! (It\u0027s remotes that don\u0027t support the feature, not the phone, I can make it more clear if you think that\u0027s necessary)",
+      "parentUuid": "c0df56ee_3ccfe83d",
       "range": {
         "startLine": 47,
         "startChar": 83,
