@@ -34,6 +34,24 @@
       "parentUuid": "e52173d1_b3c6c24f",
       "revId": "f9a9928e31bfe9e94d1b9934a284d79168455f90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87787a1_151ed9ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-24T22:01:56Z",
+      "side": 1,
+      "message": "that sg to me, then I will keep the original part.",
+      "parentUuid": "0e109b24_c4e8e1ca",
+      "revId": "f9a9928e31bfe9e94d1b9934a284d79168455f90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
