@@ -22,6 +22,85 @@
       },
       "revId": "74808402582012f7b3ce61c8798829fa1ab98853",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3710d59b_3785315b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-24T16:05:34Z",
+      "side": 1,
+      "message": "Fallback group: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeAudio.java;drc\u003dcc278a618a9bdc739bd1ae6f83d9da2551a79bab;l\u003d1455",
+      "parentUuid": "ef16dbb5_260ecd86",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "74808402582012f7b3ce61c8798829fa1ab98853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d60c24_f88f3bea",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3208,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-24T16:05:34Z",
+      "side": 1,
+      "message": "isPrimaryGroup is no longer relevant here, use `wouldUseFallbackUnicastGroupForBroadcast` instead here only",
+      "fixSuggestions": [
+        {
+          "fixId": "8f8b2117_f55de577",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 1621,
+                "startChar": 0,
+                "endLine": 1627,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3208,
+                "startChar": 0,
+                "endLine": 3209,
+                "endChar": 0
+              },
+              "replacement": "                            + (\", wouldUseFallbackUnicastGroupForBroadcast: \"\n                                    + wouldUseFallbackUnicastGroupForBroadcast(groupId))\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 4839,
+                "startChar": 0,
+                "endLine": 4840,
+                "endChar": 0
+              },
+              "replacement": "                            .anyMatch(\n                                    dev -\u003e\n                                            wouldUseFallbackUnicastGroupForBroadcast(\n                                                    getGroupId(dev)))) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "74808402582012f7b3ce61c8798829fa1ab98853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
