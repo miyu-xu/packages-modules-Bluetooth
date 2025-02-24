@@ -93,6 +93,30 @@
       },
       "revId": "fb6132d9a051ac5675209c053b9078608a68855a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d5c88b4_1f3487ca",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Util.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:54:14Z",
+      "side": 1,
+      "message": "Oh, my bad, I thought this was the local and not the remote",
+      "parentUuid": "e93c39dc_b878228c",
+      "range": {
+        "startLine": 47,
+        "startChar": 83,
+        "endLine": 47,
+        "endChar": 88
+      },
+      "revId": "fb6132d9a051ac5675209c053b9078608a68855a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
