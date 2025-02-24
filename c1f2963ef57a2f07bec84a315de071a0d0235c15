@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4596740f_cff32e94",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-24T18:23:06Z",
+      "side": 1,
+      "message": "Can we move it into a helper function instead?  There\u0027s a lot of repetition and it would be easier to have it in one location",
+      "revId": "c1f2963ef57a2f07bec84a315de071a0d0235c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
