@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6053999b_4fc9e5cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-24T19:25:20Z",
+      "side": 1,
+      "message": "If I understand it correctly, this comes from the task to speed up reconfiguration process. Can we link the bug number here instead of using 331775328?",
+      "revId": "38575951c9176441a4e59132aeac45bde93d9397",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
