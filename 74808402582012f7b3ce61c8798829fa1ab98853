@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef16dbb5_260ecd86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-24T15:16:51Z",
+      "side": 1,
+      "message": "what is fallback group and how ths is related to primary group and Active Device ?",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "74808402582012f7b3ce61c8798829fa1ab98853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
