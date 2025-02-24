@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e43a8096_701bb754",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-24T14:59:05Z",
+      "side": 1,
+      "message": "Utils has another IntentReceiver and here creating one more. not sure how both will work together",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 56
+      },
+      "revId": "f3a7d81784d1884a74677c804e6d85e521e97b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
