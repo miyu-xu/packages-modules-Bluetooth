@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aa4b9d2_8e1a9de7",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:27:20Z",
+      "side": 0,
+      "message": "basically this is checking LE conditions OR BR/EDR conditions",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 49
+      },
+      "revId": "dd82f4f519d93322a1dc609907ecfc1943046928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

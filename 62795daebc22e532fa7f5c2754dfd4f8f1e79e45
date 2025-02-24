@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b24229f_f65d569a",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:27:20Z",
+      "side": 1,
+      "message": "```\nif (sec_rec \u003d\u003d nullptr) {\n  return false;\n}\nbool bonded \u003d false;\n```",
+      "range": {
+        "startLine": 176,
+        "startChar": 2,
+        "endLine": 176,
+        "endChar": 45
+      },
+      "revId": "62795daebc22e532fa7f5c2754dfd4f8f1e79e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95dde54a_cff5edd6",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:27:20Z",
+      "side": 1,
+      "message": "here it is covering `auto` and `dual`",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 36
+      },
+      "revId": "62795daebc22e532fa7f5c2754dfd4f8f1e79e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "449ed74f_0dbdd48d",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:27:20Z",
+      "side": 1,
+      "message": "this can be verbose as `IsLinkKeyKnown` was called more often and this may create lots of log spam, consider remove. I would say, only cover the changes as info log, but not each getter",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 55
+      },
+      "revId": "62795daebc22e532fa7f5c2754dfd4f8f1e79e45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
