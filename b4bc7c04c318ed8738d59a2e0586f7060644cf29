@@ -16,6 +16,52 @@
       "message": "Did we test it with any Source only device?",
       "revId": "b4bc7c04c318ed8738d59a2e0586f7060644cf29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf1b8655_6aa9d451",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-24T17:17:08Z",
+      "side": 1,
+      "message": "unlocked_device ?",
+      "range": {
+        "startLine": 1070,
+        "startChar": 19,
+        "endLine": 1070,
+        "endChar": 25
+      },
+      "revId": "b4bc7c04c318ed8738d59a2e0586f7060644cf29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810f4135_e13e7e4f",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-24T17:17:08Z",
+      "side": 1,
+      "message": "shared_ptr is a bad name for variablem. maybe call it \"device\" ?",
+      "range": {
+        "startLine": 1071,
+        "startChar": 9,
+        "endLine": 1071,
+        "endChar": 19
+      },
+      "revId": "b4bc7c04c318ed8738d59a2e0586f7060644cf29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
