@@ -16,6 +16,24 @@
       "message": "I got the overall idea of allowing empty metadata.\nBesides unit tests and PTS tests, will we also have such case in our daily CUJs?\nWondering how did we ensure this is not breaking anything there or causing crash?",
       "revId": "1847f4c139e67fef3f5f2672910d4e4376f58e7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c7e6e4e_9ad43540",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-24T12:13:29Z",
+      "side": 1,
+      "message": "do you see any specific place in the code which is suspitious for the crash or this is just a generic remark ?\n\nWe do request QA for regression testing for this. No crash observed.",
+      "parentUuid": "92f40455_4cee426b",
+      "revId": "1847f4c139e67fef3f5f2672910d4e4376f58e7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
