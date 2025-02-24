@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37322a2_7113dcfc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-24T17:24:56Z",
+      "side": 1,
+      "message": "NIT: is that not too much ?\nDoes your testing show such a high number is a must ?",
+      "range": {
+        "startLine": 217,
+        "startChar": 45,
+        "endLine": 217,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fd49404e_05aee970",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 218,
+                "endChar": 0
+              },
+              "replacement": "    private static final int LOG_NB_EVENTS \u003d 100;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd3806e_bd9e6d98",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-24T17:24:56Z",
+      "side": 1,
+      "message": "Can you please remind me if this is logging to logcat too ? Or you remove the logcat logs, and keep just the dumpsys ?",
+      "range": {
+        "startLine": 218,
+        "startChar": 19,
+        "endLine": 218,
+        "endChar": 39
+      },
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
