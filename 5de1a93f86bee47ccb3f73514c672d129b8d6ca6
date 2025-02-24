@@ -182,6 +182,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed8544a7_20c351e4",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3806,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-24T22:28:56Z",
+      "side": 1,
+      "message": "We don\u0027t need this. Bond loss count is maintained by Android Bluetooth. Apps cannot modify it.",
+      "fixSuggestions": [
+        {
+          "fixId": "fcadb588_ab43f50b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 3792,
+                "startChar": 0,
+                "endLine": 3820,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5de1a93f86bee47ccb3f73514c672d129b8d6ca6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "08fae346_65147f50",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 4
