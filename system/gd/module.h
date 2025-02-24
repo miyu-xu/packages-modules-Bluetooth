@@ -157,6 +157,8 @@ protected:
 
   void set_registry_and_handler(Module* instance, ::bluetooth::os::Thread* thread) const;
 
+  void set_registry_and_handler(Module* instance, os::Handler* handler) const;
+
   os::Handler* GetModuleHandler(const ModuleFactory* module) const;
 
   std::map<const ModuleFactory*, Module*> started_modules_;
