@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c513f78e_43c3142c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-24T23:10:30Z",
+      "side": 1,
+      "message": "Sounds good. I will create the enum based on the three groups.",
+      "parentUuid": "7ae597e4_5f85a3d1",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 98
+      },
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51415d80_7e7412e0",
         "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
         "patchSetId": 2
