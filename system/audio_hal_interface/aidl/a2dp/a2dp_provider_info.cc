@@ -376,9 +376,9 @@ bool ProviderInfo::CodecCapabilities(btav_a2dp_codec_index_t codec_index,
     }
   }
   if (codec_config != nullptr) {
-    *codec_config = btav_a2dp_codec_config_t {
-      .codec_type = codec_index,
-      .codec_priority = BTAV_A2DP_CODEC_PRIORITY_DEFAULT,
+    *codec_config = btav_a2dp_codec_config_t{
+            .codec_type = codec_index,
+            .codec_priority = BTAV_A2DP_CODEC_PRIORITY_DEFAULT,
     };
 
     for (auto const& channel_mode : transport.channelMode) {
