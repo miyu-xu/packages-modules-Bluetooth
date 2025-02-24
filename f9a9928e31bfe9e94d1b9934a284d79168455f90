@@ -16,6 +16,24 @@
       "message": "fyi @wescande@google.com, I reversed the logic as you asked in aosp/3501608.\nThis rebased ver carried your +2, and I\u0027m assuming you\u0027re okay with this.",
       "revId": "f9a9928e31bfe9e94d1b9934a284d79168455f90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e109b24_c4e8e1ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:39:54Z",
+      "side": 1,
+      "message": "I was more thinking about\n```\n        if (volumeControlService !\u003d null) {\n           bla\n           bla\n           bla\n        }\n```\n\nthat could be \n\n```\n        if (volumeControlService \u003d\u003d null) {\n           return;\n        }\n        bla\n        bla\n        bla\n```",
+      "parentUuid": "e52173d1_b3c6c24f",
+      "revId": "f9a9928e31bfe9e94d1b9934a284d79168455f90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
