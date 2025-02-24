@@ -40,6 +40,30 @@
       ],
       "revId": "7a43ef65531088cbbdb65d16d66391893542d9f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15b86be9_2b509496",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1310,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-24T21:31:27Z",
+      "side": 1,
+      "message": "Rephrased the comment. I prefer keeping the context as to why it is disabled in the code.",
+      "parentUuid": "b5221146_1fffa814",
+      "range": {
+        "startLine": 1308,
+        "startChar": 66,
+        "endLine": 1310,
+        "endChar": 63
+      },
+      "revId": "7a43ef65531088cbbdb65d16d66391893542d9f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
