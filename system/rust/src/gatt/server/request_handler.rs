@@ -3,9 +3,9 @@ use pdl_runtime::{DecodeError, EncodeError};
 
 use crate::gatt::ids::AttHandle;
 use crate::gatt::opcode_types::OperationType;
+use crate::gatt::server::att_client::WeakAttClient;
 use crate::packets::att::{self, AttErrorCode};
 
-use super::att_database::AttDatabase;
 use super::transactions::find_by_type_value::handle_find_by_type_value_request;
 use super::transactions::find_information_request::handle_find_information_request;
 use super::transactions::read_by_group_type_request::handle_read_by_group_type_request;
@@ -17,8 +17,8 @@ use super::transactions::write_request::handle_write_request;
 
 /// This struct handles all requests needing ACKs. Only ONE should exist per
 /// bearer per database, to ensure serialization.
-pub struct AttRequestHandler<Db: AttDatabase> {
-    db: Db,
+pub struct AttRequestHandler {
+    client: WeakAttClient,
 }
 
 /// Type of errors raised by request handlers.
@@ -41,9 +41,9 @@ impl From<EncodeError> for ProcessingError {
     }
 }
 
-impl<Db: AttDatabase> AttRequestHandler<Db> {
-    pub fn new(db: Db) -> Self {
-        Self { db }
+impl AttRequestHandler {
+    pub fn new(client: WeakAttClient) -> Self {
+        Self { client }
     }
 
     // Runs a task to process an incoming *request* packet. There should be only one instance of
@@ -77,33 +77,31 @@ impl<Db: AttDatabase> AttRequestHandler<Db> {
         packet: &att::Att,
         mtu: usize,
     ) -> Result<att::Att, ProcessingError> {
-        let snapshotted_db = self.db.snapshot();
         match packet.opcode {
             att::AttOpcode::ReadRequest => {
-                Ok(handle_read_request(packet.try_into()?, mtu, &self.db).await?)
+                Ok(handle_read_request(packet.try_into()?, mtu, &self.client).await?)
             }
             att::AttOpcode::ReadBlobRequest => {
-                Ok(handle_read_blob_request(packet.try_into()?, mtu, &self.db).await?)
+                Ok(handle_read_blob_request(packet.try_into()?, mtu, &self.client).await?)
             }
             att::AttOpcode::ReadMultipleVariableRequest => {
-                Ok(handle_read_multiple_variable_request(packet.try_into()?, mtu, &self.db).await?)
+                Ok(handle_read_multiple_variable_request(packet.try_into()?, mtu, &self.client)
+                    .await?)
             }
             att::AttOpcode::ReadByGroupTypeRequest => {
-                Ok(handle_read_by_group_type_request(packet.try_into()?, mtu, &snapshotted_db)
-                    .await?)
+                Ok(handle_read_by_group_type_request(packet.try_into()?, mtu, &self.client).await?)
             }
             att::AttOpcode::ReadByTypeRequest => {
-                Ok(handle_read_by_type_request(packet.try_into()?, mtu, &snapshotted_db).await?)
+                Ok(handle_read_by_type_request(packet.try_into()?, mtu, &self.client).await?)
             }
             att::AttOpcode::FindInformationRequest => {
-                Ok(handle_find_information_request(packet.try_into()?, mtu, &snapshotted_db)?)
+                Ok(handle_find_information_request(packet.try_into()?, mtu, &self.client)?)
             }
             att::AttOpcode::FindByTypeValueRequest => {
-                Ok(handle_find_by_type_value_request(packet.try_into()?, mtu, &snapshotted_db)
-                    .await?)
+                Ok(handle_find_by_type_value_request(packet.try_into()?, mtu, &self.client).await?)
             }
             att::AttOpcode::WriteRequest => {
-                Ok(handle_write_request(packet.try_into()?, &self.db).await?)
+                Ok(handle_write_request(packet.try_into()?, &self.client).await?)
             }
             _ => {
                 warn!("Dropping unsupported opcode {:?}", packet.opcode);
@@ -118,16 +116,20 @@ mod test {
     use super::*;
 
     use crate::core::uuid::Uuid;
+    use crate::gatt::ids::TransportIndex;
+    use crate::gatt::server::att_client::AttClient;
     use crate::gatt::server::att_database::{AttAttribute, AttPermissions};
     use crate::gatt::server::request_handler::AttRequestHandler;
-    use crate::gatt::server::test::test_att_db::TestAttDatabase;
+    use crate::gatt::server::test::test_att_db::new_test_database;
     use crate::packets::att;
     use pdl_runtime::Packet;
+
+    const TCB_IDX: TransportIndex = TransportIndex(1);
 
     #[test]
     fn test_read_request() {
         // arrange
-        let db = TestAttDatabase::new(vec![(
+        let db = new_test_database(vec![(
             AttAttribute {
                 handle: AttHandle(3),
                 type_: Uuid::new(0x1234),
@@ -135,7 +137,8 @@ mod test {
             },
             vec![1, 2, 3],
         )]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
         let att_view =
             att::AttReadRequest { attribute_handle: AttHandle(3).into() }.try_into().unwrap();
 
@@ -150,7 +153,7 @@ mod test {
     fn test_read_blob_request() {
         // arrange
         let data: Vec<u8> = (0..255).collect();
-        let db = TestAttDatabase::new(vec![(
+        let db = new_test_database(vec![(
             AttAttribute {
                 handle: AttHandle(3),
                 type_: Uuid::new(0x1234),
@@ -158,7 +161,8 @@ mod test {
             },
             data.clone(),
         )]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
         const MTU: usize = 31;
 
         for offset in [0, 13, 50, 250, 255] {
@@ -187,7 +191,7 @@ mod test {
     fn test_read_blob_request_with_bad_offset() {
         // arrange
         let data: Vec<u8> = (0..255).collect();
-        let db = TestAttDatabase::new(vec![(
+        let db = new_test_database(vec![(
             AttAttribute {
                 handle: AttHandle(3),
                 type_: Uuid::new(0x1234),
@@ -195,7 +199,8 @@ mod test {
             },
             data.clone(),
         )]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view =
             att::AttReadBlobRequest { attribute_handle: AttHandle(3).into(), offset: 256 }
@@ -220,7 +225,7 @@ mod test {
     #[test]
     fn test_read_multiple_variable_request() {
         // arrange
-        let db = TestAttDatabase::new(vec![
+        let db = new_test_database(vec![
             (
                 AttAttribute {
                     handle: AttHandle(3),
@@ -238,7 +243,8 @@ mod test {
                 vec![b'4'],
             ),
         ]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view = att::AttReadMultipleVariableRequest {
             attribute_handles: [AttHandle(3).into(), AttHandle(4).into()].into(),
@@ -267,7 +273,7 @@ mod test {
     fn test_read_multiple_variable_request_truncated() {
         let data: Vec<u8> = (0..255).collect();
         // arrange
-        let db = TestAttDatabase::new(vec![
+        let db = new_test_database(vec![
             (
                 AttAttribute {
                     handle: AttHandle(3),
@@ -293,7 +299,8 @@ mod test {
                 vec![b'5'],
             ),
         ]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view = att::AttReadMultipleVariableRequest {
             attribute_handles: [AttHandle(3).into(), AttHandle(4).into(), AttHandle(5).into()]
@@ -332,7 +339,7 @@ mod test {
         let data = vec![0xaf; MTU - 1 - 3 - 2 - 1];
 
         // arrange
-        let db = TestAttDatabase::new(vec![
+        let db = new_test_database(vec![
             (
                 AttAttribute {
                     handle: AttHandle(3),
@@ -358,7 +365,8 @@ mod test {
                 vec![b'5'],
             ),
         ]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view = att::AttReadMultipleVariableRequest {
             attribute_handles: [AttHandle(3).into(), AttHandle(4).into(), AttHandle(5).into()]
@@ -389,7 +397,7 @@ mod test {
     #[test]
     fn test_read_multiple_variable_request_at_least_two() {
         // arrange
-        let db = TestAttDatabase::new(vec![(
+        let db = new_test_database(vec![(
             AttAttribute {
                 handle: AttHandle(3),
                 type_: Uuid::new(0x1234),
@@ -397,7 +405,8 @@ mod test {
             },
             vec![b'3'],
         )]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view =
             att::AttReadMultipleVariableRequest { attribute_handles: [AttHandle(3).into()].into() }
@@ -422,7 +431,7 @@ mod test {
     #[test]
     fn test_read_multiple_variable_request_all_handles_valid() {
         // arrange
-        let db = TestAttDatabase::new(vec![(
+        let db = new_test_database(vec![(
             AttAttribute {
                 handle: AttHandle(3),
                 type_: Uuid::new(0x1234),
@@ -430,7 +439,8 @@ mod test {
             },
             vec![0xaf; 255],
         )]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view = att::AttReadMultipleVariableRequest {
             attribute_handles: [AttHandle(3).into(), AttHandle(5).into()].into(),
@@ -456,7 +466,7 @@ mod test {
     #[test]
     fn test_read_multiple_variable_request_value_longer_than_65535_bytes() {
         // arrange
-        let db = TestAttDatabase::new(vec![
+        let db = new_test_database(vec![
             (
                 AttAttribute {
                     handle: AttHandle(3),
@@ -474,7 +484,8 @@ mod test {
                 vec![0xaf; 65536],
             ),
         ]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
 
         let att_view = att::AttReadMultipleVariableRequest {
             attribute_handles: [AttHandle(3).into(), AttHandle(4).into()].into(),
@@ -500,7 +511,7 @@ mod test {
     #[test]
     fn test_unsupported_request() {
         // arrange
-        let db = TestAttDatabase::new(vec![
+        let db = new_test_database(vec![
             (
                 AttAttribute {
                     handle: AttHandle(3),
@@ -518,7 +529,8 @@ mod test {
                 vec![1, 2, 3],
             ),
         ]);
-        let mut handler = AttRequestHandler { db };
+        let (client, _) = AttClient::new_test_client(TCB_IDX, &db);
+        let mut handler = AttRequestHandler::new(client.downgrade());
         let att_view = att::AttReadMultipleRequest {
             attribute_handles: vec![AttHandle(3).into(), AttHandle(4).into()],
         }
