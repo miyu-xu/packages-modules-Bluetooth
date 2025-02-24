@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f57ed6_d534768c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:19:08Z",
+      "side": 1,
+      "message": "// `pairing_cb.state` will only be set to `BT_BOND_STATE_BONDING` when it is initiated by `createBond()` API\n`api_initiated_bonding`\n\nAlso move this down",
+      "range": {
+        "startLine": 1005,
+        "startChar": 7,
+        "endLine": 1005,
+        "endChar": 14
+      },
+      "revId": "dd82f4f519d93322a1dc609907ecfc1943046928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f5de761_fa30e383",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1039,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:19:08Z",
+      "side": 1,
+      "message": "// save the persistency state later because XXXXX",
+      "range": {
+        "startLine": 1037,
+        "startChar": 2,
+        "endLine": 1039,
+        "endChar": 3
+      },
+      "revId": "dd82f4f519d93322a1dc609907ecfc1943046928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "718da69c_f091da94",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:19:08Z",
+      "side": 1,
+      "message": "this is one of the missed logic in the past",
+      "range": {
+        "startLine": 1079,
+        "startChar": 0,
+        "endLine": 1081,
+        "endChar": 3
+      },
+      "revId": "dd82f4f519d93322a1dc609907ecfc1943046928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b374cab_5c6bd45e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1113,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:19:08Z",
+      "side": 1,
+      "message": "// adding one extra step to save bond type",
+      "range": {
+        "startLine": 1110,
+        "startChar": 0,
+        "endLine": 1113,
+        "endChar": 0
+      },
+      "revId": "dd82f4f519d93322a1dc609907ecfc1943046928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "994b4b0d_a9edae47",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:19:08Z",
+      "side": 1,
+      "message": "it is set to `BOND_TYPE_PERSISTENT` by default already",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 54
+      },
+      "revId": "dd82f4f519d93322a1dc609907ecfc1943046928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

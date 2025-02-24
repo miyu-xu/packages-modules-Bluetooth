@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02357a21_eff27625",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:19:08Z",
+      "side": 0,
+      "message": "this check on `just_works` is redundant because `BOND_TYPE_TEMPORARY` already covered that",
+      "range": {
+        "startLine": 1033,
+        "startChar": 0,
+        "endLine": 1033,
+        "endChar": 34
+      },
+      "revId": "2841779a1afabb4bb67914c0014911bd36d701cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
