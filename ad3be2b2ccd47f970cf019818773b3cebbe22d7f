@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95a4590_1f400745",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-24T22:23:26Z",
+      "side": 1,
+      "message": "Unncessary space",
+      "revId": "ad3be2b2ccd47f970cf019818773b3cebbe22d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
