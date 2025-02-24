@@ -1079,6 +1079,7 @@ TEST_F(CsisClientTest, test_not_open_duplicate_active_scan_while_bonding_set_mem
           .Times(1)
           .WillOnce(DoAll(SaveArg<1>(&p_results_cb)));
 
+  ON_CALL(btm_interface, BTM_IsBonded(test_address2, BT_TRANSPORT_LE)).WillByDefault(Return(false));
   GetSearchCompleteEvent(conn_id);
 
   Mock::VerifyAndClearExpectations(&dm_interface);
