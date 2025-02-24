@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddd4887b_dbdd631c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:30:48Z",
+      "side": 1,
+      "message": "Please, update bug title as this will be picked up by automation",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "20839aac159bafd72e7fc9324482a794d06f556a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
