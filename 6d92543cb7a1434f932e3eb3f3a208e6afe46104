@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "ac615dc1_b5c81504",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-24T19:42:38Z",
+      "side": 1,
+      "message": "simple fix covered by unit test behind a P0 issue",
+      "revId": "6d92543cb7a1434f932e3eb3f3a208e6afe46104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "32c19df8_213603f3",
         "filename": "system/bta/le_audio/devices.cc",
         "patchSetId": 2
