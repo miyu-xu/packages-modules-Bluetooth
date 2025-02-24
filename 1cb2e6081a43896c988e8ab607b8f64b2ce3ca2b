@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e43be25_af563d49",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3158,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-24T18:45:47Z",
+      "side": 1,
+      "message": "this part of logic is also not clear to me, why are we setting updateInbandRingtoneForTheGroup twice? \ncan we separte those logic instead of mixing into one method? updateInbandRingtoneAndBroadcastToUnicastFallbackGroup\n\ne.g. in line.2513            \n\n- updateFallbackUnicastGroupIdForBroadcast(groupId);\n        int prevBroadcastToUnicastFallbackGroup \u003d mUnicastGroupIdDeactivatedForBroadcastTransition;\n        updateFallbackUnicastGroupIdForBroadcast(groupId);\n        \n        // shouldn\u0027t groupId \u003d\u003d mUnicastGroupIdDeactivatedForBroadcastTransition after updateFallbackUnicastGroupIdForBroadcast, or you were intended to check if (prevBroadcastToUnicastFallbackGroup !\u003d LE_AUDIO_GROUP_ID_INVALID)? \n        if (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n            updateInbandRingtoneForTheGroup(prevBroadcastToUnicastFallbackGroup);\n            updateInbandRingtoneForTheGroup(groupId);\n        }\n        \nin line.5550\n        // do the same",
+      "range": {
+        "startLine": 3153,
+        "startChar": 0,
+        "endLine": 3158,
+        "endChar": 9
+      },
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4ecc1b_9cf26170",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3202,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-24T18:45:47Z",
+      "side": 1,
+      "message": "wouldUseFallbackUnicastGroupForBroadcast name is a bit confusing, why don\u0027t we just do this? \nThis is more clear to represent the intent, instead of creating a method just to mix those together. \n\n            boolean isRingtoneEnabled \u003d\n                    ringtoneContextAvailable\n                            \u0026\u0026 (groupDescriptor.isActive()\n                                    || (isPrimaryGroup(groupId)\n                                    \u0026\u0026 (isBroadcastActive() || isBroadcastReadyToBeReActivated())));",
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
