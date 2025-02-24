@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ac31819_01be63e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1543,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:49Z",
+      "side": 1,
+      "message": "We should not make a call to the framework here, plase directly call the databasemanager or us a intermediary method in the AdapterService",
+      "range": {
+        "startLine": 1543,
+        "startChar": 0,
+        "endLine": 1543,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "752338c4_baf2ecf6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1543,
+                "startChar": 0,
+                "endLine": 1544,
+                "endChar": 0
+              },
+              "replacement": "            mAdapterService.updateBondLossCount(bluetoothDevice, true);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1621,
+                "startChar": 0,
+                "endLine": 1622,
+                "endChar": 0
+              },
+              "replacement": "            mAdapterService.updateBondLossCount(bluetoothDevice, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "30484090dcf0b98097a4046d0c7399c5a204b170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02f3fd76_8d6cfc01",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T21:49:49Z",
+      "side": 1,
+      "message": "We should never have to do that.\nThis means that we are doing something architecturally wrong here.\n\nCurrent existence of AndroidFrameworkRequiresPermission are because we are now enforcing this check and we couldn\u0027t fix all occurences everywhere, but usage should only be reduced and not increase",
+      "range": {
+        "startLine": 1580,
+        "startChar": 0,
+        "endLine": 1580,
+        "endChar": 55
+      },
+      "revId": "30484090dcf0b98097a4046d0c7399c5a204b170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
