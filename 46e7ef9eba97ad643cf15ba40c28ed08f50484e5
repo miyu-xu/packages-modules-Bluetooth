@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93853f08_caafc7ef",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 6182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T20:12:03Z",
+      "side": 1,
+      "message": "wouldn\u0027t it be better to reverse the condition here?\n\n(To follow: https://g3doc.corp.google.com/company/readability/home/acquiring-readability/c-readability-advice.md?cl\u003dhead#handle-near-check)",
+      "range": {
+        "startLine": 6182,
+        "startChar": 16,
+        "endLine": 6182,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ea2f41c6_235778ff",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 6182,
+                "startChar": 0,
+                "endLine": 6183,
+                "endChar": 0
+              },
+              "replacement": "            if (!is_active_group_operation) {\n              log::info(\"Clear pending configuration flag for group {}\", group-\u003egroup_id_);\n              group-\u003eClearPendingConfiguration();\n            } else {\n"
+            },
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 6216,
+                "startChar": 0,
+                "endLine": 6219,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "46e7ef9eba97ad643cf15ba40c28ed08f50484e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
