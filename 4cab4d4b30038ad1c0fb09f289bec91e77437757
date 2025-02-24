@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf196222_0aeb9b44",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4805,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-24T19:37:03Z",
+      "side": 1,
+      "message": "unrelated nit, reversing the if condition with early return would have improve code readibility here",
+      "range": {
+        "startLine": 4802,
+        "startChar": 0,
+        "endLine": 4805,
+        "endChar": 50
+      },
+      "revId": "4cab4d4b30038ad1c0fb09f289bec91e77437757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
