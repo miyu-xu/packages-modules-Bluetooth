@@ -140,7 +140,6 @@ cc_library_shared {
         "libmodpb64",
         "libopus",
         "libosi",
-        "libperfetto_client_experimental",
         "libprotobuf-cpp-lite",
         "libstatslog_bt",
         "libstatslog_express",
