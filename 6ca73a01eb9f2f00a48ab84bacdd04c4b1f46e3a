@@ -3,6 +3,88 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "468f5bb0_e8be081f",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-25T23:26:22Z",
+      "side": 1,
+      "message": "can we print additional parameters at least data_path?",
+      "range": {
+        "startLine": 62,
+        "startChar": 2,
+        "endLine": 62,
+        "endChar": 89
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3c45b3ff_fb6fb8c7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_logging.cc",
+              "range": {
+                "startLine": 62,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"bd_addr: {}, port: {}, role: {}, state: {}, data_path: {}\", address, port, role, state, data_path);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e2e96f_5b50254f",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-02-25T23:26:22Z",
+      "side": 1,
+      "message": "This parameter is bool type in log_socket_connection_state. Please explicitly convert btsock_data_path_t type to bool type.",
+      "range": {
+        "startLine": 83,
+        "startChar": 72,
+        "endLine": 83,
+        "endChar": 81
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7f4c0075_b6fc28c6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_logging.cc",
+              "range": {
+                "startLine": 83,
+                "startChar": 0,
+                "endLine": 84,
+                "endChar": 0
+              },
+              "replacement": "                              uid, server_port, toSocketRoleEnum(role), (data_path \u003d\u003d BTSOCK_DATA_PATH_OFFLOAD), socket_name,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7b88b6b_e3d3efad",
         "filename": "system/btif/src/btif_sock_logging.cc",
         "patchSetId": 2
