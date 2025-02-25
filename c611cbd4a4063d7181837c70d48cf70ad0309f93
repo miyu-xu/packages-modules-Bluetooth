@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13fdf370_f5b52102",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-25T13:05:13Z",
+      "side": 1,
+      "message": "This comment is slightly misleading. It makes it look like the field `id` changes but it is in fact immutable throughout the objects lifetime. I guess perhaps it is either negative or equal to sync_handle depending on the state but it is never mutated, perhaps a new object is returned with the updated state.",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "c611cbd4a4063d7181837c70d48cf70ad0309f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3038bcf2_f328e069",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-25T13:05:13Z",
+      "side": 1,
+      "message": "2 points.\n\n1) I am not sure if the name `copyOf()` is the best. I\u0027m open to recommendations.\n2) I am not sure why we even need a new object? I did not want to modify the behaviour as the previous `findAllSync` was creating a new `SyncInfo` object as well so I am just replicating that logic via the helper method `copyOf()`.",
+      "range": {
+        "startLine": 129,
+        "startChar": 79,
+        "endLine": 129,
+        "endChar": 87
+      },
+      "revId": "c611cbd4a4063d7181837c70d48cf70ad0309f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
