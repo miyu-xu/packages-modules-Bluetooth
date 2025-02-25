@@ -26,8 +26,6 @@
 #include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 bool l2c_is_cmd_rejected(uint8_t /* cmd_code */, uint8_t /* signal_id */, tL2C_LCB* /* p_lcb */) {
   inc_func_call_count(__func__);

@@ -19,8 +19,6 @@
 
 #include "stack/include/security_client_callbacks.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 namespace {
 

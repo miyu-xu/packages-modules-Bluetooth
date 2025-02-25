@@ -21,8 +21,6 @@
 #include <arpa/inet.h>
 #include <gtest/gtest.h>
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 ::testing::AssertionResult check_bitfield(const char* m_expr, const char* n_expr, int m, int n) {
   if (m == n) {

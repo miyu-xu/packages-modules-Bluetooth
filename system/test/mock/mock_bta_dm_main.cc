@@ -1,4 +1,4 @@
-/*
+s/*
  * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,8 +29,6 @@
 
 // Mocked internal structures, if any
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 namespace test {
 namespace mock {

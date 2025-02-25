@@ -26,8 +26,6 @@
 #include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 void bta_ar_dereg_avct() { inc_func_call_count(__func__); }
 void bta_ar_dereg_avdt() { inc_func_call_count(__func__); }

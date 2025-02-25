@@ -28,8 +28,6 @@
 
 // TODO(b/378143579) For peer address not in resolving list
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 namespace bluetooth {
 namespace hci {

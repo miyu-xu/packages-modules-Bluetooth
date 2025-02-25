@@ -22,8 +22,6 @@
 #include <cstdarg>
 #include <cstring>
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions("mock broadcast audio config options");

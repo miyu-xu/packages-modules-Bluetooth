@@ -43,8 +43,6 @@
 #include "test/common/fake_osi.h"
 #include "test/common/mock_functions.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
 OsiObject::OsiObject(void* ptr) : ptr_(ptr) {}

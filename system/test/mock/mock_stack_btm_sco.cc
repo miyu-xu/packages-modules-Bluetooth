@@ -30,8 +30,6 @@
 #include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 const RawAddress* BTM_ReadScoBdAddr(uint16_t /* sco_inx */) {
   inc_func_call_count(__func__);

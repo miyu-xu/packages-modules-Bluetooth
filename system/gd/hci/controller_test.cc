@@ -32,8 +32,6 @@
 #include "os/thread.h"
 #include "packet/raw_builder.h"
 
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using namespace bluetooth;
 using namespace std::chrono_literals;
