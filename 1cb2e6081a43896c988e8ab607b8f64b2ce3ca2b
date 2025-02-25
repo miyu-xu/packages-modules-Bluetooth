@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "268e695d_4e9ceda4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3158,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T21:35:36Z",
+      "side": 1,
+      "message": "Thanks for the contexts, I\u0027m more clear on this now. In that case, isn\u0027t this what you intended to do?\n        int prevBroadcastToUnicastFallbackGroup \u003d \n            mUnicastGroupIdDeactivatedForBroadcastTransition;\n        updateFallbackUnicastGroupIdForBroadcast(groupId);\n        \n        // you\u0027re using mUnicastGroupIdDeactivatedForBroadcastTransition which is the same as groupId\n        if (prevBroadcastToUnicastFallbackGroup !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n            updateInbandRingtoneForTheGroup(oldBroadcastToUnicastFallbackGroup);\n        }\n        if (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n            updateInbandRingtoneForTheGroup(groupId);\n        }",
+      "parentUuid": "f31f219b_a3b06da7",
+      "range": {
+        "startLine": 3153,
+        "startChar": 0,
+        "endLine": 3158,
+        "endChar": 9
+      },
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb4ecc1b_9cf26170",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -103,6 +127,24 @@
       "side": 1,
       "message": "To be honest, I think that meaning of \"Primary Group\" is no longer valid since it was decided to follow \"Fallback Broadcast To Unicast\" solution and the \"Fallback Broadcast To Unicast\" group can be different that currently active group.\n\nMy idea is to do following change that would update Pirmary Group usage. \n\n`wouldUseFallbackUnicastGroupForBroadcast` idea is to express that given group would be used as Fallback Unicast To Broadcast Group/handover group that ringtone would be rendered using this group.",
       "parentUuid": "bb4ecc1b_9cf26170",
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afa4e1d7_9cb2fde9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3202,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T21:35:36Z",
+      "side": 1,
+      "message": "can we rename wouldUseFallbackUnicastGroupForBroadcast to isFallbackUnicastGroupForBroadcastToBeUsed?",
+      "parentUuid": "f2714063_72e24a2e",
       "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
