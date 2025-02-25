@@ -52,6 +52,24 @@
       "parentUuid": "5598d5ae_9929627a",
       "revId": "b232af4293188bfce7628dce2361195a810e88ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19f07746_ec2df3e8",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-25T06:58:42Z",
+      "side": 1,
+      "message": "I made the first suggested change as part of this CL.\nI will address the rest in follow up CLs.",
+      "parentUuid": "bace27f0_2c6ec60e",
+      "revId": "b232af4293188bfce7628dce2361195a810e88ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
