@@ -264,6 +264,30 @@
       },
       "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30883c08_b27a1775",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-25T15:16:00Z",
+      "side": 1,
+      "message": "Obsolete devices will be automatically removed during the check.",
+      "parentUuid": "57db20cd_f6b44502",
+      "range": {
+        "startLine": 1315,
+        "startChar": 7,
+        "endLine": 1315,
+        "endChar": 34
+      },
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
