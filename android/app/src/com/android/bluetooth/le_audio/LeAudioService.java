@@ -2473,7 +2473,13 @@ public class LeAudioService extends ProfileService {
      * @param hasFallbackDevice hasFallbackDevice whether any fallback device exists when {@code
      *     device} is null.
      */
-    private boolean setActiveGroupWithDevice(BluetoothDevice device, boolean hasFallbackDevice) {
+    private boolean setActiveGroupWithDevice(
+            BluetoothDevice device, boolean hasFallbackDevice, boolean gtbsCall) {
+        if (!mLeAudioNativeIsInitialized) {
+            Log.e(TAG, "Le Audio not initialized properly.");
+            return false;
+        }
+
         int groupId = LE_AUDIO_GROUP_ID_INVALID;
 
         if (device != null) {
@@ -2602,6 +2608,15 @@ public class LeAudioService extends ProfileService {
              */
             handleGroupTransitToInactive(currentlyActiveGroupId);
         }
+
+        if (currentlyActiveGroupId != LE_AUDIO_GROUP_ID_INVALID && gtbsCall) {
+            /* GTBS set device as an active as phonecall was answered by the device which is
+             * expected to be used for a phone call.
+             * Clear current Active device as soon as possible so Telecom will not use it.
+             */
+            notifyVolumeControlServiceAboutActiveGroup(null);
+            sendActiveDeviceChangeIntent(null);
+        }
         return true;
     }
 
@@ -2615,7 +2630,7 @@ public class LeAudioService extends ProfileService {
     public boolean removeActiveDevice(boolean hasFallbackDevice) {
         /* Clear active group */
         Log.d(TAG, "removeActiveDevice, hasFallbackDevice " + hasFallbackDevice);
-        setActiveGroupWithDevice(null, hasFallbackDevice);
+        setActiveGroupWithDevice(null, hasFallbackDevice, false /* GTBS */);
         return true;
     }
 
@@ -2623,15 +2638,10 @@ public class LeAudioService extends ProfileService {
      * Set the active group represented by device.
      *
      * @param device the new active device. Should not be null.
+     * @param gtbsCall true when this active device is done by GTBS
      * @return true on success, otherwise false
      */
-    public boolean setActiveDevice(BluetoothDevice device) {
-        mEventLogger.logd(
-                TAG,
-                ("[API call] setActiveDevice: device=" + device)
-                        + (", current out=" + mActiveAudioOutDevice)
-                        + (", current in=" + mActiveAudioInDevice)
-                        + (", exposed= " + mExposedActiveDevice));
+    boolean setActiveDevice(BluetoothDevice device, boolean gtbsCall) {
         /* Clear active group */
         if (device == null) {
             Log.e(TAG, "device should not be null!");
@@ -2658,7 +2668,52 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
         }
-        return setActiveGroupWithDevice(device, false);
+        return setActiveGroupWithDevice(device, false, gtbsCall);
+    }
+
+    /**
+     * Set the active group represented by device for GTBS profile.
+     *
+     * <p>This function shall be use only by GTBS as need special handling for the case when
+     * phonecall is answered by the Inactive device.
+     *
+     * @param device the new active device. Should not be null.
+     * @return true on success, otherwise false
+     */
+    public boolean setActiveDeviceFromGtbs(BluetoothDevice device) {
+        mEventLogger.logd(
+                TAG,
+                "[GTBS call]: setActiveDeviceFromGtbs: device="
+                        + device
+                        + ", current out="
+                        + mActiveAudioOutDevice
+                        + ", current in="
+                        + mActiveAudioInDevice
+                        + ", exposed="
+                        + mExposedActiveDevice);
+
+        return setActiveDevice(device, true);
+    }
+
+    /**
+     * Set the active group represented by device.
+     *
+     * @param device the new active device. Should not be null.
+     * @return true on success, otherwise false
+     */
+    public boolean setActiveDevice(BluetoothDevice device) {
+        mEventLogger.logd(
+                TAG,
+                "[API call]: setActiveDevice: device="
+                        + device
+                        + ", current out="
+                        + mActiveAudioOutDevice
+                        + ", current in="
+                        + mActiveAudioInDevice
+                        + ", exposed="
+                        + mExposedActiveDevice);
+
+        return setActiveDevice(device, false);
     }
 
     /**
@@ -2881,7 +2936,7 @@ public class LeAudioService extends ProfileService {
                         && !isGroupReceivingBroadcast(groupId)) {
                     Log.i(TAG, "Group " + groupId + " is inactivated due to blocked media context");
                     groupDescriptor.mInactivatedDueToContextType = true;
-                    setActiveGroupWithDevice(null, false);
+                    setActiveGroupWithDevice(null, false, false /*GTBS*/);
                 }
                 break;
             default:
@@ -3652,13 +3707,11 @@ public class LeAudioService extends ProfileService {
                                             + groupId
                                             + " due to unavailable context types");
                             descriptor.mInactivatedDueToContextType = true;
-                            setActiveGroupWithDevice(null, false);
+                            setActiveGroupWithDevice(null, false, false);
                         } else if (isInitial) {
                             Log.i(
                                     TAG,
-                                    " New group "
-                                            + groupId
-                                            + " with no context types available");
+                                    " New group " + groupId + " with no context types available");
                             descriptor.mInactivatedDueToContextType = true;
                         }
                         return;
@@ -3672,7 +3725,7 @@ public class LeAudioService extends ProfileService {
                                         + ", try it out: "
                                         + descriptor.mAvailableContexts);
                         descriptor.mInactivatedDueToContextType = false;
-                        setActiveGroupWithDevice(getLeadDeviceForTheGroup(groupId), true);
+                        setActiveGroupWithDevice(getLeadDeviceForTheGroup(groupId), true, false);
                     }
                 } else {
                     Log.e(TAG, "messageFromNative: no descriptors for group: " + groupId);
