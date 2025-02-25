@@ -100,9 +100,6 @@
       "name": "bluetooth_test_common"
     },
     {
-      "name": "bluetooth_test_gd_unit"
-    },
-    {
       "name": "bluetooth_test_with_timerfd"
     },
     {
@@ -336,9 +333,6 @@
     },
     {
       "name": "bluetooth_test_common"
-    },
-    {
-      "name": "bluetooth_test_gd_unit"
     },
     {
       "name": "bluetooth_test_with_timerfd"
