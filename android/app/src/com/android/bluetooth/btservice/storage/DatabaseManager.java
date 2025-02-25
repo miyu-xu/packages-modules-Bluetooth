@@ -1588,4 +1588,48 @@ public class DatabaseManager {
             writer.println("    " + entry.getValue());
         }
     }
+
+    /**
+     * Update bond loss count.
+     *
+     * <p> It is used to update the bond loss count when a bond loss is detected (increment the
+     * count) or a successful bond is detected (reset the count)
+     *
+     * @param isBondLossDetected true if the bond loss is detected, false if the bond is
+     *     successfully established.
+     */
+    public void updateBondLossCount(BluetoothDevice device, boolean isBondLossDetected) {
+        synchronized (mMetadataCache) {
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+            if (isBondLossDetected) {
+                metadata.bond_loss_count++;
+                Log.i(TAG, "Bond loss detected, count: " + metadata.bond_loss_count);
+            } else {
+                metadata.bond_loss_count = 0;
+                Log.i(TAG, "Successful bond detected, reset bond loss count");
+            }
+            updateDatabase(metadata);
+        }
+    }
+
+    public int getBondLossCount(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return -1;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+            return metadata.bond_loss_count;
+        }
+    }
 }
