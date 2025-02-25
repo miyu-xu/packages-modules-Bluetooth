@@ -16,6 +16,24 @@
       "message": "Can we move it into a helper function instead?  There\u0027s a lot of repetition and it would be easier to have it in one location",
       "revId": "c1f2963ef57a2f07bec84a315de071a0d0235c15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6893d33_d10d402f",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2025-02-25T20:43:11Z",
+      "side": 1,
+      "message": "I pulled this functionality into another helper `btif_hf_client_get_connected_device`.",
+      "parentUuid": "4596740f_cff32e94",
+      "revId": "c1f2963ef57a2f07bec84a315de071a0d0235c15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
