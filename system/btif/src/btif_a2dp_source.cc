@@ -343,7 +343,7 @@ bool btif_a2dp_source_init(void) {
   // Start A2DP Source media task
   btif_a2dp_source_thread.StartUp();
 
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_init_delayed));
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_init_delayed));
   return true;
 }
 
@@ -441,7 +441,7 @@ static bool btif_a2dp_source_startup(void) {
   btif_a2dp_source_cb.tx_audio_queue = fixed_queue_new(SIZE_MAX);
 
   // Schedule the rest of the operations
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_startup_delayed));
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_startup_delayed));
 
   return true;
 }
@@ -467,7 +467,7 @@ bool btif_a2dp_source_start_session(const RawAddress& peer_address,
   btif_a2dp_source_audio_tx_flush_req();
 
   if (local_thread()->DoInThread(
-              FROM_HERE, base::BindOnce(&btif_a2dp_source_start_session_delayed, peer_address,
+              base::BindOnce(&btif_a2dp_source_start_session_delayed, peer_address,
                                         std::move(peer_ready_promise)))) {
     return true;
   } else {
@@ -536,7 +536,7 @@ bool btif_a2dp_source_end_session(const RawAddress& peer_address) {
     btif_a2dp_source_end_session_delayed(peer_address);
   } else {
 
-    local_thread()->DoInThread(FROM_HERE,
+    local_thread()->DoInThread(
                                base::BindOnce(&btif_a2dp_source_end_session_delayed, peer_address));
     btif_a2dp_source_cleanup_codec();
   }
@@ -565,7 +565,7 @@ void btif_a2dp_source_allow_low_latency_audio(bool allowed) {
   log::info("allowed={}", allowed);
 
   local_thread()->DoInThread(
-          FROM_HERE,
+
           base::BindOnce(bluetooth::audio::a2dp::set_audio_low_latency_mode_allowed, allowed));
 }
 
@@ -582,7 +582,7 @@ void btif_a2dp_source_shutdown(std::promise<void> shutdown_complete_promise) {
 
   // TODO(b/374166531) Remove the check for get_main_thread.
   if (local_thread() != get_main_thread()) {
-    local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_shutdown_delayed,
+    local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_shutdown_delayed,
                                                          std::move(shutdown_complete_promise)));
   } else {
     btif_a2dp_source_shutdown_delayed(std::move(shutdown_complete_promise));
@@ -696,7 +696,7 @@ static void btif_a2dp_source_cleanup_codec() {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
   // Must stop media task first before cleaning up the encoder
   btif_a2dp_source_stop_audio_req();
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_cleanup_codec_delayed));
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_cleanup_codec_delayed));
 }
 
 static void btif_a2dp_source_cleanup_codec_delayed() {
@@ -710,13 +710,13 @@ static void btif_a2dp_source_cleanup_codec_delayed() {
 void btif_a2dp_source_start_audio_req(void) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
 
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_audio_tx_start_event));
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_audio_tx_start_event));
 }
 
 void btif_a2dp_source_stop_audio_req(void) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
 
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_audio_tx_stop_event));
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_audio_tx_stop_event));
 }
 
 void btif_a2dp_source_encoder_user_config_update_req(
@@ -727,7 +727,7 @@ void btif_a2dp_source_encoder_user_config_update_req(
             btif_a2dp_source_cb.StateStr(), codec_user_preferences.size());
 
   if (!local_thread()->DoInThread(
-              FROM_HERE,
+
               base::BindOnce(&btif_a2dp_source_encoder_user_config_update_event, peer_address,
                              codec_user_preferences, std::move(peer_ready_promise)))) {
     // cannot set promise but triggers crash
@@ -772,7 +772,7 @@ static void btif_a2dp_source_encoder_user_config_update_event(
 
 void btif_a2dp_source_feeding_update_req(const btav_a2dp_codec_config_t& codec_audio_config) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_audio_feeding_update_event,
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_audio_feeding_update_event,
                                                        codec_audio_config));
 }
 
@@ -889,7 +889,7 @@ static void btif_a2dp_source_audio_tx_start_event(void) {
   btif_a2dp_source_cb.tx_flush = false;
   btif_a2dp_source_cb.sw_audio_is_encoding = true;
   btif_a2dp_source_cb.media_alarm.SchedulePeriodic(
-          btif_a2dp_source_thread.GetWeakPtr(), FROM_HERE,
+          btif_a2dp_source_thread.GetWeakPtr(),
           base::BindRepeating(&btif_a2dp_source_audio_handle_timer),
           std::chrono::milliseconds(
                   btif_a2dp_source_cb.encoder_interface->get_encoder_interval_ms()));
@@ -1086,7 +1086,7 @@ static void btif_a2dp_source_audio_tx_flush_event(void) {
 static bool btif_a2dp_source_audio_tx_flush_req(void) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
 
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_audio_tx_flush_event));
+  local_thread()->DoInThread(base::BindOnce(&btif_a2dp_source_audio_tx_flush_event));
   return true;
 }
 

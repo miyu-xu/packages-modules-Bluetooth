@@ -84,7 +84,7 @@ public:
     message_loop_ = new btbase::AbstractMessageLoop();
     run_loop_ = new base::RunLoop();
     message_loop_->task_runner()->PostTask(
-            FROM_HERE,
+
             base::Bind(&std::promise<void>::set_value, base::Unretained(set_up_promise_.get())));
     run_loop_->Run();
     delete message_loop_;
@@ -109,7 +109,7 @@ protected:
   }
 
   void TearDown() override {
-    message_loop_->task_runner()->PostTask(FROM_HERE, run_loop_->QuitWhenIdleClosure());
+    message_loop_->task_runner()->PostTask(run_loop_->QuitWhenIdleClosure());
     thread_free(thread_);
     thread_ = nullptr;
     MessageLoopPerformanceTest::TearDown();
@@ -126,7 +126,7 @@ TEST_F(OsiThreadMessageLoopPerformanceTest, message_loop_speed_test) {
 
   for (int i = 0; i < NUM_MESSAGES_TO_SEND; i++) {
     fixed_queue_enqueue(bt_msg_queue_, (void*)&g_counter);
-    message_loop_->task_runner()->PostTask(FROM_HERE,
+    message_loop_->task_runner()->PostTask(
                                            base::Bind(&callback_batch, bt_msg_queue_, nullptr));
   }
   counter_future.wait();
@@ -149,7 +149,7 @@ protected:
   }
 
   void TearDown() override {
-    message_loop_->task_runner()->PostTask(FROM_HERE, run_loop_->QuitWhenIdleClosure());
+    message_loop_->task_runner()->PostTask(run_loop_->QuitWhenIdleClosure());
     thread_->join();
     delete thread_;
     thread_ = nullptr;
@@ -167,7 +167,7 @@ TEST_F(StlThreadMessageLoopPerformanceTest, stl_thread_speed_test) {
 
   for (int i = 0; i < NUM_MESSAGES_TO_SEND; i++) {
     fixed_queue_enqueue(bt_msg_queue_, (void*)&g_counter);
-    message_loop_->task_runner()->PostTask(FROM_HERE,
+    message_loop_->task_runner()->PostTask(
                                            base::Bind(&callback_batch, bt_msg_queue_, nullptr));
   }
   counter_future.wait();
@@ -190,7 +190,7 @@ protected:
   }
 
   void TearDown() override {
-    message_loop_->task_runner()->PostTask(FROM_HERE, run_loop_->QuitWhenIdleClosure());
+    message_loop_->task_runner()->PostTask(run_loop_->QuitWhenIdleClosure());
     pthread_join(thread_, nullptr);
     MessageLoopPerformanceTest::TearDown();
   }
@@ -207,7 +207,7 @@ TEST_F(PosixThreadMessageLoopPerformanceTest, stl_thread_speed_test) {
 
   for (int i = 0; i < NUM_MESSAGES_TO_SEND; i++) {
     fixed_queue_enqueue(bt_msg_queue_, (void*)&g_counter);
-    message_loop_->task_runner()->PostTask(FROM_HERE,
+    message_loop_->task_runner()->PostTask(
                                            base::Bind(&callback_batch, bt_msg_queue_, nullptr));
   }
   counter_future.wait();
@@ -264,7 +264,7 @@ protected:
     std::future<void> set_up_future = set_up_promise_->get_future();
     worker_thread_ = new MessageLoopThread("WorkerThreadPerformanceTest thread");
     worker_thread_->StartUp();
-    worker_thread_->DoInThread(FROM_HERE, base::BindOnce(&std::promise<void>::set_value,
+    worker_thread_->DoInThread(base::BindOnce(&std::promise<void>::set_value,
                                                          base::Unretained(set_up_promise_.get())));
     set_up_future.wait();
   }
@@ -288,7 +288,7 @@ TEST_F(WorkerThreadPerformanceTest, worker_thread_speed_test) {
 
   for (int i = 0; i < NUM_MESSAGES_TO_SEND; i++) {
     fixed_queue_enqueue(bt_msg_queue_, (void*)&g_counter);
-    worker_thread_->DoInThread(FROM_HERE, base::BindOnce(&callback_batch, bt_msg_queue_, nullptr));
+    worker_thread_->DoInThread(base::BindOnce(&callback_batch, bt_msg_queue_, nullptr));
   }
   counter_future.wait();
 
@@ -308,7 +308,7 @@ protected:
     thread_ = new base::Thread("LibChromeThreadPerformanceTest thread");
     thread_->Start();
     thread_->task_runner()->PostTask(
-            FROM_HERE,
+
             base::Bind(&std::promise<void>::set_value, base::Unretained(set_up_promise_.get())));
     set_up_future.wait();
   }
@@ -332,7 +332,7 @@ TEST_F(LibChromeThreadPerformanceTest, worker_thread_speed_test) {
 
   for (int i = 0; i < NUM_MESSAGES_TO_SEND; i++) {
     fixed_queue_enqueue(bt_msg_queue_, (void*)&g_counter);
-    thread_->task_runner()->PostTask(FROM_HERE,
+    thread_->task_runner()->PostTask(
                                      base::Bind(&callback_batch, bt_msg_queue_, nullptr));
   }
   counter_future.wait();

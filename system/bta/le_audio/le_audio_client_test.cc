@@ -122,7 +122,7 @@ bt_status_t do_in_main_thread(base::OnceClosure task) {
   // Wrap the task with task counter so we could later know if there are
   // any callbacks scheduled and we should wait before performing some actions
   if (!message_loop_thread.DoInThread(
-              FROM_HERE, base::BindOnce(
+              base::BindOnce(
                                  [](base::OnceClosure task, std::atomic<int>& num_async_tasks) {
                                    std::move(task).Run();
                                    num_async_tasks--;

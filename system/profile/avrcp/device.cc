@@ -700,7 +700,7 @@ void Device::PlaybackPosNotificationResponse(uint8_t label, bool interim, PlaySt
     play_pos_update_cb_.Reset(
             base::Bind(&Device::HandlePlayPosUpdate, weak_ptr_factory_.GetWeakPtr()));
     btbase::AbstractMessageLoop::current_task_runner()->PostDelayedTask(
-            FROM_HERE, play_pos_update_cb_.callback(),
+            play_pos_update_cb_.callback(),
 #if BASE_VER < 931007
             base::TimeDelta::FromSeconds(play_pos_interval_));
 #else
