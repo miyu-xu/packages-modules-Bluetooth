@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09721844_5780ffca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-25T05:45:05Z",
+      "side": 1,
+      "message": "successful encryption",
+      "revId": "693f360015ac24c4c5d8198c77899c402a6cbede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
