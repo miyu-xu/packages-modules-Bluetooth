@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb41c29e_a81e410d",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T09:42:55Z",
+      "side": 1,
+      "message": "Can we `break` from the loop if valid config is found?",
+      "range": {
+        "startLine": 732,
+        "startChar": 6,
+        "endLine": 732,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bd3d5f81_10b5ac54",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+              "range": {
+                "startLine": 733,
+                "startChar": 0,
+                "endLine": 733,
+                "endChar": 0
+              },
+              "replacement": "      break;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8686625edf4e4167c8f7b822bbdbaf2b0f2b6f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

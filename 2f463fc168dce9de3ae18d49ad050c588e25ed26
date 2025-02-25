@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce21bcef_b2f15203",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T09:42:55Z",
+      "side": 0,
+      "message": "I recall documenting this behavior in the comment and yet I didn\u0027t recognise it as a bug and fix it back then. Thanks for identifying and fixing this issue.",
+      "range": {
+        "startLine": 710,
+        "startChar": 2,
+        "endLine": 710,
+        "endChar": 91
+      },
+      "revId": "2f463fc168dce9de3ae18d49ad050c588e25ed26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
