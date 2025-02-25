@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127a48fc_e4c65d48",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2230,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T18:44:16Z",
+      "side": 0,
+      "message": "this handles the case when the audio server crashed\n\nhowever audio framework said that they will restore audio path after restarting",
+      "range": {
+        "startLine": 2225,
+        "startChar": 0,
+        "endLine": 2230,
+        "endChar": 34
+      },
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
