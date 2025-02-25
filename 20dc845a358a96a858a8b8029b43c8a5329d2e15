@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b81e3e5_65599bca",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-25T18:38:01Z",
+      "side": 1,
+      "message": "I don\u0027t think this is long enough as we put more operations onto the same looper. Perhaps we should use the same 2s timeout as the sync operation?",
+      "range": {
+        "startLine": 64,
+        "startChar": 54,
+        "endLine": 64,
+        "endChar": 57
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ed203511_d442d2b3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "    private static final int THREAD_WAIT_TIMEOUT_MS \u003d 2000;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfdeab17_ae804300",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-25T18:38:01Z",
+      "side": 1,
+      "message": "I think this condition should be removed. With the flag on we want sequential order of operations, so the task should be posted on the handler\u0027s queue instead of immediately run",
+      "range": {
+        "startLine": 636,
+        "startChar": 46,
+        "endLine": 636,
+        "endChar": 88
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2d004ab1_73b6bd7d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 636,
+                "startChar": 0,
+                "endLine": 637,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.distanceMeasurementThread()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 644,
+                "startChar": 0,
+                "endLine": 645,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.distanceMeasurementThread()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
