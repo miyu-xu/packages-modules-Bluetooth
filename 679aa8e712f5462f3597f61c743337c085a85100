@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "508f4f24_09f604ca",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T19:37:57Z",
+      "side": 1,
+      "message": "nit:\nthis could be written with kotlin style \"apply\"",
+      "range": {
+        "startLine": 113,
+        "startChar": 26,
+        "endLine": 115,
+        "endChar": 73
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c7934d29_44d2fd61",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": "        val intentFilter \u003d IntentFilter().apply {\n            addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)\n            addAction(BluetoothAdapter.ACTION_BLE_STATE_CHANGED)\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "679aa8e712f5462f3597f61c743337c085a85100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
