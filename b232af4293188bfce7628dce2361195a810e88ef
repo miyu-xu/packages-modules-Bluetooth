@@ -34,6 +34,24 @@
       "parentUuid": "983c7467_d799f912",
       "revId": "b232af4293188bfce7628dce2361195a810e88ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bace27f0_2c6ec60e",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-02-25T06:47:14Z",
+      "side": 1,
+      "message": "Are we planning to make above change as part of this CL only OR new CL?\nI see CL already has review scores and in process of merge.",
+      "parentUuid": "5598d5ae_9929627a",
+      "revId": "b232af4293188bfce7628dce2361195a810e88ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
