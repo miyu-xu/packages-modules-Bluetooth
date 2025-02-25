@@ -17,7 +17,7 @@ import avatar
 import grpc
 import logging
 
-from avatar import PandoraDevices
+from avatar import PandoraDevices, enableFlag
 from avatar.aio import asynchronous
 from avatar.pandora_client import BumblePandoraClient, PandoraClient
 from bumble_experimental.rfcomm import RFCOMMService
@@ -26,15 +26,20 @@ from mobly.asserts import assert_equal  # type: ignore
 from mobly.asserts import assert_in  # type: ignore
 from mobly.asserts import assert_is_not_none  # type: ignore
 from mobly.asserts import fail  # type: ignore
+from pandora.host_pb2 import Connection
+from pandora.security_pb2 import LEVEL2
 from pandora_experimental.rfcomm_grpc_aio import RFCOMM
 from pandora_experimental.rfcomm_pb2 import (
     AcceptConnectionRequest,
+    ConnectionRequest,
     RxRequest,
     StartServerRequest,
     StopServerRequest,
     TxRequest,
 )
 from typing import Optional, Tuple
+
+RFCOMM_FIX_MUX_COLLISION_HANDLING = 'com.android.bluetooth.flags.rfcomm_fix_mux_collision_handling'
 
 SERIAL_PORT_UUID = "00001101-0000-1000-8000-00805F9B34FB"
 TEST_SERVER_NAME = "RFCOMM-Server"
@@ -70,6 +75,41 @@ class RfcommTest(base_test.BaseTestClass):
 
         self.dut.rfcomm = RFCOMM(channel=self.dut.aio.channel)
         self.ref.rfcomm = RFCOMMService(self.ref.device)
+
+    # TODO(b/286338264): Should use shared util script for connecting and bonding
+    async def make_classic_connection(self) -> Tuple[Connection, Connection]:
+        dut_ref, ref_dut = await asyncio.gather(
+            self.dut.aio.host.WaitConnection(address=self.ref.address),
+            self.ref.aio.host.Connect(address=self.dut.address),
+        )
+
+        assert_equal(dut_ref.result_variant(), 'connection')
+        assert_equal(ref_dut.result_variant(), 'connection')
+        assert dut_ref.connection is not None and ref_dut.connection is not None
+
+        return dut_ref.connection, ref_dut.connection
+
+    async def make_classic_bond(self, dut_ref: Connection, ref_dut: Connection) -> None:
+        dut_ref_sec, ref_dut_sec = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref, classic=LEVEL2),
+            self.ref.aio.security.WaitSecurity(connection=ref_dut, classic=LEVEL2),
+        )
+        assert_equal(dut_ref_sec.result_variant(), 'success')
+        assert_equal(ref_dut_sec.result_variant(), 'success')
+
+    @avatar.asynchronous
+    @enableFlag(RFCOMM_FIX_MUX_COLLISION_HANDLING)
+    async def test_server_mux_collision(self) -> None:
+        # dut is server, ref is client
+        context = grpc.ServicerContext
+        dut_ref, ref_dut = await self.make_classic_connection()
+        await self.make_classic_bond(dut_ref, ref_dut)
+        server = await self.dut.rfcomm.StartServer(name=TEST_SERVER_NAME, uuid=SERIAL_PORT_UUID)
+        server = server.server
+        rfc_dut_ref, rfc_ref_dut = await asyncio.gather(
+            self.ref.rfcomm.ConnectToServer(request=ConnectionRequest(address=self.dut.address, uuid=SERIAL_PORT_UUID),
+                                            context=grpc.ServicerContext),
+            self.dut.rfcomm.AcceptConnection(server=server))
 
     @avatar.asynchronous
     async def test_client_connect_and_exchange_data(self) -> None:

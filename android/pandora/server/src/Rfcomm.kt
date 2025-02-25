@@ -140,7 +140,7 @@ class Rfcomm(val context: Context) : RFCOMMImplBase(), Closeable {
 
             val acceptedSocket: BluetoothSocket =
                 try {
-                    serverMap[request.server.id]!!.accept(2000)
+                    serverMap[request.server.id]!!.accept(5000)
                 } catch (e: IOException) {
                     Log.e(TAG, "Accept failed with exception", e)
                     throw RuntimeException("RFCOMM accept failure")
