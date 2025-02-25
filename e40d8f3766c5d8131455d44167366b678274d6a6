@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46b755bd_40b13b50",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4443,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T05:55:39Z",
+      "side": 1,
+      "message": "-1 ?",
+      "range": {
+        "startLine": 4443,
+        "startChar": 23,
+        "endLine": 4443,
+        "endChar": 24
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a7d1322_3056b5fc",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 8
@@ -42,6 +65,29 @@
         "startChar": 68,
         "endLine": 4445,
         "endChar": 87
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bc0e16_73e942b6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4454,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T05:55:39Z",
+      "side": 1,
+      "message": "-1 ?",
+      "range": {
+        "startLine": 4454,
+        "startChar": 23,
+        "endLine": 4454,
+        "endChar": 24
       },
       "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -95,6 +141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de270542_ce9966dd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3797,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T05:55:39Z",
+      "side": 1,
+      "message": "Do we need to write that twice ? I believe there is a way to write API that only return a value in a more concise way\n\nLike just keeping the last 3 lines of your suggestion",
+      "parentUuid": "e04ee2ea_9379a710",
+      "range": {
+        "startLine": 3793,
+        "startChar": 0,
+        "endLine": 3797,
+        "endChar": 7
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56f31b5a_ddfd0a8a",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 8
@@ -129,6 +199,30 @@
       "writtenOn": "2025-02-25T05:31:45Z",
       "side": 1,
       "message": "Add\n\n```\n@UnsupportedAppUsage(maxTargetSdk \u003d Build.VERSION_CODES.BAKLAVA)\n```\n\n?",
+      "range": {
+        "startLine": 3800,
+        "startChar": 4,
+        "endLine": 3800,
+        "endChar": 37
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d70ae5f_209399ff",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3800,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T05:55:39Z",
+      "side": 1,
+      "message": "Did anybody tested this without the annotation?",
+      "parentUuid": "8e63915f_e02561f8",
       "range": {
         "startLine": 3800,
         "startChar": 4,
