@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d0d13c_a68de6ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T23:40:12Z",
+      "side": 1,
+      "message": "Crash was due to concurrent submission of aosp/3503747 and aosp/3495435\n\nWe already submitted aosp/3508807 to fix this.",
+      "revId": "d3d16a7ec35c654a5c94d4c51b2e170950e08406",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
