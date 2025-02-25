@@ -23,8 +23,12 @@ import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
+import android.app.compat.CompatChanges;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.DistanceMeasurementMethod.DistanceMeasurementMethodId;
+import android.compat.annotation.ChangeId;
+import android.compat.annotation.EnabledSince;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -229,12 +233,20 @@ public final class DistanceMeasurementParams implements Parcelable {
         private int mMethodId = DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI;
         private ChannelSoundingParams mChannelSoundingParams = null;
 
+        @ChangeId
+        // This means the change will be enabled for target SDK B and higher.
+        @EnabledSince(targetSdkVersion = Build.VERSION_CODES.BAKLAVA)
+        static final long DEFAULT_INTERVAL_AS_MEDIUM = 398253048;
+
         /**
          * Constructor of the Builder.
          *
          * @param device the remote device for the distance measurement
          */
         public Builder(@NonNull BluetoothDevice device) {
+            if (CompatChanges.isChangeEnabled(DEFAULT_INTERVAL_AS_MEDIUM)) {
+                mFrequency = REPORT_FREQUENCY_MEDIUM;
+            }
             mDevice = requireNonNull(device);
         }
 
