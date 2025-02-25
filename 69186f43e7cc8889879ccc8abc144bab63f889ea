@@ -123,6 +123,30 @@
       },
       "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "852518f0_803fc026",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T23:03:03Z",
+      "side": 1,
+      "message": "Ack after offline discussion, there is no other solution possible at the time",
+      "parentUuid": "014e3b5c_88362419",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 5
+      },
+      "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
