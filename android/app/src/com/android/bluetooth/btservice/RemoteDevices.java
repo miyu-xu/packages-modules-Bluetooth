@@ -1538,6 +1538,10 @@ public class RemoteDevices {
                             .addFlags(
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+
+            // Bond loss detected, add to the count.
+            mAdapterService.getDatabase().updateBondLossCount(bluetoothDevice, true);
+
             if (Flags.keyMissingPublic()) {
                 mAdapterService.sendOrderedBroadcast(
                         intent,
@@ -1573,6 +1577,7 @@ public class RemoteDevices {
         }
     }
 
+    @SuppressLint("AndroidFrameworkRequiresPermission")
     void encryptionChangeCallback(
             byte[] address,
             int status,
@@ -1611,6 +1616,9 @@ public class RemoteDevices {
                 /* Classic link using non-secure connections mode */
                 algorithm = BluetoothDevice.ENCRYPTION_ALGORITHM_E0;
             }
+
+            // Successful bond detected, reset the count.
+            mAdapterService.getDatabase().updateBondLossCount(bluetoothDevice, false);
         }
 
         Intent intent =
