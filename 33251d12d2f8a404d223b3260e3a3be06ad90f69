@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9545ad6a_8a525fe2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-25T00:56:15Z",
+      "side": 1,
+      "message": "Should we not specify for which bug this flag is being added ?",
+      "parentUuid": "d7be5019_900d74ba",
+      "revId": "33251d12d2f8a404d223b3260e3a3be06ad90f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0bce58d3_0c49a9f2",
         "filename": "flags/framework.aconfig",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-24T22:20:59Z",
       "side": 1,
       "message": "This should be a bug fix flag",
+      "revId": "33251d12d2f8a404d223b3260e3a3be06ad90f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "402e19cf_6a584e3f",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-25T00:56:15Z",
+      "side": 1,
+      "message": "Shouldnt this be considered as a design change ?",
+      "parentUuid": "0bce58d3_0c49a9f2",
       "revId": "33251d12d2f8a404d223b3260e3a3be06ad90f69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
