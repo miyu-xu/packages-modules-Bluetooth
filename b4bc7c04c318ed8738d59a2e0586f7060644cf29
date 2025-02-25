@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08f60192_7f21b9c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T14:08:54Z",
+      "side": 1,
+      "message": "We passed the GMAP tests where PTS acts as such device. Unfortunatelly we do not have a real device which is Source only.",
+      "parentUuid": "eb00805f_7dfa453d",
+      "revId": "b4bc7c04c318ed8738d59a2e0586f7060644cf29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf1b8655_6aa9d451",
         "filename": "system/bta/le_audio/device_groups.cc",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-24T17:17:08Z",
       "side": 1,
       "message": "unlocked_device ?",
+      "range": {
+        "startLine": 1070,
+        "startChar": 19,
+        "endLine": 1070,
+        "endChar": 25
+      },
+      "revId": "b4bc7c04c318ed8738d59a2e0586f7060644cf29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "876a6dd5_eb4ab2de",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T14:08:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cf1b8655_6aa9d451",
       "range": {
         "startLine": 1070,
         "startChar": 19,
@@ -54,6 +96,30 @@
       "writtenOn": "2025-02-24T17:17:08Z",
       "side": 1,
       "message": "shared_ptr is a bad name for variablem. maybe call it \"device\" ?",
+      "range": {
+        "startLine": 1071,
+        "startChar": 9,
+        "endLine": 1071,
+        "endChar": 19
+      },
+      "revId": "b4bc7c04c318ed8738d59a2e0586f7060644cf29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57973e7d_a62acc7c",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T14:08:54Z",
+      "side": 1,
+      "message": "Fully agree.",
+      "parentUuid": "810f4135_e13e7e4f",
       "range": {
         "startLine": 1071,
         "startChar": 9,
