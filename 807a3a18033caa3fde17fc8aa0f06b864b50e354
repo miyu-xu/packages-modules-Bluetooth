@@ -16,6 +16,24 @@
       "message": "Please make a separate change for A2DP and AVRCP.\n\nThe AVRCP one won\u0027t be merged as a Google change already exists the will bring AVRCP target version to 1.6.\n\nFYI, you also need to modify the Java AVRCP version in order for it to work properly.\n\nThanks!",
       "revId": "807a3a18033caa3fde17fc8aa0f06b864b50e354",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2df352d9_ef36e89a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-02-25T03:30:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7889841c_3f7e82f1",
+      "revId": "807a3a18033caa3fde17fc8aa0f06b864b50e354",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
