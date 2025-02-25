@@ -46,6 +46,30 @@
       },
       "revId": "7355e9dc6b2da9f37c51e0efe60432b7358b8557",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6463f33_cfe93ae9",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-25T07:03:05Z",
+      "side": 1,
+      "message": "Done. I agree it looks much better now. I\u0027ll follow this guidance for future changes as well. PTAL. Thank you!",
+      "parentUuid": "455b6038_3ae56a93",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 45
+      },
+      "revId": "7355e9dc6b2da9f37c51e0efe60432b7358b8557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
