@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ca3653_b8414014",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-25T01:03:11Z",
+      "side": 1,
+      "message": "I support the change by itself, but I don\u0027t know the history why 7 was chosen and why it was not increased after so many years.",
+      "revId": "22b1c176ff11388fa78b8e52960e8466e2f09ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
