@@ -22,6 +22,121 @@
       },
       "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7d1322_3056b5fc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 4445,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T05:31:45Z",
+      "side": 1,
+      "message": "`getKeyMissingCount`?",
+      "range": {
+        "startLine": 4445,
+        "startChar": 68,
+        "endLine": 4445,
+        "endChar": 87
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a0d456_a115d8dc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T05:31:45Z",
+      "side": 1,
+      "message": "suggest updating this to `kye_missing_count` to match the API",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 23
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e04ee2ea_9379a710",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3797,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T05:31:45Z",
+      "side": 1,
+      "message": "```\n/**\n * Get the number of times {@link ACTION_KEY_MISSING} intent is thrown for this device since\n * last successful encrypted connection\n * \n * @return number of times {@link ACTION_KEY_MISSING} intent is thrown for this device since\n *         last successful encrypted connection\n * @hide\n */\n```",
+      "range": {
+        "startLine": 3793,
+        "startChar": 0,
+        "endLine": 3797,
+        "endChar": 7
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f31b5a_ddfd0a8a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3799,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T05:31:45Z",
+      "side": 1,
+      "message": "`ACTION_KEY_MISSING` doesn\u0027t require `BLUETOOTH_PRIVILEGED` after Android B, do this API also require `BLUETOOTH_PRIVILEGED` permission?",
+      "range": {
+        "startLine": 3799,
+        "startChar": 52,
+        "endLine": 3799,
+        "endChar": 72
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e63915f_e02561f8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3800,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T05:31:45Z",
+      "side": 1,
+      "message": "Add\n\n```\n@UnsupportedAppUsage(maxTargetSdk \u003d Build.VERSION_CODES.BAKLAVA)\n```\n\n?",
+      "range": {
+        "startLine": 3800,
+        "startChar": 4,
+        "endLine": 3800,
+        "endChar": 37
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
