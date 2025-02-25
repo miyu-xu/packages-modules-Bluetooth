@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197aa3e5_3e8be2df",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T07:53:58Z",
+      "side": 1,
+      "message": "nit the type don\u0027t need to be specified in the instanciation since this can be deduced by the JVM in the variable declaration.\n\nAKA:\n```\nprivate final List\u003cLastScan\u003e mLastScans \u003d new ArrayList\u003c\u003e();\nprivate final Map\u003cInteger, LastScan\u003e mOngoingScans \u003d new HashMap\u003c\u003e();\n```",
+      "range": {
+        "startLine": 133,
+        "startChar": 46,
+        "endLine": 133,
+        "endChar": 72
+      },
+      "revId": "9e54d294645018cc1175eb90850d8756035a1089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
