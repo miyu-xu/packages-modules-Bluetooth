@@ -194,8 +194,8 @@ pub mod ffi {
         fn le_audio_audio_conf_callback(
             direction: u8,
             group_id: i32,
-            snk_audio_location: u32,
-            src_audio_location: u32,
+            snk_audio_location: i64,
+            src_audio_location: i64,
             avail_cont: u16,
         );
         fn le_audio_sink_audio_location_available_callback(
@@ -520,7 +520,7 @@ cb_variant!(LeAudioClientCb,
 
 cb_variant!(LeAudioClientCb,
             le_audio_audio_conf_callback -> LeAudioClientCallbacks::AudioConf,
-            u8, i32, u32, u32, u16);
+            u8, i32, i64, i64, u16);
 
 cb_variant!(LeAudioClientCb,
             le_audio_sink_audio_location_available_callback -> LeAudioClientCallbacks::SinkAudioLocationAvailable,

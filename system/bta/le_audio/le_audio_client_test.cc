@@ -257,8 +257,8 @@ public:
   MOCK_METHOD((void), OnGroupNodeStatus,
               (const RawAddress& bd_addr, int group_id, GroupNodeStatus node_status), (override));
   MOCK_METHOD((void), OnAudioConf,
-              (uint8_t direction, int group_id, uint32_t snk_audio_location,
-               uint32_t src_audio_location, uint16_t avail_cont),
+              (uint8_t direction, int group_id, std::optional<std::bitset<32>> snk_audio_location,
+               std::optional<std::bitset<32>> src_audio_location, uint16_t avail_cont),
               (override));
   MOCK_METHOD((void), OnSinkAudioLocationAvailable,
               (const RawAddress& bd_addr, uint32_t snk_audio_location), (override));
@@ -2259,8 +2259,8 @@ protected:
     uint16_t conn_id;
     RawAddress addr;
 
-    uint32_t sink_audio_allocation = codec_spec_conf::kLeAudioLocationStereo;
-    uint32_t source_audio_allocation = codec_spec_conf::kLeAudioLocationStereo;
+    std::optional<uint32_t> sink_audio_allocation = std::nullopt;
+    std::optional<uint32_t> source_audio_allocation = std::nullopt;
     uint8_t sink_channel_cnt = 0x03;
     uint8_t source_channel_cnt = 0x03;
     uint16_t sample_freq_mask = 0x0004;
@@ -2348,14 +2348,18 @@ protected:
     if (add_pacs) {
       // attribute handles
       pacs->start = 0x0060;
-      pacs->sink_pac_char = 0x0061;
-      pacs->sink_pac_ccc = 0x0063;
-      pacs->sink_audio_loc_char = 0x0064;
-      pacs->sink_audio_loc_ccc = 0x0066;
-      pacs->source_pac_char = 0x0067;
-      pacs->source_pac_ccc = 0x0069;
-      pacs->source_audio_loc_char = 0x0070;
-      pacs->source_audio_loc_ccc = 0x0072;
+      if (sink_audio_allocation.has_value()) {
+        pacs->sink_pac_char = 0x0061;
+        pacs->sink_pac_ccc = 0x0063;
+        pacs->sink_audio_loc_char = 0x0064;
+        pacs->sink_audio_loc_ccc = 0x0066;
+      }
+      if (source_audio_allocation.has_value()) {
+        pacs->source_pac_char = 0x0067;
+        pacs->source_pac_ccc = 0x0069;
+        pacs->source_audio_loc_char = 0x0070;
+        pacs->source_audio_loc_ccc = 0x0072;
+      }
       pacs->avail_contexts_char = 0x0073;
       pacs->avail_contexts_ccc = 0x0075;
       pacs->supp_contexts_char = 0x0076;
@@ -2370,14 +2374,14 @@ protected:
       ascs->start = 0x0090;
       uint16_t handle = 0x0091;
       for (int i = 0; i < add_ascs_cnt; i++) {
-        if (sink_audio_allocation != 0) {
+        if (sink_audio_allocation.has_value()) {
           ascs->sink_ase_char[i] = handle;
           handle += 2;
           ascs->sink_ase_ccc[i] = handle;
           handle++;
         }
 
-        if (source_audio_allocation != 0) {
+        if (source_audio_allocation.has_value()) {
           ascs->source_ase_char[i] = handle;
           handle += 2;
           ascs->source_ase_ccc[i] = handle;
@@ -2396,19 +2400,6 @@ protected:
                         std::move(pacs));
 
     if (add_pacs) {
-      uint8_t snk_allocation[4];
-      uint8_t src_allocation[4];
-
-      snk_allocation[0] = (uint8_t)(sink_audio_allocation);
-      snk_allocation[1] = (uint8_t)(sink_audio_allocation >> 8);
-      snk_allocation[2] = (uint8_t)(sink_audio_allocation >> 16);
-      snk_allocation[3] = (uint8_t)(sink_audio_allocation >> 24);
-
-      src_allocation[0] = (uint8_t)(source_audio_allocation);
-      src_allocation[1] = (uint8_t)(source_audio_allocation >> 8);
-      src_allocation[2] = (uint8_t)(source_audio_allocation >> 16);
-      src_allocation[3] = (uint8_t)(source_audio_allocation >> 24);
-
       uint8_t sample_freq[2];
       sample_freq[0] = (uint8_t)(sample_freq_mask);
       sample_freq[1] = (uint8_t)(sample_freq_mask >> 8);
@@ -2485,11 +2476,10 @@ protected:
                     }
                   } else if (handle == pacs->sink_audio_loc_char + 1) {
                     value = {
-                            // Audio Locations
-                            snk_allocation[0],
-                            snk_allocation[1],
-                            snk_allocation[2],
-                            snk_allocation[3],
+                            (uint8_t)(sink_audio_allocation.value_or(0)),
+                            (uint8_t)(sink_audio_allocation.value_or(0) >> 8),
+                            (uint8_t)(sink_audio_allocation.value_or(0) >> 16),
+                            (uint8_t)(sink_audio_allocation.value_or(0) >> 24),
                     };
                   } else if (handle == pacs->source_pac_char + 1) {
                     if (empty_source_pack_) {
@@ -2554,11 +2544,10 @@ protected:
                     }
                   } else if (handle == pacs->source_audio_loc_char + 1) {
                     value = {
-                            // Audio Locations
-                            src_allocation[0],
-                            src_allocation[1],
-                            src_allocation[2],
-                            src_allocation[3],
+                            (uint8_t)(source_audio_allocation.value_or(0)),
+                            (uint8_t)(source_audio_allocation.value_or(0) >> 8),
+                            (uint8_t)(source_audio_allocation.value_or(0) >> 16),
+                            (uint8_t)(source_audio_allocation.value_or(0) >> 24),
                     };
                   } else if (handle == pacs->avail_contexts_char + 1) {
                     value = {
@@ -13351,9 +13340,18 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
   SampleDatabaseParameters remote_params{
           .conn_id = 1,
           .addr = test_address0,
+          .sink_audio_allocation = codec_spec_conf::kLeAudioLocationStereo,
+          .source_audio_allocation = codec_spec_conf::kLeAudioLocationStereo,
+          .sink_channel_cnt = default_channel_cnt,
+          .source_channel_cnt = default_channel_cnt,
+          .sample_freq_mask = le_audio::codec_spec_caps::kLeAudioSamplingFreq32000Hz,
           .add_csis = false,
+          .add_cas = true,
+          .add_pacs = true,
+          .add_ascs_cnt = 1,
           .set_size = 0,
           .rank = 0,
+          .gatt_status = GATT_SUCCESS,
           .max_supported_codec_frames_per_sdu = 2,
   };
   SetSampleDatabaseEarbudsValid(remote_params);
