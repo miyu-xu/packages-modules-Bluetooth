@@ -4435,6 +4435,28 @@ public class AdapterService extends Service {
             AdapterService service = getService();
             return service == null ? null : service.getDistanceMeasurement();
         }
+
+        @Override
+        public int getKeyMissingCount(BluetoothDevice device, AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null) {
+                return 0;
+            }
+            if (!callerIsSystemOrActiveOrManagedUser(service, TAG, "updateBondLossCount")) {
+                throw new IllegalStateException(
+                        "Caller is not the system or part of the active/managed user");
+            }
+            if (!BluetoothAdapter.checkBluetoothAddress(device.getAddress())) {
+                throw new IllegalArgumentException("device cannot have an invalid address");
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, source, "AdapterService updateBondLossCount")) {
+                return 0;
+            }
+
+            service.enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, null);
+            return service.mDatabaseManager.getKeyMissingCount(device);
+        }
     }
 
     /**
