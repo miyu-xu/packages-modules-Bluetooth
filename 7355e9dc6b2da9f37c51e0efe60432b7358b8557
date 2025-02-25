@@ -22,6 +22,30 @@
       },
       "revId": "7355e9dc6b2da9f37c51e0efe60432b7358b8557",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "455b6038_3ae56a93",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-25T06:24:35Z",
+      "side": 1,
+      "message": "Got it! I was thinking which one should I do; based on scope \u0026 visibility or the order in which it comes via the constructor. I\u0027ll update it as you\u0027ve shown. Thank you a lot for the guidance.",
+      "parentUuid": "c6cd321a_2290cc08",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 45
+      },
+      "revId": "7355e9dc6b2da9f37c51e0efe60432b7358b8557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
