@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "69a9b6ca_52ee0034",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T19:16:46Z",
+      "side": 1,
+      "message": "It seems like the object is recreated and put in place yes\nSee [here](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java;l\u003d206;drc\u003d5c448700455cfc646f70a96d35107eee55c8c438)",
+      "parentUuid": "13fdf370_f5b52102",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 46
+      },
+      "revId": "c611cbd4a4063d7181837c70d48cf70ad0309f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3038bcf2_f328e069",
         "filename": "android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-25T13:05:13Z",
       "side": 1,
       "message": "2 points.\n\n1) I am not sure if the name `copyOf()` is the best. I\u0027m open to recommendations.\n2) I am not sure why we even need a new object? I did not want to modify the behaviour as the previous `findAllSync` was creating a new `SyncInfo` object as well so I am just replicating that logic via the helper method `copyOf()`.",
+      "range": {
+        "startLine": 129,
+        "startChar": 79,
+        "endLine": 129,
+        "endChar": 87
+      },
+      "revId": "c611cbd4a4063d7181837c70d48cf70ad0309f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fabae50e_ebcbb5b7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T19:16:46Z",
+      "side": 1,
+      "message": "I don\u0027t know about 1 but by looking at the caller of findAllSync, I think we can do better.\n\nuser only care about 2 things:\n* is there something in the map returned ?\n* the callback\n\nSo what if `findAllSync` become `getAllCallbacks` (or something like this)\n```\nprivate List\u003cIPeriodicAdvertisingCallback\u003e getAllCallbacks(int syncHandle) {\n        return mSyncs.values().stream()\n                .filter(v -\u003e v.id \u003d\u003d syncHandle)\n                .map(v -\u003e v.mCallback)\n                .collect(Collectors.toList());\n}\n```",
+      "parentUuid": "3038bcf2_f328e069",
       "range": {
         "startLine": 129,
         "startChar": 79,
