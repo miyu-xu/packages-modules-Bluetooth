@@ -16,6 +16,24 @@
       "message": "successful encryption",
       "revId": "693f360015ac24c4c5d8198c77899c402a6cbede",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc0b1c2f_c3eea0bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-25T08:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09721844_5780ffca",
+      "revId": "693f360015ac24c4c5d8198c77899c402a6cbede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
