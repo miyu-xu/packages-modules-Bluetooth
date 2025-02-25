@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d49e10_8eaace40",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1835,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-25T01:17:52Z",
+      "side": 1,
+      "message": "upon double check, `gatt_cleanup_upon_disc` works for both BR/EDR and LE and should be used for the final cleanup with GATT. \n\nInstead, the change should be made in `gatt_le_connect_cback` to call `connection_manager::remove_unconditional` before calling `gatt_cleanup_upon_disc` in the connection failure case",
+      "range": {
+        "startLine": 1835,
+        "startChar": 0,
+        "endLine": 1835,
+        "endChar": 50
+      },
+      "revId": "f0ad1a1fad5d7d23741b2e4c3db1244f0081ccf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
