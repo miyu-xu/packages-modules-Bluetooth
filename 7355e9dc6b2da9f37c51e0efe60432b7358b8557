@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6cd321a_2290cc08",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T06:22:54Z",
+      "side": 1,
+      "message": "I don\u0027t remember where I saw this rule, but when I am cleaning up a class, I am ordering the variable depending on the scope and visibility.\n\nFor example for test (same for others classes but without the rules and mocks)\n\n```\n@Rule\n\n@Mock\n@Spy\n\npublic final static VARIABLE\nfinal static VARIABLE\nprivate final static VARIABLE\n\npublic static sVariable\nstatic sVariable\nprivate static sVariable\n\n// I stop with public, package private, private but I keep it below too\n\npublic final mVariable \u003d new mFoo\u003c\u003e();\nfinal mVariable \u003d  new mFoo\u003c\u003e();\nprivate final mVariable \u003d  new mFoo\u003c\u003e();\n\n// still final but now the one that are initialized in constructor and that cannot be initialized directly here\npublic final mVariable; \nfinal mVariable; \nprivate final mVariable; \n\npublic mVariable\nmVariable\nprivate mVariable\n```\n\nThen sometimes, there is the need to gave a bit of adjustement when it makes more sense, like when there is a anonymous declaration, it\u0027s sometimes very noisy to make it with all the same one",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 45
+      },
+      "revId": "7355e9dc6b2da9f37c51e0efe60432b7358b8557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
