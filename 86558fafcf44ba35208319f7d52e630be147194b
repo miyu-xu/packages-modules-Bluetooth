@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c749115d_5f5c98f0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-25T17:17:55Z",
+      "side": 1,
+      "message": "@apusaka@google.com corrected the transport check",
+      "revId": "86558fafcf44ba35208319f7d52e630be147194b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
