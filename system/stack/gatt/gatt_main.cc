@@ -498,6 +498,7 @@ static void gatt_le_connect_cback(uint16_t /* chan */, const RawAddress& bd_addr
       bluetooth::shim::arbiter::GetArbiter().OnLeDisconnect(p_tcb->tcb_idx);
     }
     gatt_cleanup_upon_disc(bd_addr, static_cast<tGATT_DISCONN_REASON>(reason), transport);
+    connection_manager::on_connection_complete(bd_addr);
     return;
   }
 

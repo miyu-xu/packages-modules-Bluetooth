@@ -1832,7 +1832,6 @@ static void gatt_disconnect_complete_notify_user(const RawAddress& bda, tGATT_DI
 void gatt_cleanup_upon_disc(const RawAddress& bda, tGATT_DISCONN_REASON reason,
                             tBT_TRANSPORT transport) {
   log::verbose("");
-
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, transport);
   if (!p_tcb) {
     log::info("Connection timeout bd_addr:{} reason:{} transport:{}", bda,
