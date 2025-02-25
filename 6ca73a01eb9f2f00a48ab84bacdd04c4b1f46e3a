@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7b88b6b_e3d3efad",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-25T21:38:28Z",
+      "side": 1,
+      "message": "you pass in android::bluetooth::SocketErrorEnum here but everywhere else you list the type as `int` for error code parameter.",
+      "range": {
+        "startLine": 85,
+        "startChar": 30,
+        "endLine": 85,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f7f542cb_dac0e136",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_logging.cc",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "static android::bluetooth::SocketErrorEnum toSocketErrorEnum(android::bluetooth::SocketErrorEnum error_code);\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_logging.cc",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "                                 uint64_t connection_start_time_ms, android::bluetooth::SocketErrorEnum error_code) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_sock_logging.cc",
+              "range": {
+                "startLine": 203,
+                "startChar": 0,
+                "endLine": 204,
+                "endChar": 0
+              },
+              "replacement": "static android::bluetooth::SocketErrorEnum toSocketErrorEnum(android::bluetooth::SocketErrorEnum error_code) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "416f4d7a_43cfda54",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-25T21:38:28Z",
+      "side": 1,
+      "message": "You need to add socket error enum",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 1
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2ae6e961_cf0516f3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/os/android/metrics.cc",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 69,
+                "endChar": 0
+              },
+              "replacement": "template \u003c\u003e\nstruct formatter\u003candroid::bluetooth::SocketErrorEnum\u003e\n    : enum_formatter\u003candroid::bluetooth::SocketErrorEnum\u003e {};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03fe5c17_b6d11b68",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-25T21:38:28Z",
+      "side": 1,
+      "message": "What purpose does an unknown field serve? I don\u0027t think it\u0027s necessary",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "56be6af4_4b9e811c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/include/hardware/bt_sock.h",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 59,
+                "endChar": 0
+              },
+              "replacement": "  BTSOCK_ERROR_NONE \u003d 0,\n  BTSOCK_ERROR_SERVER_START_FAILURE \u003d 1,\n  BTSOCK_ERROR_CLIENT_INIT_FAILURE \u003d 2,\n  BTSOCK_ERROR_LISTEN_FAILURE \u003d 3,\n  BTSOCK_ERROR_CONNECTION_FAILURE \u003d 4,\n  BTSOCK_ERROR_OPEN_FAILURE \u003d 5,\n  BTSOCK_ERROR_OFFLOAD_SERVER_NOT_ACCEPTING \u003d 6,\n  BTSOCK_ERROR_OFFLOAD_HAL_OPEN_FAILURE \u003d 7,\n  BTSOCK_ERROR_SEND_TO_APP_FAILURE \u003d 8,\n  BTSOCK_ERROR_RECEIVE_DATA_FAILURE \u003d 9,\n  BTSOCK_ERROR_READ_SIGNALED_FAILURE \u003d 10,\n  BTSOCK_ERROR_WRITE_SIGNALED_FAILURE \u003d 11,\n  BTSOCK_ERROR_SEND_SCN_FAILURE \u003d 12,\n  BTSOCK_ERROR_SCN_ALLOCATION_FAILURE \u003d 13,\n  BTSOCK_ERROR_ADD_SDP_FAILURE \u003d 14,\n  BTSOCK_ERROR_SDP_DISCOVERY_FAILURE \u003d 15,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
