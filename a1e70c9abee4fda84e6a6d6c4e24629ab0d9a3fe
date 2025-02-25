@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6303d4c_3d1c859b",
+        "filename": "system/gd/hci/acl_manager.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-25T15:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aea517a_5c856a25",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c9cf9f6_658a777f",
@@ -123,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6821a1ac_e6a15c80",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-25T15:14:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c9cf9f6_658a777f",
+      "range": {
+        "startLine": 73,
+        "startChar": 52,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a73c9730_c51c4b5c",
@@ -190,6 +238,30 @@
           ]
         }
       ],
+      "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57db20cd_f6b44502",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-25T15:14:38Z",
+      "side": 1,
+      "message": "This change has been refactored to record the timestamp when a device is added. When reconnecting a device within one day, the preferred initial connection interval will be used. This ensures the optimization only applies to devices connected daily.",
+      "parentUuid": "a73c9730_c51c4b5c",
+      "range": {
+        "startLine": 1315,
+        "startChar": 7,
+        "endLine": 1315,
+        "endChar": 34
+      },
       "revId": "a1e70c9abee4fda84e6a6d6c4e24629ab0d9a3fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
