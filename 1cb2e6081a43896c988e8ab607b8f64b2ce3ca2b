@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f31f219b_a3b06da7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3158,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T14:21:05Z",
+      "side": 1,
+      "message": "I\u0027ve prepared a MSC for some cases: [![](https://mermaid.ink/img/pako:eNrtVttu2kAQ_ZXRPiUSibhD_IDkTUiK5EAEpg-VpWhtT2BVs-sua5oU8e9dX4BSSBFSUyVSeUC258zlnJ1ZzZIEMkRikTl-S1AEeMPZRLGZJ8D8YqY0D3jMhIY-sDnQKEEtpZ5Cn2m-wH2Yk8IctJOQyxGqBQ8OgNwU5PrzfQt1dtIUgQ7g6G84qiQLAzbXOdYT_YuLDqUW3CmZxGCDj4GcIbAgrRvOFBcTLQVCIIXGZw1swXjE_AjPU99OxzGuw8H44XHk2u549Ghfu73PXTizU7vUCHKBChwriUOmsSd8JsJhEfRWKneKWeYMH0kZQ9fgXyDEVBLgAiapOa_WMflcC-aod-OMkjiWSp_lTiYQitATW27XUyYmG06TnKkx_YkePEkFvtHsCE96nmV6G6ZBhEwd5lqwgF3Op9RB_4LieRUUXlP-k_HJytES_HXrHekq6uRym6SbbnXlWPD04ZZFkc-Cr1sKlBZwbfr-l_Y-dGi9_j9ozw96aIVedDiwb67tkZtp1jX_w6593-vfpce61VrG-1Lvuw4eHro3b0bwqNCvUHw399Xhdti7t9Y9DxvJ03EqBmKd-fuUm0vLR5MireL_sH3wYTvhYE6V901H7B2MECmRGaoZ46FZ2JZpHI_oKc7QI5Z5DPGJJZH2iCdWBsoSLUcvIiCWVgmWiAk4mRLriUVz85ZzKLa9zVezW32RcuedWEvyTKxqtXVZb5dr9Wq51W41mo0SeSHWRaVdu2w2661KudmutmtX9dqqRH5kISqXzUa5XjbGq3at0aiUayWCIddS3ecrZ7Z5rn4CLzOlrQ?type\u003dpng)](https://mermaid.live/edit#pako:eNrtVttu2kAQ_ZXRPiUSibhD_IDkTUiK5EAEpg-VpWhtT2BVs-sua5oU8e9dX4BSSBFSUyVSeUC258zlnJ1ZzZIEMkRikTl-S1AEeMPZRLGZJ8D8YqY0D3jMhIY-sDnQKEEtpZ5Cn2m-wH2Yk8IctJOQyxGqBQ8OgNwU5PrzfQt1dtIUgQ7g6G84qiQLAzbXOdYT_YuLDqUW3CmZxGCDj4GcIbAgrRvOFBcTLQVCIIXGZw1swXjE_AjPU99OxzGuw8H44XHk2u549Ghfu73PXTizU7vUCHKBChwriUOmsSd8JsJhEfRWKneKWeYMH0kZQ9fgXyDEVBLgAiapOa_WMflcC-aod-OMkjiWSp_lTiYQitATW27XUyYmG06TnKkx_YkePEkFvtHsCE96nmV6G6ZBhEwd5lqwgF3Op9RB_4LieRUUXlP-k_HJytES_HXrHekq6uRym6SbbnXlWPD04ZZFkc-Cr1sKlBZwbfr-l_Y-dGi9_j9ozw96aIVedDiwb67tkZtp1jX_w6593-vfpce61VrG-1Lvuw4eHro3b0bwqNCvUHw399Xhdti7t9Y9DxvJ03EqBmKd-fuUm0vLR5MireL_sH3wYTvhYE6V901H7B2MECmRGaoZ46FZ2JZpHI_oKc7QI5Z5DPGJJZH2iCdWBsoSLUcvIiCWVgmWiAk4mRLriUVz85ZzKLa9zVezW32RcuedWEvyTKxqtXVZb5dr9Wq51W41mo0SeSHWRaVdu2w2661KudmutmtX9dqqRH5kISqXzUa5XjbGq3at0aiUayWCIddS3ecrZ7Z5rn4CLzOlrQ)",
+      "parentUuid": "4e43be25_af563d49",
+      "range": {
+        "startLine": 3153,
+        "startChar": 0,
+        "endLine": 3158,
+        "endChar": 9
+      },
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb4ecc1b_9cf26170",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2

@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b28bb16_d60eedfb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3135,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T14:21:05Z",
+      "side": 1,
+      "message": "isFallbackUnicastGroupDuringBroadcast\n\n+\n\nisBroadcastStarted",
+      "revId": "8b4a7d1b25b1696d67056dc67c43b40a77e2b410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1031db5_7c7b69b6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T14:21:05Z",
+      "side": 1,
+      "message": "consider move to `updateInbandRingtoneForTheGroup`",
+      "fixSuggestions": [
+        {
+          "fixId": "828706a9_f48e43e9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2507,
+                "startChar": 0,
+                "endLine": 2508,
+                "endChar": 0
+              },
+              "replacement": "            updateFallbackUnicastGroupIdForBroadcast(groupId);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3140,
+                "startChar": 0,
+                "endLine": 3152,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3164,
+                "startChar": 0,
+                "endLine": 3164,
+                "endChar": 0
+              },
+              "replacement": "\n        int oldBroadcastToUnicastFallbackGroup \u003d mUnicastGroupIdDeactivatedForBroadcastTransition;\n        updateFallbackUnicastGroupIdForBroadcast(groupId);\n\n        if (mUnicastGroupIdDeactivatedForBroadcastTransition !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n            updateInbandRingtoneForTheGroup(oldBroadcastToUnicastFallbackGroup);\n        }\n        if (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n            updateInbandRingtoneForTheGroup(groupId);\n        }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3175,
+                "startChar": 0,
+                "endLine": 3177,
+                "endChar": 0
+              },
+              "replacement": "                ringtoneContextAvailable \u003d\n                        ((groupDescriptor.mAvailableContexts \u0026 BluetoothLeAudio.CONTEXT_TYPE_RINGTONE)\n                                !\u003d 0);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3234,
+                "startChar": 0,
+                "endLine": 3236,
+                "endChar": 0
+              },
+              "replacement": "                    deviceDescriptor.mDevInbandRingtoneEnabled \u003d isRingtoneEnabled;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8b4a7d1b25b1696d67056dc67c43b40a77e2b410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "334bab2d_8ecc055a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1570,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T14:21:05Z",
+      "side": 1,
+      "message": "InOrder",
+      "revId": "8b4a7d1b25b1696d67056dc67c43b40a77e2b410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
