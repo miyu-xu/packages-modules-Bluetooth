@@ -467,7 +467,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setProtected(
+    private void setProtected(
             BluetoothMapMessageListingElement e,
             Cursor c,
             FilterInfo fi,
@@ -485,7 +485,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setThreadId(
+    private void setThreadId(
             BluetoothMapMessageListingElement e,
             Cursor c,
             FilterInfo fi,
@@ -507,7 +507,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setThreadName(
+    private void setThreadName(
             BluetoothMapMessageListingElement e,
             Cursor c,
             FilterInfo fi,
@@ -522,7 +522,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setSent(
+    private void setSent(
             BluetoothMapMessageListingElement e,
             Cursor c,
             FilterInfo fi,
@@ -547,7 +547,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setRead(
+    private void setRead(
             BluetoothMapMessageListingElement e,
             Cursor c,
             FilterInfo fi,
@@ -566,7 +566,7 @@ public class BluetoothMapContent {
         e.setRead((read == 1), ((ap.getParameterMask() & MASK_READ) != 0));
     }
 
-    private static void setPriority(
+    private void setPriority(
             BluetoothMapMessageListingElement e,
             Cursor c,
             FilterInfo fi,
@@ -691,8 +691,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setReceptionStatus(
-            BluetoothMapMessageListingElement e, BluetoothMapAppParams ap) {
+    private void setReceptionStatus(BluetoothMapMessageListingElement e, BluetoothMapAppParams ap) {
         if ((ap.getParameterMask() & MASK_RECEPTION_STATUS) != 0) {
             String status = "complete";
             Log.v(TAG, "setReceptionStatus: " + status);
@@ -757,7 +756,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static TYPE getType(FilterInfo fi) {
+    private TYPE getType(FilterInfo fi) {
         TYPE type = null;
         Log.d(TAG, "getType: for filterMsgType" + fi.mMsgType);
         if (fi.mMsgType == FilterInfo.TYPE_SMS) {
@@ -1287,7 +1286,7 @@ public class BluetoothMapContent {
         }
     }
 
-    private static void setHandle(BluetoothMapMessageListingElement e, Cursor c, FilterInfo fi) {
+    private void setHandle(BluetoothMapMessageListingElement e, Cursor c, FilterInfo fi) {
         long handle = -1;
         if (fi.mMsgType == FilterInfo.TYPE_SMS) {
             handle = c.getLong(fi.mSmsColId);
@@ -1641,8 +1640,10 @@ public class BluetoothMapContent {
         return matchOriginator(c, fi, ap) && matchRecipient(c, fi, ap);
     }
 
-    /* Where filter functions */
-    private static String setWhereFilterFolderTypeSms(String folder) {
+    /*
+     * Where filter functions
+     */
+    private String setWhereFilterFolderTypeSms(String folder) {
         String where = "";
         if (BluetoothMapContract.FOLDER_NAME_INBOX.equalsIgnoreCase(folder)) {
             where = Sms.TYPE + " = 1 AND " + Sms.THREAD_ID + " <> -1";
@@ -1675,7 +1676,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterFolderTypeMms(String folder) {
+    private String setWhereFilterFolderTypeMms(String folder) {
         String where = "";
         if (BluetoothMapContract.FOLDER_NAME_INBOX.equalsIgnoreCase(folder)) {
             where = Mms.MESSAGE_BOX + " = 1 AND " + Mms.THREAD_ID + " <> -1";
@@ -1699,7 +1700,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterFolderTypeEmail(long folderId) {
+    private String setWhereFilterFolderTypeEmail(long folderId) {
         String where = "";
         if (folderId >= 0) {
             where = BluetoothMapContract.MessageColumns.FOLDER_ID + " = " + folderId;
@@ -1715,7 +1716,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterFolderTypeIm(long folderId) {
+    private String setWhereFilterFolderTypeIm(long folderId) {
         String where = "";
         if (folderId > BluetoothMapContract.FOLDER_ID_OTHER) {
             where = BluetoothMapContract.MessageColumns.FOLDER_ID + " = " + folderId;
@@ -1731,7 +1732,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterFolderType(
+    private String setWhereFilterFolderType(
             BluetoothMapFolderElement folderElement, FilterInfo fi) {
         String where = "1=1";
         if (!folderElement.shouldIgnore()) {
@@ -1749,7 +1750,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterReadStatus(BluetoothMapAppParams ap, FilterInfo fi) {
+    private String setWhereFilterReadStatus(BluetoothMapAppParams ap, FilterInfo fi) {
         String where = "";
         if (ap.getFilterReadStatus() != -1) {
             if (fi.mMsgType == FilterInfo.TYPE_SMS) {
@@ -1780,7 +1781,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterPeriod(BluetoothMapAppParams ap, FilterInfo fi) {
+    private String setWhereFilterPeriod(BluetoothMapAppParams ap, FilterInfo fi) {
         String where = "";
 
         if ((ap.getFilterPeriodBegin() != -1)) {
@@ -1814,7 +1815,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterOriginatorEmail(BluetoothMapAppParams ap) {
+    private String setWhereFilterOriginatorEmail(BluetoothMapAppParams ap) {
         String where = "";
         String orig = ap.getFilterOriginator();
 
@@ -1831,7 +1832,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterOriginatorIM(BluetoothMapAppParams ap) {
+    private String setWhereFilterOriginatorIM(BluetoothMapAppParams ap) {
         String where = "";
         String orig = ap.getFilterOriginator();
 
@@ -1848,7 +1849,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterPriority(BluetoothMapAppParams ap, FilterInfo fi) {
+    private String setWhereFilterPriority(BluetoothMapAppParams ap, FilterInfo fi) {
         String where = "";
         int pri = ap.getFilterPriority();
         /*only MMS have priority info */
@@ -1874,7 +1875,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterRecipientEmail(BluetoothMapAppParams ap) {
+    private String setWhereFilterRecipientEmail(BluetoothMapAppParams ap) {
         String where = "";
         String recip = ap.getFilterRecipient();
 
@@ -1899,7 +1900,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterMessageHandle(BluetoothMapAppParams ap, FilterInfo fi) {
+    private String setWhereFilterMessageHandle(BluetoothMapAppParams ap, FilterInfo fi) {
         String where = "";
         long id = -1;
         String msgHandle = ap.getFilterMsgHandleString();
@@ -1919,7 +1920,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilterThreadId(BluetoothMapAppParams ap, FilterInfo fi) {
+    private String setWhereFilterThreadId(BluetoothMapAppParams ap, FilterInfo fi) {
         String where = "";
         long id = -1;
         String msgHandle = ap.getFilterConvoIdString();
@@ -1940,7 +1941,7 @@ public class BluetoothMapContent {
         return where;
     }
 
-    private static String setWhereFilter(
+    private String setWhereFilter(
             BluetoothMapFolderElement folderElement, FilterInfo fi, BluetoothMapAppParams ap) {
         StringBuilder where = new StringBuilder(setWhereFilterFolderType(folderElement, fi));
 
@@ -2082,7 +2083,7 @@ public class BluetoothMapContent {
      *
      * @return boolean true if email is selected, false if not
      */
-    private static boolean emailSelected(BluetoothMapAppParams ap) {
+    private boolean emailSelected(BluetoothMapAppParams ap) {
         int msgType = ap.getFilterMessageType();
 
         Log.d(TAG, "emailSelected msgType: " + msgType);
@@ -2104,7 +2105,7 @@ public class BluetoothMapContent {
      *
      * @return boolean true if im is selected, false if not
      */
-    private static boolean imSelected(BluetoothMapAppParams ap) {
+    private boolean imSelected(BluetoothMapAppParams ap) {
         int msgType = ap.getFilterMessageType();
 
         Log.d(TAG, "imSelected msgType: " + msgType);
@@ -3380,7 +3381,7 @@ public class BluetoothMapContent {
      * @param contentUri the URI to append parameters to
      * @return the new URI with the appended parameters (if any)
      */
-    private static Uri appendConvoListQueryParameters(BluetoothMapAppParams ap, Uri contentUri) {
+    private Uri appendConvoListQueryParameters(BluetoothMapAppParams ap, Uri contentUri) {
         Uri.Builder newUri = contentUri.buildUpon();
         String str = ap.getFilterRecipient();
         if (str != null) {
@@ -3530,7 +3531,7 @@ public class BluetoothMapContent {
      *
      * @return the folder name.
      */
-    private static String getFolderName(int type, int threadId) {
+    private String getFolderName(int type, int threadId) {
 
         if (threadId == -1) {
             return BluetoothMapContract.FOLDER_NAME_DELETED;
@@ -3562,7 +3563,7 @@ public class BluetoothMapContent {
         long id = BluetoothMapUtils.getCpHandle(handle);
         if (appParams.getFractionRequest() == BluetoothMapAppParams.FRACTION_REQUEST_NEXT) {
             throw new IllegalArgumentException(
-                    "FRACTION_REQUEST_NEXT does not make sense as"
+                    "FRACTION_REQUEST_NEXT does not make sence as"
                             + " we always return the full message.");
         }
         switch (type) {

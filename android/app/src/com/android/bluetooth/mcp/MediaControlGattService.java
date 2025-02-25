@@ -438,12 +438,12 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                         }
                     });
 
-    private static long millisecondsToMcsInterval(long interval) {
+    private long millisecondsToMcsInterval(long interval) {
         /* MCS presents time in 0.01s intervals */
         return interval / 10;
     }
 
-    private static long mcsIntervalToMilliseconds(long interval) {
+    private long mcsIntervalToMilliseconds(long interval) {
         /* MCS presents time in 0.01s intervals */
         return interval * 10L;
     }

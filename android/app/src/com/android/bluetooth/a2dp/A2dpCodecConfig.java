@@ -168,7 +168,7 @@ class A2dpCodecConfig {
     }
 
     // Get the codec type of the highest priority of selectableCodecs and codecConfig.
-    private static int getPrioitizedCodecType(
+    private int getPrioitizedCodecType(
             BluetoothCodecConfig codecConfig, List<BluetoothCodecConfig> selectableCodecs) {
         BluetoothCodecConfig prioritizedCodecConfig = codecConfig;
         for (BluetoothCodecConfig config : selectableCodecs) {

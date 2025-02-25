@@ -68,7 +68,7 @@ class HeadsetSystemInterface {
         mTelecomManager = mHeadsetService.getSystemService(TelecomManager.class);
     }
 
-    private static BluetoothInCallService getBluetoothInCallServiceInstance() {
+    private BluetoothInCallService getBluetoothInCallServiceInstance() {
         return BluetoothInCallService.getInstance();
     }
 

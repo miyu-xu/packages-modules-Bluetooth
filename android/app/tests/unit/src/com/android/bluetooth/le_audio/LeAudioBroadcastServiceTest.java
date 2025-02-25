@@ -642,7 +642,7 @@ public class LeAudioBroadcastServiceTest {
         verify(mCallbacks).onBroadcastUpdateFailed(anyInt(), anyInt());
     }
 
-    private static BluetoothLeBroadcastSubgroup createBroadcastSubgroup() {
+    private BluetoothLeBroadcastSubgroup createBroadcastSubgroup() {
         BluetoothLeAudioCodecConfigMetadata codecMetadata =
                 new BluetoothLeAudioCodecConfigMetadata.Builder()
                         .setAudioLocation(TEST_AUDIO_LOCATION_FRONT_LEFT)
@@ -1689,7 +1689,7 @@ public class LeAudioBroadcastServiceTest {
         }
     }
 
-    private static BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
+    private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
             BluetoothLeAudioContentMetadata contentMetadata,
             @Nullable byte[] broadcastCode,
             int numOfGroups) {

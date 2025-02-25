@@ -293,8 +293,7 @@ import java.util.UUID;
         }
     }
 
-    private static byte[] concatenate(
-            ParcelUuid serviceDataUuid, byte[] serviceData, boolean isMask) {
+    private byte[] concatenate(ParcelUuid serviceDataUuid, byte[] serviceData, boolean isMask) {
         byte[] uuid = BluetoothUuid.uuidToBytes(serviceDataUuid);
 
         int dataLen = uuid.length + serviceData.length;
