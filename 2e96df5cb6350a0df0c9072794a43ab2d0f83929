@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbabc701_c80216ad",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-25T19:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b37322a2_7113dcfc",
+      "range": {
+        "startLine": 217,
+        "startChar": 45,
+        "endLine": 217,
+        "endChar": 48
+      },
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edd3806e_bd9e6d98",
@@ -82,6 +106,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34882b55_f6ac6426",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-25T19:33:40Z",
+      "side": 1,
+      "message": "same in logcat however, as you might know, sometimes logcat is too busy and can drop it.",
+      "parentUuid": "edd3806e_bd9e6d98",
+      "range": {
+        "startLine": 218,
+        "startChar": 19,
+        "endLine": 218,
+        "endChar": 39
+      },
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce448d71_78ffa137",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-25T19:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0761a31e_5bdf80fa",
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "480c1dd1_481c0b9d",
@@ -95,6 +161,30 @@
       "writtenOn": "2025-02-24T19:57:08Z",
       "side": 1,
       "message": "the method could be static (this will be enforced in very near future (aosp/3503747))\n\nAlso this can be written nicer with \"-\u003e\" switchs:\n\n\n```suggestion\n        private String getStateString(int state) {\n            return switch (state) {\n                case ACTIVE_STATE_ACTIVE -\u003e \"active\";\n                case ACTIVE_STATE_INACTIVE -\u003e \"inactive\";\n                case ACTIVE_STATE_GETTING_ACTIVE -\u003e \"getting_active\";\n                default -\u003e \"unknownState[\" + state + \"];\n            };\n        }\n```",
+      "range": {
+        "startLine": 344,
+        "startChar": 4,
+        "endLine": 354,
+        "endChar": 9
+      },
+      "revId": "2e96df5cb6350a0df0c9072794a43ab2d0f83929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "419fd441_736e453f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-25T19:33:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "480c1dd1_481c0b9d",
       "range": {
         "startLine": 344,
         "startChar": 4,
