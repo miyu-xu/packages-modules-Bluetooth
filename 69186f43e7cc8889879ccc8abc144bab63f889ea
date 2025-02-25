@@ -16,6 +16,47 @@
       "message": "Hi William, can you also help advice if this needs to be flagged? It\u0027s a small refactor so I\u0027m not sure. Thanks!",
       "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6d89b1_0d0a26e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T19:32:12Z",
+      "side": 1,
+      "message": "I don\u0027t think this need a flag because the msft isn\u0027t released yet and this only target your category of devices so far.",
+      "parentUuid": "51330aee_04d67134",
+      "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d67f62_f3a829d9",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T19:32:12Z",
+      "side": 1,
+      "message": "What are the cause for this to happen ?\n\nThe \"crash hard but crash early\" phylosophy helps a lot spotting configuration issue and this looks like one. (go/disgracefully-explode)\n\nWould it fail 100%?  \nBecause if it\u0027s due to the hal returning a wrong opcode, wouldn\u0027t it be preferabile to change the opcode return value and keep a strong crash here ?",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 5
+      },
+      "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
