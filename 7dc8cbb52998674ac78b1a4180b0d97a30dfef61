@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5d11b4e_aa941792",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T19:48:46Z",
+      "side": 1,
+      "message": "@gkolodziejczyk@google.com, can you also take a look here? \nPrivate broadcast handover has dependency on the available context, would like to confirm it this will affect anything there.\n\nBetter we do some sanity tests in private broadcast handover cases.",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cff0baa_de46acd8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T19:48:46Z",
+      "side": 1,
+      "message": "I didn\u0027t get why are we removing UpdateAudioContextAvailability here.\nWe\u0027re setting \u0027force\u0027 by checking AudioContext.\nif this is intended, should we rename this method accordingly since we\u0027re not updating AudioContext?",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c940ea_aa47e865",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T19:48:46Z",
+      "side": 1,
+      "message": "nit: contexts sink, for easier log search",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ffad454_f87928f8",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2649,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T19:48:46Z",
+      "side": 1,
+      "message": "need group check if (!group) here?",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
