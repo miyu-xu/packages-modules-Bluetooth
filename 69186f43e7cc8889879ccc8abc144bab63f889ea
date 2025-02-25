@@ -99,6 +99,30 @@
       },
       "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014e3b5c_88362419",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T21:41:27Z",
+      "side": 1,
+      "message": "How do you configure that the board is using either one or the other controller ?\n\nCouldn\u0027t you at the same location define the sysprop for the opcode (as it seems closely related)?",
+      "parentUuid": "8fe25aa1_56be2d93",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 5
+      },
+      "revId": "69186f43e7cc8889879ccc8abc144bab63f889ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
