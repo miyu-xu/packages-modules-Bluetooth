@@ -24,7 +24,7 @@ import androidx.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-/** Test cases for {@link AdvtFilterOnFoundOnLostInfoTest}. */
+/** Test cases for {@link AdvtFilterOnFoundOnLostInfo}. */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class AdvtFilterOnFoundOnLostInfoTest {
@@ -32,50 +32,49 @@ public class AdvtFilterOnFoundOnLostInfoTest {
     @Test
     public void advtFilterOnFoundOnLostInfoParams() {
         int clientIf = 0;
-        int advPktLen = 1;
-        byte[] advPkt = new byte[] {0x02};
+        int advPacketLen = 1;
+        byte[] advPacket = new byte[] {0x02};
         int scanRspLen = 3;
         byte[] scanRsp = new byte[] {0x04};
         int filtIndex = 5;
         int advState = 6;
         int advInfoPresent = 7;
         String address = "00:11:22:33:FF:EE";
-        int addrType = 8;
+        int addressType = 8;
         int txPower = 9;
         int rssiValue = 10;
         int timeStamp = 11;
+        byte[] resultByteArray = new byte[] {2, 4};
 
         AdvtFilterOnFoundOnLostInfo advtFilterOnFoundOnLostInfo =
                 new AdvtFilterOnFoundOnLostInfo(
                         clientIf,
-                        advPktLen,
-                        advPkt,
+                        advPacketLen,
+                        advPacket,
                         scanRspLen,
                         scanRsp,
                         filtIndex,
                         advState,
                         advInfoPresent,
                         address,
-                        addrType,
+                        addressType,
                         txPower,
                         rssiValue,
                         timeStamp);
 
-        assertThat(advtFilterOnFoundOnLostInfo.getClientIf()).isEqualTo(clientIf);
-        assertThat(advtFilterOnFoundOnLostInfo.getFiltIndex()).isEqualTo(filtIndex);
-        assertThat(advtFilterOnFoundOnLostInfo.getAdvState()).isEqualTo(advState);
-        assertThat(advtFilterOnFoundOnLostInfo.getTxPower()).isEqualTo(txPower);
-        assertThat(advtFilterOnFoundOnLostInfo.getTimeStamp()).isEqualTo(timeStamp);
-        assertThat(advtFilterOnFoundOnLostInfo.getRSSIValue()).isEqualTo(rssiValue);
-        assertThat(advtFilterOnFoundOnLostInfo.getAdvInfoPresent()).isEqualTo(advInfoPresent);
-        assertThat(advtFilterOnFoundOnLostInfo.getAddress()).isEqualTo(address);
-        assertThat(advtFilterOnFoundOnLostInfo.getAddressType()).isEqualTo(addrType);
-        assertThat(advtFilterOnFoundOnLostInfo.getAdvPacketData()).isEqualTo(advPkt);
-        assertThat(advtFilterOnFoundOnLostInfo.getAdvPacketLen()).isEqualTo(advPktLen);
-        assertThat(advtFilterOnFoundOnLostInfo.getScanRspData()).isEqualTo(scanRsp);
-        assertThat(advtFilterOnFoundOnLostInfo.getScanRspLen()).isEqualTo(scanRspLen);
-
-        byte[] resultByteArray = new byte[] {2, 4};
+        assertThat(advtFilterOnFoundOnLostInfo.clientIf()).isEqualTo(clientIf);
+        assertThat(advtFilterOnFoundOnLostInfo.advPacketLen()).isEqualTo(advPacketLen);
+        assertThat(advtFilterOnFoundOnLostInfo.advPacket()).isEqualTo(advPacket);
+        assertThat(advtFilterOnFoundOnLostInfo.scanRspLen()).isEqualTo(scanRspLen);
+        assertThat(advtFilterOnFoundOnLostInfo.scanRsp()).isEqualTo(scanRsp);
+        assertThat(advtFilterOnFoundOnLostInfo.filtIndex()).isEqualTo(filtIndex);
+        assertThat(advtFilterOnFoundOnLostInfo.advState()).isEqualTo(advState);
+        assertThat(advtFilterOnFoundOnLostInfo.advInfoPresent()).isEqualTo(advInfoPresent);
+        assertThat(advtFilterOnFoundOnLostInfo.address()).isEqualTo(address);
+        assertThat(advtFilterOnFoundOnLostInfo.addressType()).isEqualTo(addressType);
+        assertThat(advtFilterOnFoundOnLostInfo.txPower()).isEqualTo(txPower);
+        assertThat(advtFilterOnFoundOnLostInfo.rssiValue()).isEqualTo(rssiValue);
+        assertThat(advtFilterOnFoundOnLostInfo.timeStamp()).isEqualTo(timeStamp);
         assertThat(advtFilterOnFoundOnLostInfo.getResult()).isEqualTo(resultByteArray);
     }
 }

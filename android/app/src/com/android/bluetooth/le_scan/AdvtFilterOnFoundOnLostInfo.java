@@ -19,115 +19,27 @@ package com.android.bluetooth.le_scan;
 import android.annotation.Nullable;
 import android.bluetooth.BluetoothDevice;
 
-class AdvtFilterOnFoundOnLostInfo {
-    private int mClientIf;
-
-    private int mAdvPktLen;
-    @Nullable private byte[] mAdvPkt;
-
-    private int mScanRspLen;
-
-    @Nullable private byte[] mScanRsp;
-
-    private int mFiltIndex;
-    private int mAdvState;
-    private int mAdvInfoPresent;
-    private String mAddress;
-
-    private int mAddrType;
-    private int mTxPower;
-    private int mRssiValue;
-    private int mTimeStamp;
-
-    AdvtFilterOnFoundOnLostInfo(
-            int clientIf,
-            int advPktLen,
-            byte[] advPkt,
-            int scanRspLen,
-            byte[] scanRsp,
-            int filtIndex,
-            int advState,
-            int advInfoPresent,
-            String address,
-            int addrType,
-            int txPower,
-            int rssiValue,
-            int timeStamp) {
-
-        mClientIf = clientIf;
-        mAdvPktLen = advPktLen;
-        mAdvPkt = advPkt;
-        mScanRspLen = scanRspLen;
-        mScanRsp = scanRsp;
-        mFiltIndex = filtIndex;
-        mAdvState = advState;
-        mAdvInfoPresent = advInfoPresent;
-        mAddress = address;
-        mAddrType = addrType;
-        mTxPower = txPower;
-        mRssiValue = rssiValue;
-        mTimeStamp = timeStamp;
-    }
-
-    public int getClientIf() {
-        return mClientIf;
-    }
-
-    public int getFiltIndex() {
-        return mFiltIndex;
-    }
-
-    public int getAdvState() {
-        return mAdvState;
-    }
-
-    public int getTxPower() {
-        return mTxPower;
-    }
-
-    public int getTimeStamp() {
-        return mTimeStamp;
-    }
-
-    public int getRSSIValue() {
-        return mRssiValue;
-    }
-
-    public int getAdvInfoPresent() {
-        return mAdvInfoPresent;
-    }
-
-    public String getAddress() {
-        return mAddress;
-    }
-
-    @BluetoothDevice.AddressType
-    public int getAddressType() {
-        return mAddrType;
-    }
-
-    public byte[] getAdvPacketData() {
-        return mAdvPkt;
-    }
-
-    public int getAdvPacketLen() {
-        return mAdvPktLen;
-    }
-
-    public byte[] getScanRspData() {
-        return mScanRsp;
-    }
-
-    public int getScanRspLen() {
-        return mScanRspLen;
-    }
+public record AdvtFilterOnFoundOnLostInfo(
+        int clientIf,
+        int advPacketLen,
+        @Nullable byte[] advPacket,
+        int scanRspLen,
+        @Nullable byte[] scanRsp,
+        int filtIndex,
+        int advState,
+        int advInfoPresent,
+        String address,
+        @BluetoothDevice.AddressType int addressType,
+        int txPower,
+        int rssiValue,
+        int timeStamp) {
 
     public byte[] getResult() {
-        int resultLength = mAdvPkt.length + ((mScanRsp != null) ? mScanRsp.length : 0);
+        int resultLength = advPacket.length + ((scanRsp != null) ? scanRsp.length : 0);
         byte[] result = new byte[resultLength];
-        System.arraycopy(mAdvPkt, 0, result, 0, mAdvPkt.length);
-        if (mScanRsp != null) {
-            System.arraycopy(mScanRsp, 0, result, mAdvPkt.length, mScanRsp.length);
+        System.arraycopy(advPacket, 0, result, 0, advPacket.length);
+        if (scanRsp != null) {
+            System.arraycopy(scanRsp, 0, result, advPacket.length, scanRsp.length);
         }
         return result;
     }
