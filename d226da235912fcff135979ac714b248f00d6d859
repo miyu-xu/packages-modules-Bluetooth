@@ -22,6 +22,30 @@
       },
       "revId": "d226da235912fcff135979ac714b248f00d6d859",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ad4dd02_e607b349",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-25T19:44:36Z",
+      "side": 1,
+      "message": "yeah I ran the formatter and tried to manually fix this but the formatter and my manual fix conflict.  So william suggested that I bypass lint for this since there is precendence for metrics and the enum is very long.",
+      "parentUuid": "35466b13_114d107f",
+      "range": {
+        "startLine": 594,
+        "startChar": 0,
+        "endLine": 594,
+        "endChar": 105
+      },
+      "revId": "d226da235912fcff135979ac714b248f00d6d859",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
