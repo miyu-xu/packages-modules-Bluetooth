@@ -67,12 +67,11 @@ public:
   /**
    * Post a task to run on this thread
    *
-   * @param from_here location where this task is originated
    * @param task task created through base::Bind()
    * @return true if task is successfully scheduled, false if task cannot be
    * scheduled
    */
-  bool DoInThread(const base::Location& from_here, base::OnceClosure task);
+  bool DoInThread(base::OnceClosure task);
 
   /**
    * Shutdown the current thread as if it is never started. IsRunning() and
@@ -147,11 +146,11 @@ public:
    * <code>
    * base::CancelableClosure cancelable_task;
    * cancelable_task.Reset(base::Bind(...)); // bind the task
-   * same_thread->DoInThreadDelayed(FROM_HERE,
+   * same_thread->DoInThreadDelayed(
    *                                cancelable_task.callback(), delay);
    * ...
    * // Cancel the task closure
-   * same_thread->DoInThread(FROM_HERE,
+   * same_thread->DoInThread(
    *                         base::Bind(&base::CancelableClosure::Cancel,
    *                                    base::Unretained(&cancelable_task)));
    * </code>
@@ -159,14 +158,12 @@ public:
    * Warning: base::CancelableClosure objects must be created on, posted to,
    * cancelled on, and destroyed on the same thread.
    *
-   * @param from_here location where this task is originated
    * @param task task created through base::Bind()
    * @param delay delay for the task to be executed
    * @return true if task is successfully scheduled, false if task cannot be
    * scheduled
    */
-  bool DoInThreadDelayed(const base::Location& from_here, base::OnceClosure task,
-                         std::chrono::microseconds delay);
+  bool DoInThreadDelayed(base::OnceClosure task, std::chrono::microseconds delay);
   /**
    * Wrapper around DoInThread without a location.
    */
