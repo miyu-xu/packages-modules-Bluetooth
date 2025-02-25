@@ -16,6 +16,23 @@
       "message": "I support the change by itself, but I don\u0027t know the history why 7 was chosen and why it was not increased after so many years.",
       "revId": "22b1c176ff11388fa78b8e52960e8466e2f09ae3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84bdb2e4_e94cbc59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3836193
+      },
+      "writtenOn": "2025-02-25T01:09:57Z",
+      "side": 1,
+      "message": "Are we sure there aren\u0027t any other constants we have to increase alongside this one to prevent creating other issues?",
+      "revId": "22b1c176ff11388fa78b8e52960e8466e2f09ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
