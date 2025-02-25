@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e203ccb_5288b4cf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3158,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T11:02:11Z",
+      "side": 1,
+      "message": "Hi Rongxuan!\n\nTHe idea here is to update inband ringtone support for \"old\" and \"new\" Fallback Broadacst To Unicast group. \nWhile being in broadcast mode and Fallback Broadcast to Unicast group changes e.g. A-\u003eB, then inband ringtone support for A needs to be disabled but enabled for B.\n\nDoes it make sense now for you ?\n\nThis pattern repeate twice - this is why I\u0027ve decided to use a one method that does:\n1. Cache \"old\" fallback group ID\n2. Change current fallback group ID (it\u0027s used internally in some functions of inband ringtone check etc.)\n3. Update inband ringtone for \"old\" fallback group\n4. Update inband ringtone for \"new\" fallback group",
+      "parentUuid": "4e43be25_af563d49",
+      "range": {
+        "startLine": 3153,
+        "startChar": 0,
+        "endLine": 3158,
+        "endChar": 9
+      },
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb4ecc1b_9cf26170",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2025-02-24T18:45:47Z",
       "side": 1,
       "message": "wouldUseFallbackUnicastGroupForBroadcast name is a bit confusing, why don\u0027t we just do this? \nThis is more clear to represent the intent, instead of creating a method just to mix those together. \n\n            boolean isRingtoneEnabled \u003d\n                    ringtoneContextAvailable\n                            \u0026\u0026 (groupDescriptor.isActive()\n                                    || (isPrimaryGroup(groupId)\n                                    \u0026\u0026 (isBroadcastActive() || isBroadcastReadyToBeReActivated())));",
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2714063_72e24a2e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3202,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T11:02:11Z",
+      "side": 1,
+      "message": "To be honest, I think that meaning of \"Primary Group\" is no longer valid since it was decided to follow \"Fallback Broadcast To Unicast\" solution and the \"Fallback Broadcast To Unicast\" group can be different that currently active group.\n\nMy idea is to do following change that would update Pirmary Group usage. \n\n`wouldUseFallbackUnicastGroupForBroadcast` idea is to express that given group would be used as Fallback Unicast To Broadcast Group/handover group that ringtone would be rendered using this group.",
+      "parentUuid": "bb4ecc1b_9cf26170",
       "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
