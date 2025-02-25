@@ -22,6 +22,29 @@
       },
       "revId": "9417725f2f725a39c10625c313e52a1377481530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1d16f89_a0163d33",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-25T13:53:12Z",
+      "side": 1,
+      "message": "The error `[ArrayRecordComponent] Record components should not be arrays.` is not relevant for this use case. We are not using the value of `advPacket` nor `scanRsp` except to calculate `getResult()`. We are also not interested in `equals` or the `hashCode` implementation for this class. Therefore, I\u0027ll add a `@SuppressWarnings(\"ArrayRecordComponent\")` and PLMK what you think of this.",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "9417725f2f725a39c10625c313e52a1377481530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
