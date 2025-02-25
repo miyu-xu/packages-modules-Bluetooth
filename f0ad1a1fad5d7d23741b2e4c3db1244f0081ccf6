@@ -22,6 +22,30 @@
       },
       "revId": "f0ad1a1fad5d7d23741b2e4c3db1244f0081ccf6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1a5f828_3936c2be",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1835,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-25T05:55:03Z",
+      "side": 1,
+      "message": "Moved the call to gatt_le_connect_cback() but I don\u0027t think we should call remove_unconditional() since that is used for removing all connection requests. Whereas on_connection_complete() is used for concluding the direct connection requests.",
+      "parentUuid": "42d49e10_8eaace40",
+      "range": {
+        "startLine": 1835,
+        "startChar": 0,
+        "endLine": 1835,
+        "endChar": 50
+      },
+      "revId": "f0ad1a1fad5d7d23741b2e4c3db1244f0081ccf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
