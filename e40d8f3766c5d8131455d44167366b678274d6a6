@@ -356,6 +356,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cf8b1cb_c1788dfd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3799,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T19:03:10Z",
+      "side": 1,
+      "message": "I believe if we are planning to open the API as public and not as SystemApi, the BLUETOOTH_PRIVILEGED should be removed from here, and therfor from the aidl file, and therefore in the AdapterService it should not be enforce neither.\n\nUnless we want to mandate the usage of CompanionDeviceManager Association to not give this information to every one ?",
+      "parentUuid": "2a1e1511_17c5212f",
+      "range": {
+        "startLine": 3799,
+        "startChar": 52,
+        "endLine": 3799,
+        "endChar": 72
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e63915f_e02561f8",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 8
