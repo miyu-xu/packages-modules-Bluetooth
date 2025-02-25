@@ -281,7 +281,11 @@ private:
             DisableAnnouncement();
           },
           /* in ENABLING state */
-          [](const void*) { /* Do nothing */ },
+          [this](const void*) {
+            SetState(State::STOPPING);
+            callbacks_->OnStateMachineEvent(GetBroadcastId(), GetState());
+            DisableAnnouncement();
+          },
           /* in DISABLING state */
           [](const void*) { /* Do nothing */ },
           /* in STOPPING state */
@@ -563,8 +567,10 @@ private:
                   .connection_handles = evt->conn_handles,
           };
 
-          if (GetState() == BroadcastStateMachine::State::DISABLING) {
-            log::info("Terminating BIG due to stream suspending, big_id={}", evt->big_id);
+          if (GetState() == BroadcastStateMachine::State::DISABLING ||
+              GetState() == BroadcastStateMachine::State::STOPPING ||
+              GetState() == BroadcastStateMachine::State::STOPPED) {
+            log::info("Terminating BIG in state={}, big_id={}", ToString(GetState()), evt->big_id);
             TerminateBig();
           } else {
             callbacks_->OnBigCreated(evt->conn_handles);
