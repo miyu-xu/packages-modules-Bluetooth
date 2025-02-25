@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d9e1d39_78faac26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T10:25:38Z",
+      "side": 1,
+      "message": "Removing the need for maintaining the cache (updates, invalidation, etc.) is really nice. Thanks.",
+      "revId": "2f463fc168dce9de3ae18d49ad050c588e25ed26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee6cb608_aef39fc2",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T10:25:38Z",
+      "side": 1,
+      "message": "nit: BidirectionalPair::get() returns a reference, so you should be able to also assign by doing this:\n```\nstreaming_metadata_context_type_.get(remote_direction) \u003d metadata;\n```",
+      "range": {
+        "startLine": 308,
+        "startChar": 4,
+        "endLine": 312,
+        "endChar": 5
+      },
+      "revId": "2f463fc168dce9de3ae18d49ad050c588e25ed26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "925f6f88_dffa0728",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-25T10:25:38Z",
+      "side": 1,
+      "message": "nit: Most likely can be replaced with a single line:\n```\ngroup-\u003eSetStreamingMetadataContexts(metadata_context_types.get(direction), ase.direction);\n```",
+      "range": {
+        "startLine": 1302,
+        "startChar": 18,
+        "endLine": 1307,
+        "endChar": 19
+      },
+      "revId": "2f463fc168dce9de3ae18d49ad050c588e25ed26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
