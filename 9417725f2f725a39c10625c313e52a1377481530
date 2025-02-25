@@ -69,6 +69,77 @@
       },
       "revId": "9417725f2f725a39c10625c313e52a1377481530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a47fd3a_77c74e68",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T21:52:21Z",
+      "side": 1,
+      "message": "nit:\n\nWhen asserting in succession that many different item that doesn\u0027t depend on each other, we should prefer truth.expect.\n\nThat way, when the test fail, you end up having all the different failures at once and not just the first one.",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 87
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "30890e98_66467f00",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "import com.google.common.truth.Expect;\n\nimport org.junit.Rule;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "    @Rule\n    public final Expect expect \u003d Expect.create();\n\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": "        expect.that(advtFilterOnFoundOnLostInfo.clientIf()).isEqualTo(clientIf);\n        expect.that(advtFilterOnFoundOnLostInfo.advPacketLen()).isEqualTo(advPacketLen);\n        expect.that(advtFilterOnFoundOnLostInfo.advPacket()).isEqualTo(advPacket);\n        expect.that(advtFilterOnFoundOnLostInfo.scanRspLen()).isEqualTo(scanRspLen);\n        expect.that(advtFilterOnFoundOnLostInfo.scanRsp()).isEqualTo(scanRsp);\n        expect.that(advtFilterOnFoundOnLostInfo.filtIndex()).isEqualTo(filtIndex);\n        expect.that(advtFilterOnFoundOnLostInfo.advState()).isEqualTo(advState);\n        expect.that(advtFilterOnFoundOnLostInfo.advInfoPresent()).isEqualTo(advInfoPresent);\n        expect.that(advtFilterOnFoundOnLostInfo.address()).isEqualTo(address);\n        expect.that(advtFilterOnFoundOnLostInfo.addressType()).isEqualTo(addressType);\n        expect.that(advtFilterOnFoundOnLostInfo.txPower()).isEqualTo(txPower);\n        expect.that(advtFilterOnFoundOnLostInfo.rssiValue()).isEqualTo(rssiValue);\n        expect.that(advtFilterOnFoundOnLostInfo.timeStamp()).isEqualTo(timeStamp);\n        expect.that(advtFilterOnFoundOnLostInfo.getResult()).isEqualTo(resultByteArray);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9417725f2f725a39c10625c313e52a1377481530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
