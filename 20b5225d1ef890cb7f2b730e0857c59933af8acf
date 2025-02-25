@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453cbe9d_42532351",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T19:18:47Z",
+      "side": 1,
+      "message": "why do we want to log this as error in both case? were you intended to modifying the log of ln.602?",
+      "range": {
+        "startLine": 601,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 3
+      },
+      "revId": "20b5225d1ef890cb7f2b730e0857c59933af8acf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
