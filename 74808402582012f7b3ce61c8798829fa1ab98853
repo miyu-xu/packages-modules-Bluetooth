@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33dcaa06_e6a4ad91",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-25T08:06:51Z",
+      "side": 1,
+      "message": "1. Fallback group relation to primary group\n\nPrimary group according to description: If group \"is active or was active before switch to broadcast\". I belive this meaning lose its sense after introducing: \"Introduce set/get BroadcastToUnicastFallbackGroup API\" (aosp/3332922)\n\nI would say that currently primary group meaning is changed and its usage needs to be revised.\n\nIn previous idea (before Broadcast To Unicast Fallback group, there was an idea to use active group always as \"Broadcast To Uniacst Fallback\"). It means that primary group represents:\n- active group\n- group that would be activated once broadcast would be terminated/stopped/suspended\n\nCurrently active group may be different than Fallback Broadcast To Unciast group, e.g. default Fallback Broadcast To Unicast group is first connected.\n\n2. Active Device\n\nActive Bluetooth device is currently used Bluetooth device as Audio Device and exposed to Audio Manager.\n- In broadcast mode a Broadcast Audio Device with fake address is exposed\n- In unicast mode a Unicast \"Lead\" Device is exposed\n\nIs this now more clear ? @rlukasz@google.com",
+      "parentUuid": "3710d59b_3785315b",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "74808402582012f7b3ce61c8798829fa1ab98853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38d60c24_f88f3bea",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
