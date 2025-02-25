@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b2abfd_ea6f6b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-25T22:28:19Z",
+      "side": 1,
+      "message": "Bypassing presubmit since this is a build failure and blocking all presubmit.\n\nI have locally reproduced the build failure and validated that the fix indeed fix the failure.\n\nThis patch \"Works on my machine\"™",
+      "revId": "d40c0e51f14fb08f70000d1da9fcde03cb92b4ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
