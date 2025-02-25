@@ -216,6 +216,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22444cc8_f6c394e7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-25T06:42:27Z",
+      "side": 1,
+      "message": "Accept, better readability.",
+      "parentUuid": "286f044d_de1e7452",
+      "range": {
+        "startLine": 674,
+        "startChar": 7,
+        "endLine": 686,
+        "endChar": 13
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba81e3ca_904fe050",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 7
@@ -393,6 +417,30 @@
       "side": 1,
       "message": "I am not sure I understand your comment but let me clarify some behavior.\n\nBLE_ON is an intermediary state between ON and OFF, whatever the end state is, there will be a passage via BLE_ON.\n\nBut, while ACTION_BLE_STATE_CHANGED will send all the transition that are describ in your doc, the ACTION_STATE_CHANGED will only sent the br-edr one and that mean that for a full lifecycle you will have\n\n```\nOFF -\u003e BLE_TURNING_ON : Only send ACTION_BLE_STATE_CHANGED\nBLE_TURNING_ON -\u003e BLE_ON : Only send ACTION_BLE_STATE_CHANGED\nBLE_ON -\u003e TURNING_ON : send both ACTION_BLE_STATE_CHANGED and ACTION_STATE_CHANGED, but the prev state in ACTION_STATE_CHANGED is OFF and not BLE_ON\nTURNING_ON -\u003e ON : send both ACTION_BLE_STATE_CHANGED and ACTION_STATE_CHANGED \nON -\u003e TURNING_OFF : send both ACTION_BLE_STATE_CHANGED and ACTION_STATE_CHANGED\nTURNING_OFF-\u003e BLE_ON: send both ACTION_BLE_STATE_CHANGED and ACTION_STATE_CHANGED but the new state in ACTION_STATE_CHANGED is OFF\nBLE_ON -\u003e BLE_TURNING_OFF : Only send ACTION_BLE_STATE_CHANGED\nBLE_TURNING_OFF -\u003e OFF : Only send ACTION_BLE_STATE_CHANGED\n```\n\nKnowing that, and knowing that you are interested in BLE_ON state, I would listen to BLE_ON on ACTION_BLE_STATE_CHANGED and disregard the ACTION_STATE_CHANGED.\n\nThen, if you want to make sure that BLE_ON is not just a passage in your case, this check:\n```\nwaittingBluetoothState(BluetoothAdapter.STATE_OFF)\nTruth.assertThat(mAdapter.leState).isEqualTo(BluetoothAdapter.STATE_BLE_ON)\n```\n\ndoes not do that, as you will have STATE_OFF even when being in BLE_ON and even if this is a transitionary state. Let\u0027s imagine that bluetooth will end up shutting down, you could call mAdapter.leState before it goes to BLE_TURNING_OFF.\n\nI think that, what I would do is to call \n```\nwaittingBluetoothState(BluetoothAdapter.STATE_BLE_ON)\n\nassertThrows(IOException::class.java) { socketOs.write(data) }  // see my other comment\n\n// Validate that the test run while BLuetooth stayed in BLE_ON all along\nTruth.assertThat(mAdapter.leState).isEqualTo(BluetoothAdapter.STATE_BLE_ON)\n```\n\nThat way, you proceed the test when you reach BLE_ON, somebody reading this test later will know that you intended BLE_ON (and not OFF) and you can still assert the BLE_ON state stayed during the whole test",
       "parentUuid": "006f5bd3_54b7694d",
+      "range": {
+        "startLine": 698,
+        "startChar": 64,
+        "endLine": 698,
+        "endChar": 84
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2225219_89a0faae",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-25T06:42:27Z",
+      "side": 1,
+      "message": "I got your point, thank you for your detailed explanation",
+      "parentUuid": "7da7e0db_b44d7150",
       "range": {
         "startLine": 698,
         "startChar": 64,
