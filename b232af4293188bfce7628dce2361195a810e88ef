@@ -16,6 +16,24 @@
       "message": "I understand stack is not having authority to parse peer capability that\u0027s idea of extensiblity to parse and select final config in Audio vendor HAL however, I think we can still disallow those codec types from selectablity option which peer don\u0027t support at least based on codec_id as we know peer supprted codec_types in stack which still would be comparitively better from end user perspective as codec_id stack can parse if not codec co-parameters (like sampling freq, channel mode, bits_per_sample) to trim down results at least based on codec types which will not confuse end user to try selecting an unsupported codec types.",
       "revId": "b232af4293188bfce7628dce2361195a810e88ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5598d5ae_9929627a",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-25T00:16:05Z",
+      "side": 1,
+      "message": "That\u0027s a good point, let me check how the selection is currently made (supported codec vs unsupported). \n\nI will also need to add some logic to handle known offloaded codecs (e.g. for AAC, SBC) since in this case we are able to interpret the parameters. That can be done in a second time though.",
+      "parentUuid": "983c7467_d799f912",
+      "revId": "b232af4293188bfce7628dce2361195a810e88ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
