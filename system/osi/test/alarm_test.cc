@@ -22,14 +22,12 @@
 #include <gtest/gtest.h>
 #include <hardware/bluetooth.h>
 
+#include "stack/include/main_thread.h"
 #include "common/message_loop_thread.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/osi.h"
 #include "osi/include/wakelock.h"
 #include "osi/semaphore.h"
-
-// TODO(b/369381361) Enfore -Wmissing-prototypes
-#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 using base::Closure;
 using bluetooth::common::MessageLoopThread;
