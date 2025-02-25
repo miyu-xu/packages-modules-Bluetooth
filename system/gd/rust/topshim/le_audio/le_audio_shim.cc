@@ -207,9 +207,12 @@ static void group_stream_status_cb(int group_id, le_audio::GroupStreamStatus sta
   le_audio_group_stream_status_callback(group_id, to_rust_btle_audio_group_stream_status(status));
 }
 
-static void audio_conf_cb(uint8_t direction, int group_id, uint32_t snk_audio_location,
-                          uint32_t src_audio_location, uint16_t avail_cont) {
-  le_audio_audio_conf_callback(direction, group_id, snk_audio_location, src_audio_location,
+static void audio_conf_cb(uint8_t direction, int group_id,
+                          std::optional<std::bitset<32>> snk_audio_location,
+                          std::optional<std::bitset<32>> src_audio_location, uint16_t avail_cont) {
+  int64_t rs_snk_audio_location = snk_audio_location ? snk_audio_location->to_ulong() : -1l;
+  int64_t rs_src_audio_location = src_audio_location ? src_audio_location->to_ulong() : -1l;
+  le_audio_audio_conf_callback(direction, group_id, rs_snk_audio_location, rs_src_audio_location,
                                avail_cont);
 }
 
@@ -270,12 +273,15 @@ public:
     topshim::rust::internal::group_node_status_cb(bd_addr, group_id, node_status);
   }
 
-  void OnAudioConf(uint8_t direction, int group_id, uint32_t snk_audio_location,
-                   uint32_t src_audio_location, uint16_t avail_cont) {
+  void OnAudioConf(uint8_t direction, int group_id,
+                   std::optional<std::bitset<32>> snk_audio_location,
+                   std::optional<std::bitset<32>> src_audio_location, uint16_t avail_cont) {
     log::info(
             "direction={}, group_id={}, snk_audio_location={}, src_audio_location={}, "
             "avail_cont={}",
-            direction, group_id, snk_audio_location, src_audio_location, avail_cont);
+            direction, group_id,
+            std::to_string(snk_audio_location ? snk_audio_location->to_ulong() : -1),
+            std::to_string(src_audio_location ? src_audio_location->to_ulong() : -1), avail_cont);
     topshim::rust::internal::audio_conf_cb(direction, group_id, snk_audio_location,
                                            src_audio_location, avail_cont);
   }
