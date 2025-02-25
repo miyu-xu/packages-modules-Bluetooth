@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ffe5bde_162f8a41",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-25T01:42:56Z",
+      "side": 1,
+      "message": "We call `BTA_HhRemoveDev` here but `BTA_HhClose` on timeout. Shouldn\u0027t we call the same thing? \nWhat\u0027s the difference between HhRemoveDev and HhClose?",
+      "range": {
+        "startLine": 622,
+        "startChar": 8,
+        "endLine": 622,
+        "endChar": 71
+      },
+      "revId": "7ae9afd4871482c125f7c3fb7fa09e4c1f141137",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6eb3d3_2885726e",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-02-25T01:42:56Z",
+      "side": 1,
+      "message": "Should this be copied to `btif_hh_incoming_connection_timeout`?",
+      "range": {
+        "startLine": 637,
+        "startChar": 4,
+        "endLine": 644,
+        "endChar": 5
+      },
+      "revId": "7ae9afd4871482c125f7c3fb7fa09e4c1f141137",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
