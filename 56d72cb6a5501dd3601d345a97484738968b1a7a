@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5670f72a_d3b9266d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-25T22:58:11Z",
+      "side": 1,
+      "message": "nit: this is actually logging only",
+      "revId": "56d72cb6a5501dd3601d345a97484738968b1a7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
