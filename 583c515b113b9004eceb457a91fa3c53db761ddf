@@ -238,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed381889_2e2e8f47",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-25T06:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22444cc8_f6c394e7",
+      "range": {
+        "startLine": 674,
+        "startChar": 7,
+        "endLine": 686,
+        "endChar": 13
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba81e3ca_904fe050",
@@ -441,6 +465,30 @@
       "side": 1,
       "message": "I got your point, thank you for your detailed explanation",
       "parentUuid": "7da7e0db_b44d7150",
+      "range": {
+        "startLine": 698,
+        "startChar": 64,
+        "endLine": 698,
+        "endChar": 84
+      },
+      "revId": "583c515b113b9004eceb457a91fa3c53db761ddf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "744a956c_9635ddf9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-02-25T06:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2225219_89a0faae",
       "range": {
         "startLine": 698,
         "startChar": 64,
