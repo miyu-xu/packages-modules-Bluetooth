@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ef23708_73722a2f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-25T19:55:48Z",
+      "side": 1,
+      "message": "Are you planning to create a file that will keep track of all the preferences on the device? - @girardier@google.com",
+      "revId": "15bfd2ece0a34af737dbacf93ec9646119ba675a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
