@@ -978,7 +978,6 @@ public class ScanController {
             int txPower,
             int rssiValue,
             int timeStamp) {
-
         return new AdvtFilterOnFoundOnLostInfo(
                 clientIf,
                 advPktLen,
@@ -999,15 +998,15 @@ public class ScanController {
         Log.d(
                 TAG,
                 "onTrackAdvFoundLost() - scannerId= "
-                        + trackingInfo.getClientIf()
+                        + trackingInfo.clientIf()
                         + " address = "
-                        + trackingInfo.getAddress()
+                        + trackingInfo.address()
                         + " addressType = "
-                        + trackingInfo.getAddressType()
+                        + trackingInfo.addressType()
                         + " adv_state = "
-                        + trackingInfo.getAdvState());
+                        + trackingInfo.advState());
 
-        ScannerMap.ScannerApp app = mScannerMap.getById(trackingInfo.getClientIf());
+        ScannerMap.ScannerApp app = mScannerMap.getById(trackingInfo.clientIf());
         if (app == null) {
             Log.e(TAG, "app is null");
             return;
@@ -1015,18 +1014,17 @@ public class ScanController {
 
         BluetoothDevice device =
                 BluetoothAdapter.getDefaultAdapter()
-                        .getRemoteLeDevice(
-                                trackingInfo.getAddress(), trackingInfo.getAddressType());
-        int advertiserState = trackingInfo.getAdvState();
+                        .getRemoteLeDevice(trackingInfo.address(), trackingInfo.addressType());
+        int advertiserState = trackingInfo.advState();
         ScanResult result =
                 new ScanResult(
                         device,
                         ScanRecord.parseFromBytes(trackingInfo.getResult()),
-                        trackingInfo.getRSSIValue(),
+                        trackingInfo.rssiValue(),
                         SystemClock.elapsedRealtimeNanos());
 
         for (ScanClient client : mScanManager.getRegularScanQueue()) {
-            if (client.scannerId == trackingInfo.getClientIf()) {
+            if (client.scannerId == trackingInfo.clientIf()) {
                 ScanSettings settings = client.settings;
                 if ((advertiserState == ADVT_STATE_ONFOUND)
                         && ((settings.getCallbackType() & ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
