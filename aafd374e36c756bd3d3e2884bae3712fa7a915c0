@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f89350d_14190eab",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T10:31:47Z",
+      "side": 1,
+      "message": "I think in this state there should be no `DisableAnnouncement()` call. Disable announcement would be called from `HandleHciEvent` context.",
+      "fixSuggestions": [
+        {
+          "fixId": "83d516da_a32d01e8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/state_machine.cc",
+              "range": {
+                "startLine": 287,
+                "startChar": 0,
+                "endLine": 288,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "aafd374e36c756bd3d3e2884bae3712fa7a915c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca619038_77550ff7",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T10:31:47Z",
+      "side": 1,
+      "message": "I belive that this needs to be only extended by `GetState() \u003d\u003d BroadcastStateMachine::State::STOPPING` and not `GetState() \u003d\u003d BroadcastStateMachine::State::STOPPED`. In STOPPED state it\u0027s bad if there would be any BIG existing.",
+      "fixSuggestions": [
+        {
+          "fixId": "62ea85dc_14455a45",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/state_machine.cc",
+              "range": {
+                "startLine": 571,
+                "startChar": 0,
+                "endLine": 573,
+                "endChar": 0
+              },
+              "replacement": "              GetState() \u003d\u003d BroadcastStateMachine::State::STOPPING) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "aafd374e36c756bd3d3e2884bae3712fa7a915c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
