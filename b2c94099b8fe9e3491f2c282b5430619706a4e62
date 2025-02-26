@@ -45,6 +45,30 @@
       },
       "revId": "b2c94099b8fe9e3491f2c282b5430619706a4e62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45787825_e39e0ecf",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T03:00:32Z",
+      "side": 1,
+      "message": "BlockingBluetoothAdapter doesn\u0027t work for this specific case.\n\nThese method where thought with cts test in mind and impose a few restriction on the caller.\n\nNotably the transition is always OFF -\u003e BLE_ON -\u003e OFF\n\nHere since we want ON -\u003e BLE_ON, we need to dig a bit more in the internal implementation to achieve it.",
+      "parentUuid": "ba36c2f2_5322a816",
+      "range": {
+        "startLine": 639,
+        "startChar": 0,
+        "endLine": 651,
+        "endChar": 0
+      },
+      "revId": "b2c94099b8fe9e3491f2c282b5430619706a4e62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
