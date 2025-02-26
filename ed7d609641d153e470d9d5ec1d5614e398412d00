@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b12aba31_add38837",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-26T22:33:36Z",
+      "side": 1,
+      "message": "the CL lgtm, you can also ask @tyszkowski@google.com to take a look here, and decide when to merge.",
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a824dd78_84d38943",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2805,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-26T22:33:36Z",
+      "side": 1,
+      "message": "nit: this should not matter, but to align with other place, set last_ase_ctp_command_sent first -\u003e PrepareAseCtpAudioReceiverStartReady -\u003e WriteToControlPoint?",
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
