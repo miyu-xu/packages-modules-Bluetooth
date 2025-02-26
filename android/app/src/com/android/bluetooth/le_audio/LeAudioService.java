@@ -24,6 +24,7 @@ import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.bass_client.BassConstants.INVALID_BROADCAST_ID;
+import static com.android.bluetooth.flags.Flags.doNotHardcodeTmapRoleMask;
 import static com.android.bluetooth.flags.Flags.leaudioBigDependsOnAudioState;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastApiManagePrimaryGroup;
 import static com.android.bluetooth.flags.Flags.leaudioMonitorUnicastSourceWhenManagedByBroadcastDelegator;
@@ -266,14 +267,36 @@ public class LeAudioService extends ProfileService {
                     requireNonNull(LeAudioBroadcasterNativeInterface.getInstance());
             broadcastNativeInterface.init();
             mLeAudioBroadcasterNativeInterface = Optional.of(broadcastNativeInterface);
-            mTmapRoleMask =
-                    LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG
-                            | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS
-                            | LeAudioTmapGattServer.TMAP_ROLE_FLAG_BMS;
+            if (doNotHardcodeTmapRoleMask()) {
+                int mask = LeAudioTmapGattServer.TMAP_ROLE_FLAG_BMS;
+                if (TbsService.isEnabled()) {
+                    mask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG;
+                }
+                if (McpService.isEnabled()) {
+                    mask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
+                }
+                mTmapRoleMask = mask;
+            } else {
+                mTmapRoleMask =
+                        LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG
+                                | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS
+                                | LeAudioTmapGattServer.TMAP_ROLE_FLAG_BMS;
+            }
         } else {
-            mTmapRoleMask =
-                    LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG
-                            | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
+            if (doNotHardcodeTmapRoleMask()) {
+                int mask = 0;
+                if (TbsService.isEnabled()) {
+                    mask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG;
+                }
+                if (McpService.isEnabled()) {
+                    mask |= LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
+                }
+                mTmapRoleMask = mask;
+            } else {
+                mTmapRoleMask =
+                        LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG
+                                | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
+            }
             mLeAudioBroadcasterNativeInterface = Optional.empty();
             Log.w(TAG, "Le Audio Broadcasts not supported.");
         }
