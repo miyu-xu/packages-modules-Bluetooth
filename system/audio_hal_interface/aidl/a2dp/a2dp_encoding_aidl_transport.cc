@@ -15,7 +15,7 @@
  */
 #define LOG_TAG "BTAudioA2dpAIDL"
 
-#include "a2dp_encoding_aidl.h"
+#include "a2dp_encoding_aidl_transport.h"
 
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
