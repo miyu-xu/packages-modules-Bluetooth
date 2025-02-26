@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f28315_9197bee9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:58:00Z",
+      "side": 1,
+      "message": "you can refence \n\n```\nFlag: com.android.bluetooth.flags.disconnect_acls_by_bredr_disabled\n```\n\nas the flag here",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "b2c94099b8fe9e3491f2c282b5430619706a4e62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba36c2f2_5322a816",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:58:00Z",
+      "side": 1,
+      "message": "could you take a look at \n\npackages/modules/Bluetooth/framework/tests/util/src/BlockingBluetoothAdapter.kt\n\n- enableBLE\n- disableBLE \n\nshould do the trick",
+      "range": {
+        "startLine": 639,
+        "startChar": 0,
+        "endLine": 651,
+        "endChar": 0
+      },
+      "revId": "b2c94099b8fe9e3491f2c282b5430619706a4e62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
