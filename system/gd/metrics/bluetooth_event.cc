@@ -20,6 +20,7 @@
 #include "bta/include/bta_hfp_api.h"
 #include "main/shim/helpers.h"
 #include "os/metrics.h"
+#include "stack/include/btm_api_types.h"
 
 namespace bluetooth {
 namespace metrics {
@@ -335,6 +336,19 @@ State MapHfpVersionToState(uint16_t version) {
       return State::VERSION_1_9;
     default:
       return State::VERSION_UNKNOWN;
+  }
+}
+
+State MapScoCodecToState(uint16_t codec) {
+  switch (codec) {
+    case BTM_SCO_CODEC_CVSD:
+      return State::CODEC_CVSD;
+    case BTM_SCO_CODEC_MSBC:
+      return State::CODEC_MSBC;
+    case BTM_SCO_CODEC_LC3:
+      return State::CODEC_LC3;
+    default:
+      return State::CODEC_NONE;
   }
 }
 

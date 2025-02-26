@@ -54,6 +54,15 @@ struct log_le_connection_status log_le_connection_status;
 struct log_le_device_in_accept_list log_le_device_in_accept_list;
 struct log_le_connection_lifecycle log_le_connection_lifecycle;
 struct log_le_connection_completion log_le_connection_completion;
+struct log_hfp_ag_version log_hfp_ag_version;
+struct log_hfp_hf_version log_hfp_hf_version;
+struct log_hfp_rfcomm_channel_fail log_hfp_rfcomm_channel_fail;
+struct log_hfp_rfcomm_collision_fail log_hfp_rfcomm_collision_fail;
+struct log_hfp_rfcomm_ag_open_fail log_hfp_rfcomm_ag_open_fail;
+struct log_hfp_slc_fail log_hfp_slc_fail;
+struct log_sco_codec log_sco_codec;
+struct log_sco_link_created log_sco_link_created;
+struct log_sco_link_removed log_sco_link_removed;
 
 }  // namespace stack_metrics_logging
 }  // namespace mock
@@ -147,5 +156,50 @@ void log_le_connection_completion(bluetooth::hci::Address address, bluetooth::hc
   inc_func_call_count(__func__);
   test::mock::stack_metrics_logging::log_le_connection_completion(address, reason,
                                                                   is_locally_initiated);
+}
+
+void log_hfp_ag_version(bluetooth::hci::Address address, uint16_t version) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_hfp_ag_version(address, version);
+}
+
+void log_hfp_hf_version(bluetooth::hci::Address address, uint16_t version) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_hfp_hf_version(address, version);
+}
+
+void log_hfp_rfcomm_channel_fail(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_hfp_rfcomm_channel_fail(address);
+}
+
+void log_hfp_rfcomm_collision_fail(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_hfp_rfcomm_collision_fail(address);
+}
+
+void log_hfp_rfcomm_ag_open_fail(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_hfp_rfcomm_ag_open_fail(address);
+}
+
+void log_hfp_slc_fail(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_hfp_slc_fail(address);
+}
+
+void log_sco_codec(bluetooth::hci::Address address, uint16_t codec) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_sco_codec(address, codec);
+}
+
+void log_sco_link_created(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_sco_link_created(address);
+}
+
+void log_sco_link_removed(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_sco_link_removed(address);
 }
 // END mockcify generation
