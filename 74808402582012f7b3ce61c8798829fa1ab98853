@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "928a1fe7_f20ac301",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-26T18:22:46Z",
+      "side": 1,
+      "message": "Assuming this has been clarified with your offline discussion, please feel free to reopen if not.",
+      "parentUuid": "33dcaa06_e6a4ad91",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 32
+      },
+      "revId": "74808402582012f7b3ce61c8798829fa1ab98853",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38d60c24_f88f3bea",
