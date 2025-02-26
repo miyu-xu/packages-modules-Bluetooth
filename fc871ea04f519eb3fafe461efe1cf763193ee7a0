@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab41b8fc_59f95595",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-26T11:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c031485_154e6473",
+      "range": {
+        "startLine": 875,
+        "startChar": 4,
+        "endLine": 875,
+        "endChar": 59
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51d7dacb_dc00b429",
@@ -103,6 +127,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7af38f3d_9869cd1b",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-26T11:35:37Z",
+      "side": 1,
+      "message": "As discussed, after checking direct_connections_, this fix will only apply when actively connecting a device that performed a CS within the past 24 hours. In other cases, we can still use aggressive mode.",
+      "parentUuid": "51d7dacb_dc00b429",
+      "range": {
+        "startLine": 1324,
+        "startChar": 7,
+        "endLine": 1324,
+        "endChar": 62
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2276031c_f1ec5367",
@@ -116,6 +164,30 @@
       "writtenOn": "2025-02-26T06:49:07Z",
       "side": 1,
       "message": "Q) Why is this one day? How is this time length decided?",
+      "range": {
+        "startLine": 1326,
+        "startChar": 9,
+        "endLine": 1326,
+        "endChar": 20
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afbc3a41_cfad2ca2",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-26T11:35:37Z",
+      "side": 1,
+      "message": "We need an auto-removal mechanism for the list, and I would like this fix be applied to daily connected devices based on our usecase.",
+      "parentUuid": "2276031c_f1ec5367",
       "range": {
         "startLine": 1326,
         "startChar": 9,
@@ -167,6 +239,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2af3ed11_ef5f5c78",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-26T11:35:37Z",
+      "side": 1,
+      "message": "This was for testing and I forgot to delete it. Thanks for finding this!",
+      "parentUuid": "170695eb_051a75f8",
+      "range": {
+        "startLine": 1330,
+        "startChar": 6,
+        "endLine": 1331,
+        "endChar": 90
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3b0e956_cf1364c6",
@@ -180,6 +276,30 @@
       "writtenOn": "2025-02-26T06:49:07Z",
       "side": 1,
       "message": "minor) Can we make a variable with name `time_added` or similar instead of using `it-\u003esecond` repeatedly?",
+      "range": {
+        "startLine": 1333,
+        "startChar": 10,
+        "endLine": 1333,
+        "endChar": 20
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "498bacb1_af1fbd7d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-26T11:35:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3b0e956_cf1364c6",
       "range": {
         "startLine": 1333,
         "startChar": 10,

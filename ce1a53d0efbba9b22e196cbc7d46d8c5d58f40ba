@@ -50,6 +50,30 @@
       ],
       "revId": "ce1a53d0efbba9b22e196cbc7d46d8c5d58f40ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1f2a79e_e35dd0e0",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-26T11:35:37Z",
+      "side": 1,
+      "message": "Yes, this is the purpose of the fix. We intend to bypass the choose_connection_mode procedure and use a fixed ConnInterval value. This fix will only apply when actively connecting a device that performed a CS within the past 24 hours and will not affect other use cases.",
+      "parentUuid": "b3a822ea_d412c3cc",
+      "range": {
+        "startLine": 891,
+        "startChar": 9,
+        "endLine": 891,
+        "endChar": 43
+      },
+      "revId": "ce1a53d0efbba9b22e196cbc7d46d8c5d58f40ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
