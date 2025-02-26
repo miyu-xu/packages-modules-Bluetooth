@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4893912a_d296c1bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T00:30:47Z",
+      "side": 1,
+      "message": "This CL doesn\u0027t seems to be the culprit in my opinion.\n\nThe failure is related to concurrent merge of aosp/3503747 and aosp/3495435\n\nThis has been fixed by aosp/3508807 and this is present in git_main starting 13122073",
+      "revId": "d35e73f28b3ebe0d32393893a392770662751f37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
