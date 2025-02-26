@@ -252,6 +252,8 @@ protected:
 
   virtual void SetUp() override {
     __android_log_set_minimum_priority(ANDROID_LOG_DEBUG);
+    com::android::bluetooth::flags::provider_->reset_flags();
+
     reset_mock_function_count_map();
     bluetooth::manager::SetMockBtmInterface(&btm_interface);
     gatt::SetMockBtaGattInterface(&gatt_interface);
@@ -608,8 +610,6 @@ protected:
   }
 
   void TearDown() override {
-    com::android::bluetooth::flags::provider_->reset_flags();
-
     /* Clear the alarm on tear down in case test case ends when the
      * alarm is scheduled
      */
