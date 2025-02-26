@@ -41,6 +41,7 @@
 #include "btm_ble_api_types.h"
 #include "btm_iso_api.h"
 #include "btm_iso_api_types.h"
+#include "client_parser.h"
 #include "com_android_bluetooth_flags.h"
 #include "common/strings.h"
 #include "gatt_api.h"
@@ -455,6 +456,27 @@ LeAudioDevice* LeAudioDeviceGroup::GetNextActiveDevice(LeAudioDevice* leAudioDev
   });
 
   return (iter == leAudioDevices_.end()) ? nullptr : (iter->lock()).get();
+}
+
+int LeAudioDeviceGroup::GetNumOfActiveDevices(void) const {
+  int result = 0;
+  for (auto dev = GetFirstActiveDevice(); dev; dev = GetNextActiveDevice(dev)) {
+    result++;
+  }
+  return result;
+}
+
+int LeAudioDeviceGroup::GetNumOfActiveDevicesReleasing(void) const {
+  int result = 0;
+  for (auto dev = GetFirstActiveDevice(); dev; dev = GetNextActiveDevice(dev)) {
+    log::info("{} dev->last_ase_ctp_command_sent {}", dev->address_,
+              dev->last_ase_ctp_command_sent);
+    if (dev->last_ase_ctp_command_sent ==
+        bluetooth::le_audio::client_parser::ascs::kCtpOpcodeRelease) {
+      result++;
+    }
+  }
+  return result;
 }
 
 LeAudioDevice* LeAudioDeviceGroup::GetFirstActiveDeviceByCisAndDataPathState(
