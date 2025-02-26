@@ -153,6 +153,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5792d45d_dfdd9a1e",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T16:05:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "86c2e15a_ce2d2a60",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "437127e2_6aca76ec",
@@ -202,6 +220,24 @@
       "side": 1,
       "message": "no, we don\u0027t need it now. If it turns out we need it, we can add it.",
       "parentUuid": "437127e2_6aca76ec",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "065c8417_27436492",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T16:05:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5ad7c20d_464d9edf",
       "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
