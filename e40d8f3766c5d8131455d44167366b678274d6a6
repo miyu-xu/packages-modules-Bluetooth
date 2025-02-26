@@ -378,6 +378,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1555a47_7fa5a42a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3799,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-26T02:14:24Z",
+      "side": 1,
+      "message": "Sure, the permission is removed as looks like its not required.",
+      "parentUuid": "4cf8b1cb_c1788dfd",
+      "range": {
+        "startLine": 3799,
+        "startChar": 52,
+        "endLine": 3799,
+        "endChar": 72
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e63915f_e02561f8",
