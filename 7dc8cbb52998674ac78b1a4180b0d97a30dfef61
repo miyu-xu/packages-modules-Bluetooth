@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "595c9ccd_081292d5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T15:31:13Z",
+      "side": 1,
+      "message": "I changed `force` to  `available_contexts_changed` as it fits better.\n\nNow, we always update context types whenever it has changed on remote side.",
+      "parentUuid": "9cff0baa_de46acd8",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cdcb8891_25f93293",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -76,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "641f5080_0861a294",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2413,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T15:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdcb8891_25f93293",
+      "range": {
+        "startLine": 2413,
+        "startChar": 39,
+        "endLine": 2413,
+        "endChar": 45
+      },
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7115f166_cad442d2",
@@ -89,6 +131,24 @@
       "writtenOn": "2025-02-26T14:31:22Z",
       "side": 1,
       "message": "is there any specific reason why set is per direction and get is for both ? or can this be as GetAvailableContexts that accepts also `types::kLeAudioDirectionBoth` ?",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86c2e15a_ce2d2a60",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T15:31:13Z",
+      "side": 1,
+      "message": "we set streaming context per direction because  Streaming state which contains metadata is per direction. We do not expect using it for Both.\n\nWe Get both as it is simpler.",
+      "parentUuid": "7115f166_cad442d2",
       "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -130,6 +190,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5ad7c20d_464d9edf",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T15:31:13Z",
+      "side": 1,
+      "message": "no, we don\u0027t need it now. If it turns out we need it, we can add it.",
+      "parentUuid": "437127e2_6aca76ec",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7c940ea_aa47e865",
         "filename": "system/bta/le_audio/device_groups.h",
         "patchSetId": 3
@@ -141,6 +219,24 @@
       "writtenOn": "2025-02-25T19:48:46Z",
       "side": 1,
       "message": "nit: contexts sink, for easier log search",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f46bfe9_cfbac49b",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T15:31:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7c940ea_aa47e865",
       "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -158,6 +254,24 @@
       "writtenOn": "2025-02-25T19:48:46Z",
       "side": 1,
       "message": "need group check if (!group) here?",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cecd8172_2c9df613",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2649,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T15:31:13Z",
+      "side": 1,
+      "message": "no, it is called only when group exists.",
+      "parentUuid": "0ffad454_f87928f8",
       "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
