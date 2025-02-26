@@ -117,6 +117,7 @@ typedef struct {
 
 typedef struct {
   bool is_low_latency;
+  bool is_gaming_enabled;
 } btif_av_set_latency_req_t;
 
 typedef struct {
@@ -381,6 +382,9 @@ public:
   bool UseLatencyMode() const { return use_latency_mode_; }
   void SetUseLatencyMode(bool use_latency_mode) { use_latency_mode_ = use_latency_mode; }
 
+  bool GetLowLatencyMode () const { return is_low_latency_mode_; }
+  void SetLowLatencyMode(bool is_low_latency_mode) { is_low_latency_mode_ = is_low_latency_mode; }
+
   void SetReconfigureStreamData(btif_av_reconfig_req_t&& req) {
     reconfig_req_ = std::make_optional<btif_av_reconfig_req_t>(std::move(req));
   }
@@ -405,6 +409,7 @@ private:
   uint16_t delay_report_;
   bool mandatory_codec_preferred_ = false;
   bool use_latency_mode_ = false;
+  bool is_low_latency_mode_ = false;
   std::optional<btif_av_reconfig_req_t> reconfig_req_;
 };
 
@@ -552,6 +557,22 @@ public:
     }
     active_peer_ = peer_address;
     return true;
+  }
+
+  /**
+   * Update source codec mode configuration for a peer.
+   *
+   * @param peer_address the address of the peer to update
+   * @param codec_preferences the updated codec preferences
+   */
+  void UpdateCodecModeConfig(const RawAddress& peer_address,
+                             btav_a2dp_codec_audio_context_t audio_context) {
+    A2dpCodecConfig* current_codec = bta_av_get_a2dp_current_codec();
+    if (current_codec == nullptr) return;
+    btav_a2dp_codec_config_t codec_config = current_codec->getCodecConfig();
+    codec_config.audio_context = audio_context;
+    const std::vector<btav_a2dp_codec_config_t>& codec_preferences = {codec_config};
+    btif_a2dp_source_encoder_mode_config_update_req(peer_address, codec_preferences);
   }
 
   /**
@@ -2445,6 +2466,20 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event, void* p_data)
                 p_set_latency_req->is_low_latency);
 
       BTA_AvSetLatency(peer_.BtaHandle(), p_set_latency_req->is_low_latency);
+
+      bool old_low_latency_set = peer_.GetLowLatencyMode();
+      bool new_low_latency_set = (p_set_latency_req->is_low_latency) ||
+                                 (p_set_latency_req->is_gaming_enabled);
+      log::info("old_low_latency_set={}, new_low_latency_set={}",
+                old_low_latency_set, new_low_latency_set);
+
+      if (new_low_latency_set != old_low_latency_set) {
+        btav_a2dp_codec_audio_context_t audio_context_type =
+            (p_set_latency_req->is_gaming_enabled) ?
+            BTAV_A2DP_CODEC_AUDIO_CONTEXT_GAME : BTAV_A2DP_CODEC_AUDIO_CONTEXT_MEDIA;
+        peer_.SetLowLatencyMode(new_low_latency_set);
+        btif_av_source.UpdateCodecModeConfig(peer_.PeerAddress(), audio_context_type);
+      }
     } break;
 
     case BTIF_AV_RECONFIGURE_REQ_EVT: {
@@ -2686,6 +2721,20 @@ bool BtifAvStateMachine::StateStarted::ProcessEvent(uint32_t event, void* p_data
                 p_set_latency_req->is_low_latency);
 
       BTA_AvSetLatency(peer_.BtaHandle(), p_set_latency_req->is_low_latency);
+
+      bool old_low_latency_set = peer_.GetLowLatencyMode();
+      bool new_low_latency_set = (p_set_latency_req->is_low_latency) ||
+                                 (p_set_latency_req->is_gaming_enabled);
+      log::info("old_low_latency_set={}, new_low_latency_set={}",
+                old_low_latency_set, new_low_latency_set);
+
+      if (new_low_latency_set != old_low_latency_set) {
+        btav_a2dp_codec_audio_context_t audio_context_type =
+            (p_set_latency_req->is_gaming_enabled) ?
+            BTAV_A2DP_CODEC_AUDIO_CONTEXT_GAME : BTAV_A2DP_CODEC_AUDIO_CONTEXT_MEDIA;
+        peer_.SetLowLatencyMode(new_low_latency_set);
+        btif_av_source.UpdateCodecModeConfig(peer_.PeerAddress(), audio_context_type);
+      }
     } break;
 
       CHECK_RC_EVENT(event, reinterpret_cast<tBTA_AV*>(p_data));
@@ -4081,6 +4130,19 @@ void btif_av_set_low_latency(bool is_low_latency) {
 
   btif_av_set_latency_req_t set_latency_req;
   set_latency_req.is_low_latency = is_low_latency;
+  BtifAvEvent btif_av_event(BTIF_AV_SET_LATENCY_REQ_EVT, &set_latency_req, sizeof(set_latency_req));
+
+  do_in_main_thread(base::BindOnce(&btif_av_handle_event,
+                                   AVDT_TSEP_SNK,  // peer_sep
+                                   btif_av_source_active_peer(), kBtaHandleUnknown, btif_av_event));
+}
+
+void btif_av_update_source_metadata(bool is_gaming_enabled) {
+  log::info("active_peer={} is_gaming_enabled={}", btif_av_source_active_peer(), is_gaming_enabled);
+
+  btif_av_set_latency_req_t set_latency_req;
+  set_latency_req.is_gaming_enabled = is_gaming_enabled;
+
   BtifAvEvent btif_av_event(BTIF_AV_SET_LATENCY_REQ_EVT, &set_latency_req, sizeof(set_latency_req));
 
   do_in_main_thread(base::BindOnce(&btif_av_handle_event,
