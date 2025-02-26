@@ -270,6 +270,9 @@ static void btif_a2dp_source_encoder_user_config_update_event(
         const RawAddress& peer_address,
         const std::vector<btav_a2dp_codec_config_t>& codec_user_preferences,
         std::promise<void> peer_ready_promise);
+static void btif_a2dp_source_encoder_mode_config_update_event(
+        const RawAddress& peer_address,
+        const std::vector<btav_a2dp_codec_config_t>& codec_mode_preferences);
 static void btif_a2dp_source_audio_feeding_update_event(
         const btav_a2dp_codec_config_t& codec_audio_config);
 static bool btif_a2dp_source_audio_tx_flush_req(void);
@@ -412,6 +415,11 @@ class A2dpStreamCallbacks : public bluetooth::audio::a2dp::StreamCallbacks {
 
   Status SetLatencyMode(bool low_latency) const override {
     btif_av_set_low_latency(low_latency);
+    return Status::SUCCESS;
+  }
+
+  Status UpdateSourceMetadata(bool is_gaming_mode) const override {
+    btif_av_update_source_metadata(is_gaming_mode);
     return Status::SUCCESS;
   }
 };
@@ -719,6 +727,17 @@ void btif_a2dp_source_stop_audio_req(void) {
   local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_audio_tx_stop_event));
 }
 
+void btif_a2dp_source_encoder_mode_config_update_req(
+        const RawAddress& peer_address,
+        const std::vector<btav_a2dp_codec_config_t>& codec_mode_preferences) {
+  log::info("peer_address={} state={} {} codec_preference(s)", peer_address,
+            btif_a2dp_source_cb.StateStr(), codec_mode_preferences.size());
+
+  local_thread()->DoInThread(FROM_HERE,
+                             base::BindOnce(&btif_a2dp_source_encoder_mode_config_update_event,
+                             peer_address, codec_mode_preferences));
+}
+
 void btif_a2dp_source_encoder_user_config_update_req(
         const RawAddress& peer_address,
         const std::vector<btav_a2dp_codec_config_t>& codec_user_preferences,
@@ -733,6 +752,21 @@ void btif_a2dp_source_encoder_user_config_update_req(
     // cannot set promise but triggers crash
     log::fatal("peer_address={} state={} fails to context switch", peer_address,
                btif_a2dp_source_cb.StateStr());
+  }
+}
+
+static void btif_a2dp_source_encoder_mode_config_update_event(
+        const RawAddress& peer_address,
+        const std::vector<btav_a2dp_codec_config_t>& codec_mode_preferences) {
+  bool restart_output = false;
+  bool success = false;
+  for (auto codec_mode_config : codec_mode_preferences) {
+    success = bta_av_co_set_codec_user_config(peer_address, codec_mode_config, &restart_output);
+    if (success) {
+      log::info("peer_address={} state={} codec_preference=[{}] restart_output={}", peer_address,
+                btif_a2dp_source_cb.StateStr(), codec_mode_config.ToString(), restart_output);
+      break;
+    }
   }
 }
 
