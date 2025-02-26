@@ -501,17 +501,17 @@ public class AvrcpCoverArtManager {
     }
 
     /** Print to debug if debug is enabled for this class */
-    private static void debug(String msg) {
+    private void debug(String msg) {
         Log.d(TAG, msg);
     }
 
     /** Print to warn */
-    private static void warn(String msg) {
+    private void warn(String msg) {
         Log.w(TAG, msg);
     }
 
     /** Print to error */
-    private static void error(String msg) {
+    private void error(String msg) {
         Log.e(TAG, msg);
     }
 }
