@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b338f1e_f692840a",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-26T21:31:53Z",
+      "side": 1,
+      "message": "That\u0027s because `\u003ccom_android_bluetooth_flags.h\u003e` gets included transitively from one of the headers I added in the mock sources.",
+      "parentUuid": "429e0eac_40fe75b3",
+      "range": {
+        "startLine": 1425,
+        "startChar": 9,
+        "endLine": 1425,
+        "endChar": 30
+      },
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "71c9fd3f_d3bdd300",
@@ -71,6 +95,30 @@
       "writtenOn": "2025-02-26T21:13:48Z",
       "side": 1,
       "message": "That\u0027s crazy...\n\nDoesn\u0027t that mean that the mock has never been used ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a5ff15_6858a971",
+        "filename": "system/test/mock/mock_btif_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-26T21:31:53Z",
+      "side": 1,
+      "message": "Well, yes, many mocks are unused.",
+      "parentUuid": "9ea62238_b309a3e4",
       "range": {
         "startLine": 68,
         "startChar": 0,
