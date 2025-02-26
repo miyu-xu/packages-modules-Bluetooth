@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a3b003_f453d661",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T03:14:21Z",
+      "side": 0,
+      "message": "This function can probably be deleted?\n\nThe `toString()` method should be able to use `getConnectionStateName(getState())` directly? WDYT.",
+      "range": {
+        "startLine": 431,
+        "startChar": 4,
+        "endLine": 431,
+        "endChar": 25
+      },
+      "revId": "ff6ef105fe7a4ac6ab029994bc23e3e4fd9849fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
