@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e650b8_b8bcd5b9",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-26T00:07:16Z",
+      "side": 1,
+      "message": "Seems this is already logged from Java, does this serve differe purpse?\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003dfb0679e0da2e9a6835ca512840048584d642b18d;l\u003d651",
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "468f5bb0_e8be081f",
@@ -140,6 +157,23 @@
           ]
         }
       ],
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "087d7c0e_f7d62837",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-26T00:07:16Z",
+      "side": 1,
+      "message": "Can you please if this same as what we have at Java?\n\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothSocket.java;drc\u003dfb0679e0da2e9a6835ca512840048584d642b18d;l\u003d651\n\nMay be you can reuse that while logging RFCOMM metrics here - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/SocketMetrics.java;drc\u003dfb0679e0da2e9a6835ca512840048584d642b18d;l\u003d49",
       "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
