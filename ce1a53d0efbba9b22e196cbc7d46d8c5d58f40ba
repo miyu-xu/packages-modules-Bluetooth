@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a822ea_d412c3cc",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T09:21:46Z",
+      "side": 1,
+      "message": "Adding this condition here is prohibiting the stack from using `LeConnectionParameters::GetMinConnIntervalRelaxed()`.",
+      "range": {
+        "startLine": 891,
+        "startChar": 9,
+        "endLine": 891,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c9285af8_c3bac3e9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 890,
+                "startChar": 0,
+                "endLine": 892,
+                "endChar": 0
+              },
+              "replacement": "    if (com::android::bluetooth::flags::initial_conn_params_p1()) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 898,
+                "startChar": 0,
+                "endLine": 900,
+                "endChar": 0
+              },
+              "replacement": "      if (!prefer_default_connection_interval) {\n        choose_connection_mode(num_classic_acl_connections + num_acl_connections, \u0026conn_interval_min,\n                               \u0026conn_interval_max);\n      }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ce1a53d0efbba9b22e196cbc7d46d8c5d58f40ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
