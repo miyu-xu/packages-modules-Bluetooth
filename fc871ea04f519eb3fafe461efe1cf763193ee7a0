@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c031485_154e6473",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T06:49:07Z",
+      "side": 1,
+      "message": "This should also be under the flag",
+      "range": {
+        "startLine": 875,
+        "startChar": 4,
+        "endLine": 875,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "313cd2f7_b40ba04d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 877,
+                "startChar": 0,
+                "endLine": 877,
+                "endChar": 0
+              },
+              "replacement": "      remove_old_devices_from_default_connection_interval_map();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2276031c_f1ec5367",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T06:49:07Z",
+      "side": 1,
+      "message": "Q) Why is this one day? How is this time length decided?",
+      "range": {
+        "startLine": 1326,
+        "startChar": 9,
+        "endLine": 1326,
+        "endChar": 20
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "170695eb_051a75f8",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T06:49:07Z",
+      "side": 1,
+      "message": "Why do these variables exist?",
+      "range": {
+        "startLine": 1330,
+        "startChar": 6,
+        "endLine": 1331,
+        "endChar": 90
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c2947aff_5986ea72",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1330,
+                "startChar": 0,
+                "endLine": 1333,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3b0e956_cf1364c6",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T06:49:07Z",
+      "side": 1,
+      "message": "minor) Can we make a variable with name `time_added` or similar instead of using `it-\u003esecond` repeatedly?",
+      "range": {
+        "startLine": 1333,
+        "startChar": 10,
+        "endLine": 1333,
+        "endChar": 20
+      },
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
