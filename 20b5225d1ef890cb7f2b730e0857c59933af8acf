@@ -22,6 +22,30 @@
       },
       "revId": "20b5225d1ef890cb7f2b730e0857c59933af8acf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a107e7_c47d7c10",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-26T01:48:58Z",
+      "side": 1,
+      "message": "oh, I got your point. if pac record matched, we will return above.",
+      "parentUuid": "453cbe9d_42532351",
+      "range": {
+        "startLine": 601,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 3
+      },
+      "revId": "20b5225d1ef890cb7f2b730e0857c59933af8acf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
