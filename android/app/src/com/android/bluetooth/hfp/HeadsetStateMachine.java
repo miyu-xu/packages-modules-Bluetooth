@@ -1581,6 +1581,14 @@ class HeadsetStateMachine extends StateMachine {
                             mHeadsetService.getMainExecutor(), mAudioServerStateCallback);
 
             broadcastStateTransitions();
+            MetricsLogger.getInstance()
+                    .logBluetoothEvent(
+                            mDevice,
+                            BluetoothStatsLog
+                                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__SCO_SESSION,
+                            BluetoothStatsLog
+                                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_AUDIO_CONNECTED,
+                            0);
         }
 
         @Override

@@ -63,6 +63,9 @@ struct log_hfp_rfcomm_channel_fail log_hfp_rfcomm_channel_fail;
 struct log_hfp_rfcomm_collision_fail log_hfp_rfcomm_collision_fail;
 struct log_hfp_rfcomm_ag_open_fail log_hfp_rfcomm_ag_open_fail;
 struct log_hfp_slc_fail log_hfp_slc_fail;
+struct log_sco_codec log_sco_codec;
+struct log_sco_link_created log_sco_link_created;
+struct log_sco_link_removed log_sco_link_removed;
 
 }  // namespace stack_metrics_logging
 }  // namespace mock
@@ -201,5 +204,20 @@ void log_hfp_rfcomm_ag_open_fail(bluetooth::hci::Address address) {
 void log_hfp_slc_fail(bluetooth::hci::Address address) {
   inc_func_call_count(__func__);
   test::mock::stack_metrics_logging::log_hfp_slc_fail(address);
+}
+
+void log_sco_codec(bluetooth::hci::Address address, uint16_t codec) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_sco_codec(address, codec);
+}
+
+void log_sco_link_created(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_sco_link_created(address);
+}
+
+void log_sco_link_removed(bluetooth::hci::Address address) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_sco_link_removed(address);
 }
 // END mockcify generation
