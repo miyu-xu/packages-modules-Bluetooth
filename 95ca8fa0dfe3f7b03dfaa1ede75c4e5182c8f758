@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd97515_2a3dfe01",
+        "filename": "android/pandora/server/src/Gmap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2025-02-26T19:07:56Z",
+      "side": 1,
+      "message": "You can add an `init {}` method and log to check if the class is instantiated when the server is booting",
+      "fixSuggestions": [
+        {
+          "fixId": "9c556ff9_eef91222",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/server/src/Gmap.kt",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": "    init {\n        Log.i(TAG, \"Gmap initialized\")\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b2ec7bf_384c836e",
+        "filename": "android/pandora/server/src/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2025-02-26T19:07:56Z",
+      "side": 1,
+      "message": "is GMAP enabled on the phone ? This might return false then the class is never instantiated",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
