@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616ca460_619e9f66",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:27:43Z",
+      "side": 1,
+      "message": "this is more like \"ending\" as you need to monitor the audio state itself to know SCO is truely disconnected. \n\nIn short, SCO disconnection is aynchronous.",
+      "range": {
+        "startLine": 1238,
+        "startChar": 25,
+        "endLine": 1238,
+        "endChar": 105
+      },
+      "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbbbf4e0_1f328baf",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:27:43Z",
+      "side": 1,
+      "message": "same here this is more like ending",
+      "range": {
+        "startLine": 1624,
+        "startChar": 37,
+        "endLine": 1624,
+        "endChar": 106
+      },
+      "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0cc004_81d00dc8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1310,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:27:43Z",
+      "side": 1,
+      "message": "you may want to log here, \n\nnot sure how we handle abrupt SCO disconnection. \n\nhence might need to add a new case\n\n```\n} else if (mPrevState \u003d\u003d mAudioDisconnecting || mPrevState \u003d\u003d mAudioConnecting || mPrevState \u003d\u003d mAudioOn) {\n  // now log metrics for SCO disconnected\n}\n```",
+      "range": {
+        "startLine": 1308,
+        "startChar": 0,
+        "endLine": 1310,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "88a76a50_4f5fc203",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 1307,
+                "startChar": 0,
+                "endLine": 1310,
+                "endChar": 0
+              },
+              "replacement": "            } else if (mPrevState \u003d\u003d mAudioDisconnecting || mPrevState \u003d\u003d mAudioConnecting) {\n                // Reset audio disconnecting retry count. Either the disconnection was successful,\n                // the retry count reached MAX_RETRY_DISCONNECT_AUDIO, or the audio connection\n                // failed.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
