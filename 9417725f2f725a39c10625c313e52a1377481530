@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e086b118_d26c8c11",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T01:57:32Z",
+      "side": 1,
+      "message": "`ByteString` worked pretty good. I was able to simplify the `getResult()` method as well thanks to `ByteString`. PTAL. Thank you!\n\n\u003e Feel free to add ArrayRecordComponent in the packages/modules/Bluetooth/Android.bp errorprones rules\n\nAdded this as well! I believe it\u0027s alright for it to be part of this CL as this is the first `record` declaration in our codebase. PTAL. Thank you.",
+      "parentUuid": "933ea065_4a7a7c03",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "9417725f2f725a39c10625c313e52a1377481530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a47fd3a_77c74e68",
@@ -138,6 +162,30 @@
           ]
         }
       ],
+      "revId": "9417725f2f725a39c10625c313e52a1377481530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "216ca988_0a3e3f7e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T01:57:32Z",
+      "side": 1,
+      "message": "Done. I\u0027ll keep that in mind for next time as well! Thank you.",
+      "parentUuid": "0a47fd3a_77c74e68",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 87
+      },
       "revId": "9417725f2f725a39c10625c313e52a1377481530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
