@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ad010d_da9661dc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-26T08:10:37Z",
+      "side": 1,
+      "message": "moved this into the handler.  I also added another log for Connect Audio in this function when the flag is not enabled.",
+      "parentUuid": "616ca460_619e9f66",
+      "range": {
+        "startLine": 1238,
+        "startChar": 25,
+        "endLine": 1238,
+        "endChar": 105
+      },
+      "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbbbf4e0_1f328baf",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-26T02:27:43Z",
       "side": 1,
       "message": "same here this is more like ending",
+      "range": {
+        "startLine": 1624,
+        "startChar": 37,
+        "endLine": 1624,
+        "endChar": 106
+      },
+      "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f016e630_417f257a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1624,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-26T08:10:37Z",
+      "side": 1,
+      "message": "same as above, moved this to the handler and added a disconnect_audio_end to the original path",
+      "parentUuid": "dbbbf4e0_1f328baf",
       "range": {
         "startLine": 1624,
         "startChar": 37,
@@ -84,6 +132,30 @@
           ]
         }
       ],
+      "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5e81391_c42f83b9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1310,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-26T08:10:37Z",
+      "side": 1,
+      "message": "I was looking at the state diagram and this wasn\u0027t clear to me.  Only if it\u0027s in mAudioConnecting and goes to Connected, there seems to be a failure.  Otherwise, it could be normally disconnecting right?",
+      "parentUuid": "5e0cc004_81d00dc8",
+      "range": {
+        "startLine": 1308,
+        "startChar": 0,
+        "endLine": 1310,
+        "endChar": 42
+      },
       "revId": "7a42c26704a57611c83966872fe6e4a32abb9160",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
