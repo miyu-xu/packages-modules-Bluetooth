@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aaf12d6_ebe4183a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T01:55:08Z",
+      "side": 1,
+      "message": "-1521 +1279\n\nNice! I like how the individual lines getting shorter simply meant less line breaks.",
+      "revId": "ff6ef105fe7a4ac6ab029994bc23e3e4fd9849fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
