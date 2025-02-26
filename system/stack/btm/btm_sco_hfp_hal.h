@@ -41,6 +41,9 @@ struct bt_codec {
   codec codec;
   uint8_t data_path;
   std::vector<uint8_t> data;
+  // The expected incoming/outgoing SCO packet size from/to the controller.
+  // That is, this is only meaningful to Transparent codec (software audio data path).
+  size_t sco_packet_size;
 };
 
 struct bt_codecs {
