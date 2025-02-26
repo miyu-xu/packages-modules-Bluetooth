@@ -429,18 +429,7 @@ public class AvrcpBipClient {
 
     @VisibleForTesting
     String getStateName() {
-        int state = getState();
-        switch (state) {
-            case STATE_DISCONNECTED:
-                return "Disconnected";
-            case STATE_CONNECTING:
-                return "Connecting";
-            case STATE_CONNECTED:
-                return "Connected";
-            case STATE_DISCONNECTING:
-                return "Disconnecting";
-        }
-        return "Unknown";
+        return BluetoothProfile.getConnectionStateName(getState());
     }
 
     @Override
