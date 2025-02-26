@@ -26,6 +26,7 @@ namespace a2dp {
 
 using ::aidl::android::hardware::audio::common::SinkMetadata;
 using ::aidl::android::hardware::audio::common::SourceMetadata;
+using ::aidl::android::hardware::bluetooth::audio::AudioContext;
 using ::aidl::android::hardware::bluetooth::audio::BnBluetoothAudioPort;
 using ::aidl::android::hardware::bluetooth::audio::CodecType;
 using ::aidl::android::hardware::bluetooth::audio::IBluetoothAudioProvider;
