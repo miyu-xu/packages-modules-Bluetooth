@@ -278,13 +278,14 @@ class HeadsetSystemInterface {
      * BluetoothHeadset#clccResponse(int, int, int, int, boolean, String, int)}
      */
     @VisibleForTesting
-    public boolean listCurrentCalls(HeadsetService headsetService) {
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, MODIFY_PHONE_STATE})
+    public boolean listCurrentCalls() {
         BluetoothInCallService bluetoothInCallService = getBluetoothInCallServiceInstance();
         if (bluetoothInCallService == null) {
             Log.e(TAG, "listCurrentCalls() failed: mBluetoothInCallService is null");
             return false;
         }
-        return bluetoothInCallService.listCurrentCalls(headsetService);
+        return bluetoothInCallService.listCurrentCalls();
     }
 
     /**

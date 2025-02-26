@@ -783,6 +783,25 @@ public class HeadsetService extends ProfileService {
         }
 
         @Override
+        public void clccResponse(
+                int index,
+                int direction,
+                int status,
+                int mode,
+                boolean mpty,
+                String number,
+                int type,
+                AttributionSource source) {
+            HeadsetService service = getService(source);
+            if (service == null) {
+                return;
+            }
+
+            service.enforceCallingOrSelfPermission(MODIFY_PHONE_STATE, null);
+            service.clccResponse(index, direction, status, mode, mpty, number, type);
+        }
+
+        @Override
         public boolean sendVendorSpecificResultCode(
                 BluetoothDevice device, String command, String arg, AttributionSource source) {
             HeadsetService service = getService(source);
@@ -2067,7 +2086,7 @@ public class HeadsetService extends ProfileService {
         }
     }
 
-    public void clccResponse(
+    void clccResponse(
             int index, int direction, int status, int mode, boolean mpty, String number, int type) {
         mPendingClccResponses.add(
                 stateMachine ->

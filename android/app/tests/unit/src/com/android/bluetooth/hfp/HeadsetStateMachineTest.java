@@ -1534,8 +1534,8 @@ public class HeadsetStateMachineTest {
 
     @Test
     public void testProcessAtClcc_withVirtualCallNotStarted() {
-        doReturn(false).when(mHeadsetService).isVirtualCallStarted();
-        doReturn(false).when(mSystemInterface).listCurrentCalls(any());
+        when(mHeadsetService.isVirtualCallStarted()).thenReturn(false);
+        when(mSystemInterface.listCurrentCalls()).thenReturn(false);
 
         mHeadsetStateMachine.processAtClcc(mDevice);
 
