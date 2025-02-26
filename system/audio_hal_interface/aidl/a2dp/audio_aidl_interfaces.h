@@ -35,6 +35,7 @@
 #include <aidl/android/hardware/bluetooth/audio/AptxConfiguration.h>
 #include <aidl/android/hardware/bluetooth/audio/AudioCapabilities.h>
 #include <aidl/android/hardware/bluetooth/audio/AudioConfiguration.h>
+#include <aidl/android/hardware/bluetooth/audio/AudioContext.h>
 #include <aidl/android/hardware/bluetooth/audio/AudioLocation.h>
 #include <aidl/android/hardware/bluetooth/audio/BluetoothAudioStatus.h>
 #include <aidl/android/hardware/bluetooth/audio/ChannelMode.h>
