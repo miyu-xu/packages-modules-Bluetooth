@@ -16,6 +16,24 @@
       "message": "Want to confirm again, aren\u0027t you intended to check if (oldBroadcastToUnicastFallbackGroup !\u003d LE_AUDIO_GROUP_ID_INVALID) here?\n\nOtherwise, mUnicastGroupIdDeactivatedForBroadcastTransition \u003d\u003d groupId here, why don\u0027t we merge those two then? \n            if (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n                updateInbandRingtoneForTheGroup(oldBroadcastToUnicastFallbackGroup);\n                updateInbandRingtoneForTheGroup(groupId);\n            }",
       "revId": "f8ebebe668fd5997c59a4b586108cf2d5d1ccbee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954cce6e_a04bc2b7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5296,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T20:41:17Z",
+      "side": 1,
+      "message": "Yes, here should be checked old FallbackGroup. Sorry for this issue - I was firmly belive that it was it... \n\nIs it ok now ?",
+      "parentUuid": "8c28fec0_cbaabebf",
+      "revId": "f8ebebe668fd5997c59a4b586108cf2d5d1ccbee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
