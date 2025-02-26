@@ -24,6 +24,7 @@
 #include <future>
 #include <vector>
 
+#include "audio_hal_interface/aidl/a2dp/a2dp_provider_info.h"
 #include "bta/include/bta_av_api.h"
 #include "include/hardware/bt_av.h"
 #include "stack/include/bt_hdr.h"
@@ -32,7 +33,9 @@
 // Initialize the A2DP Source module.
 // This function should be called by the BTIF state machine prior to using the
 // module.
-bool btif_a2dp_source_init(void);
+bool btif_a2dp_source_init(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
 
 // Start the A2DP Source session.
 // This function should be called by the BTIF state machine after
@@ -47,9 +50,10 @@ bool btif_a2dp_source_start_session(const RawAddress& peer_address,
 // can be empty.
 // |new_peer_address| is the peer address of the new session. This address
 // cannot be empty.
-bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
-                                      const RawAddress& new_peer_address,
-                                      std::promise<void> peer_ready_promise);
+bool btif_a2dp_source_restart_session(
+        const RawAddress& old_peer_address, const RawAddress& new_peer_address,
+        std::promise<void> peer_ready_promise, bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
 
 // End the A2DP Source session.
 // This function should be called by the BTIF state machine to end the

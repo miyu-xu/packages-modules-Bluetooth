@@ -22,6 +22,7 @@
 
 #include "a2dp_codec_api.h"
 #include "a2dp_constants.h"
+#include "aidl/a2dp/a2dp_provider_info.h"
 #include "avdt_api.h"
 #include "common/message_loop_thread.h"
 #include "hardware/bt_av.h"
@@ -59,8 +60,7 @@ public:
 };
 
 bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference,
-        bool supports_a2dp_hw_offload_v2);
+        const std::vector<btav_a2dp_codec_config_t>& framework_preference);
 
 // Check if new bluetooth_audio is enabled
 bool is_hal_enabled();
@@ -70,7 +70,8 @@ bool is_hal_offloading();
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* message_loop,
-          StreamCallbacks const* stream_callbacks, bool offload_enabled);
+          StreamCallbacks const* stream_callbacks, bool offload_enabled,
+          std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
 
 // Clean up BluetoothAudio HAL
 void cleanup();

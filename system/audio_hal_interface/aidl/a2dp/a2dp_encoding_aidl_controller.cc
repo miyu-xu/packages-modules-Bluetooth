@@ -59,10 +59,6 @@ using ::bluetooth::audio::aidl::a2dp::codec::A2dpSbcToHalConfig;
  * Global functions and variables
  *
  ***/
-// ProviderInfo for A2DP hardware offload encoding and decoding data paths,
-// if supported by the HAL and enabled. nullptr if not supported
-// or disabled.
-std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info;
 std::unique_ptr<A2dpClientInterface> client;
 
 uint16_t A2dpClientInterface::remote_delay = 0;
@@ -886,14 +882,6 @@ void A2dpClientInterface::SwitchToHardwareOffloadInterface() {
 }
 
 ///////////////////////////////////////////////////////
-bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference,
-        bool supports_a2dp_hw_offload_v2) {
-  /* Load the provider information if supported by the HAL. */
-  provider_info = ::bluetooth::audio::aidl::a2dp::ProviderInfo::GetProviderInfo(
-          supports_a2dp_hw_offload_v2);
-  return ::bluetooth::audio::aidl::a2dp::codec::UpdateOffloadingCapabilities(framework_preference);
-}
 
 // Checking if new bluetooth_audio is enabled
 bool is_hal_enabled() {
@@ -913,7 +901,8 @@ bool is_hal_offloading() {
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
-          StreamCallbacks const* stream_callbacks, bool offload_enabled) {
+          StreamCallbacks const* stream_callbacks, bool offload_enabled,
+          std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   log::info("offload_enabled={}", offload_enabled);
   log::assert_that(stream_callbacks != nullptr, "stream_callbacks != nullptr");
 

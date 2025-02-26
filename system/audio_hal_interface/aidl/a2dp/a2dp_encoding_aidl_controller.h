@@ -34,10 +34,6 @@ namespace a2dp {
 
 using ::bluetooth::audio::a2dp::Status;
 
-bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference,
-        bool supports_a2dp_hw_offload_v2);
-
 /***
  * Check if new bluetooth_audio is enabled
  ***/
@@ -52,7 +48,8 @@ bool is_hal_offloading();
  * Initialize BluetoothAudio HAL: openProvider
  ***/
 bool init(bluetooth::common::MessageLoopThread* message_loop,
-          ::bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled);
+          ::bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled,
+          std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
 
 /***
  * Clean up BluetoothAudio HAL
@@ -93,13 +90,13 @@ namespace provider {
 
 /***
  * Lookup the codec info in the list of supported offloaded sink codecs.
- * Should not be called before update_codec_offloading_capabilities.
+ * Should not be called before BtifAvSource::Init.
  ***/
 std::optional<btav_a2dp_codec_index_t> sink_codec_index(const uint8_t* p_codec_info);
 
 /***
  * Lookup the codec info in the list of supported offloaded source codecs.
- * Should not be called before update_codec_offloading_capabilities.
+ * Should not be called before BtifAvSource::Init.
  ***/
 std::optional<btav_a2dp_codec_index_t> source_codec_index(const uint8_t* p_codec_info);
 
@@ -110,7 +107,7 @@ std::optional<btav_a2dp_codec_index_t> source_codec_index(const uint8_t* p_codec
  * BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
  * Returns nullopt if the codec_index is not assigned or codec extensibility
  * is not supported or enabled.
- * Should not be called before update_codec_offloading_capabilities.
+ * Should not be called before BtifAvSource::Init.
  ***/
 std::optional<const char*> codec_index_str(btav_a2dp_codec_index_t codec_index);
 
