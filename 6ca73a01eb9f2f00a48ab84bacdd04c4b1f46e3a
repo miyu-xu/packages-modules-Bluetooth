@@ -396,6 +396,30 @@
       },
       "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee69b454_372e9b17",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-26T18:47:45Z",
+      "side": 1,
+      "message": "There are other enums that don\u0027t perfectly match their counterpart in stats/enums.  I don\u0027t think it\u0027s necessary to have the enum start at 1. Do you anticipate needing to cross check the enum values?",
+      "parentUuid": "ae912e17_9d02a0e9",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
