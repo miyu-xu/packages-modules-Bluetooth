@@ -506,7 +506,7 @@ public class AtPhonebook {
         return roundUpToPowerOfTwo(maxSize);
     }
 
-    private static int roundUpToPowerOfTwo(int x) {
+    private int roundUpToPowerOfTwo(int x) {
         x |= x >> 1;
         x |= x >> 2;
         x |= x >> 4;

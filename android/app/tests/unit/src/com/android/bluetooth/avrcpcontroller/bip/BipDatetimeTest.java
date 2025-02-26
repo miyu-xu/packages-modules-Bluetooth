@@ -34,8 +34,7 @@ import java.util.TimeZone;
 @RunWith(AndroidJUnit4.class)
 public class BipDatetimeTest {
 
-    private static Date makeDate(
-            int month, int day, int year, int hours, int min, int sec, TimeZone tz) {
+    private Date makeDate(int month, int day, int year, int hours, int min, int sec, TimeZone tz) {
         Calendar.Builder builder = new Calendar.Builder();
 
         /* Note that Calendar months are zero-based in Java framework */
@@ -45,12 +44,11 @@ public class BipDatetimeTest {
         return builder.build().getTime();
     }
 
-    private static Date makeDate(int month, int day, int year, int hours, int min, int sec) {
+    private Date makeDate(int month, int day, int year, int hours, int min, int sec) {
         return makeDate(month, day, year, hours, min, sec, null);
     }
 
-    private static String makeTzAdjustedString(
-            int month, int day, int year, int hours, int min, int sec) {
+    private String makeTzAdjustedString(int month, int day, int year, int hours, int min, int sec) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(makeDate(month, day, year, hours, min, sec));
         cal.setTimeZone(TimeZone.getDefault());
@@ -66,8 +64,7 @@ public class BipDatetimeTest {
     }
 
     @SuppressLint("UndefinedEquals")
-    private static void testParse(
-            String date, Date expectedDate, boolean isUtc, String expectedStr) {
+    private void testParse(String date, Date expectedDate, boolean isUtc, String expectedStr) {
         BipDateTime bipDateTime = new BipDateTime(date);
         assertThat(bipDateTime.getTime()).isEqualTo(expectedDate);
         assertThat(bipDateTime.isUtc()).isEqualTo(isUtc);
@@ -75,7 +72,7 @@ public class BipDatetimeTest {
     }
 
     @SuppressLint("UndefinedEquals")
-    private static void testCreate(Date date, String dateStr) {
+    private void testCreate(Date date, String dateStr) {
         BipDateTime bipDate = new BipDateTime(date);
         assertThat(bipDate.getTime()).isEqualTo(date);
         assertThat(bipDate.isUtc()).isTrue();

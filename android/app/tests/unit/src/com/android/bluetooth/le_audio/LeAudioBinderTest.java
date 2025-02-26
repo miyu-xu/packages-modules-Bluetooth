@@ -339,7 +339,7 @@ public class LeAudioBinderTest {
         verify(mService).setCodecConfigPreference(groupId, inputConfig, outputConfig);
     }
 
-    private static BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata() {
+    private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata() {
         BluetoothLeAudioContentMetadata metadata =
                 new BluetoothLeAudioContentMetadata.Builder().build();
 

@@ -689,7 +689,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         }
     }
 
-    private static void executeCallback(
+    private void executeCallback(
             Executor exec,
             IBluetoothCsipSetCoordinatorCallback callback,
             BluetoothDevice device,

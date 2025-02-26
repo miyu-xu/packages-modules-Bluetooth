@@ -210,7 +210,7 @@ public class HidHostService extends ProfileService {
      * @param device remote device
      * @return address type
      */
-    private static int getAddressType(BluetoothDevice device) {
+    private int getAddressType(BluetoothDevice device) {
         return device.getAddressType();
     }
 

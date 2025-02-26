@@ -240,8 +240,7 @@ public class ScanFilterQueueTest {
         testServiceDataFilter(filter, true);
     }
 
-    private static void testServiceDataFilter(
-            ScanFilter filter, boolean partialServiceDataMatchResult) {
+    private void testServiceDataFilter(ScanFilter filter, boolean partialServiceDataMatchResult) {
         ScanFilterQueue queue = new ScanFilterQueue();
         queue.addScanFilter(filter);
         ScanFilterQueue.Entry entry = queue.pop();
@@ -289,7 +288,7 @@ public class ScanFilterQueueTest {
                 .isEqualTo(partialServiceDataMatchResult);
     }
 
-    private static boolean serviceDataMatches(byte[] filterData, byte[] resultData, byte[] mask) {
+    private boolean serviceDataMatches(byte[] filterData, byte[] resultData, byte[] mask) {
         if (filterData.length > resultData.length || filterData.length != mask.length) {
             return false;
         }
