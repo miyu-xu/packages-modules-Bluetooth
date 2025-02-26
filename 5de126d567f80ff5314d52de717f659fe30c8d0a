@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25161afe_f6211ae8",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a17e256_fabff1e7",
+      "range": {
+        "startLine": 227,
+        "startChar": 15,
+        "endLine": 227,
+        "endChar": 43
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2eb8a4e_3f691742",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5d8d280_f2c051e5",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "It could happen when:\n1. Task A is done and send out SuspendReady\n2. Task B is done and send out SuspendReady\n3. suspend_ready is called and this boolean is cleared because all tasts have done\n4. suspend_ready is called again  \u003c----",
+      "parentUuid": "c2eb8a4e_3f691742",
+      "range": {
+        "startLine": 231,
+        "startChar": 14,
+        "endLine": 231,
+        "endChar": 49
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52b405d7_dde06788",
@@ -77,6 +125,30 @@
       "writtenOn": "2025-02-26T01:26:35Z",
       "side": 1,
       "message": "When it fails, does it mean failing to remove the address? Or is the address already removed? Maybe print a debug message.",
+      "range": {
+        "startLine": 257,
+        "startChar": 11,
+        "endLine": 257,
+        "endChar": 59
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a230d12_e116e5f2",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "It means either the device is not what we\u0027re interested in, or we are not even suspending. Added a comment.",
+      "parentUuid": "52b405d7_dde06788",
       "range": {
         "startLine": 257,
         "startChar": 11,
@@ -112,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2df3f13f_620d99c6",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "Added comment to the function. That\u0027s not yet avoid-able but needs a experimental Rust feature.",
+      "parentUuid": "4ecffe00_5cea37ed",
+      "range": {
+        "startLine": 277,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da14382e_729d61c5",
         "filename": "system/gd/rust/linux/stack/src/suspend.rs",
         "patchSetId": 4
@@ -123,6 +219,30 @@
       "writtenOn": "2025-02-26T01:26:35Z",
       "side": 1,
       "message": "Do we need the assignment? It would not be used.",
+      "range": {
+        "startLine": 284,
+        "startChar": 22,
+        "endLine": 284,
+        "endChar": 46
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34719e90_c659c87b",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "It\u0027s actually used for suspend_ready to determine whether the task is done.\n\nAlso, it\u0027s still better to keep all async tasks tracked. For example if powerd somehow sends another Suspend command while this task is not yet finished, then we will be able to clean it up.",
+      "parentUuid": "da14382e_729d61c5",
       "range": {
         "startLine": 284,
         "startChar": 22,
@@ -158,6 +278,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "690e85b8_e96e4705",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "I\u0027d still prefer decoupling the delay and the disconnect so in the future we make any change to the disconnect process, the delay process won\u0027t be affected. This shall also decrease the complexity of the other tasks.",
+      "parentUuid": "d0ee2241_f67fb72c",
+      "range": {
+        "startLine": 288,
+        "startChar": 50,
+        "endLine": 288,
+        "endChar": 72
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0225da7b_4d969454",
         "filename": "system/gd/rust/linux/stack/src/suspend.rs",
         "patchSetId": 4
@@ -169,6 +313,30 @@
       "writtenOn": "2025-02-26T01:26:35Z",
       "side": 1,
       "message": "I gave it a second thought. LE rand callback and the suspend_timeout_joinhandle may be still necessary, if any of the above steps get stuck, e.g. HCI timeout, controller no response. Then suspend_ready would not be sent.",
+      "range": {
+        "startLine": 335,
+        "startChar": 32,
+        "endLine": 335,
+        "endChar": 39
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7effd6dc_9f778d6a",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "Per offline discussion, removing le_rand in Floss as it aimed for synchronizing the suspend/resume process, while we found that it\u0027s still not enough and introduced the 100ms delay.",
+      "parentUuid": "0225da7b_4d969454",
       "range": {
         "startLine": 335,
         "startChar": 32,
@@ -202,6 +370,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1e50795_cad302a2",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e33c48d_8270404e",
+      "range": {
+        "startLine": 378,
+        "startChar": 34,
+        "endLine": 378,
+        "endChar": 53
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89a6be68_a86fe0f1",
@@ -215,6 +407,30 @@
       "writtenOn": "2025-02-26T01:26:35Z",
       "side": 1,
       "message": "I would prefer to rename the function, since there is no device to disconnect, so `disconnected_complete` is a bit misleading. This function is more about set wake by hid and send suspend ready signal.",
+      "range": {
+        "startLine": 384,
+        "startChar": 18,
+        "endLine": 384,
+        "endChar": 46
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc47b0af_9c4de458",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-26T07:45:11Z",
+      "side": 1,
+      "message": "Renamed to `all_acls_disconnected`",
+      "parentUuid": "89a6be68_a86fe0f1",
       "range": {
         "startLine": 384,
         "startChar": 18,
