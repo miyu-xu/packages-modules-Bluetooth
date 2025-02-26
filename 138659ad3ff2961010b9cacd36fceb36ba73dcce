@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c4a683_1c9bf2ca",
+        "filename": "system/osi/src/thread_scheduler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T21:13:48Z",
+      "side": 1,
+      "message": "Very nice",
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "429e0eac_40fe75b3",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T21:13:48Z",
+      "side": 1,
+      "message": "how did this one came into this change ? Is this needed ?",
+      "range": {
+        "startLine": 1425,
+        "startChar": 9,
+        "endLine": 1425,
+        "endChar": 30
+      },
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c9fd3f_d3bdd300",
+        "filename": "system/test/mock/mock_btif_bqr.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T21:13:48Z",
+      "side": 1,
+      "message": "nice",
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea62238_b309a3e4",
+        "filename": "system/test/mock/mock_btif_util.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T21:13:48Z",
+      "side": 1,
+      "message": "That\u0027s crazy...\n\nDoesn\u0027t that mean that the mock has never been used ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 54
+      },
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
