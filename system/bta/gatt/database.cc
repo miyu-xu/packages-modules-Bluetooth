@@ -18,6 +18,7 @@
 
 #include "database.h"
 
+#include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
 
 #include <algorithm>
@@ -89,6 +90,7 @@ std::string Database::ToString() const {
 }
 
 std::vector<StoredAttribute> Database::Serialize() const {
+  log::info("Serialize");
   std::vector<StoredAttribute> nv_attr;
 
   if (services.empty()) {
@@ -96,6 +98,7 @@ std::vector<StoredAttribute> Database::Serialize() const {
   }
 
   for (const Service& service : services) {
+    //log::info("Service {}", service);
     // TODO: add constructor to NV_ATTR, use emplace_back
     nv_attr.push_back({service.handle,
                        service.is_primary ? PRIMARY_SERVICE : SECONDARY_SERVICE,
@@ -135,6 +138,7 @@ std::vector<StoredAttribute> Database::Serialize() const {
 }
 
 Database Database::Deserialize(const std::vector<StoredAttribute>& nv_attr, bool* success) {
+  log::info("Deserialize");
   // clear reallocating
   Database result;
   auto it = nv_attr.cbegin();
@@ -216,9 +220,11 @@ Database Database::Deserialize(const std::vector<StoredAttribute>& nv_attr, bool
 }
 
 Octet16 Database::Hash() const {
+  log::info("Hash");
   int len = 0;
   // Compute how much space we need to actually hold the data.
   for (const Service& service : services) {
+    log::info("Service UUID size: {} for service {}", UuidSize(service.uuid), service.uuid);
     len += 4 + UuidSize(service.uuid);
 
     for (const auto& is : service.included_services) {
@@ -305,6 +311,8 @@ Octet16 Database::Hash() const {
   }
 
   std::reverse(serialized.begin(), serialized.end());
-  return crypto_toolbox::aes_cmac(Octet16{0}, serialized.data(), serialized.size());
+  Octet16 output = crypto_toolbox::aes_cmac(Octet16{0}, serialized.data(), serialized.size());
+  log::info("Hash: {}", base::HexEncode(output.data(), 16));
+  return output;
 }
 }  // namespace gatt

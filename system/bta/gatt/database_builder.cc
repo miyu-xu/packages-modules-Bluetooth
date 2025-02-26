@@ -93,7 +93,7 @@ void DatabaseBuilder::AddCharacteristic(uint16_t handle, uint16_t value_handle, 
                                         uint8_t properties) {
   Service* service = FindService(database.services, handle);
   if (!service) {
-    log::error("Illegal action to add to non-existing service!");
+    log::error("Illegal action to add to non-existing service! Handle: {} value handle: {} UUID: {} properties: {}", handle, value_handle, uuid, properties);
     return;
   }
 
@@ -114,12 +114,12 @@ void DatabaseBuilder::AddCharacteristic(uint16_t handle, uint16_t value_handle, 
 void DatabaseBuilder::AddDescriptor(uint16_t handle, const Uuid& uuid) {
   Service* service = FindService(database.services, handle);
   if (!service) {
-    log::error("Illegal action to add to non-existing service!");
+    log::error("Illegal action to add to non-existing service! Handle: {} UUID: {}", handle, uuid);
     return;
   }
 
   if (service->characteristics.empty()) {
-    log::error("Illegal action to add to non-existing characteristic!");
+    log::error("Illegal action to add to non-existing characteristic! Handle: {} UUID: {}", handle, uuid);
     return;
   }
 
@@ -220,7 +220,7 @@ static Descriptor* FindDescriptorByHandle(std::list<Service>& services, uint16_t
 
 bool DatabaseBuilder::SetValueOfDescriptors(const std::vector<uint16_t>& values) {
   if (values.size() > descriptor_handles_to_read.size()) {
-    log::error("values.size() <= descriptors.size() expected");
+    log::error("values.size() {} <= descriptors.size() {} expected", values.size(), descriptor_handles_to_read.size());
     descriptor_handles_to_read.clear();
     return false;
   }
