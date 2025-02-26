@@ -898,9 +898,14 @@ public:
 
   void OnSetupIsoDataPath(uint8_t status, uint16_t conn_handle, uint8_t big_handle) override {
     auto broadcast_id = BroadcastIdFromBigHandle(big_handle);
-    log::assert_that(broadcasts_.count(broadcast_id) != 0,
-                     "assert failed: broadcasts_.count(broadcast_id) != 0");
-    broadcasts_[broadcast_id]->OnSetupIsoDataPath(status, conn_handle);
+    if (broadcasts_.count(broadcast_id) == 0) {
+      log::warn("broadcasts_.count(broadcast_id) != 0");
+      // ISO setup after broadcast destroyed, remove ISO
+      IsoManager::GetInstance()->RemoveIsoDataPath(
+              conn_handle, bluetooth::hci::iso_manager::kRemoveIsoDataPathDirectionInput);
+    } else {
+      broadcasts_[broadcast_id]->OnSetupIsoDataPath(status, conn_handle);
+    }
   }
 
   void OnRemoveIsoDataPath(uint8_t status, uint16_t conn_handle, uint8_t big_handle) override {
@@ -915,9 +920,13 @@ public:
       case bluetooth::hci::iso_manager::kIsoEventBigOnCreateCmpl: {
         auto* evt = static_cast<big_create_cmpl_evt*>(data);
         auto broadcast_id = BroadcastIdFromBigHandle(evt->big_id);
-        log::assert_that(broadcasts_.count(broadcast_id) != 0,
-                         "assert failed: broadcasts_.count(broadcast_id) != 0");
-        broadcasts_[broadcast_id]->HandleHciEvent(HCI_BLE_CREATE_BIG_CPL_EVT, evt);
+        if (broadcasts_.count(broadcast_id) == 0) {
+          log::warn("broadcasts_.count(broadcast_id) != 0");
+          // BIG created after broadcast destroyed, remove BIG
+          IsoManager::GetInstance()->TerminateBig(evt->big_id, 0x13);
+        } else {
+          broadcasts_[broadcast_id]->HandleHciEvent(HCI_BLE_CREATE_BIG_CPL_EVT, evt);
+        }
       } break;
       case bluetooth::hci::iso_manager::kIsoEventBigOnTerminateCmpl: {
         auto* evt = static_cast<big_terminate_cmpl_evt*>(data);
