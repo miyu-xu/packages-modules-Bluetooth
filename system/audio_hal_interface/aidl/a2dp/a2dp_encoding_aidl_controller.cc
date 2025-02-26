@@ -22,7 +22,7 @@
 
 #include <vector>
 
-#include "a2dp_encoding_aidl.h"
+#include "a2dp_encoding_aidl_transport.h"
 #include "a2dp_provider_info.h"
 #include "audio_aidl_interfaces.h"
 #include "client_interface_aidl.h"
