@@ -243,6 +243,58 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "732c31eb_5bab4b2f",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 9109,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T15:48:58Z",
+      "side": 1,
+      "message": "did I miss the place where device B has no available contexts but A has all ? For me it looks like both at begining has all available contexts.",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ccf48f_3e7c411a",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 9112,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T15:48:58Z",
+      "side": 1,
+      "message": "Verify is contexts are sum of Available | Streaming ?",
+      "fixSuggestions": [
+        {
+          "fixId": "7328c78e_6238ad1a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/le_audio_client_test.cc",
+              "range": {
+                "startLine": 9112,
+                "startChar": 0,
+                "endLine": 9113,
+                "endChar": 0
+              },
+              "replacement": "   * 4. Verify GetAvailableContexts() returns UNSPECIFIED\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ffad454_f87928f8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 3
