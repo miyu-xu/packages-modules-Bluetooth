@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc64f66_3060f09b",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-26T21:30:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f89350d_14190eab",
+      "revId": "aafd374e36c756bd3d3e2884bae3712fa7a915c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca619038_77550ff7",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "aafd374e36c756bd3d3e2884bae3712fa7a915c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce977504_147807e6",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-26T21:30:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca619038_77550ff7",
       "revId": "aafd374e36c756bd3d3e2884bae3712fa7a915c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
