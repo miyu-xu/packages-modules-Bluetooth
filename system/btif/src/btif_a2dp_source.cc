@@ -414,6 +414,11 @@ class A2dpStreamCallbacks : public bluetooth::audio::a2dp::StreamCallbacks {
     btif_av_set_low_latency(low_latency);
     return Status::SUCCESS;
   }
+
+  Status UpdateSourceMetadata(btav_a2dp_codec_audio_context_t audio_context) const override {
+    btif_av_update_source_metadata(audio_context);
+    return Status::SUCCESS;
+  }
 };
 
 static const A2dpStreamCallbacks a2dp_stream_callbacks;

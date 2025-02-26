@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+#ifdef TARGET_FLOSS
+#include <audio_hal_interface/audio_linux.h>
+#else
+#include <hardware/audio.h>
+#endif
+
 #include "bluetooth_audio_port_impl.h"
 
 #include <bluetooth/log.h>
@@ -30,6 +36,62 @@ namespace bluetooth {
 namespace audio {
 namespace aidl {
 namespace a2dp {
+
+namespace {
+
+using A2DPAudioContext = ::aidl::android::hardware::bluetooth::audio::AudioContext;
+
+enum AudioContextPriority { SONIFICATION = 0, MEDIA, GAME, CONVERSATIONAL };
+
+static int32_t audioUsageToAudioContext(audio_usage_t usage) {
+  switch (usage) {
+    case AUDIO_USAGE_MEDIA:
+      return A2DPAudioContext::MEDIA;
+    case AUDIO_USAGE_VOICE_COMMUNICATION:
+      return A2DPAudioContext::CONVERSATIONAL;
+    case AUDIO_USAGE_CALL_ASSISTANT:
+      return A2DPAudioContext::CONVERSATIONAL;
+    case AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING:
+      return A2DPAudioContext::VOICE_ASSISTANTS;
+    case AUDIO_USAGE_ASSISTANCE_SONIFICATION:
+      return A2DPAudioContext::SOUND_EFFECTS;
+    case AUDIO_USAGE_GAME:
+      return A2DPAudioContext::GAME;
+    case AUDIO_USAGE_NOTIFICATION:
+      return A2DPAudioContext::NOTIFICATIONS;
+    case AUDIO_USAGE_NOTIFICATION_TELEPHONY_RINGTONE:
+      return A2DPAudioContext::CONVERSATIONAL;
+    case AUDIO_USAGE_ALARM:
+      return A2DPAudioContext::ALERTS;
+    case AUDIO_USAGE_EMERGENCY:
+      return A2DPAudioContext::EMERGENCY_ALARM;
+    case AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE:
+      return A2DPAudioContext::INSTRUCTIONAL;
+    default:
+      break;
+  }
+
+  LOG(INFO) << __func__ << ": Return Media when not in call by default.";
+  return A2DPAudioContext::MEDIA;
+}
+
+static int audioContextPriority(int32_t context) {
+  switch (context) {
+    case A2DPAudioContext::MEDIA:
+      return AudioContextPriority::MEDIA;
+    case A2DPAudioContext::GAME:
+      return AudioContextPriority::GAME;
+    case A2DPAudioContext::CONVERSATIONAL:
+      return AudioContextPriority::CONVERSATIONAL;
+    case A2DPAudioContext::SOUND_EFFECTS:
+      return AudioContextPriority::SONIFICATION;
+    default:
+      break;
+  }
+  return -1;
+}
+
+} // namespace
 
 using ::bluetooth::common::StopWatchLegacy;
 
@@ -96,7 +158,26 @@ ndk::ScopedAStatus BluetoothAudioPortImpl::getPresentationPosition(
 }
 
 ndk::ScopedAStatus BluetoothAudioPortImpl::updateSourceMetadata(
-        const SourceMetadata& /*source_metadata*/) {
+        const SourceMetadata& source_metadata) {
+  StopWatchLegacy stop_watch(__func__);
+  log::info("{} track(s)", source_metadata.tracks.size());
+
+  int32_t current_context = A2DPAudioContext::MEDIA;
+  int current_priority = AudioContextPriority::MEDIA;
+  for (const auto& track: source_metadata.tracks) {
+    audio_usage_t usage = static_cast<audio_usage_t>(track.usage);
+    int32_t context = audioUsageToAudioContext(usage);
+    int priority = audioContextPriority(context);
+
+    if (priority > current_priority) {
+      current_context = context;
+      current_priority = priority;
+    }
+  }
+
+  btav_a2dp_codec_audio_context_t audio_context = (btav_a2dp_codec_audio_context_t) current_context;
+
+  transport_instance_->SourceMetadataChanged(audio_context);
   return ndk::ScopedAStatus::ok();
 }
 
