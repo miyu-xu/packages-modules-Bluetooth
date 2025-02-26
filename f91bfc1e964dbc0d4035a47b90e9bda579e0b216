@@ -69,6 +69,24 @@
       "parentUuid": "a6538a19_6670f27c",
       "revId": "f91bfc1e964dbc0d4035a47b90e9bda579e0b216",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5af8ee_d79dbea1",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2831,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T20:43:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c939ba04_a14c517f",
+      "revId": "f91bfc1e964dbc0d4035a47b90e9bda579e0b216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
