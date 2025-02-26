@@ -54,6 +54,24 @@
       ],
       "revId": "1bef7c41d8571ddaa1eb708341145fd9d2472357",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca69b619_a3d854d5",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-02-26T19:58:59Z",
+      "side": 1,
+      "message": "Renamed the variable to denote LE only.\nNot adding device_type \u003d\u003d BT_DEVICE_TYPE_UNKNOWN or Dual mode checks, since when transport from upper layers is Auto and device type is BLE, transport will be chosen as BR/EDR to perform pairing which would result in connection failure(as remote device is discoverable only over BLE).",
+      "parentUuid": "813ee1d5_e0ffae34",
+      "revId": "1bef7c41d8571ddaa1eb708341145fd9d2472357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
