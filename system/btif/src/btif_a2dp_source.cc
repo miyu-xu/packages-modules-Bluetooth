@@ -250,9 +250,15 @@ static bluetooth::common::MessageLoopThread btif_a2dp_source_thread("bt_a2dp_sou
 static BtifA2dpSource btif_a2dp_source_cb;
 static uint8_t btif_a2dp_source_dynamic_audio_buffer_size = MAX_OUTPUT_A2DP_FRAME_QUEUE_SZ;
 
-static void btif_a2dp_source_init_delayed(void);
-static bool btif_a2dp_source_startup(void);
-static void btif_a2dp_source_startup_delayed(void);
+static void btif_a2dp_source_init_delayed(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
+static bool btif_a2dp_source_startup(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
+static void btif_a2dp_source_startup_delayed(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info);
 static void btif_a2dp_source_start_session_delayed(const RawAddress& peer_address,
                                                    std::promise<void> start_session_promise);
 static void btif_a2dp_source_end_session_delayed(const RawAddress& peer_address);
@@ -337,13 +343,16 @@ static bluetooth::common::MessageLoopThread* local_thread() {
                                                                      : &btif_a2dp_source_thread;
 }
 
-bool btif_a2dp_source_init(void) {
+bool btif_a2dp_source_init(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   log::info("");
 
   // Start A2DP Source media task
   btif_a2dp_source_thread.StartUp();
 
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_init_delayed));
+  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_init_delayed,
+                                                       offload_enabled, std::move(provider_info)));
   return true;
 }
 
@@ -421,17 +430,21 @@ public:
 
 static const A2dpStreamCallbacks a2dp_stream_callbacks;
 
-static void btif_a2dp_source_init_delayed(void) {
+static void btif_a2dp_source_init_delayed(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   log::info("");
   // When codec extensibility is enabled in the audio HAL interface,
   // the provider needs to be initialized earlier in order to ensure
   // get_a2dp_configuration and parse_a2dp_configuration can be
   // invoked before the stream is started.
-  bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks,
-                               btif_av_is_a2dp_offload_enabled());
+  bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks, offload_enabled,
+                               std::move(provider_info));
 }
 
-static bool btif_a2dp_source_startup(void) {
+static bool btif_a2dp_source_startup(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
 
   if (btif_a2dp_source_cb.State() != BtifA2dpSource::kStateOff) {
@@ -444,20 +457,23 @@ static bool btif_a2dp_source_startup(void) {
   btif_a2dp_source_cb.tx_audio_queue = fixed_queue_new(SIZE_MAX);
 
   // Schedule the rest of the operations
-  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_startup_delayed));
+  local_thread()->DoInThread(FROM_HERE, base::BindOnce(&btif_a2dp_source_startup_delayed,
+                                                       offload_enabled, std::move(provider_info)));
 
   return true;
 }
 
-static void btif_a2dp_source_startup_delayed() {
+static void btif_a2dp_source_startup_delayed(
+        bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   log::info("state={}", btif_a2dp_source_cb.StateStr());
   if (!btif_a2dp_source_thread.EnableRealTimeScheduling()) {
 #if defined(__ANDROID__)
     log::fatal("unable to enable real time scheduling");
 #endif
   }
-  if (!bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks,
-                                    btif_av_is_a2dp_offload_enabled())) {
+  if (!bluetooth::audio::a2dp::init(local_thread(), &a2dp_stream_callbacks, offload_enabled,
+                                    std::move(provider_info))) {
     log::warn("Failed to setup the bluetooth audio HAL");
   }
   btif_a2dp_source_cb.SetState(BtifA2dpSource::kStateRunning);
@@ -506,9 +522,10 @@ static void btif_a2dp_source_start_session_delayed(const RawAddress& peer_addres
   peer_ready_promise.set_value();
 }
 
-bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
-                                      const RawAddress& new_peer_address,
-                                      std::promise<void> peer_ready_promise) {
+bool btif_a2dp_source_restart_session(
+        const RawAddress& old_peer_address, const RawAddress& new_peer_address,
+        std::promise<void> peer_ready_promise, bool offload_enabled,
+        std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   log::info("old_peer_address={} new_peer_address={} state={}", old_peer_address, new_peer_address,
             btif_a2dp_source_cb.StateStr());
 
@@ -522,7 +539,7 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
   if (!old_peer_address.IsEmpty()) {
     btif_a2dp_source_end_session(old_peer_address);
   } else {
-    btif_a2dp_source_startup();
+    btif_a2dp_source_startup(offload_enabled, std::move(provider_info));
   }
 
   // Start the session.
@@ -538,7 +555,6 @@ bool btif_a2dp_source_end_session(const RawAddress& peer_address) {
     btif_a2dp_source_cleanup_codec();
     btif_a2dp_source_end_session_delayed(peer_address);
   } else {
-
     local_thread()->DoInThread(FROM_HERE,
                                base::BindOnce(&btif_a2dp_source_end_session_delayed, peer_address));
     btif_a2dp_source_cleanup_codec();

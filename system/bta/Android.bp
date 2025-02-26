@@ -50,7 +50,10 @@ filegroup {
 // BTA static library for target
 cc_library_static {
     name: "libbt-bta",
-    defaults: ["fluoride_bta_defaults"],
+    defaults: [
+        "fluoride_bta_defaults",
+        "latest_android_hardware_bluetooth_audio_ndk_android_shared",
+    ],
     srcs: [
         "ag/bta_ag_act.cc",
         "ag/bta_ag_api.cc",

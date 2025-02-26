@@ -32,7 +32,10 @@ cc_library_static {
 // Bluetooth stack static library for target
 cc_library_static {
     name: "libbt-stack",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        "latest_android_hardware_bluetooth_audio_ndk_android_shared",
+    ],
     local_include_dirs: [
         "ais",
         "avct",

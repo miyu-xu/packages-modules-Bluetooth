@@ -19,6 +19,7 @@
 #include <vector>
 
 #include "aidl/a2dp/a2dp_encoding_aidl_controller.h"
+#include "aidl/a2dp/a2dp_provider_info.h"
 #include "hal_version_manager.h"
 #include "hidl/a2dp_encoding_hidl.h"
 
@@ -27,13 +28,11 @@ namespace audio {
 namespace a2dp {
 
 bool update_codec_offloading_capabilities(
-        const std::vector<btav_a2dp_codec_config_t>& framework_preference,
-        bool supports_a2dp_hw_offload_v2) {
+        const std::vector<btav_a2dp_codec_config_t>& framework_preference) {
   if (HalVersionManager::GetHalTransport() == BluetoothAudioHalTransport::HIDL) {
     return hidl::a2dp::update_codec_offloading_capabilities(framework_preference);
   }
-  return aidl::a2dp::update_codec_offloading_capabilities(framework_preference,
-                                                          supports_a2dp_hw_offload_v2);
+  return true;
 }
 
 // Check if new bluetooth_audio is enabled
@@ -54,11 +53,13 @@ bool is_hal_offloading() {
 
 // Initialize BluetoothAudio HAL: openProvider
 bool init(bluetooth::common::MessageLoopThread* message_loop,
-          bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled) {
+          bluetooth::audio::a2dp::StreamCallbacks const* stream_callbacks, bool offload_enabled,
+          std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
   if (HalVersionManager::GetHalTransport() == BluetoothAudioHalTransport::HIDL) {
     return hidl::a2dp::init(message_loop, stream_callbacks, offload_enabled);
   }
-  return aidl::a2dp::init(message_loop, stream_callbacks, offload_enabled);
+  return aidl::a2dp::init(message_loop, stream_callbacks, offload_enabled,
+                          std::move(provider_info));
 }
 
 // Clean up BluetoothAudio HAL
