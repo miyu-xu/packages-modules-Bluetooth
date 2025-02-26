@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ebd8bb_4e644e0d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T03:59:44Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "7b81e3e5_65599bca",
+      "range": {
+        "startLine": 64,
+        "startChar": 54,
+        "endLine": 64,
+        "endChar": 57
+      },
+      "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfdeab17_ae804300",
@@ -89,6 +113,30 @@
           ]
         }
       ],
+      "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c947f7b_a9b90184",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T03:59:44Z",
+      "side": 1,
+      "message": "Done.  Also renamed the method as `post`.\nBut is the order between jobs on different threads important?",
+      "parentUuid": "cfdeab17_ae804300",
+      "range": {
+        "startLine": 636,
+        "startChar": 46,
+        "endLine": 636,
+        "endChar": 88
+      },
       "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
