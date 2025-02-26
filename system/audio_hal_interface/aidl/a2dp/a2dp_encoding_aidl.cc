@@ -28,6 +28,172 @@
 #include "codec_status_aidl.h"
 #include "transport_instance.h"
 
+/* Context Types */
+enum class AudioContextType : uint16_t {
+  UNINITIALIZED = 0x0000,
+  UNSPECIFIED = 0x0001,
+  CONVERSATIONAL = 0x0002,
+  MEDIA = 0x0004,
+  GAME = 0x0008,
+  INSTRUCTIONAL = 0x0010,
+  VOICEASSISTANTS = 0x0020,
+  LIVE = 0x0040,
+  SOUNDEFFECTS = 0x0080,
+  NOTIFICATIONS = 0x0100,
+  RINGTONE = 0x0200,
+  ALERTS = 0x0400,
+  EMERGENCYALARM = 0x0800,
+  RFU = 0x1000,
+};
+
+enum Content {
+  CONTENT_TYPE_UNINITIALIZED = 0x0000,
+  CONTENT_TYPE_UNSPECIFIED = 0x0001,
+  CONTENT_TYPE_CONVERSATIONAL = 0x0002,
+  CONTENT_TYPE_MEDIA = 0x0004,
+  CONTENT_TYPE_GAME = 0x0008,
+  CONTENT_TYPE_INSTRUCTIONAL = 0x0010,
+  CONTENT_TYPE_VOICEASSISTANTS = 0x0020,
+  CONTENT_TYPE_LIVE = 0x0040,
+  CONTENT_TYPE_SOUNDEFFECTS = 0x0080,
+  CONTENT_TYPE_NOTIFICATIONS = 0x0100,
+  CONTENT_TYPE_RINGTONE = 0x0200,
+  CONTENT_TYPE_ALERTS = 0x0400,
+  CONTENT_TYPE_EMERGENCYALARM = 0x0800,
+  CONTENT_TYPE_RFU = 0x1000,
+};
+
+uint16_t AudioContextToAudioContentType(AudioContextType context_type);
+
+AudioContextType AudioContentToAudioContextType(audio_content_type_t content_type,
+		audio_source_t source_type, audio_usage_t usage);
+
+enum CONTEXT_PRIORITY { SONIFICATION = 0, MEDIA, GAME, CONVERSATIONAL };
+
+enum METADATA_TYPE { SOURCE = 0, SINK };
+
+AudioContextType AudioContentToAudioContextType([[maybe_unused]] audio_content_type_t content_type,
+                                                audio_source_t source_type, audio_usage_t usage) {
+  LOG(INFO) << __func__ << ": usage: " << usage;
+  switch (usage) {
+    case AUDIO_USAGE_MEDIA:
+      return AudioContextType::MEDIA;
+    case AUDIO_USAGE_VOICE_COMMUNICATION:
+      return AudioContextType::CONVERSATIONAL;
+    case AUDIO_USAGE_CALL_ASSISTANT:
+      return AudioContextType::CONVERSATIONAL;
+    case AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING:
+      return AudioContextType::VOICEASSISTANTS;
+    case AUDIO_USAGE_ASSISTANCE_SONIFICATION:
+      return AudioContextType::SOUNDEFFECTS;
+    case AUDIO_USAGE_GAME:
+      return AudioContextType::GAME;
+    case AUDIO_USAGE_NOTIFICATION:
+      return AudioContextType::NOTIFICATIONS;
+    case AUDIO_USAGE_NOTIFICATION_TELEPHONY_RINGTONE:
+      return AudioContextType::CONVERSATIONAL;
+    case AUDIO_USAGE_ALARM:
+      return AudioContextType::ALERTS;
+    case AUDIO_USAGE_EMERGENCY:
+      return AudioContextType::EMERGENCYALARM;
+    case AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE:
+      return AudioContextType::INSTRUCTIONAL;
+    default:
+      break;
+  }
+
+  switch (source_type) {
+    case AUDIO_SOURCE_MIC:
+    case AUDIO_SOURCE_HOTWORD:
+    case AUDIO_SOURCE_VOICE_CALL:
+    case AUDIO_SOURCE_VOICE_COMMUNICATION:
+      return AudioContextType::CONVERSATIONAL;
+    default:
+      break;
+  }
+
+  LOG(INFO) << __func__ << ": Return Media when not in call by default.";
+  return AudioContextType::MEDIA;
+}
+
+uint16_t AudioContextToAudioContentType(AudioContextType context_type) {
+  switch (context_type) {
+    case AudioContextType::MEDIA:
+      return CONTENT_TYPE_MEDIA;
+    case AudioContextType::GAME:
+      return CONTENT_TYPE_GAME;
+    case AudioContextType::CONVERSATIONAL:  // Fall through
+      return CONTENT_TYPE_CONVERSATIONAL;
+    case AudioContextType::LIVE:
+      return CONTENT_TYPE_LIVE;
+    case AudioContextType::RINGTONE:
+      return CONTENT_TYPE_RINGTONE;
+    case AudioContextType::VOICEASSISTANTS:
+      return CONTENT_TYPE_CONVERSATIONAL;
+    case AudioContextType::SOUNDEFFECTS:
+      return CONTENT_TYPE_SOUNDEFFECTS;
+    case AudioContextType::ALERTS:
+      return CONTENT_TYPE_ALERTS;
+    case AudioContextType::EMERGENCYALARM:
+      return CONTENT_TYPE_EMERGENCYALARM;
+    default:
+      return CONTENT_TYPE_MEDIA;
+      break;
+  }
+  return 0;
+}
+
+static int getPriority(AudioContextType context) {
+  LOG(INFO) << __func__ << ": context type = " << (uint16_t)context;
+  switch (context) {
+    case AudioContextType::MEDIA:
+      return CONTEXT_PRIORITY::MEDIA;
+    case AudioContextType::GAME:
+      return CONTEXT_PRIORITY::GAME;
+    case AudioContextType::CONVERSATIONAL:
+      return CONTEXT_PRIORITY::CONVERSATIONAL;
+    case AudioContextType::SOUNDEFFECTS:
+      return CONTEXT_PRIORITY::SONIFICATION;
+    default:
+      break;
+  }
+  return 0;
+}
+
+static int context_contention_src(const source_metadata_v7_t& source_metadata) {
+  auto track_count = source_metadata.track_count;
+  AudioContextType current_context = AudioContextType::MEDIA;
+  auto current_priority = -1;
+
+  LOG(INFO) << __func__ << ": tracks count: " << track_count;
+  if (!track_count) {
+    return 0;
+  }
+
+  for (size_t i = 0; i < track_count; i++) {
+    auto context_priority = 0;
+    auto track = source_metadata.tracks[i].base;
+    if (track.content_type == 0 && track.usage == 0) {
+      LOG(INFO) << __func__ << ": tracks count: " << track_count;
+      continue;
+    }
+
+    LOG(INFO) << __func__ << ": usage=" << track.usage << ", content_type=" << track.content_type
+              << ", gain=" << track.gain;
+    AudioContextType context_type = AudioContentToAudioContextType(
+            track.content_type, AUDIO_SOURCE_DEFAULT, track.usage);
+
+    context_priority = getPriority(context_type);
+    LOG(INFO) << __func__ << ": context_priority: " << context_priority;
+    if (context_priority > current_priority) {
+      current_priority = context_priority;
+      current_context = context_type;
+    }
+  }
+  uint16_t ctx = AudioContextToAudioContentType(current_context);
+  return ctx;
+}
+
 typedef enum {
   A2DP_CTRL_CMD_NONE,
   A2DP_CTRL_CMD_CHECK_READY,
@@ -74,6 +240,10 @@ public:
 
   bool GetPresentationPosition(uint64_t* remote_delay_report_ns, uint64_t* total_bytes_read,
                                timespec* data_position) override;
+
+  void SourceMetadataChanged(const source_metadata_v7_t& source_metadata);
+
+  void SinkMetadataChanged(const sink_metadata_v7_t& sink_metadata);
 
   tA2DP_CTRL_CMD GetPendingCmd() const;
 
@@ -190,6 +360,24 @@ void A2dpTransport::StopRequest() {
 void A2dpTransport::SetLatencyMode(LatencyMode latency_mode) {
   stream_callbacks_->SetLatencyMode(latency_mode == LatencyMode::LOW_LATENCY);
 }
+
+void A2dpTransport::SourceMetadataChanged(
+    const source_metadata_v7_t& source_metadata) {
+  auto track_count = source_metadata.track_count;
+  auto tracks = source_metadata.tracks;
+  VLOG(1) << __func__ << ": " << track_count << " track(s) received";
+  while (track_count) {
+    VLOG(2) << __func__ << ": usage=" << tracks->base.usage
+            << ", content_type=" << tracks->base.content_type
+            << ", gain=" << tracks->base.gain;
+    --track_count;
+    ++tracks;
+  }
+  uint16_t context = context_contention_src((const source_metadata_v7_t)source_metadata);
+  stream_callbacks_->UpdateSourceMetadata(context == CONTENT_TYPE_GAME);
+}
+
+void A2dpTransport::SinkMetadataChanged(const sink_metadata_v7_t&) {}
 
 bool A2dpTransport::GetPresentationPosition(uint64_t* remote_delay_report_ns,
                                             uint64_t* total_bytes_read, timespec* data_position) {
@@ -827,6 +1015,16 @@ provider::get_a2dp_configuration(
       break;
     case BTAV_A2DP_CODEC_BITS_PER_SAMPLE_32:
       codecParameters.bitdepth = 32;
+      break;
+    default:
+      break;
+  }
+  switch (user_preferences.audio_context) {
+    case BTAV_A2DP_CODEC_AUDIO_CONTEXT_MEDIA:
+      hint.audioContext.bitmask |= MEDIA;
+      break;
+    case BTAV_A2DP_CODEC_AUDIO_CONTEXT_GAME:
+      hint.audioContext.bitmask |= GAME;
       break;
     default:
       break;

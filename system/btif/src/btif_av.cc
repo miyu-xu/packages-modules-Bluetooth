@@ -117,6 +117,7 @@ typedef struct {
 
 typedef struct {
   bool is_low_latency;
+  bool is_gaming_enabled;
 } btif_av_set_latency_req_t;
 
 typedef struct {
@@ -552,6 +553,22 @@ public:
     }
     active_peer_ = peer_address;
     return true;
+  }
+
+  /**
+   * Update source codec mode configuration for a peer.
+   *
+   * @param peer_address the address of the peer to update
+   * @param codec_preferences the updated codec preferences
+   */
+  void UpdateCodecModeConfig(const RawAddress& peer_address,
+                             btav_a2dp_codec_audio_context_t audio_context) {
+    A2dpCodecConfig* current_codec = bta_av_get_a2dp_current_codec();
+    if (current_codec == nullptr) return;
+    btav_a2dp_codec_config_t codec_config = current_codec->getCodecConfig();
+    codec_config.audio_context = audio_context;
+    const std::vector<btav_a2dp_codec_config_t>& codec_preferences = {codec_config};
+    btif_a2dp_source_encoder_mode_config_update_req(peer_address, codec_preferences);
   }
 
   /**
@@ -4081,6 +4098,19 @@ void btif_av_set_low_latency(bool is_low_latency) {
 
   btif_av_set_latency_req_t set_latency_req;
   set_latency_req.is_low_latency = is_low_latency;
+  BtifAvEvent btif_av_event(BTIF_AV_SET_LATENCY_REQ_EVT, &set_latency_req, sizeof(set_latency_req));
+
+  do_in_main_thread(base::BindOnce(&btif_av_handle_event,
+                                   AVDT_TSEP_SNK,  // peer_sep
+                                   btif_av_source_active_peer(), kBtaHandleUnknown, btif_av_event));
+}
+
+void btif_av_update_source_metadata(bool is_gaming_enabled) {
+  log::info("active_peer={} is_gaming_enabled={}", btif_av_source_active_peer(), is_gaming_enabled);
+
+  btif_av_set_latency_req_t set_latency_req;
+  set_latency_req.is_gaming_enabled = is_gaming_enabled;
+
   BtifAvEvent btif_av_event(BTIF_AV_SET_LATENCY_REQ_EVT, &set_latency_req, sizeof(set_latency_req));
 
   do_in_main_thread(base::BindOnce(&btif_av_handle_event,
