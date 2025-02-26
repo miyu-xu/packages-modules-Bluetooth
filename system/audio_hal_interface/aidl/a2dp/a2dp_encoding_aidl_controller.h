@@ -249,7 +249,7 @@ class A2dpClientInterface {
 public:
   A2dpClientInterface(std::unique_ptr<SoftwareEncoding> software_encoding,
                       std::unique_ptr<HardwareOffloadEncoding> offload_encoding);
-  void Cleanup();
+  void Cleanup(bool update_only);
   void SetRemoteDelay(uint16_t delay_report);
   void SetLowLatencyMode(bool allowed);
   void StartSession();
