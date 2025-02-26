@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6800c3_58735324",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-26T23:43:50Z",
+      "side": 1,
+      "message": "you may need error log to debug this?",
+      "revId": "2d8f8def4773c5c4bbad30da997abb332bec9a06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db355988_3bdcb6e3",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-26T23:43:50Z",
+      "side": 1,
+      "message": "how is this accomadating temp_bonding now?",
+      "revId": "2d8f8def4773c5c4bbad30da997abb332bec9a06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
