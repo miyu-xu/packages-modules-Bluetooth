@@ -74,6 +74,9 @@ public:
   virtual bool GetPresentationPosition(uint64_t* remote_delay_report_ns,
                                        uint64_t* total_bytes_readed, timespec* data_position) = 0;
 
+  virtual void SourceMetadataChanged(const source_metadata_v7_t& source_metadata) = 0;
+  virtual void SinkMetadataChanged(const sink_metadata_v7_t& sink_metadata) = 0;
+
   /***
    * Invoked when the transport is requested to reset presentation position
    ***/

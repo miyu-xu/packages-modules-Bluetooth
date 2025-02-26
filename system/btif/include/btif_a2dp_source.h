@@ -86,6 +86,14 @@ void btif_a2dp_source_encoder_user_config_update_req(
         const std::vector<btav_a2dp_codec_config_t>& codec_user_preferences,
         std::promise<void> peer_ready_promise);
 
+// Process a request to update the A2DP audio encoder with preferred mode
+// codec configuration.
+// The peer address is |peer_addr|.
+// |codec_user_config| contains the preferred codec mode configuration.
+void btif_a2dp_source_encoder_mode_config_update_req(
+        const RawAddress& peer_addr,
+        const std::vector<btav_a2dp_codec_config_t>& codec_mode_preferences);
+
 // Process a request to update the A2DP audio encoding with new audio
 // configuration feeding parameters stored in |codec_audio_config|.
 // The fields that are used are: |codec_audio_config.sample_rate|,
