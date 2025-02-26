@@ -539,4 +539,230 @@ TEST(GattDatabaseTest, serialized_hash_test) {
 
   EXPECT_EQ(db_from_disk.Hash(), db_from_serialized.Hash());
 }
+
+// Example from b/392197849
+TEST(GattDatabaseTest, serialized_hash_test_including_128_bit_uuid) {
+  DatabaseBuilder builder;
+  // 1.
+  builder.AddService(0x0001, 0x000b, Uuid::From16Bit(0x1800), true);
+  // 2.
+  builder.AddService(0x0020, 0x0029, Uuid::From16Bit(0x1801), true);
+  // 3.
+  builder.AddService(0x0f00, 0x0f03, Uuid::From16Bit(0x180f), true);
+  // 4.
+  builder.AddService(0x0f06, 0x0f09, Uuid::From16Bit(0x180f), true);
+  // 5.
+  builder.AddService(0x4400, 0x4408, Uuid::From16Bit(0x1844), true);
+  // 6.
+  builder.AddService(0x4600, 0x460c, Uuid::From16Bit(0x1846), true);
+  // 7.
+  builder.AddService(0x4d00, 0x4d03, Uuid::From16Bit(0x184d), true);
+  // 8.
+  builder.AddService(0x4e00, 0x4e0f, Uuid::From16Bit(0x184e), true);
+  // 9.
+  builder.AddService(0x4f00, 0x4f05, Uuid::From16Bit(0x184f), true);
+  // 10.
+  builder.AddService(0x5000, 0x5012, Uuid::From16Bit(0x1850), true);
+  // 11.
+  builder.AddService(0x5300, 0x5301, Uuid::From16Bit(0x1853), true);
+  // 12.
+  builder.AddService(0x5500, 0x5502, Uuid::From16Bit(0x1855), true);
+  // 13.
+  builder.AddService(0x8000, 0x8005, Uuid::From16Bit(0xfe03), true);
+  // 14.
+  builder.AddService(0x8100, 0x8112, Uuid::From16Bit(0xfe2c), true);
+  // 15.
+  builder.AddService(
+          0xa000, 0xa000,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66,
+                                               0x66, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66}}),
+          true);
+  builder.AddService(0xa001, 0xa002, Uuid::From16Bit(0x1c), true);
+  builder.AddService(
+          0xa002, 0xa003,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77,
+                                               0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77}}),
+          true);
+  // 16.
+  builder.AddService(
+          0xa100, 0xa101,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80,
+                                               0x00, 0x00, 0x90, 0x78, 0x56, 0x34, 0x12}}),
+          true);
+
+  // 1.
+  builder.AddCharacteristic(0x0002, 0x0003, Uuid::From16Bit(0x2a00), 0x0A);
+  builder.AddCharacteristic(0x0004, 0x0005, Uuid::From16Bit(0x2a01), 0x0a);
+  builder.AddCharacteristic(0x0006, 0x0007, Uuid::From16Bit(0x2aa6), 0x02);
+  builder.AddCharacteristic(0x0008, 0x0009, Uuid::From16Bit(0x2bf5), 0x02);
+  builder.AddCharacteristic(0x000a, 0x000b, Uuid::From16Bit(0x2a04), 0x02);
+
+  // 2.
+  builder.AddCharacteristic(0x0021, 0x0022, Uuid::From16Bit(0x2a05), 0x20);
+  builder.AddDescriptor(0x0023, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x0024, 0x0025, Uuid::From16Bit(0x2b29), 0x0a);
+  builder.AddCharacteristic(0x0026, 0x0027, Uuid::From16Bit(0x2b3a), 0x0002);
+  builder.AddCharacteristic(0x0028, 0x0029, Uuid::From16Bit(0x2b2a), 0x0002);
+
+  // 3.
+  builder.AddDescriptor(0x0f03, Uuid::From16Bit(0x2902));
+
+  // 4.
+  builder.AddCharacteristic(0x07, 0x08, Uuid::From16Bit(0x2a19), 0x12);
+  builder.AddDescriptor(0x0f09, Uuid::From16Bit(0x2902));
+
+  // 5.
+  builder.AddCharacteristic(0x4401, 0x4402, Uuid::From16Bit(0x2b7d), 0x12);
+  builder.AddDescriptor(0x4403, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4404, 0x4405, Uuid::From16Bit(0x2b7e), 0x0008);
+  builder.AddCharacteristic(0x4406, 0x4407, Uuid::From16Bit(0x2b7f), 0x12);
+  builder.AddDescriptor(0x4408, Uuid::From16Bit(0x2902));
+
+  // 6.
+  builder.AddCharacteristic(0x4601, 0x4602, Uuid::From16Bit(0x2b84), 0x12);
+  builder.AddDescriptor(0x4603, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4604, 0x4605, Uuid::From16Bit(0x2b85), 0x12);
+  builder.AddDescriptor(0x4606, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4607, 0x4608, Uuid::From16Bit(0x2b86), 0x1a);
+  builder.AddDescriptor(0x4609, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x460a, 0x460b, Uuid::From16Bit(0x2b87), 0x02);
+  builder.AddDescriptor(0x460c, Uuid::From16Bit(0x2902));
+
+  // 7.
+  builder.AddCharacteristic(0x4d01, 0x4d02, Uuid::From16Bit(0x2bc3), 0x1a);
+  builder.AddDescriptor(0x4d03, Uuid::From16Bit(0x2902));
+
+  // 8.
+  builder.AddCharacteristic(0x4e01, 0x4e02, Uuid::From16Bit(0x2bc6), 0x1c);
+  builder.AddDescriptor(0x4e03, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4e04, 0x4e05, Uuid::From16Bit(0x2c4), 0x12);
+  builder.AddDescriptor(0x4e06, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4e07, 0x4e08, Uuid::From16Bit(0x2bc4), 0x12);
+  builder.AddDescriptor(0x4e09, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4e0a, 0x4e0b, Uuid::From16Bit(0x2bc5), 0x12);
+  builder.AddDescriptor(0x4e0c, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x4e0d, 0x4e0e, Uuid::From16Bit(0x2bc5), 0x12);
+  builder.AddDescriptor(0x4e0f, Uuid::From16Bit(0x2902));
+
+  // 9.
+  builder.AddCharacteristic(0x4f01, 0x4f02, Uuid::From16Bit(0x2bc7), 0x0c);
+  builder.AddCharacteristic(0x4f03, 0x4f04, Uuid::From16Bit(0x2bc8), 0x12);
+  builder.AddDescriptor(0x4e05, Uuid::From16Bit(0x2902));
+
+  // 10.
+  builder.AddCharacteristic(0x5001, 0x5002, Uuid::From16Bit(0x2bcd), 0x12);
+  builder.AddDescriptor(0x5003, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x5004, 0x5005, Uuid::From16Bit(0x2bce), 0x12);
+  builder.AddDescriptor(0x5006, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x5007, 0x5008, Uuid::From16Bit(0x2bca), 0x1a);
+  builder.AddDescriptor(0x5009, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x500a, 0x500b, Uuid::From16Bit(0x2bcc), 0x1a);
+  builder.AddDescriptor(0x500c, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x500d, 0x500e, Uuid::From16Bit(0x2bc9), 0x12);
+  builder.AddDescriptor(0x500f, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x5010, 0x5011, Uuid::From16Bit(0x2bcb), 0x12);
+  builder.AddDescriptor(0x5012, Uuid::From16Bit(0x2902));
+
+  // 11.
+
+  // 12.
+  builder.AddCharacteristic(0x5501, 0x5502, Uuid::From16Bit(0x2b51), 0x02);
+
+  // 13.
+  builder.AddCharacteristic(
+          0x0801, 0x0802,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xf0, 0x4e, 0xb1, 0x77, 0x30, 0x05, 0x43, 0xa7, 0xac,
+                                               0x61, 0xa3, 0x90, 0xdd, 0xf8, 0x30, 0x76}}),
+          0x08);
+  builder.AddCharacteristic(
+          0x0803, 0x0804,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0x2b, 0xee, 0xa0, 0x5b, 0x18, 0x79, 0x4b, 0xb4, 0x8a,
+                                               0x2f, 0x72, 0x64, 0x1f, 0x82, 0x42, 0x0b}}),
+          0x10);
+  builder.AddDescriptor(0x8005, Uuid::From16Bit(0x2902));
+
+  // 14.
+  builder.AddCharacteristic(
+          0x8101, 0x8102,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x33, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x02);
+  builder.AddCharacteristic(
+          0x8103, 0x8104,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x34, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x18);
+  builder.AddDescriptor(0x8105, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(
+          0x8106, 0x8107,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x35, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x18);
+  builder.AddDescriptor(0x8108, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(
+          0x8109, 0x810a,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x36, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x08);
+  builder.AddCharacteristic(
+          0x810b, 0x810c,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x37, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x18);
+  builder.AddDescriptor(0x810d, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(
+          0x810e, 0x810f,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x3a, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x1a);
+  builder.AddDescriptor(0x8110, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(
+          0x8111, 0x8112,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0xfe, 0x2c, 0x12, 0x39, 0x83, 0x66, 0x48, 0x14, 0x8e,
+                                               0xb0, 0x01, 0xde, 0x32, 0x10, 0x0b, 0xea}}),
+          0x02);
+
+  // 15.
+  builder.AddDescriptor(0xa003, Uuid::From16Bit(0x2902));
+
+  // 16.
+  builder.AddCharacteristic(
+          0xa101, 0xa102,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0x03, 0x00, 0x03, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80,
+                                               0x00, 0x00, 0x92, 0x78, 0x56, 0x34, 0x12}}),
+          0x0c);
+  builder.AddDescriptor(0xa103, Uuid::From16Bit(0x2901));
+  builder.AddCharacteristic(
+          0xa104, 0xa105,
+          Uuid::From128BitBE(Uuid::UUID128Bit{{0x02, 0x00, 0x02, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80,
+                                               0x00, 0x00, 0x91, 0x78, 0x56, 0x34, 0x12}}),
+          0x10);
+  builder.AddDescriptor(0xa106, Uuid::From16Bit(0x2902));
+  builder.AddDescriptor(0xa107, Uuid::From16Bit(0x2901));
+
+  // set characteristic extended properties descriptor values
+  std::vector<uint16_t> descriptorValues = {0x0000};
+  builder.SetValueOfDescriptors(descriptorValues);
+
+  Database db = builder.Build();
+
+  auto serialized = db.Serialize();
+  std::vector<uint8_t> bytes;
+  for (auto attr : serialized) {
+    StoredAttribute::SerializeStoredAttribute(attr, bytes);
+  }
+  std::vector<StoredAttribute> attr_from_disk(serialized.size());
+  std::copy(bytes.cbegin(), bytes.cend(), (uint8_t*)attr_from_disk.data());
+  bool is_successful = false;
+  Database db_from_disk = gatt::Database::Deserialize(attr_from_disk, &is_successful);
+  ASSERT_TRUE(is_successful);
+  is_successful = false;
+  Database db_from_serialized = gatt::Database::Deserialize(serialized, &is_successful);
+  ASSERT_TRUE(is_successful);
+
+  EXPECT_EQ(db_from_disk.Hash(), db_from_serialized.Hash());
+  Octet16 expected_hash{0xdc, 0xde, 0x9c, 0x26, 0x85, 0x63, 0xd1, 0x11, 0x53, 0xf8, 0x09, 0xae,
+                        0x0a, 0x59, 0x88, 0x0e};
+  EXPECT_EQ(db_from_disk.Hash(), expected_hash);
+}
 }  // namespace gatt
