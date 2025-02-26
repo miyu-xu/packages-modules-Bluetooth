@@ -54,6 +54,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51d7dacb_dc00b429",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-26T06:58:18Z",
+      "side": 1,
+      "message": "Instead of depending on time limit, is it possible to delete the target device directly with address?\n\nHow does the channel sounding turned on/off? If we can determine the moment that CS is no longer used for a device, then we can remove the device from this list.\n\nWith current logic, even if the CS feature is \u0027turned off\u0027 for a device, the device cannot be connected with aggressive parameters until one day passes.",
+      "range": {
+        "startLine": 1324,
+        "startChar": 7,
+        "endLine": 1324,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f6b9e457_19458da6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1323,
+                "startChar": 0,
+                "endLine": 1341,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "fc871ea04f519eb3fafe461efe1cf763193ee7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2276031c_f1ec5367",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 10
