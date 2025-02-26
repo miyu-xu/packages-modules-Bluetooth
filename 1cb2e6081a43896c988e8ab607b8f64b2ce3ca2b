@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "594e345f_0c78a0ff",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3158,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T14:13:28Z",
+      "side": 1,
+      "message": "Hey Rongxuan, I\u0027ve made finally an update of this CL. We have a offline internal discussion with Lukasz. Please check if latest version is better for you.",
+      "parentUuid": "268e695d_4e9ceda4",
+      "range": {
+        "startLine": 3153,
+        "startChar": 0,
+        "endLine": 3158,
+        "endChar": 9
+      },
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb4ecc1b_9cf26170",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -145,6 +169,24 @@
       "side": 1,
       "message": "can we rename wouldUseFallbackUnicastGroupForBroadcast to isFallbackUnicastGroupForBroadcastToBeUsed?",
       "parentUuid": "f2714063_72e24a2e",
+      "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de69d3d_795d7735",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3202,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T14:13:28Z",
+      "side": 1,
+      "message": "as previousely mentioned - this is updated.",
+      "parentUuid": "afa4e1d7_9cb2fde9",
       "revId": "1cb2e6081a43896c988e8ab607b8f64b2ce3ca2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
