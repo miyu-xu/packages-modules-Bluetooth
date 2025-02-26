@@ -37,6 +37,99 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdcb8891_25f93293",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2413,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T14:31:22Z",
+      "side": 1,
+      "message": "update -\u003e notify ?",
+      "range": {
+        "startLine": 2413,
+        "startChar": 39,
+        "endLine": 2413,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c7fa07c2_027cdd9f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 2413,
+                "startChar": 0,
+                "endLine": 2414,
+                "endChar": 0
+              },
+              "replacement": "      /* Whenever context type change, notify user about that.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7115f166_cad442d2",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T14:31:22Z",
+      "side": 1,
+      "message": "is there any specific reason why set is per direction and get is for both ? or can this be as GetAvailableContexts that accepts also `types::kLeAudioDirectionBoth` ?",
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "437127e2_6aca76ec",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-26T14:31:22Z",
+      "side": 1,
+      "message": "I\u0027m wondering if there should be a different method that would return this mixed `available` | `streaming` contexts to not confuse meaning of this method that indicates that the Available Contexts are get.",
+      "fixSuggestions": [
+        {
+          "fixId": "86944c56_d2602993",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/device_groups.h",
+              "range": {
+                "startLine": 324,
+                "startChar": 0,
+                "endLine": 325,
+                "endChar": 0
+              },
+              "replacement": "  types::AudioContexts GetAvailableAndStreamingContexts(int direction \u003d types::kLeAudioDirectionBoth) const {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7dc8cbb52998674ac78b1a4180b0d97a30dfef61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7c940ea_aa47e865",
         "filename": "system/bta/le_audio/device_groups.h",
         "patchSetId": 3
