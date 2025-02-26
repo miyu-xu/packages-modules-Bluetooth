@@ -22,6 +22,30 @@
       },
       "revId": "9cd48cb9106001f13dd6e7ab95f87789c256dc90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff1dc75b_82c0bc61",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T02:29:20Z",
+      "side": 1,
+      "message": "Ah yes. In the mini-edits, I didn\u0027t realize I was jumping 2 hoops to get back to the same square. I\u0027ve fixed this for appropriate unit testing. Thank you.",
+      "parentUuid": "e7fe0f49_6e32b381",
+      "range": {
+        "startLine": 71,
+        "startChar": 60,
+        "endLine": 71,
+        "endChar": 71
+      },
+      "revId": "9cd48cb9106001f13dd6e7ab95f87789c256dc90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
