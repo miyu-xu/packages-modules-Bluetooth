@@ -93,6 +93,30 @@
       },
       "revId": "c611cbd4a4063d7181837c70d48cf70ad0309f93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a9c199b_c9e71d30",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/PeriodicScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T03:48:16Z",
+      "side": 1,
+      "message": "Awesome suggestion. I\u0027ve replaced the `findAllSync` with `getAllCallbacks` and updated the callers to use the callbacks as they only care about that. Thank you.",
+      "parentUuid": "fabae50e_ebcbb5b7",
+      "range": {
+        "startLine": 129,
+        "startChar": 79,
+        "endLine": 129,
+        "endChar": 87
+      },
+      "revId": "c611cbd4a4063d7181837c70d48cf70ad0309f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
