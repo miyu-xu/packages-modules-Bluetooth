@@ -1,0 +1,59 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "813ee1d5_e0ffae34",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-26T19:06:20Z",
+      "side": 1,
+      "message": "This signifies whether the device is LE only or not. We should name it as such.\n```\nif (addr_type \u003d\u003d BLE_ADDR_PUBLIC) {\n  if (device_type \u003d\u003d BT_DEVICE_TYPE_UNKNOWN \u0026\u0026 \n com::android::bluetooth::flags::auto_transport_pairing()) {\n    tBTM_INQ_INFO* p_inq_info \u003d BTM_InqDbRead(bd_addr);\n    if (p_inq_info !\u003d nullptr) {\n      device_type \u003d p_inq_info-\u003eresults.inq_result_type;\n    }\n  }\n  transport \u003d (get_btm_client_interface().ble.BTM_UseLeLink(bd_addr) ||\n               device_type \u003d\u003d BT_DEVICE_TYPE_LE) ? BT_TRANSPORT_LE: BT_TRANSPORT_BR_EDR;\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "fd405228_3f25570f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 800,
+                "startChar": 0,
+                "endLine": 801,
+                "endChar": 0
+              },
+              "replacement": "    bool is_le_only \u003d false;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 804,
+                "startChar": 0,
+                "endLine": 805,
+                "endChar": 0
+              },
+              "replacement": "      is_le_only \u003d (inq_result_type \u003d\u003d BT_DEVICE_TYPE_BLE);\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 807,
+                "startChar": 0,
+                "endLine": 809,
+                "endChar": 0
+              },
+              "replacement": "      transport \u003d (get_btm_client_interface().ble.BTM_UseLeLink(bd_addr) || is_le_only)\n                      ? BT_TRANSPORT_LE\n                      : BT_TRANSPORT_BR_EDR;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1bef7c41d8571ddaa1eb708341145fd9d2472357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
