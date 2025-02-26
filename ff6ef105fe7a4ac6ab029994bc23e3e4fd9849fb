@@ -22,6 +22,30 @@
       },
       "revId": "ff6ef105fe7a4ac6ab029994bc23e3e4fd9849fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a6319e_3120ac8f",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T08:46:01Z",
+      "side": 0,
+      "message": "Good call.\nDone",
+      "parentUuid": "62a3b003_f453d661",
+      "range": {
+        "startLine": 431,
+        "startChar": 4,
+        "endLine": 431,
+        "endChar": 25
+      },
+      "revId": "ff6ef105fe7a4ac6ab029994bc23e3e4fd9849fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
