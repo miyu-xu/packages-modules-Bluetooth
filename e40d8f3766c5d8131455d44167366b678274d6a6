@@ -519,6 +519,30 @@
       },
       "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4efeb09_8d45739c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3800,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:21:37Z",
+      "side": 1,
+      "message": "If the annotation works, I would still recommend adding the annotation so that no app will be able to call this beyond API level 36 and we won\u0027t forget to open this up. \n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Nfc/NfcNci/src/com/android/nfc/cardemulation/HostEmulationManager.java;l\u003d149?q\u003dBuild.VERSION_CODES.BAKLAVA\n\nThey have been using the number 36 in other places on AOSP\n\nThis is not a blocking requirement.",
+      "parentUuid": "98716c94_3315d147",
+      "range": {
+        "startLine": 3800,
+        "startChar": 4,
+        "endLine": 3800,
+        "endChar": 37
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
