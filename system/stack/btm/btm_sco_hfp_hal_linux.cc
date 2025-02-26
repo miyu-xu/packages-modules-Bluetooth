@@ -26,7 +26,6 @@
 #include "osi/include/properties.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/hcimsgs.h"
-#include "stack/include/sdpdefs.h"
 
 extern int GetAdapterIndex();
 
@@ -37,12 +36,7 @@ namespace {
 bool offload_supported = false;
 bool offload_enabled = false;
 
-typedef struct cached_codec_info {
-  struct bt_codec inner;
-  size_t pkt_size;
-} cached_codec_info;
-
-std::vector<cached_codec_info> cached_codecs;
+std::vector<bt_codec> cached_codecs;
 
 #define RETRY_ON_INTR(fn) \
   do {                    \
@@ -86,13 +80,14 @@ struct mgmt_rp_get_codec_capabilities {
 void cache_codec_capabilities(struct mgmt_rp_get_codec_capabilities* rp) {
   const uint8_t kCodecMsbc = 0x5;
 
-  // TODO(b/323087725): Query the codec capabilities and fill in c.inner.data.
+  // TODO(b/323087725): Query the codec capabilities and fill in c.data.
   // The capabilities are not used currently so it's safe to keep this for a
   // while.
 
   // CVSD is mandatory in HFP.
   cached_codecs.push_back({
-          .inner = {.codec = codec::CVSD},
+          .codec = codec::CVSD,
+          .pkt_size = kDefaultPacketSize,
   });
 
   // No need to check GetLocalSupportedBrEdrCodecIds. Some legacy devices don't
@@ -100,7 +95,7 @@ void cache_codec_capabilities(struct mgmt_rp_get_codec_capabilities* rp) {
   // reliable.
   if (rp->transparent_wbs_supported) {
     cached_codecs.push_back({
-            .inner = {.codec = codec::MSBC_TRANSPARENT},
+            .codec = codec::MSBC_TRANSPARENT,
             .pkt_size = rp->wbs_pkt_len,
     });
   }
@@ -109,15 +104,15 @@ void cache_codec_capabilities(struct mgmt_rp_get_codec_capabilities* rp) {
   if (std::find(codecs.begin(), codecs.end(), kCodecMsbc) != codecs.end()) {
     offload_supported = true;
     cached_codecs.push_back({
-            .inner = {.codec = codec::MSBC, .data_path = rp->hci_data_path_id},
+            .codec = codec::MSBC,
+            .data_path = rp->hci_data_path_id,
             .pkt_size = rp->wbs_pkt_len,
     });
   }
 
   for (const auto& c : cached_codecs) {
     bluetooth::log::info("Caching HFP codec {}, data path {}, data len {}, pkt_size {}",
-                         (uint64_t)c.inner.codec, c.inner.data_path, c.inner.data.size(),
-                         c.pkt_size);
+                         (uint64_t)c.codec, c.data_path, c.data.size(), c.pkt_size);
   }
 }
 
@@ -200,7 +195,7 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
         if (ret < 0) {
           bluetooth::log::debug("Failed to read mgmt socket: {}", -errno);
           return -errno;
-        } else if (ret == 0) { // unlikely to happen, just a safeguard.
+        } else if (ret == 0) {  // unlikely to happen, just a safeguard.
           bluetooth::log::debug("Failed to read mgmt socket: EOF");
           return -1;
         }
@@ -310,11 +305,11 @@ bool is_coding_format_supported(esco_coding_format_t coding_format) {
     return false;
   }
 
-  for (cached_codec_info c : cached_codecs) {
-    if (c.inner.codec == MSBC_TRANSPARENT && coding_format == ESCO_CODING_FORMAT_TRANSPNT) {
+  for (bt_codec c : cached_codecs) {
+    if (c.codec == MSBC_TRANSPARENT && coding_format == ESCO_CODING_FORMAT_TRANSPNT) {
       return true;
     }
-    if (c.inner.codec == MSBC && coding_format == ESCO_CODING_FORMAT_MSBC) {
+    if (c.codec == MSBC && coding_format == ESCO_CODING_FORMAT_MSBC) {
       return true;
     }
   }
@@ -343,9 +338,9 @@ bool get_swb_supported() {
 bt_codecs get_codec_capabilities(uint64_t codecs) {
   bt_codecs codec_list = {.offload_capable = offload_supported};
 
-  for (auto c : cached_codecs) {
-    if (c.inner.codec & codecs) {
-      codec_list.codecs.push_back(c.inner);
+  for (const auto& c : cached_codecs) {
+    if (c.codec & codecs) {
+      codec_list.codecs.push_back(c);
     }
   }
 
@@ -369,9 +364,9 @@ bool enable_offload(bool enable) {
 }
 
 static bool get_single_codec(int codec, bt_codec** out) {
-  for (cached_codec_info& c : cached_codecs) {
-    if (c.inner.codec == static_cast<uint64_t>(codec)) {
-      *out = &c.inner;
+  for (bt_codec& c : cached_codecs) {
+    if (c.codec == static_cast<uint64_t>(codec)) {
+      *out = &c;
       return true;
     }
   }
@@ -445,8 +440,8 @@ void set_codec_datapath(tBTA_AG_UUID_CODEC codec_uuid) {
 }
 
 size_t get_packet_size(int codec) {
-  for (const cached_codec_info& c : cached_codecs) {
-    if (c.inner.codec == static_cast<uint64_t>(codec)) {
+  for (const bt_codec& c : cached_codecs) {
+    if (c.codec == static_cast<uint64_t>(codec)) {
       return c.pkt_size;
     }
   }

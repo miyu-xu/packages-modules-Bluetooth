@@ -41,6 +41,7 @@ struct bt_codec {
   codec codec;
   uint8_t data_path;
   std::vector<uint8_t> data;
+  size_t pkt_size;
 };
 
 struct bt_codecs {

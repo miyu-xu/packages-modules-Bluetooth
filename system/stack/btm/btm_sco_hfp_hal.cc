@@ -34,11 +34,13 @@ void init() {
   bt_codec cvsd = {
           .codec = codec::CVSD,
           .data_path = ESCO_DATA_PATH_PCM,
+          .pkt_size = kDefaultPacketSize,
   };
 
   bt_codec msbc = {
           .codec = codec::MSBC,
           .data_path = ESCO_DATA_PATH_PCM,
+          .pkt_size = kDefaultPacketSize,
   };
 
   cached_codecs.clear();
