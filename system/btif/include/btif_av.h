@@ -333,6 +333,13 @@ void btif_av_set_dynamic_audio_buffer_size(uint8_t dynamic_audio_buffer_size);
 void btif_av_set_low_latency(bool is_low_latency);
 
 /**
+ * Update Src Metadata for Game
+ *
+ * @param is_gaming_enabled to set
+ */
+void btif_av_update_source_metadata(bool is_gaming_enabled);
+
+/**
  * Initiate an AV connection after 3s timeout to peer audio sink
  * @param handle bta handle
  * @param peer_addr peer address
