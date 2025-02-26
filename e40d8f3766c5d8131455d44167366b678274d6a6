@@ -495,6 +495,30 @@
       },
       "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98716c94_3315d147",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3800,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-26T02:19:34Z",
+      "side": 1,
+      "message": "I see, in that case, let\u0027s not have the annotation then.\n\nGiven that this will become a formal API soon, ok to land without this annotation.",
+      "parentUuid": "a3ed28b9_302e19a5",
+      "range": {
+        "startLine": 3800,
+        "startChar": 4,
+        "endLine": 3800,
+        "endChar": 37
+      },
+      "revId": "e40d8f3766c5d8131455d44167366b678274d6a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
