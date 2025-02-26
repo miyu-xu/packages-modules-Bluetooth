@@ -667,7 +667,7 @@ A2dpClientInterface::A2dpClientInterface(std::unique_ptr<SoftwareEncoding> softw
   }
 }
 
-void A2dpClientInterface::Cleanup() {
+void A2dpClientInterface::Cleanup(bool update_only = false) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -682,8 +682,10 @@ void A2dpClientInterface::Cleanup() {
     offload_encoding_.reset();
   }
   current_encoding_interface_ = nullptr;
-  remote_delay = 0;
-  is_low_latency_mode_allowed = false;
+  if (!update_only) {
+    remote_delay = 0;
+    is_low_latency_mode_allowed = false;
+  }
 }
 
 void A2dpClientInterface::SetRemoteDelay(uint16_t delay_report) {
@@ -917,6 +919,12 @@ bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
 
   std::unique_ptr<HardwareOffloadEncoding> hardware_offload_encoding = nullptr;
   std::unique_ptr<SoftwareEncoding> software_encoding = nullptr;
+
+  if (client != nullptr && offload_enabled && !client->IsOffloadEnabled()) {
+    log::info("Update client with HardwareOffload. Reinitializing HAL.", offload_enabled);
+    client->Cleanup(true);
+    client.reset();
+  }
 
   if (client != nullptr && client->IsEnabled()) {
     log::debug("BluetoothAudio HAL is already enabled");
