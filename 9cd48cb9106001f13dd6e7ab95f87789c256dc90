@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7fe0f49_6e32b381",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T02:07:12Z",
+      "side": 1,
+      "message": "Should the `advPacket` type in the test be updated to be a ByteString too  and avoid the toByteArray here?",
+      "range": {
+        "startLine": 71,
+        "startChar": 60,
+        "endLine": 71,
+        "endChar": 71
+      },
+      "revId": "9cd48cb9106001f13dd6e7ab95f87789c256dc90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

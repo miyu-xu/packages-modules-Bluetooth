@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aafd3c8_52932164",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T02:07:12Z",
+      "side": 1,
+      "message": "The improvement in `getResult` are insane ^^\n\nany time I fixed an error prone I enforce it in the same CL. No shame in that",
+      "parentUuid": "e086b118_d26c8c11",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "9417725f2f725a39c10625c313e52a1377481530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a47fd3a_77c74e68",
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Done. I\u0027ll keep that in mind for next time as well! Thank you.",
       "parentUuid": "0a47fd3a_77c74e68",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 87
+      },
+      "revId": "9417725f2f725a39c10625c313e52a1377481530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b3cc7fb_9a978539",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/AdvtFilterOnFoundOnLostInfoTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-26T02:07:12Z",
+      "side": 1,
+      "message": "Don\u0027t do a CL \"just for that\", and if the code is already here, I usually don\u0027t say anything but I just wanted to make sure you know \"expect\" as an alternative",
+      "parentUuid": "216ca988_0a3e3f7e",
       "range": {
         "startLine": 65,
         "startChar": 4,
