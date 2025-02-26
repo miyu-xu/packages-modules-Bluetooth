@@ -16,6 +16,24 @@
       "message": "I\u0027m 99% sure this was accidental over at aosp/3464919. PTAL.",
       "revId": "86c045b216d606998008c93ff59090df6251f197",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61a9b01_1f3cf27b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T08:04:28Z",
+      "side": 1,
+      "message": "For clarity: it was put in `.../src/com/com/android/bluetooth/le_scan` instead of `.../src/com/android/bluetooth/le_scan` (notice the double `/com/com`).",
+      "parentUuid": "7f1296fc_6e9afc84",
+      "revId": "86c045b216d606998008c93ff59090df6251f197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
