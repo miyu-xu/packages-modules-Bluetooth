@@ -46,6 +46,7 @@ import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.net.Uri;
 import android.os.BatteryManager;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -1181,6 +1182,10 @@ public class HeadsetService extends ProfileService {
             }
         }
         enableSwbCodec(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, device);
+        logScoSessionMetric(
+                device,
+                BluetoothStatsLog
+                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_VOICE_RECOGNITION_INITIATED_START);
         return true;
     }
 
@@ -1227,6 +1232,10 @@ public class HeadsetService extends ProfileService {
                     });
         }
         enableSwbCodec(HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, false, device);
+        logScoSessionMetric(
+                device,
+                BluetoothStatsLog
+                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_VOICE_RECOGNITION_INITIATED_END);
         return true;
     }
 
@@ -1569,6 +1578,10 @@ public class HeadsetService extends ProfileService {
             }
             if (stateMachine.getAudioState() != BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {
                 logD("connectAudio: audio is not idle for device " + device);
+                logScoSessionMetric(
+                        device,
+                        BluetoothStatsLog
+                                .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_CONNECT_AUDIO_START);
                 return BluetoothStatusCodes.SUCCESS;
             }
             if (isAudioOn()) {
@@ -1579,6 +1592,10 @@ public class HeadsetService extends ProfileService {
                 return BluetoothStatusCodes.ERROR_AUDIO_DEVICE_ALREADY_CONNECTED;
             }
             stateMachine.sendMessage(HeadsetStateMachine.CONNECT_AUDIO, device);
+            logScoSessionMetric(
+                    device,
+                    BluetoothStatsLog
+                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_CONNECT_AUDIO_START);
         }
         return BluetoothStatusCodes.SUCCESS;
     }
@@ -1601,6 +1618,10 @@ public class HeadsetService extends ProfileService {
             for (BluetoothDevice device : getNonIdleAudioDevices()) {
                 disconnectResult = disconnectAudio(device);
                 if (disconnectResult == BluetoothStatusCodes.SUCCESS) {
+                    logScoSessionMetric(
+                            device,
+                            BluetoothStatsLog
+                                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_DISCONNECT_AUDIO_END);
                     return disconnectResult;
                 } else {
                     Log.e(
@@ -1691,6 +1712,10 @@ public class HeadsetService extends ProfileService {
             phoneStateChanged(0, 0, HeadsetHalConstants.CALL_STATE_DIALING, "", 0, "", true);
             phoneStateChanged(0, 0, HeadsetHalConstants.CALL_STATE_ALERTING, "", 0, "", true);
             phoneStateChanged(1, 0, HeadsetHalConstants.CALL_STATE_IDLE, "", 0, "", true);
+            logScoSessionMetric(
+                    mActiveDevice,
+                    BluetoothStatsLog
+                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_VIRTUAL_VOICE_INITIATED_START);
             return true;
         }
     }
@@ -1707,6 +1732,10 @@ public class HeadsetService extends ProfileService {
             // 2. Send virtual phone state changed to close SCO
             phoneStateChanged(0, 0, HeadsetHalConstants.CALL_STATE_IDLE, "", 0, "", true);
         }
+        logScoSessionMetric(
+                mActiveDevice,
+                BluetoothStatsLog
+                        .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_VIRTUAL_VOICE_INITIATED_END);
         return true;
     }
 
@@ -1988,6 +2017,10 @@ public class HeadsetService extends ProfileService {
                                             1 /* success */,
                                             0,
                                             mDialingOutTimeoutEvent.mDialingOutDevice));
+                    logScoSessionMetric(
+                            mActiveDevice,
+                            BluetoothStatsLog
+                                    .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_TELECOM_INITIATED_START);
                 } else if (callState == HeadsetHalConstants.CALL_STATE_ACTIVE
                         || callState == HeadsetHalConstants.CALL_STATE_IDLE) {
                     // Clear the timeout event when the call is connected or disconnected
@@ -2064,6 +2097,10 @@ public class HeadsetService extends ProfileService {
                     }
                 }
             }
+            logScoSessionMetric(
+                    mActiveDevice,
+                    BluetoothStatsLog
+                            .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_TELECOM_INITIATED_END);
         }
     }
 
@@ -2686,5 +2723,15 @@ public class HeadsetService extends ProfileService {
 
     private static void logD(String message) {
         Log.d(TAG, message);
+    }
+
+    private static void logScoSessionMetric(BluetoothDevice device, int state) {
+        MetricsLogger.getInstance()
+                .logBluetoothEvent(
+                        device,
+                        BluetoothStatsLog
+                                .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__SCO_SESSION,
+                        state,
+                        Binder.getCallingUid());
     }
 }

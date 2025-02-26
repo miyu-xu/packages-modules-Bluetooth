@@ -299,6 +299,28 @@ struct log_hfp_slc_fail {
 };
 extern struct log_hfp_slc_fail log_hfp_slc_fail;
 
+// Name: log_sco_codec
+struct log_sco_codec {
+  std::function<void(bluetooth::hci::Address, uint16_t)> body{
+          [](bluetooth::hci::Address /* address */, uint16_t /* codec */) {}};
+  void operator()(bluetooth::hci::Address address, uint16_t codec) { body(address, codec); }
+};
+extern struct log_sco_codec log_sco_codec;
+
+// Name: log_sco_link_created
+struct log_sco_link_created {
+  std::function<void(bluetooth::hci::Address)> body{[](bluetooth::hci::Address /* address */) {}};
+  void operator()(bluetooth::hci::Address address) { body(address); }
+};
+extern struct log_sco_link_created log_sco_link_created;
+
+// Name: log_sco_link_removed
+struct log_sco_link_removed {
+  std::function<void(bluetooth::hci::Address)> body{[](bluetooth::hci::Address /* address */) {}};
+  void operator()(bluetooth::hci::Address address) { body(address); }
+};
+extern struct log_sco_link_removed log_sco_link_removed;
+
 }  // namespace stack_metrics_logging
 }  // namespace mock
 }  // namespace test
