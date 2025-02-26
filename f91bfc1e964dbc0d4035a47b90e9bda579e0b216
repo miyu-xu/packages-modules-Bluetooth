@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a831d4c8_56f68673",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T19:57:23Z",
+      "side": 1,
+      "message": "THere is no reason to use here uint16_t if we know the type. And it is not exception here.\n\nDid it for purpose on offline Jakub T suggestion who stands behind this types :)",
+      "parentUuid": "892d947e_7a195725",
+      "revId": "f91bfc1e964dbc0d4035a47b90e9bda579e0b216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6538a19_6670f27c",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-02-26T16:04:51Z",
       "side": 1,
       "message": "should there be handling of invalid status from ParseAseStatusTransientStateParams ?",
+      "revId": "f91bfc1e964dbc0d4035a47b90e9bda579e0b216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c939ba04_a14c517f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2831,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-26T19:57:23Z",
+      "side": 1,
+      "message": "HAndling stay as it was before. Agree that we are bit relaxed here and we ndle it only in line 2897 which seems to be fine.",
+      "parentUuid": "a6538a19_6670f27c",
       "revId": "f91bfc1e964dbc0d4035a47b90e9bda579e0b216",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
