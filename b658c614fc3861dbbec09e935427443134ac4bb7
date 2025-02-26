@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6988ab21_4d06ff4d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-26T08:17:39Z",
+      "side": 1,
+      "message": "Lowering the visibility of these from `public` to package private led to all variables requiring the `m` prefix as per https://source.android.com/docs/setup/contribute/code-style#follow-field-naming-conventions which unfortunately led to a ton of renaming but nevertheless, here we are in hopes for better engineering practices.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "b658c614fc3861dbbec09e935427443134ac4bb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
