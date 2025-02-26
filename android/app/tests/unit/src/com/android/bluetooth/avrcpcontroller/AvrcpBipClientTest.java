@@ -16,11 +16,16 @@
 
 package com.android.bluetooth.avrcpcontroller;
 
-import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
 import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
+<<<<<<< PATCH SET (b39856 Unify reference to BluetoothProfile.CONNECTION_POLICY)
+||||||| BASE
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTING;
+=======
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTING;
 import static android.bluetooth.BluetoothProfile.getConnectionStateName;
+>>>>>>> BASE      (ccab83 rm un-necessary redundant stateToString methods)
 
 import static com.android.bluetooth.TestUtils.MockitoRule;
 import static com.android.bluetooth.TestUtils.getTestDevice;
