@@ -187,6 +187,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c87f4f11_630f79c1",
+        "filename": "android/pandora/server/src/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:04:49Z",
+      "side": 1,
+      "message": "I wonder if this could be because the sysprop to enable the profile is set too late as right now this is done within the json configuration.",
+      "parentUuid": "5b2ec7bf_384c836e",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6d97f8c_32e1b847",
         "filename": "pandora/interfaces/pandora_experimental/gmap.proto",
         "patchSetId": 2
