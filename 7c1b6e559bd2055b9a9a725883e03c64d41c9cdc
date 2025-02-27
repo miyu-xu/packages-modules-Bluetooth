@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961ca19c_24a5bcc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-27T19:58:44Z",
+      "side": 1,
+      "message": "I still do not agree with this patch for various reasons:\n\n- nowhere is clearly explicited what the cost is in terms of latency of connecting with an incorrect interval instead of the relaxed interval and then switching later. \n\n- the timeout of 24h for removing the device from the list is completely arbitrary.\n\nIf the severity is high enough that we want a fix, then maybe we should consider a change to the database to indicate the preferred connection interval for a bonded device, instead of doing this short term workaround.",
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
