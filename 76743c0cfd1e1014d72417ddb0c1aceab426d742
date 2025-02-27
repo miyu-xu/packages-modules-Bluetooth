@@ -16,6 +16,24 @@
       "message": "I tried to repro this locally but can\u0027t... It always builds. But based on presubmit, it seems legit that it is failing. E.g.:\n\nhttps://android-build.corp.google.com/build_explorer/build_details/P90750975/test_suites_x86_64-trunk_staging/\n\nCan someone in the BT team try to repro it?",
       "revId": "76743c0cfd1e1014d72417ddb0c1aceab426d742",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117b5464_5ee72e61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T18:58:32Z",
+      "side": 1,
+      "message": "This error seems not to be the problem anymore but this:\n```\nCaused by: com.android.server.pm.PackageManagerException: Requires newer sdk version #36 (current version is #35)\n\tat com.android.server.pm.ParallelPackageParser.parsePackage(ParallelPackageParser.java:132)\n\tat com.android.server.pm.ParallelPackageParser.lambda$submit$0(ParallelPackageParser.java:108)\n\tat com.android.server.pm.ParallelPackageParser.$r8$lambda$uW6lAW1ixaCdJ_8ZINGbyQGIceg(ParallelPackageParser.java:0)\n\tat com.android.server.pm.ParallelPackageParser$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:0)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:524)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:317)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1156)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:651)\n\tat com.android.internal.util.ConcurrentUtils$1$1.run(ConcurrentUtils.java:65)\n```\n\nI assume that 36 is not valid in AOSP yet ?",
+      "parentUuid": "0102de83_1053ab60",
+      "revId": "76743c0cfd1e1014d72417ddb0c1aceab426d742",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
