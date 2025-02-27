@@ -22,6 +22,30 @@
       },
       "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2933d74e_67052226",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-27T23:52:14Z",
+      "side": 1,
+      "message": "I always thought `@VisibleForTesting` was unneccessary for public because that\u0027s already the highest visibility. When I saw the usage in this class, I looked at the docs and found:\n\n\u003e Do not use this [`@VisibleForTesting`] interface for public or protected declarations: it is a fig leaf for bad design, and it does not prevent anyone from using the declaration and experience has shown that they will\n\nhttp://google3/third_party/java_src/google_common/current/java/com/google/common/annotations/VisibleForTesting.java;l\u003d21;rcl\u003d622629825\n\nBut searching cs for `@VisibleForTesting public` does yield thousands and thousands of results. So now I am not sure.",
+      "parentUuid": "9de57174_e1b972aa",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
