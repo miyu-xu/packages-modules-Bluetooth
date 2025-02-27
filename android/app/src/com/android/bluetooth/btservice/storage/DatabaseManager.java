@@ -45,6 +45,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothEventLogger;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -52,9 +53,6 @@ import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
-import com.google.common.collect.EvictingQueue;
-
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,8 +79,8 @@ public class DatabaseManager {
 
     @VisibleForTesting final Map<String, Metadata> mMetadataCache = new HashMap<>();
     private final Semaphore mSemaphore = new Semaphore(1);
-    private static final int METADATA_CHANGED_LOG_MAX_SIZE = 20;
-    private final EvictingQueue<String> mMetadataChangedLog;
+    private final BluetoothEventLogger mMetadataChangedLog =
+            new BluetoothEventLogger(20, "Metadata Changes");
 
     private static final int LOAD_DATABASE_TIMEOUT = 500; // milliseconds
     private static final int MSG_LOAD_DATABASE = 0;
@@ -113,7 +111,6 @@ public class DatabaseManager {
     /** Constructor of the DatabaseManager */
     public DatabaseManager(AdapterService service) {
         mAdapterService = requireNonNull(service);
-        mMetadataChangedLog = EvictingQueue.create(METADATA_CHANGED_LOG_MAX_SIZE);
     }
 
     class DatabaseHandler extends Handler {
@@ -1563,30 +1560,20 @@ public class DatabaseManager {
     }
 
     private void logMetadataChange(Metadata data, String log) {
-        String time = Utils.getLocalTimeString();
         String uidPid = Utils.getUidPidString();
-        mMetadataChangedLog.add(
-                time + " (" + uidPid + ") " + data.getAnonymizedAddress() + " " + log);
+        mMetadataChangedLog.add(uidPid + ": " + data.getAnonymizedAddress() + " " + log);
     }
 
-    /**
-     * Dump database info to a PrintWriter
-     *
-     * @param writer the PrintWriter to write log
-     */
-    public void dump(PrintWriter writer) {
-        writer.println("\nBluetoothDatabase:");
-        writer.println("  Metadata Changes:");
-        for (String log : mMetadataChangedLog) {
-            writer.println("    " + log);
-        }
-        writer.println("\nMetadata:");
+    /** Dump database info */
+    public void dump(StringBuilder sb) {
+        mMetadataChangedLog.dump(sb);
+        sb.append("Metadata:\n");
         for (Map.Entry<String, Metadata> entry : mMetadataCache.entrySet()) {
             if (entry.getKey().equals(LOCAL_STORAGE)) {
                 // No need to dump local storage
                 continue;
             }
-            writer.println("    " + entry.getValue());
+            sb.append("  ").append(entry.getValue()).append("\n");
         }
     }
 
