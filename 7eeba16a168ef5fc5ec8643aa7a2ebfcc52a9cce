@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01baf597_510c9579",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-27T02:22:21Z",
+      "side": 1,
+      "message": "dont use `SettableFuture`. it does not have timeout which will block the test case forever. suggesting to refer discovery code from [LeAudioServiceDiscoveryTest](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/service_discovery/LeAudioServiceDiscoveryTest.java;l\u003d250;drc\u003dd9fe83fcc5d787a19425ae1be8d409376ab7ba86)",
+      "range": {
+        "startLine": 299,
+        "startChar": 8,
+        "endLine": 300,
+        "endChar": 65
+      },
+      "revId": "7eeba16a168ef5fc5ec8643aa7a2ebfcc52a9cce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
