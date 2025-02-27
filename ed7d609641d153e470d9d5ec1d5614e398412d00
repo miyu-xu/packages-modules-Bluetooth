@@ -33,6 +33,24 @@
       "message": "nit: this should not matter, but to align with other place, set last_ase_ctp_command_sent first -\u003e PrepareAseCtpAudioReceiverStartReady -\u003e WriteToControlPoint?",
       "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6433c0_2d6f3153",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2805,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-27T08:32:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a824dd78_84d38943",
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
