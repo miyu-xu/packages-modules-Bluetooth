@@ -543,7 +543,10 @@ class A2dpTest(base_test.BaseTestClass):  # type: ignore[misc]
         await channel.accept_close(timeout=10.0)
 
     @avatar.asynchronous
+    @enableFlag(AVDTP_HANDLE_SUSPEND_CFM_BAD_STATE)
     @enableFlag(AVDTP_HANDLE_SIGNALING_ON_PEER_FAILURE)
+    @enableFlag(A2DP_SM_IGNORE_CONNECT_EVENTS_IN_CONNECTING_STATE)
+    @enableFlag(AVDT_WAIT_FOR_INITIAL_DELAY_REPORT_AS_INITIATOR)
     async def test_avdt_open_after_timeout(self) -> None:
         """Test AVDTP automatically opens stream after timeout if peer device only configures codec.
 
