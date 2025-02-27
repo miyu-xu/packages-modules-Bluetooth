@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f25b69cd_ecae1101",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/DckL2capTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-27T21:08:28Z",
+      "side": 1,
+      "message": "I think tearDown might need a host.close()",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "88f4f314_86828e86",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/DckL2capTest.kt",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": "        host.close()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5c5aadd3fe587659b3e50afe7e78dffa4ebf9e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af011ec_073af452",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/DckL2capTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-27T21:08:28Z",
+      "side": 1,
+      "message": "Is there a reason why you have `Util` at the end of these new utility functions?  It seems weird to me that only some of them end with util.",
+      "range": {
+        "startLine": 489,
+        "startChar": 52,
+        "endLine": 489,
+        "endChar": 56
+      },
+      "revId": "5c5aadd3fe587659b3e50afe7e78dffa4ebf9e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
