@@ -16,6 +16,24 @@
       "message": "is this new change added?",
       "revId": "23275114b43f29758b3dd28936d7a39563de8a1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e7248c2_1b6e2acc",
+        "filename": "system/bta/csis/csis_client_test.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-27T03:33:45Z",
+      "side": 1,
+      "message": "This test expects the second address to not be bonded.",
+      "parentUuid": "5f8fc561_2c9b80e0",
+      "revId": "23275114b43f29758b3dd28936d7a39563de8a1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
