@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c112e77_41f840bc",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-27T06:17:40Z",
+      "side": 1,
+      "message": "Did it this way so as to not duplicate the code for both `Start` methods in the overloaded function.\\\n\\\nFinal flag check is in the `set_registry_and_handler`, which is why the `thread` argument is passed originally.",
+      "parentUuid": "b3132a7e_20d5c437",
+      "range": {
+        "startLine": 87,
+        "startChar": 57,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "41d6556922b0815b15370d464e693bc5de3b7c4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58bf5299_297c2546",
