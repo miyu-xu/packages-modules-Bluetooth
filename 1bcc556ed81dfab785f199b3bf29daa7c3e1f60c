@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014cea7d_74c4b619",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-27T14:24:56Z",
+      "side": 1,
+      "message": "```suggestion\nFlag: TEST_ONLY\n```",
+      "range": {
+        "startLine": 13,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 56
+      },
+      "revId": "1bcc556ed81dfab785f199b3bf29daa7c3e1f60c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
