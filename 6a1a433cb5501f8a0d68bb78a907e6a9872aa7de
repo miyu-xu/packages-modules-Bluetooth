@@ -69,6 +69,24 @@
       "parentUuid": "c35259e7_856f6372",
       "revId": "6a1a433cb5501f8a0d68bb78a907e6a9872aa7de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "261855f9_f12553ef",
+        "filename": "system/stack/avdt/avdt_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-02-27T07:41:01Z",
+      "side": 1,
+      "message": "Done: aosp/3513131",
+      "parentUuid": "061a8551_ebee50e1",
+      "revId": "6a1a433cb5501f8a0d68bb78a907e6a9872aa7de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
