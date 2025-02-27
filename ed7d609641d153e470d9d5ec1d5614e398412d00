@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91515388_c3653f13",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-27T09:07:59Z",
+      "side": 1,
+      "message": "It could cause a problem to expose this as a function which can be used in other contexts than it is used now. Since we are not closing the loop by resetting last_ase_ctp_command_sent to 0x00, it might happen that after releasing the ASEs (and last_ase_ctp_command_sent is not reset), the device is again set as active and even before sending any Ctp operation, it could be falsly detected as a releasing device. The way it is used now works for this particular use case but might cause issues if in future someone decides to use this nicely named function somewhere else.",
+      "range": {
+        "startLine": 469,
+        "startChar": 24,
+        "endLine": 469,
+        "endChar": 54
+      },
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "757bf2fc_dae1bbff",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2777,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-27T09:07:59Z",
+      "side": 1,
+      "message": "nit: we could also integrate this call into `WriteToControlPoint()` helper function, since the opcode can be extracted from `value[0]`.",
+      "range": {
+        "startLine": 2776,
+        "startChar": 6,
+        "endLine": 2777,
+        "endChar": 81
+      },
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a824dd78_84d38943",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 10
@@ -49,6 +95,47 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "a824dd78_84d38943",
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5b70711_bcd5daf7",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-02-27T09:07:59Z",
+      "side": 1,
+      "message": "nit:\n/* Do not respond immediately with Release CTP operation to the devices in the list */",
+      "range": {
+        "startLine": 247,
+        "startChar": 2,
+        "endLine": 247,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "faef0f3f_2642a534",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/state_machine_test.cc",
+              "range": {
+                "startLine": 247,
+                "startChar": 0,
+                "endLine": 248,
+                "endChar": 0
+              },
+              "replacement": "  /* Do not respond immediately with Release CTP operation to the devices in\n   * the list */\n"
+            }
+          ]
+        }
+      ],
       "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
