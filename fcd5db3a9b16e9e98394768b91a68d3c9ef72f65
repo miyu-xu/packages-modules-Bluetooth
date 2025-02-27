@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a919f1_4068181f",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-27T17:47:56Z",
+      "side": 1,
+      "message": "nit: spelling, conference",
+      "range": {
+        "startLine": 1182,
+        "startChar": 36,
+        "endLine": 1182,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a073ff87_0dea1193",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 1182,
+                "startChar": 0,
+                "endLine": 1183,
+                "endChar": 0
+              },
+              "replacement": "                        // Find the conference-able active call if there is conference call\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fcd5db3a9b16e9e98394768b91a68d3c9ef72f65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f45d5d4_1708acb4",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-02-27T17:47:56Z",
+      "side": 1,
+      "message": "can inline this",
+      "range": {
+        "startLine": 1185,
+        "startChar": 50,
+        "endLine": 1185,
+        "endChar": 64
+      },
+      "revId": "fcd5db3a9b16e9e98394768b91a68d3c9ef72f65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
