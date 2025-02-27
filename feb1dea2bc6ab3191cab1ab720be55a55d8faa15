@@ -16,6 +16,23 @@
       "message": "Thanks for this.",
       "revId": "feb1dea2bc6ab3191cab1ab720be55a55d8faa15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a026c99_6c1a9f9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-02-27T15:48:49Z",
+      "side": 1,
+      "message": "@rwt@google.com can we have the PTS test implemented in PTS-bot as a follow up?",
+      "revId": "feb1dea2bc6ab3191cab1ab720be55a55d8faa15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
