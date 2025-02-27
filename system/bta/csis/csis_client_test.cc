@@ -1090,6 +1090,7 @@ TEST_F(CsisClientTest, test_not_open_duplicate_active_scan_while_bonding_set_mem
   result.inq_res.eir_len = 8;
   result.inq_res.bd_addr = test_address2;
 
+  ON_CALL(btm_interface, BTM_IsBonded(_, _)).WillByDefault(Return(false));
   // CSIS client should process set member event to JNI
   EXPECT_CALL(*callbacks, OnSetMemberAvailable(test_address2, 1));
 
