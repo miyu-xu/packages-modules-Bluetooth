@@ -16,6 +16,29 @@
       "message": "@jpawlowski@google.com can you help to take a look at this one?",
       "revId": "8c82267a505867fea6ed055f1b53ee82013df831",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "960ed58b_17130d13",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-27T20:34:58Z",
+      "side": 1,
+      "message": "nit: this should be a helper function: is_cis_in_state(...)",
+      "range": {
+        "startLine": 1037,
+        "startChar": 11,
+        "endLine": 1038,
+        "endChar": 86
+      },
+      "revId": "8c82267a505867fea6ed055f1b53ee82013df831",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
