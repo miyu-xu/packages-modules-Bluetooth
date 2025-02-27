@@ -1,5 +1,47 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599267e3_ddda3339",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-27T08:23:52Z",
+      "side": 1,
+      "message": "Please replace with `BluetoothGatt#GATT_INSUFFICIENT_AUTHENTICATION` instead\n\nsame value, but we should return GATT error code instead of HCI error code in GATT callback",
+      "range": {
+        "startLine": 956,
+        "startChar": 35,
+        "endLine": 956,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3b68911e_95463605",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 956,
+                "startChar": 0,
+                "endLine": 957,
+                "endChar": 0
+              },
+              "replacement": "                disconnectStatus \u003d BluetoothGatt.GATT_INSUFFICIENT_AUTHENTICATION;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "40108d008d991b9b5258428b39b7f096524795c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
