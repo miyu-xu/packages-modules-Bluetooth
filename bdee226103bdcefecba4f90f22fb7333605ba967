@@ -1,0 +1,137 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68df0a36_f4fe23ec",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-27T00:58:54Z",
+      "side": 1,
+      "message": "this block should be indented",
+      "range": {
+        "startLine": 244,
+        "startChar": 47,
+        "endLine": 244,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "abd08f68_7e66697c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_mx_fsm.cc",
+              "range": {
+                "startLine": 245,
+                "startChar": 0,
+                "endLine": 251,
+                "endChar": 0
+              },
+              "replacement": "          log::info(\"Configuration of the pending connection was completed\");\n          p_mcb-\u003epending_configure_complete \u003d false;\n          uintptr_t result_as_ptr \u003d static_cast\u003cuint16_t\u003e(tL2CAP_CONN::L2CAP_CONN_OK);\n          rfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONF_IND,\n                            \u0026p_mcb-\u003epending_cfg_info);\n          rfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONF_CNF, (void*)result_as_ptr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bdee226103bdcefecba4f90f22fb7333605ba967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b11ee05_4e90479e",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-27T00:58:54Z",
+      "side": 1,
+      "message": "don\u0027t we need to do osi_free on pending_buf?",
+      "range": {
+        "startLine": 254,
+        "startChar": 32,
+        "endLine": 254,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b0bc7baf_9e5d5e1c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_mx_fsm.cc",
+              "range": {
+                "startLine": 255,
+                "startChar": 0,
+                "endLine": 255,
+                "endChar": 0
+              },
+              "replacement": "          osi_free(p_mcb-\u003epending_buf);\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_mx_fsm.cc",
+              "range": {
+                "startLine": 623,
+                "startChar": 0,
+                "endLine": 623,
+                "endChar": 0
+              },
+              "replacement": "          osi_free(p_mcb-\u003epending_buf);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bdee226103bdcefecba4f90f22fb7333605ba967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fc6a2c2_513d7c40",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-27T00:58:54Z",
+      "side": 1,
+      "message": "how can we make sure that pending_buf is a SABME frame?",
+      "range": {
+        "startLine": 619,
+        "startChar": 19,
+        "endLine": 619,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1bcbc092_97ae1d63",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_mx_fsm.cc",
+              "range": {
+                "startLine": 620,
+                "startChar": 0,
+                "endLine": 621,
+                "endChar": 0
+              },
+              "replacement": "          log::info(\"send pending_buf to Statemachine now\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bdee226103bdcefecba4f90f22fb7333605ba967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
