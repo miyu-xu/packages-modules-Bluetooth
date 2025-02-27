@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3132a7e_20d5c437",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-27T06:10:36Z",
+      "side": 1,
+      "message": "Understood, that seems more generic.\nI had a similar concern, but then shifted to this approach as didnt think about removing flag, will update as suggested.",
+      "parentUuid": "e47eeea4_ca486438",
+      "range": {
+        "startLine": 87,
+        "startChar": 57,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "41d6556922b0815b15370d464e693bc5de3b7c4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58bf5299_297c2546",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-27T04:18:38Z",
       "side": 1,
       "message": "doing this static method prevent you from writing unit tests for `ModuleRegistry` in the future",
+      "range": {
+        "startLine": 103,
+        "startChar": 39,
+        "endLine": 103,
+        "endChar": 74
+      },
+      "revId": "41d6556922b0815b15370d464e693bc5de3b7c4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2668954_2169afd4",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-02-27T06:10:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58bf5299_297c2546",
       "range": {
         "startLine": 103,
         "startChar": 39,
