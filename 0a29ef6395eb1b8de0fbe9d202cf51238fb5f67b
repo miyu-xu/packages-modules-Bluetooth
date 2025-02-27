@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d59095a_0a35341e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-27T02:02:17Z",
+      "side": 1,
+      "message": "I have replaced `isForeground` (bool) with `appImportance` (int), and log it with below enum:\n\n```\nenum AppImportance {\n  IMPORTANCE_UNKNOWN \u003d 0;\n  IMPORTANCE_LOWER_THAN_FGS \u003d 1;\n  IMPORTANCE_EQUAL_TO_FGS \u003d 2;\n  IMPORTANCE_HIGHER_THAN_FGS \u003d 3;\n}\n```\n\nThe same information is also logged in dumpsys.",
+      "parentUuid": "c513f78e_43c3142c",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 98
+      },
+      "revId": "0a29ef6395eb1b8de0fbe9d202cf51238fb5f67b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51415d80_7e7412e0",

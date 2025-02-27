@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60362452_19f865ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-27T02:02:17Z",
+      "side": 1,
+      "message": "Updated the categorization of app importance and logging in latest patchset.",
+      "revId": "fdef5e65881102432f5d50b015175c93ddb15ae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
