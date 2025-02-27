@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e47eeea4_ca486438",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-27T04:18:38Z",
+      "side": 1,
+      "message": "would rather have an overloaded method that takes a Handler so that it is not hard coded, something like\n\n```\nModule* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread, Handler* handler) {\n```\n\nthen when you remove the flag, get rid of the `thread` argument to clean this up",
+      "range": {
+        "startLine": 87,
+        "startChar": 57,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "41d6556922b0815b15370d464e693bc5de3b7c4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58bf5299_297c2546",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-27T04:18:38Z",
+      "side": 1,
+      "message": "doing this static method prevent you from writing unit tests for `ModuleRegistry` in the future",
+      "range": {
+        "startLine": 103,
+        "startChar": 39,
+        "endLine": 103,
+        "endChar": 74
+      },
+      "revId": "41d6556922b0815b15370d464e693bc5de3b7c4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
