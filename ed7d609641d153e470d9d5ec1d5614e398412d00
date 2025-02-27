@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a74e13c8_4f8df361",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-27T09:22:31Z",
+      "side": 1,
+      "message": "that is good point.\nIn this case, function is called only on the CtpNotification so there was a control message sent.\nAnd will calculate devices which are Active, and Active is being closed when all ASEs are either IDLE or Configured after Release.\n\nI will remove the function and just count such devices inside the ProcessGattCtpNotification to avoid issues you mentioned. Thanks.",
+      "parentUuid": "91515388_c3653f13",
+      "range": {
+        "startLine": 469,
+        "startChar": 24,
+        "endLine": 469,
+        "endChar": 54
+      },
+      "revId": "ed7d609641d153e470d9d5ec1d5614e398412d00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "757bf2fc_dae1bbff",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 10
