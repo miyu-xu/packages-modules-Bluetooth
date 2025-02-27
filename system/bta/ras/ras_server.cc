@@ -29,11 +29,13 @@
 #include "bta/include/bta_ras_api.h"
 #include "bta/ras/ras_types.h"
 #include "btm_ble_api_types.h"
+#include "common/message_loop_thread.h"
 #include "gatt_api.h"
 #include "gd/hci/controller_interface.h"
 #include "gd/os/rand.h"
 #include "hardware/bt_common_types.h"
 #include "main/shim/entry.h"
+#include "os/system_properties.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_ble_addr.h"
 #include "stack/include/main_thread.h"
@@ -51,9 +53,14 @@ namespace {
 
 class RasServerImpl;
 RasServerImpl* instance;
+bluetooth::common::MessageLoopThread* worker_thread_ = nullptr;
+uint32_t pts_ranging_data_delay;
 
 static constexpr uint32_t kSupportedFeatures = feature::kRealTimeRangingData;
 static constexpr uint16_t kBufferSize = 3;
+static const std::string kPropertyBluetoothPts = "persist.bluetooth.pts";
+static const std::string kPropertyRasServerRangingDataDelay =
+        "bluetooth.pts.ras.ranging_data_delay";
 
 class RasServerImpl : public bluetooth::ras::RasServer {
 public:
@@ -88,6 +95,27 @@ public:
     uint16_t mtu = kDefaultGattMtu;
   };
 
+  bool initRasServerThread() {
+    const std::string thread_name = "bt_ras_server";
+    worker_thread_ = new bluetooth::common::MessageLoopThread(thread_name);
+
+    worker_thread_->StartUp();
+
+    if (!worker_thread_->IsRunning()) {
+      log::error("Unable to start up the ras server worker thread");
+      return false;
+    }
+
+    /* Schedule the rest of the operations */
+    if (!worker_thread_->EnableRealTimeScheduling()) {
+#if defined(__ANDROID__)
+      log::fatal("Failed to increase bt_ras_server thread priority");
+#endif
+    }
+
+    return true;
+  }
+
   void Initialize() override {
     do_in_main_thread(base::BindOnce(&RasServerImpl::do_initialize, base::Unretained(this)));
   }
@@ -109,6 +137,12 @@ public:
               }
             },
             false);
+    if (os::GetSystemPropertyBool(kPropertyBluetoothPts, false)) {
+      if (!worker_thread_) {
+        this->initRasServerThread();
+      }
+      pts_ranging_data_delay = os::GetSystemPropertyUint32(kPropertyRasServerRangingDataDelay, 0);
+    }
   }
 
   void RegisterCallbacks(bluetooth::ras::RasServerCallbacks* callbacks) { callbacks_ = callbacks; }
@@ -622,7 +656,19 @@ public:
 
     switch (command.opcode_) {
       case Opcode::GET_RANGING_DATA:
-        OnGetRangingData(&command, tracker);
+        if (!os::GetSystemPropertyBool(kPropertyBluetoothPts, false)) {
+          OnGetRangingData(&command, tracker);
+        } else {
+          if (worker_thread_) {
+            worker_thread_->DoInThreadDelayed(
+                    FROM_HERE,
+                    base::BindOnce(&RasServerImpl::OnGetRangingData, base::Unretained(this),
+                                   &command, tracker),
+                    std::chrono::microseconds(pts_ranging_data_delay));
+          } else {
+            OnGetRangingData(&command, tracker);
+          }
+        }
         break;
       case Opcode::ACK_RANGING_DATA:
         OnAckRangingData(&command, tracker);
