@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f794d70f_93f342c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-27T23:46:02Z",
+      "side": 1,
+      "message": "I have removed the logging of `socket_name` based on the comments in aosp/3506917.",
+      "revId": "a6e1e3694df7be9d39ac2c2220acefc20922d9d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
