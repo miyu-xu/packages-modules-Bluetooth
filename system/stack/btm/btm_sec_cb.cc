@@ -268,11 +268,13 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
     sec_level &= ~(BTM_SEC_IN_ENCRYPT | BTM_SEC_IN_AUTHENTICATE | BTM_SEC_IN_MITM |
                    BTM_SEC_IN_MIN_16_DIGIT_PIN);
 
+#if 0
     if (security_mode == BTM_SEC_MODE_SP || security_mode == BTM_SEC_MODE_SC) {
       if (sec_level & BTM_SEC_OUT_AUTHENTICATE) {
         sec_level |= BTM_SEC_OUT_MITM;
       }
     }
+#endif
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
     if (sec_level & BTM_SEC_OUT_ENCRYPT) {
@@ -296,11 +298,13 @@ bool tBTM_SEC_CB::AddService(bool is_originator, const char* p_name, uint8_t ser
      * connections */
     sec_level &= ~(BTM_SEC_OUT_ENCRYPT | BTM_SEC_OUT_AUTHENTICATE | BTM_SEC_OUT_MITM);
 
+#if 0
     if (security_mode == BTM_SEC_MODE_SP || security_mode == BTM_SEC_MODE_SC) {
       if (sec_level & BTM_SEC_IN_AUTHENTICATE) {
         sec_level |= BTM_SEC_IN_MITM;
       }
     }
+#endif
 
     /* Make sure the authenticate bit is set, when encrypt bit is set */
     if (sec_level & BTM_SEC_IN_ENCRYPT) {
