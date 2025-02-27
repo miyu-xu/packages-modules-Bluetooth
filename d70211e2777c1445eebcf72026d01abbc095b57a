@@ -54,6 +54,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d6386859_8d7bdf29",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-27T16:45:20Z",
+      "side": 1,
+      "message": "Lambda below does not like this. It wants a \"final int\".",
+      "parentUuid": "5c8dcd4c_96acd7c4",
+      "range": {
+        "startLine": 1480,
+        "startChar": 12,
+        "endLine": 1481,
+        "endChar": 35
+      },
+      "revId": "d70211e2777c1445eebcf72026d01abbc095b57a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3c1319d0_f25e9ba6",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 1
