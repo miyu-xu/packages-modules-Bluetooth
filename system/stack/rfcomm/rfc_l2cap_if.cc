@@ -23,6 +23,7 @@
  ******************************************************************************/
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstddef>
 #include <cstdint>
@@ -94,20 +95,42 @@ void RFCOMM_ConnectInd(const RawAddress& bd_addr, uint16_t lcid, uint16_t /* psm
   if ((p_mcb) && (p_mcb->state != RFC_MX_STATE_IDLE)) {
     /* if this is collision case */
     if ((p_mcb->is_initiator) && (p_mcb->state == RFC_MX_STATE_WAIT_CONN_CNF)) {
-      p_mcb->pending_lcid = lcid;
+      if (com::android::bluetooth::flags::rfcomm_fix_mux_collision_handling()) {
+        uint16_t i;
+        uint8_t handle;
 
-      /* wait random timeout (2 - 12) to resolve collision */
-      /* if peer gives up then local device rejects incoming connection and
-       * continues as initiator */
-      /* if timeout, local device disconnects outgoing connection and continues
-       * as acceptor */
-      log::verbose(
-              "RFCOMM_ConnectInd start timer for collision, initiator's "
-              "LCID(0x{:x}), acceptor's LCID(0x{:x})",
-              p_mcb->lcid, p_mcb->pending_lcid);
+        log::warn("RFCOMM MUX Collision - accepting incoming connection");
+        // cache current lcid for retry if incoming connection fails
+        p_mcb->cached_lcid = p_mcb->lcid;
+        // update direction bit
+        for (i = 0; i < RFCOMM_MAX_DLCI; i += 2) {
+          handle = p_mcb->port_handles[i];
+          if (handle != 0) {
+            p_mcb->port_handles[i] = 0;
+            p_mcb->port_handles[i + 1] = handle;
+            rfc_cb.port.port[handle - 1].dlci += 1;
+            log::verbose("RFCOMM MX - DLCI:{} -> {}", i, rfc_cb.port.port[handle - 1].dlci);
+          }
+        }
+        p_mcb->is_initiator = false;
+        // reset state machine
+        p_mcb->state = RFC_MX_STATE_IDLE;
+      } else {
+        p_mcb->pending_lcid = lcid;
 
-      rfc_timer_start(p_mcb, (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2));
-      return;
+        /* wait random timeout (2 - 12) to resolve collision */
+        /* if peer gives up then local device rejects incoming connection and
+         * continues as initiator */
+        /* if timeout, local device disconnects outgoing connection and continues
+         * as acceptor */
+        log::verbose(
+                "RFCOMM_ConnectInd start timer for collision, initiator's "
+                "LCID(0x{:x}), acceptor's LCID(0x{:x})",
+                p_mcb->lcid, p_mcb->pending_lcid);
+
+        rfc_timer_start(p_mcb, (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2));
+        return;
+      }
     } else {
       /* we cannot accept connection request from peer at this state */
       /* don't update lcid */
@@ -140,8 +163,25 @@ void RFCOMM_ConnectInd(const RawAddress& bd_addr, uint16_t lcid, uint16_t /* psm
  ******************************************************************************/
 void RFCOMM_ConnectCnf(uint16_t lcid, tL2CAP_CONN result) {
   tRFC_MCB* p_mcb = rfc_find_lcid_mcb(lcid);
-
-  if (!p_mcb) {
+  if (!p_mcb && com::android::bluetooth::flags::rfcomm_fix_mux_collision_handling()) {
+    log::error("LCID 0x{:x} not found", lcid);
+    // Check if we cached corresponding lcid for collision
+    for (auto& [cid, mcb] : rfc_lcid_mcb) {
+      if (mcb != nullptr && mcb->cached_lcid == lcid) {
+        if (result != tL2CAP_CONN::L2CAP_CONN_OK) {
+          // We cached the corresponding lcid but its connection failed.
+          // We can remove from cache
+          mcb->cached_lcid = 0;
+        } else {
+          // we started accepting incoming connection and outgoing connection went through
+          log::warn("Collision case: outgoing connection went through, "
+                    "will retry if incoming connection fails");
+          mcb->collided_then_received_conn_cnf = true;
+        }
+        return;
+      }
+    }
+  } else if (!p_mcb) {
     log::error("RFCOMM_ConnectCnf LCID:0x{:x}", lcid);
     return;
   }
@@ -188,7 +228,16 @@ void RFCOMM_ConfigInd(uint16_t lcid, tL2CAP_CFG_INFO* p_cfg) {
 
   tRFC_MCB* p_mcb = rfc_find_lcid_mcb(lcid);
 
-  if (!p_mcb) {
+  if (!p_mcb && com::android::bluetooth::flags::rfcomm_fix_mux_collision_handling()) {
+    log::error("LCID 0x{:x} not found", lcid);
+    for (auto& [cid, mcb] : rfc_lcid_mcb) {
+      if (mcb != nullptr && mcb->cached_lcid == lcid) {
+        mcb->collision_outgoing_cfg_complete = true;
+        mcb->collision_cfg_info = p_cfg;
+        return;
+      }
+    }
+  } else if (!p_mcb) {
     log::error("RFCOMM_ConfigInd LCID:0x{:x}", lcid);
     for (auto& [cid, mcb] : rfc_lcid_mcb) {
       if (mcb != nullptr && mcb->pending_lcid == lcid) {
