@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9283ceeb_7294b6a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3471324
+      },
+      "writtenOn": "2025-02-27T13:23:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab60d662_0d7b0758",
+      "revId": "6b0cf8b06444b2ec19e1b5fd4e81de47c185c385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c5a7b9_26ba4b99",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-02-27T08:32:01Z",
       "side": 1,
       "message": "We don\u0027t need to retrieve the property each time. Can you use a variable to store whether we are in pts_test_mode or not.",
+      "range": {
+        "startLine": 659,
+        "startChar": 12,
+        "endLine": 659,
+        "endChar": 60
+      },
+      "revId": "6b0cf8b06444b2ec19e1b5fd4e81de47c185c385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e52718c2_0c8e8431",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 3471324
+      },
+      "writtenOn": "2025-02-27T13:23:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c5a7b9_26ba4b99",
       "range": {
         "startLine": 659,
         "startChar": 12,
