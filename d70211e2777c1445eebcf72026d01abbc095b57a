@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8dcd4c_96acd7c4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-27T08:27:09Z",
+      "side": 1,
+      "message": "nit to reduce nesting\n\n```\nint disconnectReason \u003d hciReason;\nif (condition) {\n  // logging\n  disconnectReason \u003d 0x05; /* HCI_ERR_AUTH_FAILURE */\n}\n```",
+      "range": {
+        "startLine": 1480,
+        "startChar": 12,
+        "endLine": 1481,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9649bdbf_f3671324",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1480,
+                "startChar": 0,
+                "endLine": 1481,
+                "endChar": 0
+              },
+              "replacement": "            int disconnectReason \u003d hciReason;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1491,
+                "startChar": 0,
+                "endLine": 1493,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d70211e2777c1445eebcf72026d01abbc095b57a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c1319d0_f25e9ba6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1490,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-27T08:27:09Z",
+      "side": 1,
+      "message": "GATT has `BluetoothGatt.GATT_INSUFFICIENT_AUTHENTICATION` and hence why we can translate the HCI error code into a different value. \n\n0x05 will be translated into `BluetoothStatusCodes.ERROR_DISCONNECT_REASON_SECURITY` in the next layer.",
+      "range": {
+        "startLine": 1490,
+        "startChar": 35,
+        "endLine": 1490,
+        "endChar": 40
+      },
+      "revId": "d70211e2777c1445eebcf72026d01abbc095b57a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
