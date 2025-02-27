@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11abab67_e467b216",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-27T18:07:53Z",
+      "side": 1,
+      "message": "Why do we need this as a dependency ?\nI would rather avoid spilling internal libchrome dependencies into package/modules/Bluetooth.",
+      "range": {
+        "startLine": 132,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 28
+      },
+      "revId": "98344c5a73c034ce710025b7636a050887da9b75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
