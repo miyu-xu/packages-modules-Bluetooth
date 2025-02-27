@@ -90,6 +90,24 @@
       "parentUuid": "ca69b619_a3d854d5",
       "revId": "1bef7c41d8571ddaa1eb708341145fd9d2472357",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99238be1_cce68160",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-27T01:29:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ca69b619_a3d854d5",
+      "revId": "1bef7c41d8571ddaa1eb708341145fd9d2472357",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
