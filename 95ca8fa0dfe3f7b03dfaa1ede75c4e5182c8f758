@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c6515f9_2d5573b3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gmap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T19:26:20Z",
+      "side": 1,
+      "message": "I would have assume that this is included in the tree.. maybe need to be installed manually ?",
+      "parentUuid": "57351b08_c78678b0",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2906f01c_361b2ec3",
         "filename": "android/pandora/server/configs/PtsBotTest.xml",
         "patchSetId": 2
@@ -167,6 +191,30 @@
       "side": 1,
       "message": "Not sure, AFAIK the profile is product dependent, but for the test purposes it should be added?",
       "parentUuid": "cbbf1b7e_9e50ea34",
+      "range": {
+        "startLine": 3832,
+        "startChar": 8,
+        "endLine": 3832,
+        "endChar": 48
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b78fb2c_b1e0272e",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3832,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T19:26:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e657c942_a82b30cf",
       "range": {
         "startLine": 3832,
         "startChar": 8,
@@ -373,6 +421,24 @@
       "side": 1,
       "message": "Turns out GMAP server was disabled on the CVD instance. I have tried manually pushing `bluetooth.profile.gmap.enabled\u003dtrue` to local.prop file, but it did not work.",
       "parentUuid": "c87f4f11_630f79c1",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e40389_3b5dd10c",
+        "filename": "android/pandora/server/src/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T19:26:20Z",
+      "side": 1,
+      "message": "Does the device reboot in between and the property get reset ?\nDoes the Bluetooth boot before the property is set ? (unlikely)\n\nIs there any error when reading the property from the Bluetooth boot ?",
+      "parentUuid": "728fc22a_f372d18c",
       "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
