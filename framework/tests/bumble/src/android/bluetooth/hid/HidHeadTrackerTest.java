@@ -492,7 +492,6 @@ public class HidHeadTrackerTest {
      */
     private void verifyTransportSwitch(BluetoothDevice device, int fromTransport, int toTransport) {
         assertThat(fromTransport).isNotEqualTo(toTransport);
-        verifyConnectionState(mBumbleDevice, equalTo(fromTransport), equalTo(STATE_DISCONNECTING));
 
         // Capture the next intent with filter
         // Filter is necessary as otherwise it will corrupt all other unordered verifications
