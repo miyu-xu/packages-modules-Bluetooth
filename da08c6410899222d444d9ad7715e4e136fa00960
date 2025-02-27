@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ecf46bd_8894db06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-27T04:40:19Z",
+      "side": 1,
+      "message": "Bhaktha, could you help reviewing this L2CAP related change?",
+      "revId": "da08c6410899222d444d9ad7715e4e136fa00960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
