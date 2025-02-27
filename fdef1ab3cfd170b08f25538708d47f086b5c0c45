@@ -1,0 +1,79 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ab1083_428dc9cc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-02-27T17:05:54Z",
+      "side": 1,
+      "message": "Can you try testing with `statsd_testdrive -terse 916` and see what is the output looking like?",
+      "fixSuggestions": [
+        {
+          "fixId": "953824f8_2ad88ff8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import static com.android.modules.utils.build.SdkLevel.isAtLeastT;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1577,
+                "startChar": 0,
+                "endLine": 1577,
+                "endChar": 0
+              },
+              "replacement": "            if (isAtLeastT() \u0026\u0026 Flags.keyMissingAsOrderedBroadcast()) {\n                mAdapterService.sendOrderedBroadcastMultiplePermissions(\n                        intent,\n                        new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},\n                        null /* receiverAppOp */,\n                        null /* resultReceiver */,\n                        null /* scheduler */,\n                        Activity.RESULT_OK /* initialCode */,\n                        null /* initialData */,\n                        null /* initialExtras */,\n                        Utils.getTempBroadcastOptions().toBundle());\n                return;\n            }\n\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1588,
+                "startChar": 0,
+                "endLine": 1593,
+                "endChar": 0
+              },
+              "replacement": "            } else if (isAtLeastV() \u0026\u0026 android.os.Flags.orderedBroadcastMultiplePermissions()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1601,
+                "startChar": 0,
+                "endLine": 1603,
+                "endChar": 0
+              },
+              "replacement": "                        null /* initialExtras */);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1609,
+                "startChar": 0,
+                "endLine": 1609,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fdef1ab3cfd170b08f25538708d47f086b5c0c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
