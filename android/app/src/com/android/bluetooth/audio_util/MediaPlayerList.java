@@ -347,12 +347,12 @@ public class MediaPlayerList {
         return id;
     }
 
-    /** Returns the {@link #MediaPlayerWrapper} with ID matching {@link #mActivePlayerId}. */
+    /** Returns the {@link MediaPlayerWrapper} with ID matching {@link #mActivePlayerId}. */
     public MediaPlayerWrapper getActivePlayer() {
         return mMediaPlayers.get(mActivePlayerId);
     }
 
-    /** Returns the {@link #MediaPlayerWrapper} with ID matching {@link #mAddressedPlayerId}. */
+    /** Returns the {@link MediaPlayerWrapper} with ID matching {@link #mAddressedPlayerId}. */
     public MediaPlayerWrapper getAddressedPlayer() {
         return mMediaPlayers.get(mAddressedPlayerId);
     }
@@ -966,7 +966,7 @@ public class MediaPlayerList {
      * Sets {@code playerId} as the new active player and sends the new player's {@link Mediadata}
      * to the AVRCP service.
      *
-     * <p>Also informs the {@link #PlayerSettingsManager} about the change of active player.
+     * <p>Also informs the {@link PlayerSettingsManager} about the change of active player.
      */
     void setActivePlayer(int playerId) {
         if (!haveMediaPlayer(playerId)) {
@@ -1068,7 +1068,8 @@ public class MediaPlayerList {
      * <p>Note: This does not set the current active player, only adds the new {@link
      * MediaController} to the {@link #mMediaPlayerIds} and {@link mMediaPlayers} maps.
      *
-     * <p>See {@link #onMediaKeyEventSessionChanged}.
+     * <p>See {@link
+     * MediaSessionManager.OnMediaKeyEventSessionChangedListener#onMediaKeyEventSessionChanged}.
      */
     @VisibleForTesting
     final MediaSessionManager.OnActiveSessionsChangedListener mActiveSessionsChangedListener =
@@ -1242,7 +1243,7 @@ public class MediaPlayerList {
 
     /**
      * Saves the reference to {@link MediaPlayerSettingsEventListener} to be called when the active
-     * player changed, so that {@link #PlayerSettingsManager} always has the right player.
+     * player changed, so that {@link PlayerSettingsManager} always has the right player.
      */
     void setPlayerSettingsCallback(MediaPlayerSettingsEventListener listener) {
         mPlayerSettingsListener = listener;
@@ -1291,10 +1292,12 @@ public class MediaPlayerList {
     /**
      * Callback from {@link MediaPlayerWrapper}.
      *
-     * <p>{@link #mediaUpdatedCallback} listens for {@link #MediaData} changes on the active player.
+     * <p>{@link MediaPlayerWrapper.Callback#mediaUpdatedCallback} listens for {@link MediaData}
+     * changes on the active player.
      *
-     * <p>{@link #sessionUpdatedCallback} is called when the active session is destroyed so we need
-     * to remove the media player from the {@link #mMediaPlayerIds} and {@link mMediaPlayers} maps.
+     * <p>{@link MediaPlayerWrapper.Callback#sessionUpdatedCallback} is called when the active
+     * session is destroyed so we need to remove the media player from the {@link #mMediaPlayerIds}
+     * and {@link mMediaPlayers} maps.
      */
     private final MediaPlayerWrapper.Callback mMediaPlayerCallback =
             new MediaPlayerWrapper.Callback() {
