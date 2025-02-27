@@ -135,6 +135,30 @@
       },
       "revId": "5c5aadd3fe587659b3e50afe7e78dffa4ebf9e54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c0ff86d_a3bb2282",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/DckL2capTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-27T21:25:40Z",
+      "side": 1,
+      "message": "thanks for the explanation",
+      "parentUuid": "4e2caf87_7b4ddc31",
+      "range": {
+        "startLine": 489,
+        "startChar": 52,
+        "endLine": 489,
+        "endChar": 56
+      },
+      "revId": "5c5aadd3fe587659b3e50afe7e78dffa4ebf9e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
