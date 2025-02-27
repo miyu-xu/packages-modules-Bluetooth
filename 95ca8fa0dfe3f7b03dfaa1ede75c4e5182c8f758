@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57351b08_c78678b0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gmap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "I may have something misconfigured. \nFor me it exits with error:\n`ModuleNotFoundError: No module named \u0027yapf_third_party\u0027`",
+      "parentUuid": "6a3e43ec_add0ac1d",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2906f01c_361b2ec3",
         "filename": "android/pandora/server/configs/PtsBotTest.xml",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2025-02-27T01:00:43Z",
       "side": 1,
       "message": "Can you also add it to PtsBotTestMts.xml ?",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfc35624_e47e4c60",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2906f01c_361b2ec3",
       "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +96,30 @@
       "writtenOn": "2025-02-27T01:00:43Z",
       "side": 1,
       "message": "extra space here",
+      "range": {
+        "startLine": 2650,
+        "startChar": 29,
+        "endLine": 2650,
+        "endChar": 33
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7082aad2_8b16a4be",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2650,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "095362e2_8cf34ae9",
       "range": {
         "startLine": 2650,
         "startChar": 29,
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e657c942_a82b30cf",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3832,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Not sure, AFAIK the profile is product dependent, but for the test purposes it should be added?",
+      "parentUuid": "cbbf1b7e_9e50ea34",
+      "range": {
+        "startLine": 3832,
+        "startChar": 8,
+        "endLine": 3832,
+        "endChar": 48
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fac5d42b_67107d8d",
         "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
         "patchSetId": 2
@@ -100,6 +190,30 @@
       "writtenOn": "2025-02-27T01:00:43Z",
       "side": 1,
       "message": "does it works if you only write GMAP here ? instead of listing them all ?",
+      "range": {
+        "startLine": 3835,
+        "startChar": 9,
+        "endLine": 3835,
+        "endChar": 13
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e31216_b4caa63c",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3835,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Perhaps it would work, but there are some cases to skip as well. I will clean this up as soon as I have it working with all the MMIs.",
+      "parentUuid": "fac5d42b_67107d8d",
       "range": {
         "startLine": 3835,
         "startChar": 9,
@@ -145,6 +259,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31bbb19b_b3175149",
+        "filename": "android/pandora/server/src/Gmap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcd97515_2a3dfe01",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d294ff09_c47c2924",
@@ -158,6 +290,30 @@
       "writtenOn": "2025-02-27T01:00:43Z",
       "side": 1,
       "message": "```suggestion\n            // Configure the selected device as active device if it is not already.\n```",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b735453c_9046a732",
+        "filename": "android/pandora/server/src/Gmap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d294ff09_c47c2924",
       "range": {
         "startLine": 63,
         "startChar": 12,
@@ -205,6 +361,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "728fc22a_f372d18c",
+        "filename": "android/pandora/server/src/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Turns out GMAP server was disabled on the CVD instance. I have tried manually pushing `bluetooth.profile.gmap.enabled\u003dtrue` to local.prop file, but it did not work.",
+      "parentUuid": "c87f4f11_630f79c1",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a6d97f8c_32e1b847",
         "filename": "pandora/interfaces/pandora_experimental/gmap.proto",
         "patchSetId": 2
@@ -216,6 +390,30 @@
       "writtenOn": "2025-02-27T01:00:43Z",
       "side": 1,
       "message": "Can we add the spaces in the header comment to follow recommanded header format.\nasha.proto as a valid example",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3899c7d4_c4978cdf",
+        "filename": "pandora/interfaces/pandora_experimental/gmap.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-02-27T15:30:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6d97f8c_32e1b847",
       "range": {
         "startLine": 1,
         "startChar": 0,
