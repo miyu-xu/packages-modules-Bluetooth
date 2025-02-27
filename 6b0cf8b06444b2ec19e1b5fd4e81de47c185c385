@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab60d662_0d7b0758",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-27T08:32:01Z",
+      "side": 1,
+      "message": "Could you please add more informaion in the commit message? Such as:\n\nFor test case RAS/SR/SPE/BI-06-C and RAS/SR/SPE/BI-07-C, they are testing \"server busy\" case.\nFirst, the client (PTS dongle) will send command to \"Get Ranging Data\".\nThen the client will send another \"Get Ranging Data\" while the server is still sending the data, in this case the server shall respond \"Server Busy\".\n\nHowerver the client does not send commands simultaneously.\nOur stack fully processes the initial command before the next one is received.\nTherefore, we\u0027ve implemented a ranging_data_delay and multi-thread to deliberately extend the handling time of the first command.\nThis allows us to respond with \u0027Server Busy\u0027 to the subsequent command.\nHowever, this artificial delay should not be implemented in real-world use cases.\nSo it only used in test_mode.",
+      "revId": "6b0cf8b06444b2ec19e1b5fd4e81de47c185c385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c5a7b9_26ba4b99",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-27T08:32:01Z",
+      "side": 1,
+      "message": "We don\u0027t need to retrieve the property each time. Can you use a variable to store whether we are in pts_test_mode or not.",
+      "range": {
+        "startLine": 659,
+        "startChar": 12,
+        "endLine": 659,
+        "endChar": 60
+      },
+      "revId": "6b0cf8b06444b2ec19e1b5fd4e81de47c185c385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
