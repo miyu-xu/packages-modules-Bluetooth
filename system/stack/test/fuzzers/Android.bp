@@ -58,7 +58,6 @@ cc_defaults {
         "libbtdevice",
         "libbte",
         "libbtif",
-        "libbtif-core",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libexpresslog",
         "libflags_rust_cpp_bridge",
