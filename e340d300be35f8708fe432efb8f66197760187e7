@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5867b0d4_3db8065f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanObjectsFactory.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-27T02:31:38Z",
+      "side": 1,
+      "message": "To be honest, I am not sure if there is any value left in keeping this function. I can remove it if needed. PTAL. Thank you.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 58
+      },
+      "revId": "e340d300be35f8708fe432efb8f66197760187e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
