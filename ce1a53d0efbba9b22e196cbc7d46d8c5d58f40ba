@@ -74,6 +74,30 @@
       },
       "revId": "ce1a53d0efbba9b22e196cbc7d46d8c5d58f40ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33b80967_92312b27",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-27T04:07:37Z",
+      "side": 1,
+      "message": "No, I meant the code below will be deleted once the flag is stably released.\n\nThe `else` part here uses old property `kPropertyMinConnInterval`, which will be obsoleted.\n\nThe new code should use a new property `GetMinConnIntervalRelaxed()`.\n\nYou should change your code to branch inside the `if (initial_conn_params_p1())` so that you can use `GetMinConnIntervalRelaxed()`.",
+      "parentUuid": "a1f2a79e_e35dd0e0",
+      "range": {
+        "startLine": 891,
+        "startChar": 9,
+        "endLine": 891,
+        "endChar": 43
+      },
+      "revId": "ce1a53d0efbba9b22e196cbc7d46d8c5d58f40ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
