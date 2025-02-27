@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e16138b_6ac0eaa4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-02-27T04:20:46Z",
+      "side": 1,
+      "message": "remove BluetoothAdapter.ACTION_DISCOVERY_STARTED and BluetoothAdapter.ACTION_DISCOVERY_FINISHED intents which are not registered",
+      "range": {
+        "startLine": 315,
+        "startChar": 15,
+        "endLine": 317,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7a44f4c5_30816019",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 315,
+                "startChar": 0,
+                "endLine": 318,
+                "endChar": 0
+              },
+              "replacement": "                BluetoothDevice.ACTION_FOUND);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2c9b67fad7aa5f16faeb9fd2ae5e9ba3bd1102e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
