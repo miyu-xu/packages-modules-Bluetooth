@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "314327be_25d25c4d",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-27T17:18:33Z",
+      "side": 1,
+      "message": "Do you have a lint for class could be a record ?",
+      "range": {
+        "startLine": 189,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 36
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "211c3994_a4847b97",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/bip/BipImageProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-27T17:18:33Z",
+      "side": 1,
+      "message": "Field initializers could be inlined",
+      "range": {
+        "startLine": 163,
+        "startChar": 56,
+        "endLine": 166,
+        "endChar": 60
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e5fbd10_b86abf55",
+        "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-27T17:18:33Z",
+      "side": 1,
+      "message": "follow up: record candidate",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
