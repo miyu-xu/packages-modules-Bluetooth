@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c1934c9_a51a08e2",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-27T00:27:06Z",
+      "side": 1,
+      "message": "rename it to `is_discovered_over_le` or something similar",
+      "fixSuggestions": [
+        {
+          "fixId": "ce53bf7a_016390fe",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 800,
+                "startChar": 0,
+                "endLine": 801,
+                "endChar": 0
+              },
+              "replacement": "    bool is_discovered_over_le \u003d false;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 806,
+                "startChar": 0,
+                "endLine": 807,
+                "endChar": 0
+              },
+              "replacement": "        is_discovered_over_le \u003d (inq_result_type \u003d\u003d BT_DEVICE_TYPE_BLE);\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sec.cc",
+              "range": {
+                "startLine": 809,
+                "startChar": 0,
+                "endLine": 810,
+                "endChar": 0
+              },
+              "replacement": "                   is_discovered_over_le) ? BT_TRANSPORT_LE: BT_TRANSPORT_BR_EDR;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "00c6fa2f20657366d4ad35bf0a69c1ba5b042a42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "242540b4_260a171c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-27T00:27:06Z",
+      "side": 1,
+      "message": "reduce the scope of these variables",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 800,
+        "endChar": 42
+      },
+      "revId": "00c6fa2f20657366d4ad35bf0a69c1ba5b042a42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
