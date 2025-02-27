@@ -268,6 +268,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "855523a3_2b5e3923",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-27T19:30:23Z",
+      "side": 1,
+      "message": "Marking as resloved since the time field is still needed.",
+      "parentUuid": "d8907658_69ab21f7",
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "416f4d7a_43cfda54",
@@ -436,6 +454,30 @@
       "side": 1,
       "message": "I don\u0027t expect to use the actual values to cross check. I would use the name of the error code since the name is reported in the metrics PLX query rather than the value. I will make it starting from 0 for the best practice here. Thanks.",
       "parentUuid": "ee69b454_372e9b17",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "6ca73a01eb9f2f00a48ab84bacdd04c4b1f46e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb993c5f_31cffe69",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-27T19:30:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46a39847_5a5c5c99",
       "range": {
         "startLine": 42,
         "startChar": 2,
