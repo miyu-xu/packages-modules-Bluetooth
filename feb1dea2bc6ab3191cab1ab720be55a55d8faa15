@@ -33,6 +33,24 @@
       "message": "@rwt@google.com can we have the PTS test implemented in PTS-bot as a follow up?",
       "revId": "feb1dea2bc6ab3191cab1ab720be55a55d8faa15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "797d385c_95e1faaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-02-27T17:20:33Z",
+      "side": 1,
+      "message": "Raised a request to add coverage for this API. b/399653404",
+      "parentUuid": "7a026c99_6c1a9f9e",
+      "revId": "feb1dea2bc6ab3191cab1ab720be55a55d8faa15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
