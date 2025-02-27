@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07fca471_e9930d68",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T08:03:03Z",
+      "side": 1,
+      "message": "This cannot be null in this file.\nThis is enforce by a requireNonNull in the constructor.",
+      "range": {
+        "startLine": 413,
+        "startChar": 12,
+        "endLine": 413,
+        "endChar": 24
+      },
+      "revId": "126093c83b7e6a7a965cad3ea1bec9d43d8ea968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
