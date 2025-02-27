@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9101996a_d6c5a33f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T21:59:04Z",
+      "side": 1,
+      "message": "```suggestion\n        if (hasScanResultPermission(client)) {\n            return new ArrayList\u003c\u003e(results);\n        }\n        List\u003cScanResult\u003e permittedResults \u003d new ArrayList\u003c\u003e();\n        for (ScanResult scanResult : results) {\n            for (String associatedDevice : client.mAssociatedDevices) {\n                if (associatedDevice.equalsIgnoreCase(scanResult.getDevice().getAddress())) {\n                    permittedResults.add(scanResult);\n                }\n            }\n        }\n        return permittedResults;\n    }\n```",
+      "range": {
+        "startLine": 607,
+        "startChar": 3,
+        "endLine": 621,
+        "endChar": 5
+      },
+      "revId": "aeea06277cd9cedb7da87582b8da29d84b05b6ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
