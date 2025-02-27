@@ -141,10 +141,11 @@ class HciHalRootcanalTest : public ::testing::Test {
 protected:
   void SetUp() override {
     thread_ = new Thread("test_thread", Thread::Priority::NORMAL);
+    handler_ = new os::Handler(thread_);
 
     HciHalHostRootcanalConfig::Get()->SetPort(kTestPort);
     fake_server_ = new FakeRootcanalDesktopHciServer;
-    hal_ = fake_registry_.Start<HciHal>(thread_);
+    hal_ = fake_registry_.Start<HciHal>(thread_, handler_);
     hal_->registerIncomingPacketCallback(&callbacks_);
     fake_server_socket_ =
             fake_server_->Accept();  // accept() after client is connected to avoid blocking
@@ -172,6 +173,7 @@ protected:
   TestHciHalCallbacks callbacks_;
   int fake_server_socket_ = -1;
   Thread* thread_;
+  os::Handler* handler_;
 };
 
 void check_packet_equal(std::pair<uint8_t, HciPacket> hci_packet1_type_data_pair,
