@@ -302,9 +302,6 @@ size_t read(uint8_t* p_buf, uint32_t len) {
   return bytes_read;
 }
 
-// Check if OPUS codec is supported
-bool is_opus_supported() { return true; }
-
 namespace provider {
 
 // Lookup the codec info in the list of supported offloaded sink codecs.

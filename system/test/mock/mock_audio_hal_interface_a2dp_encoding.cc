@@ -49,7 +49,6 @@ struct get_a2dp_configuration get_a2dp_configuration;
 struct init init;
 struct is_hal_enabled is_hal_enabled;
 struct is_hal_offloading is_hal_offloading;
-struct is_opus_supported is_opus_supported;
 struct parse_a2dp_configuration parse_a2dp_configuration;
 struct read read;
 struct set_audio_low_latency_mode_allowed set_audio_low_latency_mode_allowed;
@@ -76,7 +75,6 @@ std::optional<a2dp_configuration> get_a2dp_configuration::return_value = std::nu
 bool init::return_value = false;
 bool is_hal_enabled::return_value = false;
 bool is_hal_offloading::return_value = false;
-bool is_opus_supported::return_value = false;
 tA2DP_STATUS parse_a2dp_configuration::return_value = A2DP_SUCCESS;
 size_t read::return_value = 0;
 bool setup_codec::return_value = false;
@@ -138,10 +136,6 @@ bool is_hal_enabled() {
 bool is_hal_offloading() {
   inc_func_call_count(__func__);
   return test::mock::audio_hal_interface_a2dp_encoding::is_hal_offloading();
-}
-bool is_opus_supported() {
-  inc_func_call_count(__func__);
-  return test::mock::audio_hal_interface_a2dp_encoding::is_opus_supported();
 }
 tA2DP_STATUS provider::parse_a2dp_configuration(btav_a2dp_codec_index_t codec_index,
                                                 const uint8_t* codec_info,
