@@ -87,6 +87,7 @@ private:
   ModuleRegistry registry_;
 
   void handle_start_up(ModuleList* modules, std::promise<void> promise);
+
   void handle_shut_down(std::promise<void> promise);
   static std::chrono::milliseconds get_gd_stack_timeout_ms(bool is_start);
 };
