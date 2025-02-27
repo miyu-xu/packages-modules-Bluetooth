@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f24bf9f_ac70ee9d",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-27T21:48:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82100728_5fa33a42",
+      "revId": "b8131244540d6f8b573924d5f2dc85d43e18dda6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a0598c2_acb3c9d2",
@@ -49,6 +67,24 @@
       "writtenOn": "2025-02-27T19:40:28Z",
       "side": 1,
       "message": "don\u0027t we need to reset cis_state before returning here, move this after ln.993?",
+      "revId": "b8131244540d6f8b573924d5f2dc85d43e18dda6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a1e511d_6ccd91dc",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-02-27T21:48:29Z",
+      "side": 1,
+      "message": "no, in this place we don\u0027t need to change the state. As per Core spec, we know that after this the Disconnection Complete will arrive.\nState is already updated when Host scheduled the Cancel.",
+      "parentUuid": "9a0598c2_acb3c9d2",
       "revId": "b8131244540d6f8b573924d5f2dc85d43e18dda6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
