@@ -59,10 +59,8 @@ using ::bluetooth::audio::aidl::a2dp::codec::A2dpSbcToHalConfig;
  * Global functions and variables
  *
  ***/
-std::unique_ptr<A2dpClientInterface> client;
-
-uint16_t A2dpClientInterface::remote_delay = 0;
-bool A2dpClientInterface::is_low_latency_mode_allowed = false;
+uint16_t A2dpAidlClientInterface::remote_delay = 0;
+bool A2dpAidlClientInterface::is_low_latency_mode_allowed = false;
 
 static bool a2dp_get_selected_hal_codec_config(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
                                                CodecConfiguration* codec_config) {
@@ -650,8 +648,9 @@ tA2DP_STATUS HardwareOffloadEncoding::ParseA2dpConfiguration(
 
 ////////////////////////////////////////////////////////
 
-A2dpClientInterface::A2dpClientInterface(std::unique_ptr<SoftwareEncoding> software_encoding,
-                                         std::unique_ptr<HardwareOffloadEncoding> offload_encoding)
+A2dpAidlClientInterface::A2dpAidlClientInterface(
+        std::unique_ptr<SoftwareEncoding> software_encoding,
+        std::unique_ptr<HardwareOffloadEncoding> offload_encoding)
     : software_encoding_(std::move(software_encoding)),
       offload_encoding_(std::move(offload_encoding)) {
   if (offload_encoding_) {
@@ -663,7 +662,7 @@ A2dpClientInterface::A2dpClientInterface(std::unique_ptr<SoftwareEncoding> softw
   }
 }
 
-void A2dpClientInterface::Cleanup(bool update_only = false) {
+void A2dpAidlClientInterface::Cleanup(bool update_only = false) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -684,7 +683,7 @@ void A2dpClientInterface::Cleanup(bool update_only = false) {
   }
 }
 
-void A2dpClientInterface::SetRemoteDelay(uint16_t delay_report) {
+void A2dpAidlClientInterface::SetRemoteDelay(uint16_t delay_report) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -692,7 +691,7 @@ void A2dpClientInterface::SetRemoteDelay(uint16_t delay_report) {
   current_encoding_interface_->SetRemoteDelay(delay_report);
 }
 
-void A2dpClientInterface::SetLowLatencyMode(bool allowed) {
+void A2dpAidlClientInterface::SetLowLatencyMode(bool allowed) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -700,16 +699,17 @@ void A2dpClientInterface::SetLowLatencyMode(bool allowed) {
   current_encoding_interface_->SetLowLatencyMode(allowed);
 }
 
-void A2dpClientInterface::StartSession() {
+void A2dpAidlClientInterface::StartSession() {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
   }
-  current_encoding_interface_->SetLowLatencyMode(A2dpClientInterface::is_low_latency_mode_allowed);
+  current_encoding_interface_->SetLowLatencyMode(
+          A2dpAidlClientInterface::is_low_latency_mode_allowed);
   current_encoding_interface_->StartSession();
 }
 
-void A2dpClientInterface::StopSession() {
+void A2dpAidlClientInterface::StopSession() {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -717,7 +717,7 @@ void A2dpClientInterface::StopSession() {
   current_encoding_interface_->StopSession();
 }
 
-void A2dpClientInterface::ConfirmStreamStarted(Status status) {
+void A2dpAidlClientInterface::ConfirmStreamStarted(Status status) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -725,7 +725,7 @@ void A2dpClientInterface::ConfirmStreamStarted(Status status) {
   current_encoding_interface_->ConfirmStreamStarted(status);
 }
 
-void A2dpClientInterface::ConfirmStreamSuspended(Status status) {
+void A2dpAidlClientInterface::ConfirmStreamSuspended(Status status) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -733,8 +733,9 @@ void A2dpClientInterface::ConfirmStreamSuspended(Status status) {
   current_encoding_interface_->ConfirmStreamSuspended(status);
 }
 
-bool A2dpClientInterface::UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
-                                                 int preferred_encoding_interval_us) {
+bool A2dpAidlClientInterface::UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config,
+                                                     uint16_t peer_mtu,
+                                                     int preferred_encoding_interval_us) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return false;
@@ -749,11 +750,11 @@ bool A2dpClientInterface::UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, u
 
   bool should_codec_offloading =
           bluetooth::audio::aidl::a2dp::codec::IsCodecOffloadingEnabled(codec_config);
-  if (IsOffloadEnabled() && should_codec_offloading && !IsOffloadActive()) {
+  if (IsOffloadAvailable() && should_codec_offloading && !IsOffloadEnabled()) {
     log::info("Switching BluetoothAudio HAL to HardwareOffload");
     StopSession();
     SwitchToHardwareOffloadInterface();
-  } else if (!should_codec_offloading && IsOffloadActive()) {
+  } else if (!should_codec_offloading && IsOffloadEnabled()) {
     log::info("Switching BluetoothAudio HAL to Software");
     StopSession();
     SwitchToSoftwareInterface();
@@ -763,7 +764,7 @@ bool A2dpClientInterface::UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config, u
                                                              preferred_encoding_interval_us);
 }
 
-size_t A2dpClientInterface::Read(uint8_t* p_buf, uint32_t len) {
+size_t A2dpAidlClientInterface::Read(uint8_t* p_buf, uint32_t len) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return 0;
@@ -771,7 +772,7 @@ size_t A2dpClientInterface::Read(uint8_t* p_buf, uint32_t len) {
   return current_encoding_interface_->Read(p_buf, len);
 }
 
-std::optional<btav_a2dp_codec_index_t> A2dpClientInterface::SinkCodecIndex(
+std::optional<btav_a2dp_codec_index_t> A2dpAidlClientInterface::SinkCodecIndex(
         const uint8_t* p_codec_info) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
@@ -780,7 +781,7 @@ std::optional<btav_a2dp_codec_index_t> A2dpClientInterface::SinkCodecIndex(
   return current_encoding_interface_->SinkCodecIndex(p_codec_info);
 }
 
-std::optional<btav_a2dp_codec_index_t> A2dpClientInterface::SourceCodecIndex(
+std::optional<btav_a2dp_codec_index_t> A2dpAidlClientInterface::SourceCodecIndex(
         const uint8_t* p_codec_info) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
@@ -789,7 +790,8 @@ std::optional<btav_a2dp_codec_index_t> A2dpClientInterface::SourceCodecIndex(
   return current_encoding_interface_->SourceCodecIndex(p_codec_info);
 }
 
-std::optional<const char*> A2dpClientInterface::CodecIndexStr(btav_a2dp_codec_index_t codec_index) {
+std::optional<const char*> A2dpAidlClientInterface::CodecIndexStr(
+        btav_a2dp_codec_index_t codec_index) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return std::nullopt;
@@ -797,7 +799,7 @@ std::optional<const char*> A2dpClientInterface::CodecIndexStr(btav_a2dp_codec_in
   return current_encoding_interface_->CodecIndexStr(codec_index);
 }
 
-bool A2dpClientInterface::SupportsCodec(btav_a2dp_codec_index_t codec_index) {
+bool A2dpAidlClientInterface::SupportsCodec(btav_a2dp_codec_index_t codec_index) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return false;
@@ -805,9 +807,9 @@ bool A2dpClientInterface::SupportsCodec(btav_a2dp_codec_index_t codec_index) {
   return current_encoding_interface_->SupportsCodec(codec_index);
 }
 
-bool A2dpClientInterface::CodecInfo(btav_a2dp_codec_index_t codec_index,
-                                    bluetooth::a2dp::CodecId* codec_id, uint8_t* codec_info,
-                                    btav_a2dp_codec_config_t* codec_config) {
+bool A2dpAidlClientInterface::CodecInfo(btav_a2dp_codec_index_t codec_index,
+                                        bluetooth::a2dp::CodecId* codec_id, uint8_t* codec_info,
+                                        btav_a2dp_codec_config_t* codec_config) {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return false;
@@ -816,7 +818,7 @@ bool A2dpClientInterface::CodecInfo(btav_a2dp_codec_index_t codec_index,
 }
 
 std::optional<::bluetooth::audio::a2dp::provider::a2dp_configuration>
-A2dpClientInterface::GetA2dpConfiguration(
+A2dpAidlClientInterface::GetA2dpConfiguration(
         RawAddress peer_address,
         std::vector<::bluetooth::audio::a2dp::provider::a2dp_remote_capabilities> const&
                 remote_seps,
@@ -829,7 +831,7 @@ A2dpClientInterface::GetA2dpConfiguration(
                                                            user_preferences);
 }
 
-tA2DP_STATUS A2dpClientInterface::ParseA2dpConfiguration(
+tA2DP_STATUS A2dpAidlClientInterface::ParseA2dpConfiguration(
         btav_a2dp_codec_index_t codec_index, const uint8_t* codec_info,
         btav_a2dp_codec_config_t* codec_parameters,
         std::vector<uint8_t>* vendor_specific_parameters) {
@@ -841,25 +843,25 @@ tA2DP_STATUS A2dpClientInterface::ParseA2dpConfiguration(
           codec_index, codec_info, codec_parameters, vendor_specific_parameters);
 }
 
-bool A2dpClientInterface::IsOffloadEnabled() {
+bool A2dpAidlClientInterface::IsOffloadAvailable() {
   bool status = offload_encoding_ != nullptr;
   log::verbose(": {}", status);
   return status;
 }
 
-bool A2dpClientInterface::IsOffloadActive() {
-  bool status = IsOffloadEnabled() && offload_encoding_.get() == current_encoding_interface_;
+bool A2dpAidlClientInterface::IsOffloadEnabled() {
+  bool status = IsOffloadAvailable() && offload_encoding_.get() == current_encoding_interface_;
   log::verbose(": {}", status);
   return status;
 }
 
-bool A2dpClientInterface::IsEnabled() {
+bool A2dpAidlClientInterface::IsEnabled() {
   bool status = current_encoding_interface_ != nullptr;
   log::verbose(": {}", status);
   return status;
 }
 
-void A2dpClientInterface::SwitchToSoftwareInterface() {
+void A2dpAidlClientInterface::SwitchToSoftwareInterface() {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -870,7 +872,7 @@ void A2dpClientInterface::SwitchToSoftwareInterface() {
   }
 }
 
-void A2dpClientInterface::SwitchToHardwareOffloadInterface() {
+void A2dpAidlClientInterface::SwitchToHardwareOffloadInterface() {
   if (!current_encoding_interface_) {
     log::error("no available Bluetooth Audio HAL interface");
     return;
@@ -879,257 +881,6 @@ void A2dpClientInterface::SwitchToHardwareOffloadInterface() {
     log::info("current interface: HardwareOffloadEncoding");
     current_encoding_interface_ = offload_encoding_.get();
   }
-}
-
-///////////////////////////////////////////////////////
-
-// Checking if new bluetooth_audio is enabled
-bool is_hal_enabled() {
-  if (client) {
-    return client->IsEnabled();
-  }
-  return false;
-}
-
-// Check if new bluetooth_audio is running with offloading encoders
-bool is_hal_offloading() {
-  if (client) {
-    return client->IsOffloadActive();
-  }
-  return false;
-}
-
-// Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
-          StreamCallbacks const* stream_callbacks, bool offload_enabled,
-          std::unique_ptr<::bluetooth::audio::aidl::a2dp::ProviderInfo> provider_info) {
-  log::info("offload_enabled={}", offload_enabled);
-  log::assert_that(stream_callbacks != nullptr, "stream_callbacks != nullptr");
-
-  std::unique_ptr<HardwareOffloadEncoding> hardware_offload_encoding = nullptr;
-  std::unique_ptr<SoftwareEncoding> software_encoding = nullptr;
-
-  if (client != nullptr && offload_enabled && !client->IsOffloadEnabled()) {
-    log::info("Update client with HardwareOffload. Reinitializing HAL.", offload_enabled);
-    client->Cleanup(true);
-    client.reset();
-  }
-
-  if (client != nullptr && client->IsEnabled()) {
-    log::debug("BluetoothAudio HAL is already enabled");
-    return true;
-  }
-
-  if (!BluetoothAudioClientInterface::is_aidl_available()) {
-    log::error("BluetoothAudio AIDL implementation does not exist");
-    return false;
-  }
-
-  A2dpEncodingTransport* software_transport =
-          new A2dpEncodingTransport(SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH, stream_callbacks);
-  BluetoothAudioClientInterface* software_audio_interface =
-          new BluetoothAudioClientInterface(software_transport);
-  if (!software_audio_interface->IsValid()) {
-    log::error("software_audio_interface is invalid");
-    delete software_transport;
-    delete software_audio_interface;
-    return false;
-  }
-
-  software_encoding = std::make_unique<SoftwareEncoding>(software_audio_interface);
-
-  if (offload_enabled) {
-    A2dpEncodingTransport* offload_transport = new A2dpEncodingTransport(
-            SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH, stream_callbacks);
-    BluetoothAudioClientInterface* hardware_audio_interface =
-            new BluetoothAudioClientInterface(offload_transport);
-    if (!hardware_audio_interface->IsValid()) {
-      log::error("hardware_audio_interface is invalid");
-      delete offload_transport;
-      delete hardware_audio_interface;
-    } else {
-      hardware_offload_encoding = std::make_unique<HardwareOffloadEncoding>(
-              hardware_audio_interface, std::move(provider_info));
-    }
-  }
-
-  client = std::make_unique<A2dpClientInterface>(std::move(software_encoding),
-                                                 std::move(hardware_offload_encoding));
-
-  if (A2dpClientInterface::remote_delay != 0) {
-    log::info("restore DELAY {} ms", static_cast<float>(A2dpClientInterface::remote_delay / 10.0));
-    client->SetRemoteDelay(A2dpClientInterface::remote_delay);
-    A2dpClientInterface::remote_delay = 0;
-  }
-  return true;
-}
-
-// Clean up BluetoothAudio HAL
-void cleanup() {
-  log::info("");
-  if (client) {
-    client->Cleanup();
-  }
-  client.reset();
-}
-
-// Set up the codec into BluetoothAudio HAL
-bool setup_codec(A2dpCodecConfig* a2dp_config, uint16_t peer_mtu,
-                 int preferred_encoding_interval_us) {
-  log::info("");
-  if (client) {
-    return client->UpdateAudioConfigToHal(a2dp_config, peer_mtu, preferred_encoding_interval_us);
-  }
-  return false;
-}
-
-void start_session() {
-  log::info("");
-  if (client) {
-    client->StartSession();
-  }
-}
-
-void end_session() {
-  log::info("");
-  if (client) {
-    client->StopSession();
-  }
-}
-
-void ack_stream_started(Status ack) {
-  log::info("");
-  if (client) {
-    client->ConfirmStreamStarted(ack);
-  }
-}
-
-void ack_stream_suspended(Status ack) {
-  log::info("");
-  if (client) {
-    client->ConfirmStreamSuspended(ack);
-  }
-}
-
-// Update A2DP delay report to BluetoothAudio HAL
-void set_remote_delay(uint16_t delay_report) {
-  A2dpClientInterface::remote_delay = delay_report;
-  if (client) {
-    client->SetRemoteDelay(A2dpClientInterface::remote_delay);
-  } else {
-    log::info("DelayReport: {} ms saved. Waiting for interface initalization.",
-              static_cast<float>(delay_report / 10.0));
-  }
-}
-
-// Set low latency buffer mode allowed or prohibited
-void set_low_latency_mode_allowed(bool allowed) {
-  A2dpClientInterface::is_low_latency_mode_allowed = allowed;
-  if (client) {
-    client->SetLowLatencyMode(A2dpClientInterface::is_low_latency_mode_allowed);
-  } else {
-    log::info("Low Latency Buffer Mode: {} saved. Waiting for interface initalization",
-              allowed ? "allowed" : "prohibited");
-  }
-}
-
-// Read from the FMQ of BluetoothAudio HAL
-size_t read(uint8_t* p_buf, uint32_t len) {
-  if (client) {
-    return client->Read(p_buf, len);
-  }
-  return 0;
-}
-
-/***
- * Lookup the codec info in the list of supported offloaded sink codecs.
- ***/
-std::optional<btav_a2dp_codec_index_t> provider::sink_codec_index(const uint8_t* p_codec_info) {
-  if (client) {
-    return client->SinkCodecIndex(p_codec_info);
-  }
-  return std::nullopt;
-}
-
-/***
- * Lookup the codec info in the list of supported offloaded source codecs.
- ***/
-std::optional<btav_a2dp_codec_index_t> provider::source_codec_index(const uint8_t* p_codec_info) {
-  if (client) {
-    return client->SourceCodecIndex(p_codec_info);
-  }
-  return std::nullopt;
-}
-
-/***
- * Return the name of the codec which is assigned to the input index.
- * The codec index must be in the ranges
- * BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX or
- * BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
- * Returns nullopt if the codec_index is not assigned or codec extensibility
- * is not supported or enabled.
- ***/
-std::optional<const char*> provider::codec_index_str(btav_a2dp_codec_index_t codec_index) {
-  if (client) {
-    return client->CodecIndexStr(codec_index);
-  }
-  return std::nullopt;
-}
-
-/***
- * Return true if the codec is supported for the session type
- * A2DP_HARDWARE_ENCODING_DATAPATH or A2DP_HARDWARE_DECODING_DATAPATH.
- ***/
-bool provider::supports_codec(btav_a2dp_codec_index_t codec_index) {
-  if (client) {
-    return client->SupportsCodec(codec_index);
-  }
-  return false;
-}
-
-/***
- * Return the A2DP capabilities for the selected codec.
- ***/
-bool provider::codec_info(btav_a2dp_codec_index_t codec_index, bluetooth::a2dp::CodecId* codec_id,
-                          uint8_t* codec_info, btav_a2dp_codec_config_t* codec_config) {
-  if (client) {
-    return client->CodecInfo(codec_index, codec_id, codec_info, codec_config);
-  }
-  return false;
-}
-
-/***
- * Query the codec selection fromt the audio HAL.
- * The HAL is expected to pick the best audio configuration based on the
- * discovered remote SEPs.
- ***/
-std::optional<::bluetooth::audio::a2dp::provider::a2dp_configuration>
-provider::get_a2dp_configuration(
-        RawAddress peer_address,
-        std::vector<::bluetooth::audio::a2dp::provider::a2dp_remote_capabilities> const&
-                remote_seps,
-        btav_a2dp_codec_config_t const& user_preferences) {
-  if (client) {
-    return client->GetA2dpConfiguration(peer_address, remote_seps, user_preferences);
-  }
-  return std::nullopt;
-}
-
-/***
- * Query the codec parameters from the audio HAL.
- * The HAL is expected to parse the codec configuration
- * received from the peer and decide whether accept
- * the it or not.
- ***/
-tA2DP_STATUS provider::parse_a2dp_configuration(btav_a2dp_codec_index_t codec_index,
-                                                const uint8_t* codec_info,
-                                                btav_a2dp_codec_config_t* codec_parameters,
-                                                std::vector<uint8_t>* vendor_specific_parameters) {
-  if (client) {
-    return client->ParseA2dpConfiguration(codec_index, codec_info, codec_parameters,
-                                          vendor_specific_parameters);
-  }
-  return A2DP_FAIL;
 }
 
 }  // namespace a2dp
