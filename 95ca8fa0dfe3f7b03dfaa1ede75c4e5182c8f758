@@ -3,6 +3,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a3e43ec_add0ac1d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gmap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "nit: seems like there is some formatting issues here.\n\nDidn\u0027t `repo upload` run the formatter on python files ?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2906f01c_361b2ec3",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "Can you also add it to PtsBotTestMts.xml ?",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "095362e2_8cf34ae9",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2650,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "extra space here",
+      "range": {
+        "startLine": 2650,
+        "startChar": 29,
+        "endLine": 2650,
+        "endChar": 33
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbbf1b7e_9e50ea34",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3832,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "Product question:\nwould this profile be enabled by default on AOSP phone ?",
+      "range": {
+        "startLine": 3832,
+        "startChar": 8,
+        "endLine": 3832,
+        "endChar": 48
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fac5d42b_67107d8d",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 3835,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "does it works if you only write GMAP here ? instead of listing them all ?",
+      "range": {
+        "startLine": 3835,
+        "startChar": 9,
+        "endLine": 3835,
+        "endChar": 13
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fcd97515_2a3dfe01",
         "filename": "android/pandora/server/src/Gmap.kt",
         "patchSetId": 2
@@ -38,6 +147,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d294ff09_c47c2924",
+        "filename": "android/pandora/server/src/Gmap.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "```suggestion\n            // Configure the selected device as active device if it is not already.\n```",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5b2ec7bf_384c836e",
         "filename": "android/pandora/server/src/Server.kt",
         "patchSetId": 2
@@ -49,6 +181,29 @@
       "writtenOn": "2025-02-26T19:07:56Z",
       "side": 1,
       "message": "is GMAP enabled on the phone ? This might return false then the class is never instantiated",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6d97f8c_32e1b847",
+        "filename": "pandora/interfaces/pandora_experimental/gmap.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-27T01:00:43Z",
+      "side": 1,
+      "message": "Can we add the spaces in the header comment to follow recommanded header format.\nasha.proto as a valid example",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 33
+      },
       "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
