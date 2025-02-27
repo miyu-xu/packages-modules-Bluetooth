@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80369f70_dba2caff",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/DckL2capTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-27T21:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f25b69cd_ecae1101",
+      "range": {
+        "startLine": 122,
+        "startChar": 15,
+        "endLine": 122,
+        "endChar": 28
+      },
+      "revId": "5c5aadd3fe587659b3e50afe7e78dffa4ebf9e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2af011ec_073af452",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-02-27T21:08:28Z",
       "side": 1,
       "message": "Is there a reason why you have `Util` at the end of these new utility functions?  It seems weird to me that only some of them end with util.",
+      "range": {
+        "startLine": 489,
+        "startChar": 52,
+        "endLine": 489,
+        "endChar": 56
+      },
+      "revId": "5c5aadd3fe587659b3e50afe7e78dffa4ebf9e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4962657c_6fcce398",
+        "filename": "framework/tests/bumble/src/android/bluetooth/sockets/lecoc/DckL2capTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-27T21:19:08Z",
+      "side": 1,
+      "message": "I plan to move all these Utility functions to separate file in followup CL and remove Util.\n\nFor now, I just want to distiguish test functions from helpers.\n\nI agree, there are old helper functions without Util - I left it as is",
+      "parentUuid": "2af011ec_073af452",
       "range": {
         "startLine": 489,
         "startChar": 52,
