@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82100728_5fa33a42",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-27T19:40:28Z",
+      "side": 1,
+      "message": "dup to ln.995.",
+      "fixSuggestions": [
+        {
+          "fixId": "fa0f88de_86826137",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/state_machine.cc",
+              "range": {
+                "startLine": 994,
+                "startChar": 0,
+                "endLine": 997,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b8131244540d6f8b573924d5f2dc85d43e18dda6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0598c2_acb3c9d2",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-27T19:40:28Z",
+      "side": 1,
+      "message": "don\u0027t we need to reset cis_state before returning here, move this after ln.993?",
+      "revId": "b8131244540d6f8b573924d5f2dc85d43e18dda6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
