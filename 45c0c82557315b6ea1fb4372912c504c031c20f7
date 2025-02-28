@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a79525_d140d591",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-28T01:38:37Z",
+      "side": 1,
+      "message": "One general comment, I understand we\u0027re using the feature flag to guard, can we also add unit tests for this?",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6942b20_ee366242",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-28T01:38:37Z",
+      "side": 1,
+      "message": "Instead of using \u0027TbsService.isEnabled()\u0027 and \u0027McpService.isEnabled()\u0027,\nwould it be better to keep aligned with the above, by doing similar to this?\n\nmAdapterService.getSupportedProfilesBitMask()\n                        \u0026 (1 \u003c\u003c BluetoothProfile.LE_AUDIO_BROADCAST)",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05eac7e6_94e4e237",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-02-28T01:38:37Z",
+      "side": 1,
+      "message": "why do we use McpService to decide TMAP_ROLE_FLAG_UMS(unicast media sender)?",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
