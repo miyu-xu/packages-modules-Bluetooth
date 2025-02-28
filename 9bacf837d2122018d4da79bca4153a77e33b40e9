@@ -70,6 +70,30 @@
       },
       "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7907e568_a21d0d16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T00:47:18Z",
+      "side": 1,
+      "message": "But don\u0027t update it here, that\u0027s fine, it would not be a big update.\n\nI\u0027ll share a CL with you with the proper command to re-gen the lint baseline so you\u0027ll know.\n\nResolving this for now",
+      "parentUuid": "fb96a71f_8581e815",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
