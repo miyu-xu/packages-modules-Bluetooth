@@ -33,6 +33,24 @@
       "message": "nit: do we need to set disconnect_timeout_timer to None after abort the task?",
       "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d46d100_3c867aa4",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-02-28T01:02:18Z",
+      "side": 1,
+      "message": "`take()` call already does that",
+      "parentUuid": "8b5212d5_7ceb41a5",
+      "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
