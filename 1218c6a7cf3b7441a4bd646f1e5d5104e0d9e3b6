@@ -67,6 +67,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "deacb486_458bf86c",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-28T22:52:37Z",
+      "side": 1,
+      "message": "can you please check if we need to clean up any resources related to lcid - which just failed",
+      "range": {
+        "startLine": 292,
+        "startChar": 8,
+        "endLine": 292,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "37620e1c_d74a30a9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_mx_fsm.cc",
+              "range": {
+                "startLine": 293,
+                "startChar": 0,
+                "endLine": 293,
+                "endChar": 0
+              },
+              "replacement": "        rfc_release_multiplexer_channel(p_mcb);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f562ae5_f002fc48",
         "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
         "patchSetId": 4
