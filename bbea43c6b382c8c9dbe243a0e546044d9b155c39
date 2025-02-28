@@ -74,6 +74,30 @@
       },
       "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248a3bef_d53dea91",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-28T19:20:38Z",
+      "side": 1,
+      "message": "Thanks Jakub for the comment. We would definitely need a separate CL to address the suspend flow for Android desktop as the issue would also affect that platform. That would be some changes behind a flag. I think the intention here is to only affect floss.",
+      "parentUuid": "858edded_0281bbf5",
+      "range": {
+        "startLine": 898,
+        "startChar": 2,
+        "endLine": 919,
+        "endChar": 24
+      },
+      "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
