@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3667442_59160680",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T02:01:05Z",
+      "side": 1,
+      "message": "By favoring incoming connection, we now have the power to respond to SABM.  If that doesn\u0027t work, the outgoing connection is cached so it can be retried.",
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
