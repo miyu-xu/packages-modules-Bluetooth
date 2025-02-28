@@ -80,13 +80,7 @@ import com.android.bluetooth.bass_client.BassConstants;
 import com.android.internal.annotations.VisibleForTesting;
 
 import com.google.common.base.Ascii;
-import com.google.common.hash.BloomFilter;
-import com.google.common.hash.Funnels;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -99,13 +93,6 @@ import java.util.List;
 public class MetricsLogger {
     private static final String TAG =
             Utils.TAG_PREFIX_BLUETOOTH + MetricsLogger.class.getSimpleName();
-
-    private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth";
-    private static final String BLOOMFILTER_FILE = "/devices_for_metrics_v3";
-    private static final String MEDICAL_DEVICE_BLOOMFILTER_FILE = "/medical_devices_for_metrics_v1";
-    public static final String BLOOMFILTER_FULL_PATH = BLOOMFILTER_PATH + BLOOMFILTER_FILE;
-    public static final String MEDICAL_DEVICE_BLOOMFILTER_FULL_PATH =
-            BLOOMFILTER_PATH + MEDICAL_DEVICE_BLOOMFILTER_FILE;
 
     // 6 hours timeout for counter metrics
     private static final long BLUETOOTH_COUNTER_METRICS_ACTION_DURATION_MILLIS = 6L * 3600L * 1000L;
@@ -120,12 +107,6 @@ public class MetricsLogger {
     private AlarmManager mAlarmManager = null;
     private boolean mInitialized = false;
     private static final Object sLock = new Object();
-    private BloomFilter<byte[]> mBloomFilter = null;
-    protected boolean mBloomFilterInitialized = false;
-
-    private BloomFilter<byte[]> mMedicalDeviceBloomFilter = null;
-
-    protected boolean mMedicalDeviceBloomFilterInitialized = false;
 
     private AlarmManager.OnAlarmListener mOnAlarmListener =
             new AlarmManager.OnAlarmListener() {
@@ -166,80 +147,6 @@ public class MetricsLogger {
         return mInitialized;
     }
 
-    public boolean initBloomFilter(String path) {
-        try {
-            File file = new File(path);
-            if (!file.exists()) {
-                Log.w(TAG, "MetricsLogger is creating a new Bloomfilter file");
-                DeviceBloomfilterGenerator.generateDefaultBloomfilter(path);
-            }
-
-            FileInputStream in = new FileInputStream(new File(path));
-            mBloomFilter = BloomFilter.readFrom(in, Funnels.byteArrayFunnel());
-            mBloomFilterInitialized = true;
-        } catch (IOException e1) {
-            Log.w(TAG, "MetricsLogger can't read the BloomFilter file.");
-            byte[] bloomfilterData =
-                    DeviceBloomfilterGenerator.hexStringToByteArray(
-                            DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
-            try {
-                mBloomFilter =
-                        BloomFilter.readFrom(
-                                new ByteArrayInputStream(bloomfilterData),
-                                Funnels.byteArrayFunnel());
-                mBloomFilterInitialized = true;
-                Log.i(TAG, "The default bloomfilter is used");
-                return true;
-            } catch (IOException e2) {
-                Log.w(TAG, "The default bloomfilter can't be used.");
-            }
-            return false;
-        }
-        return true;
-    }
-
-    /** Initialize medical device bloom filter */
-    public boolean initMedicalDeviceBloomFilter(String path) {
-        try {
-            File medicalDeviceFile = new File(path);
-            if (!medicalDeviceFile.exists()) {
-                Log.w(TAG, "MetricsLogger is creating a new medical device Bloomfilter file");
-                MedicalDeviceBloomfilterGenerator.generateDefaultBloomfilter(path);
-            }
-
-            FileInputStream inputStream = new FileInputStream(new File(path));
-            mMedicalDeviceBloomFilter =
-                    BloomFilter.readFrom(inputStream, Funnels.byteArrayFunnel());
-            mMedicalDeviceBloomFilterInitialized = true;
-        } catch (IOException e1) {
-            Log.w(TAG, "MetricsLogger can't read the medical device BloomFilter file.");
-            byte[] bloomfilterData =
-                    MedicalDeviceBloomfilterGenerator.hexStringToByteArray(
-                            MedicalDeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
-            try {
-                mMedicalDeviceBloomFilter =
-                        BloomFilter.readFrom(
-                                new ByteArrayInputStream(bloomfilterData),
-                                Funnels.byteArrayFunnel());
-                mMedicalDeviceBloomFilterInitialized = true;
-                Log.i(TAG, "The medical device bloomfilter is used");
-                return true;
-            } catch (IOException e2) {
-                Log.w(TAG, "The medical device bloomfilter can't be used.");
-            }
-            return false;
-        }
-        return true;
-    }
-
-    protected void setBloomfilter(BloomFilter bloomfilter) {
-        mBloomFilter = bloomfilter;
-    }
-
-    protected void setMedicalDeviceBloomfilter(BloomFilter bloomfilter) {
-        mMedicalDeviceBloomFilter = bloomfilter;
-    }
-
     void init(AdapterService adapterService, RemoteDevices remoteDevices) {
         if (mInitialized) {
             return;
@@ -248,18 +155,6 @@ public class MetricsLogger {
         mAdapterService = adapterService;
         mRemoteDevices = remoteDevices;
         scheduleDrains();
-        if (!initBloomFilter(BLOOMFILTER_FULL_PATH)) {
-            Log.w(TAG, "MetricsLogger can't initialize the bloomfilter");
-            // The class is for multiple metrics tasks.
-            // We still want to use this class even if the bloomfilter isn't initialized
-            // so still return true here.
-        }
-        if (!initMedicalDeviceBloomFilter(MEDICAL_DEVICE_BLOOMFILTER_FULL_PATH)) {
-            Log.w(TAG, "MetricsLogger can't initialize the medical device bloomfilter");
-            // The class is for multiple metrics tasks.
-            // We still want to use this class even if the bloomfilter isn't initialized
-            // so still return true here.
-        }
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
@@ -466,8 +361,6 @@ public class MetricsLogger {
         drainBufferedCounters();
         mAlarmManager = null;
         mInitialized = false;
-        mBloomFilterInitialized = false;
-        mMedicalDeviceBloomFilterInitialized = false;
     }
 
     protected void cancelPendingDrain() {
@@ -621,32 +514,27 @@ public class MetricsLogger {
     }
 
     private String getMatchedString(List<String> wordBreakdownList, boolean includeMedicalDevices) {
-        if (!mBloomFilterInitialized || wordBreakdownList.isEmpty()) {
-            return "";
-        }
-
         String matchedString = "";
         for (String word : wordBreakdownList) {
-            byte[] sha256 = getSha256(word);
-            if (mBloomFilter.mightContain(sha256) && word.length() > matchedString.length()) {
+            if (word.length() > matchedString.length() && FILTER.contains(word)) {
                 matchedString = word;
             }
         }
 
-        return (matchedString.equals("") && includeMedicalDevices)
-                ? getMatchedStringForMedicalDevice(wordBreakdownList)
-                : matchedString;
+        if (!includeMedicalDevices || !matchedString.isEmpty()) {
+            return matchedString;
+        }
+        return getMatchedStringForMedicalDevice(wordBreakdownList);
     }
 
     private String getMatchedStringForMedicalDevice(List<String> wordBreakdownList) {
         String matchedString = "";
         for (String word : wordBreakdownList) {
-            byte[] sha256 = getSha256(word);
-            if (mMedicalDeviceBloomFilter.mightContain(sha256)
-                    && word.length() > matchedString.length()) {
+            if (word.length() > matchedString.length() && MEDICAL_FILTER.contains(word)) {
                 matchedString = word;
             }
         }
+
         return matchedString;
     }
 
@@ -922,4 +810,8 @@ public class MetricsLogger {
                 syncStatus,
                 getRemoteDeviceInfoProto(device, false));
     }
+
+    // TODO validate if String.contains is enough or if we should use an HashSet here
+    private static final String FILTER = "";
+    private static final String MEDICAL_FILTER = "";
 }
