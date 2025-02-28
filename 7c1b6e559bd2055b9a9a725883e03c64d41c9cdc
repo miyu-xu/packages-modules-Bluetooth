@@ -104,6 +104,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe817a7b_dadf0916",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-28T06:57:46Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "34c46ee3_e73ebc12",
+      "range": {
+        "startLine": 891,
+        "startChar": 11,
+        "endLine": 891,
+        "endChar": 45
+      },
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "989756fc_e7768b31",
@@ -151,6 +175,30 @@
           ]
         }
       ],
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31017667_1edd3c92",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-28T06:57:46Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "989756fc_e7768b31",
+      "range": {
+        "startLine": 1330,
+        "startChar": 7,
+        "endLine": 1330,
+        "endChar": 62
+      },
       "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
