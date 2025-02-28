@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a971a0_c23d4afd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-28T22:28:46Z",
+      "side": 1,
+      "message": "LGTM % one test suggestion",
+      "revId": "5d18d2d23f8037d338c3c0a5371536c0a7f8856d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93cf6d3c_be130076",
+        "filename": "system/rust/src/gatt/server/request_handler.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-28T22:28:46Z",
+      "side": 1,
+      "message": "it would be nice to have tests here for the other failure modes:\n - Invalid Handle (asked for handle that is not there)\n - Attribute Not Long (attribute is smaller than MTU-1 and is fixed length)\n\nIf you want to skip Invalid Handle (it should be tested in an AttDatabase implementation) the length one is probably handled by the new code (or code changes in gatt_database)",
+      "revId": "5d18d2d23f8037d338c3c0a5371536c0a7f8856d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
