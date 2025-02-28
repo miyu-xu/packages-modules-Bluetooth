@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32a72190_1bbea096",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-28T07:06:20Z",
+      "side": 1,
+      "message": "Should you also EXPECT_EQ(db_from_disk.Hash(), 0x0E88590AAE09F85311D16385269CDEDC) as per bug ?",
+      "fixSuggestions": [
+        {
+          "fixId": "c54ce673_cdd7ec1b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/test/gatt/database_test.cc",
+              "range": {
+                "startLine": 764,
+                "startChar": 0,
+                "endLine": 764,
+                "endChar": 0
+              },
+              "replacement": "  EXPECT_EQ(db_from_disk.Hash(), Octet16{0x0E, 0x88, 0x59, 0x0A, 0xAE, 0x09, 0xF8, 0x53,\n                                         0x11, 0xD1, 0x63, 0x85, 0x26, 0x9C, 0xDD, 0xEC});\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a18978858f345d5effaa55d07b89e5855f444b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
