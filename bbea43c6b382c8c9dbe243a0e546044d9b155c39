@@ -51,6 +51,29 @@
       "parentUuid": "8b5212d5_7ceb41a5",
       "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "858edded_0281bbf5",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-28T11:56:17Z",
+      "side": 1,
+      "message": "This whole logic should not be here. ACL manager have a list of all connections. You should be able to easily add method that would iterate over them, and disconnect all connections. \n\nBTW ACL manager also have SetSystemSuspendState method. Maybe making call to it should disconnect all the LE and Classic connections, and you won\u0027t need this method at all ?",
+      "range": {
+        "startLine": 898,
+        "startChar": 2,
+        "endLine": 919,
+        "endChar": 24
+      },
+      "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
