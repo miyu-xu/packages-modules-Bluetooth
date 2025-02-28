@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6105bba_63c9798e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-28T00:26:44Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b5212d5_7ceb41a5",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-28T00:26:44Z",
+      "side": 1,
+      "message": "nit: do we need to set disconnect_timeout_timer to None after abort the task?",
+      "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
