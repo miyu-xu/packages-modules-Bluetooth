@@ -16,6 +16,67 @@
       "message": "Updated the categorization of app importance and logging in latest patchset.",
       "revId": "fdef5e65881102432f5d50b015175c93ddb15ae7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45eab077_71843fe6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-28T01:17:54Z",
+      "side": 1,
+      "message": "Nit: since you are returning you don\u0027t need else cases",
+      "range": {
+        "startLine": 673,
+        "startChar": 10,
+        "endLine": 673,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7845e3db_b53e7dc0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 673,
+                "startChar": 0,
+                "endLine": 674,
+                "endChar": 0
+              },
+              "replacement": "        }\n        if (importance \u003e IMPORTANCE_FOREGROUND_SERVICE) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 676,
+                "startChar": 0,
+                "endLine": 679,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 680,
+                "startChar": 0,
+                "endLine": 680,
+                "endChar": 0
+              },
+              "replacement": "        return BluetoothStatsLog\n                .LE_APP_SCAN_STATE_CHANGED__APP_IMPORTANCE__IMPORTANCE_EQUAL_TO_FGS;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fdef5e65881102432f5d50b015175c93ddb15ae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
