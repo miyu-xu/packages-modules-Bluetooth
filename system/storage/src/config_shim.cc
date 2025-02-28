@@ -16,14 +16,15 @@
 
 #define LOG_TAG "bt_shim_storage"
 
-#include "main/shim/config.h"
+#include "config_shim.h"
+
+#include <bluetooth/storage/storage_module.h>
 
 #include <algorithm>
 #include <cstdint>
 #include <cstring>
 
 #include "main/shim/entry.h"
-#include "storage/storage_module.h"
 
 using ::bluetooth::shim::GetStorage;
 using ::bluetooth::storage::ConfigCacheHelper;
@@ -84,7 +85,7 @@ bool BtifConfigInterface::GetStr(const std::string& section, const std::string& 
   }
   // std::string::copy does not null-terminate resultant string by default
   // avoided using strlcpy to prevent extra dependency
-  *size_bytes = str->copy(value, (*size_bytes - 1));
+  *size_bytes = str->copy(value, *size_bytes - 1);
   value[*size_bytes] = '\0';
   *size_bytes += 1;
   return true;

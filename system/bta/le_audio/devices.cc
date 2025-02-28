@@ -19,6 +19,7 @@
 
 #include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 #include <stdio.h>
 
@@ -38,7 +39,6 @@
 #include "acl_api.h"
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
-#include "btif/include/btif_storage.h"
 #include "btm_ble_api_types.h"
 #include "btm_iso_api_types.h"
 #include "common/strings.h"

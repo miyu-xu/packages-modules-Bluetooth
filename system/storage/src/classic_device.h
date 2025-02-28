@@ -15,15 +15,16 @@
  */
 #pragma once
 
+#include <bluetooth/storage/config_cache.h>
+#include <bluetooth/storage/config_cache_helper.h>
+#include <bluetooth/storage/device.h>
+
 #include <array>
 #include <optional>
 #include <string>
 #include <unordered_set>
 
 #include "hci/link_key.h"
-#include "storage/config_cache.h"
-#include "storage/config_cache_helper.h"
-#include "storage/device.h"
 
 namespace bluetooth {
 namespace storage {

@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-#include "storage/device.h"
-
 #include <bluetooth/log.h>
+#include <bluetooth/storage/config_cache_helper.h>
+#include <bluetooth/storage/device.h>
 
 #include <algorithm>
 #include <limits>
 
-#include "storage/classic_device.h"
-#include "storage/config_cache_helper.h"
-#include "storage/le_device.h"
+#include "classic_device.h"
+#include "le_device.h"
 
 namespace bluetooth {
 namespace storage {

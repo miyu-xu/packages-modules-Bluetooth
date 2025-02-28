@@ -16,6 +16,8 @@
 
 #include "test/mock/mock_main_shim_entry.h"
 
+#include <bluetooth/storage/storage_module.h>
+
 #include "hci/acl_manager_mock.h"
 #include "hci/controller_interface_mock.h"
 #include "hci/distance_measurement_manager_mock.h"
@@ -26,7 +28,6 @@
 #include "main/shim/entry.h"
 #include "main/shim/shim.h"
 #include "os/handler.h"
-#include "storage/storage_module.h"
 
 namespace test {
 namespace mock {

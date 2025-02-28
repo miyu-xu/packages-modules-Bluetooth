@@ -27,11 +27,11 @@
 #include "stack/btm/btm_dev.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <string>
 
-#include "btif/include/btif_storage.h"
 #include "btm_int_types.h"
 #include "btm_sec_api.h"
 #include "btm_sec_cb.h"

@@ -15,6 +15,9 @@
  */
 #pragma once
 
+#include <bluetooth/storage/device.h>
+#include <bluetooth/storage/mutation.h>
+
 #include <array>
 #include <chrono>
 #include <cstdint>
@@ -26,9 +29,6 @@
 
 #include "hci/address.h"
 #include "module.h"
-#include "storage/config_cache.h"
-#include "storage/device.h"
-#include "storage/mutation.h"
 
 namespace bluetooth {
 

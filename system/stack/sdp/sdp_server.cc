@@ -25,11 +25,11 @@
 #define LOG_TAG "stack::sdp"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <string.h>  // memcpy
 
 #include <cstdint>
 
-#include "btif/include/btif_storage.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
 #include "internal_include/bt_target.h"

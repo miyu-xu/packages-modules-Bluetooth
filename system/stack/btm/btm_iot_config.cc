@@ -21,8 +21,8 @@
 #include "stack/include/btm_iot_config.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 
-#include "btif/include/btif_storage.h"
 #include "btm_ble_api.h"
 #include "device/include/device_iot_config.h"
 #include "stack/acl/acl.h"

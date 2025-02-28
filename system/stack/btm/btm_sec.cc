@@ -29,6 +29,7 @@
 #include <android_bluetooth_sysprop.h>
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <cstddef>
@@ -37,7 +38,6 @@
 
 #include "bta/dm/bta_dm_act.h"
 #include "bta/dm/bta_dm_sec_int.h"
-#include "btif/include/btif_storage.h"
 #include "common/metrics.h"
 #include "common/time_util.h"
 #include "device/include/device_iot_config.h"

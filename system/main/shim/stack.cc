@@ -19,6 +19,7 @@
 #include "main/shim/stack.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/storage_module.h>
 #include <com_android_bluetooth_flags.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -52,7 +53,6 @@
 #include "metrics/counter_metrics.h"
 #include "os/system_properties.h"
 #include "os/wakelock_manager.h"
-#include "storage/storage_module.h"
 
 #if TARGET_FLOSS
 #include "sysprops/sysprops_module.h"

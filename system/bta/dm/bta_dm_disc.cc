@@ -20,6 +20,7 @@
 
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <cstddef>
@@ -30,7 +31,6 @@
 
 #include "bta/dm/bta_dm_disc_int.h"
 #include "bta/include/bta_gatt_api.h"
-#include "btif/include/btif_storage.h"
 #include "common/circular_buffer.h"
 #include "common/strings.h"
 #include "device/include/interop.h"

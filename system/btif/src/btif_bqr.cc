@@ -20,6 +20,7 @@
 #ifdef __ANDROID__
 #include <statslog_bt.h>
 #endif
+#include <bluetooth/storage/btif_storage.h>
 #include <sys/stat.h>
 
 #include <cerrno>
@@ -27,7 +28,6 @@
 
 #include "btif/include/btif_bqr.h"
 #include "btif/include/btif_common.h"
-#include "btif/include/btif_storage.h"
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "common/leaky_bonded_queue.h"

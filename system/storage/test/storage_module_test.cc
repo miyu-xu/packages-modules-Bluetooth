@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-#include "storage/storage_module.h"
-
 #include <bluetooth/log.h>
+#include <bluetooth/storage/storage_module.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 

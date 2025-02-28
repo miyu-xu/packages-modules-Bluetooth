@@ -18,9 +18,10 @@
 
 #define LOG_TAG "bt_btif_config"
 
-#include "btif_config.h"
-
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_config.h>
+#include <bluetooth/storage/btif_keystore.h>
+#include <bluetooth/storage/config_keys.h>
 #include <openssl/rand.h>
 #include <unistd.h>
 
@@ -31,13 +32,11 @@
 #include <string>
 #include <unordered_map>
 
-#include "btif_keystore.h"
-#include "btif_metrics_logging.h"
+#include "btif/include/btif_metrics_logging.h"
 #include "common/address_obfuscator.h"
 #include "common/metric_id_allocator.h"
-#include "main/shim/config.h"
+#include "config_shim.h"
 #include "main/shim/shim.h"
-#include "storage/config_keys.h"
 #include "types/raw_address.h"
 
 #define TEMPORARY_SECTION_CAPACITY 10000

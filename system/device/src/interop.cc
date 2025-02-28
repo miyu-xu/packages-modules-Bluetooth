@@ -23,6 +23,7 @@
 
 #include <assert.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <ctype.h>
 #include <fcntl.h>
 #include <hardware/bluetooth.h>
@@ -37,7 +38,6 @@
 #include <utility>
 
 #include "btcore/include/module.h"
-#include "btif/include/btif_storage.h"
 #include "device/include/interop_config.h"
 #include "device/include/interop_database.h"
 #include "osi/include/allocator.h"

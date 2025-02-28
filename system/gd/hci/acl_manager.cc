@@ -17,6 +17,7 @@
 #include "hci/acl_manager.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/storage_module.h>
 
 #include <atomic>
 #include <format>
@@ -40,7 +41,6 @@
 #include "hci/remote_name_request.h"
 #include "main/shim/entry.h"
 #include "storage/config_keys.h"
-#include "storage/storage_module.h"
 
 namespace bluetooth {
 namespace hci {

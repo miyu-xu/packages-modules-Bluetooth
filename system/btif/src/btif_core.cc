@@ -33,6 +33,7 @@
 #include <base/functional/bind.h>
 #include <base/threading/platform_thread.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 #include <signal.h>
 #include <sys/types.h>
@@ -46,7 +47,6 @@
 #include "btif/include/btif_jni_task.h"
 #include "btif/include/btif_profile_queue.h"
 #include "btif/include/btif_sock.h"
-#include "btif/include/btif_storage.h"
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "common/message_loop_thread.h"

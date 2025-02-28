@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <bluetooth/storage/serializable.h>
+
 #include <algorithm>
 #include <array>
 #include <cstdint>
@@ -25,7 +27,6 @@
 
 #include "common/strings.h"
 #include "packet/custom_field_fixed_size_interface.h"
-#include "storage/serializable.h"
 
 namespace bluetooth {
 namespace common {

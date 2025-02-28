@@ -1,0 +1,83 @@
+// Common variables
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+cc_library_static {
+    name: "libbluetooth_storage",
+    host_supported: true,
+    min_sdk_version: "Tiramisu",
+    apex_available: ["com.android.bt"],
+    defaults: ["fluoride_defaults"],
+    export_include_dirs: [
+        "include",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/bta/aics/include",
+        "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/storage/include",
+    ],
+    srcs: [
+        "src/btif_config.cc",
+        "src/btif_keystore.cc",
+        "src/btif_profile_storage.cc",
+        "src/btif_profile_storage.cc",
+        "src/btif_storage.cc",
+        "src/btif_storage.cc",
+        "src/classic_device.cc",
+        "src/config_cache.cc",
+        "src/config_cache_helper.cc",
+        "src/config_shim.cc",
+        "src/device.cc",
+        "src/le_device.cc",
+        "src/legacy_config_file.cc",
+        "src/mutation.cc",
+        "src/mutation_entry.cc",
+        "src/storage_module.cc",
+    ],
+    aidl: {
+        libs: ["bluetooth_constants"],
+    },
+    target: {
+        android: {
+        },
+        host: {
+        },
+    },
+    static_libs: [
+        "bluetooth_flags_c_lib",
+        "libbluetooth-types",
+        "libbluetooth_hci_pdl",
+        "libbluetooth_log",
+        "libbt-platform-protos-lite",
+        "libchrome",
+    ],
+    shared_libs: [
+        "libbinder",
+        "libcrypto",
+    ],
+}
+
+cc_test {
+    name: "libbluetooth_storage_test",
+    host_supported: true,
+    defaults: ["mts_defaults"],
+    srcs: [
+        "test/classic_device_test.cc",
+        "test/config_cache_helper_test.cc",
+        "test/config_cache_test.cc",
+        "test/device_test.cc",
+        "test/le_device_test.cc",
+        "test/legacy_config_file_test.cc",
+        "test/mutation_test.cc",
+        "test/storage_module_test.cc",
+    ],
+
+}

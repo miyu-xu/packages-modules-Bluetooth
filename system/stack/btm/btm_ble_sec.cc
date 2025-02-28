@@ -21,13 +21,13 @@
 
 #include <android_bluetooth_sysprop.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <cstddef>
 #include <cstdint>
 #include <optional>
 
-#include "btif/include/btif_storage.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "device/include/interop.h"
 #include "hci/controller_interface.h"

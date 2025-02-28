@@ -22,7 +22,6 @@ filegroup {
         "acl_api.cc",
         "acl_interface.cc",
         "btm_api.cc",
-        "config.cc",
         "distance_measurement_manager.cc",
         "dumpsys.cc",
         "hci_layer.cc",

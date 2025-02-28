@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "storage/classic_device.h"
+#include "classic_device.h"
 
 #include <algorithm>
 

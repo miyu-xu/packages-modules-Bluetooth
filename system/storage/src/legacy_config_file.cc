@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-#include "storage/legacy_config_file.h"
+#include "legacy_config_file.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/device.h>
 
 #include <cerrno>
 #include <fstream>
@@ -24,7 +25,6 @@
 
 #include "common/strings.h"
 #include "os/files.h"
-#include "storage/device.h"
 
 namespace bluetooth {
 namespace storage {

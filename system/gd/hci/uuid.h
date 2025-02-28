@@ -18,12 +18,12 @@
 
 #pragma once
 
+#include <bluetooth/storage/serializable.h>
+
 #include <array>
 #include <cstdint>
 #include <optional>
 #include <string>
-
-#include "storage/serializable.h"
 
 namespace bluetooth {
 

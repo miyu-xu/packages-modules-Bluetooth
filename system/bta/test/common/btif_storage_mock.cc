@@ -18,9 +18,9 @@
 #include "btif_storage_mock.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 
 #include "btif/include/btif_profile_storage.h"
-#include "btif/include/btif_storage.h"
 
 using namespace bluetooth;
 

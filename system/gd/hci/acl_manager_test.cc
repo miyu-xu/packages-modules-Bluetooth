@@ -17,6 +17,7 @@
 #include "hci/acl_manager.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/storage_module.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -38,7 +39,6 @@
 #include "os/fake_timer/fake_timerfd.h"
 #include "os/thread.h"
 #include "packet/raw_builder.h"
-#include "storage/storage_module.h"
 #include "test/mock/mock_main_shim_entry.h"
 
 using bluetooth::common::BidiQueue;
