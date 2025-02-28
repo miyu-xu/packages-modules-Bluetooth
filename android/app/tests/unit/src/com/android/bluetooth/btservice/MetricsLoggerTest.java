@@ -30,8 +30,6 @@ import com.android.bluetooth.BluetoothMetricsProto.BluetoothRemoteDeviceInformat
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 
-import com.google.common.hash.BloomFilter;
-import com.google.common.hash.Funnels;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.junit.After;
@@ -41,7 +39,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -238,7 +235,6 @@ public class MetricsLoggerTest {
 
     @Test
     public void testDeviceNameToSha() throws IOException {
-        initTestingBloomfilter();
         for (Map.Entry<String, String> entry : SANITIZED_DEVICE_NAME_MAP.entrySet()) {
             String deviceName = entry.getKey();
             String sha256 = MetricsLogger.getSha256String(entry.getValue());
@@ -289,16 +285,6 @@ public class MetricsLoggerTest {
 
     @Test
     public void uploadEmptyDeviceName() throws IOException {
-        initTestingBloomfilter();
         assertThat(mTestableMetricsLogger.logAllowlistedDeviceNameHash(1, "")).isEmpty();
-    }
-
-    private void initTestingBloomfilter() throws IOException {
-        byte[] bloomfilterData =
-                DeviceBloomfilterGenerator.hexStringToByteArray(
-                        DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
-        mTestableMetricsLogger.setBloomfilter(
-                BloomFilter.readFrom(
-                        new ByteArrayInputStream(bloomfilterData), Funnels.byteArrayFunnel()));
     }
 }
