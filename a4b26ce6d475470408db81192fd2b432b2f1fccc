@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f80720e_016f5adf",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-28T02:43:33Z",
+      "side": 1,
+      "message": ":) I agree that would be amazing. Although I would assume it\u0027s not super easy because the convertion from class to record class is very case by case; hard to automate. It\u0027s pretty fitting for this class but there are some where not every field of the class is `final` able (even if most are) or any customatization in the setting of fields or getter of fields which is not possible to do with a record class.\n\nAlthough I guess if there was a lint or automation, then it could be good to run it and manually verify each change.\n\nThank you for the CC William. I\u0027ll look into this further.",
+      "parentUuid": "f31286a7_2d9523cd",
+      "range": {
+        "startLine": 189,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 36
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "211c3994_a4847b97",
