@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f31286a7_2d9523cd",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T00:28:06Z",
+      "side": 1,
+      "message": "I don\u0027t think such thing exist, but that would have been amazing ^^\n@ofy@google.com FYI ;)",
+      "parentUuid": "314327be_25d25c4d",
+      "range": {
+        "startLine": 189,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 36
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "211c3994_a4847b97",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3beee361_85434da4",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/bip/BipImageProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T00:28:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "211c3994_a4847b97",
+      "range": {
+        "startLine": 163,
+        "startChar": 56,
+        "endLine": 166,
+        "endChar": 60
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e5fbd10_b86abf55",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-02-27T17:18:33Z",
       "side": 1,
       "message": "follow up: record candidate",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "a4b26ce6d475470408db81192fd2b432b2f1fccc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "450d9692_4dd5bcd2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T00:28:06Z",
+      "side": 1,
+      "message": "@ofy@google.com here too ? 😊",
+      "parentUuid": "7e5fbd10_b86abf55",
       "range": {
         "startLine": 19,
         "startChar": 13,
