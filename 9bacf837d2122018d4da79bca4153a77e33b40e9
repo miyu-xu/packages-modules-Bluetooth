@@ -46,6 +46,30 @@
       },
       "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb96a71f_8581e815",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T00:46:25Z",
+      "side": 1,
+      "message": "Ideally, we should restrict the visibility to private whenever possible. Sometimes, package private and in last ressort public.\n\nSince unit test should be done from within the same package, we could imagine expanding the visibility of a field/method from private to package private, and by doing so, annotate that we made the field more visibile than necessary for test purposes.\n\nI agree with the doc, it is a code smell to have to expand the visibility to public JUST for test. That mean a method that the details of implementation of class is accessed by the test of another class, may be ok, but definitively suspicious.\n\n----\n\nBack to my comment.\n\nIf the code from package A is calling a \"VisibleForTesting public\" from package B, or same for calling a \"VisibleForTesting package private\" in the same package, this is an error, as we are calling a method that is expose JUST for test while not being in test.\nThis \"error\" hasn\u0027t been check historically, until I enforced the lint as an Error.\n\nBut... there was thousands of errors so I couldn\u0027t enable the error check and fix them all.\nI created a \"baseline\" file that contained all the current error, and allowed them to be for the time beeing. This file was 20K lines long I believe ^^\n\nToday, the error is enforced, and when fixing the usage, the lint could be cleaned to remove the now un-nececessary entrie in the exception file.",
+      "parentUuid": "2933d74e_67052226",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
