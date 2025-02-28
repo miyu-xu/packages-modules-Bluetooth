@@ -15,6 +15,12 @@
  */
 #pragma once
 
+#include <bluetooth/storage/config_cache.h>
+#include <bluetooth/storage/config_cache_helper.h>
+#include <bluetooth/storage/config_keys.h>
+#include <bluetooth/storage/mutation_entry.h>
+#include <bluetooth/storage/serializable.h>
+
 #include <functional>
 #include <limits>
 #include <optional>
@@ -28,11 +34,6 @@
 #include "hci/class_of_device.h"
 #include "hci/enum_helper.h"
 #include "hci/uuid.h"
-#include "storage/config_cache.h"
-#include "storage/config_cache_helper.h"
-#include "storage/config_keys.h"
-#include "storage/mutation_entry.h"
-#include "storage/serializable.h"
 
 namespace bluetooth {
 namespace storage {

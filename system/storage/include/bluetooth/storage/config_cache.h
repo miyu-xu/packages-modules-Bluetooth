@@ -29,8 +29,8 @@
 #include "common/list_map.h"
 #include "common/lru_cache.h"
 #include "hci/address.h"
+#include "mutation_entry.h"
 #include "os/utils.h"
-#include "storage/mutation_entry.h"
 
 namespace bluetooth {
 namespace storage {

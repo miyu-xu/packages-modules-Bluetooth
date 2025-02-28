@@ -17,13 +17,13 @@
 #define LOG_TAG "bta_hh_headtracker"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
 #include "bta/hh/bta_hh_int.h"
 #include "bta_hh_api.h"
-#include "btif/include/btif_storage.h"
 #include "gatt/database.h"
 #include "gatt_api.h"
 #include "gattdefs.h"

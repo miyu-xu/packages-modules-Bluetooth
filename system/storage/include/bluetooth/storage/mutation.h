@@ -17,8 +17,8 @@
 
 #include <queue>
 
-#include "storage/config_cache.h"
-#include "storage/mutation_entry.h"
+#include "config_cache.h"
+#include "mutation_entry.h"
 
 namespace bluetooth {
 namespace storage {

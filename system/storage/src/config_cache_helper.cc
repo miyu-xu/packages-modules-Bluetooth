@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-#include "storage/config_cache_helper.h"
-
 #include <bluetooth/log.h>
+#include <bluetooth/storage/config_cache_helper.h>
 
 #include "common/numbers.h"
 #include "common/strings.h"

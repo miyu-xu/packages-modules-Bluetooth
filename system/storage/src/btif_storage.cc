@@ -29,14 +29,15 @@
  */
 
 #define LOG_TAG "bt_btif_storage"
-#include "btif/include/btif_storage.h"
-
 #include <alloca.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 #ifndef TARGET_FLOSS
 #include <cutils/multiuser.h>
 #endif
+#include <bluetooth/storage/btif_config.h>
+#include <bluetooth/storage/config_keys.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -47,7 +48,6 @@
 
 #include "bta/include/bta_gatts_co.h"
 #include "btif/include/btif_api.h"
-#include "btif/include/btif_config.h"
 #include "btif/include/btif_dm.h"
 #include "btif/include/btif_util.h"
 #include "btif/include/core_callbacks.h"
@@ -59,7 +59,6 @@
 #include "osi/include/allocator.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/bt_uuid16.h"
-#include "storage/config_keys.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 

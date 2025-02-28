@@ -32,6 +32,8 @@
 #include <base/functional/bind.h>
 #include <base/functional/callback.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_keystore.h>
+#include <bluetooth/storage/btif_storage.h>
 
 #include <cstdint>
 #include <cstdlib>
@@ -69,7 +71,6 @@
 #include "btif/include/btif_hf.h"
 #include "btif/include/btif_hf_client.h"
 #include "btif/include/btif_hh.h"
-#include "btif/include/btif_keystore.h"
 #include "btif/include/btif_le_audio.h"
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_pan.h"
@@ -78,7 +79,6 @@
 #include "btif/include/btif_sdp.h"
 #include "btif/include/btif_sock.h"
 #include "btif/include/btif_sock_logging.h"
-#include "btif/include/btif_storage.h"
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "common/address_obfuscator.h"

@@ -15,10 +15,10 @@
  */
 #pragma once
 
+#include <bluetooth/storage/config_cache.h>
+
 #include <string>
 #include <utility>
-
-#include "storage/config_cache.h"
 
 namespace bluetooth {
 namespace storage {

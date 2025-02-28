@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "storage/le_device.h"
+#include "le_device.h"
 
 namespace bluetooth {
 namespace storage {

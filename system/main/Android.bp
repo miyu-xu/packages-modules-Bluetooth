@@ -165,7 +165,6 @@ cc_test {
         "shim/acl_api.cc",
         "shim/acl_interface.cc",
         "shim/btm_api.cc",
-        "shim/config.cc",
         "shim/distance_measurement_manager.cc",
         "shim/dumpsys.cc",
         "shim/hci_layer.cc",

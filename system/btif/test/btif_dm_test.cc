@@ -16,6 +16,7 @@
 
 #include "btif/include/btif_dm.h"
 
+#include <bluetooth/storage/storage_module.h>
 #include <com_android_bluetooth_flags.h>
 #include <flag_macros.h>
 #include <gtest/gtest.h>
@@ -31,7 +32,6 @@
 #include "module.h"
 #include "stack/include/bt_dev_class.h"
 #include "stack/include/btm_ble_api_types.h"
-#include "storage/storage_module.h"
 #include "test/fake/fake_osi.h"
 #include "test/mock/mock_osi_properties.h"
 

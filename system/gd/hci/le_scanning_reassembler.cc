@@ -16,6 +16,7 @@
 #include "hci/le_scanning_reassembler.h"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/storage_module.h>
 
 #include <memory>
 #include <unordered_map>
@@ -28,7 +29,6 @@
 #include "hci/le_scanning_interface.h"
 #include "module.h"
 #include "os/handler.h"
-#include "storage/storage_module.h"
 
 namespace bluetooth::hci {
 

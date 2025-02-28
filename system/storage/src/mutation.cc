@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "storage/mutation.h"
+#include <bluetooth/storage/mutation.h>
 
 namespace bluetooth {
 namespace storage {

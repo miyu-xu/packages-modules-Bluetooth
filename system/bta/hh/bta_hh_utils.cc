@@ -18,6 +18,7 @@
 #define LOG_TAG "bt_bta_hh"
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <string.h>  // memset
 
 #include <cstdint>
@@ -26,7 +27,6 @@
 #include "bt_name.h"
 #include "bta/hh/bta_hh_int.h"
 #include "bta_hh_api.h"
-#include "btif/include/btif_storage.h"
 #include "device/include/interop.h"
 #include "hiddefs.h"
 #include "internal_include/bt_target.h"

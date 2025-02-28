@@ -28,6 +28,7 @@
 
 #include <android_bluetooth_sysprop.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
@@ -51,7 +52,6 @@
 #include "btif/include/btif_av.h"
 #include "btif/include/btif_av_co.h"
 #include "btif/include/btif_config.h"
-#include "btif/include/btif_storage.h"
 #include "btm_api_types.h"
 #include "common/message_loop_thread.h"
 #include "device/include/device_iot_conf_defs.h"

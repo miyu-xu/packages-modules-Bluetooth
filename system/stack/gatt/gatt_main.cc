@@ -23,10 +23,10 @@
  ******************************************************************************/
 
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_storage.h>
 #include <com_android_bluetooth_flags.h>
 
 #include "btif/include/btif_dm.h"
-#include "btif/include/btif_storage.h"
 #include "btif/include/stack_manager_t.h"
 #include "device/include/interop.h"
 #include "internal_include/bt_target.h"

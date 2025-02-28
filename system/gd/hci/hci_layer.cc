@@ -20,6 +20,7 @@
 #include <signal.h>
 #endif
 #include <bluetooth/log.h>
+#include <bluetooth/storage/storage_module.h>
 
 #include <map>
 #include <utility>
@@ -38,7 +39,6 @@
 #include "os/system_properties.h"
 #include "osi/include/stack_power_telemetry.h"
 #include "packet/raw_builder.h"
-#include "storage/storage_module.h"
 
 namespace bluetooth {
 namespace hci {

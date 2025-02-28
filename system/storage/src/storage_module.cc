@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-#include "storage/storage_module.h"
-
 #include <bluetooth/log.h>
+#include <bluetooth/storage/config_cache.h>
+#include <bluetooth/storage/config_keys.h>
+#include <bluetooth/storage/mutation.h>
+#include <bluetooth/storage/storage_module.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <chrono>
@@ -26,16 +28,13 @@
 #include <utility>
 
 #include "common/bind.h"
+#include "legacy_config_file.h"
 #include "metrics/counter_metrics.h"
 #include "os/alarm.h"
 #include "os/files.h"
 #include "os/handler.h"
 #include "os/parameter_provider.h"
 #include "os/system_properties.h"
-#include "storage/config_cache.h"
-#include "storage/config_keys.h"
-#include "storage/legacy_config_file.h"
-#include "storage/mutation.h"
 
 namespace bluetooth {
 namespace storage {

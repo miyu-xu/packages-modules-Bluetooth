@@ -16,6 +16,8 @@
 
 #include "main/shim/entry.h"
 
+#include <bluetooth/storage/storage_module.h>
+
 #include "hal/snoop_logger.h"
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
@@ -31,7 +33,6 @@
 #include "main/shim/stack.h"
 #include "metrics/counter_metrics.h"
 #include "os/handler.h"
-#include "storage/storage_module.h"
 
 namespace bluetooth {
 namespace shim {

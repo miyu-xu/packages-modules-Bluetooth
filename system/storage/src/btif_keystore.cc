@@ -16,17 +16,16 @@
 
 /* BluetoothKeystore Interface */
 
-#include "btif_keystore.h"
-
 #include <base/functional/bind.h>
 #include <base/location.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_keystore.h>
 #include <hardware/bluetooth.h>
 
 #include <map>
 
-#include "btif_common.h"
-#include "main/shim/config.h"
+#include "btif/include/btif_common.h"
+#include "config_shim.h"
 #include "os/parameter_provider.h"
 
 using base::Bind;

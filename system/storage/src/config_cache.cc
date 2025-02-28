@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include "storage/config_cache.h"
-
 #include <bluetooth/log.h>
+#include <bluetooth/storage/config_cache.h>
+#include <bluetooth/storage/mutation.h>
 
 #include <ios>
 #include <sstream>
@@ -24,7 +24,6 @@
 
 #include "hci/enum_helper.h"
 #include "os/parameter_provider.h"
-#include "storage/mutation.h"
 
 namespace {
 

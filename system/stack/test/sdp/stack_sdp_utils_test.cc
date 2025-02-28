@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <bluetooth/storage/btif_storage.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <stdlib.h>
 
 #include <cstddef>
 
-#include "btif/include/btif_storage.h"
 #include "btif/include/stack_manager_t.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"

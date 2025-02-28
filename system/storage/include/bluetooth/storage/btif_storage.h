@@ -29,8 +29,8 @@
 #include "stack/include/btm_sec_api_types.h"
 #include "types/ble_address_with_type.h"
 #include "types/bluetooth/uuid.h"
-#include "types/raw_address.h"
 #include "types/bt_transport.h"
+#include "types/raw_address.h"
 
 /*******************************************************************************
  *  Constants & Macros

@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include <bluetooth/storage/serializable.h>
+
 #include <array>
 #include <cstring>
 #include <initializer_list>
@@ -26,7 +28,6 @@
 #include <string>
 
 #include "packet/custom_field_fixed_size_interface.h"
-#include "storage/serializable.h"
 
 namespace bluetooth {
 namespace hci {

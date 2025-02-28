@@ -23,10 +23,11 @@
 // Mock include file to share data between tests and mock
 #include "test/mock/mock_btif_storage.h"
 
+#include <bluetooth/storage/btif_storage.h>
+
 #include <cstdint>
 
 #include "btif/include/btif_api.h"
-#include "btif/include/btif_storage.h"
 #include "test/common/mock_functions.h"
 
 // Original usings

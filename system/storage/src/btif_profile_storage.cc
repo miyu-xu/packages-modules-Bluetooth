@@ -18,10 +18,12 @@
 
 #define LOG_TAG "bt_btif_profile_storage"
 
-#include "btif_profile_storage.h"
-
 #include <alloca.h>
 #include <bluetooth/log.h>
+#include <bluetooth/storage/btif_config.h>
+#include <bluetooth/storage/btif_profile_storage.h>
+#include <bluetooth/storage/btif_storage.h>
+#include <bluetooth/storage/config_keys.h>
 #include <com_android_bluetooth_flags.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,23 +34,20 @@
 #include <utility>
 #include <vector>
 
-#include "bta_csis_api.h"
-#include "bta_groups.h"
-#include "bta_has_api.h"
-#include "bta_hd_api.h"
-#include "bta_hearing_aid_api.h"
-#include "bta_hh_api.h"
-#include "bta_le_audio_api.h"
-#include "bta_vc_api.h"
+#include "bta/include/bta_csis_api.h"
+#include "bta/include/bta_groups.h"
+#include "bta/include/bta_has_api.h"
+#include "bta/include/bta_hd_api.h"
+#include "bta/include/bta_hearing_aid_api.h"
+#include "bta/include/bta_hh_api.h"
+#include "bta/include/bta_le_audio_api.h"
+#include "bta/include/bta_vc_api.h"
 #include "btif/include/btif_dm.h"
+#include "btif/include/btif_hh.h"
 #include "btif/include/btif_jni_task.h"
-#include "btif_config.h"
-#include "btif_hh.h"
-#include "btif_storage.h"
 #include "hardware/bluetooth.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/main_thread.h"
-#include "storage/config_keys.h"
 #include "types/ble_address_with_type.h"
 #include "types/bluetooth/uuid.h"
 #include "types/bt_transport.h"
