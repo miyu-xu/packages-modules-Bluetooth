@@ -344,3 +344,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_suspend_instead_remove_when_no_context_validate"
+    namespace: "bluetooth"
+    description: "Use source modify instead of remove to trigger peripheral update of context availability"
+    bug: "399856521"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
