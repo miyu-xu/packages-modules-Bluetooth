@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "318ca36e_f0f21313",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T19:10:01Z",
+      "side": 1,
+      "message": "`pending_close_bda` is assigned when the `gatt_close_timer` is scheduled",
+      "range": {
+        "startLine": 548,
+        "startChar": 0,
+        "endLine": 548,
+        "endChar": 76
+      },
+      "revId": "d4f3d06262308a1a1fe528c28fa7c63519c5d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b396991a_1cbe93a0",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T19:10:01Z",
+      "side": 1,
+      "message": "From this file, the logic behind `pending_close_bda` is \n\n1. After `bta_dm_gatt_disc_complete`, we schedule a 1 second timer `gatt_close_timer` to close the discovery GATT client when no one else is using it. This assigns `pending_close_bda` to the current `peer_bdaddr`\n\nThen two things could happen:\n\n2.1 When `gatt_close_timer` pops, it closes the discovery GATT client in `gatt_close_timer_cb` and it clears `pending_close_bda` when the close API is called\n\n2.2. When someone calls `btm_dm_start_gatt_discovery`, it checks if the discovering device address is the same as `pending_close_bda`, if so, cancel `gatt_close_timer_cb` and clear `pending_close_bda` so that we do not create a duplicate GATT client for the same device. \n\nWith your CL change\n\n1. `gatt_close_timer` is scheduled for a particular GATT client, with a `conn_id`\n\n2.1 When `gatt_close_timer` pops, it closes the discovery GATT client in `gatt_close_timer_cb` with the `conn_id` and it clears `pending_close_bda` when the close API is called\n\n2.2. When someone calls `btm_dm_start_gatt_discovery`, it checks if the discovering device address is the same as `pending_close_bda`, if so, cancel `gatt_close_timer_cb` and clear `pending_close_bda` so that we do not create a duplicate GATT client for the same device. \n\nThere is an implicit association with the closing `conn_id` and `pending_close_bda` and `gatt_close_timer` can only be scheduled once. If `gatt_close_timer` is scheduled twice for another `conn_id` with a different MAC address, we have a bug. However this is highly unlikely because only one GATT service discovery could happen at a time and for two to complete within 1 second, the chance is very low. \n\nAnd hence I think the logic is indeed correct since `pending_close_bda` is only tracking the `gatt_close_timer`, but this is very ugly. \n\nWhen makes it look a bit nicer is to add a \n- pending_close_conn_id\nAnd do not pass conn_id as a field in the timer since we assume the timer can only be scheduled once. \n\nThen before setting `gatt_close_timer` or calling `bta_dm_close_gatt_conn`, we always set `pending_close_conn_id` to `bta_dm_discovery_cb.conn_id`",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 61
+      },
+      "revId": "d4f3d06262308a1a1fe528c28fa7c63519c5d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c633c55d_367e5459",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T19:10:01Z",
+      "side": 1,
+      "message": "Any it is checked and cleared when someone tries to start discovery on the same device",
+      "range": {
+        "startLine": 609,
+        "startChar": 6,
+        "endLine": 609,
+        "endChar": 54
+      },
+      "revId": "d4f3d06262308a1a1fe528c28fa7c63519c5d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
