@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95a5f6ee_b49d00e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-28T22:02:10Z",
+      "side": 1,
+      "message": "only minor nits, looks like a general improvement for organization and clarity",
+      "revId": "a73bcc371c53b6ffb167564c38d05c18f1cfb87b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a80438_038665ee",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-28T22:02:10Z",
+      "side": 1,
+      "message": "nit: maybe \"incoming data and connections\"",
+      "range": {
+        "startLine": 255,
+        "startChar": 14,
+        "endLine": 255,
+        "endChar": 28
+      },
+      "revId": "a73bcc371c53b6ffb167564c38d05c18f1cfb87b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b5ba84_1172aea2",
+        "filename": "system/rust/src/gatt/ffi.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-28T22:02:10Z",
+      "side": 1,
+      "message": "nit: can probably remove this, since do_in_rust_thread doesn\u0027t exist anymore, alternately add \"from Handlers\"?",
+      "range": {
+        "startLine": 302,
+        "startChar": 21,
+        "endLine": 303,
+        "endChar": 22
+      },
+      "revId": "a73bcc371c53b6ffb167564c38d05c18f1cfb87b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
