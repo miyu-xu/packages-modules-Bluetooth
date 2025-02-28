@@ -16,6 +16,29 @@
       "message": "Unsafe Rust LGTM.",
       "revId": "a07d08d350b3c743e8e04cda0c91ab4daea799ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbd323ee_af505839",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1073753
+      },
+      "writtenOn": "2025-02-28T22:18:41Z",
+      "side": 1,
+      "message": "nit: maybe consiter finish_non_exhaustive() since it is not actually empty?",
+      "range": {
+        "startLine": 89,
+        "startChar": 44,
+        "endLine": 89,
+        "endChar": 50
+      },
+      "revId": "a07d08d350b3c743e8e04cda0c91ab4daea799ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
