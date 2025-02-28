@@ -206,6 +206,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2661590_2fe00288",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-28T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2df3f13f_620d99c6",
+      "range": {
+        "startLine": 277,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 28
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da14382e_729d61c5",
@@ -253,6 +277,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1dd9812_83363f59",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-28T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34719e90_c659c87b",
+      "range": {
+        "startLine": 284,
+        "startChar": 22,
+        "endLine": 284,
+        "endChar": 46
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0ee2241_f67fb72c",
@@ -290,6 +338,30 @@
       "side": 1,
       "message": "I\u0027d still prefer decoupling the delay and the disconnect so in the future we make any change to the disconnect process, the delay process won\u0027t be affected. This shall also decrease the complexity of the other tasks.",
       "parentUuid": "d0ee2241_f67fb72c",
+      "range": {
+        "startLine": 288,
+        "startChar": 50,
+        "endLine": 288,
+        "endChar": 72
+      },
+      "revId": "5de126d567f80ff5314d52de717f659fe30c8d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59cdc87f_ad40dad4",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-02-28T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "690e85b8_e96e4705",
       "range": {
         "startLine": 288,
         "startChar": 50,
