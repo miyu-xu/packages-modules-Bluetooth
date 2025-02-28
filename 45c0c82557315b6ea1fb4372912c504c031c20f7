@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4beca39_2d525fa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-02-28T17:59:47Z",
+      "side": 1,
+      "message": "I\u0027m not sure we can, `TbsService.isEnabled` and `McpService.isEnabled` are static functions, so to my understanding cannot be mocked?\n\nIt\u0027s not immediate to me whether there\u0027s a simple alternative way.",
+      "parentUuid": "04a79525_d140d591",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6942b20_ee366242",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6de0aedd_6742bb20",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-02-28T17:59:47Z",
+      "side": 1,
+      "message": "I was actually thinking the opposite; replace the above with `LeAudioService .isBroadcastEnabled`, because it\u0027s more direct than:\n\n`AdapterService#getSupportedProfilesBitMask` -\u003e `Config.getSupportedProfilesBitMask` -\u003e `Config.PROFILE_SERVICES_AND_FLAGS` -\u003e `LeAudioService.isBroadcastEnabled`?",
+      "parentUuid": "b6942b20_ee366242",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05eac7e6_94e4e237",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
@@ -65,6 +101,24 @@
       "writtenOn": "2025-02-28T01:38:37Z",
       "side": 1,
       "message": "why do we use McpService to decide TMAP_ROLE_FLAG_UMS(unicast media sender)?",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197e9d53_a2875ad7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-02-28T17:59:47Z",
+      "side": 1,
+      "message": "Sorry, I\u0027m not sure I follow, doesn\u0027t `McpService` correspond to the MCP (Media Control Profile/Point) Server? Doesn\u0027t Table 3.5 in TMAP v1.0 imply that if MCP Server is not enabled, then we cannot be TMAP UMS?",
+      "parentUuid": "05eac7e6_94e4e237",
       "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
