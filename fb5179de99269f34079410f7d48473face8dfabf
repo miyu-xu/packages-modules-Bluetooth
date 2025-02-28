@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb83668_a3ff9315",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-28T16:43:41Z",
+      "side": 1,
+      "message": "Already linked as static through the defaults, do we need the additional library here ?",
+      "range": {
+        "startLine": 593,
+        "startChar": 9,
+        "endLine": 593,
+        "endChar": 18
+      },
+      "revId": "fb5179de99269f34079410f7d48473face8dfabf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "220a3ea7_6518800d",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-28T16:43:41Z",
+      "side": 1,
+      "message": "This is already linked as static through btstack_fuzzer_default, do we still need this addition ? (same for the other fuzz targets)",
+      "range": {
+        "startLine": 441,
+        "startChar": 9,
+        "endLine": 441,
+        "endChar": 17
+      },
+      "revId": "fb5179de99269f34079410f7d48473face8dfabf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
