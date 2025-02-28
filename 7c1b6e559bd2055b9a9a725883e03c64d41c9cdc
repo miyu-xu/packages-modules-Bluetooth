@@ -16,6 +16,75 @@
       "message": "I still do not agree with this patch for various reasons:\n\n- nowhere is clearly explicited what the cost is in terms of latency of connecting with an incorrect interval instead of the relaxed interval and then switching later. \n\n- the timeout of 24h for removing the device from the list is completely arbitrary.\n\nIf the severity is high enough that we want a fix, then maybe we should consider a change to the database to indicate the preferred connection interval for a bonded device, instead of doing this short term workaround.",
       "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed66e4f_7c0a10ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-28T04:35:26Z",
+      "side": 1,
+      "message": "As we discussed offline, requested removal of the timeout and removing the devices. We shouldn\u0027t need to do that.",
+      "parentUuid": "961ca19c_24a5bcc0",
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "989756fc_e7768b31",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-02-28T04:35:26Z",
+      "side": 1,
+      "message": "Let\u0027s remove this, we don\u0027t need it. The next time the stack starts the list of relaxed interval devices will be clear. Even if that doesn\u0027t happen for a while the end result is the previous behavior of relaxed initial parameters for these devices.",
+      "range": {
+        "startLine": 1330,
+        "startChar": 7,
+        "endLine": 1330,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "756ed5b3_cb4fa0ea",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 875,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1329,
+                "startChar": 0,
+                "endLine": 1347,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
