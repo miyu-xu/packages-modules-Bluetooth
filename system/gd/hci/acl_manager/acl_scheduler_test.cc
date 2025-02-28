@@ -52,7 +52,7 @@ MATCHER(IsSet, "Future is set") {
 class AclSchedulerTest : public ::testing::Test {
 protected:
   void SetUp() override {
-    fake_registry_.Start<AclScheduler>(&thread_);
+    fake_registry_.Start<AclScheduler>(&thread_, &handler_);
     ASSERT_TRUE(fake_registry_.IsStarted<AclScheduler>());
 
     client_handler_ = fake_registry_.GetTestModuleHandler(&AclScheduler::Factory);
@@ -99,6 +99,7 @@ protected:
 
   TestModuleRegistry fake_registry_;
   os::Thread& thread_ = fake_registry_.GetTestThread();
+  os::Handler& handler_ = fake_registry_.GetTestHandler();
   AclScheduler* acl_scheduler_ = nullptr;
   os::Handler* client_handler_ = nullptr;
 };
