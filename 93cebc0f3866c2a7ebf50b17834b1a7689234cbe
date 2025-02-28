@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92ef4da3_ede758e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T02:03:02Z",
+      "side": 1,
+      "message": "Without flag rfcomm_fix_mux_collision_handling, this test consistently fails due to mux collision issue.  With the flag, it passes.",
+      "revId": "93cebc0f3866c2a7ebf50b17834b1a7689234cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
