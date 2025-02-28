@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea61da60_5fb5cdb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T18:32:03Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "aab8d197_fed9e603",
+      "revId": "93cebc0f3866c2a7ebf50b17834b1a7689234cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "624aa0dd_efa14acd",
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "346ef2cf_9b2b056d",
+        "filename": "android/pandora/server/src/Rfcomm.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T18:32:03Z",
+      "side": 1,
+      "message": "I just tested this again, it\u0027s not needed",
+      "parentUuid": "624aa0dd_efa14acd",
+      "range": {
+        "startLine": 143,
+        "startChar": 58,
+        "endLine": 143,
+        "endChar": 62
+      },
+      "revId": "93cebc0f3866c2a7ebf50b17834b1a7689234cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d54b98c_0c5992c8",
@@ -71,6 +113,30 @@
       "writtenOn": "2025-02-28T02:20:10Z",
       "side": 1,
       "message": "I am not familliar with the issue, and I have a hard time understanding what make a collision in this test: connect, pair, then socket. Seems normal scenario to me...\n\nAlso, I am not familliar with rfcomm so maybe that\u0027s something obvious 😂",
+      "range": {
+        "startLine": 102,
+        "startChar": 14,
+        "endLine": 102,
+        "endChar": 39
+      },
+      "revId": "93cebc0f3866c2a7ebf50b17834b1a7689234cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37f33aba_117b48be",
+        "filename": "android/pandora/test/rfcomm_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T18:32:03Z",
+      "side": 1,
+      "message": "In this test we connect and pair before the RFCOMM connection begins (You\u0027ll notice the other test doesn\u0027t do this).  The collision is from HFP trying to connect to peer automatically while we\u0027re trying to accept peer\u0027s connection request.\n\nI\u0027ll add a comment to make this more clear",
+      "parentUuid": "7d54b98c_0c5992c8",
       "range": {
         "startLine": 102,
         "startChar": 14,
