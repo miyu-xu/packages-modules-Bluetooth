@@ -77,6 +77,30 @@
       ],
       "revId": "fdef5e65881102432f5d50b015175c93ddb15ae7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6546d4ad_03187440",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-02-28T23:58:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45eab077_71843fe6",
+      "range": {
+        "startLine": 673,
+        "startChar": 10,
+        "endLine": 673,
+        "endChar": 14
+      },
+      "revId": "fdef5e65881102432f5d50b015175c93ddb15ae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
