@@ -22,6 +22,30 @@
       },
       "revId": "98344c5a73c034ce710025b7636a050887da9b75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22422370_2a5bda6e",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 3596272
+      },
+      "writtenOn": "2025-02-28T01:49:59Z",
+      "side": 1,
+      "message": "`libchrome` used to have its own internal functions for double to string conversion. Now it uses a separate package to provide the same feature. Bluetooth depends on libchrome, so it requires them to be linked in, otherwise it will cause linking errors.\n\nPlease note this is no different from `libevent` which you already depend on to support `MessagePump`.",
+      "parentUuid": "11abab67_e467b216",
+      "range": {
+        "startLine": 132,
+        "startChar": 9,
+        "endLine": 132,
+        "endChar": 28
+      },
+      "revId": "98344c5a73c034ce710025b7636a050887da9b75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
