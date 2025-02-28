@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc01d22c_ffae8357",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-02-28T09:56:43Z",
+      "side": 1,
+      "message": "This should be a good improvement covering intermediate state when broadcast is creating.",
+      "revId": "86d54d6aeb61ad64471c37919dda263ab098b034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
