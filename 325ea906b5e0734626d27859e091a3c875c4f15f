@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329891c3_1b451769",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-28T17:01:24Z",
+      "side": 1,
+      "message": "Just curious, but what does the data field represent here ?",
+      "range": {
+        "startLine": 43,
+        "startChar": 23,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "325ea906b5e0734626d27859e091a3c875c4f15f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e638204_1e13faff",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-02-28T17:01:24Z",
+      "side": 1,
+      "message": "nit: avoid abbreviations\n\nCan you add more information about this field ?\nIs it the encoded packet size, or the size of the PCM audio frame ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "325ea906b5e0734626d27859e091a3c875c4f15f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
