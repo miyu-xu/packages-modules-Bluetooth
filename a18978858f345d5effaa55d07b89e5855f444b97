@@ -34,6 +34,24 @@
       ],
       "revId": "a18978858f345d5effaa55d07b89e5855f444b97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd9bd17_01994ac8",
+        "filename": "system/bta/test/gatt/database_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-02-28T18:14:42Z",
+      "side": 1,
+      "message": "Thanks for catching Jakub, added this to test and am now able to recreate the issue. Will work on fixing before sending this back out for review.",
+      "parentUuid": "32a72190_1bbea096",
+      "revId": "a18978858f345d5effaa55d07b89e5855f444b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
