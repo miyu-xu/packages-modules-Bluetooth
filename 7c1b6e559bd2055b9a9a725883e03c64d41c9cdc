@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00166126_1f059eb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2025-02-28T07:26:11Z",
+      "side": 1,
+      "message": "henrichataing@, you can find the details and the QA test results in comment 7 of the bug. I\u0027ve removed the 24-hour timeout in the newest patch set. Now the list works just like the database you mentioned. Thanks!\n\nokamil@, I really appreciate your patience and suggestions in reviewing this change. Many thanks!",
+      "parentUuid": "7ed66e4f_7c0a10ab",
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34c46ee3_e73ebc12",
