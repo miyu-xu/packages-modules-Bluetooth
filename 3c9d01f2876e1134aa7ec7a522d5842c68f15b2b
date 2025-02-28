@@ -70,6 +70,24 @@
       "parentUuid": "e396d75d_28ac70d6",
       "revId": "3c9d01f2876e1134aa7ec7a522d5842c68f15b2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f36186ac_becfeb20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:21:28Z",
+      "side": 1,
+      "message": "avatar format had some trouble lately for me too.\n\nrepo upload is fine I believe",
+      "parentUuid": "3c373a66_ac38c0b7",
+      "revId": "3c9d01f2876e1134aa7ec7a522d5842c68f15b2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
