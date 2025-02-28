@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01b55b1e_3d249dd6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T00:15:15Z",
+      "side": 1,
+      "message": "shouldn\u0027t change this assignment after this change since the disconnecting connection ID may not be the same as `bta_dm_discovery_cb.conn_id`\n\nyou should check \n\n```\nif (!com::android::bluetooth::flags::bta_dm_disc_close_proper_conn_id() || conn_id \u003d\u003d bta_dm_discovery_cb.conn_id) {\n  bta_dm_discovery_cb.pending_close_bda \u003d RawAddress::kEmpty;\n  bta_dm_discovery_cb.conn_id \u003d GATT_INVALID_CONN_ID;\n}\n```",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 53
+      },
+      "revId": "fedb7e3ec8713ade0c76b52958aa92d85f5653ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
