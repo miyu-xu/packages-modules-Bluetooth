@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1fd9c64_9e6f9ea8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-28T00:44:33Z",
+      "side": 1,
+      "message": "Awesome change! Looking forward to it merging.",
+      "revId": "5dc01782f950fc8230230c55fcde9e60cad4e0af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
