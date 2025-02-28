@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6842001_5f69ccc0",
+        "filename": "system/rust/src/gatt/server/att_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-02-28T17:34:11Z",
+      "side": 1,
+      "message": "nit: specify which specification",
+      "range": {
+        "startLine": 275,
+        "startChar": 55,
+        "endLine": 275,
+        "endChar": 57
+      },
+      "revId": "e5b451335d35ee6fa9f66199a418592096e1e7dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54de08bd_2f2bebd7",
+        "filename": "system/rust/src/gatt/server/att_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-02-28T17:34:11Z",
+      "side": 1,
+      "message": "Would it make sense for this case to fail with a different error code to differentiate this scenario?",
+      "range": {
+        "startLine": 317,
+        "startChar": 38,
+        "endLine": 317,
+        "endChar": 59
+      },
+      "revId": "e5b451335d35ee6fa9f66199a418592096e1e7dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a19c389c_6ec41278",
+        "filename": "system/rust/src/gatt/server/att_client.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-02-28T17:34:11Z",
+      "side": 1,
+      "message": "Should this be a todo instead of a note? Is there plan to do this?",
+      "range": {
+        "startLine": 353,
+        "startChar": 16,
+        "endLine": 353,
+        "endChar": 25
+      },
+      "revId": "e5b451335d35ee6fa9f66199a418592096e1e7dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a7d965_99a01d54",
+        "filename": "system/rust/src/packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-02-28T17:34:11Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 264,
+        "startChar": 14,
+        "endLine": 264,
+        "endChar": 16
+      },
+      "revId": "e5b451335d35ee6fa9f66199a418592096e1e7dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
