@@ -74,7 +74,8 @@ class HciHalAndroidTest : public ::testing::Test {
 protected:
   void SetUp() override {
     thread_ = new Thread("test_thread", Thread::Priority::NORMAL);
-    hal = fake_registry_.Start<HciHal>(thread_);
+    handler_ = new os::Handler(thread_);
+    hal = fake_registry_.Start<HciHal>(thread_, handler_);
   }
 
   void TearDown() override {
@@ -87,6 +88,7 @@ protected:
 private:
   ModuleRegistry fake_registry_;
   Thread* thread_;
+  os::Handler* handler_;
 };
 
 TEST_F(HciHalAndroidTest, init) {
