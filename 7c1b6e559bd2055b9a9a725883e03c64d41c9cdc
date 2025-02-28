@@ -36,6 +36,74 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4191d317_719cc753",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-28T06:19:12Z",
+      "side": 1,
+      "message": "Logic for conn. params selection looks fine 😊",
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34c46ee3_e73ebc12",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-02-28T06:19:12Z",
+      "side": 1,
+      "message": "How about inverting the boolean?\n\n```\nif (prefer_relaxed_connection_interval) {\n   ...\n} else {\n   ...\n}\n \n```",
+      "range": {
+        "startLine": 891,
+        "startChar": 11,
+        "endLine": 891,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "50763b40_d75d1b48",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 891,
+                "startChar": 0,
+                "endLine": 892,
+                "endChar": 0
+              },
+              "replacement": "      if (prefer_relaxed_connection_interval) {\n        conn_interval_min \u003d LeConnectionParameters::GetMinConnIntervalRelaxed();\n        conn_interval_max \u003d LeConnectionParameters::GetMaxConnIntervalRelaxed();\n        log::debug(\"conn_interval_min\u003d{}, conn_interval_max\u003d{}\", conn_interval_min,\n                   conn_interval_max);\n      } else {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 900,
+                "startChar": 0,
+                "endLine": 905,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7c1b6e559bd2055b9a9a725883e03c64d41c9cdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "989756fc_e7768b31",
