@@ -16,6 +16,208 @@
       "message": "By favoring incoming connection, we now have the power to respond to SABM.  If that doesn\u0027t work, the outgoing connection is cached so it can be retried.",
       "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f7a99c_f39c7ac1",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:16:09Z",
+      "side": 1,
+      "message": "I would put instead:\n```\n// TODO: b/xxxxx - Delete pending_xxx when removing flag\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 94
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0be5498d_a64dbac2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_int.h",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "  // TODO: b/299298113 - Delete pending_xxx when removing flag\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5e798a_171e261d",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:16:09Z",
+      "side": 1,
+      "message": "`/*`  comment here ...",
+      "range": {
+        "startLine": 96,
+        "startChar": 3,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6de6bf_73e649aa",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:16:09Z",
+      "side": 1,
+      "message": "... but `//` here.\n\nCan we keep only one style on the file ?",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 10
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c56a056_3f7d0121",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:16:09Z",
+      "side": 1,
+      "message": "We can reduce nesting by using continue and inversing the condition",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 186,
+        "endChar": 7
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "97aa9a57_84bed0bd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_l2cap_if.cc",
+              "range": {
+                "startLine": 173,
+                "startChar": 0,
+                "endLine": 185,
+                "endChar": 0
+              },
+              "replacement": "      if (mcb \u003d\u003d nullptr || mcb-\u003ecached_lcid !\u003d lcid) {\n        continue;\n      }\n      if (result !\u003d tL2CAP_CONN::L2CAP_CONN_OK) {\n        // We cached the corresponding lcid but its connection failed.\n        // We can remove from cache\n        mcb-\u003ecached_lcid \u003d 0;\n      } else {\n        // we started accepting incoming connection and outgoing connection went through\n        log::warn(\n                \"Collision case: outgoing connection went through, \"\n                \"will retry if incoming connection fails\");\n        mcb-\u003ecollided_then_received_conn_cnf \u003d true;\n      }\n"
+            },
+            {
+              "path": "system/stack/rfcomm/rfc_l2cap_if.cc",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add74f64_dac1aa05",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:16:09Z",
+      "side": 1,
+      "message": "That doesn\u0027t change anything here, but best practice is to check the flag first to do anything (including checking something else, here, what is p_mcb is null for example, I know this can\u0027t happen here but I just wanted to gave an illustration )",
+      "range": {
+        "startLine": 287,
+        "startChar": 9,
+        "endLine": 288,
+        "endChar": 78
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9afa320f_8046f653",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T02:16:09Z",
+      "side": 1,
+      "message": "double spaces 😊",
+      "range": {
+        "startLine": 706,
+        "startChar": 47,
+        "endLine": 706,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "387b48d2_78548a5a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_mx_fsm.cc",
+              "range": {
+                "startLine": 706,
+                "startChar": 0,
+                "endLine": 707,
+                "endChar": 0
+              },
+              "replacement": " *                  and there is a cached_lcid. Attempts to retry the connection\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
