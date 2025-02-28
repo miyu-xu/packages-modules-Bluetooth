@@ -258,8 +258,14 @@ void Stack::Dump(int fd, std::promise<void> promise) const {
 void Stack::handle_start_up(ModuleList* modules, std::promise<void> promise) {
   pimpl_->counter_metrics_->Start();
   pimpl_->storage_->Start();
+<<<<<<< PATCH SET (e02721 Use Stack Handler for all Module Init)
+  registry_.Start(modules, stack_thread_, stack_handler_);
+||||||| BASE
+  registry_.Start(modules, stack_thread_);
+=======
   pimpl_->snoop_logger_->Start();
   registry_.Start(modules, stack_thread_);
+>>>>>>> BASE      (f5c103 bluetooth: flag: add "same_handler_for_all_modules")
   promise.set_value();
 }
 
