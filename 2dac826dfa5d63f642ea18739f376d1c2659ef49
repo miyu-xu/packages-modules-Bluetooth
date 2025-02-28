@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b5f9f98_5e40f425",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T19:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6f7a99c_f39c7ac1",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 94
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db5e798a_171e261d",
@@ -82,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad841ee6_37f52ef8",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T19:28:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "db5e798a_171e261d",
+      "range": {
+        "startLine": 96,
+        "startChar": 3,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d6de6bf_73e649aa",
@@ -95,6 +143,30 @@
       "writtenOn": "2025-02-28T02:16:09Z",
       "side": 1,
       "message": "... but `//` here.\n\nCan we keep only one style on the file ?",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 10
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "164edb93_89bd6104",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T19:28:56Z",
+      "side": 1,
+      "message": "`//` comments converted to be uniform with rest of the file",
+      "parentUuid": "5d6de6bf_73e649aa",
       "range": {
         "startLine": 103,
         "startChar": 9,
@@ -156,6 +228,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec4e4a9_b5877c08",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T19:28:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c56a056_3f7d0121",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 186,
+        "endChar": 7
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "add74f64_dac1aa05",
@@ -169,6 +265,30 @@
       "writtenOn": "2025-02-28T02:16:09Z",
       "side": 1,
       "message": "That doesn\u0027t change anything here, but best practice is to check the flag first to do anything (including checking something else, here, what is p_mcb is null for example, I know this can\u0027t happen here but I just wanted to gave an illustration )",
+      "range": {
+        "startLine": 287,
+        "startChar": 9,
+        "endLine": 288,
+        "endChar": 78
+      },
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eff67f0_74cdd62a",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T19:28:56Z",
+      "side": 1,
+      "message": "Fixed here and other places where the flag isn\u0027t checked first",
+      "parentUuid": "add74f64_dac1aa05",
       "range": {
         "startLine": 287,
         "startChar": 9,
@@ -216,6 +336,30 @@
           ]
         }
       ],
+      "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4071633_014608c8",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T19:28:56Z",
+      "side": 1,
+      "message": "I fixed double spaces all throughout the files I touched",
+      "parentUuid": "9afa320f_8046f653",
+      "range": {
+        "startLine": 706,
+        "startChar": 47,
+        "endLine": 706,
+        "endChar": 49
+      },
       "revId": "2dac826dfa5d63f642ea18739f376d1c2659ef49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
