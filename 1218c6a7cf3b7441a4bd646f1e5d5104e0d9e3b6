@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352b4405_c6a3d5e7",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-02-28T21:31:06Z",
+      "side": 1,
+      "message": "Should this line be flagged too ?",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 33
+      },
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
