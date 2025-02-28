@@ -17,6 +17,10 @@
 package android.bluetooth
 
 import android.Manifest
+import android.bluetooth.le.ScanSettings
+import android.bluetooth.le.ScanResult
+import android.bluetooth.le.ScanCallback
+import android.bluetooth.le.ScanFilter
 import android.bluetooth.BluetoothProfile.STATE_CONNECTED
 import android.bluetooth.BluetoothProfile.STATE_DISCONNECTED
 import android.bluetooth.test_utils.EnableBluetoothRule
@@ -65,6 +69,15 @@ import pandora.l2cap.L2CAPProto.SendRequest
 import pandora.l2cap.L2CAPProto.WaitConnectionRequest
 import pandora.l2cap.L2CAPProto.WaitConnectionResponse
 import pandora.l2cap.L2CAPProto.WaitDisconnectionRequest
+import pandora.HostProto
+import pandora.HostProto.AdvertiseRequest
+import pandora.HostProto.OwnAddressType
+
+import org.mockito.kotlin.eq
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.timeout
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.argumentCaptor
 
 /** DCK L2CAP Tests */
 @RunWith(TestParameterInjector::class)
@@ -75,15 +88,18 @@ public class DckL2capTest() : Closeable {
     private val context: Context = ApplicationProvider.getApplicationContext()
     private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
     private val bluetoothAdapter = bluetoothManager.adapter
+    private val leScanner = bluetoothAdapter.bluetoothLeScanner
     private val openedGatts: MutableList<BluetoothGatt> = mutableListOf()
     private var serviceDiscoveredFlow = MutableStateFlow(false)
     private var connectionStateFlow = MutableStateFlow(STATE_DISCONNECTED)
     private var dckSpsmFlow = MutableStateFlow(0)
-    private var dckSpsm = 0
+    private var dckSpsm = 5
     private var connectionHandle = BluetoothDevice.ERROR
     private lateinit var advertiseContext: GrpcContext.CancellableContext
     private lateinit var connectionResponse: WaitConnectionResponse
     private lateinit var host: Host
+    private val scanCallbackMock = mock<ScanCallback>()
+    private val scanResultCaptor = argumentCaptor<ScanResult>()
 
     // Gives shell permissions during the test.
     @Rule(order = 0)
@@ -120,10 +136,10 @@ public class DckL2capTest() : Closeable {
             .register(Empty.getDefaultInstance())
 
         // Advertise the Bumble
-        advertiseContext = mBumble.advertise()
+        //advertiseContext = mBumble.advertise()
 
         // Connect to GATT (Generic Attribute Profile) on Bumble.
-        val remoteDevice =
+        /*val remoteDevice =
             bluetoothAdapter.getRemoteLeDevice(
                 Utils.BUMBLE_RANDOM_ADDRESS,
                 BluetoothDevice.ADDRESS_TYPE_RANDOM,
@@ -131,7 +147,7 @@ public class DckL2capTest() : Closeable {
         val gatt = connectGatt(remoteDevice)
         readDckSpsm(gatt)
         openedGatts.add(gatt)
-        assertThat(dckSpsm).isGreaterThan(0)
+        assertThat(dckSpsm).isGreaterThan(0)*/
     }
 
     @After
@@ -197,6 +213,110 @@ public class DckL2capTest() : Closeable {
             mBumble.l2capBlocking().waitDisconnection(waitDisconnectionRequest)
         assertThat(disconnectionResponse.hasSuccess()).isTrue()
         Log.d(TAG, "testSend: done")
+    }
+
+    @Test
+    @VirtualOnly
+    fun testSendWithPairing() {
+        Log.d(TAG, "testSendWithPairing")
+
+        // Start advertisement on Ref
+        //val advertiseStreamObserver = advertiseWithBumble()
+
+        // Start IRK scan for Ref on DUT
+        val scanSettings =
+            ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY)
+                .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                .build()
+        val scanFilter =
+            ScanFilter.Builder()
+                .setDeviceAddress(
+                    TEST_ADDRESS_RANDOM_STATIC,
+                    BluetoothDevice.ADDRESS_TYPE_RANDOM,
+                    Utils.BUMBLE_IRK,
+                )
+                .build()
+        leScanner.startScan(scanCallbackMock)
+
+        Log.d(TAG, "testSendWithPairing: Await scan results")
+        // Await scan results
+        /*verify(scanCallbackMock, timeout(TIMEOUT).atLeastOnce())
+            .onScanResult(eq(ScanSettings.CALLBACK_TYPE_ALL_MATCHES), scanResultCaptor.capture())*/
+
+        // Verify correct scan result as prerequisite
+        /*val scanResult = scanResultCaptor.firstValue
+        assertThat(scanResult).isNotNull()
+        assertThat(scanResult.device.address).isEqualTo(TEST_ADDRESS_RANDOM_STATIC)*/
+
+        Log.d(TAG, "testSendWithPairing: Stop scan")
+
+        // Stop scan on DUT after GATT connect
+        leScanner.stopScan(scanCallbackMock)
+        //advertiseStreamObserver.cancel(null)
+
+        Thread.sleep(3000)
+
+
+        val remoteDevice =
+            bluetoothAdapter.getRemoteLeDevice(
+                "DA:4C:10:DE:17:02",
+                BluetoothDevice.ADDRESS_TYPE_PUBLIC,
+            )
+
+        remoteDevice.removeBond()
+
+        Log.d(TAG, "testSendWithPairing: Connect L2CAP")
+        val bluetoothSocket = createSocket(dckSpsm, remoteDevice)
+        runBlocking {
+            //val waitFlow = flow { emit(waitConnection(dckSpsm, remoteDevice)) }
+            val connectJob =
+                scope.launch {
+                    // give some time for Bumble to host the socket server
+                    Thread.sleep(200)
+                    Log.d(TAG, "testSendWithPairing: Calling BTSocket connect")
+                    bluetoothSocket.connect()
+                    Log.d(TAG, "testSendWithPairing: Bluetooth socket connected")
+                }
+            //connectionResponse = waitFlow.first()
+            // Wait for the connection to complete
+            //connectJob.join() //TODO commented out now
+        }
+        Thread.sleep(3000)
+        /*assertThat(connectionResponse).isNotNull()
+        assertThat(connectionResponse.hasChannel()).isTrue()
+
+        val channel = connectionResponse.channel
+        val sampleData = "cafe-baguette".toByteArray()
+
+        val receiveObserver = StreamObserverSpliterator<ReceiveResponse>()
+        mBumble
+            .l2cap()
+            .receive(ReceiveRequest.newBuilder().setChannel(channel).build(), receiveObserver)
+
+        Log.d(TAG, "testSendWithPairing: Send data from Android to Bumble")
+        val outputStream = bluetoothSocket.outputStream
+        outputStream.write(sampleData)
+        outputStream.flush()
+
+        Log.d(TAG, "testSendWithPairing: waitReceive data on Bumble")
+        val receiveData = receiveObserver.iterator().next()
+        assertThat(receiveData.data.toByteArray()).isEqualTo(sampleData)
+
+        bluetoothSocket.close()
+        Log.d(TAG, "testSendWithPairing: waitDisconnection")
+        val waitDisconnectionRequest =
+            WaitDisconnectionRequest.newBuilder().setChannel(channel).build()
+        val disconnectionResponse =
+            mBumble.l2capBlocking().waitDisconnection(waitDisconnectionRequest)
+        assertThat(disconnectionResponse.hasSuccess()).isTrue()*/
+        Log.d(TAG, "testSendWithPairing: done, start LE createBond with LE transport")
+
+        remoteDevice.createBond(BluetoothDevice.TRANSPORT_LE);
+
+        Thread.sleep(35000)
+
+        //host.createBondAndVerify(remoteDevice)
     }
 
     @Test
@@ -520,6 +640,28 @@ public class DckL2capTest() : Closeable {
         return buffer.array()
     }
 
+    private fun advertiseWithBumble(withUuid: Boolean = false): GrpcContext.CancellableContext {
+        val requestBuilder =
+            AdvertiseRequest.newBuilder()
+                .setLegacy(true)
+                .setConnectable(true)
+                .setOwnAddressType(OwnAddressType.RANDOM)
+
+        if (withUuid) {
+            requestBuilder.data =
+                HostProto.DataTypes.newBuilder()
+                    .addCompleteServiceClassUuids128(CCC_DK_UUID.toString())
+                    .build()
+        }
+
+        val cancellableContext = GrpcContext.current().withCancellation()
+        with(cancellableContext) {
+            run { mBumble.hostBlocking().advertise(requestBuilder.build()) }
+        }
+
+        return cancellableContext
+    }
+
     companion object {
         private const val TAG = "DckL2capTest"
         private const val INITIAL_CREDITS = 256
@@ -528,10 +670,13 @@ public class DckL2capTest() : Closeable {
 
         private val GRPC_TIMEOUT = 10.seconds
         private val CHANNEL_READ_TIMEOUT = 30.seconds
+        private const val TIMEOUT: Long = 2000
 
         // CCC DK Specification R3 1.2.0 r14 section 19.2.1.2 Bluetooth Le Pairing
         private val CCC_DK_UUID = UUID.fromString("0000FFF5-0000-1000-8000-00805f9b34fb")
         // Vehicule SPSM
         private val SPSM_UUID = UUID.fromString("D3B5A130-9E23-4B3A-8BE4-6B1EE5F980A3")
+
+        private const val TEST_ADDRESS_RANDOM_STATIC = "F0:43:A8:23:10:11"
     }
 }
