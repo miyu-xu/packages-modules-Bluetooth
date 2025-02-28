@@ -22,6 +22,30 @@
       },
       "revId": "fedb7e3ec8713ade0c76b52958aa92d85f5653ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cdc27b_d74b5759",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-02-28T07:03:12Z",
+      "side": 1,
+      "message": "pending_close_bda is separate, and shall be cleared anyway.",
+      "parentUuid": "01b55b1e_3d249dd6",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 53
+      },
+      "revId": "fedb7e3ec8713ade0c76b52958aa92d85f5653ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
