@@ -52,6 +52,24 @@
       "parentUuid": "25aec29a_733ccf2d",
       "revId": "3c9d01f2876e1134aa7ec7a522d5842c68f15b2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c373a66_ac38c0b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-02-28T01:57:34Z",
+      "side": 1,
+      "message": "this passes formatting now when running `repo upload` but `avatar format` was having issues - hope that is okay",
+      "parentUuid": "e396d75d_28ac70d6",
+      "revId": "3c9d01f2876e1134aa7ec7a522d5842c68f15b2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
