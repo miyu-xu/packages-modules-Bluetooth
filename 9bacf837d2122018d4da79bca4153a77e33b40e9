@@ -94,6 +94,30 @@
       },
       "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22e42fb_18cfdfe9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-02-28T01:00:18Z",
+      "side": 1,
+      "message": "\u003e I created a \"baseline\" file that contained all the current error, and allowed them to be for the time beeing. This file was 20K lines long I believe ^^\n\n😄 my thousands and thousands was pretty accurete then haha.\n\nThank you for the detailed explanation. \n\n\u003e I\u0027ll share a CL with you with the proper command to re-gen the lint baseline so you\u0027ll know.\n\nSounds good! Thank you.\n\n\u003e Resolving this for now\n\nThank you!",
+      "parentUuid": "7907e568_a21d0d16",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "9bacf837d2122018d4da79bca4153a77e33b40e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
