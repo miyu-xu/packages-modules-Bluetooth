@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88827395_c620cc3b",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T23:10:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "318ca36e_f0f21313",
+      "range": {
+        "startLine": 548,
+        "startChar": 0,
+        "endLine": 548,
+        "endChar": 76
+      },
+      "revId": "d4f3d06262308a1a1fe528c28fa7c63519c5d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b396991a_1cbe93a0",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d21bd2_56a91940",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T23:10:26Z",
+      "side": 1,
+      "message": "The implementation is still correct. Hence LGTM for this CL.",
+      "parentUuid": "b396991a_1cbe93a0",
+      "range": {
+        "startLine": 588,
+        "startChar": 0,
+        "endLine": 588,
+        "endChar": 61
+      },
+      "revId": "d4f3d06262308a1a1fe528c28fa7c63519c5d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c633c55d_367e5459",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-02-28T19:10:01Z",
       "side": 1,
       "message": "Any it is checked and cleared when someone tries to start discovery on the same device",
+      "range": {
+        "startLine": 609,
+        "startChar": 6,
+        "endLine": 609,
+        "endChar": 54
+      },
+      "revId": "d4f3d06262308a1a1fe528c28fa7c63519c5d85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6b0d85f_b947c48e",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-02-28T23:10:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c633c55d_367e5459",
       "range": {
         "startLine": 609,
         "startChar": 6,
