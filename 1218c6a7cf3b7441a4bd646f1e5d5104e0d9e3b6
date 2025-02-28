@@ -46,6 +46,57 @@
       },
       "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33a86e83_c58e3171",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-28T22:37:37Z",
+      "side": 1,
+      "message": "when would this else case happen?",
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f562ae5_f002fc48",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-28T22:37:37Z",
+      "side": 1,
+      "message": "please change the log to indicate this is timeout case",
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55f24f8e_4439e48e",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-02-28T22:37:37Z",
+      "side": 1,
+      "message": "did we hit this timeout in our testing ?",
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
