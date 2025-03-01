@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce88b82f_eccf99d1",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "maybe call this `collision_outgoing_lcid`?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d64283_930b4d22",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "suggest putting a refactor CL before this CL to return early on error instead of having these many nested layers.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 55
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be3d33dd_dcaf0724",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 6
@@ -90,6 +136,29 @@
         "startChar": 8,
         "endLine": 102,
         "endChar": 17
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10515e8c_304c5a29",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "use // style comment for one liners, same for the rest of this CL",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 71
       },
       "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -191,6 +260,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ceefe161_9167ea50",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "`log::info` as this happens rarely and such switch in DLCI is important information",
+      "range": {
+        "startLine": 114,
+        "startChar": 17,
+        "endLine": 114,
+        "endChar": 24
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f7bc9a58_65cb4167",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 6
@@ -231,6 +323,98 @@
         "startChar": 8,
         "endLine": 118,
         "endChar": 33
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87525de_1ea4729c",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "a state change should only be handled by `rfc_mx_sm_execute`, an alternative to this CL is to add a new event in `rfc_mx_sm_execute` and handle such state changes there, maybe this will be cleaner?\n\nfeel free to reject this suggestion",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 41
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5cd0466_18ea5ee9",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "this can be moved up in that refactor CL",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 3
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572c1976_619b56b8",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "p_mcb \u003d\u003d nullptr\n\nplease do not treat pointer as booleans in general to improve readability",
+      "range": {
+        "startLine": 171,
+        "startChar": 77,
+        "endLine": 171,
+        "endChar": 84
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa3d886_24f94582",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-01T01:26:56Z",
+      "side": 1,
+      "message": "same as above\n\nalso this can be moved front to return early on error",
+      "range": {
+        "startLine": 192,
+        "startChar": 11,
+        "endLine": 192,
+        "endChar": 21
       },
       "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
