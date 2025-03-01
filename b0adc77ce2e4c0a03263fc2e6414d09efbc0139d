@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c75f58c_f94ab375",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-01T02:30:51Z",
+      "side": 1,
+      "message": "My only worry here is breaking devices in the ecosystems. Can you please help me understand the risks that we are taking by changning the version ?",
+      "revId": "b0adc77ce2e4c0a03263fc2e6414d09efbc0139d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
