@@ -166,6 +166,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ad91256_7672b643",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-01T02:04:21Z",
+      "side": 1,
+      "message": "FYI:\nI asked the opposite in an earlier comment as this whole file is formatted with /* */ style",
+      "parentUuid": "10515e8c_304c5a29",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 71
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e68a3b81_2d1ec0ae",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 6
@@ -364,6 +388,30 @@
       "writtenOn": "2025-03-01T01:26:56Z",
       "side": 1,
       "message": "this can be moved up in that refactor CL",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 3
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c81d8d1f_3048859f",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-01T02:04:21Z",
+      "side": 1,
+      "message": "Agree, but when doing so, please be mindful of the line 141 that is still run if p_mcb is null, and of line 137 that assign null to p_mcb",
+      "parentUuid": "c5cd0466_18ea5ee9",
       "range": {
         "startLine": 146,
         "startChar": 0,
