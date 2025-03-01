@@ -16,6 +16,8 @@
 
 package com.android.bluetooth;
 
+import static com.android.bluetooth.Utils.joinUninterruptibly;
+
 import static org.junit.Assert.assertTrue;
 
 import android.os.Handler;
@@ -26,8 +28,6 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import com.android.modules.utils.HandlerExecutor;
-
-import com.google.common.util.concurrent.Uninterruptibles;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -301,7 +301,7 @@ public class TestLooper {
             if (mAutoDispatchThread.isAlive()) {
                 mAutoDispatchThread.interrupt();
             }
-            Uninterruptibles.joinUninterruptibly(mAutoDispatchThread);
+            joinUninterruptibly(mAutoDispatchThread);
 
             RuntimeException e = mAutoDispatchThread.getException();
             mAutoDispatchThread = null;

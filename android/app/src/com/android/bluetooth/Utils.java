@@ -1331,4 +1331,23 @@ public final class Utils {
             return android.os.SystemClock.elapsedRealtime();
         }
     }
+
+    /** Invokes {@code toJoin.}{@link Thread#join() join()} uninterruptibly. */
+    public static void joinUninterruptibly(Thread toJoin) {
+        boolean interrupted = false;
+        try {
+            while (true) {
+                try {
+                    toJoin.join();
+                    return;
+                } catch (InterruptedException e) {
+                    interrupted = true;
+                }
+            }
+        } finally {
+            if (interrupted) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
 }
