@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c3d12c9_fd799e2b",
+        "filename": "system/stack/rfcomm/port_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T02:28:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce88b82f_eccf99d1",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59d64283_930b4d22",
