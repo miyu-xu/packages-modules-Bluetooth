@@ -447,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e640156b_73ccb13a",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T02:27:49Z",
+      "side": 1,
+      "message": "I tried making a collision event at first, but things got messy really fast because I was trying to use it for both \"we encountered a collision\" and \"our collision handling is going to the next steps\".  \n\nThat\u0027s definitely something to keep in mind for later (I plan to revisit the collision case) but for this particular bug I think it\u0027s unnecessary",
+      "parentUuid": "a87525de_1ea4729c",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 41
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5cd0466_18ea5ee9",
