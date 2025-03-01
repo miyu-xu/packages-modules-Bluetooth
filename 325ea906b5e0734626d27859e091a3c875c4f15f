@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a4fc0bd_1f5abb59",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-01T05:51:09Z",
+      "side": 1,
+      "message": "That was supposed to be the response of `HCI_Read_Local_Supported_Codec_Capabilities`, but it seems we never use it and after https://r.android.com/2919865 we don\u0027t even fill in it.\n\nI planed to clean up these unused code shortly. After some kernel patches landed and the HALs (both Floss and Android) switched to the new behavior, more functions would become no-op and can be removed together.",
+      "parentUuid": "329891c3_1b451769",
+      "range": {
+        "startLine": 43,
+        "startChar": 23,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "325ea906b5e0734626d27859e091a3c875c4f15f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e638204_1e13faff",
         "filename": "system/stack/btm/btm_sco_hfp_hal.h",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2025-02-28T17:01:24Z",
       "side": 1,
       "message": "nit: avoid abbreviations\n\nCan you add more information about this field ?\nIs it the encoded packet size, or the size of the PCM audio frame ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 9,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "325ea906b5e0734626d27859e091a3c875c4f15f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bf2fdab_1ef0008c",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-01T05:51:09Z",
+      "side": 1,
+      "message": "Done. It\u0027s the size for SCO packet from/to the controller.",
+      "parentUuid": "6e638204_1e13faff",
       "range": {
         "startLine": 44,
         "startChar": 9,
