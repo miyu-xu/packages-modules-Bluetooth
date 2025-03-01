@@ -218,7 +218,6 @@ android_library {
         "bluetooth.mapsapi",
         "com.android.obex",
         "com.android.vcard",
-        "guava",
         "libprotobuf-java-lite",
         "mmslib",
         "modules-utils-backgroundthread",
