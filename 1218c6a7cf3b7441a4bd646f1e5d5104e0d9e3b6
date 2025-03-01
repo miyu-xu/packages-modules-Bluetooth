@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e243f3db_d9dfa539",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T02:13:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aa8a56cf_db911cf7",
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deacb486_458bf86c",
