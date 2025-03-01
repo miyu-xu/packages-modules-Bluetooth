@@ -16,6 +16,24 @@
       "message": "if reset preferred config is not needed(what is mentioned in commit message), why don\u0027t we just remove this ResetPreferredAudioSetConfiguration? \n\nWe\u0027re still clearing the cache_map_, but not preferred_config_.sink/source. This looks like to me we\u0027re doing a partial cleanup.",
       "revId": "03afcb1c4d056cce1d1139faa3981f2e349356f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f42c0510_bea3d09f",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-01T20:00:21Z",
+      "side": 1,
+      "message": "Taken from commit message: \"Instead only context to prefered configuration cache should be clear and\nprovided by Java layer configuration should stay.\"",
+      "parentUuid": "5362b4b4_308450c3",
+      "revId": "03afcb1c4d056cce1d1139faa3981f2e349356f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
