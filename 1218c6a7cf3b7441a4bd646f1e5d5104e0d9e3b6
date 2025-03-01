@@ -67,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aa8a56cf_db911cf7",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T00:11:13Z",
+      "side": 1,
+      "message": "In theory, if two android devices collide with each other, since both would be processing each other\u0027s connection, this we may hit this scenario.  If that\u0027s the case, they will wait on each other until a timeout occurs.  In practice, however, I only see the collision logic triggered on one device, so I highly doubt this is introducing a performance regression.",
+      "parentUuid": "33a86e83_c58e3171",
+      "revId": "1218c6a7cf3b7441a4bd646f1e5d5104e0d9e3b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deacb486_458bf86c",
         "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
         "patchSetId": 4
