@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99176e7_6f89182b",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-01T02:40:03Z",
+      "side": 1,
+      "message": "`\u0026\u0026 p_mcb-\u003estate !\u003d RFC_MX_STATE_IDLE` ?\n\nunless there is only 2 states possible ?",
+      "revId": "34f9d30305047b57613244b6f641f3114c7935ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
