@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6e0607_e3cd846d",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T01:25:58Z",
+      "side": 1,
+      "message": "done here and in 2 other places",
+      "parentUuid": "be3d33dd_dcaf0724",
+      "range": {
+        "startLine": 99,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 0
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8d3032b_c685d543",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-01T00:53:35Z",
       "side": 1,
       "message": "`log::info` as this is a legitimate case",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 17
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ab70dc_cd380eb3",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T01:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8d3032b_c685d543",
       "range": {
         "startLine": 102,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "046a53db_940345fe",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T01:25:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e68a3b81_2d1ec0ae",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 85
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cc84c1d_1762f33e",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e510687_17c51008",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T01:25:58Z",
+      "side": 1,
+      "message": "it\u0027s okay because it loops until `i \u003c RFCOMM_MAX_DLCI`, not `\u003c\u003d`",
+      "parentUuid": "7cc84c1d_1762f33e",
+      "range": {
+        "startLine": 108,
+        "startChar": 24,
+        "endLine": 108,
+        "endChar": 39
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7bc9a58_65cb4167",
@@ -106,6 +202,30 @@
       "writtenOn": "2025-03-01T00:53:35Z",
       "side": 1,
       "message": "use // style comment for one liners",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 33
+      },
+      "revId": "a6738f66bf25a42d3473bec92527cd2d81d5090d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba815f16_be0753db",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T01:25:58Z",
+      "side": 1,
+      "message": "I used `/* ... */` to be consistent with the rest of the file.  Created b/399961268 - I\u0027ll fix the comments in a separate CL",
+      "parentUuid": "f7bc9a58_65cb4167",
       "range": {
         "startLine": 118,
         "startChar": 8,
