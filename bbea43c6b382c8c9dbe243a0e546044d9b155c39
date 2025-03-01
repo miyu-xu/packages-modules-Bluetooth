@@ -98,6 +98,30 @@
       },
       "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def0c6fc_ff06cb23",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-01T04:37:47Z",
+      "side": 1,
+      "message": "Hi Jakub agree ACL manager is a better place for this method. This snippet is used by Floss and Desktop but fixing it require a non-trivial refactor in the upper layer. I would like to first fix the Floss side with this CL (focus on the Rust layer), then the Desktop side (Java layer), and finally we could refactor this method. WDYT?",
+      "parentUuid": "248a3bef_d53dea91",
+      "range": {
+        "startLine": 898,
+        "startChar": 2,
+        "endLine": 919,
+        "endChar": 24
+      },
+      "revId": "bbea43c6b382c8c9dbe243a0e546044d9b155c39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
