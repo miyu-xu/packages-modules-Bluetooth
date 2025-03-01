@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "287d973c_ca5d8b7b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-01T05:05:40Z",
+      "side": 0,
+      "message": "I guess this was deleted by the linter/tool accidentally.\n\nAnd was replaced by a new non-existent `BROADCAST_SOURCE_ID_LENGTH`.",
+      "range": {
+        "startLine": 157,
+        "startChar": 4,
+        "endLine": 157,
+        "endChar": 45
+      },
+      "revId": "14c122f2b502aa873668aabb53b70d76584411da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
