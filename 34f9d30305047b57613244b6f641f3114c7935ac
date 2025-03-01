@@ -16,6 +16,24 @@
       "message": "`\u0026\u0026 p_mcb-\u003estate !\u003d RFC_MX_STATE_IDLE` ?\n\nunless there is only 2 states possible ?",
       "revId": "34f9d30305047b57613244b6f641f3114c7935ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ef4df0_58008545",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-01T03:07:41Z",
+      "side": 1,
+      "message": "You\u0027re right, thanks!",
+      "parentUuid": "e99176e7_6f89182b",
+      "revId": "34f9d30305047b57613244b6f641f3114c7935ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
