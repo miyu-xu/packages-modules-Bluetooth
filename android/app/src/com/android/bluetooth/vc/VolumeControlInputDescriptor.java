@@ -29,6 +29,7 @@ import android.bluetooth.IAudioInputCallback;
 import android.os.RemoteCallbackList;
 import android.util.Log;
 
+import com.android.bluetooth.Utils.RemoteExceptionIgnoringConsumer;
 import com.android.bluetooth.btservice.ProfileService;
 
 class VolumeControlInputDescriptor {
@@ -45,7 +46,7 @@ class VolumeControlInputDescriptor {
         mNativeInterface = requireNonNull(nativeInterface);
         mDevice = requireNonNull(device);
         mVolumeInputs = new Descriptor[numberOfExternalInputs];
-        // Stack delivers us number of AICSs instances. ids are countinous from [0;n[
+        // Stack delivers us number of AICSs instances. ids are continuous from [0;n[
         for (int i = 0; i < numberOfExternalInputs; i++) {
             mVolumeInputs[i] = new Descriptor();
         }
