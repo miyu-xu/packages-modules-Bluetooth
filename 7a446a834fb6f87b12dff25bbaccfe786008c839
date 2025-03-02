@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "606b4165_8495fda6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-02T03:20:24Z",
+      "side": 1,
+      "message": "I\u0027ll wait for aosp/3504560 to merge before sending this out due to merge conflict.",
+      "revId": "7a446a834fb6f87b12dff25bbaccfe786008c839",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
