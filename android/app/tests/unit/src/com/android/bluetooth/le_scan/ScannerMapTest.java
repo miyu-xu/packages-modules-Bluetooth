@@ -85,15 +85,14 @@ public class ScannerMapTest {
     @Test
     public void getByMethodsWithPii() {
         ScannerMap scannerMap = new ScannerMap();
-        ScanController.PendingIntentInfo info = new ScanController.PendingIntentInfo();
-        info.callingUid = UID;
-        info.callingPackage = APP_NAME;
-        info.intent =
+        PendingIntent intent =
                 PendingIntent.getBroadcast(
                         InstrumentationRegistry.getInstrumentation().getTargetContext(),
                         0,
                         new Intent(),
                         PendingIntent.FLAG_IMMUTABLE);
+        ScanController.PendingIntentInfo info =
+                new ScanController.PendingIntentInfo(intent, null, null, APP_NAME, UID);
         UUID uuid = UUID.randomUUID();
         ScannerMap.ScannerApp app =
                 scannerMap.add(
