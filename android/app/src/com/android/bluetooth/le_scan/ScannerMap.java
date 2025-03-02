@@ -19,6 +19,7 @@ import static com.android.bluetooth.Utils.getSystemClock;
 import static com.android.bluetooth.util.AttributionSourceUtil.getLastAttributionTag;
 
 import android.annotation.Nullable;
+import android.app.PendingIntent;
 import android.bluetooth.le.IScannerCallback;
 import android.content.AttributionSource;
 import android.os.Binder;
@@ -89,8 +90,8 @@ public class ScannerMap {
         int appUid;
         String appName = null;
         if (piInfo != null) {
-            appUid = piInfo.callingUid;
-            appName = piInfo.callingPackage;
+            appUid = piInfo.callingUid();
+            appName = piInfo.callingPackage();
         } else {
             appUid = Binder.getCallingUid();
             appName = adapterService.getPackageManager().getNameForUid(appUid);
@@ -190,6 +191,17 @@ public class ScannerMap {
                 getAppByPredicate(entry -> entry.mInfo != null && entry.mInfo.equals(info));
         if (app == null) {
             Log.e(TAG, "Context not found for info " + info);
+        }
+        return app;
+    }
+
+    /** Get an application context by the pending intent info object's intent. */
+    ScannerApp getByPendingIntentInfoIntent(PendingIntent intent) {
+        ScannerApp app =
+                getAppByPredicate(
+                        entry -> entry.mInfo != null && entry.mInfo.intent().equals(intent));
+        if (app == null) {
+            Log.e(TAG, "Context not found for intent " + intent);
         }
         return app;
     }
