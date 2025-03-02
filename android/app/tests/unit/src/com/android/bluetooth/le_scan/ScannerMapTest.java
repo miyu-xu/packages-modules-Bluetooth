@@ -36,6 +36,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
+import com.android.bluetooth.TestUtils.MockitoRule;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 
@@ -85,15 +86,14 @@ public class ScannerMapTest {
     @Test
     public void getByMethodsWithPii() {
         ScannerMap scannerMap = new ScannerMap();
-        ScanController.PendingIntentInfo info = new ScanController.PendingIntentInfo();
-        info.callingUid = UID;
-        info.callingPackage = APP_NAME;
-        info.intent =
+        PendingIntent intent =
                 PendingIntent.getBroadcast(
                         InstrumentationRegistry.getInstrumentation().getTargetContext(),
                         0,
                         new Intent(),
                         PendingIntent.FLAG_IMMUTABLE);
+        ScanController.PendingIntentInfo info =
+                new ScanController.PendingIntentInfo(intent, null, null, APP_NAME, UID);
         UUID uuid = UUID.randomUUID();
         ScannerMap.ScannerApp app =
                 scannerMap.add(
