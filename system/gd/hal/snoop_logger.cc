@@ -1484,7 +1484,7 @@ void SnoopLogger::LogTracePoint(uint64_t timestamp_us, const HciPacket& packet, 
     } break;
   }
 
-  SnoopLoggerTracing::TracePacket(timestamp_us, packet, direction, type);
+  SnoopLoggerTracing::TracePacket(packet, direction, type);
 }
 #endif  // __ANDROID__
 
