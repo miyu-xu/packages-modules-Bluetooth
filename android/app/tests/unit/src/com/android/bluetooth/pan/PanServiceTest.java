@@ -21,7 +21,6 @@ import static android.net.TetheringManager.TETHER_ERROR_SERVICE_UNAVAIL;
 
 import static com.android.bluetooth.TestUtils.MockitoRule;
 import static com.android.bluetooth.TestUtils.getTestDevice;
-import static com.android.bluetooth.TestUtils.mockGetSystemService;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -42,6 +41,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.pan.PanService.BluetoothPanDevice;
@@ -64,6 +64,7 @@ public class PanServiceTest {
     @Mock private UserManager mMockUserManager;
 
     private static final byte[] REMOTE_DEVICE_ADDRESS_AS_ARRAY = new byte[] {0, 0, 0, 0, 0, 0};
+
     private static final int TIMEOUT_MS = 5_000;
 
     private final BluetoothDevice mRemoteDevice = getTestDevice(0);
@@ -76,9 +77,10 @@ public class PanServiceTest {
     public void setUp() {
         doReturn(mTargetContext.getResources()).when(mAdapterService).getResources();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        mockGetSystemService(
+        TestUtils.mockGetSystemService(
                 mAdapterService, Context.USER_SERVICE, UserManager.class, mMockUserManager);
-        mockGetSystemService(mAdapterService, Context.TETHERING_SERVICE, TetheringManager.class);
+        TestUtils.mockGetSystemService(
+                mAdapterService, Context.TETHERING_SERVICE, TetheringManager.class);
 
         mService = new PanService(mAdapterService, mNativeInterface);
         mService.setAvailable(true);
