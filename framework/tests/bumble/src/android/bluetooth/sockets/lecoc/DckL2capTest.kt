@@ -239,7 +239,7 @@ public class DckL2capTest() : Closeable {
     @Test
     @VirtualOnly
     fun testReadReturnOnRemoteSocketDisconnect() {
-        Log.d(TAG, "testReadReturnonSocketDisconnect: Connect L2CAP")
+        Log.d(TAG, "testReadReturnOnRemoteSocketDisconnect: Connect L2CAP")
         var bluetoothSocket: BluetoothSocket?
         val l2capServer = bluetoothAdapter.listenUsingInsecureL2capChannel()
         val socketFlow = flow { emit(l2capServer.accept()) }
@@ -531,7 +531,7 @@ public class DckL2capTest() : Closeable {
 
         // CCC DK Specification R3 1.2.0 r14 section 19.2.1.2 Bluetooth Le Pairing
         private val CCC_DK_UUID = UUID.fromString("0000FFF5-0000-1000-8000-00805f9b34fb")
-        // Vehicule SPSM
+        // Vehicle SPSM
         private val SPSM_UUID = UUID.fromString("D3B5A130-9E23-4B3A-8BE4-6B1EE5F980A3")
     }
 }
