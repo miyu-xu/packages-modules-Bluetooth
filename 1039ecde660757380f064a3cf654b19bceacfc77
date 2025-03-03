@@ -16,6 +16,24 @@
       "message": "-_-\n\nI can\u0027t believe I did this.\n\nUnfortunately, this CL will not work, the bug is linked to the flag name when the flag is created, we cannot update the bug number afterward.\nThe only solution would be a renaming...\n\nWe could maybe just re-use the bug and rename the title of the bug ?\nWe should sync with Thomas tomorrow to check with his automation",
       "revId": "1039ecde660757380f064a3cf654b19bceacfc77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e132842_d36a3266",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-03T04:55:48Z",
+      "side": 1,
+      "message": "\u003e Unfortunately, this CL will not work\n\nHaha. I was not sure about this so thank you for letting me know!\n\n\u003e We could maybe just re-use the bug and rename the title of the bug ?\n\nThat sounds possible as well. Or I guess worst case, a new_new name 😂\n\n\u003e We should sync with Thomas tomorrow to check with his automation\n\nSounsd good! I\u0027ll keep this CL till that discussion and abandon if needed.",
+      "parentUuid": "66c0f5bc_3d7e662f",
+      "revId": "1039ecde660757380f064a3cf654b19bceacfc77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
