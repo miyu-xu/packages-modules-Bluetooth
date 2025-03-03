@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a8ff3bd_4a1f032e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScannerMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-03T05:11:12Z",
+      "side": 1,
+      "message": "Does that mean this can be deleted ?",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 5
+      },
+      "revId": "42a4baedccdf6c1d4a9517753c051c8ccdbbaa0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
