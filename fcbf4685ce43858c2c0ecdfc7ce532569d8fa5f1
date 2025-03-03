@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f2649d4_8008eb26",
+        "filename": "android/pandora/test/rfcomm_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-03T20:32:17Z",
+      "side": 1,
+      "message": "please add another testcase to bringup connection after the collision case resolved/timedout so that we know it recovers from collision case properly, in future CL",
+      "revId": "fcbf4685ce43858c2c0ecdfc7ce532569d8fa5f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
