@@ -39,6 +39,30 @@
       },
       "revId": "7a446a834fb6f87b12dff25bbaccfe786008c839",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33e74d19_a6c7d6f2",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-03T06:42:19Z",
+      "side": 1,
+      "message": "Good points. As there is no benefit in reordering (I just wanted to group the variables together), I\u0027ll undo it and keep it as original. That way, we\u0027ll be sure to get rid of any risks like you mentioned. Thank you!",
+      "parentUuid": "b172be35_de9535e3",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 9
+      },
+      "revId": "7a446a834fb6f87b12dff25bbaccfe786008c839",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
