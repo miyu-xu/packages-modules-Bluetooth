@@ -22,6 +22,30 @@
       },
       "revId": "42a4baedccdf6c1d4a9517753c051c8ccdbbaa0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b24be52_f6c6498e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScannerMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-03T06:20:04Z",
+      "side": 1,
+      "message": "That\u0027s a good catch. I\u0027ll delete this. Thank you.",
+      "parentUuid": "9a8ff3bd_4a1f032e",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 5
+      },
+      "revId": "42a4baedccdf6c1d4a9517753c051c8ccdbbaa0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

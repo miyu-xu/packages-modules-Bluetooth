@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "84be89a2_12861bc9",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-03T06:20:04Z",
+      "side": 0,
+      "message": "Good points. I\u0027ve kept the override of equals and hashcode to guarantee euqivalentness. Thank you.",
+      "parentUuid": "0770e794_e813f28f",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 138,
+        "endChar": 0
+      },
+      "revId": "e1c9db5e91a5db447339c97348f70a8ca5a734fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "87c7c0f5_c2bed695",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
         "patchSetId": 2
