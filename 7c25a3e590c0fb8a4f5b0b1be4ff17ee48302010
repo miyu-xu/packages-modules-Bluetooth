@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22452697_7047b88c",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-03T20:21:51Z",
+      "side": 1,
+      "message": "Do we know why this is int64_t when most references to the socket_id are uint64_t?  Why can\u0027t we just use uint64_t for all isntances of a socket_id?",
+      "range": {
+        "startLine": 61,
+        "startChar": 38,
+        "endLine": 61,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "92e4fe7a_78af53be",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "  ::ndk::ScopedAStatus openedComplete(uint64_t socket_id,\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"socket_id: {} status: {} reason: {}\", socket_id, static_cast\u003cint\u003e(status), reason);\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "  ::ndk::ScopedAStatus close(uint64_t socket_id, const std::string\u0026 reason) override {\n    log::info(\"socket_id: {} reason: {}\", socket_id, reason);\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 210,
+                "startChar": 0,
+                "endLine": 211,
+                "endChar": 0
+              },
+              "replacement": "            .socketId \u003d context.socket_id,\n"
+            },
+            {
+              "path": "system/gd/hal/socket_hal_android.cc",
+              "range": {
+                "startLine": 213,
+                "startChar": 0,
+                "endLine": 215,
+                "endChar": 0
+              },
+              "replacement": "            .endpointId.id \u003d context.endpoint_info.endpoint_id,\n            .endpointId.hubId \u003d context.endpoint_info.hub_id,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7c25a3e590c0fb8a4f5b0b1be4ff17ee48302010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
