@@ -83,7 +83,7 @@ public final class BluetoothCsipSetCoordinator implements BluetoothProfile, Auto
         @interface Status {}
 
         /**
-         * Callback is invoked as a result on {@link #groupLock()}.
+         * Callback is invoken as a result on {@link #groupLock()}.
          *
          * @param groupId group identifier
          * @param opStatus status of lock operation

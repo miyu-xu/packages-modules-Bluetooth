@@ -87,7 +87,7 @@ public class BluetoothGattIncludedService implements Parcelable {
      * Returns the instance ID for this service
      *
      * <p>If a remote device offers multiple services with the same UUID (ex. multiple battery
-     * services for different batteries), the instance ID is used to distinguish services.
+     * services for different batteries), the instance ID is used to distuinguish services.
      *
      * @return Instance ID of this service
      */
