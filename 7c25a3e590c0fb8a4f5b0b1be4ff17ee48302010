@@ -104,6 +104,30 @@
       },
       "revId": "7c25a3e590c0fb8a4f5b0b1be4ff17ee48302010",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4685423_a588431e",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-03T21:03:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "29b26471_8ecf5f10",
+      "range": {
+        "startLine": 61,
+        "startChar": 38,
+        "endLine": 61,
+        "endChar": 45
+      },
+      "revId": "7c25a3e590c0fb8a4f5b0b1be4ff17ee48302010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
