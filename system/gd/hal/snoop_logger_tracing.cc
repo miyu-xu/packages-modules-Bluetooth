@@ -155,15 +155,8 @@ void SnoopLoggerTracing::TracePacket(const HciPacket& packet, SnoopLogger::Direc
 
 void SnoopLoggerTracing::Record(TraceContext& ctx, const HciPacket& packet,
                                 SnoopLogger::Direction direction, SnoopLogger::PacketType type) {
-  BundleKey key(packet, direction, type);
-  uint64_t timestamp_ns = perfetto::base::GetBootTimeNs().count();
-
-  BundleDetails& bundle = bttrace_bundles_[key];
-  bundle.count++;
-  bundle.total_length += packet.size();
-  bundle.start_ts = std::min(bundle.start_ts, timestamp_ns);
-  bundle.end_ts = std::max(bundle.end_ts, timestamp_ns);
-
+  // Do this before recording the events to prevent bundles augmented after a
+  // delay from getting excessively long durations.
   if (last_flush_ns_ + TRACE_FLUSH_INTERVAL_NANOS < timestamp_ns) {
     for (const auto& [key, details] : bttrace_bundles_) {
       Write(ctx, key, details);
@@ -172,6 +165,15 @@ void SnoopLoggerTracing::Record(TraceContext& ctx, const HciPacket& packet,
     bttrace_bundles_.clear();
     last_flush_us_ = timestamp_us;
   }
+
+  BundleKey key(packet, direction, type);
+  uint64_t timestamp_ns = perfetto::base::GetBootTimeNs().count();
+
+  BundleDetails& bundle = bttrace_bundles_[key];
+  bundle.count++;
+  bundle.total_length += packet.size();
+  bundle.start_ts = std::min(bundle.start_ts, timestamp_ns);
+  bundle.end_ts = std::max(bundle.end_ts, timestamp_ns);
 }
 
 void SnoopLoggerTracing::Write(TraceContext& ctx, const BundleKey& key,
