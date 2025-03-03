@@ -80,6 +80,30 @@
       ],
       "revId": "7c25a3e590c0fb8a4f5b0b1be4ff17ee48302010",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b26471_8ecf5f10",
+        "filename": "system/gd/hal/socket_hal_android.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2025-03-03T20:39:08Z",
+      "side": 1,
+      "message": "For 64 bit data, AIDL backend supports it as int64_t. https://source.android.com/docs/core/architecture/aidl/aidl-backends",
+      "parentUuid": "22452697_7047b88c",
+      "range": {
+        "startLine": 61,
+        "startChar": 38,
+        "endLine": 61,
+        "endChar": 45
+      },
+      "revId": "7c25a3e590c0fb8a4f5b0b1be4ff17ee48302010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
