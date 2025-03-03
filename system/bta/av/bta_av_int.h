@@ -352,6 +352,7 @@ typedef struct {
   uint8_t handle;
   uint8_t avdt_event;
   bool initiator; /* true, if local device initiates the SUSPEND */
+  //bool disc_cfm; /* Whether disconnect callback is for confirm or indication */
 } tBTA_AV_STR_MSG;
 
 /* data type for BTA_AV_AVRC_MSG_EVT */
@@ -423,6 +424,11 @@ typedef struct {
   uint8_t sep;
 } tBTA_AV_API_PEER_SEP;
 
+typedef struct {
+  BT_HDR_RIGID hdr;
+  tAVDT_DISC_CFM cfm_disc;
+} tBTA_AV_API_DISCNT_CFM;
+
 /* union of all event datatypes */
 union tBTA_AV_DATA {
   BT_HDR_RIGID hdr;
@@ -448,6 +454,7 @@ union tBTA_AV_DATA {
   tBTA_AV_API_META_RSP api_meta_rsp;
   tBTA_AV_API_STATUS_RSP api_status_rsp;
   tBTA_AV_API_PEER_SEP peer_sep;
+  tBTA_AV_API_DISCNT_CFM api_disc_cfm;
 };
 
 typedef union {
