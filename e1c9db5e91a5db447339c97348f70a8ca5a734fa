@@ -22,6 +22,53 @@
       },
       "revId": "e1c9db5e91a5db447339c97348f70a8ca5a734fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0103fb_b25cbe04",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-03T04:53:32Z",
+      "side": 0,
+      "message": "\u003e I am not sure this CL is equivalent.\n\nYou are right about this.\n\n\u003e The equals and hashCode were only run on the intent before the change, and they are now run on all the field ? (I am not sure what he would do with a record).\n\nYes. That it why I double chcked and confirmed only `ScannerMap#getByPendingIntentInfo` is being used via `ScanController#stopScanInternal`. That is why I implemeneted the new method `getByPendingIntentInfoIntent` which achieves the same thing as the previous implemention \u003d search a PendingIntentInfo by Intent.\n\n\u003e Unless we never compare PendingIntentInfo between each, or never store them in a Map / Set ?\n\nYes, that is correct. The class `PendingIntentInfo` is not used in many places as well. It is only ever used in the 2 classes found in this CL. `ScannerMap.java` and `ScanController.java`. In both of these, they are never used in a Map/Se. While you are correct on the point that the `equals` implementation changes from checkign only `intent` to all the fields, from my assesment, this CL does not break any of that functionality but if you deem the risk is too high, we may be overseeing something, I am okay to abandon this conversion of `PendingIntentInfo` to a record.\n\nI\u0027ll leave another comment to the location of that search as well.",
+      "parentUuid": "7ded7a5a_f9e7590c",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 138,
+        "endChar": 0
+      },
+      "revId": "e1c9db5e91a5db447339c97348f70a8ca5a734fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87c7c0f5_c2bed695",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-03T04:53:32Z",
+      "side": 0,
+      "message": "@wescande@google.com as seen here.\n\nThis was creating a new object with the `intent` field filled and sent to the search function in `ScannerMap`.",
+      "range": {
+        "startLine": 1439,
+        "startChar": 8,
+        "endLine": 1441,
+        "endChar": 76
+      },
+      "revId": "e1c9db5e91a5db447339c97348f70a8ca5a734fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
