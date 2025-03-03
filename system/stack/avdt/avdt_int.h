@@ -452,7 +452,8 @@ public:
         cong(false),
         close_code(0),
         curr_stream(false),
-        scb_handle_(0) {}
+        scb_handle_(0),
+        disc_cfm(false) {}
 
   /**
    * Allocate the entry for usage.
@@ -505,6 +506,7 @@ public:
     close_code = 0;
     curr_stream = false;
     scb_handle_ = scb_handle;
+    disc_cfm = false;
   }
 
   /**
@@ -530,6 +532,7 @@ public:
   bool cong;                         // True if the media transport channel is congested
   uint8_t close_code;                // Error code received in close response
   bool curr_stream;                  // True if the SCB is the current stream, False otherwise
+  bool disc_cfm;       // Whether callback is for disconnect confirm or indication
 
 private:
   uint8_t scb_handle_;  // Unique handle for this AvdtpScb entry
@@ -563,7 +566,8 @@ public:
         label(0),
         reconn(false),
         ret_count(0),
-        bta_av_scb_index_(0) {}
+        bta_av_scb_index_(0),
+        disc_cfm(false) {}
 
   /**
    * Allocate the entry for usage.
@@ -623,6 +627,7 @@ public:
     label = 0;
     reconn = false;
     ret_count = 0;
+    disc_cfm = false;
   }
 
   /**
@@ -660,6 +665,7 @@ public:
   bool reconn;                     // If true, reinitiate connection after transitioning from
                                    // CLOSING to IDLE state
   uint8_t ret_count;               // Command retransmission count
+  bool disc_cfm; // // Whether callback is for disconnect confirm or indication
 
 private:
   // The corresponding BTA AV stream control block index for this entry
@@ -679,7 +685,8 @@ public:
         tcid(0),
         ccb_idx(0),
         state(0),
-        role(tAVDT_ROLE::AVDT_UNKNOWN) {}
+        role(tAVDT_ROLE::AVDT_UNKNOWN),
+        disc_cfm(false) {}
 
   void Reset() {
     peer_mtu = 0;
@@ -689,6 +696,7 @@ public:
     ccb_idx = 0;
     state = 0;
     role = tAVDT_ROLE::AVDT_UNKNOWN;
+    disc_cfm = false;
   }
 
   uint16_t peer_mtu;  // L2CAP MTU of the peer device
@@ -698,6 +706,7 @@ public:
   uint8_t ccb_idx;    // Channel control block for with this transport channel
   uint8_t state;      // Transport channel state
   tAVDT_ROLE role;    // Role for the establishment of the AVDTP signaling channel
+  bool disc_cfm;  // Whether callback is for disconnect confirm or indication
 };
 
 /**

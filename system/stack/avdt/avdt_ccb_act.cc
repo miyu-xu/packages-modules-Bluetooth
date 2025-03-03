@@ -990,6 +990,7 @@ void avdt_ccb_ll_closed(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* /* p_data */) {
   tAVDT_CTRL avdt_ctrl;
 
   log::verbose("peer {}", p_ccb->peer_addr);
+  log::verbose(" p_ccb->disc_cfm: {}", p_ccb->disc_cfm);
 
   /* clear any pending commands */
   avdt_ccb_clear_cmds(p_ccb, NULL);
@@ -1008,7 +1009,10 @@ void avdt_ccb_ll_closed(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* /* p_data */) {
   /* call callback */
   if (p_cback) {
     avdt_ctrl.hdr.err_code = 0;
-    (*p_cback)(0, bd_addr, AVDT_DISCONNECT_IND_EVT, &avdt_ctrl, bta_av_scb_index);
+    log::verbose(" p_cback is true, send disconnect event");
+    avdt_ctrl.disconnect_cfm.disc_cfm = p_ccb->disc_cfm;
+    (*p_cback)(0, bd_addr, AVDT_DISCONNECT_IND_EVT, &avdt_ctrl,
+               bta_av_scb_index);
   }
 }
 
