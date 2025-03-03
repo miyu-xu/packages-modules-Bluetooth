@@ -387,6 +387,7 @@ typedef struct {
   uint8_t seid;      /* For internal use only */
   uint8_t sig_id;    /* For internal use only */
   uint8_t ccb_idx;   /* For internal use only */
+  bool disc_cfm;     /* For internal use only - whether disc confirm or indication */
 } tAVDT_EVT_HDR;
 
 /* This data structure is associated with the AVDT_GETCAP_CFM_EVT,
@@ -434,6 +435,11 @@ typedef struct {
   uint16_t delay;    /* Delay value */
 } tAVDT_DELAY_RPT;
 
+typedef struct {
+  tAVDT_EVT_HDR hdr; /* Event header */
+  bool disc_cfm;    /* Disconnect Confirmation */
+} tAVDT_DISC_CFM;
+
 /* Union of all control callback event data structures */
 typedef union {
   tAVDT_EVT_HDR hdr;
@@ -453,6 +459,7 @@ typedef union {
   tAVDT_EVT_HDR disconnect_ind;
   tAVDT_EVT_HDR report_conn;
   tAVDT_DELAY_RPT delay_rpt_cmd;
+  tAVDT_DISC_CFM disconnect_cfm;
 } tAVDT_CTRL;
 
 /* This is the control callback function.  This function passes control events
