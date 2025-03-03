@@ -16,6 +16,29 @@
       "message": "I\u0027ll wait for aosp/3504560 to merge before sending this out due to merge conflict.",
       "revId": "7a446a834fb6f87b12dff25bbaccfe786008c839",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b172be35_de9535e3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-03T05:03:41Z",
+      "side": 1,
+      "message": "Is there any risk to run callback from these listener before other code is initialized ?\n\nfor eample, if the mPriorityMap is still empty? or the mBluetoothAdapterProxy is null ?",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 9
+      },
+      "revId": "7a446a834fb6f87b12dff25bbaccfe786008c839",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
