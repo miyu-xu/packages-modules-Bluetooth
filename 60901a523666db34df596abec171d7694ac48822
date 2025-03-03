@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b486dfb2_4385a2b8",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-03T04:31:56Z",
+      "side": 1,
+      "message": "Could this be replaced with `Objects.requireNonNull(device, methodName);`?",
+      "range": {
+        "startLine": 1104,
+        "startChar": 24,
+        "endLine": 1104,
+        "endChar": 86
+      },
+      "revId": "60901a523666db34df596abec171d7694ac48822",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
