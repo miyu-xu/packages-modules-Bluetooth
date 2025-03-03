@@ -3337,7 +3337,7 @@ public final class BluetoothAdapter {
 
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    private static BluetoothServerSocket createNewRfcommSocketAndRecord(
+    private BluetoothServerSocket createNewRfcommSocketAndRecord(
             String name, UUID uuid, boolean auth, boolean encrypt) throws IOException {
         BluetoothServerSocket socket;
         socket =
@@ -4048,7 +4048,7 @@ public final class BluetoothAdapter {
         }
     }
 
-    private static Set<BluetoothDevice> toDeviceSet(List<BluetoothDevice> devices) {
+    private Set<BluetoothDevice> toDeviceSet(List<BluetoothDevice> devices) {
         Set<BluetoothDevice> deviceSet = new HashSet<BluetoothDevice>(devices);
         return Collections.unmodifiableSet(deviceSet);
     }
@@ -5807,8 +5807,7 @@ public final class BluetoothAdapter {
         }
 
         @RequiresPermission(BLUETOOTH_PRIVILEGED)
-        static void unregisterFromService(
-                IBluetooth service, IBluetoothHciVendorSpecificCallback stub) {
+        void unregisterFromService(IBluetooth service, IBluetoothHciVendorSpecificCallback stub) {
             if (service == null) {
                 return;
             }

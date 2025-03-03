@@ -1286,7 +1286,7 @@ public class LeAudioServiceTest {
         verify(mTbsService, times(0)).clearInbandRingtoneSupport(mSingleDevice);
     }
 
-    private static BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
+    private BluetoothLeBroadcastSettings buildBroadcastSettingsFromMetadata(
             BluetoothLeAudioContentMetadata contentMetadata,
             @Nullable byte[] broadcastCode,
             int numOfGroups) {

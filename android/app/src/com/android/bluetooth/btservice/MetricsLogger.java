@@ -472,7 +472,7 @@ public class MetricsLogger {
         mAlarmManager.cancel(mOnAlarmListener);
     }
 
-    private static void writeFieldIfNotNull(
+    private void writeFieldIfNotNull(
             ProtoOutputStream proto,
             long fieldType,
             long fieldCount,
@@ -594,7 +594,7 @@ public class MetricsLogger {
         }
     }
 
-    private static int getOui(BluetoothDevice device) {
+    private int getOui(BluetoothDevice device) {
         return Integer.parseInt(device.getAddress().replace(":", "").substring(0, 6), 16);
     }
 
@@ -807,7 +807,7 @@ public class MetricsLogger {
         return digest.digest(name.getBytes(StandardCharsets.UTF_8));
     }
 
-    private static int getProfileEnumFromProfileId(int profile) {
+    private int getProfileEnumFromProfileId(int profile) {
         return switch (profile) {
             case BluetoothProfile.A2DP ->
                     BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__EVENT_TYPE__PROFILE_CONNECTION_A2DP;

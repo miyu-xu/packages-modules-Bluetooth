@@ -1287,7 +1287,7 @@ public class A2dpServiceTest {
                 .setA2dpOptionalCodecsEnabled(mDevice, BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED);
     }
 
-    private static BluetoothCodecConfig buildBluetoothCodecConfig(
+    private BluetoothCodecConfig buildBluetoothCodecConfig(
             int sourceCodecType,
             int codecPriority,
             int sampleRate,

@@ -829,7 +829,7 @@ public class PbapClientStateMachineTest {
         return new PbapSdpRecord(mTestDevice, sdpRecord);
     }
 
-    private static Account getAccountForDevice(BluetoothDevice device) {
+    private Account getAccountForDevice(BluetoothDevice device) {
         return new Account(device.getAddress(), "com.android.bluetooth.pbabclient.account");
     }
 

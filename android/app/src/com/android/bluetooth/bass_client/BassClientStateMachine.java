@@ -610,13 +610,13 @@ class BassClientStateMachine extends StateMachine {
         mBroadcastSyncStats.clear();
     }
 
-    private static boolean isSourceAbsent(BluetoothLeBroadcastReceiveState recvState) {
+    private boolean isSourceAbsent(BluetoothLeBroadcastReceiveState recvState) {
         return recvState == null
                 || recvState.getSourceDevice() == null
                 || recvState.getSourceDevice().getAddress().equals("00:00:00:00:00:00");
     }
 
-    private static boolean isSourcePresent(BluetoothLeBroadcastReceiveState recvState) {
+    private boolean isSourcePresent(BluetoothLeBroadcastReceiveState recvState) {
         return !isSourceAbsent(recvState);
     }
 
@@ -2050,7 +2050,7 @@ class BassClientStateMachine extends StateMachine {
         }
     }
 
-    private static boolean isSuccess(int status) {
+    private boolean isSuccess(int status) {
         boolean ret = false;
         switch (status) {
             case BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST:

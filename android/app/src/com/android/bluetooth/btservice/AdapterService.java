@@ -1125,7 +1125,7 @@ public class AdapterService extends Service {
         }
     }
 
-    private static void invalidateBluetoothGetStateCache() {
+    private void invalidateBluetoothGetStateCache() {
         if (Flags.getStateFromSystemServer()) {
             // State is managed by the system server
             return;
@@ -1509,7 +1509,7 @@ public class AdapterService extends Service {
         mMetadataListeners.values().forEach(v -> v.kill());
     }
 
-    private static void invalidateBluetoothCaches() {
+    private void invalidateBluetoothCaches() {
         BluetoothAdapter.invalidateGetProfileConnectionStateCache();
         BluetoothAdapter.invalidateIsOffloadedFilteringSupportedCache();
         BluetoothDevice.invalidateBluetoothGetBondStateCache();
@@ -2139,7 +2139,7 @@ public class AdapterService extends Service {
         }
     }
 
-    private static void pendingSocketTimeoutRunnable(
+    private void pendingSocketTimeoutRunnable(
             RfcommListenerData listenerData, BluetoothSocket socket) {
         boolean socketFound = listenerData.mPendingSockets.remove(socket);
         if (socketFound) {
@@ -6707,19 +6707,19 @@ public class AdapterService extends Service {
         list.finishBroadcast();
     }
 
-    private static int getIdleCurrentMa() {
+    private int getIdleCurrentMa() {
         return BluetoothProperties.getHardwareIdleCurrentMa().orElse(0);
     }
 
-    private static int getTxCurrentMa() {
+    private int getTxCurrentMa() {
         return BluetoothProperties.getHardwareTxCurrentMa().orElse(0);
     }
 
-    private static int getRxCurrentMa() {
+    private int getRxCurrentMa() {
         return BluetoothProperties.getHardwareRxCurrentMa().orElse(0);
     }
 
-    private static double getOperatingVolt() {
+    private double getOperatingVolt() {
         return BluetoothProperties.getHardwareOperatingVoltageMv().orElse(0) / 1000.0;
     }
 
@@ -6727,7 +6727,7 @@ public class AdapterService extends Service {
         return mRemoteDevices;
     }
 
-    private static String dumpScanMode(int scanMode) {
+    private String dumpScanMode(int scanMode) {
         switch (scanMode) {
             case SCAN_MODE_NONE:
                 return "SCAN_MODE_NONE";
@@ -7391,7 +7391,7 @@ public class AdapterService extends Service {
         deleteDirectoryContents("/data/misc/bluetooth/");
     }
 
-    private static void deleteDirectoryContents(String dirPath) {
+    private void deleteDirectoryContents(String dirPath) {
         Path directoryPath = Paths.get(dirPath);
         try {
             Files.walkFileTree(

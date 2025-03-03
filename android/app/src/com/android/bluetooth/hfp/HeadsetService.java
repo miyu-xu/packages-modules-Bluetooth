@@ -2140,7 +2140,7 @@ public class HeadsetService extends ProfileService {
                 && !isHeadsetClientConnected();
     }
 
-    private static boolean isHeadsetClientConnected() {
+    private boolean isHeadsetClientConnected() {
         HeadsetClientService headsetClientService = HeadsetClientService.getHeadsetClientService();
         if (headsetClientService == null) {
             return false;
