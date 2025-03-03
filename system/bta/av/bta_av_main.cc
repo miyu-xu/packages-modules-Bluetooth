@@ -374,8 +374,9 @@ void tBTA_AV_SCB::SetAvdtpVersion(uint16_t avdtp_version) {
 
 /*******************************************************************************
  ******************************************************************************/
-void bta_av_conn_cback(uint8_t /* handle */, const RawAddress& bd_addr, uint8_t event,
-                       tAVDT_CTRL* p_data, uint8_t scb_index) {
+void bta_av_conn_cback(uint8_t /* handle */, const RawAddress& bd_addr,
+                       uint8_t event, tAVDT_CTRL* p_data, uint8_t scb_index) {
+  log::verbose(" event: {} p_data->disconnect_cfm.disc_cfm: {}", event, p_data->disconnect_cfm.disc_cfm);
   uint16_t evt = 0;
   tBTA_AV_SCB* p_scb = NULL;
 
@@ -394,6 +395,8 @@ void bta_av_conn_cback(uint8_t /* handle */, const RawAddress& bd_addr, uint8_t 
     p_msg->hdr.offset = p_data->hdr.err_param;
     p_msg->bd_addr = bd_addr;
     p_msg->scb_index = scb_index;
+    // p_msg->disc_cfm = p_data->disconnect_ind.disc_cfm;
+    p_msg->msg.disconnect_cfm.disc_cfm = p_data->disconnect_cfm.disc_cfm;
     if (p_scb) {
       log::verbose("bta_handle x{:x}, role x{:x}", p_scb->hndl, p_scb->role);
     }
