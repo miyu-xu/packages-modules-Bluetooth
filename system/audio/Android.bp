@@ -9,7 +9,7 @@ package {
 
 cc_library_static {
     name: "libbt-audio-asrc",
-    defaults: [],
+    defaults: ["libchrome_defaults"],
     srcs: [
         "asrc/asrc_resampler.cc",
         "asrc/asrc_tables.cc",
@@ -28,7 +28,6 @@ cc_library_static {
     ],
     shared_libs: [
         "libaconfig_storage_read_api_cc",
-        "libchrome",
         "liblog",
         "server_configurable_flags",
     ],
@@ -46,7 +45,10 @@ cc_library_static {
 
 cc_library_host_shared {
     name: "libasrc_resampler_test",
-    defaults: ["bluetooth_cflags"],
+    defaults: [
+        "bluetooth_cflags",
+        "libchrome_defaults",
+    ],
     srcs: [
         ":TestMockMainShimEntry",
         "asrc/asrc_resampler_test.cc",
@@ -74,8 +76,6 @@ cc_library_host_shared {
         "libbluetooth_hci_pdl",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
-        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",

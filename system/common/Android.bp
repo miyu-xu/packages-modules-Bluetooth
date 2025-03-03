@@ -64,6 +64,7 @@ cc_test {
     test_suites: ["general-tests"],
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     host_supported: true,
@@ -105,8 +106,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
-        "libevent",
         "libgmock",
         "libprotobuf-cpp-lite",
     ],
@@ -120,6 +119,7 @@ cc_test {
     name: "net_test_performance",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -138,9 +138,7 @@ cc_test {
     static_libs: [
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "libosi",
     ],
@@ -151,6 +149,7 @@ cc_benchmark {
     name: "bluetooth_benchmark_thread_performance",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
     ],
     host_supported: true,
     include_dirs: [
@@ -167,9 +166,7 @@ cc_benchmark {
     static_libs: [
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libosi",
     ],
     header_libs: ["libbluetooth_headers"],

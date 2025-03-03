@@ -9,7 +9,10 @@ package {
 
 cc_fuzz {
     name: "libosi_fuzz_list",
-    defaults: ["libosi_fuzz_defaults"],
+    defaults: [
+        "libchrome_defaults",
+        "libosi_fuzz_defaults",
+    ],
     host_supported: true,
     srcs: [
         "fuzz_list.cc",
@@ -17,7 +20,6 @@ cc_fuzz {
     static_libs: [
         "libbase",
         "libbluetooth_log",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "liblog",
         "libosi",

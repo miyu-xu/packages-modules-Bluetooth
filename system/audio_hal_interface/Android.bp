@@ -89,6 +89,7 @@ cc_test {
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     include_dirs: [
@@ -117,7 +118,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-audio-hal-interface",
         "libbt-common",
-        "libchrome",
     ],
     header_libs: ["libbluetooth_headers"],
 }
@@ -131,6 +131,7 @@ cc_test {
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     cflags: [
@@ -182,7 +183,6 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libflagtest",
         "libfmq",
@@ -204,6 +204,7 @@ cc_defaults {
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
     ],
     shared_libs: [
         "libPlatformProperties",
@@ -241,10 +242,8 @@ cc_defaults {
         "libbte",
         "libbtif",
         "libbtif-core",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
-        "libevent",
         "libg722codec",
         "libhidlbase",
         "libjsoncpp",
@@ -276,6 +275,7 @@ cc_test {
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     include_dirs: [
@@ -309,8 +309,6 @@ cc_test {
         "libbt-bta",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
-        "libevent",
         "libgmock",
         "server_configurable_flags",
     ],

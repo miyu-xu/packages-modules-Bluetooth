@@ -33,6 +33,7 @@ cc_defaults {
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
     ],
     shared_libs: [
         "libPlatformProperties",
@@ -81,10 +82,8 @@ cc_defaults {
         "libbte",
         "libbtif",
         "libbtif-core",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
-        "libevent",
         "libexpresslog",
         "libflags_rust_cpp_bridge",
         "libg722codec",

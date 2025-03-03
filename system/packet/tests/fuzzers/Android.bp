@@ -9,7 +9,10 @@ package {
 
 cc_defaults {
     name: "packet_avrcp_fuzz_defaults",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        "libchrome_defaults",
+    ],
     host_supported: true,
     include_dirs: [
         "packages/modules/Bluetooth/system/",
@@ -25,7 +28,6 @@ cc_defaults {
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libbluetooth_log",
-        "libchrome",
         "libgmock",
     ],
     cflags: [

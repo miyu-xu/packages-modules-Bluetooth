@@ -142,6 +142,7 @@ cc_test {
     },
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     include_dirs: [
@@ -191,10 +192,8 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
-        "libevent",
         "libflatbuffers-cpp",
         "libgmock",
         "liblog",
