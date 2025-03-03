@@ -285,6 +285,7 @@ uint8_t avdt_ad_tc_tbl_to_idx(AvdtpTransportChannel* p_tbl) {
  *
  ******************************************************************************/
 void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl) {
+  log::verbose("avdt_ad_tc_close_ind");
   AvdtpCcb* p_ccb;
   AvdtpScb* p_scb;
   tAVDT_SCB_TC_CLOSE close;
@@ -301,14 +302,19 @@ void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl) {
   p_tbl->peer_mtu = L2CAP_DEFAULT_MTU;
 
   /* if signaling channel, notify ccb that channel close */
+  log::verbose("tcid: {}, old: {}", p_tbl->tcid, close.old_tc_state);
+  log::verbose(" p_tbl->disc_cfm: {}", p_tbl->disc_cfm);
   if (p_tbl->tcid == 0) {
     p_ccb = avdt_ccb_by_idx(p_tbl->ccb_idx);
+    p_ccb->disc_cfm = p_tbl->disc_cfm;
     avdt_ccb_event(p_ccb, AVDT_CCB_LL_CLOSE_EVT, NULL);
+    log::verbose(" tcid was 0, returning ");
     return;
   }
   /* if media or other channel, notify scb that channel close */
   /* look up scb in stream routing table by ccb, tcid */
   p_scb = avdtp_cb.ad.LookupAvdtpScb(*p_tbl);
+  p_scb->disc_cfm = p_tbl->disc_cfm;
   if (p_scb == nullptr) {
     log::error("Cannot find AvdtScb entry: ccb_idx: {} tcid: {}", p_tbl->ccb_idx, p_tbl->tcid);
     return;

@@ -49,6 +49,7 @@ void avdt_l2c_connect_cfm_cback(uint16_t lcid, tL2CAP_CONN result);
 void avdt_l2c_config_cfm_cback(uint16_t lcid, uint16_t result, tL2CAP_CFG_INFO* p_cfg);
 void avdt_l2c_config_ind_cback(uint16_t lcid, tL2CAP_CFG_INFO* p_cfg);
 void avdt_l2c_disconnect_ind_cback(uint16_t lcid, bool ack_needed);
+void avdt_l2c_disconnect_cfm_cback(uint16_t lcid, uint16_t result);
 void avdt_l2c_congestion_ind_cback(uint16_t lcid, bool is_congested);
 void avdt_l2c_data_ind_cback(uint16_t lcid, BT_HDR* p_buf);
 static void avdt_on_l2cap_error(uint16_t lcid, uint16_t result);
@@ -59,7 +60,7 @@ const tL2CAP_APPL_INFO avdt_l2c_appl = {avdt_l2c_connect_ind_cback,
                                         avdt_l2c_config_ind_cback,
                                         avdt_l2c_config_cfm_cback,
                                         avdt_l2c_disconnect_ind_cback,
-                                        NULL,
+                                        avdt_l2c_disconnect_cfm_cback,
                                         avdt_l2c_data_ind_cback,
                                         avdt_l2c_congestion_ind_cback,
                                         NULL,
@@ -318,14 +319,36 @@ void avdt_l2c_config_ind_cback(uint16_t lcid, tL2CAP_CFG_INFO* p_cfg) {
 void avdt_l2c_disconnect_ind_cback(uint16_t lcid, bool ack_needed) {
   AvdtpTransportChannel* p_tbl;
 
-  log::verbose("lcid: 0x{:04x}, ack_needed: {}", lcid, ack_needed);
+  log::verbose("avdt_l2c_disconnect_ind_cback lcid: {}, ack_needed: {}", lcid,
+               ack_needed);
   /* look up info for this channel */
   p_tbl = avdt_ad_tc_tbl_by_lcid(lcid);
-  if (p_tbl == NULL) {
-    log::warn("Adaptation layer transport channel table is NULL");
-    return;
+  if (p_tbl != NULL) {
+    avdt_ad_tc_close_ind(p_tbl);
   }
-  avdt_ad_tc_close_ind(p_tbl);
+}
+
+/*******************************************************************************
+  *
+  * Function         avdt_l2c_disconnect_cfm_cback
+  *
+  * Description      This is the L2CAP disconnect confirm callback function.
+  *
+  *
+  * Returns          void
+  *
+  ******************************************************************************/
+void avdt_l2c_disconnect_cfm_cback(uint16_t lcid, uint16_t result) {
+  AvdtpTransportChannel* p_tbl;
+
+  log::verbose("avdt_l2c_disconnect_cfm_cback lcid: {} result: {}", lcid, result);
+  /* look up info for this channel */
+  p_tbl = avdt_ad_tc_tbl_by_lcid(lcid);
+  p_tbl->disc_cfm = true;
+  if (p_tbl != NULL) {
+    avdt_ad_tc_close_ind(p_tbl);
+  }
+  L2CA_SetMediaStreamChannel(lcid, false);
 }
 
 /*******************************************************************************

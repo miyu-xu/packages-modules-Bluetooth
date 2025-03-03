@@ -374,8 +374,10 @@ void bta_av_proc_stream_evt(uint8_t handle, const RawAddress& bd_addr, uint8_t e
   tBTA_AV_SCB* p_scb = bta_av_cb.p_scb[scb_index];
   uint16_t sec_len = 0;
 
-  log::verbose("peer_address: {} avdt_handle: {} event=0x{:x} scb_index={} p_scb={}", bd_addr,
-               handle, event, scb_index, std::format_ptr(p_scb));
+  log::verbose(
+      "peer_address: {} avdt_handle: {} event=0x{:x} scb_index={} p_scb={}",
+      bd_addr, handle, event, scb_index, fmt::ptr(p_scb));
+  log::verbose(" p_data->disconnect_cfm.disc_cfm: {}", p_data->disconnect_cfm.disc_cfm);
 
   if (p_data) {
     if (event == AVDT_SECURITY_IND_EVT) {
@@ -388,6 +390,7 @@ void bta_av_proc_stream_evt(uint8_t handle, const RawAddress& bd_addr, uint8_t e
   }
 
   if (p_scb) {
+    log::verbose(" p_scb is true ");
     tBTA_AV_STR_MSG* p_msg =
             reinterpret_cast<tBTA_AV_STR_MSG*>(osi_malloc(sizeof(tBTA_AV_STR_MSG) + sec_len));
 
@@ -442,8 +445,11 @@ void bta_av_proc_stream_evt(uint8_t handle, const RawAddress& bd_addr, uint8_t e
     }
 
     p_msg->initiator = false;
-    if (event == AVDT_SUSPEND_CFM_EVT) {
-      p_msg->initiator = true;
+    if (event == AVDT_SUSPEND_CFM_EVT) p_msg->initiator = true;
+    if (event == AVDT_DISCONNECT_IND_EVT) {
+      log::verbose(" event is AVDT_DISCONNECT_IND_EVT ");
+      // p_msg->disc_cfm = p_data->disconnect_ind.disc_cfm;
+      p_msg->msg.disconnect_cfm.disc_cfm = p_data->disconnect_cfm.disc_cfm;
     }
 
     log::verbose("bta_handle:0x{:x} avdt_handle:{}", p_scb->hndl, handle);
@@ -451,6 +457,8 @@ void bta_av_proc_stream_evt(uint8_t handle, const RawAddress& bd_addr, uint8_t e
     p_msg->handle = handle;
     p_msg->avdt_event = event;
     bta_sys_sendmsg(p_msg);
+  } else {
+    log::verbose(" p_scb is null ");
   }
 
   if (p_data) {
@@ -2724,7 +2732,12 @@ void bta_av_rcfg_discntd(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* /*p_data*/) {
     /* report close event & go to init state */
     bta_av_ssm_execute(p_scb, BTA_AV_STR_DISC_FAIL_EVT, NULL);
   } else {
-    AVDT_ConnectReq(p_scb->PeerAddress(), p_scb->hdi, &bta_av_proc_stream_evt);
+    if(p_data->api_disc_cfm.cfm_disc.disc_cfm) {
+      log::verbose(" Go to retry AVDT_ConnectReq ");
+      AVDT_ConnectReq(p_scb->PeerAddress(), p_scb->hdi, &bta_av_proc_stream_evt);
+    } else {
+      log::verbose(" Disconnection callback is for indication, don't retry ");
+    }
   }
 }
 
