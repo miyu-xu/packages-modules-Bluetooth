@@ -10,7 +10,10 @@ package {
 
 cc_library_static {
     name: "libbt-btu-main-thread",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        "libchrome_defaults",
+    ],
     srcs: ["btu/main_thread.cc"],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -20,9 +23,6 @@ cc_library_static {
     ],
     static_libs: [
         "libbluetooth_log",
-    ],
-    shared_libs: [
-        "libchrome",
     ],
     apex_available: ["com.android.bt"],
     host_supported: true,
@@ -295,6 +295,7 @@ cc_defaults {
     host_supported: true,
     defaults: [
         "bluetooth_cflags",
+        "libchrome_defaults",
     ],
     cflags: [
         "-Wno-missing-prototypes",
@@ -308,7 +309,6 @@ cc_defaults {
         "packages/modules/Bluetooth/system/test/common",
     ],
     static_libs: [
-        "libchrome",
         "libgmock",
         "libgtest",
     ],
@@ -540,7 +540,6 @@ cc_fuzz {
         "libbluetooth_smp_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libevent",
     ],
 }
 
@@ -689,6 +688,7 @@ cc_test {
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
         "latest_android_media_audio_common_types_ndk_static",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -712,7 +712,6 @@ cc_test {
         "libcrypto",
         "libcutils",
         "libdl",
-        "libevent",
         "libhidlbase",
         "liblog",
         "libstatssocket",
@@ -749,7 +748,6 @@ cc_test {
         "libbtdevice",
         "libbte",
         "libbtif",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libflags_rust_cpp_bridge",
         "libfmq",
@@ -788,6 +786,7 @@ cc_test {
     name: "net_test_stack_rfcomm",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -850,9 +849,7 @@ cc_test {
         "libbt-btu-main-thread",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -881,6 +878,7 @@ cc_test {
     name: "net_test_stack_smp",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     host_supported: true,
@@ -940,9 +938,7 @@ cc_test {
         "libbt-btu-main-thread",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -989,6 +985,7 @@ cc_test {
     name: "net_test_conn_multiplexing",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     host_supported: true,
@@ -1030,9 +1027,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1066,6 +1061,7 @@ cc_test {
     name: "net_test_stack_gatt_native",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -1109,9 +1105,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1136,6 +1130,7 @@ cc_test {
     name: "net_test_stack_avctp",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -1185,9 +1180,7 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1211,6 +1204,7 @@ cc_test {
     name: "net_test_stack_avdtp",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -1259,9 +1253,7 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1285,6 +1277,7 @@ cc_test {
     name: "net_test_stack_a2dp_codecs_native",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     cflags: [
@@ -1374,7 +1367,6 @@ cc_test {
         "libbt-common",
         "libbt-sbc-decoder",
         "libbt-sbc-encoder",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "liblog",
@@ -1400,6 +1392,7 @@ cc_test {
     name: "net_test_stack_gatt_sr_hash_native",
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     test_suites: ["general-tests"],
@@ -1452,9 +1445,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1478,6 +1469,7 @@ cc_test {
     },
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1507,7 +1499,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "liblog",
@@ -1536,6 +1527,7 @@ cc_test {
     },
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1580,9 +1572,7 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1610,6 +1600,7 @@ cc_test {
     },
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1700,9 +1691,7 @@ cc_test {
         "libbt-sbc-decoder",
         "libbt-sbc-encoder",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblc3",
         "liblog",
@@ -1750,6 +1739,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1772,7 +1762,6 @@ cc_test {
         "libbt-common",
         "libbtdevice",
         "libbte",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
         "liblog",
@@ -1800,6 +1789,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1834,9 +1824,7 @@ cc_test {
         "libbt-platform-protos-lite",
         "libbtdevice",
         "libbte",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1870,6 +1858,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1909,9 +1898,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -1944,6 +1931,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -1999,9 +1987,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libflagtest",
         "libgmock",
         "liblog",
@@ -2045,6 +2031,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -2092,9 +2079,7 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -2143,6 +2128,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -2189,10 +2175,8 @@ cc_test {
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libcutils",
-        "libevent",
         "libgmock",
         "liblog",
         "libosi",
@@ -2236,6 +2220,7 @@ cc_test {
     },
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -2285,9 +2270,7 @@ cc_test {
         "libbt-sbc-decoder",
         "libbt-sbc-encoder",
         "libbtdevice",
-        "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libevent",
         "libgmock",
         "liblc3",
         "liblog",
@@ -2332,6 +2315,7 @@ cc_test {
     host_supported: true,
     defaults: [
         "fluoride_defaults",
+        "libchrome_defaults",
         "mts_defaults",
     ],
     local_include_dirs: [
@@ -2367,7 +2351,6 @@ cc_test {
         "libbluetooth_log",
         "libbt-common",
         "libbt-platform-protos-lite",
-        "libchrome",
         "libflagtest",
         "libgmock",
         "liblog",
