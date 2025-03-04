@@ -336,10 +336,18 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (b34562 Add "leaudio_use_aggressive_para_after_service_discovery" fl)
+    name: "leaudio_use_aggressive_para_after_service_discovery"
+    namespace: "bluetooth"
+    description: "use aggressive para after service discovery"
+    bug: "400607635"
+||||||| BASE
+=======
     name: "do_not_hardcode_tmap_role_mask"
     namespace: "bluetooth"
     description: "When initializing TMAP role mask in LeAudioService, make it a function of enabled services"
     bug: "399410612"
+>>>>>>> BASE      (8b0fdd Merge "Remove multiple media player support for cars." into )
     metadata {
         purpose: PURPOSE_BUGFIX
     }
