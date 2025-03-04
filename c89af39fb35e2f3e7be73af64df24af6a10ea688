@@ -45,6 +45,54 @@
       },
       "revId": "c89af39fb35e2f3e7be73af64df24af6a10ea688",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cdb1c0f_e235ee94",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-04T19:11:28Z",
+      "side": 1,
+      "message": "rfc_save_lcid_mcb stores the key value pair (lcid, p_mcb) in an unordered map.  I don\u0027t get the point of storing the pair when p_mcb is nullprt, but I wrote it that way because I was under the impression we were doing it to keep a more accurate record, so we wanted to save it in _every_ case where p_mcb is nullptr.  (Although I agree that it would be a logical change, maybe I should\u0027ve flagged it?) \n\nBehaviorally, I don\u0027t think it makes a difference, but you\u0027re right that if I\u0027m doing a purely mechanical refactor the code should be what wrote in your comment.  I fixed it.",
+      "parentUuid": "a761c6f0_04fcbe79",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 92
+      },
+      "revId": "c89af39fb35e2f3e7be73af64df24af6a10ea688",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cc3247e_ce6b25eb",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-04T19:11:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dca9286d_33debc5f",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 9
+      },
+      "revId": "c89af39fb35e2f3e7be73af64df24af6a10ea688",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
