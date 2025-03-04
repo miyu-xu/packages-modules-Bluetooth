@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c66fde0_d45a56e0",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T09:12:40Z",
+      "side": 0,
+      "message": "Equivalent to \n\n```\nif ((p_mcb) \u0026\u0026 (p_mcb-\u003estate !\u003d RFC_MX_STATE_IDLE)) {\n  /* if this is collision case */\n  if ((p_mcb-\u003eis_initiator) \u0026\u0026 (p_mcb-\u003estate \u003d\u003d RFC_MX_STATE_WAIT_CONN_CNF)) {\n    p_mcb-\u003epending_lcid \u003d lcid;\n\n    /* wait random timeout (2 - 12) to resolve collision */\n    /* if peer gives up then local device rejects incoming connection and\n     * continues as initiator */\n    /* if timeout, local device disconnects outgoing connection and continues\n     * as acceptor */\n    log::verbose(\n          \"RFCOMM_ConnectInd start timer for collision, initiator\u0027s \"\n          \"LCID(0x{:x}), acceptor\u0027s LCID(0x{:x})\",\n          p_mcb-\u003elcid, p_mcb-\u003epending_lcid);\n\n    rfc_timer_start(p_mcb, (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2));\n    return;\n  }\n  /* we cannot accept connection request from peer at this state */\n  /* don\u0027t update lcid */\n  p_mcb \u003d nullptr;\n} else {\n  /* store mcb even if null */\n  rfc_save_lcid_mcb(p_mcb, lcid);\n}\n```\n\nthen equivalent to\n\n```\n// If this is collision case\nif (p_mcb !\u003d nullptr \u0026\u0026 p_mcb-\u003eis_initiator \u0026\u0026 p_mcb-\u003estate \u003d\u003d RFC_MX_STATE_WAIT_CONN_CNF) {\n  p_mcb-\u003epending_lcid \u003d lcid;\n\n  /* wait random timeout (2 - 12) to resolve collision */\n  /* if peer gives up then local device rejects incoming connection and\n   * continues as initiator */\n  /* if timeout, local device disconnects outgoing connection and continues\n   * as acceptor */\n  log::verbose(\n        \"RFCOMM_ConnectInd start timer for collision, initiator\u0027s \"\n        \"LCID(0x{:x}), acceptor\u0027s LCID(0x{:x})\",\n        p_mcb-\u003elcid, p_mcb-\u003epending_lcid);\n\n  rfc_timer_start(p_mcb, (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2));\n  return;\n}\nif (p_mcb !\u003d nullptr \u0026\u0026 p_mcb-\u003estate !\u003d RFC_MX_STATE_IDLE) {\n  /* we cannot accept connection request from peer at this state */\n  /* don\u0027t update lcid */\n  p_mcb \u003d nullptr;\n} else {\n  /* store mcb even if null */\n  rfc_save_lcid_mcb(p_mcb, lcid);\n}\n```\n\nChange /* to //\n\n```\n// If this is collision case\nif (p_mcb !\u003d nullptr \u0026\u0026 p_mcb-\u003eis_initiator \u0026\u0026 p_mcb-\u003estate \u003d\u003d RFC_MX_STATE_WAIT_CONN_CNF) {\n  p_mcb-\u003epending_lcid \u003d lcid;\n\n  // Wait random timeout (2 - 12) to resolve collision\n  // If peer gives up then local device rejects incoming connection and\n  // continues as initiator\n  // if timeout, local device disconnects outgoing connection and continues\n  // as acceptor\n  log::verbose(\n        \"RFCOMM_ConnectInd start timer for collision, initiator\u0027s \"\n        \"LCID(0x{:x}), acceptor\u0027s LCID(0x{:x})\",\n        p_mcb-\u003elcid, p_mcb-\u003epending_lcid);\n\n  rfc_timer_start(p_mcb, (uint16_t)(bluetooth::common::time_get_os_boottime_ms() % 10 + 2));\n  return;\n}\nif (p_mcb !\u003d nullptr \u0026\u0026 p_mcb-\u003estate !\u003d RFC_MX_STATE_IDLE) {\n  // We cannot accept connection request from peer at this state, don\u0027t update lcid\n  p_mcb \u003d nullptr;\n} else {\n  // Store mcb even if null\n  rfc_save_lcid_mcb(p_mcb, lcid);\n}\n```",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "38254747d3469c8acc3b62986869abca3ec0a472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

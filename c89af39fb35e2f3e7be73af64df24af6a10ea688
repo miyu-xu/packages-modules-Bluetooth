@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a761c6f0_04fcbe79",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T09:12:40Z",
+      "side": 1,
+      "message": "I have a hard time believe the refactored logic is actually the same as the previous logic. From my side, the refactored logic should look like:\n\n```\n// Doing else case only since we did not return from previous case\nif (p_mcb !\u003d nullptr \u0026\u0026 p_mcb-\u003estate !\u003d RFC_MX_STATE_IDLE) {\n  // We cannot accept connection request from peer at this state\n  // don\u0027t update lcid\n  p_mcb \u003d nullptr;\n} else {\n  // store mcb even if null\n  rfc_save_lcid_mcb(p_mcb, lcid);\n}\n```\n\nSee my comments on the left",
+      "range": {
+        "startLine": 109,
+        "startChar": 9,
+        "endLine": 109,
+        "endChar": 92
+      },
+      "revId": "c89af39fb35e2f3e7be73af64df24af6a10ea688",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dca9286d_33debc5f",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T09:12:40Z",
+      "side": 1,
+      "message": "no need `else if`, just `if` should work? since you had `return` right before this",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 9
+      },
+      "revId": "c89af39fb35e2f3e7be73af64df24af6a10ea688",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
