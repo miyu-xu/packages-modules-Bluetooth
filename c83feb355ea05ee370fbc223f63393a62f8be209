@@ -70,6 +70,30 @@
       },
       "revId": "c83feb355ea05ee370fbc223f63393a62f8be209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76bb7485_c855697e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-03-04T23:23:51Z",
+      "side": 1,
+      "message": "IMO line length limits exist for a reason, and there\u0027s a small amount of BT code remaining that\u0027s misbehaving so it seems reasonable to do one off fixes as these files are updated, but I don\u0027t feel strongly on this. \n\nI uploaded aosp/3525132 as an alternative if you would prefer that approach, PTAL.",
+      "parentUuid": "60f10cb9_8f9560e1",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "c83feb355ea05ee370fbc223f63393a62f8be209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
