@@ -16,6 +16,24 @@
       "message": "This patch seems only thinly related to the linked issue.\nCan you explain how it is addressing the bug please ?",
       "revId": "535ea8accb1e2cc9c359ba30dbf8014972365092",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "884e2c7b_fb74750a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-04T09:03:45Z",
+      "side": 1,
+      "message": "\"bta_av_cb.conn_lcb\" was getting cleared in \"bta_av_find_lcb\" function definition.\nHence, it was unable to call \n\"bta_av_ssm_execute(p_cb-\u003ep_scb[xx], BTA_AV_AVDT_DISCONNECT_EVT, NULL);\"\nbecause of if-condition.",
+      "parentUuid": "f00f171c_a5a6c704",
+      "revId": "535ea8accb1e2cc9c359ba30dbf8014972365092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
