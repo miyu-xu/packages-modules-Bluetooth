@@ -1113,6 +1113,13 @@ class AdapterProperties {
         return options.toBundle();
     }
 
+    /**
+     * @return the mVersSupported
+     */
+    int getVendorCapVersion() {
+        return mVersSupported;
+    }
+
     protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
         writer.println(TAG);
         writer.println("  " + "Name: " + getName());
