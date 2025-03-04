@@ -139,6 +139,30 @@
       },
       "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ce5524_c4dbea96",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-03-04T06:04:07Z",
+      "side": 1,
+      "message": "It could be, for multiple calls coming from the JNI thread for example. In practice it won\u0027t really matter unless we\u0027re actually calling one of these methods from the LE thread.\n\nStill, it\u0027s best to keep this simple and post to the end of the queue. Please also make the same change to the method that waits for the result.",
+      "parentUuid": "8c947f7b_a9b90184",
+      "range": {
+        "startLine": 636,
+        "startChar": 46,
+        "endLine": 636,
+        "endChar": 88
+      },
+      "revId": "20dc845a358a96a858a8b8029b43c8a5329d2e15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
