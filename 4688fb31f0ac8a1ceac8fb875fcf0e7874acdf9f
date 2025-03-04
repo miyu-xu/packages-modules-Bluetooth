@@ -22,6 +22,30 @@
       },
       "revId": "4688fb31f0ac8a1ceac8fb875fcf0e7874acdf9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7676d4_13b1d78a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScannerMap.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T01:41:07Z",
+      "side": 1,
+      "message": "I think your opimion is right. Given this context, I\u0027ll keep the functon name same as before to minimize and remove any unnecessary change. The unit tests also run as is with the name staying same. Thank you!",
+      "parentUuid": "36346db9_6d543709",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 5
+      },
+      "revId": "4688fb31f0ac8a1ceac8fb875fcf0e7874acdf9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
