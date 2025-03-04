@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c60cb64_cb0e3f45",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-04T19:22:27Z",
+      "side": 1,
+      "message": "This value will always be non-zero when `p_lcb` is non-null.\nThe check before would have checked if any other connection remained.",
+      "range": {
+        "startLine": 1614,
+        "startChar": 12,
+        "endLine": 1614,
+        "endChar": 20
+      },
+      "revId": "54ee2a0859f1b336187db095f7cfd11c30c16908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
