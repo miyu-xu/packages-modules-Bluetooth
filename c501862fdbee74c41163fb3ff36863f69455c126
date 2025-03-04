@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d4fe781_a6d1fb69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T04:06:21Z",
+      "side": 1,
+      "message": "I do not see any instrumentation on the audio HAL managed SCO sessions starting in \n\npackages/modules/Bluetooth/system/audio_hal_interface/hfp_client_interface.cc\n\n`HFP_HARDWARE_OFFLOAD_DATAPATH` is used\n\nPlease make sure we add metrics for the control path after the SCO management refactor as well.",
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2a6374b_701ec1b8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T04:06:21Z",
+      "side": 1,
+      "message": "why do we need this reassignment?",
+      "range": {
+        "startLine": 1159,
+        "startChar": 0,
+        "endLine": 1159,
+        "endChar": 53
+      },
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b980742_d40209c8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T04:06:21Z",
+      "side": 1,
+      "message": "this is a failure case for BVRA. It happens if remote device sent AT+BVRA\u003d1, but apps on Android failed to respond in time and we treat this as a failure. \n\nNeed to either instrument here or in the `HeadsetStateMachine` for `VOICE_RECOGNITION_RESULT`\n\nof course, this depends on if you want to intrument `startVoiceRecognitionByHeadset`, if not, you can ignore this comment",
+      "range": {
+        "startLine": 1839,
+        "startChar": 16,
+        "endLine": 1839,
+        "endChar": 53
+      },
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08c8bb2_7ca4f922",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1916,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T04:06:21Z",
+      "side": 1,
+      "message": "INFO: this is when we send `ACTION_VOICE_COMMAND` intent to the app.",
+      "range": {
+        "startLine": 1916,
+        "startChar": 0,
+        "endLine": 1916,
+        "endChar": 33
+      },
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9449df70_ffb9cb0b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1937,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T04:06:21Z",
+      "side": 1,
+      "message": "same as above, do you want to instrument here?",
+      "range": {
+        "startLine": 1937,
+        "startChar": 12,
+        "endLine": 1937,
+        "endChar": 41
+      },
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "399cd777_1803f2c3",
+        "filename": "system/gd/metrics/bluetooth_event.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-04T04:06:21Z",
+      "side": 1,
+      "message": "there was also\n\n```\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK 0x0008\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q1_MASK 0x0016\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q2_MASK 0x0032\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q3_MASK 0x0064\n```\n\nAlso when `default` is hit, the codec should be `UNKOWN` instead of `NONE`",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 31
+      },
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
