@@ -52,7 +52,7 @@ public class ConvoContactInfoTest {
                             BluetoothMapContract.ConvoContactColumns.LAST_ONLINE
                         });
 
-        info.setConvoColumns(cursor);
+        info.setConvoColunms(cursor);
 
         assertThat(info.mContactColConvoId).isEqualTo(0);
         assertThat(info.mContactColName).isEqualTo(1);

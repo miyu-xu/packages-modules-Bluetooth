@@ -349,7 +349,7 @@ public class BluetoothGattCharacteristic implements Parcelable {
      * Returns the instance ID for this characteristic.
      *
      * <p>If a remote device offers multiple characteristics with the same UUID, the instance ID is
-     * used to distinguish between characteristics.
+     * used to distuinguish between characteristics.
      *
      * @return Instance ID of this characteristic
      */
