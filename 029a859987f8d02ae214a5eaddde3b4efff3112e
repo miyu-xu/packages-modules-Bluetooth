@@ -16,6 +16,24 @@
       "message": "Hi @wescande@google.com,\n\nTo be honest, I am not sure about this change and would love to get your review. Following your comment on https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3522650/comment/232251db_0bd10e48/, I\u0027ve taken the liberty to create all `AdvertisingSet` variables first, then only post the callback call. WDYT?\n\nReason for splitting with CL aosp/3523130 is similar to my previous one; I am confident the other one is safe but open to abondining this change if you deep it to be risky.",
       "revId": "029a859987f8d02ae214a5eaddde3b4efff3112e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1fb0df4_5bbe1c18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T22:23:02Z",
+      "side": 1,
+      "message": "I believe this CL is not the same, but maybe that is fine.\n\nIn the other CL, it was just local (as in the method) compute, before calling the callback.\n\nHere we are receiving the callback (from who ? I believe from the stack but I haven\u0027t check) and the we are getting / setting on mAdvertisingSets.\n\nIf these are called from potentially multiple thread, you are creating a race by moving the code outside of the handler. If it\u0027s not the case, then this is no op.",
+      "parentUuid": "6876fa56_855a0943",
+      "revId": "029a859987f8d02ae214a5eaddde3b4efff3112e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
