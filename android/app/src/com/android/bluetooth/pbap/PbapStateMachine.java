@@ -57,17 +57,10 @@ import com.android.obex.ServerSession;
 
 import java.io.IOException;
 
-// Bluetooth PBAP StateMachine
-//              (New connection socket)
-//                 WAITING FOR AUTH
-//                        |
-//                        |    (request permission from Settings UI)
-//                        |
-//           (Accept)    / \   (Reject)
-//                      /   \
-//                     v     v
-//          CONNECTED   ----->  FINISHED
-//                (OBEX Server done)
+/**
+ * Bluetooth PBAP StateMachine (New connection socket) WAITING FOR AUTH | | (request permission from
+ * Settings UI) | (Accept) / \ (Reject) / \ v v CONNECTED -----> FINISHED (OBEX Server done)
+ */
 // Next tag value for ContentProfileErrorReportUtils.report(): 3
 @VisibleForTesting(visibility = Visibility.PACKAGE)
 public class PbapStateMachine extends StateMachine {
@@ -389,7 +382,8 @@ public class PbapStateMachine extends StateMachine {
             Log.v(TAG, "Pbap Service startObexServerSession");
 
             // acquire the wakeLock before start Obex transaction thread
-            mServiceHandler.sendEmptyMessage(BluetoothPbapService.MSG_ACQUIRE_WAKE_LOCK);
+            mServiceHandler.sendMessage(
+                    mServiceHandler.obtainMessage(BluetoothPbapService.MSG_ACQUIRE_WAKE_LOCK));
 
             mPbapServer =
                     new BluetoothPbapObexServer(mServiceHandler, mService, PbapStateMachine.this);
