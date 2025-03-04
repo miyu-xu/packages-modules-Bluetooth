@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3bdb10d_8f246665",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T07:07:59Z",
+      "side": 1,
+      "message": "FYI this can be written:\n```mHandler.post(() -\u003e mScanCallback.onBatchScanResults(results));```",
+      "range": {
+        "startLine": 552,
+        "startChar": 26,
+        "endLine": 558,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7b927ba2_60711363",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+              "range": {
+                "startLine": 552,
+                "startChar": 0,
+                "endLine": 559,
+                "endChar": 0
+              },
+              "replacement": "            mHandler.post(() -\u003e mScanCallback.onBatchScanResults(results));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fd5e37d67084b7ce44e55bf8fdd7b0ce53ce59e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "232251db_0bd10e48",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T07:07:59Z",
+      "side": 1,
+      "message": "it\u0027s weird to evaluate onFound inside the runnable, I would have computed the value outside and only post the callback call",
+      "range": {
+        "startLine": 578,
+        "startChar": 32,
+        "endLine": 578,
+        "endChar": 39
+      },
+      "revId": "fd5e37d67084b7ce44e55bf8fdd7b0ce53ce59e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
