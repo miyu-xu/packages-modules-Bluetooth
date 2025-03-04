@@ -16,6 +16,24 @@
       "message": "My only worry here is breaking devices in the ecosystems. Can you please help me understand the risks that we are taking by changning the version ?",
       "revId": "b0adc77ce2e4c0a03263fc2e6414d09efbc0139d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05013ecd_6ff3add6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-04T04:58:43Z",
+      "side": 1,
+      "message": "Even if remote device has A2DP version \u003c1.4, we should not see any problem unless the remote device is not well-written.\nAlso to add, we had made this change ~11 months back and completed a cycle of commercialization and haven\u0027t seen any IoT issue.",
+      "parentUuid": "4c75f58c_f94ab375",
+      "revId": "b0adc77ce2e4c0a03263fc2e6414d09efbc0139d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

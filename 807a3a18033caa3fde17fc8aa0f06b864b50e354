@@ -34,6 +34,24 @@
       "parentUuid": "7889841c_3f7e82f1",
       "revId": "807a3a18033caa3fde17fc8aa0f06b864b50e354",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1684a321_954ff875",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-04T04:58:43Z",
+      "side": 1,
+      "message": "Can you please share the AVRCP version CL too?",
+      "parentUuid": "2df352d9_ef36e89a",
+      "revId": "807a3a18033caa3fde17fc8aa0f06b864b50e354",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
