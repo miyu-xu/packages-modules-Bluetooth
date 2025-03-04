@@ -115,6 +115,8 @@ public:
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
+  alarm_t* update_relax_con_intval_timer;
+
   LeAudioDevice(const RawAddress& address, DeviceConnectState state,
                 int group_id = bluetooth::groups::kGroupUnknown)
       : address_(address),
@@ -135,6 +137,7 @@ public:
         acl_asymmetric_(false),
         acl_phy_update_done_(false),
         link_quality_timer(nullptr),
+        update_relax_con_intval_timer(alarm_new("update_relax_con_intval_timer")),
         dsa_({{DsaMode::DISABLED},
               types::DataPathState::IDLE,
               LE_AUDIO_INVALID_CIS_HANDLE,
