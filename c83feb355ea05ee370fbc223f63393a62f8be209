@@ -46,6 +46,30 @@
       },
       "revId": "c83feb355ea05ee370fbc223f63393a62f8be209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60f10cb9_8f9560e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T18:51:14Z",
+      "side": 1,
+      "message": "I see.\n\nLinter cannot be turned off on a local zone, but since format is handled by clang, we could just disable the line length check on the linter and only rely on clang-format instead.\n\nThat would help on a broader scale than just this file, and would help to respect the initial code contribution that had the clang-format off.",
+      "parentUuid": "6689aab9_d373dbc5",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "c83feb355ea05ee370fbc223f63393a62f8be209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
