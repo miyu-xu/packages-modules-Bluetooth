@@ -25,13 +25,10 @@
 
 // The shim layer implementation on the Gd stack side.
 namespace bluetooth {
-namespace metrics {
-class CounterMetrics;
-}
-
 namespace shim {
 
 class Acl;
+class Btm;
 
 // GD shim stack, having modes corresponding to legacy stack
 class Stack {
@@ -42,7 +39,7 @@ public:
   Stack(const Stack&) = delete;
   Stack& operator=(const Stack&) = delete;
 
-  virtual ~Stack() = default;
+  ~Stack() = default;
 
   // Running mode, everything is up
   void StartEverything();
@@ -60,9 +57,7 @@ public:
     return registry_.IsStarted(&T::Factory);
   }
 
-  virtual Acl* GetAcl() const;
-  virtual metrics::CounterMetrics* GetCounterMetrics() const;
-
+  Acl* GetAcl();
   os::Handler* GetHandler();
 
   void Dump(int fd, std::promise<void> promise) const;

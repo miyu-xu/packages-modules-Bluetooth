@@ -25,16 +25,14 @@ namespace metrics {
 
 class CounterMetrics : public bluetooth::Module {
 public:
-  CounterMetrics(os::Handler* handler) : Module(handler) {}
-
   bool CacheCount(int32_t key, int64_t value);
   virtual bool Count(int32_t key, int64_t count);
   void Stop() override;
-  void Start() override;
+  static const ModuleFactory Factory;
 
 protected:
-  CounterMetrics() = default;
   void ListDependencies(ModuleList* list) const override;
+  void Start() override;
   std::string ToString() const override { return std::string("BluetoothCounterMetrics"); }
   void DrainBufferedCounters();
   virtual bool IsInitialized() { return initialized_; }

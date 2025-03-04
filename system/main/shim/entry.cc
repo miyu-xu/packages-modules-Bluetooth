@@ -72,7 +72,9 @@ storage::StorageModule* GetStorage() {
 
 hci::AclManager* GetAclManager() { return Stack::GetInstance()->GetInstance<hci::AclManager>(); }
 
-metrics::CounterMetrics* GetCounterMetrics() { return Stack::GetInstance()->GetCounterMetrics(); }
+metrics::CounterMetrics* GetCounterMetrics() {
+  return Stack::GetInstance()->GetInstance<metrics::CounterMetrics>();
+}
 
 hci::MsftExtensionManager* GetMsftExtensionManager() {
   return Stack::GetInstance()->GetInstance<hci::MsftExtensionManager>();

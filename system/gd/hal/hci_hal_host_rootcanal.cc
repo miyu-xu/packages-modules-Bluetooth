@@ -163,7 +163,10 @@ public:
   }
 
 protected:
-  void ListDependencies(ModuleList* list) const { list->add<SnoopLogger>(); }
+  void ListDependencies(ModuleList* list) const {
+    list->add<metrics::CounterMetrics>();
+    list->add<SnoopLogger>();
+  }
 
   void Start() override {
     std::lock_guard<std::mutex> lock(api_mutex_);
