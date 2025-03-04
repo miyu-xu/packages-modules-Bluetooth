@@ -1,0 +1,304 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33305a36_48de936a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-04T14:51:14Z",
+      "side": 1,
+      "message": "test infra files (hid.proto and hid.py) should be seperate CL",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e989ad5_875657d9",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-04T14:51:14Z",
+      "side": 1,
+      "message": "This should be seperate CL",
+      "range": {
+        "startLine": 395,
+        "startChar": 7,
+        "endLine": 397,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a6d8700b_5a36b699",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 395,
+                "startChar": 0,
+                "endLine": 397,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 407,
+                "startChar": 0,
+                "endLine": 408,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 450,
+                "startChar": 0,
+                "endLine": 451,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 490,
+                "startChar": 0,
+                "endLine": 491,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 546,
+                "startChar": 0,
+                "endLine": 547,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 559,
+                "startChar": 0,
+                "endLine": 560,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 579,
+                "startChar": 0,
+                "endLine": 580,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 650,
+                "startChar": 0,
+                "endLine": 651,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+              "range": {
+                "startLine": 661,
+                "startChar": 0,
+                "endLine": 662,
+                "endChar": 0
+              },
+              "replacement": "        BluetoothDevice device \u003d mAdapterService.getDeviceFromByte((byte[]) msg.obj);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8581a8b_b0ee75ca",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-04T14:51:14Z",
+      "side": 1,
+      "message": "data should be in output report format",
+      "range": {
+        "startLine": 728,
+        "startChar": 1,
+        "endLine": 728,
+        "endChar": 43
+      },
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a2b014_c6d7178b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-04T14:51:14Z",
+      "side": 1,
+      "message": "report type also to be verify",
+      "range": {
+        "startLine": 733,
+        "startChar": 12,
+        "endLine": 733,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4a5a96d0_764b848a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+              "range": {
+                "startLine": 734,
+                "startChar": 0,
+                "endLine": 734,
+                "endChar": 0
+              },
+              "replacement": "            assertThat(hidDataEvent.getReportTypeValue())\n                    .isEqualTo(BluetoothHidHost.REPORT_TYPE_INPUT);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1125c82a_3f35d2cd",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-04T14:51:14Z",
+      "side": 1,
+      "message": "chage to `ReportDataEvent` and  `OnSendHostData`",
+      "range": {
+        "startLine": 25,
+        "startChar": 56,
+        "endLine": 25,
+        "endChar": 64
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c0cfd698_73eb22a8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 26,
+                "endChar": 0
+              },
+              "replacement": "  rpc OnSendHostData(google.protobuf.Empty) returns (stream ReportDataEvent);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "message ReportDataEvent {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8966bd4d_8355c094",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-04T14:51:14Z",
+      "side": 1,
+      "message": "change to `report_data`",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2f9a4df0_d83459b1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 78,
+                "endChar": 0
+              },
+              "replacement": "    string report_data \u003d 1;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
