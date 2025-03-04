@@ -16,6 +16,24 @@
       "message": "Should we group together the change that uses this interop configuration?",
       "revId": "38542897ff67a9a8939e0957614160f98cf1edfc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "906215ec_b489bb3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-03-04T19:48:34Z",
+      "side": 1,
+      "message": "reopening",
+      "parentUuid": "75870d70_73e83348",
+      "revId": "38542897ff67a9a8939e0957614160f98cf1edfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
