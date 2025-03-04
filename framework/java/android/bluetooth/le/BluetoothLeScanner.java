@@ -533,8 +533,7 @@ public final class BluetoothLeScanner {
                 }
                 ;
             }
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(
+            mHandler.post(
                     new Runnable() {
                         @Override
                         public void run() {
@@ -550,8 +549,7 @@ public final class BluetoothLeScanner {
         @Override
         public void onBatchScanResults(final List<ScanResult> results) {
             Attributable.setAttributionSource(results, mAttributionSource);
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(
+            mHandler.post(
                     new Runnable() {
                         @Override
                         public void run() {
@@ -573,8 +571,7 @@ public final class BluetoothLeScanner {
                     return;
                 }
             }
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(
+            mHandler.post(
                     new Runnable() {
                         @Override
                         public void run() {
