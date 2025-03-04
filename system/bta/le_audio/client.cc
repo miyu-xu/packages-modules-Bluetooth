@@ -2696,6 +2696,21 @@ public:
       BtaGattQueue::ReadMultiCharacteristic(leAudioDevice->conn_id_, multi_read,
                                             OnGattReadMultiRspStatic, NULL);
     }
+
+    if (GmapClient::IsGmapClientEnabled()) {
+      if (leAudioDevice->gmap_client_->getRole() == 0) {
+        log::debug("Possibly empty GMAP Role value. Scheduling characteristic read.");
+        BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
+                                         leAudioDevice->gmap_client_->getRoleHandle(),
+                                         OnGattReadRspStatic, NULL);
+      }
+      if (leAudioDevice->gmap_client_->getUGTFeature() == 0) {
+        log::debug("Possibly empty GMAP UGT Features value. Scheduling characteristic read.");
+        BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
+                                         leAudioDevice->gmap_client_->getUGTFeatureHandle(),
+                                         OnGattReadRspStatic, NULL);
+      }
+    }
   }
 
   void OnEncryptionComplete(const RawAddress& address, tBTM_STATUS status) {
@@ -2724,6 +2739,20 @@ public:
     }
 
     if (leAudioDevice->encrypted_) {
+      if (GmapClient::IsGmapClientEnabled()) {
+        if (leAudioDevice->gmap_client_->getRole() == 0) {
+          log::debug("Possibly empty GMAP Role value. Scheduling characteristic read.");
+          BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
+                                           leAudioDevice->gmap_client_->getRoleHandle(),
+                                           OnGattReadRspStatic, NULL);
+        }
+        if (leAudioDevice->gmap_client_->getUGTFeature() == 0) {
+          log::debug("Possibly empty GMAP UGT Features value. Scheduling characteristic read.");
+          BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
+                                           leAudioDevice->gmap_client_->getUGTFeatureHandle(),
+                                           OnGattReadRspStatic, NULL);
+        }
+      }
       log::info("link already encrypted, nothing to do");
       return;
     }
@@ -3461,24 +3490,32 @@ public:
       }
     }
 
-    if (gmap_svc && GmapClient::IsGmapClientEnabled()) {
+    if (gmap_svc) {
       leAudioDevice->gmap_client_ = std::make_unique<GmapClient>(leAudioDevice->address_);
+      log::info("Found Gmap service, device: {}", leAudioDevice->address_);
       for (const gatt::Characteristic& charac : gmap_svc->characteristics) {
         if (charac.uuid == bluetooth::le_audio::uuid::kRoleCharacteristicUuid) {
           uint16_t handle = charac.value_handle;
           leAudioDevice->gmap_client_->setRoleHandle(handle);
-          BtaGattQueue::ReadCharacteristic(conn_id, handle, OnGattReadRspStatic, NULL);
+          if (GmapClient::IsGmapClientEnabled()) {
+            BtaGattQueue::ReadCharacteristic(conn_id, handle, OnGattReadRspStatic, NULL);
+          }
           log::info("Found Gmap Role characteristic, handle: 0x{:04x}, device: {}",
                     leAudioDevice->gmap_client_->getRoleHandle(), leAudioDevice->address_);
         }
         if (charac.uuid == bluetooth::le_audio::uuid::kUnicastGameTerminalCharacteristicUuid) {
           uint16_t handle = charac.value_handle;
           leAudioDevice->gmap_client_->setUGTFeatureHandle(handle);
-          BtaGattQueue::ReadCharacteristic(conn_id, handle, OnGattReadRspStatic, NULL);
+          if (GmapClient::IsGmapClientEnabled()) {
+            BtaGattQueue::ReadCharacteristic(conn_id, handle, OnGattReadRspStatic, NULL);
+          }
           log::info("Found Gmap UGT Feature characteristic, handle: 0x{:04x}, device: {}",
                     leAudioDevice->gmap_client_->getUGTFeatureHandle(), leAudioDevice->address_);
         }
       }
+
+      // Store at least the handles
+      btif_storage_leaudio_update_gmap_bin(leAudioDevice->address_);
     }
 
     leAudioDevice->known_service_handles_ = true;
