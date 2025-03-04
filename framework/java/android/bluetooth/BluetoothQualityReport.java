@@ -152,6 +152,7 @@ public final class BluetoothQualityReport implements Parcelable {
     private final int mManufacturerId;
     private final String mName;
     private final BluetoothClass mBluetoothClass;
+    private final int mVendorCapabilitiesVersion;
 
     private final BqrCommon mBqrCommon;
     private BqrVsLsto mBqrVsLsto;
@@ -275,6 +276,24 @@ public final class BluetoothQualityReport implements Parcelable {
         }
     }
 
+    private static final int BQR_VERSION_4_0 = 0x101;
+    private static final int BQR_VERSION_5_0 = 0x103;
+    private static final int BQR_VERSION_6_0 = 0x104;
+
+    private static int getBqrCommonLength(int version) {
+        if (version == 0) {
+            return BqrCommon.BQR_COMMON_LEN;
+        } else if (version < BQR_VERSION_4_0) {
+            return 55;
+        } else if (version <= BQR_VERSION_5_0) {
+            return 79;
+        } else if (version <= BQR_VERSION_6_0) {
+            return 85;
+        } else  {
+           throw new IllegalArgumentException(TAG + ": unsupported version:" + version);
+        }
+    }
+
     /**
      * Constructs a {@link BluetoothQualityReport} from raw byte data.
      *
@@ -282,6 +301,7 @@ public final class BluetoothQualityReport implements Parcelable {
      * in application code.
      */
     private BluetoothQualityReport(
+            int vendorCapabilitiesVersion,
             String remoteAddr,
             int lmpVer,
             int lmpSubVer,
@@ -289,6 +309,7 @@ public final class BluetoothQualityReport implements Parcelable {
             String remoteName,
             BluetoothClass bluetoothClass,
             byte[] rawData) {
+        mVendorCapabilitiesVersion = vendorCapabilitiesVersion;
         mAddr = remoteAddr;
         mLmpVer = lmpVer;
         mLmpSubVer = lmpSubVer;
@@ -296,11 +317,11 @@ public final class BluetoothQualityReport implements Parcelable {
         mName = remoteName;
         mBluetoothClass = bluetoothClass;
 
-        mBqrCommon = new BqrCommon(rawData, 0);
+        mBqrCommon = new BqrCommon(rawData, 0, vendorCapabilitiesVersion);
         int id = mBqrCommon.getQualityReportId();
         if (id == QUALITY_REPORT_ID_MONITOR) return;
 
-        int vsPartOffset = BqrCommon.BQR_COMMON_LEN;
+        int vsPartOffset = getBqrCommonLength(vendorCapabilitiesVersion);
         if (id == QUALITY_REPORT_ID_APPROACH_LSTO) {
             mBqrVsLsto = new BqrVsLsto(rawData, vsPartOffset);
         } else if (id == QUALITY_REPORT_ID_A2DP_CHOPPY) {
@@ -324,6 +345,7 @@ public final class BluetoothQualityReport implements Parcelable {
     }
 
     private BluetoothQualityReport(Parcel in) {
+        mVendorCapabilitiesVersion = in.readInt();
         mAddr = in.readString();
         mLmpVer = in.readInt();
         mLmpSubVer = in.readInt();
@@ -522,6 +544,7 @@ public final class BluetoothQualityReport implements Parcelable {
     @SystemApi
     @Override
     public void writeToParcel(@NonNull Parcel out, int flags) {
+        out.writeInt(mVendorCapabilitiesVersion);
         BluetoothUtils.writeStringToParcel(out, mAddr);
         out.writeInt(mLmpVer);
         out.writeInt(mLmpSubVer);
@@ -556,6 +579,7 @@ public final class BluetoothQualityReport implements Parcelable {
         String str;
         str =
                 "BQR: {\n"
+                        + ("  mVersion: " + mVendorCapabilitiesVersion)
                         + ("  mAddr: " + mAddr)
                         + (", mLmpVer: " + String.format("0x%02X", mLmpVer))
                         + (", mLmpSubVer: " + String.format("0x%04X", mLmpSubVer))
@@ -603,6 +627,7 @@ public final class BluetoothQualityReport implements Parcelable {
         private int manufacturerId;
         private String remoteName = "";
         private BluetoothClass bluetoothClass = new BluetoothClass(0);
+        private int vendorCapabilitiesVersion;
         private final byte[] rawData;
 
         /**
@@ -714,6 +739,18 @@ public final class BluetoothQualityReport implements Parcelable {
         }
 
         /**
+         * Sets vendor capabilities version.
+         *
+         * @param vendorCapabilitiesVersion vendor capabilities version
+         * @hide
+         */
+        @NonNull
+        public Builder setVendorCapabilitiesVersion(int vendorCapabilitiesVersion) {
+            this.vendorCapabilitiesVersion = vendorCapabilitiesVersion;
+            return this;
+        }
+
+        /**
          * Creates a new instance of {@link BluetoothQualityReport}.
          *
          * @return The new instance
@@ -724,6 +761,7 @@ public final class BluetoothQualityReport implements Parcelable {
         @SystemApi
         public BluetoothQualityReport build() {
             return new BluetoothQualityReport(
+                    vendorCapabilitiesVersion,
                     remoteAddr,
                     lmpVer,
                     lmpSubVer,
@@ -776,7 +814,8 @@ public final class BluetoothQualityReport implements Parcelable {
         private long mRxUnRecvPackets;
         private int mCoexInfoMask;
 
-        private BqrCommon(byte[] rawData, int offset) {
+        private BqrCommon(byte[] rawData, int offset, int vendorCapabilitiesVersion) {
+            int commonLen = BluetoothQualityReport.getBqrCommonLength(vendorCapabilitiesVersion);
 
             mQualityReportId = rawData[0] & 0xFF;
             if (Flags.supportBluetoothQualityReportV6()) {
@@ -786,7 +825,7 @@ public final class BluetoothQualityReport implements Parcelable {
                 }
             }
 
-            if (rawData == null || rawData.length < offset + BQR_COMMON_LEN) {
+            if (rawData == null || rawData.length < offset + commonLen) {
                 throw new IllegalArgumentException(TAG + ": BQR raw data length is abnormal.");
             }
 
