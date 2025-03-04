@@ -91,6 +91,7 @@ public class BluetoothQualityReportNativeInterface {
             return;
         }
 
+        int versionSupported = mAdapterService.getVendorCapVersion();
         BluetoothDevice device = adapter.getRemoteDevice(remoteAddress);
         BluetoothClass remoteClass = new BluetoothClass(mAdapterService.getRemoteClass(device));
         BluetoothQualityReport bqr;
@@ -103,6 +104,7 @@ public class BluetoothQualityReportNativeInterface {
                             .setManufacturerId(manufacturerId)
                             .setRemoteName(mAdapterService.getRemoteName(device))
                             .setBluetoothClass(remoteClass)
+                            .setVersionSupported(versionSupported)
                             .build();
             Log.i(TAG, bqr.toString());
         } catch (Exception e) {
