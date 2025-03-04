@@ -459,6 +459,33 @@ class Host(
         }
     }
 
+    override fun unBond(request: UnBondRequest, responseObserver: StreamObserver<Empty>) {
+        grpcUnary(scope, responseObserver) {
+            if (request.address.isEmpty())
+                throw IllegalArgumentException("Request address field must be set")
+            val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+
+            Log.i(TAG, "unbond: address=$bluetoothDevice")
+
+            // remove bond for each device to avoid auto connection if remote resets faster
+            for (device in bluetoothAdapter.bondedDevices) {
+                if (device == bluetoothDevice) {
+                    device.removeBond()
+                    Log.i(TAG, "wait for remove bond to complete : device=$device")
+                    flow
+                        .filter { it.action == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
+                        .filter { it.getBluetoothDeviceExtra() == device }
+                        .map {
+                            it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR)
+                        }
+                        .filter { it == BOND_NONE }
+                        .first()
+                }
+            }
+            Empty.getDefaultInstance()
+        }
+    }
+
     override fun advertise(
         request: AdvertiseRequest,
         responseObserver: StreamObserver<AdvertiseResponse>,
