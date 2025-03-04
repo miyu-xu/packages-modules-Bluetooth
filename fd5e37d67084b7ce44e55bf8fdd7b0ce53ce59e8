@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7112882_ecf660f7",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T07:18:04Z",
+      "side": 1,
+      "message": "Yes. I\u0027ve updated this in aosp/3522650. I split into to 2 CLs as I wasn\u0027t sure if this one was safe. Thank you!",
+      "parentUuid": "a3bdb10d_8f246665",
+      "range": {
+        "startLine": 552,
+        "startChar": 26,
+        "endLine": 558,
+        "endChar": 22
+      },
+      "revId": "fd5e37d67084b7ce44e55bf8fdd7b0ce53ce59e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "232251db_0bd10e48",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-03-04T07:07:59Z",
       "side": 1,
       "message": "it\u0027s weird to evaluate onFound inside the runnable, I would have computed the value outside and only post the callback call",
+      "range": {
+        "startLine": 578,
+        "startChar": 32,
+        "endLine": 578,
+        "endChar": 39
+      },
+      "revId": "fd5e37d67084b7ce44e55bf8fdd7b0ce53ce59e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e0bffe8_731c46ac",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T07:18:04Z",
+      "side": 1,
+      "message": "That\u0027s a good call indeed. I\u0027ll fix this with a new patch in this CL when I rebase on aosp/3522333. Thank you!",
+      "parentUuid": "232251db_0bd10e48",
       "range": {
         "startLine": 578,
         "startChar": 32,
