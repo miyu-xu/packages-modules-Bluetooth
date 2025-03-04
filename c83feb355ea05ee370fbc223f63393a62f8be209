@@ -22,6 +22,30 @@
       },
       "revId": "c83feb355ea05ee370fbc223f63393a62f8be209",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6689aab9_d373dbc5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-03-04T18:38:27Z",
+      "side": 1,
+      "message": "If you run the default repo hooks you get cpplint hook failing and clang-format also appears to run:\n\n```\n[FIXUP] clang-format has automated fixups available\n  cd /usr/local/google/home/hallstrom/aosp-main-with-phones/packages/modules/Bluetooth \u0026\u0026 \\\n    /usr/local/google/home/hallstrom/aosp-main-with-phones/tools/repohooks/tools/clang-format.py --fix --clang-format /usr/local/google/home/hallstrom/aosp-main-with-phones/prebuilts/clang/host/linux-x86/clang-stable/bin/clang-format --git-clang-format /usr/local/google/home/hallstrom/aosp-main-with-phones/prebuilts/clang/host/linux-x86/clang-stable/bin/git-clang-format --commit 8378164aa8d5580256085a369c6f740750ab3e1b --style file --extensions c,h,cc,cpp,hpp\n[FAILED] cpplint hook\n...\n[FAILED] repohooks for platform/packages/modules/Bluetooth failed in 1.109s\n```",
+      "parentUuid": "def8a619_7471fea7",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "c83feb355ea05ee370fbc223f63393a62f8be209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
