@@ -22,6 +22,30 @@
       },
       "revId": "bb16d1877d624e0452de1ae0d1244584f8e8c3b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edef1fbf_a4c5724a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-04T18:49:16Z",
+      "side": 1,
+      "message": "Raised b/400733920. But I am not sure if Bumble supports not including device name in the inquiry response.",
+      "parentUuid": "56d11958_170f9caa",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 131
+      },
+      "revId": "bb16d1877d624e0452de1ae0d1244584f8e8c3b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
