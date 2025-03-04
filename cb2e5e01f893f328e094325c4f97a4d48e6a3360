@@ -22,6 +22,29 @@
       },
       "revId": "cb2e5e01f893f328e094325c4f97a4d48e6a3360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe85e82_1af6c5eb",
+        "filename": "framework/java/android/bluetooth/le/PeriodicAdvertisingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T15:22:16Z",
+      "side": 1,
+      "message": "@wescande@google.com I\u0027m aware that _techinically_ this is not the same thing but _realisically_, it should achieve the same point. Do you think it\u0027s safe or would you rather I revert it to the old `\u003d\u003d null) { ... \u003d new` format?",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 92
+      },
+      "revId": "cb2e5e01f893f328e094325c4f97a4d48e6a3360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
