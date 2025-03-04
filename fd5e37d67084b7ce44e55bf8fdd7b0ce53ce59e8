@@ -111,6 +111,30 @@
       },
       "revId": "fd5e37d67084b7ce44e55bf8fdd7b0ce53ce59e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ead777_f6101c14",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T07:39:18Z",
+      "side": 1,
+      "message": "Done. I\u0027m calculating `callbackType` based on `onFound` first then posting the callback call. Thank you!",
+      "parentUuid": "8e0bffe8_731c46ac",
+      "range": {
+        "startLine": 578,
+        "startChar": 32,
+        "endLine": 578,
+        "endChar": 39
+      },
+      "revId": "fd5e37d67084b7ce44e55bf8fdd7b0ce53ce59e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
