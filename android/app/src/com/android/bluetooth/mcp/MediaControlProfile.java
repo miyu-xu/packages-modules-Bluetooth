@@ -472,12 +472,14 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
                 if ((actions & PlaybackState.ACTION_REWIND) != 0) {
                     mMediaPlayerList.getActivePlayer().rewind();
                     status = Request.Results.SUCCESS;
+                    mGMcsService.sendSeekingSpeedNotification();
                 }
                 break;
             case Request.Opcodes.FAST_FORWARD:
                 if ((actions & PlaybackState.ACTION_FAST_FORWARD) != 0) {
                     mMediaPlayerList.getActivePlayer().fastForward();
                     status = Request.Results.SUCCESS;
+                    mGMcsService.sendSeekingSpeedNotification();
                 }
                 break;
             case Request.Opcodes.MOVE_RELATIVE:

@@ -1571,6 +1571,19 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
     }
 
     @Override
+    public void sendSeekingSpeedNotification() {
+        Log.d(TAG, "sendSeekingSpeedNotification");
+        updateMediaStateChar(MediaState.SEEKING.getValue());
+        BluetoothGattCharacteristic characteristic =
+                mCharacteristics.get(CharId.SEEKING_SPEED);
+        int intSpeed = SpeedFloatToCharacteristicIntValue(getSeekingSpeedChar());
+        characteristic.setValue(intSpeed, BluetoothGattCharacteristic.FORMAT_SINT8, 0);
+        if (isFeatureSupported(ServiceFeature.SEEKING_SPEED_NOTIFY)) {
+            notifyCharacteristic(characteristic, null);
+        }
+    }
+
+    @Override
     public void setSearchRequestResult(
             SearchRequest request, SearchRequest.Results resultStatus, long resultObjectId) {
         Log.d(TAG, "setSearchRequestResult");
