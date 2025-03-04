@@ -47,7 +47,7 @@ bool btif_a2dp_source_start_session(const RawAddress& peer_address,
 // can be empty.
 // |new_peer_address| is the peer address of the new session. This address
 // cannot be empty.
-bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
+void btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
                                       const RawAddress& new_peer_address,
                                       std::promise<void> peer_ready_promise);
 

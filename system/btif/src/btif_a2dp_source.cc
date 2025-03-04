@@ -502,7 +502,7 @@ static void btif_a2dp_source_start_session_delayed(const RawAddress& peer_addres
   peer_ready_promise.set_value();
 }
 
-bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
+void btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
                                       const RawAddress& new_peer_address,
                                       std::promise<void> peer_ready_promise) {
   log::info("old_peer_address={} new_peer_address={} state={}", old_peer_address, new_peer_address,
@@ -525,7 +525,6 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
   btif_a2dp_source_start_session(new_peer_address, std::move(peer_ready_promise));
   // If audio was streaming before, DON'T start audio streaming, but leave the
   // control to the audio HAL.
-  return true;
 }
 
 bool btif_a2dp_source_end_session(const RawAddress& peer_address) {

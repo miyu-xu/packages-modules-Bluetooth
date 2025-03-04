@@ -545,11 +545,8 @@ public:
       return false;
     }
 
-    if (!btif_a2dp_source_restart_session(active_peer_, peer_address,
-                                          std::move(peer_ready_promise))) {
-      // cannot set promise but need to be handled within restart_session
-      return false;
-    }
+    btif_a2dp_source_restart_session(active_peer_, peer_address, std::move(peer_ready_promise));
+
     active_peer_ = peer_address;
     return true;
   }
@@ -3475,37 +3472,34 @@ static void set_source_silence_peer_int(const RawAddress& peer_address, bool sil
   }
 }
 
-// Set the active peer
-static void set_active_peer_int(uint8_t peer_sep, const RawAddress& peer_address,
-                                std::promise<void> peer_ready_promise) {
-  log::info("peer_sep={} peer={}", peer_sep == AVDT_TSEP_SRC ? "Source" : "Sink", peer_address);
+static void set_source_active_peer_int(const RawAddress& peer_address,
+                                       std::promise<void> peer_ready_promise) {
+  log::info("peer={}", peer_address);
 
-  BtifAvPeer* peer = nullptr;
-  if (peer_sep == AVDT_TSEP_SNK) {
-    if (!btif_av_src_sink_coexist_enabled() ||
-        (btif_av_src_sink_coexist_enabled() && btif_av_both_enable() &&
-         (btif_av_sink.FindPeer(peer_address) == nullptr))) {
-      if (!btif_av_source.SetActivePeer(peer_address, std::move(peer_ready_promise))) {
-        log::error("Error setting {} as active Sink peer", peer_address);
-      }
-    }
-    return;
+  bool coexist_enabled = btif_av_src_sink_coexist_enabled() && btif_av_both_enable();
+
+  if (!coexist_enabled && btif_av_sink.FindPeer(peer_address)) {
+    log::error("cannot set active source to {}: already active as sink", peer_address);
+    peer_ready_promise.set_value();
+  } else if (!btif_av_source.SetActivePeer(peer_address, std::move(peer_ready_promise))) {
+    log::error("error setting active source to {}", peer_address);
+    peer_ready_promise.set_value();
   }
-  if (peer_sep == AVDT_TSEP_SRC) {
-    if (!btif_av_src_sink_coexist_enabled() ||
-        (btif_av_src_sink_coexist_enabled() && btif_av_both_enable() &&
-         (btif_av_source.FindPeer(peer_address) == nullptr))) {
-      if (!btif_av_sink.SetActivePeer(peer_address, std::move(peer_ready_promise))) {
-        log::error("Error setting {} as active Source peer", peer_address);
-      }
-    }
-    return;
+}
+
+static void set_sink_active_peer_int(const RawAddress& peer_address,
+                                     std::promise<void> peer_ready_promise) {
+  log::info("peer={}", peer_address);
+
+  bool coexist_enabled = btif_av_src_sink_coexist_enabled() && btif_av_both_enable();
+
+  if (!coexist_enabled && btif_av_source.FindPeer(peer_address)) {
+    log::error("cannot set active sink to {}: already active as source", peer_address);
+    peer_ready_promise.set_value();
+  } else if (!btif_av_sink.SetActivePeer(peer_address, std::move(peer_ready_promise))) {
+    log::error("error setting active sink to {}", peer_address);
+    peer_ready_promise.set_value();
   }
-  // If reached here, we could not set the active peer
-  log::error("Cannot set active {} peer to {}: peer not {}",
-             (peer_sep == AVDT_TSEP_SRC) ? "Source" : "Sink", peer_address,
-             (peer == nullptr) ? "found" : "connected");
-  peer_ready_promise.set_value();
 }
 
 bt_status_t btif_av_source_connect(const RawAddress& peer_address) {
@@ -3570,10 +3564,8 @@ bt_status_t btif_av_sink_set_active_device(const RawAddress& peer_address) {
 
   std::promise<void> peer_ready_promise;
   std::future<void> peer_ready_future = peer_ready_promise.get_future();
-  bt_status_t status =
-          do_in_main_thread(base::BindOnce(&set_active_peer_int,
-                                           AVDT_TSEP_SRC,  // peer_sep
-                                           peer_address, std::move(peer_ready_promise)));
+  bt_status_t status = do_in_main_thread(
+          base::BindOnce(&set_sink_active_peer_int, peer_address, std::move(peer_ready_promise)));
   if (status == BT_STATUS_SUCCESS) {
     peer_ready_future.wait();
   } else {
@@ -3603,10 +3595,8 @@ bt_status_t btif_av_source_set_active_device(const RawAddress& peer_address) {
 
   std::promise<void> peer_ready_promise;
   std::future<void> peer_ready_future = peer_ready_promise.get_future();
-  bt_status_t status =
-          do_in_main_thread(base::BindOnce(&set_active_peer_int,
-                                           AVDT_TSEP_SNK,  // peer_sep
-                                           peer_address, std::move(peer_ready_promise)));
+  bt_status_t status = do_in_main_thread(
+          base::BindOnce(&set_source_active_peer_int, peer_address, std::move(peer_ready_promise)));
   if (status == BT_STATUS_SUCCESS) {
     peer_ready_future.wait();
   } else {
