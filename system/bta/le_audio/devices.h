@@ -113,6 +113,7 @@ public:
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
+  alarm_t* update_relax_con_intval_timer;
   uint8_t last_ase_ctp_command_sent;
 
   LeAudioDevice(const RawAddress& address, DeviceConnectState state,
@@ -135,6 +136,7 @@ public:
         acl_asymmetric_(false),
         acl_phy_update_done_(false),
         link_quality_timer(nullptr),
+        update_relax_con_intval_timer(alarm_new("update_relax_con_intval_timer")),
         last_ase_ctp_command_sent(0x00),
         dsa_({{DsaMode::DISABLED},
               types::DataPathState::IDLE,
