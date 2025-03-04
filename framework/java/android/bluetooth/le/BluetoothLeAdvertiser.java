@@ -766,39 +766,34 @@ public final class BluetoothLeAdvertiser {
             @Override
             public void onAdvertisingSetStarted(
                     IBinder advertiseBinder, int advertiserId, int txPower, int status) {
-                handler.post(
-                        () -> {
-                            if (status != AdvertisingSetCallback.ADVERTISE_SUCCESS) {
-                                callback.onAdvertisingSetStarted(null, 0, status);
-                                mCallbackWrappers.remove(callback);
-                                return;
-                            }
+                if (status != AdvertisingSetCallback.ADVERTISE_SUCCESS) {
+                    callback.onAdvertisingSetStarted(null, 0, status);
+                    mCallbackWrappers.remove(callback);
+                    return;
+                }
 
-                            AdvertisingSet advertisingSet =
-                                    new AdvertisingSet(
-                                            IBluetoothAdvertise.Stub.asInterface(advertiseBinder),
-                                            advertiserId,
-                                            mBluetoothAdapter,
-                                            mAttributionSource);
-                            mAdvertisingSets.put(advertiserId, advertisingSet);
-                            callback.onAdvertisingSetStarted(advertisingSet, txPower, status);
-                        });
+                final AdvertisingSet advertisingSet =
+                        new AdvertisingSet(
+                                IBluetoothAdvertise.Stub.asInterface(advertiseBinder),
+                                advertiserId,
+                                mBluetoothAdapter,
+                                mAttributionSource);
+                mAdvertisingSets.put(advertiserId, advertisingSet);
+                handler.post(
+                        () -> callback.onAdvertisingSetStarted(advertisingSet, txPower, status));
             }
 
             @Override
             public void onOwnAddressRead(int advertiserId, int addressType, String address) {
-                handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onOwnAddressRead(advertisingSet, addressType, address);
-                        });
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
+                handler.post(() -> callback.onOwnAddressRead(advertisingSet, addressType, address));
             }
 
             @Override
             public void onAdvertisingSetStopped(int advertiserId) {
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
                 handler.post(
                         () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
                             callback.onAdvertisingSetStopped(advertisingSet);
                             mAdvertisingSets.remove(advertiserId);
                             mCallbackWrappers.remove(callback);
@@ -807,66 +802,53 @@ public final class BluetoothLeAdvertiser {
 
             @Override
             public void onAdvertisingEnabled(int advertiserId, boolean enabled, int status) {
-                handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onAdvertisingEnabled(advertisingSet, enabled, status);
-                        });
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
+                handler.post(() -> callback.onAdvertisingEnabled(advertisingSet, enabled, status));
             }
 
             @Override
             public void onAdvertisingDataSet(int advertiserId, int status) {
-                handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onAdvertisingDataSet(advertisingSet, status);
-                        });
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
+                handler.post(() -> callback.onAdvertisingDataSet(advertisingSet, status));
             }
 
             @Override
             public void onScanResponseDataSet(int advertiserId, int status) {
-                handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onScanResponseDataSet(advertisingSet, status);
-                        });
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
+                handler.post(() -> callback.onScanResponseDataSet(advertisingSet, status));
             }
 
             @Override
             public void onAdvertisingParametersUpdated(int advertiserId, int txPower, int status) {
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
                 handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onAdvertisingParametersUpdated(
-                                    advertisingSet, txPower, status);
-                        });
+                        () ->
+                                callback.onAdvertisingParametersUpdated(
+                                        advertisingSet, txPower, status));
             }
 
             @Override
             public void onPeriodicAdvertisingParametersUpdated(int advertiserId, int status) {
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
                 handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onPeriodicAdvertisingParametersUpdated(advertisingSet, status);
-                        });
+                        () ->
+                                callback.onPeriodicAdvertisingParametersUpdated(
+                                        advertisingSet, status));
             }
 
             @Override
             public void onPeriodicAdvertisingDataSet(int advertiserId, int status) {
-                handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onPeriodicAdvertisingDataSet(advertisingSet, status);
-                        });
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
+                handler.post(() -> callback.onPeriodicAdvertisingDataSet(advertisingSet, status));
             }
 
             @Override
             public void onPeriodicAdvertisingEnabled(int advertiserId, boolean enable, int status) {
+                final AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
                 handler.post(
-                        () -> {
-                            AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onPeriodicAdvertisingEnabled(advertisingSet, enable, status);
-                        });
+                        () ->
+                                callback.onPeriodicAdvertisingEnabled(
+                                        advertisingSet, enable, status));
             }
         };
     }
