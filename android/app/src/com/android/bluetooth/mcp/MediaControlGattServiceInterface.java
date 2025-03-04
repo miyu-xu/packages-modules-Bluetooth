@@ -39,6 +39,8 @@ public interface MediaControlGattServiceInterface {
 
     void setMediaControlRequestResult(Request request, Request.Results resultStatus);
 
+    void sendSeekingSpeedNotification();
+
     void setSearchRequestResult(
             SearchRequest request, SearchRequest.Results resultStatus, long resultObjectId);
 
