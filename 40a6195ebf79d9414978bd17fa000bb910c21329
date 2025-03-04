@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4470ddcd_c99fa96b",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T22:46:50Z",
+      "side": 1,
+      "message": "This doesn\u0027t look similar to me\n\nThe flag removal would be\n```\nif (bta_dm_removal_pending(peer_bdaddr)) {\n  return false;\n}\nreturn (conn_state \u003d\u003d tBTA_DM_CONN_STATE::BTA_DM_CONNECTED);\n```\n\nOr if you want one line:\n```\nreturn !bta_dm_removal_pending(peer_bdaddr) \u0026\u0026 conn_state \u003d\u003d tBTA_DM_CONN_STATE::BTA_DM_CONNECTED;\n```",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ef74e3ff_3882c77d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_int.h",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 135,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "40a6195ebf79d9414978bd17fa000bb910c21329",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
