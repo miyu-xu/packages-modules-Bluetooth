@@ -50,6 +50,30 @@
       ],
       "revId": "64c53a5f5a8f9145d6939e87b32a6e75cb1890da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c624a698_e2148b3a",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T23:40:17Z",
+      "side": 1,
+      "message": "Indeed that looks better. Done. Thank you!",
+      "parentUuid": "41c00efc_02ccc098",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 21
+      },
+      "revId": "64c53a5f5a8f9145d6939e87b32a6e75cb1890da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
