@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41c00efc_02ccc098",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T22:25:38Z",
+      "side": 1,
+      "message": "nit I would move size after the for loop to make it clear that it only matter then",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d0dd2b2a_131c1de2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+              "range": {
+                "startLine": 731,
+                "startChar": 0,
+                "endLine": 732,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+              "range": {
+                "startLine": 744,
+                "startChar": 0,
+                "endLine": 744,
+                "endChar": 0
+              },
+              "replacement": "        int size \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "64c53a5f5a8f9145d6939e87b32a6e75cb1890da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
