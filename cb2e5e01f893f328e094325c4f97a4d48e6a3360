@@ -45,6 +45,30 @@
       },
       "revId": "cb2e5e01f893f328e094325c4f97a4d48e6a3360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ecbe832_0eb716e7",
+        "filename": "framework/java/android/bluetooth/le/PeriodicAdvertisingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T21:30:07Z",
+      "side": 1,
+      "message": "This is the same to me 😊",
+      "parentUuid": "4fe85e82_1af6c5eb",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 92
+      },
+      "revId": "cb2e5e01f893f328e094325c4f97a4d48e6a3360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
