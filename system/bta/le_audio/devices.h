@@ -113,7 +113,12 @@ public:
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
+<<<<<<< PATCH SET (1cd9ec Optimize the connection flow of lea device.)
+  alarm_t* update_relax_con_intval_timer;
+||||||| BASE
+=======
   uint8_t last_ase_ctp_command_sent;
+>>>>>>> BASE      (6c8758 Merge "Run all distance measurement operations (Java) on the)
 
   LeAudioDevice(const RawAddress& address, DeviceConnectState state,
                 int group_id = bluetooth::groups::kGroupUnknown)
@@ -135,7 +140,12 @@ public:
         acl_asymmetric_(false),
         acl_phy_update_done_(false),
         link_quality_timer(nullptr),
+<<<<<<< PATCH SET (1cd9ec Optimize the connection flow of lea device.)
+        update_relax_con_intval_timer(alarm_new("update_relax_con_intval_timer")),
+||||||| BASE
+=======
         last_ase_ctp_command_sent(0x00),
+>>>>>>> BASE      (6c8758 Merge "Run all distance measurement operations (Java) on the)
         dsa_({{DsaMode::DISABLED},
               types::DataPathState::IDLE,
               LE_AUDIO_INVALID_CIS_HANDLE,
