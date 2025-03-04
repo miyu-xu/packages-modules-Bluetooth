@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b181e45e_8024c410",
+        "filename": "framework/java/android/bluetooth/le/PeriodicAdvertisingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-04T15:17:10Z",
+      "side": 1,
+      "message": "Interesting.",
+      "range": {
+        "startLine": 144,
+        "startChar": 20,
+        "endLine": 144,
+        "endChar": 77
+      },
+      "revId": "cb2e5e01f893f328e094325c4f97a4d48e6a3360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
