@@ -117,7 +117,7 @@ class AdapterProperties {
     private int mNumOfOffloadedIrkSupported;
     private int mNumOfOffloadedScanFilterSupported;
     private int mOffloadedScanResultStorageBytes;
-    private int mVersSupported;
+    private int mVendorCapabilitiesVersion;
     private int mTotNumOfTrackableAdv;
     private boolean mIsExtendedScanSupported;
     private boolean mIsDebugLogSupported;
@@ -923,7 +923,7 @@ class AdapterProperties {
     }
 
     private void updateFeatureSupport(byte[] val) {
-        mVersSupported = ((0xFF & ((int) val[1])) << 8) + (0xFF & ((int) val[0]));
+        mVendorCapabilitiesVersion = ((0xFF & ((int) val[1])) << 8) + (0xFF & ((int) val[0]));
         mNumOfAdvertisementInstancesSupported = (0xFF & ((int) val[3]));
         mRpaOffloadSupported = ((0xFF & ((int) val[4])) != 0);
         mNumOfOffloadedIrkSupported = (0xFF & ((int) val[5]));
@@ -965,8 +965,8 @@ class AdapterProperties {
                         + mOffloadedScanResultStorageBytes
                         + " mIsActivityAndEnergyReporting = "
                         + mIsActivityAndEnergyReporting
-                        + " mVersSupported = "
-                        + mVersSupported
+                        + " mVendorCapabilitiesVersion = "
+                        + mVendorCapabilitiesVersion
                         + " mTotNumOfTrackableAdv = "
                         + mTotNumOfTrackableAdv
                         + " mIsExtendedScanSupported = "
@@ -1111,6 +1111,10 @@ class AdapterProperties {
             options.setDeferralPolicy(BroadcastOptions.DEFERRAL_POLICY_UNTIL_ACTIVE);
         }
         return options.toBundle();
+    }
+
+    int getVendorCapabilitiesVersion() {
+        return mVendorCapabilitiesVersion;
     }
 
     protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {

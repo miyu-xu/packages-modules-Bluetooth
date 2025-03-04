@@ -6696,6 +6696,10 @@ public class AdapterService extends Service {
         return mRemoteDevices;
     }
 
+    public int getVendorCapabilitiesVersion() {
+        return mAdapterProperties.getVendorCapabilitiesVersion();
+    }
+
     private static String scanModeName(int scanMode) {
         return switch (scanMode) {
             case SCAN_MODE_NONE -> "SCAN_MODE_NONE";
