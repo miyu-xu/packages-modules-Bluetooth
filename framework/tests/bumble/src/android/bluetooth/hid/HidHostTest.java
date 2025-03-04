@@ -80,6 +80,7 @@ import org.mockito.hamcrest.MockitoHamcrest;
 import org.mockito.stubbing.Answer;
 
 import pandora.HIDGrpc;
+import pandora.HidProto.DataEvent;
 import pandora.HidProto.HidServiceType;
 import pandora.HidProto.ProtocolModeEvent;
 import pandora.HidProto.ReportEvent;
@@ -709,6 +710,27 @@ public class HidHostTest {
                     .isEqualTo(BluetoothHidHost.REPORT_TYPE_INPUT);
             assertThat(hidReportEvent.getReportIdValue()).isEqualTo(INVALID_RPT_ID);
             assertThat(hidReportEvent.getReportData()).isEqualTo(inValidReportData.substring(2));
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    @Test
+    public void hidSendDataTest() throws Exception {
+        Iterator<DataEvent> mHidDataEventObserver =
+                mHidBlockingStub
+                        .withDeadlineAfter(PROTO_MODE_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                        .onSendData(Empty.getDefaultInstance());
+        // Todo: as a workaround added 50ms delay.
+        // To be removed once root cause is identified for b/382180335
+        final CompletableFuture<Integer> future = new CompletableFuture<>();
+        future.completeOnTimeout(null, 50, TimeUnit.MILLISECONDS).join();
+        // Send data
+        String Data = "010203040506070809";
+        assertThat(mHidService.sendData(mDevice, Data)).isTrue();
+
+        if (mHidDataEventObserver.hasNext()) {
+            DataEvent hidDataEvent = mHidDataEventObserver.next();
+            assertThat(hidDataEvent.getData()).isEqualTo(Data);
         }
     }
 
