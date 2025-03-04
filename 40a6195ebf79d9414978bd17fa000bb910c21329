@@ -64,6 +64,30 @@
       },
       "revId": "40a6195ebf79d9414978bd17fa000bb910c21329",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd016232_f7ed7ded",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-04T23:16:12Z",
+      "side": 1,
+      "message": "I see, thanks.\nBecause of the flag `conn_state` was never updated and always equals to BTA_DM_CONNECTED.\n\n+2",
+      "parentUuid": "838ffcd7_fac2aae3",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 0
+      },
+      "revId": "40a6195ebf79d9414978bd17fa000bb910c21329",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
