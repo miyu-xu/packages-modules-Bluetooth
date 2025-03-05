@@ -93,6 +93,30 @@
       },
       "revId": "cbe15f549f5d905af7f4e45fd7b4383f01277c78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f218eba_14c67108",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T19:37:10Z",
+      "side": 1,
+      "message": "It sounds like cap is an abreviation for capabilities.\n`getVendorCapabilitiesVersion` ? without abreviation.\nand the variable should be `mVendorCapabilitiesVersion` ?\n\nSince this is coming from:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_core.cc;l\u003d448;drc\u003d64c4c0403e3bf8eccc843bce2afebf6b2ae5af87",
+      "parentUuid": "b2ddd665_18af156c",
+      "range": {
+        "startLine": 1119,
+        "startChar": 17,
+        "endLine": 1119,
+        "endChar": 21
+      },
+      "revId": "cbe15f549f5d905af7f4e45fd7b4383f01277c78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
