@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eca52f6_f2b27d4d",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-03-05T22:25:44Z",
+      "side": 1,
+      "message": "Nit: I think it\u0027s more readable to have this logic embedded in conditional before sending confirmation of the indication, or at least move this logic above that confirmation.",
+      "range": {
+        "startLine": 1589,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4095c5e7_1044c559",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_act.cc",
+              "range": {
+                "startLine": 1583,
+                "startChar": 0,
+                "endLine": 1588,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/gatt/bta_gattc_act.cc",
+              "range": {
+                "startLine": 1607,
+                "startChar": 0,
+                "endLine": 1607,
+                "endChar": 0
+              },
+              "replacement": "\n    /* send confirmation here if this is an indication, it should always be */\n    if (GATTC_SendHandleValueConfirm(conn_id, p_notify-\u003ecid) !\u003d GATT_SUCCESS) {\n      log::warn(\"Unable to send GATT client handle value confirmation conn_id:{} cid:{}\", conn_id,\n                p_notify-\u003ecid);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ebc60b0219be07692dd1d0361877bd02b8a3e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
