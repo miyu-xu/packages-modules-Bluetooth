@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de42531c_373a5097",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T08:20:57Z",
+      "side": 1,
+      "message": "Erreur pointed out by https://android-build.corp.google.com/build_explorer/artifact_viewer/13161845/aosp_cheetah-trunk_staging-userdebug/logs/build_error.log?attemptId\u003dlatest is  in `vendor/google/external/eskia/src/cpu/ft_outline.cc`\n\nDoesn\u0027t seems related at all to this",
+      "revId": "8aa2cead9dc9e6d3ca6d70c3c4aa233472d9f6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
