@@ -22,6 +22,30 @@
       },
       "revId": "15d4ffe9104a20ff8423ba3c663c00f9ee933cda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95f32f36_3ea02663",
+        "filename": "CPPLINT.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-03-05T17:46:44Z",
+      "side": 0,
+      "message": "You\u0027re right, but looking a bit more I\u0027m not sure ```filter-\u003dlinelength``` will do what we want either (happy to try it but I\u0027m not sure linelength is treated as a standard filter in cpplint). \n\nBefore updating this patch, I also want to get @siyuanh@google.com opinion on whether we want to do this or not, as he should be involved in decision around code patterns in core stack. \n\n@siyuanh@google.com, what do you think about this versus changes like aosp/3514108? Main question: do we prefer having a line length standard or not to preserve legacy changes?",
+      "parentUuid": "5eb98ec7_de78061e",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "15d4ffe9104a20ff8423ba3c663c00f9ee933cda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
