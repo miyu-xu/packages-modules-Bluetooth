@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2752f35b_0c638d26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-03-05T12:30:54Z",
+      "side": 1,
+      "message": "https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3525572",
+      "parentUuid": "33305a36_48de936a",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e989ad5_875657d9",
