@@ -18,6 +18,47 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f65630c_0f424086",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T07:24:11Z",
+      "side": 1,
+      "message": "what... what ... what ?\n\nwe spawn a thread, like this ? O_o",
+      "range": {
+        "startLine": 1107,
+        "startChar": 23,
+        "endLine": 1107,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e263d6fb_85726386",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 1107,
+                "startChar": 0,
+                "endLine": 1109,
+                "endChar": 0
+              },
+              "replacement": "        new Thread(() -\u003e mNativeInterface.gattClientGetGattDb(connId)).start();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "206cc536_71c40f5d",
@@ -31,6 +72,30 @@
       "writtenOn": "2025-03-05T04:40:19Z",
       "side": 1,
       "message": "@wescande@google.com I\u0027ve managed to get it down to one stream :D\n\nBut I am not sure of the readibility. It\u0027s pretty straightforward to me now but it could because I have recent exposure. I\u0027d love to get your input on this. Thank you!",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 86
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be49c344_a01d62bb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T07:24:11Z",
+      "side": 1,
+      "message": "I think it doesn\u0027t do the same thing…\n\nBecause a device can be both in the bonded list and in the client(or server) map\nIf I ask to getDevicesMatchingConnectionStates with both CONNECTED and DISCONNECTED,  (why would people does that, idk) then I could have a list with time the same values.\n\nWould a `.distinct()` in  the global stream be enough for that ?",
+      "parentUuid": "206cc536_71c40f5d",
       "range": {
         "startLine": 1426,
         "startChar": 0,
