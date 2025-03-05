@@ -16,6 +16,29 @@
       "message": "I\u0027ve split this CL from aosp/3526531 for easier code reviewing. The other one is just variable renaming / nit refactor.",
       "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "206cc536_71c40f5d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T04:40:19Z",
+      "side": 1,
+      "message": "@wescande@google.com I\u0027ve managed to get it down to one stream :D\n\nBut I am not sure of the readibility. It\u0027s pretty straightforward to me now but it could because I have recent exposure. I\u0027d love to get your input on this. Thank you!",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 86
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
