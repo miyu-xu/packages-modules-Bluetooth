@@ -64,14 +64,14 @@ public abstract class BluetoothMapbMessage {
 
     public static class VCard {
         /* VCARD attributes */
-        private final String mVersion;
+        private String mVersion;
         private String mName = null;
         private String mFormattedName = null;
         private String[] mPhoneNumbers = {};
         private String[] mEmailAddresses = {};
         private int mEnvLevel = 0;
         private String[] mBtUcis = {};
-        private final String[] mBtUids = {};
+        private String[] mBtUids = {};
 
         /**
          * Construct a version 3.0 vCard

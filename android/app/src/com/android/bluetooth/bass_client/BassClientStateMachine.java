@@ -91,7 +91,6 @@ class BassClientStateMachine extends StateMachine {
     private static final byte OPCODE_SET_BCAST_PIN = 0x04;
     private static final byte OPCODE_REMOVE_SOURCE = 0x05;
     private static final int UPDATE_SOURCE_FIXED_LENGTH = 6;
-    private static final int BROADCAST_SOURCE_ID_LENGTH = 3;
 
     static final int CONNECT = 1;
     static final int DISCONNECT = 2;
@@ -110,7 +109,8 @@ class BassClientStateMachine extends StateMachine {
     static final int CANCEL_PENDING_SOURCE_OPERATION = 15;
     static final int INITIATE_PA_SYNC_TRANSFER = 16;
 
-    private final int mConnectTimeoutMs;
+    // NOTE: the value is not "final" - it is modified in the unit tests
+    @VisibleForTesting private int mConnectTimeoutMs;
 
     // Type of argument for set broadcast code operation
     static final int ARGTYPE_METADATA = 1;
@@ -154,6 +154,7 @@ class BassClientStateMachine extends StateMachine {
     private final Map<Integer, Boolean> mPendingRemove = new HashMap();
     private boolean mDefNoPAS = false;
     private boolean mForceSB = false;
+    private int mBroadcastSourceIdLength = 3;
     @VisibleForTesting byte mNextSourceId = 0;
     private boolean mAllowReconnect = false;
     @VisibleForTesting BluetoothGattTestableWrapper mBluetoothGatt = null;
@@ -199,10 +200,10 @@ class BassClientStateMachine extends StateMachine {
     }
 
     private static class LeAudioBroadcastSyncStats {
-        private final BluetoothDevice mDevice;
-        private final boolean mIsLocalBroadcast;
-        private final int mBroadcastId;
-        private final long mSourceAddTime;
+        private BluetoothDevice mDevice;
+        private boolean mIsLocalBroadcast;
+        private int mBroadcastId;
+        private long mSourceAddTime;
         private long mSourcePaSyncedTime;
         private long mSourceBisSyncedTime;
         private int mSyncStatus;
@@ -746,13 +747,13 @@ class BassClientStateMachine extends StateMachine {
                     metadataList.add(BluetoothLeAudioContentMetadata.fromRawBytes(new byte[0]));
                 }
             }
-            byte[] broadcastIdBytes = new byte[BROADCAST_SOURCE_ID_LENGTH];
+            byte[] broadcastIdBytes = new byte[mBroadcastSourceIdLength];
             System.arraycopy(
                     receiverState,
                     BassConstants.BCAST_RCVR_STATE_SRC_BCAST_ID_START_IDX,
                     broadcastIdBytes,
                     0,
-                    BROADCAST_SOURCE_ID_LENGTH);
+                    mBroadcastSourceIdLength);
             int broadcastId = BassUtils.parseBroadcastId(broadcastIdBytes);
             byte[] sourceAddress = new byte[BassConstants.BCAST_RCVR_STATE_SRC_ADDR_SIZE];
             System.arraycopy(
@@ -967,13 +968,13 @@ class BassClientStateMachine extends StateMachine {
                     metadataList.add(BluetoothLeAudioContentMetadata.fromRawBytes(new byte[0]));
                 }
             }
-            byte[] broadcastIdBytes = new byte[BROADCAST_SOURCE_ID_LENGTH];
+            byte[] broadcastIdBytes = new byte[mBroadcastSourceIdLength];
             System.arraycopy(
                     receiverState,
                     BassConstants.BCAST_RCVR_STATE_SRC_BCAST_ID_START_IDX,
                     broadcastIdBytes,
                     0,
-                    BROADCAST_SOURCE_ID_LENGTH);
+                    mBroadcastSourceIdLength);
             int broadcastId = BassUtils.parseBroadcastId(broadcastIdBytes);
             byte[] sourceAddress = new byte[BassConstants.BCAST_RCVR_STATE_SRC_ADDR_SIZE];
             System.arraycopy(

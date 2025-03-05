@@ -99,7 +99,7 @@ public class ContextMap<C> {
         public Boolean isCongested = false;
 
         /** Internal callback info queue, waiting to be send on congestion clear */
-        private final List<CallbackInfo> mCongestionQueue = new ArrayList<>();
+        private List<CallbackInfo> mCongestionQueue = new ArrayList<>();
 
         /** Creates a new app context. */
         App(UUID uuid, C callback, int appUid, String name, AttributionSource attrSource) {
@@ -182,7 +182,7 @@ public class ContextMap<C> {
     private final Object mAppsLock = new Object();
 
     @GuardedBy("mAppsLock")
-    private final List<App> mApps = new ArrayList<>();
+    private List<App> mApps = new ArrayList<>();
 
     @GuardedBy("mAppsLock")
     private final List<AppRecord> mOngoingRecords = new ArrayList<>();
@@ -191,7 +191,7 @@ public class ContextMap<C> {
     private final List<AppRecord> mLastRecords = new ArrayList<>();
 
     /** Internal list of connected devices */
-    private final List<Connection> mConnections = new ArrayList<>();
+    private List<Connection> mConnections = new ArrayList<>();
 
     private final Object mConnectionsLock = new Object();
 

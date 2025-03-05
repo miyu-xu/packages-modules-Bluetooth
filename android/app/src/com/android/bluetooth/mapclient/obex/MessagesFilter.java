@@ -91,7 +91,7 @@ public final class MessagesFilter {
 
     /** Builder for a {@link MessagesFilter}. */
     public static class Builder {
-        private final MessagesFilter mMessagesFilter = new MessagesFilter();
+        private MessagesFilter mMessagesFilter = new MessagesFilter();
 
         /**
          * Sets the `Message Type` field of the filter.

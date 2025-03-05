@@ -343,7 +343,7 @@ public final class BluetoothLeCallControl implements BluetoothProfile {
     }
     ;
 
-    private final BluetoothAdapter mAdapter;
+    private BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
     private int mCcid = 0;
     private String mToken;

@@ -100,7 +100,7 @@ public class ActiveDeviceManagerTest {
     private ArrayList<BluetoothDevice> mDeviceConnectionStack;
     private BluetoothDevice mMostRecentDevice;
     private ActiveDeviceManager mActiveDeviceManager;
-    private static final long HEARING_AID_HI_SYNC_ID = 1010;
+    private long mHearingAidHiSyncId = 1010;
 
     private static final int A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS =
             ActiveDeviceManager.A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS + 2_000;
@@ -173,8 +173,8 @@ public class ActiveDeviceManagerTest {
 
         List<BluetoothDevice> connectedHearingAidDevices = new ArrayList<>();
         connectedHearingAidDevices.add(mHearingAidDevice);
-        when(mHearingAidService.getHiSyncId(mHearingAidDevice)).thenReturn(HEARING_AID_HI_SYNC_ID);
-        when(mHearingAidService.getConnectedPeerDevices(HEARING_AID_HI_SYNC_ID))
+        when(mHearingAidService.getHiSyncId(mHearingAidDevice)).thenReturn(mHearingAidHiSyncId);
+        when(mHearingAidService.getConnectedPeerDevices(mHearingAidHiSyncId))
                 .thenReturn(connectedHearingAidDevices);
 
         when(mA2dpService.getFallbackDevice())
@@ -750,8 +750,7 @@ public class ActiveDeviceManagerTest {
         Assume.assumeTrue(
                 "Ignore test when HearingAidService is not enabled", HearingAidService.isEnabled());
 
-        when(mHearingAidService.getHiSyncId(mSecondaryAudioDevice))
-                .thenReturn(HEARING_AID_HI_SYNC_ID);
+        when(mHearingAidService.getHiSyncId(mSecondaryAudioDevice)).thenReturn(mHearingAidHiSyncId);
 
         hearingAidConnected(mHearingAidDevice);
         hearingAidConnected(mSecondaryAudioDevice);
@@ -1466,8 +1465,8 @@ public class ActiveDeviceManagerTest {
         List<BluetoothDevice> connectedHearingAidDevices = new ArrayList<>();
         connectedHearingAidDevices.add(mSecondaryAudioDevice);
         when(mHearingAidService.getHiSyncId(mSecondaryAudioDevice))
-                .thenReturn(HEARING_AID_HI_SYNC_ID + 1);
-        when(mHearingAidService.getConnectedPeerDevices(HEARING_AID_HI_SYNC_ID + 1))
+                .thenReturn(mHearingAidHiSyncId + 1);
+        when(mHearingAidService.getConnectedPeerDevices(mHearingAidHiSyncId + 1))
                 .thenReturn(connectedHearingAidDevices);
 
         hearingAidConnected(mSecondaryAudioDevice);
@@ -1973,7 +1972,7 @@ public class ActiveDeviceManagerTest {
     }
 
     private class TestDatabaseManager extends DatabaseManager {
-        final ArrayMap<BluetoothDevice, SparseIntArray> mProfileConnectionPolicy;
+        ArrayMap<BluetoothDevice, SparseIntArray> mProfileConnectionPolicy;
 
         TestDatabaseManager(AdapterService service) {
             super(service);

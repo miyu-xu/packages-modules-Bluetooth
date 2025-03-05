@@ -88,7 +88,7 @@ public class BluetoothPbapSimVcardManager implements AutoCloseable {
     private static final int NUMBERLABEL_COLUMN_INDEX = 3;
 
     private final Context mContext;
-    private final ContentResolver mContentResolver;
+    private ContentResolver mContentResolver;
     private Cursor mCursor;
     private String mErrorReason = NO_ERROR;
 

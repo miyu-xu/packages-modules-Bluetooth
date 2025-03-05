@@ -127,7 +127,7 @@ public class MetricsLogger {
 
     protected boolean mMedicalDeviceBloomFilterInitialized = false;
 
-    private final AlarmManager.OnAlarmListener mOnAlarmListener =
+    private AlarmManager.OnAlarmListener mOnAlarmListener =
             new AlarmManager.OnAlarmListener() {
                 @Override
                 public void onAlarm() {

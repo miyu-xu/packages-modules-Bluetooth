@@ -45,7 +45,7 @@ public final class AdvertisingSet {
 
     private final IBluetoothAdvertise mAdvertise;
     private int mAdvertiserId;
-    private final AttributionSource mAttributionSource;
+    private AttributionSource mAttributionSource;
 
     AdvertisingSet(
             IBluetoothAdvertise advertise,
