@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4c3b709_8a57e07e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-05T06:44:52Z",
+      "side": 1,
+      "message": "Currently, when SCO management refactor is enabled, \n\n* `connectAudio()` to call `AudioManager#setCommunicationDevice()` to trigger an audio HAL callback in `IBluetoothAudioPort#startStream()` that will connect SCO in the stack\n\n* `disconnectAudio()` to call `AudioManager#clearCommunicationDevice()` to trigger an audio HAL callback in `IBluetoothAudioPort#stopStream()` that will disconnect SCO in the stack\n\nI think we should instrument `IBluetoothAudioPort#startStream()` and `IBluetoothAudioPort#stopStream()` as well. \n\nMoreover, when the audio HAL operation is done, HFP native stack needs to call `IBluetoothAudioProvider#streamStarted()` to indicate SCO onnection is successful, we should instrument this as well",
+      "parentUuid": "89c82c91_43f42dc8",
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2a6374b_701ec1b8",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 5
