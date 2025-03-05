@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f39b0c0a_c0abdbb3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T07:42:59Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 1116,
+        "startChar": 0,
+        "endLine": 1118,
+        "endChar": 7
+      },
+      "revId": "cbe15f549f5d905af7f4e45fd7b4383f01277c78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc82f8a_6534daa7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T07:42:59Z",
+      "side": 1,
+      "message": "what is Cap ?\n\nAccording to convention, this should be named getVersSupported... but that is not a good name either.\nI am not sure what this int is about exactly, I wouldn\u0027t be opposed to a proper rename of the variable and the getter.\n\nGetVendorVersion, getControllerVersion, getVendorCapabilitiesVersion ?\nOr something else ? (You probably knows better than me)",
+      "range": {
+        "startLine": 1119,
+        "startChar": 17,
+        "endLine": 1119,
+        "endChar": 21
+      },
+      "revId": "cbe15f549f5d905af7f4e45fd7b4383f01277c78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
