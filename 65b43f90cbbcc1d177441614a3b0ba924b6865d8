@@ -16,6 +16,47 @@
       "message": "Hi Folks, while the atoms CL ag/32003875 is under review in internal main, can we please continue the review of the Bluetooth changes here. Thanks a lot.\n\nI have updated the order of the parameters of the logging functions to `connection_duration_ms, error_code, is_hardware_offload, hub_id, endpoint_id` to match the changes in the atoms CL. \n\nAlso updated the logging fucntion in `system/common/metrics.h` and `system/common/metrics.cc`, which I forgot to do in previous patchsets.",
       "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "906d7708_dbd26382",
+        "filename": "system/btif/include/btif_sock_logging.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-05T23:58:06Z",
+      "side": 1,
+      "message": "btsock_error_code_t ?",
+      "range": {
+        "startLine": 25,
+        "startChar": 33,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e32d38b7_f29931bf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/include/btif_sock_logging.h",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 26,
+                "endChar": 0
+              },
+              "replacement": "                                 btsock_error_code_t error_code, btsock_data_path_t data_path, uint64_t hub_id,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
