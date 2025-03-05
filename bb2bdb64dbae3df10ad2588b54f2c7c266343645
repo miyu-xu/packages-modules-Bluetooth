@@ -169,6 +169,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92f8d46f_ff10ddad",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-03-05T12:36:28Z",
+      "side": 1,
+      "message": "https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3526534",
+      "parentUuid": "1e989ad5_875657d9",
+      "range": {
+        "startLine": 395,
+        "startChar": 7,
+        "endLine": 397,
+        "endChar": 36
+      },
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8581a8b_b0ee75ca",
@@ -233,6 +257,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "205b7372_379556a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHostTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-03-05T12:36:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08a2b014_c6d7178b",
+      "range": {
+        "startLine": 733,
+        "startChar": 12,
+        "endLine": 733,
+        "endChar": 63
+      },
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1125c82a_3f35d2cd",
@@ -284,6 +332,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07cee7a7_6c4dc528",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-03-05T12:36:28Z",
+      "side": 1,
+      "message": "Done Here https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3525572",
+      "parentUuid": "1125c82a_3f35d2cd",
+      "range": {
+        "startLine": 25,
+        "startChar": 56,
+        "endLine": 25,
+        "endChar": 64
+      },
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8966bd4d_8355c094",
@@ -321,6 +393,30 @@
           ]
         }
       ],
+      "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee4a1e88_89498ba2",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3837410
+      },
+      "writtenOn": "2025-03-05T12:36:28Z",
+      "side": 1,
+      "message": "Done Here https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3525572",
+      "parentUuid": "8966bd4d_8355c094",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 18
+      },
       "revId": "bb2bdb64dbae3df10ad2588b54f2c7c266343645",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
