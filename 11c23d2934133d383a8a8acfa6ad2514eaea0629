@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6209af9_ee274bce",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T07:35:30Z",
+      "side": 1,
+      "message": ":D I\u0027ve shortened it to `new Thread(...).start()`; which I am not sure if this is what you mean but PTAL. Thank you.",
+      "parentUuid": "6f65630c_0f424086",
+      "range": {
+        "startLine": 1107,
+        "startChar": 23,
+        "endLine": 1107,
+        "endChar": 29
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "206cc536_71c40f5d",
@@ -96,6 +120,30 @@
       "side": 1,
       "message": "I think it doesn\u0027t do the same thing…\n\nBecause a device can be both in the bonded list and in the client(or server) map\nIf I ask to getDevicesMatchingConnectionStates with both CONNECTED and DISCONNECTED,  (why would people does that, idk) then I could have a list with time the same values.\n\nWould a `.distinct()` in  the global stream be enough for that ?",
       "parentUuid": "206cc536_71c40f5d",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 86
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9eb720d_63b0f62c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T07:35:30Z",
+      "side": 1,
+      "message": "\u003e Because a device can be both in the bonded list and in the client(or server) map\n\nAh good catch. Thank you.\n\nIt seems the old implementation overrides the old `STATE_DISCONNECTED` with `STATE_CONNECTED` due to the ordering of `.put` in the map. But as you know, the map state values are discarded afterwards so this is not relevant.\n\n\u003e Would a .distinct() in the global stream be enough for that ?\n\nI just checked and the `equals()` implementation of `BluetoothDevice` only checks the `String getAddress()` field. In this case, I think _moving_ the .distinct() to the global stream should be enough. What do you think?",
+      "parentUuid": "be49c344_a01d62bb",
       "range": {
         "startLine": 1426,
         "startChar": 0,
