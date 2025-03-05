@@ -88,6 +88,24 @@
       "parentUuid": "236eb707_5fe37c9e",
       "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fedf1448_d79344f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2025-03-05T06:53:18Z",
+      "side": 1,
+      "message": "agreed with your comments.\nwe tried to handle corner scenario. now we removed corner case handling to hold the link for failure sceanrio.",
+      "parentUuid": "ed5007af_ad908f42",
+      "revId": "8cd1a4a9076283aa0f38db5c637569b36f880904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
