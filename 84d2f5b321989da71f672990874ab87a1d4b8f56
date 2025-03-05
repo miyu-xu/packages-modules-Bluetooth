@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84062643_45d60f21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-03-05T22:55:22Z",
+      "side": 1,
+      "message": "I think this HAL needs to be removed.\nThe supported codec should be returned to the stack using `hardware/interfaces/bluetooth/audio/aidl/android/hardware/bluetooth/audio/HfpConfiguration.aidl`\nPlease consider using it, and update it if necesseray.",
+      "revId": "84d2f5b321989da71f672990874ab87a1d4b8f56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
