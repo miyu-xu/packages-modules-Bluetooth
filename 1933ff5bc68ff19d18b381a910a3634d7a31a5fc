@@ -1,0 +1,97 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b555f82d_08d3a996",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-05T03:46:20Z",
+      "side": 1,
+      "message": "Make sure that mDeviceFound is valid",
+      "fixSuggestions": [
+        {
+          "fixId": "e3364cec_0f0a2cde",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 142,
+                "startChar": 0,
+                "endLine": 143,
+                "endChar": 0
+              },
+              "replacement": "                        if (mDeviceFound !\u003d null\n                                \u0026\u0026 deviceName !\u003d null\n                                \u0026\u0026 BUMBLE_DEVICE_NAME.equals(deviceName)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0b740b_e7e48df5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-05T03:46:20Z",
+      "side": 1,
+      "message": "Nit: Lets just remove all bonded devices\n\n```\nfor (BluetoothDevice device : mAdapter.getBondedDevices()) {\n  removeBond(device);\n}\n```",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f565018a_284ead85",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 178,
+                "endChar": 0
+              },
+              "replacement": "        for (BluetoothDevice device : mAdapter.getBondedDevices()) {\n            removeBond(device);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec40165_6647f657",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-05T03:46:20Z",
+      "side": 1,
+      "message": "Make sure that the device was actually found",
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
