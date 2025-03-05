@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac2fd97b_de04104c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T18:40:33Z",
+      "side": 1,
+      "message": "Can we add a comment that mention that the field are accessed from native ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 14,
+        "endLine": 19,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e6262c89_39f8eab6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": "/**\n * This class is used to pass filter parameters to native code.\n */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3a667d79_9fffbc28",
         "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
         "patchSetId": 4
@@ -61,6 +102,47 @@
         "endLine": 27,
         "endChar": 20
       },
+      "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40323212_01408550",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/FilterParamsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T18:40:33Z",
+      "side": 1,
+      "message": "I would either remove this one, or put an assert on this.\n\nBecause if this if null, then it will crash next lint.\n\nBut I believe removing it is better here since a constructor can never return null so we are testing if java works and not if the code works.\n\nSome would argue that it is the same for the nexts lines, but I believe it allow us to validate the parameter are in the correct order so fine",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e6109e30_6bd103b5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/gatt/FilterParamsTest.java",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
       "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
