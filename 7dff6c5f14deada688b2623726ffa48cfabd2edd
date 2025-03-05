@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "173d6ced_5c7874a3",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-05T19:55:00Z",
+      "side": 1,
+      "message": "Added comment: does this look okay?",
+      "parentUuid": "2f753b33_629acfb1",
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "835b8976_de8e629d",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 12
@@ -66,6 +84,24 @@
       "writtenOn": "2025-03-05T01:35:01Z",
       "side": 1,
       "message": "I would skip over the rest of the method and return here keeping only the relevant statements:\n\n```\nrfc_save_lcid_mcb(p_mcb, lcid);\np_mcb-\u003elcid \u003d lcid;\nrfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONN_IND, \u0026id);\n```",
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df09a6fd_2775decc",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-05T19:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "835b8976_de8e629d",
       "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -83,6 +119,30 @@
       "writtenOn": "2025-03-05T00:29:09Z",
       "side": 1,
       "message": "if (!com::android::bluetooth::flags::rfcomm_fix_mux_collision_handling()) {\n  // do things \n  return early\n}",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24649a80_386775ef",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-05T19:55:00Z",
+      "side": 1,
+      "message": "With Henri\u0027s suggestion, the newest version it now looks like this:\n```\nif (flag) {\n  // return early\n} else {\n  // also return early\n}",
+      "parentUuid": "29eb27be_9b7f1678",
       "range": {
         "startLine": 116,
         "startChar": 6,
@@ -136,6 +196,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f85bc38_6bd7750e",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-05T19:55:00Z",
+      "side": 1,
+      "message": "Not if `p_mcb \u003d\u003d nullptr`\n\nAm I missing something here?",
+      "parentUuid": "7a49e561_45a99a8b",
+      "range": {
+        "startLine": 185,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 11
+      },
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8611690_6e30da9b",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 12
@@ -165,6 +249,24 @@
           ]
         }
       ],
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb897c5f_a058506d",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-05T19:55:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8611690_6e30da9b",
       "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
