@@ -132,6 +132,64 @@
       ],
       "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8611690_6e30da9b",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:49:06Z",
+      "side": 1,
+      "message": "Missing return here to ensure that `rfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONF_IND, (void*)p_cfg)` is skipped.",
+      "fixSuggestions": [
+        {
+          "fixId": "cebfefc5_0cc44798",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_l2cap_if.cc",
+              "range": {
+                "startLine": 242,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": "    return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd88e368_c21ab4c3",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:49:06Z",
+      "side": 1,
+      "message": "I see a lot of repetition with (L2CA_DisconnectReq + rfc_mx_retry_with_cached_lcid), there is probably a way to factor in all this code with an helper.",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 45
+      },
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
