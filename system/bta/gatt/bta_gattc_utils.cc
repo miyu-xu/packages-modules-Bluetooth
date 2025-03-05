@@ -456,6 +456,7 @@ tBTA_GATTC_SERV* bta_gattc_srcb_alloc(const RawAddress& bda) {
 
     p_tcb->in_use = true;
     p_tcb->server_bda = bda;
+    p_tcb->unlock_ble_conn_params_timer = NULL;
   }
   return p_tcb;
 }
