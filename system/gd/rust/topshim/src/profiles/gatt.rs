@@ -665,12 +665,6 @@ cb_variant!(
 
 cb_variant!(
     GattClientCb,
-    gc_search_complete_cb -> GattClientCallbacks::SearchComplete,
-    i32, i32 -> GattStatus, {}
-);
-
-cb_variant!(
-    GattClientCb,
     gc_register_for_notification_cb -> GattClientCallbacks::RegisterForNotification,
     i32, i32, i32 -> GattStatus, u16, {}
 );
@@ -735,14 +729,6 @@ cb_variant!(
     GattClientCb,
     gc_congestion_cb -> GattClientCallbacks::Congestion,
     i32, bool, {}
-);
-
-cb_variant!(
-    GattClientCb,
-    gc_get_gatt_db_cb -> GattClientCallbacks::GetGattDb,
-    i32, *const BtGattDbElement, i32, {
-        let _1 = ptr_to_vec(_1, _2 as usize);
-    }
 );
 
 cb_variant!(
@@ -1419,11 +1405,6 @@ impl GattClient {
     pub fn test_command(&self, command: i32, params: &BtGattTestParams) -> BtStatus {
         BtStatus::from(ccall!(self, test_command, command, params))
     }
-
-    #[log_args]
-    pub fn get_gatt_db(&self, conn_id: i32) -> BtStatus {
-        BtStatus::from(ccall!(self, get_gatt_db, conn_id))
-    }
 }
 
 pub struct GattServer {
@@ -1973,7 +1954,6 @@ impl Gatt {
             register_client_cb: Some(gc_register_client_cb),
             open_cb: Some(gc_open_cb),
             close_cb: Some(gc_close_cb),
-            search_complete_cb: Some(gc_search_complete_cb),
             register_for_notification_cb: Some(gc_register_for_notification_cb),
             notify_cb: Some(gc_notify_cb),
             read_characteristic_cb: Some(gc_read_characteristic_cb),
@@ -1984,7 +1964,6 @@ impl Gatt {
             read_remote_rssi_cb: Some(gc_read_remote_rssi_cb),
             configure_mtu_cb: Some(gc_configure_mtu_cb),
             congestion_cb: Some(gc_congestion_cb),
-            get_gatt_db_cb: Some(gc_get_gatt_db_cb),
             phy_updated_cb: Some(gc_phy_updated_cb),
             conn_updated_cb: Some(gc_conn_updated_cb),
             service_changed_cb: Some(gc_service_changed_cb),

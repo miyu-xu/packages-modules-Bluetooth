@@ -2893,12 +2893,6 @@ impl BtifGattClientCallbacks for BluetoothGatt {
     }
 
     #[log_cb_args]
-    fn search_complete_cb(&mut self, conn_id: i32, _status: GattStatus) {
-        // Gatt DB is ready!
-        self.gatt.lock().unwrap().client.get_gatt_db(conn_id);
-    }
-
-    #[log_cb_args]
     fn register_for_notification_cb(
         &mut self,
         _conn_id: i32,
