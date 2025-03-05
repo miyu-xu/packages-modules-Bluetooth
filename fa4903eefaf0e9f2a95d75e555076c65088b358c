@@ -1,5 +1,113 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ec2b2b_ff671e24",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T23:45:52Z",
+      "side": 1,
+      "message": "Can you move this after all the final declaration to keep variable organized",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f5d64bd_5dc53ed5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T23:45:52Z",
+      "side": 1,
+      "message": "Can this be final and inlined ? \n`private final BluetoothDevice mBumbleDevice \u003d mBumble.getRemoteDevice`",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 42
+      },
+      "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "923cb76d_19409d32",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T23:45:52Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Error Prone: [UnusedVariable] The field \u0027mRemoteLeDevice\u0027 is never read.\n\n\nAlso it would be good to upgrade bumble to run the same errorprones rules as other tests. This would prevent these errors to be merged.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 44
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "14a96e43_1bcc247b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 177,
+                "startChar": 0,
+                "endLine": 178,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
