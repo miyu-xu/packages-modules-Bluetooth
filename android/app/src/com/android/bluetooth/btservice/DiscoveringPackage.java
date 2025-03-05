@@ -20,9 +20,9 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 
 final class DiscoveringPackage {
-    private final @NonNull String mPackageName;
-    private final @Nullable String mPermission;
-    private final boolean mHasDisavowedLocation;
+    private @NonNull String mPackageName;
+    private @Nullable String mPermission;
+    private boolean mHasDisavowedLocation;
 
     DiscoveringPackage(
             @NonNull String packageName,

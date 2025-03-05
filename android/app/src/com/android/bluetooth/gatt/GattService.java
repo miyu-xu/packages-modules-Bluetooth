@@ -293,7 +293,7 @@ public class GattService extends ProfileService {
 
     class ServerDeathRecipient implements IBinder.DeathRecipient {
         int mAppIf;
-        private final String mPackageName;
+        private String mPackageName;
 
         ServerDeathRecipient(int appIf, String packageName) {
             mAppIf = appIf;
@@ -311,7 +311,7 @@ public class GattService extends ProfileService {
 
     class ClientDeathRecipient implements IBinder.DeathRecipient {
         int mAppIf;
-        private final String mPackageName;
+        private String mPackageName;
 
         ClientDeathRecipient(int appIf, String packageName) {
             mAppIf = appIf;

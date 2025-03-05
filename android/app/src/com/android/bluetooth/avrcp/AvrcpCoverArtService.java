@@ -60,7 +60,7 @@ public class AvrcpCoverArtService {
     private final Object mServerLock = new Object();
 
     // Native interface
-    private final AvrcpNativeInterface mNativeInterface;
+    private AvrcpNativeInterface mNativeInterface;
 
     // The native interface must be a parameter here in order to be able to mock AvrcpTargetService
     public AvrcpCoverArtService(AvrcpNativeInterface nativeInterface) {

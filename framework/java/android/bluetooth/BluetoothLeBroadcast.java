@@ -61,7 +61,7 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
     private static final boolean DBG = true;
     private static final boolean VDBG = false;
 
-    private final CloseGuard mCloseGuard;
+    private CloseGuard mCloseGuard;
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;

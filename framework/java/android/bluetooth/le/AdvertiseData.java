@@ -247,14 +247,15 @@ public final class AdvertiseData implements Parcelable {
 
     /** Builder for {@link AdvertiseData}. */
     public static final class Builder {
-        private final List<ParcelUuid> mServiceUuids = new ArrayList<ParcelUuid>();
-        private final List<ParcelUuid> mServiceSolicitationUuids = new ArrayList<ParcelUuid>();
+        @Nullable private List<ParcelUuid> mServiceUuids = new ArrayList<ParcelUuid>();
+        @NonNull private List<ParcelUuid> mServiceSolicitationUuids = new ArrayList<ParcelUuid>();
 
-        private final List<TransportDiscoveryData> mTransportDiscoveryData =
+        @Nullable
+        private List<TransportDiscoveryData> mTransportDiscoveryData =
                 new ArrayList<TransportDiscoveryData>();
 
-        private final SparseArray<byte[]> mManufacturerSpecificData = new SparseArray<byte[]>();
-        private final Map<ParcelUuid, byte[]> mServiceData = new ArrayMap<ParcelUuid, byte[]>();
+        private SparseArray<byte[]> mManufacturerSpecificData = new SparseArray<byte[]>();
+        private Map<ParcelUuid, byte[]> mServiceData = new ArrayMap<ParcelUuid, byte[]>();
         private boolean mIncludeTxPowerLevel;
         private boolean mIncludeDeviceName;
 

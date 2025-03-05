@@ -62,9 +62,9 @@ public final class BluetoothGattServer implements BluetoothProfile {
 
     private final Object mServerIfLock = new Object();
     private int mServerIf;
-    private final int mTransport;
+    private int mTransport;
     private BluetoothGattService mPendingService;
-    private final List<BluetoothGattService> mServices;
+    private List<BluetoothGattService> mServices;
 
     private static final int CALLBACK_REG_TIMEOUT = 10000;
     // Max length of an attribute value, defined in gatt_api.h

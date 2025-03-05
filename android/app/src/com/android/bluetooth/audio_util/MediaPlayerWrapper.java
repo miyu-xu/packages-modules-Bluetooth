@@ -50,7 +50,7 @@ public class MediaPlayerWrapper {
 
     final Context mContext;
     private MediaController mMediaController;
-    private final String mPackageName;
+    private String mPackageName;
     private Looper mLooper;
     private final BluetoothEventLogger mPlaybackStateChangeEventLogger;
 

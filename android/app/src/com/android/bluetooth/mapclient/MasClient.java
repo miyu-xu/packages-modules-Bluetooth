@@ -79,12 +79,12 @@ public class MasClient {
                     | MAP_FEATURE_EXTENDED_EVENT_REPORT_1_1;
 
     private final StateMachine mCallback;
-    private final Handler mHandler;
+    private Handler mHandler;
     private BluetoothSocket mSocket;
     private BluetoothObexTransport mTransport;
-    private final BluetoothDevice mRemoteDevice;
+    private BluetoothDevice mRemoteDevice;
     private ClientSession mSession;
-    private final HandlerThread mThread;
+    private HandlerThread mThread;
     private boolean mConnected = false;
     SdpMasRecord mSdpMasRecord;
 
@@ -219,7 +219,7 @@ public class MasClient {
     }
 
     private static class MasClientHandler extends Handler {
-        final WeakReference<MasClient> mInst;
+        WeakReference<MasClient> mInst;
 
         MasClientHandler(Looper looper, MasClient inst) {
             super(looper);

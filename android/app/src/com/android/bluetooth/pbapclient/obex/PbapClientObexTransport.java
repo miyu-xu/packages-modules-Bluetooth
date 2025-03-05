@@ -36,6 +36,9 @@ public class PbapClientObexTransport implements ObexTransport {
     /** Will default at the maximum packet length. */
     public static final int PACKET_SIZE_UNSPECIFIED = -1;
 
+    private int mMaxTransmitPacketSize = PACKET_SIZE_UNSPECIFIED;
+    private int mMaxReceivePacketSize = PACKET_SIZE_UNSPECIFIED;
+
     public PbapClientObexTransport(PbapClientSocket socket) {
         mSocket = requireNonNull(socket);
     }
@@ -85,7 +88,7 @@ public class PbapClientObexTransport implements ObexTransport {
     @Override
     public int getMaxTransmitPacketSize() {
         if (mSocket.getConnectionType() != BluetoothSocket.TYPE_L2CAP) {
-            return PACKET_SIZE_UNSPECIFIED;
+            return mMaxTransmitPacketSize;
         }
         return mSocket.getMaxTransmitPacketSize();
     }
@@ -93,12 +96,12 @@ public class PbapClientObexTransport implements ObexTransport {
     @Override
     public int getMaxReceivePacketSize() {
         if (mSocket.getConnectionType() != BluetoothSocket.TYPE_L2CAP) {
-            return PACKET_SIZE_UNSPECIFIED;
+            return mMaxReceivePacketSize;
         }
         return mSocket.getMaxReceivePacketSize();
     }
 
-    /** Get the remote device MAC address associated with the transport, as a string */
+    /** Get the remote device MAC address associated with the transport, as a tring */
     public String getRemoteAddress() {
         String identityAddress = Utils.getBrEdrAddress(mSocket.getRemoteDevice());
         return mSocket.getConnectionType() == BluetoothSocket.TYPE_RFCOMM

@@ -59,8 +59,9 @@ import java.util.regex.Pattern;
 public class BluetoothPbapVcardManager {
     private static final String TAG = BluetoothPbapVcardManager.class.getSimpleName();
 
-    private final ContentResolver mResolver;
-    private final Context mContext;
+    private ContentResolver mResolver;
+
+    private Context mContext;
 
     static final String SORT_ORDER_PHONE_NUMBER = CommonDataKinds.Phone.NUMBER + " ASC";
 

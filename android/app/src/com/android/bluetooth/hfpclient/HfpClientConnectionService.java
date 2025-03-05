@@ -51,8 +51,7 @@ public class HfpClientConnectionService extends ConnectionService {
 
     private TelecomManager mTelecomManager;
 
-    private final HeadsetClientServiceInterface mServiceInterface =
-            new HeadsetClientServiceInterface();
+    private HeadsetClientServiceInterface mServiceInterface = new HeadsetClientServiceInterface();
 
     private final Map<BluetoothDevice, HfpClientDeviceBlock> mDeviceBlocks = new HashMap<>();
 

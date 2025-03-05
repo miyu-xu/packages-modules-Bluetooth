@@ -187,8 +187,9 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
 
     private Handler mCallback = null;
 
-    private final Context mContext;
-    private final BluetoothPbapVcardManager mVcardManager;
+    private Context mContext;
+
+    private BluetoothPbapVcardManager mVcardManager;
 
     BluetoothPbapSimVcardManager mVcardSimManager;
 
@@ -206,13 +207,15 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
 
     private long mDatabaseIdentifierHigh = INVALID_VALUE_PARAMETER;
 
-    private static final long FOLDER_VERSION_COUNTER_BIT_MASK = 0x0008;
-    private static final long DATABASE_IDENTIFIER_BIT_MASK = 0x0004;
+    private long mFolderVersionCounterbitMask = 0x0008;
+
+    private long mDatabaseIdentifierBitMask = 0x0004;
 
     private AppParamValue mConnAppParamValue;
 
-    private final PbapStateMachine mStateMachine;
-    private final BluetoothMethodProxy mPbapMethodProxy;
+    private PbapStateMachine mStateMachine;
+
+    private BluetoothMethodProxy mPbapMethodProxy;
 
     private enum ContactsType {
         TYPE_PHONEBOOK,
@@ -1105,12 +1108,12 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
                 || isNameMatchTarget(name, OCH)
                 || isNameMatchTarget(name, CCH)) {
             needSendCallHistoryVersionCounters =
-                    checkPbapFeatureSupport(FOLDER_VERSION_COUNTER_BIT_MASK);
+                    checkPbapFeatureSupport(mFolderVersionCounterbitMask);
         }
         boolean needSendPhonebookVersionCounters = false;
         if (isNameMatchTarget(name, PB) || isNameMatchTarget(name, FAV)) {
             needSendPhonebookVersionCounters =
-                    checkPbapFeatureSupport(FOLDER_VERSION_COUNTER_BIT_MASK);
+                    checkPbapFeatureSupport(mFolderVersionCounterbitMask);
         }
 
         // In such case, PCE only want the number of index.
@@ -1163,7 +1166,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
                         "handleAppParaForResponse(): mNeedNewMissedCallsNum=true,  num= " + nmnum);
             }
 
-            if (checkPbapFeatureSupport(DATABASE_IDENTIFIER_BIT_MASK)) {
+            if (checkPbapFeatureSupport(mDatabaseIdentifierBitMask)) {
                 setDbCounters(ap);
             }
             if (needSendPhonebookVersionCounters) {
@@ -1233,7 +1236,7 @@ public class BluetoothPbapObexServer extends ServerRequestHandler {
             }
         }
 
-        if (checkPbapFeatureSupport(DATABASE_IDENTIFIER_BIT_MASK)) {
+        if (checkPbapFeatureSupport(mDatabaseIdentifierBitMask)) {
             setDbCounters(ap);
             reply.setHeader(HeaderSet.APPLICATION_PARAMETER, ap.getHeader());
             try {

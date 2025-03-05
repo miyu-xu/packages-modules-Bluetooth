@@ -67,7 +67,7 @@ public final class BluetoothCsipSetCoordinator implements BluetoothProfile, Auto
     private static final boolean DBG = false;
     private static final boolean VDBG = false;
 
-    private final CloseGuard mCloseGuard;
+    private CloseGuard mCloseGuard;
 
     /** @hide */
     @SystemApi

@@ -35,7 +35,7 @@ import com.android.internal.annotations.VisibleForTesting;
 public class LeAudioBroadcasterNativeInterface {
     private static final String TAG = LeAudioBroadcasterNativeInterface.class.getSimpleName();
 
-    private final BluetoothAdapter mAdapter;
+    private BluetoothAdapter mAdapter;
 
     @GuardedBy("INSTANCE_LOCK")
     private static LeAudioBroadcasterNativeInterface sInstance;

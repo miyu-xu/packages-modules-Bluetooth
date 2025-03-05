@@ -23,7 +23,7 @@ import android.util.Log;
 public class PeriodicAdvertisementResult {
     private static final String TAG = PeriodicAdvertisementResult.class.getSimpleName();
 
-    private final BluetoothDevice mDevice;
+    private BluetoothDevice mDevice;
     private int mAddressType;
     private int mAdvSid;
     private int mSyncHandle;

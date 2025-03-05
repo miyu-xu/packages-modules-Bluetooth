@@ -37,7 +37,7 @@ import java.util.Arrays;
 public class LeAudioNativeInterface {
     private static final String TAG = LeAudioNativeInterface.class.getSimpleName();
 
-    private final BluetoothAdapter mAdapter;
+    private BluetoothAdapter mAdapter;
 
     @GuardedBy("INSTANCE_LOCK")
     private static LeAudioNativeInterface sInstance;
