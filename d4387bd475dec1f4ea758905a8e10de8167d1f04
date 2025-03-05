@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "905dd6a8_d3ce8f4a",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:17:10Z",
+      "side": 1,
+      "message": "One of the two getters should be removed as well.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "06ecfdcb_56e9bfed",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hfp_hal.cc",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 99,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d4387bd475dec1f4ea758905a8e10de8167d1f04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
