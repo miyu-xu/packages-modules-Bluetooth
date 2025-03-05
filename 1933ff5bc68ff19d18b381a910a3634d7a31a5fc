@@ -152,6 +152,24 @@
       "parentUuid": "2ec40165_6647f657",
       "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "938af6c2_88f16e88",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-05T19:43:56Z",
+      "side": 1,
+      "message": "We have to fail here if the device was not discovered",
+      "parentUuid": "3d7792bf_ab909bd4",
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
