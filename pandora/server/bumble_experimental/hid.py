@@ -20,6 +20,7 @@ from pandora_experimental.hid_pb2 import (
     PROTOCOL_UNSUPPORTED_MODE,
     SERVICE_TYPE_HID,
     SERVICE_TYPE_HOGP,
+    ReportDataEvent,
 )
 
 from bumble.core import (
@@ -705,8 +706,25 @@ def on_virtual_cable_unplug_cb():
     asyncio.create_task(handle_virtual_cable_unplug())
 
 
+def on_hid_interrupt_data_cb(pdu: bytes):
+    logging.info(f'Received Data, PDU: {pdu.hex()}')
+
+    if len(pdu) == 1:
+        logging.error('Warning: No report received')
+        return
+
+    recv_data = ReportDataEvent()
+    recv_data.report_type = pdu[0] & 0x0F
+    recv_data.report_data = str(pdu[1:].hex())
+
+    if hid_interrupt_data_queue:
+        # put the pdu to the interrupt data queue (excluding report type at index 0)
+        hid_interrupt_data_queue.put_nowait(recv_data)
+
+
 hid_protoMode_queue = None
 hid_report_queue = None
+hid_interrupt_data_queue = None
 hid_device = None
 
 
@@ -721,6 +739,8 @@ def register_hid(self) -> None:
     hid_device.register_set_protocol_cb(on_set_protocol_cb)
     # Register for virtual cable unplug call back
     hid_device.on('virtual_cable_unplug', on_virtual_cable_unplug_cb)
+    # Register for interrupt data callback
+    hid_device.on('interrupt_data', on_hid_interrupt_data_cb)
 
 
 # This class implements the Hid Pandora interface.
@@ -843,3 +863,23 @@ class HIDService(HIDServicer):
         finally:
             self.event_queue = None
             hid_report_queue = None
+
+    @utils.rpc
+    async def OnSendHostData(self, request: empty_pb2.Empty,
+                          context: grpc.ServicerContext) -> AsyncGenerator[ReportDataEvent, None]:
+        logging.info(f'OnSendHostData')
+
+        if self.event_queue is not None:
+            raise RuntimeError('already streaming OnSendHostData events')
+
+        self.event_queue = asyncio.Queue()
+        global hid_interrupt_data_queue
+        hid_interrupt_data_queue = self.event_queue
+
+        try:
+            while event := await hid_interrupt_data_queue.get():
+                yield event
+
+        finally:
+            self.event_queue = None
+            hid_interrupt_data_queue = None
