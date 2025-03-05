@@ -85,6 +85,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "459bb2da_d1258bdc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T08:09:48Z",
+      "side": 1,
+      "message": "Both version of your cl are fine, (actually I don\u0027t know how much java garbage collector can collect a thread started and not assigned to something but this problem was present before your CL as once you exit the method the var goes away.\n\n\nNo my comment is jut me being shocked that we are starting a thread for this. Threading has multiples cost. One of them is taking ressources on device, but the more worrying is that this is a pure showcase of lack of threading knowledge.\n\nThe initial deadlock issue should have been fixed differently.",
+      "parentUuid": "d6209af9_ee274bce",
+      "range": {
+        "startLine": 1107,
+        "startChar": 23,
+        "endLine": 1107,
+        "endChar": 29
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "206cc536_71c40f5d",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 4
@@ -144,6 +168,30 @@
       "side": 1,
       "message": "\u003e Because a device can be both in the bonded list and in the client(or server) map\n\nAh good catch. Thank you.\n\nIt seems the old implementation overrides the old `STATE_DISCONNECTED` with `STATE_CONNECTED` due to the ordering of `.put` in the map. But as you know, the map state values are discarded afterwards so this is not relevant.\n\n\u003e Would a .distinct() in the global stream be enough for that ?\n\nI just checked and the `equals()` implementation of `BluetoothDevice` only checks the `String getAddress()` field. In this case, I think _moving_ the .distinct() to the global stream should be enough. What do you think?",
       "parentUuid": "be49c344_a01d62bb",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 86
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a5991a3_26b11a19",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T08:09:48Z",
+      "side": 1,
+      "message": "I re-read prior and after and this is still not working.\n\nIf I want only DISCONNECTED devices, the first stream will return me all bonded devices, but then the getConnectedDevice concat is filtered by the stateanyMatch and the value of connected devices are not being removed from the stream.\n\nSorry, I start to think that this is not the best idea to use a unique stream for this.\n\nWe could instead:\n\n```\nfinal boolean includeDisconnected \u003d Arrays.stream(states).anyMatch(s -\u003e s \u003d\u003d STATE_DISCONNECTED);\nfinal boolean includeConnected \u003d Arrays.stream(states).anyMatch(s -\u003e s \u003d\u003d STATE_CONNECTED);\n\nStream\u003cBluetoothDevice\u003e connectedDevices \u003d Stream.concat(\n\t\tmClientMap.getConnectedDevices().stream(),\n\t\tmServerMap.getConnectedDevices().stream())\n\t.map(address -\u003e mAdapter.getRemoteDevice(address))\n\t.distinct();\nif (!includeDisconnected) {\n  return connectedDevices.collect(Collectors.toList());\n}\n\nStream\u003cBluetoothDevice\u003e leBondedDevices \u003d Arrays.stream(mAdapterService.getBondedDevices())\n                             .filter(device -\u003e deviceTypeNotBrEdr(device))\n                             .distinct();\n\nif (includeConnected) {\n  return Stream.concat(connectedDevices, leBondedDevices).distinct().collect(Collectors.toList());\n}\nreturn leBondedDevices\n\t.filter(s-\u003e connectedDevice.contains(s))  // i don\u0027t know how to write that from top of my head nor if it\u0027s possible\n\t.collect(Collectors.toList());\n```\n\nBut this doesn\u0027t seems better than initial code.... idk",
+      "parentUuid": "b9eb720d_63b0f62c",
       "range": {
         "startLine": 1426,
         "startChar": 0,
