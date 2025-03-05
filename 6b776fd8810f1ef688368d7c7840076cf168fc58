@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d87090dd_0b8a27b6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T20:06:40Z",
+      "side": 1,
+      "message": "Good idea. Done. Thank you.",
+      "parentUuid": "ac2fd97b_de04104c",
+      "range": {
+        "startLine": 19,
+        "startChar": 14,
+        "endLine": 19,
+        "endChar": 26
+      },
+      "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a667d79_9fffbc28",
@@ -83,6 +107,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae8ef3bf_2d9ebaa2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T20:06:40Z",
+      "side": 1,
+      "message": "Good call. I just clarified/expended as much as I understood. Please let me know if I missed any. Thank you.",
+      "parentUuid": "3a667d79_9fffbc28",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "598fc649_2b778bdb",
@@ -96,6 +144,30 @@
       "writtenOn": "2025-03-05T16:25:25Z",
       "side": 1,
       "message": "I mean, taking out the A in delay is going a bit too far for me 😂",
+      "range": {
+        "startLine": 27,
+        "startChar": 12,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc26937_eb1280ce",
+        "filename": "android/app/src/com/android/bluetooth/gatt/FilterParams.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T20:06:40Z",
+      "side": 1,
+      "message": ":D Haha. Indeed. Done. Thank you!",
+      "parentUuid": "598fc649_2b778bdb",
       "range": {
         "startLine": 27,
         "startChar": 12,
@@ -143,6 +215,30 @@
           ]
         }
       ],
+      "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60af4d52_38992e82",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/FilterParamsTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T20:06:40Z",
+      "side": 1,
+      "message": "I agree with removing it since it\u0027s quite meaningless. Thank you!",
+      "parentUuid": "40323212_01408550",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 46
+      },
       "revId": "6b776fd8810f1ef688368d7c7840076cf168fc58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
