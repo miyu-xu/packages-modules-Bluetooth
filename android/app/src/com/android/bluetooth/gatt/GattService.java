@@ -1152,14 +1152,7 @@ public class GattService extends ProfileService {
 
         // This callback was called from the jni_workqueue thread. If we make request to the stack
         // on the same thread, it might cause deadlock. Schedule request on a new thread instead.
-        Thread t =
-                new Thread(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                mNativeInterface.gattClientGetGattDb(connId);
-                            }
-                        });
+        Thread t = new Thread(() -> mNativeInterface.gattClientGetGattDb(connId));
         t.start();
     }
 
@@ -1478,35 +1471,29 @@ public class GattService extends ProfileService {
             return Collections.emptyList();
         }
 
-        Map<BluetoothDevice, Integer> deviceStates = new HashMap<>();
-
-        // Add paired LE devices
-
-        BluetoothDevice[] bondedDevices = mAdapterService.getBondedDevices();
-        for (BluetoothDevice device : bondedDevices) {
-            if (getDeviceType(device) != AbstractionLayer.BT_DEVICE_TYPE_BREDR) {
-                deviceStates.put(device, STATE_DISCONNECTED);
-            }
-        }
-
-        // Add connected deviceStates
-
-        Set<String> connectedDevices = new HashSet<>();
-        connectedDevices.addAll(mClientMap.getConnectedDevices());
-        connectedDevices.addAll(mServerMap.getConnectedDevices());
-
-        for (String address : connectedDevices) {
-            BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
-            if (device != null) {
-                deviceStates.put(device, STATE_CONNECTED);
-            }
-        }
-
-        // Create matching device sub-set
-        return deviceStates.entrySet().stream()
-                .filter(e -> Arrays.stream(states).anyMatch(s -> s == e.getValue()))
-                .map(Map.Entry::getKey)
+        return Stream.concat(
+                        // Add paired LE devices if the given states contains STATE_DISCONNECTED
+                        Arrays.stream(mAdapterService.getBondedDevices())
+                                .filter(device -> deviceTypeNotBrEdr(device))
+                                .filter(d -> statesAnyMatch(states, STATE_DISCONNECTED)),
+                        // Add connected devices if the given states contains STATE_CONNECTED
+                        Stream.concat(
+                                        mClientMap.getConnectedDevices().stream(),
+                                        mServerMap.getConnectedDevices().stream())
+                                .distinct()
+                                .map(a -> BluetoothAdapter.getDefaultAdapter().getRemoteDevice(a))
+                                .filter(d -> statesAnyMatch(states, STATE_CONNECTED)))
                 .collect(Collectors.toList());
+    }
+
+    private boolean deviceTypeNotBrEdr(BluetoothDevice device) {
+        int type = mNativeInterface.gattClientGetDeviceType(device.getAddress());
+        Log.d(TAG, "getDeviceType() - device=" + device + ", type=" + type);
+        return type != AbstractionLayer.BT_DEVICE_TYPE_BREDR;
+    }
+
+    private static boolean statesAnyMatch(int[] states, int state) {
+        return Arrays.stream(states).anyMatch(s -> s == state);
     }
 
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -3034,12 +3021,6 @@ public class GattService extends ProfileService {
                 || isAndroidTvRemoteSrvcUuid(uuid)
                 || isLeAudioSrvcUuid(uuid)
                 || isAndroidHeadtrackerSrvcUuid(uuid);
-    }
-
-    private int getDeviceType(BluetoothDevice device) {
-        int type = mNativeInterface.gattClientGetDeviceType(device.getAddress());
-        Log.d(TAG, "getDeviceType() - device=" + device + ", type=" + type);
-        return type;
     }
 
     private void logClientForegroundInfo(int uid, boolean isDirect) {
