@@ -163,6 +163,7 @@ class AppScanStats {
     private int mLowLatencyScan = 0;
     private int mAmbientDiscoveryScan = 0;
     private long startTime = 0;
+    private long stopTime = 0;
     private int results = 0;
 
     AppScanStats(
@@ -335,7 +336,7 @@ class AppScanStats {
             return;
         }
         this.mScansStopped++;
-        long stopTime = mTimeProvider.elapsedRealtime();
+        stopTime = mTimeProvider.elapsedRealtime();
         long scanDuration = stopTime - scan.timestamp;
         scan.duration = scanDuration;
         if (scan.isSuspended) {
@@ -775,7 +776,7 @@ class AppScanStats {
             return;
         }
         scan.isSuspended = false;
-        long stopTime = mTimeProvider.elapsedRealtime();
+        stopTime = mTimeProvider.elapsedRealtime();
         long suspendDuration = stopTime - scan.suspendStartTime;
         scan.suspendDuration += suspendDuration;
         mTotalSuspendTime += suspendDuration;
