@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29eb27be_9b7f1678",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-05T00:29:09Z",
+      "side": 1,
+      "message": "if (!com::android::bluetooth::flags::rfcomm_fix_mux_collision_handling()) {\n  // do things \n  return early\n}",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
