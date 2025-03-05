@@ -40,6 +40,30 @@
       ],
       "revId": "d4387bd475dec1f4ea758905a8e10de8167d1f04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850b21d5_2de858fc",
+        "filename": "system/stack/btm/btm_sco_hfp_hal.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-05T01:25:48Z",
+      "side": 1,
+      "message": "That involves changes in the Floss HAL as well as the header. I will have a dead code clean up after AL has switched to android HAL and could we remove it then?",
+      "parentUuid": "905dd6a8_d3ce8f4a",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 54
+      },
+      "revId": "d4387bd475dec1f4ea758905a8e10de8167d1f04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
