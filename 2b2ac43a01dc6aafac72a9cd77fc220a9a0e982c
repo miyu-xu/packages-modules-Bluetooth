@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74420ea9_18c41202",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T22:15:43Z",
+      "side": 1,
+      "message": "I haven\u0027t looked deeply into this but I believe this would be pure no-op as the code was moving away from jni thread, then moving back on jni thread.\n\nNow we simply call the end callback and are already in jni thread...",
+      "revId": "2b2ac43a01dc6aafac72a9cd77fc220a9a0e982c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
