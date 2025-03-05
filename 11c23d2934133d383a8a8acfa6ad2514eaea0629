@@ -200,6 +200,30 @@
       },
       "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b45006_fc951bc8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T08:23:18Z",
+      "side": 1,
+      "message": "I think you\u0027re right. My bad on this one. This is getting too complicated so I\u0027ve just reverted this section. Thank you a lot for your time.",
+      "parentUuid": "4a5991a3_26b11a19",
+      "range": {
+        "startLine": 1426,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 86
+      },
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
