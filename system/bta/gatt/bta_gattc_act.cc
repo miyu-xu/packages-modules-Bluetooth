@@ -48,6 +48,9 @@
 using bluetooth::Uuid;
 using namespace bluetooth;
 
+/* Macros */
+#define LEA_UNLOCK_BLE_CONN_PARAMS_TIMEOUT_MS 2000
+
 /*****************************************************************************
  *  Constants
  ****************************************************************************/
@@ -987,8 +990,42 @@ void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* /* p_da
   log::verbose("conn_id=0x{:x}", p_clcb->bta_conn_id);
 
   if (p_clcb->transport == BT_TRANSPORT_LE) {
-    bluetooth::stack::l2cap::get_interface().L2CA_LockBleConnParamsForServiceDiscovery(
-            p_clcb->p_srcb->server_bda, false);
+    bool lockBleConnParams = false;
+    if (com::android::bluetooth::flags::leaudio_use_aggressive_para_after_service_discovery() &&
+        !p_clcb->p_srcb->gatt_database.IsEmpty()) {
+      for (const auto& service : p_clcb->p_srcb->gatt_database.Services()) {
+        if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_ASCS)) {
+          lockBleConnParams = true;
+          break;
+        }
+      }
+    }
+    if (lockBleConnParams) {
+      if (!p_clcb->p_srcb->unlock_ble_conn_params_timer) {
+        p_clcb->p_srcb->unlock_ble_conn_params_timer = alarm_new("unlock_ble_conn_params_timer");
+      }
+      if (!alarm_is_scheduled(p_clcb->p_srcb->unlock_ble_conn_params_timer)) {
+        log::info("lea dev {} create timer to unlock ble conn params", p_clcb->p_srcb->server_bda);
+        alarm_set_on_mloop(
+          p_clcb->p_srcb->unlock_ble_conn_params_timer,
+          LEA_UNLOCK_BLE_CONN_PARAMS_TIMEOUT_MS,
+          [](void* data) {
+              RawAddress *serverBda = (RawAddress *)data;
+              if (!serverBda) {
+                log::info("address {}, unlock_ble_conn_params_timer timeout",
+                    *serverBda);
+                bluetooth::stack::l2cap::get_interface().L2CA_LockBleConnParamsForServiceDiscovery(
+                    *serverBda, false);
+              }
+          },
+          &p_clcb->p_srcb->server_bda);
+      } else {
+        log::debug("{} already create timer to unlock ble conn params", p_clcb->p_srcb->server_bda);
+      }
+    } else {
+      bluetooth::stack::l2cap::get_interface().L2CA_LockBleConnParamsForServiceDiscovery(
+              p_clcb->p_srcb->server_bda, false);
+    }
   }
   p_clcb->p_srcb->state = BTA_GATTC_SERV_IDLE;
   p_clcb->disc_active = false;
