@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "593d1ad8_fbf3384d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:35:01Z",
+      "side": 1,
+      "message": "I see a potential issue with your change, in that the timer for disconnecting the link is no longer set. This timer was necessary to ensure that at least one of the two channels was disconnected when both got established.\nDid I miss something that would ensure this ?",
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f753b33_629acfb1",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:35:01Z",
+      "side": 1,
+      "message": "You should give some more context about this change. \n\nWhat you are doing in practice is establishing a transition from the state RFC_MX_STATE_WAIT_CONN_CNF to RFC_MX_STATE_CONFIGURE in the case where ConnectInd is received, and updating the state accordingly (lcid, port_handles).",
+      "fixSuggestions": [
+        {
+          "fixId": "e9456959_b8ac8401",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_l2cap_if.cc",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": "      /*\n       * In the case of a collision, the outgoing connection is accepted and the\n       * incoming connection is rejected. The outgoing connection is then\n       * configured and the state machine transitions to RFC_MX_STATE_CONFIGURE.\n       * If the incoming connection is accepted, the outgoing connection is\n       * rejected and the state machine transitions to RFC_MX_STATE_IDLE.\n       */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835b8976_de8e629d",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:35:01Z",
+      "side": 1,
+      "message": "I would skip over the rest of the method and return here keeping only the relevant statements:\n\n```\nrfc_save_lcid_mcb(p_mcb, lcid);\np_mcb-\u003elcid \u003d lcid;\nrfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONN_IND, \u0026id);\n```",
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29eb27be_9b7f1678",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 12
@@ -20,6 +89,47 @@
         "endLine": 131,
         "endChar": 5
       },
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a49e561_45a99a8b",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-05T01:35:01Z",
+      "side": 1,
+      "message": "No, you want to go through the remaining statements if no collision is found.",
+      "range": {
+        "startLine": 185,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "68577026_e04a3530",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/rfc_l2cap_if.cc",
+              "range": {
+                "startLine": 185,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
       "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
