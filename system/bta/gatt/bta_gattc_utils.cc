@@ -303,6 +303,8 @@ void bta_gattc_clcb_dealloc(tBTA_GATTC_CLCB* p_clcb) {
 
     // clear reallocating
     p_srcb->gatt_database.Clear();
+
+    alarm_free(p_srcb->unlock_ble_conn_params_timer);
   }
 
   while (!p_clcb->p_q_cmd_queue.empty()) {
@@ -456,6 +458,7 @@ tBTA_GATTC_SERV* bta_gattc_srcb_alloc(const RawAddress& bda) {
 
     p_tcb->in_use = true;
     p_tcb->server_bda = bda;
+    p_tcb->unlock_ble_conn_params_timer = NULL;
   }
   return p_tcb;
 }
