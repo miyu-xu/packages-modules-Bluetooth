@@ -307,6 +307,16 @@ public class TbsGenericTest {
     }
 
     @Test
+    public void testNetworkStateChanged() {
+        Integer ccid = prepareTestBearer();
+        reset(mTbsGatt);
+
+        mTbsGeneric.networkStateChanged(ccid, "changed provider name", 0x01);
+        verify(mTbsGatt).setBearerProviderName(eq("changed provider name"));
+        verify(mTbsGatt).setBearerTechnology(eq(0x01));
+    }
+
+    @Test
     public void testCurrentCallsList() {
         Integer ccid = prepareTestBearer();
         reset(mTbsGatt);
