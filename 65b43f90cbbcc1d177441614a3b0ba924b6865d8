@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e14e264_0d87e245",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-03-05T01:47:44Z",
+      "side": 1,
+      "message": "Hi Folks, while the atoms CL ag/32003875 is under review in internal main, can we please continue the review of the Bluetooth changes here. Thanks a lot.\n\nI have updated the order of the parameters of the logging functions to `connection_duration_ms, error_code, is_hardware_offload, hub_id, endpoint_id` to match the changes in the atoms CL. \n\nAlso updated the logging fucntion in `system/common/metrics.h` and `system/common/metrics.cc`, which I forgot to do in previous patchsets.",
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
