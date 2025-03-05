@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f33af52_ff28b65c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-03-05T06:20:46Z",
+      "side": 1,
+      "message": "if you use mAdapterService, then you should be able to mock.",
+      "parentUuid": "f4beca39_2d525fa8",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6942b20_ee366242",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
@@ -90,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "908e075d_a7a0068a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-03-05T06:20:46Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s equivalent, if you take a look at this as example, https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/Config.java;l\u003d141;drc\u003ddec6a508f824d108be87253504c6971ab1897dfc\n\nThere are more checks before settings the profile in config.",
+      "parentUuid": "6de0aedd_6742bb20",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05eac7e6_94e4e237",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
@@ -119,6 +155,24 @@
       "side": 1,
       "message": "Sorry, I\u0027m not sure I follow, doesn\u0027t `McpService` correspond to the MCP (Media Control Profile/Point) Server? Doesn\u0027t Table 3.5 in TMAP v1.0 imply that if MCP Server is not enabled, then we cannot be TMAP UMS?",
       "parentUuid": "05eac7e6_94e4e237",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ef7cf3_4b2bf8d7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-03-05T06:20:46Z",
+      "side": 1,
+      "message": "Even the table implied the relation, but it\u0027s not a good idea to use MCP to decide UMS. Why don\u0027t you just check BluetoothProfile.LE_AUDIO?",
+      "parentUuid": "197e9d53_a2875ad7",
       "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
