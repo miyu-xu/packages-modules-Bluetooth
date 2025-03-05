@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eb98ec7_de78061e",
+        "filename": "CPPLINT.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T00:02:12Z",
+      "side": 0,
+      "message": "By removing this, you will rely on the default value of cpplint for the line length instead of 100, but you are keeping the error message.\n\nI believe you want to suppress a filter the same way we are filtering the indent just below.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "15d4ffe9104a20ff8423ba3c663c00f9ee933cda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
