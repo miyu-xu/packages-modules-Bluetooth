@@ -18,8 +18,6 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 
 import static com.android.bluetooth.TestUtils.MockitoRule;
 import static com.android.bluetooth.TestUtils.getTestDevice;
-import static com.android.bluetooth.telephony.BluetoothInCallService.Capability;
-import static com.android.bluetooth.telephony.BluetoothInCallService.Result;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -109,7 +107,9 @@ public class TbsGenericTest {
     private Integer prepareTestBearer() {
         String uci = "testUci";
         List<String> uriSchemes = Arrays.asList("tel", "xmpp");
-        Integer capabilities = Capability.HOLD_CALL | Capability.JOIN_CALLS;
+        Integer capabilities =
+                BluetoothLeCallControl.CAPABILITY_HOLD_CALL
+                        | BluetoothLeCallControl.CAPABILITY_JOIN_CALLS;
         String providerName = "testProviderName";
         int technology = 0x02;
 
@@ -392,7 +392,8 @@ public class TbsGenericTest {
         verify(leAudioService).setActiveDevice(mDevice);
 
         // Respond with requestComplete...
-        mTbsGeneric.requestResult(ccid, requestIdCaptor.getValue(), Result.SUCCESS);
+        mTbsGeneric.requestResult(
+                ccid, requestIdCaptor.getValue(), BluetoothLeCallControl.RESULT_SUCCESS);
         mTbsGeneric.callStateChanged(ccid, callUuid, BluetoothLeCall.STATE_ACTIVE);
 
         // ..and verify if GTBS control point is updated to notifier the peer about the result
@@ -401,7 +402,7 @@ public class TbsGenericTest {
                         eq(mDevice),
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT),
                         eq(callIndex),
-                        eq(Result.SUCCESS));
+                        eq(BluetoothLeCallControl.RESULT_SUCCESS));
     }
 
     @Test
@@ -446,7 +447,8 @@ public class TbsGenericTest {
         assertThat(callUuidCaptor.getValue().getUuid()).isEqualTo(callUuid);
 
         // Respond with requestComplete...
-        mTbsGeneric.requestResult(ccid, requestIdCaptor.getValue(), Result.SUCCESS);
+        mTbsGeneric.requestResult(
+                ccid, requestIdCaptor.getValue(), BluetoothLeCallControl.RESULT_SUCCESS);
         mTbsGeneric.callRemoved(ccid, callUuid, 0x01);
 
         // ..and verify if GTBS control point is updated to notifier the peer about the result
@@ -455,7 +457,7 @@ public class TbsGenericTest {
                         eq(mDevice),
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE),
                         eq(callIndex),
-                        eq(Result.SUCCESS));
+                        eq(BluetoothLeCallControl.RESULT_SUCCESS));
     }
 
     @Test
@@ -500,7 +502,8 @@ public class TbsGenericTest {
         assertThat(callUuidCaptor.getValue().getUuid()).isEqualTo(callUuid);
 
         // Respond with requestComplete...
-        mTbsGeneric.requestResult(ccid, requestIdCaptor.getValue(), Result.SUCCESS);
+        mTbsGeneric.requestResult(
+                ccid, requestIdCaptor.getValue(), BluetoothLeCallControl.RESULT_SUCCESS);
         mTbsGeneric.callStateChanged(ccid, callUuid, BluetoothLeCall.STATE_LOCALLY_HELD);
 
         // ..and verify if GTBS control point is updated to notifier the peer about the result
@@ -509,7 +512,7 @@ public class TbsGenericTest {
                         eq(mDevice),
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD),
                         eq(callIndex),
-                        eq(Result.SUCCESS));
+                        eq(BluetoothLeCallControl.RESULT_SUCCESS));
     }
 
     @Test
@@ -554,7 +557,8 @@ public class TbsGenericTest {
         assertThat(callUuidCaptor.getValue().getUuid()).isEqualTo(callUuid);
 
         // Respond with requestComplete...
-        mTbsGeneric.requestResult(ccid, requestIdCaptor.getValue(), Result.SUCCESS);
+        mTbsGeneric.requestResult(
+                ccid, requestIdCaptor.getValue(), BluetoothLeCallControl.RESULT_SUCCESS);
         mTbsGeneric.callStateChanged(ccid, callUuid, BluetoothLeCall.STATE_ACTIVE);
 
         // ..and verify if GTBS control point is updated to notifier the peer about the result
@@ -563,7 +567,7 @@ public class TbsGenericTest {
                         eq(mDevice),
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE),
                         eq(callIndex),
-                        eq(Result.SUCCESS));
+                        eq(BluetoothLeCallControl.RESULT_SUCCESS));
     }
 
     @Test
@@ -594,7 +598,8 @@ public class TbsGenericTest {
         verify(leAudioService).setActiveDevice(mDevice);
 
         // Respond with requestComplete...
-        mTbsGeneric.requestResult(ccid, requestIdCaptor.getValue(), Result.SUCCESS);
+        mTbsGeneric.requestResult(
+                ccid, requestIdCaptor.getValue(), BluetoothLeCallControl.RESULT_SUCCESS);
         mTbsGeneric.callAdded(
                 ccid,
                 new BluetoothLeCall(
@@ -610,7 +615,7 @@ public class TbsGenericTest {
                         eq(mDevice),
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE),
                         anyInt(),
-                        eq(Result.SUCCESS));
+                        eq(BluetoothLeCallControl.RESULT_SUCCESS));
     }
 
     @Test
@@ -667,7 +672,8 @@ public class TbsGenericTest {
         }
 
         // // Respond with requestComplete...
-        mTbsGeneric.requestResult(ccid, requestIdCaptor.getValue(), Result.SUCCESS);
+        mTbsGeneric.requestResult(
+                ccid, requestIdCaptor.getValue(), BluetoothLeCallControl.RESULT_SUCCESS);
         mTbsGeneric.callStateChanged(ccid, callUuids.get(0), BluetoothLeCall.STATE_ACTIVE);
 
         // ..and verify if GTBS control point is updated to notifier the peer about the result
@@ -676,7 +682,7 @@ public class TbsGenericTest {
                         eq(mDevice),
                         eq(TbsGatt.CALL_CONTROL_POINT_OPCODE_JOIN),
                         anyInt(),
-                        eq(Result.SUCCESS));
+                        eq(BluetoothLeCallControl.RESULT_SUCCESS));
     }
 
     @Test
