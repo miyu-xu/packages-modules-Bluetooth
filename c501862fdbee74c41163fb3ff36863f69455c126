@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdeef283_9ff70809",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-03-05T16:35:34Z",
+      "side": 1,
+      "message": "Talked to Jack offline, since there is a bug with the SCO management refactor, I\u0027ll submit this change now and follow up in a separate CL for the next one.",
+      "parentUuid": "b4c3b709_8a57e07e",
+      "revId": "c501862fdbee74c41163fb3ff36863f69455c126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2a6374b_701ec1b8",
