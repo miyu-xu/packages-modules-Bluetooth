@@ -54,7 +54,7 @@ import java.util.Date;
  * done by this class is to construct a custom view for the line items.
  */
 public class BluetoothOppTransferAdapter extends ResourceCursorAdapter {
-    private final Context mContext;
+    private Context mContext;
 
     public BluetoothOppTransferAdapter(Context context, int layout, Cursor c) {
         super(context, layout, c, true /* autoRequery */);

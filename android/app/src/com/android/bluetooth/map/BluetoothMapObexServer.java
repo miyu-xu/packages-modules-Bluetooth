@@ -106,7 +106,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
     private BluetoothMapFolderElement mCurrentFolder;
     private BluetoothMapContentObserver mObserver = null;
     private Handler mCallback = null;
-    private final Context mContext;
+    private Context mContext;
     private boolean mIsAborted = false;
     BluetoothMapContent mOutContent;
     private String mBaseUriString = null;
@@ -114,7 +114,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
     private BluetoothMapAccountItem mAccount = null;
     private Uri mEmailFolderUri = null;
     private int mMasId = 0;
-    private final BluetoothMapMasInstance mMasInstance; // TODO: change to interface?
+    private BluetoothMapMasInstance mMasInstance; // TODO: change to interface?
     // updated during connect if remote has alternative value
     private int mRemoteFeatureMask = BluetoothMapUtils.MAP_FEATURE_DEFAULT_BITMASK;
     private boolean mEnableSmsMms = false;

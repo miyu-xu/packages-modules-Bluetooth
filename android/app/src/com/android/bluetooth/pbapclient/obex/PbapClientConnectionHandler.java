@@ -84,14 +84,14 @@ class PbapClientConnectionHandler extends Handler {
                 0x66
             };
 
-    private final Account mAccount;
+    private Account mAccount;
     private BluetoothSocket mSocket;
     private final BluetoothDevice mDevice;
     private final int mLocalSupportedFeatures;
     // PSE SDP Record for current device.
     private PbapSdpRecord mPseRec = null;
     private ClientSession mObexSession;
-    private final PbapClientService mService;
+    private PbapClientService mService;
     private PbapClientObexAuthenticator mAuth = null;
     private final PbapClientStateMachineOld mPbapClientStateMachine;
     private boolean mAccountCreated;

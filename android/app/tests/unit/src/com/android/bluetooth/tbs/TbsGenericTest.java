@@ -60,8 +60,7 @@ public class TbsGenericTest {
     @Captor private ArgumentCaptor<String> mGtbsUciCaptor;
 
     @Captor
-    private final ArgumentCaptor<List> mDefaultGtbsUriSchemesCaptor =
-            ArgumentCaptor.forClass(List.class);
+    private ArgumentCaptor<List> mDefaultGtbsUriSchemesCaptor = ArgumentCaptor.forClass(List.class);
 
     @Captor private ArgumentCaptor<String> mDefaultGtbsProviderNameCaptor;
     @Captor private ArgumentCaptor<Integer> mDefaultGtbsTechnologyCaptor;

@@ -827,7 +827,7 @@ class BluetoothManagerService {
     }
 
     class ClientDeathRecipient implements IBinder.DeathRecipient {
-        private final String mPackageName;
+        private String mPackageName;
 
         ClientDeathRecipient(String packageName) {
             mPackageName = packageName;
@@ -1356,7 +1356,7 @@ class BluetoothManagerService {
         }
     }
 
-    private final BluetoothServiceConnection mConnection = new BluetoothServiceConnection();
+    private BluetoothServiceConnection mConnection = new BluetoothServiceConnection();
     private int mWaitForEnableRetry;
     private int mWaitForDisableRetry;
 

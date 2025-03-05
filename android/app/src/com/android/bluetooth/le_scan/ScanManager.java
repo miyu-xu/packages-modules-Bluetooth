@@ -2229,7 +2229,7 @@ public class ScanManager {
                 }
             };
 
-    private final ActivityManager.OnUidImportanceListener mUidImportanceListener =
+    private ActivityManager.OnUidImportanceListener mUidImportanceListener =
             new ActivityManager.OnUidImportanceListener() {
                 @Override
                 public void onUidImportance(final int uid, final int importance) {
@@ -2242,7 +2242,7 @@ public class ScanManager {
                 }
             };
 
-    private final BroadcastReceiver mLocationReceiver =
+    private BroadcastReceiver mLocationReceiver =
             new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {

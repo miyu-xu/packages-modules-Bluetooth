@@ -177,25 +177,25 @@ public final class ScanSettings implements Parcelable {
     static final long CHANGE_DEFAULT_TRACKABLE_ADV_NUMBER = 386727721L;
 
     // Bluetooth LE scan mode.
-    private final int mScanMode;
+    private int mScanMode;
 
     // Bluetooth LE scan callback type.
-    private final int mCallbackType;
+    private int mCallbackType;
 
     // Bluetooth LE scan result type.
-    private final int mScanResultType;
+    private int mScanResultType;
 
     // Time of delay for reporting the scan result.
-    private final long mReportDelayMillis;
+    private long mReportDelayMillis;
 
-    private final int mMatchMode;
+    private int mMatchMode;
 
-    private final int mNumOfMatchesPerFilter;
+    private int mNumOfMatchesPerFilter;
 
     // Include only legacy advertising results.
-    private final boolean mLegacy;
+    private boolean mLegacy;
 
-    private final int mPhy;
+    private int mPhy;
 
     public int getScanMode() {
         return mScanMode;

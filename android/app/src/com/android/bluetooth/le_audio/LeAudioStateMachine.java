@@ -75,16 +75,16 @@ final class LeAudioStateMachine extends StateMachine {
 
     @VisibleForTesting static int sConnectTimeoutMs = 30000; // 30s
 
-    private final Disconnected mDisconnected;
-    private final Connecting mConnecting;
-    private final Disconnecting mDisconnecting;
-    private final Connected mConnected;
+    private Disconnected mDisconnected;
+    private Connecting mConnecting;
+    private Disconnecting mDisconnecting;
+    private Connected mConnected;
     private int mConnectionState = STATE_DISCONNECTED;
 
     private int mLastConnectionState = -1;
 
-    private final LeAudioService mService;
-    private final LeAudioNativeInterface mNativeInterface;
+    private LeAudioService mService;
+    private LeAudioNativeInterface mNativeInterface;
 
     private final BluetoothDevice mDevice;
 

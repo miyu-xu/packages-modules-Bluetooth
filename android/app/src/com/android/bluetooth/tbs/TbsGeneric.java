@@ -65,16 +65,16 @@ public class TbsGeneric {
 
     /** Class representing the pending request sent to the application */
     private static class Request {
-        final BluetoothDevice mDevice;
-        final List<UUID> mCallIdList;
-        final int mRequestedOpcode;
-        final int mCallIndex;
+        BluetoothDevice device;
+        List<UUID> callIdList;
+        int requestedOpcode;
+        int callIndex;
 
         public Request(BluetoothDevice device, UUID callId, int requestedOpcode, int callIndex) {
-            this.mDevice = device;
-            this.mCallIdList = Arrays.asList(callId);
-            this.mRequestedOpcode = requestedOpcode;
-            this.mCallIndex = callIndex;
+            this.device = device;
+            this.callIdList = Arrays.asList(callId);
+            this.requestedOpcode = requestedOpcode;
+            this.callIndex = callIndex;
         }
 
         public Request(
@@ -82,13 +82,13 @@ public class TbsGeneric {
                 List<ParcelUuid> callIds,
                 int requestedOpcode,
                 int callIndex) {
-            this.mDevice = device;
-            this.mCallIdList = new ArrayList<>();
+            this.device = device;
+            this.callIdList = new ArrayList<>();
             for (ParcelUuid callId : callIds) {
-                this.mCallIdList.add(callId.getUuid());
+                this.callIdList.add(callId.getUuid());
             }
-            this.mRequestedOpcode = requestedOpcode;
-            this.mCallIndex = callIndex;
+            this.requestedOpcode = requestedOpcode;
+            this.callIndex = callIndex;
         }
     }
 
@@ -96,13 +96,13 @@ public class TbsGeneric {
     private static class Bearer {
         final String token;
         final IBluetoothLeCallControlCallback callback;
-        final List<String> mUriSchemes;
+        List<String> uriSchemes;
         final int capabilities;
         final int ccid;
         String providerName;
         int technology;
         Map<UUID, Integer> callIdIndexMap = new HashMap<>();
-        final Map<Integer, Request> mRequestMap = new HashMap<>();
+        Map<Integer, Request> requestMap = new HashMap<>();
 
         Bearer(
                 String token,
@@ -114,7 +114,7 @@ public class TbsGeneric {
                 int ccid) {
             this.token = token;
             this.callback = callback;
-            this.mUriSchemes = uriSchemes;
+            this.uriSchemes = uriSchemes;
             this.capabilities = capabilities;
             this.providerName = providerName;
             this.technology = technology;
@@ -275,7 +275,7 @@ public class TbsGeneric {
 
     private synchronized Bearer getBearerSupportingUri(String uri) {
         for (Bearer bearer : mBearerList) {
-            for (String s : bearer.mUriSchemes) {
+            for (String s : bearer.uriSchemes) {
                 if (uri.startsWith(s + ":")) {
                     return bearer;
                 }
@@ -398,9 +398,9 @@ public class TbsGeneric {
     private synchronized void checkRequestComplete(Bearer bearer, UUID callId, TbsCall tbsCall) {
         // check if there's any pending request related to this call
         Map.Entry<Integer, Request> requestEntry = null;
-        if (bearer.mRequestMap.size() > 0) {
-            for (Map.Entry<Integer, Request> entry : bearer.mRequestMap.entrySet()) {
-                if (entry.getValue().mCallIdList.contains(callId)) {
+        if (bearer.requestMap.size() > 0) {
+            for (Map.Entry<Integer, Request> entry : bearer.requestMap.entrySet()) {
+                if (entry.getValue().callIdList.contains(callId)) {
                     requestEntry = entry;
                 }
             }
@@ -415,39 +415,39 @@ public class TbsGeneric {
         Request request = requestEntry.getValue();
 
         int result;
-        if (request.mRequestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE) {
-            if (mCurrentCallsList.get(request.mCallIndex) == null) {
+        if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE) {
+            if (mCurrentCallsList.get(request.callIndex) == null) {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
             } else {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             }
-        } else if (request.mRequestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT) {
+        } else if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT) {
             if (tbsCall.getState() != BluetoothLeCall.STATE_INCOMING) {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
             } else {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             }
-        } else if (request.mRequestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD) {
+        } else if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD) {
             if (tbsCall.getState() == BluetoothLeCall.STATE_LOCALLY_HELD
                     || tbsCall.getState() == BluetoothLeCall.STATE_LOCALLY_AND_REMOTELY_HELD) {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
             } else {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             }
-        } else if (request.mRequestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE) {
+        } else if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE) {
             if (tbsCall.getState() != BluetoothLeCall.STATE_LOCALLY_HELD
                     && tbsCall.getState() != BluetoothLeCall.STATE_LOCALLY_AND_REMOTELY_HELD) {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
             } else {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             }
-        } else if (request.mRequestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE) {
-            if (bearer.callIdIndexMap.get(request.mCallIdList.get(0)) != null) {
+        } else if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE) {
+            if (bearer.callIdIndexMap.get(request.callIdList.get(0)) != null) {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
             } else {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             }
-        } else if (request.mRequestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_JOIN) {
+        } else if (request.requestedOpcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_JOIN) {
             /* While joining calls, those that are not in remotely held state should go to active */
             if (bearer.callIdIndexMap.get(callId) == null
                     || (tbsCall.getState() != BluetoothLeCall.STATE_ACTIVE
@@ -455,7 +455,7 @@ public class TbsGeneric {
                 result = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             } else {
                 /* Check if all of the pending calls transit to required state */
-                for (UUID pendingCallId : request.mCallIdList) {
+                for (UUID pendingCallId : request.callIdList) {
                     Integer callIndex = bearer.callIdIndexMap.get(pendingCallId);
                     TbsCall pendingTbsCall = mCurrentCallsList.get(callIndex);
                     if (pendingTbsCall.getState() != BluetoothLeCall.STATE_ACTIVE
@@ -471,9 +471,9 @@ public class TbsGeneric {
         }
 
         mTbsGatt.setCallControlPointResult(
-                request.mDevice, request.mRequestedOpcode, request.mCallIndex, result);
+                request.device, request.requestedOpcode, request.callIndex, result);
 
-        bearer.mRequestMap.remove(requestId);
+        bearer.requestMap.remove(requestId);
     }
 
     private synchronized int getTbsResult(int result, int requestedOpcode) {
@@ -509,15 +509,15 @@ public class TbsGeneric {
         }
 
         // check if there's any pending request related to this call
-        Request request = bearer.mRequestMap.remove(requestId);
+        Request request = bearer.requestMap.remove(requestId);
         if (request == null) {
             // already sent response
             return;
         }
 
-        int tbsResult = getTbsResult(result, request.mRequestedOpcode);
+        int tbsResult = getTbsResult(result, request.requestedOpcode);
         mTbsGatt.setCallControlPointResult(
-                request.mDevice, request.mRequestedOpcode, request.mCallIndex, tbsResult);
+                request.device, request.requestedOpcode, request.callIndex, tbsResult);
     }
 
     public synchronized void callAdded(int ccid, BluetoothLeCall call) {
@@ -779,7 +779,7 @@ public class TbsGeneric {
                 return TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
             }
 
-            bearer.mRequestMap.put(requestId, request);
+            bearer.requestMap.put(requestId, request);
             mLastIndexAssigned = requestId;
         }
 
@@ -924,7 +924,7 @@ public class TbsGeneric {
                                         break;
                                     }
 
-                                    bearer.mRequestMap.put(requestId, request);
+                                    bearer.requestMap.put(requestId, request);
                                     mLastRequestIdAssigned = requestId;
 
                                     result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
@@ -999,7 +999,7 @@ public class TbsGeneric {
                                         break;
                                     }
 
-                                    bearer.mRequestMap.put(requestId, request);
+                                    bearer.requestMap.put(requestId, request);
                                     mLastIndexAssigned = requestId;
 
                                     result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
@@ -1184,7 +1184,7 @@ public class TbsGeneric {
     private synchronized void updateUriSchemesSupported() {
         List<String> newUriSchemes = new ArrayList<>();
         for (Bearer bearer : mBearerList) {
-            newUriSchemes.addAll(bearer.mUriSchemes);
+            newUriSchemes.addAll(bearer.uriSchemes);
         }
 
         // filter duplicates

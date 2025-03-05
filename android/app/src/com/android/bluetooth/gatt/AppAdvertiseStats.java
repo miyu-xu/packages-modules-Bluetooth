@@ -46,7 +46,7 @@ import java.util.Map;
 class AppAdvertiseStats {
     private static final String TAG = AppAdvertiseStats.class.getSimpleName();
 
-    private static final DateTimeFormatter sDateFormat =
+    private static DateTimeFormatter sDateFormat =
             DateTimeFormatter.ofPattern("MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
 
     static final String[] PHY_LE_STRINGS = {"LE_1M", "LE_2M", "LE_CODED"};
@@ -84,9 +84,9 @@ class AppAdvertiseStats {
         }
     }
 
-    private final int mAppUid;
+    private int mAppUid;
     @VisibleForTesting String mAppName;
-    private final @Nullable String mAttributionTag;
+    @Nullable private String mAttributionTag;
     private int mId;
     private boolean mAdvertisingEnabled = false;
     private boolean mPeriodicAdvertisingEnabled = false;
@@ -98,9 +98,9 @@ class AppAdvertiseStats {
     private boolean mAnonymous = false;
     private boolean mConnectable = false;
     private boolean mScannable = false;
-    private @Nullable AppAdvertiserData mAdvertisingData = null;
-    private @Nullable AppAdvertiserData mScanResponseData = null;
-    private @Nullable AppAdvertiserData mPeriodicAdvertisingData = null;
+    @Nullable private AppAdvertiserData mAdvertisingData = null;
+    @Nullable private AppAdvertiserData mScanResponseData = null;
+    @Nullable private AppAdvertiserData mPeriodicAdvertisingData = null;
     private boolean mPeriodicIncludeTxPower = false;
     private int mPeriodicInterval = 0;
     public ArrayList<AppAdvertiserRecord> mAdvertiserRecords = new ArrayList<AppAdvertiserRecord>();

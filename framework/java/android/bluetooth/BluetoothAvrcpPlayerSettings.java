@@ -87,10 +87,10 @@ public final class BluetoothAvrcpPlayerSettings implements Parcelable {
     public static final int STATE_GROUP = 0x04;
 
     /** List of supported settings ORed. */
-    private final int mSettings;
+    private int mSettings;
 
     /** Hash map of current capability values. */
-    private final Map<Integer, Integer> mSettingsValue = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> mSettingsValue = new HashMap<Integer, Integer>();
 
     @Override
     public int describeContents() {

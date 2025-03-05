@@ -31,7 +31,7 @@ import com.android.internal.annotations.VisibleForTesting;
 public class A2dpSinkNativeInterface {
     private static final String TAG = A2dpSinkNativeInterface.class.getSimpleName();
 
-    private final AdapterService mAdapterService;
+    private AdapterService mAdapterService;
 
     @GuardedBy("INSTANCE_LOCK")
     private static A2dpSinkNativeInterface sInstance;

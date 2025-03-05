@@ -108,22 +108,22 @@ public final class BluetoothSocketSettings {
     private static final long INVALID_ENDPOINT_ID = 0;
 
     /** Type of the Bluetooth socket */
-    @SocketType private final int mSocketType;
+    @SocketType private int mSocketType;
 
     /** Encryption requirement for the Bluetooth socket. */
-    private final boolean mEncryptionRequired;
+    private boolean mEncryptionRequired;
 
     /** Authentication requirement for the Bluetooth socket. */
-    private final boolean mAuthenticationRequired;
+    private boolean mAuthenticationRequired;
 
     /** L2CAP Protocol/Service Multiplexer (PSM) for the Bluetooth Socket. */
-    private final int mL2capPsm;
+    private int mL2capPsm;
 
     /** RFCOMM service name associated with the Bluetooth socket. */
-    private final String mRfcommServiceName;
+    private String mRfcommServiceName;
 
     /** RFCOMM service UUID associated with the Bluetooth socket. */
-    private final UUID mRfcommUuid;
+    private UUID mRfcommUuid;
 
     /**
      * Specifies the data path used for this socket, influencing how data is transmitted and
@@ -137,7 +137,7 @@ public final class BluetoothSocketSettings {
      *       an offloaded application running on a dedicated low-power processor.
      * </ul>
      */
-    private final @SocketDataPath int mDataPath;
+    @SocketDataPath private int mDataPath;
 
     /**
      * A user-friendly name for this socket, primarily for debugging and logging. This name should
@@ -147,7 +147,7 @@ public final class BluetoothSocketSettings {
      * application running on the low-power processor. This allows the offloaded application to
      * identify and manage the socket.
      */
-    private final String mSocketName;
+    private String mSocketName;
 
     /**
      * When using {@link #DATA_PATH_HARDWARE_OFFLOAD}, this identifies the hub hosting the endpoint.
@@ -155,19 +155,19 @@ public final class BluetoothSocketSettings {
      * <p>Hub represents a logical/physical representation of multiple endpoints. A pair of {@code
      * mHubId} and {@code mEndpointId} uniquely identifies the endpoint globally.
      */
-    private final long mHubId;
+    private long mHubId;
 
     /**
      * When using {@link #DATA_PATH_HARDWARE_OFFLOAD}, this identifies the specific endpoint within
      * the hub that is associated with this socket.
      */
-    private final long mEndpointId;
+    private long mEndpointId;
 
     /**
      * The maximum size (in bytes) of a single data packet that can be received from the endpoint
      * when using {@link #DATA_PATH_HARDWARE_OFFLOAD}.
      */
-    private final int mMaximumPacketSize;
+    private int mMaximumPacketSize;
 
     /**
      * Returns the type of the Bluetooth socket.

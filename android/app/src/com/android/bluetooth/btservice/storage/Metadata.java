@@ -36,7 +36,7 @@ import java.util.List;
 
 @Entity(tableName = "metadata")
 public class Metadata {
-    @PrimaryKey @NonNull private final String address;
+    @PrimaryKey @NonNull private String address;
 
     public boolean migrated;
 
