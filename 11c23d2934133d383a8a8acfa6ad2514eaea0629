@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c231480_787f46a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-05T04:38:44Z",
+      "side": 1,
+      "message": "I\u0027ve split this CL from aosp/3526531 for easier code reviewing. The other one is just variable renaming / nit refactor.",
+      "revId": "11c23d2934133d383a8a8acfa6ad2514eaea0629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
