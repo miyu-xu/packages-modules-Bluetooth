@@ -1586,6 +1586,25 @@ static bool bta_gattc_process_srvc_chg_ind(tCONN_ID conn_id, tBTA_GATTC_RCB* p_c
                 p_notify->cid);
     }
 
+    // Use a busy CLCB to start discovery if no CLCB is available, this will be queued.
+    if (com::android::bluetooth::flags::start_discover_service_changed() && p_clcb == NULL) {
+      if (com::android::bluetooth::flags::gatt_client_dynamic_allocation()) {
+        for (auto& p_clcb_i : bta_gattc_cb.clcb_set) {
+          if (p_clcb_i->in_use && p_clcb_i->p_srcb == p_srcb) {
+            p_clcb = p_clcb_i.get();
+            break;
+          }
+        }
+      } else {
+        for (size_t i = 0; i < BTA_GATTC_CLCB_MAX; i++) {
+          if (bta_gattc_cb.clcb[i].in_use && bta_gattc_cb.clcb[i].p_srcb == p_srcb) {
+            p_clcb = &bta_gattc_cb.clcb[i];
+            break;
+          }
+        }
+      }
+    }
+
     /* if connection available, refresh cache by doing discovery now */
     if (p_clcb) {
       /* request read db hash first */
