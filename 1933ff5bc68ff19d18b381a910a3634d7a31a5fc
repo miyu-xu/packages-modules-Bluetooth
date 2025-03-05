@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4a2c993_cc1fbe7f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-05T19:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b555f82d_08d3a996",
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a0b740b_e7e48df5",
@@ -77,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8970a4_5eb54550",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-05T19:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0b740b_e7e48df5",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 9
+      },
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ec40165_6647f657",
@@ -90,6 +132,24 @@
       "writtenOn": "2025-03-05T03:46:20Z",
       "side": 1,
       "message": "Make sure that the device was actually found",
+      "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7792bf_ab909bd4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-05T19:38:49Z",
+      "side": 1,
+      "message": "This follows the same pattern as other Test files for performing discovery. This would block until the Bumble device is found. Inorder to not block forever, discovery timeout is added.",
+      "parentUuid": "2ec40165_6647f657",
       "revId": "1933ff5bc68ff19d18b381a910a3634d7a31a5fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
