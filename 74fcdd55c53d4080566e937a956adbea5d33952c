@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f328e04_8fbc1607",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-05T06:50:59Z",
+      "side": 1,
+      "message": "FYI, this is obsolete once we stop using a string for address but start using a Bluetooth device 😜",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "74fcdd55c53d4080566e937a956adbea5d33952c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
