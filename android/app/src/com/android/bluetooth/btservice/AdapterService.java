@@ -2605,6 +2605,29 @@ public class AdapterService extends Service {
         public boolean createBond(
                 BluetoothDevice device,
                 int transport,
+                AttributionSource source) {
+            AdapterService service = getService();
+            if (service == null
+                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "createBond")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service, source, "AdapterService createBond")) {
+                return false;
+            }
+
+            Log.i(
+                    TAG,
+                    "createBond:"
+                            + (" device=" + device)
+                            + (" transport=" + transport)
+                            + (" from " + Utils.getUidPidString()));
+            return service.createBond(
+                    device, transport, remoteP192Data, remoteP256Data, source.getPackageName());
+        }
+
+        @Override
+        public boolean createBondOutOfBand(
+                BluetoothDevice device,
+                int transport,
                 OobData remoteP192Data,
                 OobData remoteP256Data,
                 AttributionSource source) {
@@ -2623,7 +2646,7 @@ public class AdapterService extends Service {
 
             Log.i(
                     TAG,
-                    "createBond:"
+                    "createBondOutOfBand:"
                             + (" device=" + device)
                             + (" transport=" + transport)
                             + (" from " + Utils.getUidPidString()));
