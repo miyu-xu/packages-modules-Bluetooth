@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550d79b3_c021e6a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/hid/HidHeadTrackerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-06T03:40:05Z",
+      "side": 0,
+      "message": "Should we guard these changes with `ignore_unselected_hid_transport_states` flag?",
+      "revId": "75290e60482d3fd6406c7caf57157a866ee04a01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
