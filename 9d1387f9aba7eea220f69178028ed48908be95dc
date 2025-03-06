@@ -33,6 +33,24 @@
       "message": "I have added nix_0_29_0_update topic to this CL, as otherwise the presubmit test fails.",
       "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c66a310_13361189",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-06T15:37:04Z",
+      "side": 1,
+      "message": "Ah I think Floss presubmit would fail until https://crrev.com/c/6332440 is landed because we sync the Rust crates from CrOS repo",
+      "parentUuid": "3360f2c8_1d59153b",
+      "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
