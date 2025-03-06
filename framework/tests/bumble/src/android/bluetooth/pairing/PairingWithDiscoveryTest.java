@@ -93,6 +93,7 @@ public class PairingWithDiscoveryTest {
     private static final String BUMBLE_DEVICE_NAME = "Bumble";
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
     private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
+    private static final int FIND_NAME_TIMEOUT = 13000; // 13 second
     private static final int LE_GENERAL_DISCOVERABLE = 2;
 
     private final Context mContext = ApplicationProvider.getApplicationContext();
@@ -113,8 +114,11 @@ public class PairingWithDiscoveryTest {
     public final PandoraDevice mBumble = new PandoraDevice();
 
     private BluetoothDevice mBumbleDevice;
+    private BluetoothDevice mDeviceWithNoName;
     private InOrder mInOrder = null;
     private CompletableFuture<BluetoothDevice> mDeviceFound;
+    private CompletableFuture<BluetoothDevice> mDeviceFoundWithNoName;
+    private CompletableFuture<Boolean> mDeviceNameFound;
     @Mock private BroadcastReceiver mReceiver;
 
     @SuppressLint("MissingPermission")
@@ -127,20 +131,26 @@ public class PairingWithDiscoveryTest {
                     case BluetoothDevice.ACTION_FOUND:
                         BluetoothDevice device =
                                 intent.getParcelableExtra(
-                                        BluetoothDevice.EXTRA_DEVICE,
-                                        BluetoothDevice.class);
+                                        BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
                         String deviceName =
-                                String.valueOf(
-                                        intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
-                        Log.i(
-                                TAG,
-                                "Discovered device: "
-                                        + device
-                                        + " with name: "
-                                        + deviceName);
-                        if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName) &&
-                                mDeviceFound != null) {
+                                String.valueOf(intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                        Log.i(TAG, "Discovered device: " + device + " with name: " + deviceName);
+                        if (deviceName != null
+                                && BUMBLE_DEVICE_NAME.equals(deviceName)
+                                && mDeviceFound != null) {
                             mDeviceFound.complete(device);
+                        } else if (mDeviceFoundWithNoName != null) {
+                            // Remote device name is not present
+                            mDeviceFoundWithNoName.complete(device);
+                        }
+                        break;
+                    case BluetoothDevice.ACTION_NAME_CHANGED:
+                        String bumbleDeviceName =
+                                String.valueOf(intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                        Log.i(TAG, "onReceive(): Received device name  " + bumbleDeviceName);
+                        if (mDeviceNameFound != null
+                                && BUMBLE_DEVICE_NAME.equals(bumbleDeviceName)) {
+                            mDeviceNameFound.complete(true);
                         }
                         break;
                     default:
@@ -162,7 +172,7 @@ public class PairingWithDiscoveryTest {
         for (BluetoothDevice device : mAdapter.getBondedDevices()) {
             removeBond(device);
         }
-   }
+    }
 
     @After
     public void tearDown() throws Exception {
@@ -208,8 +218,8 @@ public class PairingWithDiscoveryTest {
         mBumble.hostBlocking()
                 .setDiscoverabilityMode(
                         SetDiscoverabilityModeRequest.newBuilder()
-                        .setMode(DiscoverabilityMode.NOT_DISCOVERABLE)
-                        .build());
+                                .setMode(DiscoverabilityMode.NOT_DISCOVERABLE)
+                                .build());
 
         // Make Bumble Non connectable over BR/EDR
         SetConnectabilityModeRequest request =
@@ -220,9 +230,10 @@ public class PairingWithDiscoveryTest {
 
         // Start LE advertisement from Bumble
         AdvertiseRequest.Builder requestBuilder =
-                AdvertiseRequest.newBuilder().setLegacy(true)
-                .setConnectable(true)
-                .setOwnAddressType(OwnAddressType.PUBLIC);
+                AdvertiseRequest.newBuilder()
+                        .setLegacy(true)
+                        .setConnectable(true)
+                        .setOwnAddressType(OwnAddressType.PUBLIC);
 
         HostProto.DataTypes.Builder dataTypeBuilder = HostProto.DataTypes.newBuilder();
         dataTypeBuilder.setCompleteLocalName(BUMBLE_DEVICE_NAME);
@@ -240,8 +251,7 @@ public class PairingWithDiscoveryTest {
 
         StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
                 mBumble.security()
-                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
-                            TimeUnit.MILLISECONDS)
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
                         .onPairing(mPairingEventStreamObserver);
 
         // Start pairing from Android with Auto transport
@@ -268,8 +278,7 @@ public class PairingWithDiscoveryTest {
         PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
         assertThat(pairingEvent.hasJustWorks()).isTrue();
         pairingEventAnswerObserver.onNext(
-                PairingEventAnswer.newBuilder().setEvent(pairingEvent)
-                        .setConfirm(true).build());
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());
 
         // Ensure that pairing succeeds
         verifyIntentReceived(
@@ -314,8 +323,8 @@ public class PairingWithDiscoveryTest {
         mBumble.hostBlocking()
                 .setDiscoverabilityMode(
                         SetDiscoverabilityModeRequest.newBuilder()
-                        .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
-                        .build());
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
 
         SetConnectabilityModeRequest request =
                 SetConnectabilityModeRequest.newBuilder()
@@ -328,8 +337,7 @@ public class PairingWithDiscoveryTest {
 
         StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
                 mBumble.security()
-                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(),
-                            TimeUnit.MILLISECONDS)
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
                         .onPairing(mPairingEventStreamObserver);
 
         // Start pairing from Android with Auto transport
@@ -368,6 +376,117 @@ public class PairingWithDiscoveryTest {
                 BluetoothDevice.ACTION_BOND_STATE_CHANGED,
                 BluetoothDevice.ACTION_ACL_CONNECTED,
                 BluetoothDevice.ACTION_PAIRING_REQUEST);
+    }
+
+    /**
+     * Test case for device with no name in inquiry response
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Put Bumble in pairing mode
+     *   <li>Start device discovery on Android/DUT
+     *   <li>Bumble should be found and its name should be available
+     *   <li>Initiate pairing from Android/DUT
+     *   <li>Cancel pairing from Android/DUT
+     *   <li>Put Bumble in pairing mode again
+     *   <li>Start device discovery on Android/DUT
+     * </ol>
+     *
+     * <p>Expectation: Bumble remote device must be found and its name should be available
+     */
+    @Test
+    public void testDeviceDiscoveryWithNoName() throws Exception {
+        registerIntentActions(
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED, BluetoothDevice.ACTION_NAME_CHANGED);
+        Boolean isNameFound = false;
+        // Put the bumble remote device into pairing mode
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+        // Start discovery for the remote devices with no names in IR
+        testStepStartDiscoveryDeviceWithNoName();
+        // Wait for DUT to finish discovery and fetch name from bumble
+        mDeviceNameFound = new CompletableFuture<>();
+        isNameFound =
+                mDeviceNameFound
+                        .completeOnTimeout(false, FIND_NAME_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+
+        assertThat(isNameFound).isTrue();
+        // Verify remote device's name . Indirectly this proves device's presence
+        assertThat(mDeviceWithNoName.getName()).isEqualTo(BUMBLE_DEVICE_NAME);
+        // assertThat(mBumbleDevice.getName()).isEqualTo(BUMBLE_DEVICE_NAME);
+        assertThat(mAdapter.cancelDiscovery()).isTrue();
+        // Initiate pairing with the bumble device
+        assertThat(mDeviceWithNoName.createBond(BluetoothDevice.TRANSPORT_AUTO)).isTrue();
+        // Verify that the DUT started bonding
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mDeviceWithNoName),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+        // Cancel the pairing
+        assertThat(mDeviceWithNoName.cancelBondProcess()).isTrue();
+        // Put the bumble remote into pairing mode again
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+        // Start the discovery again
+        testStepStartDiscoveryDeviceWithNoName();
+        // Wait for DUT to finish discovery and fetch name from bumble
+        isNameFound = false;
+        mDeviceNameFound = new CompletableFuture<>();
+        isNameFound =
+                mDeviceNameFound
+                        .completeOnTimeout(false, FIND_NAME_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+        assertThat(isNameFound).isTrue();
+        // Verify the bumble device presence by checking its name
+        assertThat(mDeviceWithNoName.getName()).isEqualTo(BUMBLE_DEVICE_NAME);
+        // Cancel discovery
+        assertThat(mAdapter.cancelDiscovery()).isTrue();
+        unregisterIntentActions(
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED, BluetoothDevice.ACTION_NAME_CHANGED);
+    }
+
+    /**
+     * Helper function to start discovery without cancel discovery in it
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Android starts discovery of remote devices with no name in inquiry response
+     * </ol>
+     *
+     * <p>Expectation:
+     *
+     * <ol>
+     *   <li>Android starts device discovery
+     *   <li>Wait for the remote device to be found
+     * </ol>
+     */
+    private void testStepStartDiscoveryDeviceWithNoName() throws Exception {
+        registerIntentActions(BluetoothDevice.ACTION_FOUND);
+        mDeviceWithNoName = null;
+        // Start device discovery from Android
+        mDeviceFoundWithNoName = new CompletableFuture<>();
+        assertThat(mAdapter.startDiscovery()).isTrue();
+        mDeviceWithNoName =
+                mDeviceFoundWithNoName
+                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
+                        .join();
+        assertThat(mDeviceWithNoName).isNotNull();
+        unregisterIntentActions(BluetoothDevice.ACTION_FOUND);
     }
 
     /** Helper/testStep functions go here */
@@ -424,7 +543,7 @@ public class PairingWithDiscoveryTest {
         mContext.unregisterReceiver(mReceiver);
     }
 
-     /**
+    /**
      * Helper function to add reference count to registered intent actions
      *
      * @param actions new intent actions to add. If the array is empty, it is a no-op.
