@@ -22,6 +22,30 @@
       },
       "revId": "a1abe8ea7ed585ef4629233ec18bb12a84f9b325",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "093d3451_31292d4a",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2025-03-06T09:30:22Z",
+      "side": 1,
+      "message": "Comment was not right. RemoteException is rethrown as IllegalStateException.",
+      "parentUuid": "fda73622_238613ff",
+      "range": {
+        "startLine": 184,
+        "startChar": 17,
+        "endLine": 184,
+        "endChar": 38
+      },
+      "revId": "a1abe8ea7ed585ef4629233ec18bb12a84f9b325",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
