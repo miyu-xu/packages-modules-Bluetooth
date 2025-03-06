@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db009afb_fecc1436",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3596272
+      },
+      "writtenOn": "2025-03-06T05:42:35Z",
+      "side": 1,
+      "message": "girardier@ for Android.bp",
+      "revId": "4e46692cfec8ed02a0e924b7062915db324b0854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
