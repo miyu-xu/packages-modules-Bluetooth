@@ -872,7 +872,7 @@ impl BluetoothSocketManager {
                                         nix::sys::socket::MsgFlags::MSG_DONTWAIT,
                                     ) {
                                         Ok(recv) => {
-                                            let fd = match recv.cmsgs().next() {
+                                            let fd = match recv.cmsgs()?.next() {
                                                 Some(ControlMessageOwned::ScmRights(fds)) => {
                                                     if fds.len() == 1 {
                                                         Some(fds[0])
