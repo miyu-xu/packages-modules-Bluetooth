@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc611a08_fe2ec5f4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2744,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-03-06T00:06:06Z",
+      "side": 1,
+      "message": "Might want to delete this and line 579 in gatt.rs",
+      "range": {
+        "startLine": 2743,
+        "startChar": 0,
+        "endLine": 2744,
+        "endChar": 71
+      },
+      "revId": "9aaf36d0e125c7667a004d93d895d208d08fb69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
