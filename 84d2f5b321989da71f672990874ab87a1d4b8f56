@@ -33,6 +33,24 @@
       "message": "I think this HAL needs to be removed.\nThe supported codec should be returned to the stack using hardware/interfaces/bluetooth/audio/aidl/android/hardware/bluetooth/audio/HfpConfiguration.aidl\nPlease consider using it, and update it if necesseray.",
       "revId": "84d2f5b321989da71f672990874ab87a1d4b8f56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08bedd39_8d5cac8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-06T06:58:36Z",
+      "side": 1,
+      "message": "Removing this requires a comprehensive plan of migrating Floss to hfp_client_interface.h and create a divergence (like hfp_client_interface_linux.cc) for it. Due to the limited resource as well as the approaching GKI deadline, could you please land this series for now.",
+      "parentUuid": "826a11be_a81570c0",
+      "revId": "84d2f5b321989da71f672990874ab87a1d4b8f56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
