@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "178dead9_d3998df8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T19:08:56Z",
+      "side": 1,
+      "message": "Code looks ok to me, but I am assessing this CL on code style and not on functionality.\n\nI am deferring to Barry for behavior / logic change as he is the main contributor of BluetoothQualityReport.",
+      "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
