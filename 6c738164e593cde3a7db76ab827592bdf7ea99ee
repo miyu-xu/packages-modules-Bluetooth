@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "389aa7f0_bed3f186",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T21:42:15Z",
+      "side": 1,
+      "message": "A public API that now require BLUETOOTH_PRIVILEGED ?\nThis is a breaking change",
+      "range": {
+        "startLine": 531,
+        "startChar": 2,
+        "endLine": 531,
+        "endChar": 164
+      },
+      "revId": "6c738164e593cde3a7db76ab827592bdf7ea99ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
