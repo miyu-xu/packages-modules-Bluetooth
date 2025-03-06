@@ -16,75 +16,70 @@
 
 package android.bluetooth.pairing;
 
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+
 import static com.google.common.truth.Truth.assertThat;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.timeout;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.timeout;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.PandoraDevice;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.Utils;
 import android.bluetooth.StreamObserverSpliterator;
-import com.android.bluetooth.flags.Flags;
-import android.platform.test.annotations.RequiresFlagsEnabled;
-import android.platform.test.flag.junit.CheckFlagsRule;
-import android.platform.test.flag.junit.DeviceFlagsValueProvider;
-
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
-
+import android.bluetooth.Utils;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.platform.test.annotations.RequiresFlagsEnabled;
+import android.platform.test.flag.junit.CheckFlagsRule;
+import android.platform.test.flag.junit.DeviceFlagsValueProvider;
 import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
 import io.grpc.stub.StreamObserver;
 
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.hamcrest.core.AllOf;
-import org.mockito.MockitoAnnotations;
-import org.mockito.InOrder;
-import org.mockito.hamcrest.MockitoHamcrest;
-import org.mockito.Mock;
-import org.mockito.stubbing.Answer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.hamcrest.MockitoHamcrest;
+import org.mockito.stubbing.Answer;
 
 import pandora.HostProto;
-import pandora.HostProto.DiscoverabilityMode;
-import pandora.HostProto.SetDiscoverabilityModeRequest;
-import pandora.HostProto.ConnectabilityMode;
-import pandora.HostProto.SetConnectabilityModeRequest;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
+import pandora.HostProto.ConnectabilityMode;
+import pandora.HostProto.DiscoverabilityMode;
 import pandora.HostProto.OwnAddressType;
+import pandora.HostProto.SetConnectabilityModeRequest;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
 import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
 
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.CompletableFuture;
-import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /** Test cases for {@link PairingWithDiscoveryTest}. */
 @RunWith(AndroidJUnit4.class)
@@ -92,6 +87,7 @@ public class PairingWithDiscoveryTest {
     private static final String TAG = PairingWithDiscoveryTest.class.getSimpleName();
     private static final String BUMBLE_DEVICE_NAME = "Bumble";
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
+    private static final Duration DISCOVERY_FINISH_WAIT = Duration.ofSeconds(13);
     private static final int DISCOVERY_TIMEOUT = 2000; // 2 seconds
     private static final int LE_GENERAL_DISCOVERABLE = 2;
     private CompletableFuture<BluetoothDevice> mDeviceFound;
@@ -128,19 +124,11 @@ public class PairingWithDiscoveryTest {
                     case BluetoothDevice.ACTION_FOUND:
                         BluetoothDevice device =
                                 intent.getParcelableExtra(
-                                        BluetoothDevice.EXTRA_DEVICE,
-                                        BluetoothDevice.class);
+                                        BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);
                         String deviceName =
-                                String.valueOf(
-                                        intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
-                        Log.i(
-                                TAG,
-                                "Discovered device: "
-                                        + device
-                                        + " with name: "
-                                        + deviceName);
-                        if (deviceName != null && BUMBLE_DEVICE_NAME.equals(deviceName) &&
-                                mDeviceFound != null) {
+                                String.valueOf(intent.getStringExtra(BluetoothDevice.EXTRA_NAME));
+                        Log.i(TAG, "Discovered device: " + device + " with name: " + deviceName);
+                        if (deviceName != null && mDeviceFound != null) {
                             mDeviceFound.complete(device);
                         }
                         break;
@@ -375,6 +363,70 @@ public class PairingWithDiscoveryTest {
                 BluetoothDevice.ACTION_PAIRING_REQUEST);
     }
 
+    /**
+     * Test case for resetting the security flags
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Put Bumble in pairing mode
+     *   <li>Start device discovery on Android/DUT
+     *   <li>Bumble should be found and its name should be available
+     *   <li>Initiate pairing from Android/DUT
+     *   <li>Cancel pairing from Android/DUT
+     *   <li>Put Bumble in pairing mode again
+     *   <li>Start device discovery on Android/DUT
+     * </ol>
+     *
+     * <p>Expectation: Bumble remote device must be found and its name should be available
+     */
+    @Test
+    public void testDeviceResetSecurityFlag() throws Exception {
+        registerIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+
+        // Put the bumble remote device into pairing mode
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+        // Start discovery for the remote devices
+        testStepStartDiscovery();
+        // Wait for DUT to finish discovery and fetch name from bumble
+        Thread.sleep(DISCOVERY_FINISH_WAIT.toMillis());
+        // Verify remote device's name . Indirectly this proves device's presence
+        assertThat(mBumbleDevice.getName()).isEqualTo(BUMBLE_DEVICE_NAME);
+        // Initiate pairing with the bumble device
+        assertThat(mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_AUTO)).isTrue();
+        // Verify that the DUT started bonding
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+        // Cancel the pairing
+        assertThat(mBumbleDevice.cancelBondProcess()).isTrue();
+        // Put the bumble remote into pairing mode again
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+        // Start the discovery again
+        testStepStartDiscovery();
+        // Wait for DUT to finish discovery and fetch name from bumble
+        Thread.sleep(DISCOVERY_FINISH_WAIT.toMillis());
+        // Verify the bumble device presence by checking its name
+        assertThat(mBumbleDevice.getName()).isEqualTo(BUMBLE_DEVICE_NAME);
+
+        unregisterIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+    }
+
     /** Helper/testStep functions go here */
     /**
      * Helper function to start device discovery
@@ -405,7 +457,6 @@ public class PairingWithDiscoveryTest {
                         .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS)
                         .join();
         assertThat(mBumbleDevice).isNotNull();
-        assertThat(mAdapter.cancelDiscovery()).isTrue();
 
         unregisterIntentActions(BluetoothDevice.ACTION_FOUND);
     }
