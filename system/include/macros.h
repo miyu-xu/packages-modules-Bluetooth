@@ -35,3 +35,31 @@
 
 #define RETURN_UNKNOWN_TYPE_STRING(type, variable) \
   return std::format("Unknown {}(0x{:x})", #type, static_cast<uint64_t>(variable))
+
+#define CREATE_STRING_WITH_VALUE(name, value) \
+  case value:                                 \
+    return #name;
+
+#define CREATE_ENUM_DEFAULT_VALUE(name) name,
+
+#define CREATE_ENUM_WITH_VALUE(name, value) name = value,
+
+#define CHOOSE_MACRO(_1, _2, macro, ...) macro
+
+#define CREATE_STRING(...) \
+  CHOOSE_MACRO(__VA_ARGS__, CREATE_STRING_WITH_VALUE, CASE_RETURN_TEXT)(__VA_ARGS__)
+#define CREATE_ENUM(...) \
+  CHOOSE_MACRO(__VA_ARGS__, CREATE_ENUM_WITH_VALUE, CREATE_ENUM_DEFAULT_VALUE)(__VA_ARGS__)
+
+#define CREATE_STRINGABLE_ENUM(name)                                                      \
+  enum name : uint16_t { name(CREATE_ENUM) };                                             \
+  std::string toString##name(uint16_t code) {                                             \
+    switch (code) { name(CREATE_STRING) default : FATAL("Unknown enum value {}", code); } \
+  }
+
+#define CREATE_BT_STATUS(name, enum, origin)              \
+  CREATE_STRINGABLE_ENUM(enum)                            \
+  class name : public BtStatus {                          \
+  public:                                                 \
+    name(enum c) : BtStatus(origin, c, toString##enum) {} \
+  };
