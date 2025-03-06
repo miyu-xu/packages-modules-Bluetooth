@@ -40,6 +40,30 @@
       ],
       "revId": "9515cc33cc10826c97ba277e556c522328738ea0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac1b618d_88829752",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-06T08:17:37Z",
+      "side": 1,
+      "message": "Ah yes. Nice catch. Done. Thank you.",
+      "parentUuid": "8b7bc9b0_cdfa2da2",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 19
+      },
+      "revId": "9515cc33cc10826c97ba277e556c522328738ea0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
