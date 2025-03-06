@@ -22,6 +22,30 @@
       },
       "revId": "9aaf36d0e125c7667a004d93d895d208d08fb69c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d28197_90dd6ab4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2744,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T00:10:00Z",
+      "side": 1,
+      "message": "Done.\n\nI was gonna do it as soon as the floss build failed for some reason and then look at the log. ^^ I don\u0027t have the setup to run it on my machine at the time.\n\n\nThanks !",
+      "parentUuid": "cc611a08_fe2ec5f4",
+      "range": {
+        "startLine": 2743,
+        "startChar": 0,
+        "endLine": 2744,
+        "endChar": 71
+      },
+      "revId": "9aaf36d0e125c7667a004d93d895d208d08fb69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
