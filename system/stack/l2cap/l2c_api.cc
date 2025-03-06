@@ -1211,8 +1211,14 @@ bool L2CA_ConnectFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
     // Restore the fixed channel if it was suspended
     l2cu_fixed_channel_restore(p_lcb, fixed_cid);
 
-    (*l2cb.fixed_reg[fixed_cid - L2CAP_FIRST_FIXED_CHNL].pL2CA_FixedConn_Cb)(
-            fixed_cid, p_lcb->remote_bd_addr, true, 0, p_lcb->transport);
+    if (com::android::bluetooth::flags::auto_transport_pairing() &&
+        p_lcb->link_state == LST_CONNECTED) {
+      (*l2cb.fixed_reg[fixed_cid - L2CAP_FIRST_FIXED_CHNL].pL2CA_FixedConn_Cb)(
+              fixed_cid, p_lcb->remote_bd_addr, true, 0, p_lcb->transport);
+    } else {
+      (*l2cb.fixed_reg[fixed_cid - L2CAP_FIRST_FIXED_CHNL].pL2CA_FixedConn_Cb)(
+              fixed_cid, p_lcb->remote_bd_addr, true, 0, p_lcb->transport);
+    }
     return true;
   }
 
