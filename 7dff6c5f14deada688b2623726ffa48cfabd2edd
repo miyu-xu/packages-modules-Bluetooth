@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "080907dc_3a52d37c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-06T00:49:55Z",
+      "side": 1,
+      "message": "We start a 120 second timer when we handle the ConnectInd event in state IDLE, just after the connection\nhttps://cs.android.com/android/platform/superproject/+/android15-qpr1-release:packages/modules/Bluetooth/system/stack/rfcomm/rfc_mx_fsm.cc;drc\u003dc8ea9b7a1da5af677c7bf11df42a10fbf8c141c4;l\u003d143",
+      "parentUuid": "593d1ad8_fbf3384d",
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f753b33_629acfb1",
         "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
         "patchSetId": 12
@@ -284,6 +302,30 @@
       "writtenOn": "2025-03-05T01:49:06Z",
       "side": 1,
       "message": "I see a lot of repetition with (L2CA_DisconnectReq + rfc_mx_retry_with_cached_lcid), there is probably a way to factor in all this code with an helper.",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 45
+      },
+      "revId": "7dff6c5f14deada688b2623726ffa48cfabd2edd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc5cb9c4_ef9a9140",
+        "filename": "system/stack/rfcomm/rfc_mx_fsm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-06T00:49:55Z",
+      "side": 1,
+      "message": "I made disconnectReq part of rfc_mx_retry_with_cached_lcid helper method to reduce the repetition",
+      "parentUuid": "dd88e368_c21ab4c3",
       "range": {
         "startLine": 284,
         "startChar": 0,

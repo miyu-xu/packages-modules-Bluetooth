@@ -16,6 +16,24 @@
       "message": "please add another testcase to bringup connection after the collision case resolved/timedout so that we know it recovers from collision case properly, in future CL",
       "revId": "fcbf4685ce43858c2c0ecdfc7ce532569d8fa5f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a1c0c9_973a9554",
+        "filename": "android/pandora/test/rfcomm_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-06T00:49:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3f2649d4_8008eb26",
+      "revId": "fcbf4685ce43858c2c0ecdfc7ce532569d8fa5f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
