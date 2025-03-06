@@ -16,6 +16,23 @@
       "message": "Hi @ningyuan@google.com, I fixed some failures with nix 0.29 and upload this CL instead.",
       "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3360f2c8_1d59153b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952516
+      },
+      "writtenOn": "2025-03-06T14:14:34Z",
+      "side": 1,
+      "message": "I have added nix_0_29_0_update topic to this CL, as otherwise the presubmit test fails.",
+      "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
