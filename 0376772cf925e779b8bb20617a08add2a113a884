@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78114174_a8f61e77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-06T00:00:51Z",
+      "side": 1,
+      "message": "+2 with note that this doesn\u0027t work for the SCO management refactor yet.",
+      "revId": "0376772cf925e779b8bb20617a08add2a113a884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
