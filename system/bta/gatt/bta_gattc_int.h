@@ -259,6 +259,8 @@ typedef struct {
 
   bool disc_blocked_waiting_on_version;
   tCONN_ID blocked_conn_id;
+
+  alarm_t* unlock_ble_conn_params_timer;
 } tBTA_GATTC_SERV;
 
 #ifndef BTA_GATTC_NOTIF_REG_MAX
