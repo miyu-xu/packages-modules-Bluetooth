@@ -1933,7 +1933,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean createBond() {
         return createBond(TRANSPORT_AUTO);
     }
@@ -1956,7 +1956,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @SystemApi
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean createBond(int transport) {
         return createBondInternal(transport, null, null);
     }
@@ -1982,7 +1982,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean createBondOutOfBand(
             int transport, @Nullable OobData remoteP192Data, @Nullable OobData remoteP256Data) {
         if (remoteP192Data == null && remoteP256Data == null) {
@@ -1993,7 +1993,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         return createBondInternal(transport, remoteP192Data, remoteP256Data);
     }
 
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    //@RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     private boolean createBondInternal(
             int transport, @Nullable OobData remoteP192Data, @Nullable OobData remoteP256Data) {
         if (DBG) log("createBondInternal()");
