@@ -2533,10 +2533,6 @@ public class LeAudioService extends ProfileService {
         if (isAnyBroadcastInStreamingState()) {
             LeAudioGroupDescriptor fallbackGroupDescriptor = getGroupDescriptor(groupId);
 
-            // If broadcast is ongoing and need to update unicast fallback active group
-            // we need to update the cached group id and skip changing the active device
-            updateFallbackUnicastGroupIdForBroadcast(groupId);
-
             if (!leaudioUseAudioRecordingListener()) {
                 if (fallbackGroupDescriptor != null) {
                     if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
