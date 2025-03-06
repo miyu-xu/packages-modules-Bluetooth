@@ -22,6 +22,30 @@
       },
       "revId": "6c738164e593cde3a7db76ab827592bdf7ea99ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abd6a785_bd40a3ae",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-06T23:05:28Z",
+      "side": 1,
+      "message": "Fixed this by having separate API call flow for createBondOutOfBand instead of reusing the existing common createBond API flow?",
+      "parentUuid": "389aa7f0_bed3f186",
+      "range": {
+        "startLine": 531,
+        "startChar": 2,
+        "endLine": 531,
+        "endChar": 164
+      },
+      "revId": "6c738164e593cde3a7db76ab827592bdf7ea99ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
