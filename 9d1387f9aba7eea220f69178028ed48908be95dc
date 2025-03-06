@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baadad3f_90fb92ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-06T13:18:59Z",
+      "side": 1,
+      "message": "Hi @ningyuan@google.com, I fixed some failures with nix 0.29 and upload this CL instead.",
+      "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
