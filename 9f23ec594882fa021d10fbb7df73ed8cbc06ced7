@@ -16,6 +16,24 @@
       "message": "Both cases are doing the same thing",
       "revId": "9f23ec594882fa021d10fbb7df73ed8cbc06ced7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d2a8581_932e6bd1",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-06T00:44:08Z",
+      "side": 1,
+      "message": "```\nif (!flag()) {\n  // original logic\n  return;\n}\n// new logic\n```",
+      "parentUuid": "79a16327_98e8d5a9",
+      "revId": "9f23ec594882fa021d10fbb7df73ed8cbc06ced7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
