@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda73622_238613ff",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-06T04:15:11Z",
+      "side": 1,
+      "message": "Why `RemoteException` is not caught?",
+      "range": {
+        "startLine": 184,
+        "startChar": 17,
+        "endLine": 184,
+        "endChar": 38
+      },
+      "revId": "a1abe8ea7ed585ef4629233ec18bb12a84f9b325",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
