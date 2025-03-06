@@ -131,7 +131,6 @@ using bluetooth::le_audio::types::CigState;
 using bluetooth::le_audio::types::CisState;
 using bluetooth::le_audio::types::DataPathState;
 using bluetooth::le_audio::types::LeAudioContextType;
-using bluetooth::le_audio::types::LeAudioLtvMap;
 
 namespace {
 
@@ -282,10 +281,10 @@ public:
           group->PrintDebugState();
           StopStream(group);
           return false;
+        } else {
+          // Even stream is already configured for the context, update the metadata.
+          group->SetMetadataContexts(metadata_context_types);
         }
-
-        // Even stream is already configured for the context, update the metadata.
-        group->SetMetadataContexts(metadata_context_types);
 
         /* All ASEs should aim to achieve target state */
         SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
@@ -311,7 +310,7 @@ public:
         }
 
         while (leAudioDevice) {
-          PrepareAndSendUpdateMetadata(group, leAudioDevice, metadata_context_types, ccid_lists);
+          PrepareAndSendUpdateMetadata(leAudioDevice, metadata_context_types, ccid_lists);
           leAudioDevice = group->GetNextActiveDevice(leAudioDevice);
         }
         break;
@@ -839,6 +838,7 @@ public:
      */
     group->ReloadAudioLocations();
     group->ReloadAudioDirections();
+    group->UpdateAudioContextAvailability();
     group->InvalidateCachedConfigurations();
     group->InvalidateGroupStrategy();
 
@@ -2400,7 +2400,7 @@ private:
     group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
 
     /* Clear group pending status */
-    group->ClearStreamingMetadataContexts();
+    group->ClearPendingAvailableContextsChange();
     group->ClearPendingConfiguration();
 
     cancel_watchdog_if_needed(group->group_id_);
@@ -2643,7 +2643,7 @@ private:
                                 msg_stream.str(), extra_stream.str());
   }
 
-  void PrepareAndSendUpdateMetadata(LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice,
+  void PrepareAndSendUpdateMetadata(LeAudioDevice* leAudioDevice,
                                     const BidirectionalPair<AudioContexts>& context_types,
                                     const BidirectionalPair<std::vector<uint8_t>>& ccid_lists) {
     std::vector<struct bluetooth::le_audio::client_parser::ascs::ctp_update_metadata> confs;
@@ -2680,10 +2680,10 @@ private:
       }
 
       /* Filter multidirectional audio context for each ase direction */
-      auto directional_audio_context =
-              context_types.get(ase->direction) & group->GetAvailableContexts(ase->direction);
+      auto directional_audio_context = context_types.get(ase->direction) &
+                                       leAudioDevice->GetAvailableContexts(ase->direction);
 
-      LeAudioLtvMap new_metadata;
+      bluetooth::le_audio::types::LeAudioLtvMap new_metadata;
       if (directional_audio_context.any()) {
         new_metadata = leAudioDevice->GetMetadata(directional_audio_context,
                                                   ccid_lists.get(ase->direction));
@@ -2822,21 +2822,6 @@ private:
       return;
     }
 
-    struct bluetooth::le_audio::client_parser::ascs::ase_transient_state_params rsp;
-
-    bool valid_response = ParseAseStatusTransientStateParams(rsp, len, data);
-
-    std::optional<AudioContexts> streaming_audio_context;
-    LeAudioLtvMap meta;
-    if (valid_response && !rsp.metadata.empty() &&
-        meta.Parse(rsp.metadata.data(), rsp.metadata.size())) {
-      streaming_audio_context = meta.GetAsLeAudioMetadata().streaming_audio_context;
-      if (!streaming_audio_context) {
-        log::error("{}, ase_id: {}, Did not found streaming metadata while parsing metadata: {}",
-                   leAudioDevice->address_, ase->id, bluetooth::common::ToHexString(rsp.metadata));
-      }
-    }
-
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED:
         log::error("{}, ase_id: {}, moving from QoS Configured to Streaming is impossible.",
@@ -2849,9 +2834,6 @@ private:
         std::vector<uint8_t> value;
 
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-        if (streaming_audio_context) {
-          group->SetStreamingMetadataContexts(streaming_audio_context.value(), ase->direction);
-        }
 
         if (!group->HaveAllActiveDevicesAsesTheSameState(
                     AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
@@ -2894,14 +2876,20 @@ private:
         break;
       }
       case AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING: {
-        if (!valid_response) {
+        struct bluetooth::le_audio::client_parser::ascs::ase_transient_state_params rsp;
+
+        if (!ParseAseStatusTransientStateParams(rsp, len, data)) {
           StopStream(group);
           return;
         }
 
-        /* Cache current as streaming metadata */
-        if (streaming_audio_context) {
-          group->SetStreamingMetadataContexts(streaming_audio_context.value(), ase->direction);
+        /* Cache current set up metadata values for for further possible
+         * reconfiguration
+         */
+        if (!rsp.metadata.empty() &&
+            !ase->metadata.Parse(rsp.metadata.data(), rsp.metadata.size())) {
+          log::error("Error while parsing metadata: {}",
+                     bluetooth::common::ToHexString(rsp.metadata));
         }
 
         break;
@@ -3076,7 +3064,6 @@ private:
         if (group->HaveAllActiveDevicesAsesTheSameState(
                     AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING)) {
           group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING);
-          group->ClearStreamingMetadataContexts();
           if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
             log::info("Group {} is doing autonomous release", group->group_id_);
             SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
