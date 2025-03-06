@@ -192,6 +192,24 @@
       "message": "This removed code that I had submitted and is now causing build failures when I try to submit the follow up",
       "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95812dc2_53734687",
+        "filename": "system/test/mock/mock_stack_metrics_logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-06T01:22:38Z",
+      "side": 1,
+      "message": "Sorry about that, -Wmissing-prototypes flagged a lot of unused functions which I removed accordingly. You can reland the removed code with your follow up",
+      "parentUuid": "722f3e6a_a5d1e843",
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
