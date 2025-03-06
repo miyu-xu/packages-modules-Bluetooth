@@ -1,0 +1,116 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57958d5d_9affe2ef",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-03-06T00:00:15Z",
+      "side": 1,
+      "message": "@wescande@google.com Wanted to get your opinion on adding this file. I can\u0027t confirm the impact on apex sizes due to storing timestamps on this file?",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b66dfb_c3134a6c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2025-03-06T00:00:15Z",
+      "side": 1,
+      "message": "I am wondering if this function should be over here",
+      "fixSuggestions": [
+        {
+          "fixId": "b7d8b758_e6fb8241",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 93,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 306,
+                "startChar": 0,
+                "endLine": 310,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 319,
+                "startChar": 0,
+                "endLine": 323,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 329,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 359,
+                "startChar": 0,
+                "endLine": 364,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+              "range": {
+                "startLine": 967,
+                "startChar": 0,
+                "endLine": 1049,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
