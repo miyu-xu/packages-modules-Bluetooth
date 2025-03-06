@@ -1982,7 +1982,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean createBondOutOfBand(
             int transport, @Nullable OobData remoteP192Data, @Nullable OobData remoteP256Data) {
         if (remoteP192Data == null && remoteP256Data == null) {
@@ -1991,6 +1991,27 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                         + " Please use createBond() instead if you do not have OOB data to pass.");
         }
         return createBondInternal(transport, remoteP192Data, remoteP256Data);
+    }
+
+    @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
+    private boolean createBondOutOfBandInternal(
+            int transport, @Nullable OobData remoteP192Data, @Nullable OobData remoteP256Data) {
+        if (DBG) log("createBondOutOfBandInternal()");
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.w(TAG, "BT not enabled, createBondOutOfBandInternal failed");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (NULL_MAC_ADDRESS.equals(mAddress)) {
+            Log.e(TAG, "Unable to create bond Out of Band, invalid address " + mAddress);
+        } else {
+            try {
+                return service.createBondOufOfBand(
+                        this, transport, remoteP192Data, remoteP256Data, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return false;
     }
 
     @RequiresPermission(BLUETOOTH_CONNECT)
