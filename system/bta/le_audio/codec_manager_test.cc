@@ -300,10 +300,11 @@ public:
 
     bluetooth::legacy::hci::testing::SetMock(legacy_hci_mock_);
 
-    ON_CALL(controller_interface, SupportsBleIsochronousBroadcaster).WillByDefault(Return(true));
-    ON_CALL(controller_interface, IsSupported(OpCode::CONFIGURE_DATA_PATH))
+    mock_controller_ =
+            std::make_unique<NiceMock<bluetooth::hci::testing::MockControllerInterface>>();
+    ON_CALL(*mock_controller_, SupportsBleIsochronousBroadcaster).WillByDefault(Return(true));
+    ON_CALL(*mock_controller_, IsSupported(OpCode::CONFIGURE_DATA_PATH))
             .WillByDefault(Return(true));
-    bluetooth::hci::testing::mock_controller_ = &controller_interface;
 
     codec_manager = CodecManager::GetInstance();
 
@@ -313,7 +314,6 @@ public:
 
   virtual void TearDown() override { codec_manager->Stop(); }
 
-  NiceMock<bluetooth::hci::testing::MockControllerInterface> controller_interface;
   CodecManager* codec_manager;
   bluetooth::legacy::hci::testing::MockInterface legacy_hci_mock_;
 

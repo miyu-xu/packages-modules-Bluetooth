@@ -95,6 +95,8 @@ using bluetooth::le_audio::types::AudioContexts;
 using bluetooth::le_audio::types::BidirectionalPair;
 using bluetooth::le_audio::types::LeAudioContextType;
 
+using bluetooth::hci;
+
 extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
 
 constexpr int max_num_of_ases = 5;
@@ -1518,11 +1520,13 @@ protected:
     __android_log_set_minimum_priority(ANDROID_LOG_VERBOSE);
     init_message_loop_thread();
     reset_mock_function_count_map();
-    ON_CALL(controller_, SupportsBleConnectedIsochronousStreamCentral).WillByDefault(Return(true));
-    ON_CALL(controller_, SupportsBleConnectedIsochronousStreamPeripheral)
+    testing::mock_controller_ =
+            std::make_unique<NiceMock<bluetooth::hci::testing::MockControllerInterface>>();
+    ON_CALL(*testing::mock_controller_, SupportsBleConnectedIsochronousStreamCentral)
             .WillByDefault(Return(true));
-    ON_CALL(controller_, SupportsBle2mPhy).WillByDefault(Return(true));
-    bluetooth::hci::testing::mock_controller_ = &controller_;
+    ON_CALL(*testing::mock_controller_, SupportsBleConnectedIsochronousStreamPeripheral)
+            .WillByDefault(Return(true));
+    ON_CALL(*test::mock_controller_, SupportsBle2mPhy).WillByDefault(Return(true));
     bluetooth::manager::SetMockBtmInterface(&mock_btm_interface_);
     gatt::SetMockBtaGattInterface(&mock_gatt_interface_);
     gatt::SetMockBtaGattQueue(&mock_gatt_queue_);
@@ -1638,7 +1642,7 @@ protected:
     }
 
     iso_manager_->Stop();
-    bluetooth::hci::testing::mock_controller_ = nullptr;
+    testing::mock_controller_.reset();
   }
 
 protected:
@@ -2804,7 +2808,6 @@ protected:
 
   /* Audio track metadata */
   char* test_tags_ptr_ = nullptr;
-  NiceMock<bluetooth::hci::testing::MockControllerInterface> controller_;
 };
 
 class UnicastTest : public UnicastTestNoInit {
