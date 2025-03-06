@@ -16,6 +16,24 @@
       "message": "nit: add some comments for why we are doing this. e.g. // The ASCS procedures are done after service discovery ......",
       "revId": "90c556e7a60da20619c408e334f8b563b8384550",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c59504a_95af281e",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2025-03-06T08:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64fa4e0e_4daadadd",
+      "revId": "90c556e7a60da20619c408e334f8b563b8384550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
