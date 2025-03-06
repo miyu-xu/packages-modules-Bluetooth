@@ -103,6 +103,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b4f24fc_598be1f2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T19:15:11Z",
+      "side": 1,
+      "message": "I am having second thought...\n\nBecause:\n1/ what you are storing is not device related, I thought you stored what device was last active, but you are just storing when was the last report of any active device (medical). So there is unlikely to be a nice fit in the database for you.\n2/ We don\u0027t care about this data being preserved between major updates (like switching to mainline, or switching phone). It is safe to trash it\n\nSo maybe a shared preference could work here.\n\nBut please have a read at go/sharedpreferences 😊",
+      "parentUuid": "b013ea83_602d89a3",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51b66dfb_c3134a6c",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 6
