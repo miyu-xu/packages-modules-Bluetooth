@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64fa4e0e_4daadadd",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2025-03-06T07:40:15Z",
+      "side": 1,
+      "message": "nit: add some comments for why we are doing this. e.g. // The ASCS procedures are done after service discovery ......",
+      "revId": "90c556e7a60da20619c408e334f8b563b8384550",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
