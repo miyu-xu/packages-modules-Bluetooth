@@ -348,7 +348,7 @@ public final class BluetoothUtils {
 
     /** A {@link Runnable} that automatically logs {@link RemoteException} @hide */
     @FunctionalInterface
-    public interface RemoteExceptionIgnoringRunnable {
+    public interface RemoteExceptionIgnoringRunnable extends Runnable {
         /** Called by {@code accept}. */
         void runOrThrow() throws RemoteException;
 
@@ -364,7 +364,7 @@ public final class BluetoothUtils {
 
     /** A {@link Consumer} that automatically logs {@link RemoteException} @hide */
     @FunctionalInterface
-    public interface RemoteExceptionIgnoringConsumer<T> {
+    public interface RemoteExceptionIgnoringConsumer<T> extends Consumer<T> {
         /** Called by {@code accept}. */
         void acceptOrThrow(T t) throws RemoteException;
 
@@ -380,7 +380,7 @@ public final class BluetoothUtils {
 
     /** A {@link Function} that automatically logs {@link RemoteException} @hide */
     @FunctionalInterface
-    public interface RemoteExceptionIgnoringFunction<T, R> {
+    public interface RemoteExceptionIgnoringFunction<T, R> extends Function<T, R> {
         R applyOrThrow(T t) throws RemoteException;
 
         @RequiresNoPermission
