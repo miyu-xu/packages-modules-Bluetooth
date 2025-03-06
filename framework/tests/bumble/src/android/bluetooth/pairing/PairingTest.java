@@ -836,6 +836,101 @@ public class PairingTest {
         intentReceiver.close();
     }
 
+    /**
+     * Test removeDevice API when connected over BR/EDR
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     * </ol>
+     *
+     * <p>Steps:
+     *
+     * <ol>
+     *   <li>Bumble is connectable over BR/EDR
+     *   <li>Android pairs with Bumble over BR/EDR
+     *   <li>Call BluetoothDevice.removeBond() API
+     *   <li>Android disconnects the ACL and removes the bond
+     * </ol>
+     *
+     * <p>Expectation: Bumble is not bonded
+     */
+    @Test
+    public void testCreateLeSocket_BondLe() {
+        IntentReceiver intentReceiver = new IntentReceiver.Builder(sTargetContext,
+                BluetoothDevice.ACTION_ACL_DISCONNECTED,
+                BluetoothDevice.ACTION_BOND_STATE_CHANGED)
+                .build();
+        int psm = 5;
+
+        /*BluetoothDevice remoteDevice =
+            bluetoothAdapter.getRemoteLeDevice(
+                "DA:4C:10:DE:17:02",
+                BluetoothDevice.ADDRESS_TYPE_PUBLIC,
+            );*/
+
+        //remoteDevice.removeBond()
+        StreamObserver<PairingEventAnswer> pairingEventAnswerObserver =
+                mBumble.security()
+                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                        .onPairing(mPairingEventStreamObserver);
+
+        Log.d(TAG, "testSendWtestCreateLeSocket_BondLeithPairing: Connect L2CAP");
+
+        try {
+            BluetoothSocket bluetoothSocket = createSocket(psm, mBumbleDevice);
+            Thread.sleep(200);
+            Log.d(TAG, "testCreateLeSocket_BondLe: Calling BTSocket connect");
+            bluetoothSocket.connect();
+            Log.d(TAG, "testCreateLeSocket_BondLe: Bluetooth socket connected");
+            Thread.sleep(2000);
+        }
+        catch (IOException e) {
+            Log.i(TAG, "Expect socket connection failure: "+e);
+        }
+        Log.d(TAG, "testCreateLeSocket_BondLe: done, start LE createBond with LE transport");
+
+        mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_LE);
+        Thread.sleep(3000);
+
+        // Start LE advertisement from Bumble
+        AdvertiseRequest.Builder requestBuilder =
+                AdvertiseRequest.newBuilder().setLegacy(true)
+                .setConnectable(true)
+                .setOwnAddressType(OwnAddressType.PUBLIC);
+
+        intentReceiver.verifyReceivedOrdered(
+        hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+        hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+        hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE));
+
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(
+                        BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                        BluetoothDevice.PAIRING_VARIANT_CONSENT));
+        mBumbleDevice.setPairingConfirmation(true);
+
+        PairingEvent pairingEvent = mPairingEventStreamObserver.iterator().next();
+        assertThat(pairingEvent.hasJustWorks()).isTrue();
+        pairingEventAnswerObserver.onNext(
+                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());
+
+        intentReceiver.verifyReceivedOrdered(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));
+
+        intentReceiver.close();
+    }
+
     /** Helper/testStep functions goes here */
 
     /**
