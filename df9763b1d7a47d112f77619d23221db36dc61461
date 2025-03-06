@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f96e739_71ef973c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2025-03-06T11:51:33Z",
+      "side": 1,
+      "message": "We\u0027ll use de-identified logger so no device info will be preserved and hence can\u0027t filter the result if we want to get WAU/MAU.",
+      "parentUuid": "ced0ab00_0f781bfa",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 43
+      },
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57958d5d_9affe2ef",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 6
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "By adding storage on disk, especially using a shared preference we also need to add this into the migration when onboarding partner in the mainline module (see \n migration code: packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/DataMigration.java)\n \nThe size of this seems small, but I don\u0027t think we should use sharedPreference for this. Afaik this is not really encouraged.\n\nCan we store those in the room database ? MetadataDatabase ?",
       "parentUuid": "57958d5d_9affe2ef",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b013ea83_602d89a3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2025-03-06T11:51:33Z",
+      "side": 1,
+      "message": "OK! I\u0027ll move this to MetadataDatabase if you think it\u0027s ok to store this info in that database.",
+      "parentUuid": "d19dd41a_2f595edc",
       "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
