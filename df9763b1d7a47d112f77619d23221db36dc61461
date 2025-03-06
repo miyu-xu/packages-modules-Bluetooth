@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ced0ab00_0f781bfa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T00:25:23Z",
+      "side": 1,
+      "message": "Why do we want to report day / week / month ?\n\nIf we are reporting on a day bases, why not just keep this one ? and filter later since the report as been done already anyway ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 43
+      },
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57958d5d_9affe2ef",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 6
@@ -14,6 +37,24 @@
       "writtenOn": "2025-03-06T00:00:15Z",
       "side": 1,
       "message": "@wescande@google.com Wanted to get your opinion on adding this file. I can\u0027t confirm the impact on apex sizes due to storing timestamps on this file?",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19dd41a_2f595edc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T00:25:23Z",
+      "side": 1,
+      "message": "By adding storage on disk, especially using a shared preference we also need to add this into the migration when onboarding partner in the mainline module (see \n migration code: packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/DataMigration.java)\n \nThe size of this seems small, but I don\u0027t think we should use sharedPreference for this. Afaik this is not really encouraged.\n\nCan we store those in the room database ? MetadataDatabase ?",
+      "parentUuid": "57958d5d_9affe2ef",
       "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +146,97 @@
                 "endChar": 0
               },
               "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4439c05_c8fe2130",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-06T00:25:23Z",
+      "side": 1,
+      "message": "Prefer using `doReturn().when().foo()` rather than `when().thenReturn()`",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 312,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "50e22b36_624ba4c0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import static org.mockito.Mockito.doReturn;\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+              "range": {
+                "startLine": 312,
+                "startChar": 0,
+                "endLine": 316,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(mockSharedPref)\n                .when(mAdapterService)\n                .getSharedPreferences(\"hearing_device_active_history\", Context.MODE_PRIVATE);\n        doReturn(mockSharedPrefEditor).when(mockSharedPref).edit();\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+              "range": {
+                "startLine": 329,
+                "startChar": 0,
+                "endLine": 330,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(testTimeMillis).when(mockSharedPref).getString(anyString(), anyString());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+              "range": {
+                "startLine": 340,
+                "startChar": 0,
+                "endLine": 341,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(testTimeMillis).when(mockSharedPref).getString(anyString(), anyString());\n"
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
+              "range": {
+                "startLine": 351,
+                "startChar": 0,
+                "endLine": 352,
+                "endChar": 0
+              },
+              "replacement": "        doReturn(testTimeMillis).when(mockSharedPref).getString(anyString(), anyString());\n"
             }
           ]
         }
