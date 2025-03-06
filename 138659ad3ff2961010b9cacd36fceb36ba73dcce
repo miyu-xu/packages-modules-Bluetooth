@@ -175,6 +175,23 @@
       },
       "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "722f3e6a_a5d1e843",
+        "filename": "system/test/mock/mock_stack_metrics_logging.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-03-06T01:18:59Z",
+      "side": 1,
+      "message": "This removed code that I had submitted and is now causing build failures when I try to submit the follow up",
+      "revId": "138659ad3ff2961010b9cacd36fceb36ba73dcce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
