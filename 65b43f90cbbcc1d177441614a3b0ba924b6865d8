@@ -57,6 +57,30 @@
       ],
       "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce1a7d7e_fe415877",
+        "filename": "system/btif/include/btif_sock_logging.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-03-06T01:59:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "906d7708_dbd26382",
+      "range": {
+        "startLine": 25,
+        "startChar": 33,
+        "endLine": 25,
+        "endChar": 36
+      },
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
