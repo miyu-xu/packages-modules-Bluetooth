@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db3ef199_5b25907f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1966,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-07T06:06:27Z",
+      "side": 1,
+      "message": "If you don\u0027t set local IRK into accept list, and you try establishing connection, what address would we use to initiate it ?\n\nWould the IRK eventually be generated and set ? If yes can you please comment about that ?",
+      "range": {
+        "startLine": 1966,
+        "startChar": 5,
+        "endLine": 1966,
+        "endChar": 41
+      },
+      "revId": "aceded692429a30e98c70baccec32682a185ce6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
