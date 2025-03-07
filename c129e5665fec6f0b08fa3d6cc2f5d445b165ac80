@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618cb073_17c3e95c",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1219,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-07T22:00:19Z",
+      "side": 1,
+      "message": "Can we have testcase to reproduce this and check what happens?\n\nIf the link state is still LST_CONNECTING, would this trigger another link request? Need to check what happens?\n\nOR\nCan we consider returning intermediate state so that SMP can wait till link is connected before it dispatches the request?",
+      "fixSuggestions": [
+        {
+          "fixId": "6f483b1d_f4eaddd7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1214,
+                "startChar": 0,
+                "endLine": 1215,
+                "endChar": 0
+              },
+              "replacement": "    if (!com::android::bluetooth::flags::smp_connection_status_handling_when_no_acl_connected()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c129e5665fec6f0b08fa3d6cc2f5d445b165ac80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
