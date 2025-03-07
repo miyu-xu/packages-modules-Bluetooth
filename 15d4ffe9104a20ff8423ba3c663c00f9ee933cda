@@ -118,6 +118,30 @@
       },
       "revId": "15d4ffe9104a20ff8423ba3c663c00f9ee933cda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f10013a6_f7fb6c04",
+        "filename": "CPPLINT.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2025-03-07T16:48:07Z",
+      "side": 0,
+      "message": "Discussing with Jack offline; will submit this for now but may consider enforcing legacy code format in future cleanup, TBD.",
+      "parentUuid": "2c5e89ad_c3814d5b",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "15d4ffe9104a20ff8423ba3c663c00f9ee933cda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
