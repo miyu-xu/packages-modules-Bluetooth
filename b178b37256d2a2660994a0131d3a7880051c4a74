@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56cd93b_aaccf374",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1997,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25d2bc59_e29df8a3",
+      "range": {
+        "startLine": 1997,
+        "startChar": 20,
+        "endLine": 1997,
+        "endChar": 47
+      },
+      "revId": "b178b37256d2a2660994a0131d3a7880051c4a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6418502a_7280bc86",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-07T01:05:07Z",
       "side": 1,
       "message": "inline inside     `public boolean createBond(int transport) {` as there is only one place that use it ?",
+      "range": {
+        "startLine": 2018,
+        "startChar": 0,
+        "endLine": 2018,
+        "endChar": 55
+      },
+      "revId": "b178b37256d2a2660994a0131d3a7880051c4a74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6c0f1b_847ddf45",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T02:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6418502a_7280bc86",
       "range": {
         "startLine": 2018,
         "startChar": 0,
