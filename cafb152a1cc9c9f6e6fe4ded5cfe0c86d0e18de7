@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eafa75fb_7d8f43f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-07T20:02:57Z",
+      "side": 1,
+      "message": "This change seems incorrect to me so I may be missing a point here.\n\nThe api of `unregisterTetheringEventCallback` does not indicate that is can throw an exception but I agree their internal method can:\n```\n    private void getConnector(ConnectorConsumer consumer) {\n        try {\n            consumer.onConnectorAvailable(connector);\n        } catch (RemoteException e) {\n            throw new IllegalStateException(e);\n        }\n    }\n```\n\nIn the current bug b/397568390, the exception received is a DeadObjectException\nThat mean to me that the tethering manager crashed.\nDo we know why ? Did we contacted the tethering team to report they have a crash in there code ? Should we assign the bug to them ?\n\nI feel like this CL is a band-aid on the symptome but does not address the cause.",
+      "revId": "cafb152a1cc9c9f6e6fe4ded5cfe0c86d0e18de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
