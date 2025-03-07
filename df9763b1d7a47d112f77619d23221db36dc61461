@@ -163,6 +163,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8caa84e4_a9f5037e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-07T22:35:11Z",
+      "side": 1,
+      "message": "\u003e SharedPreference with DataStore but encountered a min_sdk_version conflict issue\n\nWhat was the min_sdk required ? Bluetooth need to upgrade to 36 in the next weeks.\n\n\u003e I also think this will increase BluetoothLib size\n\nIt would be nice to know by how much this impact. Do you have this number ?\n\n\u003e Given the tight timeline\n\nWhat is the deadline ?\n\n-----------\n\nI have another solution that I believe could apply nicely here, based on \"Settings.Secure\"\n```\nSettings.Secure.getString(getContentResolver(), dateKey);\nSettings.Secure.putString(getContentResolver(), dateKey, now.toString());\n```\n\nBasically you will do the same, but no additional files needed 😊",
+      "parentUuid": "93cb9f6c_899020fc",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a27d3382_7b6a018b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-07T22:35:11Z",
+      "side": 1,
+      "message": "I would have use LocalDateTime, like we do for notification in NotificationHelperService.java\n\n```\nfinal LocalDateTime now \u003d LocalDateTime.now(ZoneId.systemDefault());\nfinal LocalDateTime lastActiveDay \u003d LocalDateTime.parse(Settings.Secure.getString(getContentResolver(), KEY_HEARING_DEVICE_LAST_ACTIVE_DAY));\nif (now.isAfter(lastActiveDay.plusDays(1)) {\n  Settings.Secure.putString(getContentResolver(), KEY_HEARING_DEVICE_LAST_ACTIVE_DAY, now.toString())\n}\n```\n(need to add the case when the setting is empty)\n\nThen I would add a sneaky `minusHours(1)`, to allows for a bit flexibility. (if there is an habits of connecting every morning at 8am, then you don\u0027t want to have gap in stats just because it was 7\u002759 one day.\n\nAnd if possible I would have created a method to avoid repeating the code 3 times. It could take in parameter a \"key\", a function to edit the localdateTime, and then the metrics associated\n\nSo usage of it would be something like:\n```\nlogHearingDeviceActiveEvent(\n\tdevice,\n\ttype,\n\tHEARING_DEVICE_ACTIVE_EVENT_REPORTED__TIME_PERIOD__DAY,\n\t(lastActive) -\u003e lastActive.plusDays(1),\n\t\"last_active_day\")\n```\n\nWhat do you think ?",
+      "range": {
+        "startLine": 998,
+        "startChar": 0,
+        "endLine": 998,
+        "endChar": 54
+      },
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51b66dfb_c3134a6c",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 6
