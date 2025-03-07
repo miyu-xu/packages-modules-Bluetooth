@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93cb9f6c_899020fc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2025-03-07T08:08:09Z",
+      "side": 1,
+      "message": "I tried to replace SharedPreference with DataStore but encountered a  min_sdk_version conflict issue, and I also think this will increase BluetoothLib size with the new depandancy, I\u0027m not sure if it\u0027s another critical impact?\n\nGiven the tight timeline, do you think it\u0027s acceptable to maintain the current SharedPreferences implementation for now? While not ideal, it would prevent immediate delays.",
+      "parentUuid": "6b4f24fc_598be1f2",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51b66dfb_c3134a6c",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 6
