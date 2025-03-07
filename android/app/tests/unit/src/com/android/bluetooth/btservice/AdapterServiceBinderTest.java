@@ -43,7 +43,7 @@ public class AdapterServiceBinderTest {
     @Mock private AdapterService mService;
     @Mock private AdapterProperties mAdapterProperties;
 
-    private AdapterService.AdapterServiceBinder mBinder;
+    private AdapterServiceBinder mBinder;
     private AttributionSource mAttributionSource;
 
     @Before
@@ -51,7 +51,7 @@ public class AdapterServiceBinderTest {
         mService.mAdapterProperties = mAdapterProperties;
         doReturn(true).when(mService).isAvailable();
         doNothing().when(mService).enforceCallingOrSelfPermission(any(), any());
-        mBinder = new AdapterService.AdapterServiceBinder(mService);
+        mBinder = new AdapterServiceBinder(mService);
         mAttributionSource = new AttributionSource.Builder(0).build();
     }
 
