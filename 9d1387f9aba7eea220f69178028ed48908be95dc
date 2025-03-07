@@ -51,6 +51,23 @@
       "parentUuid": "3360f2c8_1d59153b",
       "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0905b9f_93186d67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952516
+      },
+      "writtenOn": "2025-03-07T05:51:34Z",
+      "side": 1,
+      "message": "Removed from `nix_0_29_0` update topic since the parts involved in this CLx does not build on Android targets.",
+      "revId": "9d1387f9aba7eea220f69178028ed48908be95dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
