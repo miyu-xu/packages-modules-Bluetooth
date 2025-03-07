@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b5faffc_8329ace8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-03-07T01:12:46Z",
+      "side": 1,
+      "message": "ALso adding Hyundo to the review list since he implemented the initial connection parameter optimization phase 1.",
+      "revId": "ac155910977737992100d8cb0aad39eccf4537f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3cd0974_f643eb04",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-03-07T01:12:46Z",
+      "side": 1,
+      "message": "Q: Is there a rationale for this timeout duration?",
+      "revId": "ac155910977737992100d8cb0aad39eccf4537f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4321308_bf979f54",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-03-07T01:12:46Z",
+      "side": 1,
+      "message": "Thanks for explaining the code!\n\nNIT: Comment typo / formatting?",
+      "fixSuggestions": [
+        {
+          "fixId": "29088d25_46ff3276",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/gatt/bta_gattc_act.cc",
+              "range": {
+                "startLine": 997,
+                "startChar": 0,
+                "endLine": 999,
+                "endChar": 0
+              },
+              "replacement": "    // to speed up audio transfer to buds in case of user takes the buds out\n    // of the case for active music or an incoming voice call\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ac155910977737992100d8cb0aad39eccf4537f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
