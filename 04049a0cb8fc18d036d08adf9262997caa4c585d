@@ -16,6 +16,24 @@
       "message": "Nothing within `AdapterServiceBinder.java` is changed except for accessing `AdapterService`\u0027s private variables being replaced with the getter calls.\n\nIn case this is helpful to review, I\u0027ve created a local diff to view\nhttps://b.corp.google.com/issues/401438096#comment2",
       "revId": "04049a0cb8fc18d036d08adf9262997caa4c585d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b228312f_fea7f28b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-07T20:15:17Z",
+      "side": 1,
+      "message": "very helpful.",
+      "parentUuid": "028c8f67_8a45fe4b",
+      "revId": "04049a0cb8fc18d036d08adf9262997caa4c585d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
