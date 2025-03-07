@@ -34,6 +34,24 @@
       ],
       "revId": "c129e5665fec6f0b08fa3d6cc2f5d445b165ac80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25a86325_bfb8eea6",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1219,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T22:49:30Z",
+      "side": 1,
+      "message": "This issue was reproduced using test case aosp/3528335 . The issue was SMP layer was provided \"connected\" status incorrectly by L2CAP eventhough the underlying LE ACL was not yet created. With this fix, SMP will not be provided any connection related status until LE connection is successfully established or if there is an error or timeout out after 30 secs. The test case passed with LE pairing being successful when the remote started advertising after few seconds as mentioned in the test case.",
+      "parentUuid": "618cb073_17c3e95c",
+      "revId": "c129e5665fec6f0b08fa3d6cc2f5d445b165ac80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
