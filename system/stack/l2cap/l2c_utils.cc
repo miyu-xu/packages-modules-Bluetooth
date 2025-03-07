@@ -95,6 +95,8 @@ tL2C_LCB* l2cu_allocate_lcb(const RawAddress& p_bd_addr, bool is_bonding, tBT_TR
       p_lcb->transport = transport;
       p_lcb->tx_data_len = bluetooth::shim::GetController()->GetLeSuggestedDefaultDataLength();
       p_lcb->le_sec_pending_q = fixed_queue_new(SIZE_MAX);
+      p_lcb->conn_update_blocked_by_service_discovery = false;
+      p_lcb->conn_update_blocked_by_profile_connection = false;
 
       if (transport == BT_TRANSPORT_LE) {
         l2cb.num_ble_links_active++;
@@ -235,6 +237,9 @@ void l2cu_release_lcb(tL2C_LCB* p_lcb) {
     fixed_queue_free(p_lcb->le_sec_pending_q, NULL);
     p_lcb->le_sec_pending_q = NULL;
   }
+
+  p_lcb->conn_update_blocked_by_service_discovery = false;
+  p_lcb->conn_update_blocked_by_profile_connection = false;
 }
 
 /*******************************************************************************
