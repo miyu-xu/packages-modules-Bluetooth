@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbaebab4_190c50d7",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2025-03-07T01:24:58Z",
+      "side": 1,
+      "message": "For le audio device, the current latency from connection completion to streaming is more than 2s, which is the target latency.",
+      "parentUuid": "d3cd0974_f643eb04",
+      "revId": "ac155910977737992100d8cb0aad39eccf4537f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4321308_bf979f54",
@@ -66,6 +84,24 @@
           ]
         }
       ],
+      "revId": "ac155910977737992100d8cb0aad39eccf4537f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7277630_d48cc6b6",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2025-03-07T01:24:58Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "e4321308_bf979f54",
       "revId": "ac155910977737992100d8cb0aad39eccf4537f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
