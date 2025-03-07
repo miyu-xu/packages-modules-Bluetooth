@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1363232_c1099798",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 40
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-07T07:31:44Z",
+      "side": 1,
+      "message": "This is wrong. If you return here, you will not update connection parameters at all at start for service discovery.",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 258,
+        "endChar": 19
+      },
+      "revId": "9afa02435692ca52952fe7158fcc162e05cff0fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
