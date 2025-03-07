@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d16e8c65_6cfa2be4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-07T15:47:13Z",
+      "side": 1,
+      "message": "Fixed this with an alternative constructor.",
+      "parentUuid": "97288df6_64d53678",
+      "range": {
+        "startLine": 2565,
+        "startChar": 70,
+        "endLine": 2565,
+        "endChar": 77
+      },
+      "revId": "e62675fdcddb6de61bd78a3ebeda29b8fefb7849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c67b1685_b12e9b6d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/CallbackInfoTest.java",
         "patchSetId": 1
