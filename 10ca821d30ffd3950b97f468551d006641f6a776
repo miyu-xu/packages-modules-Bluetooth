@@ -1,0 +1,144 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98444640_a9bf45de",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T01:02:14Z",
+      "side": 1,
+      "message": "Do you want to use IntentReceiver refactor instead of registerIntentActions?",
+      "fixSuggestions": [
+        {
+          "fixId": "8c39641f_cb4906cb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 679,
+                "startChar": 0,
+                "endLine": 681,
+                "endChar": 0
+              },
+              "replacement": "    private void testStep_BondLe_PairTimeout(BluetoothDevice device, OwnAddressType ownAddressType) {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 704,
+                "startChar": 0,
+                "endLine": 705,
+                "endChar": 0
+              },
+              "replacement": "        mBumble\n                .host()\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 733,
+                "startChar": 0,
+                "endLine": 734,
+                "endChar": 0
+              },
+              "replacement": "        future.completeOnTimeout(null, 31_000, TimeUnit.MILLISECONDS).join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1014,
+                "startChar": 0,
+                "endLine": 1016,
+                "endChar": 0
+              },
+              "replacement": "        // TODO: b/382118305 - due to settings app interference, profile connection initiate twice\n        // after bonding. Introduced 1 second delay after first profile connection success.\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1260,
+                "startChar": 0,
+                "endLine": 1261,
+                "endChar": 0
+              },
+              "replacement": "        // TODO: Unexpected empty ACTION_UUID intent is generated.\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1280,
+                "startChar": 0,
+                "endLine": 1281,
+                "endChar": 0
+              },
+              "replacement": "        // TODO: Order of these events is not deterministic.\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1305,
+                "startChar": 0,
+                "endLine": 1306,
+                "endChar": 0
+              },
+              "replacement": "        // so that ACTION_UUID is received here. \n"
+            }
+          ]
+        }
+      ],
+      "revId": "10ca821d30ffd3950b97f468551d006641f6a776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e12c4f_39441c5d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T01:02:14Z",
+      "side": 1,
+      "message": "Same comment as above.",
+      "fixSuggestions": [
+        {
+          "fixId": "c8b36bdf_f29970eb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1074,
+                "startChar": 0,
+                "endLine": 1080,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1162,
+                "startChar": 0,
+                "endLine": 1169,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "10ca821d30ffd3950b97f468551d006641f6a776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
