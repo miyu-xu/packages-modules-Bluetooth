@@ -22,6 +22,30 @@
       },
       "revId": "9afa02435692ca52952fe7158fcc162e05cff0fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461491ce_e15f7fdf",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 40
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-07T16:04:01Z",
+      "side": 1,
+      "message": "The `return` there is intended for the case when the initial connection parameter is already using the aggressive parameter.\n\nThis is supposed to filtered by the flag `L2C_BLE_AGGRESSIVE_INITIAL_PARAM` which is set when the initial connection parameters are aggressive.",
+      "parentUuid": "a1363232_c1099798",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 258,
+        "endChar": 19
+      },
+      "revId": "9afa02435692ca52952fe7158fcc162e05cff0fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
