@@ -1,0 +1,360 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa9fdb93_ac46c382",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T00:19:31Z",
+      "side": 1,
+      "message": "The Broadcast receiver is now moved to IntentReceiver.java after refactor. Do you want to move this logic to IntentReceiver?",
+      "fixSuggestions": [
+        {
+          "fixId": "6c7d0976_4cad9b25",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 166,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "                            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1885e9384e8e703a736caebb456e9b75a56b0870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b1195b7_02ddacf1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T00:19:31Z",
+      "side": 1,
+      "message": "Do you want to use IntentReceiver here instead of registerIntentActions?",
+      "range": {
+        "startLine": 791,
+        "startChar": 8,
+        "endLine": 791,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2748e0a7_5d7282f4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 60,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 63,
+                "startChar": 0,
+                "endLine": 64,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": "import java.time.Duration;\nimport java.util.Arrays;\nimport java.util.HashMap;\nimport java.util.Map;\nimport java.util.Set;\nimport java.util.concurrent.CompletableFuture;\nimport java.util.concurrent.TimeUnit;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 79,
+                "startChar": 0,
+                "endLine": 80,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 136,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "    private final CompletableFuture\u003cPairingEvent\u003e mPairingEventFuture \u003d new CompletableFuture\u003c\u003e();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 242,
+                "startChar": 0,
+                "endLine": 243,
+                "endChar": 0
+              },
+              "replacement": "                        .onPairing(\n                                new StreamObserver\u003cPairingEvent\u003e() {\n                                    @Override\n                                    public void onNext(PairingEvent event) {\n                                        mPairingEventFuture.complete(event);\n                                    }\n\n                                    @Override\n                                    public void onError(Throwable t) {\n                                        mPairingEventFuture.completeExceptionally(t);\n                                    }\n\n                                    @Override\n                                    public void onCompleted() {\n                                        mPairingEventFuture.completeExceptionally(\n                                                new Exception(\"Pairing event stream completed\"));\n                                    }\n                                });\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 258,
+                "startChar": 0,
+                "endLine": 259,
+                "endChar": 0
+              },
+              "replacement": "        PairingEvent pairingEvent \u003d mPairingEventFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 297,
+                "startChar": 0,
+                "endLine": 298,
+                "endChar": 0
+              },
+              "replacement": "                        .onPairing(\n                                new StreamObserver\u003cPairingEvent\u003e() {\n                                    @Override\n                                    public void onNext(PairingEvent event) {\n                                        mPairingEventFuture.complete(event);\n                                    }\n\n                                    @Override\n                                    public void onError(Throwable t) {\n                                        mPairingEventFuture.completeExceptionally(t);\n                                    }\n\n                                    @Override\n                                    public void onCompleted() {\n                                        mPairingEventFuture.completeExceptionally(\n                                                new Exception(\"Pairing event stream completed\"));\n                                    }\n                                });\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 316,
+                "startChar": 0,
+                "endLine": 317,
+                "endChar": 0
+              },
+              "replacement": "        PairingEvent pairingEvent \u003d mPairingEventFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 355,
+                "startChar": 0,
+                "endLine": 356,
+                "endChar": 0
+              },
+              "replacement": "                        .onPairing(\n                                new StreamObserver\u003cPairingEvent\u003e() {\n                                    @Override\n                                    public void onNext(PairingEvent event) {\n                                        mPairingEventFuture.complete(event);\n                                    }\n\n                                    @Override\n                                    public void onError(Throwable t) {\n                                        mPairingEventFuture.completeExceptionally(t);\n                                    }\n\n                                    @Override\n                                    public void onCompleted() {\n                                        mPairingEventFuture.completeExceptionally(\n                                                new Exception(\"Pairing event stream completed\"));\n                                    }\n                                });\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 378,
+                "startChar": 0,
+                "endLine": 379,
+                "endChar": 0
+              },
+              "replacement": "        PairingEvent pairingEvent \u003d mPairingEventFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 426,
+                "startChar": 0,
+                "endLine": 427,
+                "endChar": 0
+              },
+              "replacement": "        CompletableFuture\u003cSecureResponse\u003e responseFuture \u003d\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 432,
+                "startChar": 0,
+                "endLine": 433,
+                "endChar": 0
+              },
+              "replacement": "        SecureResponse secureResponse \u003d responseFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 477,
+                "startChar": 0,
+                "endLine": 478,
+                "endChar": 0
+              },
+              "replacement": "        CompletableFuture\u003cSecureResponse\u003e responseFuture \u003d\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 483,
+                "startChar": 0,
+                "endLine": 484,
+                "endChar": 0
+              },
+              "replacement": "        SecureResponse secureResponse \u003d responseFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 637,
+                "startChar": 0,
+                "endLine": 638,
+                "endChar": 0
+              },
+              "replacement": "                        .onPairing(\n                                new StreamObserver\u003cPairingEvent\u003e() {\n                                    @Override\n                                    public void onNext(PairingEvent event) {\n                                        mPairingEventFuture.complete(event);\n                                    }\n\n                                    @Override\n                                    public void onError(Throwable t) {\n                                        mPairingEventFuture.completeExceptionally(t);\n                                    }\n\n                                    @Override\n                                    public void onCompleted() {\n                                        mPairingEventFuture.completeExceptionally(\n                                                new Exception(\"Pairing event stream completed\"));\n                                    }\n                                });\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 659,
+                "startChar": 0,
+                "endLine": 660,
+                "endChar": 0
+              },
+              "replacement": "        PairingEvent pairingEvent \u003d mPairingEventFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1050,
+                "startChar": 0,
+                "endLine": 1051,
+                "endChar": 0
+              },
+              "replacement": "                        .onPairing(\n                                new StreamObserver\u003cPairingEvent\u003e() {\n                                    @Override\n                                    public void onNext(PairingEvent event) {\n                                        mPairingEventFuture.complete(event);\n                                    }\n\n                                    @Override\n                                    public void onError(Throwable t) {\n                                        mPairingEventFuture.completeExceptionally(t);\n                                    }\n\n                                    @Override\n                                    public void onCompleted() {\n                                        mPairingEventFuture.completeExceptionally(\n                                                new Exception(\"Pairing event stream completed\"));\n                                    }\n                                });\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1072,
+                "startChar": 0,
+                "endLine": 1073,
+                "endChar": 0
+              },
+              "replacement": "        PairingEvent pairingEvent \u003d mPairingEventFuture.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1095,
+                "startChar": 0,
+                "endLine": 1097,
+                "endChar": 0
+              },
+              "replacement": "    private CompletableFuture\u003cSecureResponse\u003e helper_OutgoingGattServiceDiscoveryWithIncomingLePairing() {\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1139,
+                "startChar": 0,
+                "endLine": 1141,
+                "endChar": 0
+              },
+              "replacement": "        CompletableFuture\u003cSecureResponse\u003e responseFuture \u003d new CompletableFuture\u003c\u003e();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1147,
+                "startChar": 0,
+                "endLine": 1148,
+                "endChar": 0
+              },
+              "replacement": "                        new StreamObserver\u003cSecureResponse\u003e() {\n                            @Override\n                            public void onNext(SecureResponse response) {\n                                responseFuture.complete(response);\n                            }\n\n                            @Override\n                            public void onError(Throwable t) {\n                                responseFuture.completeExceptionally(t);\n                            }\n\n                            @Override\n                            public void onCompleted() {\n                                responseFuture.completeExceptionally(\n                                        new Exception(\"Secure response stream completed\"));\n                            }\n                        });\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 1186,
+                "startChar": 0,
+                "endLine": 1187,
+                "endChar": 0
+              },
+              "replacement": "        return responseFuture;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1885e9384e8e703a736caebb456e9b75a56b0870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
