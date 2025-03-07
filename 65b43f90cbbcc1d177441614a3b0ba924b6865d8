@@ -106,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbc69262_438e9d40",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-03-07T07:18:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daf2358e_11be2751",
+      "range": {
+        "startLine": 54,
+        "startChar": 61,
+        "endLine": 54,
+        "endChar": 64
+      },
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "193ebef9_10ef437b",
@@ -119,6 +143,30 @@
       "writtenOn": "2025-03-06T17:39:36Z",
       "side": 1,
       "message": "btsock_error_code_t",
+      "range": {
+        "startLine": 60,
+        "startChar": 33,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97fc368f_ce54e44d",
+        "filename": "system/btif/src/btif_sock_logging.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-03-07T07:18:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "193ebef9_10ef437b",
       "range": {
         "startLine": 60,
         "startChar": 33,
@@ -152,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "091eb94c_43fcafe6",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-03-07T07:18:15Z",
+      "side": 1,
+      "message": "Sound good, I made the error code the parameter for both `cleanup_rfc_slot` and `btsock_l2cap_free_l`. Also removed `socket_error_code` from `struct l2cap_socket` and `struct l2cap_socket` as it is no longer needed.",
+      "parentUuid": "b74bad29_91097886",
+      "range": {
+        "startLine": 473,
+        "startChar": 6,
+        "endLine": 474,
+        "endChar": 29
+      },
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eafe6869_7ccdf072",
@@ -165,6 +237,24 @@
       "writtenOn": "2025-03-06T17:39:36Z",
       "side": 1,
       "message": "You need to update the same method in metrics_linux.cc. This is what is causing the presubmit build failures.",
+      "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b33ca78_30e5befa",
+        "filename": "system/common/metrics.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2025-03-07T07:18:15Z",
+      "side": 1,
+      "message": "Thanks for the heads up. Done.",
+      "parentUuid": "eafe6869_7ccdf072",
       "revId": "65b43f90cbbcc1d177441614a3b0ba924b6865d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
