@@ -19,8 +19,6 @@ package com.android.bluetooth.gatt;
 import static com.android.bluetooth.TestUtils.MockitoRule;
 import static com.android.bluetooth.TestUtils.getTestDevice;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -67,24 +65,10 @@ public class DistanceMeasurementBinderTest {
     private DistanceMeasurementBinder mBinder;
 
     @Before
-    public void setUp() throws Throwable {
+    public void setUp() {
         mBinder = new DistanceMeasurementBinder(mAdapterService, mDistanceMeasurementManager);
         when(mDistanceMeasurementManager.getSupportedDistanceMeasurementMethods())
                 .thenReturn(Collections.emptyList());
-        when(mDistanceMeasurementManager.runOnDistanceMeasurementThreadAndWaitForResult(any()))
-                .thenAnswer(
-                        invocationOnMock -> {
-                            DistanceMeasurementManager.GetResultTask task =
-                                    invocationOnMock.getArgument(0);
-                            return task.getResult();
-                        });
-        doAnswer(
-                        invocation -> {
-                            ((Runnable) (invocation.getArgument(0))).run();
-                            return null;
-                        })
-                .when(mDistanceMeasurementManager)
-                .postOnDistanceMeasurementThread(any());
     }
 
     @Test

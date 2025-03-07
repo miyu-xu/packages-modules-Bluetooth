@@ -191,9 +191,7 @@ public class GattService extends ProfileService {
             mScanController = null;
         }
         mDistanceMeasurementManager =
-                GattObjectsFactory.getInstance()
-                        .createDistanceMeasurementManager(
-                                mAdapterService, mHandlerThread.getLooper());
+                GattObjectsFactory.getInstance().createDistanceMeasurementManager(mAdapterService);
 
         if (Flags.onlyStartScanDuringBleOn()) {
             setGattService(this);

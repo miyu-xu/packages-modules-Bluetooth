@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.gatt;
 
-import android.os.Looper;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
@@ -63,7 +62,7 @@ public class GattObjectsFactory {
     }
 
     public DistanceMeasurementManager createDistanceMeasurementManager(
-            AdapterService adapterService, Looper looper) {
-        return new DistanceMeasurementManager(adapterService, looper);
+            AdapterService adapterService) {
+        return new DistanceMeasurementManager(adapterService);
     }
 }

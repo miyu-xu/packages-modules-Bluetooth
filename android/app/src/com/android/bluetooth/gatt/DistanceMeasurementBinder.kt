@@ -69,13 +69,7 @@ class DistanceMeasurementBinder(
     ): List<DistanceMeasurementMethod> {
         val manager: DistanceMeasurementManager =
             getManager(source, "getSupportedDistanceMeasurementMethods") ?: return emptyList()
-
-        val result =
-            manager.runOnDistanceMeasurementThreadAndWaitForResult {
-                manager.getSupportedDistanceMeasurementMethods()
-            }
-
-        return result ?: ArrayList()
+        return manager.getSupportedDistanceMeasurementMethods()
     }
 
     override fun startDistanceMeasurement(
@@ -86,10 +80,7 @@ class DistanceMeasurementBinder(
     ) {
         val manager: DistanceMeasurementManager =
             getManager(source, "startDistanceMeasurement") ?: return
-
-        manager.postOnDistanceMeasurementThread {
-            manager.startDistanceMeasurement(uuid.uuid, distanceMeasurementParams, callback)
-        }
+        manager.startDistanceMeasurement(uuid.uuid, distanceMeasurementParams, callback)
     }
 
     override fun stopDistanceMeasurement(
@@ -114,18 +105,7 @@ class DistanceMeasurementBinder(
             return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION
         }
         mContext.enforceCallingOrSelfPermission(Manifest.permission.BLUETOOTH_PRIVILEGED, null)
-
-        val result =
-            mDistanceMeasurementManager.runOnDistanceMeasurementThreadAndWaitForResult {
-                mDistanceMeasurementManager.stopDistanceMeasurement(
-                    uuid.uuid,
-                    device,
-                    method,
-                    false,
-                )
-            }
-
-        return result ?: BluetoothStatusCodes.ERROR_UNKNOWN
+        return mDistanceMeasurementManager.stopDistanceMeasurement(uuid.uuid, device, method, false)
     }
 
     override fun getChannelSoundingMaxSupportedSecurityLevel(
@@ -135,38 +115,25 @@ class DistanceMeasurementBinder(
         val manager: DistanceMeasurementManager =
             getManager(source, "getChannelSoundingMaxSupportedSecurityLevel")
                 ?: return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
-
-        val result =
-            manager.runOnDistanceMeasurementThreadAndWaitForResult {
-                manager.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice)
-            }
-
-        return result ?: ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
+        return manager.getChannelSoundingMaxSupportedSecurityLevel(remoteDevice)
     }
 
     override fun getLocalChannelSoundingMaxSupportedSecurityLevel(source: AttributionSource): Int {
         val manager: DistanceMeasurementManager =
             getManager(source, "getLocalChannelSoundingMaxSupportedSecurityLevel")
                 ?: return ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
-
-        val result =
-            manager.runOnDistanceMeasurementThreadAndWaitForResult {
-                manager.getLocalChannelSoundingMaxSupportedSecurityLevel()
-            }
-
-        return result ?: ChannelSoundingParams.CS_SECURITY_LEVEL_UNKNOWN
+        return manager.getLocalChannelSoundingMaxSupportedSecurityLevel()
     }
 
     override fun getChannelSoundingSupportedSecurityLevels(source: AttributionSource): IntArray {
         val manager: DistanceMeasurementManager =
             getManager(source, "getChannelSoundingSupportedSecurityLevels") ?: return IntArray(0)
 
-        val result =
-            manager.runOnDistanceMeasurementThreadAndWaitForResult {
-                manager.getChannelSoundingSupportedSecurityLevels()
-            }
-
-        return result?.stream()?.mapToInt { i -> i }?.toArray() ?: IntArray(0)
+        return manager
+            .getChannelSoundingSupportedSecurityLevels()
+            .stream()
+            .mapToInt { i -> i }
+            .toArray()
     }
 
     companion object {

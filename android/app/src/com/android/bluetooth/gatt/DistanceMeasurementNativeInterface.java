@@ -89,15 +89,12 @@ public class DistanceMeasurementNativeInterface {
     }
 
     void onDistanceMeasurementStarted(String address, int method) {
-        mDistanceMeasurementManager.postOnDistanceMeasurementThread(
-                () -> mDistanceMeasurementManager.onDistanceMeasurementStarted(address, method));
+        mDistanceMeasurementManager.onDistanceMeasurementStarted(address, method);
     }
 
     void onDistanceMeasurementStopped(String address, int reason, int method) {
-        mDistanceMeasurementManager.postOnDistanceMeasurementThread(
-                () ->
-                        mDistanceMeasurementManager.onDistanceMeasurementStopped(
-                                address, convertErrorCode(reason), method));
+        mDistanceMeasurementManager.onDistanceMeasurementStopped(
+                address, convertErrorCode(reason), method);
     }
 
     void onDistanceMeasurementResult(
@@ -114,22 +111,20 @@ public class DistanceMeasurementNativeInterface {
             int detectedAttackLevel,
             double velocityMetersPerSecond,
             int method) {
-        mDistanceMeasurementManager.postOnDistanceMeasurementThread(
-                () ->
-                        mDistanceMeasurementManager.onDistanceMeasurementResult(
-                                address,
-                                centimeter,
-                                errorCentimeter,
-                                azimuthAngle,
-                                errorAzimuthAngle,
-                                altitudeAngle,
-                                errorAltitudeAngle,
-                                elapsedRealtimeNanos,
-                                confidenceLevel,
-                                delayedSpreadMeters,
-                                detectedAttackLevel,
-                                velocityMetersPerSecond,
-                                method));
+        mDistanceMeasurementManager.onDistanceMeasurementResult(
+                address,
+                centimeter,
+                errorCentimeter,
+                azimuthAngle,
+                errorAzimuthAngle,
+                altitudeAngle,
+                errorAltitudeAngle,
+                elapsedRealtimeNanos,
+                confidenceLevel,
+                delayedSpreadMeters,
+                detectedAttackLevel,
+                velocityMetersPerSecond,
+                method);
     }
 
     private static int convertErrorCode(int errorCode) {
