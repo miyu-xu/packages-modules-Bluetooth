@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97288df6_64d53678",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-07T07:16:22Z",
+      "side": 1,
+      "message": "I\u0027m not super happy about passing `0` for the int and `null` for the `byte[]` but technically, that\u0027s exactly how it was before. PLMK if there\u0027s a way I can improve this. Thank you!",
+      "range": {
+        "startLine": 2565,
+        "startChar": 70,
+        "endLine": 2565,
+        "endChar": 77
+      },
+      "revId": "e62675fdcddb6de61bd78a3ebeda29b8fefb7849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c67b1685_b12e9b6d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/CallbackInfoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-07T07:16:22Z",
+      "side": 1,
+      "message": "This unit test for a record class is not very meaningful but deleting it could just lower the test coverage (I think?). The test for `_nullValue()` has some value I think but if you believe it\u0027s better to delete this; I can go ahead and do that as well. Thank you!",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 29
+      },
+      "revId": "e62675fdcddb6de61bd78a3ebeda29b8fefb7849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
