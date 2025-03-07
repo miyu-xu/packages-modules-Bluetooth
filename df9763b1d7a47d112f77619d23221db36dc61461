@@ -258,6 +258,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d1500a6_38458075",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2025-03-07T08:31:23Z",
+      "side": 1,
+      "message": "How about move these to another class HearingDeviceMetricsUtil? What do you think?",
+      "parentUuid": "51b66dfb_c3134a6c",
+      "revId": "df9763b1d7a47d112f77619d23221db36dc61461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4439c05_c8fe2130",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/MetricsLoggerTest.java",
         "patchSetId": 6
