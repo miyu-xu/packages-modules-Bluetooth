@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f049bd89_7e9ecfda",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T19:11:46Z",
+      "side": 1,
+      "message": "Done in CL aosp/3527578",
+      "parentUuid": "d0ec2b2b_ff671e24",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f5d64bd_5dc53ed5",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-05T23:45:52Z",
       "side": 1,
       "message": "Can this be final and inlined ? \n`private final BluetoothDevice mBumbleDevice \u003d mBumble.getRemoteDevice`",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 42
+      },
+      "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b694d212_41bfa9e6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T19:11:46Z",
+      "side": 1,
+      "message": "This cannot be final as this variable\u0027s value is being modified in testStepStartDiscovery method below. I would like to leave the initialization of this variable (through mBumble.getRemoteDevice) in setUp method itself.",
+      "parentUuid": "2f5d64bd_5dc53ed5",
       "range": {
         "startLine": 112,
         "startChar": 0,
@@ -104,6 +152,30 @@
           ]
         }
       ],
+      "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "574ad322_ebbb55c4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-07T19:11:46Z",
+      "side": 1,
+      "message": "Done. Removed unused variable mRemoteLeDevice in CL aosp/3527578.",
+      "parentUuid": "923cb76d_19409d32",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 44
+      },
       "revId": "fa4903eefaf0e9f2a95d75e555076c65088b358c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
