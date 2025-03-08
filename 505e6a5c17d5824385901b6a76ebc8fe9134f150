@@ -16,6 +16,23 @@
       "message": "Removed `hub_id` and `endpoint_id` in the latest patchset due to privacy concerns, will add them in separate CL as needed after addressing the concerns.",
       "revId": "505e6a5c17d5824385901b6a76ebc8fe9134f150",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2885c099_0039b2de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-03-08T01:19:33Z",
+      "side": 1,
+      "message": "Would probably be good to document the results from the atom tester somewhere.  In my other metrics CL I posted it on the bug associated with the metrics CL.",
+      "revId": "505e6a5c17d5824385901b6a76ebc8fe9134f150",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
