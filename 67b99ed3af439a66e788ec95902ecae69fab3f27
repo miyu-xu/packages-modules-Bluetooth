@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7d3de8_06e808de",
+        "filename": "system/audio_hal_interface/aidl/a2dp/a2dp_encoding_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-08T03:07:06Z",
+      "side": 1,
+      "message": "This gerrit fails compilation\n\npackages/modules/Bluetooth/system/audio_hal_interface/aidl/a2dp/a2dp_encoding_aidl.cc:1031:40: error: use of undeclared identifier \u0027codec_index\u0027",
+      "revId": "67b99ed3af439a66e788ec95902ecae69fab3f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
