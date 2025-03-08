@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdbb6cef_25069a67",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-08T00:27:12Z",
+      "side": 1,
+      "message": "I meant to add back the address, config id, connection handle; this log is still lack context.\nPlease provide a fix in followup",
+      "range": {
+        "startLine": 1174,
+        "startChar": 28,
+        "endLine": 1174,
+        "endChar": 35
+      },
+      "revId": "3f7d77ded92b0c3e03fb39f1dde30478a02e83af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
