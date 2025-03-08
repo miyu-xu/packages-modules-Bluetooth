@@ -16,6 +16,24 @@
       "message": "Code looks ok to me, but I am assessing this CL on code style and not on functionality.\n\nI am deferring to Barry for behavior / logic change as he is the main contributor of BluetoothQualityReport.",
       "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d992b632_4c77fe7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1320465
+      },
+      "writtenOn": "2025-03-08T09:46:44Z",
+      "side": 1,
+      "message": "Thank you.",
+      "parentUuid": "178dead9_d3998df8",
+      "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
