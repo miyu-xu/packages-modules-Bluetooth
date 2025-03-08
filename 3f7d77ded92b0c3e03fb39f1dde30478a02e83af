@@ -22,6 +22,30 @@
       },
       "revId": "3f7d77ded92b0c3e03fb39f1dde30478a02e83af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c790c4ca_4fca8582",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-03-08T00:41:29Z",
+      "side": 1,
+      "message": "TBH, I don\u0027t see the value, there are a lot of other logs show the context.",
+      "parentUuid": "cdbb6cef_25069a67",
+      "range": {
+        "startLine": 1174,
+        "startChar": 28,
+        "endLine": 1174,
+        "endChar": 35
+      },
+      "revId": "3f7d77ded92b0c3e03fb39f1dde30478a02e83af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
