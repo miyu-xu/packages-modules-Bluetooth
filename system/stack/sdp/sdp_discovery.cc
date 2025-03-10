@@ -213,6 +213,10 @@ static bool sdp_copy_raw_data(tCONN_CB* p_ccb, bool offset) {
     p_end = &p_ccb->rsp_list[0] + list_len;
 
     if (offset) {
+      if (cpy_len == 0) {
+        log::warn("No space left in raw_data");
+        return false;
+      }
       cpy_len -= 1;
       type = *p++;
       uint8_t* old_p = p;
@@ -234,6 +238,10 @@ static bool sdp_copy_raw_data(tCONN_CB* p_ccb, bool offset) {
     if (cpy_len > rem_len) {
       log::warn("rem_len :{} less than cpy_len:{}", rem_len, cpy_len);
       cpy_len = rem_len;
+    }
+    if (cpy_len > (p_ccb->p_db->raw_size - p_ccb->p_db->raw_used)) {
+      log::warn("cp_len exceeds awailable space in raw_data");
+      return false;
     }
     memcpy(&p_ccb->p_db->raw_data[p_ccb->p_db->raw_used], p, cpy_len);
     p_ccb->p_db->raw_used += cpy_len;
