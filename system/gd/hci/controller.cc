@@ -78,9 +78,12 @@ struct Controller::impl {
             handler->BindOnceOn(this,
                                 &Controller::impl::read_local_supported_commands_complete_handler));
 
-    hci_->EnqueueCommand(
-            LeReadLocalSupportedFeaturesBuilder::Create(),
-            handler->BindOnceOn(this, &Controller::impl::le_read_local_supported_features_handler));
+    if (is_supported(OpCode::LE_READ_LOCAL_SUPPORTED_FEATURES)) {
+      hci_->EnqueueCommand(
+              LeReadLocalSupportedFeaturesBuilder::Create(),
+              handler->BindOnceOn(this,
+                                  &Controller::impl::le_read_local_supported_features_handler));
+    }
 
     hci_->EnqueueCommand(
             LeReadSupportedStatesBuilder::Create(),
