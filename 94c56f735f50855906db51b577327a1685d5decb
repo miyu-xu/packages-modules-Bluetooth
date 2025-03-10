@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e73c6a_0d953423",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-10T18:49:04Z",
+      "side": 1,
+      "message": "If you don\u0027t repeat step 2, I am wondering if it as an impact at all.\n\nBecause once you turn airplane mode on once, it will call `clearBleApps();` ([here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/service/src/com/android/server/bluetooth/BluetoothManagerService.java;l\u003d427;drc\u003d70c485dfc1793bf3a3826a19b09ea142cd61a682)) and will act like if this step has never been done.\n\nAm I missing anything ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 34
+      },
+      "revId": "94c56f735f50855906db51b577327a1685d5decb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9e58c7_ab9571e5",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-10T18:49:04Z",
+      "side": 1,
+      "message": "I believe this line is no-op because of the comment on the line below. And because enableBle and disableBle are now synchronously executed.",
+      "range": {
+        "startLine": 1004,
+        "startChar": 7,
+        "endLine": 1004,
+        "endChar": 45
+      },
+      "revId": "94c56f735f50855906db51b577327a1685d5decb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70e68530_fed96c9c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-10T18:49:04Z",
+      "side": 1,
+      "message": "This change will allow to start Bluetooth no only when the persisted state is `BLUETOOTH_ON_BLUETOOTH` but when it is `BLUETOOTH_ON_AIRPLANE` too.\n\nI hate these variables name as they are not very explicit, but `BLUETOOTH_ON_AIRPLANE` indicate that \"Bluetooth is off\" because \"airplane mode is on\", but \"Bluetooth was on\" before. It help to keep track that Bluetooth will need to restart, once airplane mode ends.\n\n----\n\nIn this method we are already in BLE_ON mode, so according to your repro step, we got here in the first place because Airplane Mode was disabled, and we are more likely to be turning Bluetooth ON.\nIn a normal case, the persisted state would be `ON_BLUETOOTH` and we would start.\nBut in this case of stress testing with race condition, I believe the state is at `ON_AIRPLANE` because airplane mode is activated again. Therefor we don\u0027t want to start.\n\n---\n\nThe only explanation I can see is if the airplane mode has been toggled twice before the first MESSAGE_ENABLE was handled. And while the first `sendEnableMsg` from `handleAirplaneModeChanged` is in the queue, we call `handleAirplaneModeChanged` a second time, goes into `forceToOffFromModeChange`, but has nothing to do yet and doesn\u0027t un-enqueue the message.\n\n---\n\nPlease, can you open a bug and upload associated bugreport ? (you can assign it to me). Because of above comment, I don\u0027t think this CL is the fix we want.\nLet me know if I misunderstood anything",
+      "range": {
+        "startLine": 1012,
+        "startChar": 0,
+        "endLine": 1012,
+        "endChar": 39
+      },
+      "revId": "94c56f735f50855906db51b577327a1685d5decb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
