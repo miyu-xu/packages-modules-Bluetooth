@@ -34,6 +34,24 @@
       "parentUuid": "eafa75fb_7d8f43f8",
       "revId": "cafb152a1cc9c9f6e6fe4ded5cfe0c86d0e18de7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2bdbd9e_61681f75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-10T18:56:06Z",
+      "side": 1,
+      "message": "Could be due to simultanesouly shutdown, but still they should have a gracefull handling.\nIn the tethering code, if the service is null, they handle the error properly:\n```\nconnector \u003d mConnector;\nif (connector \u003d\u003d null) {\n    mConnectorWaitQueue.add(consumer);\n    return;\n}\n```\n\nAnd then they call the service.\n\nI believe the caller should not have to handle race condition in the tethering manager code.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Connectivity/Tethering/common/TetheringLib/src/android/net/TetheringManager.java;l\u003d503;drc\u003ddceef4c8c4535bce4df897778bbc5b76f3fb2f7d\n\n---\n\nNote that we had to fix a couple Bluetooth APIs for the same reason. We now handle a call when Bluetooth is off the same way that if Bluetooth is turned off during the call.",
+      "parentUuid": "2652c61c_9930e249",
+      "revId": "cafb152a1cc9c9f6e6fe4ded5cfe0c86d0e18de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
