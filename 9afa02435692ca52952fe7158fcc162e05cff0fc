@@ -46,6 +46,30 @@
       },
       "revId": "9afa02435692ca52952fe7158fcc162e05cff0fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587f8419_bab91aed",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 40
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-10T15:43:06Z",
+      "side": 1,
+      "message": "But you never check what are the actual parameters applied to the connection. So if the connection is using relaxed parameters, but the initial parameters are equal to aggresive parameters, you return here, keeping the relaxed parameters.\n\nInstead, you shuold check if aggressive parameters are equal to actual parameters.",
+      "parentUuid": "461491ce_e15f7fdf",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 258,
+        "endChar": 19
+      },
+      "revId": "9afa02435692ca52952fe7158fcc162e05cff0fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
