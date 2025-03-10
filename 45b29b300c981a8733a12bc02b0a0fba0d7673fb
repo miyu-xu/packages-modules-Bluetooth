@@ -1,0 +1,149 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9cef90a_57f62921",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-03-10T14:40:29Z",
+      "side": 1,
+      "message": "Please click edit and format.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "45b29b300c981a8733a12bc02b0a0fba0d7673fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf5f41dc_ae60784a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-03-10T14:40:29Z",
+      "side": 1,
+      "message": "This flag is not used anywhere so please use it or exmpet.",
+      "revId": "45b29b300c981a8733a12bc02b0a0fba0d7673fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78474300_0e2fef1f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-03-10T14:40:29Z",
+      "side": 1,
+      "message": "Great to simplify that! Maybe one thing is that would be better to split this to another CL, because right now we have to search where is a real change in tests for `Update source instead of remove`",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 57
+      },
+      "revId": "45b29b300c981a8733a12bc02b0a0fba0d7673fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28aec0ff_4d4737ce",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 7250,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-03-10T14:40:29Z",
+      "side": 1,
+      "message": "It was correct.",
+      "range": {
+        "startLine": 7250,
+        "startChar": 16,
+        "endLine": 7250,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7ac5d757_082cd873",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+              "range": {
+                "startLine": 7250,
+                "startChar": 0,
+                "endLine": 7251,
+                "endChar": 0
+              },
+              "replacement": "    public void testIsLocalBroadcast() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "45b29b300c981a8733a12bc02b0a0fba0d7673fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21723f7_7da3025b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 7996,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-03-10T14:40:29Z",
+      "side": 1,
+      "message": "it was correct: \"Resuming\"",
+      "range": {
+        "startLine": 7996,
+        "startChar": 16,
+        "endLine": 7996,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "513a70e3_6d0da394",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+              "range": {
+                "startLine": 7996,
+                "startChar": 0,
+                "endLine": 7997,
+                "endChar": 0
+              },
+              "replacement": "    public void sinkDisconnectionDuringResuming() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "45b29b300c981a8733a12bc02b0a0fba0d7673fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
