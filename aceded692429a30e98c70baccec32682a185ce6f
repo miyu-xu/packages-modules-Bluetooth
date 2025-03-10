@@ -22,6 +22,30 @@
       },
       "revId": "aceded692429a30e98c70baccec32682a185ce6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74cf15b9_c02cae65",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1966,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-10T19:16:05Z",
+      "side": 1,
+      "message": "Local IRK is generated if it is not found at startup.\nWe are now covering both cases: 1) Local IRK is read from storage; 2) Local IRK was not found and is generated anew.\n\nIf local IRK is not set, the controller would use the random address set by the host.",
+      "parentUuid": "db3ef199_5b25907f",
+      "range": {
+        "startLine": 1966,
+        "startChar": 5,
+        "endLine": 1966,
+        "endChar": 41
+      },
+      "revId": "aceded692429a30e98c70baccec32682a185ce6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
