@@ -73,18 +73,36 @@ struct Controller::impl {
             ReadLocalVersionInformationBuilder::Create(),
             handler->BindOnceOn(
                     this, &Controller::impl::read_local_version_information_complete_handler));
+
+    // Wait for local supported commands read
+    std::promise<void> commands_promise;
+    auto commands_future = commands_promise.get_future();
+
     hci_->EnqueueCommand(
             ReadLocalSupportedCommandsBuilder::Create(),
             handler->BindOnceOn(this,
-                                &Controller::impl::read_local_supported_commands_complete_handler));
+                                &Controller::impl::read_local_supported_commands_complete_handler,
+                                std::move(commands_promise)));
+    commands_future.wait();
 
-    hci_->EnqueueCommand(
-            LeReadLocalSupportedFeaturesBuilder::Create(),
-            handler->BindOnceOn(this, &Controller::impl::le_read_local_supported_features_handler));
+    if (is_supported(OpCode::LE_READ_LOCAL_SUPPORTED_FEATURES)) {
+      hci_->EnqueueCommand(
+              LeReadLocalSupportedFeaturesBuilder::Create(),
+              handler->BindOnceOn(this,
+                                  &Controller::impl::le_read_local_supported_features_handler));
+    } else {
+      log::info("LE_READ_LOCAL_SUPPORTED_FEATURES not supported, defaulting to 0");
+      le_local_supported_features_ = 0;
+    }
 
-    hci_->EnqueueCommand(
-            LeReadSupportedStatesBuilder::Create(),
-            handler->BindOnceOn(this, &Controller::impl::le_read_supported_states_handler));
+    if (is_supported(OpCode::LE_READ_SUPPORTED_STATES)) {
+      hci_->EnqueueCommand(
+              LeReadSupportedStatesBuilder::Create(),
+              handler->BindOnceOn(this, &Controller::impl::le_read_supported_states_handler));
+    } else {
+      log::info("LE_READ_SUPPORTED_STATES not supported, defaulting to 0");
+      le_supported_states_ = 0;
+    }
 
     // Wait for all extended features read
     std::promise<void> features_promise;
@@ -354,12 +372,14 @@ struct Controller::impl {
             local_version_information_.hci_revision_);
   }
 
-  void read_local_supported_commands_complete_handler(CommandCompleteView view) {
+  void read_local_supported_commands_complete_handler(td::promise<void> promise,
+                                                      CommandCompleteView view) {
     auto complete_view = ReadLocalSupportedCommandsCompleteView::Create(view);
     ASSERT(complete_view.IsValid());
     ErrorCode status = complete_view.GetStatus();
     log::assert_that(status == ErrorCode::SUCCESS, "Status {}", ErrorCodeText(status));
     local_supported_commands_ = complete_view.GetSupportedCommands();
+    promise.set_value();
   }
 
   void read_local_extended_features_complete_handler(std::promise<void> promise,
