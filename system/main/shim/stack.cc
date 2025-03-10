@@ -169,8 +169,6 @@ void Stack::Stop() {
   log::assert_that(is_running_, "Gd stack not running");
   is_running_ = false;
 
-  stack_handler_->Clear();
-
   WakelockManager::Get().Acquire();
 
   std::promise<void> promise;
@@ -192,7 +190,8 @@ void Stack::Stop() {
   delete management_handler_;
   delete management_thread_;
 
-  delete stack_handler_;
+  // stack_handler_ is already deleted by the registry in handle_shut_down, just set it to nullptr
+  // to avoid any potential use-after-free
   stack_handler_ = nullptr;
 
   stack_thread_->Stop();
