@@ -1,0 +1,114 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "166607a8_32784747",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T23:49:55Z",
+      "side": 1,
+      "message": "I think the flag needs to be cleared only in the cleanup function, and when the suspend response is received.",
+      "range": {
+        "startLine": 1352,
+        "startChar": 9,
+        "endLine": 1352,
+        "endChar": 27
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8370fc22_b0d457a2",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1989,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T23:49:55Z",
+      "side": 1,
+      "message": "I am not sure why this additional check is necessary, can you please elaborate?",
+      "range": {
+        "startLine": 1989,
+        "startChar": 30,
+        "endLine": 1989,
+        "endChar": 48
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c0aba0_429f786c",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2539,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T23:49:55Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 2539,
+        "startChar": 0,
+        "endLine": 2539,
+        "endChar": 110
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d8b51bd_e5e4e45e",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T23:49:55Z",
+      "side": 1,
+      "message": "nit: `suspending`\n\nTo be fair, the lack of clear AVDTP state tracking here or in system/stack is very mysterious to me. Ideally we would have a proper state for tracking pending commands, but I am fine with your fix short/mid term.",
+      "range": {
+        "startLine": 529,
+        "startChar": 7,
+        "endLine": 529,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8e534ade_e9c33954",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/av/bta_av_int.h",
+              "range": {
+                "startLine": 529,
+                "startChar": 0,
+                "endLine": 530,
+                "endChar": 0
+              },
+              "replacement": "  bool suspending; /* TRUE if outgoing Suspend is sent, else FALSE if\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
