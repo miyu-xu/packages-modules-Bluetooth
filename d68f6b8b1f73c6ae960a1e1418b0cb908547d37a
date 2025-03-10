@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86bcbf26_6bae02c3",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T17:55:58Z",
+      "side": 1,
+      "message": "Missing return ?",
+      "revId": "d68f6b8b1f73c6ae960a1e1418b0cb908547d37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cecc0e1_ebc264bf",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T17:55:58Z",
+      "side": 1,
+      "message": "`life_cycle_stopped \u003d true;`\n\nYou already are under the mutex guard.",
+      "range": {
+        "startLine": 979,
+        "startChar": 2,
+        "endLine": 979,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "96e919c0_ec4d7718",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/hci_layer.cc",
+              "range": {
+                "startLine": 979,
+                "startChar": 0,
+                "endLine": 980,
+                "endChar": 0
+              },
+              "replacement": "  life_cycle_stopped \u003d true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d68f6b8b1f73c6ae960a1e1418b0cb908547d37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda85c84_544d4363",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-10T17:55:58Z",
+      "side": 1,
+      "message": "Un-necessary check",
+      "range": {
+        "startLine": 994,
+        "startChar": 2,
+        "endLine": 997,
+        "endChar": 0
+      },
+      "revId": "d68f6b8b1f73c6ae960a1e1418b0cb908547d37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
