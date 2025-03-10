@@ -16,6 +16,23 @@
       "message": "let\u0027s log this as a warn if this happened.",
       "revId": "98694ca990f6d96c83876203d0b05f49b82ef38d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80c316e7_9f673270",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2563,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-03-10T23:10:06Z",
+      "side": 1,
+      "message": "should we return false here?",
+      "revId": "98694ca990f6d96c83876203d0b05f49b82ef38d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
