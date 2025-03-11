@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e11b901_e1b8e486",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-11T17:08:15Z",
+      "side": 1,
+      "message": "Thanks, I will return BTM_MODE_UNSUPPORTED, Think it is more appropriate.",
+      "parentUuid": "237e6b54_13707f74",
+      "range": {
+        "startLine": 606,
+        "startChar": 24,
+        "endLine": 606,
+        "endChar": 35
+      },
+      "revId": "0b5982527008eaac5042cfcf62eb101372927e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc876d8e_e1b0fc60",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c331fc3a_283d74a5",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-11T17:08:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dc876d8e_e1b0fc60",
+      "range": {
+        "startLine": 611,
+        "startChar": 0,
+        "endLine": 611,
+        "endChar": 4
+      },
+      "revId": "0b5982527008eaac5042cfcf62eb101372927e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "715c60c9_bba058f5",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-03-10T16:22:00Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 614,
+        "startChar": 32,
+        "endLine": 614,
+        "endChar": 33
+      },
+      "revId": "0b5982527008eaac5042cfcf62eb101372927e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "405ecbbf_0755fff3",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 35
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-11T17:08:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "715c60c9_bba058f5",
       "range": {
         "startLine": 614,
         "startChar": 32,
