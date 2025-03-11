@@ -34,6 +34,24 @@
       ],
       "revId": "e900429bbbd0905a1bcf658aa66e82d581bc5c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d265578_8ce62873",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-11T22:10:52Z",
+      "side": 1,
+      "message": "There is no behavior change in this CL.\n\nIt is just a sanitization of the doc. `createBondOutOfBand` has always required `BLUETOOTH_PRIVILEGED`.",
+      "parentUuid": "fef7f259_8ede5f27",
+      "revId": "e900429bbbd0905a1bcf658aa66e82d581bc5c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
