@@ -16,6 +16,24 @@
       "message": "Will wait for Thomas to API+1 before I review.",
       "revId": "6d152105c0220e4c36113c497319db9823a8f4c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819a36dd_e4e7a207",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-03-11T19:56:36Z",
+      "side": 1,
+      "message": "+1 (I don\u0027t have it anymore in Gerrit), this is fixing a permission annotation. I\u0027ll let you +2",
+      "parentUuid": "7f10ea01_a3ffaae7",
+      "revId": "6d152105c0220e4c36113c497319db9823a8f4c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
