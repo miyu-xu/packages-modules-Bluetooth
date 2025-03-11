@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ad9b8e_fe938d2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-03-11T18:27:06Z",
+      "side": 1,
+      "message": "aosp/3513010 (not merged yet) has the same fix",
+      "revId": "4bde557917cd99b95d932619139d41fb83e43fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
