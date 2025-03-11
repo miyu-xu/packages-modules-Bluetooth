@@ -1,0 +1,115 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee58e32_cfc42d1e",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-11T03:22:47Z",
+      "side": 1,
+      "message": "Can you return true/false based on ConnectionRequestAccepted/Rejected from the above API \"ConnectionCallbacks::OnConnectRequest\" and use it in this function below to send HCI command for accept or reject accordingly?",
+      "range": {
+        "startLine": 259,
+        "startChar": 4,
+        "endLine": 259,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f4cd62c0_bd047a9c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 251,
+                "startChar": 0,
+                "endLine": 252,
+                "endChar": 0
+              },
+              "replacement": "  bool on_incoming_connection(Address address, ClassOfDevice cod) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 256,
+                "startChar": 0,
+                "endLine": 257,
+                "endChar": 0
+              },
+              "replacement": "      return false;\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 269,
+                "startChar": 0,
+                "endLine": 269,
+                "endChar": 0
+              },
+              "replacement": "      return false;\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 270,
+                "startChar": 0,
+                "endLine": 270,
+                "endChar": 0
+              },
+              "replacement": "    return true;\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 684,
+                "startChar": 0,
+                "endLine": 685,
+                "endChar": 0
+              },
+              "replacement": "  void on_accept_connection_status(Address address, CommandStatusView status, bool accepted) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 687,
+                "startChar": 0,
+                "endLine": 688,
+                "endChar": 0
+              },
+              "replacement": "    if (!accepted) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 716,
+                "startChar": 0,
+                "endLine": 717,
+                "endChar": 0
+              },
+              "replacement": "            handler_-\u003eBindOnceOn(this, \u0026classic_impl::on_accept_connection_status, address, true));\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 722,
+                "startChar": 0,
+                "endLine": 723,
+                "endChar": 0
+              },
+              "replacement": "            handler_-\u003eBindOnceOn(this, \u0026classic_impl::on_accept_connection_status, builder-\u003eGetBdAddr(), false));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "eb451a2800bd2e9e1a78df4129b8fd8b331625ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
