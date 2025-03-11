@@ -34,6 +34,81 @@
       "parentUuid": "178dead9_d3998df8",
       "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06158c12_f45b5db2",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2025-03-11T16:08:38Z",
+      "side": 1,
+      "message": "Hello Mingbo: \nModifying vsPartOffset will break the BluetoothQualityReportTest.java CTS test suite. \nThis conflicts with our existing implementation within the BqrLinkQualityEvent struct (system/btif/include/btif_bqr.h), which handles version-dependent BQR Link Quality event size changes directly within the struct.",
+      "fixSuggestions": [
+        {
+          "fixId": "d0baad04_da69bc34",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 324,
+                "startChar": 0,
+                "endLine": 325,
+                "endChar": 0
+              },
+              "replacement": "        int vsPartOffset \u003d 0;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 326,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "            vsPartOffset \u003d getBqrCommonLength(vendorCapabilitiesVersion);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 328,
+                "startChar": 0,
+                "endLine": 328,
+                "endChar": 0
+              },
+              "replacement": "            vsPartOffset \u003d getBqrCommonLength(vendorCapabilitiesVersion);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 330,
+                "startChar": 0,
+                "endLine": 330,
+                "endChar": 0
+              },
+              "replacement": "            vsPartOffset \u003d getBqrCommonLength(vendorCapabilitiesVersion);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+              "range": {
+                "startLine": 332,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": "            vsPartOffset \u003d getBqrCommonLength(vendorCapabilitiesVersion);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
