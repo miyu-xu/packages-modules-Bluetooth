@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a3049c1_8f956a78",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-11T18:10:50Z",
+      "side": 1,
+      "message": "stack handler is new\u0027ed here, but never freed",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 52
+      },
+      "revId": "d0cb756ed536edf5bb2fd23492c22691eab74df8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
