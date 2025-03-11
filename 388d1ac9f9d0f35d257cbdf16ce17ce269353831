@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1dd8547_a5f5131e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3763,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-03-11T13:00:37Z",
+      "side": 0,
+      "message": "Thanks for pointing this out - I\u0027ve realised that this function wasn\u0027t ready for more than one source at all 😊",
+      "parentUuid": "37850fb8_fcb87a19",
+      "range": {
+        "startLine": 3762,
+        "startChar": 0,
+        "endLine": 3763,
+        "endChar": 93
+      },
+      "revId": "388d1ac9f9d0f35d257cbdf16ce17ce269353831",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e31cc5c_0d63efdb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48861c14_6a092775",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1426,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-03-11T13:00:37Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "3e31cc5c_0d63efdb",
+      "range": {
+        "startLine": 1426,
+        "startChar": 11,
+        "endLine": 1426,
+        "endChar": 89
+      },
+      "revId": "388d1ac9f9d0f35d257cbdf16ce17ce269353831",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8419de08_8338affa",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-03-10T14:40:29Z",
       "side": 0,
       "message": "If we removed that we should at least remove above comments too:\n`verify sm didn\u0027t get REMOVE_BCAST_SOURCE` and `verify sinks to resume remain unchanged later` or check that update was called again.",
+      "range": {
+        "startLine": 4147,
+        "startChar": 0,
+        "endLine": 4150,
+        "endChar": 9
+      },
+      "revId": "388d1ac9f9d0f35d257cbdf16ce17ce269353831",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29f182b8_90c1a79a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4150,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-03-11T13:00:37Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "8419de08_8338affa",
       "range": {
         "startLine": 4147,
         "startChar": 0,
