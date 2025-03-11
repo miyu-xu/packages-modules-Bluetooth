@@ -16,6 +16,24 @@
       "message": "```suggestion\n            configuration.sduIntervalUs.try_into().map_err(|_| ExceptionCode::ILLEGAL_ARGUMENT)?;\n```",
       "revId": "de896be8230b442a638d0117b54c95c5bc0e28b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a72a58dd_fdaf307c",
+        "filename": "offload/leaudio/audio/client.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-03-11T19:01:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "639de9a9_83a06738",
+      "revId": "de896be8230b442a638d0117b54c95c5bc0e28b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
