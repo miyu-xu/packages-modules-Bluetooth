@@ -70,6 +70,24 @@
       "parentUuid": "6d265578_8ce62873",
       "revId": "e900429bbbd0905a1bcf658aa66e82d581bc5c01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0397a8c0_9923389b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-11T22:28:26Z",
+      "side": 1,
+      "message": "I had to cherrypick this CL on internal main. Can you provide API +2 for the CL ag/32253445 ?",
+      "parentUuid": "3e0d31ff_0a255661",
+      "revId": "e900429bbbd0905a1bcf658aa66e82d581bc5c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
