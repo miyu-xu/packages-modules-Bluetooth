@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd751c04_2f9f2b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3371405
+      },
+      "writtenOn": "2025-03-11T12:57:37Z",
+      "side": 1,
+      "message": "I have tested the latest Patchset 4 in the environment where the issue could originally be reproduced, and the issue no longer occurs.",
+      "revId": "8ad3db6e8e512583c3d99a952aa8f79407e5ade3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
