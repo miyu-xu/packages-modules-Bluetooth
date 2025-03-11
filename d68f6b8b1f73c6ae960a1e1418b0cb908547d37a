@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca9c8ef7_6a6268a0",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-03-11T02:44:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86bcbf26_6bae02c3",
+      "revId": "d68f6b8b1f73c6ae960a1e1418b0cb908547d37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cecc0e1_ebc264bf",
@@ -59,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0232db96_bf6db96d",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-03-11T02:44:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cecc0e1_ebc264bf",
+      "range": {
+        "startLine": 979,
+        "startChar": 2,
+        "endLine": 979,
+        "endChar": 15
+      },
+      "revId": "d68f6b8b1f73c6ae960a1e1418b0cb908547d37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fda85c84_544d4363",
@@ -72,6 +114,30 @@
       "writtenOn": "2025-03-10T17:55:58Z",
       "side": 1,
       "message": "Un-necessary check",
+      "range": {
+        "startLine": 994,
+        "startChar": 2,
+        "endLine": 997,
+        "endChar": 0
+      },
+      "revId": "d68f6b8b1f73c6ae960a1e1418b0cb908547d37a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e70238c_00b7b8ce",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2025-03-11T02:44:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fda85c84_544d4363",
       "range": {
         "startLine": 994,
         "startChar": 2,
