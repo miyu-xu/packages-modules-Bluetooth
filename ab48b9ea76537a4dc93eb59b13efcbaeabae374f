@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1957b538_0021b916",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1547664
+      },
+      "writtenOn": "2025-03-11T01:31:36Z",
+      "side": 1,
+      "message": "Per offline sync with poahlo@, this is going to be followed up by aosp/3513751",
+      "revId": "ab48b9ea76537a4dc93eb59b13efcbaeabae374f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
