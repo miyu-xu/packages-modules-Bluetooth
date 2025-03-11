@@ -16,6 +16,23 @@
       "message": "Hi Jakub, we\u0027d need to move this to internal branch.",
       "revId": "8a20191a189d02b20c99fd2c9073dde2e2ab4e21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc38deda_795c7c01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-03-11T22:58:04Z",
+      "side": 1,
+      "message": "the change itself lgtm, @quocbaodo@google.com can you also take a look here?",
+      "revId": "8a20191a189d02b20c99fd2c9073dde2e2ab4e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
