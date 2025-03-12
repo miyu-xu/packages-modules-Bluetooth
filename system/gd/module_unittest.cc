@@ -41,9 +41,10 @@ protected:
 
   void TearDown() override {
     handler_->Clear();
+    handler_->WaitUntilStopped(std::chrono::milliseconds(2000));
+    delete handler_;
     delete registry_;
     delete thread_;
-    delete handler_;
   }
 
   ModuleRegistry* registry_;
