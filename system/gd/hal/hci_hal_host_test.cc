@@ -155,12 +155,13 @@ protected:
 
   void TearDown() override {
     hal_->unregisterIncomingPacketCallback();
+    handler_->Clear();
+    handler_->WaitUntilStopped(bluetooth::kHandlerStopTimeout);
+    delete handler_;
     fake_registry_.StopAll();
     close(fake_server_socket_);
-    handler_->Clear();
     delete fake_server_;
     delete thread_;
-    delete handler_;
   }
 
   void SetFakeServerSocketToBlocking() {

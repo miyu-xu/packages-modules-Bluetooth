@@ -79,10 +79,11 @@ protected:
   }
 
   void TearDown() override {
-    fake_registry_.StopAll();
     handler_->Clear();
-    delete thread_;
+    handler_->WaitUntilStopped(bluetooth::kHandlerStopTimeout);
     delete handler_;
+    fake_registry_.StopAll();
+    delete thread_;
   }
 
   HciHal* hal;
