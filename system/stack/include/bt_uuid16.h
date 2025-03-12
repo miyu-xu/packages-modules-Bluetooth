@@ -125,6 +125,7 @@
 #define UUID_SERVCLASS_GTBS_SERVER                                    \
   0x184c                                  /* Generic Telephony Bearer \
                                              Service*/
+#define UUID_SERVCLASS_ASCS 0x184E /* Audio Stream Control service */
 #define UUID_SERVCLASS_TMAS_SERVER 0x1855 /* Telephone and Media Audio Service */
 #define UUID_SERVCLASS_RAS 0x185B         /* Ranging Service */
 #define UUID_SERVCLASS_GMAS_SERVER 0x1858 /* Gaming Audio Service */

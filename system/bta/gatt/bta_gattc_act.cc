@@ -987,8 +987,22 @@ void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* /* p_da
   log::verbose("conn_id=0x{:x}", p_clcb->bta_conn_id);
 
   if (p_clcb->transport == BT_TRANSPORT_LE) {
-    bluetooth::stack::l2cap::get_interface().L2CA_LockBleConnParamsForServiceDiscovery(
-            p_clcb->p_srcb->server_bda, false);
+    bool isLeaDev = false;
+    if (com::android::bluetooth::flags::leaudio_use_aggressive_para_after_service_discovery() &&
+        !p_clcb->p_srcb->gatt_database.IsEmpty()) {
+      for (const auto& service : p_clcb->p_srcb->gatt_database.Services()) {
+        if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_ASCS)) {
+          log::debug("{} lea dev, found ASCS uuid, skip update conn para to relax",
+            p_clcb->p_srcb->server_bda);
+          isLeaDev = true;
+          break;
+        }
+      }
+    }
+    if (!isLeaDev) {
+      bluetooth::stack::l2cap::get_interface().L2CA_LockBleConnParamsForServiceDiscovery(
+              p_clcb->p_srcb->server_bda, false);
+    }
   }
   p_clcb->p_srcb->state = BTA_GATTC_SERV_IDLE;
   p_clcb->disc_active = false;

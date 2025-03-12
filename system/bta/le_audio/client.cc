@@ -59,6 +59,7 @@
 #include "client_parser.h"
 #include "codec_interface.h"
 #include "codec_manager.h"
+#include "common/le_conn_params.h"
 #include "common/strings.h"
 #include "common/time_util.h"
 #include "content_control_id_keeper.h"
@@ -154,6 +155,9 @@ using bluetooth::le_audio::utils::GetAudioContextsFromSinkMetadata;
 using bluetooth::le_audio::utils::GetAudioContextsFromSourceMetadata;
 
 using namespace bluetooth;
+
+/* Macros */
+#define LEA_UPDATE_RELAX_CON_INTVAL_TIMEOUT_MS 2000
 
 /* Enums */
 enum class AudioReconfigurationResult {
@@ -3126,6 +3130,27 @@ public:
       log::verbose("skipping unknown leAudioDevice, address {} ({})", address,
                    std::format_ptr(leAudioDevice));
       return;
+    }
+
+    if (com::android::bluetooth::flags::leaudio_use_aggressive_para_after_service_discovery()) {
+      log::info("{} create timer to update conn para to relax", address);
+      alarm_set_on_mloop(
+          leAudioDevice->update_relax_con_intval_timer,
+          LEA_UPDATE_RELAX_CON_INTVAL_TIMEOUT_MS,
+          [](void* data) {
+              LeAudioDevice *leaDev = (LeAudioDevice *)data;
+              if (leaDev != nullptr) {
+                log::info("address {}, update_relax_con_intval_timer timeout",
+                    leaDev->address_);
+                stack::l2cap::get_interface().L2CA_UpdateBleConnParams(
+                  leaDev->address_,
+                  LeConnectionParameters::GetMinConnIntervalRelaxed(),
+                  LeConnectionParameters::GetMaxConnIntervalRelaxed(),
+                  BTM_BLE_CONN_PERIPHERAL_LATENCY_DEF,
+                  BTM_BLE_CONN_TIMEOUT_DEF, 0, 0);
+              }
+          },
+          leAudioDevice);
     }
 
     if (!leAudioDevice->encrypted_) {
