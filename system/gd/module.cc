@@ -130,8 +130,10 @@ void ModuleRegistry::StopAll() {
 
     // Clear the handler before stopping the module to allow it to shut down gracefully.
     log::info("Stopping Handler of Module {}", module->ToString());
-    module->handler_->Clear();
-    module->handler_->WaitUntilStopped(kModuleStopTimeout);
+    if(!com::android::bluetooth::flags::same_handler_for_all_modules()) {
+      module->handler_->Clear();
+      module->handler_->WaitUntilStopped(kModuleStopTimeout);
+    }
     log::info("Stopping Module {}", module->ToString());
     module->Stop();
   }
@@ -144,7 +146,9 @@ void ModuleRegistry::StopAll() {
     auto instance = started_modules_.find(*it);
     log::assert_that(instance != started_modules_.end(),
                      "assert failed: instance != started_modules_.end()");
-    delete instance->second->handler_;
+    if (!com::android::bluetooth::flags::same_handler_for_all_modules()) {
+      delete instance->second->handler_;
+    }
     delete instance->second;
     started_modules_.erase(instance);
   }
@@ -163,6 +167,16 @@ os::Handler* ModuleRegistry::GetModuleHandler(const ModuleFactory* module) const
     return started_instance->second->GetHandler();
   }
   return nullptr;
+}
+
+// Override the StopAll method to use the test thread and handler.
+// This function will take care of releasing the handler instances.
+void TestModuleRegistry::StopAll() {
+  os::Handler* handler = GetTestHandler();
+  handler->Clear();
+  handler->WaitUntilStopped(kModuleStopTimeout);
+  delete handler;
+  ModuleRegistry::StopAll();  // call the base class StopAll
 }
 
 }  // namespace bluetooth
