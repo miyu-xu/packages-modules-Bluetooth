@@ -79,10 +79,10 @@ protected:
   }
 
   void TearDown() override {
-    fake_registry_.StopAll();
     handler_->Clear();
-    delete thread_;
     delete handler_;
+    fake_registry_.StopAll();
+    delete thread_;
   }
 
   HciHal* hal;

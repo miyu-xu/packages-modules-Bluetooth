@@ -41,9 +41,9 @@ protected:
 
   void TearDown() override {
     handler_->Clear();
+    delete handler_;
     delete registry_;
     delete thread_;
-    delete handler_;
   }
 
   ModuleRegistry* registry_;
