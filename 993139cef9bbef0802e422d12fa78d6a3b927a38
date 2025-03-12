@@ -16,6 +16,24 @@
       "message": "looks good, lets just add unit test for that.",
       "revId": "993139cef9bbef0802e422d12fa78d6a3b927a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71da7b93_e263b74d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-03-12T15:25:05Z",
+      "side": 1,
+      "message": "Got it. There are no tests for client.cc related to local GMAP server interactions yet, so the whole mocking and boilerplate needs to be added.",
+      "parentUuid": "2698a069_fcd100fe",
+      "revId": "993139cef9bbef0802e422d12fa78d6a3b927a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
