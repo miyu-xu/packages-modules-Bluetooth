@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e83cce6_0e546c47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-12T04:41:10Z",
+      "side": 1,
+      "message": "It is about reserving bandwidth for the two devices as ASHA hairing aids would have LE link to two hearing aid devices. I will try to reach out ASHA poc and see if we have any document describing \u0026 update",
+      "parentUuid": "efef3cff_d7f945ca",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3651e55_130f83a6",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 36
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6657b6ec_3b0e2e97",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-12T04:41:10Z",
+      "side": 1,
+      "message": "I will be updating on the internal main change - https://googleplex-android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/32252757",
+      "parentUuid": "c3651e55_130f83a6",
+      "range": {
+        "startLine": 605,
+        "startChar": 15,
+        "endLine": 605,
+        "endChar": 45
+      },
       "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

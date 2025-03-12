@@ -163,6 +163,30 @@
       },
       "revId": "0b5982527008eaac5042cfcf62eb101372927e34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef4e6947_bf903b99",
+        "filename": "system/stack/l2cap/l2c_int.h",
+        "patchSetId": 35
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-12T04:41:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23d03c82_4049527a",
+      "range": {
+        "startLine": 450,
+        "startChar": 7,
+        "endLine": 450,
+        "endChar": 36
+      },
+      "revId": "0b5982527008eaac5042cfcf62eb101372927e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
