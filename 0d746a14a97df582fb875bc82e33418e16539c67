@@ -16,6 +16,24 @@
       "message": "```suggestion\n    \"//hardware/interfaces/bluetooth:__subpackages__\",\n    ],\n```",
       "revId": "0d746a14a97df582fb875bc82e33418e16539c67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "772935ba_5fcdfc34",
+        "filename": "offload/leaudio/audio/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2025-03-12T16:02:37Z",
+      "side": 1,
+      "message": "I think it\u0027s already set, no?",
+      "parentUuid": "55ef2355_83fc2e3e",
+      "revId": "0d746a14a97df582fb875bc82e33418e16539c67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
