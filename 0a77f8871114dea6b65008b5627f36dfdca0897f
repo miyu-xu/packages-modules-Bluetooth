@@ -254,6 +254,30 @@
       },
       "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb04fd11_66d816cd",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-03-12T22:57:00Z",
+      "side": 1,
+      "message": "Our team is no longer going to support BlueZ so unfortunately that\u0027s not an option to disable Floss on Flex. Thanks for your opinions, I will discuss with our team the best path forward",
+      "parentUuid": "7e278e75_7fb3ccf4",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
