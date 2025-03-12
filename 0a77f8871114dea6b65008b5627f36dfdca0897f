@@ -134,6 +134,30 @@
       },
       "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "100dcb26_eda44cfc",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-03-12T22:35:54Z",
+      "side": 1,
+      "message": "This is actually for Floss and not AL, which we still have to support old boards for awhile",
+      "parentUuid": "f997327d_66e8bd96",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
