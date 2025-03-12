@@ -158,6 +158,30 @@
       },
       "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b94ce1_19e1d7de",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T22:39:38Z",
+      "side": 1,
+      "message": "Why is it becoming an issue now ?\nFLOSS might be facing the same issue btw, I don\u0027t know how much it relies on LE support.",
+      "parentUuid": "100dcb26_eda44cfc",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
