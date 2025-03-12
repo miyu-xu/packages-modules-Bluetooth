@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eb8d27d_88402da5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gmap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-03-12T17:24:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c6515f9_2d5573b3",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2906f01c_361b2ec3",
@@ -457,6 +481,24 @@
       "side": 1,
       "message": "Does the device reboot in between and the property get reset ?\nDoes the Bluetooth boot before the property is set ? (unlikely)\n\nIs there any error when reading the property from the Bluetooth boot ?",
       "parentUuid": "728fc22a_f372d18c",
+      "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c38b3b_34a08db0",
+        "filename": "android/pandora/server/src/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 3795301
+      },
+      "writtenOn": "2025-03-12T17:24:01Z",
+      "side": 1,
+      "message": "No, it does not reboot in between. It seems the Gmap class is never instantiated, as Charlie suggested (I added the Log.i inside the init and it was not logged).\nI was able to set system_prop via `adb shell setprop`, but there is another check that prevents enabling the profile, that the offloader_support must be true:\n`I bluetooth: system/bta/gmap/gmap_server.cc:63 IsGmapServerEnabled: GmapServerEnabled\u003dfalse, flag\u003dtrue, system_prop\u003dtrue, offloader_support\u003dfalse`",
+      "parentUuid": "74e40389_3b5dd10c",
       "revId": "95ca8fa0dfe3f7b03dfaa1ede75c4e5182c8f758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
