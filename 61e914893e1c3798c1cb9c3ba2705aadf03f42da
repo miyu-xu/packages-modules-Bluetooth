@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c09711e_e3b55f12",
+        "filename": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T23:32:04Z",
+      "side": 1,
+      "message": "Two improvements to be considered:\n\n- Start the session with the configuration as parameter\n- Support having multiple sessions open (requested by the audio team, and an actual modification made by vendors to reduce noise when changing codec).",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d4478050_6732e116",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "  // Start session in BluetoothAudio HAL with the configuration as\n  // `a2dp_config`.\n  virtual void StartSession(A2dpCodecConfig* a2dp_config) \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d134a825_bb3f263e",
+        "filename": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T23:32:04Z",
+      "side": 1,
+      "message": "We should try to find a way to get rid of this one.",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b51e9892_9f44daac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 59,
+                "endChar": 0
+              },
+              "replacement": "  virtual bool UpdateAudioConfigToHal(A2dpCodecConfig* a2dp_config,\n                                      uint16_t peer_mtu,\n                                      int preferred_encoding_interval_us,\n                                      bool is_hardware_offload) \u003d 0;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce347451_7701b4c5",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T23:32:04Z",
+      "side": 1,
+      "message": "We can save this information statically; the offload enable field actually only takes effect on BT reboot.",
+      "range": {
+        "startLine": 254,
+        "startChar": 13,
+        "endLine": 254,
+        "endChar": 28
+      },
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037af8a8_ebd57a9c",
+        "filename": "system/stack/a2dp/a2dp_codec_config.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T23:32:04Z",
+      "side": 1,
+      "message": "!\u003d AIDL",
+      "range": {
+        "startLine": 660,
+        "startChar": 65,
+        "endLine": 661,
+        "endChar": 63
+      },
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6554ba48_fa7c264a",
+        "filename": "system/stack/include/a2dp_constants.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T23:32:04Z",
+      "side": 1,
+      "message": "This is not a standard status, I prefer keeping it in the a2dp hal client headers.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dc36c073_6229a38b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/a2dp_constants.h",
+              "range": {
+                "startLine": 174,
+                "startChar": 0,
+                "endLine": 189,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/include/a2dp_constants.h",
+              "range": {
+                "startLine": 241,
+                "startChar": 0,
+                "endLine": 244,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e021ca92_b7264539",
+        "filename": "system/stack/include/a2dp_constants.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T23:32:04Z",
+      "side": 1,
+      "message": "Move this out of the header to make the declaration more readable.",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7efacdc0_0e9afe73",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/a2dp_constants.h",
+              "range": {
+                "startLine": 196,
+                "startChar": 0,
+                "endLine": 214,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/include/a2dp_constants.h",
+              "range": {
+                "startLine": 219,
+                "startChar": 0,
+                "endLine": 238,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
