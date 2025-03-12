@@ -191,6 +191,9 @@ public:
   os::Thread& GetTestThread() { return test_thread; }
   os::Handler* GetTestHandler() { return test_handler_; }
 
+  // Override the StopAll method to use the test thread and handler.
+  void StopAll();
+
   bool SynchronizeModuleHandler(const ModuleFactory* module,
                                 std::chrono::milliseconds timeout) const {
     return SynchronizeHandler(GetTestModuleHandler(module), timeout);
