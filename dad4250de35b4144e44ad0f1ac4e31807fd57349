@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a529c5_a1f42d62",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-12T06:04:17Z",
+      "side": 1,
+      "message": "Can we use the existing function L2CA_SetIdleTimeoutByBdAddr() to reset lcb timeout instead of adding a new function?",
+      "fixSuggestions": [
+        {
+          "fixId": "1b10e820_ccf1f8e9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "#include \"stack/btm/l2cu_int.h\"\n"
+            },
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 1711,
+                "startChar": 0,
+                "endLine": 1712,
+                "endChar": 0
+              },
+              "replacement": "      L2CA_SetIdleTimeoutByBdAddr(p_dev_rec-\u003ebd_addr, L2CA_IDLE_TIMEOUT_MAX);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dad4250de35b4144e44ad0f1ac4e31807fd57349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
