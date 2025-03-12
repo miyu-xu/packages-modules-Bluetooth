@@ -39,6 +39,30 @@
       },
       "revId": "a07d08d350b3c743e8e04cda0c91ab4daea799ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31be8353_99259ca4",
+        "filename": "system/rust/src/gatt/arbiter.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-03-12T05:19:30Z",
+      "side": 1,
+      "message": "I delete this in a following CL, so I won\u0027t bother here.",
+      "parentUuid": "fbd323ee_af505839",
+      "range": {
+        "startLine": 89,
+        "startChar": 44,
+        "endLine": 89,
+        "endChar": 50
+      },
+      "revId": "a07d08d350b3c743e8e04cda0c91ab4daea799ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
