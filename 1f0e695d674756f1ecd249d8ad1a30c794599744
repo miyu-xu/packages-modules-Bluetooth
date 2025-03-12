@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efef3cff_d7f945ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3302247
+      },
+      "writtenOn": "2025-03-12T04:14:30Z",
+      "side": 1,
+      "message": "Is there some place we can read more about ASHA need to reduce data length from max? I\u0027m not quite following how reducing link layer size will help throughput for the ASHA traffic.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3651e55_130f83a6",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 3302247
+      },
+      "writtenOn": "2025-03-12T04:14:30Z",
+      "side": 1,
+      "message": "Nit. Suggest logging what that existing data length is.",
+      "range": {
+        "startLine": 605,
+        "startChar": 15,
+        "endLine": 605,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "724a99bb_4fc29676",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_ble_sec.cc",
+              "range": {
+                "startLine": 605,
+                "startChar": 0,
+                "endLine": 606,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"Data length set by prev client {} can\u0027t be overridden by non-privileged client\",\n              p_lcb-\u003eget_suggested_tx_octets());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
