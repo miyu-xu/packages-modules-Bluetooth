@@ -338,9 +338,9 @@ tBTM_SEC_DEV_REC* btm_find_dev_by_handle(uint16_t handle) {
   return NULL;
 }
 
-static bool is_not_same_identity_or_pseudo_address(void* data, void* context) {
+static bool is_not_same_identity_or_pseudo_address(void* data, const RawAddress* context) {
   tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
-  const RawAddress* bd_addr = ((RawAddress*)context);
+  const RawAddress* bd_addr = context;
 
   if (p_dev_rec->bd_addr == *bd_addr) {
     return false;
@@ -379,10 +379,10 @@ tBTM_SEC_DEV_REC* btm_find_dev(const RawAddress& bd_addr) {
 
   // Find by matching identity address or pseudo address.
   list_node_t* n = list_foreach(btm_sec_cb.sec_dev_rec, is_not_same_identity_or_pseudo_address,
-                                (void*)&bd_addr);
+                                &bd_addr);
   // If not found by matching identity address or pseudo address, find by RPA
   if (n == nullptr) {
-    n = list_foreach(btm_sec_cb.sec_dev_rec, is_rpa_unresolvable, (void*)&bd_addr);
+    n = list_foreach(btm_sec_cb.sec_dev_rec, is_rpa_unresolvable, &bd_addr);
   }
 
   if (n != nullptr) {
