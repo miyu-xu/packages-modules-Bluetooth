@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e68717e_926a62a4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 0,
+      "message": "do not modify existing code",
+      "range": {
+        "startLine": 142,
+        "startChar": 22,
+        "endLine": 145,
+        "endChar": 25
+      },
+      "revId": "5da8811d9822e3bf9d662ec0b0ee5b3c40761330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b75a3452_2cd87791",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 0,
+      "message": "do not modify existing code",
+      "range": {
+        "startLine": 408,
+        "startChar": 10,
+        "endLine": 408,
+        "endChar": 45
+      },
+      "revId": "5da8811d9822e3bf9d662ec0b0ee5b3c40761330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "424d7bad_4006a5d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 1,
+      "message": "Change to `Test case for device discovery with No name in EIR`",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "baf280f8b25d59f6175a462727b785bd9997705a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f7f341_e083532b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 1,
+      "message": "create new variable `mDeviceWithNoName`",
+      "range": {
+        "startLine": 93,
+        "startChar": 47,
+        "endLine": 93,
+        "endChar": 59
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "899fc64e_b0b21fa5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 94,
+                "endChar": 0
+              },
+              "replacement": "    private CompletableFuture\u003cBluetoothDevice\u003e mDeviceWithNoName;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 131,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "                        if (mDeviceFound !\u003d null) {\n                            if (deviceName !\u003d null) {\n                                mDeviceFound.complete(device);\n                            } else {\n                                mDeviceWithNoName.complete(device);\n                            }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 206,
+                "endChar": 0
+              },
+              "replacement": "                                .setMode(DiscoverabilityMode.NOT_DISCOVERABLE)\n                                .build());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 219,
+                "endChar": 0
+              },
+              "replacement": "                        .setConnectable(true)\n                        .setOwnAddressType(OwnAddressType.PUBLIC);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 310,
+                "startChar": 0,
+                "endLine": 312,
+                "endChar": 0
+              },
+              "replacement": "                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)\n                                .build());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 429,
+                "startChar": 0,
+                "endLine": 429,
+                "endChar": 0
+              },
+              "replacement": "\n    /**\n     * Test case for discovering device with no name\n     *\n     * \u003cp\u003ePrerequisites:\n     *\n     * \u003col\u003e\n     *   \u003cli\u003eBumble and Android are not bonded\n     * \u003c/ol\u003e\n     *\n     * \u003cp\u003eSteps:\n     *\n     * \u003col\u003e\n     *   \u003cli\u003ePut Bumble in pairing mode\n     *   \u003cli\u003eStart device discovery on Android/DUT\n     *   \u003cli\u003eBumble should be found and its name should be available\n     *   \u003cli\u003eInitiate pairing from Android/DUT\n     *   \u003cli\u003eCancel pairing from Android/DUT\n     *   \u003cli\u003ePut Bumble in pairing mode again\n     *   \u003cli\u003eStart device discovery on Android/DUT\n     * \u003c/ol\u003e\n     *\n     * \u003cp\u003eExpectation: Bumble remote device must be found and its name should be available\n     */\n    @Test\n    public void testDeviceWithNoName() throws Exception {\n        registerIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);\n\n        // Put the bumble remote device into pairing mode\n        mBumble.hostBlocking()\n                .setDiscoverabilityMode(\n                        SetDiscoverabilityModeRequest.newBuilder()\n                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)\n                                .build());\n        // Start discovery for the remote devices\n        testStepStartDiscovery();\n        // Wait for DUT to finish discovery and fetch name from bumble\n        Thread.sleep(DISCOVERY_FINISH_WAIT.toMillis());\n        // Verify remote device\u0027s name . Indirectly this proves device\u0027s presence\n        assertThat(mBumbleDevice.getName()).isEqualTo(BUMBLE_DEVICE_NAME);\n        // Initiate pairing with the bumble device\n        assertThat(mBumbleDevice.createBond(BluetoothDevice.TRANSPORT_AUTO)).isTrue();\n        // Verify that the DUT started bonding\n        verifyIntentReceived(\n                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));\n        // Cancel the pairing\n        assertThat(mBumbleDevice.cancelBondProcess()).isTrue();\n        // Put the bumble remote into pairing mode again\n        mBumble.hostBlocking()\n                .setDiscoverabilityMode(\n                        SetDiscoverabilityModeRequest.newBuilder()\n                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)\n                                .build());\n        // Start the discovery again\n        testStepStartDiscovery();\n        // Wait for DUT to finish discovery and fetch name from bumble\n        Thread.sleep(DISCOVERY_FINISH_WAIT.toMillis());\n        // Verify the bumble device presence by checking its name\n        assertThat(mBumbleDevice.getName()).isEqualTo(BUMBLE_DEVICE_NAME);\n\n        unregisterIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);\n    }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 451,
+                "startChar": 0,
+                "endLine": 451,
+                "endChar": 0
+              },
+              "replacement": "        mDeviceWithNoName \u003d new CompletableFuture\u003c\u003e();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 457,
+                "startChar": 0,
+                "endLine": 459,
+                "endChar": 0
+              },
+              "replacement": "                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS);\n        mDeviceWithNoName \u003d\n                mDeviceWithNoName\n                        .completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS);\n        mBumbleDevice \u003d mBumbleDevice.join();\n        mDeviceWithNoName \u003d mDeviceWithNoName.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 460,
+                "startChar": 0,
+                "endLine": 460,
+                "endChar": 0
+              },
+              "replacement": "        assertThat(mDeviceWithNoName).isNotNull();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "baf280f8b25d59f6175a462727b785bd9997705a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622b8b8e_011f282e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 1,
+      "message": "testDeviceDiscoveryWithNoName",
+      "range": {
+        "startLine": 390,
+        "startChar": 16,
+        "endLine": 390,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "aab0198d_28339319",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 390,
+                "startChar": 0,
+                "endLine": 391,
+                "endChar": 0
+              },
+              "replacement": "    public void testDeviceDiscoveryWithNoName() throws Exception {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "baf280f8b25d59f6175a462727b785bd9997705a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "054d7b17_a16787f1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 1,
+      "message": "do not use Thread.sleep. use `CompletableFuture` to generate delay",
+      "range": {
+        "startLine": 402,
+        "startChar": 6,
+        "endLine": 402,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2b301fcb_4d94fc3d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 90,
+                "startChar": 0,
+                "endLine": 91,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 402,
+                "startChar": 0,
+                "endLine": 403,
+                "endChar": 0
+              },
+              "replacement": "        CompletableFuture\u003cVoid\u003e discoveryFinish \u003d new CompletableFuture\u003c\u003e();\n        mBumbleDevice.getName(discoveryFinish);\n        discoveryFinish.join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 423,
+                "startChar": 0,
+                "endLine": 424,
+                "endChar": 0
+              },
+              "replacement": "        CompletableFuture\u003cVoid\u003e discoveryFinish \u003d new CompletableFuture\u003c\u003e();\n        mBumbleDevice.getName(discoveryFinish);\n        discoveryFinish.join();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "baf280f8b25d59f6175a462727b785bd9997705a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d088fce2_84313cbf",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 423,
+        "startChar": 21,
+        "endLine": 423,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0d9c6d9f_a05e2f41",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 90,
+                "startChar": 0,
+                "endLine": 91,
+                "endChar": 0
+              },
+              "replacement": "    private static final Duration DISCOVERY_FINISH_WAIT \u003d Duration.ofSeconds(15);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "baf280f8b25d59f6175a462727b785bd9997705a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb8fe3c2_33103f6c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-12T12:29:43Z",
+      "side": 1,
+      "message": "do not inlude code formatting change in this CL",
+      "range": {
+        "startLine": 562,
+        "startChar": 0,
+        "endLine": 562,
+        "endChar": 1
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9e8ad538_77b03a16",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "import java.time.Duration;\nimport java.util.Arrays;\nimport java.util.HashMap;\nimport java.util.Map;\nimport java.util.concurrent.CompletableFuture;\nimport java.util.concurrent.TimeUnit;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 65,
+                "startChar": 0,
+                "endLine": 66,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 84,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "    }\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 206,
+                "endChar": 0
+              },
+              "replacement": "                                .setMode(DiscoverabilityMode.NOT_DISCOVERABLE)\n                                .build());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 219,
+                "endChar": 0
+              },
+              "replacement": "                        .setConnectable(true)\n                        .setOwnAddressType(OwnAddressType.PUBLIC);\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 236,
+                "startChar": 0,
+                "endLine": 238,
+                "endChar": 0
+              },
+              "replacement": "                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 264,
+                "startChar": 0,
+                "endLine": 266,
+                "endChar": 0
+              },
+              "replacement": "                PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 310,
+                "startChar": 0,
+                "endLine": 312,
+                "endChar": 0
+              },
+              "replacement": "                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)\n                                .build());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 324,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 456,
+                "startChar": 0,
+                "endLine": 459,
+                "endChar": 0
+              },
+              "replacement": "                mDeviceFound.completeOnTimeout(null, DISCOVERY_TIMEOUT, TimeUnit.MILLISECONDS).join();\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 483,
+                "startChar": 0,
+                "endLine": 484,
+                "endChar": 0
+              },
+              "replacement": "    /**\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 507,
+                "startChar": 0,
+                "endLine": 508,
+                "endChar": 0
+              },
+              "replacement": "                                            + entry.getKey()\n                                            + \" count \u003d \"\n                                            + entry.getValue());\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingWithDiscoveryTest.java",
+              "range": {
+                "startLine": 547,
+                "startChar": 0,
+                "endLine": 548,
+                "endChar": 0
+              },
+              "replacement": "                                                + entry.getKey()\n                                                + \" count \u003d \"\n                                                + entry.getValue());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "baf280f8b25d59f6175a462727b785bd9997705a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
