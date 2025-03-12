@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ef2355_83fc2e3e",
+        "filename": "offload/leaudio/audio/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3471324
+      },
+      "writtenOn": "2025-03-12T06:12:35Z",
+      "side": 1,
+      "message": "```suggestion\n    \"//hardware/interfaces/bluetooth:__subpackages__\",\n    ],\n```",
+      "revId": "0d746a14a97df582fb875bc82e33418e16539c67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
