@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec27fc3f_117581b6",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-03-12T22:08:29Z",
+      "side": 1,
+      "message": "I tested that it doesn\u0027t cause any issues on my AL device",
+      "parentUuid": "ddee79d4_56edb1cb",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 27
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae95e93b_7fd8fe3b",
         "filename": "system/gd/hci/controller.cc",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2025-03-11T22:00:39Z",
       "side": 1,
       "message": "Can you please mention which controller is causing issues like this ?\nBoth HCI LE Read Local Supported Features and HCI LE Read Supported States are mandatory if the controller supports LE.\n\nRather than add a bandaid here, I think a preferred alternative would be to emulate the commands in the IBluetoothHci HAL.",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1751a6a_f0b54d47",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-03-12T22:08:29Z",
+      "side": 1,
+      "message": "The boards that are mostly failing are our Flex boards (where we support installing CrOS on any PC) so it\u0027s hard to say which exact BT controllers it is, but I know some of them don\u0027t support LE\n\nI see. Let me look into that more. Thanks",
+      "parentUuid": "ae95e93b_7fd8fe3b",
       "range": {
         "startLine": 92,
         "startChar": 53,
