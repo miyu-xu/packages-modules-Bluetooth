@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d06f43f_0873a7ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-03-12T18:19:14Z",
+      "side": 1,
+      "message": "Yes, given that `AdapterService#getSupportedProfilesBitMask` is being used instead of `*.isEnabled()`, it\u0027s easier to mock.",
+      "parentUuid": "0f33af52_ff28b65c",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6942b20_ee366242",
@@ -124,6 +142,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f06fe8eb_5d09e803",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-03-12T18:19:14Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right, I forgot that `*.isEnabled()` can be dynamically overwritten/ignored. I\u0027ll use `AdapterService#getSupportedProfilesBitMask`.",
+      "parentUuid": "908e075d_a7a0068a",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05eac7e6_94e4e237",
@@ -173,6 +209,24 @@
       "side": 1,
       "message": "Even the table implied the relation, but it\u0027s not a good idea to use MCP to decide UMS. Why don\u0027t you just check BluetoothProfile.LE_AUDIO?",
       "parentUuid": "197e9d53_a2875ad7",
+      "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d4ec68_be768504",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2025-03-12T18:19:14Z",
+      "side": 1,
+      "message": "Isn\u0027t `BluetoothProfile.LE_AUDIO` mapped to `isProfileBapUnicastClientEnabled`? Wouldn\u0027t BAP Unicast be enabled even if MCP service were disabled and TBS service enabled, in which case `TMAP_ROLE_FLAG_UMS` should not be in the mask?",
+      "parentUuid": "16ef7cf3_4b2bf8d7",
       "revId": "45c0c82557315b6ea1fb4372912c504c031c20f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
