@@ -34,6 +34,24 @@
       "parentUuid": "55ef2355_83fc2e3e",
       "revId": "0d746a14a97df582fb875bc82e33418e16539c67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "797f5a27_8ab38849",
+        "filename": "offload/leaudio/audio/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3471324
+      },
+      "writtenOn": "2025-03-12T16:06:46Z",
+      "side": 1,
+      "message": "Yes, you are right, sorry about that.",
+      "parentUuid": "772935ba_5fcdfc34",
+      "revId": "0d746a14a97df582fb875bc82e33418e16539c67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
