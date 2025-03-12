@@ -182,6 +182,30 @@
       },
       "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4383ee_c9b14040",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2025-03-12T22:43:30Z",
+      "side": 1,
+      "message": "Because we only enabled Floss on Flex boards recently. Flex boards have a different working model than the rest of the CrOS fleet since there could be any number of BT controllers that we don\u0027t differentiate. Their QA only tests support on a few different laptops",
+      "parentUuid": "d3b94ce1_19e1d7de",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
