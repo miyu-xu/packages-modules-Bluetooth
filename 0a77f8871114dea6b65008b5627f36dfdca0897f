@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1476be56_9569ed66",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T22:50:13Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ec27fc3f_117581b6",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 27
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae95e93b_7fd8fe3b",
@@ -198,6 +222,30 @@
       "side": 1,
       "message": "Because we only enabled Floss on Flex boards recently. Flex boards have a different working model than the rest of the CrOS fleet since there could be any number of BT controllers that we don\u0027t differentiate. Their QA only tests support on a few different laptops",
       "parentUuid": "d3b94ce1_19e1d7de",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 93
+      },
+      "revId": "0a77f8871114dea6b65008b5627f36dfdca0897f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e278e75_7fb3ccf4",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-12T22:50:13Z",
+      "side": 1,
+      "message": "I don\u0027t think we should be enabling FLOSS on any new boards, especially if the board does not support BLE mode. The correct solution here is to disable Flex board support if the controller is classic only.",
+      "parentUuid": "be4383ee_c9b14040",
       "range": {
         "startLine": 92,
         "startChar": 53,
