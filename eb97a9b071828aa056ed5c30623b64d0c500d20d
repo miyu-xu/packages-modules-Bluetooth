@@ -16,6 +16,29 @@
       "message": "This was already implemented, please see L2CA_LockBleConnParamsForProfileConnection . \n\nIt seems that the logic from L2CA_LockBleConnParamsForProfileConnection might not work correctly, it was broken with L2C_BLE_AGGRESSIVE_INITIAL_PARAM implementation. You should not put new mechanism ,the old one should be fixed.",
       "revId": "eb97a9b071828aa056ed5c30623b64d0c500d20d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8309677e_b4a0049d",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-12T11:23:16Z",
+      "side": 1,
+      "message": "This logic should live in LE Audio specific file, maybe in le_audio/client.cc in OnGattConnected ?",
+      "range": {
+        "startLine": 994,
+        "startChar": 3,
+        "endLine": 994,
+        "endChar": 71
+      },
+      "revId": "eb97a9b071828aa056ed5c30623b64d0c500d20d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
