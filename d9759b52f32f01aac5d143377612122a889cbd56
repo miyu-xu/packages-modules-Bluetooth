@@ -33,6 +33,24 @@
       "message": "This CL needs to be cherry picked to internal first.",
       "revId": "d9759b52f32f01aac5d143377612122a889cbd56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99998134_e02d60d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1504052
+      },
+      "writtenOn": "2025-03-12T17:24:38Z",
+      "side": 1,
+      "message": "Hi Henri, why does this need an internal main CP? I see that changes in the project are first going to AOSP main. Or did that change recently?",
+      "parentUuid": "2e788322_771ce7d6",
+      "revId": "d9759b52f32f01aac5d143377612122a889cbd56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
