@@ -30,6 +30,7 @@
 #include "common/strings.h"
 #include "hardware/bt_av.h"
 #include "hci/hci_packets.h"
+#include "hci/hci_status.h"
 #include "main/shim/helpers.h"
 
 namespace std {
@@ -310,7 +311,8 @@ void LogMetricClassicPairingEvent(const Address& address, uint16_t handle, uint3
   }
 
   if (static_cast<EventCode>(hci_event) == EventCode::SIMPLE_PAIRING_COMPLETE) {
-    common::LogConnectionAdminAuditEvent("Pairing", address, static_cast<ErrorCode>(cmd_status));
+    common::LogConnectionAdminAuditEvent("Pairing", address,
+                                         HciStatus(static_cast<ErrorCode>(cmd_status)));
   }
 }
 
