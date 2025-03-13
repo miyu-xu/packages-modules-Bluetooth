@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b48eacb3_53e7b3b7",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T11:40:03Z",
+      "side": 1,
+      "message": "This is to make sure that if the device is disconnected, the flag is cleared. If that is not done, then we might fetch incorrect value of the flag later.",
+      "parentUuid": "4b2c69b7_88afea07",
+      "range": {
+        "startLine": 1352,
+        "startChar": 9,
+        "endLine": 1352,
+        "endChar": 27
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8370fc22_b0d457a2",
