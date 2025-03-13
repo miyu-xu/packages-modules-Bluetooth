@@ -1,0 +1,334 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e93e7a_b8e7b391",
+        "filename": "system/gd/hal/hci_hal_android_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T00:11:56Z",
+      "side": 1,
+      "message": "since `handler_` is created before `fake_registry_.Start` is called, it should be deleted after `fake_registry_.StopAll();` is called. \n\nHence, please move this line below `fake_registry_.StopAll();`",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 20
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9bff47b_6b56f27b",
+        "filename": "system/gd/hal/hci_hal_host_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T00:11:56Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be guarded by the same `same_handler_for_all_modules` flag?\n\nWhen the flag is false, `fake_registry_.StopAll();` will clear the handler, otherwise, we clear the handler outside the registry",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b1a391a5_2ec200ec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/hci_hal_host_test.cc",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 160,
+                "endChar": 0
+              },
+              "replacement": "    if (handler_) {\n      handler_-\u003eClear();\n      handler_-\u003eWaitUntilStopped(bluetooth::kHandlerStopTimeout);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38155ac_c9015113",
+        "filename": "system/gd/hal/hci_hal_host_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T00:11:56Z",
+      "side": 1,
+      "message": "same as above, I think this line should be moved below `fake_registry_.StopAll();`",
+      "range": {
+        "startLine": 160,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 20
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e403fc9_16f559ab",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T00:11:56Z",
+      "side": 1,
+      "message": "Could we instead modify each of the 12 places where handlers were not cleared?\n\nand each of the modification needs to be guarded by the same `same_handler_for_all_modules` flag\n\nI think if our decision is that handler should be cleared and stopped outside the registery, we should do it consistently instead of hiding it.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ce6ceab0_515f6252",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": "constexpr std::chrono::milliseconds kModuleStopTimeout \u003d\n    std::chrono::milliseconds(2000);\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "  log::assert_that(\n      instance !\u003d started_modules_.end(),\n      \"Request for module not started up, maybe not in Start(ModuleList)?\");\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "void ModuleRegistry::Start(ModuleList* modules, Thread* thread,\n                           Handler* handler) {\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 89,
+                "endChar": 0
+              },
+              "replacement": "Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread,\n                              Handler* handler) {\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"Finished starting dependencies and calling Start() of {}\",\n            instance-\u003eToString());\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "  // Since modules were brought up in dependency order, it is safe to tear down by\n  // going in reverse order.\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 131,
+                "startChar": 0,
+                "endLine": 132,
+                "endChar": 0
+              },
+              "replacement": "    // Clear the handler before stopping the module to allow it to shut down\n    // gracefully.\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 134,
+                "startChar": 0,
+                "endLine": 138,
+                "endChar": 0
+              },
+              "replacement": "     * b/393449774 since we have now shifted to a single handler for all\n     * modules, we don\u0027t need to clear the handler here, it will be done in the\n     * respective teardown. Since we have a single handler, we need to make sure\n     * that the handler instance is deleted only once, otherwise we will see a\n     * crash as a handler can only be cleared once.\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 139,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": "    if (!com::android::bluetooth::flags::same_handler_for_all_modules()) {\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": "  log::assert_that(started_modules_.empty(),\n                   \"assert failed: started_modules_.empty()\");\n"
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 166,
+                "startChar": 0,
+                "endLine": 167,
+                "endChar": 0
+              },
+              "replacement": "os::Handler* ModuleRegistry::GetModuleHandler(\n    const ModuleFactory* module) const {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f03c2b98_43972237",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T00:11:56Z",
+      "side": 1,
+      "message": "swap these two lines",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9e069aae_17f6ac55",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 184,
+                "startChar": 0,
+                "endLine": 185,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/module.cc",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "  delete handler;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbb9b41f_fa9ec393",
+        "filename": "system/gd/module_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T00:11:56Z",
+      "side": 1,
+      "message": "same `handler_` is created before `registry_`, hence it should be deleted after `registry_` is deleted\n\nwhy are we clearing the handler before registry?\n\nIt should be something like\n\n```\n    handler_-\u003eClear();\n    handler_-\u003eWaitUntilStopped(kHandlerStopTimeout);\n    delete registry_;\n    delete handler_;\n```\n\nto avoid unexpected NPE in `registery_`\n\nThe idea is after `handler-\u003eClear()`, it is still a valid pointer, but calling `Post()` will no longer queue any events.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5de9cdda_59e424e7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/module_unittest.cc",
+              "range": {
+                "startLine": 43,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "    delete registry_;\n"
+            },
+            {
+              "path": "system/gd/module_unittest.cc",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
