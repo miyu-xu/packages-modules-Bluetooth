@@ -35,14 +35,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
-public class RequestPullPhonebookTest {
+public class PullPhonebookRequestTest {
 
     private static final String PHONEBOOK_NAME = "phonebook";
 
     private FakePbapObexServer mServer;
     private ClientSession mSession;
 
-    private RequestPullPhonebook mRequest;
+    private PullPhonebookRequest mRequest;
 
     @Before
     public void setUp() throws IOException {
@@ -55,7 +55,7 @@ public class RequestPullPhonebookTest {
                         PbapPhonebook.FORMAT_VCARD_30,
                         PbapApplicationParameters.MAX_PHONEBOOK_SIZE,
                         /* startOffset= */ 0);
-        mRequest = new RequestPullPhonebook(PHONEBOOK_NAME, params);
+        mRequest = new PullPhonebookRequest(PHONEBOOK_NAME, params);
     }
 
     @Test
