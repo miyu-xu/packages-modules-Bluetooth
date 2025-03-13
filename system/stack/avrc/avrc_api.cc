@@ -985,7 +985,8 @@ uint16_t AVRC_GetControlProfileVersion() {
   uint16_t profile_version = AVRC_REV_1_3;
   char avrcp_version[PROPERTY_VALUE_MAX] = {0};
   osi_property_get(AVRC_CONTROL_VERSION_PROPERTY, avrcp_version,
-                   strncmp(volume_disabled, "true", 4) == 0 ? AVRC_1_3_STRING : AVRC_1_4_STRING);
+                   strncmp(volume_disabled, "true", 4) == 0 ? AVRC_1_3_STRING
+                                                            : AVRC_1_6_STRING);
 
   if (!strncmp(AVRC_1_6_STRING, avrcp_version, sizeof(AVRC_1_6_STRING))) {
     profile_version = AVRC_REV_1_6;
