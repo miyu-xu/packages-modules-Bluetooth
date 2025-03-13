@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20957705_57437439",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-13T00:32:50Z",
+      "side": 1,
+      "message": "missing space after `//`",
+      "revId": "00e4e830e2fd182be6aae9980909d233c88145e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eaac560_0b5d6ada",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-13T00:32:50Z",
+      "side": 1,
+      "message": "you can use more width in character, no need for a very short one 😊",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 968,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "68628113_a964521a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothSocket.java",
+              "range": {
+                "startLine": 966,
+                "startChar": 0,
+                "endLine": 969,
+                "endChar": 0
+              },
+              "replacement": "                // No read() attempt must have made as no mL2capBuffer is created, read it from\n                // socket stream\n"
+            }
+          ]
+        }
+      ],
+      "revId": "00e4e830e2fd182be6aae9980909d233c88145e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
