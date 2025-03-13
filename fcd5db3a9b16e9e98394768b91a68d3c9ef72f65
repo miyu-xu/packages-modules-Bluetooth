@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a2796f_28ad6a54",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-13T14:34:37Z",
+      "side": 1,
+      "message": "here [conferenceable](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/telecomm/java/android/telecom/Conferenceable.java?q\u003dconferenceable\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain) term is used for call which can be participate in a conference",
+      "parentUuid": "05a919f1_4068181f",
+      "range": {
+        "startLine": 1182,
+        "startChar": 36,
+        "endLine": 1182,
+        "endChar": 50
+      },
+      "revId": "fcd5db3a9b16e9e98394768b91a68d3c9ef72f65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f45d5d4_1708acb4",
@@ -55,6 +79,30 @@
       "writtenOn": "2025-02-27T17:47:56Z",
       "side": 1,
       "message": "can inline this",
+      "range": {
+        "startLine": 1185,
+        "startChar": 50,
+        "endLine": 1185,
+        "endChar": 64
+      },
+      "revId": "fcd5db3a9b16e9e98394768b91a68d3c9ef72f65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08c6ba32_4fa6a743",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-03-13T14:34:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3f45d5d4_1708acb4",
       "range": {
         "startLine": 1185,
         "startChar": 50,
