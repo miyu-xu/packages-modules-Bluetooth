@@ -34,6 +34,24 @@
       "parentUuid": "2698a069_fcd100fe",
       "revId": "993139cef9bbef0802e422d12fa78d6a3b927a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4bc58bf_fa9f966f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-03-13T17:34:50Z",
+      "side": 1,
+      "message": "Updated CL sent to internal.",
+      "parentUuid": "71da7b93_e263b74d",
+      "revId": "993139cef9bbef0802e422d12fa78d6a3b927a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
