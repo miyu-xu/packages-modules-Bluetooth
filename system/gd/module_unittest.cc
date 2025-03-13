@@ -41,9 +41,10 @@ protected:
 
   void TearDown() override {
     handler_->Clear();
+    handler_->WaitUntilStopped(kHandlerStopTimeout);
     delete registry_;
-    delete thread_;
     delete handler_;
+    delete thread_;
   }
 
   ModuleRegistry* registry_;
