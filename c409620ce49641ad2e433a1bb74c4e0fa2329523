@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff1609e_794b2264",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T10:09:44Z",
+      "side": 1,
+      "message": "Checked this Google\u0027s comment on shared excel:\n\"Seems that handling of this should be done in different place. e.g. https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mcp/MediaControlProfile.java;l\u003d405.  Also SEEKING_SPEED is optional characteristic, and it is not supported by QDID 197197 . I think this is OK to deliver but as a Feature.\"\n\nThis fix was made in \"setMediaControlRequestResult\" because the other characteristics are also being set in that function.\nAlso, if we try to make the same fix in \"onMediaControlRequest\", there will be a problem in passing the set characteristic to \"setMediaControlRequestResult\" since there is no such function parameter present currently.\nIf you still suggest to make fix in \"onMediaControlRequest\", then maybe we can add a parameter in the function to pass characteristic.\nOr else, do you have any other suggestion?",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1956357_316b0de5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T10:09:44Z",
+      "side": 1,
+      "message": "Checked this Google\u0027s comment on shared excel:\n\"Seems that handling of this should be done in different place. e.g. https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/mcp/MediaControlProfile.java;l\u003d405.  Also SEEKING_SPEED is optional characteristic, and it is not supported by QDID 197197 . I think this is OK to deliver but as a Feature.\"\n\nThis fix was made in \"setMediaControlRequestResult\" because the other characteristics are also being set in that function.\nAlso, if we try to make the same fix in \"onMediaControlRequest\", there will be a problem in passing the set characteristic to \"setMediaControlRequestResult\" since there is no such function parameter present currently.\nIf you still suggest to make fix in \"onMediaControlRequest\", then maybe we can add a parameter in the function to pass characteristic.\nOr else, do you have any other suggestion?",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
