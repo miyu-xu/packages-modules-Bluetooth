@@ -16,6 +16,24 @@
       "message": "For context: this logic was added here https://r.android.com/395892 apparently to pass the relevant PTS tests. Given this I would make sure that the following tests are still passing with your revert:\n\n  - A2DP/SRC/SET/BV-04-I\n  - A2DP/SRC/SET/BV-06-I\n  - AVDTP/SRC/ACP/SIG/SMG/BV-18-C\n  - AVDTP/SRC/ACP/SIG/SMG/BV-20-C\n  - AVDTP/SRC/ACP/SIG/SMG/BV-22-C",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68f0adfe_eec57bc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T10:26:13Z",
+      "side": 1,
+      "message": "Hi Henri,\nWill you be testing the above TCs with this gerrit?\nWe would be merging this change after that right?",
+      "parentUuid": "6789fc5d_b242624d",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
