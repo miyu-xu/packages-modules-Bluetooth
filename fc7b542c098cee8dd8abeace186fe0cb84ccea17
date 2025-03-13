@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98c9fa70_8b139ba6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T05:56:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8856fd9c_94c9eb0e",
+      "revId": "fc7b542c098cee8dd8abeace186fe0cb84ccea17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fafd05d_95548b11",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-12-16T19:02:18Z",
       "side": 1,
       "message": "This is directly calling `transport_-\u003eStopRequest()`, you should be able to remove the helper for `stop_request`",
+      "range": {
+        "startLine": 538,
+        "startChar": 6,
+        "endLine": 538,
+        "endChar": 58
+      },
+      "revId": "fc7b542c098cee8dd8abeace186fe0cb84ccea17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69fdfc0d_fa706ca1",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T05:56:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fafd05d_95548b11",
       "range": {
         "startLine": 538,
         "startChar": 6,
