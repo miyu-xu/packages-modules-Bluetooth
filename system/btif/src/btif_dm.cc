@@ -1927,7 +1927,7 @@ void BTIF_dm_report_inquiry_status_change(tBTM_INQUIRY_STATE status) {
 }
 
 void BTIF_dm_enable() {
-  if (com::android::bluetooth::flags::guest_mode_bond()) {
+  if (true) {
     btif_storage_prune_devices();
   }
 

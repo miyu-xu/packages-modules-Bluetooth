@@ -177,7 +177,7 @@ void StorageModule::Start() {
           [this] { this->CallOn(this, &StorageModule::SaveDelayed); });
 
   // Cleanup temporary pairings if we have left guest mode
-  if (!com::android::bluetooth::flags::guest_mode_bond() && !is_restricted_mode_) {
+  if (false && !is_restricted_mode_) {
     pimpl_->cache_.RemoveSectionWithProperty("Restricted");
   }
 
