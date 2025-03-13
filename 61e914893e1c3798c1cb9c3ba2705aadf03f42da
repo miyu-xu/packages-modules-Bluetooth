@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bff716f2_ee689888",
+        "filename": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-03-13T16:32:46Z",
+      "side": 1,
+      "message": "That probably should be added after main part of refactor is merged, tested and ready, maybe we should add a bug for that specifically",
+      "parentUuid": "3c09711e_e3b55f12",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 34
+      },
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d134a825_bb3f263e",
         "filename": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
         "patchSetId": 5
@@ -85,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8269f1a_a25d8eb2",
+        "filename": "system/audio_hal_interface/a2dp_common_encoding_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-03-13T16:32:46Z",
+      "side": 1,
+      "message": "this is necessary while seting up a codec configuration, if we remove that the upper layer will need to handle distinguishing between hardware/software paths - and it\u0027s probably not something that we want",
+      "parentUuid": "d134a825_bb3f263e",
+      "range": {
+        "startLine": 61,
+        "startChar": 15,
+        "endLine": 61,
+        "endChar": 48
+      },
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce347451_7701b4c5",
         "filename": "system/btif/src/btif_a2dp_source.cc",
         "patchSetId": 5
@@ -96,6 +144,30 @@
       "writtenOn": "2025-03-12T23:32:04Z",
       "side": 1,
       "message": "We can save this information statically; the offload enable field actually only takes effect on BT reboot.",
+      "range": {
+        "startLine": 254,
+        "startChar": 13,
+        "endLine": 254,
+        "endChar": 28
+      },
+      "revId": "61e914893e1c3798c1cb9c3ba2705aadf03f42da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f28556_9e9f27d0",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-03-13T16:32:46Z",
+      "side": 1,
+      "message": "that\u0027s already no up to date change",
+      "parentUuid": "ce347451_7701b4c5",
       "range": {
         "startLine": 254,
         "startChar": 13,
