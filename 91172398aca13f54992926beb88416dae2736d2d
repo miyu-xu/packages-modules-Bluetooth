@@ -1,0 +1,127 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5309c1a_cced2c1d",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-13T23:14:14Z",
+      "side": 1,
+      "message": "Should we call StopRequest for all session types ?\nThis error case seems to be common with all audio session types",
+      "range": {
+        "startLine": 538,
+        "startChar": 18,
+        "endLine": 538,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dd70e295_7619ce77",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+              "range": {
+                "startLine": 535,
+                "startChar": 0,
+                "endLine": 540,
+                "endChar": 0
+              },
+              "replacement": "    transport_-\u003eStopRequest();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91172398aca13f54992926beb88416dae2736d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d18703f_73eed401",
+        "filename": "system/audio_hal_interface/aidl/hearing_aid_software_encoding_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-13T23:14:14Z",
+      "side": 1,
+      "message": "Unused ?",
+      "range": {
+        "startLine": 261,
+        "startChar": 5,
+        "endLine": 261,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "306fac5d_d72d2c55",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/hearing_aid_software_encoding_aidl.cc",
+              "range": {
+                "startLine": 260,
+                "startChar": 0,
+                "endLine": 265,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "91172398aca13f54992926beb88416dae2736d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b59d970_e6ed6753",
+        "filename": "system/audio_hal_interface/aidl/hearing_aid_software_encoding_aidl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-13T23:14:14Z",
+      "side": 1,
+      "message": "Unused ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 5,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "20cad24f_6b205c99",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/hearing_aid_software_encoding_aidl.h",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 50,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "91172398aca13f54992926beb88416dae2736d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
