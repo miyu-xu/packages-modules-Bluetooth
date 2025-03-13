@@ -88,7 +88,12 @@ bool L2CA_UpdateBleConnParams(const RawAddress& rem_bda, uint16_t min_int, uint1
   p_lcb->latency = latency;
   p_lcb->timeout = timeout;
   p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
-  if (com::android::bluetooth::flags::initial_conn_params_p1()) {
+
+  // when using aggressive initial parameters,
+  // this function may be called by L2CA_SetEcosystemBaseInterval() with aggressive parameter
+  // in this case, the L2C_BLE_AGGRESSIVE_INITIAL_PARAM cannot be reset
+  if (com::android::bluetooth::flags::initial_conn_params_p1() &&
+      max_int > LeConnectionParameters::GetMaxConnIntervalAggressive()) {
     p_lcb->conn_update_mask &= ~L2C_BLE_AGGRESSIVE_INITIAL_PARAM;
   }
 
