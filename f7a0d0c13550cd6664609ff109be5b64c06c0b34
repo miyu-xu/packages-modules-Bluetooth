@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdb47529_71a0702e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-13T18:44:41Z",
+      "side": 1,
+      "message": "Let\u0027s put the revert in a separate CL and rebase this CL on top of it",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "185ceded_141ddb4f",
         "filename": "system/main/shim/stack.cc",
         "patchSetId": 11
