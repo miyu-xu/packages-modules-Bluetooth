@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d5bb544_eb1df332",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-13T20:31:59Z",
+      "side": 1,
+      "message": "Intention is to set max data length to lecoc sockets created by applications. As LE CoC applications are mainly meant for data transfers \u0026 would like to see better throughput.\nCurrently, Applications are relying on GATT and requesting the MAX MTUs (which in turn sets the max data length) to achieve this\n\nThese details are documented here - go/improve_blecoc_throughput",
+      "parentUuid": "983d0fa7_44bf5beb",
+      "range": {
+        "startLine": 683,
+        "startChar": 41,
+        "endLine": 683,
+        "endChar": 61
+      },
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3651e55_130f83a6",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 36
@@ -221,6 +245,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ac518d_39a3288b",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-13T20:31:59Z",
+      "side": 1,
+      "message": "will fix it in ag/32252757, please continue reviewing there. I will abandon this change",
+      "parentUuid": "ab0455aa_386a6220",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 62
+      },
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48c332a3_7e09ad93",
@@ -258,6 +306,30 @@
           ]
         }
       ],
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da7cf995_2132735b",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-13T20:31:59Z",
+      "side": 1,
+      "message": "will fix it in ag/32252757, please continue reviewing there. I will abandon this change",
+      "parentUuid": "48c332a3_7e09ad93",
+      "range": {
+        "startLine": 216,
+        "startChar": 11,
+        "endLine": 216,
+        "endChar": 50
+      },
       "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
