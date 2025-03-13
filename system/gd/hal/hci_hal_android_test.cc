@@ -79,8 +79,9 @@ protected:
   }
 
   void TearDown() override {
-    fake_registry_.StopAll();
     handler_->Clear();
+    handler_->WaitUntilStopped(bluetooth::kHandlerStopTimeout);
+    fake_registry_.StopAll();
     delete thread_;
     delete handler_;
   }
