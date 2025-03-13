@@ -52,6 +52,7 @@
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
 #include "stack/include/btm_client_interface.h"
+#include "stack/include/l2cap_interface.h"
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
@@ -2975,6 +2976,13 @@ private:
           log::info("{}, Ase id: {}, ase state: {}", leAudioDevice->address_, ase->id,
                     bluetooth::common::ToString(ase->state));
           cancel_watchdog_if_needed(group->group_id_);
+          if (com::android::bluetooth::flags::leaudio_use_aggressive_params()) {
+            if (alarm_is_scheduled(leAudioDevice->update_to_relaxed_conn_interval_timer)) {
+              alarm_cancel(leAudioDevice->update_to_relaxed_conn_interval_timer);
+            }
+            stack::l2cap::get_interface().
+              L2CA_LockBleConnParamsForProfileConnection(leAudioDevice->address_, false);
+          }
           state_machine_callbacks_->StatusReportCb(group->group_id_, GroupStreamStatus::STREAMING);
           return;
         }
@@ -2985,6 +2993,14 @@ private:
 
           /* Last node is in streaming state */
           group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
+          if (com::android::bluetooth::flags::leaudio_use_aggressive_params()) {
+            if (alarm_is_scheduled(leAudioDevice->update_to_relaxed_conn_interval_timer)) {
+              alarm_cancel(leAudioDevice->update_to_relaxed_conn_interval_timer);
+            }
+            stack::l2cap::get_interface().
+              L2CA_LockBleConnParamsForProfileConnection(leAudioDevice->address_, false);
+          }
 
           state_machine_callbacks_->StatusReportCb(group->group_id_, GroupStreamStatus::STREAMING);
           return;

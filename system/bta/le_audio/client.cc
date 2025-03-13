@@ -59,6 +59,7 @@
 #include "client_parser.h"
 #include "codec_interface.h"
 #include "codec_manager.h"
+#include "common/le_conn_params.h"
 #include "common/strings.h"
 #include "common/time_util.h"
 #include "content_control_id_keeper.h"
@@ -154,6 +155,9 @@ using bluetooth::le_audio::utils::GetAudioContextsFromSinkMetadata;
 using bluetooth::le_audio::utils::GetAudioContextsFromSourceMetadata;
 
 using namespace bluetooth;
+
+/* Macros */
+#define LEA_UPDATE_RELAX_CON_INTVAL_TIMEOUT_MS 15000
 
 /* Enums */
 enum class AudioReconfigurationResult {
@@ -2588,6 +2592,40 @@ public:
       leAudioDevice->SetConnectionState(DeviceConnectState::CONNECTED_BY_USER_GETTING_READY);
     }
 
+    // Lock the aggressive connection parameter to speed up audio transfer to buds
+    // in case of user takes the buds out of the case for active music or an incoming voice call
+    // Unlock when ASE is in streaming or timeout to unlock the ble connection parameters
+    if (com::android::bluetooth::flags::leaudio_use_aggressive_params()) {
+      log::info("{}, lock conn params for conn/stream and unlock when streaming or timeout.",
+         leAudioDevice->address_);
+      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
+        leAudioDevice->address_, true);
+      // After locking the parameters, update with the relaxed value,
+      // but this updating will be blocked and save the relaxed value.
+      // Then unlock will update the parameters to the relaxed.
+      stack::l2cap::get_interface().L2CA_UpdateBleConnParams(
+        leAudioDevice->address_,
+        LeConnectionParameters::GetMinConnIntervalRelaxed(),
+        LeConnectionParameters::GetMaxConnIntervalRelaxed(),
+        BTM_BLE_CONN_PERIPHERAL_LATENCY_DEF,
+        BTM_BLE_CONN_TIMEOUT_DEF, 0, 0);
+      if (!alarm_is_scheduled(leAudioDevice->update_to_relaxed_conn_interval_timer)) {
+        alarm_set_on_mloop(
+          leAudioDevice->update_to_relaxed_conn_interval_timer,
+          LEA_UPDATE_RELAX_CON_INTVAL_TIMEOUT_MS,
+          [](void* data) {
+              LeAudioDevice *leaDev = (LeAudioDevice *)data;
+              if (leaDev != nullptr) {
+                log::info("address {}, update_to_relaxed_conn_interval_timer timeout",
+                    leaDev->address_);
+                stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
+                        leaDev->address_, false);
+              }
+          },
+          leAudioDevice);
+      }
+    }
+
     /* Check if the device is in allow list and update the flag */
     leAudioDevice->UpdateDeviceAllowlistFlag();
     if (BTM_SecIsLeSecurityPending(address)) {
@@ -3707,8 +3745,10 @@ public:
     log::debug("{},  {}", leAudioDevice->address_,
                bluetooth::common::ToString(leAudioDevice->GetConnectionState()));
 
-    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
-            leAudioDevice->address_, false);
+    if (!com::android::bluetooth::flags::leaudio_use_aggressive_params()) {
+      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
+              leAudioDevice->address_, false);
+    }
 
     if (leAudioDevice->GetConnectionState() ==
                 DeviceConnectState::CONNECTED_BY_USER_GETTING_READY &&
