@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be5198f1_98cb2f27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-13T04:59:47Z",
+      "side": 1,
+      "message": "Talked offline. The existing logic is working as expected.",
+      "parentUuid": "29135ea5_a03a8589",
+      "revId": "eb97a9b071828aa056ed5c30623b64d0c500d20d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8309677e_b4a0049d",
