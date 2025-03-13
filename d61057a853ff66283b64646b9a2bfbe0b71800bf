@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "187bb13b_c8bbba2a",
+        "filename": "system/gd/hal/hci_hal_android_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-13T04:48:17Z",
+      "side": 1,
+      "message": "Sure, I did it this way as in `StopAll()` the `handler_` has no usage except clearance hence did both `Clear()` and delete together.\nBut this explanation makes sense, adding the change.",
+      "parentUuid": "d3e93e7a_b8e7b391",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 20
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9bff47b_6b56f27b",
@@ -78,6 +102,54 @@
       "writtenOn": "2025-03-13T00:11:56Z",
       "side": 1,
       "message": "same as above, I think this line should be moved below `fake_registry_.StopAll();`",
+      "range": {
+        "startLine": 160,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 20
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f65b56_2e1dfb41",
+        "filename": "system/gd/hal/hci_hal_host_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-13T04:48:17Z",
+      "side": 1,
+      "message": "Actually these new handlers removal should not be guarded as they are just created and cleared (if flag is disabled) without having any affect on the ongoing implementation because Handlers are created from thread instance if flag is disabled. Once the flag is enabled, they actually are registered with each Module and then `StopAll()` will not be managing these and will be cleared here.\nHence, these calls should not be guarded by the flag.",
+      "parentUuid": "d9bff47b_6b56f27b",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 160,
+        "endChar": 20
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f0168d_4b9be0c2",
+        "filename": "system/gd/hal/hci_hal_host_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-13T04:48:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c38155ac_c9015113",
       "range": {
         "startLine": 160,
         "startChar": 4,
@@ -229,6 +301,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06bf9eeb_73ccd2bf",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-13T04:48:17Z",
+      "side": 1,
+      "message": "Actually this is added by adhering to our decision that the Handler instance should be cleared where it is created. Since the Handler instance is cleared in the `TestModuleRegistry` (because Thread instance used to create Handler is also created in the same class), so clearing the Handler instance in the same class\u0027s clearance call makes more sense.\nIf we clear it outside (in the caller of `StopAll()`) that will cause confusion.\nOn the other hand, the reason of clearing Handler* before `ModuleRegistry::StopAll()` in other instances was that Handler was created in those scope and was no longer a `ModuleRegistry` responsibility.",
+      "parentUuid": "4e403fc9_16f559ab",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 36
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f03c2b98_43972237",
@@ -280,6 +376,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "479f1243_3e55dc43",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-13T04:48:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f03c2b98_43972237",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 60
+      },
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbb9b41f_fa9ec393",
@@ -327,6 +447,30 @@
           ]
         }
       ],
+      "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cac7be9_0f8b98f9",
+        "filename": "system/gd/module_unittest.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-13T04:48:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbb9b41f_fa9ec393",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 20
+      },
       "revId": "d61057a853ff66283b64646b9a2bfbe0b71800bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
