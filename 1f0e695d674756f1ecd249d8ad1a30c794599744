@@ -74,6 +74,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "983d0fa7_44bf5beb",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-13T18:43:25Z",
+      "side": 1,
+      "message": "This change might be outside the scope of this CL.\nWhat is the intent here ?",
+      "range": {
+        "startLine": 683,
+        "startChar": 41,
+        "endLine": 683,
+        "endChar": 61
+      },
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3651e55_130f83a6",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 36
@@ -133,6 +156,108 @@
         "endLine": 605,
         "endChar": 45
       },
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab0455aa_386a6220",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-13T18:43:25Z",
+      "side": 1,
+      "message": "You should move this outside the transport check, it does not hurt to reset it every time",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "baaefda6_9f355797",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_utils.cc",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 103,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/l2cap/l2c_utils.cc",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "      p_lcb-\u003eis_datalen_set_by_privileged_client \u003d false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_utils.cc",
+              "range": {
+                "startLine": 216,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "    p_lcb-\u003eis_datalen_set_by_privileged_client \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c332a3_7e09ad93",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-13T18:43:25Z",
+      "side": 1,
+      "message": "No need to clear it here when the context is reset in l2cu_allocate_lcb",
+      "range": {
+        "startLine": 216,
+        "startChar": 11,
+        "endLine": 216,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "530346ef_5fb7bca3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_utils.cc",
+              "range": {
+                "startLine": 216,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
       "revId": "1f0e695d674756f1ecd249d8ad1a30c794599744",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
