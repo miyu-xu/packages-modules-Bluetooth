@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec0388d_9c1a3198",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-13T02:20:52Z",
+      "side": 1,
+      "message": "Read remote extended features capability is optional as per BT spec. We dont want to start security procedure depending on the completion of an optional feature.",
+      "fixSuggestions": [
+        {
+          "fixId": "2ee0c6fe_237995ba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/acl/btm_acl.cc",
+              "range": {
+                "startLine": 842,
+                "startChar": 0,
+                "endLine": 844,
+                "endChar": 0
+              },
+              "replacement": "  if (p_dev_rec-\u003esec_rec.sec_flags \u0026 BTM_SEC_NAME_KNOWN \u0026\u0026 !p_dev_rec-\u003eis_originator) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a391af1b654c2278bc57775a654a463eb9b87b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
