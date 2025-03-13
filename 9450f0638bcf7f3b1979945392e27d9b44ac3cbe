@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b2c69b7_88afea07",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1352,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T11:39:22Z",
+      "side": 1,
+      "message": "This is to make sure that if the device is disconnected, the flag is cleared. If that is not done, then we might fetch incorrect value of the flag later.",
+      "parentUuid": "166607a8_32784747",
+      "range": {
+        "startLine": 1352,
+        "startChar": 9,
+        "endLine": 1352,
+        "endChar": 27
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8370fc22_b0d457a2",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2025-03-10T23:49:55Z",
       "side": 1,
       "message": "I am not sure why this additional check is necessary, can you please elaborate?",
+      "range": {
+        "startLine": 1989,
+        "startChar": 30,
+        "endLine": 1989,
+        "endChar": 48
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eec68ce7_f518612d",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1989,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T11:39:22Z",
+      "side": 1,
+      "message": "Agreed, removed this additional check, it was not necessary",
+      "parentUuid": "8370fc22_b0d457a2",
       "range": {
         "startLine": 1989,
         "startChar": 30,
@@ -60,6 +108,30 @@
       "writtenOn": "2025-03-10T23:49:55Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 2539,
+        "startChar": 0,
+        "endLine": 2539,
+        "endChar": 110
+      },
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d17b3b7_200f5bd8",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2539,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T11:39:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0c0aba0_429f786c",
       "range": {
         "startLine": 2539,
         "startChar": 0,
@@ -107,6 +179,30 @@
           ]
         }
       ],
+      "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05d19dbb_673395b7",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-13T11:39:22Z",
+      "side": 1,
+      "message": "Changed the variable name",
+      "parentUuid": "4d8b51bd_e5e4e45e",
+      "range": {
+        "startLine": 529,
+        "startChar": 7,
+        "endLine": 529,
+        "endChar": 25
+      },
       "revId": "9450f0638bcf7f3b1979945392e27d9b44ac3cbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
