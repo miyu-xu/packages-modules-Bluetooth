@@ -155,6 +155,9 @@ using bluetooth::le_audio::utils::GetAudioContextsFromSourceMetadata;
 
 using namespace bluetooth;
 
+/* Macros */
+#define LEA_UPDATE_RELAX_CON_INTVAL_TIMEOUT_MS 15000
+
 /* Enums */
 enum class AudioReconfigurationResult {
   RECONFIGURATION_NEEDED = 0x00,
@@ -2588,6 +2591,25 @@ public:
       leAudioDevice->SetConnectionState(DeviceConnectState::CONNECTED_BY_USER_GETTING_READY);
     }
 
+    if (com::android::bluetooth::flags::leaudio_use_aggressive_para_after_service_discovery()) {
+      log::info("0313-1, {}, lock conn params for connection/streaming and set timer to unlock",
+         leAudioDevice->address_);
+      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(leAudioDevice->address_, true);
+      alarm_set_on_mloop(
+        leAudioDevice->update_relax_con_intval_timer,
+        LEA_UPDATE_RELAX_CON_INTVAL_TIMEOUT_MS,
+        [](void* data) {
+            LeAudioDevice *leaDev = (LeAudioDevice *)data;
+            if (leaDev != nullptr) {
+              log::info("address {}, update_relax_con_intval_timer timeout",
+                  leaDev->address_);
+              stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
+                      leaDev->address_, false);
+            }
+        },
+        leAudioDevice);
+    }
+
     /* Check if the device is in allow list and update the flag */
     leAudioDevice->UpdateDeviceAllowlistFlag();
     if (BTM_SecIsLeSecurityPending(address)) {
@@ -3707,8 +3729,10 @@ public:
     log::debug("{},  {}", leAudioDevice->address_,
                bluetooth::common::ToString(leAudioDevice->GetConnectionState()));
 
-    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
-            leAudioDevice->address_, false);
+    if (!com::android::bluetooth::flags::leaudio_use_aggressive_para_after_service_discovery()) {
+      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(
+              leAudioDevice->address_, false);
+    }
 
     if (leAudioDevice->GetConnectionState() ==
                 DeviceConnectState::CONNECTED_BY_USER_GETTING_READY &&
