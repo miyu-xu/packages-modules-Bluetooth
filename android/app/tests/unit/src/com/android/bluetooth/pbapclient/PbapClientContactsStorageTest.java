@@ -36,6 +36,9 @@ import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.os.RemoteException;
+import android.platform.test.annotations.DisableFlags;
+import android.platform.test.annotations.EnableFlags;
+import android.platform.test.flag.junit.SetFlagsRule;
 import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.test.mock.MockContentResolver;
@@ -45,6 +48,8 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.TestUtils;
+import com.android.bluetooth.flags.Flags;
 import com.android.vcard.VCardConfig;
 import com.android.vcard.VCardConstants;
 import com.android.vcard.VCardEntry;
@@ -70,12 +75,14 @@ import java.util.List;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class PbapClientContactsStorageTest {
-    @Rule public final MockitoRule mMockitoRule = new MockitoRule();
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+    @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     private static final String ACCOUNT_TYPE = "com.android.bluetooth.pbapclient.account";
 
     private static final int TEST_CONTACTS_SIZE = 200;
     private static final int DATA_PER_CONTACT = 1;
+    private static final int DATA_PER_CONTACT_WITH_CACHING = 2;
 
     private BluetoothAdapter mAdapter = null;
 
@@ -262,6 +269,7 @@ public class PbapClientContactsStorageTest {
     // Insert contacts
 
     @Test
+    @DisableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
     public void testInsertFavorites_validFavoritesList_contactsInserted()
             throws RemoteException, OperationApplicationException, NumberFormatException {
         testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
@@ -278,7 +286,44 @@ public class PbapClientContactsStorageTest {
     }
 
     @Test
-    public void testInsertLocalContacts()
+    @EnableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
+    public void testInsertFavorites_withCaching_validFavoritesList_contactsInserted()
+            throws RemoteException, OperationApplicationException, NumberFormatException {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(mStorage.insertFavorites(account, getMockContacts(account, TEST_CONTACTS_SIZE)))
+                .isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(TEST_CONTACTS_SIZE);
+        verifyDbRawContacts(TEST_CONTACTS_SIZE);
+        verifyDbData(TEST_CONTACTS_SIZE * DATA_PER_CONTACT_WITH_CACHING);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    @DisableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
+    public void testInsertLocalContacts_contactsInserted()
+            throws RemoteException, OperationApplicationException, NumberFormatException {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(mStorage.insertFavorites(account, getMockContacts(account, TEST_CONTACTS_SIZE)))
+                .isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(TEST_CONTACTS_SIZE);
+        verifyDbRawContacts(TEST_CONTACTS_SIZE);
+        verifyDbData(TEST_CONTACTS_SIZE * DATA_PER_CONTACT_WITH_CACHING);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    @DisableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
+    public void testInsertLocalContacts_contactsInserted()
             throws RemoteException, OperationApplicationException, NumberFormatException {
         testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
         BluetoothDevice device = getTestDevice(1);
@@ -295,6 +340,47 @@ public class PbapClientContactsStorageTest {
     }
 
     @Test
+    @EnableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
+    public void testInsertLocalContacts_withCaching_contactsInserted()
+            throws RemoteException, OperationApplicationException, NumberFormatException {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(
+                        mStorage.insertLocalContacts(
+                                account, getMockContacts(account, TEST_CONTACTS_SIZE)))
+                .isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(0);
+        verifyDbRawContacts(TEST_CONTACTS_SIZE);
+        verifyDbData(TEST_CONTACTS_SIZE * DATA_PER_CONTACT_WITH_CACHING);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    @DisableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
+    public void testInsertSimContacts()
+            throws RemoteException, OperationApplicationException, NumberFormatException {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(
+                        mStorage.insertLocalContacts(
+                                account, getMockContacts(account, TEST_CONTACTS_SIZE)))
+                .isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(0);
+        verifyDbRawContacts(TEST_CONTACTS_SIZE);
+        verifyDbData(TEST_CONTACTS_SIZE * DATA_PER_CONTACT_WITH_CACHING);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    @DisableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
     public void testInsertSimContacts()
             throws RemoteException, OperationApplicationException, NumberFormatException {
         testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
@@ -308,6 +394,26 @@ public class PbapClientContactsStorageTest {
         verifyDbFavorites(0);
         verifyDbRawContacts(TEST_CONTACTS_SIZE);
         verifyDbData(TEST_CONTACTS_SIZE * DATA_PER_CONTACT);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    @EnableFlags(Flags.FLAG_PBAP_CLIENT_CONTACTS_CACHING)
+    public void testInsertSimContacts_withCaching_()
+            throws RemoteException, OperationApplicationException, NumberFormatException {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(
+                        mStorage.insertSimContacts(
+                                account, getMockContacts(account, TEST_CONTACTS_SIZE)))
+                .isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(0);
+        verifyDbRawContacts(TEST_CONTACTS_SIZE);
+        verifyDbData(TEST_CONTACTS_SIZE * DATA_PER_CONTACT_WITH_CACHING);
         verifyDbCallHistory(0);
     }
 
@@ -398,6 +504,61 @@ public class PbapClientContactsStorageTest {
         verifyDbCallHistory(0);
     }
 
+    @Test
+    public void testRemoveFavorites_favoritesRemoved() {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        addFakeAccount(device.getAddress());
+        addFakeContacts(device.getAddress(), PbapPhonebook.FAVORITES_PATH, TEST_CONTACTS_SIZE);
+
+        assertThat(mStorage.removeFavorites(account)).isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(0);
+        verifyDbRawContacts(0);
+        verifyDbData(0);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    public void testRemoveLocalContacts_localContactsRemoved() {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        addFakeAccount(device.getAddress());
+        addFakeContacts(
+                device.getAddress(), PbapPhonebook.LOCAL_PHONEBOOK_PATH, TEST_CONTACTS_SIZE);
+
+        assertThat(mStorage.removeLocalContacts(account)).isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(0);
+        verifyDbRawContacts(0);
+        verifyDbData(0);
+        verifyDbCallHistory(0);
+    }
+
+    @Test
+    public void testRemoveSimContacts_simContactsRemoved() {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        addFakeAccount(device.getAddress());
+        addFakeContacts(device.getAddress(), PbapPhonebook.SIM_PHONEBOOK_PATH, TEST_CONTACTS_SIZE);
+
+        assertThat(mStorage.removeSimContacts(account)).isTrue();
+        verifyDbAccounts(1);
+        verifyDbFavorites(0);
+        verifyDbRawContacts(0);
+        verifyDbData(0);
+        verifyDbCallHistory(0);
+    }
+
     // Remove Call History
 
     @Test
@@ -456,11 +617,41 @@ public class PbapClientContactsStorageTest {
     @Test
     public void testRemoveAllContacts_accountNull_removeFails() {
         testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
-        BluetoothDevice device = getTestDevice(1);
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
         Account account = mStorage.getStorageAccountForDevice(device);
         mStorage.addAccount(account);
 
-        assertThat(mStorage.removeAllContacts(null)).isFalse();
+        assertThat(mStorage.removeSimContacts(null)).isFalse();
+    }
+
+    @Test
+    public void testRemoveFavorites_accountNull_removeFails() {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(mStorage.removeFavorites(null)).isFalse();
+    }
+
+    @Test
+    public void testRemoveLocalContacts_accountNull_removeFails() {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(mStorage.removeLocalContacts(null)).isFalse();
+    }
+
+    @Test
+    public void testRemoveSimContacts_accountNull_removeFails() {
+        testStartStorage_withoutExistingAccounts_storageReadyWithNoAccounts();
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 1);
+        Account account = mStorage.getStorageAccountForDevice(device);
+        mStorage.addAccount(account);
+
+        assertThat(mStorage.removeSimContacts(null)).isFalse();
     }
 
     // call history error cases
