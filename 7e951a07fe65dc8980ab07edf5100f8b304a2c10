@@ -16,6 +16,24 @@
       "message": "How about just \"leaudio_use_aggressive_params\", wether it\u0027s after service discovery, or immediately after connection is implementation detail.",
       "revId": "7e951a07fe65dc8980ab07edf5100f8b304a2c10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f43e88ee_8eea8c47",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 8
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2025-03-14T11:26:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "653ed017_82fbfced",
+      "revId": "7e951a07fe65dc8980ab07edf5100f8b304a2c10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
