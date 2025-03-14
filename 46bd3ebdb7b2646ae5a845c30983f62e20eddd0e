@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4755811_9756b6f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-03-14T09:52:52Z",
+      "side": 1,
+      "message": "Please add this to the commit message:\n```\nBug: 403089483\nFlag: Exempt trivial\nTest: m com.android.bt\n```\nBefore the change-id and run presubmit.",
+      "revId": "46bd3ebdb7b2646ae5a845c30983f62e20eddd0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
