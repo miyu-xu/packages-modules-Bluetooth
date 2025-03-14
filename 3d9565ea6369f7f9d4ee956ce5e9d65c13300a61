@@ -253,6 +253,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef639467_0c9409fd",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2025-03-14T13:33:27Z",
+      "side": 1,
+      "message": "\u003e We can revise it uniformly, and now keep it consistent with the other alarm_t in this class.",
+      "parentUuid": "7d283f65_272c9f43",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 9
+      },
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2fbc08c_28898fdd",
