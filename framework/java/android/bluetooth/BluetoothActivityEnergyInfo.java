@@ -139,9 +139,12 @@ public final class BluetoothActivityEnergyInfo implements Parcelable {
     }
 
     /**
-     * @return the Bluetooth stack state associated with the energy info.
+     * Get the Bluetooth stack state associated with the energy info.
+     *
+     * @return one of {@link #BluetoothStackState} states
      */
-    public @BluetoothStackState int getBluetoothStackState() {
+    @BluetoothStackState
+    public int getBluetoothStackState() {
         return mBluetoothStackState;
     }
 
