@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de2982a3_fc20b90f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-14T04:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ccc61ec_327ed99f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdb47529_71a0702e",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8cccecc7_43c165d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-14T04:03:10Z",
+      "side": 1,
+      "message": "Lets first revert the old CL, then will rebase and update this CL.",
+      "parentUuid": "fdb47529_71a0702e",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "185ceded_141ddb4f",
         "filename": "system/main/shim/stack.cc",
         "patchSetId": 11
@@ -60,6 +108,30 @@
       "writtenOn": "2025-03-13T18:35:28Z",
       "side": 1,
       "message": "these 3 modules should use the `stack_handler_` as well\n\n```\nif (com::android::bluetooth::flags::same_handler_for_all_modules()) {\n    pimpl_-\u003ecounter_metrics_ \u003d new metrics::CounterMetrics(stack_handler_);\n    pimpl_-\u003estorage_ \u003d new storage::StorageModule(stack_handler_);\n    pimpl_-\u003esnoop_logger_ \u003d new hal::SnoopLogger(stack_handler_);\n} else {\n    pimpl_-\u003ecounter_metrics_ \u003d new metrics::CounterMetrics(new Handler(stack_thread_));\n    pimpl_-\u003estorage_ \u003d new storage::StorageModule(new Handler(stack_thread_));\n    pimpl_-\u003esnoop_logger_ \u003d new hal::SnoopLogger(new Handler(stack_thread_));\n}\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 77
+      },
+      "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f6024c4_b2e5c462",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-14T04:03:10Z",
+      "side": 1,
+      "message": "Sure, as discussed this was handled by Henri in [ag/32312459](ag/32312459).",
+      "parentUuid": "185ceded_141ddb4f",
       "range": {
         "startLine": 92,
         "startChar": 0,
@@ -107,6 +179,30 @@
           ]
         }
       ],
+      "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e60b38_f96a2fc3",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3788217
+      },
+      "writtenOn": "2025-03-14T04:03:10Z",
+      "side": 1,
+      "message": "`WaitUntilStopped()` checks were already there in other places, we just added it here for consistency and its also good to have.\nIts not related to the flag though, but yes we can guard it to be extra safe.",
+      "parentUuid": "3155fb88_cfc34d9a",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 67
+      },
       "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
