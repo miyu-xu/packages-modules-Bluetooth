@@ -205,6 +205,30 @@
       },
       "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d1f4aea_5e07a9eb",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2025-03-14T05:49:13Z",
+      "side": 1,
+      "message": "Let\u0027s still guard it or otherwise land it in a separate CL so that it is easy to revert if it creates trouble.",
+      "parentUuid": "92e60b38_f96a2fc3",
+      "range": {
+        "startLine": 173,
+        "startChar": 2,
+        "endLine": 173,
+        "endChar": 67
+      },
+      "revId": "f7a0d0c13550cd6664609ff109be5b64c06c0b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
