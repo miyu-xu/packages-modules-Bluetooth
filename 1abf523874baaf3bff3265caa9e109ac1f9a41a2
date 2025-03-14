@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6530b4ae_d559ccfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-03-14T07:40:50Z",
+      "side": 1,
+      "message": "I\u0027ve commented on b/403446184#comment4 regarding my vote.",
+      "revId": "1abf523874baaf3bff3265caa9e109ac1f9a41a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
