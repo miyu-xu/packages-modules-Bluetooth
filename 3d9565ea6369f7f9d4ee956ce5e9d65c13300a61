@@ -108,6 +108,30 @@
       ],
       "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e669329_c58d3725",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2025-03-14T08:14:51Z",
+      "side": 1,
+      "message": "During my testing, I found that when using aggressive initial parameters, L2CA_UpdateBleConnParams may be called by L2CA_SetEcosystemBaseInterval() also with the aggressive parameter.\nIf reset \u0027L2C_BLE_AGGRESSIVE_INITIAL_PARAM\u0027 here, when calling L2CA_LockBleConnParamsForProfileConnection()\n to unlock the parameters, it will not update to the relaxed parameters for the flag is reset.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/l2cap/l2c_ble_conn_params.cc;l\u003d299\n\nSo I add the condition \u0027max_int \u003e LeConnectionParameters::GetMaxConnIntervalAggressive()\u0027.\nIf max_int \u003c\u003d LeConnectionParameters::GetMaxConnIntervalAggressive(), that means, this calling is also use the aggressive parameters. we shouldn\u0027t reset the \u0027L2C_BLE_AGGRESSIVE_INITIAL_PARAM\u0027 flag.",
+      "parentUuid": "b2fbc08c_28898fdd",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 71
+      },
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
