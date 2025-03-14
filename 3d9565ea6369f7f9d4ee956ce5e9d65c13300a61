@@ -132,6 +132,30 @@
       },
       "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02ee4b0e_b03bddf5",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-14T08:40:11Z",
+      "side": 1,
+      "message": "`L2CA_LockBleConnParamsForProfileConnection(false)` is used for going back to the requested conn. param values. Therefore if `L2CA_UpdateBleConnParams` is called then the values should be the ones when unlock happens.\n\nHow about calling `L2CA_UpdateBleConnParams` with the relaxed value at some point? That unlock will naturally change the param go back to relaxed mode.",
+      "parentUuid": "0e669329_c58d3725",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 71
+      },
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
