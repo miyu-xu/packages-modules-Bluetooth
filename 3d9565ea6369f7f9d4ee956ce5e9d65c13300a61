@@ -20,6 +20,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67199d5a_7e32c1d4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2596,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-14T10:47:38Z",
+      "side": 1,
+      "message": "or",
+      "range": {
+        "startLine": 2596,
+        "startChar": 39,
+        "endLine": 2596,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ae53be2d_e668e980",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 2596,
+                "startChar": 0,
+                "endLine": 2597,
+                "endChar": 0
+              },
+              "replacement": "    // Unlock when ASE is in streaming or timeout to unlock the ble connection parameters\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de32cf98_b12a52fa",
         "filename": "system/bta/le_audio/devices.h",
         "patchSetId": 8
@@ -61,6 +102,77 @@
                 "endChar": 0
               },
               "replacement": "        set_relaxed_conn_interval_timer(alarm_new(\"set_relaxed_conn_interval_timer\")),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "426c9ba3_d3c52feb",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-14T10:47:38Z",
+      "side": 1,
+      "message": "NIT: consider using unique_ptr and make_unique instead of raw pointer.",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 117,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6debb784_d23da008",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.h",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_ptr\u003calarm_t\u003e link_quality_timer;\n"
+            },
+            {
+              "path": "system/bta/le_audio/devices.h",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 118,
+                "endChar": 0
+              },
+              "replacement": "  std::unique_ptr\u003calarm_t\u003e update_relax_con_intval_timer;\n"
+            },
+            {
+              "path": "system/bta/le_audio/devices.h",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/le_audio/devices.h",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": ""
             }
           ]
         }
