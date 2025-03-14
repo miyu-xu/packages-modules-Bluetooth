@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f30fbd6_76afa623",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-14T08:03:15Z",
+      "side": 1,
+      "message": "LE audio state machine side would better be reviewed by Jakub",
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de32cf98_b12a52fa",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-14T08:03:15Z",
+      "side": 1,
+      "message": "minor) update_to_relaxed_conn_interval_timer?",
+      "range": {
+        "startLine": 117,
+        "startChar": 11,
+        "endLine": 117,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5da9bb40_cddd2cd1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.h",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 118,
+                "endChar": 0
+              },
+              "replacement": "  alarm_t* set_relaxed_conn_interval_timer;\n"
+            },
+            {
+              "path": "system/bta/le_audio/devices.h",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": "        set_relaxed_conn_interval_timer(alarm_new(\"set_relaxed_conn_interval_timer\")),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2fbc08c_28898fdd",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-14T08:03:15Z",
+      "side": 1,
+      "message": "I could not understand this logic. Why the flag should not be reset?",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c9e8c52_1836df48",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble_conn_params.cc",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "  // when using aggressive initial parameters, this function may be called by\n  // L2CA_SetEcosystemBaseInterval() with aggressive parameter. In this case, the\n  // L2C_BLE_AGGRESSIVE_INITIAL_PARAM cannot be reset.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3d9565ea6369f7f9d4ee956ce5e9d65c13300a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
