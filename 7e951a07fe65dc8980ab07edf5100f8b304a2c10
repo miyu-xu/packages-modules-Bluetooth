@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "653ed017_82fbfced",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 8
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-03-14T10:48:40Z",
+      "side": 1,
+      "message": "How about just \"leaudio_use_aggressive_params\", wether it\u0027s after service discovery, or immediately after connection is implementation detail.",
+      "revId": "7e951a07fe65dc8980ab07edf5100f8b304a2c10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
