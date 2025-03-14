@@ -16,6 +16,23 @@
       "message": "More info on the gerrit:\nIssue root cause:\nCIG remove request was sent before CIS were actually removed leading to command disallowed. Then CIG remained created and it led to Create CIG not getting called during next stream start after device re-pair/connect. And this caused No CIS handles to be there for CIS create request leading to crash.",
       "revId": "50b228df414a8d0cbbf622b94896eed76d7d5846",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1ee222e_73ccf2a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-03-14T16:04:17Z",
+      "side": 1,
+      "message": "@rlukasz@google.com has this been handled now?",
+      "revId": "50b228df414a8d0cbbf622b94896eed76d7d5846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
