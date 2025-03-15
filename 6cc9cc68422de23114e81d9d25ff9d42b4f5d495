@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a290ef3d_a3410e3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-03-15T04:04:02Z",
+      "side": 1,
+      "message": "Misleading title. This is not a HID change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d81b58b_260f1777",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -14,6 +37,23 @@
       "writtenOn": "2025-03-14T21:48:36Z",
       "side": 1,
       "message": "Shouldn\u0027t this be an IOP fix so we don\u0027t affect all other devices?",
+      "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d00b5879_fa0be184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-03-15T04:04:02Z",
+      "side": 1,
+      "message": "I\u0027m removing myself from the reviewers list since it\u0027s not a HID change.",
       "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
