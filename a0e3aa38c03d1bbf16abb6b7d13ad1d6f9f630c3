@@ -34,6 +34,24 @@
       "parentUuid": "1298188b_71508d2e",
       "revId": "a0e3aa38c03d1bbf16abb6b7d13ad1d6f9f630c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45203e7a_24be2dba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-15T10:12:44Z",
+      "side": 1,
+      "message": "Hi @eruffieux@google.com,\n\nI see that Presubmit has passed, can you please provide approvals?",
+      "parentUuid": "788fdebe_ab531ae4",
+      "revId": "a0e3aa38c03d1bbf16abb6b7d13ad1d6f9f630c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
