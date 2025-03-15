@@ -109,6 +109,24 @@
       ],
       "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d73b5e_efd2a106",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1975570
+      },
+      "writtenOn": "2025-03-15T06:46:51Z",
+      "side": 1,
+      "message": "Hi Barry,\nThanks for your review.\nIn CTS, the vendorCapabilitiesVersion is 0, so getBqrCommonLength(vendorCapabilitiesVersion) will still return the common length as BqrCommon.BQR_COMMON_LEN. With my patch in the CTS test, vsPartOffset remains BqrCommon.BQR_COMMON_LEN. From my understanding, this change will not break the CST test. Before uploading this change, I executed the BQR CTS cases, and all of them passed.\n\nCould you please share your proposal to address the vsPartOffset issue? Are you suggesting that we should append zeros in the bqr_delivery_event of btif_bqr.cc to ensure that the length of the BQR common part is always the same as BqrCommon.BQR_COMMON_LEN, regardless of whether the BQR report from the BT controller is BQRV4, V5, or V6?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_bqr.cc;l\u003d1009?q\u003dbqr_delivery_event\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain:packages%2Fmodules%2FBluetooth%2F",
+      "parentUuid": "06158c12_f45b5db2",
+      "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
