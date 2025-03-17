@@ -16,6 +16,23 @@
       "message": "Hi AOSP nice guys,\nI want to fix some typo in log.\nThank you all for reviewing my code.",
       "revId": "a9b4669c09db8145772d7546501af18c09cf3b13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21ae9db6_e6835601",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1951141
+      },
+      "writtenOn": "2025-03-17T02:33:46Z",
+      "side": 1,
+      "message": "The first-party declaration warning is from existing code that was not modified in this change. Can we proceed with merging?",
+      "revId": "a9b4669c09db8145772d7546501af18c09cf3b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
