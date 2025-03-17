@@ -2298,9 +2298,11 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event, void* p_data)
         }
 
         // Invoke the started handler only when initiator.
+        log::info("Peer should suspend {}", should_suspend ? "true" : "false");
         if (!com::android::bluetooth::flags::a2dp_ignore_started_when_responder() ||
             peer_.CheckFlags(BtifAvPeer::kFlagPendingStart)) {
-          if (btif_a2dp_on_started(peer_.PeerAddress(), &p_av->start, A2dpType::kSource)) {
+          if (!should_suspend &&
+                   btif_a2dp_on_started(peer_.PeerAddress(), &p_av->start, A2dpType::kSource)) {
             // Only clear pending flag after acknowledgement
             peer_.ClearFlags(BtifAvPeer::kFlagPendingStart);
           }
