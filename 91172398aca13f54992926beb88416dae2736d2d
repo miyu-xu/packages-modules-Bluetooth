@@ -114,6 +114,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5b9cff_76b93d03",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-17T17:36:25Z",
+      "side": 1,
+      "message": "Yes, so issue here happened when inside OnAudioResume, we found that audio_running flag is true. Since that flag is only getting used in hearing aid, this issue is seen only in hearing aid session and not other sessions like A2DP.\n\n\n  void OnAudioResume(const std::function\u003cvoid()\u003e\u0026 start_audio_ticks) {\n    log::info(\"\");\n    log::assert_that((bool)start_audio_ticks, \"start_audio_ticks is empty\");\n    // Issue happened here\n    if (audio_running) {\n      log::error(\"Unexpected Audio Resume\");\n    } else {\n      log::info(\"audio_running\u003d{}\", audio_running);\n    }",
+      "parentUuid": "94824efe_02155bd5",
+      "range": {
+        "startLine": 538,
+        "startChar": 18,
+        "endLine": 538,
+        "endChar": 29
+      },
+      "revId": "91172398aca13f54992926beb88416dae2736d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d18703f_73eed401",
