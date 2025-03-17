@@ -33,6 +33,24 @@
       "message": "The first-party declaration warning is from existing code that was not modified in this change. Can we proceed with merging?",
       "revId": "a9b4669c09db8145772d7546501af18c09cf3b13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ba07566_211ae960",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-17T08:15:10Z",
+      "side": 1,
+      "message": "Hi,\n\nThanks for the contribution.\nAlways a pleasure to have some new contribution in the code.",
+      "parentUuid": "4ea834f6_aac5c80b",
+      "revId": "a9b4669c09db8145772d7546501af18c09cf3b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
