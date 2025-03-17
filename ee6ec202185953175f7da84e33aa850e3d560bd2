@@ -70,6 +70,24 @@
       "parentUuid": "5db413bb_776b1627",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be412f6b_f8f99391",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-17T20:02:24Z",
+      "side": 1,
+      "message": "Ah sorry, these two were disabled because of failures in the test automation; I am not able to confirm if they pass with this change. If you could run them again that would be great 😊\n\n- A2DP/SRC/SET/BV-04-I\n- A2DP/SRC/SET/BV-06-I",
+      "parentUuid": "b9e7d5ab_ae960987",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
