@@ -134,6 +134,36 @@ static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilitySbc(const tA2DP_SBC_CIE* p_ca
                                                        const uint8_t* p_codec_info,
                                                        bool is_capability);
 
+// Adjusts the bitpool values in case we receive invalid bitpool values
+// from remote devices
+static void A2DP_AdjustBitpool(tA2DP_SBC_CIE* p_ie) {
+  // minbitpool < 2, then set minbitpool = 2
+  if(p_ie->min_bitpool < A2DP_SBC_IE_MIN_BITPOOL) {
+    log::verbose("min_bitpool value adjusted from: {} to {}",
+                    p_ie->min_bitpool, A2DP_SBC_IE_MIN_BITPOOL);
+    p_ie->min_bitpool = A2DP_SBC_IE_MIN_BITPOOL;
+  }
+  // minbitpool > 250, then set minbitpool = 250
+  if(p_ie->min_bitpool > A2DP_SBC_IE_MAX_BITPOOL) {
+    log::verbose("min_bitpool value adjusted from: {} to {}",
+                    p_ie->min_bitpool, A2DP_SBC_IE_MAX_BITPOOL);
+    p_ie->min_bitpool = A2DP_SBC_IE_MAX_BITPOOL;
+  }
+  // maxbitpool > 250, then set maxbitpool = 250
+  if(p_ie->max_bitpool > A2DP_SBC_IE_MAX_BITPOOL) {
+    log::verbose("max_bitpool value adjusted from: {} to {}",
+                    p_ie->max_bitpool, A2DP_SBC_IE_MAX_BITPOOL);
+    p_ie->max_bitpool = A2DP_SBC_IE_MAX_BITPOOL;
+  }
+  // minbitpool > maxbitpool, then set maxbitpool = minbitpool
+  if(p_ie->min_bitpool > p_ie->max_bitpool) {
+    p_ie->max_bitpool = p_ie->min_bitpool;
+    log::verbose("min bitpool value received for SBC is more than DUT supported Max bitpool"
+                 "Clamping the max bitpool configuration further from {} to {}",
+                 p_ie->max_bitpool, p_ie->min_bitpool);
+  }
+}
+
 // Builds the SBC Media Codec Capabilities byte sequence beginning from the
 // LOSC octet. |media_type| is the media type |AVDT_MEDIA_TYPE_*|.
 // |p_ie| is a pointer to the SBC Codec Information Element information.
@@ -143,12 +173,20 @@ static bool A2DP_BuildInfoSbc(uint8_t media_type, const tA2DP_SBC_CIE* p_ie, uin
   if (p_ie == NULL || p_result == NULL || (p_ie->samp_freq & ~A2DP_SBC_IE_SAMP_FREQ_MSK) ||
       (p_ie->ch_mode & ~A2DP_SBC_IE_CH_MD_MSK) || (p_ie->block_len & ~A2DP_SBC_IE_BLOCKS_MSK) ||
       (p_ie->num_subbands & ~A2DP_SBC_IE_SUBBAND_MSK) ||
-      (p_ie->alloc_method & ~A2DP_SBC_IE_ALLOC_MD_MSK) || (p_ie->min_bitpool > p_ie->max_bitpool) ||
-      (p_ie->min_bitpool < A2DP_SBC_IE_MIN_BITPOOL) ||
-      (p_ie->min_bitpool > A2DP_SBC_IE_MAX_BITPOOL) ||
-      (p_ie->max_bitpool < A2DP_SBC_IE_MIN_BITPOOL) ||
-      (p_ie->max_bitpool > A2DP_SBC_IE_MAX_BITPOOL)) {
+      (p_ie->alloc_method & ~A2DP_SBC_IE_ALLOC_MD_MSK)) {
     /* if any unused bit is set */
+    return false;
+  }
+
+  A2DP_AdjustBitpool(p_ie);
+
+  if((p_ie->min_bitpool > p_ie->max_bitpool) ||
+            (p_ie->min_bitpool < A2DP_SBC_IE_MIN_BITPOOL) ||
+            (p_ie->min_bitpool > A2DP_SBC_IE_MAX_BITPOOL) ||
+            (p_ie->max_bitpool < A2DP_SBC_IE_MIN_BITPOOL) ||
+            (p_ie->max_bitpool > A2DP_SBC_IE_MAX_BITPOOL)) {
+    log::verbose("Invalid bitpool value min: {}, max: {}",
+                    p_ie->min_bitpool, p_ie->max_bitpool);
     return false;
   }
 
@@ -205,14 +243,8 @@ static tA2DP_STATUS A2DP_ParseInfoSbc(tA2DP_SBC_CIE* p_ie, const uint8_t* p_code
   p_codec_info++;
   p_ie->min_bitpool = *p_codec_info++;
   p_ie->max_bitpool = *p_codec_info++;
-  if (p_ie->min_bitpool < A2DP_SBC_IE_MIN_BITPOOL || p_ie->min_bitpool > A2DP_SBC_IE_MAX_BITPOOL) {
-    return A2DP_INVALID_MINIMUM_BITPOOL_VALUE;
-  }
 
-  if (p_ie->max_bitpool < A2DP_SBC_IE_MIN_BITPOOL || p_ie->max_bitpool > A2DP_SBC_IE_MAX_BITPOOL ||
-      p_ie->max_bitpool < p_ie->min_bitpool) {
-    return A2DP_INVALID_MAXIMUM_BITPOOL_VALUE;
-  }
+  A2DP_AdjustBitpool(p_ie);
 
   if (is_capability) {
     // NOTE: The checks here are very liberal. We should be using more
@@ -360,11 +392,13 @@ static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilitySbc(const tA2DP_SBC_CIE* p_ca
 
   /* min bitpool */
   if (cfg_cie.min_bitpool > p_cap->max_bitpool) {
+    log::verbose(" Unsupported min bitpool value");
     return A2DP_NOT_SUPPORTED_MINIMUM_BITPOOL_VALUE;
   }
 
   /* max bitpool */
   if (cfg_cie.max_bitpool < p_cap->min_bitpool) {
+    log::verbose(" Unsupported max bitpool value");
     return A2DP_NOT_SUPPORTED_MAXIMUM_BITPOOL_VALUE;
   }
 
@@ -1281,14 +1315,6 @@ tA2DP_STATUS A2dpCodecConfigSbcBase::setCodecConfig(const uint8_t* p_peer_codec_
   result_config_cie.max_bitpool = p_a2dp_sbc_caps->max_bitpool;
   if (result_config_cie.max_bitpool > peer_info_cie.max_bitpool) {
     result_config_cie.max_bitpool = peer_info_cie.max_bitpool;
-  }
-  if (result_config_cie.min_bitpool > result_config_cie.max_bitpool) {
-    log::error(
-            "cannot match min/max bitpool: local caps min/max = 0x{:x}/0x{:x} peer "
-            "info min/max = 0x{:x}/0x{:x}",
-            p_a2dp_sbc_caps->min_bitpool, p_a2dp_sbc_caps->max_bitpool, peer_info_cie.min_bitpool,
-            peer_info_cie.max_bitpool);
-    goto fail;
   }
 
   if (!A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, &result_config_cie, p_result_codec_config)) {
