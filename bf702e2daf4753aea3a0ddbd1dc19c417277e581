@@ -16,6 +16,24 @@
       "message": "NOTE: This should not merge until 25Q2",
       "revId": "bf702e2daf4753aea3a0ddbd1dc19c417277e581",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486bc6f1_2b107fd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2025-03-17T00:50:31Z",
+      "side": 1,
+      "message": "Why not merging before 25Q2? It actually must be merged, because 25Q1 flags should be cleaned up.",
+      "parentUuid": "33fa1638_5e4173a3",
+      "revId": "bf702e2daf4753aea3a0ddbd1dc19c417277e581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
