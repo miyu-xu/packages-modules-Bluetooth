@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899592e3_a67905ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:26:12Z",
+      "side": 1,
+      "message": "Test: mmm pacaktes/modules/Bluetooth\nFlag: Exempt, dat-to-day fix.",
+      "revId": "7400eedafee2265ec12bce90453f6cb0d6965188",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
