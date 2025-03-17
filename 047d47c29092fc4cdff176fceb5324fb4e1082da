@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b5e37c_94d1925c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:24:46Z",
+      "side": 1,
+      "message": "please remove spare empty lines.",
+      "revId": "047d47c29092fc4cdff176fceb5324fb4e1082da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27be4b43_38233987",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:24:46Z",
+      "side": 1,
+      "message": "Flag: Exempt, day-to-day fix.\nTest: mmm packages/modules/Bluetooth",
+      "revId": "047d47c29092fc4cdff176fceb5324fb4e1082da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a91eec30_e8cdcea3",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:24:46Z",
+      "side": 1,
+      "message": "nit: mConnectionState as this is used in all other StateMachines.",
+      "fixSuggestions": [
+        {
+          "fixId": "ce237d88_4d845b3e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "    private int mConnectionState \u003d BluetoothProfile.STATE_DISCONNECTED;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+              "range": {
+                "startLine": 121,
+                "startChar": 0,
+                "endLine": 122,
+                "endChar": 0
+              },
+              "replacement": "            mConnectionState \u003d BluetoothProfile.STATE_DISCONNECTED;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+              "range": {
+                "startLine": 248,
+                "startChar": 0,
+                "endLine": 249,
+                "endChar": 0
+              },
+              "replacement": "            mConnectionState \u003d BluetoothProfile.STATE_CONNECTING;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+              "range": {
+                "startLine": 348,
+                "startChar": 0,
+                "endLine": 349,
+                "endChar": 0
+              },
+              "replacement": "            mConnectionState \u003d BluetoothProfile.STATE_DISCONNECTING;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+              "range": {
+                "startLine": 467,
+                "startChar": 0,
+                "endLine": 468,
+                "endChar": 0
+              },
+              "replacement": "            mConnectionState \u003d BluetoothProfile.STATE_CONNECTED;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+              "range": {
+                "startLine": 548,
+                "startChar": 0,
+                "endLine": 549,
+                "endChar": 0
+              },
+              "replacement": "        return mConnectionState;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "047d47c29092fc4cdff176fceb5324fb4e1082da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
