@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f58668_69bbdb2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:51:02Z",
+      "side": 1,
+      "message": "Bug:\nTest:  -\u003e would it be possible to add unit test here/\nFlag: Exempt, day-to-day fix valid only when DualMode is enabled.",
+      "revId": "c3350d38e00766db76f68ee79662c337bc93f2b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a17d5613_fbe1b28f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1599,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:51:02Z",
+      "side": 1,
+      "message": "nit: please add `device` to the log",
+      "fixSuggestions": [
+        {
+          "fixId": "9126cb8f_361f7d48",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1599,
+                "startChar": 0,
+                "endLine": 1600,
+                "endChar": 0
+              },
+              "replacement": "                    Log.w(TAG, \"connectAudio: rejected SCO for device\u003d\" + device + \" due to LE being\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c3350d38e00766db76f68ee79662c337bc93f2b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
