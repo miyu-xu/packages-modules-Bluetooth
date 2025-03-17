@@ -22,6 +22,30 @@
       },
       "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aac9aaa_148e86e3",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-17T08:54:20Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t get the ask..\nCan you please elaborate?",
+      "parentUuid": "3f79d04e_40119899",
+      "range": {
+        "startLine": 1015,
+        "startChar": 18,
+        "endLine": 1015,
+        "endChar": 21
+      },
+      "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
