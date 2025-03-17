@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b26fe81_d8631aab",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2985,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-03-17T02:07:04Z",
+      "side": 1,
+      "message": "Could you help understanding the logic? I\u0027m not familiar with LE audio state machine flow.\n\nWhy do we unlock the conn params here and below?\nI assume that when streaming, we are trying to use relaxed parameters. Is this right?\n\nAlso, what is the difference btw. `state \u003d\u003d streaming` vs. `target_state \u003d\u003d streaming`?",
+      "range": {
+        "startLine": 2979,
+        "startChar": 10,
+        "endLine": 2985,
+        "endChar": 11
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dd2f3967_243794de",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/state_machine.cc",
+              "range": {
+                "startLine": 2979,
+                "startChar": 0,
+                "endLine": 2979,
+                "endChar": 0
+              },
+              "replacement": "          /* If aggressive params are used, unlock the connection parameters\n           * for the device.\n           */\n"
+            },
+            {
+              "path": "system/bta/le_audio/state_machine.cc",
+              "range": {
+                "startLine": 2997,
+                "startChar": 0,
+                "endLine": 2997,
+                "endChar": 0
+              },
+              "replacement": "          /* If aggressive params are used, unlock the connection parameters\n           * for the device.\n           */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "479b2a130f4836846dd09f440ff4e259c8005435",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
