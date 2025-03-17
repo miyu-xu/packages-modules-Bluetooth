@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ed3832_ca503466",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T10:54:38Z",
+      "side": 1,
+      "message": "Bug:\nTest: would be nice to have unit tet here\nFlag: Exempt, day-to-day fix",
+      "revId": "dded54bd377d5ffec6a787938dac8e4f105da9e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
