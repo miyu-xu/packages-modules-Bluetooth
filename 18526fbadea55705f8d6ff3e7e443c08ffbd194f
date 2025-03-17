@@ -46,6 +46,30 @@
       },
       "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5691ec0d_a77ad230",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-17T11:50:58Z",
+      "side": 1,
+      "message": "Sorry, I thought this was internal contribution so my answer was very short.\n\n----\n\nThis code is not properly formatted.\n\nThere are automatic formatting commands that are run when following the contribution guide for Android.\n\nhttps://source.android.com/docs/setup/contribute/submit-patches#upload-to-gerrit\n\nPlease follow the instruction by running`repo upload`.\nThat will prompt you to run the formatter hooks",
+      "parentUuid": "1aac9aaa_148e86e3",
+      "range": {
+        "startLine": 1015,
+        "startChar": 18,
+        "endLine": 1015,
+        "endChar": 21
+      },
+      "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
