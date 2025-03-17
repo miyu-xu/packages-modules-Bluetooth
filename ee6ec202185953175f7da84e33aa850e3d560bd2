@@ -34,6 +34,24 @@
       "parentUuid": "6789fc5d_b242624d",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5db413bb_776b1627",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-17T18:09:53Z",
+      "side": 1,
+      "message": "I was hoping you could do it 😊\nThere three tests AVDTP/SRC/ACP/SIG/SMG/* are passing in the automated pts runs; A2DP/SRC/SET had been previously disabled however...",
+      "parentUuid": "68f0adfe_eec57bc7",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
