@@ -1674,8 +1674,6 @@ void bta_av_getcap_results(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
 
   cfg.num_codec = 1;
   cfg.num_protect = p_scb->peer_cap.num_protect;
-  memcpy(cfg.codec_info, p_scb->peer_cap.codec_info, AVDT_CODEC_SIZE);
-  memcpy(cfg.protect_info, p_scb->peer_cap.protect_info, AVDT_PROTECT_SIZE);
 
   log::verbose("peer {} bta_handle:0x{:x} num_codec:{} psc_mask=0x{:x}", p_scb->PeerAddress(),
                p_scb->hndl, p_scb->peer_cap.num_codec, p_scb->cfg.psc_mask);

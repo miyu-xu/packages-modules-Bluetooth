@@ -44,6 +44,7 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/l2cap_interface.h"
 #include "types/raw_address.h"
+#include "stack/include/a2dp_sbc_constants.h"
 
 using namespace bluetooth;
 
@@ -555,7 +556,6 @@ void avdt_scb_hdl_security_rsp(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
 void avdt_scb_hdl_setconfig_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
   log::verbose("p_scb->in_use={} p_avdt_scb={} scb_index={}", p_scb->in_use, std::format_ptr(p_scb),
                p_scb->stream_config.scb_index);
-
   if (p_scb->in_use) {
     log::error("configuration rejected because SEP is already in use");
     avdt_scb_rej_in_use(p_scb, p_data);
@@ -595,7 +595,6 @@ void avdt_scb_hdl_setconfig_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
   p_scb->in_use = true;
   p_scb->peer_seid = p_data->msg.config_cmd.int_seid;
   p_scb->req_cfg = *p_cfg;
-
   /* call app callback */
   /* handle of scb- which is same as sep handle of bta_av_cb.p_scb*/
   (*p_scb->stream_config.p_avdt_ctrl_cback)(
