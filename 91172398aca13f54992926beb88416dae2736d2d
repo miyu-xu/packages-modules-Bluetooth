@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "247059ec_57c831da",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-17T16:12:41Z",
+      "side": 1,
+      "message": "Our testing team confirmed that this issue is not seen with devices other than hearing aid. Which means they would have session other than hearing aid session.",
+      "parentUuid": "7fa359b9_aa328698",
+      "range": {
+        "startLine": 538,
+        "startChar": 18,
+        "endLine": 538,
+        "endChar": 29
+      },
+      "revId": "91172398aca13f54992926beb88416dae2736d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d18703f_73eed401",
