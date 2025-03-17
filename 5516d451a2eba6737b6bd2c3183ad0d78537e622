@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c11ee6_6a62eecc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T09:53:18Z",
+      "side": 1,
+      "message": "So it is Settings app which is having invalid group info when SET MEMBER is scanned?\n\nI\u0027m thinking that this will not really solve the race but this change does not hurt.",
+      "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98b085ab_912a9e2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T09:53:18Z",
+      "side": 1,
+      "message": "Please add \n\nTest: mmm packages/modules/Bluetooth\nFlag: Exempt, day-to-day fix",
+      "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c4ed4e_28de7be1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-17T09:53:18Z",
+      "side": 1,
+      "message": "Please rebase",
+      "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
