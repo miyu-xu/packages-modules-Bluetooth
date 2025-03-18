@@ -1,0 +1,195 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "795efc1d_190f590e",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-18T23:28:57Z",
+      "side": 1,
+      "message": "ConnectionCallbacks::OnConnectRequest above would call btm_sec_conn_req. Can you return true(if rejected in btm_sec_conn_req function), else false and have something like below? Then we can remove sending accept HCI command in btm_sec_conn_req.\nbool is_conn_rejected \u003d  client_handler_-\u003eCallOn(....);",
+      "fixSuggestions": [
+        {
+          "fixId": "20d3513f_c831b9cc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "  acl_connection(AddressWithType address_with_type, AclConnection::QueueDownEnd* queue_down_end, bool locally_initiated,\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "        assembler_(new acl_manager::assembler(address_with_type, queue_down_end, locally_initiated, handler)) {}\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 212,
+                "startChar": 0,
+                "endLine": 213,
+                "endChar": 0
+              },
+              "replacement": "             ConnectionManagementCallbacks* connection_management_callbacks, bool locally_initiated) {\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 216,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "                                       std::forward_as_tuple(remote_address, queue_end, locally_initiated, handler));\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 263,
+                "startChar": 0,
+                "endLine": 265,
+                "endChar": 0
+              },
+              "replacement": "    if (!client_handler_-\u003eCallOn(client_callbacks_, \u0026ConnectionCallbacks::OnConnectRequest, address,\n                                 cod)) {\n      auto reason \u003d RejectConnectionReason::LIMITED_RESOURCES;\n      this-\u003ereject_connection(RejectConnectionRequestBuilder::Create(address, reason));\n      return false;\n    }\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 360,
+                "startChar": 0,
+                "endLine": 361,
+                "endChar": 0
+              },
+              "replacement": "                            [this](uint16_t handle) { this-\u003econnections.invalidate(handle); }),\n                    initiator \u003d\u003d Initiator::LOCALLY_INITIATED);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68cd01cf_1183d715",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-18T23:28:57Z",
+      "side": 1,
+      "message": "if (!is_conn_rejected) {\n  this-\u003eaccept_connection(address);\n}",
+      "fixSuggestions": [
+        {
+          "fixId": "54d19dcc_0793c6f5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 275,
+                "startChar": 0,
+                "endLine": 275,
+                "endChar": 0
+              },
+              "replacement": "    if (!is_conn_rejected) {\n      this-\u003eaccept_connection(address);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a2be31a_5a09ef52",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-18T23:28:57Z",
+      "side": 1,
+      "message": "who calls this function if it is deleted in on_incoming_connection above?",
+      "range": {
+        "startLine": 720,
+        "startChar": 2,
+        "endLine": 720,
+        "endChar": 6
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c0a3b03_74087cf2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 43,
+                "endChar": 0
+              },
+              "replacement": "  acl_connection(AddressWithType address_with_type, AclConnection::QueueDownEnd* queue_end,\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "        assembler_(new acl_manager::assembler(address_with_type, queue_end, handler)) {}\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 352,
+                "startChar": 0,
+                "endLine": 353,
+                "endChar": 0
+              },
+              "replacement": "    auto queue_end \u003d queue-\u003eGetDownEnd();\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 358,
+                "startChar": 0,
+                "endLine": 359,
+                "endChar": 0
+              },
+              "replacement": "                    queue_end, handler_,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
