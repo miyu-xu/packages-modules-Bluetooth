@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8146f3a7_4233fa13",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T11:51:39Z",
+      "side": 1,
+      "message": "Yes its race condition in settings APP",
+      "parentUuid": "79c11ee6_6a62eecc",
+      "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98b085ab_912a9e2c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2025-03-17T09:53:18Z",
       "side": 1,
       "message": "Please add \n\nTest: mmm packages/modules/Bluetooth\nFlag: Exempt, day-to-day fix",
+      "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09994c4b_d4d0763c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T11:51:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98b085ab_912a9e2c",
       "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2025-03-17T09:53:18Z",
       "side": 1,
       "message": "Please rebase",
+      "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b5651d0_ae88a640",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T11:51:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2c4ed4e_28de7be1",
       "revId": "5516d451a2eba6737b6bd2c3183ad0d78537e622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
