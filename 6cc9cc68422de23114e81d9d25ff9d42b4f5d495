@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de54d997_b5408c4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T11:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a290ef3d_a3410e3a",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d81b58b_260f1777",
@@ -54,6 +78,24 @@
       "writtenOn": "2025-03-15T04:04:02Z",
       "side": 1,
       "message": "I\u0027m removing myself from the reviewers list since it\u0027s not a HID change.",
+      "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f90c2f4_ff8428aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T11:39:03Z",
+      "side": 1,
+      "message": "This fix applicable for all legacy HID devices",
+      "parentUuid": "9d81b58b_260f1777",
       "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
