@@ -178,6 +178,24 @@
       "parentUuid": "9c50ff3e_bc69c175",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "385e0d06_47c22a49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-18T16:27:36Z",
+      "side": 1,
+      "message": "Okay, can you please help with a couple of queries?\n1. So moving forward, changes won\u0027t be merged in main branch? The changes which we (as in Qualcomm) will upload, where will they get merged?\n2. And what about the fixes which you (as in Google) will upload? Will they reflect in main branch? This query is because we consume those changes through our LKG.",
+      "parentUuid": "ff9941e6_d41a8393",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
