@@ -106,6 +106,24 @@
       "parentUuid": "be412f6b_f8f99391",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc941bfd_4779eab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-18T12:00:30Z",
+      "side": 1,
+      "message": "I got it tested, these TCs are passed:\nA2DP/SRC/SET/BV-04-I\nA2DP/SRC/SET/BV-06-I",
+      "parentUuid": "eb16d2e0_bf5c7072",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
