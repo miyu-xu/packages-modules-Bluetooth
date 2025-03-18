@@ -44,6 +44,24 @@
       ],
       "revId": "dad4250de35b4144e44ad0f1ac4e31807fd57349",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d441a5_175eb4ba",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T10:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6a529c5_a1f42d62",
+      "revId": "dad4250de35b4144e44ad0f1ac4e31807fd57349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
