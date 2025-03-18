@@ -34,6 +34,24 @@
       ],
       "revId": "a391af1b654c2278bc57775a654a463eb9b87b42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9e37e7b_37b9b7dd",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-18T11:34:11Z",
+      "side": 1,
+      "message": "its valid check if name not known or originator we need to start security.\n\nSimilar change added in acl_process_supported_features to handle when Read remote extended features supported",
+      "parentUuid": "7ec0388d_9c1a3198",
+      "revId": "a391af1b654c2278bc57775a654a463eb9b87b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
