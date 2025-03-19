@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e30d0ace_03a7f422",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-19T19:06:11Z",
+      "side": 1,
+      "message": "Please cherry pick the change to git_main.",
+      "revId": "dfd3f2b86344f2db8005e476b66fb15173841060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4cebd5c_86b27cff",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-19T19:06:11Z",
+      "side": 1,
+      "message": "is_debug_build ?",
+      "range": {
+        "startLine": 1407,
+        "startChar": 7,
+        "endLine": 1407,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e91228ad_feeef759",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1407,
+                "startChar": 0,
+                "endLine": 1408,
+                "endChar": 0
+              },
+              "replacement": "  auto is_user_build \u003d (os::GetSystemProperty(kRoBuildType) \u003d\u003d \"user\");\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1409,
+                "startChar": 0,
+                "endLine": 1410,
+                "endChar": 0
+              },
+              "replacement": "  size_t btsnooz_max_memory_usage_bytes \u003d (is_user_build ? 256 : 512) * 1024;\n"
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1422,
+                "startChar": 0,
+                "endLine": 1424,
+                "endChar": 0
+              },
+              "replacement": "  auto is_user_build \u003d (os::GetSystemProperty(kRoBuildType) \u003d\u003d \"user\");\n  return !is_user_build \u0026\u0026 os::GetSystemPropertyBool(kBtSnoopLogPersists, false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dfd3f2b86344f2db8005e476b66fb15173841060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
