@@ -66,11 +66,12 @@ size_t GetL2capPduSize(packet::PacketView<packet::kLittleEndian> pdu) {
 }  // namespace
 
 struct assembler {
-  assembler(AddressWithType address_with_type, AclConnection::QueueDownEnd* down_end,
-            os::Handler* handler)
-      : address_with_type_(address_with_type), down_end_(down_end), handler_(handler) {}
+  assembler(AddressWithType address_with_type, AclConnection::QueueDownEnd* down_end, bool locally_initiated,
+		  os::Handler* handler)
+      : address_with_type_(address_with_type), down_end_(down_end), locally_initiated_(locally_initiated), handler_(handler) {}
   AddressWithType address_with_type_;
   AclConnection::QueueDownEnd* down_end_;
+  bool locally_initiated_;
   os::Handler* handler_;
   PacketViewForRecombination recombination_stage_{};
   std::shared_ptr<std::atomic_bool> enqueue_registered_ = std::make_shared<std::atomic_bool>(false);
