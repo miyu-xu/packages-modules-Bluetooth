@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abcd136e_11223348",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1101616
+      },
+      "writtenOn": "2025-03-19T21:04:32Z",
+      "side": 1,
+      "message": "Sure. See ag/32466580.",
+      "parentUuid": "e30d0ace_03a7f422",
+      "revId": "dfd3f2b86344f2db8005e476b66fb15173841060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4cebd5c_86b27cff",
@@ -75,6 +93,30 @@
           ]
         }
       ],
+      "revId": "dfd3f2b86344f2db8005e476b66fb15173841060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ad6ca2_7c72f70d",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1101616
+      },
+      "writtenOn": "2025-03-19T21:04:32Z",
+      "side": 1,
+      "message": "SG, updated in ag/32466580.",
+      "parentUuid": "c4cebd5c_86b27cff",
+      "range": {
+        "startLine": 1407,
+        "startChar": 7,
+        "endLine": 1407,
+        "endChar": 24
+      },
       "revId": "dfd3f2b86344f2db8005e476b66fb15173841060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
