@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f55eaa67_87b50f36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-03-19T17:33:48Z",
+      "side": 1,
+      "message": "Please provide information about all the devices which exhibit this issue.",
+      "parentUuid": "caa9c28b_6217b3e9",
+      "range": {
+        "startLine": 11,
+        "startChar": 23,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af33af0e_ece9609c",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 2
