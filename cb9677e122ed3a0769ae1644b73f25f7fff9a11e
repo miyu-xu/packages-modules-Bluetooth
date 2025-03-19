@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac6c1019_83d4fca6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-19T09:54:24Z",
+      "side": 1,
+      "message": "Issue seen with mutltiple devices not single remote. we can better go for generic fix",
+      "parentUuid": "b0452efe_dd61356f",
+      "range": {
+        "startLine": 11,
+        "startChar": 23,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af33af0e_ece9609c",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2025-03-19T00:49:18Z",
       "side": 1,
       "message": "Is there a common place(after Read remote features and extended features are completed) to add this logic of calling security procedure once instead of adding in two separate places?",
+      "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd955983_0f992787",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2507,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-19T09:54:24Z",
+      "side": 1,
+      "message": "NotifyAclFeaturesReadComplete looks to be common function. can we move secuirty statrt to NotifyAclFeaturesReadComplete function?",
+      "parentUuid": "af33af0e_ece9609c",
       "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
