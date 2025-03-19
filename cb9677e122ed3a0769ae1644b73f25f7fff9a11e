@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "caa9c28b_6217b3e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-19T10:56:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac6c1019_83d4fca6",
+      "range": {
+        "startLine": 11,
+        "startChar": 23,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af33af0e_ece9609c",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "NotifyAclFeaturesReadComplete looks to be common function. can we move secuirty statrt to NotifyAclFeaturesReadComplete function?",
       "parentUuid": "af33af0e_ece9609c",
+      "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33b77952_05b1d57f",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2507,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-03-19T10:56:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd955983_0f992787",
       "revId": "cb9677e122ed3a0769ae1644b73f25f7fff9a11e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
