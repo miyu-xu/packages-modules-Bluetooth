@@ -795,7 +795,7 @@ void HciLayer::ReadRemoteVersion(hci::ErrorCode hci_status, uint16_t handle, uin
 AclConnectionInterface* HciLayer::GetAclConnectionInterface(
         ContextualCallback<void(EventView)> event_handler,
         ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
-        ContextualCallback<void(Address, ClassOfDevice)> on_connection_request,
+        ContextualCallback<bool(Address, ClassOfDevice)> on_connection_request,
         ContextualCallback<void(hci::ErrorCode hci_status, uint16_t, uint8_t version,
                                 uint16_t manufacturer_name, uint16_t sub_version)>
                 on_read_remote_version) {

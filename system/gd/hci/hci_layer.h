@@ -101,7 +101,7 @@ public:
   virtual AclConnectionInterface* GetAclConnectionInterface(
           common::ContextualCallback<void(EventView)> event_handler,
           common::ContextualCallback<void(uint16_t, hci::ErrorCode)> on_disconnect,
-          common::ContextualCallback<void(Address, ClassOfDevice)> on_connection_request,
+          common::ContextualCallback<bool(Address, ClassOfDevice)> on_connection_request,
           common::ContextualCallback<void(hci::ErrorCode, uint16_t, uint8_t, uint16_t, uint16_t)>
                   on_read_remote_version_complete);
   virtual void PutAclConnectionInterface();
@@ -168,7 +168,7 @@ private:
   void on_disconnection_complete(EventView event_view);
   void on_read_remote_version_complete(EventView event_view);
 
-  common::ContextualCallback<void(Address bd_addr, ClassOfDevice cod)> on_acl_connection_request_{};
+  common::ContextualCallback<bool(Address bd_addr, ClassOfDevice cod)> on_acl_connection_request_{};
   common::ContextualCallback<void(Address bd_addr, ClassOfDevice cod,
                                   ConnectionRequestLinkType link_type)>
           on_sco_connection_request_{};

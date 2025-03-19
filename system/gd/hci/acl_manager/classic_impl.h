@@ -39,10 +39,10 @@ namespace hci {
 namespace acl_manager {
 
 struct acl_connection {
-  acl_connection(AddressWithType address_with_type, AclConnection::QueueDownEnd* queue_down_end,
-                 os::Handler* handler)
+  acl_connection(AddressWithType address_with_type, AclConnection::QueueDownEnd* queue_end,
+         bool locally_initiated, os::Handler* handler)
       : address_with_type_(address_with_type),
-        assembler_(new acl_manager::assembler(address_with_type, queue_down_end, handler)) {}
+        assembler_(new acl_manager::assembler(address_with_type, queue_end, locally_initiated, handler)) {}
   ~acl_connection() { delete assembler_; }
   AddressWithType address_with_type_;
   struct acl_manager::assembler* assembler_;
@@ -209,11 +209,12 @@ private:
     }
     void add(uint16_t handle, const AddressWithType& remote_address,
              AclConnection::QueueDownEnd* queue_end, os::Handler* handler,
-             ConnectionManagementCallbacks* connection_management_callbacks) {
+             ConnectionManagementCallbacks* connection_management_callbacks, bool locally_initiated) {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
       auto emplace_pair =
               acl_connections_.emplace(std::piecewise_construct, std::forward_as_tuple(handle),
-                                       std::forward_as_tuple(remote_address, queue_end, handler));
+                                       std::forward_as_tuple(remote_address, queue_end,
+                       locally_initiated, handler));
       log::assert_that(emplace_pair.second,
                        "assert failed: emplace_pair.second");  // Make sure the connection is unique
       emplace_pair.first->second.connection_management_callbacks_ = connection_management_callbacks;
@@ -252,16 +253,22 @@ public:
     return connections.send_packet_upward(handle, cb);
   }
 
-  void on_incoming_connection(Address address, ClassOfDevice cod) {
+  bool on_incoming_connection(Address address, ClassOfDevice cod) {
+    bool is_conn_rejected = false;	  
     if (client_callbacks_ == nullptr) {
       log::error("No callbacks to call");
       auto reason = RejectConnectionReason::LIMITED_RESOURCES;
       this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
-      return;
+      return false;
     }
 
-    client_handler_->CallOn(client_callbacks_, &ConnectionCallbacks::OnConnectRequest, address,
-                            cod);
+    if (!client_handler_->CallOn(client_callbacks_, &ConnectionCallbacks::OnConnectRequest, address,
+                                 cod)) {
+      auto reason = RejectConnectionReason::LIMITED_RESOURCES;
+      this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
+      is_conn_rejected = true;
+      return false;
+    }
 
     bluetooth::metrics::LogIncomingAclStartEvent(address);
 
@@ -270,12 +277,13 @@ public:
     if (is_classic_link_already_connected(address)) {
       auto reason = RejectConnectionReason::UNACCEPTABLE_BD_ADDR;
       this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
-    } else if (should_accept_connection_.Run(address, cod)) {
-      this->accept_connection(address);
-    } else {
-      auto reason = RejectConnectionReason::LIMITED_RESOURCES;  // TODO: determine reason
-      this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
+      is_conn_rejected = true;
+      return false;
     }
+    if (!is_conn_rejected) {
+      this->accept_connection(address);
+    }
+    return true;
   }
 
   bool is_classic_link_already_connected(Address address) {
@@ -352,15 +360,16 @@ public:
     }
     uint16_t handle = connection_complete.GetConnectionHandle();
     auto queue = std::make_shared<AclConnection::Queue>(10);
-    auto queue_down_end = queue->GetDownEnd();
+    auto queue_end = queue->GetDownEnd();
     round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::CLASSIC, handle, queue);
     std::unique_ptr<ClassicAclConnection> connection(
             new ClassicAclConnection(std::move(queue), acl_connection_interface_, handle, address));
     connection->locally_initiated_ = initiator == Initiator::LOCALLY_INITIATED;
     connections.add(handle, AddressWithType{address, AddressType::PUBLIC_DEVICE_ADDRESS},
-                    queue_down_end, handler_,
+                    queue_end, handler_,
                     connection->GetEventCallbacks(
-                            [this](uint16_t handle) { this->connections.invalidate(handle); }));
+                            [this](uint16_t handle) { this->connections.invalidate(handle); }),
+                    initiator == Initiator::LOCALLY_INITIATED);
     connections.execute(address, [=, this](ConnectionManagementCallbacks* callbacks) {
       if (delayed_role_change_ == nullptr) {
         callbacks->OnRoleChange(hci::ErrorCode::SUCCESS, current_role);
@@ -692,10 +701,10 @@ public:
     log::info("UNIMPLEMENTED called");
   }
 
-  void on_accept_connection_status(Address address, CommandStatusView status) {
+  void on_accept_connection_status(Address address, bool accepted, CommandStatusView status) {
     auto accept_status = AcceptConnectionRequestStatusView::Create(status);
     log::assert_that(accept_status.IsValid(), "assert failed: accept_status.IsValid()");
-    if (status.GetStatus() != ErrorCode::SUCCESS) {
+    if (!accepted) {
       cancel_connect(address);
     }
   }
@@ -724,13 +733,14 @@ public:
     auto role = AcceptConnectionRequestRole::BECOME_CENTRAL;  // We prefer to be central
     acl_connection_interface_->EnqueueCommand(
             AcceptConnectionRequestBuilder::Create(address, role),
-            handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status, address));
+            handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status, address, true));
   }
 
   void reject_connection(std::unique_ptr<RejectConnectionRequestBuilder> builder) {
     acl_connection_interface_->EnqueueCommand(
             std::move(builder),
-            handler_->BindOnce(check_status<RejectConnectionRequestStatusView>));
+             handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status,
+                                  builder->GetBdAddr(), false));
   }
 
   uint16_t HACK_get_handle(Address address) { return connections.HACK_get_handle(address); }
