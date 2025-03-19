@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ce6210c_31314d8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3371405
+      },
+      "writtenOn": "2025-03-19T09:10:09Z",
+      "side": 1,
+      "message": "The current patch seems to have resolved the issue. \nWhen can it be officially submitted?",
+      "parentUuid": "ea4b534d_dfbc6084",
+      "revId": "b38ed7bdc170f0dd51bff1a554a12e73874982e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "505e7527_d2310dfb",
         "filename": "system/stack/btm/btm_ble_privacy.cc",
         "patchSetId": 3
