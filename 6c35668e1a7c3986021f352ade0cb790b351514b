@@ -16,6 +16,180 @@
       "message": "With this change, pts-bot:OPP/SR/GOEP/BC/BV-01-I fails. I\u0027ll figure out and update the bug soon.",
       "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac15fe7_446a8597",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T20:18:28Z",
+      "side": 1,
+      "message": "Why defining it twice in 2 different unit ? Specially when BTA_JV_IDLE_TIMEOUT is always used with * 1000",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 35
+      },
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "281f6cc5_0db8e5de",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T20:18:28Z",
+      "side": 1,
+      "message": "This is already part of the log method, no need to duplicate the function name",
+      "range": {
+        "startLine": 2018,
+        "startChar": 18,
+        "endLine": 2018,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a32460d9_6ce7420a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 2018,
+                "startChar": 0,
+                "endLine": 2019,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38256106_127f31f6",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T20:18:28Z",
+      "side": 1,
+      "message": "This is already part of the log method, no need to duplicate the function name",
+      "range": {
+        "startLine": 2041,
+        "startChar": 22,
+        "endLine": 2041,
+        "endChar": 41
+      },
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64292c96_ac7841ca",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2062,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T20:18:28Z",
+      "side": 1,
+      "message": "This is already part of the log method, no need to duplicate the function name",
+      "range": {
+        "startLine": 2062,
+        "startChar": 18,
+        "endLine": 2062,
+        "endChar": 37
+      },
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4941239_337db0fc",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T20:18:28Z",
+      "side": 1,
+      "message": "Use early return pattern to avoid un-necessary indentation",
+      "range": {
+        "startLine": 2172,
+        "startChar": 0,
+        "endLine": 2172,
+        "endChar": 21
+      },
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89861324_8712af82",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T20:18:28Z",
+      "side": 1,
+      "message": "remove \":\" ?",
+      "range": {
+        "startLine": 2176,
+        "startChar": 17,
+        "endLine": 2176,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ceff7779_9a05e7a7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/jv/bta_jv_act.cc",
+              "range": {
+                "startLine": 2176,
+                "startChar": 0,
+                "endLine": 2177,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Congested: {}\", p_cb-\u003econg);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6c35668e1a7c3986021f352ade0cb790b351514b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
