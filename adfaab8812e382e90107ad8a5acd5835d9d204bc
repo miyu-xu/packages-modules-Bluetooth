@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d706dcb_af516a46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-20T19:09:42Z",
+      "side": 1,
+      "message": "@jpawlowski@google.com as DRI for device discovery",
+      "revId": "adfaab8812e382e90107ad8a5acd5835d9d204bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
