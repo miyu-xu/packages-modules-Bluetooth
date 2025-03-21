@@ -3514,7 +3514,21 @@ void btm_sec_encryption_change_evt(uint16_t handle, tHCI_STATUS status, uint8_t 
   }
 
   if (status == HCI_ERR_CONNECTION_TOUT) {
-    smp_cancel_start_encryption_attempt();
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev_by_handle(handle);
+    if (p_dev_rec == nullptr) {
+      log::warn(
+          "Received encryption change for unknown device handle:0x{:04x} "
+          "status:{} enable:0x{:x}",
+          handle, hci_status_code_text(status), encr_enable);
+      smp_cancel_start_encryption_attempt(RawAddress::kEmpty);
+    } else {
+      smp_cancel_start_encryption_attempt(p_dev_rec->bd_addr);
+    }
+    return;
+  }
+
+  if (status == HCI_ERR_NO_CONNECTION) {
+    smp_cancel_start_encryption_attempt(RawAddress::kEmpty);
     return;
   }
 
