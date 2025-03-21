@@ -1080,7 +1080,7 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status, const u
       // "LE Encrypt", controller responds with no connection, we should
       // cancel the encryption attempt, rather than unpair the device.
       if (status == HCI_ERR_NO_CONNECTION) {
-        smp_cancel_start_encryption_attempt();
+        btm_sec_encryption_change_evt(HCI_INVALID_HANDLE, hci_status, false, 0);
       }
       break;
 
