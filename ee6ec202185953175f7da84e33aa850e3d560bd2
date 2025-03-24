@@ -268,6 +268,24 @@
       "parentUuid": "26fb1eab_33fd526e",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07ff2152_52f75a80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-24T16:08:57Z",
+      "side": 1,
+      "message": "We are not going to merge it on AOSP...\nThe change will land here after the next quarterly 😞",
+      "parentUuid": "148c1883_e10aae4d",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
