@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f765f95_ff9b92f8",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1502,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-24T03:02:40Z",
+      "side": 1,
+      "message": "@sarveshkalwit@google.com could you elaborate more about the intention? It seems to me this function is only called by the pure Rust code which should guarantee the safety of the input arguments. Is there any FFI caller?",
+      "parentUuid": "cc263884_37598e14",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37397f9f_8aaa7f19",
         "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
         "patchSetId": 10
