@@ -16,6 +16,24 @@
       "message": "Hi Henri, can you please check my comments and help to review again?",
       "revId": "956422d159988112bfdf34a4444ec82c62ba83cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb26412c_8802cd00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-24T16:07:40Z",
+      "side": 1,
+      "message": "Hi Rajat, I added a flag avdtp_prevent_double_suspend on the internal change; other than this I will accept your change with no further modifications 👍",
+      "parentUuid": "e966f4c6_cae6aba6",
+      "revId": "956422d159988112bfdf34a4444ec82c62ba83cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
