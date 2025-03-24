@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ffac479_86ed87e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-24T12:36:52Z",
+      "side": 1,
+      "message": "Hi @rlukasz@google.com,\nI see that presubmit has failed. Can you please let me know the failure reason?\nI can\u0027t access failure logs. Do you think running presubmit again might pass?",
+      "revId": "079393522f0792a1784875d902643dbdab215a8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
