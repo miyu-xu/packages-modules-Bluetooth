@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a3ac236_34190dfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-24T10:41:31Z",
+      "side": 1,
+      "message": "Hi rlukasz@google.com\nCan you please run presubmit again and help to get all the approvals? I don\u0027t have access.",
+      "revId": "88e0304f42b99ad418c9304c0214898c3069fa94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
