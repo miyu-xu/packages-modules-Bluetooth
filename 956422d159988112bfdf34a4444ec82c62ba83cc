@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e966f4c6_cae6aba6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-24T10:37:17Z",
+      "side": 1,
+      "message": "Hi Henri, can you please check my comments and help to review again?",
+      "revId": "956422d159988112bfdf34a4444ec82c62ba83cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
