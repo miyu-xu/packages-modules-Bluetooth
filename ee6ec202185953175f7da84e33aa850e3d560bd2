@@ -232,6 +232,24 @@
       "parentUuid": "8a1b8e47_e3b573fb",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26fb1eab_33fd526e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-24T16:04:12Z",
+      "side": 1,
+      "message": "It is not yet merged internally, but I believe you can go ahead and merge it on your side 👍",
+      "parentUuid": "a935588d_bc2f7676",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
