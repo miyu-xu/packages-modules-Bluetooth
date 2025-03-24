@@ -286,6 +286,24 @@
       "parentUuid": "148c1883_e10aae4d",
       "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e12e4a_8ba091b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-24T16:20:57Z",
+      "side": 1,
+      "message": "It will be merged after GPP you mean? Or before?\nAround June month?",
+      "parentUuid": "07ff2152_52f75a80",
+      "revId": "ee6ec202185953175f7da84e33aa850e3d560bd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
