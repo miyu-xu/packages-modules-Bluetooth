@@ -1,0 +1,67 @@
+From def793c19ec05a4e4ebdf456244c990a6dfb92f3 Mon Sep 17 00:00:00 2001
+From: Zhengping Jiang <jiangzp@google.com>
+Date: Mon, 24 Mar 2025 17:18:05 +0000
+Subject: [PATCH] 24Q4: Remove flag android_os_identifier
+
+Bug: 351860033
+Test: m com.android.bt
+Flag: com::android::bluetooth::flags::android_os_identifier
+Change-Id: I289981a28340cdd6b6e12082925a223cddc7e671
+---
+ flags/gap.aconfig             | 10 ----------
+ system/stack/ais/ais_ble.cc   |  3 ---
+ system/stack/gatt/gatt_api.cc |  3 +--
+ 3 files changed, 1 insertion(+), 15 deletions(-)
+
+diff --git a/flags/gap.aconfig b/flags/gap.aconfig
+index d12e294ec7..bd08a022f0 100644
+--- a/flags/gap.aconfig
++++ b/flags/gap.aconfig
+@@ -83,16 +83,6 @@ flag {
+     }
+ }
+ 
+-flag {
+-    name: "android_os_identifier"
+-    namespace: "bluetooth"
+-    description: "Add a custom service to provide Android OS identifier"
+-    bug: "351860033"
+-    metadata {
+-        purpose: PURPOSE_BUGFIX
+-    }
+-}
+-
+ flag {
+     name: "gatt_callback_on_failure"
+     namespace: "bluetooth"
+diff --git a/system/stack/ais/ais_ble.cc b/system/stack/ais/ais_ble.cc
+index a4e4a65549..d843ebabbc 100644
+--- a/system/stack/ais/ais_ble.cc
++++ b/system/stack/ais/ais_ble.cc
+@@ -102,9 +102,6 @@ void ais_request_cback(tCONN_ID conn_id, uint32_t trans_id, tGATTS_REQ_TYPE type
+  *
+  ******************************************************************************/
+ static void ais_attr_db_init(void) {
+-  if (!com::android::bluetooth::flags::android_os_identifier()) {
+-    return;
+-  }
+   api_level = bluetooth::os::GetSystemPropertyUint32(kPropertyAndroidAPILevel,
+                                                      kPropertyAndroidAPILevelDefault);
+   // Add Android OS identifier if API level is defined.
+diff --git a/system/stack/gatt/gatt_api.cc b/system/stack/gatt/gatt_api.cc
+index 1b60132b00..30fdb94b1b 100644
+--- a/system/stack/gatt/gatt_api.cc
++++ b/system/stack/gatt/gatt_api.cc
+@@ -330,8 +330,7 @@ tGATT_STATUS GATTS_AddService(tGATT_IF gatt_if, btgatt_db_element_t* service, in
+         *p_uuid != Uuid::From16Bit(UUID_SERVCLASS_GTBS_SERVER)) {
+       if ((com::android::bluetooth::flags::channel_sounding_in_stack() &&
+            *p_uuid == Uuid::From16Bit(UUID_SERVCLASS_RAS)) ||
+-          (com::android::bluetooth::flags::android_os_identifier() &&
+-           *p_uuid == ANDROID_INFORMATION_SERVICE_UUID)) {
++           *p_uuid == ANDROID_INFORMATION_SERVICE_UUID) {
+         elem.sdp_handle = 0;
+       } else {
+         elem.sdp_handle = gatt_add_sdp_record(*p_uuid, elem.s_hdl, elem.e_hdl);
+-- 
+2.49.0.395.g12beb8f557-goog
+
