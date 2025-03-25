@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "778b06a8_89e6c54f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T12:53:56Z",
+      "side": 1,
+      "message": "Explanation of why do we need this gerrit:\nWhile removeDevice, we should call bta_gattc_close api. Because otherwise in_use variable won\u0027t be reset. Then during next connection, connection callback will be triggered to LE audio because of in_use variable is set.",
+      "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
