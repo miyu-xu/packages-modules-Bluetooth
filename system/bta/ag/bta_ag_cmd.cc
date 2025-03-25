@@ -1145,6 +1145,11 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
           p_scb->masked_features &= HFP_1_6_FEAT_MASK;
         }
       }
+      if(interop_match_addr_or_name(INTEROP_INBAND_RINGTONE_SET_TO_FALSE,
+          &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+           log::verbose("do not send inband ringtone supported for blacklisted device");
+          p_scb->masked_features = p_scb->masked_features & ~(BTA_AG_FEAT_INBAND);
+      }
 
       LogMetricHfpAgVersion(ToGdAddress(p_scb->peer_addr), p_scb->peer_version);
       log::verbose("BRSF HF: 0x{:x}, phone: 0x{:x}", p_scb->peer_features, p_scb->masked_features);
@@ -1709,7 +1714,12 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb, const tBTA_AG_API_RESULT& resu
       break;
 
     case BTA_AG_INBAND_RING_RES:
-      p_scb->inband_enabled = result.data.state;
+      if(interop_match_addr_or_name(INTEROP_INBAND_RINGTONE_SET_TO_FALSE,
+          &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+        p_scb->inband_enabled = false;
+      } else {
+        p_scb->inband_enabled = result.data.state;
+      }
       log::verbose("inband_enabled set to {}", p_scb->inband_enabled);
       bta_ag_send_result(p_scb, result.result, nullptr, result.data.state);
       break;
