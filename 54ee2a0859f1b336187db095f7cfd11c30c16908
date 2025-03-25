@@ -22,6 +22,30 @@
       },
       "revId": "54ee2a0859f1b336187db095f7cfd11c30c16908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d24d236_65c70fd7",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1614,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T09:54:01Z",
+      "side": 1,
+      "message": "Please let me know if the new patch looks okay to you. Have modified it.\n\nThe goal of this fix is to ensure we enter the if block at line 1616, allowing line 1635 (bta_av_ssm_execute(p_cb-\u003ep_scb[xx], BTA_AV_AVDT_DISCONNECT_EVT, NULL)) to be executed.\n \nAgreed that if p_lcb is non-null, (p_lcb-\u003econn_msk || conn_lcb) will always be true.\nTherefore, I think we can remove the code change at line 1614, change line 1616 to if (p_lcb), and modify line 1631 to:\nif (p_cb-\u003ep_scb[xx] \u0026\u0026 p_cb-\u003ep_scb[xx]-\u003ePeerAddress() \u003d\u003d p_data-\u003estr_msg.bd_addr)",
+      "parentUuid": "8c60cb64_cb0e3f45",
+      "range": {
+        "startLine": 1614,
+        "startChar": 12,
+        "endLine": 1614,
+        "endChar": 20
+      },
+      "revId": "54ee2a0859f1b336187db095f7cfd11c30c16908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
