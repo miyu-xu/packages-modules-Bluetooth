@@ -1138,7 +1138,8 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
       /* store peer features */
       p_scb->peer_features = (uint16_t)int_arg;
 
-      if (p_scb->peer_version < HFP_VERSION_1_7) {
+      if (p_scb->peer_version < HFP_VERSION_1_7 &&
+          !osi_property_get_bool("vendor.bt.pts.certification", false)) {
         if (!(com::android::bluetooth::flags::check_peer_hf_indicator() &&
               p_scb->peer_version == HFP_HSP_VERSION_UNKNOWN &&
               (p_scb->peer_features & BTA_AG_PEER_FEAT_HF_IND))) {
