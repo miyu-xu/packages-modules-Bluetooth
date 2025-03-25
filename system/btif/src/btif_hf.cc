@@ -451,6 +451,12 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
         RawAddress connected_bda = btif_hf_cb[idx].connected_bda;
         reset_control_block(&btif_hf_cb[idx]);
 
+        if (!is_connected(&connected_bda))
+           bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
+                                                 &connected_bda);
+         else
+           log::info("self initiated AG open failed, but AG open succeeded by peer");
+
         if (com::android::bluetooth::flags::ignore_notify_when_already_connected()) {
           bool notify_required = true;
 
