@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "837e91ce_02bab1d1",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T06:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "658003a6_3af3376e",
+      "revId": "b5ef568371216a7e3b526c62e4a3c1468f0f20ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34dc7b54_030652b8",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed533046_91f065bd",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T06:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34dc7b54_030652b8",
+      "revId": "b5ef568371216a7e3b526c62e4a3c1468f0f20ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d224be96_6608d040",
@@ -102,6 +138,24 @@
           ]
         }
       ],
+      "revId": "b5ef568371216a7e3b526c62e4a3c1468f0f20ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c56f945_6616b6d4",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 856,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T06:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d224be96_6608d040",
       "revId": "b5ef568371216a7e3b526c62e4a3c1468f0f20ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

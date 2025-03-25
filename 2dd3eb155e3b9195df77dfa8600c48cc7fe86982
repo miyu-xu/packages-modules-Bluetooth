@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9706857b_c09066ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T06:04:53Z",
+      "side": 1,
+      "message": "Hi @jpawlowski@google.com,\nModified the gerrit as per your suggestion. Can you please review?",
+      "revId": "2dd3eb155e3b9195df77dfa8600c48cc7fe86982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
