@@ -1251,8 +1251,7 @@ public class BluetoothInCallService extends InCallService {
         int ringingAddressType = DEFAULT_RINGING_ADDRESS_TYPE;
         String ringingName = null;
         if (!mCallInfo.isNullCall(ringingCall)
-                && ringingCall.getHandle() != null
-                && !ringingCall.isSilentRingingRequested()) {
+                && ringingCall.getHandle() != null) {
             ringingAddress = ringingCall.getHandle().getSchemeSpecificPart();
             if (ringingAddress != null) {
                 ringingAddressType = PhoneNumberUtils.toaFromString(ringingAddress);
@@ -1372,7 +1371,7 @@ public class BluetoothInCallService extends InCallService {
         //
 
         int bluetoothCallState = CallState.IDLE;
-        if (!mCallInfo.isNullCall(ringingCall) && !ringingCall.isSilentRingingRequested()) {
+        if (!mCallInfo.isNullCall(ringingCall)) {
             bluetoothCallState = CallState.INCOMING;
         } else if (!mCallInfo.isNullCall(dialingCall)) {
             bluetoothCallState = CallState.ALERTING;
@@ -1405,9 +1404,7 @@ public class BluetoothInCallService extends InCallService {
                     CallState.ALERTING;
 
             case Call.STATE_RINGING, Call.STATE_SIMULATED_RINGING -> {
-                if (call.isSilentRingingRequested()) {
-                    yield CallState.IDLE;
-                } else if (isForeground) {
+                if (isForeground) {
                     yield CallState.INCOMING;
                 } else {
                     yield CallState.WAITING;
@@ -1603,11 +1600,7 @@ public class BluetoothInCallService extends InCallService {
                     BluetoothLeCall.STATE_DIALING;
 
             case Call.STATE_RINGING, Call.STATE_SIMULATED_RINGING -> {
-                if (call.isSilentRingingRequested()) {
-                    yield null;
-                } else {
-                    yield BluetoothLeCall.STATE_INCOMING;
-                }
+                 yield BluetoothLeCall.STATE_INCOMING;
             }
             default -> null;
         };
