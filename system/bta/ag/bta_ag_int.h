@@ -346,6 +346,7 @@ struct tBTA_AG_SCB {
                                                                HF indicators */
   tBTA_AG_HF_IND local_hf_indicators[BTA_AG_MAX_NUM_LOCAL_HF_IND]; /* Local supported
                                                                HF indicators */
+  bool is_vr_active;
 
   std::string ToString() const {
     return std::format(
@@ -508,5 +509,7 @@ bool bta_ag_is_sco_managed_by_audio();
  * Respond to Audio HAL's SuspendStream request when SCO is disconnected
  */
 void bta_ag_stream_suspended();
+
+extern bool bta_ag_is_call_present(const RawAddress* peer_addr);
 
 #endif /* BTA_AG_INT_H */

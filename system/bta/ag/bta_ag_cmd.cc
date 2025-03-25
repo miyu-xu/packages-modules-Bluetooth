@@ -1779,6 +1779,7 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb, const tBTA_AG_API_RESULT& resu
       break;
 
     case BTA_AG_BVRA_RES:
+      p_scb->is_vr_active = result.data.state;
       bta_ag_send_result(p_scb, result.result, nullptr, result.data.state);
       break;
 
@@ -2005,4 +2006,30 @@ void bta_ag_send_qac(tBTA_AG_SCB* p_scb) {
   if (p_scb->sco_codec == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) {
     p_scb->is_aptx_swb_codec = true;
   }
+}
+
+bool bta_ag_is_call_present(const RawAddress* peer_addr) {
+  uint16_t handle;
+  tBTA_AG_SCB* p_scb;
+
+  if (peer_addr == NULL) {
+    log::warn("peer address is null");
+    return false;
+  }
+
+  handle = bta_ag_idx_by_bdaddr(peer_addr);
+  p_scb = bta_ag_scb_by_idx(handle);
+
+  if (p_scb == NULL) {
+    log::warn("p_scb is null for peer dev {}", *peer_addr);
+    return false;
+  }
+
+  if (p_scb->call_ind || p_scb->callsetup_ind || p_scb->callheld_ind) {
+    log::verbose("call is present for peer dev {}", p_scb->peer_addr);
+    return true;
+  }
+
+  log::verbose("call is not present for peer dev {}", p_scb->peer_addr);
+  return false;
 }
