@@ -1834,6 +1834,7 @@ public:
     }
 
     /* Remove device from the background connect if it is there */
+    BTA_GATTC_Close(leAudioDevice->conn_id_);
     BTA_GATTC_CancelOpen(gatt_if_, address, false);
     btif_storage_set_leaudio_autoconnect(address, false);
 
