@@ -70,6 +70,30 @@
       },
       "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c1285b_14e14d45",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-25T05:35:58Z",
+      "side": 1,
+      "message": "Hi William,\nWe upload gerrits from .git and not repo.\nDo you have any similar command for .git which will take care of formatting?\nIf not, then is it possible for you to cherry-pick this in your workspace and upload from there?",
+      "parentUuid": "5691ec0d_a77ad230",
+      "range": {
+        "startLine": 1015,
+        "startChar": 18,
+        "endLine": 1015,
+        "endChar": 21
+      },
+      "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
