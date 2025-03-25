@@ -2215,7 +2215,11 @@ class HeadsetStateMachine extends StateMachine {
             if (phoneNumber == null) {
                 phoneNumber = "";
             }
+            if (phoneNumber == ""){
+               phoneNumber = "10000000";
+            }
             int type = PhoneNumberUtils.toaFromString(phoneNumber);
+            Log.e(TAG, "processAtClcc: voip phoneNumber " + phoneNumber +" voip type " + type);
             mNativeInterface.clccResponse(device, 1, 0, 0, 0, false, phoneNumber, type);
             mNativeInterface.clccResponse(device, 0, 0, 0, 0, false, "", 0);
         } else {
