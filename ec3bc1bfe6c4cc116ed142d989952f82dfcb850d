@@ -22,6 +22,30 @@
       },
       "revId": "ec3bc1bfe6c4cc116ed142d989952f82dfcb850d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89697595_1b99ebfc",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 22
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1959485
+      },
+      "writtenOn": "2025-03-25T18:47:40Z",
+      "side": 1,
+      "message": "The target configurations for Subrating will not utilize Latency, since the princicple of the Subrate Factor already accomplishes this from a power perspective.  Latency only serves to add additional latency for the Peripheral device.",
+      "parentUuid": "eeb6e280_e4a84d03",
+      "range": {
+        "startLine": 88,
+        "startChar": 50,
+        "endLine": 88,
+        "endChar": 51
+      },
+      "revId": "ec3bc1bfe6c4cc116ed142d989952f82dfcb850d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
