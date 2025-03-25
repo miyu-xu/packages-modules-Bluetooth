@@ -94,6 +94,30 @@
       },
       "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "063f7f20_ca27640f",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-25T23:39:56Z",
+      "side": 1,
+      "message": "running clang-format should do the trick.\n\nBut please use repo and not git directly.",
+      "parentUuid": "c7c1285b_14e14d45",
+      "range": {
+        "startLine": 1015,
+        "startChar": 18,
+        "endLine": 1015,
+        "endChar": 21
+      },
+      "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
