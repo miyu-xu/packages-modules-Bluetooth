@@ -1298,6 +1298,13 @@ class HeadsetStateMachine extends StateMachine {
                 processNoiseReductionEvent(true);
                 // Query phone state for initial setup
                 mSystemInterface.queryPhoneState(mHeadsetService);
+                if (mSystemInterface.isInCall() || mSystemInterface.isRinging()) {
+                    Log.w(TAG, "call is in ringing/present, suspending a2dp/le audio");
+                    mSystemInterface.getAudioManager().setA2dpSuspended(true);
+                    if (isAtLeastU()) {
+                        mSystemInterface.getAudioManager().setLeAudioSuspended(true);
+                    }
+                }
                 // Remove pending connection attempts that were deferred during the pending
                 // state. This is to prevent auto connect attempts from disconnecting
                 // devices that previously successfully connected.
