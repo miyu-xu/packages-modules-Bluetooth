@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f3dceac_269db782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-03-25T01:06:51Z",
+      "side": 1,
+      "message": "danielrf@motorola.com",
+      "revId": "403ef02c1d25bbe1d5d57609dde818d55249c024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
