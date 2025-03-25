@@ -50,6 +50,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "btif/include/btif_storage.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
 
@@ -1147,7 +1148,16 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
       }
 
       LogMetricHfpAgVersion(ToGdAddress(p_scb->peer_addr), p_scb->peer_version);
-      log::verbose("BRSF HF: 0x{:x}, phone: 0x{:x}", p_scb->peer_features, p_scb->masked_features);
+
+      if(interop_match_addr_or_name(INTEROP_DISABLE_CODEC_NEGOTIATION,
+          &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+          log::verbose("disable codec negotiation, remote for denylist device");
+          p_scb->masked_features = p_scb->masked_features & ~(BTA_AG_FEAT_CODEC);
+          p_scb->peer_features = p_scb->peer_features & ~(BTA_AG_PEER_FEAT_CODEC);
+      }
+
+      log::verbose("BRSF HF: 0x{:x}, phone: 0x{:x}", p_scb->peer_features,
+                   p_scb->masked_features);
 
       /* send BRSF, send OK */
       bta_ag_send_result(p_scb, BTA_AG_LOCAL_RES_BRSF, nullptr, (int16_t)p_scb->masked_features);
