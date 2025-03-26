@@ -16,6 +16,24 @@
       "message": "Please submit on internal git_main, thanks!",
       "revId": "a73d92039e44122785256fa9f619f455d3ed2d75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1435b6c_5bcf5e9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2025-03-26T02:57:49Z",
+      "side": 1,
+      "message": "It is already submitted on git_main. I did that because it has merge conflict here. Shouldn\u0027t we also submit to aosp as well? Or it is no longer necessary?",
+      "parentUuid": "fe5f43f9_bb69c135",
+      "revId": "a73d92039e44122785256fa9f619f455d3ed2d75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
