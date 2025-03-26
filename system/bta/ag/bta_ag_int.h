@@ -65,8 +65,17 @@
 #define BTA_AG_ACP 0 /* accepted connection */
 #define BTA_AG_INT 1 /* initiating connection */
 
-#define BTA_AG_SDP_FEAT_SPEC \
-  (BTA_AG_FEAT_3WAY | BTA_AG_FEAT_ECNR | BTA_AG_FEAT_VREC | BTA_AG_FEAT_INBAND | BTA_AG_FEAT_VTAG)
+/* feature mask that matches spec */
+#define BTA_AG_BRSF_FEAT_SPEC                                   \
+  (BTA_AG_FEAT_3WAY | BTA_AG_FEAT_ECNR | BTA_AG_FEAT_VREC |     \
+   BTA_AG_FEAT_INBAND | BTA_AG_FEAT_VTAG | BTA_AG_FEAT_REJECT | \
+   BTA_AG_FEAT_ECS | BTA_AG_FEAT_ECC | BTA_AG_FEAT_EXTERR |     \
+   BTA_AG_FEAT_CODEC | BTA_AG_FEAT_HF_IND | BTA_AG_FEAT_ESCO_S4 |  \
+   BTA_AG_FEAT_VOIP)
+
+#define BTA_AG_SDP_FEAT_SPEC                                \
+  (BTA_AG_FEAT_3WAY | BTA_AG_FEAT_ECNR | BTA_AG_FEAT_VREC | \
+   BTA_AG_FEAT_INBAND | BTA_AG_FEAT_VTAG)
 
 /* Timeout for alarm in 2018 toyota camry carkit workaround */
 #define BTA_AG_BIND_TIMEOUT_MS 500
@@ -509,4 +518,5 @@ bool bta_ag_is_sco_managed_by_audio();
  */
 void bta_ag_stream_suspended();
 
+extern bool bta_ag_is_call_present(const RawAddress* peer_addr);
 #endif /* BTA_AG_INT_H */
