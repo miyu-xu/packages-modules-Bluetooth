@@ -51,6 +51,24 @@
       "parentUuid": "51d46df6_235e92cb",
       "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "984b95c7_12433260",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-03-26T08:10:01Z",
+      "side": 1,
+      "message": "Understood, do you plan to create a change to add this value in frameworks/base in AOSP too?",
+      "parentUuid": "a1286b70_76f4fef0",
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
