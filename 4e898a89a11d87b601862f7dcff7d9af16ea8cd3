@@ -24,6 +24,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "96743189_3d6f71c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-26T22:38:33Z",
+      "side": 1,
+      "message": "FYI, I think the correct syntax is:\n```\nBug: 405822168\n```",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5988a2be_c7695bc8",
