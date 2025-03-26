@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c58738d9_a56501a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-26T06:43:07Z",
+      "side": 1,
+      "message": "Change looks good. Can we please add simple unit test for this in le_audio_client_test.cc  file?",
+      "revId": "dd52d25b4a31bf60b4c7818edfdd2d569f412024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
