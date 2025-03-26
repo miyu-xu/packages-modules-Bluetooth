@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c120bb13_3b70f8b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-26T17:47:43Z",
+      "side": 1,
+      "message": "This will only works if Bluetooth is turned off when having an active device.\n\nI find it suspicious that we:\n* only do that for the last active device\n* only do that for phone / bluetooth reboot and not for each device reconnection\n\nMy other comment on the change where having that into my mind, please let me know what is the reasoning / motivation behind the current implementation. (open discussion !)\n\nI would prefer to have the same pattern, for each reconnection however the disconnection ended (phone reboot / bt reboot, with or without active device, or reconnection to device)\n\nI see that the spec wording is:\n```\nAn equipment safeguard shall prevent exposure of an ordinary person to RS2 power\nsource without intentional physical action from the ordinary person and shall automatically return to an output level not exceeding RS1 when the power is switched off.\n```\nCan we argue that \"the power is switched off\" can applied to the remote device and thus, we need to do it for device reconnection?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 63
+      },
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5988a2be_c7695bc8",
@@ -67,6 +90,93 @@
       "side": 1,
       "message": "Understood, do you plan to create a change to add this value in frameworks/base in AOSP too?",
       "parentUuid": "a1286b70_76f4fef0",
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c778cacc_3ba70f07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-26T17:47:43Z",
+      "side": 1,
+      "message": "Can we have this resource in the Bluetooth ressource and not in the system ressources? \n\n`mContext.getRessources().getInteger(R.integer.config_safe_media_volume);`",
+      "parentUuid": "984b95c7_12433260",
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58c29cc7_c12d63b6",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-26T17:47:43Z",
+      "side": 1,
+      "message": "What about never writing the too high volume on disk ?\n\nSomething like\n```\nvoid storeVolumeForDevice(@NonNull BluetoothDevice device, int storeVolume) {\n        if (mAdapterService.getBondState(device) !\u003d BluetoothDevice.BOND_BONDED) {\n            return;\n        }\n        mVolumeMap.put(device, storeVolume);          ////// Do we want the volume to be high for quick reconnection ?\n        \n        if (storeVolume \u003e safeVolume) {\n            Log.w(TAG, \"Override persistent saving for unsafe volume for device \" + device);\n            storeVolume \u003d safeVolume;\n        }\n        SharedPreferences.Editor pref \u003d getVolumeMap().edit();\n        mVolumeEventLogger.logd(\n                TAG,\n                \"storeVolume: Storing stream volume level for device \"\n                        + device\n                        + \" : \"\n                        + storeVolume);\n        pref.putInt(device.getAddress(), storeVolume);\n        // Always use apply() since it is asynchronous, otherwise the call can hang waiting for\n        // storage to be written.\n        pref.apply();\n}\n```",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 226,
+        "endChar": 21
+      },
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c9b04e7_6117b2e6",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-26T17:47:43Z",
+      "side": 1,
+      "message": "We can modify the comment to instead of being a failure in BT, this is now natively implemented and we use this comment to explain why.\n\nSomething like:\n\n```\nEnsure the first volume set after a Bluetooth reconnection is a safe volume, as mandated by CE \u0026 FCC\n```\n\nOr if we only want this after reboot:\n```\nEnsure the first volume set after a Bluetooth reboot and reconnection is a safe volume, as mandated by CE \u0026 FCC\n```",
+      "range": {
+        "startLine": 423,
+        "startChar": 29,
+        "endLine": 423,
+        "endChar": 82
+      },
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea57b2d3_00671a3f",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-26T17:47:43Z",
+      "side": 1,
+      "message": "Can we convert to early return:\n```\nif (device \u003d\u003d null) {\n    Log()\n    return;\n}\n\n[...]\n```",
+      "range": {
+        "startLine": 421,
+        "startChar": 2,
+        "endLine": 442,
+        "endChar": 9
+      },
       "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
