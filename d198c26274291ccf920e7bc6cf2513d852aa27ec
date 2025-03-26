@@ -86,6 +86,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdca1797_d41b659f",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-03-26T12:33:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "795efc1d_190f590e",
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68cd01cf_1183d715",
@@ -117,6 +135,24 @@
           ]
         }
       ],
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "425834d9_63aa6c97",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-03-26T12:33:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68cd01cf_1183d715",
       "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +224,30 @@
           ]
         }
       ],
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31b89f7_fe72ebb6",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-03-26T12:33:50Z",
+      "side": 1,
+      "message": "queue_down_end or queue_end which one we need to use . this comment opposite to first comment in this file",
+      "parentUuid": "3a2be31a_5a09ef52",
+      "range": {
+        "startLine": 720,
+        "startChar": 2,
+        "endLine": 720,
+        "endChar": 6
+      },
       "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
