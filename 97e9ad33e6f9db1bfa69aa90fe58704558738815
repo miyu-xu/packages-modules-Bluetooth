@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "111613ab_6125e0eb",
+        "filename": "system/audio_hal_interface/aidl/a2dp/a2dp_encoding_aidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "36b4328c_19c185d2",
+      "range": {
+        "startLine": 246,
+        "startChar": 2,
+        "endLine": 246,
+        "endChar": 68
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "274434b4_d9a87433",
@@ -93,6 +117,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d37089d2_1489bfd6",
+        "filename": "system/audio_hal_interface/aidl/a2dp/a2dp_encoding_aidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "274434b4_d9a87433",
+      "range": {
+        "startLine": 377,
+        "startChar": 44,
+        "endLine": 377,
+        "endChar": 72
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e42a0221_fa53ff1b",
@@ -106,6 +154,30 @@
       "writtenOn": "2025-03-13T00:19:46Z",
       "side": 1,
       "message": "We don\u0027t need to reconstruct the tracks to get the context information. Please help keep the change short and inline `context_contention_src` here.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 84
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835b172a_63ed5f94",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "I didn\u0027t get this comment quite frankly.\nDo you suggest removing lines below?\n\n    if (num_of_tags !\u003d 0) {\n      int copied_size \u003d 0;\n      int max_tags_size \u003d sizeof(desc_track.tags);\n      std::string separator(1, AUDIO_ATTRIBUTES_TAGS_SEPARATOR);\n      for (size_t i \u003d 0; i \u003c num_of_tags - 1; i++) {\n        int string_len \u003d track.tags[i].length();\n\n        if ((copied_size \u003e\u003d max_tags_size) || (copied_size + string_len \u003e\u003d max_tags_size)) {\n          log::error(\"Too many tags, copied size: {}\", copied_size);\n          break;\n        }\n\n        track.tags[i].copy(desc_track.tags + copied_size, string_len, 0);\n        copied_size +\u003d string_len;\n        separator.copy(desc_track.tags + copied_size, 1, 0);\n        copied_size +\u003d 1;\n      }\n\n      int string_len \u003d track.tags[num_of_tags - 1].length();\n      if ((copied_size \u003e\u003d max_tags_size) || (copied_size + string_len \u003e\u003d max_tags_size)) {\n        log::error(\"Too many tags, copied size: {}\", copied_size);\n      } else {\n        track.tags[num_of_tags - 1].copy(desc_track.tags + copied_size, string_len, 0);\n      }\n    } else {\n      memset(desc_track.tags, 0, sizeof(desc_track.tags));\n    }",
+      "parentUuid": "e42a0221_fa53ff1b",
       "range": {
         "startLine": 103,
         "startChar": 0,
@@ -139,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e164cd3_d62bc579",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "55694797_7163d9c6",
+      "range": {
+        "startLine": 152,
+        "startChar": 43,
+        "endLine": 152,
+        "endChar": 61
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd003fad_cd8ea9aa",
@@ -152,6 +248,30 @@
       "writtenOn": "2025-03-13T00:19:46Z",
       "side": 1,
       "message": "Not required for the A2DP encoding interface",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 78,
+        "endChar": 34
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bcf08d1_c3c66ae7",
+        "filename": "system/audio_hal_interface/aidl/a2dp/transport_instance.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fd003fad_cd8ea9aa",
       "range": {
         "startLine": 78,
         "startChar": 15,
@@ -209,6 +329,30 @@
           ]
         }
       ],
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d950133_931bd9e8",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2456,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "Yes, below flag is set\n(p_set_latency_req-\u003eis_low_latency we are using when Spatial Audio Use case whilst\n(p_set_latency_req-\u003eis_gaming_enable is set when update metadata is called.\n\nBeware both are for different use case scenarios and we want to cater both in terms of ensuring when low_latency conditions are met we update Audio context properly so that encoder can be moved to low latency mode and vice-versa move out from it.",
+      "parentUuid": "5356d05c_2ec38442",
+      "range": {
+        "startLine": 2455,
+        "startChar": 33,
+        "endLine": 2456,
+        "endChar": 72
+      },
       "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -280,6 +424,30 @@
           ]
         }
       ],
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8cfdfd0_3f6aa2d0",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-03-26T07:31:11Z",
+      "side": 1,
+      "message": "we can not remove audio_context \n  btav_a2dp_codec_audio_context_t audio_context;\n  \nas we are using as below\n\nbtav_a2dp_codec_config_t codec_config \u003d current_codec-\u003egetCodecConfig();\n      codec_config.audio_context \u003d audio_context_type;\n    \nyour point makes sence audio_context should not be used outside audio hal client interface but do you see any other alternative when stack can update audio_context back to hal interface which BT Audio Vendor HAL can make use of it?",
+      "parentUuid": "9ad893ec_561cfee5",
+      "range": {
+        "startLine": 184,
+        "startChar": 34,
+        "endLine": 184,
+        "endChar": 47
+      },
       "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
