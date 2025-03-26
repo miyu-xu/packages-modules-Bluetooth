@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "665b996a_aa6c178d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-26T05:49:12Z",
+      "side": 1,
+      "message": "Fix reason and description:\nBefore stack handled OFFLOAD_START, active peer address set as null.\nbta_av_get_a2dp_current_codec() returned null, then the issue happened.\n\nWe don\u0027t need to handle start request in case the peer address is already null.\n\n08-07 05:53:16.618  1002 14024 14088 I bluetooth-a2dp: packages/modules/MiuiBluetooth/system/btif/src/btif_av.cc:555 SetActivePeer: peer\u003d00:00:00:00:00:00 active_peer\u003dxx:xx:xx:xx:7d:e0\n08-07 05:53:16.618  1002 14024 14088 I bluetooth-a2dp: packages/modules/MiuiBluetooth/system/btif/src/btif_av.cc:572 SetActivePeer: peer address is empty, shutdown the Audio source\n08-07 05:53:16.618  1002 14024 14088 I bluetooth-a2dp: packages/modules/MiuiBluetooth/system/btif/co/bta_av_co.cc:756 SetActivePeer: peer_address\u003d00:00:00:00:00:00\n \n08-07 05:53:16.620  1002 14024 14088 I bluetooth-a2dp: packages/modules/MiuiBluetooth/system/bta/av/bta_av_aact.cc:3444 bta_av_qti_offload_req: stream STARTED, audio channels open 1\n08-07 05:53:16.620  1002 14024 14088 V bluetooth-a2dp: packages/modules/MiuiBluetooth/system/bta/av/bta_av_aact.cc:3648 bta_av_offload_codec_builder: codec_index \u003d 0",
+      "revId": "73d6e094c42b17c8eb570a73e76acc8f50418259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
