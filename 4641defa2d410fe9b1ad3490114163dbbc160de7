@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820fa488_1f800526",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-26T06:39:57Z",
+      "side": 1,
+      "message": "Can we please extend ActiveDeviceManagerTest with test cases for this?",
+      "revId": "4641defa2d410fe9b1ad3490114163dbbc160de7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
