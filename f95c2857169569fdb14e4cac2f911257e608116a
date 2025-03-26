@@ -51,6 +51,23 @@
       "message": "Can you please run presubmit again? I don\u0027t have access to do that.",
       "revId": "f95c2857169569fdb14e4cac2f911257e608116a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d162847_1da74e4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-03-26T09:09:24Z",
+      "side": 1,
+      "message": "Presubmit has passed.",
+      "revId": "f95c2857169569fdb14e4cac2f911257e608116a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
