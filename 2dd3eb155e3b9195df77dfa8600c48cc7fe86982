@@ -16,6 +16,23 @@
       "message": "Hi @jpawlowski@google.com,\nModified the gerrit as per your suggestion. Can you please review?",
       "revId": "2dd3eb155e3b9195df77dfa8600c48cc7fe86982",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8894fd4_08e73d86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-26T06:33:25Z",
+      "side": 1,
+      "message": "Thank you for the update. It looks good now.\nUnfortunatelly we do need flag for this change",
+      "revId": "2dd3eb155e3b9195df77dfa8600c48cc7fe86982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
