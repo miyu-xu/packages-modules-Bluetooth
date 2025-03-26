@@ -33,6 +33,24 @@
       "message": "Hello, there is no corresponding `config_safe_media_volume_bt_index` available in the Bluetooth module resources, could you please add it?\n\nAlso what\u0027s the \"safe\" volume and how has it been determined? I\u0027m not sure we want this as if an user has a device that plays lower than usual and sets the volume high accordingly this would mean they\u0027s have to re-set the volume every time?",
       "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1286b70_76f4fef0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-03-26T01:19:13Z",
+      "side": 1,
+      "message": "Hi Étienne Ruffieux,\n\n\nMoto added config_safe_media_volume_bt_index in frameworks/base/core/res/res/values/config.xml since AudioService need to use the resouce as well, also we added try catch{} in Blutooth side, in other words, if Bluetooth can\u0027t find the resouce, then the logic of \"back to safe volume\" will not be invoked.\n\nAbout safe volume background, I have added comments in b/405822168.",
+      "parentUuid": "51d46df6_235e92cb",
+      "revId": "4e898a89a11d87b601862f7dcff7d9af16ea8cd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
