@@ -44,6 +44,7 @@ import android.os.Build;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
@@ -55,6 +56,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
@@ -99,7 +101,9 @@ class HeadsetStateMachine extends StateMachine {
     static final int SEND_BSIR = 13;
     static final int DIALING_OUT_RESULT = 14;
     static final int VOICE_RECOGNITION_RESULT = 15;
-
+    static final int SEND_INCOMING_CALL_IND = 16;
+    static final int SCO_RETRIAL_NOT_REQ = 17;
+    static final int SEND_CLCC_RESP_AFTER_VOIP_CALL = 18;
     static final int STACK_EVENT = 101;
     private static final int CLCC_RSP_TIMEOUT = 104;
 
@@ -115,6 +119,14 @@ class HeadsetStateMachine extends StateMachine {
 
     private static final HeadsetAgIndicatorEnableState DEFAULT_AG_INDICATOR_ENABLE_STATE =
             new HeadsetAgIndicatorEnableState(true, true, true, true);
+
+    private static final int INCOMING_CALL_IND_DELAY = 200;
+    private final BluetoothDevice mDevice;
+    private int RETRY_SCO_CONNECTION_DELAY = 0;
+    private int SCO_RETRIAL_REQ_TIMEOUT = 5000;
+    // maintain call states in state machine as well
+    private final HeadsetCallState mStateMachineCallState =
+                 new HeadsetCallState(0, 0, 0, "", 0, "");
 
     // State machine states
     private final Disconnected mDisconnected = new Disconnected();
@@ -140,6 +152,11 @@ class HeadsetStateMachine extends StateMachine {
     @VisibleForTesting int mMicVolume;
     private boolean mDeviceSilenced;
     private HeadsetAgIndicatorEnableState mAgIndicatorEnableState;
+    private boolean mIsCallIndDelay = false;
+    private boolean mIsDenylistedDevice = false;
+    private boolean mIsDenylistedForSCOAfterSLC = false;
+    private boolean mIsRetrySco = false;
+    private boolean mIsDenylistedDeviceforRetrySCO = false;
     // The timestamp when the device entered connecting/connected state
     private long mConnectingTimestampMs = Long.MIN_VALUE;
     // Audio Parameters
@@ -302,7 +319,23 @@ class HeadsetStateMachine extends StateMachine {
         scanner.close();
     }
 
-    /** Base class for states used in this state machine to share common infrastructures */
+    public boolean getIfDeviceDenylistedForSCOAfterSLC() {
+        Log.d(TAG, "getIfDeviceDenylistedForSCOAfterSLC, returning " +
+                mIsDenylistedForSCOAfterSLC);
+        return  mIsDenylistedForSCOAfterSLC;
+    }
+
+    public boolean hasMessagesInQueue(int what) {
+        return super.hasMessages(what);
+    }
+
+    public boolean hasDeferredMessagesInQueue(int what) {
+        return super.hasDeferredMessages(what);
+    }
+
+    /**
+     * Base class for states used in this state machine to share common infrastructures
+     */
     private abstract class HeadsetStateBase extends State {
         @Override
         public void enter() {
@@ -568,6 +601,12 @@ class HeadsetStateMachine extends StateMachine {
             mHasSwbLc3Enabled = false;
             mHasNrecEnabled = false;
             mHasSwbAptXEnabled = false;
+            // reset call information
+            mStateMachineCallState.mNumActive = 0;
+            mStateMachineCallState.mNumHeld = 0;
+            mStateMachineCallState.mCallState = 0;
+            mStateMachineCallState.mNumber = "";
+            mStateMachineCallState.mType = 0;
 
             broadcastStateTransitions();
             logFailureIfNeeded();
@@ -584,6 +623,10 @@ class HeadsetStateMachine extends StateMachine {
                         BluetoothStatsLog
                                 .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECT_FAIL);
             }
+
+            mIsDenylistedDevice = false;
+            mIsRetrySco = false;
+            mIsDenylistedDeviceforRetrySCO = false;
         }
 
         @Override
@@ -750,6 +793,19 @@ class HeadsetStateMachine extends StateMachine {
             super.enter();
             mConnectingTimestampMs = SystemClock.uptimeMillis();
             sendMessageDelayed(CONNECT_TIMEOUT, mDevice, sConnectTimeoutMs);
+            mSystemInterface.queryPhoneState();
+            // update call states in StateMachine
+            mStateMachineCallState.mNumActive =
+                   mSystemInterface.getHeadsetPhoneState().getNumActiveCall();
+            mStateMachineCallState.mNumHeld =
+                   mSystemInterface.getHeadsetPhoneState().getNumHeldCall();
+            mStateMachineCallState.mCallState =
+                   mSystemInterface.getHeadsetPhoneState().getCallState();
+            mStateMachineCallState.mNumber =
+                   mSystemInterface.getHeadsetPhoneState().getNumber();
+            mStateMachineCallState.mType =
+                   mSystemInterface.getHeadsetPhoneState().getType();
+
             broadcastStateTransitions();
         }
 
@@ -780,6 +836,7 @@ class HeadsetStateMachine extends StateMachine {
                 case CALL_STATE_CHANGED:
                     HeadsetCallState callState = (HeadsetCallState) message.obj;
                     setAptxVoice(callState);
+                    processCallState(callState, false);
                     break;
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");
@@ -1066,15 +1123,27 @@ class HeadsetStateMachine extends StateMachine {
                         }
                         break;
                     }
-                case CALL_STATE_CHANGED:
+                    break;
+                }
+                case CALL_STATE_CHANGED: {
+                    if (mDeviceSilenced) break;
+
                     HeadsetCallState callState = (HeadsetCallState) message.obj;
                     setAptxVoice(callState);
 
-                    if (!mNativeInterface.phoneStateChange(mDevice, callState)) {
-                        stateLogW("processCallState: failed to update call state " + callState);
-                        break;
+                    boolean isPts =
+                        SystemProperties.getBoolean("vendor.bt.pts.certification", false);
+                    // for PTS, send the indicators as is
+                    if (isPts) {
+                        if (!mNativeInterface.phoneStateChange(mDevice, callState)) {
+                            stateLogW("processCallState: failed to update call state " + callState);
+                            break;
+                        }
                     }
+                    else
+                        processCallState(callState, false);
                     break;
+                }
                 case DEVICE_STATE_CHANGED:
                     if (mDeviceSilenced) {
                         stateLogW(
@@ -1297,7 +1366,13 @@ class HeadsetStateMachine extends StateMachine {
                 // Reset NREC on connect event. Headset will override later
                 processNoiseReductionEvent(true);
                 // Query phone state for initial setup
-                mSystemInterface.queryPhoneState(mHeadsetService);
+                mSystemInterface.queryPhoneState();
+                // Checking for the Denylisted device Addresses
+                mIsDenylistedDevice = isConnectedDeviceDenylistedforIncomingCall();
+                // Checking for the Denylisted device Addresses
+                mIsDenylistedForSCOAfterSLC = isSCONeededImmediatelyAfterSLC();
+                // Checking for the Denylisted device Addresses
+                mIsDenylistedDeviceforRetrySCO = isConnectedDeviceDenylistedforRetrySco();
                 // Remove pending connection attempts that were deferred during the pending
                 // state. This is to prevent auto connect attempts from disconnecting
                 // devices that previously successfully connected.
@@ -1355,6 +1430,12 @@ class HeadsetStateMachine extends StateMachine {
                         transitionTo(mAudioConnecting);
                         break;
                     }
+
+                    if (mHeadsetService.isScoAcceptable(mDevice) != BluetoothStatusCodes.SUCCESS) {
+                        stateLogW("sco is not acceptable, device=" + mDevice);
+                        break;
+                    }
+
                     mSystemInterface.getAudioManager().setA2dpSuspended(true);
                     if (isAtLeastU()) {
                         mSystemInterface.getAudioManager().setLeAudioSuspended(true);
@@ -1503,6 +1584,13 @@ class HeadsetStateMachine extends StateMachine {
             switch (state) {
                 case HeadsetHalConstants.AUDIO_STATE_DISCONNECTED:
                     stateLogW("processAudioEvent: audio connection failed");
+                    if ((mIsDenylistedDeviceforRetrySCO == true) && (mIsRetrySco == true)) {
+                        Log.d(TAG, "denylisted device, retry SCO after " +
+                                     RETRY_SCO_CONNECTION_DELAY + " msec");
+                       Message m = obtainMessage(CONNECT_AUDIO);
+                       sendMessageDelayed(m, RETRY_SCO_CONNECTION_DELAY);
+                       mIsRetrySco = false;
+                    }
                     transitionTo(mConnected);
                     break;
                 case HeadsetHalConstants.AUDIO_STATE_CONNECTING:
@@ -1580,6 +1668,10 @@ class HeadsetStateMachine extends StateMachine {
                     .getAudioManager()
                     .setAudioServerStateCallback(
                             mHeadsetService.getMainExecutor(), mAudioServerStateCallback);
+            Message m = obtainMessage(SCO_RETRIAL_NOT_REQ);
+            sendMessageDelayed(m, SCO_RETRIAL_REQ_TIMEOUT);
+            mSystemInterface.getAudioManager().setAudioServerStateCallback(
+                    mHeadsetService.getMainExecutor(), mAudioServerStateCallback);
 
             broadcastStateTransitions();
             HeadsetService.logScoSessionMetric(
@@ -1657,6 +1749,13 @@ class HeadsetStateMachine extends StateMachine {
                         }
                         break;
                     }
+                    break;
+                }
+                case SCO_RETRIAL_NOT_REQ:
+                    //after this timeout, sco retrial is not required
+                    stateLogD("SCO_RETRIIAL_NOT_REQ: ");
+                    mIsRetrySco = false;
+                    break;
                 case INTENT_SCO_VOLUME_CHANGED:
                     processIntentScoVolume((Intent) message.obj, mDevice);
                     break;
@@ -1694,6 +1793,13 @@ class HeadsetStateMachine extends StateMachine {
             switch (state) {
                 case HeadsetHalConstants.AUDIO_STATE_DISCONNECTED:
                     stateLogI("processAudioEvent: audio disconnected by remote");
+                    if ((mIsDenylistedDeviceforRetrySCO == true) && (mIsRetrySco == true)) {
+                        Log.d(TAG, "denylisted device, retry SCO after " +
+                                     RETRY_SCO_CONNECTION_DELAY + " msec");
+                        Message m = obtainMessage(CONNECT_AUDIO);
+                        sendMessageDelayed(m, RETRY_SCO_CONNECTION_DELAY);
+                        mIsRetrySco = false;
+                    }
                     transitionTo(mConnected);
                     break;
                 case HeadsetHalConstants.AUDIO_STATE_DISCONNECTING:
@@ -2038,6 +2144,115 @@ class HeadsetStateMachine extends StateMachine {
             Log.e(TAG, "Bad volume type: " + volumeType);
         }
     }
+
+    private void processCallState(HeadsetCallState callState, boolean isVirtualCall) {
+        /* If active call is ended, no held call is present, disconnect SCO
+         * and fake the MT Call indicators. */
+        boolean isPts =
+                SystemProperties.getBoolean("vendor.bt.pts.certification", false);
+        if (!isPts) {
+            Log.w(TAG, "mIsDenylistedDevice:" + mIsDenylistedDevice);
+            if (mIsDenylistedDevice &&
+                mStateMachineCallState.mNumActive == 1 &&
+                callState.mNumActive == 0 &&
+                callState.mNumHeld == 0 &&
+                callState.mCallState == HeadsetHalConstants.CALL_STATE_INCOMING) {
+
+                log("Disconnect SCO since active call is ended," +
+                                    "only waiting call is there");
+                Message m = obtainMessage(DISCONNECT_AUDIO);
+                m.obj = mDevice;
+                sendMessage(m);
+
+                log("Send Idle call indicators once Active call disconnected.");
+                mStateMachineCallState.mCallState =
+                                               HeadsetHalConstants.CALL_STATE_IDLE;
+                HeadsetCallState updateCallState = new HeadsetCallState(callState.mNumActive,
+                                 callState.mNumHeld,
+                                 HeadsetHalConstants.CALL_STATE_IDLE,
+                                 callState.mNumber,
+                                 callState.mType, "");
+                mNativeInterface.phoneStateChange(mDevice, updateCallState);
+                mIsCallIndDelay = true;
+            }
+
+            /* The device is denylisted for sending incoming call setup
+             * indicator after SCO disconnection and sending active call end
+             * indicator. While the incoming call setup indicator is in queue,
+             * waiting call moved to active state. Send call setup update first
+             * and remove it from queue. Create SCO since SCO might be in
+             * disconnecting/disconnected state */
+            if (mIsDenylistedDevice &&
+                callState.mNumActive == 1 &&
+                callState.mNumHeld == 0 &&
+                callState.mCallState == HeadsetHalConstants.CALL_STATE_IDLE &&
+                hasMessages(SEND_INCOMING_CALL_IND)) {
+
+                Log.w(TAG, "waiting call moved to active state while incoming call");
+                Log.w(TAG, "setup indicator is in queue. Send it first and create SCO");
+                //remove call setup indicator from queue.
+                removeMessages(SEND_INCOMING_CALL_IND);
+
+                HeadsetCallState incomingCallSetupState =
+                        new HeadsetCallState(0, 0, HeadsetHalConstants.CALL_STATE_INCOMING,
+                               mSystemInterface.getHeadsetPhoneState().getNumber(),
+                                 mSystemInterface.getHeadsetPhoneState().getType(),
+                                 "");
+                mNativeInterface.phoneStateChange(mDevice, incomingCallSetupState);
+
+                if (mDevice.equals(mHeadsetService.getActiveDevice())) {
+                    Message m = obtainMessage(CONNECT_AUDIO);
+                    m.obj = mDevice;
+                    sendMessage(m);
+                }
+            }
+        }
+
+        /* If device is denylisted, set retry SCO flag true before creating SCO for 1st time */
+        Log.d(TAG, "mIsDenylistedDeviceforRetrySCO: " + mIsDenylistedDeviceforRetrySCO);
+        if (mIsDenylistedDeviceforRetrySCO) {
+           if (((mStateMachineCallState.mNumActive == 0 && callState.mNumActive == 1) ||
+                (mStateMachineCallState.mNumHeld == 0 && callState.mNumHeld == 1)) &&
+                (mStateMachineCallState.mCallState == HeadsetHalConstants.CALL_STATE_INCOMING &&
+                 callState.mCallState == HeadsetHalConstants.CALL_STATE_IDLE)) {
+              Log.d(TAG, "Incoming call is accepted as Active or Held call");
+              if (mCurrentState == mAudioOn && !hasMessages(SCO_RETRIAL_NOT_REQ)) {
+                  Log.d(TAG,
+                      "not retry as audio is already on and SCO_RETRIAL_NOT_REQ is not there");
+              } else {
+                  mIsRetrySco = true;
+                  RETRY_SCO_CONNECTION_DELAY =
+                      SystemProperties.getInt("persist.vendor.btstack.mt.retry_sco.interval", 2000);
+              }
+           } else if ((callState.mNumActive == 0 && callState.mNumHeld == 0) &&
+                     (mStateMachineCallState.mCallState == HeadsetHalConstants.CALL_STATE_IDLE &&
+                     (callState.mCallState == HeadsetHalConstants.CALL_STATE_DIALING ||
+                     callState.mCallState == HeadsetHalConstants.CALL_STATE_ALERTING))) {
+              Log.d(TAG, "Dialing or Alerting indication");
+              if (mCurrentState == mAudioOn && !hasMessages(SCO_RETRIAL_NOT_REQ)) {
+                  Log.d(TAG,
+                      "not retry as audio is already on and SCO_RETRIAL_NOT_REQ is not there");
+              } else {
+                  mIsRetrySco = true;
+                  RETRY_SCO_CONNECTION_DELAY =
+                      SystemProperties.getInt("persist.vendor.btstack.mo.retry_sco.interval", 2000);
+              }
+           }
+        }
+        mStateMachineCallState.mNumActive = callState.mNumActive;
+        mStateMachineCallState.mNumHeld = callState.mNumHeld;
+        mStateMachineCallState.mCallState = callState.mCallState;
+        mStateMachineCallState.mNumber = callState.mNumber;
+        mStateMachineCallState.mType = callState.mType;
+
+        if (mIsCallIndDelay) {
+            mIsCallIndDelay = false;
+            sendMessageDelayed(SEND_INCOMING_CALL_IND, INCOMING_CALL_IND_DELAY);
+        } else {
+            mNativeInterface.phoneStateChange(mDevice, callState);
+        }
+    }
+
 
     private void processNoiseReductionEvent(boolean enable) {
         log("processNoiseReductionEvent: " + mHasNrecEnabled + " -> " + enable);
@@ -2763,6 +2978,34 @@ class HeadsetStateMachine extends StateMachine {
             events |= PhoneStateListener.LISTEN_SIGNAL_STRENGTHS;
         }
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
+    }
+
+    boolean isConnectedDeviceDenylistedforIncomingCall() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_HFP_FAKE_INCOMING_CALL_INDICATOR,
+            mDevice.getAddress());
+        return matched;
+    }
+
+    boolean isConnectedDeviceDenylistedforRetrySco() {
+       boolean matched = InteropUtil.interopMatchAddrOrName(
+           InteropUtil.InteropFeature.INTEROP_RETRY_SCO_AFTER_REMOTE_REJECT_SCO,
+           mDevice.getAddress());
+       return matched;
+    }
+
+    boolean isSCONeededImmediatelyAfterSLC() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_SETUP_SCO_WITH_NO_DELAY_AFTER_SLC_DURING_CALL,
+            mDevice.getAddress());
+        return matched;
+    }
+
+    boolean isDeviceDenylistedForDelayingCLCCRespAfterVOIPCall() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_HFP_SEND_OK_FOR_CLCC_AFTER_VOIP_CALL_END,
+            mDevice.getAddress());
+        return matched;
     }
 
     @Override

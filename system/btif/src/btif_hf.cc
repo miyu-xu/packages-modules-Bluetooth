@@ -55,9 +55,11 @@
 #include "btif/include/btif_profile_queue.h"
 #include "btif/include/btif_util.h"
 #include "btm_api_types.h"
+#include "btif_storage.h"
 #include "common/metrics.h"
 #include "device/include/device_iot_conf_defs.h"
 #include "device/include/device_iot_config.h"
+#include "device/include/interop.h"
 #include "hardware/bluetooth.h"
 #include "include/hardware/bluetooth_headset_callbacks.h"
 #include "include/hardware/bluetooth_headset_interface.h"
@@ -105,6 +107,8 @@ static uint32_t get_hf_features();
 static uint32_t btif_hf_features = get_hf_features();
 
 #define BTIF_HF_INVALID_IDX (-1)
+
+#define BTA_AG_CALL_INDEX 1
 
 /* Max HF clients supported from App */
 static int btif_max_hf_clients = 1;
@@ -1221,6 +1225,12 @@ bt_status_t HeadsetInterface::ClccResponse(int index, bthf_call_direction_t dir,
   if (index == 0) {
     ag_res.ok_flag = BTA_AG_OK_DONE;
   } else {
+      bool is_ind_denylisted = interop_match_addr_or_name(INTEROP_SKIP_INCOMING_STATE, bd_addr, &btif_storage_get_remote_device_property);
+      if (is_ind_denylisted && index > BTA_AG_CALL_INDEX && state == BTHF_CALL_STATE_INCOMING) {
+        log::error("device is denylisted for incoming state {}", idx);
+        state = BTHF_CALL_STATE_WAITING;
+      }
+
     std::string cell_number(number ? number : "");
     log::verbose("clcc_response: [{}] dir {} state {} mode {} number = {} type = {}", index, dir,
                  state, mode, PRIVATE_CELL(cell_number), type);
