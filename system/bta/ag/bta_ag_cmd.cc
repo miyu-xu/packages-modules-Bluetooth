@@ -50,8 +50,10 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "btif/include/btif_storage.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
+#include "stack/include/acl_api.h"
 
 using namespace bluetooth;
 using namespace bluetooth::shim;
@@ -585,6 +587,8 @@ void bta_ag_send_call_inds(tBTA_AG_SCB* p_scb, tBTA_AG_RES result) {
   /* set new call and callsetup values based on BTA_AgResult */
   size_t callsetup = bta_ag_indicator_by_result_code(result);
 
+  bool is_denylisted = interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_DURING_CALL,
+                                                   &p_scb->peer_addr, &btif_storage_get_remote_device_property);
   if (result == BTA_AG_END_CALL_RES) {
     call = BTA_AG_CALL_INACTIVE;
   } else if (result == BTA_AG_IN_CALL_CONN_RES || result == BTA_AG_OUT_CALL_CONN_RES ||
@@ -594,9 +598,38 @@ void bta_ag_send_call_inds(tBTA_AG_SCB* p_scb, tBTA_AG_RES result) {
     call = p_scb->call_ind;
   }
 
+  if ( result == BTA_AG_IN_CALL_CONN_RES)
+    log::verbose("BTA_AG_IN_CALL_CONN_RES, call {}, callsetup {}, call held {}, p_scb->callsetup_ind {}",
+     call, callsetup, p_scb->callheld_ind, p_scb->callsetup_ind );
+
+  if ( result == BTA_AG_OUT_CALL_CONN_RES)
+    log::verbose("BTA_AG_OUT_CALL_CONN_RES, call {}, callsetup {}, call held {}, p_scb->callsetup_ind {}",
+     call, callsetup, p_scb->callheld_ind, p_scb->callsetup_ind );
+
+  if (is_denylisted) {
+    if (result == BTA_AG_IN_CALL_RES ||
+        result == BTA_AG_CALL_WAIT_RES ||
+        result == BTA_AG_OUT_CALL_ORIG_RES ||
+        result == BTA_AG_OUT_CALL_ALERT_RES ||
+        result == BTA_AG_OUT_CALL_CONN_RES ) {
+        log::verbose("exit sniff during call for the device: {}",
+                        p_scb->peer_addr.ToString().c_str());
+        bta_sys_busy(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
+        BTM_block_sniff_mode_for(p_scb->peer_addr);
+     }
+  }
   /* Send indicator function tracks if the values have actually changed */
   bta_ag_send_ind(p_scb, BTA_AG_IND_CALL, call, false);
   bta_ag_send_ind(p_scb, BTA_AG_IND_CALLSETUP, callsetup, false);
+
+  if (is_denylisted) {
+    if ((result == BTA_AG_END_CALL_RES ||
+         result == BTA_AG_CALL_CANCEL_RES) && p_scb) {
+         log::verbose("Enable sniff mode for device: {}",
+                     p_scb->peer_addr.ToString().c_str());
+         BTM_unblock_sniff_mode_for(p_scb->peer_addr);
+    }
+  }
 }
 
 /*******************************************************************************
@@ -1138,6 +1171,7 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
       /* store peer features */
       p_scb->peer_features = (uint16_t)int_arg;
 
+      tBTA_AG_FEAT features = p_scb->features & BTA_AG_BRSF_FEAT_SPEC;
       if (p_scb->peer_version < HFP_VERSION_1_7) {
         if (!(com::android::bluetooth::flags::check_peer_hf_indicator() &&
               p_scb->peer_version == HFP_HSP_VERSION_UNKNOWN &&
@@ -1149,6 +1183,12 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
       LogMetricHfpAgVersion(ToGdAddress(p_scb->peer_addr), p_scb->peer_version);
       log::verbose("BRSF HF: 0x{:x}, phone: 0x{:x}", p_scb->peer_features, p_scb->masked_features);
 
+      if(interop_match_addr_or_name(INTEROP_DISABLE_CODEC_NEGOTIATION,
+          &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+          log::verbose("disable codec negotiation for phone, remote for denylisted device");
+          features = features & ~(BTA_AG_FEAT_CODEC);
+          p_scb->peer_features = p_scb->peer_features & ~(BTA_AG_PEER_FEAT_CODEC);
+      }
       /* send BRSF, send OK */
       bta_ag_send_result(p_scb, BTA_AG_LOCAL_RES_BRSF, nullptr, (int16_t)p_scb->masked_features);
       bta_ag_send_ok(p_scb);
@@ -1587,6 +1627,15 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb, const tBTA_AG_API_RESULT& resu
       */
       bta_ag_send_call_inds(p_scb, result.result);
 
+      if (interop_match_addr_or_name(INTEROP_DELAY_SCO_FOR_MT_CALL,
+           &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+          /* Ensure that call active indicator is sent prior to SCO connection
+             request by adding some delay. Some remotes are very strict in the
+             order of call indicator and SCO connection request. */
+          log::verbose("sleeping 200msec before opening sco");
+          usleep(200*1000);
+      }
+
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) && !bta_ag_sco_is_open(p_scb)) {
           if (!bta_ag_is_sco_open_allowed(p_scb, bta_ag_result_text(result.result))) {
@@ -1612,6 +1661,12 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb, const tBTA_AG_API_RESULT& resu
 
     case BTA_AG_OUT_CALL_ORIG_RES:
       bta_ag_send_call_inds(p_scb, result.result);
+      if (interop_match_addr_or_name(INTEROP_DELAY_SCO_FOR_MO_CALL,
+         &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+
+         log::verbose("sleeping 50msec before opening sco");
+         usleep(50*1000);
+      }
       if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (!bta_ag_is_sco_open_allowed(p_scb, bta_ag_result_text(result.result))) {
@@ -2005,4 +2060,31 @@ void bta_ag_send_qac(tBTA_AG_SCB* p_scb) {
   if (p_scb->sco_codec == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) {
     p_scb->is_aptx_swb_codec = true;
   }
+}
+
+bool bta_ag_is_call_present(const RawAddress* peer_addr)
+{
+  uint16_t handle;
+  tBTA_AG_SCB* p_scb;
+
+  if (peer_addr == NULL) {
+    log::warn("peer address is null");
+    return 0;
+  }
+
+  handle = bta_ag_idx_by_bdaddr(peer_addr);
+  p_scb = bta_ag_scb_by_idx(handle);
+
+  if (p_scb == NULL) {
+    log::warn("p_scb is null for peer dev {}", (*peer_addr).ToString().c_str());
+    return 0;
+  }
+
+  if (p_scb->call_ind || p_scb->callsetup_ind || p_scb->callheld_ind) {
+    log::verbose("call is present for peer dev {}", p_scb->peer_addr.ToString().c_str());
+    return 1;
+  }
+
+  log::verbose("call is not present for peer dev {}", p_scb->peer_addr.ToString().c_str());
+  return 0;
 }
