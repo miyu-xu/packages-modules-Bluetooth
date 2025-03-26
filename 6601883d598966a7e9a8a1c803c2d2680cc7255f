@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c15a6e5_86071c1f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-03-26T17:49:43Z",
+      "side": 1,
+      "message": "this should be \n(aptx_voice \u0026\u0026\n       (p_scb-\u003epeer_codecs \u0026 BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK))",
+      "revId": "6601883d598966a7e9a8a1c803c2d2680cc7255f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
