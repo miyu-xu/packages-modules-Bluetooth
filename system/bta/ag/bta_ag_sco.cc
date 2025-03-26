@@ -52,6 +52,7 @@
 #include "osi/include/alarm.h"
 #include "osi/include/properties.h"
 #include "stack/btm/btm_int_types.h"
+#include "device/include/interop.h"
 #include "stack/btm/btm_sco.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/btm_client_interface.h"
@@ -628,10 +629,20 @@ static void updateCodecParametersFromProviderInfo(tBTA_AG_UUID_CODEC esco_codec,
 static void bta_ag_codec_negotiation_timer_cback(void* data) {
   log::warn("Codec negotiation timeout");
   tBTA_AG_SCB* p_scb = (tBTA_AG_SCB*)data;
-
+  bool is_denylisted = interop_match_addr(INTEROP_DISABLE_CODEC_NEGOTIATION,
+                                           &p_scb->peer_addr);
   /* Announce that codec negotiation failed. */
   bta_ag_sco_codec_nego(p_scb, false);
-
+  // add the device to denylist to disable codec negotiation
+  if (is_denylisted == false) {
+    log::verbose("denylisting device {} for codec negotiation",
+                  p_scb->peer_addr.ToString().c_str());
+    interop_database_add(INTEROP_DISABLE_CODEC_NEGOTIATION,
+                       &p_scb->peer_addr, 3);
+  } else {
+     log::verbose("dev {} is already denylisted for codec negotiation",
+                   p_scb->peer_addr.ToString().c_str());
+  }
   /* call app callback */
   bta_ag_cback_sco(p_scb, BTA_AG_AUDIO_CLOSE_EVT);
 }
