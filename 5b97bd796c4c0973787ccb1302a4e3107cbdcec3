@@ -1,5 +1,85 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b576c31_c07802e1",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-26T06:58:49Z",
+      "side": 1,
+      "message": "log::info(\"\")",
+      "fixSuggestions": [
+        {
+          "fixId": "256c2d84_9d3041dd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/le_audio_software.cc",
+              "range": {
+                "startLine": 201,
+                "startChar": 0,
+                "endLine": 202,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"\");\n"
+            },
+            {
+              "path": "system/audio_hal_interface/le_audio_software.cc",
+              "range": {
+                "startLine": 523,
+                "startChar": 0,
+                "endLine": 524,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5b97bd796c4c0973787ccb1302a4e3107cbdcec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0d061b3_1dc9b6ef",
+        "filename": "system/audio_hal_interface/le_audio_software_host.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-26T06:58:49Z",
+      "side": 1,
+      "message": "What is TODO here?",
+      "revId": "5b97bd796c4c0973787ccb1302a4e3107cbdcec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60cc3fb9_47fdb737",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4526,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-03-26T06:58:49Z",
+      "side": 1,
+      "message": "hmm So in some cases it is still expected to call immediate ack.\n\nI was under impression that we want to  have different handling from what it is implemented right now and always wait for stream to be suspended before ACK.\n\nAlso, this should be behind system properties, as some AUDIO HALs does not need it.",
+      "revId": "5b97bd796c4c0973787ccb1302a4e3107cbdcec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
