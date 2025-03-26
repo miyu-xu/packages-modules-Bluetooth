@@ -737,8 +737,8 @@ void Device::AddressedPlayerNotificationResponse(uint8_t label, bool interim,
 void Device::RejectNotification() {
   log::verbose("");
   Notification* rejectNotification[] = {&play_status_changed_, &track_changed_, &play_pos_changed_,
-                                        &now_playing_changed_};
-  for (int i = 0; i < 4; i++) {
+                                        &now_playing_changed_, &player_setting_changed_};
+  for (int i = 0; i < 5; i++) {
     uint8_t label = rejectNotification[i]->second;
     auto response = RejectBuilder::MakeBuilder(CommandPdu::REGISTER_NOTIFICATION,
                                                Status::ADDRESSED_PLAYER_CHANGED);
