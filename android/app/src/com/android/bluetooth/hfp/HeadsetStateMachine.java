@@ -55,6 +55,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
@@ -99,6 +100,7 @@ class HeadsetStateMachine extends StateMachine {
     static final int SEND_BSIR = 13;
     static final int DIALING_OUT_RESULT = 14;
     static final int VOICE_RECOGNITION_RESULT = 15;
+    static final int SEND_CLCC_RESP_AFTER_VOIP_CALL = 18;
 
     static final int STACK_EVENT = 101;
     private static final int CLCC_RSP_TIMEOUT = 104;
@@ -2765,6 +2767,12 @@ class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+    boolean isDeviceDenylistedForDelayingCLCCRespAfterVOIPCall() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_HFP_SEND_OK_FOR_CLCC_AFTER_VOIP_CALL_END,
+            mDevice.getAddress());
+        return matched;
+    }
     @Override
     protected void log(String msg) {
         super.log(msg);
