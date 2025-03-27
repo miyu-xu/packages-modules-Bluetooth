@@ -57,6 +57,24 @@
       "message": "I think we need to do this only if the remote supports more that one code (i.e mSBC). Should we check those conditions here before enabling the negotiation?",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d20587f_53150f09",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-03-27T06:38:44Z",
+      "side": 1,
+      "message": "Hi Bhaktha, remote sends AT+BCC only when it supports codec negotiation. IMHO, We may not extra checks again to see if remote supports codec negotiation",
+      "parentUuid": "ec005718_a7772cab",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
