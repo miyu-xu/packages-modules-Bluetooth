@@ -1789,6 +1789,13 @@ public class HeadsetService extends ProfileService {
                     Log.e(TAG, "dialOutgoingCall failed to stop current virtual call");
                     return false;
                 }
+                HeadsetStateMachine stateMachine = mStateMachines.get(mActiveDevice);
+                if (stateMachine != null &&
+                    stateMachine.isDeviceDenylistedForDelayingCLCCRespAfterVOIPCall()) {
+                    // send delayed message for active device if Denylisted
+                    stateMachine.sendMessageDelayed(
+                    HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL, 1000);
+                }
             }
             if (!setActiveDevice(fromDevice)) {
                 Log.e(TAG, "dialOutgoingCall failed to set active device to " + fromDevice);
@@ -2015,6 +2022,13 @@ public class HeadsetService extends ProfileService {
                 if (!isVirtualCall && mVirtualCallStarted) {
                     // stop virtual voice call if there is an incoming Telecom call update
                     stopScoUsingVirtualVoiceCall();
+                    HeadsetStateMachine stateMachine = mStateMachines.get(mActiveDevice);
+                    if (stateMachine != null &&
+                        stateMachine.isDeviceDenylistedForDelayingCLCCRespAfterVOIPCall()) {
+                        // send delayed message for active device if Denylisted
+                        stateMachine.sendMessageDelayed(
+                        HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL, 300);
+                    }
                 }
                 if (mVoiceRecognitionStarted) {
                     // stop voice recognition if there is any incoming call
