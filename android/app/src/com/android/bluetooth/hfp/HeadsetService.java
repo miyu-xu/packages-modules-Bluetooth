@@ -173,6 +173,7 @@ public class HeadsetService extends ProfileService {
     public HeadsetService(AdapterService adapterService) {
         this(adapterService, HeadsetNativeInterface.getInstance(), null);
     }
+    private static final int AUDIO_CONNECTION_DELAY_DEFAULT = 100;
 
     @VisibleForTesting
     HeadsetService(AdapterService adapterService, HeadsetNativeInterface nativeInterface) {
@@ -1557,6 +1558,8 @@ public class HeadsetService extends ProfileService {
     }
 
     int connectAudio(BluetoothDevice device) {
+        int connDelay = SystemProperties.getInt("persist.vendor.bluetooth.audioconnect.delay",
+                AUDIO_CONNECTION_DELAY_DEFAULT);
         Log.i(TAG, "connectAudio: device=" + device + ", " + Utils.getUidPidString());
         synchronized (mStateMachines) {
             final HeadsetStateMachine stateMachine = mStateMachines.get(device);
@@ -1580,6 +1583,23 @@ public class HeadsetService extends ProfileService {
                         BluetoothStatsLog
                                 .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__SCO_CONNECT_AUDIO_START,
                         Binder.getCallingUid());
+                /**
+                 * add for case that device disconnecting audio has been set active again,
+                 * then send CONNECT_AUDIO if not contained in queue and should persist audio
+                 */
+                if (mActiveDevice != null && mActiveDevice.equals(device) &&
+                        stateMachine.getAudioState() == BluetoothHeadset.STATE_AUDIO_DISCONNECTING
+                        && !stateMachine.hasMessagesInQueue(HeadsetStateMachine.CONNECT_AUDIO) &&
+                        !stateMachine.hasDeferredMessagesInQueue(HeadsetStateMachine.CONNECT_AUDIO)
+                        && shouldPersistAudio()) {
+                    if (stateMachine.getIfDeviceDenylistedForSCOAfterSLC() == true)
+                        connDelay = 0;
+
+                    Log.i(TAG, "connectAudio: active again and connect audio after "
+                            + connDelay + " ms");
+                    stateMachine.sendMessageDelayed(HeadsetStateMachine.CONNECT_AUDIO,
+                            device, connDelay);
+                }
                 return BluetoothStatusCodes.SUCCESS;
             }
             if (isAudioOn()) {
@@ -1589,7 +1609,12 @@ public class HeadsetService extends ProfileService {
                                 + Arrays.toString(getNonIdleAudioDevices().toArray()));
                 return BluetoothStatusCodes.ERROR_AUDIO_DEVICE_ALREADY_CONNECTED;
             }
-            stateMachine.sendMessage(HeadsetStateMachine.CONNECT_AUDIO, device);
+
+            if (stateMachine.getIfDeviceDenylistedForSCOAfterSLC() == true)
+                connDelay = 0;
+
+            Log.i(TAG, "connectAudio: connect audio after " + connDelay + " ms");
+            stateMachine.sendMessageDelayed(HeadsetStateMachine.CONNECT_AUDIO, device, connDelay);
             logScoSessionMetric(
                     device,
                     BluetoothStatsLog
