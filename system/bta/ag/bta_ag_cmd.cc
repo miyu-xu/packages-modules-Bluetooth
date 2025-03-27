@@ -50,6 +50,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "btif/include/btif_storage.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
 
@@ -1612,6 +1613,12 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb, const tBTA_AG_API_RESULT& resu
 
     case BTA_AG_OUT_CALL_ORIG_RES:
       bta_ag_send_call_inds(p_scb, result.result);
+      if (interop_match_addr_or_name(INTEROP_DELAY_SCO_FOR_MO_CALL,
+         &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+
+         log::verbose("sleeping 50msec before opening sco");
+         usleep(50*1000);
+      }
       if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) &&
           !(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (!bta_ag_is_sco_open_allowed(p_scb, bta_ag_result_text(result.result))) {
