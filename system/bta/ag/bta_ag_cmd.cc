@@ -50,6 +50,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "btif/include/btif_storage.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
 
@@ -1144,6 +1145,13 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type, cha
               (p_scb->peer_features & BTA_AG_PEER_FEAT_HF_IND))) {
           p_scb->masked_features &= HFP_1_6_FEAT_MASK;
         }
+      }
+
+      if(interop_match_addr_or_name(INTEROP_DISABLE_CODEC_NEGOTIATION,
+          &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+          log::verbose("disable codec negotiation, remote for denylist device");
+          p_scb->masked_features = p_scb->masked_features & ~(BTA_AG_FEAT_CODEC);
+          p_scb->peer_features = p_scb->peer_features & ~(BTA_AG_PEER_FEAT_CODEC);
       }
 
       LogMetricHfpAgVersion(ToGdAddress(p_scb->peer_addr), p_scb->peer_version);
