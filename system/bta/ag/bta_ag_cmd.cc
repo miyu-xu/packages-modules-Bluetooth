@@ -50,6 +50,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "btif/include/btif_storage.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
 
@@ -1586,6 +1587,15 @@ static void bta_ag_hfp_result(tBTA_AG_SCB* p_scb, const tBTA_AG_API_RESULT& resu
       ** then  open sco.
       */
       bta_ag_send_call_inds(p_scb, result.result);
+
+      if (interop_match_addr_or_name(INTEROP_DELAY_SCO_FOR_MT_CALL,
+           &p_scb->peer_addr, &btif_storage_get_remote_device_property)) {
+          /* Ensure that call active indicator is sent prior to SCO connection
+             request by adding some delay. Some remotes are very strict in the
+             order of call indicator and SCO connection request. */
+          log::verbose("sleeping 200msec before opening sco");
+          usleep(200*1000);
+      }
 
       if (!(p_scb->features & BTA_AG_FEAT_NOSCO)) {
         if (result.data.audio_handle == bta_ag_scb_to_idx(p_scb) && !bta_ag_sco_is_open(p_scb)) {
