@@ -627,7 +627,6 @@ static void updateCodecParametersFromProviderInfo(tBTA_AG_UUID_CODEC esco_codec,
  ******************************************************************************/
 static void bta_ag_codec_negotiation_timer_cback(void* data) {
   log::warn("Codec negotiation timeout");
-  tBTA_AG_SCB* p_scb = (tBTA_AG_SCB*)data;
 
   /* Announce that codec negotiation failed. */
   bta_ag_sco_codec_nego(p_scb, false);
