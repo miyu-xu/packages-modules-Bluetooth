@@ -55,6 +55,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
@@ -140,6 +141,7 @@ class HeadsetStateMachine extends StateMachine {
     @VisibleForTesting int mMicVolume;
     private boolean mDeviceSilenced;
     private HeadsetAgIndicatorEnableState mAgIndicatorEnableState;
+    private boolean mIsDenylistedForSCOAfterSLC = false;
     // The timestamp when the device entered connecting/connected state
     private long mConnectingTimestampMs = Long.MIN_VALUE;
     // Audio Parameters
@@ -302,6 +304,11 @@ class HeadsetStateMachine extends StateMachine {
         scanner.close();
     }
 
+    public boolean getIfDeviceDenylistedForSCOAfterSLC() {
+        Log.d(TAG, "getIfDeviceDenylistedForSCOAfterSLC, returning " +
+                mIsDenylistedForSCOAfterSLC);
+        return  mIsDenylistedForSCOAfterSLC;
+    }
     /** Base class for states used in this state machine to share common infrastructures */
     private abstract class HeadsetStateBase extends State {
         @Override
@@ -1298,6 +1305,8 @@ class HeadsetStateMachine extends StateMachine {
                 processNoiseReductionEvent(true);
                 // Query phone state for initial setup
                 mSystemInterface.queryPhoneState(mHeadsetService);
+                // Checking for the Denylisted device Addresses
+                mIsDenylistedForSCOAfterSLC = isSCONeededImmediatelyAfterSLC();
                 // Remove pending connection attempts that were deferred during the pending
                 // state. This is to prevent auto connect attempts from disconnecting
                 // devices that previously successfully connected.
@@ -2765,6 +2774,12 @@ class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+    boolean isSCONeededImmediatelyAfterSLC() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_SETUP_SCO_WITH_NO_DELAY_AFTER_SLC_DURING_CALL,
+            mDevice.getAddress());
+        return matched;
+    }
     @Override
     protected void log(String msg) {
         super.log(msg);
