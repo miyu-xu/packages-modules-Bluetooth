@@ -99,6 +99,24 @@
       "parentUuid": "ec005718_a7772cab",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8769d3f_d65185f8",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-03-27T23:51:36Z",
+      "side": 1,
+      "message": "Sure Satish,\nIsn\u0027t this an extra step for the remote device which don\u0027t expect codec negotiation?\n\nMay be there are remotes which just want to bringup SCO connection by sending AT+BCC. I was wondering if this need to be under blacklist or so? I couldnt see much information on buganizer. Do we know what was the failure without this?",
+      "parentUuid": "5d20587f_53150f09",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
