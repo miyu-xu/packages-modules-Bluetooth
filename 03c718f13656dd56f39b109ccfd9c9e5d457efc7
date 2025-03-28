@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd2ddf9a_ac873a55",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1502,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-03-28T02:13:45Z",
+      "side": 1,
+      "message": "Chatted with Sarvesh. This was needed for fixing compiler errors. I\u0027ll repro and figure out how to remove this.",
+      "parentUuid": "3f765f95_ff9b92f8",
+      "revId": "03c718f13656dd56f39b109ccfd9c9e5d457efc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37397f9f_8aaa7f19",
