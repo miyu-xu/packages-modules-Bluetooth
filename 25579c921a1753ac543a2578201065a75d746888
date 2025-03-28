@@ -117,6 +117,24 @@
       "parentUuid": "5d20587f_53150f09",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "775cd8d9_ce9f0736",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-03-28T14:14:25Z",
+      "side": 1,
+      "message": "Power beats Pro was the remote. It is sending AT+BCC and expecting codec negotiation when taken out of ear and kept in the ear back. Agree that some remotes may not want codec negotiation. We haven\u0027t seen any issues with this change in multiple years of IOT testing. We have propagated the fix to AOSP stack from QC stack. Hence, went with generic fix instead of adding new blacklisting for this.",
+      "parentUuid": "e8769d3f_d65185f8",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
