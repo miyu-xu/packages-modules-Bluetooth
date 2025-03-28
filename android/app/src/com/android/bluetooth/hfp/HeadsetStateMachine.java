@@ -44,6 +44,7 @@ import android.os.Build;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
@@ -55,6 +56,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
@@ -99,7 +101,7 @@ class HeadsetStateMachine extends StateMachine {
     static final int SEND_BSIR = 13;
     static final int DIALING_OUT_RESULT = 14;
     static final int VOICE_RECOGNITION_RESULT = 15;
-
+    static final int SEND_INCOMING_CALL_IND = 16;
     static final int STACK_EVENT = 101;
     private static final int CLCC_RSP_TIMEOUT = 104;
 
@@ -115,6 +117,12 @@ class HeadsetStateMachine extends StateMachine {
 
     private static final HeadsetAgIndicatorEnableState DEFAULT_AG_INDICATOR_ENABLE_STATE =
             new HeadsetAgIndicatorEnableState(true, true, true, true);
+
+    private static final int INCOMING_CALL_IND_DELAY_MS = 200;
+    private final BluetoothDevice mDevice;
+    // maintain call states in state machine as well
+    private final HeadsetCallState mStateMachineCallState =
+                 new HeadsetCallState(0, 0, 0, "", 0, "");
 
     // State machine states
     private final Disconnected mDisconnected = new Disconnected();
@@ -140,6 +148,8 @@ class HeadsetStateMachine extends StateMachine {
     @VisibleForTesting int mMicVolume;
     private boolean mDeviceSilenced;
     private HeadsetAgIndicatorEnableState mAgIndicatorEnableState;
+    private boolean mIsCallIndDelay = false;
+    private boolean mIsDenylistedDevice = false;
     // The timestamp when the device entered connecting/connected state
     private long mConnectingTimestampMs = Long.MIN_VALUE;
     // Audio Parameters
@@ -568,6 +578,12 @@ class HeadsetStateMachine extends StateMachine {
             mHasSwbLc3Enabled = false;
             mHasNrecEnabled = false;
             mHasSwbAptXEnabled = false;
+            // reset call information
+            mStateMachineCallState.mNumActive = 0;
+            mStateMachineCallState.mNumHeld = 0;
+            mStateMachineCallState.mCallState = 0;
+            mStateMachineCallState.mNumber = "";
+            mStateMachineCallState.mType = 0;
 
             broadcastStateTransitions();
             logFailureIfNeeded();
@@ -584,6 +600,8 @@ class HeadsetStateMachine extends StateMachine {
                         BluetoothStatsLog
                                 .BLUETOOTH_CROSS_LAYER_EVENT_REPORTED__STATE__HFP_CONNECT_FAIL);
             }
+
+            mIsDenylistedDevice = false;
         }
 
         @Override
@@ -750,6 +768,19 @@ class HeadsetStateMachine extends StateMachine {
             super.enter();
             mConnectingTimestampMs = SystemClock.uptimeMillis();
             sendMessageDelayed(CONNECT_TIMEOUT, mDevice, sConnectTimeoutMs);
+            mSystemInterface.queryPhoneState();
+            // update call states in StateMachine
+            mStateMachineCallState.mNumActive =
+                   mSystemInterface.getHeadsetPhoneState().getNumActiveCall();
+            mStateMachineCallState.mNumHeld =
+                   mSystemInterface.getHeadsetPhoneState().getNumHeldCall();
+            mStateMachineCallState.mCallState =
+                   mSystemInterface.getHeadsetPhoneState().getCallState();
+            mStateMachineCallState.mNumber =
+                   mSystemInterface.getHeadsetPhoneState().getNumber();
+            mStateMachineCallState.mType =
+                   mSystemInterface.getHeadsetPhoneState().getType();
+
             broadcastStateTransitions();
         }
 
@@ -780,6 +811,7 @@ class HeadsetStateMachine extends StateMachine {
                 case CALL_STATE_CHANGED:
                     HeadsetCallState callState = (HeadsetCallState) message.obj;
                     setAptxVoice(callState);
+                    processCallState(callState, false);
                     break;
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");
@@ -1066,15 +1098,27 @@ class HeadsetStateMachine extends StateMachine {
                         }
                         break;
                     }
-                case CALL_STATE_CHANGED:
+                    break;
+                }
+                case CALL_STATE_CHANGED: {
+                    if (mDeviceSilenced) break;
+
                     HeadsetCallState callState = (HeadsetCallState) message.obj;
                     setAptxVoice(callState);
 
-                    if (!mNativeInterface.phoneStateChange(mDevice, callState)) {
-                        stateLogW("processCallState: failed to update call state " + callState);
-                        break;
+                    boolean isPts =
+                        SystemProperties.getBoolean("vendor.bt.pts.certification", false);
+                    // for PTS, send the indicators as is
+                    if (isPts) {
+                        if (!mNativeInterface.phoneStateChange(mDevice, callState)) {
+                            stateLogW("processCallState: failed to update call state " + callState);
+                            break;
+                        }
                     }
+                    else
+                        processCallState(callState, false);
                     break;
+                }
                 case DEVICE_STATE_CHANGED:
                     if (mDeviceSilenced) {
                         stateLogW(
@@ -1297,7 +1341,9 @@ class HeadsetStateMachine extends StateMachine {
                 // Reset NREC on connect event. Headset will override later
                 processNoiseReductionEvent(true);
                 // Query phone state for initial setup
-                mSystemInterface.queryPhoneState(mHeadsetService);
+                mSystemInterface.queryPhoneState();
+                // Checking for the Denylisted device Addresses
+                mIsDenylistedDevice = isConnectedDeviceDenylistedforIncomingCall();
                 // Remove pending connection attempts that were deferred during the pending
                 // state. This is to prevent auto connect attempts from disconnecting
                 // devices that previously successfully connected.
@@ -2039,6 +2085,81 @@ class HeadsetStateMachine extends StateMachine {
         }
     }
 
+    private void processCallState(HeadsetCallState callState, boolean isVirtualCall) {
+        /* If active call is ended, no held call is present, disconnect SCO
+         * and fake the MT Call indicators. */
+        boolean isPts =
+                SystemProperties.getBoolean("vendor.bt.pts.certification", false);
+        if (!isPts) {
+            Log.w(TAG, "mIsDenylistedDevice:" + mIsDenylistedDevice);
+            if (mIsDenylistedDevice &&
+                mStateMachineCallState.mNumActive == 1 &&
+                callState.mNumActive == 0 &&
+                callState.mNumHeld == 0 &&
+                callState.mCallState == HeadsetHalConstants.CALL_STATE_INCOMING) {
+
+                log("Disconnect SCO since active call is ended," +
+                                    "only waiting call is there");
+                Message m = obtainMessage(DISCONNECT_AUDIO);
+                m.obj = mDevice;
+                sendMessage(m);
+
+                log("Send Idle call indicators once Active call disconnected.");
+                mStateMachineCallState.mCallState =
+                                               HeadsetHalConstants.CALL_STATE_IDLE;
+                HeadsetCallState updateCallState = new HeadsetCallState(callState.mNumActive,
+                                 callState.mNumHeld,
+                                 HeadsetHalConstants.CALL_STATE_IDLE,
+                                 callState.mNumber,
+                                 callState.mType, "");
+                mNativeInterface.phoneStateChange(mDevice, updateCallState);
+                mIsCallIndDelay = true;
+            }
+
+            /* The device is denylisted for sending incoming call setup
+             * indicator after SCO disconnection and sending active call end
+             * indicator. While the incoming call setup indicator is in queue,
+             * waiting call moved to active state. Send call setup update first
+             * and remove it from queue. Create SCO since SCO might be in
+             * disconnecting/disconnected state */
+            if (mIsDenylistedDevice &&
+                callState.mNumActive == 1 &&
+                callState.mNumHeld == 0 &&
+                callState.mCallState == HeadsetHalConstants.CALL_STATE_IDLE &&
+                hasMessages(SEND_INCOMING_CALL_IND)) {
+
+                Log.w(TAG, "waiting call moved to active state while incoming call");
+                Log.w(TAG, "setup indicator is in queue. Send it first and create SCO");
+                //remove call setup indicator from queue.
+                removeMessages(SEND_INCOMING_CALL_IND);
+
+                HeadsetCallState incomingCallSetupState =
+                        new HeadsetCallState(0, 0, HeadsetHalConstants.CALL_STATE_INCOMING,
+                               mSystemInterface.getHeadsetPhoneState().getNumber(),
+                                 mSystemInterface.getHeadsetPhoneState().getType(),
+                                 "");
+                mNativeInterface.phoneStateChange(mDevice, incomingCallSetupState);
+
+                if (mDevice.equals(mHeadsetService.getActiveDevice())) {
+                    Message m = obtainMessage(CONNECT_AUDIO);
+                    m.obj = mDevice;
+                    sendMessage(m);
+                }
+            }
+        }
+        mStateMachineCallState.mNumActive = callState.mNumActive;
+        mStateMachineCallState.mNumHeld = callState.mNumHeld;
+        mStateMachineCallState.mCallState = callState.mCallState;
+        mStateMachineCallState.mNumber = callState.mNumber;
+        mStateMachineCallState.mType = callState.mType;
+
+        if (mIsCallIndDelay) {
+            mIsCallIndDelay = false;
+            sendMessageDelayed(SEND_INCOMING_CALL_IND, INCOMING_CALL_IND_DELAY);
+        } else {
+            mNativeInterface.phoneStateChange(mDevice, callState);
+        }
+    }
     private void processNoiseReductionEvent(boolean enable) {
         log("processNoiseReductionEvent: " + mHasNrecEnabled + " -> " + enable);
         mHasNrecEnabled = enable;
@@ -2765,6 +2886,12 @@ class HeadsetStateMachine extends StateMachine {
         mSystemInterface.getHeadsetPhoneState().listenForPhoneState(mDevice, events);
     }
 
+    boolean isConnectedDeviceDenylistedforIncomingCall() {
+        boolean matched = InteropUtil.interopMatchAddrOrName(
+            InteropUtil.InteropFeature.INTEROP_HFP_FAKE_INCOMING_CALL_INDICATOR,
+            mDevice.getAddress());
+        return matched;
+    }
     @Override
     protected void log(String msg) {
         super.log(msg);
