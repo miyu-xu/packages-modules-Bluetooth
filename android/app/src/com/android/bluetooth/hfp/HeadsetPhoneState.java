@@ -67,6 +67,10 @@ public class HeadsetPhoneState {
     private int mCindRoam = HeadsetHalConstants.SERVICE_TYPE_HOME;
     // HFP 1.6 CIND battchg value
     private int mCindBatteryCharge;
+    // Current Call Number
+    private String mCindNumber;
+    //Current Phone Number Type
+    private int mType = 0;
 
     private final HashMap<BluetoothDevice, Integer> mDeviceEventMap = new HashMap<>();
     private PhoneStateListener mPhoneStateListener;
