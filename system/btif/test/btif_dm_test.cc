@@ -20,6 +20,7 @@
 #include <flag_macros.h>
 #include <gtest/gtest.h>
 
+#include <cstdint>
 #include <memory>
 
 #include "bta/include/bta_api_data_types.h"
@@ -161,21 +162,24 @@ TEST_F_WITH_FLAGS(BtifDmWithStackTest, btif_dm_search_services_evt__BTA_DM_NAME_
   static struct {
     bt_status_t status;
     RawAddress bd_addr;
+    uint8_t address_type;
     int num_properties;
     std::vector<bt_property_t> properties;
   } invoke_remote_device_properties_cb{
           .status = BT_STATUS_NOT_READY,
           .bd_addr = RawAddress::kEmpty,
+          .address_type = 0,
           .num_properties = -1,
           .properties = {},
   };
 
   bluetooth::core::testing::mock_event_callbacks.invoke_remote_device_properties_cb =
-          [](bt_status_t status, RawAddress bd_addr, int num_properties,
+          [](bt_status_t status, RawAddress bd_addr, uint8_t address_type, int num_properties,
              bt_property_t* properties) {
             invoke_remote_device_properties_cb = {
                     .status = status,
                     .bd_addr = bd_addr,
+                    .address_type = address_type,
                     .num_properties = num_properties,
                     .properties = std::vector<bt_property_t>(properties,
                                                              properties + (size_t)num_properties),
@@ -189,6 +193,7 @@ TEST_F_WITH_FLAGS(BtifDmWithStackTest, btif_dm_search_services_evt__BTA_DM_NAME_
 
   ASSERT_EQ(BT_STATUS_SUCCESS, invoke_remote_device_properties_cb.status);
   ASSERT_EQ(kRawAddress, invoke_remote_device_properties_cb.bd_addr);
+  ASSERT_EQ(0, invoke_remote_device_properties_cb.address_type);
   ASSERT_EQ(1, invoke_remote_device_properties_cb.num_properties);
   ASSERT_EQ(BT_PROPERTY_BDNAME, invoke_remote_device_properties_cb.properties[0].type);
   ASSERT_EQ((int)strlen(kBdName), invoke_remote_device_properties_cb.properties[0].len);

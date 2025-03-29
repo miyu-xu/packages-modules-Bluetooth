@@ -5033,7 +5033,7 @@ public class AdapterService extends Service {
         createBondCaller.user = Binder.getCallingUserHandle();
         mBondAttemptCallerInfo.put(device.getAddress(), createBondCaller);
 
-        mRemoteDevices.setBondingInitiatedLocally(Utils.getByteAddress(device));
+        mRemoteDevices.setBondingInitiatedLocally(device);
 
         // Pairing is unreliable while scanning, so cancel discovery
         // Note, remove this when native stack improves
