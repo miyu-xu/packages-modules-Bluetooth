@@ -28,7 +28,7 @@ import java.nio.charset.StandardCharsets;
 class AdvertiseHelper {
     private static final String TAG = AdvertiseHelper.class.getSimpleName();
 
-    private static final int DEVICE_NAME_MAX = 26;
+    private static final int DEVICE_NAME_MAX = 20;
 
     private static final int COMPLETE_LIST_16_BIT_SERVICE_UUIDS = 0X03;
     private static final int COMPLETE_LIST_32_BIT_SERVICE_UUIDS = 0X05;
