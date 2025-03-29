@@ -1,0 +1,12 @@
+package: "com.android.bluetooth.flags"
+container: "com.android.bt"
+
+flag {
+    name: "address_type_in_device_found"
+    namespace: "bluetooth"
+    description: "Include address type in device found intents"
+    bug: ""
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
