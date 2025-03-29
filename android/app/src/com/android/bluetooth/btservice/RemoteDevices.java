@@ -297,7 +297,7 @@ public class RemoteDevices {
     }
 
     @VisibleForTesting
-    DeviceProperties addDeviceProperties(byte[] address) {
+    DeviceProperties addDeviceProperties(byte[] address, int addressType) {
         synchronized (mDevices) {
             String key = Utils.getAddressStringFromByte(address);
             if (Flags.fixAddDeviceProperties() && mDevices.containsKey(key)) {
@@ -306,7 +306,9 @@ public class RemoteDevices {
             }
 
             DeviceProperties prop = new DeviceProperties();
-            prop.setDevice(mAdapter.getRemoteDevice(Utils.getAddressStringFromByte(address)));
+            prop.setDevice(
+                    mAdapter.getRemoteLeDevice(
+                            Utils.getAddressStringFromByte(address), addressType));
             prop.setAddress(address);
 
             DeviceProperties pv = mDevices.put(key, prop);
@@ -326,6 +328,11 @@ public class RemoteDevices {
             }
             return prop;
         }
+    }
+
+    @VisibleForTesting
+    DeviceProperties addDeviceProperties(byte[] address) {
+        return addDeviceProperties(address, BluetoothDevice.ADDRESS_TYPE_PUBLIC);
     }
 
     class DeviceProperties {
@@ -405,19 +412,9 @@ public class RemoteDevices {
         }
 
         /**
-         * @param identityAddressType the mIdentityAddressType to set
+         * @param identityAddressType the mIdentityAddressType to set after mapping to Java layer.
          */
         void setIdentityAddressType(int identityAddressType) {
-            synchronized (mObject) {
-                this.mIdentityAddressType = identityAddressType;
-            }
-        }
-
-        /**
-         * @param identityAddressTypeFromNative the mIdentityAddressType to set after mapping to
-         *     Java layer.
-         */
-        void setIdentityAddressTypeFromNative(int identityAddressTypeFromNative) {
             /*
              * from system/types/ble_address_with_type.h
              *
@@ -425,7 +422,7 @@ public class RemoteDevices {
              * #define BLE_ADDR_RANDOM 0x01
              */
             int identityAddressType = BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
-            switch (identityAddressTypeFromNative) {
+            switch (identityAddressType) {
                 case 0x00:
                     identityAddressType = BluetoothDevice.ADDRESS_TYPE_PUBLIC;
                     break;
@@ -435,7 +432,7 @@ public class RemoteDevices {
                 default:
                     errorLog(
                             "Unexpected identity address type received from native: "
-                                    + identityAddressTypeFromNative);
+                                    + identityAddressType);
                     break;
             }
             synchronized (mObject) {
@@ -897,14 +894,11 @@ public class RemoteDevices {
      * we must add device first before setting it's properties. This is a helper method for doing
      * that.
      */
-    void setBondingInitiatedLocally(byte[] address) {
-        DeviceProperties properties;
+    void setBondingInitiatedLocally(BluetoothDevice device) {
+        DeviceProperties properties = getDeviceProperties(device);
 
-        BluetoothDevice device = getDevice(address);
-        if (device == null) {
+        if (properties == null) {
             properties = addDeviceProperties(address);
-        } else {
-            properties = getDeviceProperties(device);
         }
 
         properties.setBondingInitiatedLocally(true);
@@ -930,7 +924,8 @@ public class RemoteDevices {
         }
         DeviceProperties deviceProperties = getDeviceProperties(device);
         if (deviceProperties == null) {
-            deviceProperties = addDeviceProperties(Utils.getByteAddress(device));
+            deviceProperties =
+                    addDeviceProperties(Utils.getByteAddress(device), device.getAddressType());
         }
         int prevBatteryLevel = deviceProperties.getBatteryLevel();
         if (isBas) {
@@ -1045,7 +1040,8 @@ public class RemoteDevices {
         return set.isEmpty();
     }
 
-    void devicePropertyChangedCallback(byte[] address, int[] types, byte[][] values) {
+    void devicePropertyChangedCallback(
+            byte[] address, int addressType, int[] types, byte[][] values) {
         Intent intent;
         byte[] val;
         int type;
@@ -1053,10 +1049,13 @@ public class RemoteDevices {
         DeviceProperties deviceProperties;
         if (bdDevice == null) {
             debugLog("Added new device property, device=" + bdDevice);
-            deviceProperties = addDeviceProperties(address);
+            deviceProperties = addDeviceProperties(address, addressType);
             bdDevice = getDevice(address);
         } else {
             deviceProperties = getDeviceProperties(bdDevice);
+            if (bdDevice.getAddressType() != addressType) {
+                warnLog("Address type mismatch, device=" + bdDevice + ", type: " + addressType);
+            }
         }
 
         if (types.length <= 0) {
@@ -1283,7 +1282,9 @@ public class RemoteDevices {
         DeviceProperties deviceProperties;
         BluetoothDevice device = getDevice(mainAddress);
         if (device == null) {
-            deviceProperties = addDeviceProperties(mainAddress);
+            // Address consolidation happens only for the random device addresses
+            deviceProperties =
+                    addDeviceProperties(mainAddress, BluetoothDevice.ADDRESS_TYPE_RANDOM);
             device = deviceProperties.getDevice();
         } else {
             deviceProperties = getDeviceProperties(device);
@@ -1298,6 +1299,8 @@ public class RemoteDevices {
         deviceProperties.setIsConsolidated(true);
         deviceProperties.setDeviceType(BluetoothDevice.DEVICE_TYPE_DUAL);
         deviceProperties.setIdentityAddress(Utils.getAddressStringFromByte(secondaryAddress));
+        // Dual mode devices have public identity address type
+        deviceProperties.setIdentityAddressType(BluetoothDevice.ADDRESS_TYPE_PUBLIC);
         mDualDevicesMap.put(
                 deviceProperties.getIdentityAddress(), Utils.getAddressStringFromByte(mainAddress));
     }
@@ -1308,14 +1311,16 @@ public class RemoteDevices {
      *
      * @param mainAddress the device's RPA
      * @param secondaryAddress the device's identity address
-     * @param identityAddressTypeFromNative the device's identity address type from native
+     * @param identityAddressType the device's identity address type from native
      */
     void leAddressAssociateCallback(
-            byte[] mainAddress, byte[] secondaryAddress, int identityAddressTypeFromNative) {
+            byte[] mainAddress, byte[] secondaryAddress, int identityAddressType) {
         DeviceProperties deviceProperties;
         BluetoothDevice device = getDevice(mainAddress);
         if (device == null) {
-            deviceProperties = addDeviceProperties(mainAddress);
+            // Address association happens only for the random device addresses
+            deviceProperties =
+                    addDeviceProperties(mainAddress, BluetoothDevice.ADDRESS_TYPE_RANDOM);
             device = deviceProperties.getDevice();
         } else {
             deviceProperties = getDeviceProperties(device);
@@ -1326,11 +1331,11 @@ public class RemoteDevices {
                         + device
                         + ", secondaryAddress:"
                         + Utils.getRedactedAddressStringFromByte(secondaryAddress)
-                        + ", identityAddressTypeFromNative="
-                        + identityAddressTypeFromNative);
+                        + ", identityAddressType="
+                        + identityAddressType);
 
         deviceProperties.setIdentityAddress(Utils.getAddressStringFromByte(secondaryAddress));
-        deviceProperties.setIdentityAddressTypeFromNative(identityAddressTypeFromNative);
+        deviceProperties.setIdentityAddressType(identityAddressType);
     }
 
     void aclStateChangeCallback(
