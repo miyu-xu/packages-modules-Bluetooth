@@ -23,6 +23,7 @@
 
 #include <cstdint>
 
+#include "ble_address_with_type.h"
 #include "bta/include/bta_api.h"
 #include "btif/include/btif_api.h"
 #include "btif/include/btif_common.h"
@@ -79,7 +80,8 @@ void btif_get_remote_device_property(RawAddress /* remote_addr */, bt_property_t
 }
 void btif_init_ok() { inc_func_call_count(__func__); }
 void btif_remote_properties_evt(bt_status_t /* status */, RawAddress* /* remote_addr */,
-                                uint32_t /* num_props */, bt_property_t* /* p_props */) {
+                                tBLE_ADDR_TYPE /* addr_type */, uint32_t /* num_props */,
+                                bt_property_t* /* p_props */) {
   inc_func_call_count(__func__);
 }
 void btif_set_adapter_property(bt_property_t* /* property */) { inc_func_call_count(__func__); }
