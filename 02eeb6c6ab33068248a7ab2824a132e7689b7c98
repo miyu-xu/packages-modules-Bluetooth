@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd40ae65_6439c554",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-03-31T15:21:24Z",
+      "side": 1,
+      "message": "The previous limits seemed correct for advertising data containing the device name and AD flags. What is the justification for reducing the limit to 20 ?",
+      "revId": "02eeb6c6ab33068248a7ab2824a132e7689b7c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
