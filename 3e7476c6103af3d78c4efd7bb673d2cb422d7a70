@@ -1,0 +1,134 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4671400d_f2b1b2c1",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2011,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-31T23:35:09Z",
+      "side": 1,
+      "message": "Seems like there is no proper code format applied in this change",
+      "range": {
+        "startLine": 2010,
+        "startChar": 0,
+        "endLine": 2011,
+        "endChar": 1
+      },
+      "revId": "3e7476c6103af3d78c4efd7bb673d2cb422d7a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbea776b_95f51aff",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-31T23:35:09Z",
+      "side": 1,
+      "message": "Directly use *peer_addr as there is a formatter in the RawAddress class",
+      "range": {
+        "startLine": 2024,
+        "startChar": 47,
+        "endLine": 2024,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5e922d3e_ce42acbd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2024,
+                "startChar": 0,
+                "endLine": 2025,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"p_scb is null for peer dev {}\", *peer_addr);\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2029,
+                "startChar": 0,
+                "endLine": 2030,
+                "endChar": 0
+              },
+              "replacement": "    log::verbose(\"call is present for peer dev {}\", p_scb-\u003epeer_addr);\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2033,
+                "startChar": 0,
+                "endLine": 2034,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"call is not present for peer dev {}\", p_scb-\u003epeer_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3e7476c6103af3d78c4efd7bb673d2cb422d7a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3994b7b3_3341c4d1",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-31T23:35:09Z",
+      "side": 1,
+      "message": "What is this string ? If it was the function name, it is apparently bta_dm_pm_cback here, but this would already be logged by the log framework",
+      "range": {
+        "startLine": 573,
+        "startChar": 19,
+        "endLine": 573,
+        "endChar": 38
+      },
+      "revId": "3e7476c6103af3d78c4efd7bb673d2cb422d7a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1e5cd9_a1ef95a4",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-03-31T23:35:09Z",
+      "side": 1,
+      "message": "Can we log the status directly ?",
+      "range": {
+        "startLine": 573,
+        "startChar": 62,
+        "endLine": 573,
+        "endChar": 72
+      },
+      "revId": "3e7476c6103af3d78c4efd7bb673d2cb422d7a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
