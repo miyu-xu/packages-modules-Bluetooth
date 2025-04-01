@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d5916b_3146e2ee",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-04-01T17:56:01Z",
+      "side": 1,
+      "message": "why not using \u0027btm_find_dev\u0027? \u0027allocating\u0027 shouldn\u0027t be required I think.",
+      "range": {
+        "startLine": 814,
+        "startChar": 36,
+        "endLine": 814,
+        "endChar": 57
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7f7d1ae2_a96fe67e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 814,
+                "startChar": 0,
+                "endLine": 815,
+                "endChar": 0
+              },
+              "replacement": "      tBTM_SEC_DEV_REC* p_dev_rec \u003d btm_find_dev(tracker-\u003eaddress_);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d029e28ee76529b66668a2a00255a5d119fe85c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
