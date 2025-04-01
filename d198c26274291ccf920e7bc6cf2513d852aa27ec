@@ -250,6 +250,30 @@
       },
       "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8674f827_536a4cf3",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-04-01T06:31:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c31b89f7_fe72ebb6",
+      "range": {
+        "startLine": 720,
+        "startChar": 2,
+        "endLine": 720,
+        "endChar": 6
+      },
+      "revId": "d198c26274291ccf920e7bc6cf2513d852aa27ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
