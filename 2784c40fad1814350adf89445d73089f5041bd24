@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819cd4c4_d226551f",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-04-01T19:47:42Z",
+      "side": 1,
+      "message": "space before and after operator",
+      "revId": "2784c40fad1814350adf89445d73089f5041bd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
