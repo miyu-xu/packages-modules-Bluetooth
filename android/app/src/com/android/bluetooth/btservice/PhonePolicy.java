@@ -81,6 +81,8 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     private static final String TAG =
             Utils.TAG_PREFIX_BLUETOOTH + PhonePolicy.class.getSimpleName();
 
+    private static final int MESSAGE_AUTO_CONNECT_PROFILES = 50;
+
     private static final String AUTO_CONNECT_PROFILES_PROPERTY =
             "bluetooth.auto_connect_profiles.enabled";
 
@@ -92,6 +94,8 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
             "persist.bluetooth.leaudio.bypass_allow_list";
 
     @VisibleForTesting static final Duration CONNECT_OTHER_PROFILES_TIMEOUT = Duration.ofSeconds(6);
+
+    static final Duration AUTO_CONNECT_PROFILES_TIMEOUT_MS = Duration.ofMillis(500);
 
     private final DatabaseManager mDatabaseManager;
     private final AdapterService mAdapterService;
@@ -772,6 +776,22 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
 
     @VisibleForTesting
     void autoConnect() {
+        if (!mHandler.hasMessages(MESSAGE_AUTO_CONNECT_PROFILES) &&
+            !mAdapterService.isQuietModeEnabled()) {
+            long delayMs = AUTO_CONNECT_PROFILES_TIMEOUT_DELAYED.toMillis();
+            Log.d(TAG, "autoConnect(): scheduling profile auto-connect in " + delayMs + " ms");
+
+            // Delay auto-connect to allow stack and profiles to initialize
+            mHandler.postDelayed(
+                () -> autoConnectProfilesDelayed(),
+                delayMs
+            );
+        } else {
+            Log.d(TAG, "autoConnect(): skipped (quiet mode or already scheduled)");
+        }
+    }
+
+    void autoConnectProfilesDelayed() {
         String log = "autoConnect(): ";
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
             Log.e(TAG, log + "Bluetooth is not ON. Exiting autoConnect");
