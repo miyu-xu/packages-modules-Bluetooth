@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2566823d_6f45d3bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-04-02T12:46:50Z",
+      "side": 1,
+      "message": "open this question",
+      "parentUuid": "5ad2908f_2f7f808a",
+      "revId": "d029e28ee76529b66668a2a00255a5d119fe85c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05d5916b_3146e2ee",
         "filename": "system/bta/ras/ras_client.cc",
         "patchSetId": 2
