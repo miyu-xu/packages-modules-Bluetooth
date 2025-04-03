@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1d8b5b1_b974fe68",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2025-04-03T07:08:55Z",
+      "side": 1,
+      "message": "Here, PrepareAndSendCodecConfigure is called from AttachToStream method, so the group is in STREAMING state at that point. In my opinion, the StopStream should not be called here when PrepareAndSendCodecConfigure fails (which may happen), because it\u0027s not desirable to stop stream when failed to attach new device to it. I think the method caller should get the status only, and depending on context stop the stream or ignore/retry etc.\n\nAnd that is what this change is about - to return actual status of operation.",
+      "parentUuid": "780b444f_a59fa024",
+      "revId": "db0432f0524d33bc2cbd667924fa67dc9646fc33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dd679f8_a440557e",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 23
@@ -49,6 +67,24 @@
           ]
         }
       ],
+      "revId": "db0432f0524d33bc2cbd667924fa67dc9646fc33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "710a12bd_0274adfa",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1918,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2025-04-03T07:08:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dd679f8_a440557e",
       "revId": "db0432f0524d33bc2cbd667924fa67dc9646fc33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
