@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e337e91_9d8ff949",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-03T18:20:04Z",
+      "side": 1,
+      "message": "this needs to be info\nNIT: please remove the space before the comma",
+      "range": {
+        "startLine": 458,
+        "startChar": 16,
+        "endLine": 458,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "841cacf7_0a152600",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 458,
+                "startChar": 0,
+                "endLine": 459,
+                "endChar": 0
+              },
+              "replacement": "           log::info(\"self initiated AG open failed, but AG open succeeded by peer\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fccafe806d61da282259cd35583c092f7a39d3de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
