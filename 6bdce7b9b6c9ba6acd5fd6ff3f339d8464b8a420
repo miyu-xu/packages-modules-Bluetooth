@@ -34,6 +34,24 @@
       "parentUuid": "554e3e52_abab2069",
       "revId": "6bdce7b9b6c9ba6acd5fd6ff3f339d8464b8a420",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a9ca58b_11c00142",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-04-03T16:16:00Z",
+      "side": 1,
+      "message": "I did, but the patch is the same as pasted above 👍",
+      "parentUuid": "e877ad69_609516f9",
+      "revId": "6bdce7b9b6c9ba6acd5fd6ff3f339d8464b8a420",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
