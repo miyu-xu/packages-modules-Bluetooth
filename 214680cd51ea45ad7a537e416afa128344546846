@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b0214fc_0c9666c1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2218,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-03T18:23:39Z",
+      "side": 1,
+      "message": "This can be phoneNumber \u003d\u003d null || phoneNumber \u003d\u003d \"\"\nand remove the if statement above",
+      "range": {
+        "startLine": 2218,
+        "startChar": 12,
+        "endLine": 2218,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0199f922_2936095d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2215,
+                "startChar": 0,
+                "endLine": 2219,
+                "endChar": 0
+              },
+              "replacement": "            if (phoneNumber \u003d\u003d null || phoneNumber \u003d\u003d \"\") {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "214680cd51ea45ad7a537e416afa128344546846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
