@@ -190,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c19cf778_3e9be308",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-04-03T23:32:15Z",
+      "side": 1,
+      "message": "Something like that: you build the source_metadata_v7_t object to pass to SourceMetadataChange, but we actually don\u0027t care about all of this information, just about the result of the function `context_contention_src`.\n\nTo remove unnecessary type conversions, I would implement `context_contention_src` here using the original `SourceMetadata` object, and pass the result instead.",
+      "parentUuid": "835b172a_63ed5f94",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 84
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55694797_7163d9c6",
         "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
         "patchSetId": 9
@@ -347,6 +371,30 @@
       "side": 1,
       "message": "Yes, below flag is set\n(p_set_latency_req-\u003eis_low_latency we are using when Spatial Audio Use case whilst\n(p_set_latency_req-\u003eis_gaming_enable is set when update metadata is called.\n\nBeware both are for different use case scenarios and we want to cater both in terms of ensuring when low_latency conditions are met we update Audio context properly so that encoder can be moved to low latency mode and vice-versa move out from it.",
       "parentUuid": "5356d05c_2ec38442",
+      "range": {
+        "startLine": 2455,
+        "startChar": 33,
+        "endLine": 2456,
+        "endChar": 72
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6183feca_a2bde814",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2456,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-04-03T23:32:15Z",
+      "side": 1,
+      "message": "Correct me if I am wrong, but the is_low_latency condition is converted back to a GAMING audio context when communicated back to the HAL. Both behave the same here.\n\nSending the metadata event will also result in the flag IsLowLatencyMode being set.\nOr IsLowLatencyMode is very ambiguous, I have no idea how what the difference is with UseLowLatencyMode",
+      "parentUuid": "2d950133_931bd9e8",
       "range": {
         "startLine": 2455,
         "startChar": 33,
