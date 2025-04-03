@@ -16,6 +16,24 @@
       "message": "I am updating the patch to use the flag a2dp_ignore_started_when_responder, if I remember correctly it was added to handle this scenario originally:\n\n```\n        if ((!com::android::bluetooth::flags::a2dp_ignore_started_when_responder() || !should_suspend) \u0026\u0026\n             btif_a2dp_on_started(peer_.PeerAddress(), \u0026p_av-\u003estart, A2dpType::kSource)) {\n          // Only clear pending flag after acknowledgement\n          peer_.ClearFlags(BtifAvPeer::kFlagPendingStart);\n        }\n```",
       "revId": "6bdce7b9b6c9ba6acd5fd6ff3f339d8464b8a420",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e877ad69_609516f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-04-03T04:24:54Z",
+      "side": 1,
+      "message": "Okay. Should I update my current patch also? I believe you have made the flag change for your gerrit in internal branch?",
+      "parentUuid": "554e3e52_abab2069",
+      "revId": "6bdce7b9b6c9ba6acd5fd6ff3f339d8464b8a420",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
