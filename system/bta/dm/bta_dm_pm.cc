@@ -33,6 +33,7 @@
 #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_dm_api.h"
+#include "bta/ag/bta_ag_int.h"
 #include "bta/sys/bta_sys.h"
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
@@ -40,6 +41,7 @@
 #include "main/shim/dumpsys.h"
 #include "main/shim/entry.h"
 #include "osi/include/properties.h"
+#include "device/include/interop.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_status.h"
@@ -562,6 +564,29 @@ static void bta_dm_pm_cback(tBTA_SYS_CONN_STATUS status, const tBTA_SYS_ID id, u
     }
   }
 
+  /* If SCO up/down event is received, then
+     1. Enable/disable SSR on active link
+     2. Disable sniff mode for some HFP devices when SCO is active*/
+  if (status == BTA_SYS_SCO_OPEN || status == BTA_SYS_SCO_CLOSE) {
+    uint16_t manufacturer = 0;
+    uint16_t lmp_sub_version = 0;
+    uint8_t  lmp_version = 0;
+    if (BTM_ReadRemoteVersion(peer_addr, &lmp_version, &manufacturer, &lmp_sub_version)) {
+      bool is_denylisted =
+        (interop_match_addr(INTEROP_DISABLE_SNIFF_LINK_DURING_SCO, &peer_addr) ||
+          interop_match_manufacturer(INTEROP_DISABLE_SNIFF_LINK_DURING_SCO, manufacturer));
+      if ((id == BTA_ID_AG) &&  is_denylisted && !bta_ag_is_call_present(&peer_addr)) {
+        log::verbose("The device {} is denylisted to disable sniff mode during SCO",
+                      peer_addr.ToString().c_str());
+        if (status == BTA_SYS_SCO_OPEN) {
+          bta_dm_pm_active(peer_addr);
+          BTM_block_sniff_mode_for(peer_addr);
+        } else if (status == BTA_SYS_SCO_CLOSE) {
+          BTM_unblock_sniff_mode_for(peer_addr);
+        }
+      }
+    }
+  }
   bta_dm_pm_set_mode(peer_addr, BTA_DM_PM_NO_ACTION, pm_req);
 }
 
