@@ -33,6 +33,24 @@
       "message": "it would be nice to have tests here for the other failure modes:\n - Invalid Handle (asked for handle that is not there)\n - Attribute Not Long (attribute is smaller than MTU-1 and is fixed length)\n\nIf you want to skip Invalid Handle (it should be tested in an AttDatabase implementation) the length one is probably handled by the new code (or code changes in gatt_database)",
       "revId": "5d18d2d23f8037d338c3c0a5371536c0a7f8856d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b5050c0_e213082b",
+        "filename": "system/rust/src/gatt/server/request_handler.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 2038727
+      },
+      "writtenOn": "2025-04-04T04:19:53Z",
+      "side": 1,
+      "message": "I\u0027ve added a test for invalid handle, but this is what the specification says for \"Attribute Not Long\" (emphasis mine — note that it\u0027s \"may\" not \"shall\"):\n\n\u003e If the attribute value has a fixed length that is less than or equal to (ATT_MTU - 1) octets\n\u003e in length, then an ATT_ERROR_RSP PDU *may* be sent with the Error Code parameter\n\u003e set to Attribute Not Long (0x0B).\n\nso I\u0027ve chosen not to add that check.",
+      "parentUuid": "93cf6d3c_be130076",
+      "revId": "5d18d2d23f8037d338c3c0a5371536c0a7f8856d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
