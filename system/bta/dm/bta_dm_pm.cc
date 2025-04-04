@@ -573,9 +573,14 @@ static void bta_dm_pm_cback(tBTA_SYS_CONN_STATUS status, const tBTA_SYS_ID id, u
        uint16_t lmp_sub_version = 0;
        uint8_t  lmp_version = 0;
        if (BTM_ReadRemoteVersion(peer_addr, &lmp_version, &manufacturer, &lmp_sub_version)) {
+          bool is_denylisted =
+             (interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_LINK_DURING_SCO, &peer_addr,
+              &btif_storage_get_remote_device_property) ||
+              interop_match_manufacturer(INTEROP_DISABLE_SNIFF_LINK_DURING_SCO, manufacturer));
           bool is_denylisted_for_call =
-             interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_DURING_CALL, &peer_addr, &btif_storage_get_remote_device_property);
-          if ((id == BTA_ID_AG) &&
+             interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_DURING_CALL, &peer_addr,
+                                        &btif_storage_get_remote_device_property);
+          if ((id == BTA_ID_AG) &&  is_denylisted &&
                !(is_denylisted_for_call && bta_ag_is_call_present(&peer_addr))) {
              log::verbose("The device {} is denylisted to disable sniff mode during SCO",
                              peer_addr.ToString().c_str());
