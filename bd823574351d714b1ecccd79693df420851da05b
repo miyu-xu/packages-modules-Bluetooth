@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc182c2_0e85c42f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-04-04T17:28:19Z",
+      "side": 1,
+      "message": "A similar issue was previously reported in b/339785265. We had fixed that with aosp/3248733 under that flag `prevent_duplicate_uuid_intent`.\n\nAre you sure that this issue still exists?",
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
