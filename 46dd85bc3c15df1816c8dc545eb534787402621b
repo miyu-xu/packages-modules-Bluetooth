@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3289fcfd_61147f21",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-04-04T22:18:12Z",
+      "side": 1,
+      "message": "can we assert this in the beginning of the function itself?",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4704c97c_b304436b",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1841,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-04-04T22:18:12Z",
+      "side": 1,
+      "message": "caller still need to expect the callback here?",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e696f9_e47ca31c",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1842,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-04-04T22:18:12Z",
+      "side": 1,
+      "message": "how do we ping in this case?",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66311520_d17feedb",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1876,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-04-04T22:18:12Z",
+      "side": 1,
+      "message": "debug?",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37bad13e_e3504f9a",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-04-04T22:18:12Z",
+      "side": 1,
+      "message": "please remove this line",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
