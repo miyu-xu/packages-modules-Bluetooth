@@ -34,6 +34,24 @@
       "parentUuid": "96f3c770_b94bd3d3",
       "revId": "dd1c2915fb4410348b8faa051c6e55d4d03ae432",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24507fbc_e64626a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-04-04T07:40:18Z",
+      "side": 1,
+      "message": "Separated interop changes.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3575630",
+      "parentUuid": "1243f894_bb64e573",
+      "revId": "dd1c2915fb4410348b8faa051c6e55d4d03ae432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
