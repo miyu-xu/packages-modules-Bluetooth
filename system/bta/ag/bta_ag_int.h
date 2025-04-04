@@ -509,4 +509,5 @@ bool bta_ag_is_sco_managed_by_audio();
  */
 void bta_ag_stream_suspended();
 
+extern bool bta_ag_is_call_present(const RawAddress* peer_addr);
 #endif /* BTA_AG_INT_H */
