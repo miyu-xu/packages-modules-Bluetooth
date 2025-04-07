@@ -16,6 +16,23 @@
       "message": "Thanks!",
       "revId": "dad097aeea1e115c51897549acd2753dc252729e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c81c5489_9d9b7ab4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2067294
+      },
+      "writtenOn": "2025-04-07T12:41:22Z",
+      "side": 1,
+      "message": "Hi @hallstrom@google.com, sorry that I prematurely assigned you to the reviewership, before the presubmit job completes. It appears that the `floss_build:aosp-main-floss` builder started to always time out since March 28, and it impacted several CLs from several authors in addition to me. [link]\n\nPlease feel free to not review this CL until the presubmit problem is fixed. In the meantime, do you happen to know a contact who can help take a look at this possibly infra issue? Many thanks in advance!\n\n[link]:https://android-build.corp.google.com/build_explorer/branch/aosp-main-floss/?gridSize\u003d20\u0026activeBuildId\u003dP93612104\u0026activeTarget\u003dfloss_build\u0026selectionType\u003dSTART_BUILD_WINDOW\u0026startBuildId\u003dP94136422\u0026numBuilds\u003d20\u0026buildType\u003dpending",
+      "revId": "dad097aeea1e115c51897549acd2753dc252729e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
