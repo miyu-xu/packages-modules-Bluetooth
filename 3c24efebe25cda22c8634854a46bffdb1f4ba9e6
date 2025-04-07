@@ -16,6 +16,24 @@
       "message": "This looks like trying to fix the symptom and not the cause.\n\n1/ As per commit message, addr can be empty, but not null, so we don\u0027t need null check\n2/ if addr is empty, why are we even reaching this code ?\n\nI would do the exact opposite and add an assertion, to trigger a crash, have the stack trace and then remove the possible failing call...\n\n@Sarv, do you know what is the corner case that lead to this issue ? Maybe we can repro and fix the call stack",
       "revId": "3c24efebe25cda22c8634854a46bffdb1f4ba9e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605cb760_47f80826",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-04-07T13:22:28Z",
+      "side": 1,
+      "message": "Hi William,\nThis issue was seen only once. Device address was incorrect but we didn\u0027t have enough logs from the customer to check more on this.",
+      "parentUuid": "d2f3f934_b43baaa3",
+      "revId": "3c24efebe25cda22c8634854a46bffdb1f4ba9e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
