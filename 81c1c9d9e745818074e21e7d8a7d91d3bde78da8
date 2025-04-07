@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f72e50d3_2a56e21c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2067294
+      },
+      "writtenOn": "2025-04-07T02:32:54Z",
+      "side": 1,
+      "message": "Hi @hscham@google.com, can you help me pre-review this libchrome uprev CL? Many thanks!",
+      "revId": "81c1c9d9e745818074e21e7d8a7d91d3bde78da8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
