@@ -52,6 +52,129 @@
       "parentUuid": "405c02f1_1b1f933b",
       "revId": "bd823574351d714b1ecccd79693df420851da05b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6900f696_684e1cbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-04-08T18:56:22Z",
+      "side": 1,
+      "message": "Are you sure that the delayed `MESSAGE_UUID_INTENT` didn\u0027t cause this problem? Because it is an extremely small window to hit it consistently that ACL disconnects right as the service discovery completes and a successful `MESSAGE_UUID_INTENT` was in flight.\nThis would still not solve the problem if the UUIDs were already broadcasted moments before the disconnection. That is a much larger window which would result in the same problem.",
+      "parentUuid": "68a434e5_71e87a07",
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd95a52_9a4d4cc2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1399,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-04-08T18:56:22Z",
+      "side": 1,
+      "message": "Fix indentation",
+      "fixSuggestions": [
+        {
+          "fixId": "cc55e025_11941edd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1399,
+                "startChar": 0,
+                "endLine": 1400,
+                "endChar": 0
+              },
+              "replacement": "                if (mHandler.hasMessages(MESSAGE_UUID_INTENT, device)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f93e80ba_9feffc51",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-04-08T18:56:22Z",
+      "side": 1,
+      "message": "Nit: You can use the `device` directly here which is printed as a redacted address string.",
+      "fixSuggestions": [
+        {
+          "fixId": "487fd311_1206d7d2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1401,
+                "startChar": 0,
+                "endLine": 1403,
+                "endChar": 0
+              },
+              "replacement": "                            \"aclStateChangeCallback: MESSAGE_UUID_INTENT is enqueued, device\u003d\"\n                            + device);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "677c1f99_ba02c96a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-04-08T18:56:22Z",
+      "side": 1,
+      "message": "What happens when a transport disconnect and service discovery was requested for the other transport?",
+      "fixSuggestions": [
+        {
+          "fixId": "a0ef9625_328641ac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1398,
+                "startChar": 0,
+                "endLine": 1398,
+                "endChar": 0
+              },
+              "replacement": "            // TODO: Check if we need to remove the message only for the transport that is\n            // disconnected.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
