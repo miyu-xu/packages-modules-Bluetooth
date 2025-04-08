@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64cf986e_25fb0590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-04-08T19:00:24Z",
+      "side": 1,
+      "message": "Sorry, I listed a related but wrong cl earlier.\naosp/3237500 removes the delayed `MESSAGE_UUID_INTENT` when service discovery concludes in the native stack.",
+      "parentUuid": "6900f696_684e1cbd",
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8dd95a52_9a4d4cc2",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 1
