@@ -34,6 +34,24 @@
       "parentUuid": "d872ad46_f32c0f6a",
       "revId": "266f406a36ca671a23856527f4f188f25c2e55b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b47087a_e2d617ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-08T05:59:57Z",
+      "side": 1,
+      "message": "Done uploaded bug report for this case",
+      "parentUuid": "de16848f_ed4506ee",
+      "revId": "266f406a36ca671a23856527f4f188f25c2e55b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
