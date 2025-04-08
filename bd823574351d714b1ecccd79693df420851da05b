@@ -16,6 +16,24 @@
       "message": "A similar issue was previously reported in b/339785265. We had fixed that with aosp/3248733 under that flag `prevent_duplicate_uuid_intent`.\n\nAre you sure that this issue still exists?",
       "revId": "bd823574351d714b1ecccd79693df420851da05b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "405c02f1_1b1f933b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-08T10:24:57Z",
+      "side": 1,
+      "message": "aosp/3248733 wont fix this issue. it\u0027s  different use case of link disconnection",
+      "parentUuid": "5bc182c2_0e85c42f",
+      "revId": "bd823574351d714b1ecccd79693df420851da05b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
