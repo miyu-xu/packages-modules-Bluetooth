@@ -415,7 +415,7 @@ public class BluetoothInCallService extends InCallService {
             if (mCallInfo.isNullCall(call)) {
                 return false;
             }
-            call.answer(VideoProfile.STATE_AUDIO_ONLY);
+            call.answer(call.getVideoState());
             return true;
         }
     }
@@ -1198,7 +1198,7 @@ public class BluetoothInCallService extends InCallService {
                 updateHeadsetWithCallState(headsetService, true /* force */);
                 return true;
             } else if (!mCallInfo.isNullCall(ringingCall)) {
-                ringingCall.answer(VideoProfile.STATE_AUDIO_ONLY);
+                ringingCall.answer(ringingCall.getVideoState());
                 return true;
             } else if (!mCallInfo.isNullCall(heldCall)) {
                 // CallsManager will hold any active calls when unhold() is called on a
@@ -1737,7 +1737,7 @@ public class BluetoothInCallService extends InCallService {
                         if (mCallInfo.isNullCall(call)) {
                             result = Result.ERROR_UNKNOWN_CALL_ID;
                         } else {
-                            call.answer(VideoProfile.STATE_AUDIO_ONLY);
+                            call.answer(call.getVideoState());
                         }
                         mBluetoothLeCallControl.requestResult(requestId, result);
                     }
