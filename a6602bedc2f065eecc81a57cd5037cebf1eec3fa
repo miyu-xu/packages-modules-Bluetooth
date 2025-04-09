@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8c45816_4d630158",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-09T20:02:38Z",
+      "side": 1,
+      "message": "We already check that it\u0027s out of sniff mode before starting the SCO: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_sco.cc;drc\u003d0f13b09e9a94040b0526530fed6461c8fbd332ee;l\u003d740.  Is that not sufficient?  Why does it need to be stopped when you receive the AT command?",
+      "fixSuggestions": [
+        {
+          "fixId": "9eab6286_57c73555",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 615,
+                "startChar": 0,
+                "endLine": 616,
+                "endChar": 0
+              },
+              "replacement": "        log::verbose(\"block sniff during call for the device: {}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a6602bedc2f065eecc81a57cd5037cebf1eec3fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
