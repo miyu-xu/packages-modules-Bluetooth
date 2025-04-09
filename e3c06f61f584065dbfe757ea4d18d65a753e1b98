@@ -46,6 +46,30 @@
       },
       "revId": "e3c06f61f584065dbfe757ea4d18d65a753e1b98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2558957_648b7a7f",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 996,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2025-04-09T10:13:55Z",
+      "side": 1,
+      "message": "This mock is need and verified it",
+      "parentUuid": "748a3cca_4bae22d4",
+      "range": {
+        "startLine": 996,
+        "startChar": 0,
+        "endLine": 996,
+        "endChar": 56
+      },
+      "revId": "e3c06f61f584065dbfe757ea4d18d65a753e1b98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
