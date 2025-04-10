@@ -130,6 +130,8 @@ public class TbsGatt {
     private static final int LOG_NB_EVENTS = 200;
     private BluetoothEventLogger mEventLogger = null;
 
+    private static final int GATT_MAX_ATTR_LEN = 512;
+
     private static String tbsUuidToString(UUID uuid) {
         if (uuid.equals(UUID_BEARER_PROVIDER_NAME)) {
             return "BEARER_PROVIDER_NAME";
@@ -893,6 +895,9 @@ public class TbsGatt {
         int uri_len = 0;
         if (uri != null) {
             uri_len = uri.length();
+            if (uri_len >= GATT_MAX_ATTR_LEN) {
+                uri_len = GATT_MAX_ATTR_LEN - 1;
+            }
         }
 
         byte[] value = new byte[uri_len + 1];
@@ -917,9 +922,13 @@ public class TbsGatt {
                         + callIndex
                         + "callFriendlyName="
                         + callFriendlyName);
-        byte[] value = new byte[callFriendlyName.length() + 1];
+        int name_len = callFriendlyName.length();
+        if (name_len >= GATT_MAX_ATTR_LEN) {
+            name_len = GATT_MAX_ATTR_LEN - 1;
+        }
+        byte[] value = new byte[name_len + 1];
         value[0] = (byte) (callIndex & 0xff);
-        System.arraycopy(callFriendlyName.getBytes(), 0, value, 1, callFriendlyName.length());
+        System.arraycopy(callFriendlyName.getBytes(), 0, value, 1, name_len);
 
         return mCallFriendlyNameCharacteristic.setValue(value);
     }
