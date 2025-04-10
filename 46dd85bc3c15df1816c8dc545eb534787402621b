@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b680484_b825ff16",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-10T04:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3289fcfd_61147f21",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4704c97c_b304436b",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-04-04T22:18:12Z",
       "side": 1,
       "message": "caller still need to expect the callback here?",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05590478_c909d93f",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1841,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-10T04:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4704c97c_b304436b",
       "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cea89349_770aa552",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1842,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-10T04:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78e696f9_e47ca31c",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66311520_d17feedb",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f96cd0f1_31d8d883",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1876,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-10T04:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66311520_d17feedb",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37bad13e_e3504f9a",
@@ -82,6 +154,24 @@
       "writtenOn": "2025-04-04T22:18:12Z",
       "side": 1,
       "message": "please remove this line",
+      "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c9bd00f_97119bc4",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-10T04:17:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37bad13e_e3504f9a",
       "revId": "46dd85bc3c15df1816c8dc545eb534787402621b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
