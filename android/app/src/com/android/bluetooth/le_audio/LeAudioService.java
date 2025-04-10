@@ -23,6 +23,7 @@ import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_ALLOWED;
 import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
 import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
 import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
@@ -895,6 +896,14 @@ public class LeAudioService extends ProfileService {
         final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
         if (!Utils.arrayContains(featureUuids, BluetoothUuid.LE_AUDIO)) {
             Log.e(TAG, "Cannot connect to " + device + " : Remote does not have LE_AUDIO UUID");
+            return false;
+        }
+
+        int connectionState = getConnectionState(device);
+        if (connectionState == STATE_CONNECTED
+                || connectionState == STATE_CONNECTING) {
+            Log.w(TAG, "connect: device " + device
+                    + " is already connected/connecting, connectionState=" + connectionState);
             return false;
         }
 
@@ -2748,6 +2757,13 @@ public class LeAudioService extends ProfileService {
                     Log.e(
                             TAG,
                             "Ignored connect request for " + storedDevice + " : no state machine");
+                    continue;
+                }
+                int connectionState = sm.getConnectionState();
+                if (connectionState == STATE_CONNECTED
+                        || connectionState == STATE_CONNECTING) {
+                    Log.w(TAG, "connectSet: device " + storedDevice
+                            + " is already connected/connecting, connectionState=" + connectionState);
                     continue;
                 }
                 sm.sendMessage(LeAudioStateMachine.CONNECT);

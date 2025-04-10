@@ -282,12 +282,7 @@ final class LeAudioStateMachine extends StateMachine {
 
             switch (message.what) {
                 case CONNECT:
-                    if (Flags.leaudioSmIgnoreConnectEventsInConnectingState()
-                            && !hasDeferredMessages(DISCONNECT)) {
-                        Log.w(TAG, "Connecting: CONNECT ignored: " + mDevice);
-                    } else {
-                        deferMessage(message);
-                    }
+                    Log.w(TAG, "Connecting: CONNECT ignored: " + mDevice);
                     break;
                 case CONNECT_TIMEOUT:
                     Log.w(TAG, "Connecting connection timeout: " + mDevice);

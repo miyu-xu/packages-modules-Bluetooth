@@ -277,7 +277,7 @@ public class CsipSetCoordinatorStateMachine extends StateMachine {
 
             switch (message.what) {
                 case CONNECT:
-                    deferMessage(message);
+                    Log.w(TAG, "Connecting: CONNECT ignored: " + mDevice);
                     break;
                 case CONNECT_TIMEOUT:
                     Log.w(TAG, "Connecting connection timeout: " + mDevice);

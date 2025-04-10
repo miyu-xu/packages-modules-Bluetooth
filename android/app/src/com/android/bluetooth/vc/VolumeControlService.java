@@ -250,6 +250,14 @@ public class VolumeControlService extends ProfileService {
             return false;
         }
 
+        int connectionState = getConnectionState(device);
+        if (connectionState == STATE_CONNECTED
+                || connectionState == STATE_CONNECTING) {
+            Log.w(TAG, "connect: device " + device
+                    + " is already connected/connecting, connectionState=" + connectionState);
+            return false;
+        }
+
         synchronized (mStateMachines) {
             VolumeControlStateMachine smConnect = getOrCreateStateMachine(device);
             if (smConnect == null) {

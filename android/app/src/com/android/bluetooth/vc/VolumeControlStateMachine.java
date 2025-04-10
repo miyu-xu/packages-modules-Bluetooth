@@ -239,7 +239,9 @@ class VolumeControlStateMachine extends StateMachine {
                             + messageWhatToString(message.what));
 
             switch (message.what) {
-                case MESSAGE_CONNECT -> deferMessage(message);
+                case MESSAGE_CONNECT -> {
+                    Log.w(TAG, "Connecting: CONNECT ignored: " + mDevice);
+                }
                 case MESSAGE_CONNECT_TIMEOUT -> {
                     Log.w(TAG, "Connecting connection timeout: " + mDevice);
                     mNativeInterface.disconnectVolumeControl(mDevice);

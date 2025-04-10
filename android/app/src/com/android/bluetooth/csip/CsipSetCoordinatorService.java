@@ -23,6 +23,7 @@ import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_ALLOWED;
 import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
 import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
 import static android.bluetooth.BluetoothProfile.STATE_CONNECTED;
+import static android.bluetooth.BluetoothProfile.STATE_CONNECTING;
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 
 import static java.util.Objects.requireNonNull;
@@ -242,6 +243,14 @@ public class CsipSetCoordinatorService extends ProfileService {
         final ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
         if (!Utils.arrayContains(featureUuids, BluetoothUuid.COORDINATED_SET)) {
             Log.e(TAG, "Cannot connect to " + device + " : Remote does not have CSIS UUID");
+            return false;
+        }
+
+        int connectionState = getConnectionState(device);
+        if (connectionState == STATE_CONNECTED
+                || connectionState == STATE_CONNECTING) {
+            Log.w(TAG, "connect: device " + device
+                    + " is already connected/connecting, connectionState=" + connectionState);
             return false;
         }
 
