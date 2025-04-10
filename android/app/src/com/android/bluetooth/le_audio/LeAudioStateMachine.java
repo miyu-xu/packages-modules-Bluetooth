@@ -173,11 +173,11 @@ final class LeAudioStateMachine extends StateMachine {
             switch (message.what) {
                 case CONNECT:
                     log("Connecting to " + mDevice);
-                    if (!mNativeInterface.connectLeAudio(mDevice)) {
-                        Log.e(TAG, "Disconnected: error connecting to " + mDevice);
-                        break;
-                    }
                     if (mService.okToConnect(mDevice)) {
+                        if (!mNativeInterface.connectLeAudio(mDevice)) {
+                            Log.e(TAG, "Disconnected: error connecting to " + mDevice);
+                            break;
+                        }
                         transitionTo(mConnecting);
                     } else {
                         // Reject the request and stay in Disconnected state

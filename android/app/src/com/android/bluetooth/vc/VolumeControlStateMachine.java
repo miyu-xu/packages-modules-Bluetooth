@@ -131,11 +131,12 @@ class VolumeControlStateMachine extends StateMachine {
             switch (message.what) {
                 case MESSAGE_CONNECT -> {
                     log("Connecting to " + mDevice);
-                    if (!mNativeInterface.connectVolumeControl(mDevice)) {
-                        Log.e(TAG, "Disconnected: error connecting to " + mDevice);
-                        break;
-                    }
                     if (mService.okToConnect(mDevice)) {
+                        if (!mNativeInterface.connectVolumeControl(mDevice)) {
+                            Log.e(TAG, "Disconnected: error connecting to " + mDevice);
+                            break;
+                        }
+
                         transitionTo(mConnecting);
                     } else {
                         // Reject the request and stay in Disconnected state
