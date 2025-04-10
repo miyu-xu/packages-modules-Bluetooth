@@ -33,6 +33,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
@@ -239,7 +240,14 @@ class VolumeControlStateMachine extends StateMachine {
                             + messageWhatToString(message.what));
 
             switch (message.what) {
-                case MESSAGE_CONNECT -> deferMessage(message);
+                case MESSAGE_CONNECT -> {
+                    if (Flags.leaudioSmIgnoreConnectEventsInConnectingState()
+                            && !hasDeferredMessages(DISCONNECT)) {
+                        Log.w(TAG, "Connecting: CONNECT ignored: " + mDevice);
+                    } else {
+                        deferMessage(message);
+                    }
+                }
                 case MESSAGE_CONNECT_TIMEOUT -> {
                     Log.w(TAG, "Connecting connection timeout: " + mDevice);
                     mNativeInterface.disconnectVolumeControl(mDevice);
