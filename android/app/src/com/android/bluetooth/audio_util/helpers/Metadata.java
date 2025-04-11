@@ -46,6 +46,8 @@ public class Metadata implements Cloneable {
     public static final String EMPTY_GENRE = "";
     public static final String EMPTY_DURATION = "0";
 
+    private static final int MAX_ELEMENT_LEN = (512 - 45); // max len - (avctp + avrcp header)
+
     @Override
     public Metadata clone() {
         Metadata data = new Metadata();
@@ -175,16 +177,16 @@ public class Metadata implements Cloneable {
 
             // Then, replace with better data if available on the MediaMetadata
             if (data.containsKey(MediaMetadata.METADATA_KEY_MEDIA_ID)) {
-                mMetadata.mediaId = data.getString(MediaMetadata.METADATA_KEY_MEDIA_ID);
+                mMetadata.mediaId = getElementFromMetadata(data, MediaMetadata.METADATA_KEY_MEDIA_ID);
             }
             if (data.containsKey(MediaMetadata.METADATA_KEY_TITLE)) {
-                mMetadata.title = data.getString(MediaMetadata.METADATA_KEY_TITLE);
+                mMetadata.title = getElementFromMetadata(data, MediaMetadata.METADATA_KEY_TITLE);
             }
             if (data.containsKey(MediaMetadata.METADATA_KEY_ARTIST)) {
-                mMetadata.artist = data.getString(MediaMetadata.METADATA_KEY_ARTIST);
+                mMetadata.artist = getElementFromMetadata(data, MediaMetadata.METADATA_KEY_ARTIST);
             }
             if (data.containsKey(MediaMetadata.METADATA_KEY_ALBUM)) {
-                mMetadata.album = data.getString(MediaMetadata.METADATA_KEY_ALBUM);
+                mMetadata.album = getElementFromMetadata(data, MediaMetadata.METADATA_KEY_ALBUM);
             }
             if (data.containsKey(MediaMetadata.METADATA_KEY_TRACK_NUMBER)) {
                 mMetadata.trackNum = "" + data.getLong(MediaMetadata.METADATA_KEY_TRACK_NUMBER);
@@ -193,7 +195,7 @@ public class Metadata implements Cloneable {
                 mMetadata.numTracks = "" + data.getLong(MediaMetadata.METADATA_KEY_NUM_TRACKS);
             }
             if (data.containsKey(MediaMetadata.METADATA_KEY_GENRE)) {
-                mMetadata.genre = data.getString(MediaMetadata.METADATA_KEY_GENRE);
+                mMetadata.genre = getElementFromMetadata(data, MediaMetadata.METADATA_KEY_GENRE);
             }
             if (data.containsKey(MediaMetadata.METADATA_KEY_DURATION)) {
                 mMetadata.duration = "" + data.getLong(MediaMetadata.METADATA_KEY_DURATION);
@@ -310,5 +312,16 @@ public class Metadata implements Cloneable {
         public Metadata build() {
             return mMetadata.clone();
         }
+    }
+
+    private static String getElementFromMetadata(MediaMetadata data, String key) {
+        String val = data.getString(key);
+        if (val != null) {
+            byte[] bytes = val.getBytes(StandardCharsets.UTF_8);
+            if (bytes.length > MAX_ELEMENT_LEN) {
+                val = new String(bytes, 0, MAX_ELEMENT_LEN - 1, StandardCharsets.UTF_8);
+            }
+        }
+        return (val != null) ? val : "";
     }
 }
