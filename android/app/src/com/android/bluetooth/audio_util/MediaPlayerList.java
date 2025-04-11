@@ -50,6 +50,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,6 +107,8 @@ public class MediaPlayerList {
     private int mAddressedPlayerId = NO_ACTIVE_PLAYER;
 
     private MediaUpdateCallback mCallback;
+    private final Object mCallbackLock = new Object();
+
     private boolean mAudioPlaybackIsActive = false;
 
     private BrowsablePlayerConnector mBrowsablePlayerConnector;
@@ -199,7 +202,9 @@ public class MediaPlayerList {
     /** Initiates the media and browsable players list. */
     public void init(MediaUpdateCallback callback) {
         Log.v(TAG, "Initializing MediaPlayerList");
-        mCallback = callback;
+        synchronized (mCallbackLock) {
+            mCallback = callback;
+        }
 
         if (!SystemProperties.getBoolean("bluetooth.avrcp.browsable_media_player.enabled", true)) {
             // Allow to disable BrowsablePlayerConnector with systemproperties.
@@ -291,7 +296,9 @@ public class MediaPlayerList {
     }
 
     public void cleanup() {
-        mCallback = null;
+        synchronized (mCallbackLock) {
+            mCallback = null;
+        }
         mContext.unregisterReceiver(mPackageChangedBroadcastReceiver);
 
         mActivePlayerId = NO_ACTIVE_PLAYER;
@@ -1077,17 +1084,19 @@ public class MediaPlayerList {
     private void sendFolderUpdate(
             boolean availablePlayers, boolean addressedPlayers, boolean uids) {
         d("sendFolderUpdate");
-        if (mCallback == null) {
-            return;
-        }
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                return;
+            }
 
-        mCallback.run(availablePlayers, addressedPlayers, uids);
+            mCallback.run(availablePlayers, addressedPlayers, uids);
+        }
     }
 
     /** Indicates that there have been a {@link MediaData} update for the current active player. */
     private void sendMediaUpdate(MediaData data) {
         d("sendMediaUpdate");
-        if (mCallback == null || data == null) {
+        if (data == null) {
             return;
         }
 
@@ -1099,7 +1108,13 @@ public class MediaPlayerList {
 
         Log.d(TAG, "sendMediaUpdate state=" + data.state);
         mCurrMediaData = data;
-        mCallback.run(data);
+        synchronized (mCallbackLock) {
+            if (mCallback == null) {
+                return;
+            }
+
+            mCallback.run(data);
+        }
     }
 
     /**
