@@ -115,6 +115,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 class BluetoothManagerService {
@@ -981,8 +982,26 @@ class BluetoothManagerService {
         return true;
     }
 
+    private void unLinkAllBleApps() {
+        Iterator<Map.Entry<IBinder,ClientDeathRecipient>> apps = mBleApps.entrySet().iterator();
+        while (apps.hasNext()) {
+            Map.Entry<IBinder, ClientDeathRecipient> entry = apps.next();
+            IBinder token = entry.getKey();
+            ClientDeathRecipient tokenRecipient = entry.getValue();
+            if(token != null && tokenRecipient != null) {
+                try {
+                    token.unlinkToDeath(tokenRecipient, 0);
+                } catch (NoSuchElementException ex) {
+                    //unlinktoDeath can be called at the same time by unLinkAllBleApps() and disableBle() during airplane mode change.
+                    Log.w(TAG, "no such element, already unlinked");
+                }
+            }
+        }
+    }
+
     // Clear all apps using BLE scan only mode.
     private void clearBleApps() {
+        unLinkAllBleApps();
         mBleApps.clear();
     }
 
