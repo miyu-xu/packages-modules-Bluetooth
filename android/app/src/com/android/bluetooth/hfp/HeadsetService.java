@@ -1193,6 +1193,29 @@ public class HeadsetService extends ProfileService {
                                 + " instead");
                 device = mActiveDevice;
             }
+
+            boolean pendingRequestByHeadset = false;
+            if (mVoiceRecognitionTimeoutEvent != null) {
+                if (!mVoiceRecognitionTimeoutEvent.mVoiceRecognitionDevice.equals(device)) {
+                    Log.w(TAG, "stopVoiceRecognition: device " + device
+                            + " is not the same as requesting device "
+                            + mVoiceRecognitionTimeoutEvent.mVoiceRecognitionDevice
+                            + ", fall back to requesting device");
+                    device = mVoiceRecognitionTimeoutEvent.mVoiceRecognitionDevice;
+                }
+                mStateMachinesThreadHandler
+                        .removeCallbacks(mVoiceRecognitionTimeoutEvent);
+                mVoiceRecognitionTimeoutEvent = null;
+                try {
+                    if (mSystemInterface.getVoiceRecognitionWakeLock().isHeld()) {
+                        mSystemInterface.getVoiceRecognitionWakeLock().release();
+                    }
+                } catch (RuntimeException e) {
+                    Log.e(TAG, "non properly release getVoiceRecognitionWakeLock", e);
+                }
+                pendingRequestByHeadset = true;
+            }
+
             final HeadsetStateMachine stateMachine = mStateMachines.get(device);
             if (stateMachine == null) {
                 Log.w(TAG, "stopVoiceRecognition: " + device + " is never connected");
@@ -1205,6 +1228,10 @@ public class HeadsetService extends ProfileService {
             }
             if (!mVoiceRecognitionStarted) {
                 Log.w(TAG, "stopVoiceRecognition: voice recognition was not started");
+                if (pendingRequestByHeadset) {
+                    mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_OK, 0);
+                    stateMachine.sendMessage(HeadsetStateMachine.VOICE_RECOGNITION_STOP, device);
+                }
                 return false;
             }
             mVoiceRecognitionStarted = false;
