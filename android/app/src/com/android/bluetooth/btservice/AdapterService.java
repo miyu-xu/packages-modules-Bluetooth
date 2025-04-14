@@ -960,7 +960,12 @@ public class AdapterService extends Service {
 
         mNativeInterface.getCallbacks().init(mBondStateMachine, mRemoteDevices);
 
-        mBatteryStatsManager.reportBleScanReset();
+        new Thread() {
+            @Override
+            public void run() {
+                mBatteryStatsManager.reportBleScanReset();
+            }
+        }.start();
         BluetoothStatsLog.write_non_chained(
                 BluetoothStatsLog.BLE_SCAN_STATE_CHANGED,
                 -1,
