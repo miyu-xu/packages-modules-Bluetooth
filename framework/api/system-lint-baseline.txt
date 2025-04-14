@@ -49,6 +49,20 @@ BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_UUID:
     Field 'ACTION_UUID' is missing @BroadcastBehavior
 
 
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_FAIL:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_FAIL
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_FAIL_GET_CAP:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_FAIL_GET_CAP
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_FAIL_RESOURCES:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_FAIL_RESOURCES
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_FAIL_ROLE:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_FAIL_ROLE
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_FAIL_SDP:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_FAIL_SDP
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_FAIL_STREAM:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_FAIL_STREAM
+UnflaggedApi: android.bluetooth.BluetoothDevice#A2DP_CONNECTION_SUCCESS:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.A2DP_CONNECTION_SUCCESS
 UnflaggedApi: android.bluetooth.BluetoothDevice#EXTRA_CONNECTION_FAIL_REASON:
     New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothDevice.EXTRA_CONNECTION_FAIL_REASON
 UnflaggedApi: android.bluetooth.BluetoothDevice#HFP_CONNECTION_FAIL_RESOURCES:

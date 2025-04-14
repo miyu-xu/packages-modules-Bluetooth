@@ -1335,11 +1335,15 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * Used as an int extra field in {@link BluetoothHeadset#ACTION_CONNECTION_STATE_CHANGED}
-     * intents for connection failure reason.
+     * or in {@link BluetoothA2dp#ACTION_CONNECTION_STATE_CHANGED} intents for connection failure reason.
      * Possible value are : -
      * {@link #HFP_CONNECTION_SUCCESS} - {@link #HFP_CONNECTION_SDP} -
      * {@link #HFP_CONNECTION_FAIL_RFCOMM} - {@link #HFP_CONNECTION_FAIL_RESOURCES}
-     *
+     * {@link #A2DP_CONNECTION_SUCCESS} - {@link #A2DP_CONNECTION_FAIL} -
+     * {@link #A2DP_CONNECTION_FAIL_SDP} - {@link #A2DP_CONNECTION_FAIL_STREAM}
+     * {@link #A2DP_CONNECTION_FAIL_RESOURCES} - {@link #A2DP_CONNECTION_FAIL_ROLE} -
+     * {@link #A2DP_CONNECTION_FAIL_GET_CAP}
+	 *
      * @hide
      */
     @SystemApi public static final String EXTRA_CONNECTION_FAIL_REASON = EXTRA_UNBOND_REASON;
@@ -1371,6 +1375,55 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @SystemApi public static final int HFP_CONNECTION_FAIL_RESOURCES = 3;
+
+    /**
+     * A2DP successful operation
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_SUCCESS = 0;
+
+    /**
+     * A2DP generic failure
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_FAIL = 1;
+
+    /**
+     * A2DP service not found
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_FAIL_SDP = 2;
+
+    /**
+     * A2DP stream connection failed
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_FAIL_STREAM = 3;
+
+    /**
+     * A2DP no resources
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_FAIL_RESOURCES = 4;
+
+    /**
+     * A2DP failed due to role management related issues
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_FAIL_ROLE = 5;
+
+    /**
+     * A2DP get capability failed due to no SEP availale on the peer
+     *
+     * @hide
+     */
+    @SystemApi public static final int A2DP_CONNECTION_FAIL_GET_CAP = 6;
 
     /**
      * Used as an extra field in {@link #ACTION_UUID} intents, Contains the {@link

@@ -279,6 +279,13 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean setPin(@NonNull String);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setSilenceMode(boolean);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setSimAccessPermission(int);
+    field public static final int A2DP_CONNECTION_FAIL = 1; // 0x1
+    field public static final int A2DP_CONNECTION_FAIL_GET_CAP = 6; // 0x6
+    field public static final int A2DP_CONNECTION_FAIL_RESOURCES = 4; // 0x4
+    field public static final int A2DP_CONNECTION_FAIL_ROLE = 5; // 0x5
+    field public static final int A2DP_CONNECTION_FAIL_SDP = 2; // 0x2
+    field public static final int A2DP_CONNECTION_FAIL_STREAM = 3; // 0x3
+    field public static final int A2DP_CONNECTION_SUCCESS = 0; // 0x0
     field public static final int ACCESS_ALLOWED = 1; // 0x1
     field public static final int ACCESS_REJECTED = 2; // 0x2
     field public static final int ACCESS_UNKNOWN = 0; // 0x0
