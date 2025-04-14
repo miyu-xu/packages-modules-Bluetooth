@@ -625,7 +625,9 @@ class BluetoothPbapUtils {
         ContactData cData;
         if (sContactDataset.containsKey(contactId)) {
             cData = sContactDataset.get(contactId);
-        } else {
+        }
+
+        if (cData == null) {
             cData = new ContactData();
         }
 
