@@ -696,6 +696,17 @@ public class RemoteDevices {
                     mUuidsBrEdr = null;
                     mUuidsLe = null;
                     mAlias = null;
+                    if (mDualDevicesMap != null 
+                            && !isAclConnected()
+                            ) {
+                        String addressString = Utils.getAddressStringFromByte(mAddress);
+                        String mainAddress = mDualDevicesMap.get(mIdentityAddress);
+                        if (addressString != null && mainAddress != null && addressString.equals(mainAddress)) {
+                            mDualDevicesMap.remove(mIdentityAddress);
+                        } else if(addressString != null && addressString.equals(mIdentityAddress)) {
+                            mDualDevicesMap.remove(mIdentityAddress);
+                        }
+                    }
                 }
             }
         }
@@ -1496,6 +1507,17 @@ public class RemoteDevices {
                             cb.onDeviceDisconnected(
                                     device,
                                     AdapterService.hciToAndroidDisconnectReason(disconnectReason));
+            
+            DeviceProperties deviceProp = getDeviceProperties(device);
+            if (deviceProp.getBondState() == BluetoothDevice.BOND_NONE) {
+                String addressString = Utils.getAddressStringFromByte(deviceProp.getAddress());
+                String mainAddress = mDualDevicesMap.get(deviceProp.getIdentityAddress());
+                if (addressString != null && mainAddress != null && addressString.equals(mainAddress)) {
+                    mDualDevicesMap.remove(deviceProp.getIdentityAddress());
+                } else if(addressString != null && addressString.equals(deviceProp.getIdentityAddress())) {
+                    mDualDevicesMap.remove(deviceProp.getIdentityAddress());
+                }
+            }
         }
 
         mAdapterService.aclStateChangeBroadcastCallback(connectionChangeConsumer);
