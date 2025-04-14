@@ -39,10 +39,6 @@ size_t GetItemAttributesResponseBuilder::AddAttributeEntry(AttributeEntry entry)
     entry.resize(remaining_space);
   }
 
-  if (entry.empty()) {
-    return 0;
-  }
-
   entries_.insert(entry);
   return entry.size();
 }
