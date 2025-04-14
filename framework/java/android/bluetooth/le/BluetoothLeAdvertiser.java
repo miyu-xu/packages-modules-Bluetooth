@@ -769,8 +769,8 @@ public final class BluetoothLeAdvertiser {
                 handler.post(
                         () -> {
                             if (status != AdvertisingSetCallback.ADVERTISE_SUCCESS) {
-                                callback.onAdvertisingSetStarted(null, 0, status);
                                 mCallbackWrappers.remove(callback);
+                                callback.onAdvertisingSetStarted(null, 0, status);
                                 return;
                             }
 
@@ -799,9 +799,9 @@ public final class BluetoothLeAdvertiser {
                 handler.post(
                         () -> {
                             AdvertisingSet advertisingSet = mAdvertisingSets.get(advertiserId);
-                            callback.onAdvertisingSetStopped(advertisingSet);
                             mAdvertisingSets.remove(advertiserId);
                             mCallbackWrappers.remove(callback);
+                            callback.onAdvertisingSetStopped(advertisingSet);
                         });
             }
 
