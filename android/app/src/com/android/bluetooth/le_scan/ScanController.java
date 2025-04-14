@@ -789,6 +789,8 @@ public class ScanController {
                             app.mInfo, permittedResults, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
                 } catch (PendingIntent.CanceledException e) {
                     Log.d(TAG, "Exception while sending result", e);
+                    stopScanInternal(client.scannerId);
+                    unregisterScannerInternal(client.scannerId);
                 }
             }
         } else {
@@ -1051,6 +1053,8 @@ public class ScanController {
                 sendErrorByPendingIntent(app.mInfo, errorCode);
             } catch (PendingIntent.CanceledException e) {
                 Log.e(TAG, "Error sending error code via PendingIntent:" + e);
+                stopScanInternal(scannerId);
+                unregisterScannerInternal(scannerId);
             }
         }
     }
