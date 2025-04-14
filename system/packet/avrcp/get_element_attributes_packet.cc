@@ -105,10 +105,6 @@ size_t GetElementAttributesResponseBuilder::AddAttributeEntry(AttributeEntry ent
     entry.resize(remaining_space);
   }
 
-  if (entry.empty()) {
-    return 0;
-  }
-
   entries_.insert(entry);
   return entry.size();
 }
