@@ -1335,14 +1335,22 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * Used as an int extra field in {@link BluetoothHeadset#ACTION_CONNECTION_STATE_CHANGED}
-     * intents for connection failure reason.
+     * or in {@link BluetoothA2dp#ACTION_CONNECTION_STATE_CHANGED} intents for connection failure reason.
      * Possible value are : -
      * {@link #HFP_CONNECTION_SUCCESS} - {@link #HFP_CONNECTION_SDP} -
      * {@link #HFP_CONNECTION_FAIL_RFCOMM} - {@link #HFP_CONNECTION_FAIL_RESOURCES}
-     *
+     * {@link BluetoothA2dp#A2DP_CONNECTION_SUCCESS} -
+     * {@link BluetoothA2dp#A2DP_CONNECTION_FAIL} -
+     * {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_SDP} -
+     * {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_STREAM}
+     * {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_RESOURCES} -
+     * {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_ROLE} -
+     * {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_GET_CAP}
+	 *
      * @hide
      */
-    @SystemApi public static final String EXTRA_CONNECTION_FAIL_REASON = EXTRA_UNBOND_REASON;
+    public static final String EXTRA_DISCONNECTED_REASON =
+            "android.bluetooth.device.extra.DISCONNECTED_REASON";
 
     /**
      * HFP successful operation

@@ -268,6 +268,48 @@ public final class BluetoothA2dp implements BluetoothProfile {
      */
     @SystemApi public static final int DYNAMIC_BUFFER_SUPPORT_A2DP_SOFTWARE_ENCODING = 2;
 
+    /**
+     * A2DP successful operation
+     *
+     */
+    public static final int A2DP_CONNECTION_SUCCESS = 0;
+
+    /**
+     * A2DP generic failure
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL = 1;
+
+    /**
+     * A2DP service not found
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_SDP = 2;
+
+    /**
+     * A2DP stream connection failed
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_STREAM = 3;
+
+    /**
+     * A2DP no resources
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_RESOURCES = 4;
+
+    /**
+     * A2DP failed due to role management related issues
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_ROLE = 5;
+
+    /**
+     * A2DP get capability failed due to no SEP availale on the peer
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_GET_CAP = 6;
+
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
 
