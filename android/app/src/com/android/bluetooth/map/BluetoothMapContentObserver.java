@@ -2012,7 +2012,7 @@ public class BluetoothMapContentObserver {
                         long id =
                                 c.getLong(
                                         c.getColumnIndex(BluetoothMapContract.MessageColumns._ID));
-                        int folderId =
+                        long folderId =
                                 c.getInt(
                                         c.getColumnIndex(
                                                 BluetoothMapContract.MessageColumns.FOLDER_ID));
