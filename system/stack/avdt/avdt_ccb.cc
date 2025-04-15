@@ -60,7 +60,8 @@ const char* const avdt_ccb_evt_str[] = {"API_DISCOVER_REQ_EVT", "API_GETCAP_REQ_
                                         "RET_TOUT_EVT",         "RSP_TOUT_EVT",
                                         "IDLE_TOUT_EVT",        "UL_OPEN_EVT",
                                         "UL_CLOSE_EVT",         "LL_OPEN_EVT",
-                                        "LL_CLOSE_EVT",         "LL_CONG_EVT"};
+                                        "LL_CLOSE_EVT",         "LL_CONG_EVT",
+                                        "RECONN_TIMER_EVT"};
 
 /* action function list */
 const tAVDT_CCB_ACTION avdt_ccb_action[] = {
@@ -75,7 +76,8 @@ const tAVDT_CCB_ACTION avdt_ccb_action[] = {
         avdt_ccb_snd_cmd,          avdt_ccb_snd_msg,          avdt_ccb_set_reconn,
         avdt_ccb_clr_reconn,       avdt_ccb_chk_reconn,       avdt_ccb_chk_timer,
         avdt_ccb_set_conn,         avdt_ccb_set_disconn,      avdt_ccb_do_disconn,
-        avdt_ccb_ll_closed,        avdt_ccb_ll_opened,        avdt_ccb_dealloc};
+        avdt_ccb_ll_closed,        avdt_ccb_ll_opened,        avdt_ccb_dealloc,
+        avdt_ccb_chan_timer_open};
 
 /* state table information */
 #define AVDT_CCB_ACTIONS 2    /* number of actions */
@@ -141,7 +143,9 @@ const uint8_t avdt_ccb_st_idle[][AVDT_CCB_NUM_COLS] = {
         /* AVDT_CCB_LL_CLOSE_EVT */
         {AVDT_CCB_LL_CLOSED, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
         /* AVDT_CCB_LL_CONG_EVT */
-        {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST}};
+        {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
+        /* RECONN_TIMER_EVT */
+        {AVDT_CCB_CHAN_TIMER_OPEN, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST}};
 
 /* state table for opening state */
 const uint8_t avdt_ccb_st_opening[][AVDT_CCB_NUM_COLS] = {
@@ -202,7 +206,9 @@ const uint8_t avdt_ccb_st_opening[][AVDT_CCB_NUM_COLS] = {
         /* AVDT_CCB_LL_CLOSE_EVT */
         {AVDT_CCB_LL_CLOSED, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
         /* AVDT_CCB_LL_CONG_EVT */
-        {AVDT_CCB_CONG_STATE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST}};
+        {AVDT_CCB_CONG_STATE, AVDT_CCB_IGNORE, AVDT_CCB_OPENING_ST},
+        /* RECONN_TIMER_EVT */
+        {AVDT_CCB_CHAN_TIMER_OPEN, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST}};
 
 /* state table for open state */
 const uint8_t avdt_ccb_st_open[][AVDT_CCB_NUM_COLS] = {
@@ -263,7 +269,9 @@ const uint8_t avdt_ccb_st_open[][AVDT_CCB_NUM_COLS] = {
         /* AVDT_CCB_LL_CLOSE_EVT */
         {AVDT_CCB_LL_CLOSED, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
         /* AVDT_CCB_LL_CONG_EVT */
-        {AVDT_CCB_CONG_STATE, AVDT_CCB_SND_MSG, AVDT_CCB_OPEN_ST}};
+        {AVDT_CCB_CONG_STATE, AVDT_CCB_SND_MSG, AVDT_CCB_OPEN_ST},
+        /* RECONN_TIMER_EVT */
+        {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPEN_ST}};
 
 /* state table for closing state */
 const uint8_t avdt_ccb_st_closing[][AVDT_CCB_NUM_COLS] = {
@@ -324,7 +332,9 @@ const uint8_t avdt_ccb_st_closing[][AVDT_CCB_NUM_COLS] = {
         /* AVDT_CCB_LL_CLOSE_EVT */
         {AVDT_CCB_CHK_RECONN, AVDT_CCB_IGNORE, AVDT_CCB_IDLE_ST},
         /* AVDT_CCB_LL_CONG_EVT */
-        {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST}};
+        {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_CLOSING_ST},
+        /* RECONN_TIMER_EVT */
+        {AVDT_CCB_IGNORE, AVDT_CCB_IGNORE, AVDT_CCB_OPEN_ST}};
 
 /* type for state table */
 typedef const uint8_t (*tAVDT_CCB_ST_TBL)[AVDT_CCB_NUM_COLS];
@@ -469,6 +479,7 @@ void AvdtpCcb::Allocate(const RawAddress& peer_address) {
   idle_ccb_timer = alarm_new("avdtp_ccb.idle_ccb_timer");
   ret_ccb_timer = alarm_new("avdtp_ccb.ret_ccb_timer");
   rsp_ccb_timer = alarm_new("avdtp_ccb.rsp_ccb_timer");
+  rec_ccb_timer = alarm_new("avdtp_ccb.rec_ccb_timer");
   allocated = true;
 }
 
