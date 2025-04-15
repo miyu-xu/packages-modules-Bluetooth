@@ -271,15 +271,8 @@ public class ScanManager {
         sendMessage(MSG_START_BLE_SCAN, client);
     }
 
-    void stopScan(int scannerId) {
-        ScanClient client = mScanNative.getBatchScanClient(scannerId);
-        if (client == null) {
-            client = mScanNative.getRegularScanClient(scannerId);
-        }
-        if (client == null) {
-            client = mScanNative.getSuspendedScanClient(scannerId);
-        }
-        sendMessage(MSG_STOP_BLE_SCAN, client);
+    public void stopScan(int scannerId) {
+        sendMessage(MSG_STOP_BLE_SCAN, scannerId);
     }
 
     void flushBatchScanResults(ScanClient client) {
@@ -351,7 +344,8 @@ public class ScanManager {
                     handleStartScan((ScanClient) msg.obj);
                     break;
                 case MSG_STOP_BLE_SCAN:
-                    handleStopScan((ScanClient) msg.obj);
+                    ScanClient stopClient = getScanClient((Integer) msg.obj);
+                    handleStopScan(client);
                     break;
                 case MSG_FLUSH_BATCH_RESULTS:
                     handleFlushBatchResults((ScanClient) msg.obj);
@@ -493,6 +487,23 @@ public class ScanManager {
                 }
             }
             return atLeastOneValidFilter;
+        }
+
+        private ScanClient getScanClient(Integer scannerIdObj) {
+            if (scannerIdObj == null) {
+                return null;
+            }
+
+            int scannerId = scannerIdObj.intValue();
+            ScanClient client = mScanNative.getBatchScanClient(scannerId);
+            if (client == null) {
+                client = mScanNative.getRegularScanClient(scannerId);
+            }
+            if (client == null) {
+                client = mScanNative.getSuspendedScanClient(scannerId);
+            }
+
+            return client;
         }
 
         private void handleStopScan(ScanClient client) {
