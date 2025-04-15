@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f73ee7ed_e97a650c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2025-04-15T17:18:00Z",
+      "side": 1,
+      "message": "Already fixed by: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3360267\n\nparseBroadcastReceiverStateObsolete will be removed soon completely.\nIt probably hadn\u0027t been merged yet when QC CL was reviewed.",
+      "revId": "ca30ac9898432438d08bbc29abecb72798cfba1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
