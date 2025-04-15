@@ -1595,7 +1595,9 @@ public final class BluetoothAdapter {
     boolean getLeAccess() {
         if (getLeState() == STATE_ON) {
             return true;
-        } else if (getLeState() == STATE_BLE_ON) {
+        } else if (getLeState() == STATE_BLE_ON
+                || getLeState() == STATE_TURNING_ON
+                || getLeState() == STATE_TURNING_OFF) {
             return true; // TODO: FILTER SYSTEM APPS HERE <--
         }
 
