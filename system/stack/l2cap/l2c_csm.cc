@@ -814,8 +814,7 @@ static void l2c_csm_w4_l2cap_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event, void* p
       if (p_lcb->transport == BT_TRANSPORT_LE) {
         (*p_ccb->p_rcb->api.pL2CA_Error_Cb)(local_cid, static_cast<uint16_t>(p_ci->l2cap_result));
       } else {
-        (*p_ccb->p_rcb->api.pL2CA_Error_Cb)(
-                local_cid, static_cast<uint16_t>(tL2CAP_CONN::L2CAP_CONN_OTHER_ERROR));
+        (*p_ccb->p_rcb->api.pL2CA_Error_Cb)(local_cid, static_cast<uint16_t>(p_ci->l2cap_result));
       }
       bluetooth::metrics::Counter(bluetooth::metrics::CounterKey::L2CAP_CONNECT_RSP_NEG);
       break;
