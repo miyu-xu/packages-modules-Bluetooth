@@ -368,6 +368,8 @@ typedef enum {
   // Some devices claim to support HFP in EIR but does not actually support it.
   INTEROP_DISABLE_HF_PROFILE,
 
+  INTEROP_INBAND_RINGTONE_SET_TO_FALSE,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
