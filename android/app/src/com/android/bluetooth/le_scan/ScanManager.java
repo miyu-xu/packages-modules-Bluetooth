@@ -271,14 +271,7 @@ public class ScanManager {
         sendMessage(MSG_START_BLE_SCAN, client);
     }
 
-    void stopScan(int scannerId) {
-        ScanClient client = mScanNative.getBatchScanClient(scannerId);
-        if (client == null) {
-            client = mScanNative.getRegularScanClient(scannerId);
-        }
-        if (client == null) {
-            client = mScanNative.getSuspendedScanClient(scannerId);
-        }
+    public void stopScan(ScanClient client) {
         sendMessage(MSG_STOP_BLE_SCAN, client);
     }
 
@@ -351,7 +344,20 @@ public class ScanManager {
                     handleStartScan((ScanClient) msg.obj);
                     break;
                 case MSG_STOP_BLE_SCAN:
-                    handleStopScan((ScanClient) msg.obj);
+                    ScanClient tmpClient = (ScanClient) msg.obj;
+                    int scannerId = tmpClient.mScannerId;
+                    ScanClient client = mScanNative.getBatchScanClient(scannerId);
+                    if (client == null) {
+                        client = mScanNative.getRegularScanClient(scannerId);
+                    }
+                    if (client == null) {
+                        client = mScanNative.getSuspendedScanClient(scannerId);
+                    }
+                    if (client == null) {
+                        Log.w(TAG, "MSG_STOP_BLE_SCAN: no scanClient for scannerId: " + scannerId);
+                        break;
+                    }
+                    handleStopScan(client);
                     break;
                 case MSG_FLUSH_BATCH_RESULTS:
                     handleFlushBatchResults((ScanClient) msg.obj);

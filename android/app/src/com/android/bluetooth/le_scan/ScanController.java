@@ -1415,7 +1415,8 @@ public class ScanController {
             app.recordScanStop(scannerId);
         }
 
-        mScanManager.stopScan(scannerId);
+        ScanClient client = new ScanClient(scannerId);
+        mScanManager.stopScan(client);
     }
 
     @RequiresPermission(BLUETOOTH_SCAN)
