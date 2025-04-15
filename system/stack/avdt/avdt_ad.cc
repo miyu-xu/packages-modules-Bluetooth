@@ -285,7 +285,8 @@ uint8_t avdt_ad_tc_tbl_to_idx(AvdtpTransportChannel* p_tbl) {
  * Returns          Nothing.
  *
  ******************************************************************************/
-void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl) {
+void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl,
+                            uint16_t reason) {
   AvdtpCcb* p_ccb;
   AvdtpScb* p_scb;
   tAVDT_SCB_TC_CLOSE close;
@@ -301,7 +302,19 @@ void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl) {
   p_tbl->role = tAVDT_ROLE::AVDT_UNKNOWN;
   p_tbl->peer_mtu = L2CAP_DEFAULT_MTU;
 
-  /* if signaling channel, notify ccb that channel close */
+  log::debug("{}: tcid: {}, old: {}, reason: {}", __func__, p_tbl->tcid,
+                   close.old_tc_state, reason);
+  /* if signaling channel, notify ccb that channel open */
+  if (reason == static_cast<uint16_t>(tL2CAP_CONN::L2CAP_CONN_NO_RESOURCES) && close.old_tc_state == AVDT_AD_ST_CONN) {
+    p_ccb = avdt_ccb_by_idx(p_tbl->ccb_idx);
+    if (p_ccb != NULL && p_ccb->rec_count < AVDT_REC_MAX) {
+      avdt_ccb_event(p_ccb, AVDT_CCB_RECONN_TIMER_EVT, NULL);
+      log::debug("AVDT_CCB_RECONN_TIMER_EVT %d", p_tbl->ccb_idx);
+      p_ccb->rec_count ++;
+      return;
+    }
+  }
+
   if (p_tbl->tcid == 0) {
     p_ccb = avdt_ccb_by_idx(p_tbl->ccb_idx);
     avdt_ccb_event(p_ccb, AVDT_CCB_LL_CLOSE_EVT, NULL);
@@ -536,10 +549,14 @@ void avdt_ad_open_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb, tAVDT_ROLE
 
     if (lcid == 0) {
       /* if connect req failed, call avdt_ad_tc_close_ind() */
+<<<<<<< HEAD
       avdt_ad_tc_close_ind(p_tbl);
       bluetooth::metrics::LogAvdtpL2capEvent(
             p_ccb->peer_addr, bluetooth::metrics::EventType::AVDTP_L2CAP_CONNECTION_REQUEST_SENT,
             tL2CAP_CONN::L2CAP_CONN_OTHER_ERROR);
+=======
+      avdt_ad_tc_close_ind(p_tbl, static_cast<uint16_t>(tL2CAP_CONN::L2CAP_CONN_OK));
+>>>>>>> 7f811030c0 ([WCNCR00467812] Add reconnect timer when avdtp connection conflict)
       return;
     }
 
@@ -584,7 +601,7 @@ void avdt_ad_close_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb) {
       break;
     case AVDT_AD_ST_ACP:
       /* if we're listening on this channel, send ourselves a close ind */
-      avdt_ad_tc_close_ind(p_tbl);
+      avdt_ad_tc_close_ind(p_tbl, static_cast<uint16_t>(tL2CAP_CONN::L2CAP_CONN_OK));
       break;
     default:
       lcid = p_tbl->lcid;
@@ -601,6 +618,6 @@ void avdt_ad_close_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb) {
                 bluetooth::metrics::EventType::AVDTP_L2CAP_DISCONNECTION_REQUEST_SENT,
                 tL2CAP_CONN::L2CAP_CONN_OK);
       }
-      avdt_ad_tc_close_ind(p_tbl);
+      avdt_ad_tc_close_ind(p_tbl, static_cast<uint16_t>(tL2CAP_CONN::L2CAP_CONN_OK));
   }
 }

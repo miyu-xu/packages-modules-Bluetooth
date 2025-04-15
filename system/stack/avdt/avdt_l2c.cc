@@ -169,6 +169,9 @@ static void avdt_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid,
     return;
   }
 
+  if (p_ccb != NULL && p_ccb->rec_count != 0)
+    p_ccb->rec_count = 0;
+
   /* if result ok, proceed with connection */
   /* store idx in LCID table, store LCID in routing table */
   avdtp_cb.ad.lcid_tbl[lcid] = avdt_ad_tc_tbl_to_idx(p_tbl);
@@ -193,12 +196,16 @@ static void avdt_on_l2cap_error(uint16_t lcid, uint16_t result) {
     log::warn("Adaptation layer transport channel table is NULL");
     return;
   }
+<<<<<<< HEAD
 
   p_ccb = avdt_ccb_by_idx(p_tbl->ccb_idx);
   if (p_ccb != NULL) {
     bluetooth::metrics::LogAvdtpL2capErrorEvent(p_ccb->peer_addr, to_l2cap_result_code(result));
   }
   avdt_ad_tc_close_ind(p_tbl);
+=======
+  avdt_ad_tc_close_ind(p_tbl, static_cast<uint16_t>(result));
+>>>>>>> 7f811030c0 ([WCNCR00467812] Add reconnect timer when avdtp connection conflict)
 }
 
 /*******************************************************************************
@@ -217,6 +224,7 @@ static void avdt_l2c_connect_cfm_cback(uint16_t lcid, tL2CAP_CONN result) {
 
   log::verbose("lcid: 0x{:04x}, result: {}", lcid, l2cap_result_code_text(result));
   p_tbl = avdt_ad_tc_tbl_by_lcid(lcid);
+  log::verbose("avdt_l2c_connect_cfm_cback state: {}", p_tbl->state);
   if (p_tbl == NULL) {
     log::warn("Adaptation layer transport channel table is NULL");
     return;
@@ -235,6 +243,7 @@ static void avdt_l2c_connect_cfm_cback(uint16_t lcid, tL2CAP_CONN result) {
   }
 
   if (result != tL2CAP_CONN::L2CAP_CONN_OK) {
+    avdt_ad_tc_close_ind(p_tbl, static_cast<uint16_t>(result));
     log::warn("lcid: 0x{:04x}, result: {}", lcid, l2cap_result_code_text(result));
     return;
   }
@@ -249,6 +258,7 @@ static void avdt_l2c_connect_cfm_cback(uint16_t lcid, tL2CAP_CONN result) {
     return;
   }
 
+  p_ccb->rec_count = 0;
   p_tbl->state = AVDT_AD_ST_CFG;
   p_tbl->lcid = lcid;
   p_tbl->role = tAVDT_ROLE::AVDT_INT;
@@ -345,6 +355,7 @@ static void avdt_l2c_disconnect_ind_cback(uint16_t lcid, bool ack_needed) {
     log::warn("Adaptation layer transport channel table is NULL");
     return;
   }
+<<<<<<< HEAD
 
   p_ccb = avdt_ccb_by_idx(p_tbl->ccb_idx);
   if (p_ccb != NULL) {
@@ -355,6 +366,9 @@ static void avdt_l2c_disconnect_ind_cback(uint16_t lcid, bool ack_needed) {
   }
 
   avdt_ad_tc_close_ind(p_tbl);
+=======
+  avdt_ad_tc_close_ind(p_tbl, static_cast<uint16_t>(tL2CAP_CONN::L2CAP_CONN_OK));
+>>>>>>> 7f811030c0 ([WCNCR00467812] Add reconnect timer when avdtp connection conflict)
 }
 
 /*******************************************************************************
