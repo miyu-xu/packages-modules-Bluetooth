@@ -80,6 +80,12 @@ void avdt_ccb_rsp_ccb_timer_timeout(void* data) {
   avdt_ccb_event(p_ccb, avdt_event, &avdt_ccb_evt);
 }
 
+void avdt_ccb_rec_ccb_timer_timeout(void* data) {
+  AvdtpCcb* p_ccb = (AvdtpCcb*)data;
+  /* reopen the signaling channel */
+  avdt_ccb_event(p_ccb, AVDT_CCB_UL_OPEN_EVT, NULL);
+}
+
 void avdt_scb_transport_channel_timer_timeout(void* data) {
   AvdtpScb* p_scb = (AvdtpScb*)data;
   uint8_t avdt_event = AVDT_SCB_TC_TOUT_EVT;
