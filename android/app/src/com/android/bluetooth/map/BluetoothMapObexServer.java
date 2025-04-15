@@ -41,6 +41,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.HeaderSet;
 import com.android.obex.Operation;
 import com.android.obex.ResponseCodes;
+import com.android.obex.ServerOperation;
 import com.android.obex.ServerRequestHandler;
 
 import java.io.IOException;
@@ -441,6 +442,19 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 appParams = new BluetoothMapAppParams(appParamRaw);
             }
             Log.d(TAG, "type = " + type + ", name = " + name);
+            boolean isFinal = ((ServerOperation)op).finalBitSet;
+            if (!isFinal) {
+                int continueCnt = 1;
+                while (((ServerOperation)op).continueOperation(true,true)) {
+                    Log.d(TAG, "onPut, waiting to final packet, cnt = " + continueCnt);
+                    continueCnt++;
+                }
+                if (appParamRaw == null) {
+                    request = op.getReceivedHeader();
+                    appParamRaw = (byte[]) request.getHeader(HeaderSet.APPLICATION_PARAMETER);
+                    appParams = new BluetoothMapAppParams(appParamRaw);
+                }
+            }
             if (type.equals(TYPE_MESSAGE_UPDATE)) {
                 Log.v(TAG, "TYPE_MESSAGE_UPDATE:");
                 return updateInbox();
