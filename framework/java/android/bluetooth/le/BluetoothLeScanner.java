@@ -264,6 +264,12 @@ public final class BluetoothLeScanner {
                 return postCallbackErrorOrReturn(
                         callback, ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED);
             }
+            boolean supportOffloadedScanBatching = mBluetoothAdapter.isOffloadedScanBatchingSupported();
+            if (!supportOffloadedScanBatching && settings.getReportDelayMillis() > 0) {
+                Log.w(TAG, "Not support batch scans");
+                return postCallbackErrorOrReturn(
+                        callback, ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED);
+            }
             if (callback != null) {
                 BleScanCallbackWrapper wrapper =
                         new BleScanCallbackWrapper(scan, filters, settings, workSource, callback);
