@@ -1049,3 +1049,22 @@ void avdt_ccb_ll_opened(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data) {
                            p_ccb->BtaAvScbIndex());
   }
 }
+
+/*******************************************************************************
+ *
+ * Function         avdt_ccb_chan_timer_open
+ *
+ * Description      add random timer to reconnect.
+ *
+ *
+ * Returns          void.
+ *
+ ******************************************************************************/
+void avdt_ccb_chan_timer_open(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* /* p_data */) {
+  /* restart ret timer, reconnect after 100~1000ms */
+  uint64_t time_ms = std::rand()%900 + 100;
+  log::debug("peer {} BtaAvScbIndex={} p_ccb={},time_ms=%lu ",
+                   p_ccb->peer_addr, p_ccb->BtaAvScbIndex(),
+                   std::format_ptr(p_ccb), static_cast<unsigned long>(time_ms));
+  alarm_set(p_ccb->rec_ccb_timer, time_ms, avdt_ccb_rec_ccb_timer_timeout, p_ccb);
+}

@@ -96,6 +96,10 @@ enum tTRANSPORT_CHANNEL_TYPE : uint8_t {
 #define AVDT_RET_MAX 1
 #endif
 
+/* maximum number of reconnect retry count */
+#ifndef AVDT_REC_MAX
+#define AVDT_REC_MAX 3
+#endif
 /* ccb state machine states */
 enum { AVDT_CCB_IDLE_ST, AVDT_CCB_OPENING_ST, AVDT_CCB_OPEN_ST, AVDT_CCB_CLOSING_ST };
 
@@ -137,6 +141,8 @@ enum : uint8_t {
   AVDT_CCB_LL_CLOSED,
   AVDT_CCB_LL_OPENED,
   AVDT_CCB_DEALLOC,
+  AVDT_CCB_CHAN_TIMER_OPEN,
+
   AVDT_CCB_NUM_ACTIONS
 };
 
@@ -171,7 +177,8 @@ enum {
   AVDT_CCB_UL_CLOSE_EVT,
   AVDT_CCB_LL_OPEN_EVT,
   AVDT_CCB_LL_CLOSE_EVT,
-  AVDT_CCB_LL_CONG_EVT
+  AVDT_CCB_LL_CONG_EVT,
+  AVDT_CCB_RECONN_TIMER_EVT,
 };
 
 /* scb state machine states; these state values are private to this module so
@@ -547,6 +554,7 @@ public:
         idle_ccb_timer(nullptr),
         ret_ccb_timer(nullptr),
         rsp_ccb_timer(nullptr),
+        rec_ccb_timer(nullptr),
         cmd_q(nullptr),
         rsp_q(nullptr),
         proc_cback(nullptr),
@@ -603,6 +611,9 @@ public:
     alarm_free(rsp_ccb_timer);
     rsp_ccb_timer = nullptr;
 
+    alarm_free(rec_ccb_timer);
+    rec_ccb_timer = nullptr;
+
     fixed_queue_free(cmd_q, nullptr);
     cmd_q = nullptr;
 
@@ -624,6 +635,7 @@ public:
     label = 0;
     reconn = false;
     ret_count = 0;
+    rec_count = 0;
   }
 
   /**
@@ -641,6 +653,7 @@ public:
   alarm_t* idle_ccb_timer;         // Idle CCB timer entry
   alarm_t* ret_ccb_timer;          // Ret CCB timer entry
   alarm_t* rsp_ccb_timer;          // Rsp CCB timer entry
+  alarm_t* rec_ccb_timer;          // Rec CCB timer entry
   fixed_queue_t* cmd_q;            // Queue for outgoing command messages
   fixed_queue_t* rsp_q;            // Queue for outgoing response and reject messages
   tAVDT_CTRL_CBACK* proc_cback;    // Procedure callback function
@@ -661,6 +674,7 @@ public:
   bool reconn;                     // If true, reinitiate connection after transitioning from
                                    // CLOSING to IDLE state
   uint8_t ret_count;               // Command retransmission count
+  uint8_t rec_count;               // rec_ccb_timer loop count
 
 private:
   // The corresponding BTA AV stream control block index for this entry
@@ -859,6 +873,7 @@ void avdt_ccb_set_disconn(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data);
 void avdt_ccb_do_disconn(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data);
 void avdt_ccb_ll_closed(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data);
 void avdt_ccb_ll_opened(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data);
+void avdt_ccb_chan_timer_open(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* /* p_data */);
 
 /* SCB function prototypes */
 void avdt_scb_event(AvdtpScb* p_scb, uint8_t event, tAVDT_SCB_EVT* p_data);
@@ -949,7 +964,7 @@ AvdtpTransportChannel* avdt_ad_tc_tbl_by_st(uint8_t type, AvdtpCcb* p_ccb, uint8
 AvdtpTransportChannel* avdt_ad_tc_tbl_by_lcid(uint16_t lcid);
 AvdtpTransportChannel* avdt_ad_tc_tbl_alloc(AvdtpCcb* p_ccb);
 uint8_t avdt_ad_tc_tbl_to_idx(AvdtpTransportChannel* p_tbl);
-void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl);
+void avdt_ad_tc_close_ind(AvdtpTransportChannel* p_tbl, uint16_t reason);
 void avdt_ad_tc_open_ind(AvdtpTransportChannel* p_tbl);
 void avdt_ad_tc_cong_ind(AvdtpTransportChannel* p_tbl, bool is_congested);
 void avdt_ad_tc_data_ind(AvdtpTransportChannel* p_tbl, BT_HDR* p_buf);
@@ -961,6 +976,7 @@ void avdt_ad_close_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb);
 void avdt_ccb_idle_ccb_timer_timeout(void* data);
 void avdt_ccb_ret_ccb_timer_timeout(void* data);
 void avdt_ccb_rsp_ccb_timer_timeout(void* data);
+void avdt_ccb_rec_ccb_timer_timeout(void* data);
 void avdt_scb_transport_channel_timer_timeout(void* data);
 void avdt_init_delay_report_timer_timeout(void* data);
 
