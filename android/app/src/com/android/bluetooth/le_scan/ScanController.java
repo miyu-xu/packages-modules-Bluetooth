@@ -635,7 +635,8 @@ public class ScanController {
                 return true;
             }
             if (originalAddress != null
-                    && originalAddress.equalsIgnoreCase(filter.getDeviceAddress())) {
+                    && originalAddress.equalsIgnoreCase(filter.getDeviceAddress())
+                    && filter.matchesWithoutAddress(scanResult)) {
                 return true;
             }
         }
