@@ -169,7 +169,7 @@ class HandleMap {
         return false;
     }
 
-    void deleteService(int serverIf, int serviceHandle) {
+    synchronized void deleteService(int serverIf, int serviceHandle) {
         mEntries.removeIf(
                 entry ->
                         ((entry.serverIf == serverIf)

@@ -3017,12 +3017,14 @@ public class GattService extends ProfileService {
          * The handles are copied into a new list to avoid race conditions.
          */
         List<Integer> handleList = new ArrayList<>();
-        List<HandleMap.Entry> entries = mHandleMap.getEntries();
-        for (HandleMap.Entry entry : entries) {
-            if (entry.type != HandleMap.TYPE_SERVICE || entry.serverIf != serverIf) {
-                continue;
+        synchronized (mHandleMap) {        
+            List<HandleMap.Entry> entries = mHandleMap.getEntries();
+            for (HandleMap.Entry entry : entries) {
+                if (entry.type != HandleMap.TYPE_SERVICE || entry.serverIf != serverIf) {
+                    continue;
+                }
+                handleList.add(entry.handle);
             }
-            handleList.add(entry.handle);
         }
 
         /* Now actually delete the services.... */
