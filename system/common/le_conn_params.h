@@ -23,10 +23,10 @@
 class LeConnectionParameters {
 public:
   static constexpr uint16_t kAggressiveConnThreshold = 2;
-  static constexpr uint16_t kMinConnIntervalAggressive = 0x0008;  // 8, *1.25 becomes 10ms
-  static constexpr uint16_t kMaxConnIntervalAggressive = 0x0010;  // 16, *1.25 becomes 20ms
-  static constexpr uint16_t kMinConnIntervalRelaxed = 0x0018;     // 24, *1.25 becomes 30ms
-  static constexpr uint16_t kMaxConnIntervalRelaxed = 0x0028;     // 40, *1.25 becomes 50ms
+  static constexpr uint16_t kMinConnIntervalAggressive = 0x0006;  // 8, *1.25 becomes 10ms
+  static constexpr uint16_t kMaxConnIntervalAggressive = 0x0008;  // 16, *1.25 becomes 20ms
+  static constexpr uint16_t kMinConnIntervalRelaxed = 0x0006;     // 24, *1.25 becomes 30ms
+  static constexpr uint16_t kMaxConnIntervalRelaxed = 0x0008;     // 40, *1.25 becomes 50ms
 
   static const std::string kPropertyAggressiveConnThreshold;
   static const std::string kPropertyMinConnIntervalAggressive;

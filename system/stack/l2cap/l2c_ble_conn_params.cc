@@ -80,11 +80,12 @@ bool L2CA_UpdateBleConnParams(const RawAddress& rem_bda, uint16_t min_int, uint1
     return false;
   }
 
-  log::verbose("BD_ADDR={}, min_int={}, max_int={}, min_ce_len={}, max_ce_len={}", rem_bda, min_int,
+  log::error("ClayDebug: BD_ADDR={}, min_int={}, max_int={}, min_ce_len={}, max_ce_len={}",
+               rem_bda, min_int,
                max_int, min_ce_len, max_ce_len);
 
-  p_lcb->min_interval = min_int;
-  p_lcb->max_interval = max_int;
+  p_lcb->min_interval = 0x0006;
+  p_lcb->max_interval = 0x0008;
   p_lcb->latency = latency;
   p_lcb->timeout = timeout;
   p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
