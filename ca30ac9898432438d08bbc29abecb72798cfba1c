@@ -34,6 +34,24 @@
       "parentUuid": "f73ee7ed_e97a650c",
       "revId": "ca30ac9898432438d08bbc29abecb72798cfba1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f123c9_fd5bbfb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-04-16T11:09:44Z",
+      "side": 1,
+      "message": "Thanks for your review. Since https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3360267 has resolved original issue, I will abandon this change.",
+      "parentUuid": "5369629e_193de086",
+      "revId": "ca30ac9898432438d08bbc29abecb72798cfba1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
