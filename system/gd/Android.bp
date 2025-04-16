@@ -440,6 +440,7 @@ cc_test {
         "libPlatformProperties",
         "libaconfig_storage_read_api_cc",
         "libcrypto",
+        "libutils",
     ],
     sanitize: {
         address: true,

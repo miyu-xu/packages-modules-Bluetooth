@@ -120,6 +120,7 @@ cc_test {
         "libbinder_ndk",
         "libcrypto",
         "server_configurable_flags",
+        "libutils",
     ],
     target: {
         android: {
