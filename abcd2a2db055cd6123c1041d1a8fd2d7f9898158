@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f74c8a9_6be8f04c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-04-17T07:13:52Z",
+      "side": 1,
+      "message": "Patch looks good, since `isOffloadedScanBatchingSupported` is not checked currently during batch scan, and this patch will change the behavior, will apply with flag.",
+      "revId": "abcd2a2db055cd6123c1041d1a8fd2d7f9898158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
