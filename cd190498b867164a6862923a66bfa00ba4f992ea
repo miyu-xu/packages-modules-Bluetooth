@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b955c714_0aa6b9f3",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-04-17T07:05:58Z",
+      "side": 1,
+      "message": "Fix looks straightforward and fine. One question: What\u0027s the reason why we need access to BluetoothLeAdvertiser when BLE is turning ON or OFF?",
+      "revId": "cd190498b867164a6862923a66bfa00ba4f992ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
