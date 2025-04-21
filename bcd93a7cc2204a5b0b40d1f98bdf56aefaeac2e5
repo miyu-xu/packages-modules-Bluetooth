@@ -39,6 +39,30 @@
       },
       "revId": "bcd93a7cc2204a5b0b40d1f98bdf56aefaeac2e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd8eb983_d7283a6b",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-04-21T09:54:51Z",
+      "side": 1,
+      "message": "@henrichataing@google.com,\nDo you have any code suggestion to call StopRequest?",
+      "parentUuid": "44cc66c0_eb822573",
+      "range": {
+        "startLine": 538,
+        "startChar": 6,
+        "endLine": 538,
+        "endChar": 32
+      },
+      "revId": "bcd93a7cc2204a5b0b40d1f98bdf56aefaeac2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
