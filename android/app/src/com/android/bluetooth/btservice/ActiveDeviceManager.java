@@ -1232,9 +1232,30 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                     connectedDevices.add(headsetFallbackDevice);
                 }
         }
+
+        boolean hasFallbackDevice = false;
+        boolean isA2dpActive = false;
+        if (Utils.isDualModeAudioEnabled()) {
+            Log.d(TAG, "mA2dpActiveDevice: " + mA2dpActiveDevice
+                      + ", mLeAudioActiveDevice:" + mLeAudioActiveDevice);
+            if (Objects.equals(mA2dpActiveDevice, mLeAudioActiveDevice)) {
+                isA2dpActive = true;
+            }
+        }
         BluetoothDevice device = mDbManager.getMostRecentlyConnectedDevicesInList(connectedDevices);
         if (device == null) {
             Log.d(TAG, "No fallback devices are found");
+            A2dpService a2dpService = mFactory.getA2dpService();
+            if (Utils.isDualModeAudioEnabled() && isA2dpActive &&
+                                                        a2dpService != null) {
+                int connectionState = a2dpService.
+                                        getConnectionState(mA2dpActiveDevice);
+                if (connectionState == BluetoothProfile.STATE_DISCONNECTED ||
+                    connectionState == BluetoothProfile.STATE_DISCONNECTING) {
+                    Log.d(TAG, "Setting mA2dpActiveDevice as NULL");
+                    setA2dpActiveDevice(null, false);
+                }
+            }
             return false;
         }
         Log.d(TAG, "Most recently connected device: " + device);
