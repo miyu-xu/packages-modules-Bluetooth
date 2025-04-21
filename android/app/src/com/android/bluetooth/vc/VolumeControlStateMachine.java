@@ -62,6 +62,7 @@ class VolumeControlStateMachine extends StateMachine {
     private final BluetoothDevice mDevice;
 
     private int mLastConnectionState = -1;
+    private int mCurrentState = -1;
 
     VolumeControlStateMachine(
             VolumeControlService svc,
@@ -95,6 +96,7 @@ class VolumeControlStateMachine extends StateMachine {
     class Disconnected extends State {
         @Override
         public void enter() {
+            mCurrentState = STATE_DISCONNECTED;
             Log.i(
                     TAG,
                     "Enter Disconnected("
@@ -209,6 +211,7 @@ class VolumeControlStateMachine extends StateMachine {
     class Connecting extends State {
         @Override
         public void enter() {
+            mCurrentState = STATE_CONNECTING;
             Log.i(
                     TAG,
                     "Enter Connecting("
@@ -300,20 +303,17 @@ class VolumeControlStateMachine extends StateMachine {
     }
 
     int getConnectionState() {
-        String currentState = getCurrentState().getName();
-        return switch (currentState) {
-            case "Disconnected" -> STATE_DISCONNECTED;
-            case "Connecting" -> STATE_CONNECTING;
-            case "Connected" -> STATE_CONNECTED;
-            case "Disconnecting" -> STATE_DISCONNECTING;
-            default -> STATE_DISCONNECTED;
-        };
+        if (mCurrentState == -1) {
+            return STATE_DISCONNECTED;
+        }
+        return mCurrentState;
     }
 
     @VisibleForTesting
     class Disconnecting extends State {
         @Override
         public void enter() {
+            mCurrentState = STATE_DISCONNECTING;
             Log.i(
                     TAG,
                     "Enter Disconnecting("
@@ -416,6 +416,7 @@ class VolumeControlStateMachine extends StateMachine {
     class Connected extends State {
         @Override
         public void enter() {
+            mCurrentState = STATE_CONNECTED;
             Log.i(
                     TAG,
                     "Enter Connected("
@@ -499,7 +500,7 @@ class VolumeControlStateMachine extends StateMachine {
     }
 
     synchronized boolean isConnected() {
-        return getCurrentState() == mConnected;
+        return mCurrentState == STATE_CONNECTED;
     }
 
     // This method does not check for error condition (newState == prevState)
