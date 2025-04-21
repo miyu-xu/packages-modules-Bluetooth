@@ -613,7 +613,7 @@ public class AtPhonebook {
             int regionType = PhoneNumberUtils.toaFromString(number);
 
             number = number.trim();
-            number = PhoneNumberUtils.stripSeparators(number);
+            number = PhoneNumberUtils.convertAndStrip(number);
             if (number.length() > 30) {
                 number = number.substring(0, 30);
             }

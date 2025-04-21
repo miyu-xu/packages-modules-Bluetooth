@@ -371,7 +371,8 @@ public class BluetoothPbapVcardManager {
                     public String onValueReceived(
                             String rawValue, int type, String label, boolean isPrimary) {
                         String numberWithControlSequence =
-                                rawValue.replace(PhoneNumberUtils.PAUSE, 'p')
+                                PhoneNumberUtils.convertAndStrip(rawValue)
+                                        .replace(PhoneNumberUtils.PAUSE, 'p')
                                         .replace(PhoneNumberUtils.WAIT, 'w');
                         return numberWithControlSequence;
                     }
@@ -885,7 +886,8 @@ public class BluetoothPbapVcardManager {
                             // (see RFC 3601)
                             // so use those when exporting phone numbers via vCard.
                             String numberWithControlSequence =
-                                    rawValue.replace(PhoneNumberUtils.PAUSE, 'p')
+                                    PhoneNumberUtils.convertAndStrip(rawValue)
+                                            .replace(PhoneNumberUtils.PAUSE, 'p')
                                             .replace(PhoneNumberUtils.WAIT, 'w');
                             return numberWithControlSequence;
                         }
@@ -1002,7 +1004,8 @@ public class BluetoothPbapVcardManager {
                             /* 'p' and 'w' are the standard characters for pause and wait
                              * (see RFC 3601) so use those when exporting phone numbers via vCard.*/
                             String numberWithControlSequence =
-                                    rawValue.replace(PhoneNumberUtils.PAUSE, 'p')
+                                    PhoneNumberUtils.convertAndStrip(rawValue)
+                                            .replace(PhoneNumberUtils.PAUSE, 'p')
                                             .replace(PhoneNumberUtils.WAIT, 'w');
                             return numberWithControlSequence;
                         }
