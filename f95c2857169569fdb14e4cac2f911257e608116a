@@ -103,6 +103,23 @@
       "parentUuid": "f15fc228_131f3df9",
       "revId": "f95c2857169569fdb14e4cac2f911257e608116a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25afdc45_fef17704",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-04-21T04:47:01Z",
+      "side": 1,
+      "message": "Hi @eruffieux@google.com,\nCan you please run pre-submit again OR can you please share logs for PV failure if it is due to this gerrit? I don\u0027t have access.",
+      "revId": "f95c2857169569fdb14e4cac2f911257e608116a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
