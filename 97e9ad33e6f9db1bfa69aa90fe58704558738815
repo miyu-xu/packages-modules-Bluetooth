@@ -214,6 +214,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87a312a0_00b575c4",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-04-21T17:23:04Z",
+      "side": 1,
+      "message": "I have made the changes currently testing it.\nPlease help review latest patch set.\nIt seems due to Google Infra change my patch cannot be merged as is.\nIf it looks OK to you OR minor modification required, please upload and help merge and share patch to us so that we can also maintain until it lands via LKG",
+      "parentUuid": "c19cf778_3e9be308",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 84
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e11504_8398656e",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-04-21T17:23:04Z",
+      "side": 1,
+      "message": "I have made the changes currently testing it.\nPlease help review latest patch set.\nIt seems due to Google Infra change my patch cannot be merged as is.\nIf it looks OK to you OR minor modification required, please upload and help merge and share patch to us so that we can also maintain until it lands via LKG",
+      "parentUuid": "c19cf778_3e9be308",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 84
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55694797_7163d9c6",
         "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
         "patchSetId": 9
@@ -407,6 +455,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "512fbd73_30cc5994",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2456,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-04-21T17:23:04Z",
+      "side": 1,
+      "message": "We can reuse same flags just in first case",
+      "parentUuid": "6183feca_a2bde814",
+      "range": {
+        "startLine": 2455,
+        "startChar": 33,
+        "endLine": 2456,
+        "endChar": 72
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55da19dd_84126e39",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2456,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-04-21T17:23:04Z",
+      "side": 1,
+      "message": "Yes, in both APIs SetLatencyMode \u0026 UpdateMetadata ultimately BT Audio Vendor HAL should be notified as GAMING. Just one difference in UpdateMetaData if it\u0027s not a low latency use case it must be notifying the context as MEDIA. If you feel we can converge logic at some point it should be OK I feel.\nOn a high level the overall idea for change is BT Audio Vendor HAL must be notified correct Audio Context (only if there is a change preferably as Metadata calls are very frequent) which will come either SetLatencyMode OR UpdateMetadata OR both so that ultimately vendor HAL can notify encoder to change it\u0027s mode (low latency/high quality) residing in ADSP OR Controller.",
+      "parentUuid": "6183feca_a2bde814",
+      "range": {
+        "startLine": 2455,
+        "startChar": 33,
+        "endLine": 2456,
+        "endChar": 72
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ad893ec_561cfee5",
         "filename": "system/include/hardware/bt_av.h",
         "patchSetId": 9
@@ -490,6 +586,30 @@
       "side": 1,
       "message": "we can not remove audio_context \n  btav_a2dp_codec_audio_context_t audio_context;\n  \nas we are using as below\n\nbtav_a2dp_codec_config_t codec_config \u003d current_codec-\u003egetCodecConfig();\n      codec_config.audio_context \u003d audio_context_type;\n    \nyour point makes sence audio_context should not be used outside audio hal client interface but do you see any other alternative when stack can update audio_context back to hal interface which BT Audio Vendor HAL can make use of it?",
       "parentUuid": "9ad893ec_561cfee5",
+      "range": {
+        "startLine": 184,
+        "startChar": 34,
+        "endLine": 184,
+        "endChar": 47
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b27326ee_392ffde0",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-04-21T17:23:04Z",
+      "side": 1,
+      "message": "As I mentioned above I don\u0027t feel it\u0027s wise to remove audio_context.\nLet me know if you feel otherwise.",
+      "parentUuid": "b8cfdfd0_3f6aa2d0",
       "range": {
         "startLine": 184,
         "startChar": 34,
