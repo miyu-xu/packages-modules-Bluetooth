@@ -16,6 +16,24 @@
       "message": "Hi Zhenchao,\n\nStill missing in this change a test case. Please update.",
       "revId": "b56b3d6d362d8b05fcb57ebf6ad94ec35f4bc034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "935df9bc_addf2686",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-04-22T08:37:19Z",
+      "side": 1,
+      "message": "Unit test added, please help review again. \n\nThe issue scenario is that Settings app calls getAllBroadcastMetadata API after broadcast created, but before metadata is updated. So I add the unit test code in this scenario.",
+      "parentUuid": "64615e1c_ffd4db65",
+      "revId": "b56b3d6d362d8b05fcb57ebf6ad94ec35f4bc034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
