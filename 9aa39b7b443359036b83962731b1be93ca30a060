@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "533f7602_8be1c81f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-04-22T10:07:20Z",
+      "side": 1,
+      "message": "Explanation for the gerrit:\nWhenever the user taps on UI for codec change or frequency change, newCodecConfig comes with the codec-priority of 1000000. Due to which, prioritizedCodecType will also be same as newCodecConfig.\nIf we take all the cases of codec/freq switch, the \"if\" condition should work as expected.",
+      "revId": "9aa39b7b443359036b83962731b1be93ca30a060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
