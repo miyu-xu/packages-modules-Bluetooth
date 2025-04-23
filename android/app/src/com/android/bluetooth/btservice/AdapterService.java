@@ -151,6 +151,7 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.hfpclient.HeadsetClientService;
 import com.android.bluetooth.hid.HidDeviceService;
@@ -5737,6 +5738,43 @@ public class AdapterService extends Service {
     }
 
     /**
+     * Disconnects A2DP profile
+     *
+     * @param device is the remote device with which to disconnect these profiles
+     */
+    public void disconnectA2dp(BluetoothDevice device) {
+        Log.i(TAG, "disconnectA2dp: Disconnecting A2dp");
+        // All below could be a function call
+        if (mA2dpService != null
+                && (mA2dpService.getConnectionState(device) == BluetoothProfile.STATE_CONNECTED
+                        || mA2dpService.getConnectionState(device)
+                                == BluetoothProfile.STATE_CONNECTING)) {
+            Log.d(
+                    TAG,
+                    "Call and Ringing Status are:"
+                            + mHeadsetService.isInCall()
+                            + ""
+                            + mHeadsetService.isRinging());
+            if (isDelayA2dpDiscDevice(device)
+                    && mHeadsetService != null
+                    && (mHeadsetService.isInCall() || mHeadsetService.isRinging())) {
+                Log.i(
+                        TAG,
+                        "isDelayA2dpDiscDevice post a delayed message to disconnect A2DP service");
+                mHandler.postDelayed(
+                        () -> {
+                            if (mA2dpService != null) {
+                                mA2dpService.disconnect(device);
+                            }
+                        },
+                        400);
+            } else {
+                mA2dpService.disconnect(device);
+            }
+        }
+     }
+
+    /**
      * Disconnects all enabled and supported bluetooth profiles between the local and remote device
      *
      * @param device is the remote device with which to disconnect these profiles
@@ -5746,19 +5784,6 @@ public class AdapterService extends Service {
         if (!profileServicesRunning()) {
             Log.e(TAG, "disconnectAllEnabledProfiles: Not all profile services bound");
             return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
-        }
-
-        if (mA2dpService != null
-                && (mA2dpService.getConnectionState(device) == STATE_CONNECTED
-                        || mA2dpService.getConnectionState(device) == STATE_CONNECTING)) {
-            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp");
-            mA2dpService.disconnect(device);
-        }
-        if (mA2dpSinkService != null
-                && (mA2dpSinkService.getConnectionState(device) == STATE_CONNECTED
-                        || mA2dpSinkService.getConnectionState(device) == STATE_CONNECTING)) {
-            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp Sink");
-            mA2dpSinkService.disconnect(device);
         }
         if (mHeadsetService != null
                 && (mHeadsetService.getConnectionState(device) == STATE_CONNECTED
@@ -5771,6 +5796,18 @@ public class AdapterService extends Service {
                         || mHeadsetClientService.getConnectionState(device) == STATE_CONNECTING)) {
             Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting HFP");
             mHeadsetClientService.disconnect(device);
+        }
+
+        Log.d(TAG,"Call and Ringing Status are:"+mHeadsetService.isInCall() +" "
+             +mHeadsetService.isRinging());
+
+        disconnectA2dp(device);
+
+        if (mA2dpSinkService != null
+                && (mA2dpSinkService.getConnectionState(device) == STATE_CONNECTED
+                        || mA2dpSinkService.getConnectionState(device) == STATE_CONNECTING)) {
+            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp Sink");
+            mA2dpSinkService.disconnect(device);
         }
         if (mMapClientService != null
                 && (mMapClientService.getConnectionState(device) == STATE_CONNECTED
@@ -7384,5 +7421,15 @@ public class AdapterService extends Service {
     public boolean isRfcommSocketOffloadSupported() {
         int val = getNumberOfSupportedOffloadedRfcommSockets();
         return val > 0;
+    }
+
+    //Delaying A2DP Disconnect
+    boolean isDelayA2dpDiscDevice(BluetoothDevice device) {
+       if (device == null) return false;
+       boolean matched = InteropUtil.interopMatchAddrOrName(
+              InteropUtil.InteropFeature.INTEROP_A2DP_DELAY_DISCONNECT,
+              device.getAddress());
+       Log.d(TAG, "isDelayA2dpDiscDevice: matched: " + matched);
+       return matched;
     }
 }

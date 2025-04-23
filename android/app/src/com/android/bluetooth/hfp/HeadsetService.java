@@ -2328,6 +2328,16 @@ public class HeadsetService extends ProfileService {
                 && ashaPolicy != CONNECTION_POLICY_ALLOWED;
     }
 
+    public boolean isInCall() {
+         boolean isCallOngoing = mSystemInterface.isInCall();
+         return isCallOngoing;
+     }
+
+    public boolean isRinging() {
+        boolean isRingOngoing = mSystemInterface.isRinging();
+        return isRingOngoing;
+    }
+
     private boolean shouldCallAudioBeActive() {
         return mSystemInterface.isInCall()
                 || (mSystemInterface.isRinging() && isInbandRingingEnabled());
