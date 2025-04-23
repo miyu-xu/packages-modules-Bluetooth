@@ -334,6 +334,9 @@ public class HeadsetPhoneState {
             }
             // +CIND "signal" indicator is always between 0 to 5
             mCindSignal = Integer.max(Integer.min(mCindSignal, 5), 0);
+            if (mCindService != HeadsetHalConstants.NETWORK_STATE_AVAILABLE) {
+                return;
+            }
             // This results in a lot of duplicate messages, hence this check
             if (prevSignal != mCindSignal) {
                 sendDeviceStateChanged();
