@@ -151,6 +151,7 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
+import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.hfpclient.HeadsetClientService;
 import com.android.bluetooth.hid.HidDeviceService;
@@ -5747,19 +5748,6 @@ public class AdapterService extends Service {
             Log.e(TAG, "disconnectAllEnabledProfiles: Not all profile services bound");
             return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
         }
-
-        if (mA2dpService != null
-                && (mA2dpService.getConnectionState(device) == STATE_CONNECTED
-                        || mA2dpService.getConnectionState(device) == STATE_CONNECTING)) {
-            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp");
-            mA2dpService.disconnect(device);
-        }
-        if (mA2dpSinkService != null
-                && (mA2dpSinkService.getConnectionState(device) == STATE_CONNECTED
-                        || mA2dpSinkService.getConnectionState(device) == STATE_CONNECTING)) {
-            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp Sink");
-            mA2dpSinkService.disconnect(device);
-        }
         if (mHeadsetService != null
                 && (mHeadsetService.getConnectionState(device) == STATE_CONNECTED
                         || mHeadsetService.getConnectionState(device) == STATE_CONNECTING)) {
@@ -5771,6 +5759,32 @@ public class AdapterService extends Service {
                         || mHeadsetClientService.getConnectionState(device) == STATE_CONNECTING)) {
             Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting HFP");
             mHeadsetClientService.disconnect(device);
+        }
+
+        Log.d(TAG,"Call and Ringing Status are:"+mHeadsetService.isInCall() +" "
+             +mHeadsetService.isRinging());
+        Log.d(TAG,"Checking in A2DP Disconnect delay BL");
+
+        //Adding A2DP Disconnect delay for blacklisted devices
+        if (isDelayA2dpDiscDevice(device) &&
+                  (mHeadsetService.isInCall() || mHeadsetService.isRinging())) {
+           Log.e(TAG,"isDelayA2dpDiscDevice sleep 400ms");
+              SystemClock.sleep(400);
+        }
+
+        if (mA2dpService != null
+                && (mA2dpService.getConnectionState(device) == BluetoothProfile.STATE_CONNECTED
+                        || mA2dpService.getConnectionState(device)
+                                == BluetoothProfile.STATE_CONNECTING)) {
+            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp");
+            mA2dpService.disconnect(device);
+        }
+        if (mA2dpSinkService != null
+                && (mA2dpSinkService.getConnectionState(device) == BluetoothProfile.STATE_CONNECTED
+                        || mA2dpSinkService.getConnectionState(device)
+                                == BluetoothProfile.STATE_CONNECTING)) {
+            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting A2dp Sink");
+            mA2dpSinkService.disconnect(device);
         }
         if (mMapClientService != null
                 && (mMapClientService.getConnectionState(device) == STATE_CONNECTED
@@ -7384,5 +7398,14 @@ public class AdapterService extends Service {
     public boolean isRfcommSocketOffloadSupported() {
         int val = getNumberOfSupportedOffloadedRfcommSockets();
         return val > 0;
+
+    //Delaying A2DP Disconnect
+    boolean isDelayA2dpDiscDevice(BluetoothDevice device) {
+       if (device == null) return false;
+       boolean matched = InteropUtil.interopMatchAddrOrName(
+              InteropUtil.InteropFeature.INTEROP_A2DP_DELAY_DISCONNECT,
+              device.getAddress());
+       Log.d(TAG, "isDelayA2dpDiscDevice: matched: " + matched);
+       return matched;
     }
 }
