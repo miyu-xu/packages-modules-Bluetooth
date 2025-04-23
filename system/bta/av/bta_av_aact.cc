@@ -1528,6 +1528,7 @@ void bta_av_save_caps(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   tAVDT_SEP_INFO* p_info = &p_scb->sep_info[p_scb->sep_info_idx];
   uint8_t old_wait = p_scb->wait;
   bool getcap_done = false;
+  tA2DP_CODEC_TYPE codec_type;
 
   log::verbose("peer {} bta_handle:0x{:x} num_seps:{} sep_info_idx:{} wait:0x{:x}",
                p_scb->PeerAddress(), p_scb->hndl, p_scb->num_seps, p_scb->sep_info_idx,
@@ -1535,6 +1536,11 @@ void bta_av_save_caps(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   log::verbose("codec: {}", A2DP_CodecInfoString(p_scb->peer_cap.codec_info));
 
   cfg = p_scb->peer_cap;
+  codec_type = A2DP_GetCodecType(p_scb->peer_cap.codec_info);
+  log::verbose(" codec_type: {}", codec_type);
+  if (codec_type == A2DP_MEDIA_CT_SBC) {
+    A2DP_SaveValidBitpool(p_scb);
+  }
   /* let application know the capability of the SNK */
   if (p_scb->p_cos->getcfg(p_scb->hndl, p_scb->PeerAddress(), cfg.codec_info, &p_scb->sep_info_idx,
                            p_info->seid, &cfg.num_protect, cfg.protect_info) != A2DP_SUCCESS) {
@@ -1671,6 +1677,7 @@ void bta_av_getcap_results(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   AvdtpSepConfig cfg = p_scb->cfg;
   uint8_t media_type = A2DP_GetMediaType(p_scb->peer_cap.codec_info);
   tAVDT_SEP_INFO* p_info = &p_scb->sep_info[p_scb->sep_info_idx];
+  tA2DP_CODEC_TYPE codec_type;
 
   cfg.num_codec = 1;
   cfg.num_protect = p_scb->peer_cap.num_protect;
@@ -1682,6 +1689,13 @@ void bta_av_getcap_results(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   log::verbose("media type 0x{:x}, 0x{:x}", media_type, p_scb->media_type);
   log::verbose("codec: {}", A2DP_CodecInfoString(p_scb->cfg.codec_info));
 
+  codec_type = A2DP_GetCodecType(p_scb->peer_cap.codec_info);
+  log::verbose("codec_type: {}", codec_type);
+  if (codec_type == A2DP_MEDIA_CT_SBC) {
+    A2DP_SaveValidBitpool(p_scb);
+  }
+  memcpy(cfg.codec_info, p_scb->peer_cap.codec_info, AVDT_CODEC_SIZE);
+  memcpy(cfg.protect_info, p_scb->peer_cap.protect_info, AVDT_PROTECT_SIZE);
   /* if codec present and we get a codec configuration */
   if ((p_scb->peer_cap.num_codec != 0) && (media_type == p_scb->media_type) &&
       (p_scb->p_cos->getcfg(p_scb->hndl, p_scb->PeerAddress(), cfg.codec_info, &p_scb->sep_info_idx,

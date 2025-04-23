@@ -44,6 +44,7 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/l2cap_interface.h"
 #include "types/raw_address.h"
+#include "stack/include/a2dp_sbc_constants.h"
 
 using namespace bluetooth;
 
@@ -562,7 +563,9 @@ void avdt_scb_hdl_setconfig_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
     return;
   }
 
+  tA2DP_CODEC_TYPE codec_type;
   AvdtpSepConfig* p_cfg = p_data->msg.config_cmd.p_cfg;
+  codec_type = A2DP_GetCodecType(p_cfg->codec_info);
   auto local_codec_type = A2DP_GetCodecType(p_scb->stream_config.cfg.codec_info);
   auto remote_codec_type = A2DP_GetCodecType(p_cfg->codec_info);
 

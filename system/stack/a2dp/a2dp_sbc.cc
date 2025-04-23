@@ -46,6 +46,7 @@
 #include "hardware/bt_av.h"
 #include "internal_include/bt_trace.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/include/a2dp_sbc_constants.h"
 
 #define A2DP_SBC_MAX_BITPOOL 53
 
@@ -626,6 +627,89 @@ int A2DP_GetMaxBitpoolSbc(const uint8_t* p_codec_info) {
   return sbc_cie.max_bitpool;
 }
 
+void A2DP_SaveValidBitpool(tBTA_AV_SCB* p_scb) {
+  //minbitpool < 2, then set minbitpool = 2
+  if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) < A2DP_SBC_IE_MIN_BITPOOL) {
+    p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MIN_BITPOOL;
+    log::verbose("Set min bitpool: {}",
+                  p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+  }
+
+  //minbitpool > 250, then set minbitpool = 250
+  if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+    p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+    log::verbose("Set min bitpool: {}",
+                  p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+  }
+
+  //maxbitpool > 250, then set maxbitpool = 250
+  if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+    p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+    log::verbose("Set max bitpool: {}",
+                  p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]);
+  }
+
+  //minbitpool > maxbitpool, then set maxbitpool = minbitpool
+  if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) >
+      (p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET])) {
+    p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] =
+                    p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET];
+    log::verbose("min bitpool value received for SBC is more than DUT supported Max bitpool"
+                  "Clamping the max bitpool configuration further from {} to {}",
+                  p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET],
+                  p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+  }
+}
+
+void A2DP_SetConfigValidBitpool(tBTA_AV_SCB* p_scb, AvdtpSepConfig* p_cfg) {
+  if (p_scb->stream_config.tsep == AVDT_TSEP_SNK) {
+    //SNK minbitool > 86, then set minbitpool = 86
+    if ((p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) > A2DP_SBC_SINK_MAX_BITPOOL) {
+       p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_SINK_MAX_BITPOOL;
+    }
+    //SNK maxbitool > 86, then set maxbitpool = 86
+    if ((p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]) > A2DP_SBC_SINK_MAX_BITPOOL) {
+       p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] = A2DP_SBC_SINK_MAX_BITPOOL;
+    }
+    log::verbose("SNK min/max bitpool: {}/{}",
+                p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET],
+                p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]);
+  }
+  //minbitpool < 2, then set minbitpool = 2
+  if ((p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) < A2DP_SBC_IE_MIN_BITPOOL) {
+    p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MIN_BITPOOL;
+    log::verbose("Incoming connection set min bitpool: {}",
+                p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+  }
+
+  if (p_scb->stream_config.tsep == AVDT_TSEP_SRC) {
+    //minbitpool > 250, then set minbitpool = 250
+    if ((p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+      p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+      log::verbose("Incoming connection set min bitpool: {}",
+                  p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+    }
+
+    //maxbitpool > 250, then set maxbitpool = 250
+    if ((p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+      p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+      log::verbose("Incoming connection set max bitpool: {}",
+                  p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]);
+    }
+  }
+
+  //minbitpool > maxbitpool, then set maxbitpool = minbitpool
+  if ((p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) >
+      (p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET])) {
+    p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] =
+                        p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET];
+    log::verbose("Incoming connection minbitpool set by remote exceeds"
+                "maxbitpool value, So set maxbitbool to minbitpool: {} to {}",
+                 p_cfg->codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET],
+                 p_cfg->codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+  }
+}
+
 uint32_t A2DP_GetBitrateSbc() { return a2dp_sbc_get_bitrate(); }
 int A2DP_GetSinkTrackChannelTypeSbc(const uint8_t* p_codec_info) {
   tA2DP_SBC_CIE sbc_cie;
@@ -768,6 +852,14 @@ bool A2DP_AdjustCodecSbc(uint8_t* p_codec_info) {
     log::warn("Updated the SBC codec max bitpool from {} to {}", cfg_cie.max_bitpool,
               A2DP_SBC_MAX_BITPOOL);
     cfg_cie.max_bitpool = A2DP_SBC_MAX_BITPOOL;
+  }
+
+  if (cfg_cie.min_bitpool > cfg_cie.max_bitpool) {
+    log::warn("min bitpool value received for SBC"
+             " is more than DUT supported Max bitpool "
+             " Updated the SBC codec max bitpool from {} to {}",
+             cfg_cie.max_bitpool, cfg_cie.min_bitpool);
+    cfg_cie.max_bitpool = cfg_cie.min_bitpool;
   }
 
   return A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, &cfg_cie, p_codec_info);
@@ -1284,11 +1376,11 @@ tA2DP_STATUS A2dpCodecConfigSbcBase::setCodecConfig(const uint8_t* p_peer_codec_
   }
   if (result_config_cie.min_bitpool > result_config_cie.max_bitpool) {
     log::error(
-            "cannot match min/max bitpool: local caps min/max = 0x{:x}/0x{:x} peer "
-            "info min/max = 0x{:x}/0x{:x}",
-            p_a2dp_sbc_caps->min_bitpool, p_a2dp_sbc_caps->max_bitpool, peer_info_cie.min_bitpool,
-            peer_info_cie.max_bitpool);
-    goto fail;
+            "result_min bitpool > max bitpool, make both = min:  "
+            "local caps min/max = 0x{:x}/0x{:x} peer info min/max = 0x{:x}/0x{:x}",
+            p_a2dp_sbc_caps->min_bitpool, p_a2dp_sbc_caps->max_bitpool,
+            peer_info_cie.min_bitpool, peer_info_cie.max_bitpool);
+    result_config_cie.max_bitpool = result_config_cie.min_bitpool;
   }
 
   if (!A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, &result_config_cie, p_result_codec_config)) {
