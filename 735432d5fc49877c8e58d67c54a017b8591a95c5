@@ -16,6 +16,23 @@
       "message": "Explanation of why do we need this gerrit:\nWhile removeDevice, we should call bta_gattc_close api. Because otherwise in_use variable won\u0027t be reset. Then during next connection, connection callback will be triggered to LE audio because of in_use variable is set.",
       "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f9f096_b2c77472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-04-24T11:51:58Z",
+      "side": 1,
+      "message": "In the switch below there is Disconnect call which should do what is expected. \nIf there is any missed case, this shall be handled in that switch and not in here.",
+      "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
