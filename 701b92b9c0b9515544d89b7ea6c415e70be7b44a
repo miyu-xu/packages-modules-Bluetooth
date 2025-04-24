@@ -33,6 +33,24 @@
       "message": "It seems the proper fix should not be put here, but here:\n\n\n```\n3198 void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id,\n3199                                 uint16_t result) {\n3200   if (p_ccb-\u003eecoc)\n...\n```\n||\n\\/\n```\n3198 void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id,\n3199                                 uint16_t result) {\n3200   if (p_ccb \u0026\u0026 p_ccb-\u003eecoc)\n...\n```",
       "revId": "701b92b9c0b9515544d89b7ea6c415e70be7b44a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac3d9303_9d916796",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1009,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-04-24T22:32:40Z",
+      "side": 1,
+      "message": "Not sure what was the state of the code 2 years ago, but the proposed fix actually looks correct to me. Putting a null check in lc2_reject_ble_connection isn\u0027t helpful since it won\u0027t do anything then:\n\n  if (p_ccb-\u003eecoc) {\n    l2cu_reject_credit_based_conn_req(p_ccb-\u003ep_lcb, rem_id, p_ccb-\u003ep_lcb-\u003epending_ecoc_conn_cnt,\n                                      result);\n  } else {\n    l2cu_reject_ble_coc_connection(p_ccb-\u003ep_lcb, rem_id, result);\n  }\n\nSo calling l2cu_reject_ble_coc_connection with p_lcb directly looks to me like the right solution.",
+      "parentUuid": "a2c0fbe9_46d30cd6",
+      "revId": "701b92b9c0b9515544d89b7ea6c415e70be7b44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
