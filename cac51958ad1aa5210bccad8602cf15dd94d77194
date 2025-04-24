@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a4a5e3c_b514c8bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-24T20:50:44Z",
+      "side": 1,
+      "message": "Some tests are broken with this change\n\nnet_test_bta.BtaAgScoTest.codec_negotiate__aptx_state_on is broken with this change applied. Without this change the test was 100% passing.\nError: the test failed: packages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:354: Failure\n\npackages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:354: Failure\nExpected equality of these values:\n  1\n  get_func_call_count(\"PORT_WriteData\")\n    Which is: 0\nnet_test_bta.BtaAgScoTest.codec_negotiate__aptx_state_off is broken with this change applied. Without this change the test was 100% passing.\nError: the test failed: packages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:373: Failure\n\npackages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:373: Failure\nExpected equality of these values:\n  1\n  get_func_call_count(\"PORT_WriteData\")\n    Which is: 0\n    \n PTAL",
+      "revId": "cac51958ad1aa5210bccad8602cf15dd94d77194",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
