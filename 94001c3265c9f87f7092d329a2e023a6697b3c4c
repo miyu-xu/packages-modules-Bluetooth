@@ -127,6 +127,24 @@
       "parentUuid": "06158c12_f45b5db2",
       "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b685a33_aa6563cd",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2025-04-25T15:02:46Z",
+      "side": 1,
+      "message": "Hello Mingbo:\n\n  I agree, to handle different BQR versions (V4, V5, V6) without needing historical documentation for each, appending zeros in bqr_delivery_event of btif_bqr.cc to match the length defined by BqrCommon.BQR_COMMON_LEN seems like the most robust approach.",
+      "parentUuid": "92d73b5e_efd2a106",
+      "revId": "94001c3265c9f87f7092d329a2e023a6697b3c4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
