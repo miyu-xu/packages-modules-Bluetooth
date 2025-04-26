@@ -207,6 +207,24 @@
       "parentUuid": "b7c934a3_e2246e0c",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecd4f6c_2568bb0c",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-26T17:57:24Z",
+      "side": 1,
+      "message": "I suggest then that you create an interop fix for this since we don\u0027t want all headsets to go through codec negotiation when the AG receives an AT+BCC since it\u0027s not efficient.  The AT+BAC specifically allows the HF to go through codec negotiation.",
+      "parentUuid": "0a8cac6b_8f989970",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
