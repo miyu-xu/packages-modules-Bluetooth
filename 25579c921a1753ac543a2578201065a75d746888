@@ -189,6 +189,24 @@
       "parentUuid": "1a73e32b_85cd6cd6",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8cac6b_8f989970",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-04-26T11:41:01Z",
+      "side": 1,
+      "message": "HF sends AT+BAC after SLC only when a codec is available or unavailable.\n\nAgree that doing codec negotiation again when HF wants SCO connection is not efficient. But, we would like to be good to HF which wants codec negotiation and chosen to do codec negotiation again so that SCO goes through and end user can use his/her HF for call functionality.",
+      "parentUuid": "b7c934a3_e2246e0c",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
