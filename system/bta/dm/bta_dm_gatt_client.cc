@@ -98,6 +98,13 @@ gatt_interface_t default_gatt_interface = {
                   BTA_GATTC_Open(client_if, remote_bda, BLE_ADDR_PUBLIC, connection_type,
                                  BT_TRANSPORT_LE, opportunistic, LE_PHY_1M, preferred_mtu);
                 },
+        .BTA_GATTC_SaveGattCache =
+                [](uint16_t conn_id) {
+                  gatt_history_.Push(bluetooth::common::StringFormat(
+                      "%-32s conn_id:%hu", "GATTC_SaveGattCache",
+                      conn_id));
+                  BTA_GATTC_SaveGattCache(conn_id);
+                },
 };
 
 gatt_interface_t* gatt_interface = &default_gatt_interface;

@@ -352,6 +352,19 @@ void BTA_GATTC_GetGattDb(tCONN_ID conn_id, uint16_t start_handle, uint16_t end_h
 
 /*******************************************************************************
  *
+ * Function         BTA_GATTC_SaveGattCache
+ *
+ * Description      This function is called to make cache for bonded device.
+ *
+ * Parameters       conn_id: connection ID which identify the server.
+ *
+ ******************************************************************************/
+void BTA_GATTC_SaveGattCache(uint16_t conn_id) {
+  bta_gattc_save_gatt_cache(conn_id);
+}
+
+/*******************************************************************************
+ *
  * Function         BTA_GATTC_ReadCharacteristic
  *
  * Description      This function is called to read a characteristics value

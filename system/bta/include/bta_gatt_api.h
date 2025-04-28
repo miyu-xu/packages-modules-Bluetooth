@@ -636,6 +636,7 @@ const gatt::Service* BTA_GATTC_GetOwningService(tCONN_ID conn_id, uint16_t handl
  ******************************************************************************/
 void BTA_GATTC_GetGattDb(tCONN_ID conn_id, uint16_t start_handle, uint16_t end_handle,
                          btgatt_db_element_t** db, int* count);
+void BTA_GATTC_SaveGattCache(uint16_t conn_id);
 
 typedef void (*GATT_READ_OP_CB)(tCONN_ID conn_id, tGATT_STATUS status, uint16_t handle,
                                 uint16_t len, uint8_t* value, void* data);

@@ -41,6 +41,7 @@ struct gatt_interface_t {
   void (*BTA_GATTC_Open)(tGATT_IF client_if, const RawAddress& remote_bda,
                          tBTM_BLE_CONN_TYPE connection_type, bool opportunistic,
                          uint16_t preferred_mtu);
+  void (*BTA_GATTC_SaveGattCache)(uint16_t conn_id);
 };
 
 //

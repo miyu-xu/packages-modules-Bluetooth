@@ -1041,3 +1041,24 @@ void bta_gattc_get_gatt_db(tCONN_ID conn_id, uint16_t start_handle, uint16_t end
 
   bta_gattc_get_gatt_db_impl(p_clcb->p_srcb, start_handle, end_handle, db, count);
 }
+
+void bta_gattc_save_gatt_cache(uint16_t conn_id) {
+  tBTA_GATTC_CLCB* p_clcb = bta_gattc_find_clcb_by_conn_id(conn_id);
+  if (!p_clcb) {
+    log::error("unknown conn_id=0x{:x}", conn_id);
+    return;
+  }
+
+  gatt::Database db = bta_gattc_cache_load(p_clcb->p_srcb->server_bda);
+  if (db.IsEmpty() && btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda)) {
+    log::warn("Bonded, but no cache. Try to save cache %s",
+        p_clcb->p_srcb->server_bda.ToRedactedStringForLogging().c_str());
+    Octet16 local_hash = p_clcb->p_srcb->gatt_database.Hash();
+    gatt::Database local_lash_db = bta_gattc_hash_load(local_hash);
+    if (!local_lash_db.IsEmpty()) {
+      log::warn("Save cache using hash {}",
+                 p_clcb->p_srcb->server_bda.ToRedactedStringForLogging());
+      bta_gattc_cache_link(p_clcb->p_srcb->server_bda, local_hash);
+    }
+  }
+}

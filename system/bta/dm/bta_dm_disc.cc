@@ -39,6 +39,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
 #include "stack/btm/btm_dev.h"
+#include "stack/btm/btm_sec.h"
 #include "stack/include/bt_name.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_client_interface.h"
@@ -111,6 +112,8 @@ struct gatt_interface_t {
   void (*BTA_GATTC_Open)(tGATT_IF client_if, const RawAddress& remote_bda,
                          tBTM_BLE_CONN_TYPE connection_type, bool opportunistic,
                          uint16_t preferred_mtu);
+  void (*BTA_GATTC_SaveGattCache)(uint16_t conn_id);
+
 } default_gatt_interface = {
         .BTA_GATTC_CancelOpen =
                 [](tGATT_IF client_if, const RawAddress& remote_bda, bool is_direct) {
@@ -141,6 +144,9 @@ struct gatt_interface_t {
                    tBTM_BLE_CONN_TYPE connection_type, bool opportunistic, uint16_t preferred_mtu) {
                   BTA_GATTC_Open(client_if, remote_bda, BLE_ADDR_PUBLIC, connection_type,
                                  BT_TRANSPORT_LE, opportunistic, LE_PHY_1M, preferred_mtu);
+                },
+        .BTA_GATTC_SaveGattCache =
+                [](uint16_t conn_id) { BTA_GATTC_SaveGattCache(conn_id); 
                 },
 };
 
@@ -537,6 +543,11 @@ static void bta_dm_gatt_disc_complete(tCONN_ID conn_id, tGATT_STATUS status) {
       osi_free(db);
     }
     log::info("GATT services discovered using LE Transport, count: {}", gatt_services.size());
+
+    if (gatt_services.size() != 0 &&
+        btm_sec_is_a_bonded_dev(bta_dm_discovery_cb.peer_bdaddr)) {
+      get_gatt_interface().BTA_GATTC_SaveGattCache(conn_id);
+    }
   }
 
   /* no more services to be discovered */
