@@ -461,6 +461,7 @@ public:
   void Connect(const RawAddress& address) {
     log::info("bd_addr={}", address);
     hearingDevices.Add(HearingDevice(address, true));
+    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(address, false);
     BTA_GATTC_Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, false);
   }
 
