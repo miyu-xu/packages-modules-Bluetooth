@@ -261,6 +261,24 @@
       "parentUuid": "a88591fd_8a81750e",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7108be_7a74bb07",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-04-28T18:02:26Z",
+      "side": 1,
+      "message": "I am not sure if we should call it as performance degradation. Codec negotiation most of the time takes few milli seconds. In this usecase, codec negotiation happens only if BT headset or car kit requests for it. For outgoing SCO connection, this change does not have any impact.",
+      "parentUuid": "a04d462c_6ef29b0c",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
