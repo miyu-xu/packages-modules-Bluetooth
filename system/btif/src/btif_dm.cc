@@ -1791,6 +1791,9 @@ static void btif_on_gatt_results(RawAddress bd_addr, std::vector<bluetooth::Uuid
 
   std::set<Uuid> uuids;
   for (Uuid uuid : services) {
+    if (uuid == UUID_HEARING_AID) {
+      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(bd_addr, false);
+    }
     if (btif_is_interesting_le_service(uuid)) {
       if (btif_should_ignore_uuid(uuid)) {
         continue;
