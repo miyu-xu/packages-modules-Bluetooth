@@ -243,6 +243,24 @@
       "parentUuid": "7ecd4f6c_2568bb0c",
       "revId": "25579c921a1753ac543a2578201065a75d746888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04d462c_6ef29b0c",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-28T16:59:18Z",
+      "side": 1,
+      "message": "In this case however, you are adding a performance degradation to every device in order to handle this case for select headsets.  So it\u0027s a good candidate for a denylist.",
+      "parentUuid": "a88591fd_8a81750e",
+      "revId": "25579c921a1753ac543a2578201065a75d746888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
