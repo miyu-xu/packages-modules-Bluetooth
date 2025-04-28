@@ -26,6 +26,7 @@
 #include "bta/include/bta_dm_ci.h"  // bta_dm_ci_rmt_oob
 #include "btif/include/btif_dm.h"
 #include "internal_include/bt_target.h"
+#include "stack/btm/btm_dev.h"
 #include "stack/include/bt_dev_class.h"
 #include "stack/include/btm_ble_sec_api_types.h"
 #include "stack/include/btm_client_interface.h"
@@ -782,8 +783,17 @@ static tBTM_STATUS bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda
 
       } else {
         sec_event.auth_cmpl.success = true;
-        if (!p_data->complt.smp_over_br) {
+
+        if (!p_data->complt.smp_over_br ||
+            get_btm_client_interface().peer.BTM_IsAclConnectionUp(bda, BT_TRANSPORT_LE)) {
+          // If pairing finished on LE transport, or we have LE connection, write CCCD immediately
           GATT_ConfigServiceChangeCCC(bda, true, BT_TRANSPORT_LE);
+        } else {
+          // otherwise schedule write when service discovery on LE finishes
+          tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bda);
+          if (p_dev_rec != NULL) {
+            p_dev_rec->need_srv_chg_cccd = p_data->complt.smp_over_br;
+          }
         }
       }
 

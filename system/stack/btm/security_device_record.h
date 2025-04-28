@@ -370,6 +370,8 @@ public:
   tBTM_LE_CONN_PRAMS conn_params;
   // security related properties
   tBTM_SEC_REC sec_rec;
+  // write service changed CCCD after service discovery
+  bool need_srv_chg_cccd = false;
 };
 
 namespace std {
