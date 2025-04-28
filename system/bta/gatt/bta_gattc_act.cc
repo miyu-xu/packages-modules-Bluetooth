@@ -36,6 +36,7 @@
 #include "hci/controller_interface.h"
 #include "main/shim/entry.h"
 #include "osi/include/allocator.h"
+#include "stack/btm/btm_dev.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_ble_api_types.h"
@@ -1030,6 +1031,16 @@ void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* /* p_da
     bta_gattc_continue(p_clcb);
   }
 
+  if (p_clcb->status == GATT_SUCCESS && p_clcb->p_srcb) {
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(p_clcb->p_srcb->server_bda);
+    if (p_dev_rec != NULL) {
+      if (p_dev_rec->need_srv_chg_cccd) {
+        p_dev_rec->need_srv_chg_cccd = false;
+        GATT_ConfigServiceChangeCCC(p_clcb->p_srcb->server_bda, true, BT_TRANSPORT_LE);
+      }
+    }
+  }
+  
   if (p_clcb->p_rcb->p_cback) {
     tBTA_GATTC bta_gattc = {
             .service_discovery_done.remote_bda = p_clcb->p_srcb->server_bda,

@@ -370,6 +370,7 @@ public:
   tBTM_LE_CONN_PRAMS conn_params;
   // security related properties
   tBTM_SEC_REC sec_rec;
+  bool need_srv_chg_cccd = false;
 };
 
 namespace std {
