@@ -538,7 +538,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     switch (advertising_api_type_) {
       case (AdvertisingApiType::LEGACY): {
         if (config.advertising_type == AdvertisingType::ADV_IND ||
-            config.advertising_type == AdvertisingType::ADV_NONCONN_IND) {
+            config.advertising_type == AdvertisingType::ADV_SCAN_IND) {
           set_data(id, true, config.scan_response);
         }
         set_data(id, false, config.advertisement);
@@ -709,8 +709,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         }
       }
     }
-    if (config.advertising_type == AdvertisingType::ADV_IND ||
-        config.advertising_type == AdvertisingType::ADV_NONCONN_IND) {
+    if (config.scannable) { /* ext adv can use ext config directly */
       set_data(id, true, config.scan_response);
     }
     set_data(id, false, config.advertisement);
@@ -1618,6 +1617,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       return;
     }
     for (EnabledSet enabled_set : enabled_sets) {
+      /* tx_power can not be returned as per ANDROID_HCI spec. just use config.tx_power */
+      int8_t tx_power = advertising_sets_[enabled_set.advertising_handle_].tx_power;
       uint8_t id = enabled_set.advertising_handle_;
       if (id == kInvalidHandle) {
         continue;
@@ -1647,8 +1648,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         }
       } else {
         advertising_sets_[enabled_set.advertising_handle_].started = true;
-        advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, le_physical_channel_tx_power_,
-                                                        advertising_status);
+        advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, tx_power, advertising_status);
       }
     }
   }

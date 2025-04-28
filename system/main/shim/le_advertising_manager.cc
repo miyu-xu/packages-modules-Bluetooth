@@ -359,6 +359,16 @@ private:
     config.anonymous = params.advertising_event_properties & 0x20;
     config.include_tx_power = params.advertising_event_properties & 0x40;
     config.discoverable = params.discoverable;
+    if (config.legacy_pdus) {
+      config.advertising_type = bluetooth::hci::AdvertisingType::ADV_IND;
+      /* don't care about directed */
+      if (config.scannable && !config.connectable) {
+        config.advertising_type = bluetooth::hci::AdvertisingType::ADV_SCAN_IND;
+      }
+      if (!config.scannable && !config.connectable) {
+        config.advertising_type = bluetooth::hci::AdvertisingType::ADV_NONCONN_IND;
+      }
+    }
     config.interval_min = params.min_interval;
     config.interval_max = params.max_interval;
     config.channel_map = params.channel_map;
