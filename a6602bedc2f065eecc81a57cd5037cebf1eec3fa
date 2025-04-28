@@ -34,6 +34,24 @@
       ],
       "revId": "a6602bedc2f065eecc81a57cd5037cebf1eec3fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6788eb87_86c859bc",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-04-28T18:23:19Z",
+      "side": 1,
+      "message": "No, the headsets expect link not to go into sniff mode during the entire duration of call. We are disabling sniff mode while sending unsolicited call indicator events not when receiving AT commands.",
+      "parentUuid": "f8c45816_4d630158",
+      "revId": "a6602bedc2f065eecc81a57cd5037cebf1eec3fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
