@@ -33,6 +33,24 @@
       "message": "Merged to Internal.",
       "revId": "5c093762b93a1788e30d0861e14b59c38f3877a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1dc4281_219e286f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-04-29T06:33:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdb17452_f531aac9",
+      "revId": "5c093762b93a1788e30d0861e14b59c38f3877a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
