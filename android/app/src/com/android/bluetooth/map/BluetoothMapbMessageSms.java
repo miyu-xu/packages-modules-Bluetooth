@@ -31,7 +31,7 @@ public class BluetoothMapbMessageSms extends BluetoothMapbMessage {
 
     public void setSmsBodyPdus(List<SmsPdu> smsBodyPdus) {
         this.mSmsBodyPdus = smsBodyPdus;
-        this.mCharset = null;
+        this.mCharset = "NATIVE";
         if (smsBodyPdus.size() > 0) {
             this.mEncoding = smsBodyPdus.get(0).getEncodingString();
         }
