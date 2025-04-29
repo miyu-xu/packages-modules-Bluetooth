@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dbc8fa8_6fa1a89b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-04-29T06:10:40Z",
+      "side": 1,
+      "message": "Will push the change again based on Henri‘s suggestions.",
+      "revId": "5dce91232eb4381172501133e08642a70190590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d42f03fd_4cba3cbd",
@@ -14,6 +31,30 @@
       "writtenOn": "2025-04-28T22:04:51Z",
       "side": 1,
       "message": "The current values reported through `error.error_code` seem to have no correlation to the A2DP/AVDTP profile. Perhaps error reporting could be improved at the same time with more accurate A2DP errors.",
+      "range": {
+        "startLine": 100,
+        "startChar": 69,
+        "endLine": 100,
+        "endChar": 79
+      },
+      "revId": "5dce91232eb4381172501133e08642a70190590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7449f0c4_dc5025a4",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-04-29T06:10:40Z",
+      "side": 1,
+      "message": "So far there are only 6 error code(/* AV status values */) defined in packages/modules/Bluetooth/system/bta/include/bta_av_api.h, and them only be used in packages/modules/Bluetooth/system/btif/src/btif_av.cc, please Google consider to add more error code and improve the logic later.",
+      "parentUuid": "d42f03fd_4cba3cbd",
       "range": {
         "startLine": 100,
         "startChar": 69,
@@ -47,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffadbe3b_5398bf96",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-04-29T06:10:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1110949d_ce781b20",
+      "range": {
+        "startLine": 1349,
+        "startChar": 42,
+        "endLine": 1349,
+        "endChar": 70
+      },
+      "revId": "5dce91232eb4381172501133e08642a70190590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02e41406_37f2ebf2",
@@ -60,6 +125,24 @@
       "writtenOn": "2025-04-28T22:04:51Z",
       "side": 1,
       "message": "The intent `BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED` is public with required permissions Bluetooth connect. I will be moving the definitions for A2DP disconnection reasons under `BluetoothA2dp`, as public constants.",
+      "revId": "5dce91232eb4381172501133e08642a70190590d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2064cfcb_489a0ee1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1384,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-04-29T06:10:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02e41406_37f2ebf2",
       "revId": "5dce91232eb4381172501133e08642a70190590d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
