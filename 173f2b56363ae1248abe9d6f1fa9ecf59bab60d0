@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2963e33_7a4dda9d",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-29T09:39:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1af6d63_2060c3f4",
+      "range": {
+        "startLine": 303,
+        "startChar": 8,
+        "endLine": 303,
+        "endChar": 18
+      },
+      "revId": "173f2b56363ae1248abe9d6f1fa9ecf59bab60d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3aa23322_21155415",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e20c4b2e_596d45fb",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-29T09:39:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aa23322_21155415",
+      "range": {
+        "startLine": 1206,
+        "startChar": 33,
+        "endLine": 1206,
+        "endChar": 43
+      },
+      "revId": "173f2b56363ae1248abe9d6f1fa9ecf59bab60d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "797f86ac_507a7552",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-04-28T16:54:15Z",
       "side": 1,
       "message": "Overflow on uint64_t is well defined; there is no need to do this.",
+      "range": {
+        "startLine": 1208,
+        "startChar": 0,
+        "endLine": 1209,
+        "endChar": 79
+      },
+      "revId": "173f2b56363ae1248abe9d6f1fa9ecf59bab60d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d02000b7_4a10602c",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-29T09:39:25Z",
+      "side": 1,
+      "message": "We hit a integer overflow issue in ubsan enabled builds",
+      "parentUuid": "797f86ac_507a7552",
       "range": {
         "startLine": 1208,
         "startChar": 0,
