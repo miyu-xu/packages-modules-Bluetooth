@@ -1892,7 +1892,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                         outString =
                                 (mAccount.getName() != null)
                                         ? mAccount.getName()
-                                        : BluetoothMapMasInstance.TYPE_EMAIL_STR;
+                                        : (BluetoothMapMasInstance.TYPE_EMAIL_STR + "\0");
                     } else if (mAccount.getType() == TYPE.IM) {
                         outString = mAccount.getUciFull();
                         if (outString == null) {
@@ -1914,7 +1914,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                         }
                     }
                 } else {
-                    outString = BluetoothMapMasInstance.TYPE_SMS_MMS_STR;
+                    outString = (BluetoothMapMasInstance.TYPE_SMS_MMS_STR + "\0");
                     // TODO: Add phone number if possible
                 }
             } else {
