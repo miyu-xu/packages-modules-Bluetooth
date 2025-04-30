@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b31504_0475e00f",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-30T11:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0398017_28f5c45d",
+      "range": {
+        "startLine": 1204,
+        "startChar": 21,
+        "endLine": 1204,
+        "endChar": 48
+      },
+      "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3e3e579_0b8bcd16",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-04-29T18:28:46Z",
       "side": 1,
       "message": "`static_cast\u003cuint64_t\u003e(-gmt_offset_us);`",
+      "range": {
+        "startLine": 1209,
+        "startChar": 32,
+        "endLine": 1209,
+        "endChar": 49
+      },
+      "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ce8561b_129bb88a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-30T11:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3e3e579_0b8bcd16",
       "range": {
         "startLine": 1209,
         "startChar": 32,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "566d4622_8b20a1cf",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-30T11:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd4ed63d_5870af43",
+      "range": {
+        "startLine": 1339,
+        "startChar": 6,
+        "endLine": 1339,
+        "endChar": 9
+      },
+      "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75998bc6_664254d9",
@@ -125,6 +197,30 @@
           ]
         }
       ],
+      "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d4100d_5fa3d5d3",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-30T11:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75998bc6_664254d9",
+      "range": {
+        "startLine": 1341,
+        "startChar": 19,
+        "endLine": 1341,
+        "endChar": 46
+      },
       "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -176,6 +272,30 @@
           ]
         }
       ],
+      "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2fad2b4_15c2ac45",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1346,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-04-30T11:10:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03148193_0547de9a",
+      "range": {
+        "startLine": 1343,
+        "startChar": 0,
+        "endLine": 1346,
+        "endChar": 0
+      },
       "revId": "2f04a156218b1bc1906234a6db5b2a9ef58734d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
