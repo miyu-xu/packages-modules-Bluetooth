@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61562659_ea790a44",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-04-30T07:08:37Z",
+      "side": 1,
+      "message": "Should we restore this if the IOP database doesn\u0027t match?",
+      "range": {
+        "startLine": 1153,
+        "startChar": 10,
+        "endLine": 1153,
+        "endChar": 82
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "47b1ec9f_78b5f77b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 1154,
+                "startChar": 0,
+                "endLine": 1154,
+                "endChar": 0
+              },
+              "replacement": "      } else {\n          p_scb-\u003emasked_features \u003d p_scb-\u003emasked_features | (BTA_AG_FEAT_INBAND);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7e93586d7ccf357e74067f13af6e3b089e902187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
