@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66afaa9b_269b69c4",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-04-30T06:36:22Z",
+      "side": 1,
+      "message": "Thank you.\n\nLooks like for LeAudioService we already have a solution\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java;l\u003d285?q\u003dLeAudioStateMa\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain\n\nWe should have similar for others state machines.\n\nWould you be able to prepare a CL?",
+      "revId": "39f8a0eba3f489389a017cc444a5e93649695d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
