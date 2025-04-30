@@ -45,6 +45,13 @@
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/stack_metrics_logging.h"
 
+extern bool btm_random_pseudo_to_identity_addr(
+    RawAddress* random_pseudo, tBLE_ADDR_TYPE* p_identity_addr_type);
+
+extern bool btm_identity_addr_to_random_pseudo(RawAddress* bd_addr,
+                                        tBLE_ADDR_TYPE* p_addr_type,
+                                        bool refresh);
+
 namespace bluetooth {
 namespace hci {
 namespace acl_manager {
@@ -587,6 +594,18 @@ public:
       add_device_to_accept_list(remote_address);
     }
     log_le_connection_status(remote_address.GetAddress(), false /* is_connect */, reason);
+
+    tBLE_BD_ADDR legacy_addr = ToLegacyAddressWithType(remote_address);
+    if (remote_address.IsRpa() && btm_random_pseudo_to_identity_addr(&legacy_addr.bda, &legacy_addr.type)) {
+      log::info("connection with pseudo addr is disconnected");
+      legacy_addr.type &= ~BLE_ADDR_TYPE_ID_BIT;
+      AddressWithType identity_addr(ToGdAddress(legacy_addr.bda), (AddressType)legacy_addr.type);
+      if (background_connections_.count(identity_addr) == 1) {
+        log::info("re-add device to connect list as public");
+        arm_on_resume_ = true;
+        add_device_to_accept_list(identity_addr);
+      }
+    }
   }
 
   void on_le_connection_update_complete(LeMetaEventView view) {
@@ -1053,6 +1072,17 @@ public:
       return;
     }
 
+    tBLE_BD_ADDR legacy_addr = ToLegacyAddressWithType(address_with_type);
+    if (address_with_type.GetAddress() != Address::kEmpty &&
+			  btm_identity_addr_to_random_pseudo(&legacy_addr.bda, &legacy_addr.type, false)) {
+      AddressWithType pseudo_addr(ToGdAddress(legacy_addr.bda), (AddressType)legacy_addr.type);
+      if (connections.alreadyConnected(pseudo_addr)) {
+        log::warn("Device already connected as pseudo_addr. Skip adding public addr to accept list");
+        SS_BT_PARSELOG("[BLE_STACK] Device already connected as pseudo_addr");
+        return;
+      }
+    }
+    
     bool already_in_accept_list = accept_list.find(address_with_type) != accept_list.end();
     // TODO: Configure default LE connection parameters?
     if (add_to_accept_list) {
