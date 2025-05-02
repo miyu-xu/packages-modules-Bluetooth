@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11b820bc_ffdf6aea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-02T23:13:23Z",
+      "side": 1,
+      "message": "Why do we need a separate denylist for SCO and call since we\u0027re just checking both in the same conditional?",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
