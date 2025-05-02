@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8eb76b_1f207261",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-02T23:10:39Z",
+      "side": 1,
+      "message": "Why are we not combining this together?",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 39
+      },
+      "revId": "a6761e2dee065c67757c0d2fe804bfa1eb3b6e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
