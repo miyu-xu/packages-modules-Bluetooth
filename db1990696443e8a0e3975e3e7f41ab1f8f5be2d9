@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c82546b_9eb78465",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:48:48Z",
+      "side": 1,
+      "message": "```suggestion\n            if (toState \u003d\u003d BluetoothProfile.STATE_DISCONNECTED \u0026\u0026 fromState \u003d\u003d BluetoothProfile.STATE_CONNECTING) {\n```",
+      "revId": "db1990696443e8a0e3975e3e7f41ab1f8f5be2d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f293ada_6b03a39d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:48:48Z",
+      "side": 1,
+      "message": "```suggestion\n                intent.putExtra(BluetoothDevice.EXTRA_CONNECTION_FAIL_REASON, mReason);\n}\n```",
+      "revId": "db1990696443e8a0e3975e3e7f41ab1f8f5be2d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a37d9d9_0916fdae",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1339,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:48:48Z",
+      "side": 1,
+      "message": "```suggestion\n     * Possible values are : \n```",
+      "revId": "db1990696443e8a0e3975e3e7f41ab1f8f5be2d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b917e648_f8fe70d6",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:48:48Z",
+      "side": 1,
+      "message": "```suggestion\n     * - {@link #HFP_CONNECTION_SUCCESS} \n     * - {@link #HFP_CONNECTION_SDP}\n```",
+      "revId": "db1990696443e8a0e3975e3e7f41ab1f8f5be2d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5e96ddf_d0a3112e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:48:48Z",
+      "side": 1,
+      "message": "```suggestion\n     * - {@link #HFP_CONNECTION_FAIL_RFCOMM} \n     * - {@link #HFP_CONNECTION_FAIL_RESOURCES}\n```",
+      "revId": "db1990696443e8a0e3975e3e7f41ab1f8f5be2d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5342b9a_393f0621",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1373,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:48:48Z",
+      "side": 1,
+      "message": "```suggestion\n    @SystemApi public static final int HFP_CONNECTION_FAIL_RESOURCES \u003d 3;\n\n@IntDef(prefix \u003d \"HFP_CONNECTION_\", value \u003d {\n        HFP_CONNECTION_SUCCESS,\n        HFP_CONNECTION_SDP,\n        HFP_CONNECTION_FAIL_RFCOMM,\n        HFP_CONNECTION_FAIL_RESOURCES\n    })\n```",
+      "revId": "db1990696443e8a0e3975e3e7f41ab1f8f5be2d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
