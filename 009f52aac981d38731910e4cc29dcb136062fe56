@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "081d0394_160daceb",
+        "filename": "system/stack/sdp/sdp_discovery.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:36:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c6e79966_735294c0",
+      "revId": "009f52aac981d38731910e4cc29dcb136062fe56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e39203e3_5d3e80ad",
