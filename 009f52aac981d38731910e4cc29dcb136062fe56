@@ -16,6 +16,41 @@
       "message": "```suggestion\n    BT_HDR* p_msg \u003d (BT_HDR*)osi_malloc(SDP_DATA_BUF_SIZE);\nif (!p_msg) {\n  log::error(\"Failed to allocate SDP buffer of size {}\", SDP_DATA_BUF_SIZE);\n  return;\n}\n```",
       "revId": "009f52aac981d38731910e4cc29dcb136062fe56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e79966_735294c0",
+        "filename": "system/stack/sdp/sdp_discovery.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-05-03T19:31:52Z",
+      "side": 1,
+      "message": "osi_malloc can\u0027t return null. It should carsh if we are out of memory.",
+      "parentUuid": "ba52413f_e3387279",
+      "revId": "009f52aac981d38731910e4cc29dcb136062fe56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39203e3_5d3e80ad",
+        "filename": "system/stack/sdp/sdp_discovery.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-05-03T19:31:52Z",
+      "side": 1,
+      "message": "Should you also free it here ?",
+      "revId": "009f52aac981d38731910e4cc29dcb136062fe56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
