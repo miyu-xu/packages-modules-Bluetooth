@@ -118,6 +118,52 @@
       },
       "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd206fdb_530cd292",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:08:20Z",
+      "side": 1,
+      "message": "```suggestion\n  for (size_t i \u003d 0; i \u003c attributes.size(); ++i) {\n  log::debug(\"GATT attribute[{}]: 0x{:02X}\", i, static_cast\u003cint\u003e(attributes[i]));\n}\n\nfor (size_t i \u003d 0; i \u003c values.size(); ++i) {\n  log::debug(\"GATT value[{}]: 0x{:02X}\", i, static_cast\u003cint\u003e(values[i]));\n}\n```",
+      "range": {
+        "startLine": 1015,
+        "startChar": 2,
+        "endLine": 1020,
+        "endChar": 3
+      },
+      "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "728e2465_a0d1d991",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:08:20Z",
+      "side": 1,
+      "message": "```suggestion\n  void SetPlayerSettings(std::vector\u003cPlayerAttribute\u003e attributes,\n                       std::vector\u003cuint8_t\u003e values,\n                       SetPlayerSettingValueCallback cb) override {\n  log::info(\"SetPlayerSettings: {} attributes, {} values\",\n            attributes.size(), values.size());\n\n  auto cb_lambda \u003d [](SetPlayerSettingValueCallback cb, bool success) {\n    do_in_main_thread(base::BindOnce(std::move(cb), success));\n  };\n  auto bound_cb \u003d base::BindOnce(cb_lambda, std::move(cb));\n\n  do_in_jni_thread(base::BindOnce(\u0026PlayerSettingsInterface::SetPlayerSettings,\n                                  base::Unretained(wrapped_),\n                                  std::move(attributes),\n                                  std::move(values),\n                                  std::move(bound_cb)));\n}\n```",
+      "range": {
+        "startLine": 376,
+        "startChar": 1,
+        "endLine": 388,
+        "endChar": 3
+      },
+      "revId": "18526fbadea55705f8d6ff3e7e443c08ffbd194f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
