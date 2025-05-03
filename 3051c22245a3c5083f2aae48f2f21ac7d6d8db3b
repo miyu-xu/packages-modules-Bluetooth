@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c98b859_00cb898f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:43:24Z",
+      "side": 1,
+      "message": "```suggestion\n        if (newState \u003d\u003d BluetoothProfile.STATE_DISCONNECTED \u0026\u0026 prevState \u003d\u003d BluetoothProfile.STATE_CONNECTING) {\n```",
+      "revId": "3051c22245a3c5083f2aae48f2f21ac7d6d8db3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90f8e836_69f45434",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:43:24Z",
+      "side": 1,
+      "message": "```suggestion\n            intent.putExtra(BluetoothDevice.EXTRA_DISCONNECTED_REASON, mReason);\n}\n```",
+      "revId": "3051c22245a3c5083f2aae48f2f21ac7d6d8db3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce26d9c_d89c8858",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:43:24Z",
+      "side": 1,
+      "message": "```suggestion\n     * A2DP get capability failed due to no SEP available on the peer\n```",
+      "revId": "3051c22245a3c5083f2aae48f2f21ac7d6d8db3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a9f9b4_37437333",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:43:24Z",
+      "side": 1,
+      "message": "Consider wrapping these in an @IntDef annotation to enforce type safety where these constants are used (instead of plain int).\n    \n    \n    \n```suggestion\n    public static final int A2DP_CONNECTION_FAIL_GET_CAP \u003d 6;\n\n@IntDef({\n        A2DP_CONNECTION_SUCCESS,\n        A2DP_CONNECTION_FAIL,\n        A2DP_CONNECTION_FAIL_SDP,\n        A2DP_CONNECTION_FAIL_STREAM,\n        A2DP_CONNECTION_FAIL_RESOURCES,\n        A2DP_CONNECTION_FAIL_ROLE,\n        A2DP_CONNECTION_FAIL_GET_CAP\n    })\n```",
+      "revId": "3051c22245a3c5083f2aae48f2f21ac7d6d8db3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
