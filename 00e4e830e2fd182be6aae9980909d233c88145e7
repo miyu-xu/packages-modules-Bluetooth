@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f2f821f_9e253e64",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:30:23Z",
+      "side": 1,
+      "message": "```suggestion\n    /*package*/ int available() throws IOException {\n    if (VDBG) Log.d(TAG, \"available: \" + mSocketIS);\n    int available \u003d 0;\n\n    if (mType \u003d\u003d TYPE_L2CAP || mType \u003d\u003d TYPE_L2CAP_LE) {\n        if (mL2capBuffer !\u003d null) {\n            available \u003d mL2capBuffer.remaining();\n        }\n\n        if (available \u003d\u003d 0) {\n            // Either buffer is null or fully read — fallback to socket\n            available \u003d mSocketIS.available();\n        }\n    } else {\n        available \u003d mSocketIS.available();\n    }\n\n    if (VDBG) Log.d(TAG, \"available returns: \" + available);\n    return available;\n}\n\n```",
+      "revId": "00e4e830e2fd182be6aae9980909d233c88145e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20957705_57437439",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 9
@@ -55,6 +72,30 @@
           ]
         }
       ],
+      "revId": "00e4e830e2fd182be6aae9980909d233c88145e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c0054c_64c54f94",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:30:23Z",
+      "side": 1,
+      "message": "// No read() attempt has been made yet, so mL2capBuffer is null.\n// Use the socket InputStream directly.",
+      "parentUuid": "2eaac560_0b5d6ada",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 968,
+        "endChar": 31
+      },
       "revId": "00e4e830e2fd182be6aae9980909d233c88145e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
