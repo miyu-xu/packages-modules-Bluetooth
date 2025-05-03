@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a29b2367_59208a20",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2215,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:36:32Z",
+      "side": 1,
+      "message": "```suggestion\n            if (TextUtils.isEmpty(phoneNumber))\n```",
+      "revId": "6e296db37202ddbf75f3968f2b71a33e539e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c450ddde_a6f06c80",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2216,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:36:32Z",
+      "side": 1,
+      "message": "Define a constant instead of magic number",
+      "revId": "6e296db37202ddbf75f3968f2b71a33e539e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
