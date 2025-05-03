@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3851bc5c_da12960b",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothSocketManagerCallback.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:49:42Z",
+      "side": 1,
+      "message": "```suggestion\n * Callback for Bluetooth socket-level connection changes.\n```",
+      "revId": "f0aaebd76b9c0e52b9010e9b4a81a6cf5e495477",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acb1ed3b_8aa2f61b",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothSocketManagerCallback.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:49:42Z",
+      "side": 1,
+      "message": "```suggestion\n     * @param device The remote Bluetooth device.\n     * @param socket The socket associated with the connection.\n```",
+      "revId": "f0aaebd76b9c0e52b9010e9b4a81a6cf5e495477",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e51074_94994118",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothSocketManagerCallback.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:49:42Z",
+      "side": 1,
+      "message": "```suggestion\n    public abstract void onConnectionStateChange(BluetoothDevice device, BluetoothSocket socket,  int status, int newState) {}\n```",
+      "revId": "f0aaebd76b9c0e52b9010e9b4a81a6cf5e495477",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
