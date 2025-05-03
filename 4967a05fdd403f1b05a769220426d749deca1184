@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5164424_f7c77277",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:18:26Z",
+      "side": 1,
+      "message": "```suggestion\n                if (mSystemInterface.isInCall() || mSystemInterface.isRinging()) {\n    Log.w(TAG, \"Call in progress or ringing — suspending A2DP and LE Audio\");\n    mSystemInterface.getAudioManager().setA2dpSuspended(true);\n    if (isAtLeastU()) {\n        mSystemInterface.getAudioManager().setLeAudioSuspended(true);\n    }\n}\n```",
+      "range": {
+        "startLine": 1301,
+        "startChar": 16,
+        "endLine": 1307,
+        "endChar": 17
+      },
+      "revId": "4967a05fdd403f1b05a769220426d749deca1184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
