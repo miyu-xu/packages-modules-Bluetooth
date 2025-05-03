@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32954de4_a20106fe",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:11:36Z",
+      "side": 1,
+      "message": "```suggestion\n    // Current call number used for HFP status reports (e.g., AT+CIND, +CLCC)\nprivate String mCindNumber;\n\n// Phone number type (e.g., 129 \u003d national, 145 \u003d international)\n// Used in +CLCC response formatting\nprivate int mType \u003d 0;\n\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 26
+      },
+      "revId": "870a89732a5b7eb175721c493253c510335798ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c50588f_f0d40325",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:11:36Z",
+      "side": 1,
+      "message": "```suggestion\n        mCindNumber \u003d (number !\u003d null) ? number : \"\";\n```",
+      "revId": "870a89732a5b7eb175721c493253c510335798ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b3c720a_832d4af1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:11:36Z",
+      "side": 1,
+      "message": "Is it in ms?\n```suggestion\n    private static final int INCOMING_CALL_IND_DELAY_MS \u003d 200;\n```",
+      "revId": "870a89732a5b7eb175721c493253c510335798ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
