@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bb2742e_f71a1906",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:00:42Z",
+      "side": 1,
+      "message": "```suggestion\n  thread_ \u003d std::make_unique\u003cThread\u003e(\"storage_thread\", Thread::Priority::NORMAL);\n  thread_-\u003eStart();\n```",
+      "revId": "c83cdfca1ff89295c47ba80f052ab526374cb1ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b93c7a1_63a5c309",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:00:42Z",
+      "side": 1,
+      "message": "```suggestion\n  handler_ \u003d std::make_unique\u003cHandler\u003e(thread_.get());\n```",
+      "revId": "c83cdfca1ff89295c47ba80f052ab526374cb1ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71996b3a_5abec97f",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:00:42Z",
+      "side": 1,
+      "message": "```suggestion\n  if (handler_) {\n    handler_-\u003eClear();\n    handler_-\u003eWaitUntilStopped(std::chrono::milliseconds(2000));\n    handler_.reset();  // calls destructor safely\n  }\n```",
+      "revId": "c83cdfca1ff89295c47ba80f052ab526374cb1ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b74f2abf_6baba316",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:00:42Z",
+      "side": 1,
+      "message": "```suggestion\n  if (thread_) {\n    thread_-\u003eStop();  \n    thread_.reset();  // deletes the thread\n  }\n```",
+      "revId": "c83cdfca1ff89295c47ba80f052ab526374cb1ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1455c5e_9eccd4e7",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:00:42Z",
+      "side": 1,
+      "message": "Relative includes (like ../os/handler.h) are discouraged in modern C++/Android codebases.\n\nUse project-root-relative includes instead.",
+      "revId": "c83cdfca1ff89295c47ba80f052ab526374cb1ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
