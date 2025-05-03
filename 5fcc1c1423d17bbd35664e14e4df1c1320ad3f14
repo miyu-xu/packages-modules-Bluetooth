@@ -16,6 +16,57 @@
       "message": "I think both Jakub and I have tried to submit a very similar patch in the past and we weren\u0027t allowed to (:\n\nThis crash, while potentially annoying, is indicative of a greater issue down below in the stack. It means something about the hardware is off or that we didn\u0027t initialize correctly. The direction has been to explode here instead of trying to carry on without OBEX server sockets, where functionality either wont work at all, or we\u0027ll crash in a new place.",
       "revId": "5fcc1c1423d17bbd35664e14e4df1c1320ad3f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b61b8287_0d0fc2c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:49:52Z",
+      "side": 1,
+      "message": "Remove DUDE! :P",
+      "revId": "5fcc1c1423d17bbd35664e14e4df1c1320ad3f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4b87343_4e5432dd",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MnsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:49:52Z",
+      "side": 1,
+      "message": "```suggestion\n   \n```",
+      "revId": "5fcc1c1423d17bbd35664e14e4df1c1320ad3f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "343b4433_28e07580",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MnsService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:49:52Z",
+      "side": 1,
+      "message": "```suggestion\n        }\nLog.d(TAG, \"sServerSockets \u003d \" + sServerSockets);\n```",
+      "revId": "5fcc1c1423d17bbd35664e14e4df1c1320ad3f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
