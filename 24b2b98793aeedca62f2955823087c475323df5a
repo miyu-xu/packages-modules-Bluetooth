@@ -67,6 +67,29 @@
       "message": "Hi @eruffieux@google.com I see that presubmit has failed. Can you please check?\nI don\u0027t have access to failure logs.",
       "revId": "24b2b98793aeedca62f2955823087c475323df5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a03e2a2e_31923be0",
+        "filename": "system/profile/avrcp/avrcp_config.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:17:23Z",
+      "side": 1,
+      "message": "```suggestion\n// Supported Features for AVRCP Target (TG) - Version 1.6\n#ifndef AVRCP_SUPF_TG_1_6\n#define AVRCP_SUPF_TG_1_6                            \\\n  (AVRC_SUPF_TG_CAT1             /* Category 1 (Player/Recorder) */ | \\\n   AVRC_SUPF_TG_MULTI_PLAYER     /* Supports multiple players */     | \\\n   AVRC_SUPF_TG_BROWSE           /* Media browsing support */        | \\\n   AVRC_SUPF_TG_APP_SETTINGS     /* Player app settings support */   | \\\n   AVRC_SUPF_TG_PLAYER_COVER_ART /* Album art / cover image support */)\n#endif\n\n// Supported Features for AVRCP Version 1.5\n#ifndef AVRCP_SUPF_TG_1_5\n#define AVRCP_SUPF_TG_1_5                           \\\n  (AVRC_SUPF_TG_CAT1 | AVRC_SUPF_TG_MULTI_PLAYER | \\\n   AVRC_SUPF_TG_BROWSE | AVRC_SUPF_TG_APP_SETTINGS)\n#endif\n\n// Supported Features for AVRCP Version 1.4\n#ifndef AVRCP_SUPF_TG_1_4\n#define AVRCP_SUPF_TG_1_4                           \\\n  (AVRC_SUPF_TG_CAT1 | AVRC_SUPF_TG_MULTI_PLAYER | \\\n   AVRC_SUPF_TG_BROWSE | AVRC_SUPF_TG_APP_SETTINGS)\n#endif\n\n// Supported Features for AVRCP Version 1.3 (Compatibility Mode)\n#ifndef AVRCP_SUPF_TG_1_3\n#define AVRCP_SUPF_TG_1_3 AVRC_SUPF_TG_CAT1\n#endif\n```",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 46,
+        "endChar": 6
+      },
+      "revId": "24b2b98793aeedca62f2955823087c475323df5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
