@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fde783b_2094a674",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:55:22Z",
+      "side": 1,
+      "message": "```suggestion\n    if (peer_addr) {\n```",
+      "revId": "d3ddbfa1d313dd12ac06df73a5613a81012b4974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c87fd5c7_4687e974",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:55:22Z",
+      "side": 1,
+      "message": "```suggestion\n        AVRC_RemoveSDPqueue(*peer_addr);\n```\n```suggestion\n        AVRC_RemoveSDPqueue(*peer_addr);\n}\n```",
+      "revId": "d3ddbfa1d313dd12ac06df73a5613a81012b4974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536f00cc_1ec91c78",
+        "filename": "system/stack/avrc/avrc_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:55:22Z",
+      "side": 1,
+      "message": "```suggestion\n    log::warn(\"Processing next SDP request: p_db\u003d%p, uuid\u003d0x%x\", req.db.p_db, req.uuid);\n```",
+      "revId": "d3ddbfa1d313dd12ac06df73a5613a81012b4974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e22dfb10_8e12cd75",
+        "filename": "system/stack/avrc/avrc_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T16:55:22Z",
+      "side": 1,
+      "message": "```suggestion\n  } else {\n```",
+      "revId": "d3ddbfa1d313dd12ac06df73a5613a81012b4974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
