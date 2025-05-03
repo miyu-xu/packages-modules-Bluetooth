@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3baa1eda_bfe55f16",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapObexServer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:17:08Z",
+      "side": 1,
+      "message": "```suggestion\n            if (!(op instanceof ServerOperation)) {\n    Log.e(TAG, \"Invalid operation type\");\n    return;\n}\nServerOperation serverOp \u003d (ServerOperation) op;\n\n            boolean isFinal \u003d serverOp.finalBitSet;\n```",
+      "revId": "f289c5c20ea664bda4beca384baca24930221622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96628393_4c2365f7",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapObexServer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:17:08Z",
+      "side": 1,
+      "message": "```suggestion\nfinal int MAX_CONTINUATION \u003d 50;\n                while (serverOp.continueOperation(true, true)) {\n        Log.d(TAG, \"onPut: waiting for final OBEX packet, cnt \u003d \" + continueCnt);\n        if (++continueCnt \u003e MAX_CONTINUATION) {\n            Log.w(TAG, \"Exceeded OBEX continuation limit, aborting operation\");\n            break;\n        }\n    }\n```",
+      "revId": "f289c5c20ea664bda4beca384baca24930221622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
