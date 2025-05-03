@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc6e2b6_5eccf438",
+        "filename": "system/btif/src/btif_util.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:43:39Z",
+      "side": 1,
+      "message": "```suggestion\n    CASE_RETURN_STRING(HCI_ERR_INSUFFICIENT_SECURITY);\n```",
+      "revId": "bdba1ac001e96057c50ce67e788a948e43ce4b1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
