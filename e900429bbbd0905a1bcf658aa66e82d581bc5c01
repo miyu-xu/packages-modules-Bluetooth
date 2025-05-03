@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d02421f_47a82a51",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:26:41Z",
+      "side": 1,
+      "message": "Might refactor this\n```suggestion\n    public boolean createBond(int transport) {\n    if (DBG) log(\"createBond()\");\n\n    final IBluetooth service \u003d getService();\n    if (service \u003d\u003d null || !isBluetoothEnabled()) {\n        Log.w(TAG, \"BT not enabled, createBond failed\");\n        if (DBG) log(Log.getStackTraceString(new Throwable()));\n        return false;\n    }\n\n    if (NULL_MAC_ADDRESS.equals(mAddress)) {\n        Log.e(TAG, \"Unable to create bond, invalid address \" + mAddress);\n        return false;\n    }\n\n    try {\n        return service.createBond(this, transport, mAttributionSource);\n    } catch (RemoteException e) {\n        Log.e(TAG, \"createBond failed\", e);\n    }\n\n    return false;\n}\n\n```",
+      "revId": "e900429bbbd0905a1bcf658aa66e82d581bc5c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ff3794_f64770ff",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1964,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:26:41Z",
+      "side": 1,
+      "message": "```suggestion\n                Log.e(TAG, \"createBond failed\", e);\n```",
+      "revId": "e900429bbbd0905a1bcf658aa66e82d581bc5c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fef7f259_8ede5f27",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 17
