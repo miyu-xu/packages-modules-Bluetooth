@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25d19f77_05e18fe3",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T20:15:56Z",
+      "side": 1,
+      "message": "```suggestion\n    log::info(\"Clearing transport mask (was: 0x{:02x})\", bta_dm_discovery_cb.transports);\n\n```",
+      "revId": "917f1e80f284cf2edb98cfe30d715c74f1781dad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
