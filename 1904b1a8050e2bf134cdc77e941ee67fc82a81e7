@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bee80dfb_91691a4e",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:10:55Z",
+      "side": 1,
+      "message": "Without an upper bound, a malicious or buggy client could request extremely large MTUs, which may:\n\nCause buffer overflows\nLead to controller fragmentation\nBreak performance assumptions",
+      "revId": "1904b1a8050e2bf134cdc77e941ee67fc82a81e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
