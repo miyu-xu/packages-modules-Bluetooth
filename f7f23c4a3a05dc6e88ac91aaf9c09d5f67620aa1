@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eb91695_20f594ad",
+        "filename": "system/gd/os/linux_generic/files.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:13:54Z",
+      "side": 1,
+      "message": "```suggestion\n  uid_t uid \u003d getuid();\n  int userid \u003d uid/100000;\n```",
+      "revId": "f7f23c4a3a05dc6e88ac91aaf9c09d5f67620aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
