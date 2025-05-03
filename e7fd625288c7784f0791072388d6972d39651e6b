@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8920232e_5fb0f585",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObexServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:38:39Z",
+      "side": 1,
+      "message": "private boolean isCallLog(ContentType type) {\n    return type \u003d\u003d INCOMING_CALL_LOG || type \u003d\u003d OUTGOING_CALL_LOG || type \u003d\u003d MISSED_CALL_LOG;\n}",
+      "revId": "e7fd625288c7784f0791072388d6972d39651e6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cdc6939_127bebac",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObexServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1512,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:38:39Z",
+      "side": 1,
+      "message": "```suggestion\n        if (isCallLog(appParamValue.needTag)) {\n```",
+      "revId": "e7fd625288c7784f0791072388d6972d39651e6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61f44bd_7b8c4776",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObexServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:38:39Z",
+      "side": 1,
+      "message": "```suggestion\n  \n```",
+      "revId": "e7fd625288c7784f0791072388d6972d39651e6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0f13bf3_76de3730",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObexServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:38:39Z",
+      "side": 1,
+      "message": "```suggestion\n                \n```",
+      "revId": "e7fd625288c7784f0791072388d6972d39651e6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
