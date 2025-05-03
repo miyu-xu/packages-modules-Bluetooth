@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "575711b6_f2cbe71b",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapObexServer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1895,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:10:35Z",
+      "side": 1,
+      "message": "However, Java strings don’t require or use \\0 — if this is going into an OBEX payload or native buffer, ensure encoding (e.g., .getBytes(\"UTF-8\")) handles it correctly",
+      "revId": "f250bf12b4e4ad6ae9424eb504b51f1657752d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
