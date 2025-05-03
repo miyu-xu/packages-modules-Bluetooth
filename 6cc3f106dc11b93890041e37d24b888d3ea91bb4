@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afcb235f_6c5d2fef",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T18:07:06Z",
+      "side": 1,
+      "message": "```suggestion\n  dprintf(fd, \"\\n\u003d\u003d\u003d\u003d BLE Random Address \u003d\u003d\u003d\u003d\\n\");\n```",
+      "revId": "6cc3f106dc11b93890041e37d24b888d3ea91bb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a9fd51_0e356375",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T18:07:06Z",
+      "side": 1,
+      "message": "```suggestion\n  if (btm_cb.ble_random_address.IsEmpty()) {\n    dprintf(fd, \"  (empty or not yet generated)\\n\");\n  } else {\n    dprintf(fd, \"  %s\\n\", btm_cb.ble_random_address.ToString().c_str());\n  }\n```",
+      "revId": "6cc3f106dc11b93890041e37d24b888d3ea91bb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
