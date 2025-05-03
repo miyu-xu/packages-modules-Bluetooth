@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "447d4274_4908cfd9",
+        "filename": "system/main/shim/metrics_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:54:13Z",
+      "side": 1,
+      "message": "```suggestion\nvoid LogMetricLeConnectingStatus(const hci::Address\u0026 address, bool is_extended) {\n  android::bluetooth::State state \u003d is_extended\n      ? android::bluetooth::State::LE_EXTENDED_CREATE_CONN\n      : android::bluetooth::State::LE_CREATE_CONN;\n\n  bluetooth::os::LogMetricBluetoothEvent(\n      address, android::bluetooth::EventType::GATT_CONNECTING_NATIVE, state);\n}\n\n```",
+      "revId": "b35a5ccf8f5eadf91e13d757a473d59f9182665e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99f55461_416ee31c",
+        "filename": "system/main/shim/metrics_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:54:13Z",
+      "side": 1,
+      "message": "```suggestion\n * Logs a metric event for a GATT LE connection attempt.\n```",
+      "revId": "b35a5ccf8f5eadf91e13d757a473d59f9182665e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee9e7ebe_90c9ecd7",
+        "filename": "system/main/shim/metrics_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T17:54:13Z",
+      "side": 1,
+      "message": "```suggestion\n * @param is_extended True if the connection used LE Extended Advertising.\n *                    False if it used legacy advertising.\n```",
+      "revId": "b35a5ccf8f5eadf91e13d757a473d59f9182665e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
