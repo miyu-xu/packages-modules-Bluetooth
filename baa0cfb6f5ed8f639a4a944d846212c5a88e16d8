@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17dc8fa1_d482a489",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapObexServer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:18:04Z",
+      "side": 1,
+      "message": "```suggestion\n            if (!(op instanceof ServerOperation)) {\n    Log.e(TAG, \"Unexpected OBEX operation type\");\n    return;\n}\nServerOperation serverOp \u003d (ServerOperation) op;\nboolean isFinal \u003d serverOp.finalBitSet;\n\nif (!isFinal) {\n    int continueCnt \u003d 1;\n    final int MAX_CONTINUATION \u003d 50;\n    while (serverOp.continueOperation(true, true)) {\n        Log.d(TAG, \"onPut: waiting for final OBEX packet, cnt \u003d \" + continueCnt);\n        if (++continueCnt \u003e MAX_CONTINUATION) {\n            Log.w(TAG, \"Exceeded OBEX continuation limit, aborting operation\");\n            break;\n        }\n    }\n\n    if (appParamRaw \u003d\u003d null) {\n        request \u003d op.getReceivedHeader();\n        appParamRaw \u003d (byte[]) request.getHeader(HeaderSet.APPLICATION_PARAMETER);\n        // APPLICATION_PARAMETER typically only arrives in final packet\n        appParams \u003d new BluetoothMapAppParams(appParamRaw);\n    }\n}\n\n```",
+      "revId": "baa0cfb6f5ed8f639a4a944d846212c5a88e16d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
