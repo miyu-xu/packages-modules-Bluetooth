@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6c1a7f1_586ddf79",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:25:41Z",
+      "side": 1,
+      "message": "Prevent magic numbers\n```suggestion\n    private static final int AVCTP_AVRCP_HEADER_LEN \u003d 45;\nprivate static final int MAX_AVRCP_PACKET_LEN \u003d 512;\nprivate static final int MAX_ELEMENT_LEN \u003d MAX_AVRCP_PACKET_LEN - AVCTP_AVRCP_HEADER_LEN;\n\n```",
+      "revId": "2f24ececec41273f7b56c83083e6f33e5d2225db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42f0eec6_92ff6124",
         "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
         "patchSetId": 2
@@ -14,6 +31,23 @@
       "writtenOn": "2025-05-03T19:24:42Z",
       "side": 1,
       "message": "```suggestion\n    private static String getElementFromMetadata(MediaMetadata data, String key) {\n    String val \u003d data.getString(key);\n    if (val !\u003d null) {\n        int byteCount \u003d 0;\n        int endIndex \u003d 0;\n        for (int i \u003d 0; i \u003c val.length(); i++) {\n            int charBytes \u003d String.valueOf(val.charAt(i)).getBytes(StandardCharsets.UTF_8).length;\n            if (byteCount + charBytes \u003e MAX_ELEMENT_LEN - 1) break;\n            byteCount +\u003d charBytes;\n            endIndex++;\n        }\n        val \u003d val.substring(0, endIndex);\n    }\n    return (val !\u003d null) ? val : \"\";\n}\n\n```",
+      "revId": "2f24ececec41273f7b56c83083e6f33e5d2225db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd41550_d0b36f4f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/helpers/Metadata.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:25:41Z",
+      "side": 1,
+      "message": "This may split multi-byte UTF-8 characters, leading to corrupted or invalid output.",
       "revId": "2f24ececec41273f7b56c83083e6f33e5d2225db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
