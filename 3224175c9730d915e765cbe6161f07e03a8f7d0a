@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ca23bf_921ab600",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:22:05Z",
+      "side": 1,
+      "message": "For lightweight or one-off use:\n```suggestion\n        new Thread(() -\u003e mBatteryStatsManager.reportBleScanReset()).start();\n```",
+      "revId": "3224175c9730d915e765cbe6161f07e03a8f7d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
