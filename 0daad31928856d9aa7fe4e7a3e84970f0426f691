@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f9eb38c_25bec50e",
+        "filename": "system/stack/include/acl_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-03T19:38:28Z",
+      "side": 1,
+      "message": "```suggestion\n/* Most significant bits (bit 7 and 6) \u003d 11 to indicate static random address */\n```",
+      "revId": "0daad31928856d9aa7fe4e7a3e84970f0426f691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
