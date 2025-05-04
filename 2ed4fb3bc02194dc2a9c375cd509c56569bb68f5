@@ -1,0 +1,350 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e772e3c1_bdad35f7",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\ntypedef enum {\n    RC_CHANNEL_CONTROL,  // Control channel\n    RC_CHANNEL_BROWSE,   // Browse channel\n    RC_CHANNEL_TYPE_MAX\n} rc_channel_type;\n```",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 18
+      },
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6729739_7d1adac3",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n  rc_transaction_set_t transaction_set[RC_CHANNEL_TYPE_MAX];\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338089ed_05b6b8d5",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\nstatic void start_transaction_timer(btif_rc_device_cb_t* p_dev, uint8_t label, uint64_t timeout_ms, rc_channel_type channel_type);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30461406_15e5a92c",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\nstatic void release_transaction(btif_rc_device_cb_t* p_dev, uint8_t label, rc_channel_type channel_type);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f617d7_c7c0a4d8",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\nstatic rc_transaction_t* get_transaction_by_lbl(btif_rc_device_cb_t* p_dev, uint8_t label, rc_channel_type channel_type)\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e312017_f54b851a",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n  release_transaction(p_dev, p_remote_rsp-\u003elabel, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "784428bc_636ee501",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    release_transaction(p_dev, p_remote_rsp-\u003elabel, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab1b44ed_33ccb5e8",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n  bt_status_t tran_status \u003d get_transaction(p_dev, context, \u0026p_transaction, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f5503b1_e3e83848",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    start_transaction_timer(p_dev, p_transaction-\u003elabel, BTIF_RC_TIMEOUT_MS, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e98c045f_4b326007",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    release_transaction(p_dev, p_transaction-\u003elabel, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2a2186_057689ae",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n  bt_status_t tran_status \u003d get_transaction(p_dev, context, \u0026p_transaction, RC_CHANNEL_BROWSE);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5637da03_8c1f4316",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1295,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    release_transaction(p_dev, p_transaction-\u003elabel, RC_CHANNEL_BROWSE);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d2af901_b70cf120",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n  start_transaction_timer(p_dev, p_transaction-\u003elabel, BTIF_RC_TIMEOUT_MS, RC_CHANNEL_BROWSE);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf082e90_16e17d16",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2391,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\nstatic void clear_cmd_timeout(btif_rc_device_cb_t* p_dev, uint8_t label, rc_channel_type channel_type) {\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75f7ca0_64b0751b",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2394,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n  p_txn \u003d get_transaction_by_lbl(p_dev, label, channel_type);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be4a77e3_d692a612",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2437,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n          clear_cmd_timeout(p_dev, pmeta_msg-\u003elabel, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1986ff05_1c3fba28",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2508,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    release_transaction(p_dev, pmeta_msg-\u003elabel, RC_CHANNEL_BROWSE);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a71b709_6ffb1e14",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2510,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    release_transaction(p_dev, pmeta_msg-\u003elabel, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d22ba1_175b24e7",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3253,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    bt_status_t tran_status \u003d get_transaction(p_dev, context, \u0026p_transaction, RC_CHANNEL_CONTROL);\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88206be1_572f7aca",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3809,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:19:43Z",
+      "side": 1,
+      "message": "```suggestion\n    btif_rc_device_cb_t* device_cb \u003d \u0026btif_rc_cb.rc_multi_cb[i];\n```",
+      "revId": "2ed4fb3bc02194dc2a9c375cd509c56569bb68f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
