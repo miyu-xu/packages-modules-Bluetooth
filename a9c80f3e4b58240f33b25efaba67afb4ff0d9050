@@ -16,6 +16,24 @@
       "message": "Why do we need a separate denylist for SCO and call since we\u0027re just checking both in the same conditional?",
       "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f54b7bd_932d9a93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-05-04T17:50:00Z",
+      "side": 1,
+      "message": "There are cases where SCO/eSCO is not connected when call is present but the headset or car kit does not want the link to be in sniff mode. So, we need two separate denylists.",
+      "parentUuid": "11b820bc_ffdf6aea",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
