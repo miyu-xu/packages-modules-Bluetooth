@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcd1e705_0f42a1d6",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:22:14Z",
+      "side": 1,
+      "message": "```suggestion\n  all_phys |\u003d (tx_phys \u003d\u003d 0) ? 0x01 : 0;\n  all_phys |\u003d (rx_phys \u003d\u003d 0) ? 0x02 : 0;\n```",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 37
+      },
+      "revId": "b1989df0c20ca3bae34aae023b0aa1dd5f7021bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
