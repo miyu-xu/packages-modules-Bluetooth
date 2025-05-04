@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18cd439c_40f65db8",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:32:50Z",
+      "side": 1,
+      "message": "```suggestion\nstruct HciLayer::impl {\n```",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 23
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b76f81_174024f4",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:32:50Z",
+      "side": 1,
+      "message": "Seems redundant, can remove this.",
+      "range": {
+        "startLine": 303,
+        "startChar": 7,
+        "endLine": 306,
+        "endChar": 53
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4e1edb_ca2b788b",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:32:50Z",
+      "side": 1,
+      "message": "```suggestion\n        timeout \u003d std::min(timeout, remaining_time);\n```",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 336,
+        "endChar": 70
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5372a11d_9e7674ed",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-04T16:32:50Z",
+      "side": 1,
+      "message": "Can we move it inside src file instead?",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 4
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
