@@ -22,6 +22,30 @@
       },
       "revId": "a6761e2dee065c67757c0d2fe804bfa1eb3b6e92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d33b0d2_d524dec9",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-05-04T17:47:34Z",
+      "side": 1,
+      "message": "There are cases where SCO/eSCO is not connected when call is present but the headset or car kit does not want the link to be in sniff mode. So, we need two separate denylists.",
+      "parentUuid": "5a8eb76b_1f207261",
+      "range": {
+        "startLine": 582,
+        "startChar": 17,
+        "endLine": 582,
+        "endChar": 39
+      },
+      "revId": "a6761e2dee065c67757c0d2fe804bfa1eb3b6e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
