@@ -33,6 +33,23 @@
       "message": "ronghb1@motorola.com",
       "revId": "403ef02c1d25bbe1d5d57609dde818d55249c024",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f24b200c_fe97e6b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-05T23:07:31Z",
+      "side": 1,
+      "message": "merged in internal",
+      "revId": "403ef02c1d25bbe1d5d57609dde818d55249c024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
