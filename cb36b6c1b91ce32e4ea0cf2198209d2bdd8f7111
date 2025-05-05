@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d0f67c0_6eb5aa1f",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-05T17:48:28Z",
+      "side": 1,
+      "message": "This CL does not build, this method requires 3 arguments, please fix",
+      "range": {
+        "startLine": 1350,
+        "startChar": 10,
+        "endLine": 1351,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "050bb3d1_cf006824",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 1351,
+                "startChar": 0,
+                "endLine": 1352,
+                "endChar": 0
+              },
+              "replacement": "        \u0026p_scb-\u003epeer_addr, nullptr, 0)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cb36b6c1b91ce32e4ea0cf2198209d2bdd8f7111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
