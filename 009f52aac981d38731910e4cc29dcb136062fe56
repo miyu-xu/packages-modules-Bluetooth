@@ -69,6 +69,24 @@
       "message": "Should you also free it here ?",
       "revId": "009f52aac981d38731910e4cc29dcb136062fe56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4caa6e9f_cbb74928",
+        "filename": "system/stack/sdp/sdp_discovery.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2025-05-05T16:57:58Z",
+      "side": 1,
+      "message": "Good catch.  Done.",
+      "parentUuid": "e39203e3_5d3e80ad",
+      "revId": "009f52aac981d38731910e4cc29dcb136062fe56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
