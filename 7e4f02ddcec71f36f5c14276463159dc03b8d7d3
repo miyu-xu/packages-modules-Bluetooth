@@ -16,6 +16,23 @@
       "message": "dupe has been merged",
       "revId": "7e4f02ddcec71f36f5c14276463159dc03b8d7d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58419ff4_a04b27f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-05T23:11:32Z",
+      "side": 1,
+      "message": "dupe has been merged in internal",
+      "revId": "7e4f02ddcec71f36f5c14276463159dc03b8d7d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
