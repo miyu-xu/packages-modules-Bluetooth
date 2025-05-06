@@ -46,6 +46,30 @@
       },
       "revId": "20bb345d9123866b0631d5f6eefd2645aaf22077",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c2383c_54981bee",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:14:46Z",
+      "side": 1,
+      "message": "Added the gerrit in relation chain",
+      "parentUuid": "a27ffb27_53f4b7c9",
+      "range": {
+        "startLine": 368,
+        "startChar": 30,
+        "endLine": 368,
+        "endChar": 52
+      },
+      "revId": "20bb345d9123866b0631d5f6eefd2645aaf22077",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
