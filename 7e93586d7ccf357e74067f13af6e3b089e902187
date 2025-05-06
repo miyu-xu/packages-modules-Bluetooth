@@ -153,6 +153,30 @@
       },
       "revId": "7e93586d7ccf357e74067f13af6e3b089e902187",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b492b2b_dc83a735",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-06T16:21:19Z",
+      "side": 1,
+      "message": "it looks like all the other address based use only 3 bytes.  We should do address based",
+      "parentUuid": "931bb2e2_24fb49d0",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 905,
+        "endChar": 27
+      },
+      "revId": "7e93586d7ccf357e74067f13af6e3b089e902187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
