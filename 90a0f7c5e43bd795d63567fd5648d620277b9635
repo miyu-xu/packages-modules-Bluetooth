@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "823ac624_cac797cb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:25:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84cee582_a1a5f64a",
+      "revId": "90a0f7c5e43bd795d63567fd5648d620277b9635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bc9c902_3e3c6ff5",
@@ -31,6 +49,30 @@
       "writtenOn": "2025-05-03T20:02:45Z",
       "side": 1,
       "message": "```suggestion\n    void autoConnect() {\n    if (!mHandler.hasMessages(MESSAGE_AUTO_CONNECT_PROFILES) \u0026\u0026\n        !mAdapterService.isQuietModeEnabled()) {\n        long delayMs \u003d AUTO_CONNECT_PROFILES_TIMEOUT_DELAYED.toMillis();\n        Log.d(TAG, \"autoConnect(): scheduling profile auto-connect in \" + delayMs + \" ms\");\n\n        // Delay auto-connect to allow stack and profiles to initialize\n        mHandler.postDelayed(\n            () -\u003e autoConnectProfilesDelayed(),\n            delayMs\n        );\n    } else {\n        Log.d(TAG, \"autoConnect(): skipped (quiet mode or already scheduled)\");\n    }\n}\n\n```",
+      "range": {
+        "startLine": 778,
+        "startChar": 4,
+        "endLine": 787,
+        "endChar": 5
+      },
+      "revId": "90a0f7c5e43bd795d63567fd5648d620277b9635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecadd0c1_45839cde",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:25:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bc9c902_3e3c6ff5",
       "range": {
         "startLine": 778,
         "startChar": 4,
