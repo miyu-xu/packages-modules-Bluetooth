@@ -16,6 +16,24 @@
       "message": "Some tests are broken with this change\n\nnet_test_bta.BtaAgScoTest.codec_negotiate__aptx_state_on is broken with this change applied. Without this change the test was 100% passing.\nError: the test failed: packages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:354: Failure\n\npackages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:354: Failure\nExpected equality of these values:\n  1\n  get_func_call_count(\"PORT_WriteData\")\n    Which is: 0\nnet_test_bta.BtaAgScoTest.codec_negotiate__aptx_state_off is broken with this change applied. Without this change the test was 100% passing.\nError: the test failed: packages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:373: Failure\n\npackages/modules/Bluetooth/system/bta/test/bta_ag_test.cc:373: Failure\nExpected equality of these values:\n  1\n  get_func_call_count(\"PORT_WriteData\")\n    Which is: 0\n    \n PTAL",
       "revId": "cac51958ad1aa5210bccad8602cf15dd94d77194",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b45a86_a66567e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T09:28:44Z",
+      "side": 1,
+      "message": "In both codec_negotiate__aptx_state_on and codec_negotiate__aptx_state_off tests, we are setting \np_scb-\u003epeer_codecs \u003d BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/test/bta_ag_test.cc;l\u003d347\n\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK 0x0008\n\n\nIn our change, we have just modified\naptx_voice\nto\naptx_voice \u0026\u0026 (p_scb-\u003epeer_codecs \u0026 BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK)\n\nAs (p_scb-\u003epeer_codecs \u0026 BTA_AG_SCO_APTX_SWB_SETTINGS_Q0_MASK) always returns non-zero value, the modified condition still completely depends on aptx_voice value which was the case earlier. So, these tests shouldn\u0027t fail.",
+      "parentUuid": "1a4a5e3c_b514c8bd",
+      "revId": "cac51958ad1aa5210bccad8602cf15dd94d77194",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
