@@ -129,6 +129,30 @@
       ],
       "revId": "7e93586d7ccf357e74067f13af6e3b089e902187",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931bb2e2_24fb49d0",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 4
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:13:43Z",
+      "side": 1,
+      "message": "Checking last 3 bytes of address isn\u0027t supported.\nWe can either do address based with first 3 bytes or name based.",
+      "parentUuid": "46789452_ac6bc07e",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 905,
+        "endChar": 27
+      },
+      "revId": "7e93586d7ccf357e74067f13af6e3b089e902187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
