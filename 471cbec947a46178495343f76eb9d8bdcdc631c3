@@ -16,6 +16,24 @@
       "message": "Avoid magic strings\n```suggestion\nprivate static final String KEY_AUDIO_MODE_DUPLEX \u003d \"audio_mode_duplex\";\n\n                    \u0026\u0026 preferredAudioProfiles.getInt(\"audio_mode_duplex\") \u003d\u003d\n```",
       "revId": "471cbec947a46178495343f76eb9d8bdcdc631c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9df3c0_d9f16ee4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1580,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T10:42:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e855b0dc_caec120d",
+      "revId": "471cbec947a46178495343f76eb9d8bdcdc631c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
