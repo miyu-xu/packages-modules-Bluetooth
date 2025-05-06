@@ -1,0 +1,66 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28af9de0_f421657c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-05-06T05:46:57Z",
+      "side": 1,
+      "message": "Please add unit test for this.",
+      "revId": "35ab06c81aa3cc36ef699ecfafc10c90944c5c31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5012c9ac_da705c59",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-05-06T05:46:57Z",
+      "side": 1,
+      "message": "I don\u0027t think we need this here, because in State Machine this will get now ignored, anyway.",
+      "fixSuggestions": [
+        {
+          "fixId": "36e4733c_df8705a1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 438,
+                "startChar": 0,
+                "endLine": 446,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 451,
+                "startChar": 0,
+                "endLine": 451,
+                "endChar": 0
+              },
+              "replacement": "                return false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "35ab06c81aa3cc36ef699ecfafc10c90944c5c31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
