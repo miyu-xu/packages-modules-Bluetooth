@@ -16,6 +16,24 @@
       "message": "if an opened an LE COC connection, It is expected to keep the LE ACL.\n\nthis would tear down the ACL which can cause unexpected behavior to LE COC applications.\nWould also affect hearing aid behavior as It would be using LE COC as transport",
       "revId": "036602b2b8caf14ccfbef53e13479e1d606c47c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d67875_187c4651",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-05-06T12:05:35Z",
+      "side": 1,
+      "message": "please check commit message. I don\u0027t see a way to have ACL without fixed channel, even there is LE COC.",
+      "parentUuid": "0c9a6e6e_a6fc2ac9",
+      "revId": "036602b2b8caf14ccfbef53e13479e1d606c47c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
