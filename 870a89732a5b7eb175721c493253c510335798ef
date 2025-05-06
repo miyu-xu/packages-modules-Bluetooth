@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a384fe4_06cfce4e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32954de4_a20106fe",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 26
+      },
+      "revId": "870a89732a5b7eb175721c493253c510335798ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c50588f_f0d40325",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fadd3e04_c703bd00",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c50588f_f0d40325",
+      "revId": "870a89732a5b7eb175721c493253c510335798ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b3c720a_832d4af1",
@@ -54,6 +96,24 @@
       "writtenOn": "2025-05-03T20:11:36Z",
       "side": 1,
       "message": "Is it in ms?\n```suggestion\n    private static final int INCOMING_CALL_IND_DELAY_MS \u003d 200;\n```",
+      "revId": "870a89732a5b7eb175721c493253c510335798ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d48ed897_d274e787",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b3c720a_832d4af1",
       "revId": "870a89732a5b7eb175721c493253c510335798ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
