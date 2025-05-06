@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d537cd9a_6f76f1eb",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2215,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a29b2367_59208a20",
+      "revId": "6e296db37202ddbf75f3968f2b71a33e539e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c450ddde_a6f06c80",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-03T19:36:32Z",
       "side": 1,
       "message": "Define a constant instead of magic number",
+      "revId": "6e296db37202ddbf75f3968f2b71a33e539e60cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc2fa7c_2f1fb786",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2216,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-06T11:11:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c450ddde_a6f06c80",
       "revId": "6e296db37202ddbf75f3968f2b71a33e539e60cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
