@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e70aca8_d9350b6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-05-06T05:48:09Z",
+      "side": 1,
+      "message": "this wasn\u0027t meant to be resolved comment",
+      "parentUuid": "28af9de0_f421657c",
+      "revId": "35ab06c81aa3cc36ef699ecfafc10c90944c5c31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5012c9ac_da705c59",
         "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
         "patchSetId": 2
