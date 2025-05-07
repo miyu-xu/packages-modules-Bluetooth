@@ -1521,6 +1521,7 @@ void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
     log::info("Disconnected ACL after connection canceled");
     BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type), "Connection canceled",
                    "Le");
+    OnLeConnectFail(address_with_type, hci::ErrorCode::REMOTE_USER_TERMINATED_CONNECTION);
     return;
   }
 
