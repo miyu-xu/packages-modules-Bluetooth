@@ -36,6 +36,10 @@ public:
       : le_acl_connection_interface_(le_acl_connection_interface),
         connection_handle_(connection_handle) {}
   ~LeAclConnectionTracker() {
+    if(!queued_callbacks_.empty()) {
+      log::warn("clear queued_callbacks first before delete");
+      queued_callbacks_.clear();
+    }
     log::assert_that(queued_callbacks_.empty(), "assert failed: queued_callbacks_.empty()");
   }
   void RegisterCallbacks(LeConnectionManagementCallbacks* callbacks, os::Handler* handler) {
@@ -110,6 +114,11 @@ struct LeAclConnection::impl {
       : queue_(std::move(queue)), tracker(le_acl_connection_interface, connection_handle) {}
   LeConnectionManagementCallbacks* GetEventCallbacks(
           std::function<void(uint16_t)> invalidate_callbacks) {
+    if(!invalidate_callbacks){
+      invalidate_callbacks_ = nullptr;
+      log::info("clear invalidate_callbacks of {}", tracker.connection_handle_);
+      return &tracker;
+    }
     log::assert_that(!invalidate_callbacks_,
                      "Already returned event callbacks for this connection");
     invalidate_callbacks_ = std::move(invalidate_callbacks);
