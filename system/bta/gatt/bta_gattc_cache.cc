@@ -952,13 +952,15 @@ static void bta_gattc_get_gatt_db_impl(tBTA_GATTC_SERV* p_srvc_cb, uint16_t star
     return;
   }
 
-  size_t db_size =
-          bta_gattc_get_db_size(p_srvc_cb->gatt_database.Services(), start_handle, end_handle);
+  Database server_db = p_srvc_cb->gatt_database;
+
+  size_t db_size = 
+          bta_gattc_get_db_size(server_db.Services(), start_handle, end_handle);
 
   void* buffer = osi_malloc(db_size * sizeof(btgatt_db_element_t));
   btgatt_db_element_t* curr_db_attr = (btgatt_db_element_t*)buffer;
 
-  for (const Service& service : p_srvc_cb->gatt_database.Services()) {
+  for (const Service& service : server_db.Services()) {
     if (service.handle < start_handle) {
       continue;
     }
@@ -999,6 +1001,8 @@ static void bta_gattc_get_gatt_db_impl(tBTA_GATTC_SERV* p_srvc_cb, uint16_t star
       curr_db_attr++;
     }
   }
+
+  server_db.Clear();
 
   *db = (btgatt_db_element_t*)buffer;
   *count = db_size;
