@@ -284,7 +284,8 @@ static void bta_dm_disc_result(tBTA_DM_SVC_RES& disc_result) {
                 bta_dm_discovery_cb.peer_bdaddr);
     } else {
       log::info("reading PPCP");
-      GAP_BleReadPeerPrefConnParams(bta_dm_discovery_cb.peer_bdaddr);
+      if (disc_result.result == BTA_SUCCESS)
+        GAP_BleReadPeerPrefConnParams(bta_dm_discovery_cb.peer_bdaddr);
     }
 
     bta_dm_discovery_cb.service_search_cbacks.on_gatt_results(bta_dm_discovery_cb.peer_bdaddr,
