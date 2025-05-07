@@ -259,6 +259,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
               advertising_sets_[view.GetAdvertisingInstance()].current_address.ToString());
 
     if (view.GetStateChangeReason() == VseStateChangeReason::CONNECTION_RECEIVED) {
+      if (enabled_sets_[advertiser_id].advertising_handle_ == kInvalidHandle) {
+        log::warn("stop already stopped advertising set id={}", advertiser_id);
+        return;
+      }
       acl_manager_->OnAdvertisingSetTerminated(ErrorCode::SUCCESS, view.GetConnectionHandle(),
                                                advertiser_id,
                                                advertising_sets_[advertiser_id].current_address,
@@ -321,6 +325,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         log::warn("Unknown advertiser id {}", advertiser_id);
         return;
       }
+    }
+
+    if (!advertising_sets_[advertiser_id].in_use) {
+      log::warn("Unknown advertising set id={}", advertiser_id);
     }
 
     bool was_rotating_address = false;
@@ -416,7 +424,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   AdvertiserId allocate_advertiser() {
     // number of LE_MULTI_ADVT start from 1
     AdvertiserId id = advertising_api_type_ == AdvertisingApiType::ANDROID_HCI ? 1 : 0;
-    while (id < num_instances_ && advertising_sets_.count(id) != 0) {
+    while (id < num_instances_ && advertising_sets_[id].in_use) {
       id++;
     }
     if (id == num_instances_) {
@@ -509,6 +517,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     // check advertising data is valid before start advertising
     if (!check_advertising_data(config.advertisement, config.connectable && config.discoverable) ||
         !check_advertising_data(config.scan_response, false)) {
+      remove_advertiser(id);
       advertising_callbacks_->OnAdvertisingSetStarted(
               reg_id, id, le_physical_channel_tx_power_,
               AdvertisingCallback::AdvertisingStatus::DATA_TOO_LARGE);
@@ -620,6 +629,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     if (!check_extended_advertising_data(config.advertisement,
                                          config.connectable && config.discoverable) ||
         !check_extended_advertising_data(config.scan_response, false)) {
+      remove_advertiser(id);
       advertising_callbacks_->OnAdvertisingSetStarted(
               reg_id, id, le_physical_channel_tx_power_,
               AdvertisingCallback::AdvertisingStatus::DATA_TOO_LARGE);
@@ -1647,6 +1657,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         }
       } else {
         advertising_sets_[enabled_set.advertising_handle_].started = true;
+        if(advertising_status != AdvertisingCallback::AdvertisingStatus::SUCCESS){
+          log::info("Advertise start failed, remove a registered advertiser={}", id);
+          remove_advertiser(id);
+        }
         advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, le_physical_channel_tx_power_,
                                                         advertising_status);
       }
@@ -1704,6 +1718,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
         }
       } else {
         advertising_sets_[enabled_set.advertising_handle_].started = true;
+        if(advertising_status != AdvertisingCallback::AdvertisingStatus::SUCCESS){
+          log::info("Advertise start failed, remove a registered advertiser={}", id);
+          remove_advertiser(id);
+        }
         advertising_callbacks_->OnAdvertisingSetStarted(reg_id, id, tx_power, advertising_status);
       }
     }
