@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8afd1001_6d9109a7",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-07T19:02:58Z",
+      "side": 1,
+      "message": "This is masking any other issues and one failure can result in disable codec negotiation for the device (even if it\u0027s just a one off failure).  I suggest we remove the dynamic disabling",
+      "range": {
+        "startLine": 631,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8dc6080d_3b5d1cab",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 631,
+                "startChar": 0,
+                "endLine": 633,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 635,
+                "startChar": 0,
+                "endLine": 645,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1381,
+                "startChar": 0,
+                "endLine": 1381,
+                "endChar": 0
+              },
+              "replacement": "    bool is_denylisted \u003d interop_match_addr(INTEROP_DISABLE_CODEC_NEGOTIATION,\n                                             \u0026p_scb-\u003epeer_addr);\n    // add the device to denylist to disable codec negotiation\n    if (is_denylisted \u003d\u003d false) {\n      log::verbose(\"denylisting device {} for codec negotiation\",\n                    p_scb-\u003epeer_addr.ToString().c_str());\n      interop_database_add(INTEROP_DISABLE_CODEC_NEGOTIATION,\n                         \u0026p_scb-\u003epeer_addr, 3);\n    } else {\n      log::verbose(\"dev {} is already denylisted for codec negotiation\",\n                    p_scb-\u003epeer_addr.ToString().c_str());\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
