@@ -24,6 +24,7 @@
 #include "bta/dm/bta_dm_int.h"
 #include "bta/dm/bta_dm_sec_int.h"
 #include "bta/include/bta_dm_ci.h"  // bta_dm_ci_rmt_oob
+#include "bta/include/bta_gatt_api.h"
 #include "btif/include/btif_dm.h"
 #include "internal_include/bt_target.h"
 #include "stack/include/bt_dev_class.h"
@@ -36,6 +37,8 @@
 #include "stack/include/security_client_callbacks.h"
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
+
+extern void BTA_GATTC_Refresh(const RawAddress& remote_bda);
 
 using namespace bluetooth;
 
@@ -730,6 +733,13 @@ static tBTM_STATUS bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda
 
     case BTM_LE_NC_REQ_EVT:
       sec_event.key_notif.bd_addr = bda;
+
+      if (btm_sec_is_a_bonded_dev(bda)) {
+        log::error("Refresh gatt cache!!!");
+        SS_BT_LOG("Refresh gatt cache due to a new pairing");
+        BTA_GATTC_Refresh(bda);
+      }
+
       bd_name_from_char_pointer(sec_event.key_notif.bd_name,
                                 get_btm_client_interface().security.BTM_SecReadDevName(bda));
       sec_event.key_notif.dev_class = dev_class;
