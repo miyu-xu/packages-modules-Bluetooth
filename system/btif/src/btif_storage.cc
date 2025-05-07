@@ -56,6 +56,7 @@
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
+#include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/bt_uuid16.h"
@@ -129,6 +130,12 @@ static void btif_storage_set_mode(RawAddress* remote_bd_addr) {
 }
 
 static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
+
+  if (!bluetooth::shim::is_gd_stack_started_up()) {
+    log::error("is_gd_stack_started_up=false");
+    return false;
+  }
+
   std::string bdstr;
   if (remote_bd_addr) {
     bdstr = remote_bd_addr->ToString();
@@ -232,6 +239,12 @@ static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
 }
 
 static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
+
+  if (!bluetooth::shim::is_gd_stack_started_up()) {
+    log::error("is_gd_stack_started_up=false");
+    return false;
+  }
+
   std::string bdstr;
   if (remote_bd_addr) {
     bdstr = remote_bd_addr->ToString();
