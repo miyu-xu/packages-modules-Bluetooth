@@ -933,6 +933,8 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
 
   bool is_le_coc = (flags & BTSOCK_FLAG_LE_COC) != 0;
 
+  std::unique_lock<std::mutex> lock(state_lock);
+
   if (is_le_coc) {
     if (listen) {
       if (flags & BTSOCK_FLAG_NO_SDP) {
@@ -953,9 +955,6 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name, const RawAdd
     return BT_STATUS_PARM_INVALID;
   }
 
-  // TODO: This is kind of bad to lock here, but it is needed for the current
-  // design.
-  std::unique_lock<std::mutex> lock(state_lock);
   l2cap_socket* sock = btsock_l2cap_alloc_l(name, addr, listen, flags);
   if (!sock) {
     return BT_STATUS_NOMEM;
