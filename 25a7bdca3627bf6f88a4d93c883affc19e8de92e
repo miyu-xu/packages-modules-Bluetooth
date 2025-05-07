@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c613c93_188f3093",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "ac6955e9_6280111c",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ebb34ba_4962f46e",
@@ -31,6 +49,60 @@
       "writtenOn": "2025-05-03T19:33:44Z",
       "side": 1,
       "message": "```suggestion\n    log::warn(\"invalid rcid\");\n```",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1afa8c32_e4911a90",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "4ebb34ba_4962f46e",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1307237_e5fa2148",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "4ebb34ba_4962f46e",
+      "fixSuggestions": [
+        {
+          "fixId": "3d1fd210_1fc73d9c",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1747,
+                "startChar": 0,
+                "endLine": 1747,
+                "endChar": 30
+              },
+              "replacement": "    log::warn(\"invalid rcid\");"
+            }
+          ]
+        }
+      ],
       "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +124,60 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f49f30a7_ba364438",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "8eecdc9f_17863312",
+      "fixSuggestions": [
+        {
+          "fixId": "67fc92b2_891454d8",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1878,
+                "startChar": 0,
+                "endLine": 1878,
+                "endChar": 30
+              },
+              "replacement": "  bool should_pause \u003d !data_enabled;"
+            }
+          ]
+        }
+      ],
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cebf9077_06d2d81b",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "8eecdc9f_17863312",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34cbc43d_200966a3",
@@ -65,6 +191,60 @@
       "writtenOn": "2025-05-03T19:33:44Z",
       "side": 1,
       "message": "```suggestion\n    if (should_pause)\n```",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd850f2c_47694db1",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1895,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "34cbc43d_200966a3",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "326a76dd_14743191",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1895,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "34cbc43d_200966a3",
+      "fixSuggestions": [
+        {
+          "fixId": "346039a8_5a2e6925",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1895,
+                "startChar": 0,
+                "endLine": 1895,
+                "endChar": 15
+              },
+              "replacement": "    if (should_pause)"
+            }
+          ]
+        }
+      ],
       "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +266,60 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b045eba0_6303b7a2",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "844d647f_ef495574",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb554857_d4ac3221",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "844d647f_ef495574",
+      "fixSuggestions": [
+        {
+          "fixId": "2ce46351_0dffbe6b",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_link.cc",
+              "range": {
+                "startLine": 443,
+                "startChar": 0,
+                "endLine": 443,
+                "endChar": 36
+              },
+              "replacement": "      log::warn(\"L2CAP ping timeout for device {}\", p_lcb-\u003eremote_bd_addr.ToString());"
+            }
+          ]
+        }
+      ],
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acb242d3_28c8aab2",
@@ -99,6 +333,60 @@
       "writtenOn": "2025-05-03T19:33:44Z",
       "side": 1,
       "message": "```suggestion\n    // Clear the callback before invoking to avoid re-entrancy issues\n```",
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b24fdb9_615e411d",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "acb242d3_28c8aab2",
+      "fixSuggestions": [
+        {
+          "fixId": "42f7d2e7_a9807f1d",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_utils.cc",
+              "range": {
+                "startLine": 229,
+                "startChar": 0,
+                "endLine": 229,
+                "endChar": 70
+              },
+              "replacement": "    // Clear the callback before invoking to avoid re-entrancy issues"
+            }
+          ]
+        }
+      ],
+      "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7e5b7d9_ba9cb6e1",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-07T10:47:27Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "acb242d3_28c8aab2",
       "revId": "25a7bdca3627bf6f88a4d93c883affc19e8de92e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
