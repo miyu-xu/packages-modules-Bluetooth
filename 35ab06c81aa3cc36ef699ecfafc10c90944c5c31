@@ -79,6 +79,24 @@
       ],
       "revId": "35ab06c81aa3cc36ef699ecfafc10c90944c5c31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe3932aa_73d93d44",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-05-07T06:59:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5012c9ac_da705c59",
+      "revId": "35ab06c81aa3cc36ef699ecfafc10c90944c5c31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
