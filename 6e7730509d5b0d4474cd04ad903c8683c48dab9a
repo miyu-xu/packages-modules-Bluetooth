@@ -16,6 +16,24 @@
       "message": "Sorry for not being clear. \nI meant define as const and move to the top.",
       "revId": "6e7730509d5b0d4474cd04ad903c8683c48dab9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883927ae_8aed1b0a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1579,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-08T10:16:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10efebce_f2dd626f",
+      "revId": "6e7730509d5b0d4474cd04ad903c8683c48dab9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
