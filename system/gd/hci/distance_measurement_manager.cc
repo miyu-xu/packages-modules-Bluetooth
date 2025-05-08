@@ -221,6 +221,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     uint16_t conn_interval_ = kInvalidConnInterval;
     uint8_t procedure_sequence_after_enable = -1;
     std::unique_ptr<os::Alarm> enable_security_timeout_alarm = nullptr;
+    long long proc_start_timestamp_nanos = 0;
   };
 
   bool get_free_config_id(uint16_t connection_handle, uint8_t& config_id) {
@@ -1310,6 +1311,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         live_tracker->procedure_sequence_after_enable = -1;
         ranging_hal_->UpdateProcedureEnableConfig(connection_handle, event_view);
       }
+      auto time_now = std::chrono::steady_clock::now();
+      live_tracker->proc_start_timestamp_nanos =
+          std::chrono::duration_cast<std::chrono::nanoseconds>
+        (time_now.time_since_epoch()).count();
     } else if (event_view.GetState() == Enable::DISABLED) {
       uint8_t valid_requester_states = static_cast<uint8_t>(CsTrackerState::STARTED);
       uint8_t valid_responder_states = static_cast<uint8_t>(CsTrackerState::STARTED);
@@ -2107,6 +2112,17 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       log::debug("Procedure complete counter:{} data size:{}", (uint16_t)procedure_data->counter,
                  procedure_data->step_channel.size());
       if (is_hal_v2()) {
+        auto time_now = std::chrono::steady_clock::now();
+        procedure_data->procedure_data_v2_.local_subevent_data_[0]->timestamp_nanos_ =
+          static_cast<long long>(
+          (std::chrono::duration_cast<std::chrono::nanoseconds>(time_now.time_since_epoch()).count() -
+          live_tracker->proc_start_timestamp_nanos)
+          );
+        procedure_data->procedure_data_v2_.remote_subevent_data_[0]->timestamp_nanos_ =
+          static_cast<long long>(
+          (std::chrono::duration_cast<std::chrono::nanoseconds>(time_now.time_since_epoch()).count() -
+          live_tracker->proc_start_timestamp_nanos)
+          );
         ranging_hal_->WriteProcedureData(connection_handle, live_tracker->role,
                                          procedure_data->procedure_data_v2_,
                                          procedure_data->counter);
