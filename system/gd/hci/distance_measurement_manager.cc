@@ -87,6 +87,8 @@ static constexpr uint8_t kAttHeaderSize = 5;         // Section 3.2.2.1 of RAS 1
 static constexpr uint8_t kRasSegmentHeaderSize = 1;
 static constexpr uint16_t kEnableSecurityTimeoutMs = 10000;  // 10s
 static constexpr uint16_t kProcedureScheduleGuardMs = 1000;  // 1s
+long long proc_start_timestampMs;
+long long curr_proc_complete_timestampMs;
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   struct CsProcedureData {
@@ -1312,6 +1314,9 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         live_tracker->procedure_sequence_after_enable = -1;
         ranging_hal_->UpdateProcedureEnableConfig(connection_handle, event_view);
       }
+      struct timeval tv;
+      gettimeofday(&tv, NULL);
+      proc_start_timestampMs = tv.tv_sec*1e6*1ll + tv.tv_usec*1ll;
     } else if (event_view.GetState() == Enable::DISABLED) {
       uint8_t valid_requester_states = static_cast<uint8_t>(CsTrackerState::STARTED);
       uint8_t valid_responder_states = static_cast<uint8_t>(CsTrackerState::STARTED);
@@ -2109,6 +2114,11 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       log::debug("Procedure complete counter:{} data size:{}", (uint16_t)procedure_data->counter,
                  procedure_data->step_channel.size());
       if (is_hal_v2()) {
+        struct timeval tv;
+        gettimeofday(&tv, NULL);
+        curr_proc_complete_timestampMs  = tv.tv_sec*1e6*1ll + tv.tv_usec*1ll;
+        procedure_data->procedure_data_v2_.local_subevent_data_[0]->timestamp_nanos_ = (long)((curr_proc_complete_timestampMs - proc_start_timestampMs)*1000);
+        procedure_data->procedure_data_v2_.remote_subevent_data_[0]->timestamp_nanos_ = (long)((curr_proc_complete_timestampMs - proc_start_timestampMs)*1000);
         ranging_hal_->WriteProcedureData(connection_handle, live_tracker->role,
                                          procedure_data->procedure_data_v2_,
                                          procedure_data->counter);
