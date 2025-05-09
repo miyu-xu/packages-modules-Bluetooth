@@ -18,6 +18,60 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31a4467d_9bee51a7",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "25024a4c_d3f4fb93",
+      "fixSuggestions": [
+        {
+          "fixId": "44521ebe_4461c6ff",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1209,
+                "startChar": 0,
+                "endLine": 1209,
+                "endChar": 58
+              },
+              "replacement": "   uint64_t offset \u003d static_cast\u003cuint64_t\u003e(-gmt_offset_us);\nif (offset \u003e timestamp_us) {\n    LOG(WARNING) \u003c\u003c \"GMT offset subtraction underflow. Clamping timestamp to 0\";\n    timestamp_us \u003d 0;\n  } else {\n    timestamp_us -\u003d offset;\n  }"
+            }
+          ]
+        }
+      ],
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8c9c1c7_aab097e7",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1209,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "25024a4c_d3f4fb93",
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f955585_1230e467",
@@ -35,6 +89,60 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dc4f4ae_0398c862",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "2f955585_1230e467",
+      "fixSuggestions": [
+        {
+          "fixId": "2572df46_0f83e39a",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1340,
+                "startChar": 0,
+                "endLine": 1340,
+                "endChar": 71
+              },
+              "replacement": "  gmt_offset_us \u003d (static_cast\u003cint64_t\u003e(tm_cur.tm_gmtoff) * kMicrosPerSecond);"
+            }
+          ]
+        }
+      ],
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e1f8dbe_6ff60056",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "2f955585_1230e467",
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1966531_6ecaf4cb",
@@ -48,6 +156,60 @@
       "writtenOn": "2025-05-03T19:06:44Z",
       "side": 1,
       "message": "```suggestion\nusing Microseconds \u003d int64_t;\nMicroseconds gmt_offset_us \u003d 0;\n```",
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d74e6b3d_d51bf143",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "e1966531_6ecaf4cb",
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f43c921_79b25f04",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "e1966531_6ecaf4cb",
+      "fixSuggestions": [
+        {
+          "fixId": "83b9269e_18f8fe54",
+          "description": "User suggestion",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.h",
+              "range": {
+                "startLine": 349,
+                "startChar": 0,
+                "endLine": 349,
+                "endChar": 28
+              },
+              "replacement": "using Microseconds \u003d int64_t;\nMicroseconds gmt_offset_us \u003d 0;"
+            }
+          ]
+        }
+      ],
       "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -106,6 +268,24 @@
       "writtenOn": "2025-05-03T19:06:44Z",
       "side": 1,
       "message": "```suggestion\n  Microseconds tmp_gmt_offset_us \u003d 0;\n```",
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e64061a_f1a28ec8",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T11:19:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "021ba174_ffbd91b5",
       "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
