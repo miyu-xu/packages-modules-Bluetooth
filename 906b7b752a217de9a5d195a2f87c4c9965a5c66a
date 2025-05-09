@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bdfb7b3_71c8344f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-09T16:27:56Z",
+      "side": 1,
+      "message": "Rest all looks good to me!",
+      "revId": "906b7b752a217de9a5d195a2f87c4c9965a5c66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c9ddcd7_8a7d54b7",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-09T16:27:56Z",
+      "side": 1,
+      "message": "We can move this to top of this class\n```suggestion\n  using Microseconds \u003d int64_t;\n```",
+      "revId": "906b7b752a217de9a5d195a2f87c4c9965a5c66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f410770_2bfa0566",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-09T16:27:56Z",
+      "side": 1,
+      "message": "```suggestion\n  Microseconds gmt_offset_us \u003d 0;\n```",
+      "revId": "906b7b752a217de9a5d195a2f87c4c9965a5c66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
