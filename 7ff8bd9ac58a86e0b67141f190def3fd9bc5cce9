@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ceff50b_b090222f",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T10:48:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18cd439c_40f65db8",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 23
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9b76f81_174024f4",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8adf2d77_f12df43c",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T10:48:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9b76f81_174024f4",
+      "range": {
+        "startLine": 303,
+        "startChar": 7,
+        "endLine": 306,
+        "endChar": 53
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef4e1edb_ca2b788b",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-05-04T16:32:50Z",
       "side": 1,
       "message": "```suggestion\n        timeout \u003d std::min(timeout, remaining_time);\n```",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 336,
+        "endChar": 70
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adaecaed_a70931de",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T10:48:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef4e1edb_ca2b788b",
       "range": {
         "startLine": 336,
         "startChar": 8,
