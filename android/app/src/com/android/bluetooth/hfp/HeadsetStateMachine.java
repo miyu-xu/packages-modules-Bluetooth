@@ -784,6 +784,9 @@ class HeadsetStateMachine extends StateMachine {
                 case DEVICE_STATE_CHANGED:
                     stateLogD("ignoring DEVICE_STATE_CHANGED event");
                     break;
+                case SEND_CLCC_RESPONSE:
+                    processSendClccResponse((HeadsetClccResponse) message.obj);
+                    break;
                 case STACK_EVENT:
                     HeadsetStackEvent event = (HeadsetStackEvent) message.obj;
                     stateLogD("STACK_EVENT: " + event);

@@ -364,6 +364,16 @@ public class HeadsetService extends ProfileService {
         }
     }
 
+    private void doForEachConnectedOrConnectingStateMachine(List<StateMachineTask> tasks) {
+        synchronized (mStateMachines) {
+            for (BluetoothDevice device : getConnectedOrConnectingDevices()) {
+                for (StateMachineTask task : tasks) {
+                    task.execute(mStateMachines.get(device));
+                }
+            }
+        }
+    }
+
     void onDeviceStateChanged(HeadsetDeviceState deviceState) {
         doForEachConnectedStateMachine(
                 stateMachine ->
@@ -935,6 +945,21 @@ public class HeadsetService extends ProfileService {
         synchronized (mStateMachines) {
             for (HeadsetStateMachine stateMachine : mStateMachines.values()) {
                 if (stateMachine.getConnectionState() == STATE_CONNECTED) {
+                    devices.add(stateMachine.getDevice());
+                }
+            }
+        }
+        return devices;
+    }
+
+    public List<BluetoothDevice> getConnectedOrConnectingDevices() {
+        ArrayList<BluetoothDevice> devices = new ArrayList<>();
+        int connectionState = BluetoothProfile.STATE_DISCONNECTED;
+        synchronized (mStateMachines) {
+            for (HeadsetStateMachine stateMachine : mStateMachines.values()) {
+                connectionState = stateMachine.getConnectionState();
+                if (connectionState == BluetoothProfile.STATE_CONNECTED
+                        || connectionState == BluetoothProfile.STATE_CONNECTING) {
                     devices.add(stateMachine.getDevice());
                 }
             }
@@ -2130,7 +2155,7 @@ public class HeadsetService extends ProfileService {
                                 new HeadsetClccResponse(
                                         index, direction, status, mode, mpty, number, type)));
         if (index == CLCC_END_MARK_INDEX) {
-            doForEachConnectedStateMachine(mPendingClccResponses);
+            doForEachConnectedOrConnectingStateMachine(mPendingClccResponses);
             mPendingClccResponses.clear();
         }
     }
