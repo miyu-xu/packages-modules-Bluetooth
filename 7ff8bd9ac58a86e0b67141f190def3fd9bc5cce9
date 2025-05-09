@@ -163,6 +163,30 @@
       },
       "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6d6684a_db75b541",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T10:50:20Z",
+      "side": 1,
+      "message": "we cant use it as pointer in src file. we have seen race condition where RX pkts seen immediately after start hci module and lead to crash",
+      "parentUuid": "5372a11d_9e7674ed",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 4
+      },
+      "revId": "7ff8bd9ac58a86e0b67141f190def3fd9bc5cce9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
