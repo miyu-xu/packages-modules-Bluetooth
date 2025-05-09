@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05a7d127_d31a974e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1733,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91272674_a523b523",
+      "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7419748_84236739",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-05-03T20:31:24Z",
       "side": 1,
       "message": "Should we switch from Low to High instead since all are low followed by high?",
+      "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bd9e4db_a6b7fd2a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7419748_84236739",
       "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11f7e49f_9fe81602",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1765,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d16f8b2d_8565262e",
+      "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d588d54_4c81f7e7",
@@ -65,6 +119,24 @@
       "writtenOn": "2025-05-03T20:31:24Z",
       "side": 1,
       "message": "```suggestion\n        // Get High RSSI Threshold for the scan client\n```",
+      "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f559163a_40413282",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1778,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d588d54_4c81f7e7",
       "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84c06d8c_8ed1d975",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fe15cfb_69f78901",
+      "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "146954a3_9691e2a8",
@@ -99,6 +189,24 @@
       "writtenOn": "2025-05-03T20:31:24Z",
       "side": 1,
       "message": "```suggestion\n        private int mRssiLowThreshold \u003d Byte.MAX_VALUE;\n```",
+      "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "494fb9e1_8f6191b6",
+        "filename": "framework/java/android/bluetooth/le/ScanSettings.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-09T13:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "146954a3_9691e2a8",
       "revId": "21b7f87316f8b7f7cfa7e916c57355db4053ba1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
