@@ -288,6 +288,30 @@
       "parentUuid": "021ba174_ffbd91b5",
       "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2228e0bc_a94ef750",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-05-09T13:58:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dfdaa64_e769752b",
+      "range": {
+        "startLine": 350,
+        "startChar": 10,
+        "endLine": 350,
+        "endChar": 27
+      },
+      "revId": "54c8633b69ecfac86bf4f67a5effa74e913bfe59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
