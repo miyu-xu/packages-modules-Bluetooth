@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616cd5e9_8826fbb5",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(conferenceCall);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 995,
+        "startChar": 0,
+        "endLine": 995,
+        "endChar": 60
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c3c6445_2ecf1faa",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(activeCall_3);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4753f84_517b411e",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(activeCall_3);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c7961f7_f3f06557",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(activeCall_3);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe1f89b_ea81f9ae",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(activeCall_3);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f868b58_59e97bb5",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(activeCall_3);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ba17526_bf58b95e",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: no suitable method found for onCallAdded(BluetoothCall)\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    no suitable method found for onCallAdded(BluetoothCall)\n            mBluetoothInCallService.onCallAdded(activeCall_3);\n                                   ^\n        method BluetoothInCallService.onCallAdded(HeadsetService,BluetoothCall) is not applicable\n          (actual and formal argument lists differ in length)\n        method BluetoothInCallService.onCallAdded(Call) is not applicable\n          (argument mismatch; BluetoothCall cannot be converted to Call)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 58
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfedff39_45c8b648",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: method processChld in class BluetoothInCallService cannot be applied to given types;\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    method processChld in class BluetoothInCallService cannot be applied to given types;\n            boolean didProcess \u003d mBluetoothInCallService.processChld(CHLD_TYPE_ADDHELDTOCONF);\n                                                        ^\n      required: HeadsetService,int\n      found:    int\n      reason: actual and formal argument lists differ in length\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1010,
+        "startChar": 0,
+        "endLine": 1010,
+        "endChar": 90
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "018cb01b_826f06e9",
+        "filename": "android/app/tests/instrumentation/com/android/bluetooth/telephony/BluetoothInCallServiceTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-12T06:02:06Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: method processChld in class BluetoothInCallService cannot be applied to given types;\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    method processChld in class BluetoothInCallService cannot be applied to given types;\n            boolean didProcess \u003d mBluetoothInCallService.processChld(CHLD_TYPE_ADDHELDTOCONF);\n                                                        ^\n      required: HeadsetService,int\n      found:    int\n      reason: actual and formal argument lists differ in length\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P92436489/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 1010,
+        "startChar": 0,
+        "endLine": 1010,
+        "endChar": 90
+      },
+      "revId": "8cc7f34876f8a46ca8c58aa20d991dc7172adee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
