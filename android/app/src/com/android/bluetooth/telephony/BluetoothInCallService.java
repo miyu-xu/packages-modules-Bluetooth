@@ -1168,6 +1168,7 @@ public class BluetoothInCallService extends InCallService {
                 heldCall.disconnect();
                 return true;
             }
+            return true;
         } else if (chld == CHLD_TYPE_RELEASEACTIVE_ACCEPTHELD) {
             if (mCallInfo.isNullCall(activeCall)
                     && mCallInfo.isNullCall(ringingCall)
@@ -1210,6 +1211,7 @@ public class BluetoothInCallService extends InCallService {
                 activeCall.hold();
                 return true;
             }
+            return true;
         } else if (chld == CHLD_TYPE_ADDHELDTOCONF) {
             if (!mCallInfo.isNullCall(activeCall)) {
                 if (activeCall.can(Connection.CAPABILITY_MERGE_CONFERENCE)) {
@@ -1224,6 +1226,7 @@ public class BluetoothInCallService extends InCallService {
                     }
                 }
             }
+            return true;
         }
         return false;
     }
