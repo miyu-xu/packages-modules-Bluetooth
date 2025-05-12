@@ -1341,6 +1341,13 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * - {@link BluetoothHeadset#HFP_CONNECTION_SDP}
      * - {@link BluetoothHeadset#HFP_CONNECTION_FAIL_RFCOMM}
      * - {@link BluetoothHeadset#HFP_CONNECTION_FAIL_RESOURCES}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_SUCCESS}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_FAIL}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_SDP}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_STREAM}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_RESOURCES}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_ROLE}
+     * - {@link BluetoothA2dp#A2DP_CONNECTION_FAIL_GET_CAP}
      * @hide
      */
     public static final String EXTRA_DISCONNECTED_REASON =

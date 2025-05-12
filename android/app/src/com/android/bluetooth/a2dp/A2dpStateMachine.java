@@ -98,6 +98,7 @@ final class A2dpStateMachine extends StateMachine {
     private int mConnectionState = STATE_DISCONNECTED;
     private int mLastConnectionState = -1;
     private BluetoothCodecStatus mCodecStatus;
+    private int mReason = 0;
 
     A2dpStateMachine(
             A2dpService a2dpService,
@@ -360,8 +361,10 @@ final class A2dpStateMachine extends StateMachine {
                         Log.wtf(TAG, "Device(" + mDevice + "): event mismatch: " + event);
                     }
                     switch (event.type) {
-                        case A2dpStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED ->
+                        case A2dpStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED -> {
+                                mReason = event.reason;
                                 processConnectionEvent(event.valueInt);
+                        }
                         case A2dpStackEvent.EVENT_TYPE_CODEC_CONFIG_CHANGED ->
                                 processCodecConfigEvent(event.codecStatus);
                         default -> Log.e(TAG, "Connecting: ignoring stack event: " + event);
@@ -746,6 +749,9 @@ final class A2dpStateMachine extends StateMachine {
         intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, prevState);
         intent.putExtra(BluetoothProfile.EXTRA_STATE, newState);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mDevice);
+        if (newState == BluetoothProfile.STATE_DISCONNECTED && prevState == BluetoothProfile.STATE_CONNECTING) {
+            intent.putExtra(BluetoothDevice.EXTRA_DISCONNECTED_REASON, mReason);
+        }
         intent.addFlags(
                 Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);

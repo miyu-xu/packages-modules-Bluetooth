@@ -268,6 +268,63 @@ public final class BluetoothA2dp implements BluetoothProfile {
      */
     @SystemApi public static final int DYNAMIC_BUFFER_SUPPORT_A2DP_SOFTWARE_ENCODING = 2;
 
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+        prefix = {"A2DP_CONNECTION_"},
+        value = {
+            A2DP_CONNECTION_SUCCESS,
+            A2DP_CONNECTION_FAIL,
+            A2DP_CONNECTION_FAIL_SDP,
+            A2DP_CONNECTION_FAIL_STREAM,
+            A2DP_CONNECTION_FAIL_RESOURCES,
+            A2DP_CONNECTION_FAIL_ROLE,
+            A2DP_CONNECTION_FAIL_GET_CAP,
+        })
+    public @interface A2dpConnection {}
+
+    /**
+     * A2DP successful operation
+     *
+     */
+    public static final int A2DP_CONNECTION_SUCCESS = 0;
+
+    /**
+     * A2DP generic failure
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL = 1;
+
+    /**
+     * A2DP service not found
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_SDP = 2;
+
+    /**
+     * A2DP stream connection failed
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_STREAM = 3;
+
+    /**
+     * A2DP no resources
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_RESOURCES = 4;
+
+    /**
+     * A2DP failed due to role management related issues
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_ROLE = 5;
+
+    /**
+     * A2DP get capability failed due to no SEP available on the peer
+     *
+     */
+    public static final int A2DP_CONNECTION_FAIL_GET_CAP = 6;
+
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
 
