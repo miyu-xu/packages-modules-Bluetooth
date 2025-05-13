@@ -77,6 +77,8 @@ void SyspropsModule::parse_config(std::string file_path) {
           "bluetooth.device_id.vendor_id",
           "bluetooth.device_id.vendor_id_source",
           "persist.bluetooth.inq_by_rssi",
+          "bluetooth.core.disable_packet_boundary",
+          "bluetooth.core.disable_sniff_mode",
           // BR/EDR
           "bluetooth.core.classic.page_scan_type",
           "bluetooth.core.classic.page_scan_interval",
