@@ -1489,6 +1489,10 @@ class HeadsetStateMachine extends StateMachine {
                             break;
                         }
                         stateLogW("CONNECT_TIMEOUT");
+                        mSystemInterface.getAudioManager().setA2dpSuspended(false);
+                        if (isAtLeastU()) {
+                            mSystemInterface.getAudioManager().setLeAudioSuspended(false);
+                        }
                         transitionTo(mConnected);
                         break;
                     }
