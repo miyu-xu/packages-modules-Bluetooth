@@ -138,7 +138,7 @@ public class BluetoothInCallService extends InCallService {
     private static final int CHLD_TYPE_ADDHELDTOCONF = 3;
 
     // Indicates that no BluetoothCall is ringing
-    private static final int DEFAULT_RINGING_ADDRESS_TYPE = 128;
+    private static final int DEFAULT_RINGING_ADDRESS_TYPE = PhoneNumberUtils.TOA_Unknown;
 
     private int mNumActiveCalls = 0;
     private int mNumHeldCalls = 0;
