@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "572ee7e1_84e51f31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-05-14T09:34:22Z",
+      "side": 1,
+      "message": "We are not disabling these on Android, but making them configurable.",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d97f8ca_39fe3892",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-05-14T09:34:22Z",
+      "side": 1,
+      "message": "We shall remove this if the packet boundary can be configured by sysprop. Please help enable the prop for AC7265 in process_flex_bluetooth_overrides, thanks.",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf29f5eb_86291554",
         "filename": "system/gd/hci/controller.cc",
         "patchSetId": 1
@@ -36,6 +82,52 @@
         "startChar": 25,
         "endLine": 384,
         "endChar": 46
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03abc6ef_8b84241f",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-05-14T09:34:22Z",
+      "side": 1,
+      "message": "The default value should be false",
+      "range": {
+        "startLine": 384,
+        "startChar": 89,
+        "endLine": 384,
+        "endChar": 93
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bd0722b_b8bccfff",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-05-14T09:34:22Z",
+      "side": 1,
+      "message": "The default value should be false",
+      "range": {
+        "startLine": 390,
+        "startChar": 84,
+        "endLine": 390,
+        "endChar": 88
       },
       "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
