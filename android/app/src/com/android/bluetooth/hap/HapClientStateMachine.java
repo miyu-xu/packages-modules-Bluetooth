@@ -208,11 +208,11 @@ final class HapClientStateMachine extends StateMachine {
 
             switch (message.what) {
                 case MESSAGE_CONNECT -> {
-                    if (!mNativeInterface.connectHapClient(mDevice)) {
-                        Log.e(TAG, mStateLog + "native cannot connect");
-                        break;
-                    }
                     if (mService.okToConnect(mDevice)) {
+                        if (!mNativeInterface.connectHapClient(mDevice)) {
+                            Log.e(TAG, "Disconnected: error connecting to " + mDevice);
+                            break;
+                        }
                         transitionTo(mConnecting);
                     } else {
                         Log.w(TAG, mStateLog + "outgoing connect request rejected");
