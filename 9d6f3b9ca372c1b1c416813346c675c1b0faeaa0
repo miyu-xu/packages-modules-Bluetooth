@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27b16e9_9fa998ba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "Ah, thanks for pointing that out, I\u0027ll resubmit the CL under that repo",
+      "parentUuid": "9de258bb_77444dac",
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "572ee7e1_84e51f31",
@@ -41,6 +59,47 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6493c3d_7af246be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "572ee7e1_84e51f31",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d63e29e4_afa7b8ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "Replied to comments, but lets review the googleplex-android version of this CL: http://ag/33558344. Thanks!",
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d97f8ca_39fe3892",
@@ -54,6 +113,30 @@
       "writtenOn": "2025-05-14T09:34:22Z",
       "side": 1,
       "message": "We shall remove this if the packet boundary can be configured by sysprop. Please help enable the prop for AC7265 in process_flex_bluetooth_overrides, thanks.",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35a2f693_947e94bb",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "I have a WIP CL for chipsets this would apply to (https://crrev.com/c/6542535), but I don\u0027t think this code would run for non-reven boards. It might be safer to leave it in... or enable the sysprop in place where it would be run chromeOS wide. Let me know what you think",
+      "parentUuid": "6d97f8ca_39fe3892",
       "range": {
         "startLine": 375,
         "startChar": 0,
@@ -110,6 +193,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77319e37_f520be54",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "03abc6ef_8b84241f",
+      "range": {
+        "startLine": 384,
+        "startChar": 89,
+        "endLine": 384,
+        "endChar": 93
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4c2f116_b50cece5",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "Yes, the concern is that this fix will apply to 5 chipsets (and could be expanded), all related to flex. Since the current conditional requires 3 checks to confirm one chip, I was worried putting specific chipset details in the controller here wouldn\u0027t scale well.\n\nI\u0027ll see how the android maintainers feel about it in the new CL",
+      "parentUuid": "cf29f5eb_86291554",
+      "range": {
+        "startLine": 384,
+        "startChar": 25,
+        "endLine": 384,
+        "endChar": 46
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bd0722b_b8bccfff",
@@ -123,6 +254,30 @@
       "writtenOn": "2025-05-14T09:34:22Z",
       "side": 1,
       "message": "The default value should be false",
+      "range": {
+        "startLine": 390,
+        "startChar": 84,
+        "endLine": 390,
+        "endChar": 88
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91d8e111_3dfec157",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-14T20:18:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1bd0722b_b8bccfff",
       "range": {
         "startLine": 390,
         "startChar": 84,
