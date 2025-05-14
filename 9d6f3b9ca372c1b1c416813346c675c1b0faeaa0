@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9de258bb_77444dac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-05-14T08:36:57Z",
+      "side": 1,
+      "message": "Thanks! But we don\u0027t directly submit codes to aosp now. \nI think the go/repo-init/main-without-vendor section in go/aosp-main-turndown-faq works for you. In particular, the repo should be googleplex-android instead of aosp.",
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf29f5eb_86291554",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2025-05-14T08:36:57Z",
+      "side": 1,
+      "message": "From the comments of the previous CL (aosp/3217591?tab\u003dcomments), it looks like the android maintainers prefers if we can specify the chipset here rather than using sysprop. Do we need this only on a certain chipset or it is needed in some of them?\n\nNote that I don\u0027t object to either of the approaches.",
+      "range": {
+        "startLine": 384,
+        "startChar": 25,
+        "endLine": 384,
+        "endChar": 46
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
