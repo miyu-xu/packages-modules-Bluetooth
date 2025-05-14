@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7a2fb8_4539a062",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-14T11:16:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c9ddcd7_8a7d54b7",
+      "revId": "906b7b752a217de9a5d195a2f87c4c9965a5c66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f410770_2bfa0566",
@@ -48,6 +66,24 @@
       "writtenOn": "2025-05-09T16:27:56Z",
       "side": 1,
       "message": "```suggestion\n  Microseconds gmt_offset_us \u003d 0;\n```",
+      "revId": "906b7b752a217de9a5d195a2f87c4c9965a5c66a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00148eb0_db069650",
+        "filename": "system/gd/hal/snoop_logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-05-14T11:16:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f410770_2bfa0566",
       "revId": "906b7b752a217de9a5d195a2f87c4c9965a5c66a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
