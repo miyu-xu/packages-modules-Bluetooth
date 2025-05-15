@@ -171,6 +171,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e511f5c_60300046",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-15T17:03:32Z",
+      "side": 1,
+      "message": "Oh that\u0027s convenient, Let\u0027s do that then. I posted my thoughts on the other CL",
+      "parentUuid": "6e49d7ab_1ef18778",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf29f5eb_86291554",
@@ -255,6 +279,30 @@
       "side": 1,
       "message": "Yes, the concern is that this fix will apply to 5 chipsets (and could be expanded), all related to flex. Since the current conditional requires 3 checks to confirm one chip, I was worried putting specific chipset details in the controller here wouldn\u0027t scale well.\n\nI\u0027ll see how the android maintainers feel about it in the new CL",
       "parentUuid": "cf29f5eb_86291554",
+      "range": {
+        "startLine": 384,
+        "startChar": 25,
+        "endLine": 384,
+        "endChar": 46
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0082f39_6bd44685",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 3613104
+      },
+      "writtenOn": "2025-05-15T17:03:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4c2f116_b50cece5",
       "range": {
         "startLine": 384,
         "startChar": 25,
