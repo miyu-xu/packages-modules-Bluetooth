@@ -16,6 +16,24 @@
       "message": "Please add unit test for this case for HapClientStateMachine.\n\nSteps included:\n1. Connection policy is set to FORBIDDEN\n2. State machine receives CONNECT message\n3. Check if SM didn\u0027t transition to CONNECTING state (stays at DISCONNECTED)",
       "revId": "863af938e2bdec8062d8cf3d288bb0c5507da87a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1f30c5c_bcade647",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3446464
+      },
+      "writtenOn": "2025-05-15T10:17:04Z",
+      "side": 1,
+      "message": "in step 3, we\u0027d like to test also (and this is in fact more important) to verify that `connectHapClient` was not called.",
+      "parentUuid": "d83cde7f_650c8060",
+      "revId": "863af938e2bdec8062d8cf3d288bb0c5507da87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
