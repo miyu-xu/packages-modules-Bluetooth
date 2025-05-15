@@ -149,6 +149,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e49d7ab_1ef18778",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2025-05-15T00:45:58Z",
+      "side": 1,
+      "message": "\u003e but I don\u0027t think this code would run for non-reven boards.\n\nSo it actually does: https://crrev.com/c/4807457. Using something like process_flex_bluetooth_overrides (i.e. detect the chip during runtime) is just easier than manipulating overlay, and even more accurate.",
+      "parentUuid": "35a2f693_947e94bb",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "9d6f3b9ca372c1b1c416813346c675c1b0faeaa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf29f5eb_86291554",
         "filename": "system/gd/hci/controller.cc",
         "patchSetId": 1
