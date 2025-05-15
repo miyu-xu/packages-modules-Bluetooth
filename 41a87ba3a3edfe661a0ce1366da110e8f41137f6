@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4511311e_8217eb6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-05-15T18:17:10Z",
+      "side": 1,
+      "message": "The bug description says \"Some remote devices only work for incoming SMP pair procedure, they don\u0027t response any host\u0027s request commands. If host starts outgoing SMP, smp statemachine would block\".\nCan you clarify the above bug description in more detail? Is this BT stack\u0027s fix intended for the remote devices running on Android BT stack?",
+      "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
