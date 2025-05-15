@@ -20,6 +20,7 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioDeviceAttributes;
@@ -182,6 +183,17 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
 
         mAudioManager.registerAudioDeviceCallback(this, null);
 
+        BluetoothManager btManager = (BluetoothManager) ((Context) mAdapterService).getSystemService(Context.BLUETOOTH_SERVICE);
+        if (btManager == null) {
+            Log.e(TAG, "BluetoothManager instance is null");
+            return;
+        }
+        BluetoothAdapter btAdapter = btManager.getAdapter();
+        if (btAdapter == null) {
+            Log.e(TAG, "BluetoothAdapter instance is null");
+            return;
+        }
+
         // Load the stored volume preferences into a hash map since shared preferences are slow
         // to poll and update. If the device has been unbonded since last start remove it from
         // the map.
@@ -190,7 +202,7 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
         for (Map.Entry<String, ?> entry : allKeys.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
-            BluetoothDevice d = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(key);
+            BluetoothDevice d = btAdapter.getRemoteDevice(key);
 
             if (value instanceof Integer
                     && mAdapterService.getBondState(d) == BluetoothDevice.BOND_BONDED) {
@@ -438,10 +450,19 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
                         "    %-17s : %-14s : %3s : %s\n",
                         "Device Address", "Device Name", "Vol", "AbsVol"));
         Map<String, ?> allKeys = getVolumeMap().getAll();
+        BluetoothManager btManager = (BluetoothManager) ((Context) mAdapterService).getSystemService(Context.BLUETOOTH_SERVICE);
+        if (btManager == null) {
+            Log.e(TAG, "BluetoothManager instance is null");
+            return;
+        }
+        BluetoothAdapter btAdapter = btManager.getAdapter();
+        if (btAdapter == null) {
+            Log.e(TAG, "BluetoothAdapter instance is null");
+            return;
+        }
         for (Map.Entry<String, ?> entry : allKeys.entrySet()) {
             Object value = entry.getValue();
-            BluetoothDevice d =
-                    BluetoothAdapter.getDefaultAdapter().getRemoteDevice(entry.getKey());
+            BluetoothDevice d = btAdapter.getRemoteDevice(entry.getKey());
 
             String deviceName = mAdapterService.getRemoteName(d);
             if (deviceName == null) {
