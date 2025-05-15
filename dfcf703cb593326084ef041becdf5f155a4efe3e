@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c5bdce_b61f2e4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-05-15T07:17:31Z",
+      "side": 1,
+      "message": "Thank you for the update.\nWhen we where delivering similar fix for LeAudioStateMachine we created a unit test for this: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3416762/3/android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioStateMachineTest.java\n\n\nWould it be possible for you to create similar for those two services?",
+      "revId": "dfcf703cb593326084ef041becdf5f155a4efe3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613b0c20_9328651a",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-05-15T07:17:31Z",
+      "side": 1,
+      "message": "DISCONNECT -\u003e MESSAGE_DISCONNECT",
+      "fixSuggestions": [
+        {
+          "fixId": "697c41f4_bc01d321",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlStateMachine.java",
+              "range": {
+                "startLine": 245,
+                "startChar": 0,
+                "endLine": 246,
+                "endChar": 0
+              },
+              "replacement": "                            \u0026\u0026 !hasDeferredMessages(MESSAGE_DISCONNECT)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dfcf703cb593326084ef041becdf5f155a4efe3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
