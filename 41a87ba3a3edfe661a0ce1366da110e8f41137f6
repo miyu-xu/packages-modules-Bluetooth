@@ -16,6 +16,24 @@
       "message": "The bug description says \"Some remote devices only work for incoming SMP pair procedure, they don\u0027t response any host\u0027s request commands. If host starts outgoing SMP, smp statemachine would block\".\nCan you clarify the above bug description in more detail? Is this BT stack\u0027s fix intended for the remote devices running on Android BT stack?",
       "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58130163_108d7de6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2025-05-16T02:19:57Z",
+      "side": 1,
+      "message": "Hi,\n\nIn worked log, I figured out that the remote started pair REQ first, it handled the case well. In failed logs, host started pairing REQ first, then remote sent pairing REQ, but remote didn’t response host’s REQ. And host also rejected pairing request when there was an on-going SMP pairing.\n\n For solving such IoT issue, I uploaded this solution that disabled outgoing SMP for this device.\n\n344   /* reject the pairing request if there is an on-going SMP pairing */\n345   if (SMP_OPCODE_PAIRING_REQ \u003d\u003d cmd) {\n346     if ((p_cb-\u003estate \u003d\u003d SMP_STATE_IDLE) \u0026\u0026 (p_cb-\u003ebr_state \u003d\u003d SMP_BR_STATE_IDLE)) {",
+      "parentUuid": "4511311e_8217eb6f",
+      "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
