@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "088f4262_7237cceb",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-16T04:45:44Z",
+      "side": 1,
+      "message": "I see this was added by the a2dp cl",
+      "range": {
+        "startLine": 1337,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 65
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d6e1528d_a4e14dd2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothDevice.java",
+              "range": {
+                "startLine": 1337,
+                "startChar": 0,
+                "endLine": 1344,
+                "endChar": 0
+              },
+              "replacement": "     * Used as an int extra field in {@link\n     * android.bluetooth.BluetoothHeadset#ACTION_CONNECTION_STATE_CHANGED} intents for connection\n     * failure reason. Possible value are : - {@link\n     * android.bluetooth.BluetoothHeadset#HFP_CONNECTION_SUCCESS} - {@link\n     * android.bluetooth.BluetoothHeadset#HFP_CONNECTION_SDP} - {@link\n     * android.bluetooth.BluetoothHeadset#HFP_CONNECTION_FAIL_RFCOMM} - {@link\n     * android.bluetooth.BluetoothHeadset#HFP_CONNECTION_FAIL_RESOURCES}\n     *\n"
+            }
+          ]
+        }
+      ],
+      "revId": "33244fa633c85ae24045694cecd40ca510cb65cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05038a77_32296562",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-16T04:45:44Z",
+      "side": 1,
+      "message": "Do we want to make the failures more generic and remove the HFP prefix since this is in BluetoothHeadset?",
+      "range": {
+        "startLine": 325,
+        "startChar": 22,
+        "endLine": 325,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "19fe7304_2277541a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 318,
+                "startChar": 0,
+                "endLine": 319,
+                "endChar": 0
+              },
+              "replacement": "        prefix \u003d {\"CONNECTION_\"},\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 324,
+                "endChar": 0
+              },
+              "replacement": "            CONNECTION_SUCCESS,\n            CONNECTION_SDP,\n            CONNECTION_FAIL_RFCOMM,\n            CONNECTION_FAIL_RESOURCES,\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 325,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "    public @interface Connection {}\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 328,
+                "startChar": 0,
+                "endLine": 329,
+                "endChar": 0
+              },
+              "replacement": "     * Successful operation\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 331,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": "    public static final int CONNECTION_SUCCESS \u003d 0;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 334,
+                "startChar": 0,
+                "endLine": 335,
+                "endChar": 0
+              },
+              "replacement": "     * Open failed due to SDP\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 337,
+                "startChar": 0,
+                "endLine": 338,
+                "endChar": 0
+              },
+              "replacement": "    public static final int CONNECTION_SDP \u003d 1;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 340,
+                "startChar": 0,
+                "endLine": 341,
+                "endChar": 0
+              },
+              "replacement": "     * Open failed due to RFCOMM\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 343,
+                "startChar": 0,
+                "endLine": 344,
+                "endChar": 0
+              },
+              "replacement": "    public static final int CONNECTION_FAIL_RFCOMM \u003d 2;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 346,
+                "startChar": 0,
+                "endLine": 347,
+                "endChar": 0
+              },
+              "replacement": "     * Out of resources failure\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/BluetoothHeadset.java",
+              "range": {
+                "startLine": 349,
+                "startChar": 0,
+                "endLine": 350,
+                "endChar": 0
+              },
+              "replacement": "    public static final int CONNECTION_FAIL_RESOURCES \u003d 3;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "33244fa633c85ae24045694cecd40ca510cb65cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
