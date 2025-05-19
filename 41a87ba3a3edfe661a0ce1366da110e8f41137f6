@@ -34,6 +34,24 @@
       "parentUuid": "4511311e_8217eb6f",
       "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2960b42_3ced74c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3782546
+      },
+      "writtenOn": "2025-05-19T19:15:10Z",
+      "side": 1,
+      "message": "To confirm - Is this IOP issue only applicable for SMP over BR/EDR transport and not for SMP over BLE?",
+      "parentUuid": "58130163_108d7de6",
+      "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
