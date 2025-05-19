@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "994312ed_ac618da3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-05-19T06:53:47Z",
+      "side": 1,
+      "message": "We\u0027ll push the change again based on your suggestions.",
+      "revId": "33244fa633c85ae24045694cecd40ca510cb65cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "088f4262_7237cceb",
@@ -38,6 +55,30 @@
           ]
         }
       ],
+      "revId": "33244fa633c85ae24045694cecd40ca510cb65cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ecda1f_80742ba4",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 2059298
+      },
+      "writtenOn": "2025-05-19T06:53:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "088f4262_7237cceb",
+      "range": {
+        "startLine": 1337,
+        "startChar": 0,
+        "endLine": 1347,
+        "endChar": 65
+      },
       "revId": "33244fa633c85ae24045694cecd40ca510cb65cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
