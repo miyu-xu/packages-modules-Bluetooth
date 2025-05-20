@@ -52,6 +52,24 @@
       "parentUuid": "58130163_108d7de6",
       "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ecf674_8d76d3fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2025-05-20T08:55:11Z",
+      "side": 1,
+      "message": "Yes, this IoT issue only applicable for SMP over BR/EDR.",
+      "parentUuid": "d2960b42_3ced74c7",
+      "revId": "41a87ba3a3edfe661a0ce1366da110e8f41137f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
