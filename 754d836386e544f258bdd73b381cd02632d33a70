@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7924aa04_cc8b9edc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1303,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-05-20T17:17:35Z",
+      "side": 1,
+      "message": "We\u0027re already suspending these in CONNECT_AUDIO: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;drc\u003d6ab898926a285b57998eaaf2a97db34b49a1dee1;l\u003d1358.  They should be suspended before entering Connected",
+      "range": {
+        "startLine": 1303,
+        "startChar": 55,
+        "endLine": 1303,
+        "endChar": 71
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "40b15a7e_36ba3603",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 1301,
+                "startChar": 0,
+                "endLine": 1308,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 1365,
+                "startChar": 0,
+                "endLine": 1368,
+                "endChar": 0
+              },
+              "replacement": "                    if (!mSystemInterface.isInCall() \u0026\u0026 !mSystemInterface.isRinging()) {\n                        mSystemInterface.getAudioManager().setA2dpSuspended(true);\n                        if (isAtLeastU()) {\n                            mSystemInterface.getAudioManager().setLeAudioSuspended(true);\n                        }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 1385,
+                "startChar": 0,
+                "endLine": 1388,
+                "endChar": 0
+              },
+              "replacement": "                        if (!mSystemInterface.isInCall() \u0026\u0026 !mSystemInterface.isRinging()) {\n                            mSystemInterface.getAudioManager().setA2dpSuspended(false);\n                            if (isAtLeastU()) {\n                                mSystemInterface.getAudioManager().setLeAudioSuspended(false);\n                            }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "754d836386e544f258bdd73b381cd02632d33a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
