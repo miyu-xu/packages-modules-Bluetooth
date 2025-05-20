@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e16d801_009b3fd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-05-20T14:10:18Z",
+      "side": 1,
+      "message": "LGTM,Please run unit test to verify if all works just fine \n\natest LeAudioServiceTest\n\nAlso please use following format in commit message.\nAlso please put some justification into commit message on \"why\" we want this fix.\n\nBug:  418931599\nTest: atest LeAudioServiceTest\nFlag: EXEMPT, day-to-day fix",
+      "revId": "81166d4564bd1609c43f37044f6b342287e8022e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
