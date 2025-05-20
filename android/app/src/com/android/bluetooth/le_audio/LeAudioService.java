@@ -3492,7 +3492,7 @@ public class LeAudioService extends ProfileService {
                             deviceDescriptor.mAclConnected = false;
 
                             if (isScannerNeeded()) {
-                                mScanCallback.startBackgroundScan();
+                                mHandler.post(() -> mScanCallback.startBackgroundScan());
                             }
 
                             boolean disconnectDueToUnbond =
@@ -4917,7 +4917,7 @@ public class LeAudioService extends ProfileService {
         }
 
         if (isScannerNeeded()) {
-            mScanCallback.startBackgroundScan();
+            mHandler.post(() -> mScanCallback.startBackgroundScan());
         }
     }
 
@@ -5033,7 +5033,7 @@ public class LeAudioService extends ProfileService {
         if (mBluetoothEnabled) {
             setAuthorizationForRelatedProfiles(device, true);
             if (isScannerNeeded()) {
-                mScanCallback.startBackgroundScan();
+                mHandler.post(() -> mScanCallback.startBackgroundScan());
             }
         }
     }
