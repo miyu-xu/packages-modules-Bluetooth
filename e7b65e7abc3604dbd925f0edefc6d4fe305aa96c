@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56d41348_3f667e30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-05-21T14:48:31Z",
+      "side": 1,
+      "message": "LGTM. It follows the existing pattern used for fixing this known issue of checking state when the state machine is in transition (already fixed for a2dp, hearing_aids).",
+      "revId": "e7b65e7abc3604dbd925f0edefc6d4fe305aa96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
