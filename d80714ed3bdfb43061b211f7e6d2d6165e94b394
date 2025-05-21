@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fa046e_1d14fb50",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-05-21T12:35:12Z",
+      "side": 1,
+      "message": "This be a better place to call\n``stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(bd_addr, false);``",
+      "fixSuggestions": [
+        {
+          "fixId": "68666e7b_a8e00b85",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hearing_aid/hearing_aid.cc",
+              "range": {
+                "startLine": 464,
+                "startChar": 0,
+                "endLine": 464,
+                "endChar": 0
+              },
+              "replacement": "    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(address, false);\n"
+            },
+            {
+              "path": "system/bta/hearing_aid/hearing_aid.cc",
+              "range": {
+                "startLine": 470,
+                "startChar": 0,
+                "endLine": 470,
+                "endChar": 0
+              },
+              "replacement": "    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(address, false);\n"
+            },
+            {
+              "path": "system/bta/hearing_aid/hearing_aid.cc",
+              "range": {
+                "startLine": 484,
+                "startChar": 0,
+                "endLine": 484,
+                "endChar": 0
+              },
+              "replacement": "      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(dev_info.address, false);\n"
+            },
+            {
+              "path": "system/bta/hearing_aid/hearing_aid.cc",
+              "range": {
+                "startLine": 1764,
+                "startChar": 0,
+                "endLine": 1764,
+                "endChar": 0
+              },
+              "replacement": "      stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(address, true);\n"
+            },
+            {
+              "path": "system/bta/hearing_aid/hearing_aid.cc",
+              "range": {
+                "startLine": 1838,
+                "startChar": 0,
+                "endLine": 1838,
+                "endChar": 0
+              },
+              "replacement": "    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(hearingDevice-\u003eaddress, false);\n"
+            },
+            {
+              "path": "system/bta/hearing_aid/hearing_aid.cc",
+              "range": {
+                "startLine": 1868,
+                "startChar": 0,
+                "endLine": 1868,
+                "endChar": 0
+              },
+              "replacement": "    stack::l2cap::get_interface().L2CA_LockBleConnParamsForProfileConnection(hearingDevice-\u003eaddress, true);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d80714ed3bdfb43061b211f7e6d2d6165e94b394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36733f87_134ba496",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-05-21T12:35:12Z",
+      "side": 1,
+      "message": "Here, you will lower the connection parameters after initial service discovery for every device that have this UUID avaliable.\n\nIt would not depend on wether the profile is enabled or not.\nCan you please move this call, it should happen when the hearing_aid profile is actually decided to be connected.",
+      "revId": "d80714ed3bdfb43061b211f7e6d2d6165e94b394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
