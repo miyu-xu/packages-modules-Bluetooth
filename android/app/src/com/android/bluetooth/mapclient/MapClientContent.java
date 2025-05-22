@@ -36,6 +36,7 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.util.ArraySet;
 import android.util.Log;
+import android.os.UserManager;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.map.BluetoothMapbMessageMime;
@@ -227,6 +228,13 @@ class MapClientContent {
                         + message.getType()
                         + ", folder="
                         + message.getFolder());
+
+        UserManager mUserManager = mContext.getSystemService(UserManager.class);
+        if (mUserManager != null
+                && mUserManager.getUserRestrictions().getBoolean(UserManager.DISALLOW_SMS)) {
+            debug("SMS function is turned off, discard message type: " + message.getType());
+            return;
+        }
 
         switch (message.getType()) {
             case MMS:
