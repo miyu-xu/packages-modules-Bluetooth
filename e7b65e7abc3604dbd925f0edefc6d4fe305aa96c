@@ -16,6 +16,24 @@
       "message": "LGTM. It follows the existing pattern used for fixing this known issue of checking state when the state machine is in transition (already fixed for a2dp, hearing_aids).",
       "revId": "e7b65e7abc3604dbd925f0edefc6d4fe305aa96c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0057c54b_b3376d6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-05-22T13:41:30Z",
+      "side": 1,
+      "message": "Hi Seongbok Kim,\n\nI took another look, and it seems the current solution applied to other services is as follows:\n\n1) Alongside the existing `private int mLastConnectionState` add the new `private int mConnectionState \u003d STATE_DISCONNECTED`\n2) In each state\u0027s `enter()` routine set the `mConnectionState` member field of the state machine to the newly entered STATE_...\n3) in `getConnectionState()` return `mConnectionState`\n4) in `isConnected()` return \u0027mConnectionState \u003d\u003d STATE_CONNECTED\u0027\n\nThis way we store and compare just the simple integers, and we simplify the `getConnectionState()` implementation to the minimum.\nWould you mind following this practice with your patch. Let me know what do you think. Thank you.",
+      "parentUuid": "56d41348_3f667e30",
+      "revId": "e7b65e7abc3604dbd925f0edefc6d4fe305aa96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
