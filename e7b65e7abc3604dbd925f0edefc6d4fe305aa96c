@@ -34,6 +34,24 @@
       "parentUuid": "56d41348_3f667e30",
       "revId": "e7b65e7abc3604dbd925f0edefc6d4fe305aa96c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c40b60a_0102d1a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2025-05-22T13:42:39Z",
+      "side": 1,
+      "message": "\u003e Hi Seongbok Kim,\n\u003e \n\u003e I took another look, and it seems the current solution applied to other services is as follows:\n\u003e \n\u003e 1) Alongside the existing `private int mLastConnectionState` add the new `private int mConnectionState \u003d STATE_DISCONNECTED`\n\u003e 2) In each state\u0027s `enter()` routine set the `mConnectionState` member field of the state machine to the newly entered STATE_...\n\u003e 3) in `getConnectionState()` return `mConnectionState`\n\u003e 4) in `isConnected()` return \u0027mConnectionState \u003d\u003d STATE_CONNECTED\u0027\n\u003e \n\u003e This way we store and compare just the simple integers, and we simplify the `getConnectionState()` implementation to the minimum.\n\u003e Would you mind following this practice with your patch. Let me know what do you think. Thank you.",
+      "parentUuid": "0057c54b_b3376d6d",
+      "revId": "e7b65e7abc3604dbd925f0edefc6d4fe305aa96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
