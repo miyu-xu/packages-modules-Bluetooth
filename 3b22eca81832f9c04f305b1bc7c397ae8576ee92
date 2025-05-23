@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "386fdab2_0d53a861",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-05-23T18:18:00Z",
+      "side": 1,
+      "message": "Please update bug title, it is currently `Flag Tracking Bug: \u003cflag_name\u003e`.\n(This will break some automation)",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "3b22eca81832f9c04f305b1bc7c397ae8576ee92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40842f15_1a7aac2a",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-05-23T18:18:00Z",
+      "side": 1,
+      "message": "Wrong bugnumber, please use the flag tracking bug",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 19
+      },
+      "revId": "3b22eca81832f9c04f305b1bc7c397ae8576ee92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
