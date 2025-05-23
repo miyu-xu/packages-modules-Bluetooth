@@ -2770,6 +2770,33 @@ public class BluetoothMapContentObserver {
     }
 
     @VisibleForTesting
+    private boolean checkSmsIsLocked(long handle) {
+        boolean locked = false;
+        Uri uri = ContentUris.withAppendedId(Sms.CONTENT_URI, handle);
+        Cursor c = null;
+        try {
+            c = mResolver.query(uri, new String[] { Sms.LOCKED }, null, null, null);
+            if (c != null) {
+                if (c.moveToFirst()) {
+                    if (c.getInt(0)==1) {
+                        locked = true;
+                        Log.w(TAG, "checkSmsIsLocked,locked = " + locked);
+                    }
+                }
+            }
+        } catch (SecurityException e) {
+            Log.e(TAG, "Catching SecurityException : " + e);
+        } catch (CursorWindowAllocationException e) {
+            Log.e(TAG, "Catching CursorWindowAllocationException : " + e);
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return locked;
+    }
+
+    @VisibleForTesting
     boolean deleteMessageSms(long handle) {
         boolean res = false;
         Uri uri = ContentUris.withAppendedId(Sms.CONTENT_URI, handle);
@@ -2890,6 +2917,9 @@ public class BluetoothMapContentObserver {
         } else {
             if (statusValue == BluetoothMapAppParams.STATUS_VALUE_YES) {
                 if (type == TYPE.SMS_GSM || type == TYPE.SMS_CDMA) {
+                    if (checkSmsIsLocked(handle)) {
+                        return false;
+                    }
                     res = deleteMessageSms(handle);
                 } else if (type == TYPE.MMS) {
                     res = deleteMessageMms(handle);
