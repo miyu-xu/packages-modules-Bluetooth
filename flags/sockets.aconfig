@@ -92,3 +92,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "fix_socket_connection_failed_no_callback"
+    namespace: "bluetooth"
+    description: "Fix Rfcomm Socket connection failed but callback not called"
+    bug: "419813061"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
