@@ -93,6 +93,30 @@
       },
       "revId": "3b22eca81832f9c04f305b1bc7c397ae8576ee92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30246bfe_59960d0d",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-05-24T02:02:14Z",
+      "side": 1,
+      "message": "Currect: ag/33721603.",
+      "parentUuid": "4467bdb5_99781159",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 19
+      },
+      "revId": "3b22eca81832f9c04f305b1bc7c397ae8576ee92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
