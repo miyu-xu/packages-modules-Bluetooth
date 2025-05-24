@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fa8122b_9ea49ca2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-05-24T01:36:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "386fdab2_0d53a861",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 14
+      },
+      "revId": "3b22eca81832f9c04f305b1bc7c397ae8576ee92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40842f15_1a7aac2a",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-05-23T18:18:00Z",
       "side": 1,
       "message": "Wrong bugnumber, please use the flag tracking bug",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 19
+      },
+      "revId": "3b22eca81832f9c04f305b1bc7c397ae8576ee92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4467bdb5_99781159",
+        "filename": "flags/sockets.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-05-24T01:36:02Z",
+      "side": 1,
+      "message": "Thanks William, I have changed it to flag to track bugs. By the way, I made a mistake and should not push cl to aosp branch. According to the latest rules, I need to push to internal branch first. Please ignore this cl and focus on cl/33721603. Thanks.",
+      "parentUuid": "40842f15_1a7aac2a",
       "range": {
         "startLine": 100,
         "startChar": 10,
