@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07d13781_121a7c8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045710
+      },
+      "writtenOn": "2025-05-24T01:58:51Z",
+      "side": 1,
+      "message": "Thanks Willaim, and actually i should not push cl to aosp branch. According to the latest rules, I need to push to internal branch first. Please ignore this cl and focus on ag/33722976. Thanks.",
+      "revId": "19f2091c357021cd80b1fefc7d5b967a84eb3c48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
