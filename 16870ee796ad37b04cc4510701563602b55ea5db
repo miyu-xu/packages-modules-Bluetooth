@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98af9b49_f160a36e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4108499
+      },
+      "writtenOn": "2025-05-25T16:04:05Z",
+      "side": 1,
+      "message": "Is there somewhere that says what \"first-party declarations\" mean? I tried to google the AyeAye lints are or AyeAye in general to screen the code but got no results and this means nothing on its face.",
+      "revId": "16870ee796ad37b04cc4510701563602b55ea5db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
