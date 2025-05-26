@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d31d5a3_a26e3623",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-05-26T08:15:35Z",
+      "side": 1,
+      "message": "This CL does not change anything, as this check is done in the function in client.cc, where is the only place where AttachToStream function is called.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3583?q\u003dle_audio%2Fclient.cc\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain",
+      "revId": "489b14cea292268134da32d391d7e49c80116b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
