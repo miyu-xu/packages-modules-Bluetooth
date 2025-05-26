@@ -1279,7 +1279,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
         BluetoothMapMessageListing outList;
         if (appParams == null) {
             appParams = new BluetoothMapAppParams();
-            appParams.setMaxListCount(1024);
+            appParams.setMaxListCount(BluetoothMapUtils.MAX_LIST_COUNT);
             appParams.setStartOffset(0);
         }
 
@@ -1325,7 +1325,7 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
 
         try {
             if (appParams.getMaxListCount() == BluetoothMapAppParams.INVALID_VALUE_PARAMETER) {
-                appParams.setMaxListCount(1024);
+                appParams.setMaxListCount(BluetoothMapUtils.MAX_LIST_COUNT);
             }
 
             if (appParams.getStartOffset() == BluetoothMapAppParams.INVALID_VALUE_PARAMETER) {

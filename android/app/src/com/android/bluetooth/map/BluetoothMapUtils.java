@@ -108,6 +108,12 @@ public class BluetoothMapUtils {
 
     private static boolean mPeerSupportUtcTimeStamp = false;
 
+    static final int PTS_MAX_LIST_COUNT = 1024;
+    static final int DEFAULT_MAX_LIST_COUNT = 100;
+
+    /* limit Max Message as latest 100 messages only */
+    public static int MAX_LIST_COUNT = Utils.isPtsTestMode() ? PTS_MAX_LIST_COUNT : DEFAULT_MAX_LIST_COUNT;
+
     /**
      * This enum is used to convert from the bMessage type property to a type safe type. Hence do
      * not change the names of the enum values.

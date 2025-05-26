@@ -1187,6 +1187,10 @@ public class BluetoothMapAppParams {
     }
 
     public int getMaxListCount() {
+        // limit mMaxListCount if it's bigger than BluetoothMapUtils.MAX_LIST_COUNT
+        if (mMaxListCount > BluetoothMapUtils.MAX_LIST_COUNT) {
+            mMaxListCount = BluetoothMapUtils.MAX_LIST_COUNT;
+        }
         return mMaxListCount;
     }
 

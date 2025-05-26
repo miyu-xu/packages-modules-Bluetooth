@@ -2170,6 +2170,7 @@ public class BluetoothMapContent {
         Cursor emailCursor = null;
         Cursor imCursor = null;
         String limit = "";
+        int countNum = ap.getMaxListCount();
         int offsetNum = ap.getStartOffset();
         if (ap.getMaxListCount() > 0) {
             limit = " LIMIT " + (ap.getMaxListCount() + ap.getStartOffset());
@@ -2191,6 +2192,13 @@ public class BluetoothMapContent {
                     limit = " LIMIT " + ap.getMaxListCount() + " OFFSET " + ap.getStartOffset();
                     Log.d(TAG, "SMS Limit => " + limit);
                     offsetNum = 0;
+                }
+                if ((countNum + offsetNum) > BluetoothMapUtils.MAX_LIST_COUNT) {
+                    countNum = BluetoothMapUtils.MAX_LIST_COUNT - offsetNum;
+                    if (countNum <= 0) {
+                        Log.e(TAG, "Carkit requests message after 100th so return empty");
+                        return new BluetoothMapMessageListing();
+                    }
                 }
                 fi.mMsgType = FilterInfo.TYPE_SMS;
                 if (ap.getFilterPriority() != 1) {
@@ -2233,6 +2241,13 @@ public class BluetoothMapContent {
                     limit = " LIMIT " + ap.getMaxListCount() + " OFFSET " + ap.getStartOffset();
                     Log.d(TAG, "MMS Limit => " + limit);
                     offsetNum = 0;
+                }
+                if ((countNum + offsetNum) > BluetoothMapUtils.MAX_LIST_COUNT) {
+                    countNum = BluetoothMapUtils.MAX_LIST_COUNT - offsetNum;
+                    if (countNum <= 0) {
+                        Log.e(TAG, "Carkit requests message after 100th so return empty");
+                        return new BluetoothMapMessageListing();
+                    }
                 }
                 fi.mMsgType = FilterInfo.TYPE_MMS;
                 String where =
@@ -2278,6 +2293,13 @@ public class BluetoothMapContent {
                     Log.d(TAG, "Email Limit => " + limit);
                     offsetNum = 0;
                 }
+                if ((countNum + offsetNum) > BluetoothMapUtils.MAX_LIST_COUNT) {
+                    countNum = BluetoothMapUtils.MAX_LIST_COUNT - offsetNum;
+                    if (countNum <= 0) {
+                        Log.e(TAG, "Carkit requests message after 100th so return empty");
+                        return new BluetoothMapMessageListing();
+                    }
+                }
                 fi.mMsgType = FilterInfo.TYPE_EMAIL;
                 String where = setWhereFilter(folderElement, fi, ap);
 
@@ -2322,6 +2344,13 @@ public class BluetoothMapContent {
                     Log.d(TAG, "IM Limit => " + limit);
                     offsetNum = 0;
                 }
+                if ((countNum + offsetNum) > BluetoothMapUtils.MAX_LIST_COUNT) {
+                    countNum = BluetoothMapUtils.MAX_LIST_COUNT - offsetNum;
+                    if (countNum <= 0) {
+                        Log.e(TAG, "Carkit requests message after 100th so return empty");
+                        return new BluetoothMapMessageListing();
+                    }
+                }
                 fi.mMsgType = FilterInfo.TYPE_IM;
                 String where = setWhereFilter(folderElement, fi, ap);
                 Log.d(TAG, "msgType: " + fi.mMsgType + " where: " + where);
@@ -2351,7 +2380,7 @@ public class BluetoothMapContent {
 
             /* Enable this if post sorting and segmenting needed */
             bmList.sort();
-            bmList.segment(ap.getMaxListCount(), offsetNum);
+            bmList.segment(countNum, offsetNum);
             List<BluetoothMapMessageListingElement> list = bmList.getList();
             int listSize = list.size();
             Cursor tmpCursor = null;
@@ -2530,6 +2559,11 @@ public class BluetoothMapContent {
         }
 
         Log.d(TAG, "msgListingSize: size = " + cnt);
+        if (cnt > BluetoothMapUtils.MAX_LIST_COUNT) {
+            cnt = BluetoothMapUtils.MAX_LIST_COUNT;
+            Log.d(TAG, "msgListingSize is limited " + cnt +
+                    " because it's bigger than MAX_LIST_COUNT");
+        }
         return cnt;
     }
 
@@ -2670,6 +2704,11 @@ public class BluetoothMapContent {
         }
 
         Log.d(TAG, "msgListingHasUnread: numUnread = " + cnt);
+        if (cnt > BluetoothMapUtils.MAX_LIST_COUNT) {
+            cnt = BluetoothMapUtils.MAX_LIST_COUNT;
+            Log.d(TAG, "msgListingHasUnread is limited " + cnt +
+                    " because it's bigger than MAX_LIST_COUNT");
+        }
         return cnt > 0;
     }
 
