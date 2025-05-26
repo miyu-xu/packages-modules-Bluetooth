@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd49e9e7_81fe60df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-26T02:21:13Z",
+      "side": 1,
+      "message": "Few nits, rest all LGTM!",
+      "revId": "ffd6c47eae7d8ab0c056c6b02b17ef659667355b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc70948d_a978b7a8",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2777,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-26T02:21:13Z",
+      "side": 1,
+      "message": "This is cleaner, reduces the chance of forgetting to close the Cursor, and ensures safe resource management (Java 7+ feature).\n```suggestion\n        try (Cursor c \u003d mResolver.query(...)) {\n    ...\n}\n```",
+      "revId": "ffd6c47eae7d8ab0c056c6b02b17ef659667355b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b0dcf1_c48c8af0",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2779,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-26T02:21:13Z",
+      "side": 1,
+      "message": "```suggestion\n            if (c !\u003d null \u0026\u0026 c.moveToFirst() \u0026\u0026 c.getInt(0)\u003d\u003d1) {\n```",
+      "revId": "ffd6c47eae7d8ab0c056c6b02b17ef659667355b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89e63d27_336aa7a4",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2783,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-26T02:21:13Z",
+      "side": 1,
+      "message": "```suggestion\n                        Log.w(TAG, \"checkSmsIsLocked, locked \u003d true\");\n\n```",
+      "revId": "ffd6c47eae7d8ab0c056c6b02b17ef659667355b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
