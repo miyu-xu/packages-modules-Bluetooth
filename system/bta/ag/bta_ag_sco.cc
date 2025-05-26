@@ -629,6 +629,10 @@ static void bta_ag_codec_negotiation_timer_cback(void* data) {
   log::warn("Codec negotiation timeout");
   tBTA_AG_SCB* p_scb = (tBTA_AG_SCB*)data;
 
+  if (p_scb == bta_ag_cb.sco.p_curr_scb) {
+      bta_ag_cb.sco.p_curr_scb = NULL;
+  }
+
   /* Announce that codec negotiation failed. */
   bta_ag_sco_codec_nego(p_scb, false);
 
