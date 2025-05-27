@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6532a2e2_3ead43b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T23:01:26Z",
+      "side": 1,
+      "message": "Satish, could you please describe the scenario. Call is not over SCO and carkit still doesnt want link to go to sniff ?\n\nare we saying Carkit is trying to hold the link Active for indicators?",
+      "parentUuid": "0f54b7bd_932d9a93",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33eaec2e_8a9b7c16",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 13
