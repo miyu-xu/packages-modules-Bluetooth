@@ -16,6 +16,52 @@
       "message": "Explanation for the gerrit:\nWhenever the user taps on UI for codec change or frequency change, newCodecConfig comes with the codec-priority of 1000000. Due to which, prioritizedCodecType will also be same as newCodecConfig.\nIf we take all the cases of codec/freq switch, the \"if\" condition should work as expected.",
       "revId": "9aa39b7b443359036b83962731b1be93ca30a060",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d2f47b6_82b800c4",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-05-27T22:55:06Z",
+      "side": 1,
+      "message": "Can you please add a matching test in A2dpCodecConfigTest ?",
+      "range": {
+        "startLine": 84,
+        "startChar": 9,
+        "endLine": 84,
+        "endChar": 33
+      },
+      "revId": "9aa39b7b443359036b83962731b1be93ca30a060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b9c1d5_7cfa4483",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-05-27T22:55:06Z",
+      "side": 1,
+      "message": "You have strengthened the condition for the check, I am not sure to understand how this patch relates to the commit message.",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 120,
+        "endChar": 72
+      },
+      "revId": "9aa39b7b443359036b83962731b1be93ca30a060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
