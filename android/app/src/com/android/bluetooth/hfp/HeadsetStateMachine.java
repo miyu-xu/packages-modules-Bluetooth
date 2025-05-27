@@ -1512,6 +1512,14 @@ class HeadsetStateMachine extends StateMachine {
                     // ignore, there is no BluetoothHeadset.STATE_AUDIO_DISCONNECTING
                     break;
                 case HeadsetHalConstants.AUDIO_STATE_CONNECTED:
+                    if (mHeadsetService.isScoAcceptable(mDevice) != BluetoothStatusCodes.SUCCESS) {
+                        stateLogW("processAudioEvent: disconnect outgoing audio connection");
+                        if (!mNativeInterface.disconnectAudio(mDevice)) {
+                            stateLogE("processAudioEvent: failed to disconnect audio");
+                        } else {
+                            break;
+                        }
+                    }
                     stateLogI("processAudioEvent: audio connected");
                     transitionTo(mAudioOn);
                     break;
