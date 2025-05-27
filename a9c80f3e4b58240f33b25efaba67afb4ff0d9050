@@ -34,6 +34,192 @@
       "parentUuid": "11b820bc_ffdf6aea",
       "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33eaec2e_8a9b7c16",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T22:54:46Z",
+      "side": 1,
+      "message": "please combine these verbose logs in to one - you can use this function to bta_ag_result_text() to print the result",
+      "fixSuggestions": [
+        {
+          "fixId": "31162909_cc8511ed",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 601,
+                "startChar": 0,
+                "endLine": 608,
+                "endChar": 0
+              },
+              "replacement": "  if (result \u003d\u003d BTA_AG_IN_CALL_CONN_RES || result \u003d\u003d BTA_AG_OUT_CALL_CONN_RES)\n    log::verbose(\"{}, call {}, callsetup {}, call held {}, p_scb-\u003ecallsetup_ind {}\",\n     bta_ag_result_text(result), call, callsetup, p_scb-\u003ecallheld_ind, p_scb-\u003ecallsetup_ind );\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c4fcd1_1f6bde6a",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T22:54:46Z",
+      "side": 1,
+      "message": "why dont we move this if and above one together?",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08b65b66_3d405f9d",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T22:54:46Z",
+      "side": 1,
+      "message": "Can we check if we need to call bta_sys_idle() here?",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a6d7f67_ca285a5c",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2049,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T22:54:46Z",
+      "side": 1,
+      "message": "please use true and false for returning bool",
+      "fixSuggestions": [
+        {
+          "fixId": "24fa658f_dda9afd8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2049,
+                "startChar": 0,
+                "endLine": 2050,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2057,
+                "startChar": 0,
+                "endLine": 2058,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2062,
+                "startChar": 0,
+                "endLine": 2063,
+                "endChar": 0
+              },
+              "replacement": "    return true;\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 2066,
+                "startChar": 0,
+                "endLine": 2067,
+                "endChar": 0
+              },
+              "replacement": "  return false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc021b7_cd2227a1",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T22:54:46Z",
+      "side": 1,
+      "message": "didnt understand the HID reference here",
+      "fixSuggestions": [
+        {
+          "fixId": "ce5db689_78e90801",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 569,
+                "startChar": 0,
+                "endLine": 570,
+                "endChar": 0
+              },
+              "replacement": "       1. Enable/disable SSR on active link\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "816b510a_f1cb9581",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-27T22:54:46Z",
+      "side": 1,
+      "message": "could you please describe what is the need for ReadRemoteVersion here?",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
