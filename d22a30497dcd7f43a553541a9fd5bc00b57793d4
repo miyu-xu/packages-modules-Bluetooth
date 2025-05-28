@@ -16,6 +16,24 @@
       "message": "This is already fixed in AOSP.\nAnd we don\u0027t need to send different addresses based on the transport since RemoteDevices already maps the identity address to the pseudo address.",
       "revId": "d22a30497dcd7f43a553541a9fd5bc00b57793d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf7c7ef6_e36f93cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2056346
+      },
+      "writtenOn": "2025-05-28T17:35:59Z",
+      "side": 1,
+      "message": "Before bonding occurs over LE, the system lacks a mapping between the identity address and the pseudo-random address used by the remote device. Therefore, it is preferable to send the pseudo-random address for LE connections and the identity address for Classic connections, where identity resolution is not an issue.",
+      "parentUuid": "0cb4a747_5aff6ec9",
+      "revId": "d22a30497dcd7f43a553541a9fd5bc00b57793d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
