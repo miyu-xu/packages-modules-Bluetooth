@@ -60,7 +60,7 @@ typedef uint16_t tLINK_POLICY;
 constexpr tLINK_POLICY kAllLinkPoliciesEnabled =
         (HCI_ENABLE_CENTRAL_PERIPHERAL_SWITCH | HCI_ENABLE_HOLD_MODE | HCI_ENABLE_SNIFF_MODE);
 
-static const char* link_policy_string[] = {
+static const char* const link_policy_string[] = {
         " role_switch ",
         " hold_mode ",
         " sniff_mode ",
