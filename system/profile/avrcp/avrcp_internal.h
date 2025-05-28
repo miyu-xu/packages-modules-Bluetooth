@@ -60,6 +60,8 @@ public:
 
   virtual void SaveControllerVersion(const RawAddress& bdaddr, uint16_t version) = 0;
 
+  virtual void ResetServiceUuid() = 0;
+
   virtual ~AvrcpInterface() = default;
 };
 

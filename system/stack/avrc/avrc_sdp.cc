@@ -379,3 +379,7 @@ uint16_t AVRC_RemoveRecord(uint32_t sdp_handle) {
  *
  ******************************************************************************/
 void AVRC_Init(void) { memset(&avrc_cb, 0, sizeof(tAVRC_CB)); }
+
+void AVRC_ResetServiceUuid() {
+  avrc_cb.service_uuid = 0;
+}
