@@ -30,7 +30,8 @@ public class HfpClientConference extends Conference {
     public HfpClientConference(
             BluetoothDevice device,
             PhoneAccountHandle handle,
-            HeadsetClientServiceInterface serviceInterface) {
+            HeadsetClientServiceInterface serviceInterface,
+            int callState) {
         super(handle);
         mDevice = device;
         mServiceInterface = serviceInterface;
@@ -39,7 +40,13 @@ public class HfpClientConference extends Conference {
                 Connection.CAPABILITY_SUPPORT_HOLD
                         | Connection.CAPABILITY_HOLD
                         | (manage ? Connection.CAPABILITY_MANAGE_CONFERENCE : 0));
-        setActive();
+        if (callState == Connection.STATE_ACTIVE) {
+            setActive();
+        } else if (callState == Connection.STATE_HOLDING) {
+            setOnHold();
+        } else {
+            Log.e(TAG, "Not a valid call state: " + callState);
+        }
     }
 
     @Override

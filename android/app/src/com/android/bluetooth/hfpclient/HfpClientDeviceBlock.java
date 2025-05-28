@@ -143,7 +143,8 @@ public class HfpClientDeviceBlock {
         if (mConference == null) {
             mConference =
                     new HfpClientConference(
-                            mDevice, mPhoneAccount.getAccountHandle(), mServiceInterface);
+                            mDevice, mPhoneAccount.getAccountHandle(), mServiceInterface,
+                            Connection.STATE_ACTIVE);
             mConference.setExtras(mScoState);
         }
 
@@ -295,7 +296,8 @@ public class HfpClientDeviceBlock {
                 if (mConference == null) {
                     mConference =
                             new HfpClientConference(
-                                    mDevice, mPhoneAccount.getAccountHandle(), mServiceInterface);
+                                    mDevice, mPhoneAccount.getAccountHandle(), mServiceInterface,
+                                    otherConn.getState());
                     mConference.setExtras(mScoState);
                 }
                 if (mConference.addConnection(otherConn)) {
