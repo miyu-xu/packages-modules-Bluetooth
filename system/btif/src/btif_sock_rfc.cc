@@ -1008,8 +1008,12 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
         break;
       }
       if (p_data->scn == 0) {
-        log::error("Unable to allocate scn: all resources exhausted. slot found: {}",
-                   std::format_ptr(rs));
+        log::error(
+            "Unable to allocate scn: all resources exhausted. slot found: {} scn {}",
+            std::format_ptr(rs), rs->scn);
+        // Set scn to 0 to indicate that SCN allocation failed. This prevents
+        // `cleanup_rfc_slot` from attempting to free an invalid SCN.
+        rs->scn = 0;
         cleanup_rfc_slot(rs);
         break;
       }
