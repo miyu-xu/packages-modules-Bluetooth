@@ -702,7 +702,8 @@ static int bta_ag_find_hf_ind_by_id(tBTA_AG_HF_IND* p_hf_ind, int size, uint32_t
  *
  ******************************************************************************/
 static bool bta_ag_parse_bind_set(tBTA_AG_SCB* p_scb, tBTA_AG_VAL val) {
-  char* p_token = strtok(val.str, ",");
+  char* save;
+  char* p_token = strtok_r(val.str, ",", &save);
   if (p_token == nullptr) {
     return false;
   }
@@ -718,7 +719,7 @@ static bool bta_ag_parse_bind_set(tBTA_AG_SCB* p_scb, tBTA_AG_VAL val) {
     p_scb->peer_hf_indicators[index].ind_id = rcv_ind_id;
     log::verbose("peer_hf_ind[{}] = {}", index, rcv_ind_id);
 
-    p_token = strtok(nullptr, ",");
+    p_token = strtok_r(nullptr, ",", &save);
   }
 
   return true;
@@ -811,13 +812,14 @@ static void bta_ag_bind_response(tBTA_AG_SCB* p_scb, uint8_t arg_type) {
  *
  ******************************************************************************/
 static bool bta_ag_parse_biev_response(tBTA_AG_SCB* p_scb, tBTA_AG_VAL* val) {
-  char* p_token = strtok(val->str, ",");
+  char* save;
+  char* p_token = strtok_r(val->str, ",", &save);
   if (p_token == nullptr) {
     return false;
   }
   uint16_t rcv_ind_id = atoi(p_token);
 
-  p_token = strtok(nullptr, ",");
+  p_token = strtok_r(nullptr, ",", &save);
   if (p_token == nullptr) {
     return false;
   }
