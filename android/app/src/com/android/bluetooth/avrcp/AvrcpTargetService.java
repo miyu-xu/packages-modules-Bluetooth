@@ -511,7 +511,7 @@ public class AvrcpTargetService extends ProfileService {
     }
 
     /** Informs {@link AudioManager} of an incoming key event from a remote device. */
-    void sendMediaKeyEvent(int key, boolean pushed) {
+    void sendMediaKeyEvent(BluetoothDevice device, int key, boolean pushed) {
         MediaPlayerWrapper activePlayer = mMediaPlayerList.getActivePlayer();
         if (Flags.setAddressedPlayer()) {
             MediaPlayerWrapper addressedPlayer = mMediaPlayerList.getAddressedPlayer();
@@ -527,21 +527,41 @@ public class AvrcpTargetService extends ProfileService {
             }
         }
 
-        BluetoothDevice activeDevice = getA2dpActiveDevice();
         mMediaKeyEventLogger.logd(
                 TAG,
                 "sendMediaKeyEvent:"
                         + " device="
-                        + activeDevice
+                        + device
                         + " key="
                         + key
                         + " pushed="
                         + pushed
                         + " to "
                         + (activePlayer == null ? null : activePlayer.getPackageName()));
+
+        if (device != null && !getA2dpPriorityKey(device)) {
+            Log.e(TAG, "ignore passthrough key");
+            return;
+        }
+
         int action = pushed ? KeyEvent.ACTION_DOWN : KeyEvent.ACTION_UP;
         KeyEvent event = new KeyEvent(action, AvrcpPassthrough.toKeyCode(key));
         mAudioManager.dispatchMediaKeyEvent(event);
+    }
+
+    private boolean getA2dpPriorityKey(BluetoothDevice device) {
+        A2dpService service = mFactory.getA2dpService();
+        int priority = BluetoothProfile.PRIORITY_UNDEFINED;
+        if (service != null) {
+            priority = service.getConnectionPolicy(device);
+        }
+
+        if ((BluetoothProfile.PRIORITY_OFF < priority) ||
+                ((BluetoothProfile.PRIORITY_UNDEFINED == priority) &&
+                (device.getBondState() != BluetoothDevice.BOND_NONE))) {
+            return true;
+        }
+        return false;
     }
 
     /**
