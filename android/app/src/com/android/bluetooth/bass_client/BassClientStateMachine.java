@@ -1536,8 +1536,9 @@ class BassClientStateMachine extends StateMachine {
         }
     }
 
-    private static long getBisSyncFromChannelPreference(
+    private long getBisSyncFromChannelPreference(
             List<BluetoothLeBroadcastChannel> channels) {
+        final int audioLocation = mService.getAudioLocation(mDevice);
         long bisSync = 0L;
         for (BluetoothLeBroadcastChannel channel : channels) {
             if (channel.isSelected()) {
@@ -1545,7 +1546,7 @@ class BassClientStateMachine extends StateMachine {
                     Log.e(TAG, "getBisSyncFromChannelPreference: invalid channel index=0");
                     continue;
                 }
-                bisSync |= 1L << (channel.getChannelIndex() - 1);
+                bisSync |= (channel.getChannelIndex() & audioLocation);
             }
         }
 

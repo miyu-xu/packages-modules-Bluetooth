@@ -3657,6 +3657,15 @@ public class BassClientService extends ProfileService {
         return isLocalBroadcast(receiveState.getBroadcastId());
     }
 
+    int getAudioLocation(BluetoothDevice device) {
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService == null) {
+            return BluetoothLeAudio.AUDIO_LOCATION_INVALID;
+        }
+
+        return leAudioService.getAudioLocation(device);
+    }
+
     static void log(String msg) {
         Log.d(TAG, msg);
     }
