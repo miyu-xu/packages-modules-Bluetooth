@@ -117,6 +117,8 @@ public class A2dpService extends ProfileService {
     // A2DP Offload Enabled in platform
     private final boolean mA2dpOffloadEnabled;
 
+    ArrayList<BluetoothDevice> mPendingPlayKeyList = new ArrayList<>();
+
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
 
@@ -661,6 +663,17 @@ public class A2dpService extends ProfileService {
         }
     }
 
+    public void setPendingPlayKey(BluetoothDevice device, boolean pending) {
+        Log.d(TAG, "setPendingPlayKey: " + pending);
+        if (pending) {
+            if (!mPendingPlayKeyList.contains(device))
+                mPendingPlayKeyList.add(device);
+        } else {
+            if (mPendingPlayKeyList.contains(device))
+                mPendingPlayKeyList.remove(device);
+        }
+    }
+
     boolean isA2dpPlaying(BluetoothDevice device) {
         Log.d(TAG, "isA2dpPlaying(" + device + ")");
         synchronized (mStateMachines) {
@@ -907,6 +920,12 @@ public class A2dpService extends ProfileService {
                                         "Cannot connect to "
                                                 + device
                                                 + " : too many connected devices");
+
+                                if (mPendingPlayKeyList.contains(device)) {
+                                    Log.i(TAG, "remove mPendingPlayKeyList");
+                                    mPendingPlayKeyList.remove(device);
+                                }
+                                disconnectAvrcp(device);
                                 return;
                             }
                             sm = getOrCreateStateMachine(device);
@@ -1323,6 +1342,10 @@ public class A2dpService extends ProfileService {
                 }
                 removeStateMachine(device);
             }
+            if (mPendingPlayKeyList.contains(device)) {
+                Log.i(TAG, "remove mPendingPlayKeyList");
+                mPendingPlayKeyList.remove(device);
+            }
         }
         if (mFactory.getAvrcpTargetService() != null) {
             mFactory.getAvrcpTargetService().handleA2dpConnectionStateChanged(device, toState);
@@ -1339,6 +1362,16 @@ public class A2dpService extends ProfileService {
                 .a2dpConnectionStateChanged(device, fromState, toState);
         mAdapterService.updateProfileConnectionAdapterProperties(
                 device, BluetoothProfile.A2DP, toState, fromState);
+
+        if (toState != BluetoothProfile.STATE_CONNECTED) {
+            return;
+        }
+
+        if (mPendingPlayKeyList.contains(device)) {
+            Log.d(TAG, "connectionStateChanged: sendPlayKey");
+            mPendingPlayKeyList.remove(device);
+            sendPlayKey(device);
+        }
     }
 
     /** Retrieves the most recently connected device in the A2DP connected devices list. */
