@@ -150,7 +150,6 @@ class BassClientStateMachine extends StateMachine {
     private BluetoothLeBroadcastMetadata mSetBroadcastPINMetadata = null;
     @VisibleForTesting boolean mSetBroadcastCodePending = false;
     private final Map<Integer, Boolean> mPendingRemove = new HashMap();
-    private boolean mDefNoPAS = false;
     private boolean mForceSB = false;
     @VisibleForTesting byte mNextSourceId = 0;
     private boolean mAllowReconnect = false;
@@ -181,11 +180,6 @@ class BassClientStateMachine extends StateMachine {
             mIsAllowedList =
                     DeviceConfig.getBoolean(
                             DeviceConfig.NAMESPACE_BLUETOOTH, "persist.vendor.service.bt.wl", true);
-            mDefNoPAS =
-                    DeviceConfig.getBoolean(
-                            DeviceConfig.NAMESPACE_BLUETOOTH,
-                            "persist.vendor.service.bt.defNoPAS",
-                            false);
             mForceSB =
                     DeviceConfig.getBoolean(
                             DeviceConfig.NAMESPACE_BLUETOOTH,
@@ -1576,12 +1570,17 @@ class BassClientStateMachine extends StateMachine {
         stream.write((metaData.getBroadcastId() & 0x0000000000FF0000) >>> 16);
 
         // PA_Sync
-        if (mDefNoPAS) {
-            // Synchronize to PA – PAST not available
-            stream.write(0x02);
-        } else {
+        final boolean isPastAvailable = mService.isLocalBroadcast(metaData)
+                || mService.getActiveSyncedSources()
+                        .contains(
+                                mService.getSyncHandleForBroadcastId(
+                                        metaData.getBroadcastId()));
+        if (isPastAvailable) {
             // Synchronize to PA – PAST available
             stream.write(0x01);
+        } else {
+            // Synchronize to PA – PAST not available
+            stream.write(0x02);
         }
 
         // PA_Interval
