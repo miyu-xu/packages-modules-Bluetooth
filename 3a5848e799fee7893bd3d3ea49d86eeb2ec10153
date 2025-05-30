@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f1b9ba1_01820e3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-05-30T23:41:03Z",
+      "side": 1,
+      "message": "@eruffieux@google.com can you please review Avrcp changes ?\nThis looks ok on my side.",
+      "revId": "3a5848e799fee7893bd3d3ea49d86eeb2ec10153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e55e00c_4888c04c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-05-30T23:41:03Z",
+      "side": 1,
+      "message": "This logic for managing the list of pending AVRCP key events should ideally be implemented in AvrcpTargetService.\n\nCould you move the list there, and add a callback in AvrcpTargetService to handle A2DP connection state changes, called from `A2dpService.connectionStateChanged`. There are already many such callbacks, so I believe it is appropriate to add one more.",
+      "range": {
+        "startLine": 120,
+        "startChar": 31,
+        "endLine": 120,
+        "endChar": 50
+      },
+      "revId": "3a5848e799fee7893bd3d3ea49d86eeb2ec10153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
