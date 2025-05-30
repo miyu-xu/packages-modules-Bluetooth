@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fed04f1_d6fbc859",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-30T15:58:30Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have discouraged expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nTo rerun the analyzer locally, run: `alint -- -c CheckContents`\n\nFor more information, see go/alint.",
+      "range": {
+        "startLine": 591,
+        "startChar": 0,
+        "endLine": 591,
+        "endChar": 112
+      },
+      "revId": "2c4c10321bdae32f33d1df77f8d24e6c0de71e49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ea4964_67a4eff8",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-05-30T15:58:30Z",
+      "side": 1,
+      "message": "I would check if(is_denylisted_for_call) first so that we dont call ReadRemoteVersion for all the device unnecessaryly",
+      "fixSuggestions": [
+        {
+          "fixId": "3b493d18_e8648733",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 571,
+                "startChar": 0,
+                "endLine": 572,
+                "endChar": 0
+              },
+              "replacement": "    bool is_denylisted_for_call \u003d\n        interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_DURING_CALL, \u0026peer_addr, \u0026btif_storage_get_remote_device_property);\n    if ((status \u003d\u003d BTA_SYS_SCO_OPEN || status \u003d\u003d BTA_SYS_SCO_CLOSE) \u0026\u0026 is_denylisted_for_call) {\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 576,
+                "startChar": 0,
+                "endLine": 578,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 579,
+                "startChar": 0,
+                "endLine": 580,
+                "endChar": 0
+              },
+              "replacement": "               !bta_ag_is_call_present(\u0026peer_addr)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2c4c10321bdae32f33d1df77f8d24e6c0de71e49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
