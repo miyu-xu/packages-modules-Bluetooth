@@ -30,6 +30,9 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Looper;
 import android.os.UserManager;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.sysprop.BluetoothProperties;
 import android.text.TextUtils;
 import android.util.Log;
@@ -134,6 +137,10 @@ public class AvrcpTargetService extends ProfileService {
         Log.i(TAG, "Starting the AVRCP Target Service");
         mCurrentData = new MediaData(null, null, null);
 
+        HandlerThread handlerThread  = new HandlerThread("AvrcpTargetServiceHandler");
+        handlerThread.start();
+        mHandler = new AvrcpTargetServiceHandler(handlerThread.getLooper());
+
         mPlayerSettingsManager = new PlayerSettingsManager(mMediaPlayerList, this);
         mNativeInterface.init(this);
 
@@ -173,6 +180,35 @@ public class AvrcpTargetService extends ProfileService {
     /** Checks for profile enabled state in Bluetooth sysprops. */
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileAvrcpTargetEnabled().orElse(false);
+    }
+
+    private static final int MSG_SEND_PENDING_KEY_TIMER = 2;
+
+    private final AvrcpTargetServiceHandler mHandler;
+
+    class AvrcpTargetServiceHandler extends Handler {
+        private AvrcpTargetServiceHandler (Looper looper) {
+            super(looper);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_SEND_PENDING_KEY_TIMER: {
+                    Log.w(TAG, "SEND_PENDING_KEY");
+
+                    BluetoothDevice device = (BluetoothDevice)msg.obj;
+                    sendMediaKeyEvent(device, BluetoothAvrcp.PASSTHROUGH_ID_PLAY, true);
+                    A2dpService service = mFactory.getA2dpService();
+                    if (service != null) {
+                        service.selectStreamDeviceByPlay(device);
+                    }
+
+                    sendMediaKeyEvent(device, BluetoothAvrcp.PASSTHROUGH_ID_PLAY, false);
+                } break;
+                default:
+                    break;
+            }
+        }
     }
 
     /** Callbacks from {@link MediaPlayerList} to update the MediaData and folder updates. */
@@ -265,6 +301,13 @@ public class AvrcpTargetService extends ProfileService {
             return;
         }
 
+        // Shut down the handlerThread
+        mHandler.removeCallbacksAndMessages(null);
+        Looper looper = mHandler.getLooper();
+        if (looper != null) {
+            looper.quit();
+        }
+
         if (mAvrcpCoverArtService != null) {
             mAvrcpCoverArtService.stop();
         }
@@ -315,6 +358,11 @@ public class AvrcpTargetService extends ProfileService {
     void deviceDisconnected(BluetoothDevice device) {
         Log.i(TAG, "deviceDisconnected: device=" + device);
         mVolumeManager.deviceDisconnected(device);
+
+        A2dpService service = mFactory.getA2dpService();
+        if (service != null) {
+            service.setPendingPlayKey(device, false);
+        }
     }
 
     /** Removes the stored volume for a device. */
@@ -539,9 +587,42 @@ public class AvrcpTargetService extends ProfileService {
                         + pushed
                         + " to "
                         + (activePlayer == null ? null : activePlayer.getPackageName()));
+
+        A2dpService service = mFactory.getA2dpService();
+        if (service != null) {
+            boolean connected = false;
+            List<BluetoothDevice> devices = service.getConnectedDevices();
+            for (BluetoothDevice d : devices) {
+                if (d.equals(device)) connected = true;
+            }
+            if (!connected && !Utils.isPtsTestMode()) {
+                Log.e(TAG, "sendMediaKeyEvent : not connected");
+                if (!pushed) return;
+                boolean pending = false;
+                if (key == BluetoothAvrcp.PASSTHROUGH_ID_PLAY) {
+                    pending = true;
+                } else if (key == BluetoothAvrcp.PASSTHROUGH_ID_PAUSE ||
+                           key == BluetoothAvrcp.PASSTHROUGH_ID_STOP) {
+                    pending = false;
+                } else {
+                    Log.w(TAG, "sendMediaKeyEvent : ignore passthrough key to disconnected device");
+                    return;
+                }
+                service.setPendingPlayKey(device, pending);
+                return;
+            }
+        }
+
         int action = pushed ? KeyEvent.ACTION_DOWN : KeyEvent.ACTION_UP;
         KeyEvent event = new KeyEvent(action, AvrcpPassthrough.toKeyCode(key));
         mAudioManager.dispatchMediaKeyEvent(event);
+    }
+
+    public void sendPlayKey(BluetoothDevice device) {
+        Log.i(TAG, "sendPlayKey");
+        Message msg = mHandler.obtainMessage(MSG_SEND_PENDING_KEY_TIMER);
+        msg.obj = device;
+        mHandler.sendMessageDelayed(msg, 500);
     }
 
     /**
