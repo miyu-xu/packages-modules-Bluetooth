@@ -56,6 +56,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "890e85d0_54bf299d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-30T05:34:56Z",
+      "side": 1,
+      "message": "If SCO gets disconnected during call, sniff gets enabled and may create issue with next SCO connection.\nWe are checking for call\u0027s presence before changing sniff policy if the device is deny-listed for disabling sniff during SCO and during call.",
+      "parentUuid": "6532a2e2_3ead43b0",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b6e854_20eeb9cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-30T05:34:56Z",
+      "side": 1,
+      "message": "We need to keep link active if SCO gets disconnected during the call. If sniff is enabled, it may create issue with next SCO connection.\n\nSo, we are checking for call presence before changing sniff policy if the device is denylisted for disabling sniff during both SCO and call.",
+      "parentUuid": "6532a2e2_3ead43b0",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33eaec2e_8a9b7c16",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 13
@@ -89,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5c233d_2ff50178",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-30T05:34:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33eaec2e_8a9b7c16",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6c4fcd1_1f6bde6a",
@@ -102,6 +156,24 @@
       "writtenOn": "2025-05-27T22:54:46Z",
       "side": 1,
       "message": "why dont we move this if and above one together?",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae2ce9d7_e12beaa3",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-30T05:34:56Z",
+      "side": 1,
+      "message": "we are sending indicators in between",
+      "parentUuid": "f6c4fcd1_1f6bde6a",
       "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +260,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f427eda9_e95f171a",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2049,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-30T05:34:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a6d7f67_ca285a5c",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfc021b7_cd2227a1",
@@ -236,6 +326,24 @@
       "writtenOn": "2025-05-27T22:54:46Z",
       "side": 1,
       "message": "could you please describe what is the need for ReadRemoteVersion here?",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147bcd46_ae6b4555",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-05-30T05:34:56Z",
+      "side": 1,
+      "message": "This checks for presence of active ACL and whether remote version info is valid",
+      "parentUuid": "816b510a_f1cb9581",
       "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
