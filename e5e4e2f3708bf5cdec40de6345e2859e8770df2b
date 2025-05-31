@@ -16,6 +16,24 @@
       "message": "we hit this condition only when VOIP call is made without an Active subscription/SIM in the phone?\n\nAs with subscription/SIM in the phone, mSystemInterface.getSubscriberNumber() would return local number and send it as String.\n\nTrying to understand, this is mainly addressing factory testing scenarios without the Active subscription on phone and when VOIP is made over Wifi connection or so. right?",
       "revId": "e5e4e2f3708bf5cdec40de6345e2859e8770df2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72809226_9b7cfacd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2216,
+      "author": {
+        "id": 1871132
+      },
+      "writtenOn": "2025-05-31T09:25:04Z",
+      "side": 1,
+      "message": "Hi Bhaktha, sending empty or phone\u0027s subscriber number was making headsets or car kits going into bad state. They need some numeric number which is other than Phone\u0027s own number.",
+      "parentUuid": "cfa47e64_2958b745",
+      "revId": "e5e4e2f3708bf5cdec40de6345e2859e8770df2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
