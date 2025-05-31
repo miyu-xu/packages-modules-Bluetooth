@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71bf2222_b525115e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T16:47:55Z",
+      "side": 1,
+      "message": "Do we need similar changes on the A2dpSinkService and AvrcpControlService as well?",
+      "revId": "3a5848e799fee7893bd3d3ea49d86eeb2ec10153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e55e00c_4888c04c",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
         "patchSetId": 5
