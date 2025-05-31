@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e5d588_5be940fd",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1194,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "A getter (getMaxListCount) should not modify the internal state. Here, it mutates mMaxListCount if it exceeds the max.\n```suggestion\n        return Math.min(mMaxListCount, BluetoothMapUtils.MAX_LIST_COUNT);\n```",
+      "range": {
+        "startLine": 1190,
+        "startChar": 1,
+        "endLine": 1194,
+        "endChar": 29
+      },
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3e8f8b6_356b1755",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2199,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "```suggestion\n                        Log.e(TAG, \"Request offset\u003d\" + offsetNum + \" exceeds MAX_LIST_COUNT\u003d\" + BluetoothMapUtils.MAX_LIST_COUNT);\n\n```",
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab11b240_81a2a48f",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2248,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "```suggestion\n                        Log.e(TAG, \"Request offset\u003d\" + offsetNum + \" exceeds MAX_LIST_COUNT\u003d\" + BluetoothMapUtils.MAX_LIST_COUNT);\n\n```",
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4741b225_1b421fb4",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "```suggestion\n                        Log.e(TAG, \"Request offset\u003d\" + offsetNum + \" exceeds MAX_LIST_COUNT\u003d\" + BluetoothMapUtils.MAX_LIST_COUNT);\n\n```",
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f370edb7_a2fdb329",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2350,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "```suggestion\n                        Log.e(TAG, \"Request offset\u003d\" + offsetNum + \" exceeds MAX_LIST_COUNT\u003d\" + BluetoothMapUtils.MAX_LIST_COUNT);\n\n```",
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f6cbb73_9440d6ed",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2565,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "Move log line before assignment \n```suggestion\n            Log.d(TAG, \"Limiting msgListingSize to \" + MAX_LIST_COUNT + \" as requested size \" + cnt + \" exceeds MAX_LIST_COUNT\");\n```",
+      "range": {
+        "startLine": 2564,
+        "startChar": 0,
+        "endLine": 2565,
+        "endChar": 64
+      },
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03005fc5_03a133ff",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2710,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T17:00:37Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 2709,
+        "startChar": 0,
+        "endLine": 2710,
+        "endChar": 64
+      },
+      "revId": "0487e725d91e3a7716550a345801d9d592d908c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
