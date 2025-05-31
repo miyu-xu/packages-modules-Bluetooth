@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4422798a_9941e1e0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2254,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T16:50:30Z",
+      "side": 1,
+      "message": "Doesn\u0027t getCurrentState() also return this variable already?",
+      "revId": "c6d9320a19d3f7e3c124e135f6048d95249f63de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77a4ae64_e714150d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2288,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-05-31T16:50:30Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "c6d9320a19d3f7e3c124e135f6048d95249f63de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
