@@ -320,6 +320,9 @@ public class HeadsetPhoneState {
                 return;
             }
             mCindService = cindService;
+            if (mCindService == HeadsetHalConstants.NETWORK_STATE_NOT_AVAILABLE) {
+                mCindSignal = 0;
+            }
             mCindRoam = newRoam;
             sendDeviceStateChanged();
         }
