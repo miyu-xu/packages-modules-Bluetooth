@@ -56,6 +56,29 @@
       },
       "revId": "3a5848e799fee7893bd3d3ea49d86eeb2ec10153",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b63c748c_50f55d26",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-06-02T07:42:02Z",
+      "side": 1,
+      "message": "Does that work? If I understand correctly, the PAUSE/STOP events are here to handle the removal of the pending play event in the case the \"play button\" has been pressed again on the remote, however the remote won\u0027t send a PAUSE/STOP event in this case as the play state will not have been updated by the previous play event so it\u0027ll think it\u0027s still not playing, and send another \"PLAY\" event.\n\nI don\u0027t think there is a way to properly handle a pending removal before the actual pending command has been executed?",
+      "range": {
+        "startLine": 597,
+        "startChar": 16,
+        "endLine": 601,
+        "endChar": 36
+      },
+      "revId": "3a5848e799fee7893bd3d3ea49d86eeb2ec10153",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
