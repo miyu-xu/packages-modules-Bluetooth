@@ -38,6 +38,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01fe25ba_68a89806",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-02T19:21:27Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/conf/interop_database.conf _ I see two Name based entry for this\n\n\n00:08:8a \u003d Address_Based\nJABRA EASYGO \u003d Name_Based\n55:55:55 \u003d Address_Based\nLG HBSF110 Master \u003d Name_Based\n\nIs it possible to convert this to address based please?",
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e567542b_1f23b14f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-02T19:21:27Z",
+      "side": 1,
+      "message": "can have constant for 3. some thing BD_ADDRESS_FAMILY_LEN or so ?",
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8afd1001_6d9109a7",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 3
@@ -111,6 +145,30 @@
       "side": 1,
       "message": "Even with this dynamic deny-listing, we will further go with CVSD codec which is the default one.",
       "parentUuid": "8afd1001_6d9109a7",
+      "range": {
+        "startLine": 631,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 3
+      },
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b24088f2_d67fb86c",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-02T19:21:27Z",
+      "side": 1,
+      "message": "I second we should remove dynamic addition logic. please keep this only for known devices - we can update the list as needed",
+      "parentUuid": "a7ba8cae_aff1a134",
       "range": {
         "startLine": 631,
         "startChar": 0,
