@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58b34ab_2250ce6e",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 640,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-02T22:09:32Z",
+      "side": 1,
+      "message": "Not relavant as we want to get rid of dynamic addition",
+      "parentUuid": "e567542b_1f23b14f",
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8afd1001_6d9109a7",
