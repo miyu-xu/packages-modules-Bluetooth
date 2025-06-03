@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50685ffe_d9f96190",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-06-03T17:38:20Z",
+      "side": 1,
+      "message": "Unfortunately this has been flag by syshealth team and after merging it internally, the change got reverted.\nThere is some discussion in progress (http://b/419315446 for who can access it)",
+      "revId": "83e1bb9d9298b2c56794ad94f3b7a19b4572109b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
