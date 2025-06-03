@@ -1905,7 +1905,7 @@ class BluetoothManagerService {
     private void broadcastIntentStateChange(String action, int prevState, int newState) {
         Log.d(
                 TAG,
-                "broadcastIntentStateChange:"
+                "broadcastIntentStateChange ="
                         + (" action=" + action.substring(action.lastIndexOf('.') + 1))
                         + (" prevState=" + nameForState(prevState))
                         + (" newState=" + nameForState(newState)));
@@ -1914,6 +1914,11 @@ class BluetoothManagerService {
         intent.putExtra(BluetoothAdapter.EXTRA_PREVIOUS_STATE, prevState);
         intent.putExtra(BluetoothAdapter.EXTRA_STATE, newState);
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
+        if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
+            intent.setFlags(Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+        } else {
+            intent.setFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+        }
         mContext.sendBroadcastAsUser(
                 intent, UserHandle.ALL, null, getTempAllowlistBroadcastOptions());
     }
