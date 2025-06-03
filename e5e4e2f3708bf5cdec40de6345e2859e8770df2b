@@ -52,6 +52,24 @@
       "parentUuid": "72809226_9b7cfacd",
       "revId": "e5e4e2f3708bf5cdec40de6345e2859e8770df2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a64c89_69b0bf44",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2216,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-06-03T05:41:28Z",
+      "side": 1,
+      "message": "This is real world scenario reported from multiple customers. Sending empty string or Phone\u0027s subscriber number (Phone\u0027s own number) confuse the headsets or car kits as both caller and callee can\u0027t be same number at the same time. That\u0027s why we must send a non empty number other than phone\u0027s subscriber number. This is high priority as call functionality is broken with those headsets and car kits.",
+      "parentUuid": "946c35c4_65e33650",
+      "revId": "e5e4e2f3708bf5cdec40de6345e2859e8770df2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
