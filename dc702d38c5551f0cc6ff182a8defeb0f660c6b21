@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2477efed_19f7df5b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-06-04T21:10:28Z",
+      "side": 1,
+      "message": "Why don\u0027t you just add a return to line 331?  Also, if we\u0027re setting mCindSignal to 0 in onServiceStateChanged, do we need to set mCindSignal to 0 in line 331 now?",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 339,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8107ddeb_9ed2e9e9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+              "range": {
+                "startLine": 329,
+                "startChar": 0,
+                "endLine": 337,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+              "range": {
+                "startLine": 340,
+                "startChar": 0,
+                "endLine": 340,
+                "endChar": 0
+              },
+              "replacement": "            int prevSignal \u003d mCindSignal;\n            mCindSignal \u003d signalStrength.getLevel() + 1;\n            // +CIND \"signal\" indicator is always between 0 to 5\n            mCindSignal \u003d Integer.max(Integer.min(mCindSignal, 5), 0);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc702d38c5551f0cc6ff182a8defeb0f660c6b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
