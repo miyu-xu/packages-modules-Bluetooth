@@ -88,6 +88,24 @@
       "parentUuid": "a3a64c89_69b0bf44",
       "revId": "e5e4e2f3708bf5cdec40de6345e2859e8770df2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a461acf9_98db13b8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2216,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2025-06-04T05:18:24Z",
+      "side": 1,
+      "message": "Hi Bhaktha, as far as I remember, getSubscriberNumber() always returns empty string in VOIP calls. We can remove getSubscriberNumber() in this case ideally as it is redundant. Please let me know if that is needed.",
+      "parentUuid": "cb65e94c_676f75aa",
+      "revId": "e5e4e2f3708bf5cdec40de6345e2859e8770df2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
