@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa9f5bd_4b5931b3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3663,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-06-04T17:18:05Z",
+      "side": 1,
+      "message": "AUDIO_LOCATION_INVALID is 0, if leAudioService is not available, then we will clear BIS index.",
+      "revId": "e0a0933b8a14eee5a924bb5588dc4294c89661b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92dc5bac_2ff93050",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-06-04T17:18:05Z",
+      "side": 1,
+      "message": "no unit test coverage.",
+      "revId": "e0a0933b8a14eee5a924bb5588dc4294c89661b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
