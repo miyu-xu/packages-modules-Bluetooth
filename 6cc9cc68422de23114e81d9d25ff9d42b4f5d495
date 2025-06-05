@@ -116,6 +116,24 @@
       "parentUuid": "0f90c2f4_ff8428aa",
       "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4eb0aff_189465a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-06-05T21:29:26Z",
+      "side": 1,
+      "message": "Does the specification mandate the proposed behavior for legacy HID devices? I don\u0027t think so. This is the first time we are seeing such an issue.",
+      "parentUuid": "a0f5e111_fc5cde3b",
+      "revId": "6cc9cc68422de23114e81d9d25ff9d42b4f5d495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
