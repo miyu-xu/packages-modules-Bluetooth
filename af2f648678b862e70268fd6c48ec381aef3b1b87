@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76d10e3c_2e6b5500",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-06-05T21:19:37Z",
+      "side": 1,
+      "message": "We do we want to penalize all other devices just because one specific device is buggy.",
+      "revId": "af2f648678b862e70268fd6c48ec381aef3b1b87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
