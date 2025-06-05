@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77fe1176_d591a905",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2025-06-05T20:59:32Z",
+      "side": 1,
+      "message": "Should we only clearing the LE BRERR portion of it?",
+      "range": {
+        "startLine": 223,
+        "startChar": 24,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e1092b2d_9f9b5816",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 223,
+                "startChar": 0,
+                "endLine": 224,
+                "endChar": 0
+              },
+              "replacement": "    bta_dm_discovery_cb.transports \u0026\u003d ~BT_TRANSPORT_BR_EDR;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b0c4f54965f1de9d7e19ab3258dfd94e1ea34e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
