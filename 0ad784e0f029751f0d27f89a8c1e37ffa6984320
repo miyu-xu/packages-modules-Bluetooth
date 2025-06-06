@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1da7262c_e3507d8b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-06-06T09:28:32Z",
+      "side": 1,
+      "message": "unfortunately we don\u0027t have address for these remote devices",
+      "parentUuid": "01fe25ba_68a89806",
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e567542b_1f23b14f",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 3
@@ -187,6 +205,30 @@
       "side": 1,
       "message": "I second we should remove dynamic addition logic. please keep this only for known devices - we can update the list as needed",
       "parentUuid": "a7ba8cae_aff1a134",
+      "range": {
+        "startLine": 631,
+        "startChar": 0,
+        "endLine": 644,
+        "endChar": 3
+      },
+      "revId": "0ad784e0f029751f0d27f89a8c1e37ffa6984320",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "859aaeaa_c6278865",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-06-06T09:28:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b24088f2_d67fb86c",
       "range": {
         "startLine": 631,
         "startChar": 0,
