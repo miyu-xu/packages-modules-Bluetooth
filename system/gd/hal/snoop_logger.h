@@ -238,6 +238,10 @@ public:
   void Stop() override;
   void Capture(const HciPacket& packet, Direction direction, PacketType type);
 
+  /** M: write hci log in hci_write_thread */
+  void CaptureInternal(const HciPacket& packet, Direction direction, PacketType type, uint64_t timestamp_us);
+  /** @} */
+
   // Set a L2CAP channel as acceptlisted, allowing packets with that L2CAP CID
   // to show up in the snoop logs.
   void AcceptlistL2capChannel(uint16_t conn_handle, uint16_t local_cid, uint16_t remote_cid);
