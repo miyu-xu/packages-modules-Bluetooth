@@ -1381,10 +1381,10 @@ void SnoopLogger::Start() {
     /** M: write hci log in hci_write_thread */
     hci_write_thread.StartUp();
     if (!hci_write_thread.IsRunning()) {
-      log::error("unable to start thread");
+      LOG(ERROR) << __func__ << " unable to start thread";
     }
     if (!hci_write_thread.EnableRealTimeScheduling()) {
-      log::error("unable to make thread RT");
+      LOG(ERROR) << __func__ << " unable to make thread RT.";
     }
     /** @} */
   }
