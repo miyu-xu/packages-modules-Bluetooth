@@ -3941,6 +3941,13 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason, std::string comme
     if ((p_dev_rec->sec_rec.sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) == 0) {
       p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LE_LINK_KEY_AUTHED | BTM_SEC_LE_AUTHENTICATED);
     }
+
+    // Remove temporary key.
+    if (p_dev_rec->device_type == BT_DEVICE_TYPE_DUMO
+      && p_dev_rec->sec_rec.bond_type == BOND_TYPE_TEMPORARY) {
+      log::warn("Remove ble secFlag if link key is temporary");
+      p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LE_LINK_KEY_KNOWN);
+    }
   } else {
     p_dev_rec->hci_handle = HCI_INVALID_HANDLE;
     p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_AUTHENTICATED | BTM_SEC_ENCRYPTED |
@@ -3948,7 +3955,7 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason, std::string comme
 
     // Remove temporary key.
     if (p_dev_rec->sec_rec.bond_type == BOND_TYPE_TEMPORARY) {
-      p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LINK_KEY_KNOWN);
+      p_dev_rec->sec_rec.sec_flags &= ~(BTM_SEC_LINK_KEY_KNOWN | BTM_SEC_LE_LINK_KEY_KNOWN);
     }
   }
 
