@@ -164,7 +164,7 @@ void bta_dm_disc_gatt_refresh(const RawAddress& bd_addr) {
 
 void bta_dm_disc_remove_device(const RawAddress& bd_addr) {
   if (bta_dm_discovery_cb.service_discovery_state == BTA_DM_DISCOVER_ACTIVE &&
-      bta_dm_discovery_cb.peer_bdaddr == bd_addr) {
+      bta_dm_discovery_cb.peer_bdaddr == bd_addr && bta_dm_discovery_cb.gatt_disc_active == true) {
     log::info("Device removed while service discovery was pending, conclude the service discovery");
     bta_dm_gatt_disc_complete(GATT_INVALID_CONN_ID, (tGATT_STATUS)GATT_ERROR);
   }
