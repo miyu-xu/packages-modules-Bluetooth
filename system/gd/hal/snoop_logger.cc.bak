@@ -43,6 +43,8 @@
 #include "os/parameter_provider.h"
 #include "os/system_properties.h"
 
+<<<<<<< HEAD
+=======
 /** M: Keep hci log history records */
 #define BTSNOOP_SAVELAST_PROPERTY "persist.vendor.bluetooth.btsnoopsavelast"
 /** @} */
@@ -54,6 +56,7 @@ using bluetooth::common::MessageLoopThread;
 static MessageLoopThread hci_write_thread("hci_write_thread");
 /** @} */
 
+>>>>>>> 1b35fef6d8 ([ALPS10482422] Add hci log write thread to avoid choppy)
 #ifdef USE_FAKE_TIMERS
 #include "os/fake_timer/fake_timerfd.h"
 using bluetooth::os::fake_timer::fake_timerfd_get_clock;
