@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e7d489e_47d85ff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1938090
+      },
+      "writtenOn": "2025-06-09T15:19:52Z",
+      "side": 1,
+      "message": "Hello Jack, can you PTAL this review? GM is upstream it to their current branch.",
+      "revId": "f32fdf2aedb871d758d561bea85ed2a2625c4c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
