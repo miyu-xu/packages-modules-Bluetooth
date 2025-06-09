@@ -43,6 +43,17 @@
 #include "os/parameter_provider.h"
 #include "os/system_properties.h"
 
+/** M: Keep hci log history records */
+#define BTSNOOP_SAVELAST_PROPERTY "persist.vendor.bluetooth.btsnoopsavelast"
+/** @} */
+
+/** M: write hci log in hci_write_thread */
+#include "../../common/message_loop_thread.h"
+using bluetooth::common::MessageLoopThread;
+
+static MessageLoopThread hci_write_thread("hci_write_thread");
+/** @} */
+
 #ifdef USE_FAKE_TIMERS
 #include "os/fake_timer/fake_timerfd.h"
 using bluetooth::os::fake_timer::fake_timerfd_get_clock;
@@ -1186,14 +1197,30 @@ void SnoopLogger::FilterCapturedPacket(HciPacket& packet, Direction direction, P
 }
 
 void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction, PacketType type) {
+  /** M: write hci log in hci_write_thread */
+  if (!hci_write_thread.IsRunning()) {
+    // HCI Layer was shut down or not running or hci log disabled
+    return;
+  }
+
+  uint64_t timestamp_us =
+    std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch())
+        .count();
+
+  if (!hci_write_thread.DoInThread(
+      base::Bind(&SnoopLogger::CaptureInternal, base::Unretained(this), immutable_packet, direction, type, timestamp_us))) {
+    log::error("DoInThread failed");
+  }
+  /** @} */
+}
+
+/** M: write hci log in hci_write_thread */
+void SnoopLogger::CaptureInternal(const HciPacket& immutable_packet, Direction direction, PacketType type, uint64_t timestamp_us) {
   //// TODO(b/335520123) update FilterCapture to stop modifying packets ////
   HciPacket mutable_packet(immutable_packet);
   HciPacket& packet = mutable_packet;
   //////////////////////////////////////////////////////////////////////////
 
-  uint64_t timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(
-                                  std::chrono::system_clock::now().time_since_epoch())
-                                  .count();
 #ifdef __ANDROID__
   if (com::android::bluetooth::flags::snoop_logger_tracing()) {
     LogTracePoint(packet, direction, type);
@@ -1279,6 +1306,7 @@ void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction
     }
   }
 }
+/** @} */
 
 void SnoopLogger::DumpSnoozLogToFile() {
   std::lock_guard<std::recursive_mutex> lock(file_mutex_);
@@ -1349,6 +1377,16 @@ void SnoopLogger::Start() {
         snoop_logger_socket_thread_ = nullptr;
       }
     }
+
+    /** M: write hci log in hci_write_thread */
+    hci_write_thread.StartUp();
+    if (!hci_write_thread.IsRunning()) {
+      log::error("unable to start thread");
+    }
+    if (!hci_write_thread.EnableRealTimeScheduling()) {
+      log::error("unable to make thread RT");
+    }
+    /** @} */
   }
 
 #ifdef __ANDROID__
@@ -1383,6 +1421,10 @@ void SnoopLogger::Stop() {
   if (!snoop_log_persists) {
     delete_btsnoop_files(snooz_log_path_);
   }
+
+  /** M: write hci log in hci_write_thread */
+  hci_write_thread.ShutDown();
+  /** @} */
 }
 
 size_t SnoopLogger::GetMaxPacketsPerFile() {
