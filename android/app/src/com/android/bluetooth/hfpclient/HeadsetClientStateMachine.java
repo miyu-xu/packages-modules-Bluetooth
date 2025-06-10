@@ -121,6 +121,14 @@ public class HeadsetClientStateMachine extends StateMachine {
     public static final int SEND_BIEV = 22;
     public static final int SEND_ANDROID_AT_COMMAND = 23;
 
+    private static final String BLUETOOTH_USE_RING_VOL_FOR_INBAND =
+        "persist.bluetooth.use_ring_vol_for_inband";
+    private static final String BLUETOOTH_BLOCK_HFP_VOLUME = "persist.bluetooth.block.hfp_volume";
+    private static final boolean sBlockHfpVol = SystemProperties.getBoolean(
+        BLUETOOTH_BLOCK_HFP_VOLUME, /* default= */ true);
+    private static final boolean sUseRingVolForInband = SystemProperties.getBoolean(
+        BLUETOOTH_USE_RING_VOL_FOR_INBAND, /* default= */ true);
+
     // internal actions
     @VisibleForTesting static final int QUERY_CURRENT_CALLS = 50;
     @VisibleForTesting static final int QUERY_OPERATOR_NAME = 51;
@@ -902,6 +910,9 @@ public class HeadsetClientStateMachine extends StateMachine {
         mService = requireNonNull(context);
         mNativeInterface = nativeInterface;
         mAudioManager = mService.getAudioManager();
+        if (mService.isAutomotiveUsingCoreVolume()) {
+            mAudioManager.registerVolumeGroupCallback(Runnable::run, mVolumeGroupCallback);
+        }
         mHeadsetService = headsetService;
 
         mVendorProcessor = new VendorCommandResponseProcessor(mService, mNativeInterface);
@@ -1498,6 +1509,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                     break;
                 case SET_SPEAKER_VOLUME:
                     // This message should always contain the volume in AudioManager max normalized.
+                    // Note: Skipped for automotive (volume from phone are blocked)
                     int amVol = message.arg1;
                     int hfVol = mService.amToHfVol(amVol);
                     if (amVol != mCommandedSpeakerVolume) {
@@ -1705,6 +1717,11 @@ public class HeadsetClientStateMachine extends StateMachine {
                             break;
                         case StackEvent.EVENT_TYPE_VOLUME_CHANGED:
                             if (event.valueInt == HeadsetClientHalConstants.VOLUME_TYPE_SPK) {
+                                if (sBlockHfpVol) {
+                                    debug("received the phone volume(" + event.valueInt2
+                                        + "), but do not set the volume");
+                                    break;
+                                }
                                 mCommandedSpeakerVolume = mService.hfToAmVol(event.valueInt2);
                                 debug("AM volume set to " + mCommandedSpeakerVolume);
                                 boolean show_volume =
@@ -1911,7 +1928,18 @@ public class HeadsetClientStateMachine extends StateMachine {
                     debug("hf_volume " + hfVol);
                     routeHfpAudio(true);
                     mAudioFocusRequest = requestAudioFocus();
-                    mAudioManager.setHfpVolume(hfVol);
+                    if (sUseRingVolForInband) {
+                        if (mInBandRing && (callsInState(HfpClientCall.CALL_STATE_INCOMING) != 0
+                            || callsInState(HfpClientCall.CALL_STATE_WAITING) != 0)) {
+                            debug("using inbandringtone, updating ring vol ");
+                            mService.updateHfpRingVolume();
+                        } else {
+                            debug("NOT using inbandringtone, updating call vol ");
+                            mService.updateHfpCallVolume();
+                        }
+                    } else {
+                        mAudioManager.setHfpVolume(hfVol);
+                    }
                     transitionTo(mAudioOn);
                     break;
 
@@ -2583,4 +2611,38 @@ public class HeadsetClientStateMachine extends StateMachine {
     int getInBandRingtonePolicyProperty() {
         return mInBandRingtonePolicyProperty;
     }
+
+    private final AudioManager.VolumeGroupCallback mVolumeGroupCallback =
+        new AudioManager.VolumeGroupCallback() {
+            @Override
+            public void onAudioVolumeGroupChanged(int groupId, int flags) {
+                if (groupId == mService.getAmVcGroupId()) {
+                    if (sUseRingVolForInband) {
+                        if (!mInBandRing || (callsInState(HfpClientCall.CALL_STATE_INCOMING) == 0
+                                && callsInState(HfpClientCall.CALL_STATE_WAITING) == 0)) {
+                            debug("NOT using inbandringtone, updating call vol ");
+                            mService.updateHfpCallVolume();
+                            if (!sBlockHfpVol) {
+                                sendMessage(SET_SPEAKER_VOLUME,
+                                    mAudioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
+                            }
+                        }
+                        return;
+                    }
+                    final int amVol = mAudioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL);
+                    int hfVol = mService.amToHfVol(amVol);
+                    debug("Setting volume to audio manager: " + amVol + " hands free: " + hfVol);
+                    mAudioManager.setHfpVolume(hfVol);
+                    if (!sBlockHfpVol) {
+                        sendMessage(SET_SPEAKER_VOLUME, amVol);
+                    }
+                } else if (sUseRingVolForInband && groupId == mService.getAmRingGroupId()) {
+                    if (mInBandRing && (callsInState(HfpClientCall.CALL_STATE_INCOMING) != 0
+                            || callsInState(HfpClientCall.CALL_STATE_WAITING) != 0)) {
+                        debug("using inbandringtone, updating ring vol ");
+                        mService.updateHfpRingVolume();
+                    }
+                }
+            }
+        };
 }
