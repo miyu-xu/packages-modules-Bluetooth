@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d78375b_b3ec29bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1491204
+      },
+      "writtenOn": "2025-06-10T14:39:40Z",
+      "side": 1,
+      "message": "Please find as an example the CL to allow fullfilling our requirements",
+      "revId": "8b11fbd52fa6e853d5719a80c9f64d9373a4e099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
