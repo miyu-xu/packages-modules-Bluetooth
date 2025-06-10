@@ -50,6 +50,30 @@
       ],
       "revId": "dc702d38c5551f0cc6ff182a8defeb0f660c6b21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a881797a_5d09b3fc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 3994845
+      },
+      "writtenOn": "2025-06-10T05:10:46Z",
+      "side": 1,
+      "message": "So, how about this?\n\n```\n        @Override\n        public void onSignalStrengthsChanged(SignalStrength signalStrength) {\n            if (mCindService \u003d\u003d HeadsetHalConstants.NETWORK_STATE_NOT_AVAILABLE) {\n                mCindSignal \u003d 0;\n                return;\n            }\n\n            int prevSignal \u003d mCindSignal;\n\n            // +CIND \"signal\" indicator is always between 0 to 5\n            mCindSignal \u003d Integer.max(Integer.min(signalStrength.getVendorLevel(), 5), 0);\n\n            // This results in a lot of duplicate messages, hence this check\n            if (prevSignal !\u003d mCindSignal) {\n                sendDeviceStateChanged();\n            }\n        }\n```",
+      "parentUuid": "2477efed_19f7df5b",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 339,
+        "endChar": 13
+      },
+      "revId": "dc702d38c5551f0cc6ff182a8defeb0f660c6b21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
