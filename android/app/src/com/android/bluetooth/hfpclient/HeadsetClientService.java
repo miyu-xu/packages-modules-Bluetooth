@@ -40,7 +40,10 @@ import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -77,6 +80,16 @@ public class HeadsetClientService extends ProfileService {
     @VisibleForTesting static final int MAX_HFP_SCO_VOICE_CALL_VOLUME = 15; // HFP 1.5 spec.
     @VisibleForTesting static final int MIN_HFP_SCO_VOICE_CALL_VOLUME = 1; // HFP 1.5 spec.
 
+    // Control if volume change initiated by phone is allowed
+    private static final String BLUETOOTH_BLOCK_HFP_VOLUME = "persist.bluetooth.block.hfp_volume";
+    private static final boolean sBlockHfpVol = SystemProperties.getBoolean(
+            BLUETOOTH_BLOCK_HFP_VOLUME, /* default= */ true);
+    private static final String BLUETOOTH_USE_CUSTOM_HFP_VOLUME =
+        "persist.bluetooth.use_custom_hfp_volume";
+    private static final boolean sUseHfpCustomVol = SystemProperties.getBoolean(
+        BLUETOOTH_USE_CUSTOM_HFP_VOLUME, /* default= */ true);
+    private static final String sHfpCustomVolumeKey = "hfp_custom_volume";
+
     // This is also used as a lock for shared data in {@link HeadsetClientService}
     @GuardedBy("mStateMachineMap")
     private final HashMap<BluetoothDevice, HeadsetClientStateMachine> mStateMachineMap =
@@ -94,6 +107,11 @@ public class HeadsetClientService extends ProfileService {
     private final int mMaxAmVcVol;
     private final int mMinAmVcVol;
 
+    private final int mMaxAmRingVol;
+    private final int mMinAmRingVol;
+    private final int mAmRingGroupId;
+    private final int mAmVcGroupId;
+
     private int mLastBatteryLevel = -1;
 
     public static final String HFP_CLIENT_STOP_TAG = "hfp_client_stop_tag";
@@ -105,6 +123,19 @@ public class HeadsetClientService extends ProfileService {
         mAudioManager = requireNonNull(getSystemService(AudioManager.class));
         mMaxAmVcVol = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL);
         mMinAmVcVol = mAudioManager.getStreamMinVolume(AudioManager.STREAM_VOICE_CALL);
+
+        AudioAttributes ringAa =
+            new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
+                .build();
+        AudioAttributes callAa =
+            new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION)
+                .build();
+        mAmRingGroupId = mAudioManager.getVolumeGroupIdForAttributes(ringAa);
+        mMaxAmRingVol = mAudioManager.getVolumeGroupMaxVolumeIndex(mAmRingGroupId);
+        mMinAmRingVol = mAudioManager.getVolumeGroupMinVolumeIndex(mAmRingGroupId);
+        mAmVcGroupId = mAudioManager.getVolumeGroupIdForAttributes(callAa);
 
         // Setup the JNI service
         mNativeInterface = NativeInterface.getInstance();
@@ -235,6 +266,10 @@ public class HeadsetClientService extends ProfileService {
                                             + streamValue
                                             + " hands free: "
                                             + hfVol);
+                            if (sBlockHfpVol) {
+                                Log.e(TAG, "ACTION_VOLUME_CHANGED, blocking hfp volume ");
+                                return;
+                            }
                             mAudioManager.setHfpVolume(hfVol);
                             synchronized (mStateMachineMap) {
                                 for (HeadsetClientStateMachine sm : mStateMachineMap.values()) {
@@ -1346,5 +1381,55 @@ public class HeadsetClientService extends ProfileService {
                 }
             }
         }
+    }
+
+    static float amToCustomHfVol(int amVol, int minVol, int maxVol) {
+        int maxHfpCustomVol = 1;
+        int minHfpCustomVol = 0;
+
+        amVol = (amVol < minVol) ? minVol : (amVol > maxVol) ? maxVol : amVol;
+        if (maxVol < minVol) {
+            Log.e(TAG, "invalid range, setting volume to max");
+            return maxHfpCustomVol;
+        }
+        float amRange = maxVol - minVol;
+        float hfVol = (amVol > maxVol) ? maxHfpCustomVol :
+            (amVol < minVol) ? minHfpCustomVol : (amVol - minVol) / amRange;
+        Log.d(TAG, "AM -> Custom HF " + amVol + " " + hfVol);
+        return hfVol;
+    }
+
+    void updateHfpRingVolume() {
+        int amRingVol = mAudioManager.getVolumeGroupVolumeIndex(mAmRingGroupId);
+        if (sUseHfpCustomVol) {
+            mAudioManager.setParameters(sHfpCustomVolumeKey + "=" +
+                Float.toString(amToCustomHfVol(amRingVol, mMinAmRingVol, mMaxAmRingVol)));
+        } else {
+            mAudioManager.setHfpVolume(amToHfVol(amRingVol));
+        }
+    }
+
+    void updateHfpCallVolume() {
+        int amCallVol = mAudioManager.getVolumeGroupVolumeIndex(mAmVcGroupId);
+        if (sUseHfpCustomVol) {
+            mAudioManager.setParameters(sHfpCustomVolumeKey + "=" +
+                Float.toString(amToCustomHfVol(amCallVol, mMinAmVcVol, mMaxAmVcVol)));
+        } else {
+            mAudioManager.setHfpVolume(amToHfVol(amCallVol));
+        }
+    }
+
+    int getAmVcGroupId() {
+        return mAmVcGroupId;
+    }
+
+    int getAmRingGroupId() {
+        return mAmRingGroupId;
+    }
+
+    boolean isAutomotiveUsingCoreVolume() {
+        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_AUTOMOTIVE) &&
+            !getResources().getBoolean(
+                Resources.getSystem().getIdentifier("config_useFixedVolume", "bool", "android"));
     }
 }
