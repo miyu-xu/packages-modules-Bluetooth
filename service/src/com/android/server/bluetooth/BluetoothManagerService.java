@@ -844,6 +844,13 @@ class BluetoothManagerService {
                     break;
                 }
             }
+
+            if (isBleAppPresent() || mEnableExternal
+                    || mState.oneOf(STATE_BLE_TURNING_ON)) {
+                return;
+            }
+            if (DBG) Log.d(TAG, "Disabling LE only mode after application crash");
+            postAndWait(() -> handleDisableBleMessage());
         }
 
         public String getPackageName() {
@@ -2519,5 +2526,37 @@ class BluetoothManagerService {
                     PackageManager.DONT_KILL_APP);
                 Log.i(TAG, "Disabled component: " + componentName.flattenToString());
             });
+    }
+
+    private void postAndWait(Runnable runnable) {
+        FutureTask<Void> task = new FutureTask<>(()->{
+                runnable.run();
+                return null;
+                });
+
+        mHandler.post(task);
+        try {
+            // Any method calling postAndWait should most likely be done in under 1 seconds.
+            // But real life shows that the system server thread may sometimes be unwillingly busy.
+            // By putting a 10 seconds timeout we make sure this will generate an ANR (on purpose),
+            // and investigation on what is happening in the system server thread and be fixed
+            task.get(10, TimeUnit.SECONDS);
+        } catch (TimeoutException | InterruptedException e) {
+            SneakyThrow.sneakyThrow(e);
+        } catch (ExecutionException e) {
+            SneakyThrow.sneakyThrow(e.getCause());
+        }
+    }
+
+    private void handleDisableBleMessage() {
+        Log.d(TAG, "handleDisableBleMessage");
+
+        if (isBleAppPresent() || mEnableExternal
+                || mState.oneOf(STATE_BLE_TURNING_ON)) {
+            return;
+        }
+
+        mEnable = false;
+        bleOnToOff();
     }
 }
