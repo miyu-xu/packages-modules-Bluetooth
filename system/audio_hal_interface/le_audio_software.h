@@ -106,6 +106,7 @@ public:
     virtual ~Sink() = default;
 
     void Cleanup() override;
+    void CleanupBroadcast();
     void SetPcmParameters(const PcmParameters& params) override;
     void SetRemoteDelay(uint16_t delay_report_ms) override;
     void StartSession() override;
@@ -160,6 +161,8 @@ public:
   bool IsBroadcastSinkAcquired();
   // Release sink interface if belongs to LE audio client interface
   bool ReleaseSink(Sink* sink);
+  // Release Broadcast sink interface if belongs to LE audio client interface
+  bool ReleaseBroadcastSink(Sink* sink);
 
   // Get LE Audio source client interface if it's not previously acquired and
   // not yet released.

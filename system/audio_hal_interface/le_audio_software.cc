@@ -117,28 +117,35 @@ void LeAudioClientInterface::Sink::Cleanup() {
       hidl::le_audio::LeAudioSinkTransport::instance = nullptr;
     }
   } else if (HalVersionManager::GetHalTransport() == BluetoothAudioHalTransport::AIDL) {
-    if (IsBroadcaster()) {
-      if (aidl::le_audio::LeAudioSinkTransport::interface_broadcast_) {
-        delete aidl::le_audio::LeAudioSinkTransport::interface_broadcast_;
-        aidl::le_audio::LeAudioSinkTransport::interface_broadcast_ = nullptr;
-      }
-      if (aidl::le_audio::LeAudioSinkTransport::instance_broadcast_) {
-        delete aidl::le_audio::LeAudioSinkTransport::instance_broadcast_;
-        aidl::le_audio::LeAudioSinkTransport::instance_broadcast_ = nullptr;
-      }
-    } else {
-      if (aidl::le_audio::LeAudioSinkTransport::interface_unicast_) {
-        delete aidl::le_audio::LeAudioSinkTransport::interface_unicast_;
-        aidl::le_audio::LeAudioSinkTransport::interface_unicast_ = nullptr;
-      }
-      if (aidl::le_audio::LeAudioSinkTransport::instance_unicast_) {
-        delete aidl::le_audio::LeAudioSinkTransport::instance_unicast_;
-        aidl::le_audio::LeAudioSinkTransport::instance_unicast_ = nullptr;
-      }
+    if (aidl::le_audio::LeAudioSinkTransport::interface_unicast_) {
+      delete aidl::le_audio::LeAudioSinkTransport::interface_unicast_;
+      aidl::le_audio::LeAudioSinkTransport::interface_unicast_ = nullptr;
+    }
+    if (aidl::le_audio::LeAudioSinkTransport::instance_unicast_) {
+      delete aidl::le_audio::LeAudioSinkTransport::instance_unicast_;
+      aidl::le_audio::LeAudioSinkTransport::instance_unicast_ = nullptr;
     }
   } else {
     log::error("Invalid HAL transport: 0x{:02x}",
                static_cast<int>(HalVersionManager::GetHalTransport()));
+  }
+}
+
+void LeAudioClientInterface::Sink::CleanupBroadcast() {
+  log::info("HAL transport: 0x{:02x}, is broadcast: {}",
+            static_cast<int>(HalVersionManager::GetHalTransport()),
+            is_broadcaster_);
+
+  StopSession();
+  if (HalVersionManager::GetHalTransport() == BluetoothAudioHalTransport::AIDL) {
+    if (aidl::le_audio::LeAudioSinkTransport::interface_broadcast_) {
+      delete aidl::le_audio::LeAudioSinkTransport::interface_broadcast_;
+      aidl::le_audio::LeAudioSinkTransport::interface_broadcast_ = nullptr;
+    }
+    if (aidl::le_audio::LeAudioSinkTransport::instance_broadcast_) {
+      delete aidl::le_audio::LeAudioSinkTransport::instance_broadcast_;
+      aidl::le_audio::LeAudioSinkTransport::instance_broadcast_ = nullptr;
+    }
   }
 }
 
@@ -712,7 +719,8 @@ bool LeAudioClientInterface::IsUnicastSinkAcquired() { return unicast_sink_ != n
 bool LeAudioClientInterface::IsBroadcastSinkAcquired() { return broadcast_sink_ != nullptr; }
 
 bool LeAudioClientInterface::ReleaseSink(LeAudioClientInterface::Sink* sink) {
-  if (sink != unicast_sink_ && sink != broadcast_sink_) {
+  log::info("");
+  if (sink != unicast_sink_) {
     log::warn("can't release not acquired sink");
     return false;
   }
@@ -720,19 +728,31 @@ bool LeAudioClientInterface::ReleaseSink(LeAudioClientInterface::Sink* sink) {
   if ((hidl::le_audio::LeAudioSinkTransport::interface &&
        hidl::le_audio::LeAudioSinkTransport::instance) ||
       (aidl::le_audio::LeAudioSinkTransport::interface_unicast_ &&
-       aidl::le_audio::LeAudioSinkTransport::instance_unicast_) ||
-      (aidl::le_audio::LeAudioSinkTransport::interface_broadcast_ &&
-       aidl::le_audio::LeAudioSinkTransport::instance_broadcast_)) {
+       aidl::le_audio::LeAudioSinkTransport::instance_unicast_)) {
     sink->Cleanup();
   }
 
-  if (sink == unicast_sink_) {
-    delete (unicast_sink_);
-    unicast_sink_ = nullptr;
-  } else if (sink == broadcast_sink_) {
-    delete (broadcast_sink_);
-    broadcast_sink_ = nullptr;
+  delete (unicast_sink_);
+  unicast_sink_ = nullptr;
+  return true;
+}
+
+bool LeAudioClientInterface::ReleaseBroadcastSink(LeAudioClientInterface::Sink* sink) {
+  log::info("");
+
+  if (sink != broadcast_sink_) {
+    log::warn("can't release not acquired broadcast sink");
+    return false;
   }
+
+  if ((hidl::le_audio::LeAudioSinkTransport::interface &&
+       hidl::le_audio::LeAudioSinkTransport::instance) ||
+      (aidl::le_audio::LeAudioSinkTransport::interface_broadcast_ &&
+       aidl::le_audio::LeAudioSinkTransport::instance_broadcast_))
+    sink->CleanupBroadcast();
+
+  delete (broadcast_sink_);
+  broadcast_sink_ = nullptr;
 
   return true;
 }

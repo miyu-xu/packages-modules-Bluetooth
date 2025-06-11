@@ -124,6 +124,7 @@ cc_library_static {
         "jv/bta_jv_api.cc",
         "le_audio/audio_hal_client/audio_sink_hal_client.cc",
         "le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "le_audio/audio_hal_client/audio_broadcast_source_hal_client.cc",
         "le_audio/broadcaster/broadcast_configuration_provider.cc",
         "le_audio/broadcaster/broadcaster.cc",
         "le_audio/broadcaster/broadcaster_types.cc",

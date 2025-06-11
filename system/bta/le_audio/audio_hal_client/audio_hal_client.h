@@ -171,4 +171,46 @@ public:
 protected:
   LeAudioSourceAudioHalClient() = default;
 };
+
+/* Used by the local BLE Audio Broadcast Source device to get data from the
+ * Audio HAL, so we could send it over to a remote BLE Audio Sink device.
+ */
+class LeAudioBroadcastSourceAudioHalClient : public LeAudioCommonAudioHalClient {
+ public:
+  class Callbacks {
+   public:
+    virtual ~Callbacks() = default;
+    virtual void OnAudioDataReady(const std::vector<uint8_t>& data) = 0;
+    virtual void OnAudioSuspend(void) = 0;
+    virtual void OnAudioResume(void) = 0;
+    virtual void OnAudioMetadataUpdate(
+        const std::vector<struct playback_track_metadata_v7> source_metadata,
+        DsaMode dsa_mode) = 0;
+
+    base::WeakPtrFactory<Callbacks> weak_factory_{this};
+  };
+
+  virtual ~LeAudioBroadcastSourceAudioHalClient() = default;
+  virtual bool Start(const LeAudioCodecConfiguration& codecConfiguration,
+                     Callbacks* audioReceiver,
+                     DsaModes dsa_modes = {DsaMode::DISABLED}) = 0;
+  virtual void Stop() = 0;
+  virtual size_t SendData(uint8_t* data, uint16_t size) { return 0; }
+  virtual void ConfirmStreamingRequest() = 0;
+  virtual void CancelStreamingRequest() = 0;
+  virtual void UpdateRemoteDelay(uint16_t remote_delay_ms) = 0;
+  virtual void UpdateAudioConfigToHal(
+      const ::bluetooth::le_audio::stream_config& config) = 0;
+  virtual void UpdateBroadcastAudioConfigToHal(
+      const ::bluetooth::le_audio::broadcast_offload_config& config) = 0;
+  virtual void SuspendedForReconfiguration() = 0;
+  virtual void ReconfigurationComplete() = 0;
+
+  static std::unique_ptr<LeAudioBroadcastSourceAudioHalClient> AcquireUnicast();
+  static std::unique_ptr<LeAudioBroadcastSourceAudioHalClient> AcquireBroadcast();
+  static void DebugDump(int fd);
+
+ protected:
+  LeAudioBroadcastSourceAudioHalClient() = default;
+};
 }  // namespace bluetooth::le_audio

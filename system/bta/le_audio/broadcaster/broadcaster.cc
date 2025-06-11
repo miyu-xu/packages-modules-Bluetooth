@@ -76,7 +76,7 @@ using bluetooth::le_audio::BroadcastId;
 using bluetooth::le_audio::CodecManager;
 using bluetooth::le_audio::ContentControlIdKeeper;
 using bluetooth::le_audio::DsaMode;
-using bluetooth::le_audio::LeAudioSourceAudioHalClient;
+using bluetooth::le_audio::LeAudioBroadcastSourceAudioHalClient;
 using bluetooth::le_audio::PublicBroadcastAnnouncementData;
 using bluetooth::le_audio::broadcaster::BigConfig;
 using bluetooth::le_audio::broadcaster::BroadcastConfiguration;
@@ -763,7 +763,7 @@ public:
 
       if (broadcasts_.count(broadcast_id) != 0) {
         if (!le_audio_source_hal_client_) {
-          le_audio_source_hal_client_ = LeAudioSourceAudioHalClient::AcquireBroadcast();
+          le_audio_source_hal_client_ = LeAudioBroadcastSourceAudioHalClient::AcquireBroadcast();
           if (!le_audio_source_hal_client_) {
             log::error("Could not acquire le audio");
             return;
@@ -1140,7 +1140,7 @@ private:
     void OnBigCreated(const std::vector<uint16_t>& conn_handle) {
       CodecManager::GetInstance()->UpdateBroadcastConnHandle(
               conn_handle,
-              std::bind(&LeAudioSourceAudioHalClient::UpdateBroadcastAudioConfigToHal,
+              std::bind(&LeAudioBroadcastSourceAudioHalClient::UpdateBroadcastAudioConfigToHal,
                         instance->le_audio_source_hal_client_.get(), std::placeholders::_1));
 
       if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
@@ -1246,7 +1246,7 @@ private:
     }
   } state_machine_adv_callbacks_;
 
-  static class LeAudioSourceCallbacksImpl : public LeAudioSourceAudioHalClient::Callbacks {
+  static class LeAudioSourceCallbacksImpl : public LeAudioBroadcastSourceAudioHalClient::Callbacks {
   public:
     LeAudioSourceCallbacksImpl() = default;
     void CheckAndReconfigureEncoders(const BroadcastConfiguration& broadcast_config) {
@@ -1459,7 +1459,7 @@ private:
 
   /* Some BIG params are set globally */
   uint8_t current_phy_;
-  std::unique_ptr<LeAudioSourceAudioHalClient> le_audio_source_hal_client_;
+  std::unique_ptr<LeAudioBroadcastSourceAudioHalClient> le_audio_source_hal_client_;
   std::vector<BroadcastId> available_broadcast_ids_;
 
   // Current state of audio playback
