@@ -378,4 +378,7 @@ uint16_t AVRC_RemoveRecord(uint32_t sdp_handle) {
  * Returns          void
  *
  ******************************************************************************/
-void AVRC_Init(void) { memset(&avrc_cb, 0, sizeof(tAVRC_CB)); }
+void AVRC_Init(void) {
+  /* using memset is valid because tAVRC_CB is Plain-Old-Data (not a complex struct) */
+  memset(static_cast<void*>(&avrc_cb), 0, sizeof(tAVRC_CB));
+}

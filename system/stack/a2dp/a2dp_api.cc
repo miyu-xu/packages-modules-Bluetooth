@@ -368,7 +368,8 @@ uint8_t A2DP_BitsSet(uint64_t num) {
  *
  ******************************************************************************/
 void A2DP_Init(void) {
-  memset(&a2dp_cb, 0, sizeof(tA2DP_CB));
+  /* using memset is valid because tA2DP_CB is Plain-Old-Data (not a complex struct) */
+  memset(static_cast<void*>(&a2dp_cb), 0, sizeof(tA2DP_CB));
 }
 
 uint16_t A2DP_GetAvdtpVersion() { return AVDT_VERSION; }
