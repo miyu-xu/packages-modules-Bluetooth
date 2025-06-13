@@ -1,0 +1,121 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c881fef_735d3a65",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-13T16:49:23Z",
+      "side": 1,
+      "message": "Does this compile ?\n```\na2dp_cb \u003d tA2DP_CB{};\n```",
+      "range": {
+        "startLine": 372,
+        "startChar": 29,
+        "endLine": 372,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5236ab7b_a66b3cda",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_api.cc",
+              "range": {
+                "startLine": 371,
+                "startChar": 0,
+                "endLine": 373,
+                "endChar": 0
+              },
+              "replacement": "  a2dp_cb \u003d tA2DP_CB{};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1faf6ccd_56555e9c",
+        "filename": "system/stack/avrc/avrc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-13T16:49:23Z",
+      "side": 1,
+      "message": "Same,\n```\navrc_cv \u003d tAVRC_CB{};\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "53e5c61b_ab053a0e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avrc/avrc_sdp.cc",
+              "range": {
+                "startLine": 382,
+                "startChar": 0,
+                "endLine": 384,
+                "endChar": 0
+              },
+              "replacement": "  avrc_cb \u003d tAVRC_CB{};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3da1ec1_b7a389ae",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-13T16:49:23Z",
+      "side": 1,
+      "message": "```\nl2cb \u003d tL2C_CB{};\n```",
+      "range": {
+        "startLine": 858,
+        "startChar": 2,
+        "endLine": 858,
+        "endChar": 8
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "542444f1_c8240c5e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_main.cc",
+              "range": {
+                "startLine": 857,
+                "startChar": 0,
+                "endLine": 859,
+                "endChar": 0
+              },
+              "replacement": "  l2cb \u003d tL2C_CB{};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
