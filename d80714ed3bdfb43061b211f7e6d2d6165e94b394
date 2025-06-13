@@ -86,6 +86,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa65ef4_73c1c25a",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-06-13T12:45:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3fa046e_1d14fb50",
+      "revId": "d80714ed3bdfb43061b211f7e6d2d6165e94b394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36733f87_134ba496",
@@ -99,6 +117,24 @@
       "writtenOn": "2025-05-21T12:35:12Z",
       "side": 1,
       "message": "Here, you will lower the connection parameters after initial service discovery for every device that have this UUID avaliable.\n\nIt would not depend on wether the profile is enabled or not.\nCan you please move this call, it should happen when the hearing_aid profile is actually decided to be connected.",
+      "revId": "d80714ed3bdfb43061b211f7e6d2d6165e94b394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aad9e76_e714ba4b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2025-06-13T12:45:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36733f87_134ba496",
       "revId": "d80714ed3bdfb43061b211f7e6d2d6165e94b394",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
