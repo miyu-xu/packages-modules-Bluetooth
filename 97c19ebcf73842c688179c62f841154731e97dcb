@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b09d141_fb5daa4e",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2582,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-16T18:48:12Z",
+      "side": 1,
+      "message": "This works, thanks. I will update the CL with this addition after we figure out the below.",
+      "parentUuid": "a4580d5d_0c093996",
+      "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7641db9f_d97ee39b",
@@ -93,6 +111,30 @@
           ]
         }
       ],
+      "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e87f024_215711dc",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2584,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-16T18:48:12Z",
+      "side": 1,
+      "message": "This does not work, because there is a std::recursive_mutex label_lock; nested inside the struct:\n\n```\nif/src/btif_rc.cc:2583:33: error: object of type \u0027btif_rc_device_cb_t\u0027 cannot be assigned because its copy assignment operator is implicitly deleted\nfloss-9999:  2583 |     btif_rc_cb.rc_multi_cb[idx] \u003d btif_rc_device_cb_t{};\nfloss-9999:       |                                 ^\nfloss-9999: ../../../../../../../tmp/portage/net-wireless/floss-9999/work/floss-9999/platform2/bt/system/btif/src/btif_rc.cc:220:24: note: copy assignment operator of \u0027btif_rc_device_cb_t\u0027 is implicitly deleted because field \u0027transaction_set\u0027 has a deleted copy assignment operator\nfloss-9999:   220 |   rc_transaction_set_t transaction_set;\nfloss-9999:       |                        ^\nfloss-9999: ../../../../../../../tmp/portage/net-wireless/floss-9999/work/floss-9999/platform2/bt/system/btif/src/btif_rc.cc:196:24: note: copy assignment operator of \u0027rc_transaction_set_t\u0027 is implicitly deleted because field \u0027label_lock\u0027 has a deleted copy assignment operator\nfloss-9999:   196 |   std::recursive_mutex label_lock;\nfloss-9999:       |                        ^\nfloss-9999: /usr/bin/../include/c++/v1/mutex:229:20: note: \u0027operator\u003d\u0027 has been explicitly marked deleted here\nfloss-9999:   229 |   recursive_mutex\u0026 operator\u003d(const recursive_mutex\u0026) \u003d delete;\nfloss-9999:       |                    ^\nfloss-9999: 1 error generated.\n```\n\nAny ideas how to fix this?\n\nPerhaps we can move that mutex to the top level struct rc_cb_t ? I\u0027m a bit anxious doing this change because it\u0027s more involved that just fixing the clang + glibc regression, perhaps it needs to be done separately from this CL.\n\nAlso btif_rc_cb.rc_multi_cb \u003d {}; does not work:\n\n```\nsystem/btif/src/btif_rc.cc:2587:26: error: array type \u0027btif_rc_device_cb_t[6]\u0027 is not assignable\nfloss-9999:  2587 |   btif_rc_cb.rc_multi_cb \u003d {};\nfloss-9999:       |   ~~~~~~~~~~~~~~~~~~~~~~ ^\nfloss-9999: 1 error generated.\n```\n\nFor this to work we would need to refactor the member to use something like: `std::array\u003cbtif_rc_device_cb_t, BTIF_RC_NUM_CONN\u003e rc_multi_cb;`\n\nwhich I feel is again out of scope for this cl...\n\nWDYT?",
+      "parentUuid": "7641db9f_d97ee39b",
+      "range": {
+        "startLine": 2584,
+        "startChar": 4,
+        "endLine": 2584,
+        "endChar": 56
+      },
       "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
