@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb73228a_89cc8387",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-16T10:54:26Z",
+      "side": 1,
+      "message": "Yes, that worked, updated the CL. Thanks!",
+      "parentUuid": "9c881fef_735d3a65",
+      "range": {
+        "startLine": 372,
+        "startChar": 29,
+        "endLine": 372,
+        "endChar": 36
+      },
+      "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1faf6ccd_56555e9c",
@@ -73,6 +97,24 @@
           ]
         }
       ],
+      "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6a5b29c_9d0dcd6c",
+        "filename": "system/stack/avrc/avrc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-16T10:54:26Z",
+      "side": 1,
+      "message": "Yes, that worked, updated the CL. Thanks!",
+      "parentUuid": "1faf6ccd_56555e9c",
       "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -114,6 +156,30 @@
           ]
         }
       ],
+      "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad19f68_7d197b68",
+        "filename": "system/stack/l2cap/l2c_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-16T10:54:26Z",
+      "side": 1,
+      "message": "Yes, that worked, updated the CL. Thanks!",
+      "parentUuid": "e3da1ec1_b7a389ae",
+      "range": {
+        "startLine": 858,
+        "startChar": 2,
+        "endLine": 858,
+        "endChar": 8
+      },
       "revId": "1edcaa2c5892ec8eeccd8f768307ab6c721805d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
