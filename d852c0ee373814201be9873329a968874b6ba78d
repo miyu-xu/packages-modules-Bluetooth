@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe7b7a15_7182d999",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-06-16T15:31:00Z",
+      "side": 1,
+      "message": "The service changed indication should be enabled when service discovery is performed. This should be done for all devices irrespective of whether they are bonded or not.\n\nServices can change even prior to bonding. A lot of LE devices don\u0027t pair at all. Though the probability of database changing while the devices are connected is low, it is not disallowed by the spec.",
+      "revId": "d852c0ee373814201be9873329a968874b6ba78d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
