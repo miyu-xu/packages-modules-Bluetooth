@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d218bb_c10f1e32",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2025-06-16T07:14:55Z",
+      "side": 1,
+      "message": "Can I ask for some explanation about this part? Since I don\u0027t see any existing functions `isSamsungManufacturerFilter()` and `ScanRecord.hasSamsungManuData()`",
+      "revId": "c31dc6f502694a6d93de6e62fee766d8dcb4df4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
