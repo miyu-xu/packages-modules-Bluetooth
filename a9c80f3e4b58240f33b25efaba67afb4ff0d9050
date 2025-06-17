@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5550a416_5d17421d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-17T00:07:31Z",
+      "side": 1,
+      "message": "will this change have power impact on Phone side?",
+      "parentUuid": "890e85d0_54bf299d",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33eaec2e_8a9b7c16",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 13
