@@ -244,6 +244,16 @@ public class LeAudioService extends ProfileService {
 
     BluetoothLeScanner mAudioServersScanner;
 
+    private Runnable mLeScanTimeoutEvent = new Runnable() {
+        @Override
+        public void run() {
+            Log.d(TAG, "Reach the scan time, stop background scan.");
+            mScanCallBack.stopBackgroupScan();
+            }
+    };
+
+    private static final int LE_SCAN_TIMEOUT_MS = 60*1000;
+
     public LeAudioService(AdapterService adapterService) {
         this(adapterService, LeAudioNativeInterface.getInstance());
     }
@@ -2070,6 +2080,7 @@ public class LeAudioService extends ProfileService {
         int mScannerId = SCANNER_NOT_INITIALIZED;
 
         synchronized void startBackgroundScan() {
+            mHandler.removeCallbacks(mLeScanTimeoutEvent);
             if (mScannerId >= 0) {
                 Log.i(
                         TAG,
@@ -4258,6 +4269,20 @@ public class LeAudioService extends ProfileService {
         }
 
         if (!isScannerNeeded()) {
+            if (mCsipSetCoordinatorService == null) {
+                Log.d(TAG, "Get csip set coordinator service.");
+                mCsipSetCoordinatorService = mServiceFactory.getCsipSetCoordinatorService();
+            }
+
+            if (mCsipSetCoordinatorService != null
+                && (getConnectedPeerDevices(deviceDescriptor.mGroupId).size()
+                    < mCsipSetCoordinatorService.getDesiredGroupSize(deviceDescriptor.mGroupId))) {
+                Log.d(TAG, "Delay 1min to stop background scan.");
+                mHandler.postDelayed(mLeScanTimeoutEvent, LE_SCAN_TIMEOUT_MS);
+                return;
+            }
+            Log.d(TAG, "Scanner is not needed, stop background scan.");
+            mHandler.removeCallbacks(mLeScanTimeoutEvent);
             mScanCallback.stopBackgroundScan();
         }
 
