@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0629563d_42e63d35",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-17T00:49:37Z",
+      "side": 1,
+      "message": "Wouldn\u0027t you like to report `btav_a2dp_codec_audio_context_t` instead ?\nThat would give you more options to choose from in the HAL configuration hint.",
+      "range": {
+        "startLine": 59,
+        "startChar": 17,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfd04fdc_02969f7a",
         "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
         "patchSetId": 14
@@ -185,6 +208,70 @@
         "startChar": 0,
         "endLine": 207,
         "endChar": 3
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa20e43_eb3228e8",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 4149,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-17T00:49:37Z",
+      "side": 1,
+      "message": "`set_latency_req.is_low_latency` has an undefined value.",
+      "range": {
+        "startLine": 4149,
+        "startChar": 28,
+        "endLine": 4149,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "842375c2_4572dcd1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_av.cc",
+              "range": {
+                "startLine": 4150,
+                "startChar": 0,
+                "endLine": 4150,
+                "endChar": 0
+              },
+              "replacement": "  set_latency_req.is_low_latency \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e0d1ee_fa534dd6",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-17T00:49:37Z",
+      "side": 1,
+      "message": "I don\u0027t think the context should be conveyed as part of the codec_config;\ntechnically it is more of a contextual hint than audio configuration.\n\nCan you add a parameter to `get_a2dp_configuration`, same as the peer_address is communicated to the HAL ?",
+      "range": {
+        "startLine": 184,
+        "startChar": 2,
+        "endLine": 184,
+        "endChar": 48
       },
       "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
