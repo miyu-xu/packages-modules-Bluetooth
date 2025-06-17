@@ -185,6 +185,30 @@
       },
       "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68610dad_26bce532",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2584,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-17T08:23:50Z",
+      "side": 1,
+      "message": "Ok, thank you, I\u0027ve uploaded the CL to include `list_clear(btif_rc_cb.rc_multi_cb[idx].rc_supported_event_list);`.\n\nPlease let me know when you cherry-pick this.\n\nI would like to prioritize it if possible because it\u0027s blocking the glibc upgrade on the ChromeOS side. Thank you!",
+      "parentUuid": "26d3867e_b168b81d",
+      "range": {
+        "startLine": 2584,
+        "startChar": 4,
+        "endLine": 2584,
+        "endChar": 56
+      },
+      "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
