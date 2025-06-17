@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5f10860_e202a5c7",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-06-17T07:59:32Z",
+      "side": 1,
+      "message": "Hi, may I ask why the ID bit is cleared here?",
+      "range": {
+        "startLine": 601,
+        "startChar": 6,
+        "endLine": 601,
+        "endChar": 48
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e960ec2c_47303118",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 601,
+                "startChar": 0,
+                "endLine": 601,
+                "endChar": 0
+              },
+              "replacement": "      // When RPA is resolved to identity address, the address type will be\n      // RANDOM_IDENTITY_ADDRESS. When we add the identity address to accept list,\n      // we should use RANDOM_DEVICE_ADDRESS.\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1076,
+                "startChar": 0,
+                "endLine": 1076,
+                "endChar": 0
+              },
+              "replacement": "    // If the address is identity address, try to resolve it to pseudo address.\n"
+            },
+            {
+              "path": "system/gd/hci/acl_manager/le_impl.h",
+              "range": {
+                "startLine": 1080,
+                "startChar": 0,
+                "endLine": 1081,
+                "endChar": 0
+              },
+              "replacement": "        log::warn(\"Device already connected as pseudo_addr. Skip adding identity addr to accept list\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
