@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5356704a_61ce446f",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-17T00:40:46Z",
+      "side": 1,
+      "message": "Named `is_low_latency` in other methods; please use the same name everywhere for consistency (I am ok with either name).",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 59
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfd04fdc_02969f7a",
         "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
         "patchSetId": 14
@@ -42,6 +65,29 @@
         "startChar": 0,
         "endLine": 42,
         "endChar": 39
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ed2e509_e1383511",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-17T00:40:46Z",
+      "side": 1,
+      "message": "The source_type is always DEFAULT, you might as well remove this parameter entirely",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 3
       },
       "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
