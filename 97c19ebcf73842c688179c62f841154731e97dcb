@@ -257,6 +257,30 @@
       },
       "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbe94622_05dedede",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2584,
+      "author": {
+        "id": 3513438
+      },
+      "writtenOn": "2025-06-18T11:03:54Z",
+      "side": 1,
+      "message": "Thank you, I\u0027ve created a matching CL for ChromeOS to unblock the glibc uprev and added you as reviewer. Hopefully it will not conflict with Android on the next merge.",
+      "parentUuid": "f78a7e76_189463d6",
+      "range": {
+        "startLine": 2584,
+        "startChar": 4,
+        "endLine": 2584,
+        "endChar": 56
+      },
+      "revId": "97c19ebcf73842c688179c62f841154731e97dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
