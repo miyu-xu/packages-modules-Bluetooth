@@ -84,6 +84,30 @@
       },
       "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d98c3fb6_3e139c4d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1949426
+      },
+      "writtenOn": "2025-06-18T10:33:20Z",
+      "side": 1,
+      "message": "// we should use RANDOM_DEVICE_ADDRESS.\n\n-\u003e Initially, it was connected with RPA, and if it has already been added to the background connection in the scenario, it needs to be re-added to the accept list after the connection is terminated. However, since this device is bonded, it should use identity address.",
+      "parentUuid": "9013ba28_27a0524d",
+      "range": {
+        "startLine": 601,
+        "startChar": 6,
+        "endLine": 601,
+        "endChar": 48
+      },
+      "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
