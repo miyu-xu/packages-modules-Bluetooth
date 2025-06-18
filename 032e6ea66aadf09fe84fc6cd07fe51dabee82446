@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d94283d_fd2dccb1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1573,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-06-18T11:15:20Z",
+      "side": 1,
+      "message": "Since this needs considerable implementation change and thorough testing, we can postpone this till next set of upstreaming.",
+      "parentUuid": "4024a5a4_8b39df14",
+      "range": {
+        "startLine": 1541,
+        "startChar": 0,
+        "endLine": 1573,
+        "endChar": 3
+      },
+      "revId": "032e6ea66aadf09fe84fc6cd07fe51dabee82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d1a1b7_28a7d0c9",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 2
@@ -83,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bee4063e_b2d46cc2",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1756,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-06-18T11:15:20Z",
+      "side": 1,
+      "message": "Since this needs considerable implementation change and thorough testing, we can postpone this till next set of upstreaming.",
+      "parentUuid": "e9d1a1b7_28a7d0c9",
+      "range": {
+        "startLine": 1720,
+        "startChar": 0,
+        "endLine": 1756,
+        "endChar": 76
+      },
+      "revId": "032e6ea66aadf09fe84fc6cd07fe51dabee82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "475fe9c3_1d3ce0b7",
         "filename": "system/stack/avdt/avdt_scb_act.cc",
         "patchSetId": 2
@@ -94,6 +142,30 @@
       "writtenOn": "2025-04-03T23:38:14Z",
       "side": 1,
       "message": "Same here, needs to be moved elsewhere.",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 647,
+        "endChar": 3
+      },
+      "revId": "032e6ea66aadf09fe84fc6cd07fe51dabee82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d768c1fb_742091f8",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-06-18T11:15:20Z",
+      "side": 1,
+      "message": "Since this needs considerable implementation change and thorough testing, we can postpone this till next set of upstreaming.",
+      "parentUuid": "475fe9c3_1d3ce0b7",
       "range": {
         "startLine": 600,
         "startChar": 0,
