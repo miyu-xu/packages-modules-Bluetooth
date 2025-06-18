@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f010c4d_211d0317",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-06-18T23:03:25Z",
+      "side": 1,
+      "message": "Can you elaborate on this?\n\nHere directed is evaluated and used - https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/hci/le_advertising_manager.cc;l\u003d974;drc\u003dc5e18a63495955be9c1eabf4b9bc431f9395ba3b",
+      "range": {
+        "startLine": 364,
+        "startChar": 6,
+        "endLine": 364,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "67c6c625_0501d4b9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/le_advertising_manager.cc",
+              "range": {
+                "startLine": 364,
+                "startChar": 0,
+                "endLine": 365,
+                "endChar": 0
+              },
+              "replacement": "      /* directed advertising is not used for legacy advertising */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d6822293a1c8a22d8fc6678c3994ee578cc01fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
