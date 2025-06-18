@@ -60,6 +60,30 @@
       ],
       "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9013ba28_27a0524d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1949426
+      },
+      "writtenOn": "2025-06-18T00:42:19Z",
+      "side": 1,
+      "message": "The address type of the devices stored in the background_connections_ list does not use ID bit. However, when obtaining the identity address through btm_random_pseudo_to_identity_addr, the ID bit is added, so it is removed again.",
+      "parentUuid": "a5f10860_e202a5c7",
+      "range": {
+        "startLine": 601,
+        "startChar": 6,
+        "endLine": 601,
+        "endChar": 48
+      },
+      "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
