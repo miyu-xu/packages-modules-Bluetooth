@@ -33,6 +33,24 @@
       "message": "In the switch below there is Disconnect call which should do what is expected. \nIf there is any missed case, this shall be handled in that switch and not in here.",
       "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ff72a4_e6c99eb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-06-18T11:02:38Z",
+      "side": 1,
+      "message": "Later on after the original gerrit, we have removed BTA_GATTC_Close call (because not needed) and added BTA_GATTC_CancelOpen for cancelling direct connection. (Made the change in patch).\n\nThe reason for BTA_GATTC_CancelOpen for direct connection was, while removing the device and doing the cleanup, client.cc was cancelling background connection only and not direct connection.\n\nDue to that, plcb is not getting cleared in bta module.\nAs plcb is not cleared, during repairing, LE ACL established and sent the connection callback to the conn_id which is related to client.cc.\nAnd after BT ON, auto connect is triggering to EB as direct connection which was causing the issue.\n\nWe can decide whether to add BTA_GATTC_CancelOpen as part of this change or we can do it separately later..",
+      "parentUuid": "92f9f096_b2c77472",
+      "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
