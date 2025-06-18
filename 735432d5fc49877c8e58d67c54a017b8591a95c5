@@ -51,6 +51,24 @@
       "parentUuid": "92f9f096_b2c77472",
       "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b9a563_54c8b203",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-06-18T11:08:39Z",
+      "side": 1,
+      "message": "In continuation to my last comment, along with adding BTA_GATTC_CancelOpen for direct connection, there are more changes in le_audio/devices.cc in that new gerrit.\nSo I think we should take those changes separately.\n\nAnd we can skip this gerrit (BTA_GATTC_Close) since it is not needed.",
+      "parentUuid": "16ff72a4_e6c99eb1",
+      "revId": "735432d5fc49877c8e58d67c54a017b8591a95c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
