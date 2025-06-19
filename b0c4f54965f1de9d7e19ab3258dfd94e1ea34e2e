@@ -40,6 +40,30 @@
       ],
       "revId": "b0c4f54965f1de9d7e19ab3258dfd94e1ea34e2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "847dcbe4_1bdfa90f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-06-19T07:12:02Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "77fe1176_d591a905",
+      "range": {
+        "startLine": 223,
+        "startChar": 24,
+        "endLine": 223,
+        "endChar": 34
+      },
+      "revId": "b0c4f54965f1de9d7e19ab3258dfd94e1ea34e2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
