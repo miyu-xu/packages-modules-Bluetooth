@@ -16,6 +16,24 @@
       "message": "Is there a downside to always executing the subrating request at this point ?\nWould that affect existing devices ?",
       "revId": "67025c0a0803debc74008c31eac67ae26899f258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8755ede1_d1b3d9a3",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-06-19T10:41:19Z",
+      "side": 1,
+      "message": "1. There will not be any downside to this since bta_av_vendor_offload_stop() is a local command. In the fix, just for Airpods pro, we are just calling bta_av_vendor_offload_stop() first and then calling bta_sys_idle, so there shouldn\u0027t be any issue or delay. SoC would be able to handle this order.\n2. This fix will affect only Airpods Pro",
+      "parentUuid": "1a51125a_58253331",
+      "revId": "67025c0a0803debc74008c31eac67ae26899f258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
