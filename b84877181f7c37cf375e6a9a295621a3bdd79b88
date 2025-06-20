@@ -22,6 +22,30 @@
       },
       "revId": "b84877181f7c37cf375e6a9a295621a3bdd79b88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3a3e3c9_c4847645",
+        "filename": "system/gd/hal/hci_backend_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-06-20T06:30:43Z",
+      "side": 1,
+      "message": "Asserts will not be enabled in USER builds. hence kill will help for silent recovery of BT Process",
+      "parentUuid": "c9c4d3e2_1849c225",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "b84877181f7c37cf375e6a9a295621a3bdd79b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
