@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a46c41a_9200784c",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1815,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-20T22:13:31Z",
+      "side": 1,
+      "message": "we seem to have similar flag in BTIF, can we use that instead - https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_hf.cc;drc\u003d61d32f6de967746716f2016b045c95617fdd9705;l\u003d897",
+      "revId": "af959775a50deef45103f584b9fc1ee682926f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f518fb_ebc77f22",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-20T22:13:31Z",
+      "side": 1,
+      "message": "please add the helper bta_ag_is_call_present() as part of this CL so that It is compiles independently.",
+      "fixSuggestions": [
+        {
+          "fixId": "9f47897d_584de7b3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 157,
+                "endChar": 0
+              },
+              "replacement": "\n/**\n * Check if there is an active call with bd_addr.\n *\n * @param bd_addr target device address\n * @return True if there is an active call with bd_addr, False otherwise\n */\nbool bta_ag_is_call_present(const RawAddress* bd_addr) {\n  if (!bd_addr) return false;\n  for (int i \u003d 0; i \u003c BTA_AG_MAX_NUM_CLIENTS; i++) {\n    if (bta_ag_cb.scb[i].in_use \u0026\u0026 bta_ag_cb.scb[i].peer_addr \u003d\u003d *bd_addr \u0026\u0026\n        (bta_ag_cb.scb[i].call_ind \u003d\u003d BTA_AG_CALL_ACTIVE ||\n         bta_ag_cb.scb[i].callsetup_ind !\u003d BTA_AG_CALLSETUP_NONE)) {\n      return true;\n    }\n  }\n  return false;\n}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "af959775a50deef45103f584b9fc1ee682926f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
