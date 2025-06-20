@@ -18,7 +18,6 @@
  * Generated mock file from original source file
  *   Functions generated:72
  */
-
 #include <cstdint>
 
 #include "stack/include/bt_hdr.h"

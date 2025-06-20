@@ -18,7 +18,6 @@
  * Generated mock file from original source file
  *   Functions generated:9
  */
-
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2cap_acl_interface.h"
 #include "stack/include/l2cap_module.h"

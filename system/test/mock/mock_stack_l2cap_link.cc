@@ -17,7 +17,6 @@
 /*
  * Generated mock file from original source file
  */
-
 #include <cstdint>
 
 #include "stack/include/bt_hdr.h"

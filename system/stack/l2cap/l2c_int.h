@@ -65,6 +65,7 @@ constexpr uint16_t L2CAP_CREDIT_BASED_MIN_MPS = 64;
 #define L2CAP_WAIT_INFO_RSP_TIMEOUT_MS (3 * 1000)      /* 3 seconds */
 #define L2CAP_BLE_LINK_CONNECT_TIMEOUT_MS (30 * 1000)  /* 30 seconds */
 #define L2CAP_FCR_ACK_TIMEOUT_MS 200                   /* 200 milliseconds */
+#define L2CAP_ECHO_RSP_TIMEOUT_MS (30 * 1000)          /* 30 seconds */
 
 /* Define the possible L2CAP channel states. The names of
  * the states may seem a bit strange, but they are taken from
@@ -443,6 +444,7 @@ public:
 
   uint8_t signal_id;     /* Signalling channel id */
   uint8_t cur_echo_id;   /* Current id value for echo request */
+  tL2CA_ECHO_RSP_CB* p_echo_rsp_cb; /* Echo response callback */
   uint16_t idle_timeout; /* Idle timeout */
 
 private:
@@ -682,6 +684,11 @@ extern tL2C_CB l2cb;
 /* Functions provided by l2c_main.cc
  ***********************************
  */
+
+void l2cu_adj_id(tL2C_LCB* p_lcb);
+
+void l2cu_send_peer_echo_req(tL2C_LCB* p_lcb, uint8_t* p_data,
+                             uint16_t data_len);
 
 void l2c_receive_hold_timer_timeout(void* data);
 void l2c_ccb_timer_timeout(void* data);

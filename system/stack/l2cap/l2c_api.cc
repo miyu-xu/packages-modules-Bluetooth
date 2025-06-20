@@ -23,7 +23,6 @@
  ******************************************************************************/
 
 #define LOG_TAG "bt_l2cap"
-
 #include "stack/l2cap/l2c_api.h"
 
 #include <base/location.h>
@@ -56,7 +55,7 @@ extern fixed_queue_t* btu_general_alarm_queue;
 tL2C_AVDT_CHANNEL_INFO av_media_channels[MAX_ACTIVE_AVDT_CONN];
 
 constexpr uint16_t L2CAP_LE_CREDIT_THRESHOLD = 64;
-
+const uint16_t PING_TIMEOUT = 30000;
 uint16_t L2CA_RegisterWithSecurity(uint16_t psm, const tL2CAP_APPL_INFO& p_cb_info,
                                    bool enable_snoop, tL2CAP_ERTM_INFO* p_ertm_info,
                                    uint16_t my_mtu, uint16_t required_remote_mtu,
@@ -1730,6 +1729,34 @@ bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_local_cid
 }
 
 /*******************************************************************************
+ *  Function        L2CA_GetPeerChannelId
+ *
+ *  Description     Get remote channel ID for Connection Oriented Channel.
+ *
+ *  Parameters:     lcid: Local CID
+ *                  rcid: Pointer to remote CID
+ *
+ *  Return value:   true if peer is connected
+ *
+ ******************************************************************************/
+bool L2CA_GetPeerChannelId(uint16_t lcid, uint16_t* rcid) {
+  log::verbose("CID: 0x{:04x}", lcid);
+
+  if (rcid == nullptr) {
+    log::warn("invalid rcid");
+    return false;
+  }
+  tL2C_CCB* p_ccb = l2cu_find_ccb_by_cid(nullptr, lcid);
+  if (p_ccb == nullptr) {
+    log::error("No CCB for CID:0x{:04x}", lcid);
+    return false;
+  }
+
+  *rcid = p_ccb->remote_cid;
+  return true;
+}
+
+/*******************************************************************************
  *
  *  Function        L2CA_GetAclHandle
  *
@@ -1785,6 +1812,90 @@ bool L2CA_GetLocalMtu(uint16_t lcid, uint16_t* local_mtu) {
     return false;
   }
   *local_mtu = p_ccb->p_rcb->my_mtu;
+  return true;
+}
+
+/*******************************************************************************
+ **
+ * Function         L2CA_Ping
+ *
+ * Description      Higher layers call this function to send an ping request.
+ *
+ * Returns          true if ping request sent, else false.
+ *
+ ******************************************************************************/
+bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+  tL2C_LCB* p_lcb;
+
+  /* Fail if we have not established communications with the controller */
+  if (!BTM_IsDeviceUp()) return false;
+
+  /* First, see if we already have a link to the remote */
+  p_lcb = l2cu_find_lcb_by_bd_addr(p_bd_addr, BT_TRANSPORT_BR_EDR);
+  if (p_lcb == NULL) {
+    /* No link. Get an LCB and start link establishment */
+    p_lcb = l2cu_allocate_lcb(p_bd_addr, false, BT_TRANSPORT_BR_EDR);
+    if (p_lcb == NULL) {
+      log::error("L2CAP - no LCB for L2CA_ping");
+      return false;
+    }
+    l2cu_create_conn_br_edr(p_lcb);
+    p_lcb->p_echo_rsp_cb = p_callback;
+
+    return true;
+  }
+
+  /* Have a link control block. If link is disconnecting, tell user to retry
+   * later */
+  if (p_lcb->link_state == LST_DISCONNECTING) {
+    log::error("L2CAP - L2CA_ping rejected - link disconnecting");
+    return false;
+  }
+
+  if (p_lcb->link_state == LST_CONNECTED) {
+    l2cu_adj_id(p_lcb);
+    l2cu_send_peer_echo_req(p_lcb, NULL, 0);
+    if (p_callback)
+      alarm_set_on_mloop(p_lcb->l2c_lcb_timer, PING_TIMEOUT, l2c_lcb_timer_timeout,
+                         p_lcb);
+  }
+  return true;
+}
+
+/*******************************************************************************
+ * Function         L2CA_FlowControl
+ *
+ * Description      Higher layers call this function to flow control a channel.
+ *
+ *                  data_enabled - true data flows, false data is stopped
+ *
+ * Returns          true if valid channel, else false
+ *
+ ******************************************************************************/
+bool L2CA_FlowControl(uint16_t cid, bool data_enabled) {
+  tL2C_CCB* p_ccb;
+  bool should_pause = !data_enabled;
+
+  log::verbose("L2CA_FlowControl CID:0x{:04x}", cid);
+
+  /* Find the channel control block. We don't know the link it is on. */
+  p_ccb = l2cu_find_ccb_by_cid(NULL, cid);
+  if (p_ccb == NULL) {
+    log::error("L2CAP - no CCB for, L2CA_FlowControl CID:0x{:04x}", cid);
+    return false;
+  }
+
+  if (p_ccb->peer_cfg.fcr.mode != L2CAP_FCR_ERTM_MODE) {
+    log::error("L2CA_FlowControl mode:{}", p_ccb->peer_cfg.fcr.mode);
+    return false;
+  }
+
+  if ((p_ccb->chnl_state == CST_OPEN) && (!p_ccb->fcrb.wait_ack)) {
+    if (should_pause)
+      l2c_fcr_send_S_frame(p_ccb, L2CAP_FCR_SUP_RNR, 0);
+    else
+      l2c_fcr_send_S_frame(p_ccb, L2CAP_FCR_SUP_RR, L2CAP_FCR_P_BIT);
+  }
   return true;
 }
 

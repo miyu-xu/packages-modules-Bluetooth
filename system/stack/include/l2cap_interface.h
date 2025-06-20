@@ -111,6 +111,13 @@ typedef void(tL2CA_TX_COMPLETE_CB)(uint16_t, uint16_t);
  */
 typedef void(tL2CA_ERROR_CB)(uint16_t, uint16_t);
 
+/*
+ * Notify the user when the echo response is received
+ * The parameters are:
+ *              Local CID
+ */
+typedef void(tL2CA_ECHO_RSP_CB)(uint16_t);
+
 /* Create credit based connection request callback prototype. Parameters are
  *              BD Address of remote
  *              Vector of allocated local cids to accept
