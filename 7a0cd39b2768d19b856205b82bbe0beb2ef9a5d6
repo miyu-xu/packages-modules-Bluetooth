@@ -16,6 +16,24 @@
       "message": "Can you please help extending the mock and add some Unit tests for the completeness - packages/modules/Bluetooth/system/test/mock/mock_stack_l2cap_interface.h",
       "revId": "7a0cd39b2768d19b856205b82bbe0beb2ef9a5d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4fe41b9_0a1169a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-06-20T08:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9373e48d_440e1ffb",
+      "revId": "7a0cd39b2768d19b856205b82bbe0beb2ef9a5d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
