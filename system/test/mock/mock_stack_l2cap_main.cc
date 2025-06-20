@@ -18,7 +18,7 @@
  * Generated mock file from original source file
  *   Functions generated:9
  */
-
+#ifndef MOCK_CERT_TEST
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2cap_acl_interface.h"
 #include "stack/include/l2cap_module.h"
@@ -36,3 +36,4 @@ void l2c_init(void) { inc_func_call_count(__func__); }
 void l2c_lcb_timer_timeout(void* /* data */) { inc_func_call_count(__func__); }
 void l2c_rcv_acl_data(BT_HDR* /* p_msg */) { inc_func_call_count(__func__); }
 void l2c_receive_hold_timer_timeout(void* /* data */) { inc_func_call_count(__func__); }
+#endif

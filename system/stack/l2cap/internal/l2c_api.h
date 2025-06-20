@@ -15,7 +15,6 @@
  *  limitations under the License.
  *
  ******************************************************************************/
-
 /******************************************************************************
  *
  *  this file contains the L2CAP API definitions
@@ -44,6 +43,13 @@
 #define L2CAP_LCC_OFFSET (L2CAP_MIN_OFFSET + L2CAP_LCC_SDU_LENGTH) /* plus SDU length(2) */
 
 #define L2CAP_FCS_LENGTH 2
+
+/* ping result codes */
+#define L2CAP_PING_RESULT_OK 0      /* Ping reply received OK     */
+#define L2CAP_PING_RESULT_NO_LINK 1 /* Link could not be setup    */
+#define L2CAP_PING_RESULT_NO_RESP 2 /* Remote L2CAP did not reply */
+#define L2CAP_PING_RESULT_MAX 3
+
 
 /* Values for priority parameter to L2CA_SetTxPriority */
 #define L2CAP_CHNL_PRIORITY_HIGH 0
@@ -206,7 +212,6 @@ typedef void(tL2CA_CREDIT_BASED_COLLISION_IND_CB)(const RawAddress& bdaddr);
  */
 typedef void(tL2CA_CREDIT_BASED_CONNECT_CFM_CB)(const RawAddress& bdaddr, uint16_t lcid,
                                                 uint16_t peer_mtu, tL2CAP_LE_RESULT_CODE result);
-
 /* Credit based reconfiguration confirm callback prototype. Parameters are
  *              BD Address of remote
  *              Local CID assigned to the connection
@@ -216,6 +221,12 @@ typedef void(tL2CA_CREDIT_BASED_CONNECT_CFM_CB)(const RawAddress& bdaddr, uint16
 typedef void(tL2CA_CREDIT_BASED_RECONFIG_COMPLETED_CB)(const RawAddress& bdaddr, uint16_t lcid,
                                                        bool is_local_cfg,
                                                        tL2CAP_LE_CFG_INFO* p_cfg);
+typedef void(tL2CA_ECHO_RSP_CB)(uint16_t);
+/* Callback function prototype to pass broadcom specific echo response  */
+/* to the upper layer                                                   */
+
+typedef void(tL2CA_ECHO_RSP_CB)(uint16_t);
+
 
 /*****************************************************************************
  *  External Function Declarations
@@ -778,6 +789,56 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status);
 **
 *******************************************************************************/
 [[nodiscard]] bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_local_cid);
+/*******************************************************************************
+*
+* Function         L2CA_Ping
+*
+* Description      Higher layers call this function to send an echo request.
+*
+* Returns          true if echo request sent, else false.
+*
+******************************************************************************/
+bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback);
+
+bool L2CA_GetPeerChannelId(uint16_t lcid, uint16_t* rcid);
+
+bool L2CA_FlowControl(uint16_t cid, bool data_enabled);
+/*******************************************************************************
+ *  Function        L2CA_GetPeerChannelId
+ *
+ *  Description     Get remote channel ID for Connection Oriented Channel.
+ *
+ *  Parameters:     lcid: Local CID
+ *                  rcid: Pointer to remote CID
+ *
+ *  Return value:   true if peer is connected
+ *
+ ******************************************************************************/
+[[nodiscard]] bool L2CA_GetPeerChannelId(uint16_t lcid, uint16_t* rcid);
+
+/*******************************************************************************
+ *
+ * Function         L2CA_Ping
+ *
+ * Description      Higher layers call this function to send an echo request.
+ *
+ * Returns          true if echo request sent, else false.
+ *
+ ******************************************************************************/
+bool L2CA_Ping(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback);
+
+/*******************************************************************************
+ *
+ * Function         L2CA_FlowControl
+ *
+ * Description      Higher layers call this function to flow control a channel.
+ *
+ *                  data_enabled - true data flows, false data is stopped
+ *
+ * Returns          true if valid channel, else false
+ *
+ ******************************************************************************/
+bool L2CA_FlowControl(uint16_t cid, bool data_enabled);
 
 /*******************************************************************************
 **
