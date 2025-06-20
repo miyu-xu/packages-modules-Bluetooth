@@ -20,6 +20,7 @@
  *
  *  mockcify.pl ver 0.2
  */
+
 #include "test/mock/mock_stack_l2cap_api.h"
 
 // Original included files, if any
@@ -76,7 +77,9 @@ struct L2CA_LeCreditDefault L2CA_LeCreditDefault;
 struct L2CA_LeCreditThreshold L2CA_LeCreditThreshold;
 struct L2CA_GetAclHandle L2CA_GetAclHandle;
 struct L2CA_GetLocalMtu L2CA_GetLocalMtu;
-
+struct L2CA_Ping L2CA_Ping;
+struct L2CA_GetPeerChannelId L2CA_GetPeerChannelId;
+struct L2CA_FlowControl L2CA_FlowControl;
 }  // namespace stack_l2cap_api
 }  // namespace mock
 }  // namespace test
@@ -242,6 +245,18 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status) {
 bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id, bool is_local_cid) {
   inc_func_call_count(__func__);
   return test::mock::stack_l2cap_api::L2CA_isMediaChannel(handle, channel_id, is_local_cid);
+}
+bool L2CA_Ping(const RawAddress& bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_l2cap_api::L2CA_Ping(bd_addr, p_callback);
+}
+bool L2CA_GetPeerChannelId(uint16_t lcid, uint16_t* rcid) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_l2cap_api::L2CA_GetPeerChannelId(lcid, rcid);
+}
+bool L2CA_FlowControl(uint16_t cid, bool data_enabled) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_l2cap_api::L2CA_FlowControl(cid, data_enabled);
 }
 uint16_t L2CA_LeCreditDefault() {
   inc_func_call_count(__func__);

@@ -440,6 +440,44 @@ struct L2CA_isMediaChannel {
   }
 };
 extern struct L2CA_isMediaChannel L2CA_isMediaChannel;
+
+// Name: L2CA_Ping
+// Params:
+// Returns: bool
+struct L2CA_Ping {
+  std::function<bool(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback)> body{
+      [](const RawAddress& /* p_bd_addr */, tL2CA_ECHO_RSP_CB* /* p_callback */) {
+        return false;
+      }};
+  bool operator()(const RawAddress& p_bd_addr, tL2CA_ECHO_RSP_CB* p_callback) {
+    return body(p_bd_addr, p_callback);
+  };
+};
+// Name: L2CA_GetPeerChannelId
+// Params:
+// Returns: bool
+struct L2CA_GetPeerChannelId {
+  std::function<bool(uint16_t lcid, uint16_t* rcid)> body{
+      [](uint16_t /* lcid */, uint16_t* /* rcid */) {
+        return false;
+      }};
+  bool operator()(uint16_t lcid, uint16_t* rcid) {
+    return body(lcid, rcid);
+  };
+};
+// Name:  L2CA_FlowControl
+// Params:
+// Returns: bool
+struct  L2CA_FlowControl {
+  std::function<bool(uint16_t cid, bool data_enabled)> body{
+      [](uint16_t /* cid */, bool /* channel_id */) {
+        return false;
+      }};
+  bool operator()(uint16_t cid, bool data_enabled) {
+    return body(cid, data_enabled);
+  };
+};
+
 // Name: L2CA_LeCreditDefault
 // Params:
 // Returns: uint16_t
