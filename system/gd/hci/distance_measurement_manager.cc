@@ -86,6 +86,7 @@ static constexpr uint16_t kDefaultRasMtu = 247;      // Section 3.1.2 of RAP 1.0
 static constexpr uint8_t kAttHeaderSize = 5;         // Section 3.2.2.1 of RAS 1.0
 static constexpr uint8_t kRasSegmentHeaderSize = 1;
 static constexpr uint16_t kEnableSecurityTimeoutMs = 10000;  // 10s
+bool is_ras_packets_delayed = false;
 static constexpr uint16_t kProcedureScheduleGuardMs = 1000;  // 1s
 
 struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
@@ -1319,6 +1320,15 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
         log::error("no tracker is available for {}", connection_handle);
         return;
       }
+      if (is_ras_packets_delayed) {
+        is_ras_packets_delayed = false;
+        std::vector<CsProcedureData>& data_list = live_tracker->procedure_data_list;
+        while (!data_list.empty()) {
+          data_list.erase(data_list.begin());
+        }
+        send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);
+        return;
+      }
       reset_tracker_on_stopped(*live_tracker);
     }
     // reset the procedure data list.
@@ -1590,7 +1600,6 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       tracker.segment_data_.AppendPacketView(
               segment.GetLittleEndianSubview(segmentation_header.size(), segment.size()));
     }
-
     if (segmentation_header.last_segment_) {
       parse_ras_segments(tracker.ranging_header_, tracker.segment_data_, connection_handle);
     }
@@ -1616,12 +1625,19 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   void parse_ras_segments(RangingHeader ranging_header, PacketViewForRecombination& segment_data,
                           uint16_t connection_handle) {
     log::debug("Data size {}, Ranging_header {}", segment_data.size(), ranging_header.ToString());
+    if ((cs_requester_trackers_[connection_handle]
+            .procedure_data_list.back().counter & kRangingCounterMask)
+        - ranging_header.ranging_counter_ >= kProcedureDataBufferSize) {
+      log::warn("Delay in receiving RAS packets, restarting procedures!");
+      is_ras_packets_delayed = true;
+      send_le_cs_procedure_enable(connection_handle, Enable::DISABLED);
+      return;
+    }
     auto procedure_data =
             get_procedure_data_for_ras(connection_handle, ranging_header.ranging_counter_);
     if (procedure_data == nullptr) {
       return;
     }
-
     uint8_t num_antenna_paths = 0;
     for (uint8_t i = 0; i < 4; i++) {
       if ((ranging_header.antenna_paths_mask_ & (1 << i)) != 0) {
