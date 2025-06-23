@@ -86,6 +86,51 @@
       "message": "ag/33217664",
       "revId": "079393522f0792a1784875d902643dbdab215a8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53a3384_ad42fcbd",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-06-23T15:05:57Z",
+      "side": 1,
+      "message": "Sorry for late comment, but this should start from VND_\n\nalso, where is matching configuration for 2 devices?",
+      "fixSuggestions": [
+        {
+          "fixId": "6d65a398_9e8f4304",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/audio_set_configurations.json",
+              "range": {
+                "startLine": 168,
+                "startChar": 0,
+                "endLine": 169,
+                "endChar": 0
+              },
+              "replacement": "      \"codec_config_name\": \"VND_One-OneChan-SnkAse-Lc3_48_2_155octs_1\",\n"
+            },
+            {
+              "path": "system/bta/le_audio/audio_set_configurations.json",
+              "range": {
+                "startLine": 1660,
+                "startChar": 0,
+                "endLine": 1661,
+                "endChar": 0
+              },
+              "replacement": "      \"name\": \"VND_One-OneChan-SnkAse-Lc3_48_2_155octs_1\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "079393522f0792a1784875d902643dbdab215a8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
