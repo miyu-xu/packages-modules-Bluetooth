@@ -70,6 +70,30 @@
       },
       "revId": "b84877181f7c37cf375e6a9a295621a3bdd79b88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab56c13_2a7f76e7",
+        "filename": "system/gd/hal/hci_backend_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-06-23T06:07:35Z",
+      "side": 1,
+      "message": "got it. we can keep assert here. let me replace",
+      "parentUuid": "667ff831_f8916caa",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "b84877181f7c37cf375e6a9a295621a3bdd79b88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
