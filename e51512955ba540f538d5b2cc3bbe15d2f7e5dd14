@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea144fe0_a5adab6c",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-23T16:19:30Z",
+      "side": 1,
+      "message": "This change should be flagged",
+      "range": {
+        "startLine": 427,
+        "startChar": 2,
+        "endLine": 427,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9c9db68c_896c68f0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/stack_manager.cc",
+              "range": {
+                "startLine": 427,
+                "startChar": 0,
+                "endLine": 428,
+                "endChar": 0
+              },
+              "replacement": "  if (com::android::bluetooth::flags::shutdown_main_thread_during_cleanup()) {\n    main_thread_shut_down();\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e51512955ba540f538d5b2cc3bbe15d2f7e5dd14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f55758_695bd642",
+        "filename": "system/gd/hal/hci_backend_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-23T16:19:30Z",
+      "side": 1,
+      "message": "Please keep `log::assert_that`",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 30
+      },
+      "revId": "e51512955ba540f538d5b2cc3bbe15d2f7e5dd14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "351e3f63_12d53245",
+        "filename": "system/gd/hal/hci_backend_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-23T16:19:30Z",
+      "side": 1,
+      "message": "Please keep `log::assert_that`",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 30
+      },
+      "revId": "e51512955ba540f538d5b2cc3bbe15d2f7e5dd14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
