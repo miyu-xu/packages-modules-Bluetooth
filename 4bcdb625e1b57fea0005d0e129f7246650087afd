@@ -1,0 +1,378 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80807ab6_67b86d4e",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "do we need company name here?",
+      "fixSuggestions": [
+        {
+          "fixId": "04e5f26a_9c60eadf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": "/* Callback function prototype to pass echo response  */\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a74c955_000cea19",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "Duplicate declaration?",
+      "fixSuggestions": [
+        {
+          "fixId": "7c7352c1_2812b2a1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 224,
+                "startChar": 0,
+                "endLine": 225,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 803,
+                "startChar": 0,
+                "endLine": 805,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 876,
+                "startChar": 0,
+                "endLine": 876,
+                "endChar": 0
+              },
+              "replacement": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed8346e5_2314aae3",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "Looks same as in line 803. Do we need this?",
+      "fixSuggestions": [
+        {
+          "fixId": "6ec6e46b_22a44cd7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 803,
+                "startChar": 0,
+                "endLine": 805,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 819,
+                "startChar": 0,
+                "endLine": 830,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73863597_1bc38086",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "may need to update the description. seem to copied from echo request description",
+      "fixSuggestions": [
+        {
+          "fixId": "51896b27_aba40e4e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 821,
+                "startChar": 0,
+                "endLine": 822,
+                "endChar": 0
+              },
+              "replacement": " * Function         L2CA_GetPeerChannelId\n"
+            },
+            {
+              "path": "system/stack/l2cap/internal/l2c_api.h",
+              "range": {
+                "startLine": 823,
+                "startChar": 0,
+                "endLine": 824,
+                "endChar": 0
+              },
+              "replacement": " * Description      Get remote channel ID for Connection Oriented Channel.\n *\n * Parameters:     lcid: Local CID\n *                  rcid: Pointer to remote CID\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1743898e_c508b641",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "why do we need parenthesis around true and false in this function?",
+      "fixSuggestions": [
+        {
+          "fixId": "94deacab_072b8ca7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1832,
+                "startChar": 0,
+                "endLine": 1833,
+                "endChar": 0
+              },
+              "replacement": "  if (!BTM_IsDeviceUp()) return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1841,
+                "startChar": 0,
+                "endLine": 1842,
+                "endChar": 0
+              },
+              "replacement": "      return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1846,
+                "startChar": 0,
+                "endLine": 1847,
+                "endChar": 0
+              },
+              "replacement": "    return true;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1853,
+                "startChar": 0,
+                "endLine": 1854,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1863,
+                "startChar": 0,
+                "endLine": 1864,
+                "endChar": 0
+              },
+              "replacement": "  return true;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1886,
+                "startChar": 0,
+                "endLine": 1887,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1891,
+                "startChar": 0,
+                "endLine": 1892,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1900,
+                "startChar": 0,
+                "endLine": 1901,
+                "endChar": 0
+              },
+              "replacement": "  return true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5043010f_311c7420",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1860,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "can we please have some constant defined for the timeout value?",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a88cc093_226b8638",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "change it to verbose pelase",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cea0d0_7bd91635",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-06-23T17:06:54Z",
+      "side": 1,
+      "message": "parenthesis around bool returns are not needed in this function as well",
+      "fixSuggestions": [
+        {
+          "fixId": "34cd96de_3f882e17",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1886,
+                "startChar": 0,
+                "endLine": 1887,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1891,
+                "startChar": 0,
+                "endLine": 1892,
+                "endChar": 0
+              },
+              "replacement": "    return false;\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_api.cc",
+              "range": {
+                "startLine": 1900,
+                "startChar": 0,
+                "endLine": 1901,
+                "endChar": 0
+              },
+              "replacement": "  return true;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
