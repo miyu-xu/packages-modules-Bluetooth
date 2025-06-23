@@ -40,6 +40,30 @@
       ],
       "revId": "4d6822293a1c8a22d8fc6678c3994ee578cc01fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ad429e_450e8fc4",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1949426
+      },
+      "writtenOn": "2025-06-23T06:14:00Z",
+      "side": 1,
+      "message": "Previously, there was no API to use direct advertising in application layer.\nHowever, as shown in the patch below, it appears that AOSP now supports direct advertising API.\nIn this case, it seems necessary to consider direct advertising as well.\n\nhttps://android.googlesource.com/platform/packages/modules/Bluetooth/+/b3f4f5d3595771a10b00c71aa83ddd8d122fdf3c%5E%21/#F4",
+      "parentUuid": "8f010c4d_211d0317",
+      "range": {
+        "startLine": 364,
+        "startChar": 6,
+        "endLine": 364,
+        "endChar": 37
+      },
+      "revId": "4d6822293a1c8a22d8fc6678c3994ee578cc01fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
