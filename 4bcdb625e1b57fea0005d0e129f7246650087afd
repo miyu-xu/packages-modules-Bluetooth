@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d488304_78b52e58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-24T22:02:13Z",
+      "side": 1,
+      "message": "This is adding internal APIs, but I don\u0027t see how these will be used for passing the PTS tests. Can you please share information about passing L2CAP tests ?\nThe code will just risk being pruned as dead code in the future if we don\u0027t properly document / link these new functions.",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef5358b2_35976b91",
         "filename": "system/stack/include/l2cap_interface.h",
         "patchSetId": 7
