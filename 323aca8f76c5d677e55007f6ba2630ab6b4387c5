@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce031312_9d8635a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-06-24T02:32:21Z",
+      "side": 1,
+      "message": "asdf",
+      "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5f10860_e202a5c7",
@@ -105,6 +122,29 @@
         "startChar": 6,
         "endLine": 601,
         "endChar": 48
+      },
+      "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c37843c5_19974f1a",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2025-06-24T02:32:21Z",
+      "side": 1,
+      "message": "If we add the identity address here, then could both address be added to the accept list? I\u0027m asking this because the code in line number 594 also adds the pseudo address in the accept list.\n\nWhat I\u0027m understanding is that this CL\u0027s purpose is to prevent both address from being added to accept list, but it looks like this can happen.\n\nWhy should we add identity address to accept list here?",
+      "range": {
+        "startLine": 606,
+        "startChar": 8,
+        "endLine": 606,
+        "endChar": 49
       },
       "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
