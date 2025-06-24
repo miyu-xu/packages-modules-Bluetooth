@@ -148,6 +148,30 @@
       },
       "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a145f00d_e9044bfc",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1949426
+      },
+      "writtenOn": "2025-06-24T07:47:17Z",
+      "side": 1,
+      "message": "As you know, In general, when a device is bonded, the identity address is passed to GD and added to the accept list.\n\n\nHowever, in the scenario where the issue occurred, at the moment of bonding, a simultaneous autoConnection (Background LE connection) was initiated by the BASS service (For le audio profile) for the same device.\nIn this case, the identity address is passed to GD, and even though the device is already connected over BLE, the identity address is added to the accept list.\n\nso, we added code at line number 1075 to prevent the identity address from being added to the accept list.\n\nHowever, since BASS has requested an LE autoconnection, the identity address must be re-added to the accept list after the LE connection is disconnected.\nAt this point, it is added to the accept list as the identity address, in accordance with the bonded state. \nThis part is handled at line number 598.\n\nWe believe there are no instances where both addresses are added to the accept list simultaneously.",
+      "parentUuid": "c37843c5_19974f1a",
+      "range": {
+        "startLine": 606,
+        "startChar": 8,
+        "endLine": 606,
+        "endChar": 49
+      },
+      "revId": "323aca8f76c5d677e55007f6ba2630ab6b4387c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
