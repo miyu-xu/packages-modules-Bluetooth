@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76a5c83c_1ff62254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-06-25T14:15:22Z",
+      "side": 1,
+      "message": "if SCO is not there, there would be slight impact although negligible.",
+      "parentUuid": "5550a416_5d17421d",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33eaec2e_8a9b7c16",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 13
