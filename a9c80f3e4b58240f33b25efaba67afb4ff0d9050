@@ -233,6 +233,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f1ae681_d9e2a637",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-06-25T14:17:24Z",
+      "side": 1,
+      "message": "I think it\u0027s not necessary here",
+      "parentUuid": "08b65b66_3d405f9d",
+      "revId": "a9c80f3e4b58240f33b25efaba67afb4ff0d9050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a6d7f67_ca285a5c",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 13
