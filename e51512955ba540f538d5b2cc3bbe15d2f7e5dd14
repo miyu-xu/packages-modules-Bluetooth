@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87eba08f_11086bf8",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-06-25T11:15:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea144fe0_a5adab6c",
+      "range": {
+        "startLine": 427,
+        "startChar": 2,
+        "endLine": 427,
+        "endChar": 23
+      },
+      "revId": "e51512955ba540f538d5b2cc3bbe15d2f7e5dd14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64f55758_695bd642",
@@ -65,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a830363_d170914a",
+        "filename": "system/gd/hal/hci_backend_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-06-25T11:15:15Z",
+      "side": 1,
+      "message": "When HAL initialization fails. HAL process force killed and restarts. hence no need to assert BT process here. we can do soft restart BT process here.",
+      "parentUuid": "64f55758_695bd642",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 30
+      },
+      "revId": "e51512955ba540f538d5b2cc3bbe15d2f7e5dd14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "351e3f63_12d53245",
@@ -78,6 +126,30 @@
       "writtenOn": "2025-06-23T16:19:30Z",
       "side": 1,
       "message": "Please keep `log::assert_that`",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 30
+      },
+      "revId": "e51512955ba540f538d5b2cc3bbe15d2f7e5dd14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93ce151c_a2646d4d",
+        "filename": "system/gd/hal/hci_backend_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-06-25T11:15:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "351e3f63_12d53245",
       "range": {
         "startLine": 87,
         "startChar": 6,
