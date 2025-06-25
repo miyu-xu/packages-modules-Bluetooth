@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7ae89f0_3835970e",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1815,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-06-25T14:26:19Z",
+      "side": 1,
+      "message": "we can\u0027t use btif variable in bta",
+      "parentUuid": "2a46c41a_9200784c",
+      "revId": "af959775a50deef45103f584b9fc1ee682926f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4f518fb_ebc77f22",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 4
@@ -49,6 +67,24 @@
           ]
         }
       ],
+      "revId": "af959775a50deef45103f584b9fc1ee682926f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f93cb2_d4173bf0",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-06-25T14:26:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4f518fb_ebc77f22",
       "revId": "af959775a50deef45103f584b9fc1ee682926f39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
