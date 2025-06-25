@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba94a00d_12fe73b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-06-25T16:04:10Z",
+      "side": 1,
+      "message": "The change was cherry picked internally, release target 25Q4",
+      "revId": "a206ee0a467542303199d8cce331b8a1e2d04e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
