@@ -144,12 +144,34 @@ void Device::VendorPacketHandler(uint8_t label, std::shared_ptr<VendorPacket> pk
         }
         break;
       }
-      case CommandPdu::SET_ABSOLUTE_VOLUME:
+      case CommandPdu::SET_ABSOLUTE_VOLUME: {
         // TODO (apanicke): Add a retry mechanism if the response has a
         // different volume than the one we set. For now, we don't care
         // about the response to this message.
         active_labels_.erase(label);
+        set_vol_cmd_in_progress_ = false;
+
+        if (pkt->GetCType() == CType::REJECTED) {
+          return;
+        }
+        auto set_vol =
+            Packet::Specialize<SetAbsoluteVolumeResponse>(pkt);
+        int8_t vol = set_vol->GetVolume();
+        vol &= ~0x80; // remove RFA bit
+        log::info("SET_ABSOLUTE_VOLUME label: {}, volume_: {}, last vol: {}",
+            (uint8_t)label, (uint8_t)volume_, (uint8_t)vol);
+        if (volume_ != vol) {
+          volume_ = vol;
+          if (pending_volume_ != -1) {
+            log::info("Set pending volume with {}", (uint8_t)pending_volume_);
+            SetVolume(pending_volume_);
+          } else if (volume_interface_ != nullptr) {
+            volume_interface_->SetVolume(volume_);
+          }
+        }
+        pending_volume_ = -1;
         break;
+      }
       default:
         log::warn("{}: Unhandled Response: pdu={}", address_, pkt->GetCommandPdu());
         break;
@@ -509,6 +531,8 @@ void Device::HandleVolumeChanged(uint8_t label,
                                  const std::shared_ptr<RegisterNotificationResponse>& pkt) {
   log::verbose("interim={}", pkt->IsInterim());
 
+  pending_volume_ = -1;
+
   if (volume_interface_ == nullptr) {
     return;
   }
@@ -545,19 +569,35 @@ void Device::HandleVolumeChanged(uint8_t label,
     return;
   }
 
-  volume_ = pkt->GetVolume();
-  volume_ &= ~0x80;  // remove RFA bit
-  log::verbose("Volume has changed to {}", (uint32_t)volume_);
-  volume_interface_->SetVolume(volume_);
+  int8_t vol = pkt->GetVolume();
+  vol &= ~0x80; // remove RFA bit
+  if (volume_ != vol) {
+    volume_ = vol;
+    log::info("Volume has changed to {}", (uint32_t)volume_);
+    volume_interface_->SetVolume(volume_);
+  } else {
+    log::info("ignore same volume {}", (uint32_t)volume_);
+  }
 }
 
 void Device::SetVolume(int8_t volume) {
   // TODO (apanicke): Implement logic for Multi-AVRCP
-  log::verbose("volume={}", (int)volume);
+  log::info("volume={}", (int)volume);
   if (volume == volume_) {
     log::warn("{}: Ignoring volume change same as current volume level", address_);
     return;
   }
+
+  volume_ = volume;
+
+  if (set_vol_cmd_in_progress_) {
+    log::info("There is already a volume command in progress");
+    pending_volume_ = volume;
+    return;
+  }
+
+  set_vol_cmd_in_progress_ = true;
+
   auto request = SetAbsoluteVolumeRequestBuilder::MakeBuilder(volume);
 
   uint8_t label = MAX_TRANSACTION_LABEL;
@@ -569,7 +609,6 @@ void Device::SetVolume(int8_t volume) {
     }
   }
 
-  volume_ = volume;
   send_message_cb_.Run(label, false, std::move(request));
 }
 
@@ -1746,6 +1785,9 @@ void Device::HandleAddressedPlayerUpdate() {
 void Device::DeviceDisconnected() {
   log::info("{} : Device was disconnected", address_);
   play_pos_update_cb_.Cancel();
+
+  set_vol_cmd_in_progress_ = false;
+  pending_volume_ = -1;
 
   // TODO (apanicke): Once the interfaces are set in the Device construction,
   // remove these conditionals.
