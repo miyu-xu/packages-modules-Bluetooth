@@ -113,6 +113,17 @@ void BTM_reset_complete();
 
 /*******************************************************************************
  *
+ * Function         BTM_ReadLocalPrivateAddress
+ *
+ * Description      This function is called to read the local private address
+ *
+ * Returns          the local private address
+ *
+ ******************************************************************************/
+ [[nodiscard]] tBTM_STATUS BTM_ReadLocalPrivateAddress(RawAddress* out_address);
+
+/*******************************************************************************
+ *
  * Function         BTM_VendorSpecificCommand
  *
  * Description      Send a vendor specific HCI command to the controller.

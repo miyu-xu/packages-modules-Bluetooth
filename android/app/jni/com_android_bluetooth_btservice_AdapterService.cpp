@@ -2261,6 +2261,18 @@ static jboolean restoreFilterAcceptListNative(JNIEnv* /* env */, jobject /* obj 
   return (ret == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
 }
 
+static jstring getLeAddressNative(JNIEnv* env, jclass /* clazz */) {
+  log::verbose("");
+
+  if (!sBluetoothInterface) {
+    return env->NewStringUTF("");
+  }
+
+  RawAddress out_addr;
+  int ret = sBluetoothInterface->get_le_address(&out_addr);
+  return (ret == BT_STATUS_SUCCESS) ? env->NewStringUTF(out_addr.ToString().c_str()) : env->NewStringUTF("");
+}
+
 static int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
   const JNINativeMethod methods[] = {
           {"initNative", "(ZZIZ)Z", reinterpret_cast<void*>(initNative)},
@@ -2334,6 +2346,7 @@ static int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) 
           {"allowWakeByHidNative", "()Z", reinterpret_cast<void*>(allowWakeByHidNative)},
           {"restoreFilterAcceptListNative", "()Z",
            reinterpret_cast<void*>(restoreFilterAcceptListNative)},
+          {"getLeAddressNative", "()Ljava/lang/String;", reinterpret_cast<void*>(getLeAddressNative)},
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/btservice/AdapterNativeInterface", methods);

@@ -193,6 +193,19 @@ class AdapterServiceBinder extends IBluetooth.Stub {
     }
 
     @Override
+    public String getLeAddress(AttributionSource source) {
+        AdapterService service = getService();
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getLeAddress")
+                || !checkConnectPermissionForDataDelivery(service, source, TAG, "getLeAddress")) {
+            return null;
+        }
+
+        service.enforceCallingOrSelfPermission(LOCAL_MAC_ADDRESS, null);
+        return service.getLeAddress();
+    }
+
+    @Override
     public List<ParcelUuid> getUuids(AttributionSource source) {
         AdapterService service = getService();
         if (service == null

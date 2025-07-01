@@ -353,6 +353,21 @@ DEV_CLASS BTM_ReadDeviceClass(void) { return btm_cb.devcb.dev_class; }
 
 /*******************************************************************************
  *
+ * Function         BTM_ReadLocalPrivateAddress
+ *
+ * Description      This function is called to read the local private address
+ *
+ * Returns          the local private address
+ *
+ ******************************************************************************/
+ tBTM_STATUS BTM_ReadLocalPrivateAddress(RawAddress* out_address) {
+  tBTM_LE_RANDOM_CB* p_addr_cb = &btm_cb.ble_ctr_cb.addr_mgnt_cb;
+  *out_address = p_addr_cb->private_addr;
+  return tBTM_STATUS::BTM_SUCCESS;
+}
+
+/*******************************************************************************
+ *
  * Function         BTM_VendorSpecificCommand
  *
  * Description      Send a vendor specific HCI command to the controller.

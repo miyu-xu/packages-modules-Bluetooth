@@ -837,6 +837,20 @@ static int restore_filter_accept_list() {
   return BT_STATUS_SUCCESS;
 }
 
+static int get_le_address(RawAddress* out_addr) {
+  if (!interface_ready()) {
+    return BT_STATUS_NOT_READY;
+  }
+
+  if (get_btm_client_interface().local.BTM_ReadLocalPrivateAddress(out_addr) != 
+      tBTM_STATUS::BTM_SUCCESS) {
+    log::warn("Unable to read local private address");
+    *out_addr = RawAddress::kEmpty;
+  }
+
+  return BT_STATUS_SUCCESS;
+}
+
 static int allow_wake_by_hid() {
   if (!interface_ready()) {
     return BT_STATUS_NOT_READY;
@@ -1259,6 +1273,7 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
         .set_event_filter_inquiry_result_all_devices = set_event_filter_inquiry_result_all_devices,
         .set_default_event_mask_except = set_default_event_mask_except,
         .restore_filter_accept_list = restore_filter_accept_list,
+        .get_le_address = get_le_address,
         .allow_wake_by_hid = allow_wake_by_hid,
         .set_event_filter_connection_setup_all_devices =
                 set_event_filter_connection_setup_all_devices,

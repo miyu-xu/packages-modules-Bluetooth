@@ -328,6 +328,10 @@ public class AdapterNativeInterface {
         return restoreFilterAcceptListNative();
     }
 
+    public String getLeAddress() {
+        return getLeAddressNative();
+    }
+
     /**********************************************************************************************/
     /*********************************** callbacks from native ************************************/
     /**********************************************************************************************/
@@ -470,4 +474,6 @@ public class AdapterNativeInterface {
     private native boolean allowWakeByHidNative();
 
     private native boolean restoreFilterAcceptListNative();
+
+    private native String getLeAddressNative();
 }

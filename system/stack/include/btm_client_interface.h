@@ -128,6 +128,7 @@ struct btm_client_interface_t {
     [[nodiscard]] tBTM_STATUS (*BTM_SetDeviceClass)(DEV_CLASS dev_class);
     [[nodiscard]] bool (*BTM_IsDeviceUp)();
     [[nodiscard]] DEV_CLASS (*BTM_ReadDeviceClass)();
+    [[nodiscard]] tBTM_STATUS (*BTM_ReadLocalPrivateAddress)(RawAddress* out_address);
   } local;
 
   struct {

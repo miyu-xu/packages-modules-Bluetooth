@@ -2701,6 +2701,10 @@ public class AdapterService extends Service {
         return device;
     }
 
+    public String getLeAddress() {
+        return mNativeInterface.getLeAddress();
+    }
+
     public String getIdentityAddress(String address) {
         BluetoothDevice device =
                 BluetoothAdapter.getDefaultAdapter()

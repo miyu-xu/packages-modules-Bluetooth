@@ -947,6 +947,13 @@ typedef struct {
 
   /**
    *
+   * Floss: Get the current LE Random Address used by the local Bluetooth Adapter
+   *
+   */
+  int (*get_le_address)(RawAddress* out_addr);
+
+  /**
+   *
    * Allow the device to be woken by HID devices
    *
    */
