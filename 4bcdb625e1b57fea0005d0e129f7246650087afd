@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36e74626_372f8cc1",
+        "filename": "system/stack/include/l2cap_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-07-01T06:44:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef5358b2_35976b91",
+      "range": {
+        "startLine": 115,
+        "startChar": 13,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80807ab6_67b86d4e",
