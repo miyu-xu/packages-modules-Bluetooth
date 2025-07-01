@@ -42,6 +42,7 @@ cc_library_static {
         "set_browsed_player.cc",
         "set_player_application_setting_value.cc",
         "vendor_packet.cc",
+        "avrcp_frag_abort.cc",
     ],
     static_libs: [
         "lib-bt-packets-base",

@@ -67,7 +67,7 @@ class GetElementAttributesResponseBuilder : public VendorPacketBuilder {
 public:
   virtual ~GetElementAttributesResponseBuilder() = default;
   using Builder = std::unique_ptr<GetElementAttributesResponseBuilder>;
-  static Builder MakeBuilder(size_t mtu);
+  static Builder MakeBuilder(size_t mtu, PacketType type, int attr_cnt);
 
   size_t AddAttributeEntry(AttributeEntry entry);
   size_t AddAttributeEntry(Attribute attribute, const std::string& value);
@@ -82,11 +82,16 @@ public:
 private:
   std::set<AttributeEntry> entries_;
   size_t mtu_;
+  PacketType type_;
+  int attr_cnt_;
+
   friend class AttributesResponseBuilderTestUser<GetElementAttributesResponseBuilder>;
 
-  GetElementAttributesResponseBuilder(size_t mtu)
-      : VendorPacketBuilder(CType::STABLE, CommandPdu::GET_ELEMENT_ATTRIBUTES, PacketType::SINGLE),
-        mtu_(mtu) {}
+  GetElementAttributesResponseBuilder(size_t mtu, PacketType type, int attr_cnt)
+      : VendorPacketBuilder(CType::STABLE, CommandPdu::GET_ELEMENT_ATTRIBUTES, type),
+        mtu_(mtu),
+        type_(type),
+        attr_cnt_(attr_cnt) {}
 };
 
 }  // namespace avrcp

@@ -90,9 +90,9 @@ std::string GetElementAttributesRequest::ToString() const {
 }
 
 std::unique_ptr<GetElementAttributesResponseBuilder>
-GetElementAttributesResponseBuilder::MakeBuilder(size_t mtu) {
+GetElementAttributesResponseBuilder::MakeBuilder(size_t mtu, PacketType type, int attr_cnt) {
   std::unique_ptr<GetElementAttributesResponseBuilder> builder(
-          new GetElementAttributesResponseBuilder(mtu));
+          new GetElementAttributesResponseBuilder(mtu, type, attr_cnt));
 
   return builder;
 }
@@ -102,7 +102,7 @@ size_t GetElementAttributesResponseBuilder::AddAttributeEntry(AttributeEntry ent
 
   size_t remaining_space = mtu_ - size();
   if (entry.size() > remaining_space) {
-    entry.resize(remaining_space);
+    return 0;
   }
 
   if (entry.empty()) {
@@ -136,7 +136,9 @@ bool GetElementAttributesResponseBuilder::Serialize(
 
   VendorPacketBuilder::PushHeader(pkt, size() - VendorPacket::kMinSize());
 
-  AddPayloadOctets1(pkt, entries_.size());
+  if (type_ == PacketType::SINGLE || type_ == PacketType::START) {
+    AddPayloadOctets1(pkt, attr_cnt_);
+  }
   for (const auto& attribute_entry : entries_) {
     PushAttributeValue(pkt, attribute_entry);
   }

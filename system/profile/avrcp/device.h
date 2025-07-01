@@ -45,6 +45,7 @@
 #include "packet/avrcp/vendor_packet.h"
 #include "profile/avrcp/media_id_map.h"
 #include "types/raw_address.h"
+#include "packet/avrcp/avrcp_frag_abort.h"
 
 namespace bluetooth {
 namespace avrcp {
@@ -362,6 +363,8 @@ private:
   uint32_t play_pos_interval_ = 0;
 
   SongInfo last_song_info_;
+  std::vector<Attribute> last_attributes_requested_;
+  int frag_attr_cnt_ = 0;
   PlayStatus last_play_status_;
 
   base::CancelableClosure play_pos_update_cb_;

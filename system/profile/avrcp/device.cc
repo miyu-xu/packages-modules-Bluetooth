@@ -37,6 +37,8 @@
 #include "packet/avrcp/set_player_application_setting_value.h"
 #include "types/raw_address.h"
 
+#include "packet/avrcp/avrcp_frag_abort.h"
+
 template <>
 struct std::formatter<bluetooth::avrcp::PlayState> : enum_formatter<bluetooth::avrcp::PlayState> {};
 
@@ -204,6 +206,64 @@ void Device::VendorPacketHandler(uint8_t label, std::shared_ptr<VendorPacket> pk
               set_addressed_player_request->GetPlayerId(),
               base::Bind(&Device::HandleSetAddressedPlayer, weak_ptr_factory_.GetWeakPtr(), label,
                          set_addressed_player_request));
+    } break;
+
+    case CommandPdu::PACKET_CONTINUE: {
+      log::info("PACKET_CONTINUE frag_attr_cnt_: {}", frag_attr_cnt_);
+      size_t attr_size = 0;
+      int i = 0;
+      if (last_attributes_requested_.size() != 0) {
+        for (const auto& attribute : last_attributes_requested_) {
+          if (last_song_info_.attributes.find(attribute) != last_song_info_.attributes.end()) {
+            i++;
+            if (frag_attr_cnt_ >= i) continue;
+            attr_size += last_song_info_.attributes.find(attribute)->size();
+          }
+        }
+      } else {
+        for (const auto& attribute : last_song_info_.attributes) {
+          i++;
+          if (frag_attr_cnt_ >= i) continue;
+          attr_size += attribute.size();
+        }
+      }
+      PacketType type = PacketType::END;
+      if (attr_size > (ctrl_mtu_ - 11)) { // VendorPacket::kMinSize(10) + num_of_attr(1)
+        type = PacketType::CONTINUE;
+      }
+      log::info("PACKET_CONTINUE attr_size: {}", attr_size);
+
+      auto response = GetElementAttributesResponseBuilder::MakeBuilder(ctrl_mtu_, type, 0);
+      i = 0;
+      if (last_attributes_requested_.size() != 0) {
+        for (const auto& attribute : last_attributes_requested_) {
+          i++;
+          if (frag_attr_cnt_ >= i) continue;
+          if (last_song_info_.attributes.find(attribute) != last_song_info_.attributes.end()) {
+            if (!response->AddAttributeEntry(*last_song_info_.attributes.find(attribute))) {
+              frag_attr_cnt_ = i - 1;
+              break;
+            }
+          }
+        }
+      } else {
+        for (const auto& attribute : last_song_info_.attributes) {
+          i++;
+          if (frag_attr_cnt_ >= i) continue;
+          if (!response->AddAttributeEntry(attribute)) {
+            frag_attr_cnt_ = i - 1;
+            break;
+          }
+        }
+      }
+      send_message(label, false, std::move(response));
+    } break;
+
+    case CommandPdu::PACKET_CONTINUE_ABORT: {
+      log::info("PACKET_CONTINUE_ABORT");
+      auto response = FragAbortBuilder::MakeBuilder(
+          (CommandPdu)pkt->GetCommandPdu());
+      send_message(label, false, std::move(response));
     } break;
 
     case CommandPdu::LIST_PLAYER_APPLICATION_SETTING_ATTRIBUTES: {
@@ -758,23 +818,50 @@ void Device::GetPlayStatusResponse(uint8_t label, PlayStatus status) {
 void Device::GetElementAttributesResponse(uint8_t label,
                                           std::shared_ptr<GetElementAttributesRequest> pkt,
                                           SongInfo info) {
+  log::info("");
   auto get_element_attributes_pkt = pkt;
   auto attributes_requested = get_element_attributes_pkt->GetAttributesRequested();
   bool all_attributes_flag = com::android::bluetooth::flags::get_all_element_attributes_empty();
-
-  auto response = GetElementAttributesResponseBuilder::MakeBuilder(ctrl_mtu_);
 
   // Filter out DEFAULT_COVER_ART handle if this device has no client
   if (!HasBipClient()) {
     filter_cover_art(info);
   }
 
-  last_song_info_ = info;
-
+  size_t attr_size = 0;
+  int attr_cnt = 0;
   if (attributes_requested.size() != 0) {
     for (const auto& attribute : attributes_requested) {
       if (info.attributes.find(attribute) != info.attributes.end()) {
-        response->AddAttributeEntry(*info.attributes.find(attribute));
+        attr_cnt++;
+        attr_size += info.attributes.find(attribute)->size();
+      }
+    }
+  } else {
+    for (const auto& attribute : info.attributes) {
+      attr_cnt++;
+      attr_size += attribute.size();
+    }
+  }
+
+  PacketType type = PacketType::SINGLE;
+  if (attr_size > (ctrl_mtu_ - 11)) { // VendorPacket::kMinSize(10) + num_of_attr(1)
+    type = PacketType::START;
+  }
+  auto response = GetElementAttributesResponseBuilder::MakeBuilder(ctrl_mtu_, type, attr_cnt);
+
+  last_song_info_ = info;
+  last_attributes_requested_ = attributes_requested;
+  int i = 0;
+  if (attributes_requested.size() != 0) {
+    for (const auto& attribute : attributes_requested) {
+      if (info.attributes.find(attribute) != info.attributes.end()) {
+        if (response->AddAttributeEntry(*info.attributes.find(attribute))) {
+          i++;
+        } else {
+          frag_attr_cnt_ = i;
+          break;
+        }
       } else if (all_attributes_flag) {
         response->AddAttributeEntry(attribute, std::string());
       }
@@ -782,7 +869,12 @@ void Device::GetElementAttributesResponse(uint8_t label,
   } else {  // zero attributes requested which means all attributes requested
     if (!all_attributes_flag) {
       for (const auto& attribute : info.attributes) {
-        response->AddAttributeEntry(attribute);
+        if (response->AddAttributeEntry(attribute)) {
+          i++;
+        } else {
+          frag_attr_cnt_ = i;
+          break;
+        }
       }
     } else {
       std::vector<Attribute> all_attributes = {Attribute::TITLE,

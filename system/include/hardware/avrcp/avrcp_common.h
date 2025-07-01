@@ -56,6 +56,8 @@ enum class CommandPdu : uint8_t {
   GET_ELEMENT_ATTRIBUTES = 0x20,
   GET_PLAY_STATUS = 0x30,
   REGISTER_NOTIFICATION = 0x31,
+  PACKET_CONTINUE = 0x40,
+  PACKET_CONTINUE_ABORT = 0x41,
   SET_ABSOLUTE_VOLUME = 0x50,
   SET_ADDRESSED_PLAYER = 0x60,
   PLAY_ITEM = 0x74,
@@ -63,6 +65,9 @@ enum class CommandPdu : uint8_t {
 
 enum class PacketType : uint8_t {
   SINGLE = 0x00,
+  START = 0x01,
+  CONTINUE = 0x02,
+  END = 0x03,
 };
 
 enum class Capability : uint8_t {
