@@ -273,6 +273,7 @@ void ConnectionHandler::InitiatorControlCb(uint8_t handle, uint8_t event, uint16
       auto&& callback =
               base::BindRepeating(&ConnectionHandler::SendMessage, base::Unretained(this), handle);
       auto&& ctrl_mtu = avrc_->GetPeerMtu(handle) - AVCT_HDR_LEN;
+      if (ctrl_mtu > AVRC_PACKET_LEN) ctrl_mtu = AVRC_PACKET_LEN;
       auto&& browse_mtu = avrc_->GetBrowseMtu(handle) - AVCT_HDR_LEN;
       std::shared_ptr<Device> newDevice = std::make_shared<Device>(*peer_addr, !supports_browsing,
                                                                    callback, ctrl_mtu, browse_mtu);
@@ -359,6 +360,7 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event, uint16_
       auto&& callback = base::BindRepeating(&ConnectionHandler::SendMessage,
                                             weak_ptr_factory_.GetWeakPtr(), handle);
       auto&& ctrl_mtu = avrc_->GetPeerMtu(handle) - AVCT_HDR_LEN;
+      if (ctrl_mtu > AVRC_PACKET_LEN) ctrl_mtu = AVRC_PACKET_LEN;
       auto&& browse_mtu = avrc_->GetBrowseMtu(handle) - AVCT_HDR_LEN;
       std::shared_ptr<Device> newDevice =
               std::make_shared<Device>(*peer_addr, false, callback, ctrl_mtu, browse_mtu);
