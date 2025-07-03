@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93300515_ce059de0",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 864,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-07-03T12:35:56Z",
+      "side": 1,
+      "message": "For reference on the bug comments:\n\nThis is what should be impacted if the A2DP profile is disabled for the remote device, the key event should still be sent.",
+      "revId": "2ab21cb31ff5f877bdeea6b810e96dfb69e8587d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
