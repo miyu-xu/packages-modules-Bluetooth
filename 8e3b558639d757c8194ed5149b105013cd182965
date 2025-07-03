@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e128ac_2a8c137b",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-07-03T10:34:47Z",
+      "side": 1,
+      "message": "About 2. in commit message:\nAs this is an `else`, we\u0027re not setting the phone\u0027s volume to the value during the wait here, we only set it once there\u0027s no more pending volume value right?",
+      "revId": "8e3b558639d757c8194ed5149b105013cd182965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
