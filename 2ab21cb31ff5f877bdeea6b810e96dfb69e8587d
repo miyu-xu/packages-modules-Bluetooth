@@ -3,6 +3,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3269195_e3952d6e",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2025-07-03T12:40:05Z",
+      "side": 1,
+      "message": "The change should only be to add\n\n```\nif (!getA2dpPriorityKey(device)) {\n\tLog.e(TAG, \"ignore set active device\");\n\treturn;\n}\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "9d7d79fd_cb386512",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+              "range": {
+                "startLine": 579,
+                "startChar": 0,
+                "endLine": 579,
+                "endChar": 0
+              },
+              "replacement": "        if (!getA2dpPriorityKey(device)) {\n            Log.e(TAG, \"ignore set active device\");\n            return;\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2ab21cb31ff5f877bdeea6b810e96dfb69e8587d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "93300515_ce059de0",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 2
