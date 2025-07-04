@@ -173,6 +173,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8543b3c_70e3f20c",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a74c955_000cea19",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed8346e5_2314aae3",
@@ -214,6 +232,24 @@
           ]
         }
       ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c6012b_ede0d95b",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed8346e5_2314aae3",
       "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -386,6 +422,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c651b28_f0b94c4c",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1832,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1743898e_c508b641",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5043010f_311c7420",
@@ -403,6 +457,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26c4ae34_12fbbb5c",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1860,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5043010f_311c7420",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a88cc093_226b8638",
@@ -416,6 +488,24 @@
       "writtenOn": "2025-06-23T17:06:54Z",
       "side": 1,
       "message": "change it to verbose pelase",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5556be3d_5f21f58f",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a88cc093_226b8638",
       "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -475,6 +565,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "600befd7_aab98e87",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63cea0d0_7bd91635",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2195a182_28dd6d29",
@@ -488,6 +596,30 @@
       "writtenOn": "2025-06-24T21:03:24Z",
       "side": 1,
       "message": "What\u0027s this for?  (asking in general, not just for this file)",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc0fe95_8a62f268",
+        "filename": "system/test/mock/mock_stack_l2cap_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 3279794
+      },
+      "writtenOn": "2025-07-04T10:49:11Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "2195a182_28dd6d29",
       "range": {
         "startLine": 24,
         "startChar": 0,
