@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3d7084_f10881b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-07-04T11:34:52Z",
+      "side": 1,
+      "message": "These APIs used by L2cap test tool above btif",
+      "parentUuid": "2d488304_78b52e58",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef5358b2_35976b91",
@@ -114,6 +132,24 @@
           ]
         }
       ],
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2ba57c4_de378f90",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-07-04T11:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80807ab6_67b86d4e",
       "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -313,6 +349,24 @@
       "side": 1,
       "message": "Echo request is synonymous with Ping, right?\nIt might make more sense to just call it echo request for readability.",
       "parentUuid": "73863597_1bc38086",
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0c48993_d0b45745",
+        "filename": "system/stack/l2cap/internal/l2c_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-07-04T11:34:52Z",
+      "side": 1,
+      "message": "Ping is echo request with out any data. \nEcho req has some data , same data remote sends back in each response.",
+      "parentUuid": "0476c1b1_ac118458",
       "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -620,6 +674,30 @@
       "side": 1,
       "message": "removed",
       "parentUuid": "2195a182_28dd6d29",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "4bcdb625e1b57fea0005d0e129f7246650087afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51ba2f85_efad42da",
+        "filename": "system/test/mock/mock_stack_l2cap_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-07-04T11:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cc0fe95_8a62f268",
       "range": {
         "startLine": 24,
         "startChar": 0,
