@@ -33,6 +33,23 @@
       "message": "no unit test coverage.",
       "revId": "e0a0933b8a14eee5a924bb5588dc4294c89661b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac28751_ca27b25b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1549,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-07-07T23:57:37Z",
+      "side": 1,
+      "message": "audioLocation is a bit. are you intended to use 1L \u003c\u003c (channel.getChannelIndex() - 1) \u0026 audioLocation ?",
+      "revId": "e0a0933b8a14eee5a924bb5588dc4294c89661b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
