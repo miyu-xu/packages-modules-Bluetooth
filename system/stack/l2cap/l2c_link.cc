@@ -365,6 +365,7 @@ bool l2c_link_hci_disc_comp(uint16_t handle, tHCI_REASON reason) {
     }
     if (p_lcb->transport == BT_TRANSPORT_LE) {
       if (l2cu_create_conn_le(p_lcb)) {
+        p_lcb->in_reuse = true;
         lcb_is_free = false; /* still using this lcb */
       }
     } else {

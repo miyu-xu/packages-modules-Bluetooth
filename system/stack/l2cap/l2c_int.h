@@ -567,6 +567,7 @@ public:
     }
     return cnt;
   }
+  bool in_reuse{false}; //Fixed to release a lcb in case of reusage and race condition
 };
 
 /* Define the L2CAP control structure

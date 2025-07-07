@@ -32,6 +32,7 @@
 #include "stack/include/btm_ble_privacy.h"
 #include "stack/include/gatt_api.h"
 #include "stack/include/l2cap_hci_link_interface.h"
+#include "stack/l2cap/l2c_int.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
@@ -133,6 +134,18 @@ void acl_ble_connection_fail(const tBLE_BD_ADDR& address_with_type, uint16_t /* 
   } else {
     btm_cb.ble_ctr_cb.inq_var.adv_mode = BTM_BLE_ADV_DISABLE;
   }
+
+  if (status == HCI_ERR_HOST_TIMEOUT) {
+    tBLE_BD_ADDR resolved_address_with_type;
+    maybe_resolve_received_address(address_with_type, &resolved_address_with_type);
+    tL2C_LCB* p_lcb = l2cu_find_lcb_by_bd_addr(resolved_address_with_type.bda, BT_TRANSPORT_LE);
+    if (p_lcb != nullptr && p_lcb->in_reuse) {
+      log::warn("release reused lcb");
+      p_lcb->in_reuse = false;
+      l2cu_release_lcb(p_lcb);
+    }
+  }
+
   btm_ble_update_mode_operation(HCI_ROLE_UNKNOWN, &address_with_type.bda, status);
 }
 
