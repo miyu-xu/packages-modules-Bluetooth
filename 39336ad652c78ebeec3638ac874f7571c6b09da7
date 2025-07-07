@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec361e54_f2e5fe8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-07T17:37:26Z",
+      "side": 1,
+      "message": "this change adds 100ms by default to bringup SCO connection\nIOP entry is name based rather than address based (Geely carkit)\nThere are significant changes with \"SCO managed by Audio\" which might solves the issue as Audio controls the SCO initiation.\nThanks for this change, we dont think we could go ahead with this change considering above.\n\nBut would like to see if this issue get reproduced with recent changes. @quic_sarvsaur@quicinc.com, Do we have path to reproduce this by any chance?",
+      "revId": "39336ad652c78ebeec3638ac874f7571c6b09da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
