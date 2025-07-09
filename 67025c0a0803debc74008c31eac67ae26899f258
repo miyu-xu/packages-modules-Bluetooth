@@ -52,6 +52,24 @@
       "parentUuid": "8755ede1_d1b3d9a3",
       "revId": "67025c0a0803debc74008c31eac67ae26899f258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9531317_9a8c7796",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-07-09T04:42:24Z",
+      "side": 1,
+      "message": "Thanks, can we please mark accordingly in the Google sheet?",
+      "parentUuid": "1e831d15_4b279273",
+      "revId": "67025c0a0803debc74008c31eac67ae26899f258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
