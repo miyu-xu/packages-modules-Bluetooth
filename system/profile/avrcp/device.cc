@@ -1356,11 +1356,36 @@ void Device::GetItemAttributesVFSResponse(uint8_t label,
 void Device::GetMediaPlayerListResponse(uint8_t label, std::shared_ptr<GetFolderItemsRequest> pkt,
                                         uint16_t curr_player,
                                         std::vector<MediaPlayerInfo> players) {
-  log::verbose("");
+  log::info("");
 
   if (players.size() == 0) {
     auto no_items_rsp = GetFolderItemsResponseBuilder::MakePlayerListBuilder(
+            Status::NO_AVAILABLE_PLAYERS, 0x0000, browse_mtu_);
+    send_message(label, true, std::move(no_items_rsp));
+    return;
+  } else if (pkt->GetStartItem() >= players.size()) {
+    auto no_items_rsp = GetFolderItemsResponseBuilder::MakePlayerListBuilder(
             Status::RANGE_OUT_OF_BOUNDS, 0x0000, browse_mtu_);
+    send_message(label, true, std::move(no_items_rsp));
+    return;
+  }
+
+  if (!(peer_feature_ & static_cast<uint8_t>(RcFeature::RC_FEAT_BROWSE))) {
+    if (!sdp_timer_) {
+      log::warn("wait sdp");
+      sdp_timer_ = true;
+      sdp_timeout_cb_.Cancel();
+      sdp_timeout_cb_.Reset(base::Bind(&Device::GetMediaPlayerListResponse,
+                                     weak_ptr_factory_.GetWeakPtr(),
+                                     label, pkt, curr_player, players));
+      base::MessageLoop::current()->task_runner()->PostDelayedTask(
+          FROM_HERE, sdp_timeout_cb_.callback(),
+          base::TimeDelta::FromMilliseconds(100));
+      return;
+    }
+    log::warn("Response with an error because browsing is not supported");
+    auto no_items_rsp = GetFolderItemsResponseBuilder::MakePlayerListBuilder(
+        Status::NO_AVAILABLE_PLAYERS, 0x0000, browse_mtu_);
     send_message(label, true, std::move(no_items_rsp));
     return;
   }

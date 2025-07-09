@@ -375,6 +375,8 @@ private:
   std::set<uint8_t> active_labels_;
 
   int8_t volume_ = -1;
+  base::CancelableClosure sdp_timeout_cb_;
+  bool sdp_timer_ = false;
 };
 
 }  // namespace avrcp
