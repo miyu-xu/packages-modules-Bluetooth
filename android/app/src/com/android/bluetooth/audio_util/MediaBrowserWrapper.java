@@ -373,7 +373,16 @@ class MediaBrowserWrapper {
                     if (title.isEmpty()) {
                         title = mContext.getString(R.string.not_provided);
                     }
-                    Folder f = new Folder(item.getMediaId(), false, title);
+                    Bundle data = item.getDescription().getExtras();
+                    int folderType = Util.FOLDER_TYPE_PLAYLISTS;
+                    if (data != null) {
+                        folderType = (byte) data.getInt(Util.EXTRA_FOLDER_TYPE);
+                    }
+                    if (folderType < Util.FOLDER_TYPE_MIXED || folderType > Util.FOLDER_TYPE_YEARS) {
+                        folderType = Util.FOLDER_TYPE_PLAYLISTS;
+                    }
+
+                    Folder f = new Folder(item.getMediaId(), false, title, folderType);
                     browsableContent.add(new ListItem(f));
                 } else {
                     Metadata data = Util.toMetadata(mContext, item);

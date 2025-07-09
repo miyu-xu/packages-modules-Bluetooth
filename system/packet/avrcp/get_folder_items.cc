@@ -149,8 +149,8 @@ void GetFolderItemsResponseBuilder::PushMediaPlayerItem(
   AddPayloadOctets2(pkt, base::ByteSwap(item_len));  // Item length
   AddPayloadOctets2(pkt, base::ByteSwap(item.id_));  // Player ID
   AddPayloadOctets1(pkt, 0x01);                      // Player Type
-  AddPayloadOctets4(pkt, 0x00000000);                // Player Subtype
-  AddPayloadOctets1(pkt, 0x02);  // Player Play Status // TODO: Add this as a passed field
+  AddPayloadOctets4(pkt, 0x01000000);                // Player Subtype
+  AddPayloadOctets1(pkt, item.state_);               // Player Play Status
 
   // Features
   AddPayloadOctets1(pkt, 0x00);
@@ -162,10 +162,10 @@ void GetFolderItemsResponseBuilder::PushMediaPlayerItem(
   AddPayloadOctets1(pkt, 0x01);
   if (item.browsable_) {
     AddPayloadOctets1(pkt, 0x0C);
-    AddPayloadOctets1(pkt, 0x0a);
+    AddPayloadOctets1(pkt, 0x12);
   } else {
     AddPayloadOctets1(pkt, 0x04);
-    AddPayloadOctets1(pkt, 0x00);
+    AddPayloadOctets1(pkt, 0x10);
   }
   AddPayloadOctets1(pkt, 0x00);
   AddPayloadOctets1(pkt, 0x00);

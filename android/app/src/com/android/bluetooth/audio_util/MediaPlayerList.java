@@ -694,7 +694,7 @@ public class MediaPlayerList {
 
                 Log.d(TAG, "getFolderItemsMediaPlayerList: Adding player " + displayName);
                 Folder playerFolder =
-                        new Folder(Utils.formatSimple("%02d", id), false, displayName);
+                        new Folder(Utils.formatSimple("%02d", id), false, displayName, Util.FOLDER_TYPE_MIXED);
                 playerList.add(new ListItem(playerFolder));
             }
         } else {
