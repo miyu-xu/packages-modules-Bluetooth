@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded09512_2b046612",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-07-11T06:53:33Z",
+      "side": 1,
+      "message": "Removed change that was generating merge conflict and is already fixed in main",
+      "revId": "2f4a4502f7ca40f775e467063cc24d82468bdb09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
