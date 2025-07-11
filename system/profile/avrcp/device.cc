@@ -396,6 +396,11 @@ void Device::HandleGetCapabilities(uint8_t label,
   }
 }
 
+void Device::SetRcFeatures(uint8_t feature) {
+  log::info("feature={}", feature);
+  peer_feature_ = feature;
+}
+
 void Device::HandleNotification(uint8_t label,
                                 const std::shared_ptr<RegisterNotificationRequest>& pkt) {
   if (!pkt->IsValid()) {

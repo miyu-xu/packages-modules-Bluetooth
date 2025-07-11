@@ -150,6 +150,7 @@ public:
   void MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt);
   void BrowseMessageReceived(uint8_t label, std::shared_ptr<BrowsePacket> pkt);
   void VendorPacketHandler(uint8_t label, std::shared_ptr<VendorPacket> pkt);
+  void SetRcFeatures(uint8_t feature);
 
   /********************
    * MESSAGE RESPONSES
@@ -373,6 +374,8 @@ private:
 
   // Labels used for messages currently in flight.
   std::set<uint8_t> active_labels_;
+
+  uint8_t peer_feature_ = -1;
 
   int8_t volume_ = -1;
 };
