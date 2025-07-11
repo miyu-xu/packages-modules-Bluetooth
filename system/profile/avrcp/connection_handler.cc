@@ -153,7 +153,7 @@ bool ConnectionHandler::ConnectDevice(const RawAddress& bdaddr) {
       for (const auto& pair : instance_->device_map_) {
         if (bdaddr == pair.second->GetAddress()) {
           log::warn("Connected by peer device with address {}", bdaddr);
-          if (features & BTA_AV_FEAT_ADV_CTRL) {
+          if (features & BTA_AV_FEAT_ADV_CTRL && features & BTA_AV_FEAT_RCTG) {
             pair.second->RegisterVolumeChanged();
           } else if (instance_->vol_ != nullptr) {
             instance_->vol_->DeviceConnected(pair.second->GetAddress());
@@ -286,7 +286,7 @@ void ConnectionHandler::InitiatorControlCb(uint8_t handle, uint8_t event, uint16
       if (!btif_av_src_sink_coexist_enabled() ||
           (btif_av_src_sink_coexist_enabled() &&
            btif_av_peer_is_connected_sink(newDevice->GetAddress()))) {
-        if (feature_iter->second & BTA_AV_FEAT_ADV_CTRL) {
+        if (feature_iter->second & BTA_AV_FEAT_ADV_CTRL && feature_iter->second & BTA_AV_FEAT_RCTG) {
           newDevice->RegisterVolumeChanged();
         } else if (instance_->vol_ != nullptr) {
           instance_->vol_->DeviceConnected(newDevice->GetAddress());
@@ -382,7 +382,7 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event, uint16_
         if (!btif_av_src_sink_coexist_enabled() ||
             (btif_av_src_sink_coexist_enabled() &&
              btif_av_peer_is_connected_sink(device->GetAddress()))) {
-          if (features & BTA_AV_FEAT_ADV_CTRL) {
+          if (features & BTA_AV_FEAT_ADV_CTRL && features & BTA_AV_FEAT_RCTG) {
             device->RegisterVolumeChanged();
           } else if (instance_->vol_ != nullptr) {
             instance_->vol_->DeviceConnected(device->GetAddress());
@@ -540,6 +540,7 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb, tSDP_DISCOVERY_
   sdp_record = sdp_->FindServiceInDb(disc_db, UUID_SERVCLASS_AV_REM_CTRL_TARGET, nullptr);
   if (sdp_record != nullptr) {
     log::verbose("Device {} supports remote control target", bdaddr);
+    peer_features |= BTA_AV_FEAT_RCTG;
 
     uint16_t peer_avrcp_target_version = 0;
     sdp_->FindProfileVersionInRec(sdp_record, UUID_SERVCLASS_AV_REMOTE_CONTROL,
@@ -620,7 +621,8 @@ void ConnectionHandler::RegisterVolChanged(const RawAddress& bdaddr) {
   for (auto it = device_map_.begin(); it != device_map_.end(); it++) {
     if (bdaddr == it->second->GetAddress()) {
       const auto& feature_iter = feature_map_.find(bdaddr);
-      if (feature_iter->second & BTA_AV_FEAT_ADV_CTRL) {
+      if (feature_iter->second & BTA_AV_FEAT_ADV_CTRL &&
+          feature_iter->second & BTA_AV_FEAT_RCTG) {
         it->second->RegisterVolumeChanged();
       } else if (instance_->vol_ != nullptr) {
         instance_->vol_->DeviceConnected(bdaddr);
