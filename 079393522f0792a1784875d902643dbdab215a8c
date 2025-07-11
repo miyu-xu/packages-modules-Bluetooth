@@ -131,6 +131,24 @@
       ],
       "revId": "079393522f0792a1784875d902643dbdab215a8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e136001e_94fba7ec",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-07-11T08:23:12Z",
+      "side": 1,
+      "message": "I have made the change and added config for 2 devices. Please check.",
+      "parentUuid": "b53a3384_ad42fcbd",
+      "revId": "079393522f0792a1784875d902643dbdab215a8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
