@@ -1,0 +1,250 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b822f9_27a6266b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "Lets change this to addr only call",
+      "fixSuggestions": [
+        {
+          "fixId": "9129a3c8_ff8df1a0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 590,
+                "startChar": 0,
+                "endLine": 592,
+                "endChar": 0
+              },
+              "replacement": "  bool is_denylisted \u003d interop_match_addr(INTEROP_DISABLE_SNIFF_DURING_CALL,\n                         \u0026p_scb-\u003epeer_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4acf89e_c25b78dc",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "please move this before its Usage, line#604",
+      "fixSuggestions": [
+        {
+          "fixId": "fd232719_b66caa20",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 590,
+                "startChar": 0,
+                "endLine": 592,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 605,
+                "startChar": 0,
+                "endLine": 605,
+                "endChar": 0
+              },
+              "replacement": "  bool is_denylisted \u003d interop_match_addr_or_name(INTEROP_DISABLE_SNIFF_DURING_CALL,\n                         \u0026p_scb-\u003epeer_addr, \u0026btif_storage_get_remote_device_property);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12c557d3_950879fd",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "Please enclose this if statement within braces, It is confusing",
+      "fixSuggestions": [
+        {
+          "fixId": "b5e43262_3d31bff8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 601,
+                "startChar": 0,
+                "endLine": 602,
+                "endChar": 0
+              },
+              "replacement": "  if (result \u003d\u003d BTA_AG_IN_CALL_CONN_RES || result \u003d\u003d BTA_AG_OUT_CALL_CONN_RES) {\n"
+            },
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 604,
+                "startChar": 0,
+                "endLine": 604,
+                "endChar": 0
+              },
+              "replacement": "  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc08780_27012928",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "indentation",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "756eadf1_8aea659c",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "please remove space before parenthesis",
+      "fixSuggestions": [
+        {
+          "fixId": "5dabc737_4d2c8c91",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_cmd.cc",
+              "range": {
+                "startLine": 603,
+                "startChar": 0,
+                "endLine": 604,
+                "endChar": 0
+              },
+              "replacement": "     bta_ag_result_text(result), call, callsetup, p_scb-\u003ecallheld_ind, p_scb-\u003ecallsetup_ind);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbb9a1f9_61d2e040",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "so, we need this print only for these result?",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc4ac784_c396722b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "why no BTA_AG_IN_CALL_CONN_RES here?",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee4e6c57_7559ad23",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-14T21:50:00Z",
+      "side": 1,
+      "message": "Please remove the Name based entries, as we are not accepting Name based ones",
+      "fixSuggestions": [
+        {
+          "fixId": "c9ec287d_1bbdcbfb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/conf/interop_database.conf",
+              "range": {
+                "startLine": 634,
+                "startChar": 0,
+                "endLine": 635,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
