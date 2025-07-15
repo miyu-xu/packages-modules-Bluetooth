@@ -1402,7 +1402,12 @@ public class RemoteDevices {
                 intent.putExtra(BluetoothDevice.EXTRA_TRANSPORT, transportLinkType);
             } else if (state == BluetoothAdapter.STATE_BLE_ON
                     || state == BluetoothAdapter.STATE_BLE_TURNING_OFF) {
-                intent = new Intent(BluetoothAdapter.ACTION_BLE_ACL_DISCONNECTED);
+                if (transportLinkType == BluetoothDevice.TRANSPORT_BREDR) {
+                    intent = new Intent(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+                    intent.putExtra(BluetoothDevice.EXTRA_TRANSPORT, transportLinkType);
+                } else {
+                    intent = new Intent(BluetoothAdapter.ACTION_BLE_ACL_DISCONNECTED);
+                }
             }
             // Reset battery level on complete disconnection
             if (mAdapterService.getConnectionState(device) == 0) {
