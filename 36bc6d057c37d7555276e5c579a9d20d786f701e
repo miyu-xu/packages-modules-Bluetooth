@@ -1,0 +1,110 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73f4d61c_5585ba26",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3901,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T15:19:48Z",
+      "side": 1,
+      "message": "I suggest to do this in line 3893 instead of \"updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);\" and in addition you can replace: \"(!Objects.equals(device, mActiveBroadcastAudioDevice))\" with \"(!Objects.equals(null, mActiveBroadcastAudioDevice))\"",
+      "fixSuggestions": [
+        {
+          "fixId": "97c02df8_dffcb99a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3888,
+                "startChar": 0,
+                "endLine": 3890,
+                "endChar": 0
+              },
+              "replacement": "                        \u0026\u0026 mCreateBroadcastQueue.isEmpty()) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3893,
+                "startChar": 0,
+                "endLine": 3894,
+                "endChar": 0
+              },
+              "replacement": "                    transitionFromBroadcastToUnicast();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 3901,
+                "startChar": 0,
+                "endLine": 3902,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a432e92_4535f683",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T15:19:48Z",
+      "side": 1,
+      "message": "Please update with mocking of `mDatabaseManager.getMostRecentlyConnectedDevices()` to handle fallback device\n\n```\nList\u003cBluetoothDevice\u003e devices \u003d new ArrayList\u003c\u003e();\n        when(mDatabaseManager.getMostRecentlyConnectedDevices()).thenReturn(devices);\n\ndevices.add(mDevice1);\n```",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b3f325_767ca323",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T15:19:48Z",
+      "side": 1,
+      "message": "this flag is no longer used",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d772e7_7a88fa43",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T15:19:48Z",
+      "side": 1,
+      "message": "mDevice1 should be used",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
