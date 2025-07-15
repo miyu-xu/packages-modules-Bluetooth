@@ -204,7 +204,7 @@ public final class BluetoothUtils {
         if (address == null || address.length() != 17) {
             return null;
         }
-        return "XX:XX:XX:XX" + address.substring(11);
+        return "XX:XX:XX" + address.substring(8);
     }
 
     /**
