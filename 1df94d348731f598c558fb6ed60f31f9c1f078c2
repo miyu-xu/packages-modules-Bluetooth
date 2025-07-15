@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f8e90a_cbe442f2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T11:29:50Z",
+      "side": 1,
+      "message": "I suggest to do this in destroyBroadcast method and put something like that (in line 1513, after checking leaudioUseAudioRecordingListener):\n```\n        if (mBroadcastIdDeactivatedForUnicastTransition.get() \u003d\u003d broadcastId) {\n            Log.d(TAG, \"Deactivated for Unicast transition Broadcast is destroyed: \" + broadcastId);\n            mBroadcastIdDeactivatedForUnicastTransition \u003d Optional.empty();\n        }\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "6c561b92_93359a03",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 1472,
+                "startChar": 0,
+                "endLine": 1473,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 1512,
+                "startChar": 0,
+                "endLine": 1512,
+                "endChar": 0
+              },
+              "replacement": "\n        if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()\n                \u0026\u0026 mBroadcastIdDeactivatedForUnicastTransition.get().equals(broadcastId)) {\n            mBroadcastIdDeactivatedForUnicastTransition \u003d Optional.empty();\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd4fa531_ed5ca786",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T11:29:50Z",
+      "side": 1,
+      "message": "there is missing mocking of fallback device handling, please add here:\n```\nList\u003cBluetoothDevice\u003e devices \u003d new ArrayList\u003c\u003e();\n\nwhen(mDatabaseManager.getMostRecentlyConnectedDevices()).thenReturn(devices);\ndevices.add(mDevice1);\n```\n\nwith this a proper default device would be used.",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c3220b_94675c72",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1824,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T11:29:50Z",
+      "side": 1,
+      "message": "with previous modification this test line (1824) is no longer needed",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24c5a753_7da6e586",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T11:29:50Z",
+      "side": 1,
+      "message": "use mDevice1",
+      "range": {
+        "startLine": 1849,
+        "startChar": 31,
+        "endLine": 1849,
+        "endChar": 38
+      },
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a747280_c8020ca1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1854,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T11:29:50Z",
+      "side": 1,
+      "message": "use mDevice1",
+      "range": {
+        "startLine": 1854,
+        "startChar": 31,
+        "endLine": 1854,
+        "endChar": 38
+      },
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
