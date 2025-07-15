@@ -257,7 +257,10 @@ public final class BluetoothLeAdvertiser {
                 throw new IllegalArgumentException("callback cannot be null");
             }
             AdvertisingSetCallback wrapper = mLegacyAdvertisers.get(callback);
-            if (wrapper == null) return;
+            if (wrapper == null) {
+                Log.e(TAG, "Callback was not registered or already removed");
+                return;
+            }
 
             stopAdvertisingSet(wrapper);
 
