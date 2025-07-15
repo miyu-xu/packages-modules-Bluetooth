@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0698f9ab_65ccdd47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-15T12:06:47Z",
+      "side": 1,
+      "message": "Thank you Zhenchao for this CL. I see the problem here, but I recommend to not do it in Java part, since it would be not a generic solution. I recommend to implement such fix in `BroadcastStateMachineImpl::stop_msg_handlers`.\n\nIt means that there is lack of handling STOP message when state machine is in CONFIGURING state.",
+      "revId": "93df5354a9afcce94964c4ac9d7f6fec2e9b66ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
