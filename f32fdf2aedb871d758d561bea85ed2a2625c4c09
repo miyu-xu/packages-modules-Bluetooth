@@ -16,6 +16,23 @@
       "message": "Hello Jack, can you PTAL this review? GM is upstream it to their current branch.",
       "revId": "f32fdf2aedb871d758d561bea85ed2a2625c4c09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b2a2e1_7caa071e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1954411
+      },
+      "writtenOn": "2025-07-16T14:34:26Z",
+      "side": 1,
+      "message": "Hello Jack,\n\nCan you please help to review this.\nThanks.",
+      "revId": "f32fdf2aedb871d758d561bea85ed2a2625c4c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
