@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af1b9e6d_6899a270",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2025-07-16T21:29:08Z",
+      "side": 1,
+      "message": "to align with the GRAPI API, we will only expose the initRSSI.",
+      "range": {
+        "startLine": 545,
+        "startChar": 16,
+        "endLine": 545,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "266d74bb_bb625324",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 545,
+                "startChar": 0,
+                "endLine": 546,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 561,
+                "startChar": 0,
+                "endLine": 562,
+                "endChar": 0
+              },
+              "replacement": "                        .setMeasurementTimestampNanos(elapsedRealtimeNanos)\n                        .setInitRssi(initRSSI);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cea8c19ce420348e061dfd17bcd4132aac3e4470",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
