@@ -80,6 +80,7 @@ public class Metadata implements Cloneable {
         if ((image == null && m.image != null) || (image != null && m.image == null)) {
             return false;
         }
+        if (!Image.sameAs(image, m.image)) return false;
         return true;
     }
 
