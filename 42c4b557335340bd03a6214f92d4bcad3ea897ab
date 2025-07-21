@@ -40,6 +40,30 @@
       },
       "revId": "42c4b557335340bd03a6214f92d4bcad3ea897ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85a12a40_1cf2eda9",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 58
+      },
+      "lineNbr": 2510,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-07-21T02:26:47Z",
+      "side": 1,
+      "message": "!componentInfo.enabled checks if the component is disabled in the manifest. Shall filter out these components. It\u0027s expected.",
+      "parentUuid": "0aa55606_6b07da7b",
+      "range": {
+        "startLine": 2510,
+        "startChar": 37,
+        "endLine": 2510,
+        "endChar": 60
+      },
+      "revId": "42c4b557335340bd03a6214f92d4bcad3ea897ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
