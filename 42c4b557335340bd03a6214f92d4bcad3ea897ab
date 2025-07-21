@@ -64,6 +64,30 @@
       },
       "revId": "42c4b557335340bd03a6214f92d4bcad3ea897ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99302727_1a1a2e11",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 58
+      },
+      "lineNbr": 2510,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-07-21T20:51:41Z",
+      "side": 1,
+      "message": "I am trying to validate this, but I didn\u0027t found anything to confirm this.\n\n```\n    /**\n     * Return whether this component and its enclosing application are enabled.\n     */\n    public boolean isEnabled() {\n        return enabled \u0026\u0026 applicationInfo.enabled;\n    }\n```\n\nSo i\u0027ll trust it works as expected",
+      "parentUuid": "85a12a40_1cf2eda9",
+      "range": {
+        "startLine": 2510,
+        "startChar": 37,
+        "endLine": 2510,
+        "endChar": 60
+      },
+      "revId": "42c4b557335340bd03a6214f92d4bcad3ea897ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
