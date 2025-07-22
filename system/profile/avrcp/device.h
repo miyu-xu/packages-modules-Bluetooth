@@ -275,6 +275,12 @@ public:
   virtual void SetPlayerApplicationSettingValueResponse(uint8_t label, CommandPdu pdu,
                                                         bool success);
 
+  virtual void HandleApplicationAttributeText(
+      uint8_t label, const std::shared_ptr<AppSettingsAttributesText>& pkt);
+
+  virtual void HandleApplicationGetAppSettingValueText(uint8_t label,
+                                                       const std::shared_ptr<GetAppSettingValueText>& pkt);
+
   /********************
    * MESSAGE REQUESTS
    ********************/
