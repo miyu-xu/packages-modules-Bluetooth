@@ -340,6 +340,14 @@ void Device::VendorPacketHandler(uint8_t label, std::shared_ptr<VendorPacket> pk
               base::Bind(&Device::SetPlayerApplicationSettingValueResponse,
                          weak_ptr_factory_.GetWeakPtr(), label, pkt->GetCommandPdu()));
     } break;
+    case CommandPdu::GET_PLAYER_APPLICATION_SETTING_VALUE_TEXT: {
+      HandleApplicationGetAppSettingValueText(label,
+              Packet::Specialize<GetAppSettingValueText>(pkt));
+    } break;
+    case CommandPdu::GET_PLAYER_APPLICATION_SETTING_ATTRIBUTE_TEXT: {
+      HandleApplicationAttributeText(label,
+                      Packet::Specialize<AppSettingsAttributesText>(pkt));
+    } break;
 
     default: {
       log::error("{}: Unhandled Vendor Packet: {}", address_, pkt->ToString());
@@ -394,6 +402,135 @@ void Device::HandleGetCapabilities(uint8_t label,
       send_message(label, false, std::move(response));
     } break;
   }
+}
+
+void Device::HandleApplicationGetAppSettingValueText(
+    uint8_t label, const std::shared_ptr<GetAppSettingValueText>& pkt) {
+  PlayerAttribute id = pkt->GetAppSettingsId();
+  uint8_t cnt = pkt->GetNumAppSettingValue();
+  uint16_t param_length = pkt->GetLength();
+  log::info("cnt: {}, len: {}", (uint8_t)cnt, (uint16_t)param_length);
+  if (id == PlayerAttribute::REPEAT) {
+    if (cnt > 3) cnt = 3; // Max 3
+  } else if (id == PlayerAttribute::SHUFFLE) {
+    if (cnt > 2) cnt = 2; // Max 2
+  }
+  auto response = GetAppSettingValueTextBuilder::MakeBuilder(cnt);
+  std::string name;
+  uint8_t size;
+  bool invalid_id = false;
+  for(int i = 0; i < cnt && (i+1+1) < param_length; i++) { // i + id + NumOfValue < param_length
+    uint8_t listValueId = pkt->ListValueId(i);
+    if (id == PlayerAttribute::REPEAT) {
+      if (listValueId > 0x03) {
+        invalid_id = true;
+        break;
+      }
+      response->AddValue(listValueId);
+      response->AddValue(0x00);// UTF-8 0x006a
+      response->AddValue(0x6a);
+      if (listValueId == 0x01) { // RepeatValue::REPEAT_OFF
+        name = "Off";
+        size = static_cast<uint8_t>(name.length());
+        response->AddValue(size);
+        for(int j = 0; j < size; j++) {
+          response->AddValue(name[j]);
+        }
+      } else if (listValueId == 0x02) { // RepeatValue::REPEAT_SINGLE
+        name = "Single track";
+        size = static_cast<uint8_t>(name.length());
+        response->AddValue(size);
+        for(int j = 0; j < size; j++) {
+          response->AddValue(name[j]);
+        }
+      } else if (listValueId == 0x03) { // RepeatValue::REPEAT_ALL
+        name = "All tracks";
+        size = static_cast<uint8_t>(name.length());
+        response->AddValue(size);
+        for(int j = 0; j < size; j++) {
+          response->AddValue(name[j]);
+        }
+      }
+    } else if (id == PlayerAttribute::SHUFFLE) {
+      if (listValueId > 0x02) {
+        invalid_id = true;
+        break;
+      }
+      response->AddValue(listValueId);
+      response->AddValue(0x00);// UTF-8 0x006a
+      response->AddValue(0x6a);
+      if (listValueId == 0x01) { // ShuffleValue::SHUFFLE_OFF
+        name = "Off";
+        size = static_cast<uint8_t>(name.length());
+        response->AddValue(size);
+        for(int j = 0; j < size; j++) {
+          response->AddValue(name[j]);
+        }
+      } else if (listValueId == 0x02) { // ShuffleValue::SHUFFLE_ON
+        name = "All tracks";
+        size = static_cast<uint8_t>(name.length());
+        response->AddValue(size);
+        for(int j = 0; j < size; j++) {
+          response->AddValue(name[j]);
+        }
+      }
+    } else {
+      invalid_id = true;
+    }
+  }
+  if (invalid_id) {
+    log::error("INVALID_PARAMETER");
+    auto invalid = RejectBuilder::MakeBuilder(
+          (CommandPdu)pkt->GetCommandPdu(), Status::INVALID_PARAMETER);
+    send_message(label, false, std::move(invalid));
+    return;
+  }
+  send_message(label, false, std::move(response));
+}
+
+void Device::HandleApplicationAttributeText(
+    uint8_t label, const std::shared_ptr<AppSettingsAttributesText>& pkt) {
+  uint8_t cnt = pkt->GetAppSettingsAttrCnt();
+  uint16_t param_length = pkt->GetLength();
+  log::info("cnt: {}, len: {}", (uint8_t)cnt, (uint16_t)param_length);
+  PlayerAttribute id;
+  uint8_t size;
+  std::string name;
+  auto response = AppSettingsAttributesTextBuilder::MakeBuilder(cnt);
+  for (int i = 0; i < cnt && i+1 < param_length; i++) { // i + NumOfAttri < param_length
+    id = pkt->GetAppSettingsAttrRequested(i);
+    if (id != PlayerAttribute::REPEAT &&
+      id != PlayerAttribute::SHUFFLE) {
+      log::error("INVALID_PARAMETER");
+      auto reject = RejectBuilder::MakeBuilder(
+            (CommandPdu)pkt->GetCommandPdu(), Status::INVALID_PARAMETER);
+      send_message(label, false, std::move(reject));
+      return;
+    }
+
+    if (id == PlayerAttribute::REPEAT) {
+      name = "Repeat";
+      size = static_cast<uint8_t>(name.length());
+      response->AddValue(static_cast<uint8_t>(id));
+      response->AddValue(0x00);// UTF-8 0x006a
+      response->AddValue(0x6a);
+      response->AddValue(size);
+      for(int j = 0; j < size; j++) {
+        response->AddValue(name[j]);
+      }
+    } else if (id == PlayerAttribute::SHUFFLE) {
+      name = "Shuffle";
+      size = static_cast<uint8_t>(name.length());
+      response->AddValue(static_cast<uint8_t>(id));
+      response->AddValue(0x00);// UTF-8 0x006a
+      response->AddValue(0x6a);
+      response->AddValue(size);
+      for(int j = 0; j < size; j++) {
+        response->AddValue(name[j]);
+      }
+    }
+  }
+  send_message(label, false, std::move(response));
 }
 
 void Device::HandleNotification(uint8_t label,
