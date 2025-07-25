@@ -48,6 +48,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77e66e75_dc13dda1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-25T11:08:45Z",
+      "side": 1,
+      "message": "Thank you for good suggestion. I will make fix in destroyBroadcast method instead of stopBroadcast.",
+      "parentUuid": "27f8e90a_cbe442f2",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd4fa531_ed5ca786",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 7
@@ -65,6 +83,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d0cdd3d_2f023540",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-25T11:08:45Z",
+      "side": 1,
+      "message": "Thanks suggestion, will add this.",
+      "parentUuid": "dd4fa531_ed5ca786",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26c3220b_94675c72",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 7
@@ -76,6 +112,24 @@
       "writtenOn": "2025-07-15T11:29:50Z",
       "side": 1,
       "message": "with previous modification this test line (1824) is no longer needed",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b5ee2ad_05f3b590",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1824,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-25T11:08:45Z",
+      "side": 1,
+      "message": "Will remove this line.",
+      "parentUuid": "26c3220b_94675c72",
       "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +159,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be65c185_14375b69",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-25T11:08:45Z",
+      "side": 1,
+      "message": "There are definitions for mDevice and mDevice2 in LeAudioBroadcastServiceTest.java. (line#180 and line#181), but no definition for mDevice1. Is any difference for AOSP code and Google internal branch?\n\n    private final BluetoothDevice mDevice \u003d getTestDevice(0);\n    private final BluetoothDevice mDevice2 \u003d getTestDevice(1);",
+      "parentUuid": "24c5a753_7da6e586",
+      "range": {
+        "startLine": 1849,
+        "startChar": 31,
+        "endLine": 1849,
+        "endChar": 38
+      },
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a747280_c8020ca1",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 7
@@ -116,6 +194,30 @@
       "writtenOn": "2025-07-15T11:29:50Z",
       "side": 1,
       "message": "use mDevice1",
+      "range": {
+        "startLine": 1854,
+        "startChar": 31,
+        "endLine": 1854,
+        "endChar": 38
+      },
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8013c354_32087503",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1854,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-25T11:08:45Z",
+      "side": 1,
+      "message": "There are definitions for mDevice and mDevice2 in LeAudioBroadcastServiceTest.java. (line#180 and line#181), but no definition for mDevice1.",
+      "parentUuid": "8a747280_c8020ca1",
       "range": {
         "startLine": 1854,
         "startChar": 31,
