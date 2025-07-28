@@ -16,6 +16,24 @@
       "message": "Thank you Zhenchao for this CL. I see the problem here, but I recommend to not do it in Java part, since it would be not a generic solution. I recommend to implement such fix in `BroadcastStateMachineImpl::stop_msg_handlers`.\n\nIt means that there is lack of handling STOP message when state machine is in CONFIGURING state.",
       "revId": "93df5354a9afcce94964c4ac9d7f6fec2e9b66ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5502afd4_85e27bc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T08:59:52Z",
+      "side": 1,
+      "message": "Grzegorz, Thank you for your review. I double check the logs of original issue, STOP message is received when state machine is in CONFIGURED state(after create BIG). \n\n1. CreateAudioBroadcast -\u003e enable announcement -\u003e OnCreateAnnouncement-\u003e state machine CONFIGURED state\n2. StartAudioBroadcast -\u003e message START is received in CONFIGURED state -\u003e Create BIG\n3. message STOP is received in CONFIGURED state -\u003e disable announcement -\u003e OnCreateAnnouncement -\u003e state machine STOPPED state\n4. DestroyAudioBroadcast\n5. BIG create complete event is received\n\n\nI think this issue scenario has already be handled by below two changes:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3247473\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3505858\n\n\nI will abandon my fix in Java part.",
+      "parentUuid": "0698f9ab_65ccdd47",
+      "revId": "93df5354a9afcce94964c4ac9d7f6fec2e9b66ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
