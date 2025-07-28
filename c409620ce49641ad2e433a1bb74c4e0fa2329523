@@ -69,6 +69,24 @@
       "parentUuid": "2591f378_1fbf4725",
       "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87753089_8c1d7227",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-07-28T09:47:57Z",
+      "side": 1,
+      "message": "Due to these reasons (let me know if you agree):\n   1. In this logic, we set the value of characteristic and send it as a notification.\n   All the similar logic of getting and setting characteristic values (BluetoothGattCharacteristic) are present in MediaControlGattService.java and not MediaControlProfile.java.\n   onMediaControlRequest  is present in MediaControlProfile.java.\n   2. MediaControlGattService.java is the file in which we prepare mCharacteristics map. And that info we need in our logic. \n   3. Almost all the APIs which are being used in our code change here, have their definitions present in MediaControlGattService.java.\n   \n   \n   Please let me know what you think.",
+      "parentUuid": "d9fd897e_3f05434f",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
