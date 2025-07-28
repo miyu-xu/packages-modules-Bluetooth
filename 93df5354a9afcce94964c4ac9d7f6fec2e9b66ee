@@ -34,6 +34,24 @@
       "parentUuid": "0698f9ab_65ccdd47",
       "revId": "93df5354a9afcce94964c4ac9d7f6fec2e9b66ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ddc7065_71e36eb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-28T09:48:24Z",
+      "side": 1,
+      "message": "Hi!\n\nThank you Zhenchao for double check this! I appreciate you work on this.\n\nYeah - if this is ok for now, then it\u0027s ok to abandon.\n\nRegards,\nGrzegorz",
+      "parentUuid": "5502afd4_85e27bc2",
+      "revId": "93df5354a9afcce94964c4ac9d7f6fec2e9b66ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
