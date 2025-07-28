@@ -64,6 +64,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac619262_d6d20c34",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1472,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T07:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77e66e75_dc13dda1",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd4fa531_ed5ca786",
@@ -99,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f5c5c33_f8c6030b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1817,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T07:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d0cdd3d_2f023540",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26c3220b_94675c72",
@@ -130,6 +166,24 @@
       "side": 1,
       "message": "Will remove this line.",
       "parentUuid": "26c3220b_94675c72",
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc8297af_1019a353",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1824,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T07:57:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b5ee2ad_05f3b590",
       "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
