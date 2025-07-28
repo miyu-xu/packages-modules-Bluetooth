@@ -235,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f50ff2b7_4be5a1bf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-28T08:32:05Z",
+      "side": 1,
+      "message": "ops, sorry - seems like I had some internal difference. I\u0027ve checked and mDevice should be ok!",
+      "parentUuid": "be65c185_14375b69",
+      "range": {
+        "startLine": 1849,
+        "startChar": 31,
+        "endLine": 1849,
+        "endChar": 38
+      },
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a747280_c8020ca1",
@@ -272,6 +296,30 @@
       "side": 1,
       "message": "There are definitions for mDevice and mDevice2 in LeAudioBroadcastServiceTest.java. (line#180 and line#181), but no definition for mDevice1.",
       "parentUuid": "8a747280_c8020ca1",
+      "range": {
+        "startLine": 1854,
+        "startChar": 31,
+        "endLine": 1854,
+        "endChar": 38
+      },
+      "revId": "1df94d348731f598c558fb6ed60f31f9c1f078c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac46b38_33fbf805",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1854,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-28T08:32:05Z",
+      "side": 1,
+      "message": "as previous.",
+      "parentUuid": "8013c354_32087503",
       "range": {
         "startLine": 1854,
         "startChar": 31,
