@@ -76,6 +76,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80663183_cb3c35ce",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3901,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-07-28T15:09:50Z",
+      "side": 1,
+      "message": "I suggest to remove \"updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);\" from line 3884. Removing active broadcast device here could result in primary audio device leak (there would be no Bluetooth active device exposed).\n\nLeft active broadcast device here would be updated once:\n- Unicast group become active (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d61197364367c9e404c7da6900658f1b16c42d0da;l\u003d3743)\n- There is no unicast group to fallback (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d61197364367c9e404c7da6900658f1b16c42d0da;l\u003d3288)",
+      "parentUuid": "476e5c26_c54d52d3",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a432e92_4535f683",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
         "patchSetId": 7
