@@ -56,6 +56,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "476e5c26_c54d52d3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3901,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73f4d61c_5585ba26",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a432e92_4535f683",
@@ -69,6 +87,24 @@
       "writtenOn": "2025-07-15T15:19:48Z",
       "side": 1,
       "message": "Please update with mocking of `mDatabaseManager.getMostRecentlyConnectedDevices()` to handle fallback device\n\n```\nList\u003cBluetoothDevice\u003e devices \u003d new ArrayList\u003c\u003e();\n        when(mDatabaseManager.getMostRecentlyConnectedDevices()).thenReturn(devices);\n\ndevices.add(mDevice1);\n```",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceda3535_3a12f513",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1954,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a432e92_4535f683",
       "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -90,6 +126,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a586c7c2_f879facb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T10:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1b3f325_767ca323",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43d772e7_7a88fa43",
@@ -103,6 +157,24 @@
       "writtenOn": "2025-07-15T15:19:48Z",
       "side": 1,
       "message": "mDevice1 should be used",
+      "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69830ccc_7cec6801",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 2033006
+      },
+      "writtenOn": "2025-07-28T10:51:24Z",
+      "side": 1,
+      "message": "As review comments of CL(https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3496186), mDevice should be ok.",
+      "parentUuid": "43d772e7_7a88fa43",
       "revId": "36bc6d057c37d7555276e5c579a9d20d786f701e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
