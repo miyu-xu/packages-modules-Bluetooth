@@ -135,6 +135,30 @@
       },
       "revId": "bcd93a7cc2204a5b0b40d1f98bdf56aefaeac2e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a640c5f_450d349a",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-07-29T13:40:48Z",
+      "side": 1,
+      "message": "Will add back message_loop and call RenewAudioProviderAndSession on the same.",
+      "parentUuid": "aeacbd39_62d36fcf",
+      "range": {
+        "startLine": 538,
+        "startChar": 6,
+        "endLine": 538,
+        "endChar": 32
+      },
+      "revId": "bcd93a7cc2204a5b0b40d1f98bdf56aefaeac2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
