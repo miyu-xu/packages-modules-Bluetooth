@@ -87,6 +87,30 @@
       },
       "revId": "bcd93a7cc2204a5b0b40d1f98bdf56aefaeac2e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f50fb890_294d88aa",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-07-29T12:23:06Z",
+      "side": 1,
+      "message": "Hi @henrichataing@google.com ,\nCan you please help with the following:\n\n1. I have updated the patchset to call RenewAudioProviderAndSession  on main thread:\n    https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3398887\n\n2. In HIDL, RenewAudioProviderAndSession is being called on the thread associated with message_loop_.\n    Do you think message_loop_ will always correspond to main thread?\n\n    message_loop_-\u003eDoInThread(base::BindOnce(\n      \u0026BluetoothAudioClientInterface::RenewAudioProviderAndSession,\n                                 base::Unretained(bluetooth_audio_clientif_)));\n\n3. If we compare implementation with HIDL, in AIDL, the message_loop has been removed.\n    In order to call RenewAudioProviderAndSession \"exactly\" the same way as in HIDL, we will need message_loop to be implemented here in AIDL too.\n    But I think if it is okay to call RenewAudioProviderAndSession  on main thread, the latest patch on gerrit should do it.\n\nPlease let me know your thoughts.",
+      "parentUuid": "b21a53b0_794f20e5",
+      "range": {
+        "startLine": 538,
+        "startChar": 6,
+        "endLine": 538,
+        "endChar": 32
+      },
+      "revId": "bcd93a7cc2204a5b0b40d1f98bdf56aefaeac2e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
