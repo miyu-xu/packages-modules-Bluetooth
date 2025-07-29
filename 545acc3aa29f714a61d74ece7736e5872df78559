@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0be897f_7af5dd4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-07-29T01:28:55Z",
+      "side": 1,
+      "message": "@okamil@google.com, Could you please help checking this? Can we have bumble test to cover this?",
+      "revId": "545acc3aa29f714a61d74ece7736e5872df78559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
