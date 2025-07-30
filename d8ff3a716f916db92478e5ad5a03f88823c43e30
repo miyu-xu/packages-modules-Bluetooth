@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26f336b1_43183ab5",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2025-07-30T08:14:49Z",
+      "side": 1,
+      "message": "The padding_length has flaw because it ignores the actual data length, relying solely on get_unified_bqr_common_len(), which in turn only references the vendor_cap_supported_version.",
+      "revId": "d8ff3a716f916db92478e5ad5a03f88823c43e30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
