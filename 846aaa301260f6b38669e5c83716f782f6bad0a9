@@ -81,6 +81,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4457e643_46da10b7",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T10:46:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4acf89e_c25b78dc",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12c557d3_950879fd",
@@ -122,6 +140,24 @@
           ]
         }
       ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "744a0d9c_ac248214",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T10:46:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12c557d3_950879fd",
       "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -195,6 +231,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f95080_393246fa",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T10:46:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "756eadf1_8aea659c",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc4ac784_c396722b",
@@ -243,6 +297,24 @@
           ]
         }
       ],
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb9a3955_53a48e4b",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 16
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T10:46:15Z",
+      "side": 1,
+      "message": "This was added earlier and is not the part of our current change.",
+      "parentUuid": "ee4e6c57_7559ad23",
       "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
