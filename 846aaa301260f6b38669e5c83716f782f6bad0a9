@@ -101,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd428bfc_f1acc52e",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T11:42:16Z",
+      "side": 1,
+      "message": "Sure, we can make this change if all remotes are address based.",
+      "parentUuid": "60b822f9_27a6266b",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12c557d3_950879fd",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 16
@@ -175,6 +193,24 @@
       "writtenOn": "2025-07-14T21:50:00Z",
       "side": 1,
       "message": "indentation",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d13d380a_584b8488",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T11:42:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbc08780_27012928",
       "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -262,6 +298,24 @@
       "writtenOn": "2025-07-14T21:50:00Z",
       "side": 1,
       "message": "why no BTA_AG_IN_CALL_CONN_RES here?",
+      "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5592012e_e57b3ee2",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-07-30T11:42:16Z",
+      "side": 1,
+      "message": "BTA_AG_IN_CALL_RES should be enough.\nSniff would get blocked when incoming call is received.",
+      "parentUuid": "dc4ac784_c396722b",
       "revId": "846aaa301260f6b38669e5c83716f782f6bad0a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
