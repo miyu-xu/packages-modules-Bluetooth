@@ -46,6 +46,7 @@
 #include "le_audio/broadcaster/broadcaster_types.h"
 #include "le_audio/le_audio_types.h"
 #include "osi/include/wakelock.h"
+#include "osi/include/properties.h"
 #include "stack/include/main_thread.h"
 
 namespace bluetooth::le_audio {
@@ -76,6 +77,7 @@ public:
   bool Start(const LeAudioCodecConfiguration& codec_configuration,
              LeAudioSourceAudioHalClient::Callbacks* audioReceiver, DsaModes dsa_modes) override;
   void Stop() override;
+  void ConfirmSuspendRequest() override;
   void ConfirmStreamingRequest() override;
   void CancelStreamingRequest() override;
   void UpdateRemoteDelay(uint16_t remote_delay_ms) override;
@@ -390,6 +392,17 @@ void SourceImpl::Stop() {
 
   std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
   audioSourceCallbacks_ = nullptr;
+}
+
+void SourceImpl::ConfirmSuspendRequest() {
+  if ((halSinkInterface_ == nullptr) ||
+      (le_audio_sink_hal_state_ != HAL_STARTED)) {
+    log::error("Audio HAL Audio sink was not started!");
+    return;
+  }
+  if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+    halSinkInterface_->ConfirmSuspendRequest();
+  }
 }
 
 void SourceImpl::ConfirmStreamingRequest() {
