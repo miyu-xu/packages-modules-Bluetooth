@@ -197,6 +197,15 @@ void LeAudioClientInterface::Sink::StartSession() {
   }
 }
 
+void LeAudioClientInterface::Sink::ConfirmSuspendRequest() {
+  log::info("");
+  if (HalVersionManager::GetHalTransport() ==
+      BluetoothAudioHalTransport::AIDL) {
+    get_aidl_client_interface(is_broadcaster_)
+        ->StreamSuspended(aidl::BluetoothAudioCtrlAck::SUCCESS_FINISHED);
+  }
+}
+
 void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {
   auto lambda =
           [&](StartRequestState currect_start_request_state) -> std::pair<StartRequestState, bool> {
@@ -507,6 +516,15 @@ void LeAudioClientInterface::Source::ReconfigurationComplete() {
     //        StreamSuspended() with SUCCESS_FINISHED ack code.
     aidl::le_audio::LeAudioSourceTransport::interface->StreamSuspended(
             aidl::BluetoothAudioCtrlAck::SUCCESS_FINISHED);
+  }
+}
+
+void LeAudioClientInterface::Source::ConfirmSuspendRequest() {
+  log::info("");
+  if (HalVersionManager::GetHalTransport() ==
+      BluetoothAudioHalTransport::AIDL) {
+    aidl::le_audio::LeAudioSourceTransport::interface->StreamSuspended(
+         aidl::BluetoothAudioCtrlAck::SUCCESS_FINISHED);
   }
 }
 
