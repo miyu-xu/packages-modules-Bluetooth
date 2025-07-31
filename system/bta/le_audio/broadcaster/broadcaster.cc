@@ -1092,6 +1092,9 @@ private:
         case BroadcastStateMachine::State::CONFIGURED:
           if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
             instance->UpdateAudioActiveStateInPublicAnnouncement();
+            if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+              instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
+            }
           }
           break;
         case BroadcastStateMachine::State::ENABLING:
@@ -1361,13 +1364,21 @@ private:
 
       if (instance->audio_state_ == AudioState::STOPPED) {
         log::warn("audio stopped, skip suspend request");
+        if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+          instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
+        }
         return;
       }
 
       instance->audio_state_ = AudioState::SUSPENDED;
+
       if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
         instance->UpdateAudioActiveStateInPublicAnnouncement();
         instance->setBroadcastTimers();
+      } else {
+        if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+          instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
+        }
       }
     }
 
