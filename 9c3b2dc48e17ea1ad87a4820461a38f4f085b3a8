@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0904d25d_323f26e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2025-07-31T22:56:54Z",
+      "side": 1,
+      "message": "Fix looks good to me on legacy branch.\n\nWe unfortunately can\u0027t merge it, because the modified code is deleted in tip of tree and this problem no longer exist.",
+      "revId": "9c3b2dc48e17ea1ad87a4820461a38f4f085b3a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
