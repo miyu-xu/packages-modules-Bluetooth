@@ -29,6 +29,7 @@
 
 #include "common/strings.h"
 #include "hal_version_manager.h"
+#include "osi/include/properties.h"
 #include "le_audio_utils.h"
 
 namespace bluetooth {
@@ -121,8 +122,13 @@ BluetoothAudioCtrlAck LeAudioTransport::SuspendRequest() {
   log::info("");
   if (stream_cb_.on_suspend_()) {
     flush_();
-    log::info("completed with a success");
-    return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+    if(!osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+      log::info("completed with a success");
+      return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+    } else {
+      log::info("Suspend pending.");
+      return BluetoothAudioCtrlAck::PENDING;
+    }
   } else {
     log::info("completed with a failure");
     return BluetoothAudioCtrlAck::FAILURE;

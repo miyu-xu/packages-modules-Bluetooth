@@ -1092,6 +1092,7 @@ private:
         case BroadcastStateMachine::State::CONFIGURED:
           if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
             instance->UpdateAudioActiveStateInPublicAnnouncement();
+            instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
           }
           break;
         case BroadcastStateMachine::State::ENABLING:
@@ -1361,6 +1362,7 @@ private:
 
       if (instance->audio_state_ == AudioState::STOPPED) {
         log::warn("audio stopped, skip suspend request");
+        instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
         return;
       }
 
@@ -1368,6 +1370,8 @@ private:
       if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
         instance->UpdateAudioActiveStateInPublicAnnouncement();
         instance->setBroadcastTimers();
+      } else {
+        instance->le_audio_source_hal_client_->ConfirmSuspendRequest();
       }
     }
 
