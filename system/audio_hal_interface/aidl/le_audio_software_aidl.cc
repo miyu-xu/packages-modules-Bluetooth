@@ -123,6 +123,10 @@ BluetoothAudioCtrlAck LeAudioTransport::SuspendRequest() {
     flush_();
     log::info("completed with a success");
     return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+
+    log::info("Suspend pending.");
+    return BluetoothAudioCtrlAck::PENDING;
+    //return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
   } else {
     log::info("completed with a failure");
     return BluetoothAudioCtrlAck::FAILURE;
