@@ -164,6 +164,7 @@ void LeAudioClientInterface::Sink::SetPcmParameters(const PcmParameters& /*param
 void LeAudioClientInterface::Sink::SetRemoteDelay(uint16_t /*delay_report_ms*/) {}
 void LeAudioClientInterface::Sink::StartSession() {}
 void LeAudioClientInterface::Sink::StopSession() {}
+void LeAudioClientInterface::Sink::ConfirmSuspendRequest() {}
 void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {}
 void LeAudioClientInterface::Sink::CancelStreamingRequest() {}
 void LeAudioClientInterface::Sink::UpdateAudioConfigToHal(
@@ -190,6 +191,7 @@ void LeAudioClientInterface::Source::SetPcmParameters(const PcmParameters& /*par
 void LeAudioClientInterface::Source::SetRemoteDelay(uint16_t /*delay_report_ms*/) {}
 void LeAudioClientInterface::Source::StartSession() {}
 void LeAudioClientInterface::Source::StopSession() {}
+void LeAudioClientInterface::Source::ConfirmSuspendRequest() {}
 void LeAudioClientInterface::Source::ConfirmStreamingRequest() {}
 void LeAudioClientInterface::Source::CancelStreamingRequest() {}
 void LeAudioClientInterface::Source::UpdateAudioConfigToHal(
