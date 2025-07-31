@@ -164,8 +164,9 @@ void LeAudioClientInterface::Sink::SetPcmParameters(const PcmParameters& /*param
 void LeAudioClientInterface::Sink::SetRemoteDelay(uint16_t /*delay_report_ms*/) {}
 void LeAudioClientInterface::Sink::StartSession() {}
 void LeAudioClientInterface::Sink::StopSession() {}
-void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {}
-void LeAudioClientInterface::Sink::CancelStreamingRequest() {}
+void LeAudioClientInterface::Sink::ConfirmSuspendRequest(){};
+void LeAudioClientInterface::Sink::ConfirmStreamingRequest(){};
+void LeAudioClientInterface::Sink::CancelStreamingRequest(){};
 void LeAudioClientInterface::Sink::UpdateAudioConfigToHal(
         const ::bluetooth::le_audio::stream_config& /*config*/) {}
 void LeAudioClientInterface::Sink::UpdateBroadcastAudioConfigToHal(
@@ -190,8 +191,9 @@ void LeAudioClientInterface::Source::SetPcmParameters(const PcmParameters& /*par
 void LeAudioClientInterface::Source::SetRemoteDelay(uint16_t /*delay_report_ms*/) {}
 void LeAudioClientInterface::Source::StartSession() {}
 void LeAudioClientInterface::Source::StopSession() {}
-void LeAudioClientInterface::Source::ConfirmStreamingRequest() {}
-void LeAudioClientInterface::Source::CancelStreamingRequest() {}
+void LeAudioClientInterface::Source::ConfirmSuspendRequest(){};
+void LeAudioClientInterface::Source::ConfirmStreamingRequest(){};
+void LeAudioClientInterface::Source::CancelStreamingRequest(){};
 void LeAudioClientInterface::Source::UpdateAudioConfigToHal(
         const ::bluetooth::le_audio::stream_config& /*config*/) {}
 void LeAudioClientInterface::Source::SuspendedForReconfiguration() {}
