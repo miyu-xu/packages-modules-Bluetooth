@@ -1706,7 +1706,7 @@ class BluetoothManagerService {
 
     private void handleEnableDelayed() {
         // The Bluetooth is turning off, wait for STATE_OFF
-        if (!mState.oneOf(STATE_OFF)) {
+        if (!(mState.oneOf(STATE_OFF) || (isBleAppPresent() && mState.oneOf(STATE_BLE_ON)))) {
             if (mWaitForEnableRetry < MAX_WAIT_FOR_ENABLE_DISABLE_RETRIES) {
                 mWaitForEnableRetry++;
                 mHandler.sendEmptyMessageDelayed(
