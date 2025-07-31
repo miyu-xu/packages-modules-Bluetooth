@@ -410,6 +410,10 @@ public:
         sink_monitor_notified_status_(std::nullopt),
         source_monitor_mode_(false),
         source_monitor_notified_status_(std::nullopt),
+        defer_notify_inactive_until_stop_(false),
+        defer_notify_active_until_stop_(false),
+        defer_sink_suspend_ack_until_stop_(false),
+        defer_source_suspend_ack_until_stop_(false),
         le_audio_source_hal_client_(nullptr),
         le_audio_sink_hal_client_(nullptr),
         close_vbc_timeout_(alarm_new("LeAudioCloseVbcTimeout")),
@@ -1231,6 +1235,55 @@ public:
     groupStateMachine_->SuspendStream(group);
   }
 
+  void CheckAndNotifyGroupActive(const int group_id) {
+    log::info("group id: {}", group_id);
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (!group) {
+      log::error("unknown group id: {}", group_id);
+      return;
+    }
+
+    /* Reset sink and source listener notified status */
+    sink_monitor_notified_status_ = std::nullopt;
+    source_monitor_notified_status_ = std::nullopt;
+
+    SendAudioGroupSelectableCodecConfigChanged(group);
+    SendAudioGroupCurrentCodecConfigChanged(group);
+    callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
+  }
+
+  void CheckAndNotifyGroupInactive(const int group_id) {
+    log::info(
+            "defer_notify_inactive_until_stop_: {}, defer_notify_active_until_stop_: {},
+             group_id: {}",
+            defer_notify_inactive_until_stop_, defer_notify_active_until_stop_, group_id);
+    if (defer_notify_inactive_until_stop_) {
+      if (!defer_notify_active_until_stop_) {
+        active_group_id_ = bluetooth::groups::kGroupUnknown;
+        StopAudio();
+        ClientAudioInterfaceRelease();
+      }
+      callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
+    }
+  }
+
+  void ackHalSuspendRequest(bool source) {
+    log::info("source: {}", source);
+    // In VBC and Call streaming cases, send immediate ack
+    // for the first initiate suspsend.
+    if (source) {
+      if (le_audio_source_hal_client_) {
+        log::info("calling source ConfirmSuspendRequest");
+        le_audio_source_hal_client_->ConfirmSuspendRequest();
+      }
+    } else {
+      if (le_audio_sink_hal_client_) {
+        log::info("calling sink ConfirmSuspendRequest");
+        le_audio_sink_hal_client_->ConfirmSuspendRequest();
+      }
+    }
+  }
+
   void GroupStop(const int group_id) override {
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
 
@@ -1607,17 +1660,21 @@ public:
     if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
       return;
     }
+    auto group_id_to_close = active_group_id_;
     sink_monitor_notified_status_ = std::nullopt;
     source_monitor_notified_status_ = std::nullopt;
     log::info("Group id: {}", active_group_id_);
 
     StopSuspendTimeout();
 
-    StopAudio();
-    ClientAudioInterfaceRelease();
+    log::info("defer_notify_inactive_until_stop_: {}", defer_notify_inactive_until_stop_);
 
-    callbacks_->OnGroupStatus(active_group_id_, GroupStatus::INACTIVE);
-    active_group_id_ = bluetooth::groups::kGroupUnknown;
+    if (!defer_notify_inactive_until_stop_) {
+      StopAudio();
+      ClientAudioInterfaceRelease();
+      callbacks_->OnGroupStatus(group_id_to_close, GroupStatus::INACTIVE);
+      active_group_id_ = bluetooth::groups::kGroupUnknown;
+    }
   }
 
   bool ConfigureStream(LeAudioDeviceGroup* group, bool up_to_qos_configured) {
@@ -1675,6 +1732,25 @@ public:
 
       log::info("Active group_id changed {} -> {}", active_group_id_, group_id);
       auto group_id_to_close = active_group_id_;
+
+      LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+
+      if (!group) {
+        log::error("unknown group id: {}", active_group_id_);
+        return;
+      }
+
+      if (group->IsEmpty()) {
+        log::error("group is empty");
+        return;
+      }
+
+      log::info(" current state {}", ToString(group->GetState()).c_str());
+
+      //Below to ensure CIS termination before updating to app about inactive.
+      if (!group->IsReleasingOrIdle()) {
+        defer_notify_inactive_until_stop_ = true;
+      }
       groupSetAndNotifyInactive();
       GroupStop(group_id_to_close);
 
@@ -1775,32 +1851,36 @@ public:
        * the new group so the group change is correctly handled in OnStateMachineStatusReportCb
        */
       active_group_id_ = group_id;
-      SuspendedForReconfiguration();
-      GroupStop(previous_active_group);
-      /* Note: On purpose we are not sending INACTIVE status up to Java, because previous active
-       * group will be provided in ACTIVE status. This is in order to have single call to audio
-       * framework
-       * If group become active while phone call, let's configure it right away up to
-       * the QoS configured state so when audio framework resumes the stream,
-       * only Enable will left.
-       * Otherwise, if there is group switch, let's move ASEs to Configured state.
-       */
-
-      if (!ConfigureStream(group, prepare_for_a_call)) {
-        log::info("Could not configure group {}", group->group_id_);
+      LeAudioDeviceGroup* prev_group = aseGroups_.FindById(previous_active_group);
+      log::info("switch group A to group B");
+      if (prev_group && !group->IsReleasingOrIdle()) {
+        log::info("Previous group current state {}", ToString(prev_group->GetState()));
+        defer_notify_inactive_until_stop_ = true;
+        defer_notify_active_until_stop_ = true;
+        GroupStop(previous_active_group);
+      } else {
+        log::info(" Previous group not streaming");
+        SuspendedForReconfiguration();
+        GroupStop(previous_active_group);
+        callbacks_->OnGroupStatus(previous_active_group, GroupStatus::INACTIVE);
+        /* Note: On purpose we are not sending INACTIVE status up to Java, because previous active
+         * group will be provided in ACTIVE status. This is in order to have single call to audio
+         * framework
+         * If group become active while phone call, let's configure it right away up to
+         * the QoS configured state so when audio framework resumes the stream,
+         * only Enable will left.
+         * Otherwise, if there is group switch, let's move ASEs to Configured state.
+         */
+         if (!ConfigureStream(group, prepare_for_a_call)) {
+           log::info("Could not configure group {}", group->group_id_);
+         }
       }
     }
 
-    /* Reset sink and source listener notified status */
-    sink_monitor_notified_status_ = std::nullopt;
-    source_monitor_notified_status_ = std::nullopt;
-    if (com::android::bluetooth::flags::leaudio_codec_config_callback_order_fix()) {
-      SendAudioGroupSelectableCodecConfigChanged(group);
-      SendAudioGroupCurrentCodecConfigChanged(group);
-      callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
-    } else {
-      callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
-      SendAudioGroupSelectableCodecConfigChanged(group);
+    log::info("defer_notify_active_until_stop_: {}", defer_notify_active_until_stop_);
+
+    if (!defer_notify_active_until_stop_) {
+      CheckAndNotifyGroupActive(active_group_id_);
     }
   }
 
@@ -4502,10 +4582,15 @@ public:
         audio_sender_state_ = AudioState::READY_TO_RELEASE;
         break;
       case AudioState::RELEASING:
+        //ensures ASEs moved to codecconfigured state and ack to MM.
+        defer_source_suspend_ack_until_stop_ = true;
         return;
       case AudioState::IDLE:
         if (audio_receiver_state_ == AudioState::READY_TO_RELEASE) {
+          defer_source_suspend_ack_until_stop_ = true;
           OnAudioSuspend();
+        } else {
+          ackHalSuspendRequest(true);
         }
         return;
       case AudioState::READY_TO_RELEASE:
@@ -4515,8 +4600,11 @@ public:
     /* Last suspends group - triggers group stop */
     if ((audio_receiver_state_ == AudioState::IDLE) ||
         (audio_receiver_state_ == AudioState::READY_TO_RELEASE)) {
+      defer_source_suspend_ack_until_stop_ = true;
       OnAudioSuspend();
       bluetooth::le_audio::MetricsCollector::Get()->OnStreamEnded(active_group_id_);
+    } else {
+      ackHalSuspendRequest(true);
     }
 
     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
@@ -4722,6 +4810,10 @@ public:
                                             "r_state: " + ToString(audio_receiver_state_) +
                                                     ", s_state: " + ToString(audio_sender_state_));
 
+    if (IsInVoipCall()) {
+      SetInVoipCall(false);
+    }
+
     /* If the local sink direction is used, we want to monitor
      * if back channel is actually needed.
      */
@@ -4737,10 +4829,15 @@ public:
         audio_receiver_state_ = AudioState::READY_TO_RELEASE;
         break;
       case AudioState::RELEASING:
+        //ensures ASEs moved to codecconfigured state and ack to MM.
+        defer_sink_suspend_ack_until_stop_ = true;
         return;
       case AudioState::IDLE:
         if (audio_sender_state_ == AudioState::READY_TO_RELEASE) {
+          defer_sink_suspend_ack_until_stop_ = true;
           OnAudioSuspend();
+        } else {
+          ackHalSuspendRequest(false);
         }
         return;
       case AudioState::READY_TO_RELEASE:
@@ -4750,7 +4847,10 @@ public:
     /* Last suspends group - triggers group stop */
     if ((audio_sender_state_ == AudioState::IDLE) ||
         (audio_sender_state_ == AudioState::READY_TO_RELEASE)) {
+      defer_sink_suspend_ack_until_stop_ = true;
       OnAudioSuspend();
+    } else {
+        ackHalSuspendRequest(false);
     }
 
     log::info("OUT: audio_receiver_state_: {},  audio_sender_state_: {}",
@@ -6308,6 +6408,13 @@ public:
                               ? bluetooth::le_audio::types::kLeAudioDirectionSource
                               : bluetooth::le_audio::types::kLeAudioDirectionSink;
 
+            log::info("sink_monitor_mode_: {}, defer_notify_inactive_until_stop_: {}, "
+                      "defer_notify_active_until_stop_: {}, "
+                      "defer_source_suspend_ack_until_stop_: {}, "
+                      "defer_sink_suspend_ack_until_stop_: {}", sink_monitor_mode_,
+                      defer_notify_inactive_until_stop_, defer_notify_active_until_stop_,
+                      defer_source_suspend_ack_until_stop_, defer_sink_suspend_ack_until_stop_);
+
               /* Reconfiguration to non requiring source scenario */
               if (sink_monitor_mode_ &&
                   (remote_direction == bluetooth::le_audio::types::kLeAudioDirectionSink)) {
@@ -6330,6 +6437,27 @@ public:
               log::info("Clear pending configuration flag for group {}", group->group_id_);
               group->ClearPendingConfiguration();
               reconfigurationComplete();
+            }
+
+            if (defer_source_suspend_ack_until_stop_) {
+              defer_source_suspend_ack_until_stop_ = false;
+              ackHalSuspendRequest(true);
+            }
+
+            if (defer_sink_suspend_ack_until_stop_) {
+              defer_sink_suspend_ack_until_stop_ = false;
+              ackHalSuspendRequest(false);
+            }
+
+            log::info("active_group_id_: {}", active_group_id_);
+            if (defer_notify_active_until_stop_ && defer_notify_inactive_until_stop_) {
+              CheckAndNotifyGroupInactive(group_id);
+              CheckAndNotifyGroupActive(active_group_id_);
+              defer_notify_active_until_stop_ = false;
+              defer_notify_inactive_until_stop_ = false;
+            } else if (defer_notify_inactive_until_stop_) {
+              CheckAndNotifyGroupInactive(group_id);
+              defer_notify_inactive_until_stop_ = false;
             }
           }
         }
@@ -6362,7 +6490,10 @@ public:
         break;
       case GroupStreamStatus::RELEASING:
       case GroupStreamStatus::SUSPENDING:
-        if (active_group_id_ != bluetooth::groups::kGroupUnknown &&
+        log::debug(" defer_notify_inactive_until_stop_: {}",
+                                   defer_notify_inactive_until_stop_);
+        if (!defer_notify_inactive_until_stop_ &&
+            active_group_id_ != bluetooth::groups::kGroupUnknown &&
             (active_group_id_ == group->group_id_) && !group->IsPendingConfiguration() &&
             (audio_sender_state_ == AudioState::STARTED ||
              audio_receiver_state_ == AudioState::STARTED) &&
@@ -6443,6 +6574,14 @@ private:
   bool source_monitor_mode_;
   /* Source stream status which has been notified to Service */
   std::optional<UnicastMonitorModeStatus> source_monitor_notified_status_;
+
+  /*To track set inactive progress */
+  bool defer_notify_inactive_until_stop_;
+  /*To track set active progress */
+  bool defer_notify_active_until_stop_;
+  /*To track MM issued suspend progress */
+  bool defer_sink_suspend_ack_until_stop_;
+  bool defer_source_suspend_ack_until_stop_;
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
