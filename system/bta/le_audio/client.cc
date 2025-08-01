@@ -1731,6 +1731,9 @@ public:
 
       //Below to ensure CIS termination before updating to app about inactive.
       if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
+        //Race condition between Reconfigure(due to, MetadataUpdate)
+        //and groupsetactive to null
+        group->ClearPendingConfiguration();
         defer_notify_inactive_until_stop_ = true;
       }
       groupSetAndNotifyInactive();
@@ -1839,6 +1842,11 @@ public:
         log::info("Previous group current state {}", ToString(prev_group->GetState()));
         defer_notify_inactive_until_stop_ = true;
         defer_notify_active_until_stop_ = true;
+        //Clear pending confing to handle race condition between
+        //Reconfigure(due to, MetadataUpdate) and groupsetactive
+        //to other device(Mostly in case of making call active from in-active device)
+        log::info("Clear pending configuration flag of previous active group");
+        prev_group->ClearPendingConfiguration();
         GroupStop(previous_active_group);
       } else {
         log::info(" Previous group not streaming");
@@ -6378,6 +6386,8 @@ public:
           CleanCachedMicrophoneData();
         }
 
+        log::debug("configuration_context_type_= {}.",
+                              ToString(configuration_context_type_));
         if (group) {
           handleAsymmetricPhyForUnicast(group);
           UpdateLocationsAndContextsAvailability(group);
