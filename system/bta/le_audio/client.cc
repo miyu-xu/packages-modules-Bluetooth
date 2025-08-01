@@ -1749,6 +1749,9 @@ public:
 
       //Below to ensure CIS termination before updating to app about inactive.
       if (!group->IsReleasingOrIdle()) {
+        //Race condition between Reconfigure(due to, MetadataUpdate)
+        //and groupsetactive to null
+        group->ClearPendingConfiguration();
         defer_notify_inactive_until_stop_ = true;
       }
       groupSetAndNotifyInactive();
@@ -6375,6 +6378,8 @@ public:
           CleanCachedMicrophoneData();
         }
 
+        log::debug("configuration_context_type_= {}.",
+                              ToString(configuration_context_type_));
         if (group) {
           handleAsymmetricPhyForUnicast(group);
           UpdateLocationsAndContextsAvailability(group);
@@ -6454,6 +6459,16 @@ public:
             } else if (defer_notify_inactive_until_stop_) {
               CheckAndNotifyGroupInactive(group_id);
               defer_notify_inactive_until_stop_ = false;
+            }
+			
+            if (group->IsSuspendedForReconfiguration()) {
+              reconfigurationComplete();
+            } else {
+              if (!((status == GroupStreamStatus::IDLE) &&
+                    (active_group_id_ != group->group_id_) &&
+                    (audio_sender_state_ == AudioState::STARTED))) {
+                CancelStreamingRequest();
+              }
             }
           }
         }
