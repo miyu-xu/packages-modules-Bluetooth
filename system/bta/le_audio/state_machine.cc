@@ -1867,6 +1867,8 @@ private:
   void AseStateMachineProcessIdle(
           struct bluetooth::le_audio::client_parser::ascs::ase_rsp_hdr& /*arh*/, struct ase* ase,
           LeAudioDeviceGroup* group, LeAudioDevice* leAudioDevice) {
+    log::info("group_id: {}", group->group_id_);
+    log::debug("ase state: {}", static_cast<int>(ase->state));
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_IDLE:
       case AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED:
@@ -1905,6 +1907,10 @@ private:
 
         cancel_watchdog_if_needed(group->group_id_);
         ReleaseCisIds(group);
+        if(!osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+          RemoveCigForGroup(group);
+          group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+        }
         state_machine_callbacks_->StatusReportCb(group->group_id_, GroupStreamStatus::IDLE);
 
         break;
@@ -2311,7 +2317,10 @@ private:
         }
 
         cancel_watchdog_if_needed(group->group_id_);
-
+        if(!osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+          ReleaseCisIds(group);
+          RemoveCigForGroup(group);
+        }
         state_machine_callbacks_->StatusReportCb(group->group_id_,
                                                  GroupStreamStatus::CONFIGURED_AUTONOMOUS);
         break;
