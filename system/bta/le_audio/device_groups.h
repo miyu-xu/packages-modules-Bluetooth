@@ -130,7 +130,7 @@ public:
         preferred_config_({.sink = nullptr, .source = nullptr}),
         target_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
         current_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
-        in_transition_(false) {
+        in_transition_(false), suspended_for_reconfig_(false) {
 #ifdef __ANDROID__
     // 22 maps to BluetoothProfile#LE_AUDIO
     is_output_preference_le_audio =
@@ -246,8 +246,14 @@ public:
                          const types::BidirectionalPair<std::vector<uint8_t>>& ccid_lists) const;
   bool IsConfiguredForContext(types::LeAudioContextType context_type) const;
   void RemoveCisFromStreamIfNeeded(LeAudioDevice* leAudioDevice, uint16_t cis_conn_hdl);
+  bool IsSuspendedForReconfiguration(void) const;
+  void SetSuspendedForReconfiguration(void);
+  void ClearSuspendedForReconfiguration(void);
 
-  inline types::AseState GetState(void) const { return current_state_; }
+  inline types::AseState GetState(void) const {
+    log::info("current_state_: {}", bluetooth::common::ToString(current_state_));
+    return current_state_;
+  }
   void SetState(types::AseState state) {
     log::info("group_id: {} current state: {}, new state {}, in_transition_ {}", group_id_,
               bluetooth::common::ToString(current_state_), bluetooth::common::ToString(state),
@@ -264,7 +270,10 @@ public:
     }
   }
 
-  inline types::AseState GetTargetState(void) const { return target_state_; }
+  inline types::AseState GetTargetState(void) const {
+    log::info("target_state_: {}", bluetooth::common::ToString(target_state_));
+    return target_state_;
+  }
   inline void SetNotifyStreamingWhenCisesAreReadyFlag(bool value) {
     notify_streaming_when_cises_are_ready_ = value;
   }
@@ -484,6 +493,7 @@ private:
   types::AseState current_state_;
   bool in_transition_;
   std::vector<std::weak_ptr<LeAudioDevice>> leAudioDevices_;
+  bool suspended_for_reconfig_;
 };
 
 /* LeAudioDeviceGroup class represents a wraper helper over all device groups in

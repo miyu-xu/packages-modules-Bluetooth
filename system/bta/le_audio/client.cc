@@ -1731,6 +1731,9 @@ public:
 
       //Below to ensure CIS termination before updating to app about inactive.
       if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
+        //Race condition between Reconfigure(due to, MetadataUpdate)
+        //and groupsetactive to null
+        group->ClearPendingConfiguration();
         defer_notify_inactive_until_stop_ = true;
       }
       groupSetAndNotifyInactive();
@@ -6378,6 +6381,8 @@ public:
           CleanCachedMicrophoneData();
         }
 
+        log::debug("configuration_context_type_= {}.",
+                              ToString(configuration_context_type_));
         if (group) {
           handleAsymmetricPhyForUnicast(group);
           UpdateLocationsAndContextsAvailability(group);
