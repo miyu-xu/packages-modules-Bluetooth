@@ -256,6 +256,9 @@ public:
         if (!PrepareAndSendCodecConfigToTheGroup(group)) {
           group->PrintDebugState();
           ClearGroup(group, true);
+          if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+            return false;
+          }
         }
         break;
 
@@ -1956,6 +1959,12 @@ private:
     }
 
     for (; leAudioDevice; leAudioDevice = group->GetNextActiveDevice(leAudioDevice)) {
+      if (osi_property_get_bool("persist.vendor.bt.sho_synchronization", false) &&
+        !group->cig.AssignCisIds(leAudioDevice)) {
+        log::error("unable to assign CIS IDs");
+        StopStream(group);
+        return false;
+      }
       PrepareAndSendCodecConfigure(group, leAudioDevice);
     }
     return true;
