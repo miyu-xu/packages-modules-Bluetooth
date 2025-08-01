@@ -1190,7 +1190,7 @@ public:
 
     bool result = groupStateMachine_->StartStream(group, configuration_context_type,
                                                   remote_contexts, ccids);
-
+    log::debug("result: {}", result);
     if (result && !group_is_streaming) {
       /* Notify Java about new configuration when start stream has been accepted and
        * it is not metadata update
