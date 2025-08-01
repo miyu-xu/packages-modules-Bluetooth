@@ -480,7 +480,10 @@ void LeAudioDevice::SetConnectionState(DeviceConnectState state) {
   connection_state_ = state;
 }
 
-DeviceConnectState LeAudioDevice::GetConnectionState(void) { return connection_state_; }
+DeviceConnectState LeAudioDevice::GetConnectionState(void) {
+  log::debug("connection_state_: {}", bluetooth::common::ToString(connection_state_));
+  return connection_state_;
+}
 
 void LeAudioDevice::ClearPACs(void) {
   snk_pacs_.clear();
