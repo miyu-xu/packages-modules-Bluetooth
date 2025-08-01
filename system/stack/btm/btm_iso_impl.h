@@ -642,14 +642,8 @@ struct iso_impl {
                    std::format("cis_handle:0x{:04x}, reason:{}", handle,
                                hci_error_code_text((tHCI_REASON)(reason))));
 
-    if (cis->state_flags & kStateFlagIsConnecting) {
-      log::info("{}, cis_handle: {:#x} waiting for cis established event with cancel status",
-                cis_hdl_to_addr[handle], handle);
-    } else {
-      cis_hdl_to_addr.erase(handle);
-    }
-
-    if (cis->state_flags & kStateFlagIsConnected || cis->state_flags & kStateFlagIsCancelled) {
+    if (cis->state_flags & kStateFlagIsConnected || cis->state_flags & kStateFlagIsConnecting
+	    || cis->state_flags & kStateFlagIsCancelled) {
       cis_disconnected_evt evt = {
               .reason = reason,
               .cig_id = cis->cig_id,
@@ -658,6 +652,7 @@ struct iso_impl {
 
       cig_callbacks_->OnCisEvent(kIsoEventCisDisconnected, &evt);
       cis->state_flags &= ~kStateFlagIsConnected;
+      cis->state_flags &= ~kStateFlagIsConnecting;
       cis->state_flags &= ~kStateFlagIsCancelled;
 
       /* return used credits */

@@ -2055,7 +2055,7 @@ private:
                 out_cfg.max_transport_latency, out_cfg.retrans_nb, out_cfg.phy);
       }
     };
-
+    log::debug("ase state: {}", static_cast<int>(ase->state));
     /* ase contain current ASE state. New state is in "arh" */
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_IDLE: {
@@ -2335,7 +2335,7 @@ private:
 
       return;
     }
-
+    log::debug("ase state: {}", static_cast<int>(ase->state));
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED:
         log::info(
@@ -2938,7 +2938,7 @@ private:
                    leAudioDevice->address_, ase->id, bluetooth::common::ToHexString(rsp.metadata));
       }
     }
-
+    log::debug("ase state: {}", static_cast<int>(ase->state));
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED:
         log::error("{}, ase_id: {}, moving from QoS Configured to Streaming is impossible.",
@@ -3033,7 +3033,7 @@ private:
       StopStream(group);
       return;
     }
-
+    log::debug("ase state: {}", static_cast<int>(ase->state));
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_ENABLING:
         /* TODO: Disable */
@@ -3118,6 +3118,8 @@ private:
       return;
     }
 
+    log::debug("ase state: {}", static_cast<int>(ase->state));
+
     switch (ase->state) {
       case AseState::BTA_LE_AUDIO_ASE_STATE_DISABLING:
       case AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED:
@@ -3142,7 +3144,23 @@ private:
       case AseState::BTA_LE_AUDIO_ASE_STATE_ENABLING: {
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING);
 
-        bool remove_cig = (DisconnectCisIfNeeded(group, leAudioDevice, ase) == CIS_DISCONNECTED);
+        bool remove_cig = true;
+
+        log::debug("cis_state: {}", static_cast<int>(ase->cis_state));
+        log::debug("data_path_state: {}", static_cast<int>(ase->data_path_state));
+
+        /* Happens when bi-directional completive ASE releasing state came */
+        if (ase->cis_state == CisState::DISCONNECTING) break;
+
+        if (ase->data_path_state == DataPathState::CONFIGURED) {
+          RemoveDataPathByCisHandle(leAudioDevice, ase->cis_conn_hdl);
+        } else if ((ase->cis_state == CisState::CONNECTED ||
+             ase->cis_state == CisState::CONNECTING) &&
+            ase->data_path_state == DataPathState::IDLE) {
+          DisconnectCisIfNeeded(group, leAudioDevice, ase);
+          /* CISes are still there. CIG will be removed when CIS is down. */
+          remove_cig = false;
+        }
 
         if (!group->HaveAllActiveDevicesAsesTheSameState(
                     AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING)) {
@@ -3159,6 +3177,9 @@ private:
       }
       case AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING: {
         SetAseState(leAudioDevice, ase, AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING);
+
+        log::debug("cis_state: {}", static_cast<int>(ase->cis_state));
+        log::debug("data_path_state: {}", static_cast<int>(ase->data_path_state));
 
         /* Happens when bi-directional completive ASE releasing state came */
         if (ase->cis_state == CisState::DISCONNECTING) {
