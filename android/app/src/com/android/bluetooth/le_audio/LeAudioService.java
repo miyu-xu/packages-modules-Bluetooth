@@ -2672,6 +2672,16 @@ public class LeAudioService extends ProfileService {
                 return false;
             }
         }
+
+        if (!Utils.isDualModeAudioEnabled()) {
+            HeadsetService headsetService = mServiceFactory.getHeadsetService();
+            if (headsetService == null) {
+                Log.d(TAG, "There is no HFP service available");
+                return false;
+            }
+            headsetService.setActiveDevice(null);
+        }
+
         return setActiveGroupWithDevice(device, false);
     }
 
