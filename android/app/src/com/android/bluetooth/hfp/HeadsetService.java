@@ -1356,6 +1356,11 @@ public class HeadsetService extends ProfileService {
     /** Remove the active device */
     private void removeActiveDevice() {
         synchronized (mStateMachines) {
+            if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false) &&
+              mActiveDevice == null) {
+              Log.w(TAG, "removeActiveDevice: Already active device set to null.");
+              return;
+            }
             // As per b/202602952, if we remove the active device due to a disconnection,
             // we need to check if another device is connected and set it active instead.
             // Calling this before any other active related calls has the same effect as
