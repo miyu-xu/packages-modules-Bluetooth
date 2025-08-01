@@ -77,6 +77,7 @@ import android.os.ParcelUuid;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
@@ -2388,6 +2389,15 @@ public class LeAudioService extends ProfileService {
                         + mActiveAudioInDevice
                         + ", notifyAndUpdateInactiveOutDeviceOnly: "
                         + notifyAndUpdateInactiveOutDeviceOnly);
+        if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false) &&
+            (isActive == true) &&
+            (mActiveAudioOutDevice != null || mActiveAudioInDevice != null)) {
+            LeAudioGroupDescriptor descriptor = getGroupDescriptor(groupId);
+            if (descriptor != null) {
+                Log.d(TAG, "updateActiveDevices: set active state active");
+                descriptor.setActiveState(ACTIVE_STATE_ACTIVE);
+            }
+        }
 
         if (isNewActiveOutDevice) {
             int volume = IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME;
