@@ -2616,13 +2616,6 @@ public class LeAudioService extends ProfileService {
         }
 
         mNativeInterface.groupSetActive(groupId);
-        if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
-            /* Native will clear its states and send us group Inactive.
-             * However we would like to notify audio framework that LeAudio is not
-             * active anymore and does not want to get more audio data.
-             */
-            handleGroupTransitToInactive(currentlyActiveGroupId);
-        }
         return true;
     }
 
