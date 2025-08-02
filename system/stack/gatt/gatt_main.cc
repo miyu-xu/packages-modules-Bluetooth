@@ -988,6 +988,7 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
 
       if (p_reg->app_cb.p_conn_cb) {
         conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
+
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, p_tcb->peer_bda, conn_id, kGattConnected,
                                    GATT_CONN_OK, p_tcb->transport);
       }
@@ -1004,6 +1005,8 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
 
       if (p_reg->app_cb.p_conn_cb) {
         conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
+        //Trigger the preferred MTU exchange here
+        tGATT_STATUS status = GATTC_ConfigureMTU(conn_id, 500);
         (*p_reg->app_cb.p_conn_cb)(p_reg->gatt_if, p_tcb->peer_bda, conn_id, kGattConnected,
                                    GATT_CONN_OK, p_tcb->transport);
       }
