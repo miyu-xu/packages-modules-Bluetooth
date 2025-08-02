@@ -887,6 +887,9 @@ void gatt_l2cif_config_cfm_cback(uint16_t lcid, uint16_t /* initiator */, tL2CAP
     }
   }
 
+  //Trigger the preferred MTU exchange here
+  tCONN_ID conn_id = gatt_create_conn_id(p_tcb->tcb_idx, p_reg->gatt_if);
+  GATTC_ConfigureMTU(conn_id, p_tcb->app_mtu_pref);
   /* send callback */
   gatt_send_conn_cback(p_tcb);
 }
