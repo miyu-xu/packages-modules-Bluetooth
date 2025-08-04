@@ -50,6 +50,7 @@
 #include "main/shim/helpers.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/compat.h"
+#include "osi/include/properties.h"
 #include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/port_api.h"
 
@@ -1933,18 +1934,38 @@ bool bta_ag_check_is_leaudio_in_idle() {
 bool bta_ag_is_sco_open_allowed([[maybe_unused]] tBTA_AG_SCB* p_scb,
                                 [[maybe_unused]] const std::string event) {
 #ifdef __ANDROID__
-  /* Do not open SCO if 1. the dual mode audio system property is enabled,
-  2. LEA is active, and 3. LEA is preferred for DUPLEX */
-  if (bluetooth::os::GetSystemPropertyBool(bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
-    if (LeAudioClient::Get()->isDuplexPreferenceLeAudio(p_scb->peer_addr)) {
-      log::info("NOT opening SCO for EVT {} on dual mode device {}", event,
-                p_scb->peer_addr.ToStringForLogging());
-      return false;
+  /* Do not open SCO if
+    1. the dual mode audio system property is enabled,
+    2. LE Audio is active,
+    3. LE Audio is preferred for DUPLEX,
+    4. If it's a CS Call not VoIP one */
+
+  if (bluetooth::os::GetSystemPropertyBool(
+          bluetooth::os::kIsDualModeAudioEnabledProperty, false)) {
+      if (!osi_property_get_bool("persist.vendor.bt.sho_synchronization", false) &&
+        LeAudioClient::Get()->isDuplexPreferenceLeAudio(p_scb->peer_addr)) {
+        log::info("NOT opening SCO for EVT {} on dual mode device {}", event,
+                  p_scb->peer_addr.ToStringForLogging());
+        return false;
+      } else {
+        bool is_duplex_pref_leaudio = LeAudioClient::IsLeAudioClientRunning() ?
+           LeAudioClient::Get()->isDuplexPreferenceLeAudio(p_scb->peer_addr) : false;
+        bool is_in_call = LeAudioClient::IsLeAudioClientRunning() ?
+                                            LeAudioClient::Get()->IsInCall() : false;
+
+        log::info("Is Duplex preferred profile le audio for device {} is {} ",
+                 p_scb->peer_addr.ToStringForLogging().c_str(), is_duplex_pref_leaudio);
+        log::info("Is call in progress {}", is_in_call);
+        if (is_duplex_pref_leaudio && is_in_call) {
+          log::info("NOT opening SCO for EVT {} on dual mode device {}",
+                 event.c_str(), p_scb->peer_addr.ToStringForLogging().c_str());
+          return false;
+        }
+      }
     } else {
       log::info("Opening SCO for EVT {} on dual mode device {}", event,
                 p_scb->peer_addr.ToStringForLogging());
     }
-  }
 #endif
 #ifdef TARGET_FLOSS
   if (event == "BTA_AG_LOCAL_EVT_BCC") {
