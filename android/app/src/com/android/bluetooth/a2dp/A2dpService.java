@@ -56,6 +56,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemProperties;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
@@ -64,12 +65,14 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetService;
+import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -221,6 +224,27 @@ public class A2dpService extends ProfileService {
         sA2dpService = instance;
     }
 
+    public boolean isCsipSupported(BluetoothDevice device) {
+        Log.d(TAG, "isCsipSupported: " + device);
+        boolean supportsCsip = Utils.arrayContains(mAdapterService.getRemoteUuids(device),
+                                                      BluetoothUuid.COORDINATED_SET);
+        CsipSetCoordinatorService csipClient = mFactory.getCsipSetCoordinatorService();
+        int csipGroupSize = 1;
+        int grpId = -1;
+        if (supportsCsip && csipClient != null) {
+            grpId = csipClient.getGroupId(device, BluetoothUuid.CAP);
+            csipGroupSize = csipClient.getDesiredGroupSize(grpId);
+        }
+
+        Log.w(TAG, "Group size of device " + device + " with group id: " + grpId +
+                " has group size = " + csipGroupSize);
+        if (supportsCsip && csipGroupSize > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean connect(BluetoothDevice device) {
         Log.d(TAG, "connect(): " + device);
 
@@ -231,6 +255,22 @@ public class A2dpService extends ProfileService {
         if (!Utils.arrayContains(mAdapterService.getRemoteUuids(device), BluetoothUuid.A2DP_SINK)) {
             Log.e(TAG, "Cannot connect to " + device + " : Remote does not have A2DP Sink UUID");
             return false;
+        }
+
+        if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false) &&
+            Utils.isDualModeAudioEnabled()) {
+            if (isCsipSupported(device)) {
+                LeAudioService mLeAudio = LeAudioService.getLeAudioService();
+                if (mLeAudio != null) {
+                    int connPolicy = mLeAudio.getConnectionPolicy(device);
+                    if (connPolicy != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                        Log.e(TAG, "Disallow A2DP connect when dual mode enable for CSIP device "
+                              + device);
+                        setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+                        return false;
+                    }
+                }
+            }
         }
 
         synchronized (mStateMachines) {

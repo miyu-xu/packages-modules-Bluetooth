@@ -4579,6 +4579,28 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    public boolean isCsipSupported(BluetoothDevice device) {
+        Log.d(TAG, "isCsipSupported: " + device);
+        boolean supportsCsip = Utils.arrayContains(mAdapterService.getRemoteUuids(device),
+                                                      BluetoothUuid.COORDINATED_SET);
+        CsipSetCoordinatorService csipClient =
+                mServiceFactory.getCsipSetCoordinatorService();
+        int csipGroupSize = 1;
+        int grpId = -1;
+        if (supportsCsip && csipClient != null) {
+            grpId = csipClient.getGroupId(device, BluetoothUuid.CAP);
+            csipGroupSize = csipClient.getDesiredGroupSize(grpId);
+        }
+
+        Log.w(TAG, "Group size of device " + device + " with group id: " + grpId +
+                " has group size = " + csipGroupSize);
+        if (supportsCsip && csipGroupSize > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Set connection policy of the profile and connects it if connectionPolicy is {@link
      * BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is {@link
@@ -4608,12 +4630,48 @@ public class LeAudioService extends ProfileService {
             if (groupId != LE_AUDIO_GROUP_ID_INVALID) {
                 setAuthorizationForRelatedProfiles(device, true);
             }
+            if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false) &&
+                Utils.isDualModeAudioEnabled()) {
+                if (isCsipSupported(device)) {
+                    A2dpService mA2dp = A2dpService.getA2dpService();
+                    if (mA2dp != null) {
+                        mA2dp.disconnect(device);
+                        Log.e(TAG, "A2DP disconnect when dual mode enable for CSIP device "
+                            + device + " for le audio policy allowed");
+                    }
+
+                    HeadsetService mHfp = HeadsetService.getHeadsetService();
+                    if (mHfp != null) {
+                        mHfp.disconnect(device);
+                        Log.e(TAG, "HFP disconnect when dual mode enable for CSIP device "
+                            + device + " for le audio policy allowed");
+                    }
+                }
+            }
             connect(device);
         } else if (connectionPolicy == CONNECTION_POLICY_FORBIDDEN) {
             setEnabledState(device, /* enabled= */ false);
             // Remove authorization for LEA GATT server services
             setAuthorizationForRelatedProfiles(device, false);
             disconnect(device);
+            if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false) &&
+                Utils.isDualModeAudioEnabled()) {
+                if (isCsipSupported(device)) {
+                    A2dpService mA2dp = A2dpService.getA2dpService();
+                    if (mA2dp != null) {
+                        mA2dp.connect(device);
+                        Log.e(TAG, "A2DP connect when dual mode enable for CSIP device "
+                            + device + " for le audio policy forbidden");
+                    }
+
+                    HeadsetService mHfp = HeadsetService.getHeadsetService();
+                    if (mHfp != null) {
+                        mHfp.connect(device);
+                        Log.e(TAG, "HFP connect when dual mode enable for CSIP device "
+                            + device + " for le audio policy forbidden");
+                    }
+                }
+            }
         }
         setLeAudioGattClientProfilesPolicy(device, connectionPolicy);
         return true;
@@ -5774,7 +5832,23 @@ public class LeAudioService extends ProfileService {
         }
     }
 
-    /** Binder object: must be a static class or memory leak may occur */
+    /**
+     * Gets the context of Update Metadata
+     * @param context_type context type from Update Metadata
+     * @hide
+     */
+    public void setMetadataContext(int context_type) {
+        BluetoothDevice btDevice = mAdapterService.getActiveDeviceManager()
+                                                    .fetchLeAudioActiveDevice();
+        Log.w(TAG, "setMetadataContext Type: " + context_type + " for device" + btDevice);
+        /*mAdapterService
+                .getActiveDeviceManager()
+                .contextBundle(btDevice, context_type);*/
+    }
+
+    /**
+     * Binder object: must be a static class or memory leak may occur
+     */
     @VisibleForTesting
     static class BluetoothLeAudioBinder extends IBluetoothLeAudio.Stub
             implements IProfileServiceBinder {
