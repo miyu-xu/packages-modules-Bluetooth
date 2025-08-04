@@ -204,6 +204,8 @@ public class LeAudioService extends ProfileService {
     /** LE audio active device that was removed from active because of HFP handover */
     BluetoothDevice mLeAudioDeviceInactivatedForHfpHandover = null;
 
+    BluetoothDevice mHfpVrInitiatedRemoteDevice = null;
+
     LeAudioTmapGattServer mTmapGattServer;
     int mUnicastGroupIdDeactivatedForBroadcastTransition = LE_AUDIO_GROUP_ID_INVALID;
     int mCurrentAudioMode = AudioManager.MODE_NORMAL;
@@ -748,6 +750,7 @@ public class LeAudioService extends ProfileService {
         mBluetoothEnabled = false;
         mHfpHandoverDevice = null;
         mLeAudioDeviceInactivatedForHfpHandover = null;
+        mHfpVrInitiatedRemoteDevice = null;
 
         mActiveAudioOutDevice = null;
         mActiveAudioInDevice = null;
@@ -1702,6 +1705,8 @@ public class LeAudioService extends ProfileService {
                     mGroupDescriptorsView.entrySet()) {
                 LeAudioGroupDescriptor descriptor = entry.getValue();
                 if (!descriptor.isInactive()) {
+                    Log.d(TAG, "areAllGroupsInNotActiveState: " +
+                                     " All groups are not in in-active State.");
                     return false;
                 }
             }
@@ -3023,6 +3028,18 @@ public class LeAudioService extends ProfileService {
                             notifyGroupStatusChanged(
                                     groupId, LeAudioStackEvent.GROUP_STATUS_INACTIVE));
             updateInbandRingtoneForTheGroup(groupId);
+
+            Log.d(TAG, "mHfpVrInitiatedRemoteDevice: " + mHfpVrInitiatedRemoteDevice);
+            if (mHfpVrInitiatedRemoteDevice != null) {
+                HeadsetService headsetService = mServiceFactory.getHeadsetService();
+                if (headsetService == null) {
+                    Log.d(TAG, "There is no HFP service available");
+                    return;
+                }
+                headsetService.SynchronousStartVoiceRecognitionByHeadset(mHfpVrInitiatedRemoteDevice);
+                mHfpVrInitiatedRemoteDevice = null;
+            }
+
         } finally {
             mGroupReadLock.unlock();
         }
@@ -4505,6 +4522,21 @@ public class LeAudioService extends ProfileService {
             mLeAudioDeviceInactivatedForHfpHandover = mExposedActiveDevice;
             removeActiveDevice(true);
         }
+    }
+
+    public boolean IsActiveLeAudioDeviceExistCacheVrHfpDevice(
+                                   BluetoothDevice HfpVrInitiatedRemoteDevice) {
+        if (!mLeAudioNativeIsInitialized) {
+            Log.e(TAG, "Le Audio not initialized properly.");
+            return false;
+        }
+        Log.i(TAG, "VR initiated Remote device: " + HfpVrInitiatedRemoteDevice);
+        if (areAllGroupsInNotActiveState()) {
+            Log.i(TAG, "All LeAudio groups are not in Active state.");
+            return false;
+        }
+        mHfpVrInitiatedRemoteDevice = HfpVrInitiatedRemoteDevice;
+        return true;
     }
 
     /** Resume prior active device after HFP phone call hand over */
