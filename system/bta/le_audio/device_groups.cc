@@ -981,6 +981,7 @@ bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx
   if (cached_map.count(ctx_type) != 0) {
     auto& [is_valid, existing_conf] = cached_map.at(ctx_type);
     update_config = (new_conf.get() != existing_conf.get());
+    log::info(" update_config: {}", update_config);
     /* Just mark it as still valid */
     if (!update_config && !is_valid) {
       cached_map.at(ctx_type).first = true;

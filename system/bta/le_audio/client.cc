@@ -1483,14 +1483,20 @@ public:
     }
   }
 
-  bool IsInCall() override { return in_call_; }
+  bool IsInCall() override {
+    log::debug("in_call_: {}", in_call_);
+    return in_call_;
+  }
 
   void SetInVoipCall(bool in_call) override {
     log::debug("in_voip_call: {}", in_call);
     in_voip_call_ = in_call;
   }
 
-  bool IsInVoipCall() override { return in_voip_call_; }
+  bool IsInVoipCall() override {
+    log::debug("in_voip_call_: {}", in_voip_call_);
+    return in_voip_call_;
+  }
 
   bool IsInVoipOrRegularCall() { return IsInCall() || IsInVoipCall(); }
 
@@ -1523,10 +1529,10 @@ public:
         }
       }
 
-      log::debug("enable: {}", enable);
+      log::debug("sink_monitor_mode_ enable: {}", enable);
       sink_monitor_mode_ = enable;
     } else if (direction == bluetooth::le_audio::types::kLeAudioDirectionSource) {
-      log::debug("enable: {}", enable);
+      log::debug("source_monitor_mode_ enable: {}", enable);
       source_monitor_mode_ = enable;
 
       if (!enable) {
@@ -1598,6 +1604,7 @@ public:
      * This is why we don't have to check if session is started already.
      * Just check if it is acquired.
      */
+    log::debug("");
     log::assert_that(active_group_id_ == bluetooth::groups::kGroupUnknown,
                      "Active group is not set.");
     log::assert_that(le_audio_source_hal_client_ != nullptr, "Source session not acquired");
@@ -1831,6 +1838,7 @@ public:
      * If reconfiguration is not needed it means, context type is not supported.
      * If most recent scenario is not supported, try to find first supported.
      */
+    log::debug("configuration_context_type_ = {}", ToString(configuration_context_type_));
     LeAudioContextType default_context_type = configuration_context_type_;
     if (!group->IsAudioSetConfigurationAvailable(default_context_type)) {
       if (group->IsAudioSetConfigurationAvailable(LeAudioContextType::UNSPECIFIED)) {
@@ -5275,8 +5283,31 @@ public:
 
   void OnLocalAudioSourceMetadataUpdate(
           const std::vector<struct playback_track_metadata_v7>& source_metadata, DsaMode dsa_mode) {
+
+    if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+      /* Set the remote sink metadata context from the playback tracks metadata */
+      local_metadata_context_types_.source =
+          GetAudioContextsFromSourceMetadata(source_metadata);
+
+      log::debug("local_metadata_context_types_.source= {}",
+                 ToString(local_metadata_context_types_.source));
+      log::debug("local_metadata_context_types_.sink= {}",
+                 ToString(local_metadata_context_types_.sink));
+      log::debug("defer_notify_inactive_until_stop_: {}",
+                 defer_notify_inactive_until_stop_);
+
+      local_metadata_context_types_.sink =
+          ChooseMetadataContextType(local_metadata_context_types_.sink);
+      local_metadata_context_types_.source =
+          ChooseMetadataContextType(local_metadata_context_types_.source);
+    }
+
     if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
       log::warn(", cannot start streaming if no active group set");
+      return;
+    } else if (osi_property_get_bool("persist.vendor.bt.sho_synchronization", false) &&
+      defer_notify_inactive_until_stop_) {
+      log::warn(", cannot start streaming as active group is de-activating");
       return;
     }
 
@@ -5454,8 +5485,31 @@ public:
   }
 
   void OnLocalAudioSinkMetadataUpdate(const std::vector<record_track_metadata_v7>& sink_metadata) {
+
+    if(osi_property_get_bool("persist.vendor.bt.sho_synchronization", false)) {
+      /* Set remote source metadata context from the recording tracks metadata */
+      local_metadata_context_types_.sink =
+          GetAudioContextsFromSinkMetadata(sink_metadata);
+
+      log::debug("local_metadata_context_types_.source= {}",
+                 ToString(local_metadata_context_types_.source));
+      log::debug("local_metadata_context_types_.sink= {}",
+                 ToString(local_metadata_context_types_.sink));
+      log::debug("defer_notify_inactive_until_stop_: {}",
+                 defer_notify_inactive_until_stop_);
+
+      local_metadata_context_types_.sink =
+          ChooseMetadataContextType(local_metadata_context_types_.sink);
+      local_metadata_context_types_.source =
+          ChooseMetadataContextType(local_metadata_context_types_.source);
+    }
+
     if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
       log::warn(", cannot start streaming if no active group set");
+      return;
+    } else if (osi_property_get_bool("persist.vendor.bt.sho_synchronization", false) &&
+      defer_notify_inactive_until_stop_) {
+      log::warn(", cannot start streaming as active group is de-activating");
       return;
     }
 
