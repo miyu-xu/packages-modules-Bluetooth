@@ -402,6 +402,7 @@ public:
         configuration_context_type_(LeAudioContextType::UNINITIALIZED),
         in_call_metadata_context_types_({.sink = AudioContexts(), .source = AudioContexts()}),
         local_metadata_context_types_({.sink = AudioContexts(), .source = AudioContexts()}),
+        is_src_metadata_updated_before_resume_(false),
         audio_receiver_state_(AudioState::IDLE),
         audio_sender_state_(AudioState::IDLE),
         in_call_(false),
@@ -4676,6 +4677,8 @@ public:
       return;
     }
 
+    log::debug("configuration_context_type_= {}.",
+                              ToString(configuration_context_type_));
     /* Check if the device resume is allowed */
     if (!group->HasCodecConfigurationForDirection(
                 configuration_context_type_, bluetooth::le_audio::types::kLeAudioDirectionSink)) {
@@ -4704,6 +4707,25 @@ public:
               ToString(configuration_context_type_));
       CancelLocalAudioSourceStreamingRequest();
       return;
+    }
+
+    // Without updatemetadata bt stack getting start from MM
+    /*
+     * In Bcacst -> Unicast switch, When either MT/MO call comes
+     * configuration_context_type_ bydefault set to Unspecified and
+     * remote_contexts set to conversational. This mimatch happens when config
+     * selected on configuration_context_type_(for Media) and
+     * enable op metadata(covsersational)
+     */
+
+    log::debug("is_src_metadata_updated_before_resume_: {}",
+                                            is_src_metadata_updated_before_resume_);
+
+    if (((IsInCall() || IsInVoipCall()) &&
+        configuration_context_type_ != LeAudioContextType::CONVERSATIONAL) ||
+        is_src_metadata_updated_before_resume_) {
+      is_src_metadata_updated_before_resume_ = false;
+      ReconfigureOrUpdateRemote(group, bluetooth::le_audio::types::kLeAudioDirectionSink);
     }
 
     log::debug(
@@ -6649,6 +6671,7 @@ private:
           "persist.bluetooth.leaudio.allow.multiple.contexts";
   BidirectionalPair<AudioContexts> in_call_metadata_context_types_;
   BidirectionalPair<AudioContexts> local_metadata_context_types_;
+  bool is_src_metadata_updated_before_resume_;
   StreamSpeedTracker speed_tracker_;
   std::deque<StreamSpeedTracker> stream_speed_history_;
 
