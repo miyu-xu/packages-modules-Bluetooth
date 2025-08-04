@@ -25,6 +25,7 @@ import static java.util.Objects.requireNonNull;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeCall;
+import android.bluetooth.BluetoothLeCallControl;
 import android.bluetooth.IBluetoothLeCallControlCallback;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,7 +35,9 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.util.Log;
+import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.le_audio.ContentControlIdKeeper;
@@ -51,6 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
+import java.util.Objects;
 
 /** Container class to store TBS instances */
 public class TbsGeneric {
@@ -287,6 +291,8 @@ public class TbsGeneric {
     }
 
     private synchronized Map.Entry<UUID, Bearer> getCallIdByIndex(int callIndex) {
+        Log.w(TAG, "getCallIdByIndex(): callIndex: " + callIndex +
+                   ", mBearerList.size(): " + mBearerList.size());
         for (Bearer bearer : mBearerList) {
             for (Map.Entry<UUID, Integer> callIdToIndex : bearer.callIdIndexMap.entrySet()) {
                 if (callIndex == callIdToIndex.getValue()) {
@@ -748,6 +754,107 @@ public class TbsGeneric {
         return TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
     }
 
+    private boolean isDeviceGroupAlreadyActive(BluetoothDevice device) {
+        Log.d(TAG, "isDeviceGroupAlreadyActive() device: " + device);
+        if (device == null) {
+            Log.w(TAG, "isDeviceGroupAlreadyActive: ignore null device");
+            return false;
+        }
+        if (!isLeAudioServiceAvailable()) {
+            Log.w(TAG, "mLeAudioService not available");
+            return false;
+        }
+
+        int currentlyActiveGroupId = mLeAudioService.getActiveGroupId();
+        Log.d(TAG, "isDeviceGroupAlreadyActive(): currentlyActiveGroupId: " +
+                                                        currentlyActiveGroupId);
+        if (currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID) {
+            Log.w(TAG, "isDeviceGroupAlreadyActive: Currently there is no Active Group set.");
+            return false;
+        }
+
+        for (BluetoothDevice dev : mLeAudioService.getGroupDevices(currentlyActiveGroupId)) {
+            Log.d(TAG, "isDeviceGroupAlreadyActive() dev: " + dev);
+            if (Objects.equals(dev, device)) {
+                Log.w(TAG, "isDeviceGroupAlreadyActive: Device is already part of active group.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void processCallControlOp(BluetoothDevice device, int opcode, byte[] args) {
+        Log.d(TAG, "processCallControlOp: device= " + device +
+                   ", opcode= " + callControlRequestOpcodeStr(opcode) +
+                   ", (" + opcode + ")" + ", argsLen= " + args.length);
+
+        int opResult = -1;
+        if (args.length == 0) {
+            Log.d(TAG, "processCallControlOp(): Invalid length");
+            opResult =TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
+        }
+
+        int callIndex = args[0];
+        Map.Entry<UUID, Bearer> entry = getCallIdByIndex(callIndex);
+        if (entry == null) {
+            Log.d(TAG, "processCallControlOp(): call id is null");
+            opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_INVALID_CALL_INDEX;
+        }
+
+        TbsCall call = mCurrentCallsList.get(callIndex);
+        Log.d(TAG, "processCallControlOp(): call: " + call);
+        if (call != null && !isCallStateTransitionValid(call.getState(), opcode)) {
+            Log.d(TAG, "processCallControlOp(): ccp state mismatch");
+            opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_STATE_MISMATCH;
+        }
+
+        Bearer bearer = entry.getValue();
+        UUID callId = entry.getKey();
+        int requestId = mLastRequestIdAssigned + 1;
+        Request request = new Request(device, callId, opcode, callIndex);
+
+        try {
+            if (opcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT) {
+                bearer.callback.onAcceptCall(requestId, new ParcelUuid(callId));
+                opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
+                if (isLeAudioServiceAvailable()) {
+                    Log.d(TAG, "processCallControlOp(): clear cached ccp ops");
+                    mLeAudioService.clearCachedRemoteCcpOps();
+                }
+            } else if (opcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE) {
+                bearer.callback.onTerminateCall( requestId, new ParcelUuid(callId));
+                opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
+            } else if (opcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD) {
+                if ((bearer.capabilities & Capability.HOLD_CALL) == 0) {
+                    opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_OPCODE_NOT_SUPPORTED;
+                } else {
+                    bearer.callback.onHoldCall(requestId, new ParcelUuid(callId));
+                    opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
+                }
+            } else {
+                if ((bearer.capabilities & Capability.HOLD_CALL) == 0) {
+                    opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_OPCODE_NOT_SUPPORTED;
+                } else {
+                    bearer.callback.onUnholdCall( requestId, new ParcelUuid(callId));
+                    opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
+                }
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            opResult = TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
+        }
+
+        Log.d(TAG, "processCallControlOp() opResult: " + opResult);
+        if (opResult == TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS) {
+            bearer.mRequestMap.put(requestId, request);
+            mLastRequestIdAssigned = requestId;
+            Log.d(TAG, "onCallControlPointRequest: ccp operation is success, return");
+            return;
+        }
+
+        mTbsGatt.setCallControlPointResult(device, opcode, 0, opResult);
+    }
+
     private final TbsGatt.Callback mTbsGattCallback =
             new TbsGatt.Callback() {
 
@@ -807,10 +914,29 @@ public class TbsGeneric {
 
                         switch (opcode) {
                             case TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT:
+                                if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false)) {
+                                    if (isDeviceGroupAlreadyActive(device)) {
+                                        Log.d(TAG, "onCallControlPointRequest: Device Already part of "+
+                                                   "Active group, process answering the call now.");
+                                        processCallControlOp(device, opcode, args);
+                                        return;
+                                    } else {
+                                        if (isLeAudioServiceAvailable()) {
+                                            Log.d(TAG, "onCallControlPointRequest: caching ccp operation");
+                                            mLeAudioService.cacheRemoteCcpOps(opcode, args);
+                                        }
+                                        setActiveLeDevice(device);
+                                        return;
+                                    }
+                                }
+                                // fall through
                             case TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE:
                             case TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD:
                             case TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE:
-                                {
+                                if (SystemProperties.getBoolean("persist.vendor.bt.sho_synchronization", false)) {
+                                    processCallControlOp(device, opcode, args);
+                                    return;
+                                } else {
                                     if (args.length == 0) {
                                         result =
                                                 TbsGatt
@@ -885,7 +1011,6 @@ public class TbsGeneric {
                                     result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
                                     break;
                                 }
-
                             case TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE:
                                 {
                                     result = processOriginateCall(device, new String(args));
@@ -967,7 +1092,8 @@ public class TbsGeneric {
                         }
 
                         if (result == TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS) {
-                            // return here and wait for the request completion from application
+                            // return here and wait for the request completition from application
+                            Log.d(TAG, "onCallControlPointRequest: return");
                             return;
                         }
 
