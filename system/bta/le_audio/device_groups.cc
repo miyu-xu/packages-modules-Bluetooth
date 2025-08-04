@@ -1242,6 +1242,7 @@ types::LeAudioConfigurationStrategy LeAudioDeviceGroup::GetGroupSinkStrategy() c
       log::verbose("audio location 0x{:04x}", locations.to_ulong());
       if (!(locations.to_ulong() & codec_spec_conf::kLeAudioLocationAnyLeft) ||
           !(locations.to_ulong() & codec_spec_conf::kLeAudioLocationAnyRight) || locations.none()) {
+        log::debug("startgy set to MONO_ONE_CIS_PER_DEVICE");
         return types::LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE;
       }
 
@@ -1725,8 +1726,10 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
     // contexts are not supported. Then we might want to configure the device
     // but use UNSPECIFIED which is always supported (but can be unavailable)
     auto device_cnt = NumOfAvailableForDirection(direction);
+    log::debug("device_cnt: {}", device_cnt);
     if (device_cnt == 0) {
       device_cnt = DesiredSize();
+      log::debug("DesiredSize of device_cnt: {}", device_cnt);
       if (device_cnt == 0) {
         log::error("Device count is 0");
         continue;
@@ -1760,8 +1763,24 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
     uint8_t active_ase_cnt = 0;
     for (auto* device = GetFirstDevice(); device != nullptr && required_device_cnt > 0;
          device = GetNextDevice(device)) {
+      log::info("device address: {}, ase size: {} ",device->address_, device->ases_.size());
       if (device->ases_.empty()) {
         log::error("Device has no ASEs.");
+        continue;
+      }
+
+      bool match = false;
+      for (auto& ase_ : device->ases_) {
+        if (ase_.direction == direction) {
+          log::info("match found.");
+          match = true;
+          break;
+        }
+      }
+
+      log::info("match: {}", match);
+      if (!match) {
+        log::info("device doesn't have this direction ases");
         continue;
       }
 
