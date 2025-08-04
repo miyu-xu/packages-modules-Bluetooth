@@ -71,3 +71,4 @@ bool LeAudioClient::GetGmapForStorage(const RawAddress& addr, std::vector<uint8_
 }
 bool LeAudioClient::IsLeAudioClientRunning() { return false; }
 bool LeAudioClient::IsLeAudioClientInStreaming() { return false; }
+bool LeAudioClient::IsLeAudioClientInIdle(void) { return false; }
