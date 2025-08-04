@@ -1297,6 +1297,12 @@ void bta_ag_sco_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
     return;
   }
 
+  if (osi_property_get_bool("persist.vendor.bt.sho_synchronization", false) &&
+    !bta_ag_check_is_leaudio_in_idle()) {
+    log::info("not opening sco, as c-i-g/c-i-ses existing over leaudio");
+    return;
+  }
+
   p_scb->disabled_codecs = data.api_audio_open.disabled_codecs;
   log::info("disabled_codecs = {}, sco_codec = {}", p_scb->disabled_codecs, p_scb->sco_codec);
 
