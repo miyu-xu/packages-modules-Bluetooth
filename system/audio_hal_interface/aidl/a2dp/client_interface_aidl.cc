@@ -37,12 +37,14 @@ namespace audio {
 namespace aidl {
 namespace a2dp {
 
-BluetoothAudioClientInterface::BluetoothAudioClientInterface(IBluetoothTransportInstance* instance)
+BluetoothAudioClientInterface::BluetoothAudioClientInterface(IBluetoothTransportInstance* instance,
+                                                             bluetooth::common::MessageLoopThread* message_loop)
     : provider_(nullptr),
       provider_factory_(nullptr),
       session_started_(false),
       data_mq_(nullptr),
       transport_(instance),
+      death_handler_thread(message_loop),
       latency_modes_({LatencyMode::FREE}) {
   death_recipient_ =
           ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new(binderDiedCallbackAidl));

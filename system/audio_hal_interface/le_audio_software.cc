@@ -673,7 +673,7 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
               new aidl::le_audio::LeAudioSinkTransport(session_type, std::move(stream_cb));
       aidl::le_audio::LeAudioSinkTransport::interface_unicast_ =
               new aidl::BluetoothAudioSinkClientInterface(
-                      aidl::le_audio::LeAudioSinkTransport::instance_unicast_);
+                      aidl::le_audio::LeAudioSinkTransport::instance_unicast_, message_loop);
       if (!aidl::le_audio::LeAudioSinkTransport::interface_unicast_->IsValid()) {
         log::warn("BluetoothAudio HAL for Le Audio is invalid?!");
         delete aidl::le_audio::LeAudioSinkTransport::interface_unicast_;
@@ -690,7 +690,7 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
               new aidl::le_audio::LeAudioSinkTransport(session_type, std::move(stream_cb));
       aidl::le_audio::LeAudioSinkTransport::interface_broadcast_ =
               new aidl::BluetoothAudioSinkClientInterface(
-                      aidl::le_audio::LeAudioSinkTransport::instance_broadcast_);
+                      aidl::le_audio::LeAudioSinkTransport::instance_broadcast_, message_loop);
       if (!aidl::le_audio::LeAudioSinkTransport::interface_broadcast_->IsValid()) {
         log::warn("BluetoothAudio HAL for Le Audio is invalid?!");
         delete aidl::le_audio::LeAudioSinkTransport::interface_broadcast_;
@@ -780,7 +780,7 @@ LeAudioClientInterface::Source* LeAudioClientInterface::GetSource(
             new aidl::le_audio::LeAudioSourceTransport(session_type, std::move(stream_cb));
     aidl::le_audio::LeAudioSourceTransport::interface =
             new aidl::BluetoothAudioSourceClientInterface(
-                    aidl::le_audio::LeAudioSourceTransport::instance);
+                    aidl::le_audio::LeAudioSourceTransport::instance, message_loop);
     if (!aidl::le_audio::LeAudioSourceTransport::interface->IsValid()) {
       log::warn("BluetoothAudio HAL for Le Audio is invalid?!");
       delete aidl::le_audio::LeAudioSourceTransport::interface;
