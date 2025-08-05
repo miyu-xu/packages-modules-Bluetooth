@@ -88,7 +88,8 @@ inline BluetoothAudioStatus StatusToHalStatus(Status ack) {
  ***/
 class BluetoothAudioClientInterface {
 public:
-  BluetoothAudioClientInterface(IBluetoothTransportInstance* instance);
+  BluetoothAudioClientInterface(IBluetoothTransportInstance* instance,
+                                bluetooth::common::MessageLoopThread* message_loop);
   virtual ~BluetoothAudioClientInterface();
 
   bool IsValid() const;
@@ -146,6 +147,8 @@ protected:
    * Invoked when binder died
    ***/
   static void binderDiedCallbackAidl(void* cookie_ptr);
+
+  bluetooth::common::MessageLoopThread* death_handler_thread = nullptr;
 
   std::shared_ptr<IBluetoothAudioProvider> provider_;
   std::shared_ptr<IBluetoothAudioProviderFactory> provider_factory_;
