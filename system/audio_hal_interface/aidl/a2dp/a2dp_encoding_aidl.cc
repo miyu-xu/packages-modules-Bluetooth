@@ -231,6 +231,7 @@ void A2dpTransport::SetRemoteDelay(uint16_t delay_report) { remote_delay_report_
 BluetoothAudioClientInterface* software_hal_interface = nullptr;
 BluetoothAudioClientInterface* offloading_hal_interface = nullptr;
 BluetoothAudioClientInterface* active_hal_interface = nullptr;
+bluetooth::common::MessageLoopThread* death_handler_thread = nullptr;
 
 // ProviderInfo for A2DP hardware offload encoding and decoding data paths,
 // if supported by the HAL and enabled. nullptr if not supported
@@ -338,9 +339,10 @@ bool is_hal_offloading() {
 // Opens the HAL client interface of the specified session type and check
 // that is is valid. Returns nullptr if the client interface did not open
 // properly.
-static BluetoothAudioClientInterface* new_hal_interface(SessionType session_type) {
+static BluetoothAudioClientInterface* new_hal_interface(SessionType session_type, bluetooth::common::MessageLoopThread* message_loop) {
   auto a2dp_transport = new A2dpTransport(session_type);
-  auto hal_interface = new BluetoothAudioClientInterface(a2dp_transport);
+  auto hal_interface = new BluetoothAudioClientInterface(a2dp_transport, message_loop);
+  death_handler_thread = message_loop;
   if (hal_interface->IsValid()) {
     return hal_interface;
   } else {
@@ -362,7 +364,7 @@ static void delete_hal_interface(BluetoothAudioClientInterface* hal_interface) {
 }
 
 // Initialize BluetoothAudio HAL: openProvider
-bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
+bool init(bluetooth::common::MessageLoopThread* message_loop,
           StreamCallbacks const* stream_callbacks, bool offload_enabled) {
   log::info("");
   log::assert_that(stream_callbacks != nullptr, "stream_callbacks != nullptr");
@@ -376,14 +378,14 @@ bool init(bluetooth::common::MessageLoopThread* /*message_loop*/,
     return false;
   }
 
-  software_hal_interface = new_hal_interface(SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH);
+  software_hal_interface = new_hal_interface(SessionType::A2DP_SOFTWARE_ENCODING_DATAPATH, message_loop);
   if (software_hal_interface == nullptr) {
     return false;
   }
 
   if (offload_enabled && offloading_hal_interface == nullptr) {
     offloading_hal_interface =
-            new_hal_interface(SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
+            new_hal_interface(SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH, message_loop);
     if (offloading_hal_interface == nullptr) {
       delete_hal_interface(software_hal_interface);
       software_hal_interface = nullptr;
@@ -540,6 +542,7 @@ void end_session() {
   static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())->ResetPendingCmd();
   static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())
           ->ResetPresentationPosition();
+  death_handler_thread = nullptr;
 }
 
 void ack_stream_started(Status ack) {
@@ -838,9 +841,9 @@ provider::get_a2dp_configuration(
   }
   log::info("hint: {}", hint.toString());
 
-  if (offloading_hal_interface == nullptr &&
+   if (offloading_hal_interface == nullptr &&
       (offloading_hal_interface = new_hal_interface(
-               SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH)) == nullptr) {
+          SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH, death_handler_thread)) == nullptr) {
     log::error("the offloading HAL interface cannot be opened");
     return std::nullopt;
   }
