@@ -3,6 +3,225 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56f0f549_3601484a",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "Unused parameter",
+      "range": {
+        "startLine": 135,
+        "startChar": 60,
+        "endLine": 135,
+        "endChar": 73
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f289499f_1be7626b",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "FYI there is already a corrective check applied in A2DP_AdjustCodecSbc\nDoes it make sense to move everything there ?\n\n```\n  // Updated the max bitpool\n  if (cfg_cie.max_bitpool \u003e A2DP_SBC_MAX_BITPOOL) {\n    log::warn(\"Updated the SBC codec max bitpool from {} to {}\", cfg_cie.max_bitpool,\n              A2DP_SBC_MAX_BITPOOL);\n    cfg_cie.max_bitpool \u003d A2DP_SBC_MAX_BITPOOL;\n  }\n```",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b6379a9e_b0087fcc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 136,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 179,
+                "startChar": 0,
+                "endLine": 183,
+                "endChar": 0
+              },
+              "replacement": "  if((p_ie-\u003emin_bitpool \u003c A2DP_SBC_IE_MIN_BITPOOL) ||\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 243,
+                "startChar": 0,
+                "endLine": 247,
+                "endChar": 0
+              },
+              "replacement": "  if (p_ie-\u003emin_bitpool \u003c A2DP_SBC_IE_MIN_BITPOOL || p_ie-\u003emin_bitpool \u003e A2DP_SBC_IE_MAX_BITPOOL) {\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 807,
+                "startChar": 0,
+                "endLine": 808,
+                "endChar": 0
+              },
+              "replacement": "  // Adjust the max bitpool if it exceeds the maximum value\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 813,
+                "startChar": 0,
+                "endLine": 813,
+                "endChar": 0
+              },
+              "replacement": "  // Adjust the max bitpool if it is less than the min bitpool\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 820,
+                "startChar": 0,
+                "endLine": 820,
+                "endChar": 0
+              },
+              "replacement": "  // Adjust the min bitpool if it is less than the minimum value\n  if(cfg_cie.min_bitpool \u003c A2DP_SBC_IE_MIN_BITPOOL) {\n    log::warn(\"Updated the SBC codec min bitpool from {} to {}\", cfg_cie.min_bitpool,\n              A2DP_SBC_IE_MIN_BITPOOL);\n    cfg_cie.min_bitpool \u003d A2DP_SBC_IE_MIN_BITPOOL;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c95e88b_27a00e7c",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "This is too verbose, please only log when a bitpool correction is applied",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2a116699_2da6d231",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 141,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6c2c867_8dc60882",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "More explicit message: `min_bitpool value adjusted from {} to {}`",
+      "range": {
+        "startLine": 144,
+        "startChar": 18,
+        "endLine": 144,
+        "endChar": 33
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "915ace71_998c02bd",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "Please remove verbose log",
+      "range": {
+        "startLine": 171,
+        "startChar": 2,
+        "endLine": 171,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f246e72b_0166eb67",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 171,
+                "startChar": 0,
+                "endLine": 172,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4676366a_d5bb877d",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
@@ -20,6 +239,98 @@
         "endLine": 179,
         "endChar": 11
       },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f7ba22_ad047342",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "Does not need to be an else condition, you can validate the bitpool configuration after adjusting it.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "550dbb8b_5dcfa369",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 181,
+                "startChar": 0,
+                "endLine": 182,
+                "endChar": 0
+              },
+              "replacement": "  }\n  if((p_ie-\u003emin_bitpool \u003e p_ie-\u003emax_bitpool) ||\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 246,
+                "startChar": 0,
+                "endLine": 247,
+                "endChar": 0
+              },
+              "replacement": "  }\n  if (p_ie-\u003emin_bitpool \u003c A2DP_SBC_IE_MIN_BITPOOL || p_ie-\u003emin_bitpool \u003e A2DP_SBC_IE_MAX_BITPOOL) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ee523e_dfaf7830",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:40:43Z",
+      "side": 1,
+      "message": "Please log the min and max values in this case",
+      "range": {
+        "startLine": 186,
+        "startChar": 39,
+        "endLine": 186,
+        "endChar": 41
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "122ab4b1_8992bb66",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": "    log::verbose(\"Invalid bitpool value min: {}, max: {}\", p_ie-\u003emin_bitpool, p_ie-\u003emax_bitpool);\n"
+            }
+          ]
+        }
+      ],
       "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
