@@ -356,6 +356,47 @@
       },
       "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50e17737_ff6299b7",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-06T18:42:55Z",
+      "side": 1,
+      "message": "This check is redundant with the check executed in A2DP_BuildInfoSbc, it seems.\nI think you can remove it entirely ?",
+      "range": {
+        "startLine": 1333,
+        "startChar": 3,
+        "endLine": 1333,
+        "endChar": 70
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5ea201e2_97af9f93",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 1333,
+                "startChar": 0,
+                "endLine": 1341,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
