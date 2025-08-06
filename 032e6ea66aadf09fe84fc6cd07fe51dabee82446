@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd201ef_4149f396",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1573,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-06T06:58:03Z",
+      "side": 1,
+      "message": "Moved the logic to a2dp_sbc.cc",
+      "parentUuid": "7d94283d_fd2dccb1",
+      "range": {
+        "startLine": 1541,
+        "startChar": 0,
+        "endLine": 1573,
+        "endChar": 3
+      },
+      "revId": "032e6ea66aadf09fe84fc6cd07fe51dabee82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9d1a1b7_28a7d0c9",
@@ -129,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d513465c_c638a358",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1756,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-06T06:58:03Z",
+      "side": 1,
+      "message": "Moved the logic to a2dp_sbc.cc",
+      "parentUuid": "bee4063e_b2d46cc2",
+      "range": {
+        "startLine": 1720,
+        "startChar": 0,
+        "endLine": 1756,
+        "endChar": 76
+      },
+      "revId": "032e6ea66aadf09fe84fc6cd07fe51dabee82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "475fe9c3_1d3ce0b7",
@@ -166,6 +214,30 @@
       "side": 1,
       "message": "Since this needs considerable implementation change and thorough testing, we can postpone this till next set of upstreaming.",
       "parentUuid": "475fe9c3_1d3ce0b7",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 647,
+        "endChar": 3
+      },
+      "revId": "032e6ea66aadf09fe84fc6cd07fe51dabee82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62cf9a0a_72e576c6",
+        "filename": "system/stack/avdt/avdt_scb_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-06T06:58:03Z",
+      "side": 1,
+      "message": "Moved the logic to a2dp_sbc.cc",
+      "parentUuid": "d768c1fb_742091f8",
       "range": {
         "startLine": 600,
         "startChar": 0,
