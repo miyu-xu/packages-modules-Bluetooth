@@ -515,10 +515,21 @@ public:
   bool SetActivePeer(const RawAddress& peer_address, std::promise<void> peer_ready_promise) {
     log::info("peer={} active_peer={}", peer_address, active_peer_);
 
+    BtifAvPeer* peer = FindPeer(peer_address);
     if (active_peer_ == peer_address) {
       peer_ready_promise.set_value();
       return true;  // Nothing has changed
     }
+
+    if(!peer_address.IsEmpty() &&
+      (peer->IsSink() && AllowedToConnect(peer_address)) &&
+      active_peer->CheckFlags(BtifAvPeer::kFlagPendingStart)) {
+      LOG(ERROR) << __func__ << ": Pending Start Response on  "
+                 << ADDRESS_TO_LOGGABLE_STR(peer_address)
+                 << ", Return Fail";
+      return false;
+    }
+
     if (peer_address.IsEmpty()) {
       log::info("peer address is empty, shutdown the Audio source");
       if (!bta_av_co_set_active_source_peer(peer_address)) {
