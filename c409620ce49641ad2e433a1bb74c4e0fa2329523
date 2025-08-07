@@ -87,6 +87,24 @@
       "parentUuid": "d9fd897e_3f05434f",
       "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b54e09_b04630ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-07T11:17:03Z",
+      "side": 1,
+      "message": "Hi,\n\nFirst of all we should make sure that Player is not able to notify GMCS about the change which is going to be notified. If Player can do so, please add handling in MediaControlProfile.onCurrentPlayerStateUpdated()\n\n\n\nIn case of Player is not able to give any valid information to GMCS, please  create new interface in MediaControlGattServiceInterface and call this inferace from MediaControlProfile from the cases where opcodes are proceed. \n\n\nThank you.",
+      "parentUuid": "87753089_8c1d7227",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
