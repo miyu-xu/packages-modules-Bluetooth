@@ -16,6 +16,23 @@
       "message": "ag/33231905",
       "revId": "6364c1553febc5fd309ba5e829fd0850907d8e5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d732222d_2089ecb3",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-07T11:24:47Z",
+      "side": 1,
+      "message": "Sorry for late comment, we are missing this QoS config.\n\nI;ve add this \n\n    {\n      \"name\": \"VND_QoS_Config_R31_L100\",\n      \"target_latency\": \"HIGH_RELIABILITY\",\n      \"retransmission_number\": 31,\n      \"max_transport_latency\": 100\n    },\n    \n    please confirm if this is fine.",
+      "revId": "6364c1553febc5fd309ba5e829fd0850907d8e5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
