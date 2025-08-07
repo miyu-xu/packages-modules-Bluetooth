@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a41304b9_38e4eedd",
+        "filename": "system/audio_hal_interface/aidl/a2dp/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-07T21:32:52Z",
+      "side": 1,
+      "message": "The death handle thread is unused in the A2DP client implementation.\nYou don\u0027t need the changes to audio_hal_interface/a2dp/aidl/",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 26
+      },
+      "revId": "d964176a5d144405de73cdbb0bae72c3095e2d1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d47adc_fe550c10",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-07T21:32:52Z",
+      "side": 1,
+      "message": "nit: early return here.",
+      "range": {
+        "startLine": 225,
+        "startChar": 2,
+        "endLine": 225,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b755833f_f9f8701c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+              "range": {
+                "startLine": 225,
+                "startChar": 0,
+                "endLine": 230,
+                "endChar": 0
+              },
+              "replacement": "    return;\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+              "range": {
+                "startLine": 231,
+                "startChar": 0,
+                "endLine": 231,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\" calling RenewAudioProviderAndSession on death handler thread\");\n  death_handler_thread-\u003eDoInThread(\n          base::BindOnce(\u0026BluetoothAudioClientInterface::RenewAudioProviderAndSession,\n                         base::Unretained(client)));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d964176a5d144405de73cdbb0bae72c3095e2d1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
