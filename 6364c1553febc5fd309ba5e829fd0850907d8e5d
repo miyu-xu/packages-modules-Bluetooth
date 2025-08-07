@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a41de5_fe55aa98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-07T14:05:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dab23d7_4a00262e",
+      "revId": "6364c1553febc5fd309ba5e829fd0850907d8e5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d732222d_2089ecb3",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-07T11:24:47Z",
       "side": 1,
       "message": "Sorry for late comment, we are missing this QoS config.\n\nI;ve add this \n\n    {\n      \"name\": \"VND_QoS_Config_R31_L100\",\n      \"target_latency\": \"HIGH_RELIABILITY\",\n      \"retransmission_number\": 31,\n      \"max_transport_latency\": 100\n    },\n    \n    please confirm if this is fine.",
+      "revId": "6364c1553febc5fd309ba5e829fd0850907d8e5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e895cb7_b88aa89b",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-07T14:05:29Z",
+      "side": 1,
+      "message": "looks fine",
+      "parentUuid": "d732222d_2089ecb3",
       "revId": "6364c1553febc5fd309ba5e829fd0850907d8e5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
