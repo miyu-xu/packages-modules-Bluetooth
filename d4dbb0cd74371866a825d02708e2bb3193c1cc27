@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c94fd0_cc49827f",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-07T10:31:07Z",
+      "side": 1,
+      "message": "usually QoS configu for One-OneChan and matching Two-OneChan is the same as we are not change QoS confing when second member is connected. \n\nAlso I see that there is no `VND_QoS_Config_R13_L100` in this file.\n\nIn the internal version I changed it to `VND_QoS_Config_R24_L100`  - if it is OK please resolve this comment.",
+      "revId": "d4dbb0cd74371866a825d02708e2bb3193c1cc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
