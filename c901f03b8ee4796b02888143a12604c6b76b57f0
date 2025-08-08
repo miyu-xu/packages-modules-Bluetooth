@@ -1,0 +1,149 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d75569c2_a317f836",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-08-08T20:20:55Z",
+      "side": 1,
+      "message": "Can we name it something like `INTEROP_SERIALIZE_LINK_CONTROL_COMMANDS`",
+      "fixSuggestions": [
+        {
+          "fixId": "88a5c7a6_2d46ec68",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/conf/interop_database.conf",
+              "range": {
+                "startLine": 80,
+                "startChar": 0,
+                "endLine": 81,
+                "endChar": 0
+              },
+              "replacement": "[INTEROP_SERIALIZE_LINK_CONTROL_COMMANDS]\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b0d3dbe_dcdab783",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-08-08T20:20:55Z",
+      "side": 1,
+      "message": "Please add a description for this",
+      "fixSuggestions": [
+        {
+          "fixId": "8163b5df_71e9f548",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/device/include/interop.h",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "\n  // Disable HID profile connection.\n  // Some devices may not work well with HID profile.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6fdc9a0_fe446f42",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-08-08T20:20:55Z",
+      "side": 1,
+      "message": "We should not have global variables for this. There is no protection for it.\n\nWe should instead use the address that is already available in `hci::acl_manager::ClassicAclConnection`",
+      "fixSuggestions": [
+        {
+          "fixId": "0f6d3de3_e12849d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 195,
+                "startChar": 0,
+                "endLine": 197,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 509,
+                "startChar": 0,
+                "endLine": 510,
+                "endChar": 0
+              },
+              "replacement": "    if(interop_match_addr(INTEROP_DISABLE_HID, \u0026ToRawAddress(connection_-\u003eGetAddress()))) {\n"
+            },
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 537,
+                "startChar": 0,
+                "endLine": 538,
+                "endChar": 0
+              },
+              "replacement": "    if(interop_match_addr(INTEROP_DISABLE_HID, \u0026ToRawAddress(connection_-\u003eGetAddress()))) {\n"
+            },
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 636,
+                "startChar": 0,
+                "endLine": 637,
+                "endChar": 0
+              },
+              "replacement": "    if(interop_match_addr(INTEROP_DISABLE_HID, \u0026ToRawAddress(connection_-\u003eGetAddress()))) {\n"
+            },
+            {
+              "path": "system/main/shim/acl.cc",
+              "range": {
+                "startLine": 1450,
+                "startChar": 0,
+                "endLine": 1451,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
