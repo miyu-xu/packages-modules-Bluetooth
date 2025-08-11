@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8730a86a_48e0ef0b",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-11T15:12:01Z",
+      "side": 1,
+      "message": "lets move checking this property in the `audio_hal_client`",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a2e6dea_1a535239",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 6614,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-11T15:12:01Z",
+      "side": 1,
+      "message": "Could you use audio_sender_state_ and audio_receiver_state_ instaed of this ?\n\nAlso, can we also call ConfirmSuspendRequest and make sure that it goes down to HAL in the audio_hal_client ? This will help to remove additional `if` in this file.",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
