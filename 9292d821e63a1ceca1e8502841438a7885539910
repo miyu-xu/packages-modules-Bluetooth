@@ -1,0 +1,145 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b36e56_3fa88e4e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-11T19:02:50Z",
+      "side": 1,
+      "message": "why this delay is different from the other one below?",
+      "fixSuggestions": [
+        {
+          "fixId": "aac91840_6db76381",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "    private static final int CLCC_RESPONSE_DELAY_MS \u003d 300;\n    private static final int CLCC_RESPONSE_DELAY_AFTER_VOIP_CALL_MS \u003d 1000;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1797,
+                "startChar": 0,
+                "endLine": 1798,
+                "endChar": 0
+              },
+              "replacement": "                    HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL,\n                    CLCC_RESPONSE_DELAY_AFTER_VOIP_CALL_MS);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2030,
+                "startChar": 0,
+                "endLine": 2031,
+                "endChar": 0
+              },
+              "replacement": "                        HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL, CLCC_RESPONSE_DELAY_MS);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9292d821e63a1ceca1e8502841438a7885539910",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c600319_b8eae6d0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-11T19:02:50Z",
+      "side": 1,
+      "message": "should we check the return value of stopScoUsingVirtualVoiceCall() and add the delay here as well?",
+      "fixSuggestions": [
+        {
+          "fixId": "0c2075a1_9b9fdaf4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2024,
+                "startChar": 0,
+                "endLine": 2031,
+                "endChar": 0
+              },
+              "replacement": "                    if (stopScoUsingVirtualVoiceCall()) {\n                        HeadsetStateMachine stateMachine \u003d mStateMachines.get(mActiveDevice);\n                        if (stateMachine !\u003d null \u0026\u0026\n                            stateMachine.isDeviceDenylistedForDelayingCLCCRespAfterVOIPCall()) {\n                            // send delayed message for active device if Denylisted\n                            stateMachine.sendMessageDelayed(\n                            HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL, 300);\n                        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9292d821e63a1ceca1e8502841438a7885539910",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce5b4be1_88959760",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2030,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-11T19:02:50Z",
+      "side": 1,
+      "message": "where is the handling of this part? I dont see in statemachine",
+      "range": {
+        "startLine": 2030,
+        "startChar": 44,
+        "endLine": 2030,
+        "endChar": 74
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "77daebc5_306eada7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 1797,
+                "startChar": 0,
+                "endLine": 1798,
+                "endChar": 0
+              },
+              "replacement": "                                HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL, 1000);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2030,
+                "startChar": 0,
+                "endLine": 2031,
+                "endChar": 0
+              },
+              "replacement": "                                HeadsetStateMachine.SEND_CLCC_RESP_AFTER_VOIP_CALL, 300);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9292d821e63a1ceca1e8502841438a7885539910",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
