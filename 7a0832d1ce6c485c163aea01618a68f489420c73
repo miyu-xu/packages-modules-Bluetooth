@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42709cf2_c2b544ab",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1931637
+      },
+      "writtenOn": "2025-08-12T09:08:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8730a86a_48e0ef0b",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a2e6dea_1a535239",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-08-11T15:12:01Z",
       "side": 1,
       "message": "Could you use audio_sender_state_ and audio_receiver_state_ instaed of this ?\n\nAlso, can we also call ConfirmSuspendRequest and make sure that it goes down to HAL in the audio_hal_client ? This will help to remove additional `if` in this file.",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e76bdb_9a518106",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 6614,
+      "author": {
+        "id": 1931637
+      },
+      "writtenOn": "2025-08-12T09:08:25Z",
+      "side": 1,
+      "message": "It would be difficult to manage with only audio_sender_state_ and audio_receiver_state_.\n\nIntention behind these flags is to make sure synchronization is achieved between transports also between multiple devices.\n\n2nd part of the comment has been taken care.",
+      "parentUuid": "4a2e6dea_1a535239",
       "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
