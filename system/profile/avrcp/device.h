@@ -358,6 +358,7 @@ private:
 
   MediaIdMap vfs_ids_;
   MediaIdMap now_playing_ids_;
+  MediaIdMap folder_ids_;
 
   uint32_t play_pos_interval_ = 0;
 
