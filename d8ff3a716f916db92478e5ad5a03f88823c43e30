@@ -34,6 +34,24 @@
       "parentUuid": "26f336b1_43183ab5",
       "revId": "d8ff3a716f916db92478e5ad5a03f88823c43e30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2758d52c_353423d3",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2025-08-12T13:09:10Z",
+      "side": 1,
+      "message": "Thank you for the modification. I\u0027ve reviewed it and have no concerns.",
+      "parentUuid": "5cf24fad_4719788c",
+      "revId": "d8ff3a716f916db92478e5ad5a03f88823c43e30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
