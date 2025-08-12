@@ -1165,14 +1165,21 @@ void Device::HandleChangePath(uint8_t label, std::shared_ptr<ChangePathRequest> 
 
   log::verbose("direction={} uid=0x{:x}", pkt->GetDirection(), pkt->GetUid());
 
-  if (pkt->GetDirection() == Direction::DOWN && vfs_ids_.get_media_id(pkt->GetUid()) == "") {
-    log::error("{}: No item found for UID={}", address_, pkt->GetUid());
-    auto builder = ChangePathResponseBuilder::MakeBuilder(Status::DOES_NOT_EXIST, 0);
-    send_message(label, true, std::move(builder));
-    return;
-  }
-
   if (pkt->GetDirection() == Direction::DOWN) {
+    std::string media_id = vfs_ids_.get_media_id(pkt->GetUid());
+    if (media_id == "") {
+      log::error("{}: No item found for UID={}", address_, pkt->GetUid());
+      auto builder =
+          ChangePathResponseBuilder::MakeBuilder(Status::DOES_NOT_EXIST, 0);
+      send_message(label, true, std::move(builder));
+      return;
+    } else if (folder_ids_.get_uid(media_id) == 0) {
+      log::error("invalid folder");
+      auto builder = ChangePathResponseBuilder::MakeBuilder(Status::NOT_A_DIRECTORY, 0);
+      send_message(label, true, std::move(builder));
+      return;
+    }
+    current_path_.push(media_id);
     current_path_.push(vfs_ids_.get_media_id(pkt->GetUid()));
     log::verbose("Pushing Path to stack: \"{}\"", CurrentFolder());
   } else {
@@ -1196,6 +1203,15 @@ void Device::HandleChangePath(uint8_t label, std::shared_ptr<ChangePathRequest> 
 
 void Device::ChangePathResponse(uint8_t label, std::shared_ptr<ChangePathRequest> /*pkt*/,
                                 std::vector<ListItem> list) {
+  for (const auto& item : list) {
+    if (item.type == ListItem::FOLDER) {
+      vfs_ids_.insert(item.folder.media_id);
+      folder_ids_.insert(item.folder.media_id);
+    } else if (item.type == ListItem::SONG) {
+      vfs_ids_.insert(item.song.media_id);
+    }
+  }
+
   // TODO (apanicke): Reconstruct the VFS ID's here. Right now it gets
   // reconstructed in GetFolderItemsVFS
   auto builder = ChangePathResponseBuilder::MakeBuilder(Status::NO_ERROR, list.size());
@@ -1414,6 +1430,7 @@ void Device::GetVFSListResponse(uint8_t label, std::shared_ptr<GetFolderItemsReq
   for (const auto& item : items) {
     if (item.type == ListItem::FOLDER) {
       vfs_ids_.insert(item.folder.media_id);
+      folder_ids_.insert(item.folder.media_id);
     } else if (item.type == ListItem::SONG) {
       vfs_ids_.insert(item.song.media_id);
     }
@@ -1509,13 +1526,18 @@ void Device::HandleSetBrowsedPlayer(uint8_t label, std::shared_ptr<SetBrowsedPla
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid", address_);
     auto response = SetBrowsedPlayerResponseBuilder::MakeBuilder(Status::INVALID_PARAMETER, 0x0000,
-                                                                 0, 0, "");
+                                                                 0, 0, current_path_, browse_mtu_);
     send_message(label, true, std::move(response));
     return;
   }
 
-  log::verbose("player_id={}", pkt->GetPlayerId());
-  media_interface_->SetBrowsedPlayer(pkt->GetPlayerId(), CurrentFolder(),
+  uint16_t player_id = pkt->GetPlayerId();
+  log::verbose("player_id={}, curr_browsed_player_id_={}", player_id, curr_browsed_player_id_);
+  if (player_id == 0) {
+    player_id = curr_browsed_player_id_;
+  }
+
+  media_interface_->SetBrowsedPlayer(player_id, CurrentFolder(),
                                      base::Bind(&Device::SetBrowsedPlayerResponse,
                                                 weak_ptr_factory_.GetWeakPtr(), label, pkt));
 }
@@ -1526,7 +1548,7 @@ void Device::SetBrowsedPlayerResponse(uint8_t label, std::shared_ptr<SetBrowsedP
 
   if (!success) {
     auto response = SetBrowsedPlayerResponseBuilder::MakeBuilder(Status::INVALID_PLAYER_ID, 0x0000,
-                                                                 num_items, 0, "");
+                                                                 num_items, 0, current_path_, browse_mtu_);
     send_message(label, true, std::move(response));
     return;
   }
@@ -1545,8 +1567,10 @@ void Device::SetBrowsedPlayerResponse(uint8_t label, std::shared_ptr<SetBrowsedP
   current_path_ = std::stack<std::string>();
   current_path_.push(current_path);
 
+  uint8_t folder_depth = current_path_.size() > 1 ? current_path_.size() - 1 : 0;
+  log::info("folder_depth={}", (uint8_t)folder_depth);
   auto response = SetBrowsedPlayerResponseBuilder::MakeBuilder(Status::NO_ERROR, 0x0000, num_items,
-                                                               0, current_path);
+                                                               folder_depth, current_path_, browse_mtu_);
   send_message(label, true, std::move(response));
 }
 
