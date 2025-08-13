@@ -1,0 +1,166 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceec4c1b_8606a9c4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T22:36:41Z",
+      "side": 1,
+      "message": "Is this really part of this fix??",
+      "revId": "dc078241e17ab6f109160610e83bf4ab63015678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cd76b8a_6254c3dd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T22:36:41Z",
+      "side": 1,
+      "message": "please add braces around else",
+      "fixSuggestions": [
+        {
+          "fixId": "af3d0448_5d05e311",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 1118,
+                "startChar": 0,
+                "endLine": 1119,
+                "endChar": 0
+              },
+              "replacement": "                    else {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 1120,
+                "startChar": 0,
+                "endLine": 1120,
+                "endChar": 0
+              },
+              "replacement": "                    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc078241e17ab6f109160610e83bf4ab63015678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3144b3_efec1bae",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2116,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T22:36:41Z",
+      "side": 1,
+      "message": "mIsCallIndDelay doesn\u0027t need to be member variable",
+      "fixSuggestions": [
+        {
+          "fixId": "e4ce0e0a_d76d4cb9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 151,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2116,
+                "startChar": 0,
+                "endLine": 2117,
+                "endChar": 0
+              },
+              "replacement": "                boolean isCallIndDelay \u003d true;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2156,
+                "startChar": 0,
+                "endLine": 2158,
+                "endChar": 0
+              },
+              "replacement": "        if (isCallIndDelay) {\n            isCallIndDelay \u003d false;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc078241e17ab6f109160610e83bf4ab63015678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93471497_c577aba3",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2144,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T22:36:41Z",
+      "side": 1,
+      "message": "Change looks too intrusive and also playing with CONNECT_AUDIO and DISCONNECT_AUDIO which conflicts with our recent SCO mangement.",
+      "fixSuggestions": [
+        {
+          "fixId": "db73fa93_9caccf82",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 583,
+                "startChar": 0,
+                "endLine": 584,
+                "endChar": 0
+              },
+              "replacement": "            mStateMachineCallState.mNumHeld \u003d 0;            \n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2143,
+                "startChar": 0,
+                "endLine": 2147,
+                "endChar": 0
+              },
+              "replacement": "                if (getAudioState() \u003d\u003d BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {\n                    if (mDevice.equals(mHeadsetService.getActiveDevice())) {\n                        Message m \u003d obtainMessage(CONNECT_AUDIO);\n                        m.obj \u003d mDevice;\n                        sendMessage(m);\n                    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dc078241e17ab6f109160610e83bf4ab63015678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
