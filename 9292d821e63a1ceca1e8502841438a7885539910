@@ -58,6 +58,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92c4adaa_04bee14c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1797,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-13T09:15:36Z",
+      "side": 1,
+      "message": "This delay handles the case when a VOIP call is going on and ATD is triggered from the remote. CS call is initiated after VOIP call ends but remote is going into bad state as it is expecting empty CLCC response before CS call indicators.",
+      "parentUuid": "68b36e56_3fa88e4e",
+      "revId": "9292d821e63a1ceca1e8502841438a7885539910",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c600319_b8eae6d0",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 3
@@ -87,6 +105,24 @@
           ]
         }
       ],
+      "revId": "9292d821e63a1ceca1e8502841438a7885539910",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5892b51f_88ffd637",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-13T09:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c600319_b8eae6d0",
       "revId": "9292d821e63a1ceca1e8502841438a7885539910",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -138,6 +174,30 @@
           ]
         }
       ],
+      "revId": "9292d821e63a1ceca1e8502841438a7885539910",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e51fb19f_d8636da4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2030,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-13T09:15:36Z",
+      "side": 1,
+      "message": "Added the required change",
+      "parentUuid": "ce5b4be1_88959760",
+      "range": {
+        "startLine": 2030,
+        "startChar": 44,
+        "endLine": 2030,
+        "endChar": 74
+      },
       "revId": "9292d821e63a1ceca1e8502841438a7885539910",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
