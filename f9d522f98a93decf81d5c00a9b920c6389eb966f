@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060e9c24_9e70a1f3",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T18:49:50Z",
+      "side": 1,
+      "message": "please use the addr() only variant as we are not checking for name.",
+      "fixSuggestions": [
+        {
+          "fixId": "21378af9_71a26e1d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 572,
+                "startChar": 0,
+                "endLine": 576,
+                "endChar": 0
+              },
+              "replacement": "    bool is_denylisted \u003d interop_match_addr(INTEROP_DISABLE_SNIFF_LINK_DURING_SCO,\n                           \u0026peer_addr);\n    bool is_denylisted_for_call \u003d interop_match_addr(INTEROP_DISABLE_SNIFF_DURING_CALL,\n                                    \u0026peer_addr);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd8a1c7e_8fe9fd32",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T18:49:50Z",
+      "side": 1,
+      "message": "same as above.",
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea56de2a_35e3b92b",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T18:49:50Z",
+      "side": 1,
+      "message": "this helper is part of the other change as we are not picking that change, please make this CL independent, will go forward with this change",
+      "fixSuggestions": [
+        {
+          "fixId": "e77f439a_55a3e69a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/dm/bta_dm_pm.cc",
+              "range": {
+                "startLine": 582,
+                "startChar": 0,
+                "endLine": 583,
+                "endChar": 0
+              },
+              "replacement": "          if (id \u003d\u003d BTA_ID_AG) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
