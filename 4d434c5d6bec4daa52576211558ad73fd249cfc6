@@ -1,0 +1,100 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "001b64a1_68f98d53",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2034,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T18:41:53Z",
+      "side": 1,
+      "message": "this delay addresses when the CAll is triggered from DUT, when VOIP call is already in progress.\n\nWhy do we have 300 ms for this case vs 1000 ms for the case where outgoing call is triggered from headset using ATD?",
+      "range": {
+        "startLine": 2034,
+        "startChar": 48,
+        "endLine": 2034,
+        "endChar": 70
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "56a2730f_7675adca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+              "range": {
+                "startLine": 2034,
+                "startChar": 0,
+                "endLine": 2035,
+                "endChar": 0
+              },
+              "replacement": "                                                CLCC_RESPONSE_DELAY_AFTER_VOIP_CALL_MS);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5eeca28_f2828c6d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2223,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-13T18:41:53Z",
+      "side": 1,
+      "message": "So this works only if Carkit sends AT+CLCC to query the call states?\n\nWe dont want to voluntaryly update the CLCC status to carkit after VOIP call, is it?",
+      "fixSuggestions": [
+        {
+          "fixId": "f2903b00_fd85e366",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "    static final int CLCC_RSP_AFTER_VOIP_CALL_END \u003d 18;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2223,
+                "startChar": 0,
+                "endLine": 2224,
+                "endChar": 0
+              },
+              "replacement": "        } else if (hasMessages(CLCC_RSP_AFTER_VOIP_CALL_END)) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+              "range": {
+                "startLine": 2226,
+                "startChar": 0,
+                "endLine": 2227,
+                "endChar": 0
+              },
+              "replacement": "            removeMessages(CLCC_RSP_AFTER_VOIP_CALL_END);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
