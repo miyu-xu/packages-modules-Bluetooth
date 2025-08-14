@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf5fde4e_578925b3",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-14T10:27:31Z",
+      "side": 1,
+      "message": "Made the change as of now but we have AirPods in INTEROP_DISABLE_SNIFF_LINK_DURING_SCO, so we need to check name as well.\nWe have one remote as manufacturer based, for that we have to call BTM_ReadRemoteVersion before checking whether device is in deny-list or not.",
+      "parentUuid": "060e9c24_9e70a1f3",
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd8a1c7e_8fe9fd32",
         "filename": "system/bta/dm/bta_dm_pm.cc",
         "patchSetId": 6
@@ -49,6 +67,24 @@
       "writtenOn": "2025-08-13T18:49:50Z",
       "side": 1,
       "message": "same as above.",
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321dd450_f78e931b",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-14T10:27:31Z",
+      "side": 1,
+      "message": "Removing is_denylisted_for_call as we are discarding the chnage for INTEROP_DISABLE_SNIFF_DURING_CALL.",
+      "parentUuid": "cd8a1c7e_8fe9fd32",
       "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -94,6 +130,24 @@
           ]
         }
       ],
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9c7076_0f0d8c53",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-14T10:27:31Z",
+      "side": 1,
+      "message": "Brought the change",
+      "parentUuid": "ea56de2a_35e3b92b",
       "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
