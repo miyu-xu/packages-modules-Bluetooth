@@ -123,6 +123,24 @@
       "parentUuid": "e0b54e09_b04630ef",
       "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639c27ee_fa0d0366",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-18T10:41:42Z",
+      "side": 1,
+      "message": "Hello Rajat,\n\nThank you for the CL update - it looks better now.\n\nThere is only one thing which is making me worried here, I just checked the flow and it looks like we already have function: updateSeekingSpeedChar()  which is called when player is sending notification about SEEKING_SPEED\n\nHaving that in mind, I believe that the issue here is with actually player which is not doing what it should, am I correct?",
+      "parentUuid": "b42710db_7b99141a",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
