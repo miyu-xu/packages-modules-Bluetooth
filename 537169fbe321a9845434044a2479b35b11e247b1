@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7cef47_b760d8dd",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-18T22:06:36Z",
+      "side": 1,
+      "message": "Can we get this Codec from the connection request rather than assuming this as CVSD always?",
+      "fixSuggestions": [
+        {
+          "fixId": "fa282e04_87e18310",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sco.cc",
+              "range": {
+                "startLine": 1571,
+                "startChar": 0,
+                "endLine": 1572,
+                "endChar": 0
+              },
+              "replacement": "      if (p_scb-\u003epeer_codecs \u0026 BTM_SCO_CODEC_CVSD) {\n        BTA_AgSetCodec(bta_ag_scb_to_idx(p_scb), BTM_SCO_CODEC_CVSD);\n      } else {\n        log::error(\"CVSD codec is not supported, can not set codec\");\n      }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "537169fbe321a9845434044a2479b35b11e247b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
