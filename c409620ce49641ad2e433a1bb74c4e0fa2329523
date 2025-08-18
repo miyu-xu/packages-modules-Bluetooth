@@ -105,6 +105,24 @@
       "parentUuid": "87753089_8c1d7227",
       "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b42710db_7b99141a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-18T07:15:20Z",
+      "side": 1,
+      "message": "Done\n\nHi @rlukasz@google.com,\n\nI have updated the patch.\nThe player was not able to notify seeking speed, hence I have added a function in MediaControlGattService.java and calling it from MediaControlProfile.java where all the opcode cases are handled.\nI have tested the patch for a couple of PTS TCs and it is working fine.\nPlease review and let us know your thoughts.\n\nThanks,\nRajat",
+      "parentUuid": "e0b54e09_b04630ef",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
