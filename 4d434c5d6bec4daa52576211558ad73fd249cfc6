@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef0bb231_288b6699",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2034,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-18T08:11:04Z",
+      "side": 1,
+      "message": "300ms delay was not enough to handle ATD scenario, that\u0027s why there is a difference in delay in both scenarios.",
+      "parentUuid": "001b64a1_68f98d53",
+      "range": {
+        "startLine": 2034,
+        "startChar": 48,
+        "endLine": 2034,
+        "endChar": 70
+      },
+      "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5eeca28_f2828c6d",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 4
@@ -93,6 +117,24 @@
           ]
         }
       ],
+      "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab916fe_1416aa65",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2223,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-08-18T08:11:04Z",
+      "side": 1,
+      "message": "Yes, we are checking if device needs empty CLCC response after VOIP call ends and then only send the CLCC response.",
+      "parentUuid": "f5eeca28_f2828c6d",
       "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
