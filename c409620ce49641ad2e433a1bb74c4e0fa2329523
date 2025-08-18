@@ -141,6 +141,24 @@
       "parentUuid": "b42710db_7b99141a",
       "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0930e61_def06a85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-18T11:38:48Z",
+      "side": 1,
+      "message": "Hi Lukasz,\n\nThanks for the review.\nIn the logs, I see that updateSeekingSpeedChar() is called, BUT, it always sends notification on this condition - (getSeekingSpeedChar() !\u003d speed)\nand that condition is never true, because of incorrect seeking speed (1.0 !\u003d 1.0)\n\nAnd in our case, we definitely want to send notification for seeking speed without depending upon any condition.\nHence this function has been added.\n\nAnd yes, player is unable to notify the correct change in seeking speed.\nPlease let me know your thoughts.",
+      "parentUuid": "639c27ee_fa0d0366",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
