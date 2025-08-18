@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbf3d7dc_3ce1018e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2034,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-18T16:49:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef0bb231_288b6699",
+      "range": {
+        "startLine": 2034,
+        "startChar": 48,
+        "endLine": 2034,
+        "endChar": 70
+      },
+      "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5eeca28_f2828c6d",
@@ -135,6 +159,24 @@
       "side": 1,
       "message": "Yes, we are checking if device needs empty CLCC response after VOIP call ends and then only send the CLCC response.",
       "parentUuid": "f5eeca28_f2828c6d",
+      "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e38f36b_5af6ae3a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2223,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-18T16:49:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dab916fe_1416aa65",
       "revId": "4d434c5d6bec4daa52576211558ad73fd249cfc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
