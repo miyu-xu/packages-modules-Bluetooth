@@ -159,6 +159,24 @@
       "parentUuid": "639c27ee_fa0d0366",
       "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98aedaf8_d50b81be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-08-18T12:42:35Z",
+      "side": 1,
+      "message": "Also I checked the implementation and if as mentioned above,  this is PLayer behavior.\n\ne.g. VLC is updating seeking speed but only with speed 1.0 and since value does not change, the notification is not send out to remote device but. But in logcat I can see cal of ` MediaControlGattService: updateSeekingSpeedChar: speed\u003d 1.0`\n\n\nPlease have a look on the specification on how seek speed should work\n\n```\n3.18.1.3. Fast Rewind\nThe Fast Rewind opcode has no parameters. If the Media State characteristic is Paused or Playing, the media player shall move the current track position backwards. The media player should stop playing the current track, set the Media State characteristic to Seeking, and move the current track position backwards at a speed determined by the implementation.\n\nIf the Media State characteristic value is Seeking, the seeking speed should be adjusted in the negative direction. The method by which the media player handles multiple Fast Rewind opcode writes is left up to the implementation.\n```\n\nThe above means that the player should enter into SEEKING state and then might change SEEKING_SPEED if needed.\n\nIF you would like to PASS the PTS test cases, you need to implement own test Media Player which would support this behavior.\n\nThe CL is actually doing stack changes only for the purpose to satisfy PTS which is not what we want.\n\n\nNote: I did not found any Media Player which would move to SEEKING state on FAST_REWIND. If you find one please let us know",
+      "parentUuid": "639c27ee_fa0d0366",
+      "revId": "c409620ce49641ad2e433a1bb74c4e0fa2329523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
