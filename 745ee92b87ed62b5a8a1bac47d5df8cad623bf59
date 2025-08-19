@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "164dd05c_960768b1",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T08:42:41Z",
+      "side": 0,
+      "message": "If we keep it const, then we see this compilation error:\npackages/modules/Bluetooth/system/stack/a2dp/a2dp_sbc.cc:838:10: error: no matching function for call to \u0027A2DP_BuildInfoSbc\u0027\n  838 |   return A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, \u0026a2dp_sbc_source_caps, p_cfg-\u003ecodec_info);",
+      "parentUuid": "a04cb04e_56480e30",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 12
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a85c7fa2_b9d13a59",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47b20b25_e9091f09",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T08:42:41Z",
+      "side": 0,
+      "message": "If we keep this const then we see this compilation error:\npackages/modules/Bluetooth/system/stack/a2dp/a2dp_sbc.cc:842:10: error: no matching function for call to \u0027A2DP_BuildInfoSbc\u0027\n  842 |   return A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, \u0026a2dp_sbc_sink_caps, p_cfg-\u003ecodec_info);",
+      "parentUuid": "a85c7fa2_b9d13a59",
+      "range": {
+        "startLine": 84,
+        "startChar": 7,
+        "endLine": 84,
+        "endChar": 12
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bcd67c38_b5cd8a03",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
@@ -60,6 +108,30 @@
       "writtenOn": "2025-08-06T18:40:43Z",
       "side": 0,
       "message": "Same here, please keep const",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 5
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b13c3c_91dd6077",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T08:42:41Z",
+      "side": 0,
+      "message": "If we keep it const, then we see this compilation error:\npackages/modules/Bluetooth/system/stack/a2dp/a2dp_sbc.cc:338:20: error: no matching function for call to \u0027A2DP_BuildInfoSbc\u0027\n  338 |   log::assert_that(A2DP_BuildInfoSbc(AVDT_MEDIA_TYPE_AUDIO, \u0026a2dp_sbc_default_config, p_codec_info)",
+      "parentUuid": "bcd67c38_b5cd8a03",
       "range": {
         "startLine": 98,
         "startChar": 0,
