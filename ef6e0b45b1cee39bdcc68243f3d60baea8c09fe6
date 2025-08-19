@@ -165,6 +165,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2568fec5_8e76f2c4",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T09:00:56Z",
+      "side": 1,
+      "message": "A2DP_AdjustCodecSbc is only called in bta_av_getcap_results.\nBut we want adjustments to happen in A2DP_BuildInfoSbc too.\nI would still suggest to have a separate function to do all this adjustments.",
+      "parentUuid": "04b1f523_d0d0bc2c",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 30
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c95e88b_27a00e7c",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
@@ -200,6 +224,30 @@
           ]
         }
       ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62f50949_5df9b939",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T09:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c95e88b_27a00e7c",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 19
+      },
       "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -264,6 +312,30 @@
           ]
         }
       ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3aa4d12_340598bf",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T09:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "915ace71_998c02bd",
+      "range": {
+        "startLine": 171,
+        "startChar": 2,
+        "endLine": 171,
+        "endChar": 19
+      },
       "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -342,6 +414,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e068690_6f8070cc",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T09:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f7ba22_ad047342",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 9
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54ee523e_dfaf7830",
@@ -379,6 +475,30 @@
           ]
         }
       ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f79854c6_c0fc8e36",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T09:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54ee523e_dfaf7830",
+      "range": {
+        "startLine": 186,
+        "startChar": 39,
+        "endLine": 186,
+        "endChar": 41
+      },
       "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -443,6 +563,30 @@
           ]
         }
       ],
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "184073d2_21de3f22",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1333,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T09:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50e17737_ff6299b7",
+      "range": {
+        "startLine": 1333,
+        "startChar": 3,
+        "endLine": 1333,
+        "endChar": 70
+      },
       "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
