@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4bd6209_6e381098",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T10:00:44Z",
+      "side": 1,
+      "message": "can you please elaborate?",
+      "parentUuid": "56f0f549_3601484a",
+      "range": {
+        "startLine": 135,
+        "startChar": 60,
+        "endLine": 135,
+        "endChar": 73
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f289499f_1be7626b",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
@@ -265,6 +289,30 @@
       "writtenOn": "2025-08-06T18:40:43Z",
       "side": 1,
       "message": "More explicit message: `min_bitpool value adjusted from {} to {}`",
+      "range": {
+        "startLine": 144,
+        "startChar": 18,
+        "endLine": 144,
+        "endChar": 33
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "254d2c81_a5dd46ba",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T10:00:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6c2c867_8dc60882",
       "range": {
         "startLine": 144,
         "startChar": 18,
