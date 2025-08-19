@@ -52,6 +52,24 @@
       "parentUuid": "ce7cef47_b760d8dd",
       "revId": "537169fbe321a9845434044a2479b35b11e247b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8389a85a_c49b1789",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 3994845
+      },
+      "writtenOn": "2025-08-19T02:26:20Z",
+      "side": 1,
+      "message": "Sorry, I mean this\n\n```suggestion\n      if (!(p_scb-\u003epeer_codecs \u0026 BTM_SCO_CODEC_CVSD)) {\n        log::error(\"CVSD codec is not supported, but set CVSD codec by default\");\n      }\n      BTA_AgSetCodec(bta_ag_scb_to_idx(p_scb), BTM_SCO_CODEC_CVSD);\n```",
+      "parentUuid": "4e4ef0ce_b5028c59",
+      "revId": "537169fbe321a9845434044a2479b35b11e247b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
