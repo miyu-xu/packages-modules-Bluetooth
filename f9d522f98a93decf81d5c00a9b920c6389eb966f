@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e320296e_3f11bda5",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-19T21:59:48Z",
+      "side": 1,
+      "message": "Please remove the apple airpods from the database for now",
+      "parentUuid": "bf5fde4e_578925b3",
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd8a1c7e_8fe9fd32",
         "filename": "system/bta/dm/bta_dm_pm.cc",
         "patchSetId": 6
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "Removing is_denylisted_for_call as we are discarding the chnage for INTEROP_DISABLE_SNIFF_DURING_CALL.",
       "parentUuid": "cd8a1c7e_8fe9fd32",
+      "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15281361_19543d70",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-19T21:59:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "321dd450_f78e931b",
       "revId": "f9d522f98a93decf81d5c00a9b920c6389eb966f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
