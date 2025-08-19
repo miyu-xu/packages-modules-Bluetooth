@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f71bf03_046df28a",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 8
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-08-19T22:00:21Z",
+      "side": 1,
+      "message": "please remove the Name based entry for now",
+      "fixSuggestions": [
+        {
+          "fixId": "52f24304_1d2a9c32",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/conf/interop_database.conf",
+              "range": {
+                "startLine": 627,
+                "startChar": 0,
+                "endLine": 628,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d24d6225605110db965035b0ecfe779cc566dc37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
