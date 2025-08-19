@@ -141,6 +141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04b1f523_d0d0bc2c",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-19T08:51:20Z",
+      "side": 1,
+      "message": "Marked as unresolved.",
+      "parentUuid": "181e7a1e_ecfbacb6",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 30
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c95e88b_27a00e7c",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
