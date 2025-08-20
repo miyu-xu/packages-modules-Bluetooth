@@ -70,6 +70,24 @@
       "parentUuid": "4e4ef0ce_b5028c59",
       "revId": "537169fbe321a9845434044a2479b35b11e247b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b0bc6a_f6333ed5",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 1344513
+      },
+      "writtenOn": "2025-08-20T17:24:49Z",
+      "side": 1,
+      "message": "So we understand that CVSD is mandatory but we believe in the HCI_Connection_Request, it specifies a codec.  So we think that codec should be used instead of just hardcoding CVSD",
+      "parentUuid": "8389a85a_c49b1789",
+      "revId": "537169fbe321a9845434044a2479b35b11e247b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
