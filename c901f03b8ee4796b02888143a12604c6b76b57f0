@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e2918c8_78f4d2f7",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-08-20T08:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d75569c2_a317f836",
+      "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b0d3dbe_dcdab783",
@@ -67,6 +85,24 @@
           ]
         }
       ],
+      "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85ba5961_2c4b8d4e",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-08-20T08:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b0d3dbe_dcdab783",
       "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -142,6 +178,24 @@
           ]
         }
       ],
+      "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a1b7b3f_de746587",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-08-20T08:52:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6fdc9a0_fe446f42",
       "revId": "c901f03b8ee4796b02888143a12604c6b76b57f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
