@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d52e4edd_57e07431",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5356704a_61ce446f",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 59
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfd04fdc_02969f7a",
@@ -167,6 +191,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5dd4c37_b7fe3687",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b91d9050_38b80eb0",
+      "range": {
+        "startLine": 85,
+        "startChar": 11,
+        "endLine": 85,
+        "endChar": 22
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46b75002_0c8e0bdb",
@@ -190,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f728ed_5b9a2212",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46b75002_0c8e0bdb",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 10
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90271973_48b79042",
@@ -203,6 +275,30 @@
       "writtenOn": "2025-06-17T00:35:17Z",
       "side": 1,
       "message": "This can be simplified as:\n\n```suggestion\n  AudioContext current_context \u003d AudioContext::MEDIA;\n  int current_priority \u003d AudioContextPriority::MEDIA;\n  for (const auto\u0026 track: source_metadata.tracks) {\n    audio_usage_t usage \u003d static_cast\u003caudio_usage_t\u003e(track.usage);\n    AudioContext context \u003d audioUsageToAudioContext(usage);\n    int priority \u003d audioContextPriority(context);\n    \n    if (priority \u003e current_priority) {\n        current_context \u003d context;\n        current_priority \u003d priority;\n    }\n  }\n```",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 3
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65776e8_08157703",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90271973_48b79042",
       "range": {
         "startLine": 170,
         "startChar": 0,
@@ -250,6 +346,30 @@
           ]
         }
       ],
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f224f52_4c7c41f6",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 4149,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:54:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baa20e43_eb3228e8",
+      "range": {
+        "startLine": 4149,
+        "startChar": 28,
+        "endLine": 4149,
+        "endChar": 43
+      },
       "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
