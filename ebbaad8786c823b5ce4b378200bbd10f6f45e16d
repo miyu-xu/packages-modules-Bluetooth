@@ -94,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f83a51fc_6eb0e289",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfd04fdc_02969f7a",
+      "range": {
+        "startLine": 35,
+        "startChar": 5,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81b9a7f1_b6d386d3",
@@ -117,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c71f4534_38caa2d6",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81b9a7f1_b6d386d3",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 39
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ed2e509_e1383511",
@@ -130,6 +178,30 @@
       "writtenOn": "2025-06-17T00:40:46Z",
       "side": 1,
       "message": "The source_type is always DEFAULT, you might as well remove this parameter entirely",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 3
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db68be3b_fae113d9",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-08-20T18:57:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ed2e509_e1383511",
       "range": {
         "startLine": 71,
         "startChar": 0,
