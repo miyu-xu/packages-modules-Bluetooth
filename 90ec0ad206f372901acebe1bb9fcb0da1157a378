@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc35cb6_8cfef1b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5783,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-08-21T11:24:34Z",
+      "side": 1,
+      "message": "nit: a little rearranged\n```\nLog.i(TAG, \"disconnectAllEnabledProfiles: Disconnecting A2dp\");\n// All below could be a function call\nif (mA2dpService !\u003d null\n        \u0026\u0026 (mA2dpService.getConnectionState(device) \u003d\u003d BluetoothProfile.STATE_CONNECTED\n                || mA2dpService.getConnectionState(device)\n                        \u003d\u003d BluetoothProfile.STATE_CONNECTING)) {\n    Log.d(\n            TAG,\n            \"Call and Ringing Status are:\"\n                    + mHeadsetService.isInCall()\n                    + \"\"\n                    + mHeadsetService.isRinging());\n    if (isDelayA2dpDiscDevice(device)\n            \u0026\u0026 mHeadsetService !\u003d null\n            \u0026\u0026 (mHeadsetService.isInCall() || mHeadsetService.isRinging())) {\n        Log.i(\n                TAG,\n                \"isDelayA2dpDiscDevice post a delayed message to disconnect A2DP service\");\n        mHandler.postDelayed(\n                () -\u003e {\n                    if (mA2dpService !\u003d null) {\n                        mA2dpService.disconnect(device);\n                    }\n                },\n                400);\n    } else {\n        mA2dpService.disconnect(device);\n    }\n}\n```",
+      "range": {
+        "startLine": 5766,
+        "startChar": 0,
+        "endLine": 5783,
+        "endChar": 9
+      },
+      "revId": "90ec0ad206f372901acebe1bb9fcb0da1157a378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee51c37b_f10863fc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 5783,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-08-21T11:24:34Z",
+      "side": 1,
+      "message": "Maybe we could pack it into a separate function and call it here instead? This might help simplify the disconnectAllEnabledProfiles function.",
+      "range": {
+        "startLine": 5763,
+        "startChar": 0,
+        "endLine": 5783,
+        "endChar": 9
+      },
+      "revId": "90ec0ad206f372901acebe1bb9fcb0da1157a378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d38bcc3_5cecce31",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2333,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-08-21T11:24:34Z",
+      "side": 1,
+      "message": "To not duplicate logs this should be removed",
+      "range": {
+        "startLine": 2333,
+        "startChar": 0,
+        "endLine": 2333,
+        "endChar": 47
+      },
+      "revId": "90ec0ad206f372901acebe1bb9fcb0da1157a378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "500ea704_94479077",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2339,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2025-08-21T11:24:34Z",
+      "side": 1,
+      "message": "To not duplicate logs this should be removed",
+      "range": {
+        "startLine": 2339,
+        "startChar": 0,
+        "endLine": 2339,
+        "endChar": 47
+      },
+      "revId": "90ec0ad206f372901acebe1bb9fcb0da1157a378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
