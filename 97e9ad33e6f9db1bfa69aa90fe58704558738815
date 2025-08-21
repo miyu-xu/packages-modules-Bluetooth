@@ -260,6 +260,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1cd1b35_fabdfbb8",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:01:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "87a312a0_00b575c4",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 84
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55694797_7163d9c6",
@@ -503,6 +527,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f390a7eb_c4a7ed75",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2456,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:01:14Z",
+      "side": 1,
+      "message": "Ack.\n\nI think it makes sense then to pass the audio_context value rather than the is_gaming_mode flag in `btif_av_update_source_metadata`.",
+      "parentUuid": "55da19dd_84126e39",
+      "range": {
+        "startLine": 2455,
+        "startChar": 33,
+        "endLine": 2456,
+        "endChar": 72
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ad893ec_561cfee5",
         "filename": "system/include/hardware/bt_av.h",
         "patchSetId": 9
@@ -658,6 +706,30 @@
       "side": 1,
       "message": "Sorry I didn\u0027t get it.\nIs it for \nbtav_a2dp_scmst_enable_status_t enable_status -\u003e bool enable_status??\nI think we can make it, but we shouldn\u0027t as part of this change as it doesn\u0027t go well with title of the change.\nStill let me know if I should make OR not.\nBased on your update I will prepare required change for SCMS-T",
       "parentUuid": "77a9efe8_755f566b",
+      "range": {
+        "startLine": 184,
+        "startChar": 34,
+        "endLine": 184,
+        "endChar": 47
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb2997a6_a75a8521",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:01:14Z",
+      "side": 1,
+      "message": "I was still referring to the audio_context field. Closed the other comment to avoid further confusion.\n\n\u003e btav_a2dp_codec_config_t codec_config \u003d current_codec-\u003egetCodecConfig();\n\u003e codec_config.audio_context \u003d audio_context_type;\n\nI don\u0027t see this pattern occurring in the patch. Where exactly is this ?\n\nI am not proposing to remove the audio_context, but pass it as additional parameter to get_a2dp_configuration.",
+      "parentUuid": "a885cdd1_065e1e3d",
       "range": {
         "startLine": 184,
         "startChar": 34,
