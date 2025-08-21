@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92aed7bf_b5aca104",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 5747,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T13:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1a83d26_e4e6cc70",
+      "range": {
+        "startLine": 5747,
+        "startChar": 0,
+        "endLine": 5747,
+        "endChar": 45
+      },
+      "revId": "bb192fe1105d8854339afc396bf80dba9ca8778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f8e7e7c_2b6a55f0",
@@ -37,6 +61,30 @@
       "writtenOn": "2025-08-21T12:52:43Z",
       "side": 1,
       "message": "unnecessary, please remove",
+      "range": {
+        "startLine": 5801,
+        "startChar": 0,
+        "endLine": 5802,
+        "endChar": 43
+      },
+      "revId": "bb192fe1105d8854339afc396bf80dba9ca8778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "450414f7_69cf3c65",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 5802,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T13:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f8e7e7c_2b6a55f0",
       "range": {
         "startLine": 5801,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39dee23c_fc73011b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2333,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T13:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56bb3a1_0a7b8e9b",
+      "range": {
+        "startLine": 2332,
+        "startChar": 8,
+        "endLine": 2333,
+        "endChar": 30
+      },
+      "revId": "bb192fe1105d8854339afc396bf80dba9ca8778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fd64739_a3fa709b",
@@ -83,6 +155,30 @@
       "writtenOn": "2025-08-21T12:52:43Z",
       "side": 1,
       "message": "return mSystemInterface.isRinging();",
+      "range": {
+        "startLine": 2337,
+        "startChar": 8,
+        "endLine": 2338,
+        "endChar": 29
+      },
+      "revId": "bb192fe1105d8854339afc396bf80dba9ca8778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed37f5d8_dc5265d5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2338,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T13:20:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fd64739_a3fa709b",
       "range": {
         "startLine": 2337,
         "startChar": 8,
