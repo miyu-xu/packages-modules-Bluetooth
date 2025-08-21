@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4474d197_5e7dfda4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2333,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d38bcc3_5cecce31",
+      "range": {
+        "startLine": 2333,
+        "startChar": 0,
+        "endLine": 2333,
+        "endChar": 47
+      },
+      "revId": "90ec0ad206f372901acebe1bb9fcb0da1157a378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "500ea704_94479077",
@@ -131,6 +155,30 @@
       "writtenOn": "2025-08-21T11:24:34Z",
       "side": 1,
       "message": "To not duplicate logs this should be removed",
+      "range": {
+        "startLine": 2339,
+        "startChar": 0,
+        "endLine": 2339,
+        "endChar": 47
+      },
+      "revId": "90ec0ad206f372901acebe1bb9fcb0da1157a378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16dafdb5_6f0fc2d4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2339,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "500ea704_94479077",
       "range": {
         "startLine": 2339,
         "startChar": 0,
