@@ -1181,6 +1181,8 @@ static void bta_hh_le_close(const tBTA_GATTC_CLOSE& gattc_data) {
     return;
   }
 
+  bta_hh_le_remove_dev_bg_conn(p_cb);
+
   if (p_cb->hid_srvc.state == BTA_HH_SERVICE_CHANGED) {
     /* Service change would have already prompted a local disconnection */
     log::warn("Disconnected after service changed indication:{}", gattc_data.remote_bda);

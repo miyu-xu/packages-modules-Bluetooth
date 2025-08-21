@@ -581,7 +581,7 @@ public:
     }
     connections.crash_on_unknown_handle_ = event_also_routes_to_other_receivers;
 
-    if (background_connections_.count(remote_address) == 1) {
+    if ((background_connections_.count(remote_address) == 1) && (!com::android::bluetooth::flags::hogp_reconnection())) {
       log::info("re-add device to accept list");
       arm_on_resume_ = true;
       add_device_to_accept_list(remote_address);
