@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e9b26f3_f5a352c5",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T12:56:47Z",
+      "side": 0,
+      "message": "I think my above suggestion might be a hacky way to do this, but please let me know if you have any suggestion.",
+      "parentUuid": "4cd235b2_a7591e26",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 12
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a85c7fa2_b9d13a59",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
