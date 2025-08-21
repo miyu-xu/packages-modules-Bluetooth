@@ -16,6 +16,24 @@
       "message": "This CL does not change anything, as this check is done in the function in client.cc, where is the only place where AttachToStream function is called.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3583?q\u003dle_audio%2Fclient.cc\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain",
       "revId": "489b14cea292268134da32d391d7e49c80116b25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "667a67d7_eb588283",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 3602737
+      },
+      "writtenOn": "2025-08-21T03:49:54Z",
+      "side": 1,
+      "message": "yes they are same. But sometimes, device disconnection happened as timing issue.  line3583 and using this change. Because with this change, it will schedule a retry design when it returns false here. It makes \n\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3653",
+      "parentUuid": "2d31d5a3_a26e3623",
+      "revId": "489b14cea292268134da32d391d7e49c80116b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
