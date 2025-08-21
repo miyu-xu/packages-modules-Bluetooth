@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "402e5d8d_1986d9b4",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:12:56Z",
+      "side": 0,
+      "message": "I prefer this approach.\nWe can call `A2DP_AdjustBitpool` before `A2DP_BuildInfoSbc` most of the time.\n\nNote that in `A2DP_InitCodecConfigSbc`, `A2DP_InitCodecConfigSbcSink` we don\u0027t need to adjust the bitpools, the default configuration is expected to be correct.",
+      "parentUuid": "0e9b26f3_f5a352c5",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 12
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a85c7fa2_b9d13a59",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8

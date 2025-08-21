@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e591cb4f_5988fa78",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:12:56Z",
+      "side": 1,
+      "message": "These checks are expected to pass after adjusting the bitpools, no ?",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f23206f1_683f0106",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 249,
+                "startChar": 0,
+                "endLine": 258,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "394e5a5a80f631bd0bf792f461a0ea88c270016d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494cd2d0_ff6ec7c1",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:12:56Z",
+      "side": 1,
+      "message": "`A2DP_ParseInfoSbc` is now adjusting the bitpool values, I don\u0027t think that the checks below are necessary anymore.",
+      "range": {
+        "startLine": 805,
+        "startChar": 6,
+        "endLine": 805,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d43e872c_37c22e47",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 815,
+                "startChar": 0,
+                "endLine": 822,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "394e5a5a80f631bd0bf792f461a0ea88c270016d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

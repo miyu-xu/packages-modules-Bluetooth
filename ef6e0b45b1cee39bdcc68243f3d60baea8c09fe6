@@ -235,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8f9f43_73e726c9",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-21T23:12:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2568fec5_8e76f2c4",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 30
+      },
+      "revId": "ef6e0b45b1cee39bdcc68243f3d60baea8c09fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c95e88b_27a00e7c",
