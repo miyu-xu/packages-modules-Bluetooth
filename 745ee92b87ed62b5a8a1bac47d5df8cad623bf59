@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cd235b2_a7591e26",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-21T08:28:07Z",
+      "side": 0,
+      "message": "Since we want to alter the value of p_ie,\nwhat if we do something like this:\n\nIn A2DP_BuildInfoSbc:\n\n// Create a temporary variable p_ie_temp\ntA2DP_SBC_CIE p_ie_temp \u003d *p_ie;\n//Make adjustments in p_ie_temp\nA2DP_AdjustBitpool(\u0026p_ie_temp);\n\nUse those changes in p_ie_temp to update p_result.\nUsing above approach, we can retain const specifier too.\n\nPlease let me know your thoughts.",
+      "parentUuid": "c53a3aaa_b015313b",
+      "range": {
+        "startLine": 67,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 12
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a85c7fa2_b9d13a59",
         "filename": "system/stack/a2dp/a2dp_sbc.cc",
         "patchSetId": 8
