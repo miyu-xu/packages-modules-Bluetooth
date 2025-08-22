@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5761f476_3ced55d2",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-22T21:35:41Z",
+      "side": 1,
+      "message": "I was suggesting to invoke A2DP_AdjustBitpool in the caller before A2DP_BuildInfoSbc",
+      "range": {
+        "startLine": 182,
+        "startChar": 2,
+        "endLine": 182,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a69ba24f_07ea460b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 181,
+                "startChar": 0,
+                "endLine": 183,
+                "endChar": 0
+              },
+              "replacement": "  A2DP_AdjustBitpool(p_ie);\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 184,
+                "startChar": 0,
+                "endLine": 189,
+                "endChar": 0
+              },
+              "replacement": "  if((p_ie-\u003emin_bitpool \u003e p_ie-\u003emax_bitpool) ||\n            (p_ie-\u003emin_bitpool \u003c A2DP_SBC_IE_MIN_BITPOOL) ||\n            (p_ie-\u003emin_bitpool \u003e A2DP_SBC_IE_MAX_BITPOOL) ||\n            (p_ie-\u003emax_bitpool \u003c A2DP_SBC_IE_MIN_BITPOOL) ||\n            (p_ie-\u003emax_bitpool \u003e A2DP_SBC_IE_MAX_BITPOOL)) {\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 190,
+                "startChar": 0,
+                "endLine": 191,
+                "endChar": 0
+              },
+              "replacement": "                    p_ie-\u003emin_bitpool, p_ie-\u003emax_bitpool);\n"
+            },
+            {
+              "path": "system/stack/a2dp/a2dp_sbc.cc",
+              "range": {
+                "startLine": 203,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": "  *p_result++ \u003d p_ie-\u003emin_bitpool;\n  *p_result \u003d p_ie-\u003emax_bitpool;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f7ea0eb437e7403b0d96df9375ad5204ef51b8eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
