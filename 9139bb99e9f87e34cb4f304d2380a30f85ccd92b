@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f4f5db9_a31bd354",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 9
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1937796
+      },
+      "writtenOn": "2025-08-25T08:03:52Z",
+      "side": 1,
+      "message": "Please, could you check on this? Any particular reason, Why are you using dashes instead of colons?\n\nThanks,",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "55f65a9c_62678612",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/conf/interop_database.conf",
+              "range": {
+                "startLine": 83,
+                "startChar": 0,
+                "endLine": 85,
+                "endChar": 0
+              },
+              "replacement": "B4:C1:70 \u003d Address_Based\n6C:5D:63 \u003d Address_Based\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9139bb99e9f87e34cb4f304d2380a30f85ccd92b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
