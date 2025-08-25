@@ -70,6 +70,30 @@
       ],
       "revId": "f7ea0eb437e7403b0d96df9375ad5204ef51b8eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dba82940_9178b932",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1971855
+      },
+      "writtenOn": "2025-08-25T10:30:49Z",
+      "side": 1,
+      "message": "Sorry I misunderstood with the comment on buganizer :)",
+      "parentUuid": "5761f476_3ced55d2",
+      "range": {
+        "startLine": 182,
+        "startChar": 2,
+        "endLine": 182,
+        "endChar": 20
+      },
+      "revId": "f7ea0eb437e7403b0d96df9375ad5204ef51b8eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
