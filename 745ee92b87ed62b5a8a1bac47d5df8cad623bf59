@@ -308,6 +308,29 @@
       },
       "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8d0295d_628b1dbf",
+        "filename": "system/stack/a2dp/a2dp_sbc.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2025-08-26T00:09:53Z",
+      "side": 0,
+      "message": "I will be keeping these checks when doing the cherry-pick; that\u0027s a good way to ensure we have correctly updated bitpool values.",
+      "range": {
+        "startLine": 146,
+        "startChar": 54,
+        "endLine": 150,
+        "endChar": 54
+      },
+      "revId": "745ee92b87ed62b5a8a1bac47d5df8cad623bf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
