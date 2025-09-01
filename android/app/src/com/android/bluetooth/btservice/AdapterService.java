@@ -2489,6 +2489,11 @@ public class AdapterService extends Service {
                 return false;
             }
 
+            if (service.mAdapterProperties.isDiscovering()) {
+                Log.i(TAG,"discovery already active, ignore startDiscovery");
+                return false;
+            }
+
             Log.i(TAG, "startDiscovery: from " + Utils.getUidPidString());
             return service.startDiscovery(source);
         }
@@ -2503,6 +2508,10 @@ public class AdapterService extends Service {
                 return false;
             }
 
+            if (!service.mAdapterProperties.isDiscovering()) {
+                Log.i(TAG,"discovery not active, ignore cancelDiscovery");
+                return false;
+            }
             Log.i(TAG, "cancelDiscovery: from " + Utils.getUidPidString());
             return service.mNativeInterface.cancelDiscovery();
         }
