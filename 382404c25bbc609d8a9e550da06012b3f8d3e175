@@ -1,0 +1,133 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94b53db2_80b8fb96",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-09-04T07:10:51Z",
+      "side": 1,
+      "message": "Concurrency Bug Due to Shared State: The variables proc_start_timestampMs and curr_proc_complete_timestampMs appear to be member variables of the distance_measurement_manager. If this manager handles multiple ranging procedures for different Bluetooth connections at the same time, this will not work correctly. One procedure\u0027s start time will be overwritten by another\u0027s, leading to completely wrong duration calculations.\n\nFix: The start timestamp should not be a member of the manager. It must be stored in a structure that is unique to each procedure, such as the procedure_data or live_tracker object.",
+      "fixSuggestions": [
+        {
+          "fixId": "b255d5cb_0e80f0ec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 90,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 226,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": "    long long proc_start_timestampMs;\n    long long curr_proc_complete_timestampMs;\n"
+            },
+            {
+              "path": "system/gd/hci/distance_measurement_manager.cc",
+              "range": {
+                "startLine": 1319,
+                "startChar": 0,
+                "endLine": 1320,
+                "endChar": 0
+              },
+              "replacement": "      live_tracker-\u003eproc_start_timestampMs \u003d tv.tv_sec * 1e6 * 1ll + tv.tv_usec * 1ll;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c9cbd52_316f9603",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-09-04T07:10:51Z",
+      "side": 1,
+      "message": "Incorrect Clock Source: The code uses gettimeofday(), which measures wall-clock time. This clock is not suitable for measuring elapsed time because it\u0027s not monotonic. It can jump forwards or backwards if the user changes the system time or due to network time synchronization (NTP). This can lead to incorrect or even negative durations.\n\nFix: You must use a monotonic clock for measuring durations. The standard modern C++ solution is std::chrono::steady_clock.",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a5f788f_d490627e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-09-04T07:10:51Z",
+      "side": 1,
+      "message": "Misleading Variable Names: The variable names end with Ms (milliseconds), but the calculation (tv.tv_sec*1e6*1ll + tv.tv_usec*1ll) stores time in microseconds. This is confusing and error-prone.\n\nFix: Rename the variables to reflect their actual units, for example, proc_start_timestamp_us.",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40904f9d_0da1b539",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2119,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-09-04T07:10:51Z",
+      "side": 1,
+      "message": "Magic Numbers and Casting: The code uses magic numbers like 1e6 (a double) and 1000, along with a C-style cast to (long). This can lead to subtle floating-point precision issues and potential data truncation if the duration exceeds the capacity of a long.\n\nFix: Using std::chrono (as suggested above) completely eliminates the need for manual conversions and magic numbers.",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9015a5_3212b809",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2120,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2025-09-04T07:10:51Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see h...\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nTo rerun the analyzer locally, run: `alint -- -c CheckContents`\n\nFor more information, see go/alint.",
+      "range": {
+        "startLine": 2120,
+        "startChar": 0,
+        "endLine": 2120,
+        "endChar": 158
+      },
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
