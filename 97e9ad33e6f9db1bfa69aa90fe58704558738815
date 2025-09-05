@@ -549,6 +549,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "828e222e_1f9f4287",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2456,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-09-05T13:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f390a7eb_c4a7ed75",
+      "range": {
+        "startLine": 2455,
+        "startChar": 33,
+        "endLine": 2456,
+        "endChar": 72
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ad893ec_561cfee5",
@@ -730,6 +754,30 @@
       "side": 1,
       "message": "I was still referring to the audio_context field. Closed the other comment to avoid further confusion.\n\n\u003e btav_a2dp_codec_config_t codec_config \u003d current_codec-\u003egetCodecConfig();\n\u003e codec_config.audio_context \u003d audio_context_type;\n\nI don\u0027t see this pattern occurring in the patch. Where exactly is this ?\n\nI am not proposing to remove the audio_context, but pass it as additional parameter to get_a2dp_configuration.",
       "parentUuid": "a885cdd1_065e1e3d",
+      "range": {
+        "startLine": 184,
+        "startChar": 34,
+        "endLine": 184,
+        "endChar": 47
+      },
+      "revId": "97e9ad33e6f9db1bfa69aa90fe58704558738815",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb623b6_f86fb0bc",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-09-05T13:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb2997a6_a75a8521",
       "range": {
         "startLine": 184,
         "startChar": 34,

@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a44ea808_93eee2b3",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2025-09-05T13:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0629563d_42e63d35",
+      "range": {
+        "startLine": 59,
+        "startChar": 17,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "ebbaad8786c823b5ce4b378200bbd10f6f45e16d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfd04fdc_02969f7a",
