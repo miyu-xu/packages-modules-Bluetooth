@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f43ba266_d79dcf69",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-09T20:36:20Z",
+      "side": 1,
+      "message": "shouldn\u0027t we clear the requests_ here?",
+      "fixSuggestions": [
+        {
+          "fixId": "8f8b4c34_e91e7313",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "    requests_.clear();\n    on_remote_host_supported_features_notification_ \u003d RemoteHostSupportedFeaturesCallback();\n    on_remote_name_complete_ \u003d RemoteNameCallback();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21fa83a_b42b5d68",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-09T20:36:20Z",
+      "side": 1,
+      "message": "previously this assert was used to make sure that host does not receive unexpected event. Now with this change this can happen. e.g. when Controller sends 2 Events but Host expect one.\n\n\nMaybe instead of this check, we should check if address is on the requests_t list, and if it is not, then log::error - otherwise proceed.",
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2960a614_27c90406",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-09T20:36:20Z",
+      "side": 1,
+      "message": "please also create a flag for the whole change.",
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
