@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "300df5ac_0c93a30b",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-12T08:28:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f43ba266_d79dcf69",
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c21fa83a_b42b5d68",
@@ -66,6 +84,24 @@
       "writtenOn": "2025-09-09T20:36:20Z",
       "side": 1,
       "message": "please also create a flag for the whole change.",
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4948322c_6c60879f",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-12T08:28:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2960a614_27c90406",
       "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
