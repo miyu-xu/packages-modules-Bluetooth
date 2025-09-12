@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29fee3c8_77c51506",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-12T08:36:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7b8e30d8_705b648b",
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2960a614_27c90406",
