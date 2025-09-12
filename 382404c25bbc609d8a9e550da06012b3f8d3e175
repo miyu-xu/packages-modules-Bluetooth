@@ -56,6 +56,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11c9dca1_40c7a4c0",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-09-12T08:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94b53db2_80b8fb96",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c9cbd52_316f9603",
@@ -69,6 +87,24 @@
       "writtenOn": "2025-09-04T07:10:51Z",
       "side": 1,
       "message": "Incorrect Clock Source: The code uses gettimeofday(), which measures wall-clock time. This clock is not suitable for measuring elapsed time because it\u0027s not monotonic. It can jump forwards or backwards if the user changes the system time or due to network time synchronization (NTP). This can lead to incorrect or even negative durations.\n\nFix: You must use a monotonic clock for measuring durations. The standard modern C++ solution is std::chrono::steady_clock.",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "084c34a5_b8bf19c5",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-09-12T08:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c9cbd52_316f9603",
       "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -90,6 +126,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b60b91e9_b4623c61",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-09-12T08:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a5f788f_d490627e",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40904f9d_0da1b539",
@@ -107,6 +161,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe17befb_71a4c8e6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2119,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-09-12T08:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40904f9d_0da1b539",
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d9015a5_3212b809",
@@ -120,6 +192,30 @@
       "writtenOn": "2025-09-04T07:10:51Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see h...\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nTo rerun the analyzer locally, run: `alint -- -c CheckContents`\n\nFor more information, see go/alint.",
+      "range": {
+        "startLine": 2120,
+        "startChar": 0,
+        "endLine": 2120,
+        "endChar": 158
+      },
+      "revId": "382404c25bbc609d8a9e550da06012b3f8d3e175",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "382fb721_2f8d5833",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2120,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2025-09-12T08:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d9015a5_3212b809",
       "range": {
         "startLine": 2120,
         "startChar": 0,
