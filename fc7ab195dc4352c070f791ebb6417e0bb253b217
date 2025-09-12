@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b8e30d8_705b648b",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-12T08:35:07Z",
+      "side": 1,
+      "message": "Here the condition requests_.count(address) \u003e 0 means that the device address is in the requests_ list. Is it right",
+      "parentUuid": "c21fa83a_b42b5d68",
+      "revId": "fc7ab195dc4352c070f791ebb6417e0bb253b217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2960a614_27c90406",
         "filename": "system/gd/hci/remote_name_request.cc",
         "patchSetId": 1
