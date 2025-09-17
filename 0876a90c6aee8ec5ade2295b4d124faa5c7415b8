@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9fadec4_c61a0180",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:22:18Z",
+      "side": 1,
+      "message": "please change topic to:\n\nflags: Add rnr_multiple_name_request flag",
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1697a04_02d5446b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:22:18Z",
+      "side": 1,
+      "message": "for the flag please use \n\nBug: 445714747\nBug: 315241296\n\nthe second bug is a common bug for all the flags and it help us to get DrNo vote.",
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf117ddd_455c6ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:22:18Z",
+      "side": 1,
+      "message": "Thank you for adding flag. Couple of minor comments.",
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a86032_e539fea4",
+        "filename": "flags/rnr.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:22:18Z",
+      "side": 1,
+      "message": "I created for you flag issue: PLease use here: 445714747",
+      "range": {
+        "startLine": 38,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "477e0076_ec703b2a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "flags/rnr.aconfig",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "    bug: \"445714747\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
