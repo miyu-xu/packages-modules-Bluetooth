@@ -1,0 +1,126 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca70a178_ea3973a9",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-09-17T12:01:19Z",
+      "side": 1,
+      "message": "I think this could be identified by:\ngroup-\u003eIsPendingConfiguration() and GroupStreamStatus::SUSPENDING\n\nwouldn\u0027t this be enough ?",
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b3015a9_0524667a",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-09-17T12:01:19Z",
+      "side": 1,
+      "message": "I don\u0027t think that this log is useful - from my experience it\u0027s spammy and don\u0027t give any context while bug analyses.",
+      "fixSuggestions": [
+        {
+          "fixId": "23f5401b_fec7927d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/device_groups.h",
+              "range": {
+                "startLine": 254,
+                "startChar": 0,
+                "endLine": 255,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc74d45c_55620d45",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-09-17T12:01:19Z",
+      "side": 1,
+      "message": "I don\u0027t think that this log is useful - from my experience it\u0027s spammy and don\u0027t give any context while bug analyses.",
+      "fixSuggestions": [
+        {
+          "fixId": "89ac1ac7_e6ec09fa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/device_groups.h",
+              "range": {
+                "startLine": 274,
+                "startChar": 0,
+                "endLine": 275,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d679109b_d87f55e4",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-09-17T12:01:19Z",
+      "side": 1,
+      "message": "I don\u0027t think that this log is useful - from my experience it\u0027s spammy and don\u0027t give any context while bug analyses.",
+      "fixSuggestions": [
+        {
+          "fixId": "2ccae428_be983bf3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.cc",
+              "range": {
+                "startLine": 484,
+                "startChar": 0,
+                "endLine": 485,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
