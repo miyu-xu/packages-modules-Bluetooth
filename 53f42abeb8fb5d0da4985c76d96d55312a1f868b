@@ -1,0 +1,247 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd53631_bd577fc5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:31:23Z",
+      "side": 1,
+      "message": "please also add \n\nBug: 445714747\n\nwhich is indicating Flag issue.\n\nAdd also \n\nFlag: com.android.bluetooth.flags.rnr_multiple_name_request\n\nFor the test please describe manual test you did.\n\nAlso add \n\nTest: mmm packages/modules/Bluetooth",
+      "revId": "53f42abeb8fb5d0da4985c76d96d55312a1f868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a34db419_3a091012",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:31:23Z",
+      "side": 1,
+      "message": "please change order of this CL and put it after FLAG CL",
+      "revId": "53f42abeb8fb5d0da4985c76d96d55312a1f868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4059a0e_1a09f8e4",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:31:23Z",
+      "side": 1,
+      "message": "do we really need this assert?\n\nimho with this it will not be possible to call remote name request multiple times, or I\u0027m missing something ?",
+      "revId": "53f42abeb8fb5d0da4985c76d96d55312a1f868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af3c484_64bda4aa",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:31:23Z",
+      "side": 1,
+      "message": "please change all flag calls with\n\ncom::android::bluetooth::flags::rnr_multiple_name_request() -\u003e com_android_bluetooth_flags_rnr_multiple_name_request()",
+      "range": {
+        "startLine": 146,
+        "startChar": 8,
+        "endLine": 146,
+        "endChar": 65
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "17707a32_212c4fba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "    if (com_android_bluetooth_flags_rnr_multiple_name_request()) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 98,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "    if ((com_android_bluetooth_flags_rnr_multiple_name_request() \u0026\u0026 requests_.count(address) \u003e 0) ||\n        pending_) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 104,
+                "startChar": 0,
+                "endLine": 105,
+                "endChar": 0
+              },
+              "replacement": "      if (com_android_bluetooth_flags_rnr_multiple_name_request()) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "    if (com_android_bluetooth_flags_rnr_multiple_name_request()) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 146,
+                "startChar": 0,
+                "endLine": 147,
+                "endChar": 0
+              },
+              "replacement": "    if (com_android_bluetooth_flags_rnr_multiple_name_request()) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 154,
+                "endChar": 0
+              },
+              "replacement": "    if (com_android_bluetooth_flags_rnr_multiple_name_request() \u0026\u0026 requests_.count(address) \u003d\u003d 0 ||\n        pending_ !\u003d true) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 164,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": "      if (com_android_bluetooth_flags_rnr_multiple_name_request()) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 174,
+                "startChar": 0,
+                "endLine": 176,
+                "endChar": 0
+              },
+              "replacement": "    if ((com_android_bluetooth_flags_rnr_multiple_name_request() \u0026\u0026 requests_.count(address) \u003e 0) ||\n        pending_) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 188,
+                "startChar": 0,
+                "endLine": 190,
+                "endChar": 0
+              },
+              "replacement": "    if (((com_android_bluetooth_flags_rnr_multiple_name_request() \u0026\u0026\n          requests_.count(packet.GetBdAddr()) \u003e 0) ||\n         pending_) \u0026\u0026\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 196,
+                "startChar": 0,
+                "endLine": 198,
+                "endChar": 0
+              },
+              "replacement": "    } else if ((com_android_bluetooth_flags_rnr_multiple_name_request() \u0026\u0026\n                requests_.count(packet.GetBdAddr()) \u003d\u003d 0) ||\n               !pending_) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 209,
+                "startChar": 0,
+                "endLine": 211,
+                "endChar": 0
+              },
+              "replacement": "    if ((com_android_bluetooth_flags_rnr_multiple_name_request() \u0026\u0026 requests_.count(address) \u003e 0) ||\n        pending_) {\n"
+            },
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 213,
+                "startChar": 0,
+                "endLine": 214,
+                "endChar": 0
+              },
+              "replacement": "      if (com_android_bluetooth_flags_rnr_multiple_name_request()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "53f42abeb8fb5d0da4985c76d96d55312a1f868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa91e96_3a49246a",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-17T18:31:23Z",
+      "side": 1,
+      "message": "if ((com::android::bluetooth::flags::rnr_multiple_name_request() \u0026\u0026 requests_.count(address) \u003d\u003d 0) || pending_ !\u003d true)\n \n ?",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 58
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7a558504_5b3f05ec",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/remote_name_request.cc",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 154,
+                "endChar": 0
+              },
+              "replacement": "    if ((com::android::bluetooth::flags::rnr_multiple_name_request() \u0026\u0026\n         requests_.count(address) \u003d\u003d 0) ||\n        pending_ !\u003d true) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "53f42abeb8fb5d0da4985c76d96d55312a1f868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
