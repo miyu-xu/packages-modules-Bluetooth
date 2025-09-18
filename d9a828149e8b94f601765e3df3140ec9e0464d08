@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13891ef1_bab3c38c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1510,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2025-09-18T17:45:46Z",
+      "side": 1,
+      "message": "We have this change in our internal branch already. It will be merged to AOSP soon when the next release is out.",
+      "revId": "d9a828149e8b94f601765e3df3140ec9e0464d08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
