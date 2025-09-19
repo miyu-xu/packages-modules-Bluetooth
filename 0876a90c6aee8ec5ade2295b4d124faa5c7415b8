@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e6d4e6_97d9921f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-19T02:48:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9fadec4_c61a0180",
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1697a04_02d5446b",
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T18:22:18Z",
       "side": 1,
       "message": "for the flag please use \n\nBug: 445714747\nBug: 315241296\n\nthe second bug is a common bug for all the flags and it help us to get DrNo vote.",
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02a5d843_2ced8543",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-19T02:48:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1697a04_02d5446b",
       "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -89,6 +125,30 @@
           ]
         }
       ],
+      "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b9e4f9d_81b98274",
+        "filename": "flags/rnr.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-19T02:48:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29a86032_e539fea4",
+      "range": {
+        "startLine": 38,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 19
+      },
       "revId": "0876a90c6aee8ec5ade2295b4d124faa5c7415b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
