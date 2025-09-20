@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05435113_86479bdf",
+        "filename": "system/audio_hal_interface/aidl/a2dp/bluetooth_audio_port_impl.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-20T18:59:14Z",
+      "side": 1,
+      "message": "```suggestion\nstatic btav_a2dp_codec_audio_context_t audioUsageToAudioContext(audio_usage_t usage) {\n  switch (usage) {\n    case AUDIO_USAGE_MEDIA:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_MEDIA;\n\n    case AUDIO_USAGE_VOICE_COMMUNICATION:\n    case AUDIO_USAGE_CALL_ASSISTANT:\n    case AUDIO_USAGE_NOTIFICATION_TELEPHONY_RINGTONE:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_CONVERSATIONAL;\n\n    case AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_VOICE_ASSISTANTS;\n\n    case AUDIO_USAGE_ASSISTANCE_SONIFICATION:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_SOUND_EFFECTS;\n\n    case AUDIO_USAGE_GAME:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_GAME;\n\n    case AUDIO_USAGE_NOTIFICATION:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_NOTIFICATIONS;\n\n    case AUDIO_USAGE_ALARM:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_ALERTS;\n\n    case AUDIO_USAGE_EMERGENCY:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_EMERGENCY_ALARM;\n\n    case AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE:\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_INSTRUCTIONAL;\n\n    default:\n      log::info(\"{}: Return Media when not in call by default\", __func__);\n      return BTAV_A2DP_CODEC_AUDIO_CONTEXT_MEDIA;\n  }\n}\n\n```",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 0
+      },
+      "revId": "7c6b9103472bd4414ba3695f72375152817ec101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3115e39_3d2f621b",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-20T18:59:14Z",
+      "side": 1,
+      "message": "nit: Generalized comment\n```suggestion\n * Update source metadata\n```",
+      "revId": "7c6b9103472bd4414ba3695f72375152817ec101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd90b392_53e90a83",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2458,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-20T18:59:14Z",
+      "side": 1,
+      "message": "```suggestion\n      log::info(\"Low latency mode change: old\u003d{}, new\u003d{}, context\u003d{}\",\n           old_low_latency_set, new_low_latency_set, audio_context_type);\n```",
+      "range": {
+        "startLine": 2457,
+        "startChar": 0,
+        "endLine": 2458,
+        "endChar": 59
+      },
+      "revId": "7c6b9103472bd4414ba3695f72375152817ec101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be72dc4f_904d6691",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2724,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-20T18:59:14Z",
+      "side": 1,
+      "message": "```suggestion\n      log::info(\"Low latency mode change: old\u003d{}, new\u003d{}, context\u003d{}\",\n           old_low_latency_set, new_low_latency_set, audio_context_type);\n```",
+      "range": {
+        "startLine": 2723,
+        "startChar": 0,
+        "endLine": 2724,
+        "endChar": 59
+      },
+      "revId": "7c6b9103472bd4414ba3695f72375152817ec101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1b4eddd_8e429d1a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 4152,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-20T18:59:14Z",
+      "side": 1,
+      "message": "```suggestion\n  btif_av_set_latency_req_t set_latency_req{\n    .is_low_latency \u003d false,\n    .is_gaming_enabled \u003d is_gaming_enabled,\n};\n```",
+      "range": {
+        "startLine": 4150,
+        "startChar": 0,
+        "endLine": 4152,
+        "endChar": 56
+      },
+      "revId": "7c6b9103472bd4414ba3695f72375152817ec101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c89410aa_6020e18f",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-20T18:59:14Z",
+      "side": 1,
+      "message": "```suggestion\ntypedef enum : uint32_t {\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_UNSPECIFIED     \u003d 0x1 \u003c\u003c 0,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_CONVERSATIONAL  \u003d 0x1 \u003c\u003c 1,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_MEDIA           \u003d 0x1 \u003c\u003c 2,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_GAME            \u003d 0x1 \u003c\u003c 3,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_INSTRUCTIONAL   \u003d 0x1 \u003c\u003c 4,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_VOICE_ASSISTANTS\u003d 0x1 \u003c\u003c 5,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_LIVE_AUDIO      \u003d 0x1 \u003c\u003c 6,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_SOUND_EFFECTS   \u003d 0x1 \u003c\u003c 7,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_NOTIFICATIONS   \u003d 0x1 \u003c\u003c 8,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_RINGTONE_ALERTS \u003d 0x1 \u003c\u003c 9,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_ALERTS          \u003d 0x1 \u003c\u003c 10,\n  BTAV_A2DP_CODEC_AUDIO_CONTEXT_EMERGENCY_ALARM \u003d 0x1 \u003c\u003c 11,\n} btav_a2dp_codec_audio_context_t;\n```",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 34
+      },
+      "revId": "7c6b9103472bd4414ba3695f72375152817ec101",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
