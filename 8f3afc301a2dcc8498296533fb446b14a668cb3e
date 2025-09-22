@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7493de7_d6c22ad8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-22T16:22:46Z",
+      "side": 1,
+      "message": "I redo this CL so the BT native stack is design to always send ConfirmSuspendRequest, however code in audio_hal_client act differently based on the Property.\n\nag/35900105",
+      "revId": "8f3afc301a2dcc8498296533fb446b14a668cb3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2634d9de_9ca5c2be",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-22T16:22:46Z",
+      "side": 1,
+      "message": "not sure if PENDING Is a correct response all the time. Please check StartRequest function.\n\nI suggest to create SuspendRequestWithPending function which will be  called when sysprop is enabled and will behave similar to StartRequest",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8730a86a_48e0ef0b",
@@ -32,6 +49,111 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "8730a86a_48e0ef0b",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ddbfce5_31ee28da",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1859,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-22T16:22:46Z",
+      "side": 1,
+      "message": "can we please design this feature in the way that prop check is done only in le_audio_software_aidl.cc?\n\n[edit]\nI did it on my own ag/35900105",
+      "fixSuggestions": [
+        {
+          "fixId": "da73375c_3a030fcc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 1672,
+                "startChar": 0,
+                "endLine": 1674,
+                "endChar": 0
+              },
+              "replacement": "    if (!sho_synchronization_ || !defer_notify_inactive_until_stop_) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 1737,
+                "startChar": 0,
+                "endLine": 1738,
+                "endChar": 0
+              },
+              "replacement": "      if (sho_synchronization_) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 1859,
+                "startChar": 0,
+                "endLine": 1861,
+                "endChar": 0
+              },
+              "replacement": "      if (sho_synchronization_ \u0026\u0026 prev_group \u0026\u0026 !prev_group-\u003eIsReleasingOrIdle()) {\n"
+            },
+            {
+              "path": "system/bta/le_audio/client.cc",
+              "range": {
+                "startLine": 1883,
+                "startChar": 0,
+                "endLine": 1884,
+                "endChar": 0
+              },
+              "replacement": "    if (sho_synchronization_) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "829ae399_4ac142fd",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1860,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-22T16:22:46Z",
+      "side": 1,
+      "message": "why this is needed?\n\nwithout this change stack is sending SUSPENDED with RECONFIGURATION flag and when stream  is closed there will be SUSPENDED signal.\n\n\n[edit]\nI did it on my own ag/35900105",
+      "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d167c3_69ee7889",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1889,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2025-09-22T16:22:46Z",
+      "side": 1,
+      "message": "how this can happen?\n\n\n[edit]\nI provided new CL ag/35900105",
+      "range": {
+        "startLine": 1883,
+        "startChar": 3,
+        "endLine": 1889,
+        "endChar": 5
+      },
       "revId": "7a0832d1ce6c485c163aea01618a68f489420c73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
