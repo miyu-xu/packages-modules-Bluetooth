@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e356f8f_049a78bf",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2025-09-23T07:18:31Z",
+      "side": 1,
+      "message": "But for different BT addresses, we can request multiple times.",
+      "parentUuid": "017ca0c0_327294ef",
+      "revId": "53f42abeb8fb5d0da4985c76d96d55312a1f868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2af3c484_64bda4aa",
