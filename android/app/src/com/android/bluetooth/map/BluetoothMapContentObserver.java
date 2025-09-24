@@ -4255,6 +4255,9 @@ public class BluetoothMapContentObserver {
         if (mSmsBroadcastReceiver != null) {
             mSmsBroadcastReceiver.unregister();
         }
+        if (mCeBroadcastReceiver != null) {
+            mCeBroadcastReceiver.unregister();
+        }
         unRegisterPhoneServiceStateListener();
         if (mContext.getSystemService(UserManager.class).isUserUnlocked()) {
             failPendingMessages();
