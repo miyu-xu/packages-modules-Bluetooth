@@ -3823,6 +3823,10 @@ public class BluetoothMapContentObserver {
 
             if (msgInfo == null) {
                 Log.d(TAG, "onReceive: no msgInfo found for handle " + handle);
+                PendingIntent pI = PendingIntent.getBroadcast(context, (int)handle%10, intent, PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);
+                if (pI != null) {
+                    pI.cancel();
+                }
                 return;
             }
 
@@ -3846,7 +3850,7 @@ public class BluetoothMapContentObserver {
                                 + result);
 
                 if (msgInfo.partsSent == msgInfo.parts) {
-                    actionMessageSent(context, msgInfo, handle);
+                    actionMessageSent(context, intent, msgInfo, handle);
                 }
             } else if (action.equals(ACTION_MESSAGE_DELIVERY)) {
                 long timestamp = intent.getLongExtra(EXTRA_MESSAGE_SENT_TIMESTAMP, 0);
@@ -3858,11 +3862,15 @@ public class BluetoothMapContentObserver {
             }
         }
 
-        private void actionMessageSent(Context context, PushMsgInfo msgInfo, long handle) {
+        private void actionMessageSent(Context context, Intent intent, PushMsgInfo msgInfo, long handle) {
             /* As the MESSAGE_SENT intent is forwarded from the MAP service, we use the intent
              * to carry the result, as getResult() will not return the correct value.
              */
             boolean delete = false;
+            PendingIntent pI = PendingIntent.getBroadcast(context, (int)msgInfo.id%10, intent, PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);
+            if (pI != null) {
+                pI.cancel();
+            }
 
             Log.d(TAG, "actionMessageSent(): msgInfo.failedSent = " + msgInfo.failedSent);
 
