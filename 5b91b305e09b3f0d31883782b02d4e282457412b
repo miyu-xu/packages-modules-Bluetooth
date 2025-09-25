@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4881452_ed28ccd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-09-25T16:57:29Z",
+      "side": 1,
+      "message": "How does this fix port allocation?  Before and after this change, port_allocate_port loops through all of the ports, and returns nullptr if every port is in use.  Looks like all that changed is where we start the loop.",
+      "revId": "5b91b305e09b3f0d31883782b02d4e282457412b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
