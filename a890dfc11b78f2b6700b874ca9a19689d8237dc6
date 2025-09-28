@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92e1dd79_ffbc65ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-28T23:47:17Z",
+      "side": 1,
+      "message": "Minor nits. Rest all. LGTM!",
+      "revId": "a890dfc11b78f2b6700b874ca9a19689d8237dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daffff8d_c07e29b8",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3826,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-28T23:47:17Z",
+      "side": 1,
+      "message": "```suggestion\nint requestCode \u003d (int) (handle \u0026 0x7FFFFFFF); // keep it non-negative\n                PendingIntent pI \u003d PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);\n```",
+      "revId": "a890dfc11b78f2b6700b874ca9a19689d8237dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78be4596_fe2c080c",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3870,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-09-28T23:47:17Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "a890dfc11b78f2b6700b874ca9a19689d8237dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
