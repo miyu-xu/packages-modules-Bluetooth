@@ -80,7 +80,8 @@ class HidlHci : public HciBackend {
       common::StopWatch::DumpStopWatchLog();
       // At shutdown, sometimes the HAL service gets killed before Bluetooth.
       std::this_thread::sleep_for(std::chrono::seconds(1));
-      log::fatal("The Bluetooth HAL died.");
+      log::warn("The Bluetooth HAL died.");
+      kill(getpid(), SIGKILL);
     }
   };
 

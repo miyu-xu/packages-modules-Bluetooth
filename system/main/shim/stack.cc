@@ -53,6 +53,7 @@
 #include "os/system_properties.h"
 #include "os/wakelock_manager.h"
 #include "storage/storage_module.h"
+#include <signal.h>
 
 #if TARGET_FLOSS
 #include "sysprops/sysprops_module.h"
@@ -127,14 +128,18 @@ void Stack::StartEverything() {
   auto init_status = future.wait_for(
           std::chrono::milliseconds(get_gd_stack_timeout_ms(/* is_start = */ true)));
 
+
+
   {
     std::lock_guard<std::recursive_mutex> lock(mutex_);
     WakelockManager::Get().Release();
 
     log::info("init_status == {}", int(init_status));
 
-    log::assert_that(init_status == std::future_status::ready,
-                     "Can't start stack, last instance: {}", registry_.last_instance_);
+    if (init_status != std::future_status::ready) {
+      log::warn("Can't start stack");
+      kill(getpid(), SIGKILL);
+    }
 
     log::info("Successfully toggled Gd stack");
 
