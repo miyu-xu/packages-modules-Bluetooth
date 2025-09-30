@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c7e3c72_53fa6ab1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2025-09-30T06:16:50Z",
+      "side": 1,
+      "message": "Thank you for the contribution, cherry-picked into our internal repo.",
+      "revId": "da2910996b7837aa0b3cdc488f4a6beb7040fbaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
