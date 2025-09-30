@@ -48,6 +48,8 @@ import android.util.Log;
 
 import com.android.bluetooth.flags.Flags;
 
+import com.android.bluetooth.flags.Flags;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.Collections;
@@ -416,6 +418,22 @@ public final class BluetoothHeadset implements BluetoothProfile {
      */
     public static final String EXTRA_HF_INDICATORS_IND_VALUE =
             "android.bluetooth.headset.extra.HF_INDICATORS_IND_VALUE";
+
+    /** HFP codec type LC3 */
+    @FlaggedApi(Flags.FLAG_HFP_GET_CODEC_API)
+    public static final int CODEC_TYPE_LC3 = 0;
+
+    /** HFP codec type SWB */
+    @FlaggedApi(Flags.FLAG_HFP_GET_CODEC_API)
+    public static final int CODEC_TYPE_SWB = 1;
+
+    /** HFP codec type mSBC */
+    @FlaggedApi(Flags.FLAG_HFP_GET_CODEC_API)
+    public static final int CODEC_TYPE_MSBC = 2;
+
+    /** HFP codec type CVSD */
+    @FlaggedApi(Flags.FLAG_HFP_GET_CODEC_API)
+    public static final int CODEC_TYPE_CVSD = 3;
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
@@ -1312,6 +1330,31 @@ public final class BluetoothHeadset implements BluetoothProfile {
             }
         }
         return false;
+    }
+
+    /**
+     * Get the name of the device's headset codec.
+     * The codec name of this device can only be obtained after being hfp connected.
+     */
+    @FlaggedApi(Flags.FLAG_HFP_GET_CODEC_API)
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    public int getCodecType(@NonNull BluetoothDevice device) {
+        if (DBG) {
+            log("getCodecType(): device: " + device);
+        }
+        final IBluetoothHeadset service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+        } else if (isEnabled() && isValidDevice(device)) {
+            try {
+                return service.getCodecType(device, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return -1;
     }
 
     @UnsupportedAppUsage

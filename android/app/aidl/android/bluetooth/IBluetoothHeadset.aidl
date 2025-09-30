@@ -79,4 +79,7 @@ interface IBluetoothHeadset {
     boolean isNoiseReductionSupported(in BluetoothDevice device, in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     boolean isVoiceRecognitionSupported(in BluetoothDevice device, in AttributionSource attributionSource);
+
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    int getCodecType(in BluetoothDevice device, in AttributionSource attributionSource);
 }

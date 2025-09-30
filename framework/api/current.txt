@@ -825,6 +825,7 @@ package android.bluetooth {
   }
 
   public final class BluetoothHeadset implements android.bluetooth.BluetoothProfile {
+    method @FlaggedApi("com.android.bluetooth.flags.hfp_get_codec_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getCodecType(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public java.util.List<android.bluetooth.BluetoothDevice> getConnectedDevices();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getConnectionState(android.bluetooth.BluetoothDevice);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public java.util.List<android.bluetooth.BluetoothDevice> getDevicesMatchingConnectionStates(int[]);
@@ -842,6 +843,10 @@ package android.bluetooth {
     field public static final int AT_CMD_TYPE_READ = 0; // 0x0
     field public static final int AT_CMD_TYPE_SET = 2; // 0x2
     field public static final int AT_CMD_TYPE_TEST = 1; // 0x1
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_get_codec_api") public static final int CODEC_TYPE_CVSD = 3; // 0x3
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_get_codec_api") public static final int CODEC_TYPE_LC3 = 0; // 0x0
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_get_codec_api") public static final int CODEC_TYPE_MSBC = 2; // 0x2
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_get_codec_api") public static final int CODEC_TYPE_SWB = 1; // 0x1
     field @FlaggedApi("com.android.bluetooth.flags.hfp_connection_failures_api") public static final int DISCONNECTED_REASON_INSUFFICIENT_RESOURCES = 3; // 0x3
     field @FlaggedApi("com.android.bluetooth.flags.hfp_connection_failures_api") public static final int DISCONNECTED_REASON_RFCOMM_CONNECTION_FAILED = 2; // 0x2
     field @FlaggedApi("com.android.bluetooth.flags.hfp_connection_failures_api") public static final int DISCONNECTED_REASON_SDP_DISCOVERY_FAILED = 1; // 0x1

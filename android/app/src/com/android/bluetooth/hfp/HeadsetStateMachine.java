@@ -2904,4 +2904,29 @@ class HeadsetStateMachine extends StateMachine {
                         state,
                         0);
     }
+
+    /**
+     * Get the name of the headset codec.
+     * The codec name of this device can only be obtained after being hfp connected.
+     * @return  -1 means error
+     */
+    public int getCodecType() {
+        if (mCurrentState == null) {
+            return -1;
+        }
+        if (mCurrentState == mConnected || mCurrentState == mAudioConnecting ||
+            mCurrentState == mAudioDisconnecting || mCurrentState == mAudioOn) {
+
+            if (mHasSwbLc3Enabled) {
+                return BluetoothHeadset.CODEC_TYPE_LC3;
+            } else if (mHasSwbAptXEnabled) {
+                return BluetoothHeadset.CODEC_TYPE_SWB;
+            } else if (mHasWbsEnabled) {
+                return BluetoothHeadset.CODEC_TYPE_MSBC;
+            } else {
+                return BluetoothHeadset.CODEC_TYPE_CVSD;
+            }
+        }
+        return -1;
+    }
 }

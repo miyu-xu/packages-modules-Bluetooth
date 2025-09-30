@@ -187,3 +187,9 @@ flag {
     }
 }
 
+flag {
+    name: "hfp_get_codec_api"
+    namespace: "bluetooth"
+    description: "Add api support for get hfp connection codec type"
+    bug: "447537036"
+}

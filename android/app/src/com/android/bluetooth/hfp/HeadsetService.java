@@ -2586,6 +2586,20 @@ public class HeadsetService extends ConnectableProfile {
         }
     }
 
+    /*
+     * Get the name of the device's headset codec.
+     * The codec name of this device can only be obtained after being hfp connected.
+     */
+    public int getCodecType(BluetoothDevice device) {
+        synchronized (mStateMachines) {
+            HeadsetStateMachine stateMachine = mStateMachines.get(device);
+            if (stateMachine == null) {
+                return -1;
+            }
+            return stateMachine.getCodecType();
+        }
+    }
+
     private static void logD(String message) {
         Log.d(TAG, message);
     }
