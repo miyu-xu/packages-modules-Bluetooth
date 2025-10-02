@@ -193,7 +193,9 @@ public class AvrcpTargetService extends ProfileService {
                             + queue);
             mCurrentData = data;
 
-            mNativeInterface.sendMediaUpdate(metadata, state, queue);
+            if (metadata || state || queue) {
+                mNativeInterface.sendMediaUpdate(metadata, state, queue);
+            }
         }
 
         @Override
