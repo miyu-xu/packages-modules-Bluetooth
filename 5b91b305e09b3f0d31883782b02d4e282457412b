@@ -34,6 +34,24 @@
       "parentUuid": "a4881452_ed28ccd8",
       "revId": "5b91b305e09b3f0d31883782b02d4e282457412b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40e3bebe_ac1009f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-10-09T07:06:00Z",
+      "side": 1,
+      "message": "The port allocation logic itself does not exhibit any inherent flaws.\n\nHowever, a race condition has been identified between the port release and port allocation operations, specifically when handling the last available port in the pool.\n\nThe issue arises when a third-party application releases a port and immediately requests a new port allocation in rapid succession. This results in concurrent execution of port release and allocation routines targeting the same port index. Consequently, when all ports are occupied except for one, simultaneous release and allocation of the last port can lead to allocation failures due to contention.\n\nTo address this, the revised logic modifies the port allocation strategy. Instead of scanning for available ports starting from the highest index (i.e., the last port), the allocation now consistently begins from index zero and proceeds sequentially. This change ensures that the port allocation and release operations do not contend for the same port index, effectively mitigating the race condition.",
+      "parentUuid": "3c1f9bfe_6dd345b3",
+      "revId": "5b91b305e09b3f0d31883782b02d4e282457412b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
