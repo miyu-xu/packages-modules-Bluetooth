@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0946aa72_6e04129e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 6511,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-10-14T12:10:40Z",
+      "side": 1,
+      "message": "This is not needed since this check is already in \"IDLE\" status block (https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3716466/6/system/bta/le_audio/client.cc#6408)",
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca70a178_ea3973a9",
         "filename": "system/bta/le_audio/device_groups.h",
         "patchSetId": 6
