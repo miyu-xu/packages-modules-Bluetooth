@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc68f128_47a43225",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-10-14T15:00:39Z",
+      "side": 1,
+      "message": "This scenario and change is not clear for me.\n\nWhile broadcast is ongoing it means that Unicast group is \"null\". Current change is made in active group change some-\u003esome \"if (previous_active_group !\u003d bluetooth::groups::kGroupUnknown)\" https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3716467/5/system/bta/le_audio/client.cc#1862\n\n\u003e a) Broadcast is ongoing and MT Call received, on which unicast\n     setactive device is happened and as part of it. Also there\n     is updateMetadata for MT call on which BT stack is in process\n     of reconfiguring to Call and set the pending config flag.\n\nThe change is not related to the current scenario because it only applies to an active unicast group. When the system is in broadcast mode, there is no specific group to manage, meaning it can\u0027t handle group-specific functions like \"update metadata callbacks.\"\n\nFurthermore, even if a group is active, the \"update active group\" procedure shouldn\u0027t be triggered, as this isn\u0027t a handover (a transfer of the connection) case.\n\n\u003e When Call answered from in-active leaudio device, it would\n     make device active. But it never got a chance to clear the\n     pending config flag.\n\nI think this could be the case covered by the change.\n\nTo check this case a test case would be highly appreciated.",
+      "revId": "1f9b07645e232c6254c38e65d7b42ecd480a2d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
