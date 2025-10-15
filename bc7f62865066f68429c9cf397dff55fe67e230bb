@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b26839ed_1c5a1677",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 6511,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-10-15T10:09:15Z",
+      "side": 1,
+      "message": "There is fall-through scenario so the status can also be CONFIGURED_AUTONOMOUS here.",
+      "parentUuid": "0946aa72_6e04129e",
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca70a178_ea3973a9",
         "filename": "system/bta/le_audio/device_groups.h",
         "patchSetId": 6
@@ -31,6 +49,24 @@
       "writtenOn": "2025-09-17T12:01:19Z",
       "side": 1,
       "message": "I think this could be identified by:\ngroup-\u003eIsPendingConfiguration() and GroupStreamStatus::SUSPENDING\n\nwouldn\u0027t this be enough ?",
+      "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0a3877_0dd1572c",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 3865300
+      },
+      "writtenOn": "2025-10-15T10:09:15Z",
+      "side": 1,
+      "message": "As per my understanding, we are using above conditions to set suspended_for_reconfig_ to true but suspended_for_reconfig_ will remain true until it is explicitly set to false even when the above conditions are not met.",
+      "parentUuid": "ca70a178_ea3973a9",
       "revId": "bc7f62865066f68429c9cf397dff55fe67e230bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
