@@ -202,6 +202,7 @@ static tA2DP_STATUS A2DP_ParseInfoAac(tA2DP_AAC_CIE* p_ie, const uint8_t* p_code
   uint8_t losc;
   uint8_t media_type;
   tA2DP_CODEC_TYPE codec_type;
+  uint8_t channel_mode;
 
   if (p_ie == NULL || p_codec_info == NULL) {
     return AVDTP_UNSUPPORTED_CONFIGURATION;
@@ -224,6 +225,7 @@ static tA2DP_STATUS A2DP_ParseInfoAac(tA2DP_AAC_CIE* p_ie, const uint8_t* p_code
   p_ie->sampleRate = (*p_codec_info & A2DP_AAC_SAMPLING_FREQ_MASK0) |
                      (*(p_codec_info + 1) << 8 & A2DP_AAC_SAMPLING_FREQ_MASK1);
   p_codec_info++;
+  channel_mode = *p_codec_info & A2DP_AAC_INVALID_CHANNEL_MODE_MASK;
   p_ie->channelMode = *p_codec_info & A2DP_AAC_CHANNEL_MODE_MASK;
   p_codec_info++;
 
@@ -244,6 +246,7 @@ static tA2DP_STATUS A2DP_ParseInfoAac(tA2DP_AAC_CIE* p_ie, const uint8_t* p_code
       return A2DP_INVALID_SAMPLING_FREQUENCY;
     }
     if (A2DP_BitsSet(p_ie->channelMode) == A2DP_SET_ZERO_BIT) {
+      if (A2DP_BitsSet(channel_mode) != A2DP_SET_ZERO_BIT) return A2DP_NOT_SUPPORTED_CHANNELS;
       return A2DP_INVALID_CHANNELS;
     }
 
