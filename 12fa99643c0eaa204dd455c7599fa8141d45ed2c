@@ -33,6 +33,24 @@
       "message": "nmahender@google.com",
       "revId": "12fa99643c0eaa204dd455c7599fa8141d45ed2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f1e725f_aa6e8785",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4149884
+      },
+      "writtenOn": "2025-10-16T19:53:30Z",
+      "side": 1,
+      "message": "Hello nmahender@google.com\nPlease help to review this patch from https://partnerissuetracker.corp.google.com/issues/369187572. Thank you.",
+      "parentUuid": "6d49d112_fa536f21",
+      "revId": "12fa99643c0eaa204dd455c7599fa8141d45ed2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
