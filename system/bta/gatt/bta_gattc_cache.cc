@@ -286,6 +286,26 @@ static void bta_gattc_explore_srvc_finished(tCONN_ID conn_id, tBTA_GATTC_SERV* p
 
   p_srvc_cb->gatt_database = p_srvc_cb->pending_discovery.Build();
 
+  // Log comprehensive GATT DB statistics
+  size_t total_services = p_srvc_cb->gatt_database.Services().size();
+  size_t total_characteristics = 0;
+  size_t total_descriptors = 0;
+  size_t total_included_services = 0;
+
+  for (const Service& service : p_srvc_cb->gatt_database.Services()) {
+    total_included_services += service.included_services.size();
+    for (const Characteristic& charac : service.characteristics) {
+      total_characteristics++;
+      total_descriptors += charac.descriptors.size();
+    }
+  }
+
+  log::debug("%s: GATT DB for %s - Services: %zu, Characteristics: %zu, "
+           "Descriptors: %zu, Included Services: %zu",
+           __func__, p_srvc_cb->server_bda.ToRedactedStringForLogging().c_str(),
+           total_services, total_characteristics, total_descriptors,
+           total_included_services);
+
 #if (BTA_GATT_DEBUG == TRUE)
   bta_gattc_display_cache_server(p_srvc_cb->gatt_database);
 #endif
