@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d2c3bb4_c0f3cff2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1954411
+      },
+      "writtenOn": "2025-10-21T18:43:39Z",
+      "side": 1,
+      "message": "jing.huang@gm.com",
+      "revId": "c6298db8780438c3816535d8cb7cc16216d9fbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
