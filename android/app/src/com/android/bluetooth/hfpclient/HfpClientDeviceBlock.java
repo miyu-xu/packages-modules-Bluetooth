@@ -18,6 +18,7 @@ package com.android.bluetooth.hfpclient;
 import android.bluetooth.BluetoothDevice;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.ParcelUuid;
 import android.telecom.Connection;
 import android.telecom.DisconnectCause;
@@ -41,6 +42,7 @@ public class HfpClientDeviceBlock {
     private static final String TAG = HfpClientDeviceBlock.class.getSimpleName();
 
     private static final String KEY_SCO_STATE = "com.android.bluetooth.hfpclient.SCO_STATE";
+    private static final int UPDATE_CONFERENCE_MILLIS = 50;
 
     private final BluetoothDevice mDevice;
     private final PhoneAccount mPhoneAccount;
@@ -132,6 +134,14 @@ public class HfpClientDeviceBlock {
 
         if (connection != null) {
             connection.onAdded();
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    debug("handleCall to update conference connections");
+                    handleCall(connection.getCall());
+                }
+            }, UPDATE_CONFERENCE_MILLIS);
             return connection;
         } else {
             error("Call " + callUuid + " ignored: connection does not exist");
