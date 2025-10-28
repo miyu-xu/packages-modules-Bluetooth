@@ -755,6 +755,9 @@ struct iso_impl {
     auto bis_it = conn_hdl_to_bis_map_.cbegin();
     while (bis_it != conn_hdl_to_bis_map_.cend()) {
       if (bis_it->second->big_handle == evt.big_id) {
+        /** M: revert the credits used by BIG */
+        iso_credits_ += bis_it->second->used_credits;
+        /** @} */
         bis_it = conn_hdl_to_bis_map_.erase(bis_it);
         is_known_handle = true;
       } else {
