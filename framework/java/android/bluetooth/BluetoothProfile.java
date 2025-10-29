@@ -16,6 +16,7 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -24,6 +25,8 @@ import android.annotation.SystemApi;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.os.Build;
 import android.os.IBinder;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -242,12 +245,20 @@ public interface BluetoothProfile {
     int GMAP = 31;
 
     /**
+     * LE Audio Broadcast Sink
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_SINK_API)
+    @SystemApi int LE_AUDIO_BROADCAST_SINK = 32;
+
+    /**
      * Max profile ID. This value should be updated whenever a new profile is added to match the
      * largest value assigned to a profile.
      *
      * @hide
      */
-    int MAX_PROFILE_ID = 31;
+    int MAX_PROFILE_ID = 32;
 
     /**
      * Default priority for devices that we try to auto-connect to and allow incoming connections
