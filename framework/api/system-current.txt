@@ -800,6 +800,38 @@ package android.bluetooth {
     method @NonNull public android.bluetooth.BluetoothLeBroadcastSettings.Builder setPublicBroadcastMetadata(@Nullable android.bluetooth.BluetoothLeAudioContentMetadata);
   }
 
+  @FlaggedApi("com.android.bluetooth.flags.leaudio_broadcast_sink_api") public final class BluetoothLeBroadcastSink implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
+    method public void close();
+    method protected void finalize();
+    method @NonNull public java.util.List<android.bluetooth.BluetoothLeBroadcastMetadata> getAllSyncedBroadcasts();
+    method @NonNull public java.util.List<android.bluetooth.BluetoothDevice> getConnectedDevices();
+    method public int getConnectionState(@Nullable android.bluetooth.BluetoothDevice);
+    method @NonNull public java.util.List<android.bluetooth.BluetoothDevice> getDevicesMatchingConnectionStates(@Nullable int[]);
+    method public int getMaximumNumberOfSyncs();
+    method public boolean isCapturing(int);
+    method public void registerCallback(@NonNull java.util.concurrent.Executor, @NonNull android.bluetooth.BluetoothLeBroadcastSink.Callback);
+    method public void startSearchingForSources(@Nullable java.util.List<android.bluetooth.le.ScanFilter>);
+    method public void stopSearchingForSources();
+    method public void syncToBroadcast(@NonNull android.bluetooth.BluetoothLeBroadcastMetadata);
+    method public void terminateSync(int);
+    method public void unregisterCallback(@NonNull android.bluetooth.BluetoothLeBroadcastSink.Callback);
+  }
+
+  public static interface BluetoothLeBroadcastSink.Callback {
+    method public void onBroadcastFound(@NonNull android.bluetooth.BluetoothLeBroadcastMetadata);
+    method public void onBroadcastMetadataChanged(int, @NonNull android.bluetooth.BluetoothLeBroadcastMetadata);
+    method public void onCaptureStarted(int, int);
+    method public void onCaptureStopped(int, int);
+    method public void onSearchStartFailed(int);
+    method public void onSearchStarted(int);
+    method public void onSearchStopFailed(int);
+    method public void onSearchStopped(int);
+    method public void onSyncStartFailed(int);
+    method public void onSyncStarted(int, int);
+    method public void onSyncStopFailed(int);
+    method public void onSyncStopped(int, int);
+  }
+
   public final class BluetoothLeBroadcastSubgroup implements android.os.Parcelable {
     method public int describeContents();
     method @NonNull public java.util.List<android.bluetooth.BluetoothLeBroadcastChannel> getChannels();
