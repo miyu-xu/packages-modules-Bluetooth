@@ -40,7 +40,9 @@ public:
 
   SourceAudioHalAsrc(bluetooth::common::MessageLoopThread* thread, int channels, int sample_rate,
                      int bit_depth, int interval_us, int num_burst_buffers = 2,
-                     int burst_delay_ms = 500);
+  /** M: adjusted to 100 (orig:500) to aovid aosp asrc noise at initial playing  @{ */
+                     int burst_delay_ms = 100);
+  /** }@ */
 
   ~SourceAudioHalAsrc();
 
