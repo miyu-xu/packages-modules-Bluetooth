@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86d4310f_8f1f4126",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-11-07T15:00:55Z",
+      "side": 1,
+      "message": "What is the purpose of only accept as peer role it if there\u0027s only 1 device here?\nHow about the cases of multiple devices / links?",
+      "range": {
+        "startLine": 729,
+        "startChar": 66,
+        "endLine": 729,
+        "endChar": 96
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2935de39_1be199c0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hci/acl_manager/classic_impl.h",
+              "range": {
+                "startLine": 729,
+                "startChar": 0,
+                "endLine": 730,
+                "endChar": 0
+              },
+              "replacement": "    // We should remain peripheral if interop dictates it, or if we already have other BR/EDR\n    // ACL links. Attempting to become central when multiple links exist can cause role switches\n    // on the other links, which is generally undesirable.\n    if (interop_match_addr(INTEROP_DISABLE_ROLE_SWITCH, \u0026bda) || (BTM_GetNumBredrAclLinks() \u003e 0))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1361a60_1d9e7528",
+        "filename": "system/stack/acl/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-11-07T15:00:55Z",
+      "side": 1,
+      "message": "How about BT_TRANSPORT_AUTO? IIUC It\u0027s possible that it\u0027s using bredr link as well.",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "52a535c2_19216922",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/acl/acl.h",
+              "range": {
+                "startLine": 338,
+                "startChar": 0,
+                "endLine": 339,
+                "endChar": 0
+              },
+              "replacement": "      if ((acl_db[i].InUse()) \u0026\u0026 (acl_db[i].is_transport_br_edr())) ++cnt;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
