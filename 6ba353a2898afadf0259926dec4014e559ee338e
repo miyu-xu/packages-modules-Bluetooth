@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6218658_ec9d0b69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2025-11-07T15:02:09Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the co...\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nTo rerun the analyzer locally, run: `alint -- -c CommitMatch`\n\nFor more information, see go/alint.",
+      "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "86d4310f_8f1f4126",
         "filename": "system/gd/hci/acl_manager/classic_impl.h",
         "patchSetId": 2
