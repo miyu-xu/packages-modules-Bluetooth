@@ -327,7 +327,7 @@ tHID_STATUS HID_DevAddRecord(uint32_t handle, char* p_name, char* p_description,
             handle, ATTR_ID_HID_REMOTE_WAKE, BOOLEAN_DESC_TYPE, 1, (uint8_t*)&bool_false);
 
     result &= get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
-            handle, ATTR_ID_HID_NORMALLY_CONNECTABLE, BOOLEAN_DESC_TYPE, 1, (uint8_t*)&bool_true);
+            handle, ATTR_ID_HID_NORMALLY_CONNECTABLE, BOOLEAN_DESC_TYPE, 1, (uint8_t*)&bool_false);
 
     result &= get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
             handle, ATTR_ID_HID_BOOT_DEVICE, BOOLEAN_DESC_TYPE, 1, (uint8_t*)&bool_true);
