@@ -40,6 +40,30 @@
       ],
       "revId": "16b827c3b627eba2ff2f8d47c62a6237f15327d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2af9b7ef_41f742b0",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-11-12T08:38:33Z",
+      "side": 1,
+      "message": "your understanding is correct and Fix applied.",
+      "parentUuid": "1fce4deb_1490e984",
+      "range": {
+        "startLine": 1014,
+        "startChar": 8,
+        "endLine": 1014,
+        "endChar": 20
+      },
+      "revId": "16b827c3b627eba2ff2f8d47c62a6237f15327d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
