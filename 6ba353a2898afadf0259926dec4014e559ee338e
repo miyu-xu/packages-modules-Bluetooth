@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11103364_521ba3b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-11-12T10:38:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6218658_ec9d0b69",
+      "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86d4310f_8f1f4126",
@@ -59,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13ea8b55_95c926ac",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-11-12T10:38:54Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "86d4310f_8f1f4126",
+      "range": {
+        "startLine": 729,
+        "startChar": 66,
+        "endLine": 729,
+        "endChar": 96
+      },
+      "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1361a60_1d9e7528",
@@ -96,6 +138,30 @@
           ]
         }
       ],
+      "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c31a9d6_c1889022",
+        "filename": "system/stack/acl/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2025-11-12T10:38:54Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "d1361a60_1d9e7528",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 0
+      },
       "revId": "6ba353a2898afadf0259926dec4014e559ee338e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
