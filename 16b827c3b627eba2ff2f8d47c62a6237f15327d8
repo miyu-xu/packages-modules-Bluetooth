@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fce4deb_1490e984",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-11-12T00:04:29Z",
+      "side": 1,
+      "message": "Just to confirm I\u0027m understanding this correctly: At this point, we have set up rs to be ready for a new server socket. By setting rs-\u003escn to 0, we\u0027re effectively resetting the scn value here so that when we call `cleanup_rfc_slot` we don\u0027t deallocate the SCN, ensuring the connection that\u0027s still using this SCN isn\u0027t also shut down.  \n\nIf that\u0027s the case, can you add a comment clarifying this behavior?",
+      "range": {
+        "startLine": 1014,
+        "startChar": 8,
+        "endLine": 1014,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e9898a79_c78953fc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_sock_rfc.cc",
+              "range": {
+                "startLine": 1014,
+                "startChar": 0,
+                "endLine": 1014,
+                "endChar": 0
+              },
+              "replacement": "        // Set scn to 0 to indicate that SCN allocation failed. This prevents\n        // `cleanup_rfc_slot` from attempting to free an invalid SCN.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "16b827c3b627eba2ff2f8d47c62a6237f15327d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
