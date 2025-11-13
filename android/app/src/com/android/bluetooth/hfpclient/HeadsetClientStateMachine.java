@@ -550,10 +550,15 @@ public class HeadsetClientStateMachine extends StateMachine {
         for (Integer idx : callRetainedIds) {
             HfpClientCall cOrig = mCalls.get(idx);
             HfpClientCall cUpdate = mCallsUpdate.get(idx);
-
+            if(!cOrig.getNumber().equals(cUpdate.getNumber())) {
+		cOrig.setState(HfpClientCall.CALL_STATE_TERMINATED);
+		sendCallChangedIntent(cOrig);
+		mCalls.put(idx, cUpdate);
+		sendCallChangedIntent(cUpdate);
+		continue;
+            }
             // If any of the fields differs, update and send intent
-            if (!cOrig.getNumber().equals(cUpdate.getNumber())
-                    || cOrig.getState() != cUpdate.getState()
+            if (cOrig.getState() != cUpdate.getState()
                     || cOrig.isMultiParty() != cUpdate.isMultiParty()) {
 
                 // Update the necessary fields.
