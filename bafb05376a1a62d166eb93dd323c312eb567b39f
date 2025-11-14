@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90fb3374_06ab4f8c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 6461,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-11-14T08:50:22Z",
+      "side": 1,
+      "message": "It\u0027s inside `if (!group-\u003eIsPendingConfiguration()) {` block - does it mean that it\u0027s not already a reconfiguring path ?\n\nIf I understand correctly:\n1) Group is in IDLE state or CONFIGURED_AUTONOMOUS\n2) There is no pending configuration - no reconfiguration case\n\nI think fundamental thing here is - if I get it correctly, because my current code is different from origins of this change, that this change here is not in reconfiguration case.\n\nThis also is confusing that:\n- group has no pending configuration\n- group is suspended for reconfiguration\n\nIs this part still valid ?",
+      "revId": "bafb05376a1a62d166eb93dd323c312eb567b39f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
