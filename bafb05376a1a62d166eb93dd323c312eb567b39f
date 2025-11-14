@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12ce9134_88995b6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2025-11-14T08:51:40Z",
+      "side": 1,
+      "message": "I think that in general we are missing here a test cases.\n\nI\u0027ve run this CL against test cases for le audio client and got 24 failing cases.\n\n```\nSummary (Test executed with 1 devices.)\n-------\nx86_64 bluetooth_le_audio_client_test: Passed: 288, Failed: 24, Ignored: 0, Assumption Failed: 0\n\n24 tests failed\n---------------\nUnicastTest#TwoEarbudsSetPreferenceSuccessDuringMediaWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSucessBeforeMediaClearPreferenceDuringMediaWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSucessBeforeMediaSetPreferenceSuccessDuringMediaWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSucessBeforeMediaSetPreferenceFailDuringMediaWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSuccessDuringConvWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSucessBeforeConvClearPreferenceDuringConvWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSucessBeforeConvSetPreferenceSuccessDuringConvWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceSucessBeforeConvSetPreferenceFailDuringConvWithReconfig\nUnicastTest#TwoEarbudsSetPreferenceWhenMediaForBothMediaAndConv\nUnicastTest#TwoEarbudsSetPreferenceWhenMediaForMediaNotForConv\nUnicastTest#TwoEarbudsSetPreferenceWhenConvForBothMediaAndConv\nUnicastTest#MicrophoneAttachToCurrentMediaScenario\nUnicastTest#MediaContextRemovedFromAvailableContextsAfterSoundEffectStarts\nUnicastTest#SwitchFromUniToBidirectionalGameContext\nUnicastTest#HandleConfigureStreamFailure\nUnicastTestCsis#TwoEarbudsStreamingMedia_ReconfigToConversational\nUnicastTestCsis#TwoEarbudsStreamingContextSwitchReconfigure_SpeedUpReconfigFlagEnabled\nUnicastTestCsis#CallIsEnded_AudioHalKeepResumingSink\nUnicastTestCsis#TwoReconfigureAndVerifyEnableContextType\nUnicastTestCsis#ChangeConfigurationContextType_cigConfigurationChanges\nUnicastTestCsis#MediaContextRemovedFromAvailableContextsAfterSoundEffectStarts_forSet\nUnicastTestGmap#TestGamePlusConversationalGmapPrio_thenSwitchBackToUnidirectionalGame\nTest/UnicastDsaTest#RequestConfigurationDsaReconfigure/0\nTest/UnicastDsaTest#RequestConfigurationDsaReconfigure/1\n```\n\nI think we should begin with no regression first then fix possibly race issue.",
+      "revId": "bafb05376a1a62d166eb93dd323c312eb567b39f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90fb3374_06ab4f8c",
