@@ -3073,6 +3073,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
                  tBTM_SEC_CB::btm_pair_state_descr(btm_sec_cb.pairing_state), handle, status);
   }
 
+<<<<<<< HEAD
   /* For transaction collision we need to wait and repeat.  There is no need */
   /* for random timeout because only peripheral should receive the result */
   if ((status == HCI_ERR_LMP_ERR_TRANS_COLLISION) ||
@@ -3080,6 +3081,15 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
     btm_sec_auth_collision(handle);
     return;
   } else if (btm_sec_auth_retry(handle, status)) {
+=======
+                                                           &role) != tBTM_STATUS::BTM_SUCCESS) {
+      log::warn("Unable to get link role peer:{}", p_dev_rec->bd_addr);
+    }
+    p_dev_rec->role_switch_pending = tBTM_SEC_DEV_REC::RoleSwitchPending::kNone;
+    p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+
+    if (status != HCI_SUCCESS) {
+>>>>>>> PATCH
     return;
   }
 
@@ -3095,6 +3105,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
     btm_sec_cb.collision_start_time = 0;
   }
 
+<<<<<<< HEAD
   btm_restore_mode();
 
   /* Check if connection was made just to do bonding.  If we authenticate
@@ -3103,6 +3114,18 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
   if (p_dev_rec && (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) &&
       !(btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_DISC_WHEN_DONE)) {
     p_dev_rec->sec_rec.security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+=======
+    } else {
+      BTM_LogHistory(kBtmLogTag, p_dev_rec->bd_addr, "Bonding completed",
+                     hci_error_code_text(status));
+      p_dev_rec->role_switch_pending =
+              (p_dev_rec->IsLocallyInitiated() && role == HCI_ROLE_PERIPHERAL)
+                      ? tBTM_SEC_DEV_REC::RoleSwitchPending::kAfterEnc
+                      : tBTM_SEC_DEV_REC::RoleSwitchPending::kNone;
+      BTM_SetEncryption(p_dev_rec->bd_addr, BT_TRANSPORT_BR_EDR, NULL, NULL, BTM_BLE_SEC_NONE);
+      l2cu_start_post_bond_timer(p_dev_rec->hci_handle);
+    }
+>>>>>>> PATCH
 
     l2cu_start_post_bond_timer(p_dev_rec->hci_handle);
   }
@@ -3355,6 +3378,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
       }
       return;
     }
+<<<<<<< HEAD
 
     return;
   } else {
@@ -3370,6 +3394,27 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status, uint8_t encr_en
     if (p_dev_rec->sec_rec.rmt_auth_req == BTM_AUTH_SP_NO &&
         btm_sec_cb.devcb.loc_auth_req == BTM_AUTH_SP_NO) {
       derive_ltk = false;
+=======
+    }
+
+    if (com_android_bluetooth_flags_role_switch_after_encryption() &&
+        p_dev_rec->role_switch_pending != tBTM_SEC_DEV_REC::RoleSwitchPending::kNone &&
+        role == HCI_ROLE_PERIPHERAL) {
+      if (btm_sec_use_smp_br_chnl(p_dev_rec)) {
+        /* Role switch request might prevent remote central device from initiating CTKD */
+        p_dev_rec->role_switch_pending = tBTM_SEC_DEV_REC::RoleSwitchPending::kAfterCtkd;
+      } else {
+        if (get_btm_client_interface().link_policy.BTM_SwitchRoleToCentral(
+                    p_dev_rec->RemoteAddress()) == tBTM_STATUS::BTM_CMD_STARTED) {
+          log::info("Trying to switch role to central peer: {}", p_dev_rec->RemoteAddress());
+        } else {
+          log::warn("Unable to switch role to central peer:{}", p_dev_rec->RemoteAddress());
+        }
+        p_dev_rec->role_switch_pending = tBTM_SEC_DEV_REC::RoleSwitchPending::kNone;
+      }
+    }
+  }
+>>>>>>> PATCH
       log::verbose("BR key is temporary, skip derivation of LE LTK");
     }
     tHCI_ROLE role = HCI_ROLE_UNKNOWN;
@@ -3626,12 +3671,22 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
 
             /* Start timer with 0 to initiate connection with new LCB */
             /* because L2CAP will delete current LCB with this event  */
+<<<<<<< HEAD
             btm_sec_cb.p_collided_dev_rec = p_dev_rec;
             alarm_set_on_mloop(btm_sec_cb.sec_collision_timer, 0,
                                btm_sec_connect_after_reject_timeout, NULL);
           } else {
             /* remote device name is unknowm, start getting remote name first */
 
+=======
+    }
+  }
+
+  p_dev_rec->role_switch_pending = tBTM_SEC_DEV_REC::RoleSwitchPending::kNone;
+  p_dev_rec->device_type |= BT_DEVICE_TYPE_BREDR;
+  bool is_pairing_device = false;
+  const bool addr_matched = (btm_sec_cb.link_spec.addrt.bda == bda);
+>>>>>>> PATCH
             btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
             if (get_stack_rnr_interface().BTM_ReadRemoteDeviceName(p_dev_rec->bd_addr, NULL,
                                                                    BT_TRANSPORT_BR_EDR) !=

@@ -373,8 +373,18 @@ public:
 };
 
 namespace std {
+<<<<<<< HEAD
 template <>
 struct formatter<tSECURITY_STATE> : string_formatter<tSECURITY_STATE, &security_state_text> {};
 template <>
 struct formatter<tBLE_RAND_ADDR_TYPE> : enum_formatter<tBLE_RAND_ADDR_TYPE> {};
 }  // namespace std
+=======
+
+  bool role_central;  /* true if current mode is central (BLE) */
+  bool is_originator; /* true if device is originating ACL connection */
+  enum class RoleSwitchPending { kNone = 0, kAfterEnc, kAfterCtkd } role_switch_pending;
+
+  // BLE connection parameters
+  tBTM_LE_CONN_PRAMS conn_params;
+>>>>>>> PATCH

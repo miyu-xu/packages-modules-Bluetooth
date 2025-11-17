@@ -1418,12 +1418,41 @@ static void btm_ble_get_auth_req(const tBTM_SEC_DEV_REC* p_dev_rec, tBTM_LE_AUTH
       // Trying to encrypt the link with already bonded device in peripheral role
       if ((p_dev_rec->sec_rec.security_required & BTM_SEC_IN_MITM) ||
           p_dev_rec->sec_rec.ble_keys.sec_level == SMP_SEC_AUTHENTICATED) {
+<<<<<<< HEAD
         // Authentication required or existing bond record was authenticated
         *p_auth_req |= BTM_LE_AUTH_REQ_MITM;
       } else {
         // No authentication required and no bond record
         *p_auth_req &= ~BTM_LE_AUTH_REQ_MITM;
       }
+=======
+    return;
+  }
+
+  if (com_android_bluetooth_flags_role_switch_after_encryption() &&
+      p_dev_rec->role_switch_pending == tBTM_SEC_DEV_REC::RoleSwitchPending::kAfterCtkd &&
+      p_data->complt.smp_over_br) {
+    tHCI_ROLE role = HCI_ROLE_UNKNOWN;
+    if (get_btm_client_interface().link_policy.BTM_GetRole(bd_addr, BT_TRANSPORT_BR_EDR, &role) !=
+        tBTM_STATUS::BTM_SUCCESS) {
+      log::warn("Unable to get link policy role peer:{}", bd_addr);
+    }
+
+    if (role == HCI_ROLE_PERIPHERAL) {
+      if (get_btm_client_interface().link_policy.BTM_SwitchRoleToCentral(
+                  p_dev_rec->RemoteAddress()) == tBTM_STATUS::BTM_CMD_STARTED) {
+        log::info("Trying to switch role to central peer: {}", bd_addr);
+      } else {
+        log::warn("Unable to switch role to central peer:{}", bd_addr);
+      }
+    }
+    p_dev_rec->role_switch_pending = tBTM_SEC_DEV_REC::RoleSwitchPending::kNone;
+  }
+
+  log::verbose("before update sec_level=0x{:x} sec_flags=0x{:x}", p_data->complt.sec_level,
+               p_dev_rec->sec_rec.sec_flags);
+
+>>>>>>> PATCH
 
       // Request Secure Connections only if the remote device claim support earlier
       if (p_dev_rec->SupportsSecureConnections()) {
