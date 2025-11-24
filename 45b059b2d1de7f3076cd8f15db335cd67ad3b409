@@ -16,6 +16,23 @@
       "message": "Please get Qualcomm-Review sign-off on this.",
       "revId": "45b059b2d1de7f3076cd8f15db335cd67ad3b409",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2de273a_19d28a8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2025-11-24T02:05:44Z",
+      "side": 1,
+      "message": "FYI a similar fix was merged in `Change-Id: I7c84b998855ac3809e7b86f885cc0a9e79fef96e`",
+      "revId": "45b059b2d1de7f3076cd8f15db335cd67ad3b409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
