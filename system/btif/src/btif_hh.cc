@@ -52,6 +52,7 @@
 #include "btif/include/btif_profile_storage.h"
 #include "btif/include/btif_storage.h"
 #include "btif/include/btif_util.h"
+#include "btif/include/btif_config.h"
 #include "hardware/bluetooth.h"
 #include "include/hardware/bt_hh.h"
 #include "internal_include/bt_target.h"
@@ -624,6 +625,12 @@ static void hh_disable_handler(tBTA_HH_STATUS& status) {
     btif_hh_cb = {};
     for (i = 0; i < BTIF_HH_MAX_HID; i++) {
       btif_hh_cb.devices[i].dev_status = BTHH_CONN_STATE_UNKNOWN;
+    }
+    auto le_hid_addrs = btif_storage_get_le_hid_devices();
+    for (auto address_pair : le_hid_addrs) {
+      const RawAddress& addr = address_pair.first;
+      btm_remove_acl(addr, BT_TRANSPORT_LE);
+      log::verbose("force disconnect hogp device!");
     }
   } else {
     log::warn("HH disabling failed, status = {}", status);
@@ -2408,6 +2415,23 @@ bt_status_t btif_hh_execute_service(bool b_enable) {
     BTA_HhDisable();
   }
   return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_hh_is_profile_enabled
+ *
+ * Description      Get HID host profile status
+ *
+ * Returns          true on enable, false otherwise
+ *
+ ******************************************************************************/
+bool btif_hh_is_profile_enabled(void) {
+  BTIF_TRACE_EVENT("%s, btif_hh_cb.status is %d", __func__, btif_hh_cb.status);
+  if (btif_hh_cb.status == BTIF_HH_DISABLED || btif_hh_cb.status == BTIF_HH_DISABLING) {
+    return false;
+  }
+  return true;
 }
 
 /*******************************************************************************
