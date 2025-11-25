@@ -46,6 +46,9 @@
 #include "btif/include/btif_dm.h"
 #include "btif/include/btif_gatt.h"
 #include "btif/include/btif_gatt_util.h"
+#include "btif/include/btif_hh.h"
+#include "btif/include/btif_profile_storage.h"
+#include "btif/include/btif_storage.h"
 #include "hci/controller.h"
 #include "internal_include/bte_appl.h"
 #include "main/shim/entry.h"
@@ -68,6 +71,7 @@ using bluetooth::Uuid;
 using namespace bluetooth;
 using std::vector;
 
+bool btif_hh_is_profile_enabled(void);
 static bt_status_t btif_gattc_test_command_impl(int command, const btgatt_test_params_t* params);
 extern const btgatt_callbacks_t* bt_gatt_callbacks;
 
@@ -324,10 +328,22 @@ static bt_status_t btif_gattc_unregister_app(int client_if) {
   return do_in_jni_thread(Bind(&btif_gattc_unregister_app_impl, client_if));
 }
 
+static bool btif_device_supports_hogp(const RawAddress& bd_addr) {
+  std::vector<bluetooth::Uuid> remote_uuids = btif_storage_get_services(bd_addr);
+  return std::find(remote_uuids.begin(), remote_uuids.end(),
+                   Uuid::From16Bit(UUID_SERVCLASS_HUMAN_INTERFACE)) != remote_uuids.end();
+}
+
 void btif_gattc_open_impl(int client_if, RawAddress address, tBLE_ADDR_TYPE addr_type,
                           bool is_direct, tBT_TRANSPORT transport, bool opportunistic,
                           int initiating_phys, int preferred_mtu, bool prefer_relax_mode) {
   int device_type = BT_DEVICE_TYPE_UNKNOWN;
+
+  if (btif_device_supports_hogp(address)) {
+    if (!(btif_hh_is_profile_enabled())) {
+      return;
+    }
+  }
 
   if (addr_type == BLE_ADDR_RANDOM) {
     device_type = BT_DEVICE_TYPE_BLE;
