@@ -167,6 +167,8 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name, uint
                              uint16_t product_id, uint16_t version, uint8_t ctry_code,
                              uint16_t dscp_len, uint8_t* p_dscp);
 
+bool btif_hh_is_profile_enabled(void);
+
 void DumpsysHid(int fd);
 
 namespace bluetooth::legacy::testing {
