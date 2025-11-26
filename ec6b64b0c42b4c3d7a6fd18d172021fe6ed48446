@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bae2033_1070060c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2597,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-26T17:36:41Z",
+      "side": 1,
+      "message": "nit: Maybe have a constant instead of magic number.",
+      "revId": "ec6b64b0c42b4c3d7a6fd18d172021fe6ed48446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf0e6ead_7b8e7886",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetServiceBinder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-26T17:36:41Z",
+      "side": 1,
+      "message": "nit: Have a constant instead of a magic number.",
+      "revId": "ec6b64b0c42b4c3d7a6fd18d172021fe6ed48446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b83e600_7cab401e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2911,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-26T17:36:41Z",
+      "side": 1,
+      "message": "nit: Have a constant instead of a magic number.",
+      "revId": "ec6b64b0c42b4c3d7a6fd18d172021fe6ed48446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
