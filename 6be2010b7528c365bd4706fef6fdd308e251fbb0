@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a37a8b_ade00434",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-28T13:38:26Z",
+      "side": 1,
+      "message": "nit: Maybe move before log statement",
+      "revId": "6be2010b7528c365bd4706fef6fdd308e251fbb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
