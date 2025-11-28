@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07803e83_6c7bbb0e",
+        "filename": "framework/java/android/bluetooth/SdpPseRecord.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-28T12:45:24Z",
+      "side": 1,
+      "message": "👏",
+      "revId": "551a5a41f76a518c22f5316b8bb3606ea0244620",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
