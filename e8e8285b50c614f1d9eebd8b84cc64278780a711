@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1639be86_2b81280e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-30T15:38:19Z",
+      "side": 1,
+      "message": "```suggestion\n        // Since JNI is sending original address as Empty addr.\n```",
+      "revId": "e8e8285b50c614f1d9eebd8b84cc64278780a711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d5cc41_d86803e7",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-30T15:38:19Z",
+      "side": 1,
+      "message": "```suggestion\n        // So assigning original addr to actual address\n```",
+      "revId": "e8e8285b50c614f1d9eebd8b84cc64278780a711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
