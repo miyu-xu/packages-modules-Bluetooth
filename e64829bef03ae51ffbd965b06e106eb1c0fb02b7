@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3545a0f8_6c03f716",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2279,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-30T15:47:22Z",
+      "side": 1,
+      "message": "```suggestion\n    public boolean requestLeSubrateChange(\n```",
+      "revId": "e64829bef03ae51ffbd965b06e106eb1c0fb02b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c32c82_4abccdff",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2294,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-30T15:47:22Z",
+      "side": 1,
+      "message": "```suggestion\n                            + \" contNumber\u003d\"\n```",
+      "revId": "e64829bef03ae51ffbd965b06e106eb1c0fb02b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52d8d437_821d0d36",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2303,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-30T15:47:22Z",
+      "side": 1,
+      "message": "nit: Parameter validation for subrateMin, subrateMax, maxLatency, contNumber and supervisionTimeout?",
+      "revId": "e64829bef03ae51ffbd965b06e106eb1c0fb02b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "effedf2e_cc35504e",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2314,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-11-30T15:47:22Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.e(TAG, \"Failed to send LE subrate request\", e);\n```",
+      "revId": "e64829bef03ae51ffbd965b06e106eb1c0fb02b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
