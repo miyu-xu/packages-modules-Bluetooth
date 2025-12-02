@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11691ad4_482756d6",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2025-12-02T20:01:01Z",
+      "side": 1,
+      "message": "are there any reason why we are not considering min_interval in if check and always assigning it always?",
+      "fixSuggestions": [
+        {
+          "fixId": "8950fa23_3c911907",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 357,
+                "startChar": 0,
+                "endLine": 359,
+                "endChar": 0
+              },
+              "replacement": "          if ((p_lcb-\u003emin_interval \u003d\u003d min_interval) \u0026\u0026 (p_lcb-\u003emax_interval \u003d\u003d max_interval) \u0026\u0026\n              (p_lcb-\u003elatency \u003d\u003d latency) \u0026\u0026\n"
+            },
+            {
+              "path": "system/stack/l2cap/l2c_ble.cc",
+              "range": {
+                "startLine": 364,
+                "startChar": 0,
+                "endLine": 364,
+                "endChar": 0
+              },
+              "replacement": "            p_lcb-\u003emin_interval \u003d min_interval;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7ead4578c1b06ab6e4a5581e070eafb2d26bfd2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
