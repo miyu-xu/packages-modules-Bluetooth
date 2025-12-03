@@ -402,12 +402,12 @@ void bta_av_ssm_execute(tBTA_AV_SCB* p_scb, uint16_t event, tBTA_AV_DATA* p_data
           event_handler1 = &bta_av_disconnect_req;
           break;
         case BTA_AV_SDP_DISC_OK_EVT:
-          p_scb->state = BTA_AV_INIT_SST;
-          event_handler1 = &bta_av_sdp_failed;
+          event_handler1 = &bta_av_free_sdb;
+          event_handler2 = &bta_av_disconnect_req;
           break;
         case BTA_AV_SDP_DISC_FAIL_EVT:
-          p_scb->state = BTA_AV_INIT_SST;
-          event_handler1 = &bta_av_sdp_failed;
+          event_handler1 = &bta_av_free_sdb;
+          event_handler2 = &bta_av_disconnect_req;
           break;
         case BTA_AV_STR_OPEN_OK_EVT:
           event_handler1 = &bta_av_do_close;
