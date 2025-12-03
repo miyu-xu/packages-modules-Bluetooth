@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d361112b_a45322ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-12-03T17:50:21Z",
+      "side": 1,
+      "message": "@bhaktha@google.com @henrichataing@google.com\nShould this be TEST_ONLY?",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "f2b6331c845569f6b1151e33f2b9b3bc12cc1f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c09c110_9a31f29e",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1822,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2025-12-03T17:50:21Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"an ping\" -- should it be \"a ping\"?\nNote: a line containing \"...\n\nCommon typo found: \"an ping\" -- should it be \"a ping\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1822,
+        "startChar": 61,
+        "endLine": 1822,
+        "endChar": 68
+      },
+      "revId": "f2b6331c845569f6b1151e33f2b9b3bc12cc1f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
