@@ -33,6 +33,23 @@
       "message": "Hello Team, looking for approvals here regarding this CL",
       "revId": "c6298db8780438c3816535d8cb7cc16216d9fbf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f3bcb51_2c05ff09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2025-12-04T22:18:02Z",
+      "side": 1,
+      "message": "We have some planned refactoring of HFP and our connection service upcoming, where we plan to look at the set of partner patches and bugs we have internally to hopefully better solve some of the Bluetooth/Telecom interactions.\n\nWe\u0027ll take this bug into account when doing that work, but the GM team will have to wait patiently.\n\nAs well, for future submissions, please help with unit test coverage where possible!",
+      "revId": "c6298db8780438c3816535d8cb7cc16216d9fbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
