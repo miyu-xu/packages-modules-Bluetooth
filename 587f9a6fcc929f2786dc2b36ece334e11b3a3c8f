@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "580d1f71_117b1e3b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1710344
+      },
+      "writtenOn": "2025-12-05T09:46:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03e9c096_99c4eb7a",
+      "range": {
+        "startLine": 1387,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 120
+      },
+      "revId": "587f9a6fcc929f2786dc2b36ece334e11b3a3c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32ba9dc2_bb6a1403",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1710344
+      },
+      "writtenOn": "2025-12-05T09:46:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8173693b_18bdb970",
+      "range": {
+        "startLine": 1387,
+        "startChar": 43,
+        "endLine": 1387,
+        "endChar": 94
+      },
+      "revId": "587f9a6fcc929f2786dc2b36ece334e11b3a3c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dbde099_c5645185",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-12-05T06:03:37Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see h...\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 1395,
+        "startChar": 0,
+        "endLine": 1395,
+        "endChar": 147
+      },
+      "revId": "587f9a6fcc929f2786dc2b36ece334e11b3a3c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f33cd443_0f2ae77b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 1710344
+      },
+      "writtenOn": "2025-12-05T09:46:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dbde099_c5645185",
       "range": {
         "startLine": 1395,
         "startChar": 0,
