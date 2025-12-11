@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7587804c_af903e16",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n             Log.i(TAG, __func__ + \"hfp client autoconnect property enabled.\");\n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95c545de_79ee493f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n                  Log.d(TAG, __func__ + \"Attempting most recent HFP Client device \"\n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6f2437b_babcc3b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4f9cf11_94161535",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.w(TAG, __func__ + device + \"Failed to connect, HFP Client service is null\");\n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34a6f32b_4bb86d5a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.d(TAG, __func__ + device + \"Skipped HFP Client auto-connect. connectionPolicy \u003d \"\n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9ae74c9_edd482c4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n        Log.d(TAG, __func__ + device + \"Connecting HFP Client\");\n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6401d053_3b487f33",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "nit: If you really prefer the sort style, you can at least move sorting outside the synchronized block:\n\n```suggestion\n        List\u003cMetadata\u003e snapshot;\n    synchronized (mMetadataCache) {\n        snapshot \u003d new ArrayList\u003c\u003e(mMetadataCache.values());\n    }\n```",
+      "range": {
+        "startLine": 875,
+        "startChar": 0,
+        "endLine": 876,
+        "endChar": 85
+      },
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11657b9_dcfe658d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2025-12-11T14:24:11Z",
+      "side": 1,
+      "message": "```suggestion\n        \n```",
+      "revId": "165174441513591698f34457d5f7fac906344f0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
