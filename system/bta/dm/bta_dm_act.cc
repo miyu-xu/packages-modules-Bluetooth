@@ -561,7 +561,7 @@ void bta_dm_remove_device(const RawAddress& target) {
   }
 }
 
-static void bta_dm_remove_on_disconnect(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
+void bta_dm_remove_on_disconnect(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   for (auto it = bta_dm_cb.pending_removals.begin(); it != bta_dm_cb.pending_removals.end(); it++) {
     if (bd_addr == it->identity_addr || bd_addr == it->pseudo_addr) {
       if (transport == BT_TRANSPORT_BR_EDR) {
