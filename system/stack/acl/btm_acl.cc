@@ -172,6 +172,11 @@ void NotifyAclLinkDown(tACL_CONN& p_acl) {
     p_acl.link_up_issued = false;
     BTA_dm_acl_down(p_acl.remote_addr, p_acl.transport);
   }
+  else {
+    log::warn("call  bta_dm_remove_on_disconnect when adl down link_up_issue is false");
+    bta_dm_remove_on_disconnect(p_acl.remote_addr, p_acl.transport);
+  }
+
 }
 
 void NotifyAclRoleSwitchComplete(const RawAddress& bda, tHCI_ROLE new_role,
