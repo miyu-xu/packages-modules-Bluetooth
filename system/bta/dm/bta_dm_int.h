@@ -348,6 +348,7 @@ namespace bluetooth::legacy::testing {
 tBTA_DM_PEER_DEVICE* allocate_device_for(const RawAddress& bd_addr, tBT_TRANSPORT transport);
 void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport, uint16_t acl_handle);
 void bta_dm_acl_down(const RawAddress& bd_addr, tBT_TRANSPORT transport);
+void bta_dm_remove_on_disconnect(const RawAddress& bd_addr, tBT_TRANSPORT transport);
 void bta_dm_init_cb();
 void bta_dm_deinit_cb();
 
