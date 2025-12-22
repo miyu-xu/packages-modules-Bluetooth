@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8239f307_12cc9cb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2025-12-22T16:22:31Z",
+      "side": 1,
+      "message": "This issue is already fixed in the internal branch with Change-ID: I734bb8eee576c6361096e181b88b52218a6c4793",
+      "revId": "8ac30fe08f7225abc02475efee7b35a97f7bc8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
