@@ -1130,6 +1130,7 @@ public class MediaPlayerList {
                         if (newControllers.size() == 0) {
                             if (mPlayerSettingsListener != null) {
                                 mPlayerSettingsListener.onActivePlayerChanged(null);
+                                mActivePlayerId = NO_ACTIVE_PLAYER;
                             }
                             return;
                         }
@@ -1163,6 +1164,7 @@ public class MediaPlayerList {
                             addedPackages.add(newControllers.get(i).getPackageName());
                             addMediaPlayer(newControllers.get(i));
                         }
+                        constructCurrentPlayers();
                     }
                 }
             };
