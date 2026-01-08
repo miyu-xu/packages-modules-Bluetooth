@@ -16,6 +16,24 @@
       "message": "Will this \"security review\" ever happen?\nThe feature was incredibly useful for Bluetooth research and testing.",
       "revId": "7d16f3f9d39db8f750730f4758f96f7f56c21071",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa1e71e_b60801a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-01-08T11:21:07Z",
+      "side": 1,
+      "message": "The socket has been reenabled behind a new system property `persist.bluetooth.btsnoopsocket.enabled`; the change will be available in the next dessert release.",
+      "parentUuid": "c3c1a88e_93bfd320",
+      "revId": "7d16f3f9d39db8f750730f4758f96f7f56c21071",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
