@@ -35,6 +35,9 @@ import java.util.UUID;
 public final class HfpClientCall implements Parcelable {
 
     /* Call state */
+    /** Call is invalid. */
+    public static final int CALL_STATE_INVALID = -1;
+
     /** Call is active. */
     public static final int CALL_STATE_ACTIVE = 0;
 
