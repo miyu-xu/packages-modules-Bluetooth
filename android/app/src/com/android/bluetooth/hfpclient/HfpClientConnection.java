@@ -88,7 +88,8 @@ public class HfpClientConnection extends Connection {
 
     void finishInitializing() {
         setAudioModeIsVoip(false);
-        Uri number = Uri.fromParts(PhoneAccount.SCHEME_TEL, mCurrentCall.getNumber(), null);
+        String currentCallNumber = mCurrentCall != null ? mCurrentCall.getNumber() : "";
+        Uri number = Uri.fromParts(PhoneAccount.SCHEME_TEL, currentCallNumber, null);
         setAddress(number, TelecomManager.PRESENTATION_ALLOWED);
         setConnectionCapabilities(
                 CAPABILITY_SUPPORT_HOLD
@@ -101,7 +102,7 @@ public class HfpClientConnection extends Connection {
     }
 
     public UUID getUUID() {
-        return mCurrentCall.getUUID();
+        return mCurrentCall != null ? mCurrentCall.getUUID() : null;
     }
 
     public void onHfpDisconnected() {
@@ -138,7 +139,8 @@ public class HfpClientConnection extends Connection {
 
     public void handleCallChanged() {
         HfpClientConference conference = (HfpClientConference) getConference();
-        int state = mCurrentCall.getState();
+        int state = mCurrentCall != null ? mCurrentCall.getState()
+            : HfpClientCall.CALL_STATE_INVALID;
 
         debug("Got call state change to " + state);
         switch (state) {
