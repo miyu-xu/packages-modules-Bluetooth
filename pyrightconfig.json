@@ -24,7 +24,7 @@
     ],
     "extraPaths": [
         "../../../external/pandora/avatar",
-        "../../../external/python/bumble",
+        "../../../extern
         "../../../external/python/mobly",
         "../../../external/python/pyee",
         "../../../external/python/portpicker/src",
