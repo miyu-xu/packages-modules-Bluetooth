@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4867739_beb8f173",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2026-01-28T07:52:26Z",
+      "side": 1,
+      "message": "Local subevent will emplace_back here no matter it abort or not. The number of remote subevent should not grater than local.",
+      "range": {
+        "startLine": 1395,
+        "startChar": 8,
+        "endLine": 1395,
+        "endChar": 94
+      },
+      "revId": "ffe91e2817891ff9db37f611b2f70fcc4fcbd287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13228e5f_6b423fec",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1662,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2026-01-28T07:52:26Z",
+      "side": 1,
+      "message": "It seems the root cause is that the number of subevent mismatch between local and remote device, this seems not a valid scenario?",
+      "range": {
+        "startLine": 1662,
+        "startChar": 10,
+        "endLine": 1662,
+        "endChar": 14
+      },
+      "revId": "ffe91e2817891ff9db37f611b2f70fcc4fcbd287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
