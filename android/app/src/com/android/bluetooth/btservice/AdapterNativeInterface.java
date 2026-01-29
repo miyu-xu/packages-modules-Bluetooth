@@ -92,6 +92,10 @@ public class AdapterNativeInterface {
         return getDevicePropertyNative(address, type);
     }
 
+    boolean cancelConnection(byte[] address) {
+        return cancelConnectionNative(address);
+    }
+
     boolean createBond(byte[] address, int addressType, int transport) {
         return createBondNative(address, addressType, transport);
     }
@@ -326,6 +330,8 @@ public class AdapterNativeInterface {
     private native boolean setDevicePropertyNative(byte[] address, int type, byte[] val);
 
     private native boolean getDevicePropertyNative(byte[] address, int type);
+
+    private native boolean cancelConnectionNative(byte[] address);
 
     private native boolean createBondNative(byte[] address, int addressType, int transport);
 

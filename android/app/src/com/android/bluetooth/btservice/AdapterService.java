@@ -2734,6 +2734,12 @@ public class AdapterService extends Service {
         return mNativeInterface.startDiscovery();
     }
 
+    boolean cancelConnection(BluetoothDevice device) {
+        if (device == null) return false;
+        byte[] addr = Utils.getBytesFromAddress(device.getAddress());
+        return mNativeInterface.cancelConnection(addr);
+    }
+
     /**
      * Same as API method {@link BluetoothAdapter#getBondedDevices()}
      *
