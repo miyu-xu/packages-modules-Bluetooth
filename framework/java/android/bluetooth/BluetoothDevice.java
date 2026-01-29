@@ -33,6 +33,7 @@ import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
+import android.annotation.FlaggedApi;
 import android.app.compat.CompatChanges;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
@@ -2852,6 +2853,21 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             }
         }
         return false;
+    }
+
+    /**
+     * Cancel a pending ACL connection attempt to this device.
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(BLUETOOTH_CONNECT)
+    @FlaggedApi("com.android.bluetooth.flags.cancel_connection_api")
+    public boolean cancelConnection() {
+        final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        if (adapter == null) return false;
+        return adapter.cancelConnection(this);
     }
 
     /**

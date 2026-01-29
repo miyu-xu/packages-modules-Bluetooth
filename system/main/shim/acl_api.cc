@@ -200,3 +200,10 @@ void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr, uint8_t page
 void bluetooth::shim::ACL_CancelRemoteNameRequest(const RawAddress& addr) {
   bluetooth::shim::GetRemoteNameRequest()->CancelRemoteNameRequest(addr);
 }
+
+bool bluetooth::shim::ACL_CancelConnection(const RawAddress& raw) {
+  bluetooth::hci::Address gd_addr;
+  (void)bluetooth::hci::Address::FromString(raw.ToString(), gd_addr);
+  bluetooth::shim::GetAclManagerClassic()->CancelConnect(gd_addr);
+  return true;
+}

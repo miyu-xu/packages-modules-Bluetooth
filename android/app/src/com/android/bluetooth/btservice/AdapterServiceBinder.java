@@ -385,6 +385,18 @@ class AdapterServiceBinder extends IBluetooth.Stub {
     }
 
     @Override
+    public boolean cancelConnection(BluetoothDevice device, AttributionSource source) {
+        AdapterService service = getService();
+        if (service == null
+                || !callerIsSystemOrActiveOrManagedUser(service, TAG, "cancelConnection")
+                || !checkConnectPermissionForDataDelivery(service, source, TAG, "cancelConnection")) {
+            return false;
+        }
+
+        return service.cancelConnection(device);
+    }
+
+    @Override
     public boolean createBond(BluetoothDevice device, int transport, AttributionSource source) {
         AdapterService service = getService();
         if (service == null
