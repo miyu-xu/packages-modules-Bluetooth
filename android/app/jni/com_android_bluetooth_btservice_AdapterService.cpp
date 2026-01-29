@@ -42,6 +42,8 @@
 #include "hardware/bluetooth.h"
 #include "hardware/bt_sock.h"
 
+#include "main/shim/acl_api.h"
+
 using bluetooth::Uuid;
 extern bt_interface_t bluetoothInterface;
 
@@ -1478,6 +1480,26 @@ static jboolean cancelBondNative(JNIEnv* env, jobject /* obj */, jbyteArray addr
   return (ret == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
 }
 
+static jboolean cancelConnectionNative(JNIEnv* env, jobject /* obj */, jbyteArray address) {
+  log::verbose("");
+
+  if (!sBluetoothInterface) {
+    return JNI_FALSE;
+  }
+
+  jbyte* addr = env->GetByteArrayElements(address, NULL);
+  if (addr == NULL) {
+    jniThrowIOException(env, EINVAL);
+    return JNI_FALSE;
+  }
+
+  RawAddress legacy_raw{};
+  memcpy(&legacy_raw, addr, sizeof(legacy_raw));
+  env->ReleaseByteArrayElements(address, addr, JNI_ABORT);
+  const bool ok = bluetooth::shim::ACL_CancelConnection(legacy_raw);
+  return ok ? JNI_TRUE : JNI_FALSE;
+}
+
 static jboolean pairingIsBusyNative(JNIEnv* /*env*/, jobject /* obj */) {
   log::verbose("");
 
@@ -2215,6 +2237,7 @@ static int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) 
            reinterpret_cast<void*>(createBondOutOfBandNative)},
           {"removeBondNative", "([B)Z", reinterpret_cast<void*>(removeBondNative)},
           {"cancelBondNative", "([B)Z", reinterpret_cast<void*>(cancelBondNative)},
+          {"cancelConnectionNative", "([B)Z", reinterpret_cast<void*>(cancelConnectionNative)},
           {"pairingIsBusyNative", "()Z", reinterpret_cast<void*>(pairingIsBusyNative)},
           {"generateLocalOobDataNative", "(I)V",
            reinterpret_cast<void*>(generateLocalOobDataNative)},
