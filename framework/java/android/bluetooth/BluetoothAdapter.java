@@ -48,6 +48,7 @@ import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
+import android.annotation.FlaggedApi;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothDevice.AddressType;
 import android.bluetooth.BluetoothDevice.Transport;
@@ -2543,6 +2544,32 @@ public final class BluetoothAdapter {
                                 s.getMostRecentlyConnectedDevices(mAttributionSource),
                                 mAttributionSource),
                 Collections.emptyList());
+    }
+
+    /**
+     * Cancel Bluetooth Connection
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothScanPermission
+    @RequiresPermission(BLUETOOTH_SCAN)
+    @FlaggedApi(Flags.FLAG_CANCEL_CONNECTION_API)
+    public boolean cancelConnection(@Nullable BluetoothDevice device) {
+        if (getState() != STATE_ON) {
+            return false;
+        }
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return mService.cancelConnection(device, mAttributionSource);
+            }
+        } catch (RemoteException e) {
+            logRemoteException(TAG, e);
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return false;
     }
 
     /**

@@ -122,3 +122,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "cancel_connection_api"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Cancel Connection api"
+    bug: "463931117"
+}
