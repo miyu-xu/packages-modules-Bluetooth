@@ -90,6 +90,8 @@ interface IBluetooth
     int getProfileConnectionState(int profile, in AttributionSource source);
 
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    boolean cancelConnection(in BluetoothDevice device, in AttributionSource source);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     List<BluetoothDevice> getBondedDevices(in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     boolean createBond(in BluetoothDevice device, in int transport, in AttributionSource attributionSource);
