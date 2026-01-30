@@ -899,7 +899,7 @@ static bool process_reqseq(tL2C_CCB* p_ccb, uint16_t ctrl_word) {
     }
 
     /* If we are still in a wait_ack state, do not mess with the timer */
-    if (!p_ccb->fcrb.wait_ack) {
+    if (!p_ccb->fcrb.wait_ack && fixed_queue_is_empty(p_fcrb->waiting_for_ack_q)) {
       l2c_fcr_stop_timer(p_ccb);
     }
 
