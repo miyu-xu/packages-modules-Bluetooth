@@ -611,7 +611,7 @@ class BluetoothManagerService {
         }
         filter.addAction(Intent.ACTION_SETTING_RESTORED);
         filter.addAction(Intent.ACTION_SHUTDOWN);
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.setPriority(IntentFilter.SYSTEM_LOW_PRIORITY);
         mContext.registerReceiver(mReceiver, filter, null, mHandler);
 
         IntentFilter filterUser = new IntentFilter();
