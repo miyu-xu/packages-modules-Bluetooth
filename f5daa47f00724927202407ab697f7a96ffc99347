@@ -52,6 +52,24 @@
       "parentUuid": "d4858b28_c71bfce4",
       "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b7b5543_57a83156",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4620736
+      },
+      "writtenOn": "2026-02-05T07:31:54Z",
+      "side": 1,
+      "message": "I’ve managed to isolate the reproduction steps!\n\nSteps:\n\nConnect Bluetooth headphones (tested with JBL Live 675NC on Pixel 7a)\n\nPlay media (specifically tested with YouTube Shorts)\n\nAllow the battery to drain until the device forces a shutdown (I used 4K60 video recording to accelerate the battery drain beforehand)\n\nObservations:\n\nAudio Fallback: As the Bluetooth stack shuts down, audio briefly routes through the device speakers before the system fully kills the power.\n\nStuttering: I noticed the audio cut in and out multiple times once - but haven\u0027t been able to reproduce that specific issue since.\n\nIsolation: I verified that if the video is paused and no BT is connected, the audio does not play during low-battery shutdown.",
+      "parentUuid": "04f7a53b_9b02ea6a",
+      "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
