@@ -16,6 +16,24 @@
       "message": "Hi @noahbtechhelp@gmail.com,\n\nThanks for the upload. I am trying to reproduce to see if I understand the issue correctly, but I want to clarify some behavior:\n\nWhen Bluetooth shutdown and there is only one remote devices connected, the Audio server is notified to pause media stream. I just tested it and it \"worked on my device\".\n\nThe only thing I could think of is what if there are two devices connected, could the audio fallback on the second devices for a short amount of time ? but I also tried this scenario and I am unable to reproduce it.\n\nIn my testing I also don\u0027t see any difference in the process between a \u0027bluetooth turn off\u0027 and a \u0027device shut down\u0027.\nDo you observe this issue when only turning off Bluetooth ?",
       "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4858b28_c71bfce4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4620736
+      },
+      "writtenOn": "2026-02-05T02:32:23Z",
+      "side": 1,
+      "message": "I appreciate the response! \nOn a Pixel 7a, if the battery dies while media (YouTube Shorts) is playing, audio briefly falls back to the device speaker. I can\u0027t reproduce this by toggling Bluetooth or shutting down normally - I\u0027ll follow up with concrete reproduction steps once I re-validate.",
+      "parentUuid": "a8f8505a_dac45cc1",
+      "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
