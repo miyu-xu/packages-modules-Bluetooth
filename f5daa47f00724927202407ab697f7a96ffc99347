@@ -34,6 +34,24 @@
       "parentUuid": "a8f8505a_dac45cc1",
       "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04f7a53b_9b02ea6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2026-02-05T02:41:09Z",
+      "side": 1,
+      "message": "Mmmmmm, only when the battery dies…\nThis is definitively not easy to reproduce in regular testing.\nBut I am glad to hear this is a very edge case.\n\nI don\u0027t have an idea from the top of my mind on why this could be happening, but I\u0027ll try to setup an experiment in the next few days if I can.",
+      "parentUuid": "d4858b28_c71bfce4",
+      "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
