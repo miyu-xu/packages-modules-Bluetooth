@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84937015_f899c0d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2026-02-07T02:05:40Z",
+      "side": 1,
+      "message": "Is this issue exclusive to WeChat, or do other VoIP apps exhibit similar behavior? The core question seems to be whether a mid-call change to the remote number should force a termination and restart. Since WeChat handles calls differently than standard PSTN, the root cause might be the AG (Audio Gateway) incorrectly reusing an active call session for a new endpoint. If this CL introduces a logic change to address that, we should flag it so we can assist with the implementation.",
+      "revId": "9844573e2ddff4a69289373008f54595ca714656",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
