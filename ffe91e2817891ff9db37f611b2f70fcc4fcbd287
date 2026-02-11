@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d0fd2e7_c01a6a1f",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2026-02-11T09:08:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc582ee2_054aa2db",
+      "range": {
+        "startLine": 1395,
+        "startChar": 8,
+        "endLine": 1395,
+        "endChar": 94
+      },
+      "revId": "ffe91e2817891ff9db37f611b2f70fcc4fcbd287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13228e5f_6b423fec",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Its IOT issue. one of the remote sending one extra CS subevent with zero steps in the last sub event",
       "parentUuid": "13228e5f_6b423fec",
+      "range": {
+        "startLine": 1662,
+        "startChar": 10,
+        "endLine": 1662,
+        "endChar": 14
+      },
+      "revId": "ffe91e2817891ff9db37f611b2f70fcc4fcbd287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b28bbb23_bc66cc84",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1662,
+      "author": {
+        "id": 2028308
+      },
+      "writtenOn": "2026-02-11T09:08:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd9479b0_4ea09d52",
       "range": {
         "startLine": 1662,
         "startChar": 10,
