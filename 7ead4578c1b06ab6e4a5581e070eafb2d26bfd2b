@@ -44,6 +44,24 @@
       ],
       "revId": "7ead4578c1b06ab6e4a5581e070eafb2d26bfd2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57fdc37a_83b2094c",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2026-03-12T20:22:44Z",
+      "side": 1,
+      "message": "Don\u0027t we need consider min_interval as well to treat as Duplicate request?",
+      "parentUuid": "11691ad4_482756d6",
+      "revId": "7ead4578c1b06ab6e4a5581e070eafb2d26bfd2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
