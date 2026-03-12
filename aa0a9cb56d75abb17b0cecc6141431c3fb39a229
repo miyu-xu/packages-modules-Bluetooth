@@ -16,6 +16,24 @@
       "message": "nit: Why this is not set to zero?\n```suggestion\n    private int mNumberOfSupportedOffloadedLeCocSockets \u003d 0;\n```",
       "revId": "aa0a9cb56d75abb17b0cecc6141431c3fb39a229",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f939eeef_2738514c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2026-03-12T23:49:12Z",
+      "side": 1,
+      "message": "Java set the value to 0 by default. The question is why the next line explictly set the value to 0",
+      "parentUuid": "14200dce_654b971b",
+      "revId": "aa0a9cb56d75abb17b0cecc6141431c3fb39a229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
