@@ -63,8 +63,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Collectors.*;
 
 class AdapterProperties {
     private static final String TAG = Utils.BT_PREFIX + AdapterProperties.class.getSimpleName();
@@ -91,7 +97,9 @@ class AdapterProperties {
 
     private final CopyOnWriteArrayList<BluetoothDevice> mBondedDevices =
             new CopyOnWriteArrayList<>();
-
+    @SuppressWarnings("FieldCanBeFinal")
+    private ConcurrentMap<BluetoothDevice, Integer> mBondedDevicesByTransport =
+            new ConcurrentHashMap<BluetoothDevice, Integer>();
     private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
     private final HashMap<Integer, Pair<Integer, Integer>> mProfileConnectionState =
             new HashMap<>();
@@ -195,6 +203,7 @@ class AdapterProperties {
         mProfileConnectionState.clear();
 
         mBondedDevices.clear();
+        mBondedDevicesByTransport.clear();
         invalidateBluetoothCaches();
     }
 
@@ -394,14 +403,71 @@ class AdapterProperties {
         return bondedDeviceList;
     }
 
+    BluetoothDevice[] getBondedDevices(int transport) {
+        BluetoothDevice[] bondedDeviceList = new BluetoothDevice[0];
+        if (BluetoothDevice.TRANSPORT_TYPE_UNKNOWN == transport) return bondedDeviceList;
+
+        if (mBondedDevicesByTransport.containsValue(transport)
+        || mBondedDevicesByTransport.containsValue(BluetoothDevice.TRANSPORT_TYPE_DUAL)) {
+            try {
+                bondedDeviceList = (mBondedDevicesByTransport.entrySet().stream()
+                    .filter(entry -> Objects.equals(entry.getValue(), transport)
+                    || Objects.equals(entry.getValue(), BluetoothDevice.TRANSPORT_TYPE_DUAL))
+                    .map(Map.Entry::getKey).collect(Collectors.toList()))
+                    .toArray(bondedDeviceList);
+            } catch (Exception e) {
+                Log.e(TAG, "[getBondedDevices]Exception", e);
+            }
+        } else {
+            Log.w(TAG, "[getBondedDevices]HashMap does not contain the device with transport = " + transport);
+        }
+        infoLog("getBondedDevices: transport = " + transport + ", length = " + bondedDeviceList.length);
+        return bondedDeviceList;
+    }
+
+    void addBondedDevices(BluetoothDevice device, int transport) {
+        infoLog("[addBondedDevices]device [" + device.getAddress() + "], transport[" + transport + "]");
+        if (BluetoothDevice.TRANSPORT_TYPE_UNKNOWN == transport) return;
+
+        if (mBondedDevicesByTransport.containsKey(device)) {
+            if (transport != mBondedDevicesByTransport.get(device)) {
+                mBondedDevicesByTransport.put(device, BluetoothDevice.TRANSPORT_TYPE_DUAL);
+                infoLog("[addBondedDevices]saved as TRANSPORT_TYPE_DUAL");
+            }
+        } else {
+            mBondedDevicesByTransport.put(device, transport);
+        }
+    }
+
+    void removeBondedDevices(BluetoothDevice device, int transport) {
+        if (BluetoothDevice.TRANSPORT_TYPE_UNKNOWN == transport) return;
+
+        if (mBondedDevicesByTransport.containsKey(device)) {
+            int existing_transport = mBondedDevicesByTransport.get(device);
+            if (transport == existing_transport
+             || transport == BluetoothDevice.TRANSPORT_TYPE_DUAL) {
+                mBondedDevicesByTransport.remove(device);
+                debugLog("[removeBondedDevices] removed from Map, transport " + transport);
+            } else {
+                if (existing_transport == BluetoothDevice.TRANSPORT_TYPE_DUAL) {
+                    int value = (transport == BluetoothDevice.TRANSPORT_TYPE_BREDR) ?
+                            BluetoothDevice.TRANSPORT_TYPE_LE:BluetoothDevice.TRANSPORT_TYPE_BREDR;
+                    mBondedDevicesByTransport.replace(device, value);
+                    debugLog("[removeBondedDevices]replace to " + value);
+                }
+            }
+        }
+    }
+
     // This function shall be invoked from BondStateMachine whenever the bond
     // state changes.
     @VisibleForTesting
-    void onBondStateChanged(BluetoothDevice device, int state) {
+    void onBondStateChanged(BluetoothDevice device, int state, int transport) {
         if (device == null) {
             Log.w(TAG, "onBondStateChanged, device is null");
             return;
         }
+        infoLog("onBondStateChanged, state = " + state + ", transport = " + transport);
         try {
             byte[] addrByte = Utils.getByteAddress(device);
             DeviceProperties prop = mRemoteDevices.getDeviceProperties(device);
@@ -409,7 +475,7 @@ class AdapterProperties {
                 prop = mRemoteDevices.addDeviceProperties(addrByte, device.getAddressType());
             }
             device = prop.getDevice();
-            prop.setBondState(state);
+            prop.setBondState(state, transport);
 
             if (state == BluetoothDevice.BOND_BONDED) {
                 // add if not already in list
@@ -418,6 +484,7 @@ class AdapterProperties {
                     mBondedDevices.add(device);
                     cleanupPrevBondRecordsFor(device);
                 }
+                addBondedDevices(device, transport);
             } else if (state == BluetoothDevice.BOND_NONE) {
                 // remove device from list
                 if (mBondedDevices.remove(device)) {
@@ -425,6 +492,7 @@ class AdapterProperties {
                 } else {
                     debugLog("Failed to remove device: " + device);
                 }
+                removeBondedDevices(device, transport);
             }
             invalidateGetBondStateCache();
         } catch (Exception ee) {
@@ -765,24 +833,31 @@ class AdapterProperties {
     }
 
     private void updateBondedDevices(byte[] val) {
-        int number = val.length / TYPED_BD_ADDR_LEN;
-        int addressType;
-        byte[] addrByte = new byte[BD_ADDR_LEN];
-        for (int j = 0; j < number; j++) {
-            System.arraycopy(val, j * TYPED_BD_ADDR_LEN, addrByte, 0, BD_ADDR_LEN);
-            addressType = val[(j * TYPED_BD_ADDR_LEN) + BD_ADDR_LEN];
-            String address = Utils.getAddressStringFromByte(addrByte);
+        final int BD_ADDR_LEN = 6;
+        final int ADDRESS_TYPE_LEN = 1;
+        final int TRANSPORT_TYPE_LEN = 1;
+        final int PROPERTY_LENGTH = BD_ADDR_LEN + ADDRESS_TYPE_LEN + TRANSPORT_TYPE_LEN;
 
+        int number = val.length / PROPERTY_LENGTH;
+        byte[] addrByte = new byte[BD_ADDR_LEN];
+
+        for (int j = 0; j < number; j++) {
+            int baseOffset = j * PROPERTY_LENGTH;
+            System.arraycopy(val, baseOffset, addrByte, 0, BD_ADDR_LEN);
+            int addressType = val[baseOffset + BD_ADDR_LEN];
+            int transportType = val[j * PROPERTY_LENGTH + BD_ADDR_LEN + ADDRESS_TYPE_LEN];
+            String address = Utils.getAddressStringFromByte(addrByte);
             debugLog(
                     "updateBondedDevices: Add device: "
                             + BluetoothUtils.toAnonymizedAddress(address)
-                            + ("[" + Utils.addressTypeToString(addressType) + "]"));
+                            + ("[" + Utils.addressTypeToString(addressType) + "]")
+                            + " Transport: " + transportType);
 
             BluetoothDevice device =
                     Flags.retainAddressType()
                             ? mService.getRemoteDevice(address, addressType)
                             : mAdapter.getRemoteDevice(address);
-            onBondStateChanged(device, BluetoothDevice.BOND_BONDED);
+            onBondStateChanged(device, BluetoothDevice.BOND_BONDED, transportType);
         }
     }
 

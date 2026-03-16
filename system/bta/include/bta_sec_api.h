@@ -148,6 +148,7 @@ typedef struct {
   tBLE_ADDR_TYPE addr_type; /* Peer device address type */
   tBT_DEVICE_TYPE dev_type;
   bool is_ctkd; /* True if key is derived using CTKD procedure */
+  tBT_TRANSPORT transport;
 } tBTA_DM_AUTH_CMPL;
 
 /* Structure associated with BTA_DM_DEV_UNPAIRED_EVT */

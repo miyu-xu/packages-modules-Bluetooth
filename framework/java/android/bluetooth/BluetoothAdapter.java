@@ -38,6 +38,7 @@ import static java.util.Objects.requireNonNull;
 
 import android.annotation.BroadcastBehavior;
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.IntRange;
 import android.annotation.NonNull;
@@ -2567,6 +2568,37 @@ public final class BluetoothAdapter {
                         s ->
                                 Attributable.setAttributionSource(
                                         s.getBondedDevices(mAttributionSource), mAttributionSource),
+                        Collections.emptyList()));
+    }
+
+    /**
+     * Return the set of {@link BluetoothDevice} objects that are bonded
+     * (paired) to the local adapter with transport type {@link BluetoothDevice#EXTRA_TRANSPORT_TYPE}.
+     *
+     * <p>If Bluetooth state is not {@link #STATE_ON}, this API
+     * will return an empty set. After turning on Bluetooth,
+     * wait for {@link #ACTION_STATE_CHANGED} with {@link #STATE_ON}
+     * to get the updated value.
+     *
+     * @return unmodifiable set of {@link BluetoothDevice}
+     * @hide
+     */
+    @SystemApi
+    @Nullable
+    @SuppressLint("NullableCollection")
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @FlaggedApi(Flags.FLAG_DIFF_BOND_STATE_BREDR_LE)
+    public Set<BluetoothDevice> getBondedDevices(int transport) {
+        if (getState() != STATE_ON) {
+            return toDeviceSet(Arrays.asList());
+        }
+        return toDeviceSet(
+                callServiceIfEnabled(
+                        s ->
+                                Attributable.setAttributionSource(
+                                        s.getBondedDevicesWithTransport(transport, mAttributionSource), mAttributionSource),
                         Collections.emptyList()));
     }
 

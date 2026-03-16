@@ -129,8 +129,8 @@ public class AdapterPropertiesTest {
 
         // Bond record for device1 should be deleted when pairing with device2
         // as they are same device (have same identity address)
-        mAdapterProperties.onBondStateChanged(device1, BluetoothDevice.BOND_BONDED);
-        mAdapterProperties.onBondStateChanged(device2, BluetoothDevice.BOND_BONDED);
+        mAdapterProperties.onBondStateChanged(device1, BluetoothDevice.BOND_BONDED, BluetoothDevice.TRANSPORT_BREDR);
+        mAdapterProperties.onBondStateChanged(device2, BluetoothDevice.BOND_BONDED, BluetoothDevice.TRANSPORT_BREDR);
         assertThat(mAdapterProperties.getBondedDevices().length).isEqualTo(1);
         assertThat(mAdapterProperties.getBondedDevices()[0].getAddress())
                 .isEqualTo(Utils.getAddressStringFromByte(TEST_BT_ADDR_BYTES_2));

@@ -144,7 +144,8 @@ void pin_request_callback(RawAddress* /* remote_bd_addr */, bt_bdname_t* /* bd_n
 void ssp_request_callback(RawAddress* /* remote_bd_addr */, bt_ssp_variant_t /* pairing_variant */,
                           uint32_t /* pass_key */) {}
 void bond_state_changed_callback(bt_status_t /* status */, RawAddress* /* remote_bd_addr */,
-                                 bt_bond_state_t /* state */, int /* fail_reason */) {}
+                                 bt_bond_state_t /* state */, int /* fail_reason */,
+                                 tBT_TRANSPORT /* transport */) {}
 void address_consolidate_callback(RawAddress* /* main_bd_addr */,
                                   RawAddress* /* secondary_bd_addr */) {}
 void le_address_associate_callback(RawAddress* /* main_bd_addr */,
@@ -643,6 +644,8 @@ TEST_F(BtifCoreWithConnectionTest, btif_dm_get_connection_state__connected_no_en
         return false;
       case BT_TRANSPORT_LE:
         return false;
+      case BT_TRANSPORT_DUMO:
+        return false;
     }
     return false;
   };
@@ -659,6 +662,8 @@ TEST_F(BtifCoreWithConnectionTest, btif_dm_get_connection_state__connected_class
       case BT_TRANSPORT_BR_EDR:
         return true;
       case BT_TRANSPORT_LE:
+        return false;
+      case BT_TRANSPORT_DUMO:
         return false;
     }
     return false;
@@ -678,6 +683,8 @@ TEST_F(BtifCoreWithConnectionTest, btif_dm_get_connection_state__connected_le_en
         return false;
       case BT_TRANSPORT_LE:
         return true;
+      case BT_TRANSPORT_DUMO:
+        return false;
     }
     return false;
   };
@@ -695,6 +702,8 @@ TEST_F(BtifCoreWithConnectionTest, btif_dm_get_connection_state__connected_both_
         return true;
       case BT_TRANSPORT_LE:
         return true;
+      case BT_TRANSPORT_DUMO:
+        return false;
     }
     return false;
   };
@@ -712,6 +721,8 @@ TEST_F(BtifCoreWithConnectionTest, btif_dm_get_connection_state_sync) {
         return true;
       case BT_TRANSPORT_LE:
         return true;
+      case BT_TRANSPORT_DUMO:
+        return false;
     }
     return false;
   };

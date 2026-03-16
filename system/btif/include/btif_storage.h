@@ -66,9 +66,17 @@
 bt_status_t btif_in_fetch_bonded_device(const std::string& bdstr);
 
 typedef struct {
+  tBLE_BD_ADDR device;
+  tBT_TRANSPORT transport_type;
+  // could be extended by adding additional properties here.
+} btif_bonded_device_property_t;
+
+typedef struct {
   uint32_t num_devices;
-  tBLE_BD_ADDR devices[BTM_SEC_MAX_DEVICE_RECORDS];
+  btif_bonded_device_property_t properties[BTM_SEC_MAX_DEVICE_RECORDS];
 } btif_bonded_devices_t;
+
+using tBONDED_DEVICE_PROP_SERIALIZED = std::array<uint8_t, RawAddress::kLength + 2>;
 
 bt_status_t btif_in_fetch_bonded_ble_device(const std::string& remote_bd_addr, int add,
                                             btif_bonded_devices_t* p_bonded_devices);

@@ -37,6 +37,7 @@ pub enum BtTransport {
     Auto = 0,
     Bredr,
     Le,
+    Dumo,
 }
 
 impl From<i32> for BtTransport {
@@ -1040,7 +1041,7 @@ pub enum BaseCallbacks {
     DiscoveryState(BtDiscoveryState),
     PinRequest(RawAddress, String, u32, bool),
     SspRequest(RawAddress, BtSspVariant, u32),
-    BondState(BtStatus, RawAddress, BtBondState, i32),
+    BondState(BtStatus, RawAddress, BtBondState, i32, u8),
     AddressConsolidate(RawAddress, RawAddress),
     LeAddressAssociate(RawAddress, RawAddress, u8),
     AclState(BtStatus, AclLinkSpec, BtAclState, BtHciErrorCode, BtConnectionDirection, u16),
@@ -1090,7 +1091,7 @@ cb_variant!(BaseCb, ssp_request_cb -> BaseCallbacks::SspRequest,
     let _0 = unsafe { *(_0 as *const RawAddress) };
 });
 cb_variant!(BaseCb, bond_state_cb -> BaseCallbacks::BondState,
-u32 -> BtStatus, *mut RawAddress, bindings::bt_bond_state_t -> BtBondState, i32, {
+u32 -> BtStatus, *mut RawAddress, bindings::bt_bond_state_t -> BtBondState, i32, u8, {
     let _1 = unsafe { *(_1 as *const RawAddress) };
 });
 

@@ -150,6 +150,7 @@ void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type, tBT_TRANSP
             sec_event.auth_cmpl.success = false;
     */
     sec_event.auth_cmpl.fail_reason = HCI_ERR_ILLEGAL_COMMAND;
+    sec_event.auth_cmpl.transport = transport;
     if (status == tBTM_STATUS::BTM_SUCCESS) {
       sec_event.auth_cmpl.success = true;
     } else {

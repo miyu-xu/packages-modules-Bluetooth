@@ -598,7 +598,8 @@ typedef void (*ssp_request_callback)(RawAddress* remote_bd_addr, bt_ssp_variant_
 /** Bluetooth Bond state changed callback */
 /* Invoked in response to create_bond, cancel_bond or remove_bond */
 typedef void (*bond_state_changed_callback)(bt_status_t status, RawAddress* remote_bd_addr,
-                                            bt_bond_state_t state, int fail_reason);
+                                            bt_bond_state_t state, int fail_reason,
+                                            tBT_TRANSPORT transport);
 
 /** Bluetooth Address consolidate callback */
 /* Callback to inform upper layer that these two addresses come from same

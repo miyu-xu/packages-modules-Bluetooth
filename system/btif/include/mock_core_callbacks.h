@@ -46,7 +46,7 @@ EventCallbacks mock_event_callbacks = {
                                          Octet16 /* r */, RawAddress /* raw_address */,
                                          uint8_t /* address_type */) {},
         .invoke_bond_state_changed_cb = [](bt_status_t /* status */, RawAddress /* bd_addr */,
-                                           bt_bond_state_t /* state */, int /* fail_reason */) {},
+                                           bt_bond_state_t /* state */, int /* fail_reason */, tBT_TRANSPORT /* transport */) {},
         .invoke_address_consolidate_cb = [](RawAddress /* main_bd_addr */,
                                             RawAddress /* secondary_bd_addr */) {},
         .invoke_le_address_associate_cb = [](RawAddress /* main_bd_addr */,

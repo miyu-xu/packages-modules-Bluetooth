@@ -122,3 +122,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "diff_bond_state_bredr_le"
+    namespace: "bluetooth"
+    description: "Differentiate bond state over BREDR and LE"
+    bug: "228870082"
+}

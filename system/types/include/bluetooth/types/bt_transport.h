@@ -27,6 +27,7 @@ enum tBT_TRANSPORT : uint8_t {
   BT_TRANSPORT_AUTO = 0,
   BT_TRANSPORT_BR_EDR = 1,
   BT_TRANSPORT_LE = 2,
+  BT_TRANSPORT_DUMO = 3,
 };
 
 inline std::string bt_transport_text(const tBT_TRANSPORT& transport) {
@@ -34,6 +35,7 @@ inline std::string bt_transport_text(const tBT_TRANSPORT& transport) {
     CASE_RETURN_TEXT(BT_TRANSPORT_AUTO);
     CASE_RETURN_TEXT(BT_TRANSPORT_BR_EDR);
     CASE_RETURN_TEXT(BT_TRANSPORT_LE);
+    CASE_RETURN_TEXT(BT_TRANSPORT_DUMO);
   }
   RETURN_UNKNOWN_TYPE_STRING(tBT_TRANSPORT, transport);
 }

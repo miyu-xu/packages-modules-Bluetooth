@@ -2743,6 +2743,15 @@ public class AdapterService extends Service {
         return mAdapterProperties.getBondedDevices();
     }
 
+    /**
+     * Same as API method {@link BluetoothAdapter#getBondedDevices(transport)}
+     *
+     * @return array of bonded {@link BluetoothDevice} or null on error
+     */
+    public BluetoothDevice[] getBondedDevices(int transport) {
+        return mAdapterProperties.getBondedDevices(transport);
+    }
+
     public byte[] getByteIdentityAddress(BluetoothDevice device) {
         DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
         if (deviceProp != null && deviceProp.getIdentityAddress().getAddress() != null) {
@@ -2976,6 +2985,19 @@ public class AdapterService extends Service {
      */
     public int getBondState(BluetoothDevice device) {
         return mRemoteDevices.getBondState(device);
+    }
+
+    /**
+     * Get the bond state of a particular {@link BluetoothDevice}
+     *
+     * @param device remote device of interest
+     * @param transport transport type
+     * @return bond state
+     *     <p>Possible values are {@link BluetoothDevice#BOND_NONE}, {@link
+     *     BluetoothDevice#BOND_BONDING}, {@link BluetoothDevice#BOND_BONDED}.
+     */
+    public int getBondState(BluetoothDevice device, int transport) {
+        return mRemoteDevices.getBondState(device, transport);
     }
 
     public boolean isConnected(BluetoothDevice device) {

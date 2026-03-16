@@ -348,6 +348,19 @@ class AdapterServiceBinder extends IBluetooth.Stub {
     }
 
     @Override
+    public List<BluetoothDevice> getBondedDevicesWithTransport(int transport, AttributionSource source) {
+        // don't check caller, may be called from system UI
+        AdapterService service = getService();
+        if (service == null
+                || !checkConnectPermissionForDataDelivery(
+                        service, source, TAG, "getBondedDevices")) {
+            return Collections.emptyList();
+        }
+
+        return Arrays.asList(service.getBondedDevices(transport));
+    }
+
+    @Override
     public int getAdapterConnectionState() {
         // don't check caller, may be called from system UI
         AdapterService service = getService();
@@ -464,7 +477,11 @@ class AdapterServiceBinder extends IBluetooth.Stub {
         Log.i(TAG, "removeBond: device=" + device + ", from " + getUidPidString());
 
         DeviceProperties deviceProp = service.getRemoteDevices().getDeviceProperties(device);
-        if (deviceProp == null || deviceProp.getBondState() != BluetoothDevice.BOND_BONDED) {
+        if ((deviceProp == null) ||
+            ((deviceProp.getBondState(
+                    BluetoothDevice.TRANSPORT_TYPE_BREDR) != BluetoothDevice.BOND_BONDED)
+            && (deviceProp.getBondState(
+                    BluetoothDevice.TRANSPORT_TYPE_LE) != BluetoothDevice.BOND_BONDED))) {
             Log.w(
                     TAG,
                     device
@@ -495,6 +512,18 @@ class AdapterServiceBinder extends IBluetooth.Stub {
         }
 
         return service.getBondState(device);
+    }
+
+    @Override
+    public int getBondStateWithTransport(BluetoothDevice device, int transport, AttributionSource source) {
+        // don't check caller, may be called from system UI
+        AdapterService service = getService();
+        if (service == null
+                || !checkConnectPermissionForDataDelivery(service, source, TAG, "getBondState")) {
+            return BluetoothDevice.BOND_NONE;
+        }
+
+        return service.getBondState(device, transport);
     }
 
     @Override

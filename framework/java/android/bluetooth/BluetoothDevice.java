@@ -272,6 +272,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     // Note: When EXTRA_BOND_STATE is BOND_NONE then this will also
     // contain a hidden extra field EXTRA_UNBOND_REASON with the result code.
+    // Note: This contains a hidden extra field EXTRA_TRANSPORT_TYPE.
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -457,6 +458,24 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     public static final String EXTRA_PREVIOUS_BOND_STATE =
             "android.bluetooth.device.extra.PREVIOUS_BOND_STATE";
+
+    /**
+     * Used as an int extra field in {@link #ACTION_BOND_STATE_CHANGED} intents.
+     * Contains the transport type of the bond state.
+     * <p>Possible values are:
+     * {@link #TRANSPORT_TYPE_UNKNOWN},
+     * {@link #TRANSPORT_TYPE_BREDR},
+     * {@link #TRANSPORT_TYPE_LE},
+     * {@link #TRANSPORT_TYPE_DUAL},
+     *
+     * @hide
+     */
+    @SuppressLint("ActionValue")
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_DIFF_BOND_STATE_BREDR_LE)
+    public static final String EXTRA_TRANSPORT_TYPE =
+            "android.bluetooth.device.extra.TRANSPORT_TYPE";
+
 
     /**
      * Used as a boolean extra field to indicate if audio buffer size is low latency or not
@@ -677,6 +696,30 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 DEVICE_TYPE_UNKNOWN,
             })
     public @interface DeviceType {}
+
+    /**
+     * Bluetooth transport type, Unknown
+     * @hide
+     */
+    public static final int TRANSPORT_TYPE_UNKNOWN = 0;
+
+    /**
+     * Bluetooth transport type, Classic - BR/EDR
+     * @hide
+     */
+    public static final int TRANSPORT_TYPE_BREDR = 1;
+
+    /**
+     * Bluetooth transport type, Low Energy - LE
+     * @hide
+     */
+    public static final int TRANSPORT_TYPE_LE = 2;
+
+    /**
+     * Bluetooth transport type, Dual Mode - BR/EDR/LE
+     * @hide
+     */
+    public static final int TRANSPORT_TYPE_DUAL = 3;
 
     /** @hide */
     @RequiresBluetoothConnectPermission
@@ -2312,6 +2355,37 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 if (!(e.getCause() instanceof RemoteException)) {
                     throw e;
                 }
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return BOND_NONE;
+    }
+
+    /**
+     * Get the bond state of the remote device with type of transport (e.g. LE or Classic)
+     * <p>Possible values for the bond state are:
+     * {@link #BOND_NONE},
+     * {@link #BOND_BONDING},
+     * {@link #BOND_BONDED}.
+     *
+     * @return the bond state
+     * @hide
+     */
+    @SystemApi
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @FlaggedApi(Flags.FLAG_DIFF_BOND_STATE_BREDR_LE)
+    public int getBondState(int transport) {
+        if (DBG) log("getBondState(" + this + ") with " + transport);
+        final IBluetooth service = getService();
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "BT not enabled. Cannot get bond state with transport");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                return service.getBondStateWithTransport(this, transport, mAttributionSource);
+            } catch (RemoteException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
         }

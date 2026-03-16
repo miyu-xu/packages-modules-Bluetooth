@@ -63,8 +63,8 @@ class JniCallbacks {
         mBondStateMachine.pinRequestCallback(address, name, cod, min16Digits);
     }
 
-    void bondStateChangeCallback(int status, byte[] address, int newState, int hciReason) {
-        mBondStateMachine.bondStateChangeCallback(status, address, newState, hciReason);
+    void bondStateChangeCallback(int status, byte[] address, int newState, int hciReason, int transport) {
+        mBondStateMachine.bondStateChangeCallback(status, address, newState, hciReason, transport);
     }
 
     void addressConsolidateCallback(byte[] mainAddress, byte[] secondaryAddress) {

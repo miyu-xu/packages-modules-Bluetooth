@@ -516,7 +516,9 @@ static bt_status_t btif_in_fetch_bonded_devices(btif_bonded_devices_t* p_bonded_
         tBLE_ADDR_TYPE addr_type = static_cast<tBLE_ADDR_TYPE>(addr_type_int);
 
         if (p_bonded_devices->num_devices < BTM_SEC_MAX_DEVICE_RECORDS) {
-          p_bonded_devices->devices[p_bonded_devices->num_devices++] = {addr_type, bd_addr};
+          p_bonded_devices->properties[p_bonded_devices->num_devices].device = {addr_type, bd_addr};
+          p_bonded_devices->properties[p_bonded_devices->num_devices].transport_type = BT_TRANSPORT_BR_EDR;
+          p_bonded_devices->num_devices++;
         } else {
           log::warn("Exceed the max number of bonded devices");
         }
@@ -646,11 +648,16 @@ bt_status_t btif_storage_get_adapter_property(bt_property_t* property) {
     log::verbose("BT_PROPERTY_ADAPTER_BONDED_DEVICES: Number of bonded devices={}",
                  bonded_devices.num_devices);
 
-    std::vector<tBLE_BD_ADDR_SERIALIZED> bonded_devices_serialized;
+    std::vector<tBONDED_DEVICE_PROP_SERIALIZED> bonded_devices_serialized;
     for (uint32_t i = 0; i < bonded_devices.num_devices; ++i) {
-      bonded_devices_serialized.push_back(bonded_devices.devices[i].ToSerialized());
+      tBONDED_DEVICE_PROP_SERIALIZED serialized;
+      memcpy(serialized.data(), bonded_devices.properties[i].device.bda.address.data(), RawAddress::kLength);
+      serialized[RawAddress::kLength] = bonded_devices.properties[i].device.type;
+      serialized[RawAddress::kLength + 1] = static_cast<uint8_t>(bonded_devices.properties[i].transport_type);
+      bonded_devices_serialized.push_back(serialized);
     }
-    property->len = bonded_devices.num_devices * bonded_devices_serialized.size();
+
+    property->len = bonded_devices.num_devices * sizeof(tBONDED_DEVICE_PROP_SERIALIZED);
     memcpy(property->val, bonded_devices_serialized.data(), property->len);
 
     /* if there are no bonded_devices, then length shall be 0 */
@@ -924,44 +931,49 @@ void btif_storage_load_le_devices(void) {
 
   std::unordered_set<RawAddress> bonded_addresses;
   for (uint16_t i = 0; i < bonded_devices.num_devices; i++) {
-    bonded_addresses.insert(bonded_devices.devices[i].bda);
+    bonded_addresses.insert(bonded_devices.properties[i].device.bda);
   }
 
-  std::vector<std::pair<tBLE_BD_ADDR, tBLE_BD_ADDR>> consolidated_devices;
+  std::vector<std::pair<btif_bonded_device_property_t, tBLE_BD_ADDR>> consolidated_devices;
   for (uint16_t i = 0; i < bonded_devices.num_devices; i++) {
     tBTA_LE_KEY_VALUE key = {};
-    if (btif_storage_get_ble_bonding_key(bonded_devices.devices[i].bda, BTM_LE_KEY_PID,
+    if (btif_storage_get_ble_bonding_key(bonded_devices.properties[i].device.bda, BTM_LE_KEY_PID,
                                          reinterpret_cast<uint8_t*>(&key),
                                          sizeof(tBTM_LE_PID_KEYS)) == BT_STATUS_SUCCESS) {
-      if (bonded_devices.devices[i].bda != key.pid_key.identity_addr) {
-        log::info("Found device with a known identity address {} {}", bonded_devices.devices[i],
+      if (bonded_devices.properties[i].device.bda != key.pid_key.identity_addr) {
+        log::info("Found device with a known identity address {} {}", bonded_devices.properties[i].device.bda,
                   key.pid_key.identity_addr);
 
-        if (bonded_devices.devices[i].bda.IsEmpty() || key.pid_key.identity_addr.IsEmpty()) {
+        if (bonded_devices.properties[i].device.bda.IsEmpty() || key.pid_key.identity_addr.IsEmpty()) {
           log::warn("Address is empty! Skip");
         } else {
           tBLE_BD_ADDR identity_addr = {.type = key.pid_key.identity_addr_type,
                                         .bda = key.pid_key.identity_addr};
-          consolidated_devices.emplace_back(bonded_devices.devices[i], identity_addr);
+          consolidated_devices.emplace_back(bonded_devices.properties[i], identity_addr);
         }
       }
     }
   }
 
   /* Send the adapter_properties_cb with bonded consolidated device */
-  std::vector<tBLE_BD_ADDR_SERIALIZED> serialized_bonded_devices;
-  for (const auto& device : consolidated_devices) {
-    serialized_bonded_devices.push_back(std::get<0>(device).ToSerialized());
+  std::vector<tBONDED_DEVICE_PROP_SERIALIZED> serialized_bonded_devices;
+  for (const auto& device_pair : consolidated_devices) {
+    tBONDED_DEVICE_PROP_SERIALIZED serialized;
+    const auto& prop = std::get<0>(device_pair);
+    memcpy(serialized.data(), prop.device.bda.address.data(), RawAddress::kLength);
+    serialized[RawAddress::kLength] = prop.device.type;
+    serialized[RawAddress::kLength + 1] = static_cast<uint8_t>(prop.transport_type);
+    serialized_bonded_devices.push_back(serialized);
   }
   bt_property_t adapter_prop = {.type = BT_PROPERTY_ADAPTER_BONDED_DEVICES,
                                 .len = static_cast<int>(serialized_bonded_devices.size() *
-                                                        sizeof(tBLE_BD_ADDR_SERIALIZED)),
+                                                        sizeof(tBONDED_DEVICE_PROP_SERIALIZED)),
                                 .val = serialized_bonded_devices.data()};
   btif_adapter_properties_evt(BT_STATUS_SUCCESS, /* num_props */ 1, &adapter_prop);
 
-  for (const auto& device : consolidated_devices) {
-    const tBLE_BD_ADDR& pseudo_addr = std::get<0>(device);
-    const tBLE_BD_ADDR& identity_addr = std::get<1>(device);
+  for (const auto& device_pair : consolidated_devices) {
+    const tBLE_BD_ADDR& pseudo_addr = std::get<0>(device_pair).device;
+    const tBLE_BD_ADDR& identity_addr = std::get<1>(device_pair);
 
     if (bonded_addresses.find(identity_addr.bda) != bonded_addresses.end()) {
       // Invokes address consolidation for DuMo devices
@@ -1030,13 +1042,17 @@ bt_status_t btif_storage_load_bonded_devices(void) {
     num_props++;
 
     /* BONDED_DEVICES */
-    std::vector<tBLE_BD_ADDR_SERIALIZED> serialized_bonded_devices;
+    std::vector<tBONDED_DEVICE_PROP_SERIALIZED> serialized_bonded_devices;
     for (uint32_t i = 0; i < bonded_devices.num_devices; i++) {
-      serialized_bonded_devices.push_back(bonded_devices.devices[i].ToSerialized());
+      tBONDED_DEVICE_PROP_SERIALIZED serialized;
+      memcpy(serialized.data(), bonded_devices.properties[i].device.bda.address.data(), RawAddress::kLength);
+      serialized[RawAddress::kLength] = bonded_devices.properties[i].device.type;
+      serialized[RawAddress::kLength + 1] = static_cast<uint8_t>(bonded_devices.properties[i].transport_type);
+      serialized_bonded_devices.push_back(serialized);
     }
     adapter_props[num_props].type = BT_PROPERTY_ADAPTER_BONDED_DEVICES;
     adapter_props[num_props].len =
-            serialized_bonded_devices.size() * sizeof(tBLE_BD_ADDR_SERIALIZED);
+            serialized_bonded_devices.size() * sizeof(tBONDED_DEVICE_PROP_SERIALIZED);
     adapter_props[num_props].val = serialized_bonded_devices.data();
     num_props++;
 
@@ -1061,7 +1077,7 @@ bt_status_t btif_storage_load_bonded_devices(void) {
       uint32_t devtype = 0;
 
       num_props = 0;
-      p_remote_addr = &bonded_devices.devices[i].bda;
+      p_remote_addr = &bonded_devices.properties[i].device.bda;
       memset(remote_properties, 0, sizeof(remote_properties));
       btif_storage_get_remote_prop(p_remote_addr, BT_PROPERTY_BDNAME, &name, sizeof(name),
                                    &remote_properties[num_props]);
@@ -1273,7 +1289,9 @@ bt_status_t btif_in_fetch_bonded_ble_device(const std::string& remote_bd_addr, i
     // Fill in the bonded devices
     if (device_added) {
       if (p_bonded_devices->num_devices < BTM_SEC_MAX_DEVICE_RECORDS) {
-        p_bonded_devices->devices[p_bonded_devices->num_devices++] = {addr_type, bd_addr};
+        p_bonded_devices->properties[p_bonded_devices->num_devices].device = {addr_type, bd_addr};
+        p_bonded_devices->properties[p_bonded_devices->num_devices].transport_type = BT_TRANSPORT_LE;
+        p_bonded_devices->num_devices++;
       } else {
         log::warn("Exceed the max number of bonded devices");
       }

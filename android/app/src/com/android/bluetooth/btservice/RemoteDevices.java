@@ -284,6 +284,14 @@ public class RemoteDevices {
         return deviceProp.getBondState();
     }
 
+    int getBondState(BluetoothDevice device, int transport) {
+        DeviceProperties deviceProp = getDeviceProperties(device);
+        if (deviceProp == null) {
+            return BluetoothDevice.BOND_NONE;
+        }
+        return deviceProp.getBondState(transport);
+    }
+
     String getName(BluetoothDevice device) {
         DeviceProperties deviceProp = getDeviceProperties(device);
         if (deviceProp == null) {
@@ -461,8 +469,40 @@ public class RemoteDevices {
                             }
                         });
 
+        @SuppressWarnings("FieldCanBeFinal")
+        private BondState mBondStateByTransport;
+        @SuppressWarnings("ClassCanBeStatic")
+        class BondState {
+            int bredr;
+            int le;
+
+            BondState() {
+                this.bredr = BluetoothDevice.BOND_NONE;
+                this.le = BluetoothDevice.BOND_NONE;
+            }
+            public int getBondState(int transport) {
+                if (transport == BluetoothDevice.TRANSPORT_TYPE_BREDR) return this.bredr;
+                else if (transport == BluetoothDevice.TRANSPORT_TYPE_LE) return this.le;
+                else {
+                    debugLog("[getBondState]Invalid transport type:" + transport);
+                    return BluetoothDevice.BOND_NONE;
+                }
+            }
+            public void setBondState(int state, int transport) {
+                if (transport == BluetoothDevice.TRANSPORT_TYPE_BREDR) this.bredr = state;
+                else if (transport == BluetoothDevice.TRANSPORT_TYPE_LE) this.le = state;
+                else if (transport == BluetoothDevice.TRANSPORT_TYPE_DUAL) {
+                    this.bredr = state;
+                    this.le = state;
+                } else {
+                    debugLog("[setBondState]Invalid transport type : " + transport);
+                }
+            }
+        }
+
         DeviceProperties() {
             mBondState = BluetoothDevice.BOND_NONE;
+            mBondStateByTransport = new BondState();
         }
 
         /**
@@ -829,9 +869,11 @@ public class RemoteDevices {
         /**
          * @param newBondState the mBondState to set
          */
-        void setBondState(int newBondState) {
+        void setBondState(int newBondState, int transport) {
+            debugLog("setBondState, newBondState = " + newBondState + ", transport = " + transport);
             synchronized (mObject) {
                 this.mBondState = newBondState;
+                this.mBondStateByTransport.setBondState(newBondState, transport);
                 if (newBondState == BluetoothDevice.BOND_NONE) {
                     /* Clearing the Uuids local copy when the device is unpaired. If not cleared,
                     cachedBluetoothDevice issued a connect using the local cached copy of uuids,
@@ -864,6 +906,12 @@ public class RemoteDevices {
         int getBondState() {
             synchronized (mObject) {
                 return mBondState;
+            }
+        }
+
+        int getBondState(int transport) {
+            synchronized (mObject) {
+                return mBondStateByTransport.getBondState(transport);
             }
         }
 

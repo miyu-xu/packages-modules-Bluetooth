@@ -178,10 +178,10 @@ public class BondStateMachineTest {
         verify(mNativeInterface).removeBond(eq(TEST_BT_ADDR_BYTES_2));
 
         mStateMachine.bondStateChangeCallback(
-                AbstractionLayer.BT_STATUS_SUCCESS, TEST_BT_ADDR_BYTES, BOND_NONE, 0);
+                AbstractionLayer.BT_STATUS_SUCCESS, TEST_BT_ADDR_BYTES, BOND_NONE, 0, BluetoothDevice.TRANSPORT_BREDR);
         syncHandler(BondStateMachine.BONDING_STATE_CHANGE);
         mStateMachine.bondStateChangeCallback(
-                AbstractionLayer.BT_STATUS_SUCCESS, TEST_BT_ADDR_BYTES_2, BOND_NONE, 0);
+                AbstractionLayer.BT_STATUS_SUCCESS, TEST_BT_ADDR_BYTES_2, BOND_NONE, 0, BluetoothDevice.TRANSPORT_BREDR);
         syncHandler(BondStateMachine.BONDING_STATE_CHANGE);
 
         // Try to pair these two devices again, createBondNative() should be invoked.
@@ -234,7 +234,7 @@ public class BondStateMachineTest {
                 mRemoteDevices.addDeviceProperties(TEST_BT_ADDR_BYTES_2);
         BluetoothDevice pendingDevice = pendingDeviceProperties.getDevice();
         assertThat(pendingDevice).isNotNull();
-        mStateMachine.sendIntent(pendingDevice, BOND_BONDED, TEST_BOND_REASON, false);
+        mStateMachine.sendIntent(pendingDevice, BOND_BONDED, TEST_BOND_REASON, false, BluetoothDevice.TRANSPORT_BREDR);
 
         RemoteDevices.DeviceProperties testDeviceProperties =
                 mRemoteDevices.addDeviceProperties(TEST_BT_ADDR_BYTES);
@@ -653,7 +653,7 @@ public class BondStateMachineTest {
 
         try {
             mStateMachine.sendIntent(
-                    mDevice, newState, TEST_BOND_REASON, isTriggerFromDelayMessage);
+                    mDevice, newState, TEST_BOND_REASON, isTriggerFromDelayMessage, BluetoothDevice.TRANSPORT_BREDR);
         } catch (IllegalArgumentException e) {
             // Do nothing.
         }
