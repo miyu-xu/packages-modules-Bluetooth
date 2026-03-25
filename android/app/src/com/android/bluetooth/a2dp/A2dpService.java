@@ -31,6 +31,8 @@ import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElseGet;
 
+import android.app.ActivityManager;
+
 import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothA2dp;
@@ -56,6 +58,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemProperties;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
@@ -117,6 +120,8 @@ public class A2dpService extends ProfileService {
     // A2DP Offload Enabled in platform
     private final boolean mA2dpOffloadEnabled;
 
+    private final boolean mUseForegroundPriority;
+
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
 
@@ -138,6 +143,14 @@ public class A2dpService extends ProfileService {
         mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
         mAudioManager = requireNonNull(getSystemService(AudioManager.class));
         mCompanionDeviceManager = requireNonNull(getSystemService(CompanionDeviceManager.class));
+
+        ActivityManager am = getSystemService(ActivityManager.class);
+        boolean isLowRam = am != null && am.isLowRamDevice();
+        boolean isBatteryless =
+            SystemProperties.getBoolean("ro.config.batteryless", false);
+
+        mUseForegroundPriority = isBatteryless && isLowRam;
+
         mLooper = requireNonNull(looper);
         mHandler = new Handler(mLooper);
 
@@ -603,6 +616,10 @@ public class A2dpService extends ProfileService {
         synchronized (mStateMachines) {
             return mActiveDevice;
         }
+    }
+
+    public boolean useForegroundPriority() {
+        return mUseForegroundPriority;
     }
 
     private boolean isActiveDevice(BluetoothDevice device) {
