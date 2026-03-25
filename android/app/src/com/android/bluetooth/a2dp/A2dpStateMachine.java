@@ -56,6 +56,7 @@ import android.bluetooth.BluetoothProtoEnums;
 import android.content.Intent;
 import android.os.Looper;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothStatsLog;
@@ -749,9 +750,18 @@ final class A2dpStateMachine extends StateMachine {
         intent.addFlags(
                 Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+        if (isBatterylessDevice()) {
+        log("ro.config.batteryless is true add flag FLAG_RECEIVER_FOREGROUND");
+            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+        }
+
         mA2dpService.handleConnectionStateChanged(mDevice, prevState, newState);
         mA2dpService.sendBroadcast(
                 intent, BLUETOOTH_CONNECT, Utils.getTempBroadcastOptions().toBundle());
+    }
+
+    private boolean isBatterylessDevice() {
+        return SystemProperties.getBoolean("ro.config.batteryless", false);
     }
 
     private void broadcastAudioState(int newState, int prevState) {
