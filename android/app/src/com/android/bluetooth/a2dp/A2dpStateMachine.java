@@ -749,6 +749,12 @@ final class A2dpStateMachine extends StateMachine {
         intent.addFlags(
                 Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+ 
+        if (mA2dpService.useForegroundPriority()) {
+            log("Use foreground priority for connection state broadcast");
+            intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+        }
+
         mA2dpService.handleConnectionStateChanged(mDevice, prevState, newState);
         mA2dpService.sendBroadcast(
                 intent, BLUETOOTH_CONNECT, Utils.getTempBroadcastOptions().toBundle());
