@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cb73529_820a86d2",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-03-30T13:17:10Z",
+      "side": 1,
+      "message": "Same here, bugfix should be moved to a different CL.",
+      "range": {
+        "startLine": 734,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 0
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "360f413c_55d8ea83",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-03-30T13:17:10Z",
+      "side": 1,
+      "message": "Calling BTIF interfaces from the stack breaks the layering of the native bluetooth stack (btif -\u003e bta -\u003e stack). The proper way to access this information would be one of these options:\n\n- capture the information in the stack layer directly; the stack also has an AVDTP state machine and should be able to deduce if a peer is configured as sink / source\n\n- inject the information from the btif layer with parameter passing\n\n- inject the information from the btif layer with callback registration\n\nIn this particular instance you might pass the `passive` flag from the BTA layer through the chain: `bta_av_rc_create` -\u003e `AVRC_Open`",
+      "range": {
+        "startLine": 1085,
+        "startChar": 6,
+        "endLine": 1085,
+        "endChar": 36
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1594a9ee_709528c7",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1593,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-03-30T13:17:10Z",
+      "side": 1,
+      "message": "Similarly SDP should not depend on AV btif APIs here",
+      "range": {
+        "startLine": 1590,
+        "startChar": 0,
+        "endLine": 1593,
+        "endChar": 3
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
