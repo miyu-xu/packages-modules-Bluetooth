@@ -44,6 +44,7 @@
 #include "os/system_properties.h"
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/stack_metrics_logging.h"
+#include "internal_include/bt_target.h"
 
 namespace bluetooth {
 namespace hci {
@@ -429,7 +430,10 @@ public:
     log_le_connection_status(address, true /* is_connect */, status);
 
     const bool in_filter_accept_list = is_device_in_accept_list(remote_address);
-
+    if (status == ErrorCode::SUCCESS) {
+        concurrent_link_num_++;
+    }
+    log::info("concurrent_link_num_:{} role={} status={} pause_connection={} GetSubeventCode={}", concurrent_link_num_, role, status, pause_connection, packet.GetSubeventCode());
     if (role == hci::Role::CENTRAL) {
       set_connectability_state(ConnectabilityState::DISARMED);
       if (status == ErrorCode::UNKNOWN_CONNECTION && pause_connection) {
@@ -587,6 +591,15 @@ public:
       add_device_to_accept_list(remote_address);
     }
     log_le_connection_status(remote_address.GetAddress(), false /* is_connect */, reason);
+    if (concurrent_link_num_ > 0) {
+        concurrent_link_num_--;
+    }
+    if ((need_re_trigger_) && !accept_list.empty()) {
+        log::debug("retrigger arm_connectability");
+        pause_connection = false;
+        arm_connectability();
+    }
+    need_re_trigger_ = false;
   }
 
   void on_le_connection_update_complete(LeMetaEventView view) {
@@ -804,7 +817,14 @@ public:
                   connectability_state_machine_text(connectability_state_), ErrorCodeText(status));
         if (disarmed_while_arming_) {
           disarmed_while_arming_ = false;
-          disarm_connectability();
+          // if ARMED, then need to disarm_connectability
+          if (ConnectabilityState::ARMED == connectability_state_)
+            disarm_connectability();
+        }
+        // fix SM stop unexpectly, when create connection fail for exceed_connections_limit, stack needs to re-trigger when disconnection complete
+        if (connectability_state_ == ConnectabilityState::DISARMED) {
+           log::debug("need re-trigger arm_connectability");
+           need_re_trigger_ = true;
         }
     }
   }
@@ -825,6 +845,15 @@ public:
   }
 
   void arm_connectability() {
+    //value = std::max(property_value, 8), then std::min(value, GATT_MAX_PHY_CHANNEL)
+    uint16_t max_concurrent_link_num = std::min(std::max((int32_t)os::GetSystemPropertyUint32("bluetooth.core.le.max_number_of_concurrent_connections", 0),
+                                                         GATT_MAX_PHY_CHANNEL_FLOOR), GATT_MAX_PHY_CHANNEL);
+    log::debug("max_concurrent_link_num={}, concurrent_link_num_={}", max_concurrent_link_num, concurrent_link_num_);
+    if (concurrent_link_num_ >= max_concurrent_link_num) {
+        need_re_trigger_ = true;
+        log::debug("concurrent_link_num_ >= max_concurrent_link_num return");
+        return;
+    }
     if (connectability_state_ != ConnectabilityState::DISARMED) {
       log::error("Attempting to re-arm le connection state machine in unexpected state:{}",
                  connectability_state_machine_text(connectability_state_));
@@ -836,6 +865,8 @@ public:
               "empty");
       return;
     }
+    need_re_trigger_ = false;//already triger here
+    log::debug("arm_connectability enter accept_list size = {}.", accept_list.size());
     AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
     set_connectability_state(ConnectabilityState::ARMING);
     connecting_le_ = accept_list;
@@ -1354,6 +1385,8 @@ public:
   std::map<AddressWithType, os::Alarm> create_connection_timeout_alarms_{};
   // Set of devices that should use the relaxed connection intervals.
   std::unordered_set<Address> relaxed_connection_interval_devices_set_;
+  uint8_t concurrent_link_num_ = 0;
+  bool need_re_trigger_ = false;
 };
 
 }  // namespace acl_manager
