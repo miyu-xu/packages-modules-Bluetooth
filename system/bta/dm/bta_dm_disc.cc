@@ -809,9 +809,11 @@ static void bta_dm_disc_sm_execute(tBTA_DM_DISC_EVT event, std::unique_ptr<tBTA_
 }
 
 static void bta_dm_disc_init_discovery_cb(tBTA_DM_SERVICE_DISCOVERY_CB& bta_dm_discovery_cb) {
+  tGATT_IF client_if = bta_dm_discovery_cb.client_if;
   bta_dm_discovery_cb = {};
   bta_dm_discovery_cb.service_discovery_state = BTA_DM_DISCOVER_IDLE;
   bta_dm_discovery_cb.conn_id = GATT_INVALID_CONN_ID;
+  bta_dm_discovery_cb.client_if = client_if; //restore clent_if for disovery, can't be cleared
 }
 
 static void bta_dm_disc_reset() {
