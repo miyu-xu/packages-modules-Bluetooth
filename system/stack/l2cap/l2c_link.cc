@@ -1259,6 +1259,12 @@ static BT_HDR* l2cu_get_next_buffer_to_send(tL2C_LCB* p_lcb, tL2C_TX_COMPLETE_CB
     return NULL;
   }
 
+  /* Return if no queue is empty */
+  if (fixed_queue_is_empty(p_ccb->xmit_hold_q)) {
+    log::debug("xmit_hold_q in ccb is empty, lcid=0x{:04x}", p_ccb->local_cid);
+    return NULL;
+  }
+
   if (p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
     /* Check credits */
     if (p_ccb->peer_conn_cfg.credits == 0) {
