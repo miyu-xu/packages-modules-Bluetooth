@@ -244,6 +244,56 @@ public class HfpClientConnectionTest {
     }
 
     @Test
+    public void handleCallChanged_checkHoldCapability() {
+        mCall.setState(HfpClientCall.CALL_STATE_INCOMING);
+        mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
+        mHfpClientConnection.handleCallChanged();
+
+        // while incoming call there is no Hold capability
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_RINGING);
+        assertThat(isCapabilityHoldSet()).isFalse();
+
+        // while dialing call there is no Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_DIALING);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_DIALING);
+        assertThat(isCapabilityHoldSet()).isFalse();
+
+        // while alerting call there is no Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_ALERTING);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_DIALING);
+        assertThat(isCapabilityHoldSet()).isFalse();
+
+        // while active call there is no Hold capability if Hold is not supported
+        int cap = mHfpClientConnection.getConnectionCapabilities();
+        mHfpClientConnection.setConnectionCapabilities(cap & ~Connection.CAPABILITY_SUPPORT_HOLD);
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_ACTIVE);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_ACTIVE);
+        assertThat(isCapabilityHoldSet()).isFalse();
+
+        // while active call there is Hold capability if Hold is supported
+        mHfpClientConnection.setConnectionCapabilities(cap | Connection.CAPABILITY_SUPPORT_HOLD);
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_ACTIVE);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_ACTIVE);
+        assertThat(isCapabilityHoldSet()).isTrue();
+
+        // while holding call there is Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_HELD);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_HOLDING);
+        assertThat(isCapabilityHoldSet()).isTrue();
+
+        // as call is ending, there is no Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_TERMINATED);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_DISCONNECTED);
+        assertThat(isCapabilityHoldSet()).isFalse();
+    }
+
+    @Test
     public void handleCallChanged_activeConference() {
         mHfpClientConnection = spy(createHfpClientConnectionWithExistingCall().build());
         HfpClientConference mockConference = mock(HfpClientConference.class);
@@ -502,6 +552,11 @@ public class HfpClientConnectionTest {
 
         verify(mMockServiceInterface, never()).connectAudio(mDevice);
         verify(mMockServiceInterface, never()).disconnectAudio(mDevice);
+    }
+
+    private boolean isCapabilityHoldSet() {
+        int capabilities = mHfpClientConnection.getConnectionCapabilities();
+        return (capabilities & Connection.CAPABILITY_HOLD) == Connection.CAPABILITY_HOLD;
     }
 
     private HfpClientConnectionBuilderFromExistingCall createHfpClientConnectionWithExistingCall() {

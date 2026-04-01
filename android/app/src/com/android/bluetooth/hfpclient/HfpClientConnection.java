@@ -172,6 +172,19 @@ public class HfpClientConnection extends Connection {
             default -> Log.wtf(TAG, "[" + mDevice + "]Unexpected phone state " + state);
         }
         mPreviousCallState = state;
+
+        updateCallCapabilities();
+    }
+
+    private void updateCallCapabilities() {
+        int cap = getConnectionCapabilities();
+        int state = getState();
+        if ((state == STATE_ACTIVE && (cap & CAPABILITY_SUPPORT_HOLD) == CAPABILITY_SUPPORT_HOLD)
+                || state == STATE_HOLDING) {
+            setConnectionCapabilities(cap | CAPABILITY_HOLD);
+        } else {
+            setConnectionCapabilities(cap & ~CAPABILITY_HOLD);
+        }
     }
 
     public synchronized void close(int cause) {
