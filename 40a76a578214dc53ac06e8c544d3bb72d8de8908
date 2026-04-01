@@ -16,6 +16,24 @@
       "message": "Discussed in the partner bug:\n- disconnect() APIs will not be opened up as proposed, nor likely at all. This breaks the connection policy abstraction. That abstraction needs work, but its a touchy subject with lots of historical debate internally.\n- HFP HF APis will not be opened up at all. Please use our ConnectionService via a Telecom InCallService to access Bluetooth call control. This will leave you LE Audio ready too. Opening these APIs leaves room for competing control of Bluetooth calls, which risks a stable and robust UX around BT calling.\n- BluetoothClass has alternative APIs for you to get what you need. All bits of the CoD, except the format bits, are available via existing public APIs",
       "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a11979_643abb7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3364560
+      },
+      "writtenOn": "2026-04-01T00:28:40Z",
+      "side": 1,
+      "message": "For the HFP HF APIs, we will explore using ConnectionService through a Telecom InCallService to determine if it meets our requirements. Thank you for the feedback.",
+      "parentUuid": "06f60d61_b30d5201",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
