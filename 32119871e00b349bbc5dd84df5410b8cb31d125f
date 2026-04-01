@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85adffde_11050e70",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-04-01T17:32:12Z",
+      "side": 1,
+      "message": "This is already enabled by\n```\nbool btif_av_is_connected(const A2dpType local_a2dp_type);\n```",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 358,
+        "endChar": 36
+      },
+      "revId": "32119871e00b349bbc5dd84df5410b8cb31d125f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
