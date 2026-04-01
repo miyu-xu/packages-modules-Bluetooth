@@ -38,6 +38,7 @@ import androidx.test.filters.MediumTest;
 
 import com.android.tests.bluetooth.MockitoRule;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -241,6 +242,35 @@ public class HfpClientConnectionTest {
         mHfpClientConnection.handleCallChanged();
 
         assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_ACTIVE);
+    }
+
+    @Test
+    public void handleCallChanged_checkHoldCapability() {
+        mCall.setState(HfpClientCall.CALL_STATE_INCOMING);
+        mHfpClientConnection = createHfpClientConnectionWithExistingCall().build();
+        mHfpClientConnection.handleCallChanged();
+
+        // while incoming call there is no Hold capability
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_RINGING);
+        Assert.assertFalse(isCapabilityHoldSet());
+
+        // while active call there is Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_ACTIVE);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_ACTIVE);
+        Assert.assertTrue(isCapabilityHoldSet());
+
+        // while holding call there is Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_HELD);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_HOLDING);
+        Assert.assertTrue(isCapabilityHoldSet());
+
+        // as call is ending, there is no Hold capability
+        mHfpClientConnection.getCall().setState(HfpClientCall.CALL_STATE_TERMINATED);
+        mHfpClientConnection.handleCallChanged();
+        assertThat(mHfpClientConnection.getState()).isEqualTo(Connection.STATE_DISCONNECTED);
+        Assert.assertFalse(isCapabilityHoldSet());
     }
 
     @Test
@@ -502,6 +532,11 @@ public class HfpClientConnectionTest {
 
         verify(mMockServiceInterface, never()).connectAudio(mDevice);
         verify(mMockServiceInterface, never()).disconnectAudio(mDevice);
+    }
+
+    private boolean isCapabilityHoldSet() {
+        int capabilities = mHfpClientConnection.getConnectionCapabilities();
+        return (capabilities & Connection.CAPABILITY_HOLD) == Connection.CAPABILITY_HOLD;
     }
 
     private HfpClientConnectionBuilderFromExistingCall createHfpClientConnectionWithExistingCall() {
