@@ -174,6 +174,8 @@ protected:
     MOCK_METHOD(void, OnScannerRegistered,
                 (const bluetooth::hci::Uuid app_uuid, ScannerId scanner_id, ScanningStatus status),
                 (override));
+    MOCK_METHOD(void, OnSetScannerChannelParameterComplete, (ScannerId scanner_id, ScanningStatus status),
+                (override));
     MOCK_METHOD(void, OnSetScannerParameterComplete, (ScannerId scanner_id, ScanningStatus status),
                 (override));
     MOCK_METHOD(void, OnScanResult,

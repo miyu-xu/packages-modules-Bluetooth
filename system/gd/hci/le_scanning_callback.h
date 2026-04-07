@@ -58,6 +58,7 @@ public:
   virtual ~ScanningCallback() = default;
   virtual void OnScannerRegistered(const bluetooth::hci::Uuid app_uuid, ScannerId scanner_id,
                                    ScanningStatus status) = 0;
+  virtual void OnSetScannerChannelParameterComplete(ScannerId scanner_id, ScanningStatus status) = 0;
   virtual void OnSetScannerParameterComplete(ScannerId scanner_id, ScanningStatus status) = 0;
   virtual void OnScanResult(uint16_t event_type, uint8_t address_type, Address address,
                             uint8_t primary_phy, uint8_t secondary_phy, uint8_t advertising_sid,

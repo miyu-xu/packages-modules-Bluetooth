@@ -52,6 +52,10 @@ public:
 
   virtual void Scan(bool start);
 
+  virtual void SetScanChannelParameters(
+      ScannerId scanner_id,
+      uint8_t scan_channel) = 0;
+
   virtual void SetScanParameters(LeScanType scan_type, ScannerId scanner_id_1m,
                                  uint16_t scan_interval_1m, uint16_t scan_window_1m,
                                  ScannerId scanner_id_coded, uint16_t scan_interval_coded,

@@ -210,6 +210,7 @@ static jmethodID method_onScanParamSetupCompleted;
 static jmethodID method_onMsftAdvMonitorAdd;
 static jmethodID method_onMsftAdvMonitorRemove;
 static jmethodID method_onMsftAdvMonitorEnable;
+static jmethodID method_onScanChannelParamSetupCompleted;
 
 /**
  * Periodic scanner callback methods
@@ -957,6 +958,15 @@ public:
                                  UUID_PARAMS(app_uuid));
   }
 
+
+  void OnSetScannerChannelParameterComplete(uint8_t scannerId, uint8_t status) {
+    std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || !mScanCallbacksObj) return;
+    sCallbackEnv->CallVoidMethod(
+        mScanCallbacksObj, method_onScanChannelParamSetupCompleted, status, scannerId);
+  }
+
   void OnSetScannerParameterComplete(uint8_t scannerId, uint8_t status) {
     std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -1522,6 +1532,22 @@ static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */,
   sScanner->SetScanParameters(/* use active scan */ 0x01, client_if_1m, scan_interval_unit_1m,
                               scan_window_unit_1m, client_if_coded, scan_interval_unit_coded,
                               scan_window_unit_coded, scan_phy);
+}
+
+static void set_scan_channel_params_cmpl_cb(int client_if, uint8_t status) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mScanCallbacksObj) return;
+  sCallbackEnv->CallVoidMethod(
+      mScanCallbacksObj, method_onScanChannelParamSetupCompleted, status, client_if);
+}
+
+static void gattSetScanChannelParametersNative(JNIEnv* /* env */, jobject /* object */,
+                                        jint client_if, jint scan_channel) {
+  if (!sScanner) return;
+  log::info("SetScanChannelParametersNative");
+  sScanner->SetScanChannelParameters(client_if, scan_channel,
+                              base::Bind(&set_scan_channel_params_cmpl_cb, client_if));
 }
 
 static void scan_filter_param_cb(uint8_t client_if, uint8_t avbl_space, uint8_t action,
@@ -2780,6 +2806,8 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
            (void*)gattClientMsftAdvMonitorRemoveNative},
           {"gattClientMsftAdvMonitorEnableNative", "(Z)V",
            (void*)gattClientMsftAdvMonitorEnableNative},
+          {"gattSetScanChannelParametersNative", "(II)V",
+           (void*)gattSetScanChannelParametersNative}
   };
   const int result = REGISTER_NATIVE_METHODS(
           env, "com/android/bluetooth/le_scan/ScanNativeInterface", methods);
@@ -2809,6 +2837,7 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
           {"onMsftAdvMonitorAdd", "(III)V", &method_onMsftAdvMonitorAdd},
           {"onMsftAdvMonitorRemove", "(II)V", &method_onMsftAdvMonitorRemove},
           {"onMsftAdvMonitorEnable", "(I)V", &method_onMsftAdvMonitorEnable},
+          {"onScanChannelParamSetupCompleted", "(II)V", &method_onScanChannelParamSetupCompleted},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/le_scan/ScanNativeInterface", javaMethods);
   return 0;

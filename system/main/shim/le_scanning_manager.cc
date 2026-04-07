@@ -75,6 +75,10 @@ class DefaultScanningCallback : public ::ScanningCallbacks {
   void OnSetScannerParameterComplete(uint8_t /* scanner_id */, uint8_t /* status */) override {
     LogUnused();
   }
+  void OnSetScannerChannelParameterComplete(uint8_t /* scanner_id */,
+                                     uint8_t /* status */) override {
+    LogUnused();
+  }
   void OnScanResult(uint16_t /* event_type */, uint8_t /* address_type */, RawAddress /* bda */,
                     uint8_t /* primary_phy */, uint8_t /* secondary_phy */,
                     uint8_t /* advertising_sid */, int8_t /* tx_power */, int8_t /* rssi */,
@@ -303,6 +307,15 @@ void BleScannerInterfaceImpl::OnMsftAdvMonitorEnable(bool enable,
   do_in_jni_thread(base::BindOnce(msft_callbacks_.Enable, (uint8_t)status));
 }
 
+/** Sets the LE scan Channel */
+void BleScannerInterfaceImpl::SetScanChannelParameters(int scanner_id,
+                                                int scan_channel,
+                                                Callback /* cb */) {
+  log::info("in shim layer, scannerId={}", scanner_id);
+  bluetooth::shim::GetScanning()->SetScanChannelParameters(
+      scanner_id, scan_channel);
+}
+
 /** Sets the LE scan interval and window in units of N*0.625 msec */
 void BleScannerInterfaceImpl::SetScanParameters(uint8_t scan_type, int scanner_id_1m,
                                                 int scan_interval_1m, int scan_window_1m,
@@ -460,6 +473,13 @@ void BleScannerInterfaceImpl::OnSetScannerParameterComplete(bluetooth::hci::Scan
                                                             ScanningStatus status) {
   do_in_jni_thread(base::BindOnce(&ScanningCallbacks::OnSetScannerParameterComplete,
                                   base::Unretained(scanning_callbacks_), scanner_id, status));
+}
+
+void BleScannerInterfaceImpl::OnSetScannerChannelParameterComplete(
+    bluetooth::hci::ScannerId scanner_id, ScanningStatus status) {
+  do_in_jni_thread(base::BindOnce(
+      &ScanningCallbacks::OnSetScannerChannelParameterComplete,
+      base::Unretained(scanning_callbacks_), scanner_id, status));
 }
 
 void BleScannerInterfaceImpl::on_scan_result(uint16_t event_type, uint8_t address_type,

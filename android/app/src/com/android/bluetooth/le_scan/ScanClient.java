@@ -109,17 +109,18 @@ class ScanClient {
             return false;
         }
 
-        mSettings =
-                new ScanSettings.Builder()
-                        .setScanMode(newScanMode)
-                        .setCallbackType(mSettings.getCallbackType())
-                        .setScanResultType(mSettings.getScanResultType())
-                        .setReportDelay(mSettings.getReportDelayMillis())
-                        .setNumOfMatches(mSettings.getNumOfMatches())
-                        .setMatchMode(mSettings.getMatchMode())
-                        .setLegacy(mSettings.getLegacy())
-                        .setPhy(mSettings.getPhy())
-                        .build();
+        settings =
+            ScanSettings.Builder()
+                .setScanMode(newScanMode)
+                .setCallbackType(settings.callbackType)
+                .setScanResultType(settings.scanResultType)
+                .setReportDelay(settings.reportDelayMillis)
+                .setNumOfMatches(settings.numOfMatches)
+                .setMatchMode(settings.matchMode)
+                .setLegacy(settings.legacy)
+                .setPhy(settings.phy)
+                .setScanChannel(settings.scanChannel)
+                .build()
         return true;
     }
 }

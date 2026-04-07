@@ -1153,6 +1153,8 @@ public class ScanManager {
                 int scanInterval1m = getScanInterval(client1m);
                 int scanWindowCoded = getScanWindow(clientCoded);
                 int scanIntervalCoded = getScanInterval(clientCoded);
+                int scanChannel = getScanChannel(clientCoded);
+                Log.w(TAG, " scanChannel is " + scanChannel);
                 mNativeInterface.gattClientScan(false);
                 if (!AppScanStats.recordScanRadioStop(mTimeProvider)) {
                     Log.w(TAG, "There is no scan radio to stop");
@@ -1192,6 +1194,9 @@ public class ScanManager {
                         scanIntervalCoded,
                         scanWindowCoded,
                         scanPhyMask);
+                if (scanChannel != 0) {
+                    mNativeInterface.setScanChannelParameters(client1m.getScannerId(), scanChannel);
+                }
                 mNativeInterface.gattClientScan(true);
                 recordScanRadioStart(client1m, clientCoded, newScanSetting1m, newScanSettingCoded);
             } else {
@@ -2085,6 +2090,13 @@ public class ScanManager {
 
         private void unregisterScanner(int scannerId) {
             mNativeInterface.unregisterScanner(scannerId);
+        }
+
+        private static int getScanChannel(ScanSettings settings) {
+            if (settings == null) {
+                return 0;
+            }
+            return settings.getScanChannel();
         }
 
         private void addFiltersMsft(ScanClient client) {

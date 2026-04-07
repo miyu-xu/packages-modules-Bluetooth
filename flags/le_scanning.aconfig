@@ -10,3 +10,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "specific_scan_channel"
+    namespace: "bluetooth"
+    is_exported: true
+    description: "Use specific scan channel"
+    bug: "<none>"
+}
