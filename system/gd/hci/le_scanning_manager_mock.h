@@ -29,6 +29,7 @@ namespace testing {
 
 class MockScanningCallback : public ScanningCallback {
   MOCK_METHOD(void, OnScannerRegistered, (const bluetooth::hci::Uuid, ScannerId, ScanningStatus));
+  MOCK_METHOD(void, OnSetScannerChannelParameterComplete, (ScannerId scanner_id, ScanningStatus status));
   MOCK_METHOD(void, OnSetScannerParameterComplete, (ScannerId scanner_id, ScanningStatus status));
   MOCK_METHOD(void, OnScanResult,
               (uint16_t, uint8_t, Address, uint8_t, uint8_t, uint8_t, int8_t, int8_t, uint16_t,
@@ -53,6 +54,9 @@ public:
   MOCK_METHOD(void, RegisterScanner, (const Uuid));
   MOCK_METHOD(void, Unregister, (ScannerId));
   MOCK_METHOD(void, Scan, (bool));
+  MOCK_METHOD(void, SetScanChannelParameters,
+              (ScannerId, uint8_t),
+              (override));
   MOCK_METHOD(void, SetScanParameters,
               (LeScanType, ScannerId, uint16_t, uint16_t, ScannerId, uint16_t, uint16_t, uint8_t));
   MOCK_METHOD(void, ScanFilterEnable, (bool));

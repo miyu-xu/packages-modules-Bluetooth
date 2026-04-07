@@ -1037,6 +1037,15 @@ public class ScanController {
         }
     }
 
+    void onScanChannelParamSetupCompleted(int status, int scannerId) {
+        Log.d(TAG, "onScanParamSetupCompleted() - scannerId=" + scannerId + ", status=" + status);
+        ScannerMap.ScannerAp app = mScannerMap.getById(scannerId);
+        if (app == null || app.getCallback() == null) {
+            Log.e(TAG, "Advertise app or callback is null");
+            return;
+        }
+    }
+
     // callback from ScanManager for dispatch of errors apps.
     void onScanManagerErrorCallback(int scannerId, int errorCode) throws RemoteException {
         ScannerMap.ScannerApp app = mScannerMap.getById(scannerId);

@@ -35,6 +35,8 @@
 #include "os/system_properties.h"
 #include "storage/storage_module.h"
 
+#include "packet/raw_builder.h"
+
 namespace bluetooth {
 namespace hci {
 
@@ -82,6 +84,10 @@ class NullScanningCallback : public ScanningCallback {
   void OnScannerRegistered(const Uuid /* app_uuid */, ScannerId /* scanner_id */,
                            ScanningStatus /* status */) override {
     log::info("OnScannerRegistered in NullScanningCallback");
+  }
+  void OnSetScannerChannelParameterComplete(
+      ScannerId /* scanner_id */, ScanningStatus /* status */) override {
+    log::info("OnSetScannerChannelParameterComplete in NullScanningCallback");
   }
   void OnSetScannerParameterComplete(ScannerId /* scanner_id */,
                                      ScanningStatus /* status */) override {
@@ -624,6 +630,36 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
                 module_handler_->BindOnce(check_complete<LeSetScanEnableCompleteView>));
         break;
     }
+  }
+
+  void set_scan_channel_parameters(
+      ScannerId scanner_id,
+      uint8_t scan_channel) {
+    if (com::android::bluetooth::flags::specific_scan_channel()) {
+      log::info("set_scan_parameters in gd and scan channel {}", scan_channel);
+      log::info("specific_scan_channel is supported");
+      uint8_t sub_op_code = 0x00;
+      uint8_t scan_channel_bit_mask = 0x00;
+
+      if (scan_channel == 37) {
+          scan_channel_bit_mask |= (1 << 0);
+      } else if (scan_channel == 38) {
+          scan_channel_bit_mask |= (1 << 1);
+      } else if (scan_channel == 39) {
+          scan_channel_bit_mask |= (1 << 2);
+      } else {
+          scan_channel_bit_mask = (1 << 3);
+      }
+
+      hci_layer_->EnqueueCommand(
+        LeExtendedScanChannelParamsBuilder::Create(
+          sub_op_code, scan_channel_bit_mask),
+        handler_->BindOnceOn(this, &impl::on_vendor_specific_scan_channel_mask_command_complete, scanner_id));
+      log::info("VSC command for specific scan Channel is sent");
+      return;
+    }
+    log::info("specific_scan_channel is not supported");
+    return;
   }
 
   void set_scan_parameters(LeScanType scan_type, ScannerId scanner_id_1m, uint16_t scan_interval_1m,
@@ -1372,6 +1408,28 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
+  void on_vendor_specific_scan_channel_mask_command_complete(ScannerId scanner_id, CommandCompleteView view) {
+    log::assert_that(view.IsValid(), "assert failed: view.IsValid()");
+    auto status_view = LeExtendedScanChannelParamsCompleteView::Create(view);
+
+    if (!status_view.IsValid()) {
+        log::error("Failed to create status_view: underlying hardware may not support specific scan channel feature");
+        scanning_callbacks_->OnSetScannerChannelParameterComplete(scanner_id, ScanningCallback::INTERNAL_ERROR);
+        return;
+    }
+
+    if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+      log::info(
+          "Received vendor specific scan channel mask with error code {}",
+          ErrorCodeText(status_view.GetStatus()));
+      scanning_callbacks_->OnSetScannerChannelParameterComplete(scanner_id, ScanningCallback::ILLEGAL_PARAMETER);
+    } else {
+      log::info(
+          "Got a Command complete success for specific scan channel");
+      scanning_callbacks_->OnSetScannerChannelParameterComplete(scanner_id, ScanningCallback::SUCCESS);
+    }
+  }
+
   void on_advertising_filter_complete(CommandCompleteView view) {
     log::assert_that(view.IsValid(), "assert failed: view.IsValid()");
     auto status_view = LeAdvFilterCompleteView::Create(view);
@@ -1689,6 +1747,10 @@ void LeScanningManager::Unregister(ScannerId scanner_id) {
 }
 
 void LeScanningManager::Scan(bool start) { CallOn(pimpl_.get(), &impl::scan, start); }
+
+void LeScanningManager::SetScanChannelParameters(ScannerId scanner_id, uint8_t scan_channel) {
+  CallOn(pimpl_.get(), &impl::set_scan_channel_parameters, scanner_id, scan_channel);
+}
 
 void LeScanningManager::SetScanParameters(LeScanType scan_type, ScannerId scanner_id_1m,
                                           uint16_t scan_interval_1m, uint16_t scan_window_1m,

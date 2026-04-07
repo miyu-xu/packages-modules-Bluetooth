@@ -56,6 +56,8 @@ public:
   virtual ~ScanningCallbacks() = default;
   virtual void OnScannerRegistered(const bluetooth::Uuid app_uuid, uint8_t scannerId,
                                    uint8_t status) = 0;
+  virtual void OnSetScannerChannelParameterComplete(uint8_t scannerId,
+                                             uint8_t status) = 0;
   virtual void OnSetScannerParameterComplete(uint8_t scannerId, uint8_t status) = 0;
   virtual void OnScanResult(uint16_t event_type, uint8_t addr_type, RawAddress bda,
                             uint8_t primary_phy, uint8_t secondary_phy, uint8_t advertising_sid,
@@ -134,6 +136,9 @@ public:
 
   /** Enable / disable MSFT scan filter feature */
   virtual void MsftAdvMonitorEnable(bool enable, MsftAdvMonitorEnableCallback cb) = 0;
+
+  virtual void SetScanChannelParameters(int scanner_id,
+                                 int scan_channel, Callback cb) = 0;
 
   /** Sets the LE scan interval and window in units of N*0.625 msec */
   virtual void SetScanParameters(uint8_t scan_type, int scanner_id_1m, int scan_interval_1m,

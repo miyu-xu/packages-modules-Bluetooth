@@ -68,6 +68,7 @@ public:
   void MsftAdvMonitorAdd(MsftAdvMonitor monitor, MsftAdvMonitorAddCallback cb) override;
   void MsftAdvMonitorRemove(uint8_t monitor_handle, MsftAdvMonitorRemoveCallback cb) override;
   void MsftAdvMonitorEnable(bool enable, MsftAdvMonitorEnableCallback cb) override;
+  void SetScanChannelParameters(int scanner_id, int scan_channel, Callback cb) override;
   void SetScanParameters(uint8_t scan_type, int scanner_id_1m, int scan_interval_1m,
                          int scan_window_1m, int scanner_id_coded, int scan_interval_coded,
                          int scan_window_coded, int scan_phy) override;
@@ -92,6 +93,8 @@ public:
   void RegisterCallbacks(ScanningCallbacks* callbacks);
   void OnScannerRegistered(const bluetooth::hci::Uuid app_uuid,
                            bluetooth::hci::ScannerId scanner_id, ScanningStatus status) override;
+  void OnSetScannerChannelParameterComplete(bluetooth::hci::ScannerId scanner_id,
+                                     ScanningStatus status) override;
   void OnSetScannerParameterComplete(bluetooth::hci::ScannerId scanner_id,
                                      ScanningStatus status) override;
   void OnScanResult(uint16_t event_type, uint8_t address_type, bluetooth::hci::Address address,

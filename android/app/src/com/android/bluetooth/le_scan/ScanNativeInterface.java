@@ -80,6 +80,8 @@ public class ScanNativeInterface {
 
     private native void gattClientScanNative(boolean start);
 
+    private native void gattSetScanChannelParametersNative(int clientIf, int scanInterval);
+
     private native void gattSetScanParametersNative(
             int clientIf1m,
             int scanInterval1m,
@@ -150,6 +152,7 @@ public class ScanNativeInterface {
     public void gattClientScan(boolean start) {
         gattClientScanNative(start);
     }
+
 
     /** Configure BLE scan parameters */
     public void gattSetScanParameters(
@@ -457,5 +460,14 @@ public class ScanNativeInterface {
             return;
         }
         mScanController.onMsftAdvMonitorEnable(status);
+    }
+
+    void onScanChannelParamSetupCompleted(int status, int scannerId) throws RemoteException {
+        if (mScanController == null) {
+            Log.e(TAG, "Scan helper is null!");
+            return;
+        }
+        Log.w(TAG, "Callback received onScanChannelParamSetupCompleted");
+        mScanController.onScanChannelParamSetupCompleted(status, scannerId);
     }
 }

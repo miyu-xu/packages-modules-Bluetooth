@@ -17,6 +17,8 @@
 package android.bluetooth.le;
 
 import android.annotation.SystemApi;
+import android.annotation.FlaggedApi;
+import android.annotation.SuppressLint;
 import android.app.compat.CompatChanges;
 import android.bluetooth.BluetoothDevice;
 import android.compat.annotation.ChangeId;
@@ -197,6 +199,8 @@ public final class ScanSettings implements Parcelable {
 
     private final int mPhy;
 
+    private int mScanChannel = 0;
+
     public int getScanMode() {
         return mScanMode;
     }
@@ -237,6 +241,24 @@ public final class ScanSettings implements Parcelable {
         return mReportDelayMillis;
     }
 
+    /**
+     * Returns the specific scan Channel.
+     */
+    @RequiresNoPermission
+    @FlaggedApi(Flags.FLAG_SPECIFIC_SCAN_CHANNEL)
+    public int getScanChannel() {
+        return mScanChannel;
+    }
+
+    /**
+     * Returns the specific scan Channel.
+     */
+    @RequiresNoPermission
+    @FlaggedApi(Flags.FLAG_SPECIFIC_SCAN_CHANNEL)
+    public int getScanChannel() {
+        return mScanChannel;
+    }
+
     private ScanSettings(
             int scanMode,
             int callbackType,
@@ -245,7 +267,8 @@ public final class ScanSettings implements Parcelable {
             int matchMode,
             int numOfMatchesPerFilter,
             boolean legacy,
-            int phy) {
+            int phy,
+            int ScanChannel) {
         mScanMode = scanMode;
         mCallbackType = callbackType;
         mScanResultType = scanResultType;
@@ -254,6 +277,7 @@ public final class ScanSettings implements Parcelable {
         mMatchMode = matchMode;
         mLegacy = legacy;
         mPhy = phy;
+        mScanChannel = ScanChannel;
     }
 
     private ScanSettings(Parcel in) {
@@ -265,6 +289,7 @@ public final class ScanSettings implements Parcelable {
         mNumOfMatchesPerFilter = in.readInt();
         mLegacy = in.readInt() != 0;
         mPhy = in.readInt();
+        mScanChannel = in.readInt();
     }
 
     @Override
@@ -277,6 +302,7 @@ public final class ScanSettings implements Parcelable {
         dest.writeInt(mNumOfMatchesPerFilter);
         dest.writeInt(mLegacy ? 1 : 0);
         dest.writeInt(mPhy);
+        dest.writeInt(mScanChannel);
     }
 
     @Override
@@ -307,6 +333,7 @@ public final class ScanSettings implements Parcelable {
         private int mNumOfMatchesPerFilter = MATCH_NUM_MAX_ADVERTISEMENT;
         private boolean mLegacy = true;
         private int mPhy = BluetoothDevice.PHY_LE_1M;
+        private int mScanChannel = 0;
 
         // Instance initializer for mNumOfMatchesPerFilter
         {
@@ -465,6 +492,20 @@ public final class ScanSettings implements Parcelable {
         }
 
         /**
+         * Set the specific scan channel to use during the scan.
+         * Scan Results will be displayed only from the specified Channel
+         *
+         * @param ScanChannel Only Primary Channels can be used
+         */
+        @RequiresNoPermission
+        @SuppressLint("MissingNullability")
+        @FlaggedApi(Flags.FLAG_SPECIFIC_SCAN_CHANNEL)
+        public Builder setScanChannel(int ScanChannel) {
+            mScanChannel = ScanChannel;
+            return this;
+        }
+
+        /**
          * Build {@link ScanSettings}.
          *
          * @throws IllegalArgumentException if the settings cannot be built.
@@ -484,7 +525,8 @@ public final class ScanSettings implements Parcelable {
                     mMatchMode,
                     mNumOfMatchesPerFilter,
                     mLegacy,
-                    mPhy);
+                    mPhy,
+                    mScanChannel);
         }
     }
 
