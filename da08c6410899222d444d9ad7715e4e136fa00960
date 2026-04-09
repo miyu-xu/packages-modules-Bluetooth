@@ -16,6 +16,41 @@
       "message": "Bhaktha, could you help reviewing this L2CAP related change?",
       "revId": "da08c6410899222d444d9ad7715e4e136fa00960",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85cb4cda_14691e8d",
+        "filename": "system/stack/l2cap/l2c_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 3469321
+      },
+      "writtenOn": "2026-04-09T00:39:35Z",
+      "side": 1,
+      "message": "Can we consider having a OEM override for this in bt_target.h?\n\nModifying this globally might have some implication w.r.t performance.",
+      "fixSuggestions": [
+        {
+          "fixId": "41a8d64c_2e775220",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/l2cap/l2c_int.h",
+              "range": {
+                "startLine": 1,
+                "startChar": 0,
+                "endLine": 1,
+                "endChar": 0
+              },
+              "replacement": "// OEM can override this value in bt_target.h\n"
+            }
+          ]
+        }
+      ],
+      "revId": "da08c6410899222d444d9ad7715e4e136fa00960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
