@@ -813,6 +813,11 @@ static void bta_dm_disc_init_discovery_cb(tBTA_DM_SERVICE_DISCOVERY_CB& bta_dm_d
   new_cb.service_discovery_state = BTA_DM_DISCOVER_IDLE;
   new_cb.conn_id = GATT_INVALID_CONN_ID;
   new_cb.client_if = bta_dm_discovery_cb.client_if;//restore clent_if for disovery, can't be cleared
+  /* service_search_cbacks can't be cleared, otherwise if cleared(when some device disconnected) during other device in discovey, then crash */
+  new_cb.service_search_cbacks = bta_dm_discovery_cb.service_search_cbacks;
+  /* pending_discovery_queue can't be cleared, otherwise if cleared(when some device disconnected), then discovery for the devices in the queue will be dropped */
+  if (!bta_dm_discovery_cb.pending_discovery_queue.empty())
+    new_cb.pending_discovery_queue = bta_dm_discovery_cb.pending_discovery_queue;
   bta_dm_discovery_cb = std::move(new_cb);
 }
 
