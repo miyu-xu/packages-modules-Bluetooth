@@ -18,7 +18,7 @@
 
 #include <bluetooth/log.h>
 #include <fcntl.h>
-#include <libgen.h>
+#include <filesystem>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -107,18 +107,10 @@ bool WriteToFile(const std::string& path, const std::string& data) {
   const std::string temp_path = path + ".new";
 
   // Extract directory from file path (e.g. /data/misc/bluedroid).
-  // TODO: switch to std::filesystem::path::parent_path
-  std::string directory_path;
-  {
-    // Make a temporary variable as inputs to dirname() will be modified and return value points to
-    // input char array temp_path_for_dir must not be destroyed until results from dirname is
-    // appended to directory_path
-    std::string temp_path_for_dir(path);
-    directory_path.append(dirname(temp_path_for_dir.data()));
-  }
+  std::filesystem::path p(path);
+  std::string directory_path = p.parent_path().string();
   if (directory_path.empty()) {
-    log::error("error extracting directory from '{}', error: {}", path, strerror(errno));
-    return false;
+    directory_path = ".";
   }
 
   int dir_fd = open(directory_path.c_str(), O_RDONLY | O_DIRECTORY);
