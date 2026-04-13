@@ -409,6 +409,9 @@ static void bta_dm_wait_for_acl_to_drain_cback(void* data) {
 
     bta_sys_remove_uuid(UUID_SERVCLASS_PNP_INFORMATION);
     BTIF_dm_disable();
+
+    log::info("Stack device manager shutdown completed");
+    future_ready(stack_manager_get_hack_future(), FUTURE_SUCCESS);
   }
 }
 
