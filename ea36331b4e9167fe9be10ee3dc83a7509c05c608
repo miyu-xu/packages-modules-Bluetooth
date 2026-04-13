@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caeed79b_e4426fe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-04-13T12:53:16Z",
+      "side": 1,
+      "message": "Hi !\nThank you for your contribution.\nThis particular deadlock has been identified and fixed internally.\nThe patch should already be present in the latest Android 17 beta release.",
+      "revId": "ea36331b4e9167fe9be10ee3dc83a7509c05c608",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
