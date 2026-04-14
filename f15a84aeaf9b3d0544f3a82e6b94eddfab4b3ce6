@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba641d4c_816b27c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2026-04-14T00:30:24Z",
+      "side": 1,
+      "message": "Hi Shubham,\n\nThanks you for this upload.\nEverything looks good to me, +2 !\n\nI cherry-picked it on the internal android release branch almost as-is (I changed the import order to move `filesystem` down into the c++ header block).\nIt should be merged this week\n(And FYI: you are still credited as CL author)\n\nUnfortunately:\n* we can\u0027t merge it on this branch as the AOSP repository are now read-only.\n* we are too late for 26-qpr2, so this change is gonna be delayed until 26-qpr3.\n\nSince there is no more work pending here, I will abandon this CL.\n\nThank\u0027s again",
+      "revId": "f15a84aeaf9b3d0544f3a82e6b94eddfab4b3ce6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
