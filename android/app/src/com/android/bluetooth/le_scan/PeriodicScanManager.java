@@ -99,10 +99,14 @@ public class PeriodicScanManager {
     }
 
     private Map.Entry<IBinder, SyncTransferInfo> findSyncTransfer(String address) {
-        return mSyncTransfers.entrySet().stream()
-                .filter(e -> e.getValue().address.equals(address))
-                .findFirst()
-                .orElse(null);
+        synchronized (mSyncTransfers) {
+            for (Map.Entry<IBinder, SyncTransferInfo> e : mSyncTransfers.entrySet()) {
+                if (address.equals(e.getValue().address)) {
+                    return e;
+                }
+            }
+        }
+        return null;
     }
 
     private Map.Entry<IBinder, SyncInfo> findSync(int syncHandle) {
@@ -324,7 +328,7 @@ public class PeriodicScanManager {
     void onSyncTransferredCallback(int paSource, int status, String bda) {
         Map.Entry<IBinder, SyncTransferInfo> entry = findSyncTransfer(bda);
         if (entry != null) {
-            mSyncTransfers.remove(entry);
+            mSyncTransfers.remove(entry.getKey());
             IPeriodicAdvertisingCallback callback = entry.getValue().callback;
             try {
                 callback.onSyncTransferred(mAdapter.getRemoteDevice(bda), status);
@@ -360,7 +364,12 @@ public class PeriodicScanManager {
         } catch (RemoteException e) {
             throw new IllegalArgumentException("Can't link to periodic scanner death");
         }
-        mSyncTransfers.put(binder, new SyncTransferInfo(bda.getAddress(), callback));
+        final String addr = bda.getAddress();
+        synchronized (mSyncTransfers) {
+            // Remove previous pending transfer for the same address to avoid ambiguity.
+            mSyncTransfers.entrySet().removeIf(e -> addr.equals(e.getValue().address));
+            mSyncTransfers.put(binder, new SyncTransferInfo(addr, callback));
+        }
         mNativeInterface.transferSetInfo(bda, serviceData, advHandle);
     }
 }
