@@ -22,6 +22,30 @@
       },
       "revId": "e0c76916e5d7632c6bb97289f41722869837178a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d39dd4_dc018349",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2197,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-15T11:14:56Z",
+      "side": 1,
+      "message": "Currently, the code does not appear to reach the `false` case. This check is mainly to maintain coding style consistency and to prevent potential incorrect values from being passed in by future changes.",
+      "parentUuid": "72358c4f_cb4a7fc0",
+      "range": {
+        "startLine": 2197,
+        "startChar": 10,
+        "endLine": 2197,
+        "endChar": 66
+      },
+      "revId": "e0c76916e5d7632c6bb97289f41722869837178a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
