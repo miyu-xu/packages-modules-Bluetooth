@@ -22,12 +22,15 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
+import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -128,5 +131,38 @@ public class PeriodicScanManagerTest {
         mPeriodicScanManager.onSyncTransferredCallback(0, 0, REMOTE_DEVICE_ADDRESS);
 
         verify(mCallback, times(1)).onSyncTransferred(eq(mTestDevice), eq(0));
+    }
+
+    @Test
+    public void transferSetInfo_sameAddress_multipleUpdates_singleCallbackToLatest()
+            throws Exception {
+        IPeriodicAdvertisingCallback[] callbacks = new IPeriodicAdvertisingCallback[6];
+        IBinder[] binders = new IBinder[6];
+        for (int i = 0; i < callbacks.length; i++) {
+            callbacks[i] = mock(IPeriodicAdvertisingCallback.class);
+            binders[i] = mock(IBinder.class);
+            doReturn(binders[i]).when(callbacks[i]).asBinder();
+            doNothing().when(binders[i]).linkToDeath(any(), eq(0));
+        }
+
+        for (IPeriodicAdvertisingCallback callback : callbacks) {
+            mPeriodicScanManager.transferSetInfo(mTestDevice, 0, 1, callback);
+        }
+
+        clearInvocations((Object[]) callbacks);
+
+        mPeriodicScanManager.onSyncTransferredCallback(0, 0, REMOTE_DEVICE_ADDRESS);
+
+        for (int i = 0; i < callbacks.length - 1; i++) {
+            verify(callbacks[i], never()).onSyncTransferred(any(), anyInt());
+        }
+        verify(callbacks[callbacks.length - 1], times(1))
+                .onSyncTransferred(eq(mTestDevice), eq(0));
+
+        mPeriodicScanManager.onSyncTransferredCallback(0, 0, REMOTE_DEVICE_ADDRESS);
+
+        for (IPeriodicAdvertisingCallback callback : callbacks) {
+            verifyNoMoreInteractions(callback);
+        }
     }
 }
