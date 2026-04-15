@@ -22,6 +22,30 @@
       },
       "revId": "32119871e00b349bbc5dd84df5410b8cb31d125f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f9e9f7d_fa762266",
+        "filename": "system/btif/include/btif_av.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-15T11:15:05Z",
+      "side": 1,
+      "message": "These two functions are equivalent, and I will replace the usages in the code with btif_av_is_connected.",
+      "parentUuid": "85adffde_11050e70",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 358,
+        "endChar": 36
+      },
+      "revId": "32119871e00b349bbc5dd84df5410b8cb31d125f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
