@@ -26,6 +26,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
@@ -117,5 +118,15 @@ public class PeriodicScanManagerTest {
                 100,
                 0);
         verify(mCallback).onSyncEstablished(anyInt(), eq(mTestDevice), eq(0), eq(0), eq(0), eq(0));
+    }
+
+    @Test
+    public void onSyncTransferredCallback_removesPendingTransfer() throws Exception {
+        mPeriodicScanManager.transferSetInfo(mTestDevice, 0, 1, mCallback);
+
+        mPeriodicScanManager.onSyncTransferredCallback(0, 0, REMOTE_DEVICE_ADDRESS);
+        mPeriodicScanManager.onSyncTransferredCallback(0, 0, REMOTE_DEVICE_ADDRESS);
+
+        verify(mCallback, times(1)).onSyncTransferred(eq(mTestDevice), eq(0));
     }
 }
