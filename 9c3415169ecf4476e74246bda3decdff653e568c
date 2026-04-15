@@ -22,6 +22,30 @@
       },
       "revId": "9c3415169ecf4476e74246bda3decdff653e568c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b5b8a4a_06e9b4e3",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1988982
+      },
+      "writtenOn": "2026-04-15T06:53:20Z",
+      "side": 1,
+      "message": "Does this mean that the retry mechanism should been moved to the btif layer? But the reason L2CAP_CONN_NO_RESOURCES which means connection conflict can\u0027t get in btif layer.",
+      "parentUuid": "84aced4a_62722f0f",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "9c3415169ecf4476e74246bda3decdff653e568c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
