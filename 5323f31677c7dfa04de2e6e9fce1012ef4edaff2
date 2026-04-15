@@ -22,6 +22,30 @@
       },
       "revId": "5323f31677c7dfa04de2e6e9fce1012ef4edaff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f948d3c6_39247340",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-15T11:14:43Z",
+      "side": 0,
+      "message": "Understood. I will use the current bug ID to create a new change for submitting the bug fix here.",
+      "parentUuid": "a0b625f0_00b58037",
+      "range": {
+        "startLine": 562,
+        "startChar": 4,
+        "endLine": 562,
+        "endChar": 47
+      },
+      "revId": "5323f31677c7dfa04de2e6e9fce1012ef4edaff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7bd4fad_73779abe",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-15T11:14:43Z",
+      "side": 1,
+      "message": "Understood. I will use the current bug ID to create a new change for submitting the bug fix here.",
+      "parentUuid": "0cb73529_820a86d2",
+      "range": {
+        "startLine": 734,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 0
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "360f413c_55d8ea83",
         "filename": "system/stack/avrc/avrc_api.cc",
         "patchSetId": 4
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80c62cf2_8aca7dd7",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-15T11:14:43Z",
+      "side": 1,
+      "message": "I will pass the passive flag in the BTA layer using the `bta_av_rc_create -\u003e AVRC_Open` flow. In addition, since the passive flag checks in `AVRC_Open` will be removed, I will also update CL 3995735. Specifically, in `system/profile/avrcp/connection_handler.cc`, before `AvrcpConnect` calls `avrc_-\u003eOpen`, I will add a new check in the case where both source and sink are enabled to determine whether the passive flag is required.",
+      "parentUuid": "360f413c_55d8ea83",
+      "range": {
+        "startLine": 1085,
+        "startChar": 6,
+        "endLine": 1085,
+        "endChar": 36
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1594a9ee_709528c7",
         "filename": "system/stack/sdp/sdp_utils.cc",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2026-03-30T13:17:10Z",
       "side": 1,
       "message": "Similarly SDP should not depend on AV btif APIs here",
+      "range": {
+        "startLine": 1590,
+        "startChar": 0,
+        "endLine": 1593,
+        "endChar": 3
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d78b28_fdb44263",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1593,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-15T11:14:43Z",
+      "side": 1,
+      "message": "Is it possible to add `btif_av_peer_is_connected_source` into `CreateInterfaceToProfile`, in the same way that `AVRC_GetProfileVersion` is used in `sdp_utils.cc`? For example:  \n`CreateInterfaceToProfile() -\u003e profileSpecific_Hack -\u003e AVRC_GetProfileVersion()`.",
+      "parentUuid": "1594a9ee_709528c7",
       "range": {
         "startLine": 1590,
         "startChar": 0,
