@@ -70,6 +70,30 @@
       },
       "revId": "9c3415169ecf4476e74246bda3decdff653e568c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7f963e2_edb9a897",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2026-04-17T02:51:23Z",
+      "side": 1,
+      "message": "First, was this not a recent Android based phone? AOSP\u0027s AVRCP Target implementation is configured as passive and should allow the incoming connection to win. Despite this though, I totally agree a retry mechanism _should_ work.\n\nSecond, I thought we already had some sort of collision detection mechanism in the stack. I remember having all sorts of browse channel collisions, for example, that we had to solve. I agree with Henri, this feels like a weird spot for this. This type of functionality should go along side there if we are indeed missing it (I\u0027d have to look up that history to see what exactly we did/where though.)\n\nThird, is a result code of `L2CAP_CONN_NO_RESOURCES` really a reliable way to detect a collision? Surely this is both a valid return code some devices send _and_ probably a default return code some devices send when they just want us to go away (perhaps due to a local permissions model). I would imagine that proper collision detection would be a combination of (1) seeing we have a link, (2) seeing the remote is trying to establish a link. If we see that, then we disconnect both and start our [100ms, 1s] timer and try again. If the inverse is true, where we\u0027re requesting and the remote thinks we have a link up already, I\u0027d expect they also would disconnect and start their timer if they were spec following.\n\nFor the record, the verbiage from the spec so no one needs to look it up:\nIf both devices open an AVCTP channel at the same time, both channels shall be closed and each device shall wait a random time (not more than 1 s and not less than 100ms) and then try to open the AVCTP channel again. If it is known which device is the master, that device can re-try at once.",
+      "parentUuid": "da329863_e40a6c48",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 5
+      },
+      "revId": "9c3415169ecf4476e74246bda3decdff653e568c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
