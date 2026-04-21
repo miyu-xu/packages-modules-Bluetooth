@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0e828d_c0e28b1c",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-04-21T04:36:10Z",
+      "side": 1,
+      "message": "```suggestion\n    int getTransportConnectionState(in BluetoothDevice device, in int transport, in AttributionSource attributionSource);\n```",
+      "revId": "011a2fa91a2ca2710d89c2f5b8b8c46a381ebf67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
