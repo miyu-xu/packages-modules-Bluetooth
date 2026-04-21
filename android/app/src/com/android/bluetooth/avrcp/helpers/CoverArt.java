@@ -55,7 +55,17 @@ public class CoverArt {
         // Create a scaled version of the image for now, as consumers don't need
         // anything larger than this at the moment. Also makes each image gathered
         // the same dimensions for hashing purposes.
-        mImage = Bitmap.createScaledBitmap(image.getImage(), THUMBNAIL_SIZE, THUMBNAIL_SIZE, false);
+        // google AOSP mImage = Bitmap.createScaledBitmap(image.getImage(), THUMBNAIL_SIZE, THUMBNAIL_SIZE, false);
+// SS_AVRCP_FEATURE start - Prevent the original mImage from being recycled when the sizes are the same.
+        Bitmap source = image.getImage();
+        Bitmap scaled = Bitmap.createScaledBitmap(source, BipPixel.MAX_PIXEL, BipPixel.MAX_PIXEL, false);
+        if (scaled == source) {
+            debug("Source image already at target size, creating mutable copy");
+            mImage = source.copy(source.getConfig(), false);
+        } else {
+            mImage = scaled;
+        }
+// SS_AVRCP_FEATURE end
     }
 
     /**
