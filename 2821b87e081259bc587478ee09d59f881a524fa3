@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0efdd550_f738cf17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2026-04-22T02:44:14Z",
+      "side": 1,
+      "message": "I prefer not to land this due to comment#21 in the bug.\nAlso, do we still need it? We already have ag/38063325 which should solve the bug.",
+      "revId": "2821b87e081259bc587478ee09d59f881a524fa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
