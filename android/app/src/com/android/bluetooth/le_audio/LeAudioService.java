@@ -2031,12 +2031,40 @@ public class LeAudioService extends ProfileService {
             return true;
         }
 
-        if (allLeAudioDevicesConnected()) {
+        if (allLeAudioDevicesConnected() && allGroupMembersDiscovered()) {
             Log.d(TAG, "isScannerNeeded: all devices connected, scanner not needed");
             return false;
         }
 
         Log.d(TAG, "isScannerNeeded: true");
+        return true;
+    }
+
+    boolean allGroupMembersDiscovered() {
+        if (mCsipSetCoordinatorService == null) {
+            Log.d(TAG, "allGroupMembersDiscovered: CSIP is none");
+            return true;
+        }
+        mGroupReadLock.lock();
+        try {
+            for (Map.Entry<Integer, LeAudioGroupDescriptor> entry :
+                    mGroupDescriptorsView.entrySet()) {
+                Integer groupId = entry.getValue().mGroupId;
+
+                List<BluetoothDevice> groupDevices = getGroupDevices(groupId);
+
+                Integer desiredSize = mCsipSetCoordinatorService.getDesiredGroupSize(groupId);
+                Integer groupSize = groupDevices.size();
+
+                Log.d(TAG, "allGroupMembersDiscovered groupId=" + groupId + " (" + desiredSize + "/" + groupSize + ")");
+
+                if (!desiredSize.equals(groupSize)) {
+                    return false;
+                }
+            }
+        } finally {
+            mGroupReadLock.unlock();
+        }
         return true;
     }
 
