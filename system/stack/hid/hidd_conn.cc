@@ -533,10 +533,9 @@ static void hidd_l2cif_data_ind(uint16_t cid, BT_HDR* p_msg) {
           break;
 
         case HID_PAR_CONTROL_VIRTUAL_CABLE_UNPLUG:
-          hidd_conn_disconnect();
-
           // set flag so we can notify properly when disconnected
           hd_cb.pending_vc_unplug = TRUE;
+          hidd_conn_disconnect();
           break;
       }
 
