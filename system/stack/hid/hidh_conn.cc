@@ -248,6 +248,10 @@ static void hidh_l2cif_connect_ind(const RawAddress& bd_addr, uint16_t l2cap_cid
       log::warn("HID-Host Rcvd INTR L2CAP conn ind, wrong state: {}", p_hcon->conn_state);
       bAccept = false;
     }
+    if (p_hcon->conn_flags & HID_CONN_FLAGS_IS_ORIG) {
+      log::warn("HID-Host Rcvd INTR L2CAP conn ind, but we're the initiator");
+      bAccept = false;
+    }
   } else /* CTRL channel */
   {
 #if (HID_HOST_ACPT_NEW_CONN == TRUE)
@@ -367,19 +371,25 @@ static void hidh_l2cif_connect_cfm(uint16_t l2cap_cid, tL2CAP_CONN result) {
     p_hcon = &hh_cb.devices[dhandle].conn;
   }
 
-  if ((p_hcon == NULL) || (!(p_hcon->conn_flags & HID_CONN_FLAGS_IS_ORIG)) ||
-      ((l2cap_cid == p_hcon->ctrl_cid) && (p_hcon->conn_state != HID_CONN_STATE_CONNECTING_CTRL)) ||
-      ((l2cap_cid == p_hcon->intr_cid) && (p_hcon->conn_state != HID_CONN_STATE_CONNECTING_INTR) &&
-       (p_hcon->conn_state != HID_CONN_STATE_DISCONNECTING))) {
-    log::warn("HID-Host Rcvd unexpected conn cnf, CID 0x{:x}", l2cap_cid);
-    return;
-  }
-
   if (result != tL2CAP_CONN::L2CAP_CONN_OK) {
     // TODO: We need to provide the real HCI status if we want to retry.
     log::error("invoked with non OK status");
     return;
   }
+
+  if ((p_hcon == NULL) || (!(p_hcon->conn_flags & HID_CONN_FLAGS_IS_ORIG)) ||
+      ((l2cap_cid == p_hcon->ctrl_cid) && (p_hcon->conn_state != HID_CONN_STATE_CONNECTING_CTRL)) ||
+      ((l2cap_cid == p_hcon->intr_cid) && (p_hcon->conn_state != HID_CONN_STATE_CONNECTING_INTR) &&
+       (p_hcon->conn_state != HID_CONN_STATE_DISCONNECTING))) {
+    log::warn("HID-Host Rcvd unexpected conn cnf, CID 0x{:x}", l2cap_cid);
+
+    if (!stack::l2cap::get_interface().L2CA_DisconnectReq(l2cap_cid)) {
+      log::warn("Unable to send L2CAP disconnect request peer:{} cid:{}",
+                hh_cb.devices[dhandle].addr, l2cap_cid);
+    }
+    return;
+  }
+
   /* receive Control Channel connect confirmation */
   if (l2cap_cid == p_hcon->ctrl_cid) {
     /* check security requirement */
