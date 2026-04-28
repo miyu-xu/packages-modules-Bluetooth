@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66264e45_c6718186",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 4290819
+      },
+      "writtenOn": "2026-04-28T04:07:54Z",
+      "side": 1,
+      "message": "Please fix indent error",
+      "fixSuggestions": [
+        {
+          "fixId": "1e0b6897_23cd5289",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 755,
+                "startChar": 0,
+                "endLine": 756,
+                "endChar": 0
+              },
+              "replacement": "            log(\"ro.config.batteryless is true add flag FLAG_RECEIVER_FOREGROUND\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8f56271144f9cd1126c9b036d60aca0cb0fa456a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "574efcba_c6a44399",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 4290819
+      },
+      "writtenOn": "2026-04-28T04:07:54Z",
+      "side": 1,
+      "message": "I don\u0027t think we need this log, as the one inside the if statement already covers enough information.",
+      "fixSuggestions": [
+        {
+          "fixId": "6fd3706c_fbda5c1f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+              "range": {
+                "startLine": 771,
+                "startChar": 0,
+                "endLine": 772,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8f56271144f9cd1126c9b036d60aca0cb0fa456a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
