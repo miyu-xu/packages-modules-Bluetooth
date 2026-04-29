@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0022e93_e039a760",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-04-29T11:51:50Z",
+      "side": 1,
+      "message": "Here,because when SRC and SNK are both enabled, the message needs to be reported to both TG and CT at the same time, this behavior is part of the “SRC/SNK both enable” feature and should not be treated as a separate bug fix.",
+      "parentUuid": "f7bd4fad_73779abe",
+      "range": {
+        "startLine": 734,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 0
+      },
+      "revId": "859a1418df05a60877e0af1a4777f1750e019cd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "360f413c_55d8ea83",
         "filename": "system/stack/avrc/avrc_api.cc",
         "patchSetId": 4
