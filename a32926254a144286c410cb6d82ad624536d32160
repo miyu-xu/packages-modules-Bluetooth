@@ -34,6 +34,24 @@
       "parentUuid": "aa2390c8_0073cd54",
       "revId": "a32926254a144286c410cb6d82ad624536d32160",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0238e0a0_ecd02ca8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2026-04-30T22:36:08Z",
+      "side": 1,
+      "message": "Thank you.\nInternal cherry-pick is merged.\n\n@junlu.jiang@amlogic.com Thank you for the report and contribution. This change will be part of the next android release which should be for 26Q3.\n\nI am abandoning this CL since there is no additional work to do here",
+      "parentUuid": "dbcb8a04_43624c03",
+      "revId": "a32926254a144286c410cb6d82ad624536d32160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
