@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba1f8273_bde394fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2026-04-30T23:33:20Z",
+      "side": 1,
+      "message": "nit: missing the period: `case.`",
+      "revId": "c860d2697d0768c6bcd159513924e56a786279ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "34078637_5610f90a",
@@ -14,6 +31,92 @@
       "writtenOn": "2025-12-03T13:34:58Z",
       "side": 1,
       "message": "fyi @rwt@google.com",
+      "revId": "c860d2697d0768c6bcd159513924e56a786279ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c27cb971_85385748",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2026-04-30T23:33:20Z",
+      "side": 1,
+      "message": "For hogp, should it be `UUID_SERVCLASS_LE_HID`?",
+      "revId": "c860d2697d0768c6bcd159513924e56a786279ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f619cb79_6536c817",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2026-04-30T23:33:20Z",
+      "side": 1,
+      "message": "Two conditions can be put in the same line. Also will this affect other services that use GATT? For example DIS, or battery?",
+      "fixSuggestions": [
+        {
+          "fixId": "fe7f0b51_5571c321",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_gatt_client.cc",
+              "range": {
+                "startLine": 343,
+                "startChar": 0,
+                "endLine": 347,
+                "endChar": 0
+              },
+              "replacement": "  if (btif_device_supports_hogp(address) \u0026\u0026 !(btif_hh_is_profile_enabled())) {\n    return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c860d2697d0768c6bcd159513924e56a786279ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7edceefa_7555e84d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2026-04-30T23:33:20Z",
+      "side": 1,
+      "message": "How does this fix the issue? Maybe @apusaka@google.com have more context. If we disconnect LE devices, how about classic devices? Do we always disconnect ACL when disabling HH profile? For example, we may toggle the \"input device\" option from UI, does that disconnect ACL?",
+      "revId": "c860d2697d0768c6bcd159513924e56a786279ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd8106f0_9f6d0fd9",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2431,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2026-04-30T23:33:20Z",
+      "side": 1,
+      "message": "The Bluetooth log should already have the function name? Also I think the standard way is to use `{}`, not `%d`. Maybe also use `btif_hh_status_text(btif_hh_cb.status)` to make it more readable.",
       "revId": "c860d2697d0768c6bcd159513924e56a786279ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
