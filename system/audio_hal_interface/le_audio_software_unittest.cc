@@ -28,7 +28,6 @@
 #include "aidl/le_audio_software_aidl.h"
 #include "audio_hal_interface/hal_version_manager.h"
 #include "bta/le_audio/mock_codec_manager.h"
-#include "gmock/gmock.h"
 #include "hidl/le_audio_software_hidl.h"
 
 #pragma GCC diagnostic ignored "-Wunused-private-field"
@@ -532,23 +531,25 @@ protected:
     MockHalVersionManager::SetInstance(&hal_version_manager_);
 
     unicast_sink_stream_cb_.reset(new StreamCallbacks{
-            std::bind(&MockStreamCallbacks::OnResume, &sink_stream_callbacks_,
-                      std::placeholders::_1),
-            std::bind(&MockStreamCallbacks::OnSuspend, &sink_stream_callbacks_),
-            std::bind(&MockStreamCallbacks::OnSourceMetadataUpdate, &sink_stream_callbacks_,
-                      std::placeholders::_1, std::placeholders::_2),
-            std::bind(&MockStreamCallbacks::OnSinkMetadataUpdate, &sink_stream_callbacks_,
-                      std::placeholders::_1),
+        [this](bool v) { sink_stream_callbacks_.OnResume(v); },
+        [this]() { sink_stream_callbacks_.OnSuspend(); },
+        [this](const auto& metadata, auto direction) {
+          sink_stream_callbacks_.OnSourceMetadataUpdate(metadata, direction);
+        },
+        [this](const auto& metadata) { 
+          sink_stream_callbacks_.OnSinkMetadataUpdate(metadata); 
+        },
     });
 
     unicast_source_stream_cb_.reset(new StreamCallbacks{
-            std::bind(&MockStreamCallbacks::OnResume, &source_stream_callbacks_,
-                      std::placeholders::_1),
-            std::bind(&MockStreamCallbacks::OnSuspend, &source_stream_callbacks_),
-            std::bind(&MockStreamCallbacks::OnSourceMetadataUpdate, &source_stream_callbacks_,
-                      std::placeholders::_1, std::placeholders::_2),
-            std::bind(&MockStreamCallbacks::OnSinkMetadataUpdate, &source_stream_callbacks_,
-                      std::placeholders::_1),
+        [this](bool v) { source_stream_callbacks_.OnResume(v); },
+        [this]() { source_stream_callbacks_.OnSuspend(); },
+        [this](const auto& metadata, auto direction) {
+          source_stream_callbacks_.OnSourceMetadataUpdate(metadata, direction);
+        },
+        [this](const auto& metadata) { 
+          source_stream_callbacks_.OnSinkMetadataUpdate(metadata); 
+        },
     });
 
     sink_ = LeAudioClientInterface::Get()->GetSink(*unicast_sink_stream_cb_, &message_loop_thread,

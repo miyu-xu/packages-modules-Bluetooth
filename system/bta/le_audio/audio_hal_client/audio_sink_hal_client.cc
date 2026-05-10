@@ -22,7 +22,6 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <functional>
 #include <memory>
 #include <utility>
 #include <vector>
@@ -78,10 +77,9 @@ public:
 
 bool SinkImpl::Acquire() {
   auto source_stream_cb = bluetooth::audio::le_audio::StreamCallbacks{
-          .on_resume_ = std::bind(&SinkImpl::OnResumeReq, this, std::placeholders::_1),
-          .on_suspend_ = std::bind(&SinkImpl::OnSuspendReq, this),
-          .on_sink_metadata_update_ =
-                  std::bind(&SinkImpl::OnMetadataUpdateReq, this, std::placeholders::_1),
+          .on_resume_ = [this](bool v) { OnResumeReq(v); },
+          .on_suspend_ = [this]() { OnSuspendReq(); },
+          .on_metadata_update_ = [this](const sink_metadata_t& v) { OnMetadataUpdateReq(v); },
   };
 
   auto halInterface = audio::le_audio::LeAudioClientInterface::Get();

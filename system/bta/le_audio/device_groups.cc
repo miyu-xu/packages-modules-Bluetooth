@@ -24,7 +24,6 @@
 #include <algorithm>
 #include <cstddef>
 #include <cstdint>
-#include <functional>
 #include <iterator>
 #include <memory>
 #include <optional>
@@ -971,8 +970,9 @@ bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx
                                                           bool use_preference) const {
   auto requirements = GetAudioSetConfigurationRequirements(ctx_type);
   auto new_conf = CodecManager::GetInstance()->GetCodecConfig(
-          requirements, std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,
-                                  std::placeholders::_1, std::placeholders::_2, use_preference));
+    requirements, [this, use_preference](auto const& arg1, auto const& arg2) { 
+      return FindFirstSupportedConfiguration(arg1, arg2, use_preference); 
+    });
   auto update_config = true;
 
   auto& cached_map = use_preference ? context_to_preferred_configuration_cache_map_
