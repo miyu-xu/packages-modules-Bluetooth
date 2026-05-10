@@ -28,7 +28,6 @@
 #include <cstdint>
 #include <cstring>
 #include <deque>
-#include <functional>
 #include <list>
 #include <map>
 #include <memory>
@@ -4158,8 +4157,11 @@ public:
      * already know how to configure the encoder once we confirm the streaming request. */
     CodecManager::GetInstance()->UpdateActiveAudioConfig(
             group->stream_conf.stream_params,
-            std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                      std::placeholders::_1, std::placeholders::_2),
+            [weak_ptr = weak_factory_.GetWeakPtr()](const source_metadata_t& v) {
+              if (weak_ptr) {
+                weak_ptr->UpdateAudioConfigToHal(v);
+              }
+            }
             ::bluetooth::le_audio::types::kLeAudioDirectionSink);
 
     ConfirmLocalAudioSourceStreamingRequest();
@@ -4173,8 +4175,11 @@ public:
     if (!LeAudioHalVerifier::SupportsStreamActiveApi()) {
       CodecManager::GetInstance()->UpdateActiveAudioConfig(
               group->stream_conf.stream_params,
-              std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                        std::placeholders::_1, std::placeholders::_2),
+              [weak_ptr = weak_factory_.GetWeakPtr()](const source_metadata_t& v) {
+                if (weak_ptr) {
+                  weak_ptr->UpdateAudioConfigToHal(v);
+                }
+              }
               bluetooth::le_audio::types::kLeAudioDirectionSink);
     }
   }
@@ -4238,8 +4243,11 @@ public:
      * already know how to configure the encoder once we confirm the streaming request. */
     CodecManager::GetInstance()->UpdateActiveAudioConfig(
             group->stream_conf.stream_params,
-            std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                      std::placeholders::_1, std::placeholders::_2),
+            [weak_ptr = weak_factory_.GetWeakPtr()](const source_metadata_t& v) {
+              if (weak_ptr) {
+                weak_ptr->UpdateAudioConfigToHal(v);
+              }
+            }
             ::bluetooth::le_audio::types::kLeAudioDirectionSource);
 
     ConfirmLocalAudioSinkStreamingRequest();
@@ -4253,8 +4261,11 @@ public:
     if (!LeAudioHalVerifier::SupportsStreamActiveApi()) {
       CodecManager::GetInstance()->UpdateActiveAudioConfig(
               group->stream_conf.stream_params,
-              std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                        std::placeholders::_1, std::placeholders::_2),
+              [weak_ptr = weak_factory_.GetWeakPtr()](const source_metadata_t& v) {
+                if (weak_ptr) {
+                  weak_ptr->UpdateAudioConfigToHal(v);
+                }
+              }
               bluetooth::le_audio::types::kLeAudioDirectionSource);
     }
   }
@@ -6222,8 +6233,11 @@ public:
            */
           CodecManager::GetInstance()->UpdateActiveAudioConfig(
                   group->stream_conf.stream_params,
-                  std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                            std::placeholders::_1, std::placeholders::_2),
+                  [weak_ptr = weak_factory_.GetWeakPtr()](const source_metadata_t& v) {
+                    if (weak_ptr) {
+                      weak_ptr->UpdateAudioConfigToHal(v);
+                    }
+                  }
                   ::bluetooth::le_audio::types::kLeAudioDirectionSink);
         }
 
@@ -6235,8 +6249,11 @@ public:
            */
           CodecManager::GetInstance()->UpdateActiveAudioConfig(
                   group->stream_conf.stream_params,
-                  std::bind(&LeAudioClientImpl::UpdateAudioConfigToHal, weak_factory_.GetWeakPtr(),
-                            std::placeholders::_1, std::placeholders::_2),
+                  [weak_ptr = weak_factory_.GetWeakPtr()](const source_metadata_t& v) {
+                    if (weak_ptr) {
+                      weak_ptr->UpdateAudioConfigToHal(v);
+                    }
+                  }
                   bluetooth::le_audio::types::kLeAudioDirectionSource);
         }
 

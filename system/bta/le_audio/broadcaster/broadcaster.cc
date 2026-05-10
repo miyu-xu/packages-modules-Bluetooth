@@ -23,7 +23,6 @@
 #include <algorithm>
 #include <cstdint>
 #include <cstring>
-#include <functional>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -1140,8 +1139,8 @@ private:
     void OnBigCreated(const std::vector<uint16_t>& conn_handle) {
       CodecManager::GetInstance()->UpdateBroadcastConnHandle(
               conn_handle,
-              std::bind(&LeAudioSourceAudioHalClient::UpdateBroadcastAudioConfigToHal,
-                        instance->le_audio_source_hal_client_.get(), std::placeholders::_1));
+              [this](const source_metadata_t& v) { le_audio_source_hal_client_->UpdateBroadcastAudioConfigToHal(v);
+            });
 
       if (com::android::bluetooth::flags::leaudio_big_depends_on_audio_state()) {
         instance->le_audio_source_hal_client_->ConfirmStreamingRequest();

@@ -25,7 +25,6 @@
 #include <chrono>
 #include <cstddef>
 #include <cstdint>
-#include <functional>
 #include <memory>
 #include <mutex>
 #include <optional>
@@ -129,10 +128,9 @@ public:
 
 bool SourceImpl::Acquire() {
   auto sink_stream_cb = bluetooth::audio::le_audio::StreamCallbacks{
-          .on_resume_ = std::bind(&SourceImpl::OnResumeReq, this, std::placeholders::_1),
-          .on_suspend_ = std::bind(&SourceImpl::OnSuspendReq, this),
-          .on_metadata_update_ = std::bind(&SourceImpl::OnMetadataUpdateReq, this,
-                                           std::placeholders::_1, std::placeholders::_2),
+          .on_resume_ = [this](bool v) { OnResumeReq(v); },
+          .on_suspend_ = [this]() { OnSuspendReq(); },
+          .on_metadata_update_ = [this](const source_metadata_t& v) { OnMetadataUpdateReq(v); },
           .on_sink_metadata_update_ =
                   [](const sink_metadata_v7_t& /*sink_metadata*/) {
                     // TODO: update microphone configuration based on sink metadata
