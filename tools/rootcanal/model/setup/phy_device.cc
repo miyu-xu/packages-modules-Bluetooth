@@ -26,7 +26,7 @@ PhyDevice::PhyDevice(std::string type, std::shared_ptr<Device> device)
     : id(device->id_), type(std::move(type)), device_(std::move(device)) {
   using namespace std::placeholders;
   ASSERT(device_ != nullptr);
-  device_->RegisterLinkLayerChannel(std::bind(&PhyDevice::Send, this, _1, _2, _3));
+  device_->RegisterLinkLayerChannel([this](auto arg1, auto arg2, auto arg3) { Send(arg1, arg2, arg3); });
 }
 
 void PhyDevice::Register(PhyLayer* phy) { phy_layers_.insert(phy); }

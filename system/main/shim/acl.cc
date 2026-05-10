@@ -1420,8 +1420,7 @@ void shim::Acl::OnConnectSuccess(
   pimpl_->handle_to_classic_connection_map_.emplace(
           handle, std::make_unique<ClassicShimAclConnection>(
                           acl_interface_.on_send_data_upwards,
-                          std::bind(&shim::Acl::OnClassicLinkDisconnected, this,
-                                    std::placeholders::_1, std::placeholders::_2),
+                          [this](uint16_t handle, tHCI_REASON reason) { OnClassicLinkDisconnected(handle, reason); },
                           acl_interface_.link.classic, handler_, std::move(connection),
                           std::chrono::system_clock::now()));
   pimpl_->handle_to_classic_connection_map_[handle]->RegisterCallbacks();
@@ -1508,8 +1507,7 @@ void shim::Acl::OnLeConnectSuccess(hci::AddressWithType address_with_type,
   pimpl_->handle_to_le_connection_map_.emplace(
           handle, std::make_unique<LeShimAclConnection>(
                           acl_interface_.on_send_data_upwards,
-                          std::bind(&shim::Acl::OnLeLinkDisconnected, this, std::placeholders::_1,
-                                    std::placeholders::_2),
+                          [this](uint16_t handle, tHCI_REASON reason) { OnLeLinkDisconnected(handle, reason); },
                           acl_interface_.link.le, handler_, std::move(connection),
                           std::chrono::system_clock::now()));
   pimpl_->handle_to_le_connection_map_[handle]->RegisterCallbacks();

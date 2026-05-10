@@ -532,23 +532,17 @@ protected:
     MockHalVersionManager::SetInstance(&hal_version_manager_);
 
     unicast_sink_stream_cb_.reset(new StreamCallbacks{
-            std::bind(&MockStreamCallbacks::OnResume, &sink_stream_callbacks_,
-                      std::placeholders::_1),
-            std::bind(&MockStreamCallbacks::OnSuspend, &sink_stream_callbacks_),
-            std::bind(&MockStreamCallbacks::OnSourceMetadataUpdate, &sink_stream_callbacks_,
-                      std::placeholders::_1, std::placeholders::_2),
-            std::bind(&MockStreamCallbacks::OnSinkMetadataUpdate, &sink_stream_callbacks_,
-                      std::placeholders::_1),
+            [this](bool v) { sink_stream_callbacks_.OnResume(v); },
+            [this](bool v) { sink_stream_callbacks_.OnSuspend(v); },
+            [this](bool v) { sink_stream_callbacks_.OnSourceMetadataUpdate(v); },
+            [this](bool v) { sink_stream_callbacks_.OnSinkMetadataUpdate(v); },
     });
 
     unicast_source_stream_cb_.reset(new StreamCallbacks{
-            std::bind(&MockStreamCallbacks::OnResume, &source_stream_callbacks_,
-                      std::placeholders::_1),
-            std::bind(&MockStreamCallbacks::OnSuspend, &source_stream_callbacks_),
-            std::bind(&MockStreamCallbacks::OnSourceMetadataUpdate, &source_stream_callbacks_,
-                      std::placeholders::_1, std::placeholders::_2),
-            std::bind(&MockStreamCallbacks::OnSinkMetadataUpdate, &source_stream_callbacks_,
-                      std::placeholders::_1),
+            [this](bool v) { source_stream_callbacks_.OnResume(v); },
+            [this](bool v) { source_stream_callbacks_.OnSuspend(v); },
+            [this](bool v) { source_stream_callbacks_.OnSourceMetadataUpdate(v); },
+            [this](bool v) { source_stream_callbacks_.OnSinkMetadataUpdate(v); },
     });
 
     sink_ = LeAudioClientInterface::Get()->GetSink(*unicast_sink_stream_cb_, &message_loop_thread,
