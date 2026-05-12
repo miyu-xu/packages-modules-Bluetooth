@@ -17,6 +17,7 @@
  ******************************************************************************/
 #include <bluetooth/types/address.h>
 #include <bluetooth/types/hci_role.h>
+#include <com_android_bluetooth_flags.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <stdarg.h>
@@ -31,10 +32,12 @@
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_ble_api.h"
+#include "stack/include/l2cdefs.h"
 #include "stack/include/smp_status.h"
 #include "stack/smp/p_256_ecc_pp.h"
 #include "stack/smp/smp_int.h"
 #include "test/mock/mock_stack_acl.h"
+#include "test/mock/mock_stack_l2cap_interface.h"
 
 using testing::StrEq;
 
@@ -396,4 +399,40 @@ TEST(SmpStatusText, smp_status_text) {
   ASSERT_STREQ(
           unknown.c_str(),
           smp_status_text(static_cast<tSMP_STATUS>(std::numeric_limits<uint8_t>::max())).c_str());
+}
+
+class SmpL2cInitTest : public ::testing::Test {
+protected:
+  void SetUp() override {
+    com::android::bluetooth::flags::provider_->reset_flags();
+    bluetooth::testing::stack::l2cap::set_interface(&mock_l2cap_);
+  }
+
+  void TearDown() override {
+    bluetooth::testing::stack::l2cap::reset_interface();
+    com::android::bluetooth::flags::provider_->reset_flags();
+  }
+
+  bluetooth::testing::stack::l2cap::Mock mock_l2cap_;
+};
+
+TEST_F(SmpL2cInitTest, RegistersBrChannel_WhenFlagDisabled) {
+  com::android::bluetooth::flags::provider_->disable_smp_over_bredr(false);
+
+  EXPECT_CALL(mock_l2cap_, L2CA_RegisterFixedChannel(L2CAP_SMP_CID, testing::_))
+          .WillOnce(testing::Return(true));
+  EXPECT_CALL(mock_l2cap_, L2CA_RegisterFixedChannel(L2CAP_SMP_BR_CID, testing::_))
+          .WillOnce(testing::Return(true));
+
+  smp_l2cap_if_init();
+}
+
+TEST_F(SmpL2cInitTest, SkipsBrChannel_WhenFlagEnabled) {
+  com::android::bluetooth::flags::provider_->disable_smp_over_bredr(true);
+
+  EXPECT_CALL(mock_l2cap_, L2CA_RegisterFixedChannel(L2CAP_SMP_CID, testing::_))
+          .WillOnce(testing::Return(true));
+  EXPECT_CALL(mock_l2cap_, L2CA_RegisterFixedChannel(L2CAP_SMP_BR_CID, testing::_)).Times(0);
+
+  smp_l2cap_if_init();
 }

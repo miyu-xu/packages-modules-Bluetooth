@@ -72,6 +72,11 @@ void smp_l2cap_if_init(void) {
     log::error("Unable to register with L2CAP fixed channel profile SMP psm:{}", L2CAP_SMP_CID);
   }
 
+  if (com::android::bluetooth::flags::disable_smp_over_bredr()) {
+    log::info("SMP over BR/EDR disabled; skipping SMP_BR fixed channel registration");
+    return;
+  }
+
   fixed_reg.pL2CA_FixedConn_Cb = smp_br_connect_callback;
   fixed_reg.pL2CA_FixedData_Cb = smp_br_data_received;
 

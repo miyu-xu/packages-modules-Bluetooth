@@ -298,3 +298,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "disable_smp_over_bredr"
+    namespace: "bluetooth"
+    description: "When enabled, skip registering the SMP fixed channel on the BR/EDR transport. LE SMP pairing is unaffected; CTKD remains available once LE pairing completes."
+    bug: "0"
+}
