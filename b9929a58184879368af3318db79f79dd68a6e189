@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b07ca88_54de1c37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4570390
+      },
+      "writtenOn": "2026-05-12T23:46:33Z",
+      "side": 1,
+      "message": "Nikheel, would you be able to provide some context on this change? Why would some OEMs not want SMP over BR/EDR?",
+      "revId": "b9929a58184879368af3318db79f79dd68a6e189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
