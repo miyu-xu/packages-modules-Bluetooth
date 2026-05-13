@@ -29,8 +29,10 @@ import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
 import static java.util.Objects.requireNonNull;
 
+import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
@@ -38,8 +40,14 @@ import android.bluetooth.BluetoothProtoEnums;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.hfp.BluetoothHfpProtoEnums;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.AudioDeviceAttributes;
+import android.media.AudioDeviceInfo;
+import android.media.AudioDeviceVolumeManager;
 import android.media.AudioManager;
+import android.media.VolumeInfo;
 import android.os.Build;
 import android.os.Looper;
 import android.os.Message;
@@ -68,6 +76,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -134,6 +143,7 @@ class HeadsetStateMachine extends StateMachine {
     private final HeadsetNativeInterface mNativeInterface;
     private final HeadsetSystemInterface mSystemInterface;
     private final DatabaseManager mDatabaseManager;
+    private final AudioDeviceVolumeManager mADVmgr;
 
     // Runtime states
     @VisibleForTesting int mSpeakerVolume;
@@ -187,6 +197,7 @@ class HeadsetStateMachine extends StateMachine {
                 BluetoothAssignedNumbers.GOOGLE);
     }
 
+    private static final int HFP_MAX_VOLUME_STEPS = 15;
     private HeadsetStateMachine(
             BluetoothDevice device,
             Looper looper,
@@ -206,6 +217,8 @@ class HeadsetStateMachine extends StateMachine {
         mSystemInterface = requireNonNull(systemInterface);
         mAdapterService = requireNonNull(adapterService);
         mDatabaseManager = requireNonNull(adapterService.getDatabase());
+        mADVmgr = (AudioDeviceVolumeManager) mHeadsetService.getSystemService(
+                Context.AUDIO_DEVICE_VOLUME_SERVICE);
 
         mDeviceSilenced = false;
 
@@ -1267,15 +1280,37 @@ class HeadsetStateMachine extends StateMachine {
          */
         public abstract void processAudioEvent(int state);
 
-        void processIntentScoVolume(Intent intent, BluetoothDevice device) {
-            int volumeValue = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE, 0);
-            stateLogD(
-                    "processIntentScoVolume: mSpeakerVolume="
+        void processIntentScoVolume(BluetoothDevice device) {
+            AudioAttributes voiceCallAudioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_VOICE_COMMUNICATION).build();
+            List<AudioDeviceAttributes> deviceList = mSystemInterface.getAudioManager()
+                    .getDevicesForAttributes(voiceCallAudioAttributes);
+            boolean foundScoDevice = false;
+            for (AudioDeviceAttributes audioDevice : deviceList) {
+                if (audioDevice.getType() == AudioDeviceInfo.TYPE_BLUETOOTH_SCO) {
+                    foundScoDevice = true;
+                    break;
+                }
+            }
+            if (!foundScoDevice) {
+                return;
+            }
+            int volStream = deprecateStreamBtSco() ?
+                    AudioManager.STREAM_VOICE_CALL : AudioManager.STREAM_BLUETOOTH_SCO;
+            int curStreamVolume = mSystemInterface.getAudioManager().getStreamVolume(volStream);
+            int maxVol = mSystemInterface.getAudioManager().getStreamMaxVolume(volStream);
+            // stream volume -> hfp volume
+            int scaledHfpVol = (curStreamVolume * HFP_MAX_VOLUME_STEPS + (maxVol / 2)) / maxVol;
+            Log.i(TAG,
+                    "processIntentScoVolume: HfpVolume="
                             + mSpeakerVolume
-                            + ", volumeValue="
-                            + volumeValue);
-            if (mSpeakerVolume != volumeValue) {
-                mSpeakerVolume = volumeValue;
+                            + ", curStreamVolume="
+                            + curStreamVolume
+                            + ", scaledHfpVol="
+                            + scaledHfpVol);
+
+            if (mSpeakerVolume != scaledHfpVol) {
+                mSpeakerVolume = scaledHfpVol;
                 mNativeInterface.setVolume(
                         device, HeadsetHalConstants.VOLUME_TYPE_SPK, mSpeakerVolume);
             }
@@ -1658,7 +1693,7 @@ class HeadsetStateMachine extends StateMachine {
                         break;
                     }
                 case INTENT_SCO_VOLUME_CHANGED:
-                    processIntentScoVolume((Intent) message.obj, mDevice);
+                    processIntentScoVolume(mDevice);
                     break;
                 case STACK_EVENT:
                     HeadsetStackEvent event = (HeadsetStackEvent) message.obj;
@@ -2013,6 +2048,7 @@ class HeadsetStateMachine extends StateMachine {
         }
     }
 
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     @VisibleForTesting
     void processVolumeEvent(int volumeType, int volume) {
         // Only current active device can change SCO volume
@@ -2027,9 +2063,49 @@ class HeadsetStateMachine extends StateMachine {
                     deprecateStreamBtSco()
                             ? AudioManager.STREAM_VOICE_CALL
                             : AudioManager.STREAM_BLUETOOTH_SCO;
-            int currentVol = mSystemInterface.getAudioManager().getStreamVolume(volStream);
-            if (volume != currentVol) {
-                mSystemInterface.getAudioManager().setStreamVolume(volStream, volume, flag);
+            int currentStreamVol = mSystemInterface.getAudioManager().getStreamVolume(volStream);
+            int maxVol = mSystemInterface.getAudioManager().getStreamMaxVolume(volStream);
+            // hfp volume -> stream volume
+            int scaledStreamVol = (volume * maxVol + (HFP_MAX_VOLUME_STEPS / 2)) / HFP_MAX_VOLUME_STEPS;
+            if (scaledStreamVol > maxVol) {
+                scaledStreamVol = maxVol;
+            }
+            Log.i(TAG, "processVolumeEvent: HfpVolume:" + mSpeakerVolume + ", scaledStreamVol:" +
+                scaledStreamVol + ", currentStreamVol:"+ currentStreamVol);
+            if (mCurrentState != mAudioOn) {
+                int nativeType = 0x10; // DEVICE_OUT_BLUETOOTH_SCO
+                BluetoothClass btClass = mDevice.getBluetoothClass();
+                if (btClass != null) {
+                    switch (btClass.getDeviceClass()) {
+                        case BluetoothClass.Device.AUDIO_VIDEO_WEARABLE_HEADSET:
+                        case BluetoothClass.Device.AUDIO_VIDEO_HANDSFREE:
+                            nativeType = 0x20; // DEVICE_OUT_BLUETOOTH_SCO_HEADSET
+                            break;
+                        case BluetoothClass.Device.AUDIO_VIDEO_CAR_AUDIO:
+                            nativeType = 0x40; // DEVICE_OUT_BLUETOOTH_SCO_CARKIT
+                            break;
+                    }
+                }
+                AudioDeviceAttributes ada = null;
+                try {
+                    // Call hidden constructor: AudioDeviceAttributes(int nativeType, String address)
+                    java.lang.reflect.Constructor<AudioDeviceAttributes> constructor =
+                            AudioDeviceAttributes.class.getConstructor(int.class, String.class);
+                    ada = constructor.newInstance(nativeType, mDevice.getAddress());
+                } catch (Exception e) {
+                    Log.e(TAG, "processVolumeEvent: Reflection failed for AudioDeviceAttributes", e);
+                    // Fallback to System API constructor
+                    ada = new AudioDeviceAttributes(AudioDeviceAttributes.ROLE_OUTPUT,
+                            AudioDeviceInfo.TYPE_BLUETOOTH_SCO, mDevice.getAddress());
+                }
+                VolumeInfo vi = new VolumeInfo.Builder(volStream).setVolumeIndex(scaledStreamVol).build();
+                mADVmgr.setDeviceVolume(vi, ada);
+                Log.i(TAG, "processVolumeEvent: sync volume to SCO device: " + mDevice
+                        + " calculated nativeType: 0x" + Integer.toHexString(nativeType));
+                return;
+            }
+            if (scaledStreamVol != currentStreamVol) {
+                mSystemInterface.getAudioManager().setStreamVolume(volStream, scaledStreamVol, flag);
             }
         } else if (volumeType == HeadsetHalConstants.VOLUME_TYPE_MIC) {
             // Not used currently
