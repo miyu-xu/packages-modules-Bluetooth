@@ -16,6 +16,23 @@
       "message": "Nikheel, would you be able to provide some context on this change? Why would some OEMs not want SMP over BR/EDR?",
       "revId": "b9929a58184879368af3318db79f79dd68a6e189",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f15cfaf5_7f8c1091",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2026-05-13T18:34:58Z",
+      "side": 1,
+      "message": "Why would we want to disable BR/EDR to LE CTKD?",
+      "revId": "b9929a58184879368af3318db79f79dd68a6e189",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
