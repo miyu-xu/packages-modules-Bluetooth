@@ -451,14 +451,16 @@ public class HeadsetService extends ProfileService {
                                 if (deprecateStreamBtSco()) {
                                     volStream = AudioManager.STREAM_VOICE_CALL;
                                 }
-                                if (streamType == volStream) {
-                                    doForEachConnectedStateMachine(
-                                            stateMachine ->
-                                                    stateMachine.sendMessage(
-                                                            HeadsetStateMachine
-                                                                    .INTENT_SCO_VOLUME_CHANGED,
-                                                            intent));
+                                int volAliasStream = mSystemInterface.getAudioManager().getStreamTypeAlias(volStream);
+                                if (streamType != volAliasStream) {
+                                    return;
                                 }
+                                doForEachConnectedStateMachine(
+                                        stateMachine ->
+                                                stateMachine.sendMessage(
+                                                        HeadsetStateMachine
+                                                                .INTENT_SCO_VOLUME_CHANGED,
+                                                        intent));
                                 break;
                             }
                         case BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY:
