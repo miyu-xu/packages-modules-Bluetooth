@@ -23,6 +23,7 @@ import static com.android.bluetooth.util.AttributionSourceUtils.getLastAttributi
 
 import android.annotation.Nullable;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothDevice.AddressType;
 import android.bluetooth.BluetoothProtoEnums;
 import android.bluetooth.le.AdvertiseData;
 import android.bluetooth.le.AdvertisingSetCallback;
@@ -106,6 +107,8 @@ class AppAdvertiseStats {
     private boolean mPeriodicIncludeTxPower = false;
     private int mPeriodicInterval = 0;
     private int mAppImportance = IMPORTANCE_CACHED;
+    private @Nullable String mOwnAddress = null;
+    private @AddressType int mOwnAddressType = BluetoothDevice.ADDRESS_TYPE_UNKNOWN;
     public ArrayList<AppAdvertiserRecord> mAdvertiserRecords = new ArrayList<>();
 
     AppAdvertiseStats(int appUid, int id, String name, AttributionSource source) {
@@ -352,6 +355,11 @@ class AppAdvertiseStats {
         mAppImportance = importance;
     }
 
+    void setOwnAddress(String address, int addressType) {
+        mOwnAddress = address;
+        mOwnAddressType = addressType;
+    }
+
     private String getAttributionTag() {
         return mAttributionTag != null ? mAttributionTag : "";
     }
@@ -518,6 +526,14 @@ class AppAdvertiseStats {
         }
     }
 
+    private static String dumpAddressTypeString(int addressType) {
+        return switch (addressType) {
+            case BluetoothDevice.ADDRESS_TYPE_PUBLIC -> "Public";
+            case BluetoothDevice.ADDRESS_TYPE_RANDOM -> "Random";
+            default -> "Unknown (" + addressType + ")";
+        };
+    }
+
     private static void dumpAppAdvertiseStats(StringBuilder sb, AppAdvertiseStats stats) {
         sb.append("\n      └Advertising:");
         sb.append("\n        └Interval(0.625ms)                              : ")
@@ -561,6 +577,14 @@ class AppAdvertiseStats {
         if (stats.mPeriodicAdvertisingData != null) {
             sb.append("\n        └Periodic Advertise Data:");
             dumpAppAdvertiserData(sb, stats.mPeriodicAdvertisingData);
+        }
+
+        if (stats.mOwnAddress != null) {
+            sb.append("\n        └Advertise Address (Type)                       : ")
+                    .append(stats.mOwnAddress)
+                    .append(" (")
+                    .append(dumpAddressTypeString(stats.mOwnAddressType))
+                    .append(")");
         }
 
         sb.append("\n");

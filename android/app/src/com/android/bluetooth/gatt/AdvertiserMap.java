@@ -182,6 +182,14 @@ class AdvertiserMap {
         stats.onPeriodicAdvertiseEnabled(enable);
     }
 
+    synchronized void setOwnAddress(int id, String address, int addressType) {
+        AppAdvertiseStats stats = mAppAdvertiseStats.get(id);
+        if (stats == null) {
+            return;
+        }
+        stats.setOwnAddress(address, addressType);
+    }
+
     /** Erases all entries. */
     synchronized void clear() {
         mAppAdvertiseStats.clear();

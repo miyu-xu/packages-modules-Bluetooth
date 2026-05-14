@@ -375,6 +375,8 @@ public class AdvertiseManager {
         Log.d(TAG, "onOwnAddressRead() advertiserId=" + advertiserId);
         checkThread();
 
+        mAdvertiserMap.setOwnAddress(advertiserId, address, addressType);
+
         final Map.Entry<IBinder, AdvertiserInfo> entry = findAdvertiser(advertiserId);
         if (entry == null) {
             Log.w(TAG, "onOwnAddressRead() - bad advertiserId " + advertiserId);
