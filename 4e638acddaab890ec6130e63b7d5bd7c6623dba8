@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "389a6a30_3a623918",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2026-05-20T00:14:09Z",
+      "side": 1,
+      "message": "@shimiwei@google.com, can you look into this CL validity and if everything seems correct to you, help into landing the change ?",
+      "revId": "4e638acddaab890ec6130e63b7d5bd7c6623dba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
