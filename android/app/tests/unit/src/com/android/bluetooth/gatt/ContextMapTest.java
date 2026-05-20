@@ -187,9 +187,55 @@ public class ContextMapTest {
 
         String dumpOutput = sb.toString();
         assertThat(dumpOutput).contains("Entries: 2");
-        assertThat(dumpOutput).contains("Last apps:");
-        // Check that no AppRecord is printed
+        // No "Last apps:" section is rendered when no apps have been removed.
+        assertThat(dumpOutput).doesNotContain("Last apps:");
+        // Active apps section is rendered for the currently registered apps.
+        assertThat(dumpOutput).contains("Active apps:");
+        assertThat(dumpOutput).contains("app_if: " + APP_ID1);
+        assertThat(dumpOutput).contains("app_if: " + APP_ID2);
+        assertThat(dumpOutput).contains("appName: " + APP_NAME);
+        // No AppRecord is printed for active apps (toString form is reserved for last apps).
         assertThat(dumpOutput).doesNotContain("AppRecord<");
+    }
+
+    @Test
+    public void dump_withConnections_formatsConsistently() {
+        StringBuilder sb = new StringBuilder();
+        ContextMap<IBluetoothGattCallback> contextMap = getMapWithAppAndConnection();
+        contextMap.dump(sb);
+
+        String out = sb.toString();
+        assertThat(out).contains("Connections: 3\n");
+
+        // Each entry ends with "<device> (<connId>)\n".
+        assertThat(out).contains("ms : " + mDevice1 + " (" + CONN_ID1 + ")\n");
+        assertThat(out).contains("ms : " + mDevice2 + " (" + CONN_ID2 + ")\n");
+        assertThat(out).contains("ms : " + mDevice2 + " (" + CONN_ID3 + ")\n");
+
+        // No blank line between the header and the first entry.
+        assertThat(out).doesNotContain("Connections: 3\n\n");
+
+        // Entries use the same 7-space indent as the Apps sections.
+        for (String line : out.split("\n")) {
+            if (line.contains("(" + CONN_ID1 + ")")
+                    || line.contains("(" + CONN_ID2 + ")")
+                    || line.contains("(" + CONN_ID3 + ")")) {
+                assertThat(line).startsWith("       ");
+            }
+        }
+    }
+
+    @Test
+    public void dump_emptyMap_hasNoConnectionsOrActiveAppsSection() {
+        StringBuilder sb = new StringBuilder();
+        ContextMap<IBluetoothGattCallback> contextMap = new ContextMap<>();
+        contextMap.dump(sb);
+
+        String out = sb.toString();
+        assertThat(out).contains("Entries: 0");
+        assertThat(out).doesNotContain("Connections:");
+        assertThat(out).doesNotContain("Active apps:");
+        assertThat(out).doesNotContain("Last apps:");
     }
 
     @Test

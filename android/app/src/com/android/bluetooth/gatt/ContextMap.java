@@ -55,7 +55,12 @@ import java.util.function.Predicate;
 class ContextMap<C extends IInterface> {
     private static final String TAG = GattUtil.TAG_PREFIX + ContextMap.class.getSimpleName();
 
+    private static final DateTimeFormatter sDateFormat =
+            DateTimeFormatter.ofPattern("MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
+
     private static final int MAX_LAST_RECORDS = 5;
+
+    private static final long MAX_PLAUSIBLE_CONNECTION_AGE_MS = 30L * 24 * 3600 * 1000;
 
     /** Our internal application list */
     private final Object mAppsLock = new Object();
@@ -158,6 +163,7 @@ class ContextMap<C extends IInterface> {
     }
 
     private class AppRecord {
+        @Nullable App mApp;
         private final UUID mUuid;
         private final String mPackageName;
         private final int mTransport;
@@ -169,15 +175,13 @@ class ContextMap<C extends IInterface> {
         @Nullable private Instant mUnregisterTime;
 
         AppRecord(App app) {
+            mApp = app;
             mUuid = app.mUuid;
             mPackageName = app.mPackageName;
             mTransport = app.getTransport();
             mAttributionTag = app.mAttributionTag;
             mRegisterTime = Instant.now();
         }
-
-        private static final DateTimeFormatter sDateFormat =
-                DateTimeFormatter.ofPattern("MM-dd HH:mm:ss").withZone(ZoneId.systemDefault());
 
         @Override
         public String toString() {
@@ -490,11 +494,70 @@ class ContextMap<C extends IInterface> {
     protected void dump(StringBuilder sb) {
         synchronized (mAppsLock) {
             sb.append("  Entries: ").append(mApps.size()).append("\n");
-            sb.append("  Last apps: ").append("\n");
-            for (AppRecord record : mLastRecords) {
-                sb.append("       ").append(record.toString()).append("\n");
+
+            if (!mLastRecords.isEmpty()) {
+                sb.append("  Last apps: ").append("\n");
+                for (AppRecord record : mLastRecords) {
+                    sb.append("       ").append(record.toString()).append("\n");
+                }
+                sb.append("\n");
             }
-            sb.append("\n");
+
+            // Active apps — best-effort snapshot; isCongested may lag actual state.
+            if (!mOngoingRecords.isEmpty()) {
+                sb.append("  Active apps: ").append("\n");
+                for (AppRecord record : mOngoingRecords) {
+                    App app = record.mApp;
+                    if (app == null) {
+                        continue;
+                    }
+                    sb.append("       ")
+                            .append(sDateFormat.format(record.mRegisterTime))
+                            .append(" app_if: ")
+                            .append(app.id)
+                            .append(", appName: ")
+                            .append(app.mPackageName)
+                            .append(", appUid: ")
+                            .append(app.mUid)
+                            .append(", uuid: ")
+                            .append(app.mUuid)
+                            .append(", transport: ")
+                            .append(transportToString(app.getTransport()))
+                            .append(", isCongested: ")
+                            .append(app.isCongested);
+                    if (record.mAttributionTag != null) {
+                        sb.append(", tag: ").append(record.mAttributionTag);
+                    }
+                    sb.append("\n");
+                }
+                sb.append("\n");
+            }
+        }
+
+        synchronized (mConnectionsLock) {
+            if (!mConnections.isEmpty()) {
+                long nowWallMs = System.currentTimeMillis();
+                long nowMonoMs = SystemClock.elapsedRealtime();
+                sb.append("  Connections: ").append(mConnections.size()).append("\n");
+                for (Connection conn : mConnections) {
+                    long ageMs = nowMonoMs - conn.startTime();
+                    sb.append("       ");
+                    if (ageMs < 0 || ageMs > MAX_PLAUSIBLE_CONNECTION_AGE_MS) {
+                        sb.append("unknown - ?ms");
+                    } else {
+                        sb.append(sDateFormat.format(Instant.ofEpochMilli(nowWallMs - ageMs)))
+                                .append(" - ")
+                                .append(ageMs)
+                                .append("ms");
+                    }
+                    sb.append(" : ")
+                            .append(conn.device())
+                            .append(" (")
+                            .append(conn.connId())
+                            .append(")\n");
+                }
+                sb.append("\n");
+            }
         }
     }
 
@@ -511,6 +574,7 @@ class ContextMap<C extends IInterface> {
                 record.mClientIf = app.id;
                 record.mReason = reason;
                 record.mUnregisterTime = Instant.now();
+                record.mApp = null;
 
                 if (mLastRecords.size() >= MAX_LAST_RECORDS) {
                     mLastRecords.remove(0);
