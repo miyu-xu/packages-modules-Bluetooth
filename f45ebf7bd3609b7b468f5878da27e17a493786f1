@@ -16,6 +16,23 @@
       "message": "It has been modified. Please review it again. Thank you.",
       "revId": "f45ebf7bd3609b7b468f5878da27e17a493786f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e16e59cb_220c6e6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1570284
+      },
+      "writtenOn": "2026-05-21T22:01:58Z",
+      "side": 1,
+      "message": "We have a dynamic range for STREAM_VOICE_CALL. When SCO is connected the range is 0..15, otherwise the range is 1..15 with a step size \u003e 1 to emulate the tuned volume indices for voice call attenuation (usually it will result in 5 or 7 indices). That being said it is expected to have a different range when SCO is connected/disconnected and the HfP volume index can be slightly different than the index of STREAM_VOICE_CALL when no SCO device is connected",
+      "revId": "f45ebf7bd3609b7b468f5878da27e17a493786f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
