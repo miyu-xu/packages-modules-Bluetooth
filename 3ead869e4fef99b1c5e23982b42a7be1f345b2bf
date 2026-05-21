@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33e07710_b3e7b869",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2026-05-21T16:59:39Z",
+      "side": 1,
+      "message": "Since `counter` is now a `double`, consider using `0.0` or simply `0` here for consistency.",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 0
+      },
+      "revId": "3ead869e4fef99b1c5e23982b42a7be1f345b2bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
