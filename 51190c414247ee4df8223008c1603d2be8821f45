@@ -50,6 +50,24 @@
       "message": "// Avoid hardcoding the minimum volume index to `1`.\n// Some devices may support `0` as the minimum value.\n// Consider using `getStreamMinVolume()` for consistency with the framework limits.\n\n\n\n```suggestion\n                        .setMinVolumeIndex(\n        audioManager.getStreamMinVolume(AudioManager.STREAM_VOICE_CALL))\n```",
       "revId": "51190c414247ee4df8223008c1603d2be8821f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e5bec49_faf5f7fc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1970830
+      },
+      "writtenOn": "2026-05-21T12:48:11Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "d31d06d1_785814d4",
+      "revId": "51190c414247ee4df8223008c1603d2be8821f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
