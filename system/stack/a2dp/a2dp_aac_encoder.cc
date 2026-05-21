@@ -64,8 +64,8 @@ typedef struct {
 } tA2DP_AAC_ENCODER_PARAMS;
 
 typedef struct {
-  float counter;
-  uint32_t bytes_per_tick; /* pcm bytes read each media task tick */
+  double counter;
+  double bytes_per_tick; /* pcm bytes read each media task tick */
   uint64_t last_frame_us;
 } tA2DP_AAC_FEEDING_STATE;
 
@@ -417,15 +417,15 @@ void a2dp_aac_feeding_reset(void) {
 
   a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick =
           (a2dp_aac_encoder_cb.feeding_params.sample_rate *
-           a2dp_aac_encoder_cb.feeding_params.bits_per_sample / 8 *
+           a2dp_aac_encoder_cb.feeding_params.bits_per_sample / 8.0 *
            a2dp_aac_encoder_cb.feeding_params.channel_count * a2dp_aac_encoder_interval_ms) /
-          1000;
+          1000.0;
 
-  log::info("PCM bytes {} per tick {} ms", a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick,
+  log::info("PCM bytes {:.1f} per tick {} ms", a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick,
             a2dp_aac_encoder_interval_ms);
 }
 
-void a2dp_aac_feeding_flush(void) { a2dp_aac_encoder_cb.aac_feeding_state.counter = 0.0f; }
+void a2dp_aac_feeding_flush(void) { a2dp_aac_encoder_cb.aac_feeding_state.counter = 0.0; }
 
 uint64_t a2dp_aac_get_encoder_interval_ms(void) { return a2dp_aac_encoder_interval_ms; }
 
@@ -469,10 +469,10 @@ static void a2dp_aac_get_num_frame_iteration(uint8_t* num_of_iterations, uint8_t
   a2dp_aac_encoder_cb.aac_feeding_state.last_frame_us = now_us;
 
   a2dp_aac_encoder_cb.aac_feeding_state.counter +=
-          (float)a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick * us_this_tick /
-          (a2dp_aac_encoder_interval_ms * 1000);
+          a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick * (double)us_this_tick /
+          (a2dp_aac_encoder_interval_ms * 1000.0);
 
-  result = a2dp_aac_encoder_cb.aac_feeding_state.counter / pcm_bytes_per_frame;
+  result = static_cast<int>(a2dp_aac_encoder_cb.aac_feeding_state.counter / pcm_bytes_per_frame);
   a2dp_aac_encoder_cb.aac_feeding_state.counter -= result * pcm_bytes_per_frame;
   nof = result;
 
@@ -572,7 +572,7 @@ static void a2dp_aac_encode_frames(uint8_t nb_frame) {
         log::warn("underflow {}", nb_frame);
         a2dp_aac_encoder_cb.aac_feeding_state.counter += nb_frame * p_encoder_params->frame_length *
                                                          p_feeding_params->channel_count *
-                                                         p_feeding_params->bits_per_sample / 8;
+                                                         p_feeding_params->bits_per_sample / 8.0;
 
         // no more pcm to read
         nb_frame = 0;
