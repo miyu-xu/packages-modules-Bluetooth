@@ -22,6 +22,30 @@
       },
       "revId": "3ead869e4fef99b1c5e23982b42a7be1f345b2bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20595964_975d25aa",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1874917
+      },
+      "writtenOn": "2026-05-22T02:40:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33e07710_b3e7b869",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 428,
+        "endChar": 0
+      },
+      "revId": "3ead869e4fef99b1c5e23982b42a7be1f345b2bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
