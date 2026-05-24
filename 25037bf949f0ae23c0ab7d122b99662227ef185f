@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43c1d7ad_14d151f3",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:43:10Z",
+      "side": 1,
+      "message": "updateCallCapabilities adds CAPABILITY_HOLD when the call is ACTIVE or HOLDING, but doesn\u0027t check whether CAPABILITY_SUPPORT_HOLD is set first.\n   The commit message explains the relationship between the two: CAPABILITY_SUPPORT_HOLD indicates the call can potentially be held, while\n  CAPABILITY_HOLD indicates it can be held right now. Adding CAPABILITY_HOLD without verifying CAPABILITY_SUPPORT_HOLD could set hold capability\n  on connections that don\u0027t actually support holding (e.g., certain call types or BT headsets that don\u0027t advertise three-way calling support).",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0d8c40a_299f5a3f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:43:10Z",
+      "side": 1,
+      "message": "getState() is called twice in the condition. Minor, but if getState() involves any synchronization or locking (this class has synchronized\n  methods), pulling it into a local variable is cleaner and avoids any subtle ordering issue.",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddcf5ab2_a22e8719",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:43:10Z",
+      "side": 1,
+      "message": "The test covers INCOMING, ACTIVE, HELD, and TERMINATED. It doesn\u0027t test DIALING or ALERTING states, which are common outgoing call states.\n  Since updateCallCapabilities strips CAPABILITY_HOLD for anything that\u0027s not ACTIVE or HOLDING, a test confirming that behavior for outgoing\n  call flows would strengthen coverage.",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c319a88_be08f892",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:43:10Z",
+      "side": 1,
+      "message": "Above test uses assertThat(...).isEqualTo(...) (Truth) for state checks but Assert.assertTrue/Assert.assertFalse (JUnit) for capability checks.\n  Pick one style. Truth would be more readable here: assertThat(isCapabilityHoldSet()).isTrue() and gives a better failure message than\n  assertFalse which just says \"expected false.\"",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
