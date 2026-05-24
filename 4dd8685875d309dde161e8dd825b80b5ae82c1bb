@@ -33,6 +33,57 @@
       "message": "Merged internally.",
       "revId": "4dd8685875d309dde161e8dd825b80b5ae82c1bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03c715fa_69e9e816",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:28:58Z",
+      "side": 1,
+      "message": "Need a follow up on this.",
+      "revId": "4dd8685875d309dde161e8dd825b80b5ae82c1bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be6edb50_47675133",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:28:58Z",
+      "side": 1,
+      "message": "The include should be in alphabetical order. Right now it sits between btm_sec_int_types.h and security_device_record.h, but it belongs further\n   down with the other stack/ includes. Minor, but this file clearly follows sorted includes.",
+      "revId": "4dd8685875d309dde161e8dd825b80b5ae82c1bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b57fc28d_e80d4dfa",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:28:58Z",
+      "side": 1,
+      "message": "Setting the idle timeout to 0 means \"disconnect immediately if idle.\" The intent is to reset the 3-second default so the link doesn\u0027t get torn\n  down prematurely on reconnection. But a timeout of 0 is more aggressive than necessary. If the remote reconnects within milliseconds of the SMP\n   timeout (which the repro shows at 10/10), the link could get torn down before the reconnection completes. Consider setting it back to\n  BT_DEFAULT_IDLE_TIMEOUT or whatever the normal post-bond value is, rather than zero.\n\n  The fix only handles SMP_RSP_TIMEOUT but the root cause description says \"SMP timeout\" more broadly. SMP_CONN_TOUT is already excluded by the\n  outer if condition, which is correct. But there are other SMP failure reasons (e.g., SMP_PAIR_FAIL_UNKNOWN, SMP_PAIR_NOT_SUPPORT) where the\n  same idle timeout staleness could apply. Worth checking whether this should cover all SMP failures within this block, not just SMP_RSP_TIMEOUT.\n\n  The call to L2CA_SetIdleTimeoutByBdAddr happens right before l2cu_start_post_bond_timer. These two functions both manipulate the L2CAP link\n  lifecycle. l2cu_start_post_bond_timer itself sets an idle timeout on the LCB. If that function overwrites what was just set here, the fix has\n  no effect. If it doesn\u0027t, the two timeouts could conflict. Verify these two calls don\u0027t race or stomp each other.",
+      "revId": "4dd8685875d309dde161e8dd825b80b5ae82c1bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
