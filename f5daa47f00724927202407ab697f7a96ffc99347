@@ -70,6 +70,23 @@
       "parentUuid": "04f7a53b_9b02ea6a",
       "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d93094_8502c471",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:25:53Z",
+      "side": 1,
+      "message": "This filter handles more than just ACTION_SHUTDOWN. It also registers for ACTION_SETTING_RESTORED and likely other intents added earlier in the\n   method. Dropping the entire filter to SYSTEM_LOW_PRIORITY changes the ordering for every action on this receiver, not just shutdown. If any of\n   those other broadcasts rely on running early (e.g., settings restore during boot), this breaks them silently. The safer fix is to register\n  ACTION_SHUTDOWN on its own IntentFilter with SYSTEM_LOW_PRIORITY, and leave the existing filter at its current priority for everything else.\n\n  Going from HIGH to LOW is a big swing. SYSTEM_LOW_PRIORITY means Bluetooth now tears down after nearly everything else, including components\n  that might depend on Bluetooth being up during their own cleanup (e.g., HFP call teardown, PBAP disconnection, health device profiles). A\n  middle ground like priority 0 (default) or a small negative value would be enough to sequence after ActivityManager without starving other\n  shutdown dependents.\n\n  The commit message says AudioService reroutes media to the speaker \"just before the device powers off.\" On most devices this window is under a\n  second and the speaker output is never audible to the user. Worth confirming this actually produces user-perceptible audio leak on the target\n  device, because the fix carries real regression risk for the profiles mentioned above.",
+      "revId": "f5daa47f00724927202407ab697f7a96ffc99347",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
