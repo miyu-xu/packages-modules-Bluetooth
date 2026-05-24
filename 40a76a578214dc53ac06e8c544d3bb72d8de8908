@@ -34,6 +34,159 @@
       "parentUuid": "06f60d61_b30d5201",
       "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1fb2385_804695d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "Need follow up on this!",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "739a401a_28b45d10",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "These need real bug tracker IDs before landing. The commit header references\n  Bug:496512792 but none of the flag definitions use that ID either.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fbe8977_0c64d7ea",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "Both hfp_client_system_api and hfp_client_call_system_api have the same description: \"Promote some APIs as system api\". Each flag guards a\n  different set of APIs. The descriptions should say what they actually cover (e.g., \"Promote HFP client call state and audio APIs\" vs \"Promote\n  BluetoothHeadsetClientCall as system API\") so someone reading the flag registry can understand the scope without digging into the code.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6b5d79e_ac045c15",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "Both hfp_client_system_api and hfp_client_call_system_api have the same description: \"Promote some APIs as system api\". Each flag guards a\n  different set of APIs. The descriptions should say what they actually cover (e.g., \"Promote HFP client call state and audio APIs\" vs \"Promote\n  BluetoothHeadsetClientCall as system API\") so someone reading the flag registry can understand the scope without digging into the code.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1e9699_1bfb51a5",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "These need real bug tracker IDs before landing. The commit header references\n  Bug:496512792 but none of the flag definitions use that ID either.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de76132_7d3cf8fe",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dpSink.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "BluetoothA2dpSink.disconnect() requires only BLUETOOTH_CONNECT. But BluetoothMapClient.disconnect() and BluetoothPbapClient.disconnect()\n  require both BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED. All four disconnect() methods are gated by the same disconnect_api flag and all\n  promoted to @SystemApi together. The permission model should be consistent across profiles. Either A2dpSink should also require\n  BLUETOOTH_PRIVILEGED, or the others are over-requiring it.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "454599cd_da9358ec",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dpSink.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "log(\"disconnect(\" + device + \")\") logs the full BluetoothDevice.toString() which includes the MAC address. For a method being promoted to\n  system API where third-party system apps can call it, consider using device.getAnonymizedAddress() to avoid leaking MAC addresses into logs\n  that system apps might have access to.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1248873b_5032afcb",
+        "filename": "framework/java/android/bluetooth/BluetoothClass.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "getClassOfDevice() gets @SystemApi and @FlaggedApi but the existing @hide javadoc tag on line 286 is still present. The @hide tag should be\n  removed since @SystemApi already restricts visibility to system apps, and having both is contradictory in the API surface generation.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2d5b13d_d022c6df",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClientCall.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:34:52Z",
+      "side": 1,
+      "message": "Only CALL_STATE_TERMINATED is exposed as public API. The other six states (ACTIVE, HELD, DIALING, ALERTING, INCOMING, WAITING) are all hidden.\n  getState() is public and returns an int, so a system app can call it but has no public constants to compare against except TERMINATED. Either\n  expose the full enum or document the valid return values.",
+      "revId": "40a76a578214dc53ac06e8c544d3bb72d8de8908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
