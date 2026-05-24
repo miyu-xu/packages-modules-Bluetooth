@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa6a9cac_dd68aa55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:22:55Z",
+      "side": 1,
+      "message": "Minor nits, rest all LGTM!",
+      "revId": "bd115c72111df2e347a11880256b3d9cc265c3d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c66182b6_41e874be",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:22:55Z",
+      "side": 1,
+      "message": "bits_per_sample / 8 is integer division. The double cast on sample_rate doesn\u0027t propagate rightward through the chain in time to save\n  ▎ this. Should be / 8.0\n```suggestion\n           a2dp_aac_encoder_cb.feeding_params.bits_per_sample / 8.0 *\n```",
+      "revId": "bd115c72111df2e347a11880256b3d9cc265c3d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "955ad531_d267407a",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:22:55Z",
+      "side": 1,
+      "message": "If log::info uses fmt-style formatting this works fine. If it hits a printf backend, the\n  ▎  format is wrong. Might also want {:.1f} so the log doesn\u0027t print 15 decimal places.\n```suggestion\n  log::info(\"PCM bytes {} per tick {:.1f} ms\", a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick,\n```",
+      "revId": "bd115c72111df2e347a11880256b3d9cc265c3d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bad476c_12d6dd45",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1889142
+      },
+      "writtenOn": "2026-05-24T16:22:55Z",
+      "side": 1,
+      "message": "result is still an integer type (unchanged by this patch). The double to int truncation here is intentional (whole frames only), but an\n  ▎ explicit static_cast\u003cint\u003e(...) would make that obvious and quiet any -Wfloat-conversion warnings.",
+      "revId": "bd115c72111df2e347a11880256b3d9cc265c3d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
