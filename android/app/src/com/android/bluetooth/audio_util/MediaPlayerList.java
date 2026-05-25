@@ -441,7 +441,11 @@ public class MediaPlayerList {
      */
     public PlaybackState getCurrentPlayStatus() {
         final MediaPlayerWrapper player = getActivePlayer();
-        if (player == null && !mAudioPlaybackIsActive) return null;
+        if (player == null && !mAudioPlaybackIsActive) {
+            return new PlaybackState.Builder()
+                    .setState(PlaybackState.STATE_PLAYING, 0, 1.0f)
+                    .build();
+        }
 
         PlaybackState state = player == null ? null : player.getPlaybackState();
         if (mAudioPlaybackIsActive
