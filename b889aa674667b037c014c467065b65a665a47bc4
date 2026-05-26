@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d944750_9dcb7483",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4665044
+      },
+      "writtenOn": "2026-05-26T19:53:18Z",
+      "side": 1,
+      "message": "4083653: BT A2DP AAC encoder lacks sufficient calculation precision | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/4083653",
+      "revId": "b889aa674667b037c014c467065b65a665a47bc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
