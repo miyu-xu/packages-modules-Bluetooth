@@ -46,3 +46,26 @@ make -C libldacdec
 
 cd libldacdec && ./ldacdec stream_LDAC_*.bt
 ```
+
+## AVRCP
+
+```
+usage: bugreport.py avrcp [-h] [options] path
+
+Extract AVRCP profile information
+
+positional arguments:
+  path                  path to the bugreport file
+
+options:
+  -h, --help            show this help message and exit
+  --control-cid CONTROL_CID
+                        override the AVCTP control channel CID
+  --browse-cid BROWSE_CID
+                        override the AVCTP browsing channel CID
+```
+
+The AVRCP analyzer parses AVCTP signaling exchanges for each connection and
+decodes the AV/C frames carried over them, including PASS_THROUGH operations
+(play, pause, volume, etc.) and vendor-dependent AVRCP PDUs (metadata,
+notifications, absolute volume).

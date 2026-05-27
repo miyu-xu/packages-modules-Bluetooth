@@ -1,0 +1,467 @@
+// AVRCP - Audio/Video Remote Control Profile
+// Bluetooth Specification: AVRCP 1.6.2
+// Based on AV/C Digital Interface Command Set (IEEE 1394)
+
+big_endian_packets
+
+// AV/C Command Type (ctype) - See AV/C Digital Interface Command Set
+enum Ctype : 4 {
+    CONTROL = 0x0,
+    STATUS = 0x1,
+    SPECIFIC_INQUIRY = 0x2,
+    NOTIFY = 0x3,
+    GENERAL_INQUIRY = 0x4,
+    // 0x5 - 0x7 reserved
+}
+
+// AV/C Response Code
+enum ResponseCode : 4 {
+    NOT_IMPLEMENTED = 0x8,
+    ACCEPTED = 0x9,
+    REJECTED = 0xA,
+    IN_TRANSITION = 0xB,
+    IMPLEMENTED_STABLE = 0xC,
+    CHANGED = 0xD,
+    // 0xE reserved
+    INTERIM = 0xF,
+}
+
+// AV/C Subunit Type
+enum SubunitType : 5 {
+    MONITOR = 0x00,
+    AUDIO = 0x01,
+    PRINTER = 0x02,
+    DISC = 0x03,
+    TAPE_RECORDER_PLAYER = 0x04,
+    TUNER = 0x05,
+    CA = 0x06,
+    CAMERA = 0x07,
+    // 0x08 reserved
+    PANEL = 0x09,
+    BULLETIN_BOARD = 0x0A,
+    CAMERA_STORAGE = 0x0B,
+    // 0x0C - 0x1B reserved
+    VENDOR_UNIQUE = 0x1C,
+    // 0x1D - 0x1E reserved for all subunit types
+    UNIT = 0x1F,
+}
+
+// AV/C Opcode
+enum Opcode : 8 {
+    VENDOR_DEPENDENT = 0x00,
+    UNIT_INFO = 0x30,
+    SUBUNIT_INFO = 0x31,
+    PASS_THROUGH = 0x7C,
+}
+
+// AVRCP Passthrough Operation ID (AV/C Panel Subunit)
+enum PassthroughOpId : 7 {
+    SELECT = 0x00,
+    UP = 0x01,
+    DOWN = 0x02,
+    LEFT = 0x03,
+    RIGHT = 0x04,
+    RIGHT_UP = 0x05,
+    RIGHT_DOWN = 0x06,
+    LEFT_UP = 0x07,
+    LEFT_DOWN = 0x08,
+    ROOT_MENU = 0x09,
+    SETUP_MENU = 0x0A,
+    CONTENTS_MENU = 0x0B,
+    FAVORITE_MENU = 0x0C,
+    EXIT = 0x0D,
+    // 0x0E - 0x0F reserved
+    // 0x10 - 0x1F reserved
+    CHANNEL_UP = 0x30,
+    CHANNEL_DOWN = 0x31,
+    PREVIOUS_CHANNEL = 0x32,
+    SOUND_SELECT = 0x33,
+    INPUT_SELECT = 0x34,
+    DISPLAY_INFORMATION = 0x35,
+    HELP = 0x36,
+    PAGE_UP = 0x37,
+    PAGE_DOWN = 0x38,
+    // 0x39 - 0x3F reserved
+    POWER = 0x40,
+    VOLUME_UP = 0x41,
+    VOLUME_DOWN = 0x42,
+    MUTE = 0x43,
+    PLAY = 0x44,
+    STOP = 0x45,
+    PAUSE = 0x46,
+    RECORD = 0x47,
+    REWIND = 0x48,
+    FAST_FORWARD = 0x49,
+    EJECT = 0x4A,
+    FORWARD = 0x4B,
+    BACKWARD = 0x4C,
+    // 0x4D - 0x4F reserved
+    ANGLE = 0x50,
+    SUBPICTURE = 0x51,
+    // 0x52 - 0x70 reserved
+    F1 = 0x71,
+    F2 = 0x72,
+    F3 = 0x73,
+    F4 = 0x74,
+    F5 = 0x75,
+    // 0x76 reserved
+    VENDOR_UNIQUE = 0x7E,
+}
+
+// AVRCP PDU ID for Vendor Dependent Commands
+enum PduId : 8 {
+    GET_CAPABILITIES = 0x10,
+    LIST_PLAYER_APPLICATION_SETTING_ATTRIBUTES = 0x11,
+    LIST_PLAYER_APPLICATION_SETTING_VALUES = 0x12,
+    GET_CURRENT_PLAYER_APPLICATION_SETTING_VALUE = 0x13,
+    SET_PLAYER_APPLICATION_SETTING_VALUE = 0x14,
+    GET_PLAYER_APPLICATION_SETTING_ATTRIBUTE_TEXT = 0x15,
+    GET_PLAYER_APPLICATION_SETTING_VALUE_TEXT = 0x16,
+    INFORM_DISPLAYABLE_CHARACTER_SET = 0x17,
+    INFORM_BATTERY_STATUS_OF_CT = 0x18,
+    GET_ELEMENT_ATTRIBUTES = 0x20,
+    GET_PLAY_STATUS = 0x30,
+    REGISTER_NOTIFICATION = 0x31,
+    REQUEST_CONTINUING_RESPONSE = 0x40,
+    ABORT_CONTINUING_RESPONSE = 0x41,
+    SET_ABSOLUTE_VOLUME = 0x50,
+    SET_ADDRESSED_PLAYER = 0x60,
+    SET_BROWSED_PLAYER = 0x70,
+    GET_FOLDER_ITEMS = 0x71,
+    CHANGE_PATH = 0x72,
+    GET_ITEM_ATTRIBUTES = 0x73,
+    PLAY_ITEM = 0x74,
+    GET_TOTAL_NUMBER_OF_ITEMS = 0x75,
+    SEARCH = 0x80,
+    ADD_TO_NOW_PLAYING = 0x90,
+    GENERAL_REJECT = 0xA0,
+}
+
+// AVRCP Event ID for Notifications
+enum EventId : 8 {
+    PLAYBACK_STATUS_CHANGED = 0x01,
+    TRACK_CHANGED = 0x02,
+    TRACK_REACHED_END = 0x03,
+    TRACK_REACHED_START = 0x04,
+    PLAYBACK_POS_CHANGED = 0x05,
+    BATT_STATUS_CHANGED = 0x06,
+    SYSTEM_STATUS_CHANGED = 0x07,
+    PLAYER_APPLICATION_SETTING_CHANGED = 0x08,
+    NOW_PLAYING_CONTENT_CHANGED = 0x09,
+    AVAILABLE_PLAYERS_CHANGED = 0x0A,
+    ADDRESSED_PLAYER_CHANGED = 0x0B,
+    UIDS_CHANGED = 0x0C,
+    VOLUME_CHANGED = 0x0D,
+}
+
+// AVRCP Play Status
+enum PlayStatus : 8 {
+    STOPPED = 0x00,
+    PLAYING = 0x01,
+    PAUSED = 0x02,
+    FWD_SEEK = 0x03,
+    REV_SEEK = 0x04,
+    ERROR = 0xFF,
+}
+
+// AVRCP Error/Status Codes
+enum StatusCode : 8 {
+    INVALID_COMMAND = 0x00,
+    INVALID_PARAMETER = 0x01,
+    PARAMETER_CONTENT_ERROR = 0x02,
+    INTERNAL_ERROR = 0x03,
+    OPERATION_COMPLETED = 0x04,
+    UID_CHANGED = 0x05,
+    // 0x06 reserved
+    INVALID_DIRECTION = 0x07,
+    NOT_A_DIRECTORY = 0x08,
+    DOES_NOT_EXIST = 0x09,
+    INVALID_SCOPE = 0x0A,
+    RANGE_OUT_OF_BOUNDS = 0x0B,
+    FOLDER_ITEM_NOT_PLAYABLE = 0x0C,
+    MEDIA_IN_USE = 0x0D,
+    NOW_PLAYING_LIST_FULL = 0x0E,
+    SEARCH_NOT_SUPPORTED = 0x0F,
+    SEARCH_IN_PROGRESS = 0x10,
+    INVALID_PLAYER_ID = 0x11,
+    PLAYER_NOT_BROWSABLE = 0x12,
+    PLAYER_NOT_ADDRESSED = 0x13,
+    NO_VALID_SEARCH_RESULTS = 0x14,
+    NO_AVAILABLE_PLAYERS = 0x15,
+    ADDRESSED_PLAYER_CHANGED = 0x16,
+}
+
+// AVRCP Capability ID
+enum CapabilityId : 8 {
+    COMPANY_ID = 0x02,
+    EVENTS_SUPPORTED = 0x03,
+}
+
+// AVRCP Media Attribute ID
+enum MediaAttributeId : 32 {
+    ILLEGAL = 0x00,
+    TITLE = 0x01,
+    ARTIST_NAME = 0x02,
+    ALBUM_NAME = 0x03,
+    TRACK_NUMBER = 0x04,
+    TOTAL_NUMBER_OF_TRACKS = 0x05,
+    GENRE = 0x06,
+    PLAYING_TIME = 0x07,
+    DEFAULT_COVER_ART = 0x08,
+}
+
+// Player Application Setting Attribute ID
+enum PlayerApplicationSettingAttributeId : 8 {
+    ILLEGAL = 0x00,
+    EQUALIZER_ON_OFF_STATUS = 0x01,
+    REPEAT_MODE_STATUS = 0x02,
+    SHUFFLE_ON_OFF_STATUS = 0x03,
+    SCAN_ON_OFF_STATUS = 0x04,
+}
+
+// Folder Type
+enum FolderType : 8 {
+    MIXED = 0x00,
+    TITLES = 0x01,
+    ALBUMS = 0x02,
+    ARTISTS = 0x03,
+    GENRES = 0x04,
+    PLAYLISTS = 0x05,
+    YEARS = 0x06,
+}
+
+// Item Type
+enum ItemType : 8 {
+    MEDIA_PLAYER = 0x01,
+    FOLDER = 0x02,
+    MEDIA_ELEMENT = 0x03,
+}
+
+// Scope
+enum Scope : 8 {
+    MEDIA_PLAYER_LIST = 0x00,
+    MEDIA_PLAYER_VIRTUAL_FILESYSTEM = 0x01,
+    SEARCH = 0x02,
+    NOW_PLAYING = 0x03,
+}
+
+// Direction
+enum Direction : 8 {
+    FOLDER_UP = 0x00,
+    FOLDER_DOWN = 0x01,
+}
+
+// -----------------------------------------------------------------------------
+// AV/C Frame Structures
+// -----------------------------------------------------------------------------
+
+// Base AV/C Command Frame
+packet AvcCommandFrame {
+    ctype : Ctype,
+    subunit_type : SubunitType,
+    subunit_id : 3,
+    opcode : Opcode,
+    _payload_,
+}
+
+// Base AV/C Response Frame
+packet AvcResponseFrame {
+    response : ResponseCode,
+    subunit_type : SubunitType,
+    subunit_id : 3,
+    opcode : Opcode,
+    _payload_,
+}
+
+// -----------------------------------------------------------------------------
+// Pass Through Commands (Panel Subunit)
+// -----------------------------------------------------------------------------
+
+packet PassThroughCommand : AvcCommandFrame (opcode = PASS_THROUGH, subunit_type = PANEL) {
+    state_flag : 1,  // 0 = pressed, 1 = released
+    operation_id : PassthroughOpId,
+    operation_data_length : 8,
+    operation_data : 8[],
+}
+
+packet PassThroughResponse : AvcResponseFrame (opcode = PASS_THROUGH, subunit_type = PANEL) {
+    state_flag : 1,
+    operation_id : PassthroughOpId,
+    operation_data_length : 8,
+    operation_data : 8[],
+}
+
+// -----------------------------------------------------------------------------
+// Unit Info
+// -----------------------------------------------------------------------------
+
+packet UnitInfoCommand : AvcCommandFrame (opcode = UNIT_INFO, subunit_type = UNIT) {
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+}
+
+packet UnitInfoResponse : AvcResponseFrame (opcode = UNIT_INFO, subunit_type = UNIT) {
+    _fixed_ = 0x07 : 8,
+    unit_type : 5,
+    unit : 3,
+    company_id : 24,
+}
+
+// -----------------------------------------------------------------------------
+// Subunit Info
+// -----------------------------------------------------------------------------
+
+packet SubunitInfoCommand : AvcCommandFrame (opcode = SUBUNIT_INFO, subunit_type = UNIT) {
+    _reserved_ : 4,
+    page : 3,
+    extension_code : 1,
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+    _fixed_ = 0xFF : 8,
+}
+
+packet SubunitInfoResponse : AvcResponseFrame (opcode = SUBUNIT_INFO, subunit_type = UNIT) {
+    _reserved_ : 4,
+    page : 3,
+    extension_code : 1,
+    subunit_type_0 : 5,
+    max_subunit_id_0 : 3,
+    subunit_type_1 : 5,
+    max_subunit_id_1 : 3,
+    subunit_type_2 : 5,
+    max_subunit_id_2 : 3,
+    subunit_type_3 : 5,
+    max_subunit_id_3 : 3,
+}
+
+// -----------------------------------------------------------------------------
+// Vendor Dependent Commands (AVRCP Specific)
+// -----------------------------------------------------------------------------
+
+// BT SIG Company ID for AVRCP vendor dependent commands
+// Company ID: 0x001958 (Bluetooth SIG)
+
+packet VendorDependentCommand : AvcCommandFrame (opcode = VENDOR_DEPENDENT, subunit_type = PANEL) {
+    company_id : 24,
+    pdu_id : PduId,
+    packet_type : 2,  // 0=single, 1=start, 2=continue, 3=end
+    _reserved_ : 6,
+    parameter_length : 16,
+    _payload_,
+}
+
+packet VendorDependentResponse : AvcResponseFrame (opcode = VENDOR_DEPENDENT, subunit_type = PANEL) {
+    company_id : 24,
+    pdu_id : PduId,
+    packet_type : 2,
+    _reserved_ : 6,
+    parameter_length : 16,
+    _payload_,
+}
+
+// -----------------------------------------------------------------------------
+// Get Capabilities
+// -----------------------------------------------------------------------------
+
+packet GetCapabilitiesCommand : VendorDependentCommand (pdu_id = GET_CAPABILITIES) {
+    capability_id : CapabilityId,
+}
+
+packet GetCapabilitiesResponse : VendorDependentResponse (pdu_id = GET_CAPABILITIES) {
+    capability_id : CapabilityId,
+    capability_count : 8,
+    _payload_,  // Capability-specific data
+}
+
+// -----------------------------------------------------------------------------
+// Get Element Attributes
+// -----------------------------------------------------------------------------
+
+packet GetElementAttributesCommand : VendorDependentCommand (pdu_id = GET_ELEMENT_ATTRIBUTES) {
+    identifier : 64,  // 0x0 for currently playing
+    num_attributes : 8,
+    attribute_ids : 32[],
+}
+
+// -----------------------------------------------------------------------------
+// Get Play Status
+// -----------------------------------------------------------------------------
+
+packet GetPlayStatusCommand : VendorDependentCommand (pdu_id = GET_PLAY_STATUS) {
+}
+
+packet GetPlayStatusResponse : VendorDependentResponse (pdu_id = GET_PLAY_STATUS) {
+    song_length : 32,  // milliseconds, 0xFFFFFFFF if not supported
+    song_position : 32,  // milliseconds, 0xFFFFFFFF if not supported
+    play_status : PlayStatus,
+}
+
+// -----------------------------------------------------------------------------
+// Register Notification
+// -----------------------------------------------------------------------------
+
+packet RegisterNotificationCommand : VendorDependentCommand (pdu_id = REGISTER_NOTIFICATION) {
+    event_id : EventId,
+    playback_interval : 32,  // seconds, for PLAYBACK_POS_CHANGED
+}
+
+// -----------------------------------------------------------------------------
+// Set Absolute Volume
+// -----------------------------------------------------------------------------
+
+packet SetAbsoluteVolumeCommand : VendorDependentCommand (pdu_id = SET_ABSOLUTE_VOLUME) {
+    _reserved_ : 1,
+    absolute_volume : 7,  // 0x00 = 0%, 0x7F = 100%
+}
+
+packet SetAbsoluteVolumeResponse : VendorDependentResponse (pdu_id = SET_ABSOLUTE_VOLUME) {
+    _reserved_ : 1,
+    absolute_volume : 7,
+}
+
+// -----------------------------------------------------------------------------
+// Browsing Channel Commands (AVCTP Browsing PSM = 0x001B)
+// -----------------------------------------------------------------------------
+
+packet BrowsingCommand {
+    pdu_id : PduId,
+    parameter_length : 16,
+    _payload_,
+}
+
+packet BrowsingResponse {
+    pdu_id : PduId,
+    parameter_length : 16,
+    _payload_,
+}
+
+// Get Folder Items
+packet GetFolderItemsCommand : BrowsingCommand (pdu_id = GET_FOLDER_ITEMS) {
+    scope : Scope,
+    start_item : 32,
+    end_item : 32,
+    attribute_count : 8,
+    attribute_list : 32[],
+}
+
+// Change Path
+packet ChangePathCommand : BrowsingCommand (pdu_id = CHANGE_PATH) {
+    uid_counter : 16,
+    direction : Direction,
+    folder_uid : 64,
+}
+
+// Get Total Number of Items
+packet GetTotalNumberOfItemsCommand : BrowsingCommand (pdu_id = GET_TOTAL_NUMBER_OF_ITEMS) {
+    scope : Scope,
+}
+
+packet GetTotalNumberOfItemsResponse : BrowsingResponse (pdu_id = GET_TOTAL_NUMBER_OF_ITEMS) {
+    status : StatusCode,
+    uid_counter : 16,
+    number_of_items : 32,
+}

@@ -1,0 +1,47 @@
+// AVCTP - Audio/Video Control Transport Protocol
+// Bluetooth Specification: AVCTP 1.4
+// This file defines the transport layer for AV/C commands used by AVRCP
+
+big_endian_packets
+
+enum PacketType : 2 {
+    SINGLE_PACKET = 0,
+    START_PACKET = 1,
+    CONTINUE_PACKET = 2,
+    END_PACKET = 3,
+}
+
+enum MessageType : 1 {
+    COMMAND = 0,
+    RESPONSE = 1,
+}
+
+// AVCTP Header for single packets
+packet AvctpSinglePacket {
+    transaction_label : 4,
+    packet_type : PacketType,
+    cr : MessageType,
+    ipid : 1,  // Invalid Profile Identifier
+    pid : 16,  // Profile Identifier (0x110E for AVRCP)
+    _payload_,
+}
+
+// AVCTP Header for fragmented packets (start)
+packet AvctpStartPacket {
+    transaction_label : 4,
+    packet_type : PacketType,
+    cr : MessageType,
+    ipid : 1,
+    number_of_packets : 8,
+    pid : 16,
+    _payload_,
+}
+
+// AVCTP Header for fragmented packets (continue/end)
+packet AvctpContinuePacket {
+    transaction_label : 4,
+    packet_type : PacketType,
+    cr : MessageType,
+    ipid : 1,
+    _payload_,
+}

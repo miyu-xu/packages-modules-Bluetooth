@@ -14,6 +14,7 @@ from typing import List, Optional, Set
 from btsnoop import Btsnoop
 import analyzers.a2dp
 import analyzers.asha
+import analyzers.avrcp
 import analyzers.leaudio
 
 class Bugreport:
@@ -54,6 +55,11 @@ def run_asha(bugreport: Bugreport, args: argparse.Namespace):
         analyzers.asha.plot_acl_connection(acl_connection, **vars(args))
 
 
+def run_avrcp(bugreport: Bugreport, args: argparse.Namespace):
+    for acl_connection in bugreport.btsnoop_hci.acl_connections:
+        analyzers.avrcp.plot_acl_connection(acl_connection, **vars(args))
+
+
 def run_leaudio(bugreport: Bugreport, args: argparse.Namespace):
     analyzers.leaudio.plot_cis_connections(bugreport.btsnoop_hci, **vars(args))
 
@@ -80,6 +86,12 @@ def main():
     asha.set_defaults(func=run_asha)
     asha.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
     asha.add_argument("--psm", type=lambda x: int(x,0), help="override the stream PSM")
+
+    avrcp = subparsers.add_parser('avrcp', description='Extract AVRCP profile information')
+    avrcp.set_defaults(func=run_avrcp)
+    avrcp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
+    avrcp.add_argument("--control-cid", type=lambda x: int(x,0), help="override the AVCTP control channel CID")
+    avrcp.add_argument("--browse-cid", type=lambda x: int(x,0), help="override the AVCTP browsing channel CID")
 
     leaudio = subparsers.add_parser('leaudio', description='Extract ASHA profile information')
     leaudio.set_defaults(func=run_leaudio)
