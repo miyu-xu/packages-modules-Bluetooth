@@ -17,6 +17,7 @@ import analyzers.asha
 import analyzers.avrcp
 import analyzers.leaudio
 import analyzers.sdp
+import analyzers.ssp
 
 class Bugreport:
     BTSNOOP_HCI_PATH = "FS/data/misc/bluetooth/logs/btsnoop_hci.log"
@@ -70,6 +71,10 @@ def run_sdp(bugreport: Bugreport, args: argparse.Namespace):
         analyzers.sdp.plot_acl_connection(acl_connection, **vars(args))
 
 
+def run_ssp(bugreport: Bugreport, args: argparse.Namespace):
+    analyzers.ssp.plot_btsnoop(bugreport.btsnoop_hci, **vars(args))
+
+
 def run(args: argparse.Namespace):
     bugreport = Bugreport(args.path)
     args.func(bugreport, args)
@@ -104,6 +109,10 @@ def main():
     sdp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
     sdp.add_argument("--signal-lcid", type=lambda x: int(x,0), help="override the SDP local CID")
     sdp.add_argument("--signal-rcid", type=lambda x: int(x,0), help="override the SDP remote CID")
+
+    ssp = subparsers.add_parser('ssp', description='Extract SSP (Secure Simple Pairing) information')
+    ssp.set_defaults(func=run_ssp)
+    ssp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
 
     leaudio = subparsers.add_parser('leaudio', description='Extract ASHA profile information')
     leaudio.set_defaults(func=run_leaudio)

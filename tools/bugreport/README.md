@@ -93,3 +93,25 @@ SDP requests/responses (Service Search, Service Attribute, Service Search
 Attribute, Error), and resolves well-known UUIDs and attribute IDs to
 human-readable names. It also lists the services discovered on each
 connection.
+
+## SSP
+
+```
+usage: bugreport.py ssp [-h] path
+
+Extract SSP (Secure Simple Pairing) information
+
+positional arguments:
+  path        path to the bugreport file
+
+options:
+  -h, --help  show this help message and exit
+```
+
+The SSP analyzer walks HCI events from the BTSnoop log and decodes the
+Secure Simple Pairing exchange: IO Capability Request/Response, User
+Confirmation/Passkey Request, Passkey Notification, Keypress Notification,
+Simple Pairing Complete, and Link Key Request/Notification. Unlike A2DP /
+AVRCP / SDP, SSP runs at the HCI layer and is not bound to a single L2CAP
+channel, so the analyzer reports across the entire BTSnoop log rather than
+per ACL connection.

@@ -1,0 +1,166 @@
+// SSP - Secure Simple Pairing (BR/EDR)
+// Bluetooth Core Specification: Vol 2, Part E (HCI) and Vol 3, Part C
+// Defines the HCI event parameter structures used during classic
+// BR/EDR pairing (IO capability exchange, authentication, link keys).
+//
+// Unlike SMP (which is an L2CAP protocol), SSP operates at the HCI
+// layer.  This PDL models the parameter payloads of the relevant HCI
+// events so they can be parsed in a structured way by the analyzer.
+
+little_endian_packets
+
+// -------------------------------------------------------------------------
+// Enums
+// -------------------------------------------------------------------------
+
+// IO Capability (same values as SMP but defined separately for clarity)
+enum IoCapability : 8 {
+    DISPLAY_ONLY = 0x00,
+    DISPLAY_YES_NO = 0x01,
+    KEYBOARD_ONLY = 0x02,
+    NO_INPUT_NO_OUTPUT = 0x03,
+    KEYBOARD_DISPLAY = 0x04,
+}
+
+// OOB Data Present flag for IO Capability Response
+enum OobDataPresent : 8 {
+    NOT_PRESENT = 0x00,
+    P192_PRESENT = 0x01,
+    P256_PRESENT = 0x02,
+    P192_AND_P256_PRESENT = 0x03,
+}
+
+// Authentication Requirements bitmask values
+enum AuthenticationRequirements : 8 {
+    NO_BONDING_NO_MITM = 0x00,
+    NO_BONDING_MITM = 0x01,
+    DEDICATED_BONDING_NO_MITM = 0x02,
+    DEDICATED_BONDING_MITM = 0x03,
+    GENERAL_BONDING_NO_MITM = 0x04,
+    GENERAL_BONDING_MITM = 0x05,
+}
+
+// Link Key Type reported in Link Key Notification
+enum LinkKeyType : 8 {
+    COMBINATION = 0x00,
+    LOCAL_UNIT = 0x01,
+    REMOTE_UNIT = 0x02,
+    DEBUG_COMBINATION = 0x03,
+    UNAUTHENTICATED_P192 = 0x04,
+    AUTHENTICATED_P192 = 0x05,
+    CHANGED_COMBINATION = 0x06,
+    UNAUTHENTICATED_P256 = 0x07,
+    AUTHENTICATED_P256 = 0x08,
+}
+
+// Simple Pairing Complete status (standard HCI error codes)
+enum SspStatus : 8 {
+    SUCCESS = 0x00,
+    UNKNOWN_CONNECTION_ID = 0x02,
+    HARDWARE_FAILURE = 0x03,
+    AUTHENTICATION_FAILURE = 0x05,
+    PIN_OR_KEY_MISSING = 0x06,
+    MEMORY_CAPACITY_EXCEEDED = 0x07,
+    CONNECTION_TIMEOUT = 0x08,
+    CONNECTION_LIMIT_EXCEEDED = 0x09,
+    COMMAND_DISALLOWED = 0x0C,
+    CONNECTION_REJECTED_LIMITED_RESOURCES = 0x0D,
+    CONNECTION_REJECTED_SECURITY = 0x0E,
+    CONNECTION_ACCEPT_TIMEOUT = 0x10,
+    PAIRING_NOT_ALLOWED = 0x18,
+    UNSPECIFIED_ERROR = 0x1F,
+    REPEATED_ATTEMPTS = 0x17,
+    SIMPLE_PAIRING_NOT_SUPPORTED = 0x37,
+}
+
+// Keypress Notification Type
+enum KeypressNotificationType : 8 {
+    PASSKEY_ENTRY_STARTED = 0x00,
+    PASSKEY_DIGIT_ENTERED = 0x01,
+    PASSKEY_DIGIT_ERASED = 0x02,
+    PASSKEY_CLEARED = 0x03,
+    PASSKEY_ENTRY_COMPLETED = 0x04,
+}
+
+// -------------------------------------------------------------------------
+// HCI Event parameter structures
+// -------------------------------------------------------------------------
+
+// IO Capability Request Event (0x31)
+// Controller asking the host for its IO capabilities
+packet IoCapabilityRequestEvent {
+    bd_addr : 8[6],
+}
+
+// IO Capability Response Event (0x32)
+// Remote device's IO capabilities
+packet IoCapabilityResponseEvent {
+    bd_addr : 8[6],
+    io_capability : IoCapability,
+    oob_data_present : OobDataPresent,
+    authentication_requirements : AuthenticationRequirements,
+}
+
+// User Confirmation Request Event (0x33)
+// Numeric comparison — host should display the value
+packet UserConfirmationRequestEvent {
+    bd_addr : 8[6],
+    numeric_value : 32,
+}
+
+// User Passkey Request Event (0x34)
+// Host should prompt user for passkey entry
+packet UserPasskeyRequestEvent {
+    bd_addr : 8[6],
+}
+
+// Remote OOB Data Request Event (0x35)
+// Controller asking for OOB data received from remote
+packet RemoteOobDataRequestEvent {
+    bd_addr : 8[6],
+}
+
+// Simple Pairing Complete Event (0x36)
+packet SimplePairingCompleteEvent {
+    status : SspStatus,
+    bd_addr : 8[6],
+}
+
+// User Passkey Notification Event (0x3B)
+// Display passkey to the user (remote is entering it)
+packet UserPasskeyNotificationEvent {
+    bd_addr : 8[6],
+    passkey : 32,
+}
+
+// Keypress Notification Event (0x3C)
+packet KeypressNotificationEvent {
+    bd_addr : 8[6],
+    notification_type : KeypressNotificationType,
+}
+
+// Link Key Request Event (0x17)
+packet LinkKeyRequestEvent {
+    bd_addr : 8[6],
+}
+
+// Link Key Notification Event (0x18)
+packet LinkKeyNotificationEvent {
+    bd_addr : 8[6],
+    link_key : 8[16],
+    key_type : LinkKeyType,
+}
+
+// IO Capability Request Reply Command (HCI command sent by host)
+packet IoCapabilityRequestReply {
+    bd_addr : 8[6],
+    io_capability : IoCapability,
+    oob_data_present : OobDataPresent,
+    authentication_requirements : AuthenticationRequirements,
+}
+
+// IO Capability Request Negative Reply Command
+packet IoCapabilityRequestNegativeReply {
+    bd_addr : 8[6],
+    reason : 8,
+}
