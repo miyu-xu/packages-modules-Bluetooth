@@ -17,6 +17,7 @@ import analyzers.asha
 import analyzers.avrcp
 import analyzers.leaudio
 import analyzers.sdp
+import analyzers.smp
 import analyzers.ssp
 
 class Bugreport:
@@ -71,6 +72,19 @@ def run_sdp(bugreport: Bugreport, args: argparse.Namespace):
         analyzers.sdp.plot_acl_connection(acl_connection, **vars(args))
 
 
+def run_smp(bugreport: Bugreport, args: argparse.Namespace):
+    analyzed_handles = set()
+    for acl_connection in bugreport.btsnoop_hci.le_acl_connections:
+        analyzed_handles.add(acl_connection.connection_handle)
+        analyzers.smp.plot_acl_connection(acl_connection, **vars(args))
+    # Also scan classic ACL connections for SMP over BR/EDR (CID 0x0007),
+    # and for orphaned LE connections that pre-date the log capture.
+    for acl_connection in bugreport.btsnoop_hci.acl_connections:
+        if acl_connection.connection_handle in analyzed_handles:
+            continue
+        analyzers.smp.plot_acl_connection(acl_connection, **vars(args))
+
+
 def run_ssp(bugreport: Bugreport, args: argparse.Namespace):
     analyzers.ssp.plot_btsnoop(bugreport.btsnoop_hci, **vars(args))
 
@@ -109,6 +123,10 @@ def main():
     sdp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
     sdp.add_argument("--signal-lcid", type=lambda x: int(x,0), help="override the SDP local CID")
     sdp.add_argument("--signal-rcid", type=lambda x: int(x,0), help="override the SDP remote CID")
+
+    smp = subparsers.add_parser('smp', description='Extract SMP (Security Manager Protocol) pairing information')
+    smp.set_defaults(func=run_smp)
+    smp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
 
     ssp = subparsers.add_parser('ssp', description='Extract SSP (Secure Simple Pairing) information')
     ssp.set_defaults(func=run_ssp)

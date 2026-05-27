@@ -1,0 +1,166 @@
+// SMP - Security Manager Protocol
+// Bluetooth Core Specification: Vol 3, Part H
+// Defines LE pairing and key distribution packets on
+// L2CAP fixed channel CID 0x0006 (LE) and 0x0007 (BR/EDR).
+
+little_endian_packets
+
+// SMP Command Code (opcode)
+enum Code : 8 {
+    PAIRING_REQUEST = 0x01,
+    PAIRING_RESPONSE = 0x02,
+    PAIRING_CONFIRM = 0x03,
+    PAIRING_RANDOM = 0x04,
+    PAIRING_FAILED = 0x05,
+    ENCRYPTION_INFORMATION = 0x06,
+    CENTRAL_IDENTIFICATION = 0x07,
+    IDENTITY_INFORMATION = 0x08,
+    IDENTITY_ADDRESS_INFORMATION = 0x09,
+    SIGNING_INFORMATION = 0x0A,
+    SECURITY_REQUEST = 0x0B,
+    PAIRING_PUBLIC_KEY = 0x0C,
+    PAIRING_DHKEY_CHECK = 0x0D,
+    PAIRING_KEYPRESS_NOTIFICATION = 0x0E,
+}
+
+// IO Capability
+enum IoCapability : 8 {
+    DISPLAY_ONLY = 0x00,
+    DISPLAY_YES_NO = 0x01,
+    KEYBOARD_ONLY = 0x02,
+    NO_INPUT_NO_OUTPUT = 0x03,
+    KEYBOARD_DISPLAY = 0x04,
+}
+
+// OOB Data Flag
+enum OobDataFlag : 8 {
+    NOT_PRESENT = 0x00,
+    PRESENT = 0x01,
+}
+
+// Pairing Failed Reason
+enum PairingFailedReason : 8 {
+    PASSKEY_ENTRY_FAILED = 0x01,
+    OOB_NOT_AVAILABLE = 0x02,
+    AUTHENTICATION_REQUIREMENTS = 0x03,
+    CONFIRM_VALUE_FAILED = 0x04,
+    PAIRING_NOT_SUPPORTED = 0x05,
+    ENCRYPTION_KEY_SIZE = 0x06,
+    COMMAND_NOT_SUPPORTED = 0x07,
+    UNSPECIFIED_REASON = 0x08,
+    REPEATED_ATTEMPTS = 0x09,
+    INVALID_PARAMETERS = 0x0A,
+    DHKEY_CHECK_FAILED = 0x0B,
+    NUMERIC_COMPARISON_FAILED = 0x0C,
+    BREDR_PAIRING_IN_PROGRESS = 0x0D,
+    CROSS_TRANSPORT_KEY_NOT_ALLOWED = 0x0E,
+    KEY_REJECTED = 0x0F,
+}
+
+// Address Type for Identity Address Information
+enum AddrType : 8 {
+    PUBLIC = 0x00,
+    RANDOM = 0x01,
+}
+
+// Keypress Notification Type
+enum KeypressNotificationType : 8 {
+    PASSKEY_ENTRY_STARTED = 0x00,
+    PASSKEY_DIGIT_ENTERED = 0x01,
+    PASSKEY_DIGIT_ERASED = 0x02,
+    PASSKEY_CLEARED = 0x03,
+    PASSKEY_ENTRY_COMPLETED = 0x04,
+}
+
+// -----------------------------------------------------------------------------
+// SMP PDU Structures
+// -----------------------------------------------------------------------------
+
+// Base SMP packet
+packet Smp {
+    code : Code,
+    _payload_,
+}
+
+// Pairing Request (Code 0x01)
+packet PairingRequest : Smp (code = PAIRING_REQUEST) {
+    io_capability : IoCapability,
+    oob_data_flag : OobDataFlag,
+    auth_req : 8,
+    maximum_encryption_key_size : 8,
+    initiator_key_distribution : 8,
+    responder_key_distribution : 8,
+}
+
+// Pairing Response (Code 0x02)
+packet PairingResponse : Smp (code = PAIRING_RESPONSE) {
+    io_capability : IoCapability,
+    oob_data_flag : OobDataFlag,
+    auth_req : 8,
+    maximum_encryption_key_size : 8,
+    initiator_key_distribution : 8,
+    responder_key_distribution : 8,
+}
+
+// Pairing Confirm (Code 0x03)
+packet PairingConfirm : Smp (code = PAIRING_CONFIRM) {
+    confirm_value : 8[16],
+}
+
+// Pairing Random (Code 0x04)
+packet PairingRandom : Smp (code = PAIRING_RANDOM) {
+    random_value : 8[16],
+}
+
+// Pairing Failed (Code 0x05)
+packet PairingFailed : Smp (code = PAIRING_FAILED) {
+    reason : PairingFailedReason,
+}
+
+// Encryption Information - LTK (Code 0x06)
+packet EncryptionInformation : Smp (code = ENCRYPTION_INFORMATION) {
+    long_term_key : 8[16],
+}
+
+// Central Identification - EDIV + Rand (Code 0x07)
+packet CentralIdentification : Smp (code = CENTRAL_IDENTIFICATION) {
+    ediv : 16,
+    rand : 8[8],
+}
+
+// Identity Information - IRK (Code 0x08)
+packet IdentityInformation : Smp (code = IDENTITY_INFORMATION) {
+    identity_resolving_key : 8[16],
+}
+
+// Identity Address Information (Code 0x09)
+packet IdentityAddressInformation : Smp (code = IDENTITY_ADDRESS_INFORMATION) {
+    addr_type : AddrType,
+    bd_addr : 8[6],
+}
+
+// Signing Information - CSRK (Code 0x0A)
+packet SigningInformation : Smp (code = SIGNING_INFORMATION) {
+    signature_key : 8[16],
+}
+
+// Security Request (Code 0x0B)
+packet SecurityRequest : Smp (code = SECURITY_REQUEST) {
+    auth_req : 8,
+}
+
+// Pairing Public Key (Code 0x0C) - LE Secure Connections only
+packet PairingPublicKey : Smp (code = PAIRING_PUBLIC_KEY) {
+    public_key_x : 8[32],
+    public_key_y : 8[32],
+}
+
+// Pairing DHKey Check (Code 0x0D) - LE Secure Connections only
+packet PairingDhkeyCheck : Smp (code = PAIRING_DHKEY_CHECK) {
+    dhkey_check : 8[16],
+}
+
+// Pairing Keypress Notification (Code 0x0E)
+packet PairingKeypressNotification : Smp (code = PAIRING_KEYPRESS_NOTIFICATION) {
+    notification_type : KeypressNotificationType,
+}

@@ -94,6 +94,29 @@ Attribute, Error), and resolves well-known UUIDs and attribute IDs to
 human-readable names. It also lists the services discovered on each
 connection.
 
+## SMP
+
+```
+usage: bugreport.py smp [-h] path
+
+Extract SMP (Security Manager Protocol) pairing information
+
+positional arguments:
+  path        path to the bugreport file
+
+options:
+  -h, --help  show this help message and exit
+```
+
+The SMP analyzer decodes Security Manager Protocol packets exchanged on
+L2CAP fixed CID 0x0006 (LE) and 0x0007 (BR/EDR). It tracks the full
+pairing exchange — Pairing Request/Response, Confirm/Random, Public Key
+and DHKey Check (LE Secure Connections), Pairing Failed, and the key
+distribution phase (LTK, EDIV+Rand, IRK, Identity Address, CSRK) — and
+infers the negotiated pairing type (LE Legacy vs. LE Secure Connections)
+and association model (Just Works, Numeric Comparison, Passkey Entry, OOB)
+from the IO capabilities and authentication requirements.
+
 ## SSP
 
 ```
