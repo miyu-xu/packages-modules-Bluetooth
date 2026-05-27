@@ -841,6 +841,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
   static void reset_tracker_on_stopped(CsTracker& cs_tracker) {
     cs_tracker.measurement_ongoing = false;
     cs_tracker.state = CsTrackerState::STOPPED;
+    cs_tracker.procedure_data_list.clear(); // Already present in WearOs branch
+    cs_tracker.setup_complete = false;
+    cs_tracker.used_config_id = kInvalidConfigId;
+    cs_tracker.requesting_config_id = kInvalidConfigId;
   }
 
   void handle_cs_setup_failure(uint16_t connection_handle, DistanceMeasurementErrorCode errorCode) {
