@@ -70,6 +70,32 @@ decodes the AV/C frames carried over them, including PASS_THROUGH operations
 (play, pause, volume, etc.) and vendor-dependent AVRCP PDUs (metadata,
 notifications, absolute volume).
 
+## RFCOMM
+
+```
+usage: bugreport.py rfcomm [-h] [options] path
+
+Extract RFCOMM frame information
+
+positional arguments:
+  path                  path to the bugreport file
+
+options:
+  -h, --help            show this help message and exit
+  --signal-lcid SIGNAL_LCID
+                        override the RFCOMM local CID
+  --signal-rcid SIGNAL_RCID
+                        override the RFCOMM remote CID
+```
+
+The RFCOMM analyzer auto-discovers L2CAP channels carrying the RFCOMM
+PSM (0x0003) from L2CAP signaling, then parses each RFCOMM frame and
+reports the frame type (SABM, UA, DM, DISC, UIH, UI), DLCI,
+command/response bit, P/F bit, and payload length. A summary lists the
+DLCIs seen and a frame-type histogram. As a fallback, if the L2CAP
+connection setup is missing from the snoop, the analyzer probes
+unclassified CIDs for plausible RFCOMM SABM/UA frames on DLCI 0.
+
 ## SDP
 
 ```

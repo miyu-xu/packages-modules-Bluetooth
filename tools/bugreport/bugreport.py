@@ -16,6 +16,7 @@ import analyzers.a2dp
 import analyzers.asha
 import analyzers.avrcp
 import analyzers.leaudio
+import analyzers.rfcomm
 import analyzers.sdp
 import analyzers.smp
 import analyzers.ssp
@@ -65,6 +66,11 @@ def run_avrcp(bugreport: Bugreport, args: argparse.Namespace):
 
 def run_leaudio(bugreport: Bugreport, args: argparse.Namespace):
     analyzers.leaudio.plot_cis_connections(bugreport.btsnoop_hci, **vars(args))
+
+
+def run_rfcomm(bugreport: Bugreport, args: argparse.Namespace):
+    for acl_connection in bugreport.btsnoop_hci.acl_connections:
+        analyzers.rfcomm.plot_acl_connection(acl_connection, **vars(args))
 
 
 def run_sdp(bugreport: Bugreport, args: argparse.Namespace):
@@ -117,6 +123,12 @@ def main():
     avrcp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
     avrcp.add_argument("--control-cid", type=lambda x: int(x,0), help="override the AVCTP control channel CID")
     avrcp.add_argument("--browse-cid", type=lambda x: int(x,0), help="override the AVCTP browsing channel CID")
+
+    rfcomm = subparsers.add_parser('rfcomm', description='Extract RFCOMM frame information')
+    rfcomm.set_defaults(func=run_rfcomm)
+    rfcomm.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
+    rfcomm.add_argument("--signal-lcid", type=lambda x: int(x,0), help="override the RFCOMM local CID")
+    rfcomm.add_argument("--signal-rcid", type=lambda x: int(x,0), help="override the RFCOMM remote CID")
 
     sdp = subparsers.add_parser('sdp', description='Extract SDP service discovery information')
     sdp.set_defaults(func=run_sdp)

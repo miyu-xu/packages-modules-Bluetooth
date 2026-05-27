@@ -1,0 +1,48 @@
+// RFCOMM - Serial Port Emulation Protocol
+// Bluetooth Specification: RFCOMM 1.2 with 3GPP TS 27.010
+// This file defines the RFCOMM frame format used by HFP, SPP, and other serial profiles
+
+little_endian_packets
+
+enum FrameType : 8 {
+    SABM = 0x2F,  // Set Asynchronous Balanced Mode
+    UA = 0x63,    // Unnumbered Acknowledgement
+    DM = 0x0F,    // Disconnected Mode
+    DISC = 0x43,  // Disconnect
+    UIH = 0xEF,   // Unnumbered Information with Header check
+    UI = 0x03,    // Unnumbered Information
+}
+
+// RFCOMM Address field (1 byte)
+//   Bit 0: EA (Extension bit, always 1 for RFCOMM)
+//   Bit 1: C/R (Command/Response)
+//   Bits 2-7: DLCI (Data Link Connection Identifier)
+//
+// RFCOMM Control field (1 byte)
+//   Bits 0-3,5-7: Frame type (with P/F masked out)
+//   Bit 4: P/F (Poll/Final)
+
+// RFCOMM frame with single-byte length (EA=1 in length byte)
+// Used when payload length <= 127 bytes
+packet RfcommShortFrame {
+    ea : 1,          // Extension bit (address)
+    cr : 1,          // Command/Response
+    dlci : 6,        // Data Link Connection Identifier
+    frame_type : 8,  // Frame type (includes P/F bit at bit 4)
+    length_ea : 1,   // Length EA bit (1 = single byte length)
+    length : 7,      // Payload length (0-127)
+    _payload_,
+}
+
+// RFCOMM frame with two-byte length (EA=0 in first length byte)
+// Used when payload length > 127 bytes
+packet RfcommLongFrame {
+    ea : 1,            // Extension bit (address)
+    cr : 1,            // Command/Response
+    dlci : 6,          // Data Link Connection Identifier
+    frame_type : 8,    // Frame type (includes P/F bit at bit 4)
+    length_ea : 1,     // Length EA bit (0 = two byte length)
+    length_low : 7,    // Length low bits
+    length_high : 8,   // Length high bits
+    _payload_,
+}
