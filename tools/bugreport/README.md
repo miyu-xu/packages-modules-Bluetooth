@@ -70,6 +70,29 @@ decodes the AV/C frames carried over them, including PASS_THROUGH operations
 (play, pause, volume, etc.) and vendor-dependent AVRCP PDUs (metadata,
 notifications, absolute volume).
 
+## GATT
+
+```
+usage: bugreport.py gatt [-h] path
+
+Extract ATT/GATT data transfer information
+
+positional arguments:
+  path        path to the bugreport file
+
+options:
+  -h, --help  show this help message and exit
+```
+
+The GATT analyzer decodes ATT/GATT traffic on L2CAP fixed CID 0x0004 and
+on any EATT bearer discovered via LE Credit Based Connection on PSM
+0x0027. It tracks the MTU exchange (per bearer and globally), service /
+characteristic discovery (Read By Group Type, Read By Type, Find
+Information, Find By Type Value), read/write operations (including blob,
+multiple, prepare, execute), and notifications/indications with
+indication→confirmation latency. Error responses are linked back to the
+originating request opcode and handle.
+
 ## RFCOMM
 
 ```

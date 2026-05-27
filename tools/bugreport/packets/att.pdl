@@ -1,0 +1,260 @@
+// ATT - Attribute Protocol
+// Bluetooth Core Specification: Vol 3, Part F
+// Defines ATT PDUs carried on L2CAP fixed channel CID 0x0004 (ATT)
+// and dynamic EATT channels (PSM 0x0027).
+
+little_endian_packets
+
+// ATT Opcode (method identifier)
+enum Opcode : 8 {
+    ERROR_RSP = 0x01,
+    EXCHANGE_MTU_REQ = 0x02,
+    EXCHANGE_MTU_RSP = 0x03,
+    FIND_INFORMATION_REQ = 0x04,
+    FIND_INFORMATION_RSP = 0x05,
+    FIND_BY_TYPE_VALUE_REQ = 0x06,
+    FIND_BY_TYPE_VALUE_RSP = 0x07,
+    READ_BY_TYPE_REQ = 0x08,
+    READ_BY_TYPE_RSP = 0x09,
+    READ_REQ = 0x0A,
+    READ_RSP = 0x0B,
+    READ_BLOB_REQ = 0x0C,
+    READ_BLOB_RSP = 0x0D,
+    READ_MULTIPLE_REQ = 0x0E,
+    READ_MULTIPLE_RSP = 0x0F,
+    READ_BY_GROUP_TYPE_REQ = 0x10,
+    READ_BY_GROUP_TYPE_RSP = 0x11,
+    WRITE_REQ = 0x12,
+    WRITE_RSP = 0x13,
+    PREPARE_WRITE_REQ = 0x16,
+    PREPARE_WRITE_RSP = 0x17,
+    EXECUTE_WRITE_REQ = 0x18,
+    EXECUTE_WRITE_RSP = 0x19,
+    HANDLE_VALUE_NTF = 0x1B,
+    HANDLE_VALUE_IND = 0x1D,
+    HANDLE_VALUE_CFM = 0x1E,
+    READ_MULTIPLE_VARIABLE_REQ = 0x20,
+    READ_MULTIPLE_VARIABLE_RSP = 0x21,
+    MULTIPLE_HANDLE_VALUE_NTF = 0x23,
+    WRITE_CMD = 0x52,
+    SIGNED_WRITE_CMD = 0xD2,
+}
+
+// ATT Error Code
+enum ErrorCode : 8 {
+    INVALID_HANDLE = 0x01,
+    READ_NOT_PERMITTED = 0x02,
+    WRITE_NOT_PERMITTED = 0x03,
+    INVALID_PDU = 0x04,
+    INSUFFICIENT_AUTHENTICATION = 0x05,
+    REQUEST_NOT_SUPPORTED = 0x06,
+    INVALID_OFFSET = 0x07,
+    INSUFFICIENT_AUTHORIZATION = 0x08,
+    PREPARE_QUEUE_FULL = 0x09,
+    ATTRIBUTE_NOT_FOUND = 0x0A,
+    ATTRIBUTE_NOT_LONG = 0x0B,
+    INSUFFICIENT_ENCRYPTION_KEY_SIZE = 0x0C,
+    INVALID_ATTRIBUTE_VALUE_LENGTH = 0x0D,
+    UNLIKELY_ERROR = 0x0E,
+    INSUFFICIENT_ENCRYPTION = 0x0F,
+    UNSUPPORTED_GROUP_TYPE = 0x10,
+    INSUFFICIENT_RESOURCES = 0x11,
+    VALUE_NOT_ALLOWED = 0x13,
+}
+
+// Find Information Response format
+enum FindInfoFormat : 8 {
+    UUID_16BIT = 0x01,
+    UUID_128BIT = 0x02,
+}
+
+// Execute Write flags
+enum ExecuteWriteFlag : 8 {
+    CANCEL = 0x00,
+    WRITE = 0x01,
+}
+
+// -----------------------------------------------------------------------------
+// ATT PDU Structures
+// -----------------------------------------------------------------------------
+
+// Base ATT packet
+packet Att {
+    opcode : Opcode,
+    _payload_,
+}
+
+// Error Response (Opcode 0x01)
+packet ErrorRsp : Att (opcode = ERROR_RSP) {
+    request_opcode_in_error : Opcode,
+    attribute_handle_in_error : 16,
+    error_code : ErrorCode,
+}
+
+// Exchange MTU Request (Opcode 0x02)
+packet ExchangeMtuReq : Att (opcode = EXCHANGE_MTU_REQ) {
+    client_rx_mtu : 16,
+}
+
+// Exchange MTU Response (Opcode 0x03)
+packet ExchangeMtuRsp : Att (opcode = EXCHANGE_MTU_RSP) {
+    server_rx_mtu : 16,
+}
+
+// Find Information Request (Opcode 0x04)
+packet FindInformationReq : Att (opcode = FIND_INFORMATION_REQ) {
+    starting_handle : 16,
+    ending_handle : 16,
+}
+
+// Find Information Response (Opcode 0x05)
+packet FindInformationRsp : Att (opcode = FIND_INFORMATION_RSP) {
+    format : FindInfoFormat,
+    _payload_,  // Information data (handle-UUID pairs)
+}
+
+// Find By Type Value Request (Opcode 0x06)
+packet FindByTypeValueReq : Att (opcode = FIND_BY_TYPE_VALUE_REQ) {
+    starting_handle : 16,
+    ending_handle : 16,
+    attribute_type : 16,
+    _payload_,  // Attribute value
+}
+
+// Find By Type Value Response (Opcode 0x07)
+packet FindByTypeValueRsp : Att (opcode = FIND_BY_TYPE_VALUE_RSP) {
+    _payload_,  // Handles Information List
+}
+
+// Read By Type Request (Opcode 0x08)
+packet ReadByTypeReq : Att (opcode = READ_BY_TYPE_REQ) {
+    starting_handle : 16,
+    ending_handle : 16,
+    _payload_,  // UUID (2 or 16 bytes)
+}
+
+// Read By Type Response (Opcode 0x09)
+packet ReadByTypeRsp : Att (opcode = READ_BY_TYPE_RSP) {
+    length : 8,  // Size of each handle-value pair
+    _payload_,   // Attribute data list
+}
+
+// Read Request (Opcode 0x0A)
+packet ReadReq : Att (opcode = READ_REQ) {
+    attribute_handle : 16,
+}
+
+// Read Response (Opcode 0x0B)
+packet ReadRsp : Att (opcode = READ_RSP) {
+    _payload_,  // Attribute value
+}
+
+// Read Blob Request (Opcode 0x0C)
+packet ReadBlobReq : Att (opcode = READ_BLOB_REQ) {
+    attribute_handle : 16,
+    value_offset : 16,
+}
+
+// Read Blob Response (Opcode 0x0D)
+packet ReadBlobRsp : Att (opcode = READ_BLOB_RSP) {
+    _payload_,  // Part of attribute value
+}
+
+// Read Multiple Request (Opcode 0x0E)
+packet ReadMultipleReq : Att (opcode = READ_MULTIPLE_REQ) {
+    _payload_,  // Set of two or more attribute handles
+}
+
+// Read Multiple Response (Opcode 0x0F)
+packet ReadMultipleRsp : Att (opcode = READ_MULTIPLE_RSP) {
+    _payload_,  // Set of attribute values
+}
+
+// Read By Group Type Request (Opcode 0x10)
+packet ReadByGroupTypeReq : Att (opcode = READ_BY_GROUP_TYPE_REQ) {
+    starting_handle : 16,
+    ending_handle : 16,
+    _payload_,  // UUID (2 or 16 bytes)
+}
+
+// Read By Group Type Response (Opcode 0x11)
+packet ReadByGroupTypeRsp : Att (opcode = READ_BY_GROUP_TYPE_RSP) {
+    length : 8,  // Size of each attribute data entry
+    _payload_,   // Attribute data list
+}
+
+// Write Request (Opcode 0x12)
+packet WriteReq : Att (opcode = WRITE_REQ) {
+    attribute_handle : 16,
+    _payload_,  // Attribute value
+}
+
+// Write Response (Opcode 0x13) — empty payload
+packet WriteRsp : Att (opcode = WRITE_RSP) {
+}
+
+// Prepare Write Request (Opcode 0x16)
+packet PrepareWriteReq : Att (opcode = PREPARE_WRITE_REQ) {
+    attribute_handle : 16,
+    value_offset : 16,
+    _payload_,  // Part of attribute value
+}
+
+// Prepare Write Response (Opcode 0x17)
+packet PrepareWriteRsp : Att (opcode = PREPARE_WRITE_RSP) {
+    attribute_handle : 16,
+    value_offset : 16,
+    _payload_,  // Part of attribute value
+}
+
+// Execute Write Request (Opcode 0x18)
+packet ExecuteWriteReq : Att (opcode = EXECUTE_WRITE_REQ) {
+    flags : ExecuteWriteFlag,
+}
+
+// Execute Write Response (Opcode 0x19) — empty payload
+packet ExecuteWriteRsp : Att (opcode = EXECUTE_WRITE_RSP) {
+}
+
+// Handle Value Notification (Opcode 0x1B)
+packet HandleValueNtf : Att (opcode = HANDLE_VALUE_NTF) {
+    attribute_handle : 16,
+    _payload_,  // Attribute value
+}
+
+// Handle Value Indication (Opcode 0x1D)
+packet HandleValueInd : Att (opcode = HANDLE_VALUE_IND) {
+    attribute_handle : 16,
+    _payload_,  // Attribute value
+}
+
+// Handle Value Confirmation (Opcode 0x1E) — empty payload
+packet HandleValueCfm : Att (opcode = HANDLE_VALUE_CFM) {
+}
+
+// Read Multiple Variable Request (Opcode 0x20) — EATT
+packet ReadMultipleVariableReq : Att (opcode = READ_MULTIPLE_VARIABLE_REQ) {
+    _payload_,  // Set of two or more attribute handles
+}
+
+// Read Multiple Variable Response (Opcode 0x21) — EATT
+packet ReadMultipleVariableRsp : Att (opcode = READ_MULTIPLE_VARIABLE_RSP) {
+    _payload_,  // Set of (length, value) pairs
+}
+
+// Multiple Handle Value Notification (Opcode 0x23) — EATT
+packet MultipleHandleValueNtf : Att (opcode = MULTIPLE_HANDLE_VALUE_NTF) {
+    _payload_,  // Set of (handle, length, value) tuples
+}
+
+// Write Command (Opcode 0x52)
+packet WriteCmd : Att (opcode = WRITE_CMD) {
+    attribute_handle : 16,
+    _payload_,  // Attribute value
+}
+
+// Signed Write Command (Opcode 0xD2)
+packet SignedWriteCmd : Att (opcode = SIGNED_WRITE_CMD) {
+    attribute_handle : 16,
+    _payload_,  // Attribute value + 12-byte authentication signature
+}

@@ -15,6 +15,7 @@ from btsnoop import Btsnoop
 import analyzers.a2dp
 import analyzers.asha
 import analyzers.avrcp
+import analyzers.gatt
 import analyzers.leaudio
 import analyzers.rfcomm
 import analyzers.sdp
@@ -62,6 +63,19 @@ def run_asha(bugreport: Bugreport, args: argparse.Namespace):
 def run_avrcp(bugreport: Bugreport, args: argparse.Namespace):
     for acl_connection in bugreport.btsnoop_hci.acl_connections:
         analyzers.avrcp.plot_acl_connection(acl_connection, **vars(args))
+
+
+def run_gatt(bugreport: Bugreport, args: argparse.Namespace):
+    analyzed_handles = set()
+    for acl_connection in bugreport.btsnoop_hci.le_acl_connections:
+        analyzed_handles.add(acl_connection.connection_handle)
+        analyzers.gatt.plot_acl_connection(acl_connection, **vars(args))
+    # Also scan classic ACL connections — ATT may appear there for ATT over
+    # BR/EDR, or for orphaned LE connections that pre-date the log capture.
+    for acl_connection in bugreport.btsnoop_hci.acl_connections:
+        if acl_connection.connection_handle in analyzed_handles:
+            continue
+        analyzers.gatt.plot_acl_connection(acl_connection, **vars(args))
 
 
 def run_leaudio(bugreport: Bugreport, args: argparse.Namespace):
@@ -123,6 +137,10 @@ def main():
     avrcp.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
     avrcp.add_argument("--control-cid", type=lambda x: int(x,0), help="override the AVCTP control channel CID")
     avrcp.add_argument("--browse-cid", type=lambda x: int(x,0), help="override the AVCTP browsing channel CID")
+
+    gatt = subparsers.add_parser('gatt', description='Extract ATT/GATT data transfer information')
+    gatt.set_defaults(func=run_gatt)
+    gatt.add_argument("path", type=Path, help="path to the bugreport or btsnoop file")
 
     rfcomm = subparsers.add_parser('rfcomm', description='Extract RFCOMM frame information')
     rfcomm.set_defaults(func=run_rfcomm)
