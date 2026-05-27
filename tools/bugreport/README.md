@@ -69,3 +69,27 @@ The AVRCP analyzer parses AVCTP signaling exchanges for each connection and
 decodes the AV/C frames carried over them, including PASS_THROUGH operations
 (play, pause, volume, etc.) and vendor-dependent AVRCP PDUs (metadata,
 notifications, absolute volume).
+
+## SDP
+
+```
+usage: bugreport.py sdp [-h] [options] path
+
+Extract SDP service discovery information
+
+positional arguments:
+  path                  path to the bugreport file
+
+options:
+  -h, --help            show this help message and exit
+  --signal-lcid SIGNAL_LCID
+                        override the SDP local CID
+  --signal-rcid SIGNAL_RCID
+                        override the SDP remote CID
+```
+
+The SDP analyzer tracks L2CAP signaling for the SDP PSM (0x0001), decodes
+SDP requests/responses (Service Search, Service Attribute, Service Search
+Attribute, Error), and resolves well-known UUIDs and attribute IDs to
+human-readable names. It also lists the services discovered on each
+connection.
