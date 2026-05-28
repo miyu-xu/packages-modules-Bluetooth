@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36251c7_a28533b5",
+        "filename": "tools/bugreport/packets/avctp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-28T13:42:38Z",
+      "side": 1,
+      "message": "nit: Suggested syntax change:\n\n```\npacket AvctpPacket {\n    transaction_label : 4,\n    packet_type: PacketType,\n    cr: MessageType,\n    ipid: 1,\n    _payload_,\n}\n\npacket AvctpSinglePacket : AvctpPacket(packet_type \u003d SINGLE_PACKET) {\n    pid: 16,\n    _payload_,\n}\n\npacket AvctpStartPacket : AvctpPacket(packet_type \u003d START_PACKET) {\n    number_of_packets: 8,\n    pid: 16,\n    _payload_,\n}\n\npacket AvctpContinuePacket : AvctpPacket(packet_type \u003d CONTINUE_PACKET) {\n    _payload_,\n}\n```",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
