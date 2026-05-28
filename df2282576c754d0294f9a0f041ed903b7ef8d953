@@ -22,6 +22,30 @@
       },
       "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1494f678_e86c9a1b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2026-05-28T20:46:08Z",
+      "side": 1,
+      "message": "The change you speak of has already been cleaned up internally but has not been pushed to AOSP yet 😊",
+      "parentUuid": "c14e786c_9b6cb1df",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 42
+      },
+      "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
