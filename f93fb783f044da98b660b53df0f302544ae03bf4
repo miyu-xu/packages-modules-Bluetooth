@@ -22,6 +22,30 @@
       },
       "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f06d3b_da371fc3",
+        "filename": "tools/bugreport/packets/avctp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2056346
+      },
+      "writtenOn": "2026-05-28T17:31:21Z",
+      "side": 1,
+      "message": "Thanks Henri for the suggestion, agreed it reads better. I applied the syntax change to avctp.pdl, but regenerating avctp.py with the in-tree pdlc (v0.3.3, from out/soong/.../pdlc) produced two issues I wanted to flag.\n\nFirst, the bit shifts on the parent AvctpPacket come out LSB-first even though the file declares big_endian_packets. For example transaction_label ends up at byte0 \u0026 0xf instead of byte0 \u003e\u003e 4, which would misparse every AVCTP header.\n\nSecond, AvctpContinuePacket is dropped from the try-chain in AvctpPacket.parse. Only AvctpSinglePacket and AvctpStartPacket are tried; CONTINUE and END both fall through to the bare base class.\n\nAre these known limitations of this pdlc version, or should I be running a different one? Happy to land just the .pdl change and keep the existing .py for now if that works.",
+      "parentUuid": "a36251c7_a28533b5",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
