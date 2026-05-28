@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ae3e4bf_a28b37b5",
+        "filename": "tools/bugreport/analyzers/smp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-28T13:24:45Z",
+      "side": 1,
+      "message": "You can represent bit fields in PDL, with the following syntax.\nIf you have feature requests for PDL, you can also let us know or submit them to https://github.com/google/pdl.\n\n\n```\nenum BondingFlags : 2 {\n  NO_BONDING \u003d 0x0,\n  BONDING \u003d 0x1,\n}\n\nstruct AuthReq {\n  bonding: BondingFlags,   // Field order is LE first\n  mitm: 1,\n  sc: 1,\n  keypress: 1,\n  ct2: 1,\n  _reserved_: 2, // round up to 8 bits\n}\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 76
+      },
+      "revId": "2c879c311e979e915f60703b3ad288e7350bcb97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
