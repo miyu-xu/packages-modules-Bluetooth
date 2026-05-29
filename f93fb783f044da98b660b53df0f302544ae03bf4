@@ -46,6 +46,140 @@
       },
       "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e21b65_4e301818",
+        "filename": "tools/bugreport/packets/avctp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-29T08:50:01Z",
+      "side": 1,
+      "message": "\u003e First, the bit shifts on the parent AvctpPacket come out LSB-first even though the file declares big_endian_packets. For example transaction_label ends up at byte0 \u0026 0xf instead of byte0 \u003e\u003e 4, which would misparse every AVCTP header.\n\nThe field order is not tied to the byte order.\nBig endian packets fields are still LSB first. There is an open discussion about this here: https://github.com/google/pdl/issues/141\n\n\u003e Second, AvctpContinuePacket is dropped from the try-chain in AvctpPacket.parse. Only AvctpSinglePacket and AvctpStartPacket are tried; CONTINUE and END both fall through to the bare base class.\n\nThis is definitely a bug...\nIf you feel motivated I can suggest a quick fix to the python generator script, otherwise feel free to submit as is and fixup later when the PDL fix lands.",
+      "parentUuid": "b7f06d3b_da371fc3",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22069719_cd15aa6f",
+        "filename": "tools/bugreport/packets/avrcp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-29T08:50:01Z",
+      "side": 1,
+      "message": "`_size_(operation_data) : 8`",
+      "range": {
+        "startLine": 290,
+        "startChar": 4,
+        "endLine": 290,
+        "endChar": 30
+      },
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6808b56_7dcc0268",
+        "filename": "tools/bugreport/packets/avrcp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-29T08:50:01Z",
+      "side": 1,
+      "message": "`_fixed_ \u003d 0xFFFFFFFFFF : 40` should work.",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c464917b_29c97ad6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "tools/bugreport/packets/avrcp.pdl",
+              "range": {
+                "startLine": 299,
+                "startChar": 0,
+                "endLine": 304,
+                "endChar": 0
+              },
+              "replacement": "    _fixed_ \u003d 0xFFFFFFFFFF : 40,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e61b235f_f68c224d",
+        "filename": "tools/bugreport/packets/avrcp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-29T08:50:01Z",
+      "side": 1,
+      "message": "`_size_(payload) : 16` maybe ? Or is it the size of the reassembled payload ?",
+      "range": {
+        "startLine": 362,
+        "startChar": 3,
+        "endLine": 362,
+        "endChar": 26
+      },
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70152641_d8b3ac73",
+        "filename": "tools/bugreport/packets/avrcp.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-05-29T08:50:01Z",
+      "side": 1,
+      "message": "Alternatively\n\n```\n_count_(attribute_ids) : 8,\nattribute_ids : 32[],\n```",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 25
+      },
+      "revId": "f93fb783f044da98b660b53df0f302544ae03bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
