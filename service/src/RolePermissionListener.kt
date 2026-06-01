@@ -24,11 +24,14 @@ import android.os.Looper
 import android.os.UserHandle
 
 private const val TAG = "RolePermissionListener"
+private const val ROLE_MANAGER_RETRY_DELAY_MS = 1000L
+private const val MAX_ROLE_MANAGER_RETRIES = 5
 
 object RolePermissionListener {
     const val BLUETOOTH_ROLE = "android.app.role.SYSTEM_BLUETOOTH_STACK"
 
     private var session: UserSession? = null
+    private var retryHandler: Handler? = null
 
     /**
      * Registers a listener for the Bluetooth stack role and triggers the onRoleGranted callback
@@ -41,9 +44,58 @@ object RolePermissionListener {
         user: UserHandle,
         onRoleGranted: () -> Unit,
     ) {
+        registerForUserInternal(
+            looper = looper,
+            userContext = userContext,
+            user = user,
+            onRoleGranted = onRoleGranted,
+            retryCount = 0,
+        )
+    }
+
+    private fun registerForUserInternal(
+        looper: Looper,
+        userContext: Context,
+        user: UserHandle,
+        onRoleGranted: () -> Unit,
+        retryCount: Int,
+    ) {
         session?.let { it.unregister() }
 
-        val roleManager = userContext.getSystemService(RoleManager::class.java)!!
+        val handler = retryHandler ?: Handler(looper).also {
+            retryHandler = it
+        }
+
+        val roleManager = userContext.getSystemService(RoleManager::class.java)
+        if (roleManager == null) {
+            if (retryCount < MAX_ROLE_MANAGER_RETRIES) {
+                Log.w(
+                    TAG,
+                    "RoleManager unavailable for user $user; " +
+                        "retrying Bluetooth role check ${retryCount + 1}/$MAX_ROLE_MANAGER_RETRIES"
+                )
+
+                handler.postDelayed({
+                    registerForUserInternal(
+                        looper = looper,
+                        userContext = userContext,
+                        user = user,
+                        onRoleGranted = onRoleGranted,
+                        retryCount = retryCount + 1,
+                    )
+                }, ROLE_MANAGER_RETRY_DELAY_MS)
+            } else {
+                Log.e(
+                    TAG,
+                    "RoleManager unavailable for user $user after " +
+                        "$MAX_ROLE_MANAGER_RETRIES retries; Bluetooth role check abandoned"
+                )
+            }
+            return
+        }
+
+        handler.removeCallbacksAndMessages(null)
+
         val userSession = UserSession(looper, roleManager, user, onRoleGranted)
         if (hasBluetoothBeGivenStackRole(roleManager)) {
             Log.i(TAG, "Bluetooth already holds $BLUETOOTH_ROLE. Starting immediately")
@@ -73,6 +125,7 @@ object RolePermissionListener {
                 Log.v(TAG, "onRoleHoldersChanged for unrelated role $roleName")
                 return
             }
+
             Log.d(TAG, "onRoleHoldersChanged for $roleName")
             if (hasBluetoothBeGivenStackRole(roleManager)) {
                 unregister()
