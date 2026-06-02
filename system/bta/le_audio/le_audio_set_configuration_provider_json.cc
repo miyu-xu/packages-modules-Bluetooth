@@ -34,7 +34,6 @@
 #include "audio_set_scenarios_generated.h"
 #include "btm_iso_api_types.h"
 #include "flatbuffers/buffer.h"
-#include "flatbuffers/idl.h"
 #include "flatbuffers/util.h"
 #include "flatbuffers/vector.h"
 #include "le_audio/le_audio_types.h"
@@ -50,28 +49,18 @@ using bluetooth::le_audio::types::QosConfigSetting;
 namespace bluetooth::le_audio {
 
 #ifdef __ANDROID__
-static const std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
-        kLeAudioSetConfigs = {{"/apex/com.android.bt/etc/bluetooth/le_audio/"
-                               "audio_set_configurations.bfbs",
-                               "/apex/com.android.bt/etc/bluetooth/le_audio/"
-                               "audio_set_configurations.json"}};
-static const std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
-        kLeAudioSetScenarios = {{"/apex/com.android.bt/etc/bluetooth/"
-                                 "le_audio/audio_set_scenarios.bfbs",
-                                 "/apex/com.android.bt/etc/bluetooth/"
-                                 "le_audio/audio_set_scenarios.json"}};
+static const std::string kLeAudioSetConfigsPath =
+        "/apex/com.android.bt/etc/bluetooth/le_audio/audio_set_configurations.bin";
+static const std::string kLeAudioSetScenariosPath =
+        "/apex/com.android.bt/etc/bluetooth/le_audio/audio_set_scenarios.bin";
 #elif defined(TARGET_FLOSS)
-static const std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
-        kLeAudioSetConfigs = {{"/etc/bluetooth/le_audio/audio_set_configurations.bfbs",
-                               "/etc/bluetooth/le_audio/audio_set_configurations.json"}};
-static const std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
-        kLeAudioSetScenarios = {{"/etc/bluetooth/le_audio/audio_set_scenarios.bfbs",
-                                 "/etc/bluetooth/le_audio/audio_set_scenarios.json"}};
+static const std::string kLeAudioSetConfigsPath =
+        "/etc/bluetooth/le_audio/audio_set_configurations.bin";
+static const std::string kLeAudioSetScenariosPath =
+        "/etc/bluetooth/le_audio/audio_set_scenarios.bin";
 #else
-static const std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
-        kLeAudioSetConfigs = {{"audio_set_configurations.bfbs", "audio_set_configurations.json"}};
-static const std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
-        kLeAudioSetScenarios = {{"audio_set_scenarios.bfbs", "audio_set_scenarios.json"}};
+static const std::string kLeAudioSetConfigsPath = "audio_set_configurations.bin";
+static const std::string kLeAudioSetScenariosPath = "audio_set_scenarios.bin";
 #endif
 
 /** Provides a set configurations for the given context type */
@@ -354,176 +343,6 @@ private:
       subconfig.qos.sduIntervalUs = core_config.GetFrameDurationUs() *
                                     core_config.codec_frames_blocks_per_sdu.value_or(1);
     }
-  }
-
-  bool LoadConfigurationsFromFiles(const char* schema_file, const char* content_file,
-                                   types::CodecLocation location) {
-    flatbuffers::Parser configurations_parser_;
-    std::string configurations_schema_binary_content;
-    bool ok = flatbuffers::LoadFile(schema_file, true, &configurations_schema_binary_content);
-    if (!ok) {
-      return ok;
-    }
-
-    /* Load the binary schema */
-    ok = configurations_parser_.Deserialize((uint8_t*)configurations_schema_binary_content.c_str(),
-                                            configurations_schema_binary_content.length());
-    if (!ok) {
-      return ok;
-    }
-
-    /* Load the content from JSON */
-    std::string configurations_json_content;
-    ok = flatbuffers::LoadFile(content_file, false, &configurations_json_content);
-    if (!ok) {
-      return ok;
-    }
-
-    /* Parse */
-    ok = configurations_parser_.Parse(configurations_json_content.c_str());
-    if (!ok) {
-      return ok;
-    }
-
-    /* Import from flatbuffers */
-    auto configurations_root = fbs::le_audio::GetAudioSetConfigurations(
-            configurations_parser_.builder_.GetBufferPointer());
-    if (!configurations_root) {
-      return false;
-    }
-
-    auto flat_qos_configs = configurations_root->qos_configurations();
-    if ((flat_qos_configs == nullptr) || (flat_qos_configs->size() == 0)) {
-      return false;
-    }
-
-    log::debug(": Updating {} qos config entries.", flat_qos_configs->size());
-    std::vector<const fbs::le_audio::QosConfiguration*> qos_cfgs;
-    for (auto const& flat_qos_cfg : *flat_qos_configs) {
-      qos_cfgs.push_back(flat_qos_cfg);
-    }
-
-    auto flat_codec_configs = configurations_root->codec_configurations();
-    if ((flat_codec_configs == nullptr) || (flat_codec_configs->size() == 0)) {
-      return false;
-    }
-
-    log::debug(": Updating {} codec config entries.", flat_codec_configs->size());
-    std::vector<const fbs::le_audio::CodecConfiguration*> codec_cfgs;
-    for (auto const& flat_codec_cfg : *flat_codec_configs) {
-      codec_cfgs.push_back(flat_codec_cfg);
-    }
-
-    auto flat_configs = configurations_root->configurations();
-    if ((flat_configs == nullptr) || (flat_configs->size() == 0)) {
-      return false;
-    }
-
-    log::debug(": Updating {} config entries.", flat_configs->size());
-    for (auto const& flat_cfg : *flat_configs) {
-      auto configuration =
-              AudioSetConfigurationFromFlat(flat_cfg, &codec_cfgs, &qos_cfgs, location);
-      if (!configuration.confs.sink.empty() || !configuration.confs.source.empty()) {
-        configurations_.insert({flat_cfg->name()->str(), configuration});
-      }
-    }
-
-    return true;
-  }
-
-  AudioSetConfigurations AudioSetConfigurationsFromFlatScenario(
-          const fbs::le_audio::AudioSetScenario* const flat_scenario) {
-    AudioSetConfigurations items;
-    if (!flat_scenario->configurations()) {
-      return items;
-    }
-
-    for (auto config_name : *flat_scenario->configurations()) {
-      if (configurations_.count(config_name->str()) == 0) {
-        continue;
-      }
-
-      auto& cfg = configurations_.at(config_name->str());
-      items.push_back(&cfg);
-    }
-
-    return items;
-  }
-
-  bool LoadScenariosFromFiles(const char* schema_file, const char* content_file) {
-    flatbuffers::Parser scenarios_parser_;
-    std::string scenarios_schema_binary_content;
-    bool ok = flatbuffers::LoadFile(schema_file, true, &scenarios_schema_binary_content);
-    if (!ok) {
-      return ok;
-    }
-
-    /* Load the binary schema */
-    ok = scenarios_parser_.Deserialize((uint8_t*)scenarios_schema_binary_content.c_str(),
-                                       scenarios_schema_binary_content.length());
-    if (!ok) {
-      return ok;
-    }
-
-    /* Load the content from JSON */
-    std::string scenarios_json_content;
-    ok = flatbuffers::LoadFile(content_file, false, &scenarios_json_content);
-    if (!ok) {
-      return ok;
-    }
-
-    /* Parse */
-    ok = scenarios_parser_.Parse(scenarios_json_content.c_str());
-    if (!ok) {
-      return ok;
-    }
-
-    /* Import from flatbuffers */
-    auto scenarios_root =
-            fbs::le_audio::GetAudioSetScenarios(scenarios_parser_.builder_.GetBufferPointer());
-    if (!scenarios_root) {
-      return false;
-    }
-
-    auto flat_scenarios = scenarios_root->scenarios();
-    if ((flat_scenarios == nullptr) || (flat_scenarios->size() == 0)) {
-      return false;
-    }
-
-    log::debug(": Updating {} scenarios.", flat_scenarios->size());
-    for (auto const& scenario : *flat_scenarios) {
-      log::debug("Scenario {} configs:", scenario->name()->c_str());
-      auto configs = AudioSetConfigurationsFromFlatScenario(scenario);
-      for (auto& config : configs) {
-        log::debug("\t\t Audio set config: {}", config->name);
-      }
-
-      auto [it_begin, it_end] = ScenarioToContextTypes(scenario->name()->c_str());
-      for (auto it = it_begin; it != it_end; ++it) {
-        context_configurations_.insert_or_assign(it->second,
-                                                 AudioSetConfigurationsFromFlatScenario(scenario));
-      }
-    }
-
-    return true;
-  }
-
-  bool LoadContent(
-          std::vector<std::pair<const char* /*schema*/, const char* /*content*/>> config_files,
-          std::vector<std::pair<const char* /*schema*/, const char* /*content*/>> scenario_files,
-          types::CodecLocation location) {
-    for (auto [schema, content] : config_files) {
-      if (!LoadConfigurationsFromFiles(schema, content, location)) {
-        return false;
-      }
-    }
-
-    for (auto [schema, content] : scenario_files) {
-      if (!LoadScenariosFromFiles(schema, content)) {
-        return false;
-      }
-    }
-    return true;
   }
 };
 

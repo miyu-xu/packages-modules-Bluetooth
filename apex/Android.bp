@@ -76,10 +76,8 @@ apex {
     },
 
     prebuilts: [
-        "audio_set_configurations_bfbs",
-        "audio_set_configurations_json",
-        "audio_set_scenarios_bfbs",
-        "audio_set_scenarios_json",
+        "audio_set_configurations_bin",
+        "audio_set_scenarios_bin",
         "bt_did.conf",
         "bt_stack.conf",
         "interop_database.conf",
