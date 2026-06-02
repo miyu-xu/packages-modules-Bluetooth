@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d608bfd6_077ce2cf",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 3402712
+      },
+      "writtenOn": "2026-06-02T14:53:33Z",
+      "side": 1,
+      "message": "CAPABILITY_SUPPORT_HOLD is always set in finishInitializing() so I don\u0027t think this is actually needed in the current code, but may be nice to check it anyway. Adding it for ACTIVE, but for HOLDING I think the state itself indicates that CAPABILITY_HOLD should be set.",
+      "parentUuid": "43c1d7ad_14d151f3",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0d8c40a_299f5a3f",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-05-24T16:43:10Z",
       "side": 1,
       "message": "getState() is called twice in the condition. Minor, but if getState() involves any synchronization or locking (this class has synchronized\n  methods), pulling it into a local variable is cleaner and avoids any subtle ordering issue.",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b039367d_f1de85a7",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 3402712
+      },
+      "writtenOn": "2026-06-02T14:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0d8c40a_299f5a3f",
       "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca92284_bf83c15c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 3402712
+      },
+      "writtenOn": "2026-06-02T14:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddcf5ab2_a22e8719",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c319a88_be08f892",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-05-24T16:43:10Z",
       "side": 1,
       "message": "Above test uses assertThat(...).isEqualTo(...) (Truth) for state checks but Assert.assertTrue/Assert.assertFalse (JUnit) for capability checks.\n  Pick one style. Truth would be more readable here: assertThat(isCapabilityHoldSet()).isTrue() and gives a better failure message than\n  assertFalse which just says \"expected false.\"",
+      "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33691305_5f0eaeac",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 3402712
+      },
+      "writtenOn": "2026-06-02T14:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c319a88_be08f892",
       "revId": "25037bf949f0ae23c0ab7d122b99662227ef185f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
