@@ -70,6 +70,30 @@
       },
       "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3322ae_af01fb5f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 4874471
+      },
+      "writtenOn": "2026-06-03T06:42:35Z",
+      "side": 1,
+      "message": "Hello Sal Savage,\nI have above problem with IOPT in my project now and it should be fixed asap,\nMy suggestion to remove hashCode function is temp solution at this time.\nCould you please share with me your patch for this case?\nThank you",
+      "parentUuid": "c7c2fdb5_d529ed0d",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 42
+      },
+      "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
