@@ -94,6 +94,30 @@
       },
       "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56f80d9_dcc278c0",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2026-06-04T21:52:14Z",
+      "side": 1,
+      "message": "We removed both equals and hashCode I believe. They were not needed.",
+      "parentUuid": "ea3322ae_af01fb5f",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 42
+      },
+      "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
