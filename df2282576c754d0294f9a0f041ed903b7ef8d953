@@ -118,6 +118,30 @@
       },
       "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2132bbe7_f799576e",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnection.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 4874471
+      },
+      "writtenOn": "2026-06-05T09:18:32Z",
+      "side": 1,
+      "message": "Thank you Sal Savage!",
+      "parentUuid": "d56f80d9_dcc278c0",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 42
+      },
+      "revId": "df2282576c754d0294f9a0f041ed903b7ef8d953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
