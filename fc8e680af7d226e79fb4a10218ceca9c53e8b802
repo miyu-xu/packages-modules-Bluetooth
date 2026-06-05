@@ -16,6 +16,24 @@
       "message": "Dear @wescande@google.com\nI have a issue that it has 2 paired device (A and B), max a2dp device is 1.\nIf device A connects A2dp but because the unknow reason, the connect is cannot establish successfully then native is stuck in state opening.\nThen if device B tries to connect A2dp, the connection has never established because the A\u0027s peer was not released.\nLog showed:\n06-02 10:52:51.989  3201  3331 I bluetooth-a2dp: system/btif/src/btif_av.cc:1737 ProcessEvent: state\u003dIdle peer\u003dBAddress event\u003dBTIF_AV_CONNECT_REQ_EVT(0x1a) flags\u003d0x0(None) active_peer\u003dfalse\n06-02 10:52:51.989  3201  3331 I bluetooth-a2dp: system/btif/src/btif_av.cc:1617 AllowedToConnect: connected\u003d1, max_connected_peers_\u003d1, source_connected_peers_size\u003d0\n06-02 10:52:51.989  3201  3331 I bluetooth-a2dp: system/btif/src/btif_av.cc:3621 btif_av_sink_disconnect: peer\u003dBAddress\n06-02 10:52:51.989  3201  3331 E bluetooth-a2dp: system/btif/src/btif_av.cc:1779 ProcessEvent: Cannot connect to peer BAddress: too many connected peers\n\nIt is the sync problem between java and native state machine.\n\nSo I want to ask that why you do not disconnectA2dpSink(mDevice) here to clean native state?\n\nThank you~",
       "revId": "fc8e680af7d226e79fb4a10218ceca9c53e8b802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e40a1ca_56a33131",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-05T09:40:51Z",
+      "side": 1,
+      "message": "I think that the implementation may be assuming that the btif state machine will also detect the timeout and transition to disconnected. But then looking at the `A2dpStateMachine`, it _is_ calling `mA2dpNativeInterface.disconnectA2dp(mDevice)` before transitioning to Disconnected...\n\nWorth trying out a patch, thank you for the report :)",
+      "parentUuid": "215172e0_073c1ce4",
+      "revId": "fc8e680af7d226e79fb4a10218ceca9c53e8b802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
