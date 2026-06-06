@@ -290,6 +290,7 @@ public final class BluetoothGatt implements BluetoothProfile {
         public void onClientRegistered(int status) {
             Log.d(TAG, "onClientRegistered(" + status + ")");
             mClientRegistered = status == GATT_SUCCESS;
+            boolean connectCanceled;
             synchronized (mStateLock) {
                 if (mConnState == CONN_STATE_CLOSED) {
                     Log.d(TAG, "Client registration completed after closed, unregistering");
@@ -297,11 +298,20 @@ public final class BluetoothGatt implements BluetoothProfile {
                     mCallback = null;
                     return;
                 }
-                if (VDBG) {
-                    if (mConnState != CONN_STATE_CONNECTING) {
-                        Log.e(TAG, "Bad connection state: " + mConnState);
-                    }
-                }
+                connectCanceled = mConnState != CONN_STATE_CONNECTING;
+            }
+            if (connectCanceled) {
+                Log.d(TAG, "Client registration completed after connect canceled");
+                unregisterApp();
+                runOrQueueCallback(
+                        () -> {
+                            final BluetoothGattCallback callback = mCallback;
+                            if (callback != null) {
+                                callback.onConnectionStateChange(
+                                        BluetoothGatt.this, GATT_FAILURE, STATE_DISCONNECTED);
+                            }
+                        });
+                return;
             }
             if (status != GATT_SUCCESS) {
                 runOrQueueCallback(
@@ -1131,7 +1141,14 @@ public final class BluetoothGatt implements BluetoothProfile {
     @RequiresPermission(BLUETOOTH_CONNECT)
     public void disconnect() {
         Log.d(TAG, "cancelOpen() - device: " + mDevice);
-        if (!mClientRegistered) return;
+        synchronized (mStateLock) {
+            if (!mClientRegistered) {
+                if (mConnState == CONN_STATE_CONNECTING) {
+                    mConnState = CONN_STATE_IDLE;
+                }
+                return;
+            }
+        }
 
         try {
             mService.clientDisconnect(mBluetoothGattCallback, mDevice, mAttributionSource);
