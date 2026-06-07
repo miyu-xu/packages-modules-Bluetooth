@@ -240,6 +240,7 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" clientIf=" + clientIf));
                     }
                     mClientIf = clientIf;
+                    boolean connectCanceled;
                     synchronized (mStateLock) {
                         if (mConnState == CONN_STATE_CLOSED) {
                             if (DBG) {
@@ -254,11 +255,25 @@ public final class BluetoothGatt implements BluetoothProfile {
                             }
                             return;
                         }
-                        if (VDBG) {
-                            if (mConnState != CONN_STATE_CONNECTING) {
-                                Log.e(TAG, "Bad connection state: " + mConnState);
-                            }
-                        }
+                        connectCanceled = mConnState != CONN_STATE_CONNECTING;
+                    }
+                    if (connectCanceled) {
+                        if (DBG) Log.d(TAG, "Client registration completed after connect canceled");
+                        unregisterApp();
+                        runOrQueueCallback(
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        final BluetoothGattCallback callback = mCallback;
+                                        if (callback != null) {
+                                            callback.onConnectionStateChange(
+                                                    BluetoothGatt.this,
+                                                    GATT_FAILURE,
+                                                    STATE_DISCONNECTED);
+                                        }
+                                    }
+                                });
+                        return;
                     }
                     if (status != GATT_SUCCESS) {
                         runOrQueueCallback(
@@ -1261,7 +1276,14 @@ public final class BluetoothGatt implements BluetoothProfile {
     public void disconnect() {
         if (DBG) Log.d(TAG, "cancelOpen() - device: " + mDevice);
         int clientIf = mClientIf;
-        if (mService == null || clientIf == 0) return;
+        if (mService == null || clientIf == 0) {
+            synchronized (mStateLock) {
+                if (mConnState == CONN_STATE_CONNECTING) {
+                    mConnState = CONN_STATE_IDLE;
+                }
+            }
+            return;
+        }
 
         try {
             mService.clientDisconnect(clientIf, mDevice.getAddress(), mAttributionSource);
