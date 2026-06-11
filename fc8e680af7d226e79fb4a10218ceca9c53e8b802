@@ -52,6 +52,24 @@
       "parentUuid": "7e40a1ca_56a33131",
       "revId": "fc8e680af7d226e79fb4a10218ceca9c53e8b802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d9fe3ef_6b0b53d4",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-11T07:37:09Z",
+      "side": 1,
+      "message": "The proposed change has been merged internally. \nIt will be released hopefully in 26Q3, if not 26Q4",
+      "parentUuid": "25472217_c7505fa0",
+      "revId": "fc8e680af7d226e79fb4a10218ceca9c53e8b802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
