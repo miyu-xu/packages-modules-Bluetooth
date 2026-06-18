@@ -156,6 +156,10 @@ impl IBluetoothManager for BluetoothManager {
     }
 
     fn set_floss_enabled(&mut self, enabled: bool) {
+        if !enabled {
+            warn!("Disabling Floss is not allowed.");
+            return;
+        }
         warn!("Set Floss Enabeld={}", enabled);
         let prev = self.proxy.set_floss_enabled(enabled);
         config_util::write_floss_enabled(enabled);
@@ -169,16 +173,6 @@ impl IBluetoothManager for BluetoothManager {
                 if config_util::is_hci_n_enabled(hci) {
                     self.proxy.start_bluetooth(hci);
                 }
-            }
-        } else if prev != enabled {
-            for hci in self.proxy.get_valid_adapters().iter().map(|a| a.virt_hci) {
-                if config_util::is_hci_n_enabled(hci) {
-                    self.proxy.stop_bluetooth(hci);
-                }
-            }
-            migrate::migrate_floss_devices();
-            if let Err(e) = Command::new("initctl").args(["start", BLUEZ_INIT_TARGET]).output() {
-                warn!("Failed to start bluetoothd: {}", e);
             }
         }
     }

@@ -28,27 +28,11 @@ const DEFAULT_ADAPTER_KEY: &str = "default_adapter";
 const DEFAULT_ADAPTER: VirtualHciIndex = VirtualHciIndex(0);
 
 pub fn is_floss_enabled() -> bool {
-    match std::fs::read(BLUETOOTH_DAEMON_CURRENT) {
-        Ok(v) => {
-            let content = std::str::from_utf8(&v);
-            match content {
-                Ok(version) => version.contains("floss"),
-                Err(_) => true,
-            }
-        }
-        Err(_) => true,
-    }
+    true
 }
 
-pub fn write_floss_enabled(enabled: bool) -> bool {
-    std::fs::write(
-        BLUETOOTH_DAEMON_CURRENT,
-        match enabled {
-            true => "floss",
-            _ => "bluez",
-        },
-    )
-    .is_ok()
+pub fn write_floss_enabled(_enabled: bool) -> bool {
+    std::fs::write(BLUETOOTH_DAEMON_CURRENT, "floss").is_ok()
 }
 
 pub fn read_config() -> std::io::Result<String> {

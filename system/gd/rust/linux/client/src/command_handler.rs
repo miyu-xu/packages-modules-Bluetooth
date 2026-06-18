@@ -1084,7 +1084,7 @@ impl CommandHandler {
                 self.lock_context().manager_dbus.set_floss_enabled(true);
             }
             "disable" => {
-                self.lock_context().manager_dbus.set_floss_enabled(false);
+                return Err("Disabling Floss is not allowed.".into());
             }
             "show" => {
                 let (major, minor) = self.lock_context().get_floss_api_version();
