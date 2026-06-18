@@ -286,6 +286,20 @@ static bool btif_a2dp_sink_initialize_a2dp_control_block(const RawAddress& peer_
   btif_a2dp_sink_cb.bits_per_sample = bits_per_sample;
   btif_a2dp_sink_cb.channel_count = channel_count;
 
+  if (btif_a2dp_sink_cb.audio_track != nullptr) {
+    log::warn("old audio track not properly released, cleaning up now");
+#ifdef __ANDROID__
+    BtifAvrcpAudioTrackStop(btif_a2dp_sink_cb.audio_track);
+    BtifAvrcpAudioTrackDelete(btif_a2dp_sink_cb.audio_track);
+#endif
+    btif_a2dp_sink_cb.audio_track = nullptr;
+  }
+  if (btif_a2dp_sink_cb.decode_alarm != nullptr) {
+    log::warn("old decode alarm not properly released, cleaning up now");
+    alarm_free(btif_a2dp_sink_cb.decode_alarm);
+    btif_a2dp_sink_cb.decode_alarm = nullptr;
+  }
+
   btif_a2dp_sink_cb.audio_track =
 #ifdef __ANDROID__
           BtifAvrcpAudioTrackCreate(sample_rate, bits_per_sample, channel_count);
@@ -357,7 +371,13 @@ bool btif_a2dp_sink_end_session(const RawAddress& peer_address) {
 static void btif_a2dp_sink_end_session_delayed() {
   log::info("");
   LockGuard lock(g_mutex);
-  // Nothing to do
+  // Stop decoding and pause the audio track
+  btif_a2dp_sink_cb.rx_flush = true;
+  if (btif_a2dp_sink_cb.audio_track != nullptr) {
+#ifdef __ANDROID__
+    BtifAvrcpAudioTrackPause(btif_a2dp_sink_cb.audio_track);
+#endif
+  }
 }
 
 void btif_a2dp_sink_shutdown() {
@@ -368,7 +388,22 @@ void btif_a2dp_sink_shutdown() {
 static void btif_a2dp_sink_shutdown_delayed() {
   log::info("");
   LockGuard lock(g_mutex);
-  // Nothing to do
+  // Stop the decode alarm
+  if (btif_a2dp_sink_cb.decode_alarm != nullptr) {
+    alarm_free(btif_a2dp_sink_cb.decode_alarm);
+    btif_a2dp_sink_cb.decode_alarm = nullptr;
+  }
+
+  // Stop and release audio track
+  if (btif_a2dp_sink_cb.audio_track != nullptr) {
+#ifdef __ANDROID__
+    BtifAvrcpAudioTrackStop(btif_a2dp_sink_cb.audio_track);
+    BtifAvrcpAudioTrackDelete(btif_a2dp_sink_cb.audio_track);
+#endif
+    btif_a2dp_sink_cb.audio_track = nullptr;
+  }
+
+  btif_a2dp_sink_cb.rx_flush = true;
 }
 
 void btif_a2dp_sink_cleanup() {
