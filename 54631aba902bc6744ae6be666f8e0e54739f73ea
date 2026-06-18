@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef729968_8a94267c",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2026-06-18T17:45:27Z",
+      "side": 1,
+      "message": "Hi Akash, now Bluetooth code is internal main first, not AOSP first\n\nalso, current code in internal main is already checking LE_AUDIO_SAMPLE_RATE_INDEX_NONE, see ag/33049420 and \nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/device_groups.cc;l\u003d1223-1241;drc\u003dd8f529f2797b72de16194c9633566cf4415c9801",
+      "range": {
+        "startLine": 905,
+        "startChar": 8,
+        "endLine": 909,
+        "endChar": 105
+      },
+      "revId": "54631aba902bc6744ae6be666f8e0e54739f73ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
