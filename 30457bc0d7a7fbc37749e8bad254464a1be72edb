@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5da7e77a_13d0265b",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-19T14:15:57Z",
+      "side": 1,
+      "message": "Redundant with the condition below.\nCan be removed entirely.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 3
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6095c2_98ab2b73",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-19T14:15:57Z",
+      "side": 1,
+      "message": "That accessor is unsafe by nature, as the mutex cannot be held outside the scope of the getter. You need to provide a specific getter for the information you want out of the peer map.",
+      "range": {
+        "startLine": 632,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 75
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b298b4c_9e5b481b",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3496,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-19T14:15:57Z",
+      "side": 1,
+      "message": "You are leaking the pointer to a local stack variable.\nThis will generate a corrupted stack access.",
+      "range": {
+        "startLine": 3496,
+        "startChar": 79,
+        "endLine": 3496,
+        "endChar": 94
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c52257a0_1d6b388d",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-19T14:15:57Z",
+      "side": 1,
+      "message": "Please remove mention from log message",
+      "range": {
+        "startLine": 460,
+        "startChar": 45,
+        "endLine": 460,
+        "endChar": 55
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
