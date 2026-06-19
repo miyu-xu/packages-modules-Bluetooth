@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15782e56_811c8ea7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2026-06-19T14:16:36Z",
+      "side": 1,
+      "message": "Please highlight testing scenarios for the behavior that you are adding into the stack.",
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5da7e77a_13d0265b",
         "filename": "system/btif/src/btif_a2dp.cc",
         "patchSetId": 6
