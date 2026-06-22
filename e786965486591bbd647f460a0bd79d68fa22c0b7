@@ -46,6 +46,30 @@
       },
       "revId": "e786965486591bbd647f460a0bd79d68fa22c0b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "971310de_86a9ed32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 4939711
+      },
+      "writtenOn": "2026-06-22T13:42:33Z",
+      "side": 1,
+      "message": "This pause breaks BT 4.x peripherals (FUJIFILM X-E3) on Android 16; please default-enable the flag. Details: issuetracker.google.com/issues/526259554",
+      "parentUuid": "53ff057d_9610ebd1",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 3
+      },
+      "revId": "e786965486591bbd647f460a0bd79d68fa22c0b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
