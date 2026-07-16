@@ -34,6 +34,7 @@ import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.SystemClock;
 import android.util.ArraySet;
 import android.util.Log;
 
@@ -151,6 +152,41 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
 
     private BluetoothDevice mClassicDeviceToBeActivated = null;
     private BluetoothDevice mClassicDeviceNotToBeActivated = null;
+
+    // ---- Anti-oscillation guard: delayed-feedback limit-cycle mitigation ----
+    //
+    // ADM keeps the A2DP and HFP active devices in sync by cross-driving them
+    // (an A2DP active change sets HFP, and vice-versa). The profiles' own
+    // *-active-changed callbacks come back 0.1~0.8s after ADM issues the set()
+    // and may arrive OUT OF ORDER. When ADM switches a profile from OLD to NEW,
+    // a late/stale callback still carrying OLD is otherwise treated as a genuine
+    // user change and drags the opposite profile back to OLD. With two dual-mode
+    // devices both connected (each a valid target for the other profile) this
+    // never converges -> the observed 3~7 switches/sec "repeated disconnection".
+    //
+    // The existing mClassicDeviceToBeActivated/NotToBeActivated pair is a single
+    // shared slot and does not survive two devices interleaving. We additionally
+    // remember, per profile, the device we just superseded and the in-flight
+    // target, and drop the matching stale echo within a short guard window.
+    @VisibleForTesting static final long ACTIVE_SYNC_STALE_GUARD_MS = 1_200;
+
+    @GuardedBy("mLock")
+    private BluetoothDevice mA2dpSyncTarget = null;
+
+    @GuardedBy("mLock")
+    private BluetoothDevice mA2dpSyncSuperseded = null;
+
+    @GuardedBy("mLock")
+    private long mA2dpSyncUptimeMs = 0;
+
+    @GuardedBy("mLock")
+    private BluetoothDevice mHfpSyncTarget = null;
+
+    @GuardedBy("mLock")
+    private BluetoothDevice mHfpSyncSuperseded = null;
+
+    @GuardedBy("mLock")
+    private long mHfpSyncUptimeMs = 0;
 
     // Timeout for state machine thread join, to prevent potential ANR.
     private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1000;
@@ -929,6 +965,17 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                             + device
                             + ", mA2dpActiveDevice="
                             + mA2dpActiveDevice);
+            if (isStaleActiveChange(
+                    device, mA2dpSyncTarget, mA2dpSyncSuperseded, mA2dpSyncUptimeMs)) {
+                Log.w(
+                        TAG,
+                        "handleA2dpActiveDeviceChanged: ignoring stale/out-of-order change to "
+                                + device
+                                + " (in-flight switch to "
+                                + mA2dpSyncTarget
+                                + ")");
+                return;
+            }
 
             if (Flags.admSuspendFallbackDuringChange()) {
                 if (Objects.equals(mPendingActiveDevice, device)) {
@@ -1006,6 +1053,17 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                             + device
                             + ", mHfpActiveDevice="
                             + mHfpActiveDevice);
+            if (isStaleActiveChange(
+                    device, mHfpSyncTarget, mHfpSyncSuperseded, mHfpSyncUptimeMs)) {
+                Log.w(
+                        TAG,
+                        "handleHfpActiveDeviceChanged: ignoring stale/out-of-order change to "
+                                + device
+                                + " (in-flight switch to "
+                                + mHfpSyncTarget
+                                + ")");
+                return;
+            }
 
             if (Flags.admSuspendFallbackDuringChange()) {
                 if (Objects.equals(mPendingActiveDevice, device)) {
@@ -1413,6 +1471,13 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         }
 
         synchronized (mLock) {
+            // Remember the device we are moving away from so a stale/out-of-order
+            // A2DP-active-changed callback still carrying it can be dropped.
+            if (device != null && !Objects.equals(mA2dpActiveDevice, device)) {
+                mA2dpSyncSuperseded = mA2dpActiveDevice;
+                mA2dpSyncTarget = device;
+                mA2dpSyncUptimeMs = SystemClock.uptimeMillis();
+            }
             mA2dpActiveDevice = device;
         }
         return true;
@@ -1444,9 +1509,42 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                                 + device);
                 return false;
             }
+            // Remember the device we are moving away from so a stale/out-of-order
+            // HFP-active-changed callback still carrying it can be dropped.
+            if (device != null && !Objects.equals(mHfpActiveDevice, device)) {
+                mHfpSyncSuperseded = mHfpActiveDevice;
+                mHfpSyncTarget = device;
+                mHfpSyncUptimeMs = SystemClock.uptimeMillis();
+            }
             mHfpActiveDevice = device;
         }
         return true;
+    }
+
+    /**
+     * Detects a stale / out-of-order {@code *-active-changed} callback. While ADM's own switch of a
+     * profile to {@code syncTarget} is still in flight (within {@link #ACTIVE_SYNC_STALE_GUARD_MS}),
+     * a callback that still carries the device we just superseded ({@code syncSuperseded}) is a late
+     * echo of the previous state, not a genuine new activation. Propagating it would cross-drive the
+     * opposite profile back and sustain the A2DP<->HFP oscillation, so it must be dropped.
+     *
+     * <p>Only the exact superseded device is treated as stale; a change to any other (genuinely new)
+     * device is still honored, and the guard auto-expires after the window.
+     *
+     * <p>Caller must hold {@code mLock} while reading the sync-tracking fields it passes in.
+     */
+    private static boolean isStaleActiveChange(
+            BluetoothDevice device,
+            BluetoothDevice syncTarget,
+            BluetoothDevice syncSuperseded,
+            long syncUptimeMs) {
+        if (device == null || syncTarget == null || syncSuperseded == null) {
+            return false;
+        }
+        if (SystemClock.uptimeMillis() - syncUptimeMs > ACTIVE_SYNC_STALE_GUARD_MS) {
+            return false;
+        }
+        return Objects.equals(device, syncSuperseded) && !Objects.equals(device, syncTarget);
     }
 
     private boolean setHearingAidActiveDevice(@Nullable BluetoothDevice device, boolean stopAudio) {
@@ -1862,6 +1960,13 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
             mLeHearingAidConnectedDevices.clear();
             mLeHearingAidActiveDevice = null;
             mPendingLeHearingAidActiveDevice.clear();
+
+            mA2dpSyncTarget = null;
+            mA2dpSyncSuperseded = null;
+            mA2dpSyncUptimeMs = 0;
+            mHfpSyncTarget = null;
+            mHfpSyncSuperseded = null;
+            mHfpSyncUptimeMs = 0;
         }
     }
 
