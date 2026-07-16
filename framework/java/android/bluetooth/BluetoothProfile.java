@@ -435,6 +435,7 @@ public interface BluetoothProfile {
     @Hide
     static boolean isValidConnectionPolicy(int connectionPolicy) {
         return connectionPolicy == CONNECTION_POLICY_ALLOWED
-                || connectionPolicy == CONNECTION_POLICY_FORBIDDEN;
+                || connectionPolicy == CONNECTION_POLICY_FORBIDDEN
+                || connectionPolicy == CONNECTION_POLICY_UNKNOWN;
     }
 }
