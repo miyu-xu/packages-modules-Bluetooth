@@ -178,6 +178,10 @@ class MceStateMachine extends StateMachine {
     @GuardedBy("mLock")
     private Bmessage.Type mDefaultMessageType = Bmessage.Type.SMS_CDMA;
 
+    private int mNoOfMessage = 0;
+    private int mDownloadPercentage = 0;
+    private boolean mIsMessageDownloaded = true;
+
     // The amount of time for MCE to search for remote device's own phone number before:
     // (1) MCE registering itself for being notified of the arrival of new messages; and
     // (2) MCE start downloading existing messages off of MSE.
@@ -876,6 +880,7 @@ class MceStateMachine extends StateMachine {
                     mDevice + " [Connected]: Received Message Listing=" + request.getList().size());
 
             List<com.android.bluetooth.mapclient.Message> messageListing = request.getList();
+            mNoOfMessage = messageListing.size();
             // Message listings by spec arrive ordered newest first but we wish to broadcast as
             // oldest first. Iterate in reverse order so we initiate requests oldest first.
             for (int i = messageListing.size() - 1; i >= 0; i--) {
@@ -1015,6 +1020,18 @@ class MceStateMachine extends StateMachine {
             if (!INBOX_PATH.equalsIgnoreCase(message.getFolder())) {
                 Log.d(TAG, "Ignoring message received in " + message.getFolder() + ".");
                 return;
+            }
+
+            mNoOfMessage--;
+            Log.d(TAG,"Messages remaining to download is = "+ mNoOfMessage+ "  mIsMessageDownloaded = " +mIsMessageDownloaded);
+            if (mNoOfMessage <= 0 && mIsMessageDownloaded) {
+                mIsMessageDownloaded = false;
+                mDownloadPercentage = 100;
+                Intent intent = new Intent();
+                intent.setAction(BluetoothMapClient.ACTION_MESSAGE_DOWNLOAD_STATUS);
+                intent.putExtra(BluetoothMapClient.EXTRA_DOWNLOAD_PERCENTAGE, mDownloadPercentage);
+                Log.d(TAG, "Broadcasting Intent on "+ mDownloadPercentage + "% Message Download");
+                mService.sendBroadcast(intent, RECEIVE_SMS);
             }
 
             switch (message.getType()) {

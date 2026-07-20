@@ -123,6 +123,17 @@ public final class BluetoothMapClient implements BluetoothProfile, AutoCloseable
             "android.bluetooth.mapmce.profile.action.MESSAGE_DELETED_STATUS_CHANGED";
 
     /**
+     * Action to notify Message download status
+     *
+     * @hide
+     */
+    //GM_ANDROID16_BRINGUP_FIXME
+    @RequiresPermission(RECEIVE_SMS)
+    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+    public static final String ACTION_MESSAGE_DOWNLOAD_STATUS =
+            "android.bluetooth.mapmce.profile.action.MESSAGE_DOWNLOAD_STATUS";
+
+    /**
      * Extras used in ACTION_MESSAGE_RECEIVED intent. NOTE: HANDLE is only valid for a single
      * session with the device.
      */
@@ -160,6 +171,19 @@ public final class BluetoothMapClient implements BluetoothProfile, AutoCloseable
      */
     @Hide
     public static final String EXTRA_RESULT_CODE = "android.bluetooth.device.extra.RESULT_CODE";
+
+    /**
+     * Extra used in ACTION_MESSAGE_DOWNLOAD_STATUS
+     * Any user defined value between 0 to 100 can be used
+     * 0   :   0% Downloaded
+     * 50  :  50% Downloaded
+     * 100 : 100% Downloaded
+     *
+     * @hide
+     */
+    public static final String EXTRA_DOWNLOAD_PERCENTAGE =
+            "android.bluetooth.device.extra.DOWNLOAD_PERCENTAGE";
+
 
     /** There was an error trying to obtain the state */
     @Hide public static final int STATE_ERROR = -1;
