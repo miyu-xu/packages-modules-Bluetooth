@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db841d27_6f663fc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-07-21T03:43:41Z",
+      "side": 1,
+      "message": "Focus testing on the following scenarios:\n\n1. While a source is connected, connect a sink without disrupting the existing source streaming.\n2. While a sink is connected, connect a source without disrupting the existing sink streaming.\n3. When the DUT acts as a source, test AVRCP control functions such as absolute volume and passthrough commands.\n4. When the DUT acts as a sink, test AVRCP control functions such as absolute volume and passthrough commands.",
+      "parentUuid": "15782e56_811c8ea7",
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5da7e77a_13d0265b",
         "filename": "system/btif/src/btif_a2dp.cc",
         "patchSetId": 6
@@ -31,6 +49,30 @@
       "writtenOn": "2026-06-19T14:15:57Z",
       "side": 1,
       "message": "Redundant with the condition below.\nCan be removed entirely.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 3
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "249252de_3b7f6b0c",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-07-21T03:43:41Z",
+      "side": 1,
+      "message": "When the connection is initiated by the remote device, `btif_av_handle_both_peer` calls `FindOrCreatePeer()` with `peer_sep \u003d AVDT_TSEP_INVALID`. After the peer is created, we set the peer SEP to either `AVDT_TSEP_INVALID | AVDT_TSEP_SNK` or `AVDT_TSEP_INVALID | AVDT_TSEP_SRC`.\n\nOnly after the connection is successfully established and we handle `BTA_AV_OPEN_EVT` (at which point the remote SEP becomes a definite value) do we clear the `AVDT_TSEP_INVALID` bit and update `PeerSep` to the final value.\n\nTherefore, when `btif_a2dp_on_idle()` is called and the connection was initiated by the remote device, the peer SEP is still `AVDT_TSEP_INVALID | AVDT_TSEP_SNK` or `AVDT_TSEP_INVALID | AVDT_TSEP_SRC`. In this case, we cannot use the original condition as-is, so the new check is **not** redundant with the existing one.\n\nIf you think the current implementation is not concise enough, here are two alternative proposals. Please let me know which one you prefer:\n\n1. Change the newly added part to the following:\n```c\nif (btif_av_src_sink_coexist_enabled()) {\n  if ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SNK) {\n    btif_a2dp_source_on_idle();\n  } else if ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SRC) {\n    btif_a2dp_sink_on_idle();\n  }\n  return;\n}\n```\n\n2. Remove the newly added part, and modify the original condition as follows to also cover the “remote-initiated connection” case:\n```c\nif ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SNK) {\n  btif_a2dp_source_on_idle();\n} else if ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SRC) {\n  btif_a2dp_sink_on_idle();\n}\n```",
+      "parentUuid": "5da7e77a_13d0265b",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b26e6a2b_554ee137",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-07-21T03:43:41Z",
+      "side": 1,
+      "message": "The corresponding lock protection has been added to the `Peers()` function using `btifavsource_peers_lock_` and `btifavsink_peers_lock_`, respectively.",
+      "parentUuid": "ff6095c2_98ab2b73",
+      "range": {
+        "startLine": 632,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 75
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b298b4c_9e5b481b",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 6
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45f7f310_fbde4a62",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3496,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-07-21T03:43:41Z",
+      "side": 1,
+      "message": "The `BtifAvEvent` constructor performs a deep copy, so the local variable `reconfig_codec` will not be passed to another thread.",
+      "parentUuid": "2b298b4c_9e5b481b",
+      "range": {
+        "startLine": 3496,
+        "startChar": 79,
+        "endLine": 3496,
+        "endChar": 94
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c52257a0_1d6b388d",
         "filename": "system/btif/src/btif_rc.cc",
         "patchSetId": 6
@@ -100,6 +190,30 @@
       "writtenOn": "2026-06-19T14:15:57Z",
       "side": 1,
       "message": "Please remove mention from log message",
+      "range": {
+        "startLine": 460,
+        "startChar": 45,
+        "endLine": 460,
+        "endChar": 55
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dea32bc_370b365c",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 3871749
+      },
+      "writtenOn": "2026-07-21T03:43:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c52257a0_1d6b388d",
       "range": {
         "startLine": 460,
         "startChar": 45,
