@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4690ca2_202193fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2021467
+      },
+      "writtenOn": "2026-07-23T01:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db841d27_6f663fc0",
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5da7e77a_13d0265b",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "When the connection is initiated by the remote device, `btif_av_handle_both_peer` calls `FindOrCreatePeer()` with `peer_sep \u003d AVDT_TSEP_INVALID`. After the peer is created, we set the peer SEP to either `AVDT_TSEP_INVALID | AVDT_TSEP_SNK` or `AVDT_TSEP_INVALID | AVDT_TSEP_SRC`.\n\nOnly after the connection is successfully established and we handle `BTA_AV_OPEN_EVT` (at which point the remote SEP becomes a definite value) do we clear the `AVDT_TSEP_INVALID` bit and update `PeerSep` to the final value.\n\nTherefore, when `btif_a2dp_on_idle()` is called and the connection was initiated by the remote device, the peer SEP is still `AVDT_TSEP_INVALID | AVDT_TSEP_SNK` or `AVDT_TSEP_INVALID | AVDT_TSEP_SRC`. In this case, we cannot use the original condition as-is, so the new check is **not** redundant with the existing one.\n\nIf you think the current implementation is not concise enough, here are two alternative proposals. Please let me know which one you prefer:\n\n1. Change the newly added part to the following:\n```c\nif (btif_av_src_sink_coexist_enabled()) {\n  if ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SNK) {\n    btif_a2dp_source_on_idle();\n  } else if ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SRC) {\n    btif_a2dp_sink_on_idle();\n  }\n  return;\n}\n```\n\n2. Remove the newly added part, and modify the original condition as follows to also cover the “remote-initiated connection” case:\n```c\nif ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SNK) {\n  btif_a2dp_source_on_idle();\n} else if ((btif_av_get_peer_sep(local_a2dp_type) \u0026 AVDT_TSEP_MASK) \u003d\u003d AVDT_TSEP_SRC) {\n  btif_a2dp_sink_on_idle();\n}\n```",
       "parentUuid": "5da7e77a_13d0265b",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 3
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433e8eb3_5c9ff3b8",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 2021467
+      },
+      "writtenOn": "2026-07-23T01:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "249252de_3b7f6b0c",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -130,6 +172,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be379b36_d5cd00ec",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 2021467
+      },
+      "writtenOn": "2026-07-23T01:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b26e6a2b_554ee137",
+      "range": {
+        "startLine": 632,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 75
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b298b4c_9e5b481b",
@@ -167,6 +233,30 @@
       "side": 1,
       "message": "The `BtifAvEvent` constructor performs a deep copy, so the local variable `reconfig_codec` will not be passed to another thread.",
       "parentUuid": "2b298b4c_9e5b481b",
+      "range": {
+        "startLine": 3496,
+        "startChar": 79,
+        "endLine": 3496,
+        "endChar": 94
+      },
+      "revId": "30457bc0d7a7fbc37749e8bad254464a1be72edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc2f7207_b310b426",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3496,
+      "author": {
+        "id": 2021467
+      },
+      "writtenOn": "2026-07-23T01:39:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45f7f310_fbde4a62",
       "range": {
         "startLine": 3496,
         "startChar": 79,
