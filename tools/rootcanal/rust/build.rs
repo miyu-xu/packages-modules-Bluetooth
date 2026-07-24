@@ -42,6 +42,7 @@ fn install_generated_module(module_name: &str, prebuilt_var: &str, pdl_name: &Pa
     };
 
     if Path::new(module_prebuilt.as_os_str()).exists() {
+        println!("cargo:rerun-if-changed={}", module_prebuilt.display());
         let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
         std::fs::copy(
             module_prebuilt.as_os_str().to_str().unwrap(),
@@ -71,7 +72,7 @@ fn generate_module(in_file: &PathBuf) {
     println!("cargo:rerun-if-changed={}", in_file.display());
     let output = Command::new(pdl.as_os_str().to_str().unwrap())
         .arg("--output-format")
-        .arg("rust")
+        .arg("rust_legacy")
         .arg(in_file)
         .stdout(Stdio::from(out_file))
         .output()

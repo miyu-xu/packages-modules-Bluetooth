@@ -16,6 +16,83 @@
 
 #pragma once
 
+#ifdef ROOTCANAL_STANDALONE_WINDOWS
+
+#include <cstdlib>
+#include <iostream>
+#include <mutex>
+#include <optional>
+#include <string>
+
+namespace fmt {
+
+template <typename... Args>
+std::string format(const char* text, const Args&... args) {
+  (void)sizeof...(args);
+  return text;
+}
+
+}  // namespace fmt
+
+namespace rootcanal::log {
+
+enum Verbosity {
+  kDebug,
+  kInfo,
+  kWarning,
+  kError,
+  kFatal,
+};
+
+inline void SetLogColorEnable(bool) {}
+
+template <typename... Args>
+static void Log(Verbosity verb, char const* file, int line, std::optional<int> instance,
+                char const* format, const Args&... args) {
+  static std::mutex log_mutex;
+  std::lock_guard<std::mutex> lock(log_mutex);
+  (void)instance;
+  (void)sizeof...(args);
+  std::cerr << "root-canal " << "DIWEF"[verb] << " " << file << ':' << line << " " << format
+            << '\n';
+  if (verb == kFatal) {
+    std::abort();
+  }
+}
+
+template <typename... Args>
+static void Log(Verbosity verb, char const* file, int line, int instance, char const* format,
+                const Args&... args) {
+  Log(verb, file, line, std::optional<int>(instance), format, args...);
+}
+
+template <typename... Args>
+static void Log(Verbosity verb, char const* file, int line, char const* format,
+                const Args&... args) {
+  Log(verb, file, line, std::optional<int>(), format, args...);
+}
+
+#define DEBUG(...) \
+  rootcanal::log::Log(rootcanal::log::Verbosity::kDebug, __FILE__, __LINE__, __VA_ARGS__)
+#define INFO(...) \
+  rootcanal::log::Log(rootcanal::log::Verbosity::kInfo, __FILE__, __LINE__, __VA_ARGS__)
+#define WARNING(...) \
+  rootcanal::log::Log(rootcanal::log::Verbosity::kWarning, __FILE__, __LINE__, __VA_ARGS__)
+#define ERROR(...) \
+  rootcanal::log::Log(rootcanal::log::Verbosity::kError, __FILE__, __LINE__, __VA_ARGS__)
+#define FATAL(...) \
+  rootcanal::log::Log(rootcanal::log::Verbosity::kFatal, __FILE__, __LINE__, __VA_ARGS__)
+#define ASSERT(x)                                                                     \
+  __builtin_expect((x) != 0, true) ||                                                 \
+          (rootcanal::log::Log(rootcanal::log::Verbosity::kFatal, __FILE__, __LINE__, \
+                               "Check failed: {}", #x),                              \
+           false)
+#define ASSERT_LOG(x, ...) ASSERT(x)
+
+}  // namespace rootcanal::log
+
+#else
+
 #include <fmt/core.h>
 #include <fmt/format.h>
 #include <fmt/printf.h>
@@ -77,3 +154,5 @@ static void Log(Verbosity verb, char const* file, int line, char const* format,
            false)
 
 }  // namespace rootcanal::log
+
+#endif

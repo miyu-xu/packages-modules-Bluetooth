@@ -21,7 +21,9 @@
 #include <vector>
 
 #include "packets/hci_packets.h"
+#ifndef ROOTCANAL_STANDALONE_WINDOWS
 #include "rootcanal/configuration.pb.h"
+#endif
 
 namespace rootcanal {
 using bluetooth::hci::HciVersion;
@@ -59,7 +61,9 @@ struct ControllerQuirks {
 struct ControllerProperties {
 public:
   ControllerProperties();
+#ifndef ROOTCANAL_STANDALONE_WINDOWS
   ControllerProperties(rootcanal::configuration::Controller const&);
+#endif
   ControllerProperties(ControllerProperties const&) = default;
   ControllerProperties(ControllerProperties&&) = default;
   ~ControllerProperties() = default;

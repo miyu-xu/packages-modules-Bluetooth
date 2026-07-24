@@ -23,7 +23,9 @@
 
 #include "log.h"
 #include "packets/hci_packets.h"
+#ifndef ROOTCANAL_STANDALONE_WINDOWS
 #include "rootcanal/configuration.pb.h"
+#endif
 
 namespace rootcanal {
 using namespace bluetooth::hci;
@@ -1590,6 +1592,7 @@ ControllerProperties::ControllerProperties()
   }
 }
 
+#ifndef ROOTCANAL_STANDALONE_WINDOWS
 // Commands enabled by the LE Extended Advertising feature bit.
 static std::vector<OpCodeIndex> le_extended_advertising_commands_ = {
         OpCodeIndex::LE_CLEAR_ADVERTISING_SETS,
@@ -1815,5 +1818,6 @@ ControllerProperties::ControllerProperties(rootcanal::configuration::Controller 
          " described in Vol 4, Part E § 3 Overview of commands and events");
   }
 }
+#endif
 
 }  // namespace rootcanal

@@ -16,7 +16,9 @@
 
 #pragma once
 
+#ifndef ROOTCANAL_STANDALONE_WINDOWS
 #include <fmt/core.h>
+#endif
 
 #include <cstddef>
 #include <cstdint>
@@ -137,6 +139,7 @@ struct hash<bluetooth::hci::AddressWithType> {
 };
 }  // namespace std
 
+#ifndef ROOTCANAL_STANDALONE_WINDOWS
 template <>
 struct fmt::formatter<bluetooth::hci::AddressWithType> {
   // Presentation format: 'x' - lowercase, 'X' - uppercase.
@@ -169,3 +172,4 @@ struct fmt::formatter<bluetooth::hci::AddressWithType> {
     return fmt::format_to(out, "[{}]", AddressTypeText(a.GetAddressType()));
   }
 };
+#endif
